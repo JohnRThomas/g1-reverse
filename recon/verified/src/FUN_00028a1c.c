@@ -1,4 +1,4 @@
-/* Reconstructed FUN_00028a1c @ 0x28a1c  (parity: 4/4 trials, PROVEN) */
+/* Reconstructed FUN_00028a1c @ 0x28a1c  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
 
 extern void DEBUG_PRINT(uint32_t a, ...);

@@ -1,4 +1,4 @@
-/* Reconstructed display_dispatch_thread @ 0x28bec  (parity: 100/100 trials, PROVEN) */
+/* Reconstructed display_dispatch_thread @ 0x28bec  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8; typedef signed char s8;
 typedef unsigned short u16; typedef short s16;
 typedef unsigned int u32; typedef int s32;

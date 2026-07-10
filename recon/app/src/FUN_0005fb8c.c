@@ -1,4 +1,4 @@
-/* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 150/150 trials, PROVEN) */
+/* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 
@@ -39,7 +39,7 @@ uint FUN_0005fb8c(int param_1, uint32_t param_2)
         int iStack_38 = FUN_0004b908(puVar4[0], puVar4 + 1);
         if (iStack_38 < 0) {
           *(volatile uint8_t*)((char*)puVar4 + 0x51) = 0;
-          struct { uint32_t a,b; } s = { 3, 0x000f56aeUL };
+          struct { uint32_t a,b,c; } s = { 3, 0x000f56aeUL, (uint32_t)iStack_38 };
           FUN_000837a2(0x000881a0UL, 0x1840, &s);
           return 0xfffffffbUL;
         }
@@ -47,7 +47,7 @@ uint FUN_0005fb8c(int param_1, uint32_t param_2)
       break;
     }
     default: {
-      struct { uint32_t a,b; } s = { 3, 0x000f56caUL };
+      struct { uint32_t a,b,c; } s = { 3, 0x000f56caUL, param_2 };
       FUN_000837a2(0x000881a0UL, 0x1840, &s);
       return 0xffffffeaUL;
     }
