@@ -1,0 +1,36 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_0103705c @ 0x103705c  (parity 300 trials PROVEN) */
+extern int FUN_0103610c(unsigned int);
+extern void FUN_01036144(unsigned int);
+extern void FUN_01036fcc(unsigned int);
+extern int FUN_01036128(unsigned int);
+extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void FUN_01039bb0(unsigned int, unsigned int);
+
+void FUN_0103705c(unsigned int param_1)
+{
+  int iVar3;
+  unsigned int r1val;
+
+  iVar3 = FUN_0103610c(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  if (iVar3 == 0) {
+    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+    r1val = 0x72;
+    goto L_shared;
+  }
+
+L_main:
+  FUN_01036144(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  FUN_01036fcc(param_1);
+  iVar3 = FUN_01036128(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  if (iVar3 != 0) {
+    return;
+  }
+  FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+  r1val = 0xf0;
+
+L_shared:
+  FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, r1val);
+  goto L_main;
+}
+

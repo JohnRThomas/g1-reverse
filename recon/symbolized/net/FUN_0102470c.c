@@ -1,0 +1,28 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_0102470c @ 0x102470c  (parity 300 trials PROVEN) */
+
+typedef void (*fp0_t)(void);
+extern void FUN_010246e4(void);
+extern unsigned int FUN_01024ad0(void);
+
+unsigned int FUN_0102470c(unsigned int param_1)
+{
+  unsigned int base = ((uintptr_t)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/;
+  unsigned int iVar3;
+
+  if (*(volatile unsigned char *)base == 0) {
+    *(volatile unsigned int *)(base + 8) = param_1;
+    *(volatile unsigned char *)base = 1;
+    FUN_010246e4();
+    iVar3 = FUN_01024ad0();
+    if (iVar3 == 0) {
+      *(volatile unsigned char *)(base + 0xc) = 1;
+      *(volatile unsigned int *)(REG_41005000 /*=0x41005000*/ + 0x304) = 1;
+    } else if (*(volatile fp0_t *)(base + 8) != (fp0_t)0) {
+      (*(volatile fp0_t *)(base + 8))();
+      *(volatile unsigned int *)(base + 8) = 0;
+    }
+  }
+  return 0;
+}
+

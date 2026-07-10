@@ -1,0 +1,14 @@
+/* Reconstructed FUN_00057438 @ 0x57438  (parity: 300/300 trials, PROVEN) */
+
+extern void FUN_00081746(unsigned int a0, unsigned int a1, void *a2);
+
+unsigned int FUN_00057438(unsigned int param_1)
+{
+  unsigned int local[3];
+  local[0] = 3;
+  local[1] = 0x000f3eea;
+  local[2] = param_1;
+  FUN_00081746(0x00088160, 0x1840, local);
+  return 0xfffffff4;
+}
+

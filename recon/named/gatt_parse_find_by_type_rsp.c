@@ -1,0 +1,55 @@
+/* named: gatt_parse_find_by_type_rsp */
+/* Reconstructed gatt_parse_find_by_type_rsp @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void FUN_00082a42(unsigned,unsigned,void*);
+extern void gatt_discover_next(unsigned,unsigned,void*);
+extern void memset_bytes(void*,int,int);
+typedef int (*fp_t)(unsigned,void*,void*);
+
+void gatt_parse_find_by_type_rsp(unsigned param_1, int param_2, unsigned char *param_3, int param_4, char *param_5){
+  fp_t pcVar6;
+  if(param_2 != 0){
+    pcVar6 = *(fp_t*)(param_5+4);
+    pcVar6(param_1, 0, param_5);
+    return;
+  }
+  unsigned uVar3 = *param_3;
+  char cVar2 = 0;
+  if(uVar3 != 6){
+    if(uVar3 == 0x14){ cVar2 = 2; }
+    else {
+      unsigned st[8];
+      st[0]=3; st[5]=0x000f4ca8; st[6]=uVar3;
+      FUN_00082a42(0x00088128, 0x1840, st);
+      goto LAB_bc40;
+    }
+  }
+  {
+    char local_50 = cVar2;
+    unsigned short uVar9 = 0, uVar1;
+    unsigned short *puVar10 = (unsigned short*)(param_3 + 1);
+    unsigned char blk[0x14];
+    unsigned uVar3b = (unsigned)(param_4 - 1);
+    while((uVar3b = uVar3b & 0xffff), *param_3 <= uVar3b){
+      memset_bytes(blk, 0, 0x14);
+      uVar1 = *puVar10;
+      if(uVar1==0 || (uVar9=puVar10[1], uVar9==0) || uVar9 < uVar1) goto LAB_bc40;
+      volatile unsigned short sink = 0;
+      if(local_50 == 0){ sink = puVar10[2]; }
+      else if(local_50 == 2){ for(int i=0;i<4;i++) sink = puVar10[2+i]; }
+      (void)sink;
+      int iVar4 = (*(fp_t*)(param_5+4))(param_1, blk, param_5);
+      if(iVar4 == 0) return;
+      puVar10 = (unsigned short*)((int)puVar10 + *param_3);
+      uVar3b = uVar3b - *param_3;
+    }
+    if(uVar3b == 0 && uVar9 != 0){
+      gatt_discover_next(param_1, uVar9, param_5);
+      return;
+    }
+  }
+LAB_bc40:
+  pcVar6 = *(fp_t*)(param_5+4);
+  pcVar6(param_1, 0, param_5);
+}
+

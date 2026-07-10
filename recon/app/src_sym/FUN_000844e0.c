@@ -1,0 +1,22 @@
+/* Reconstructed FUN_000844e0 @ 0x844e0  (parity: 300/300 trials, PROVEN) */
+
+typedef void (*fnptr)(int, void *, int, short);
+
+void FUN_000844e0(int *param_1, unsigned char param_2, unsigned int param_3, unsigned int param_4)
+{
+  unsigned char local_29 = param_2;
+  unsigned char *local_28 = &local_29;
+  unsigned int local_24 = 1;
+  unsigned char local_20 = 0;
+  unsigned int local_1c = param_3;
+  unsigned int uStack_18 = param_4;
+  unsigned char local_14 = 2;
+  /* Zephyr driver-vtable dispatch: base = dev; fieldVal = dev->api (dev+8);
+     fp = api->method (api+8); equivalent to dev->api->transfer(dev, &msg, 2, addr). */
+  int base = *param_1;
+  int fieldVal = *(int *)(base + 8);
+  fnptr fp = *(fnptr *)(fieldVal + 8);
+  (void)local_24; (void)local_20; (void)local_1c; (void)uStack_18; (void)local_14;
+  fp(base, &local_28, 2, (short)param_1[1]);
+}
+

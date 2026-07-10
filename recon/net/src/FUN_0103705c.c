@@ -1,0 +1,35 @@
+/* net-core FUN_0103705c @ 0x103705c  (parity 300 trials PROVEN) */
+extern int FUN_0103610c(unsigned int);
+extern void FUN_01036144(unsigned int);
+extern void FUN_01036fcc(unsigned int);
+extern int FUN_01036128(unsigned int);
+extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void FUN_01039bb0(unsigned int, unsigned int);
+
+void FUN_0103705c(unsigned int param_1)
+{
+  int iVar3;
+  unsigned int r1val;
+
+  iVar3 = FUN_0103610c(0x21004b68);
+  if (iVar3 == 0) {
+    FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0x72);
+    r1val = 0x72;
+    goto L_shared;
+  }
+
+L_main:
+  FUN_01036144(0x21004b68);
+  FUN_01036fcc(param_1);
+  iVar3 = FUN_01036128(0x21004b68);
+  if (iVar3 != 0) {
+    return;
+  }
+  FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);
+  r1val = 0xf0;
+
+L_shared:
+  FUN_01039bb0(0x0103d3b6, r1val);
+  goto L_main;
+}
+

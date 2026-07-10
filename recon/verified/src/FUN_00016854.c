@@ -1,0 +1,55 @@
+/* Reconstructed FUN_00016854 @ 0x16854  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int FUN_00019308(int,...);
+extern int FUN_0002bd7c(int,...);
+extern int FUN_00032ee4(int,...);
+extern int FUN_0007c038(int,...);
+extern int FUN_0007c108(int,...);
+extern int FUN_000167f4(int,...);
+extern int FUN_0002bdf0(int,...);
+extern int FUN_00016834(int,...);
+extern int FUN_00017a10(int,...);
+extern int FUN_00017a1c(int,...);
+extern int FUN_00017a04(int,...);
+extern int FUN_000179f8(int,...);
+extern int FUN_0007c058(int,...);
+unsigned int FUN_00016854(unsigned int param_1, int param_2)
+{
+  volatile int *pp = (volatile int*)0x200069fcUL;
+  int base = *pp;
+  volatile unsigned short *flags = (volatile unsigned short*)(base + 0x105c);
+  if (param_1 == 0) {
+    *flags = *flags & ~(unsigned short)param_2;
+    if (*(volatile char*)(base+1) == 0) return 0;
+    if (param_2 == 0x80) return FUN_0007c108(0);
+  } else {
+    *flags = *flags | (unsigned short)param_2;
+    if (*(volatile char*)(base+1) == 0) return param_1;
+    if (param_2 == 0x80) return FUN_00019308(0);
+  }
+  if (param_2 > 0x80) {
+    if (param_2 == 0x400) { if (param_1==0) return FUN_000179f8(0); return FUN_00017a04(0); }
+    if (param_2 == 0x800) { if (param_1==0) return FUN_000167f4(1); return param_1; }
+    if (param_2 == 0x100) {
+      if (FUN_00032ee4(0) != 0) return param_1;
+      if (param_1 == 0) return FUN_0002bd7c(0);
+      return FUN_0002bdf0(0);
+    }
+    return param_1;
+  }
+  if (param_2 == 0x20) {
+    if (*(volatile char*)base == 1) return FUN_00016834(0);
+    return FUN_0007c038(0x32);
+  }
+  if (param_2 == 0x40) {
+    if (param_1==1) return FUN_0007c058(0xb);
+    if (param_1==2) return FUN_0007c058(0xa);
+    return FUN_0007c058(0xc);
+  }
+  if (param_2 == 1) {
+    if (param_1==0) return FUN_00017a1c(0);
+    return FUN_00017a10(0);
+  }
+  return param_1;
+}
+

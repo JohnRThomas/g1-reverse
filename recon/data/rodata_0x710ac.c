@@ -1,0 +1,9 @@
+/* rodata_0x710ac: literal pool, unaligned span (trailing byte(s) begin next function)
+   app-core rodata @ 0x710ac, span 13 bytes
+   referenced by: FUN_00070fb4
+ */
+#include <stdint.h>
+const uint8_t rodata_0x710ac[13] = {
+    0x2d,0xf8,0xff,0xff,0x29,0xf8,0xff,0xff,
+    0x2d,0xe9,0xf0,0x43,0xa3,
+};

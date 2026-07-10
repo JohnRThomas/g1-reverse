@@ -1,0 +1,41 @@
+{
+    "format-version": 0,
+    "time": 1735388660,
+    "files": [
+        {
+            "type": "application",
+            "board": "nrf5340dk_nrf5340_cpuapp",
+            "soc": "nRF5340_CPUAPP_QKAA",
+            "load_address": 49664,
+            "image_index": "0",
+            "slot_index_primary": "1",
+            "slot_index_secondary": "2",
+            "version_MCUBOOT": "0.0.0+0",
+            "size": 977805,
+            "file": "app_update.bin",
+            "modtime": 1735388660
+        },
+        {
+            "type": "application",
+            "board": "nrf5340dk_nrf5340_cpunet",
+            "soc": "nRF5340_CPUNET_QKAA",
+            "image_index": "1",
+            "slot_index_primary": "3",
+            "slot_index_secondary": "4",
+            "load_address": 16812032,
+            "version": "1",
+            "size": 226144,
+            "file": "net_core_app_update.bin",
+            "modtime": 1735388617
+        }
+    ],
+    "name": "ar_glasses",
+    "firmware": {
+        "zephyr": {
+            "revision": "1b8581519f7aaeef086c6a3d3df59479b2a337d2-dirty"
+        },
+        "nrf": {
+            "revision": "87355af5914e498f449b7a68bb5641031a7b8885-dirty"
+        }
+    }
+}

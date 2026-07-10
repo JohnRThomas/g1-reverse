@@ -1,0 +1,20 @@
+/* net-core FUN_0101fc70 @ 0x101fc70  (parity 300 trials PROVEN) */
+
+extern void FUN_01020088(unsigned int a0);
+
+void FUN_0101fc70(void)
+{
+  unsigned int iVar1;
+  unsigned int uVar2;
+
+  FUN_01020088(2);
+  uVar2 = 0x80000003u;
+  iVar1 = 0x4100e000u;
+  *(volatile unsigned char *)0x210014d8u = 1;
+  *(volatile unsigned int *)(iVar1 + 0x100) = 0;
+  *(volatile unsigned int *)(iVar1 + 0x104) = 0;
+  *(volatile unsigned int *)(iVar1 + 0x108) = 0;
+  *(volatile unsigned int *)(iVar1 + 0x80) = uVar2;
+  return;
+}
+

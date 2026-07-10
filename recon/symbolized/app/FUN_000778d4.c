@@ -1,0 +1,13 @@
+#include "g1_app_symbols.h"
+/* named: FUN_000778d4 */
+/* globals referenced:
+//   0x20002d20  g_libc_heap_ctrl             
+*/
+/* Reconstructed FUN_000778d4 @ 0x778d4  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int sub_77820(int,int);
+int FUN_000778d4(int param_1){
+    int r0 = *(volatile int*)((uintptr_t)&g_libc_heap_ctrl) /*=0x20002d20*/;
+    return sub_77820(r0, param_1);
+}
+

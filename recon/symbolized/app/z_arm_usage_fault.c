@@ -1,0 +1,23 @@
+#include "g1_app_symbols.h"
+/* named: z_arm_usage_fault */
+/* Reconstructed z_arm_usage_fault @ 0x506ac  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int FUN_00080780(int,...);
+unsigned int z_arm_usage_fault(void)
+{
+  unsigned int uVar1;
+  unsigned int a[2];
+  a[1] = "***** USAGE FAULT *****" /*=0xf1e81*/; a[0] = 2;
+  FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a);
+  if (*(volatile int*)0xe000ed28UL << 6 < 0) { a[0]=2; a[1]="  Division by zero" /*=0xf1e99*/; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x1e; }
+  else uVar1=0x1d;
+  if (*(volatile int*)0xe000ed28UL << 7 < 0) { a[1]="  Unaligned memory access" /*=0xf1eac*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x1f; }
+  if (*(volatile int*)0xe000ed28UL << 0xb < 0) { a[1]="  Stack overflow (context area not valid)" /*=0xf1ec6*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=2; }
+  if (*(volatile int*)0xe000ed28UL << 0xc < 0) { a[1]="  No coprocessor instructions" /*=0xf1ef0*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x21; }
+  if (*(volatile int*)0xe000ed28UL << 0xd < 0) { a[1]="  Illegal load of EXC_RETURN into PC" /*=0xf1f0e*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x22; }
+  if (*(volatile int*)0xe000ed28UL << 0xe < 0) { a[1]="  Illegal use of the EPSR" /*=0xf1f33*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x23; }
+  if (*(volatile int*)0xe000ed28UL << 0xf < 0) { a[1]="  Attempt to execute undefined instruction" /*=0xf1f4d*/; a[0]=2; FUN_00080780(((uintptr_t)&tbl_880d8) /*=0x88258*/,0x1040,a); uVar1=0x24; }
+  *(volatile unsigned int*)0xe000ed28UL = ~((unsigned int)~(*(volatile int*)0xe000ed28UL << 0x10) >> 0x10);
+  return uVar1;
+}
+

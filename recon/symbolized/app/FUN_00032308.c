@@ -1,0 +1,54 @@
+#include "g1_app_symbols.h"
+/* named: FUN_00032308 */
+/* globals referenced:
+//   0x20007554  g_log_use_alt_sink           
+*/
+/* Reconstructed FUN_00032308 @ 0x32308  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void DEBUG_PRINT(unsigned,...);
+extern int get_device_info(void);
+extern void debug_print(void);
+extern void build_and_send_device_status_report(int,int);
+extern int read_sys_settting_from_flash(void*);
+extern void k_msleep_ticks32768_b(int);
+
+int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
+    unsigned char auStack[20];
+    unsigned char local_88;
+    DEBUG_PRINT("join in %s \n" /*=0xa6711*/, "set_panel_voltage" /*=0xa7712*/);
+    if (param_3==0 || param_4==0 || param_1==0 || param_2 < 5){
+        DEBUG_PRINT("%s para is NULL\n" /*=0xa671e*/, "set_panel_voltage" /*=0xa7712*/);
+        return 0xffffffff;
+    }
+    unsigned char *puVar6 = (unsigned char*)*param_3;
+    *puVar6 = 0x3c;
+    puVar6[2]=3; puVar6[1]=1; puVar6[3]=1;
+    unsigned char bVar1 = *(unsigned char*)(param_1+4);
+    unsigned char uVar4;
+    if (bVar1 < 2){
+        int iVar2 = get_device_info();
+        if (*(unsigned char*)(iVar2+0xed4) != bVar1){
+            iVar2 = get_device_info(); *(unsigned char*)(iVar2+0xed4) = bVar1;
+            iVar2 = get_device_info(); build_and_send_device_status_report(iVar2, 0);
+            char cVar5 = 0;
+            do {
+                iVar2 = read_sys_settting_from_flash(auStack);
+                if (iVar2 == 0 && local_88 == bVar1) break;
+                cVar5 = cVar5 + 1;
+                k_msleep_ticks32768_b(100);
+            } while (cVar5 != 5);
+            puVar6[4] = (cVar5 == 5);
+            goto LAB;
+        }
+        uVar4 = 4;
+    } else {
+        if (*(int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT("[%s-%d]invalid vaule \n" /*=0xa676d*/, "set_panel_voltage" /*=0xa7712*/, 0x3c1);
+        else debug_print();
+        uVar4 = 3;
+    }
+    puVar6[4] = uVar4;
+    LAB:
+    *param_4 = 5;
+    return 0;
+}
+

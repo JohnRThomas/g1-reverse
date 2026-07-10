@@ -1,0 +1,27 @@
+/* named: stage_pending_message_for_resend */
+/* Reconstructed stage_pending_message_for_resend @ 0x33b88  (parity: 300/300 trials, PROVEN) */
+
+extern void memcpy(unsigned int, unsigned int, int, int, unsigned int);
+
+unsigned int stage_pending_message_for_resend(void)
+{
+    unsigned int base = 0x20008dacUL;
+    unsigned char v118 = *(volatile unsigned char*)(base + 0x118);
+    unsigned int uVar2 = v118;
+    if (v118 != 0) {
+        unsigned char v116 = *(volatile unsigned char*)(base + 0x116);
+        if (v116 == 0) {
+            uVar2 = 0;
+            unsigned char v115 = *(volatile unsigned char*)(base + 0x115);
+            if (v115 < 4) {
+                *(volatile unsigned char*)(base + 0x114) = 10;
+                memcpy(0x20007bf4UL, base + 0x108, 0x1b4, 10, 0);
+                uVar2 = 0x20007bf4UL;
+            }
+        } else {
+            uVar2 = 0;
+        }
+    }
+    return uVar2;
+}
+

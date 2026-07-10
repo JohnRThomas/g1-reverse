@@ -1,0 +1,54 @@
+#include "g1_app_symbols.h"
+/* named: set_device_sn_info */
+/* globals referenced:
+//   0x2000230c  g_log_level                  
+//   0x20007554  g_log_use_alt_sink           
+//   0x20019ef3  g_test_mode_flag             
+*/
+/* Reconstructed set_device_sn_info @ 0x32164  (parity: 300/300 trials, PROVEN) */
+
+#include <stdint.h>
+extern int DEBUG_PRINT(int,...);
+extern int get_device_info(void);
+extern int debug_print(int,...);
+extern int build_and_send_device_status_report(int,int);
+extern int FUN_000232b0(void);
+extern int FUN_000232c0(int);
+extern int read_sys_settting_from_flash(void*);
+extern int printf(int,int);
+extern int k_msleep_ticks32768_b(int);
+extern int memcmp(int,void*,int);
+
+uint32_t set_device_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_t *param_4){
+    uint32_t uVar1;
+    int iVar2;
+    int8_t cVar3;
+    uint8_t *puVar4;
+    uint8_t auStack_9c[21];
+    uint8_t auStack_87[115];
+    DEBUG_PRINT("join in get_query_sn_info\n" /*=0xa72e1*/);
+    if (param_3==0 || param_4==0){ DEBUG_PRINT("get_query_sn_info para is NULL\n" /*=0xa72fc*/); uVar1=0xffffffff; }
+    else if (*(volatile uint8_t*)((uintptr_t)&g_test_mode_flag) /*=0x20019ef3*/ == 1){
+        param_1 = param_1 + 4;
+        puVar4 = (uint8_t*)*param_3;
+        FUN_000232c0(param_1);
+        printf("The string is: %s\n" /*=0xa71cd*/, param_1);
+        uVar1 = get_device_info();
+        build_and_send_device_status_report(uVar1,0);
+        if (2 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/){
+            if (*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0){ uVar1=FUN_000232b0(); DEBUG_PRINT("%s(): BLE_REQ_PUT_DEVICE_SN new sn:%16s\n" /*=0xa71e0*/,"set_device_sn_info" /*=0xa76f2*/,uVar1); }
+            else { uVar1=FUN_000232b0(); debug_print("%s(): BLE_REQ_PUT_DEVICE_SN new sn:%16s\n" /*=0xa71e0*/,"set_device_sn_info" /*=0xa76f2*/,uVar1); }
+        }
+        *puVar4=0x1c; puVar4[1]=1; puVar4[3]=1; cVar3=5; puVar4[2]=3; puVar4[4]=0; *param_4=5;
+        do {
+            iVar2 = read_sys_settting_from_flash(auStack_9c);
+            if (iVar2==0 && (iVar2=memcmp(param_1, auStack_87, 0xe))==0){ DEBUG_PRINT("SN codes updated and written to flash successfully.\n" /*=0xa7209*/); goto done; }
+            cVar3 = cVar3 - 1;
+            k_msleep_ticks32768_b(100);
+        } while (cVar3 != 0);
+        puVar4[4]=1;
+done:   uVar1=0;
+    } else { DEBUG_PRINT("warning: not test mode,disable setting\n" /*=0xa672f*/); uVar1=0xfffffffe; }
+    return uVar1;
+}
+

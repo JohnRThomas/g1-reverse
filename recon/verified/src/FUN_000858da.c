@@ -1,0 +1,15 @@
+/* Reconstructed FUN_000858da @ 0x858da  (parity: 300/300 trials, PROVEN) */
+
+typedef void (*fnptr)(void);
+
+void FUN_000858da(int param_1, int param_2)
+{
+    if (param_1 != 0 && *(int *)(param_1 + 0x20) != 0 && param_2 != 0) {
+        int p2 = *(int *)(param_1 + 0x20);
+        fnptr f = *(fnptr *)(p2 + 0x80);
+        if (f != 0) {
+            f();
+        }
+    }
+}
+

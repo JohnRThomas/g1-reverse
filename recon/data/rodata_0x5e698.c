@@ -1,0 +1,18 @@
+/* app-core rodata @ 0x5e698  span=60 bytes  (link base 0xC200) */
+/* Compiler PC-relative literal pool: 7 word(s), read by func 0x5e614.
+   Non-pointer literal constants in pool: [4]=0xb949b508 */
+/* NOTE: bytes after word[7] (offset 28..60) are Thumb code over-captured by the extractor;
+   preserved verbatim below as a byte tail for span byte-exactness, NOT rodata. */
+const unsigned int litpool_5e698[7] = {
+    0x2000af4c,
+    0x000f2b3a,
+    0x2000af4d,
+    0x2000afa9,
+    0xb949b508,
+    0x48074906,
+    0x4a072359,
+};
+/* over-captured Thumb code tail (offset 28, 32 bytes) */
+const unsigned char litpool_5e698_code_tail[32] = {
+    0x1f, 0xf0, 0x21, 0xfe, 0x59, 0x21, 0x05, 0x48, 0x1f, 0xf0, 0x16, 0xfe, 0xbd, 0xe8, 0x08, 0x40, 0xff, 0xf7, 0xa6, 0xbf, 0xac, 0x52, 0x0f, 0x00, 0xbd, 0x9c, 0x09, 0x00, 0x68, 0x52, 0x0f, 0x00,
+};

@@ -1,0 +1,67 @@
+#include "g1_app_symbols.h"
+/* named: draw_template_translate_screen */
+/* globals referenced:
+//   0x2000230c  g_log_level                  
+//   0x20007554  g_log_use_alt_sink           
+*/
+/* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
+extern void DEBUG_PRINT(int,...);
+extern int  get_device_info(void);
+extern void debug_print(int,int);
+extern void gui_set_active_canvas(int);
+extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
+extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);
+extern void gui_clock_draw(int,int,int,int,int,int,int);
+extern void FUN_00077914(int*,int,int,int,int);
+extern int  get_timestamp(void);
+extern int  device_info_text_width_get(void);
+extern int  device_info_text_height_get_clamped(void);
+#define VI(a) (*(volatile int*)(a))
+
+int draw_template_translate_screen(int param_1){
+  volatile int *lvl=(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
+  volatile int *g8=(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  int iVar1,iVar4,iVar5,iVar6,iVar7,uVar2,uVar3;
+  unsigned int uVar8,uVar9;
+  int local_24[3];
+  iVar1 = get_device_info();
+  gui_set_active_canvas(param_1 + 0x24);
+  uVar8 = *(volatile unsigned char*)(iVar1+0xf0);
+  uVar9 = (unsigned int)(*(volatile unsigned char*)(iVar1+0xef) - 1);
+  if (uVar8 < 9 && (uVar9 & 0xff) < 8 && uVar8 != 0) {
+    local_24[0]=0; local_24[1]=0; local_24[2]=0;
+    FUN_00077914(local_24, 10, "%s>%s" /*=0xaa4ea*/,
+                 VI(((uintptr_t)&g_translate_lang_string_table) /*=0x200024f4*/ + (uVar8-1)*4), VI(((uintptr_t)&g_translate_lang_string_table) /*=0x200024f4*/ + uVar9*4));
+    uVar2 = device_info_text_width_get();
+    iVar4 = device_info_text_height_get_clamped();
+    iVar5 = device_info_text_width_get();
+    iVar6 = device_info_text_height_get_clamped();
+    gui_utf_draw(0,(int)local_24,3,uVar2,iVar4+0x6e,iVar5+0x50,iVar6+0x89,1,0,0,0,0);
+  } else if (0 < *lvl) {
+    if (*g8==0) DEBUG_PRINT("%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d\n" /*=0xaa487*/,"draw_template_translate_screen" /*=0xaa5ab*/,uVar8,*(volatile unsigned char*)(iVar1+0xef));
+    else debug_print("%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d\n" /*=0xaa487*/,"draw_template_translate_screen" /*=0xaa5ab*/);
+  }
+  uVar2 = get_timestamp();
+  uVar3 = device_info_text_width_get();
+  iVar4 = device_info_text_height_get_clamped();
+  iVar5 = device_info_text_width_get();
+  iVar6 = device_info_text_height_get_clamped();
+  gui_clock_draw(uVar2,uVar3,iVar4+2,iVar5+0x50,iVar6+0x1d,3,1);
+  if (*(volatile char*)(iVar1+0xf1) == 1) {
+    uVar2 = device_info_text_width_get();
+    iVar4 = device_info_text_height_get_clamped();
+    uVar3 = 0x1b;
+  } else {
+    uVar2 = device_info_text_width_get();
+    iVar4 = device_info_text_height_get_clamped();
+    uVar3 = 0x33;
+  }
+  gui_bmp_bitmap_draw(uVar3,uVar2,iVar4+0x36,0,0,0);
+  iVar4 = device_info_text_width_get();
+  iVar5 = device_info_text_height_get_clamped();
+  iVar6 = device_info_text_width_get();
+  iVar7 = device_info_text_height_get_clamped();
+  gui_utf_draw(0,iVar1+0xf5,0,iVar4+0x58,iVar5+1,iVar6+0x240,iVar7+0x88,5,0,0,0,0);
+  return 0;
+}
+

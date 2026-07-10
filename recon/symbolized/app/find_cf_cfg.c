@@ -1,0 +1,36 @@
+#include "g1_app_symbols.h"
+/* named: find_cf_cfg */
+/* globals referenced:
+//   0x2000aed4  g_bt_gatt_cf_cfg             
+*/
+/* Reconstructed find_cf_cfg @ 0x59c04  (parity: 300/300 trials, PROVEN) */
+
+extern int bt_conn_is_peer_addr_le(int a, unsigned char b);
+extern int bt_addr_le_eq_0(void *a, unsigned int b);
+
+unsigned char * find_cf_cfg(int param_1)
+{
+    unsigned int uVar1;
+    int iVar2;
+    unsigned char *puVar3;
+    int iVar4;
+
+    uVar1 = ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/;
+    iVar4 = 0;
+    puVar3 = (unsigned char *)((uintptr_t)&g_bt_gatt_cf_cfg) /*=0x2000aed4*/;
+    while (1) {
+        if (param_1 == 0) {
+            iVar2 = bt_addr_le_eq_0(puVar3 + 1, uVar1);
+        } else {
+            iVar2 = bt_conn_is_peer_addr_le(param_1, *puVar3);
+        }
+        if (iVar2 != 0) break;
+        iVar4 = iVar4 + 1;
+        puVar3 = puVar3 + 0x10;
+        if (iVar4 == 3) {
+            return (unsigned char *)0;
+        }
+    }
+    return puVar3;
+}
+

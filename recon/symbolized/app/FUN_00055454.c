@@ -1,0 +1,68 @@
+#include "g1_app_symbols.h"
+/* named: FUN_00055454 */
+/* globals referenced:
+//   0x20002000  g_ble_dev_state              
+*/
+/* Reconstructed FUN_00055454 @ 0x55454  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void FUN_0008104a(uint32_t,int,void*);
+extern int set_random_address(uint8_t*,int);
+extern int bt_id_set_adv_private_addr(void);
+
+int FUN_00055454(uint8_t *param_1, int param_2, int param_3, uint8_t *param_4){
+    uint32_t local_20, local_1c;
+    if (param_1 == 0 || param_4 == 0) return -0x16;
+    uint32_t uVar4 = *(volatile uint8_t*)param_1;
+    volatile uint8_t *tbl = (volatile uint8_t*)((uintptr_t)&g_ble_dev_state) /*=0x20002000*/;
+    uint8_t bVar3;
+    int iVar2;
+    if ((((uint32_t)param_2 << 0xc) & 0x80000000UL) != 0){          /* bit19 set */
+        if ((((uint32_t)param_2 << 0x1d) & 0x80000000UL) != 0){     /* bit2 set */
+            local_1c = "Can't set both IDENTITY & NRPA" /*=0xf37df*/; local_20 = 2;
+            FUN_0008104a(((uintptr_t)&tbl_880d8) /*=0x88150*/, 0x1040, &local_20);
+            return -0x16;
+        }
+        iVar2 = bt_id_set_adv_private_addr();
+        if (iVar2 != 0) return iVar2;
+        bVar3 = 1;
+        goto L_551e;
+    }
+    if ((((uint32_t)param_2 << 0x1f) & 0x80000000UL) != 0){          /* bit0 set */
+        if (param_3 == 0){
+            bVar3 = tbl[uVar4*7];
+            if (bVar3 != 1) goto L_554d8;
+          L_554dc:
+            iVar2 = set_random_address(param_1, (int)(uVar4*7) + ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/ + 1);
+            if (iVar2 != 0) return iVar2;
+            bVar3 = tbl[uVar4*7];
+            *param_4 = bVar3;
+            if (param_3 == 0) return 0;
+        } else {
+            if ((((uint32_t)param_2 << 0x1a) & 0x80000000UL) != 0 &&
+                (((int)((uint32_t)tbl[0xd8] << 0x19)) >= 0)){
+                return -0x86;
+            }
+            bVar3 = tbl[uVar4*7];
+            if (bVar3 == 1) goto L_554dc;
+            *param_4 = bVar3;
+        }
+        if (((int)((uint32_t)param_2 << 0x1a)) >= 0) return 0;       /* bit5 clear */
+        bVar3 = bVar3 | 2;
+      L_554d8:
+        *param_4 = bVar3;
+        return 0;
+    }
+    if ((((uint32_t)param_2 << 0x1d) & 0x80000000UL) != 0){          /* bit2 set */
+        bVar3 = tbl[uVar4*7];
+        if (bVar3 != 1) goto L_554d8;
+        iVar2 = set_random_address(param_1, (int)((int16_t)(uint16_t)*(volatile uint8_t*)param_1 * 7) + 1 + ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/);
+        bVar3 = tbl[uVar4*7];
+        goto L_551e;
+    }
+    iVar2 = bt_id_set_adv_private_addr();
+    bVar3 = 1;
+  L_551e:
+    *param_4 = bVar3;
+    return iVar2;
+}
+

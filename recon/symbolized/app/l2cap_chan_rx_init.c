@@ -1,0 +1,21 @@
+#include "g1_app_symbols.h"
+/* named: l2cap_chan_rx_init */
+/* Reconstructed l2cap_chan_rx_init @ 0x57484  (parity: 300/300 trials, PROVEN) */
+extern void FUN_00081746(unsigned,int,void*);
+void l2cap_chan_rx_init(int param_1){
+    if (*(short*)(param_1 + 0x16) == 0){
+        *(short*)(param_1 + 0x16) = 0x1f0;
+    }
+    unsigned uVar1 = *(unsigned short*)(param_1 + 0x16);
+    unsigned uVar2 = uVar1;
+    if (uVar1 >= 0x1f0) uVar2 = 0x1f0;
+    *(short*)(param_1 + 0x18) = (short)(uVar2 + 2);
+    if (*(int*)(*(int*)(param_1 + 4) + 0x10) == 0 && ((uVar2 + 2) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) <= (uVar1 + 1)){
+        unsigned local_10 = 2, local_c = "Segmentation disabled but MTU > MPS, truncating MTU" /*=0xf3f11*/;
+        (void)local_c;
+        FUN_00081746(((uintptr_t)&tbl_880d8) /*=0x88160*/, 0x1080, &local_10);
+        *(short*)(param_1 + 0x16) = *(short*)(param_1 + 0x18) - 2;
+    }
+    *(volatile int*)(param_1 + 0x1c) = 1;
+}
+

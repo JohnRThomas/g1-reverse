@@ -1,0 +1,23 @@
+/* Reconstructed FUN_0007fe2a @ 0x7fe2a  (parity: 300/300 trials, PROVEN) */
+
+extern int FUN_0007fb20(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern int FUN_0007f97c(unsigned int, unsigned int, void*, unsigned int);
+extern int FUN_0007f98a(unsigned int, unsigned int, void*, unsigned int);
+
+int FUN_0007fe2a(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+  int iVar1, iVar2=0, iVar3=0;
+  unsigned char local_1c;
+
+  local_1c = (unsigned char)param_2;
+  iVar1 = FUN_0007fb20(param_1,1,param_3,param_4,param_1);
+  if (iVar1 == 0) {
+    iVar2 = FUN_0007f97c(param_1,0x14,&local_1c,1);
+    local_1c = (unsigned char)((local_1c & 0xfb) | ((param_2 & 1) << 2));
+    iVar3 = FUN_0007f98a(param_1,0x14,&local_1c,1);
+    iVar1 = FUN_0007fb20(param_1,0,0,0,0);
+    iVar1 = iVar2 + iVar3 + iVar1;
+  }
+  return iVar1;
+}
+

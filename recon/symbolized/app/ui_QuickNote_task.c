@@ -1,0 +1,463 @@
+#include "g1_app_symbols.h"
+#include <stdbool.h>
+/* named: ui_QuickNote_task */
+/* globals referenced:
+//   0x2000230c  g_log_level                  
+//   0x20007554  g_log_use_alt_sink           
+*/
+/* Reconstructed ui_QuickNote_task @ 0x3b824  (parity: 40/40 trials, PROVEN) */
+#include <stdint.h>
+#pragma GCC diagnostic warning "-Wint-conversion"
+#pragma GCC diagnostic warning "-Wimplicit-int"
+#pragma GCC diagnostic warning "-Wimplicit-function-declaration"
+#pragma GCC diagnostic warning "-Wint-to-pointer-cast"
+#pragma GCC diagnostic warning "-Wpointer-to-int-cast"
+#pragma GCC diagnostic warning "-Wincompatible-pointer-types"
+#pragma GCC diagnostic warning "-Wdiscarded-qualifiers"
+typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
+typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
+typedef uint32_t undefined4; typedef uint32_t uint;
+typedef long long code(int,...);
+typedef uint64_t undefined8; typedef uint64_t ulonglong;
+typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
+static inline int CARRY4(uint a, uint b){return (a+b)<a;}
+static inline int CARRY1(uint a, uint b){return ((a&0xff)+(b&0xff))>0xff;}
+static inline int CARRY2(uint a, uint b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int SBORROW4(int a,int b){int r=(int)((uint)a-(uint)b);return (((a^b)&(a^r))<0);}
+static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
+static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
+#define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
+#define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
+#define CONCAT44(a,b) ((ulonglong)(((ulonglong)(uint)(a)<<32)|(uint)(b)))
+#define CONCAT13(a,b) ((uint)(((uint)(uint8_t)(a)<<24)|((uint)(b)&0xffffff)))
+#define CONCAT31(a,b) ((uint)(((uint)(a)<<8)|(uint8_t)(b)))
+#define CONCAT12(a,b) ((uint)(((uint)(uint8_t)(a)<<16)|(ushort)(b)))
+#define CONCAT21(a,b) ((uint)(((uint)(ushort)(a)<<8)|(uint8_t)(b)))
+#define CONCAT111(a,b,c) ((uint)(((uint)(uint8_t)(a)<<16)|((uint)(uint8_t)(b)<<8)|(uint8_t)(c)))
+#define CONCAT411(a,b,c) ((ulonglong)(((ulonglong)(uint)(a)<<16)|((uint)(uint8_t)(b)<<8)|(uint8_t)(c)))
+#define SUB84(x,o) ((uint)((ulonglong)(x)>>((o)*8)))
+#define SUB82(x,o) ((ushort)((ulonglong)(x)>>((o)*8)))
+#define SUB81(x,o) ((uint8_t)((ulonglong)(x)>>((o)*8)))
+#define SUB41(x,o) ((uint8_t)((uint)(x)>>((o)*8)))
+#define SUB42(x,o) ((ushort)((uint)(x)>>((o)*8)))
+#define SUB21(x,o) ((uint8_t)((ushort)(x)>>((o)*8)))
+#define SUBF(v,o,s) ((ulonglong)((ulonglong)(v)>>((o)*8)) & ((s)>=8?~0ULL:((1ULL<<((s)*8))-1)))
+#define NAN (__builtin_nanf(""))
+#define INFINITY (__builtin_inff())
+
+extern long long DEBUG_PRINT__impl(int, ...);
+#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
+extern long long FUN_000167a8__impl(int, ...);
+#define get_device_info(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
+extern long long FUN_00019c70__impl(int, ...);
+#define debug_print(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
+extern long long FUN_00023ee0__impl(int, ...);
+#define FUN_00023ee0(...) FUN_00023ee0__impl(0, ##__VA_ARGS__)
+extern long long FUN_0003b78c__impl(int, ...);
+#define dmic_record_start(...) FUN_0003b78c__impl(0, ##__VA_ARGS__)
+extern long long FUN_0003b800__impl(int, ...);
+#define consume_pending_event_and_refresh_flag(...) FUN_0003b800__impl(0, ##__VA_ARGS__)
+extern long long FUN_000431b4__impl(int, ...);
+#define gui_set_active_canvas(...) FUN_000431b4__impl(0, ##__VA_ARGS__)
+extern long long FUN_000431c0__impl(int, ...);
+#define gui_screen_clear(...) FUN_000431c0__impl(0, ##__VA_ARGS__)
+extern long long FUN_000432d0__impl(int, ...);
+#define gui_canvas_flags_set_bit1(...) FUN_000432d0__impl(0, ##__VA_ARGS__)
+extern long long FUN_000432ec__impl(int, ...);
+#define gui_canvas_flags_clear_bit1(...) FUN_000432ec__impl(0, ##__VA_ARGS__)
+extern long long FUN_00043308__impl(int, ...);
+#define gui_reset_dynamic_bitmap_frame_state(...) FUN_00043308__impl(0, ##__VA_ARGS__)
+extern long long FUN_0004334c__impl(int, ...);
+#define gui_bmp_dynamic_bitmap_draw(...) FUN_0004334c__impl(0, ##__VA_ARGS__)
+extern long long FUN_00043484__impl(int, ...);
+#define gui_bmp_bitmap_draw(...) FUN_00043484__impl(0, ##__VA_ARGS__)
+extern long long FUN_0004382c__impl(int, ...);
+#define FUN_0004382c(...) FUN_0004382c__impl(0, ##__VA_ARGS__)
+extern long long FUN_00043e90__impl(int, ...);
+#define gui_utf_draw(...) FUN_00043e90__impl(0, ##__VA_ARGS__)
+extern long long FUN_00047260__impl(int, ...);
+#define reflash_fb_data_to_lcd(...) FUN_00047260__impl(0, ##__VA_ARGS__)
+extern long long FUN_00049040__impl(int, ...);
+#define getDelayExitValue(...) FUN_00049040__impl(0, ##__VA_ARGS__)
+extern long long FUN_0007d3ee__impl(int, ...);
+#define device_info_text_width_get(...) FUN_0007d3ee__impl(0, ##__VA_ARGS__)
+extern long long FUN_0007d446__impl(int, ...);
+#define device_info_text_height_get_clamped(...) FUN_0007d446__impl(0, ##__VA_ARGS__)
+extern long long FUN_00086c78__impl(int, ...);
+#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
+extern long long thunk_FUN_00074f68__impl(int, ...);
+#define thunk_FUN_00074f68(...) thunk_FUN_00074f68__impl(0, ##__VA_ARGS__)
+
+#define DAT_0003bb28 ((volatile char*)((uintptr_t)&g_quicknote_info) /*=0x20004978*/)
+#define DAT_0003bb2c ((volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/)
+#define DAT_0003bb30 ((volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_0003bb34 ("ui_QuickNote_task" /*=0xa9831*/)
+#define DAT_0003bb38 ("%s(): QUICK NOTE INIT.....\n" /*=0xa960d*/)
+#define DAT_0003bb3c ("%s(): GLOBAL->quicknote_info->enable = %d\n" /*=0xa9629*/)
+#define DAT_0003bb40 ("%s(): quick note function start ...\n" /*=0xa9654*/)
+#define DAT_0003bb44 ("QuickNote recording..." /*=0xa9679*/)
+#define DAT_0003bb48 ("Release to Finish Recording" /*=0xa9690*/)
+#define DAT_0003bb4c (((uintptr_t)&tbl_aac62) /*=0xaae20*/)
+#define DAT_0003bb50 ("Kurznotizen-Aufzeichnung..." /*=0xa96ac*/)
+#define DAT_0003bb54 ("Loslassen zum Abschluss" /*=0xa96c8*/)
+#define DAT_0003bb58 ("%s(): quick init,exec function exit ...\n" /*=0xa96e0*/)
+#define DAT_0003bb5c ("%s(): QUICK NOTE RUNING.....\n" /*=0xa9709*/)
+#define DAT_0003bb60 ("%s(): quick note function exit ...\n" /*=0xa9727*/)
+#define DAT_0003bb64 ((volatile uint32_t*)((uintptr_t)&tbl_a892b) /*=0xa8c57*/)
+#define DAT_0003bde0 ("ui_QuickNote_task" /*=0xa9831*/)
+#define DAT_0003bde4 ("%s(): quick note function delay exit ...\n" /*=0xa974b*/)
+#define DAT_0003bde8 ((volatile char*)((uintptr_t)&g_quicknote_hint_shown) /*=0x2001b817*/)
+#define DAT_0003bdec ((volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_0003bdf0 ("%s(): exec even logo reflash....\n" /*=0xa9775*/)
+#define DAT_0003bdf4 ((volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/)
+#define DAT_0003bdf8 ("%s(): quick note process exec.....\n" /*=0xa9797*/)
+#define DAT_0003bdfc ("%s(): quick note function exit ...\n" /*=0xa9727*/)
+#define DAT_0003be00 ((volatile unsigned int*)((uintptr_t)&g_quicknote_warn_offset_ms) /*=0x200024e8*/)
+#define DAT_0003be04 ("%s(): exec quick note exit display...\n" /*=0xa97e4*/)
+#define DAT_0003be08 ("New Note Saved" /*=0xa980b*/)
+#define DAT_0003be0c ("Neue Notiz gespeichert" /*=0xa981a*/)
+#define DAT_0003be10 (0x0UL) /* unknown lit */
+#define DAT_0003be14 (0x0UL) /* unknown lit */
+
+
+undefined4 ui_QuickNote_task(int param_1,undefined4 param_2,int param_3)
+
+{
+  char cVar1;
+  byte bVar2;
+  int *piVar3;
+  int *piVar4;
+  undefined4 *puVar5;
+  int *piVar6;
+  int *piVar7;
+  int iVar8;
+  int iVar9;
+  int iVar10;
+  int iVar11;
+  int iVar12;
+  char *pcVar13;
+  char *pcVar14;
+  undefined4 uVar15;
+  uint uVar16;
+  uint uVar17;
+  uint uVar18;
+  uint uVar19;
+  undefined4 uVar20;
+  int iVar21;
+  bool bVar22;
+  longlong lVar23;
+  undefined4 local_30;
+  undefined4 uStack_2c;
+  
+  pcVar13 = DAT_0003bb28;
+  gui_set_active_canvas(param_1 + 0x24);
+  gui_canvas_flags_set_bit1();
+  piVar7 = DAT_0003bdf4;
+  piVar6 = DAT_0003bdec;
+  piVar4 = DAT_0003bb30;
+  piVar3 = DAT_0003bb2c;
+  cVar1 = *pcVar13;
+  if (cVar1 != '\x01') {
+    if (cVar1 != '\x02') {
+      if (cVar1 != '\0') {
+        return 0;
+      }
+      if (2 < *DAT_0003bb2c) {
+        if (*DAT_0003bb30 == 0) {
+          DEBUG_PRINT(DAT_0003bb38,DAT_0003bb34);
+        }
+        else {
+          debug_print();
+        }
+      }
+      memset_bytes(DAT_0003bb28,0,0x10);
+      if (2 < *piVar3) {
+        if (*DAT_0003bb30 == 0) {
+          iVar8 = get_device_info();
+          DEBUG_PRINT(DAT_0003bb3c,DAT_0003bb34,(uint)**(byte **)(iVar8 + 0x1020));
+        }
+        else {
+          iVar8 = get_device_info();
+          debug_print(DAT_0003bb3c,DAT_0003bb34,**(undefined1 **)(iVar8 + 0x1020));
+        }
+      }
+      if (param_3 == 1) {
+        iVar8 = get_device_info();
+        if (**(char **)(iVar8 + 0x1020) != '\x01') {
+          return 0;
+        }
+        if (2 < *piVar3) {
+          if (*DAT_0003bb30 == 0) {
+            DEBUG_PRINT(DAT_0003bb40,DAT_0003bb34);
+          }
+          else {
+            debug_print();
+          }
+        }
+        gui_screen_clear();
+        *pcVar13 = '\x01';
+        gui_reset_dynamic_bitmap_frame_state();
+        iVar8 = FUN_00023ee0();
+        iVar21 = 0;
+        gui_canvas_flags_clear_bit1();
+        do {
+          if (iVar8 == 6) {
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar11 = device_info_text_width_get();
+            iVar12 = device_info_text_height_get_clamped();
+            gui_utf_draw(0,DAT_0003bb50,0,iVar9 + 0xa0,iVar10 + 0x36,iVar11 + 0x236,iVar12 + 0x51,1,
+                         0,0,0,0);
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar11 = device_info_text_width_get();
+            iVar12 = device_info_text_height_get_clamped();
+            iVar9 = iVar9 + 0xaa;
+            uVar20 = DAT_0003bb54;
+          }
+          else {
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar11 = device_info_text_width_get();
+            iVar12 = device_info_text_height_get_clamped();
+            gui_utf_draw(0,DAT_0003bb44,0,iVar9 + 0xbc,iVar10 + 0x36,iVar11 + 0x236,iVar12 + 0x51,1,
+                         0,0,0,0);
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar11 = device_info_text_width_get();
+            iVar12 = device_info_text_height_get_clamped();
+            iVar9 = iVar9 + 0xa4;
+            uVar20 = DAT_0003bb48;
+          }
+          gui_utf_draw(0,uVar20,0,iVar9,iVar10 + 0x6c,iVar11 + 0x236,iVar12 + 0x87,1,0,0,0,0);
+          puVar5 = DAT_0003bb64;
+          uVar19 = 0;
+          local_30 = *DAT_0003bb64;
+          do {
+            iVar9 = 0;
+            uStack_2c = puVar5[1];
+            do {
+              iVar10 = *(int *)(param_1 + 0x24 + uVar19 * 4);
+              bVar2 = *(byte *)(iVar10 + iVar9);
+              if (bVar2 != 0) {
+                *(byte *)(iVar10 + iVar9) =
+                     bVar2 & *(byte *)((uint)*(byte *)((int)&local_30 + iVar21) * 0x140 +
+                                       (uVar19 % 0x1a) * 0xa00 + DAT_0003bb4c + iVar9);
+              }
+              iVar9 = iVar9 + 1;
+            } while (iVar9 != 0x140);
+            uVar19 = uVar19 + 1;
+          } while (uVar19 != 199);
+          iVar9 = get_device_info();
+          uVar20 = *(undefined4 *)(iVar9 + 0xeb4);
+          iVar9 = get_device_info();
+          iVar21 = iVar21 + 1;
+          reflash_fb_data_to_lcd(uVar20,*(undefined4 *)(iVar9 + 0xeb8),0,0,0x280,199);
+        } while (iVar21 != 4);
+        gui_canvas_flags_set_bit1();
+        pcVar13 = (char *)get_device_info();
+        if (*pcVar13 != '\x01') {
+          return 0;
+        }
+        dmic_record_start();
+        return 0;
+      }
+      if (param_3 != 2) {
+        return 0;
+      }
+      if (0 < *piVar3) {
+        iVar8 = *DAT_0003bb30;
+        uVar20 = DAT_0003bb58;
+LAB_0003bac4:
+        if (iVar8 == 0) {
+          DEBUG_PRINT(uVar20,DAT_0003bb34);
+        }
+        else {
+          debug_print();
+        }
+      }
+      goto LAB_0003bacc;
+    }
+    if (*DAT_0003bdf4 < 3) {
+      if (param_3 != 2) goto LAB_0003bd76;
+    }
+    else {
+      if (*DAT_0003bdec == 0) {
+        DEBUG_PRINT(DAT_0003bdf8,DAT_0003bde0);
+      }
+      else {
+        debug_print();
+      }
+      if (param_3 != 2) {
+LAB_0003bd76:
+        lVar23 = thunk_FUN_00074f68();
+        pcVar14 = DAT_0003bde8;
+        uVar16 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
+        uVar17 = (uint)(lVar23 * 1000) >> 0xf | uVar16 * ((uintptr_t)&rodata_20000) /*=0x20000*/;
+        uVar18 = *(uint *)(pcVar13 + 4);
+        uVar19 = uVar18 + *(uint *)(pcVar13 + 8);
+        iVar8 = *(int *)(pcVar13 + 0xc) +
+                ((int)uVar18 >> 0x1f) + (uint)CARRY4(uVar18,*(uint *)(pcVar13 + 8));
+        uVar16 = uVar16 >> 0xf;
+        if ((int)((iVar8 - uVar16) - (uint)(uVar19 < uVar17)) < 0 !=
+            (SBORROW4(iVar8,uVar16) != SBORROW4(iVar8 - uVar16,(uint)(uVar19 < uVar17)))) {
+          if (2 < *piVar7) {
+            if (*DAT_0003bdec == 0) {
+              DEBUG_PRINT(DAT_0003be10,DAT_0003bde0);
+            }
+            else {
+              debug_print();
+            }
+          }
+          FUN_0004382c();
+          iVar8 = get_device_info();
+          uVar20 = DAT_0003be14;
+          **(undefined1 **)(iVar8 + 0x1020) = 0;
+          memset_bytes(uVar20,0,0x10);
+          *pcVar14 = '\0';
+          return 0;
+        }
+        uVar18 = *DAT_0003be00;
+        iVar8 = (iVar8 - ((int)uVar18 >> 0x1f)) - (uint)(uVar19 < uVar18);
+        bVar22 = uVar19 - uVar18 < uVar17;
+        if ((int)((iVar8 - uVar16) - (uint)bVar22) < 0 !=
+            (SBORROW4(iVar8,uVar16) != SBORROW4(iVar8 - uVar16,(uint)bVar22))) {
+          if (*DAT_0003bde8 != '\0') {
+            return 0;
+          }
+          if (2 < *piVar7) {
+            if (*DAT_0003bdec == 0) {
+              DEBUG_PRINT(DAT_0003be04,DAT_0003bde0);
+            }
+            else {
+              debug_print();
+            }
+          }
+          gui_screen_clear();
+          uVar20 = device_info_text_width_get();
+          iVar8 = device_info_text_height_get_clamped();
+          gui_bmp_bitmap_draw(0x3b,uVar20,iVar8 + 0x36,0,0,0);
+          iVar8 = FUN_00023ee0();
+          if (iVar8 == 6) {
+            iVar8 = device_info_text_width_get();
+            iVar21 = device_info_text_height_get_clamped();
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar8 = iVar8 + 0xb8;
+            uVar20 = DAT_0003be0c;
+          }
+          else {
+            iVar8 = device_info_text_width_get();
+            iVar21 = device_info_text_height_get_clamped();
+            iVar9 = device_info_text_width_get();
+            iVar10 = device_info_text_height_get_clamped();
+            iVar8 = iVar8 + 0xd6;
+            uVar20 = DAT_0003be08;
+          }
+          gui_utf_draw(0,uVar20,0,iVar8,iVar21 + 0x36,iVar9 + 0x236,iVar10 + 0x6c,2,0,0,0,0);
+          *pcVar14 = '\x01';
+          return 0;
+        }
+        if (*DAT_0003bde8 != '\0') {
+          return 0;
+        }
+        uVar20 = device_info_text_width_get();
+        iVar8 = device_info_text_height_get_clamped();
+        uVar15 = 9;
+        goto LAB_0003bd6a;
+      }
+      if (2 < *piVar7) {
+        if (*piVar6 == 0) {
+          DEBUG_PRINT(DAT_0003bdfc,DAT_0003bde0);
+        }
+        else {
+          debug_print();
+        }
+      }
+    }
+    pcVar13 = (char *)get_device_info();
+    if (*pcVar13 == '\x01') {
+      consume_pending_event_and_refresh_flag();
+    }
+    FUN_0004382c();
+    goto LAB_0003bade;
+  }
+  if (*DAT_0003bb2c < 3) {
+    if (param_3 != 2) {
+      if (param_3 == 3) goto LAB_0003bb86;
+      goto LAB_0003bd4a;
+    }
+  }
+  else {
+    if (*DAT_0003bb30 == 0) {
+      DEBUG_PRINT(DAT_0003bb5c,DAT_0003bb34);
+    }
+    else {
+      debug_print();
+    }
+    if (param_3 != 2) {
+      if (param_3 == 3) {
+        if (2 < *piVar3) {
+          if (*piVar4 == 0) {
+            DEBUG_PRINT(DAT_0003bde4,DAT_0003bde0);
+          }
+          else {
+            debug_print();
+          }
+        }
+LAB_0003bb86:
+        pcVar14 = (char *)get_device_info();
+        if (*pcVar14 == '\x01') {
+          consume_pending_event_and_refresh_flag();
+        }
+        uVar20 = getDelayExitValue();
+        *(undefined4 *)(pcVar13 + 4) = uVar20;
+        lVar23 = thunk_FUN_00074f68();
+        uVar19 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
+        *(uint *)(pcVar13 + 8) = (uint)(lVar23 * 1000) >> 0xf | uVar19 * ((uintptr_t)&rodata_20000) /*=0x20000*/;
+        *(uint *)(pcVar13 + 0xc) = uVar19 >> 0xf;
+        gui_screen_clear();
+        *pcVar13 = '\x02';
+        *DAT_0003bde8 = '\0';
+        gui_reset_dynamic_bitmap_frame_state();
+        if (*piVar3 < 3) {
+          return 0;
+        }
+        if (*DAT_0003bdec != 0) {
+          debug_print();
+          return 0;
+        }
+        DEBUG_PRINT(DAT_0003bdf0,DAT_0003bde0);
+        return 0;
+      }
+LAB_0003bd4a:
+      if (param_3 != 0) {
+        return 0;
+      }
+      uVar20 = device_info_text_width_get();
+      iVar8 = device_info_text_height_get_clamped();
+      uVar15 = 1;
+LAB_0003bd6a:
+      gui_bmp_dynamic_bitmap_draw(uVar15,uVar20,iVar8 + 0x36,0,0,0,0);
+      return 0;
+    }
+    if (2 < *piVar3) {
+      iVar8 = *piVar4;
+      uVar20 = DAT_0003bb60;
+      goto LAB_0003bac4;
+    }
+  }
+LAB_0003bacc:
+  pcVar13 = (char *)get_device_info();
+  if (*pcVar13 == '\x01') {
+    consume_pending_event_and_refresh_flag();
+  }
+  gui_screen_clear();
+LAB_0003bade:
+  iVar8 = get_device_info();
+  **(undefined1 **)(iVar8 + 0x1020) = 0;
+  memset_bytes(DAT_0003bb28,0,0x10);
+  return 0;
+}
+
+

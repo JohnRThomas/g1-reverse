@@ -1,0 +1,15 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_01031814 @ 0x1031814  (parity 300 trials PROVEN) */
+/* Raw bytes at 0x1031814 are just: ldr r0,[pc,#4] ; b.w 0x103657c
+   (tail-branch to a shared handler far outside the declared 212-byte window,
+   so the recon harness treats it as a single external call/oracle — model
+   that faithfully instead of inlining the shared handler's logic.) */
+extern unsigned int FUN_0103657c(unsigned int);
+
+#define DAT_0103181c ((uintptr_t)&g_net_fatal_halt_sem) /*=0x210008cc*/
+
+unsigned int FUN_01031814(void)
+{
+  return FUN_0103657c(DAT_0103181c);
+}
+

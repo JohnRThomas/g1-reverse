@@ -1,0 +1,15 @@
+/* app-core rodata @ 0x5d0a0  span=50 bytes  (link base 0xC200) */
+/* Compiler PC-relative literal pool: 4 word(s), read by func 0x5cff0.
+   All 4 words are code/data pointers (flash/RAM/peripheral addresses). */
+/* NOTE: bytes after word[4] (offset 16..50) are Thumb code over-captured by the extractor;
+   preserved verbatim below as a byte tail for span byte-exactness, NOT rodata. */
+const unsigned int litpool_5d0a0[4] = {
+    0x2000af48,
+    0x000f4eb1,
+    0x00088180,
+    0x47f0e92d,
+};
+/* over-captured Thumb code tail (offset 16, 34 bytes) */
+const unsigned char litpool_5d0a0_code_tail[34] = {
+    0x04, 0x46, 0x96, 0xb0, 0x04, 0xaf, 0x07, 0xf1, 0x20, 0x05, 0x10, 0x22, 0x00, 0x21, 0x28, 0x46, 0x29, 0xf0, 0xda, 0xfd, 0x23, 0x7a, 0x05, 0x2b, 0x3a, 0xd8, 0xdf, 0xe8, 0x03, 0xf0, 0x06, 0x03, 0x03, 0x06,
+};

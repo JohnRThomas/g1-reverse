@@ -1,0 +1,117 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_01013b4c @ 0x1013b4c  (parity 300 trials PROVEN) */
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+
+extern void FUN_01008d00(u32,u32);
+extern u32 FUN_0100f66c(void);
+extern u32 FUN_010122b4(void*,u32);
+extern u32 FUN_010126c0(void*);
+extern u32 FUN_010126f0(void*);
+extern void FUN_01012960(void*,u32);
+extern u32 FUN_01012b98(u32);
+extern u16 FUN_01012c14(void*);
+extern u32 FUN_01022e34(u32,void*);
+extern u32 FUN_01022ea8(void);
+extern u32 FUN_010231c8(u8,void*);
+extern u32 FUN_01024678(u32,u16);
+extern short FUN_010246d8(void);
+extern void FUN_01025a84(void*,u32,u32);
+extern short thunk_FUN_010246cc(void);
+extern u64 thunk_FUN_01025034(void);
+
+static u32 *const DAT_01013cd4 = (u32*)((uintptr_t)&g_net_radio_ack_pending_flag) /*=0x21000f54*/;
+
+unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3)
+{
+  u8 *param_1 = (u8*)param_1_v;
+  u8 *param_2 = (u8*)param_2_v;
+  int iVar5;
+  u32 uVar6;
+  u32 uVar8, uVar9;
+  u64 lVar10;
+  u16 uVar1, uVar3;
+  short sVar4;
+
+  if (*(volatile char *)(param_1 + 0x120) != 0) {
+    return 0xc;
+  }
+  iVar5 = (int)FUN_01022e34(((uintptr_t)&rodata_1013485) /*=0x1013485*/, param_1);
+  if (iVar5 == 0x20) {
+    return 0xc;
+  }
+  FUN_01025a84(param_1 + 0x100, 0, 0x50);
+  *(volatile u8 *)(param_1 + 0x100) = (u8)iVar5;
+  *(volatile void **)(param_1 + 0x104) = param_2;
+  *(volatile u8 *)(param_1 + 0x120) = 1;
+  if (param_2 != 0) {
+    u8 bVar2 = (u8)FUN_0100f66c();
+    *(volatile u8 *)(param_2 + 0x30c) = (bVar2 & 7) + 1;
+  }
+  uVar3 = FUN_01012c14(param_1);
+  *(volatile u8 *)(param_1 + 0x128) = 0;
+  *(volatile u16 *)(param_1 + 0x132) = 0x102;
+  *(volatile u16 *)(param_1 + 0x130) = uVar3;
+  sVar4 = FUN_010246d8();
+  uVar6 = FUN_01022ea8();
+  uVar1 = *(volatile u16 *)(param_1 + 0x130);
+  if (uVar1 < uVar6) {
+    uVar1 = (u16)uVar6;
+  }
+  uVar6 = (u32)(u16)(sVar4 + 0xe7 + uVar1);
+  iVar5 = (int)FUN_010126c0(param_1);
+  if (iVar5 == 0) {
+    int iVar7 = (int)FUN_010122b4(param_1, 0);
+    u8 *iVar5p = (u8*)DAT_01013cd4;
+    *(volatile int *)(param_1 + 300) = iVar7 + 0x152;
+    uVar8 = (u32)*(volatile u16 *)(iVar5p + 0x12);
+    if ((uVar8 != 0) && (uVar8 = (u32)*(volatile u16 *)(param_1 + 0x22), uVar8 != 0)) {
+      uVar8 = FUN_0100f66c();
+      uVar9 = (u32)*(volatile u16 *)(iVar5p + 0x12);
+      uVar8 = uVar8 - (uVar8 / uVar9) * uVar9;
+    }
+    lVar10 = thunk_FUN_01025034();
+    lVar10 = lVar10 + (u64)(uVar6 + uVar8);
+    *(volatile u64 *)(param_1 + 0x138) = lVar10;
+    if (param_3 != 0) {
+      *(volatile u64 *)(param_1 + 0x140) = lVar10 + (u64)param_3;
+      goto LAB_01013c32;
+    }
+  }
+  else {
+    sVar4 = thunk_FUN_010246cc();
+    iVar5 = (int)FUN_01024678(param_3, (u16)(sVar4 + 0x668));
+    *(volatile u32 *)(param_1 + 300) = (u32)(iVar5 + (int)param_3);
+    lVar10 = thunk_FUN_01025034();
+    lVar10 = lVar10 + (u64)uVar6;
+    *(volatile u16 *)(param_1 + 0x22) = 0;
+    *(volatile int *)(param_1 + 0x138) = (int)lVar10;
+    *(volatile u8 *)(param_1 + 0x108) = 1;
+    *(volatile int *)(param_1 + 0x13c) = (int)(lVar10 >> 0x20);
+    iVar5 = (int)FUN_010126f0(param_1);
+    if (iVar5 == 0) {
+      iVar5 = (int)FUN_01012b98(1);
+      *(volatile u32 *)(param_1 + 0x10c) = (param_3 - 0x152) - iVar5;
+    }
+    else {
+      iVar5 = (int)FUN_010122b4(param_1, 1);
+      *(volatile u32 *)(param_1 + 0x10c) = (param_3 - 0x54e) - iVar5;
+    }
+  }
+  *(volatile u32 *)(param_1 + 0x140) = 0xffffffff;
+  *(volatile u32 *)(param_1 + 0x144) = 0x7fffffff;
+LAB_01013c32:
+  iVar5 = (int)FUN_010231c8(*(volatile u8 *)(param_1 + 0x100), param_1 + 0x128);
+  if (iVar5 != 0) {
+    *(volatile u16 *)(param_1 + 0x122) = 0;
+    *(volatile u32 *)(param_1 + 0x118) = *(volatile u32 *)(param_1 + 0x138);
+    *(volatile u32 *)(param_1 + 0x11c) = *(volatile u32 *)(param_1 + 0x13c);
+    FUN_01012960(param_1, 0);
+    return 0;
+  }
+  FUN_01008d00(0x30, 0x1ec);
+  return 0;
+}
+

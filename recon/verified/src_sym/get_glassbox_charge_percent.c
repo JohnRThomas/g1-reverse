@@ -1,0 +1,2 @@
+/* Reconstructed get_glassbox_charge_percent @ 0x327c4  (parity: 300/300 trials, PROVEN) */
+typedef unsigned char u8;typedef unsigned int u32;extern int DEBUG_PRINT();extern void debug_print(void);u8 get_glassbox_charge_percent(void){if(2<*(volatile int*)0x2000230cUL /* g_log_verbosity_level (debug print threshold) */){if(*(volatile u32*)0x20007554UL /* device_info.is_debug @+0xB58  (log sink select: 0=RTT DEBUG_PRINT) */==0)DEBUG_PRINT();else debug_print();}return *(volatile u8*)0x20019ef4UL & 0x7f;}

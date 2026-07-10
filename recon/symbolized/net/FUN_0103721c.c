@@ -1,0 +1,91 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_0103721c @ 0x103721c  (parity 300 trials PROVEN) */
+static inline unsigned int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return b;}
+static inline void setBasePriority(unsigned p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
+static inline void isb(void){__asm__ volatile("isb":::"memory");}
+static inline unsigned int readIPSR(void){unsigned v;__asm__ volatile("mrs %0, ipsr":"=r"(v));return v;}
+
+#define C_010372a0 ((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/
+#define C_010372a4 "***** HARD FAULT *****" /*=0x103d3b6*/
+#define C_010372a8 "acking error (context area might be not valid)" /*=0x103d2a7*/
+#define C_010372ac ((uintptr_t)&rodata_103eb30) /*=0x103eb30*/
+#define C_010372b0 ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
+
+extern int FUN_0103610c(int);
+extern void FUN_01036144(int);
+extern int FUN_01036128(int);
+extern void FUN_01039bbe(int, int, unsigned int);
+extern void FUN_01039bb0(int, unsigned int);
+
+void FUN_0103721c(void)
+{
+  unsigned int r4save;
+  int r0;
+  int r1;
+  unsigned int r2;
+  int r3;
+
+  r4save = getBasePriority();
+  setBasePriority(0x40);
+  isb();
+  r0 = C_010372a0;
+  r0 = FUN_0103610c(r0);
+  if (r0 != 0) goto L246;
+
+  r1 = C_010372a4;
+  r2 = 0x72;
+  FUN_01039bbe(C_010372a8, r1, r2);
+  r1 = 0x72;
+  goto L242;
+
+L246:
+  FUN_01036144(C_010372a0);
+  r3 = (int)readIPSR();
+  if (r3 == 0) goto L264;
+
+  r1 = C_010372ac;
+  r2 = 0xfd;
+  FUN_01039bbe(C_010372a8, r1, r2);
+  r1 = 0xfd;
+  r0 = C_010372ac;
+  goto L260;
+
+L264:
+  {
+    int base = C_010372b0;
+    int p = *(int *)(base + 8);
+    signed char b = *(signed char *)(p + 0xf);
+    if (b == 1) {
+      r1 = C_010372ac;
+      r2 = 0xfe;
+      FUN_01039bbe(C_010372a8, r1, r2);
+      r1 = 0xfe;
+      goto L25e;
+    } else {
+      b = (signed char)(b - 1);
+      *(signed char *)(p + 0xf) = b;
+      r0 = FUN_01036128(C_010372a0);
+      if (r0 != 0) {
+        setBasePriority(r4save);
+        isb();
+        return;
+      }
+      r1 = C_010372a4;
+      r2 = 0xf0;
+      FUN_01039bbe(C_010372a8, r1, r2);
+      r1 = 0xf0;
+      goto L242;
+    }
+  }
+
+L25e:
+  r0 = C_010372ac;
+  goto L260;
+
+L242:
+  r0 = C_010372a4;
+L260:
+  FUN_01039bb0(r0, (unsigned int)r1);
+  goto L264;
+}
+

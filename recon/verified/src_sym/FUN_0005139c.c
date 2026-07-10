@@ -1,0 +1,17 @@
+/* Reconstructed FUN_0005139c @ 0x5139c  (parity: 300/300 trials, PROVEN) */
+
+typedef unsigned int uint;
+uint FUN_0005139c(uint param_1)
+{
+    unsigned int *puVar2 = *(volatile unsigned int**)0x2000a94cUL;
+    unsigned int *puVar1 = puVar2;
+    if (puVar2 != 0) puVar1 = (unsigned int*)*puVar2;
+    while (1) {
+        if (puVar2 == 0) return 0;
+        if (*(volatile unsigned short*)((char*)puVar2 + 10) == param_1) break;
+        puVar2 = puVar1;
+        if (puVar1 != 0) puVar1 = (unsigned int*)*puVar1;
+    }
+    return puVar2[3];
+}
+

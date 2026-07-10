@@ -1,0 +1,41 @@
+#include "g1_app_symbols.h"
+/* named: gatt_db_hash_gen */
+/* globals referenced:
+//   0x20006380  g_bt_gatt_db_hash            
+*/
+/* Reconstructed gatt_db_hash_gen @ 0x5aba8  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int tc_cmac_setup(void*,void*,void*);
+extern void tc_cmac_final(void); /*unused decl replaced*/
+extern int FUN_00080294_i(uint32_t,void*);
+extern void atomic_or_0(uint32_t);
+extern void FUN_00082a42(uint32_t,int,void*);
+extern void bt_gatt_foreach_attr_0(int,int,uint32_t,void*);
+void gatt_db_hash_gen(void){
+  volatile uint32_t local_140,uStack_13c,local_138,uStack_134,local_120;
+  uint8_t auStack_118[96], auStack_b8[176];
+  local_140=0;uStack_13c=0;local_138=0;uStack_134=0;
+  int iVar2=tc_cmac_setup(auStack_118,(void*)&local_140,auStack_b8);
+  if(iVar2!=0){
+    bt_gatt_foreach_attr_0(1,((uintptr_t)&tbl_ffc8) /*=0xffff*/,((uintptr_t)&tbl_825bb) /*=0x8260d*/,auStack_118);
+    iVar2=FUN_00080294_i(((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/,auStack_118);
+    if(iVar2!=0){
+      volatile uint8_t* puVar3=(volatile uint8_t*)(((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/+0x10);
+      volatile uint8_t* puVar4=(volatile uint8_t*)((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/;
+      int i=0;
+      do{
+        uint8_t uVar1=*puVar4;
+        puVar3=puVar3-1;
+        i=i+1;
+        *puVar4=*puVar3;
+        *puVar3=uVar1;
+        puVar4=puVar4+1;
+      }while(i!=8);
+      atomic_or_0(((uintptr_t)&g_bt_gatt_flags) /*=0x20006448*/);
+      return;
+    }
+  }
+  local_120=2;
+  FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/,0x1040,(void*)&local_120);
+}
+

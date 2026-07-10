@@ -1,0 +1,85 @@
+#include "g1_app_symbols.h"
+/* named: post_notification_cmd_process */
+/* globals referenced:
+//   0x2000230c  g_log_level                  
+//   0x20007554  g_log_use_alt_sink           
+*/
+/* Reconstructed post_notification_cmd_process @ 0x338ec  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern int DEBUG_PRINT(int,...);
+extern int audio_fw_load_get_wrapper(int,...);
+extern int debug_print(void);
+extern int parse_receiver_msg_pack_pkcs7(int,...);
+extern int parse_ncs_notification(int,...);
+extern int malloc(int,...);
+extern int heap_free(int,...);
+extern int memcpy(int,...);
+extern int memset_bytes(int,...);
+
+void post_notification_cmd_process(int param_1, unsigned char *param_2, int param_3)
+{
+    int *piVar1; unsigned uVar2; int iVar3; unsigned char *puVar4; unsigned uVar5;
+    unsigned local_b4; unsigned char auStack_b0[16]; unsigned char auStack_a0[132];
+
+    if(param_1==0 || param_2==0 || param_3==0){
+        if(1 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/){
+            if(*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ != 0){ debug_print(); return; }
+            DEBUG_PRINT("%s(): input param invalid !\n" /*=0xa7c2d*/, "post_notification_cmd_process" /*=0xa82e2*/); return;
+        }
+    } else {
+        puVar4 = *(unsigned char**)(param_1+0x10);
+        local_b4 = 0;
+        memset_bytes((int)auStack_b0, 0, 0x10);
+        *(unsigned char*)&local_b4 = *param_2;
+        *puVar4 = *param_2;
+        puVar4[1] = param_2[1];
+        *(unsigned*)(param_1+0x14) = *(unsigned short*)(puVar4+2) + 4;
+        piVar1 = (int*)((uintptr_t)&g_ancs_notify_rx_buf) /*=0x20007da8*/;
+        uVar5 = (unsigned)(unsigned char)puVar4[1];
+        if(uVar5==2 || uVar5==4){
+            *(unsigned short*)(puVar4+2) = 0x1b4;
+            memcpy((int)(puVar4+4), param_3);
+            if(2 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/){
+                if(*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
+                    DEBUG_PRINT(((uintptr_t)&tbl_a7aab) /*=0xa7c4a*/, "post_notification_cmd_process" /*=0xa82e2*/, uVar5);
+                } else { debug_print(); }
+            }
+            audio_fw_load_get_wrapper(param_1, (int)auStack_a0, 8);
+        } else {
+            if(*(volatile int*)((uintptr_t)&g_ancs_notify_rx_buf) /*=0x20007da8*/ == 0){
+                iVar3 = malloc(0x800);
+                *piVar1 = iVar3;
+                if(iVar3==0){
+                    if(*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
+                        DEBUG_PRINT("[%s-%d] malloc failed !!\n" /*=0xa7c9c*/, "post_notification_cmd_process" /*=0xa82c4*/, 0x19f);
+                    } else { debug_print(); }
+                } else {
+                    memset_bytes(iVar3, 0, 0x800);
+                }
+            }
+            if(*piVar1 != 0){
+                iVar3 = parse_receiver_msg_pack_pkcs7(*piVar1, param_3, puVar4[2]);
+                uVar2 = local_b4;
+                *((unsigned char*)&local_b4 + 1) = (unsigned char)iVar3;
+                *((unsigned char*)&local_b4 + 3) = (unsigned char)(uVar2 >> 24);
+                *((unsigned char*)&local_b4 + 2) = *(unsigned char*)(param_3+1);
+                if(iVar3 == 0xc9){
+                    parse_ncs_notification(*piVar1, (int)(puVar4+4));
+                    if(2 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/){
+                        if(*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
+                            DEBUG_PRINT("%s(): ncs data receive okay !\n\n" /*=0xa7cb6*/, "post_notification_cmd_process" /*=0xa82e2*/);
+                        } else { debug_print(); }
+                    }
+                    *(unsigned short*)(puVar4+2) = 0x1b4;
+                    audio_fw_load_get_wrapper(param_1, (int)auStack_a0, 8);
+                    *((unsigned char*)&local_b4 + 1) = 0xc9;
+                    heap_free(*piVar1);
+                    *piVar1 = 0;
+                }
+            }
+            (*(void(**)(int,...))(param_1+0xc))((int)&local_b4, 0x14);
+        }
+    }
+    return;
+}
+

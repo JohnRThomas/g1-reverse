@@ -1,0 +1,58 @@
+#include "g1_app_symbols.h"
+/* named: bt_keys_find_irk */
+/* globals referenced:
+//   0x2000af4c  bt_keys_pool                 
+*/
+/* Reconstructed bt_keys_find_irk @ 0x5e83c  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+typedef unsigned int uint;
+extern void assert_post_action(uint,int);
+extern void printk();
+extern int bt_smp_ah(uint,void*);
+extern int memcmp(void*,uint,int,uint,uint);
+uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint param_4){
+    volatile uint8_t* r4=(volatile uint8_t*)((uintptr_t)&bt_keys_pool) /*=0x2000af4c*/;
+    int r3int; uint8_t* r7;
+    if(param_2==0){ printk(); assert_post_action(param_4,0xe9); }
+    if(*(volatile uint8_t*)param_2 != 1) return 0;
+    if((param_2[6]&0xc0) != 0x40) return 0;
+    if(((uint)*(volatile uint16_t*)(r4+0xe)<<0x1e)&0x80000000u) goto L894;
+    if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) return 0;
+    if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L8aa;
+    if(memcmp(param_2+1,((uintptr_t)&bt_keys_pool) /*=0x2000af4c*/+0x96,6,(uint)*(volatile uint8_t*)(r4+0x5c),param_4)!=0) goto L8a2;
+    goto L8fe;
+L894:
+    if((uint)*(volatile uint8_t*)r4 == param_1) goto L8d4;
+    if(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u) goto L8ea;
+L8a2:
+    if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) return 0;
+L8aa:
+    if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) return 0;
+    r7=param_2+1;
+    if(bt_smp_ah(((uintptr_t)&bt_keys_pool_1_irk) /*=0x2000afd2*/,r7)==0) return 0;
+    r3int=0x5c;
+L8c2:
+    {
+        uint32_t v=*(volatile uint32_t*)r7;
+        *(volatile uint32_t*)((int)r4+r3int+0x3a)=v;
+        uint16_t h=*(volatile uint16_t*)(r7+4);
+        uint8_t* ret=(uint8_t*)((int)r4+r3int);
+        *(volatile uint16_t*)((int)r4+r3int+0x3e)=h;
+        return ret;
+    }
+L8d4:
+    if(memcmp(param_2+1,((uintptr_t)&bt_keys_pool) /*=0x2000af4c*/+0x3a,6,(uint)*(volatile uint8_t*)r4,param_4)==0) return (uint8_t*)((int)r4+0);
+    if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) goto L904;
+L8ea:
+    if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L904;
+    if(memcmp(param_2+1,((uintptr_t)&bt_keys_pool_1_addr) /*=0x2000afe2*/,6,(uint)*(volatile uint8_t*)(r4+0x5c),param_4)!=0) goto L904;
+L8fe:
+    return (uint8_t*)((int)r4+0x5c);
+L904:
+    if((uint)*(volatile uint8_t*)r4 != param_1) goto L8a2;
+    r7=param_2+1;
+    if(bt_smp_ah(((uintptr_t)&bt_keys_pool_0_irk) /*=0x2000af76*/,r7)==0) goto L8a2;
+    r3int=0;
+    goto L8c2;
+}
+

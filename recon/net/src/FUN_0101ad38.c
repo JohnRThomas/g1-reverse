@@ -1,0 +1,106 @@
+/* net-core FUN_0101ad38 @ 0x101ad38  (parity 300 trials PROVEN) */
+static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
+static inline int isIRQinterruptsEnabled(void){unsigned p;__asm__ volatile("mrs %0, primask":"=r"(p));return (int)p;}
+static inline void disableIRQinterrupts(void){__asm__ volatile("cpsid i":::"memory");}
+static inline void enableIRQinterrupts(void){__asm__ volatile("cpsie i":::"memory");}
+
+extern void FUN_01008d00(unsigned int, unsigned int);
+extern void FUN_010190d0(void);
+extern unsigned char *FUN_01019204(void);
+extern void FUN_0101920c(int, int);
+extern void FUN_01019254(void);
+extern void FUN_010196e0(void);
+extern void FUN_0101dd0c(int);
+extern void FUN_0101de60(int);
+extern void FUN_01020634(void);
+extern void FUN_01022a84(void);
+extern int FUN_01022ebc(unsigned char);
+extern void FUN_010237b0(unsigned char);
+extern void FUN_0102411c(unsigned char);
+
+#define DAT_0101ae48 0x210010a0u
+#define DAT_0101ae4c 0x210010f0u
+
+unsigned int FUN_0101ad38(void)
+{
+  char cVar1;
+  int bVar2;
+  char *pcVar3;
+  unsigned char *puVar4;
+  int iVar5;
+  unsigned int uVar6;
+
+  pcVar3 = (char *)DAT_0101ae48;
+  puVar4 = FUN_01019204();
+  if ((*pcVar3 != 4) && (*pcVar3 != 5)) {
+    return 0xc;
+  }
+  pcVar3[1] = 1;
+  if (pcVar3[0x14] == 0) {
+    FUN_010237b0(*puVar4);
+    if (puVar4[3] != 0 || (puVar4[4] & 0x1f) != 0) {
+      FUN_0101920c(3, 0);
+    }
+  } else {
+    iVar5 = 0;
+    bVar2 = isCurrentModePrivileged();
+    if (bVar2) {
+      iVar5 = isIRQinterruptsEnabled();
+    }
+    disableIRQinterrupts();
+    if (((pcVar3[0x14] != 0) && (pcVar3[0x15] != 0)) &&
+        (FUN_010190d0(), pcVar3[0x14] != 0)) {
+      FUN_01020634();
+      FUN_01022a84();
+      pcVar3[0x14] = 0;
+      pcVar3[0x15] = 0;
+    }
+    if (iVar5 == 0) {
+      enableIRQinterrupts();
+    }
+  }
+  FUN_0102411c(*puVar4);
+  if (pcVar3[0x2c] == 0) {
+    if ((*pcVar3 == 5) && (*(volatile int *)(pcVar3 + 0x70) == 0)) {
+      FUN_0101dd0c(*(volatile int *)(pcVar3 + 0x28) + 0x2d8);
+    }
+  } else {
+    if (*pcVar3 != 5) {
+      FUN_01008d00(0x21, 0x25b);
+      __builtin_unreachable();
+    }
+    if (*(volatile int *)(pcVar3 + 0x70) != 0) {
+      FUN_0101de60(DAT_0101ae4c);
+      goto LAB_0101ad88;
+    }
+  }
+  FUN_0101dd0c(DAT_0101ae4c);
+LAB_0101ad88:
+  pcVar3[1] = 0;
+  if (pcVar3[0x2c] == 0) {
+    uVar6 = 0;
+  } else {
+    uVar6 = 0xc;
+  }
+  FUN_01019254();
+  pcVar3[0x2c] = 0;
+  cVar1 = *pcVar3;
+  pcVar3[2] = 0;
+  pcVar3[0x28] = 0;
+  pcVar3[0x29] = 0;
+  pcVar3[0x2a] = 0;
+  pcVar3[0x2b] = 0;
+  if (cVar1 == 4) {
+    FUN_010196e0();
+  }
+  *pcVar3 = 0;
+  puVar4 = FUN_01019204();
+  iVar5 = FUN_01022ebc(*puVar4);
+  if (iVar5 != 0) {
+    *puVar4 = 0x20;
+    return uVar6;
+  }
+  FUN_01008d00(0x21, 0x396);
+  __builtin_unreachable();
+}
+

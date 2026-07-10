@@ -1,0 +1,74 @@
+// ESB and Communication
+device_info->reserved_early[0] -> unsigned __int8 esb_channel_number
+
+// DFU (Device Firmware Update) related
+device_info->reserved_early[102] -> unsigned __int8 dfu_entry_point[4]
+device_info->reserved_early[199] -> unsigned __int8 dfu_soc_flag_1  // Set to -125 (0x83)
+device_info->reserved_early[200] -> unsigned __int8 dfu_soc_flag_2  // Set to 1
+
+// Settings and Configuration Storage
+device_info->reserved_early[126] -> unsigned __int8 settings_save_area[4]
+
+// Display and Brightness
+device_info->gap_ee5[31] -> unsigned __int8 auto_brightness_flag
+device_info->gap_ee5[112] -> unsigned __int8 display_setting_mode  // Set to 3 for always-on
+device_info->gap_ee5[113] -> unsigned __int8 display_silent_mode  // 10=normal, 11=always-on, 12=DND
+device_info->projector_controller.reserved_216_220[9] -> unsigned __int8 brightness_level
+
+// Device Information and Status
+device_info->gap_ee5[71] -> unsigned __int8 device_status_byte_1
+device_info->gap_ee5[72] -> unsigned __int8 device_status_byte_2
+device_info->gap_ee5[73] -> unsigned __int8 device_status_flag
+device_info->gap_ee5[75] -> unsigned __int8 device_info_byte_3
+device_info->gap_ee5[76] -> unsigned __int8 device_info_byte_4
+device_info->gap_ee5[77] -> unsigned __int8 device_info_byte_5
+device_info->gap_ee5[83] -> unsigned __int8 device_info_data[12]  // Through gap_ee5[95]
+
+// MAC Addresses
+device_info->gap_ee5[97] -> unsigned __int8 mac_addresses[12]  // Through gap_ee5[107], Master/Node/Slave MACs
+
+// Sensors and Motion
+device_info->gap_rem[16] -> unsigned __int8 wakeup_angle_level
+device_info->gap_rem[17] -> unsigned __int8 wakeup_angle_offset
+device_info->gap_rem[124] -> unsigned __int8 anti_shake_enable
+
+// Raster Display Configuration
+device_info->projector_controller.reserved_210_214[12] -> unsigned __int8 raster_height_gear
+device_info->projector_controller.reserved_210_214[13] -> unsigned __int8 canvas_distance_gear
+
+// Function Pointers and Data Pointers (4 bytes each)
+device_info->gap_ee5[115] -> void* schedule_checksum_ptr
+device_info->gap_ee5[119] -> void* countdown_timer_ptr
+device_info->gap_ee5[123] -> void* schedule_task_data_ptr
+device_info->gap_ee5[131] -> void* teleprompter_data_ptr
+device_info->gap_ee5[135] -> void* flash_storage_interface_ptr
+device_info->gap_ee5[139] -> void* reset_type_1_ptr
+device_info->gap_ee5[143] -> void* reset_type_2_ptr
+device_info->gap_ee5[147] -> void* factory_reset_ptr
+device_info->gap_ee5[159] -> void* raster_config_ptr
+device_info->gap_ee5[179] -> void* dfu_function_ptr
+device_info->gap_ed[1671] -> void* system_function_ptr
+
+// Settings and Status (4 bytes each)
+device_info->gap_ee5[211] -> unsigned __int32 settings_save_command_id
+device_info->gap_ee5[219] -> void* task_status_ptr
+device_info->gap_ed[2239] -> void* settings_save_address_ptr
+device_info->gap_ed[2247] -> unsigned __int32 system_status_value
+device_info->gap_ed[2567] -> void* display_control_ptr
+
+// Flags and States
+device_info->gap_ed[2550] -> unsigned __int8 system_status_flag
+device_info->gap_ed[2591] -> unsigned __int8 display_mode_flag
+// Phone Connection and Communication
+device_info->remaining[368] -> unsigned __int8 phone_connection_type  // 1=iOS, 2=Android (offset +2284 from context)
+device_info->remaining[376] -> unsigned __int8 ancs_enable_flag       // Apple Notification Center Service (offset +2292)
+
+// Display and UI
+device_info->current_screen_id -> unsigned __int8 current_app_id      // Current running application ID
+device_info->special_screen_id -> unsigned __int8 wear_detection_mode // Wear detection settings (offset +2321)
+device_info->remaining[1860] -> unsigned __int8 display_raster_height_gear  // Raster height gear (offset +1860)
+device_info->remaining[1861] -> unsigned __int8 display_canvas_distance_gear // Canvas distance gear (offset +1861)
+device_info->remaining[407] -> unsigned __int8 message_stay_time_mode        // Message display timeout mode (offset +2323)
+
+// Analytics and Tracking
+device_info->gap_1014[10] -> unsigned __int8 buried_point_data[192]   // Usage tracking/analytics data

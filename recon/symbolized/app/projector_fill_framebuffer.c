@@ -1,0 +1,22 @@
+#include "g1_app_symbols.h"
+/* named: projector_fill_framebuffer */
+/* Reconstructed projector_fill_framebuffer @ 0x7d6ae  (parity: 300/300 trials, PROVEN) */
+
+extern int get_projector_controller(void);
+extern void memset_bytes(unsigned int, unsigned int, unsigned int);
+extern void projector_set_write_window(unsigned int, unsigned int, unsigned int, unsigned int);
+
+void projector_fill_framebuffer(unsigned int param_1)
+{
+  int iVar1;
+  unsigned int uVar2;
+
+  iVar1 = get_projector_controller();
+  uVar2 = *(unsigned int*)(iVar1+0x24);
+  memset_bytes(uVar2, param_1, 64000);
+  projector_set_write_window(0,0,uVar2,((uintptr_t)&rodata_f000) /*=0xf000*/);
+  projector_set_write_window(0,0xc0,uVar2,((uintptr_t)&rodata_f000) /*=0xf000*/);
+  projector_set_write_window(0,0x180,uVar2,0x7800);
+  return;
+}
+

@@ -1,0 +1,22 @@
+/* named: is_system_idle_ready */
+/* Reconstructed is_system_idle_ready @ 0x7ce00  (parity: 300/300 trials, PROVEN) */
+
+extern int get_device_info(void);
+
+int is_system_idle_ready(void)
+{
+  int iVar1;
+  iVar1 = get_device_info();
+  if (*(volatile int*)(*(volatile int*)(iVar1+0x1054)) == 0) {
+    iVar1 = get_device_info();
+    if (*(volatile unsigned char*)(*(volatile int*)(iVar1+0x1054)+4) == 1) {
+      iVar1 = get_device_info();
+      if (*(volatile unsigned char*)(iVar1+0xd5) == 0) {
+        iVar1 = get_device_info();
+        return *(volatile unsigned char*)(iVar1+0xfe6) == 1;
+      }
+    }
+  }
+  return 0;
+}
+

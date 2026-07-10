@@ -1,0 +1,22 @@
+/* named: cbor_decode_simple_value */
+/* Reconstructed cbor_decode_simple_value @ 0x85fd2  (parity: 300/300 trials, PROVEN) */
+
+extern int cbor_decode_check_major_type(unsigned int *, unsigned int);
+extern int cbor_decode_extract_value(unsigned int *, unsigned int, unsigned int, unsigned int);
+extern void FUN_00085d70(unsigned int *, unsigned int);
+
+unsigned int cbor_decode_simple_value(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+  int iVar1;
+  unsigned int uVar2;
+  iVar1 = cbor_decode_check_major_type(param_1, 7);
+  if (iVar1 != 0) {
+    if ((*(unsigned char *)*param_1 & 0x1f) < 0x19) {
+      uVar2 = cbor_decode_extract_value(param_1, param_2, 1, param_4);
+      return uVar2;
+    }
+    FUN_00085d70(param_1, 10);
+  }
+  return 0;
+}
+

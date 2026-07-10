@@ -1,0 +1,10 @@
+/* rodata_0x55a64: literal-pool byte fragment (span not word-aligned;
+ * leading bytes are pointer literal(s), trailing bytes begin adjacent Thumb code).
+ * app-core VA 0x55a64, 21 bytes. naddr=5. ascii: '. . ( . . . 3+.......'
+ * Reader(s): FUN_00055998, FUN_000559fc
+ */
+#include <stdint.h>
+const uint8_t rodata_0x55a64[21] = {
+    0x18, 0x20, 0x00, 0x20, 0x28, 0x20, 0x00, 0x20, 0x00, 0x20, 0x00, 0x20,
+    0x33, 0x2b, 0x0f, 0x00, 0x98, 0xb5, 0x00, 0xaf, 0xff,
+};

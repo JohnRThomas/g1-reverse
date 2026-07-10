@@ -1,0 +1,10 @@
+/* Reconstructed FUN_000861ae @ 0x861ae  (parity: 300/300 trials, PROVEN) */
+
+int FUN_000861ae(int param_1)
+{
+    if (param_1 != 0 && *(char *)(param_1 + 0x10) != 0) {
+        return *(int *)(param_1 + 0xc) == 0;
+    }
+    return 1;
+}
+

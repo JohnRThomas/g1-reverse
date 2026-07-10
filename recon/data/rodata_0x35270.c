@@ -1,0 +1,36 @@
+/* rodata_0x35270: const pointer table, 30 x uint32 (2 SRAM ptrs, 28 flash ptrs)
+ * app-core VA 0x35270, 120 bytes. Reader(s): FUN_00035050
+ * Array of 32-bit addresses (SRAM 0x2000xxxx data ptrs, flash 0x000axxxx rodata/string ptrs). */
+#include <stdint.h>
+const uint32_t rodata_0x35270[30] = {
+    0x20007554,
+    0x000a8762,
+    0x000a862c,
+    0x000a8638,
+    0x2001a22c,
+    0x000a877a,
+    0x000a864e,
+    0x000a8659,
+    0x000a8798,
+    0x000a866e,
+    0x000a87b5,
+    0x000a87d3,
+    0x000a869b,
+    0x000a87f5,
+    0x000a8812,
+    0x0009e1b6,
+    0x000a86c8,
+    0x0009e235,
+    0x000a86db,
+    0x000a8833,
+    0x000f3630,
+    0x000a86f4,
+    0x000a8850,
+    0x000a870b,
+    0x0009a1dd,
+    0x000a8724,
+    0x000f33e4,
+    0x000a8739,
+    0x000a886d,
+    0x000a8884,
+};

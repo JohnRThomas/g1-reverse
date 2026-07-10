@@ -1,0 +1,75 @@
+/* named: init_dashboard_info */
+/* globals referenced:
+//   0x2000230c  g_log_level                  
+//   0x20007554  g_log_use_alt_sink           
+*/
+/* Reconstructed init_dashboard_info @ 0x36ed8  (parity: 300/300 trials, PROVEN) */
+
+#include <stdint.h>
+extern int uarte_nrfx_irq_rx_ready(void);
+extern void init_dashboard_startup_mode_info_defaults(void);
+extern int get_device_info(void);
+extern void debug_print(void);
+extern int getQuickNoteDataFromFlash(int,int,int,int,int);
+extern void record_dashboard_startup_snapshot(int,int);
+extern void DEBUG_PRINT(int,int,int);
+#define VB(a) (*(volatile unsigned char*)(a))
+#define VI(a) (*(volatile int*)(a))
+
+void init_dashboard_info(void){
+  volatile int *p40 = (volatile int*)0x2000230cUL;
+  volatile int *p44 = (volatile int*)0x20007554UL;
+  int iVar3, iVar4, iVar5, iVar7;
+  iVar3 = uarte_nrfx_irq_rx_ready();
+  if (iVar3 == 0) {
+    if (2 < *p40) {
+      if (*p44 == 0) { DEBUG_PRINT(0x000a8eee, 0x000a95f9, 0); }
+      else { debug_print(); }
+    }
+    init_dashboard_startup_mode_info_defaults();
+  } else {
+    if (2 < *p40) {
+      if (*p44 == 0) { DEBUG_PRINT(0x000a8f19, 0x000a95f9, 0); }
+      else { debug_print(); }
+    }
+    iVar3 = get_device_info();
+    { unsigned int pb = VI(iVar3 + 0xfec);
+      VB(pb) = 0x80; VB(pb+2) = 0x92; VB(pb+1) = 0; VB(pb+3) = 0x65; }
+    iVar3 = get_device_info();
+    iVar3 = VI(iVar3 + 0xfec);
+    VB(iVar3+6)=0; VB(iVar3+7)=0xf4; VB(iVar3+8)=0x51; VB(iVar3+9)=0xc2;
+    VB(iVar3+10)=0x8c; VB(iVar3+0xc)=0; VB(iVar3+0xb)=1; VB(iVar3+0xd)=0;
+    iVar3 = get_device_info();
+    { int q = VI(iVar3+0xfec); record_dashboard_startup_snapshot(VI(q+6), VI(q+10)); }
+  }
+  iVar7 = 4;
+  iVar3 = 0;
+  do {
+    iVar4 = get_device_info();
+    iVar5 = VI(iVar4 + 0x1020);
+    iVar4 = get_device_info();
+    iVar4 = getQuickNoteDataFromFlash(iVar3, iVar5+iVar7, 0x29, iVar7+0x29+VI(iVar4+0x1020), 0x119);
+    if (iVar4 == -1) {
+      iVar4 = get_device_info();
+      VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 0;
+      if (2 < *p40) {
+        if (*p44 == 0) DEBUG_PRINT(0x000a8f46, 0x000a95f9, iVar3);
+        else debug_print();
+      }
+    } else if (iVar4 == 0) {
+      iVar4 = get_device_info();
+      VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 1;
+      if (2 < *p40) {
+        if (*p44 == 0) DEBUG_PRINT(0x000a8f72, 0x000a95f9, iVar3);
+        else debug_print();
+      }
+    } else if (0 < *p40) {
+      if (*p44 == 0) DEBUG_PRINT(0x000a8fb7, 0x000a95f9, 0);
+      else debug_print();
+    }
+    iVar3++;
+    iVar7 += 0x143;
+    if (iVar3 == 4) return;
+  } while (1);
+}
+

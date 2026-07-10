@@ -1,0 +1,12 @@
+#include "g1_app_symbols.h"
+/* named: FUN_00081130 */
+/* Reconstructed FUN_00081130 @ 0x81130  (parity: 300/300 trials, PROVEN) */
+
+int FUN_00081130(int param_1)
+{
+    if (param_1 != 0) {
+        param_1 = 1;
+    }
+    return param_1;
+}
+

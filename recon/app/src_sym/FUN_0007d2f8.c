@@ -1,0 +1,27 @@
+/* Reconstructed FUN_0007d2f8 @ 0x7d2f8  (parity: 300/300 trials, PROVEN) */
+
+extern void* get_device_info(void);
+
+void FUN_0007d2f8(unsigned int param_1)
+{
+  if (param_1 <= 2) {
+    void *p = get_device_info();
+    int *ptr = *(int**)((char*)p + 0x1010);
+    unsigned char b = *(unsigned char*)((char*)ptr + 2);
+    int mismatch = (b != (unsigned char)param_1);
+    if (!mismatch) {
+      void *p2 = get_device_info();
+      unsigned char b2 = *(unsigned char*)((char*)p2 + 0xd5);
+      mismatch = (b2 != 7);
+    }
+    if (mismatch) {
+      void *p3 = get_device_info();
+      int *ptr3 = *(int**)((char*)p3 + 0x1010);
+      *(unsigned char*)((char*)ptr3 + 2) = (unsigned char)param_1;
+      void *p4 = get_device_info();
+      int *ptr4 = *(int**)((char*)p4 + 0x1010);
+      *(unsigned char*)((char*)ptr4 + 1) = 1;
+    }
+  }
+}
+

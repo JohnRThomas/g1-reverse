@@ -1,0 +1,86 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_0102f080 @ 0x102f080  (parity 300 trials PROVEN) */
+
+typedef unsigned int u32;
+typedef int i32;
+
+static inline void setProcessStackPointer(u32 v){__asm__ volatile("msr psp, %0"::"r"(v):"memory");}
+
+extern u32 FUN_0102ed18(u32 a, u32 b);
+extern void FUN_01039bb0(u32 a, u32 b);
+extern void FUN_01039bbe(u32 a, u32 b, u32 c);
+extern void FUN_0103a3d6(u32 a, u32 b, u32 *c);
+
+#define SCB 0xe000ed00u
+
+u32 FUN_0102f080(u32 param_1, i32 param_2, unsigned char *param_3)
+{
+    u32 uVar4;
+    u32 uVar5;
+    u32 scratch[8];
+
+    scratch[1] = "fer available" /*=0x103da8d*/;
+    scratch[0] = 2;
+    FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1040, &scratch[0]);
+
+    if ((i32)(*(volatile u32*)(SCB+0x28) << 0x1b) < 0) {
+        scratch[0] = 2;
+        scratch[1] = "buffer available" /*=0x103daa3*/;
+        uVar4 = 0x11;
+        FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1040, &scratch[0]);
+    } else {
+        uVar4 = 0x10;
+    }
+    if ((i32)(*(volatile u32*)(SCB+0x28) << 0x1c) < 0) {
+        uVar4 = 0x12;
+        scratch[1] = "013000" /*=0x103d922*/;
+        scratch[0] = 2;
+        FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1040, &scratch[0]);
+    }
+    if ((i32)(*(volatile u32*)(SCB+0x28) << 0x1e) < 0) {
+        scratch[1] = "lse needs a new branch" /*=0x103dad6*/;
+        scratch[0] = 2;
+        FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1040, &scratch[0]);
+        uVar5 = *(volatile u32*)(SCB+0x34);
+        if ((i32)(*(volatile u32*)(SCB+0x28) << 0x18) < 0) {
+            scratch[1] = "oftDevice Controller" /*=0x103daee*/;
+            scratch[0] = 3;
+            scratch[2] = uVar5;
+            FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1840, &scratch[0]);
+            if (param_2 != 0) {
+                *(volatile u32*)(SCB+0x28) = *(volatile u32*)(SCB+0x28) & 0xffffff7f;
+            }
+        } else {
+            uVar5 = 0xffffffea;
+        }
+        uVar4 = 0x13;
+    } else {
+        uVar5 = 0xffffffea;
+    }
+    if ((i32)(*(volatile u32*)(SCB+0x28) << 0x1f) < 0) {
+        uVar4 = 0x14;
+        scratch[1] = "t_sdc_hci_driver" /*=0x103db04*/;
+        scratch[0] = 2;
+        FUN_0103a3d6(((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/, 0x1040, &scratch[0]);
+    }
+    if (((i32)(*(volatile u32*)(SCB+0x28) << 0x1b) < 0) || ((i32)(*(volatile u32*)(SCB+0x28) << 0x1e) < 0)) {
+        if ((i32)(*(volatile u32*)(SCB+4) << 0x14) < 0) {
+            u32 r0v = FUN_0102ed18(uVar5, param_1);
+            if (r0v == 0) {
+                if ((i32)(*(volatile u32*)(SCB+0x28) << 0x1b) < 0) {
+                    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "phyr/include/zephyr/sys/byteorder.h" /*=0x103db23*/, 0x15d);
+                    FUN_01039bb0("phyr/include/zephyr/sys/byteorder.h" /*=0x103db23*/, 0x15d);
+                    __builtin_unreachable();
+                }
+            } else {
+                setProcessStackPointer(r0v);
+                uVar4 = 2;
+            }
+        }
+    }
+    *(volatile u32*)(SCB+0x28) = *(volatile u32*)(SCB+0x28) | 0xff;
+    *param_3 = 0;
+    return uVar4;
+}
+
+

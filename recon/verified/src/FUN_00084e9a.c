@@ -1,0 +1,25 @@
+/* Reconstructed FUN_00084e9a @ 0x84e9a  (parity: 300/300 trials, PROVEN) */
+
+int FUN_00084e9a(unsigned char *param_1)
+{
+  int iVar1 = 0;
+  int iVar2 = 0;
+  unsigned int uVar3;
+  while (1) {
+    uVar3 = param_1[iVar1];
+    if (uVar3 - 0x30 < 10) {
+      iVar2 = iVar2 - 0x30;
+    } else if (uVar3 - 0x41 < 6) {
+      iVar2 = iVar2 - 0x37;
+    } else if (uVar3 - 0x61 <= 5) {
+      iVar2 = iVar2 - 0x57;
+    } else {
+      return 0;
+    }
+    if (iVar1 == 3) break;
+    iVar2 = (uVar3 + iVar2) * 0x10;
+    iVar1 = iVar1 + 1;
+  }
+  return uVar3 + iVar2;
+}
+

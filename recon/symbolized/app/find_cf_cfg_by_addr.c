@@ -1,0 +1,25 @@
+#include "g1_app_symbols.h"
+/* named: find_cf_cfg_by_addr */
+/* globals referenced:
+//   0x2000aed4  g_bt_gatt_cf_cfg             
+*/
+/* Reconstructed find_cf_cfg_by_addr @ 0x59b5c  (parity: 300/300 trials, PROVEN) */
+
+extern int bt_addr_le_eq_0(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+
+int find_cf_cfg_by_addr(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+    int iVar2 = 0;
+    unsigned int iVar3 = ((uintptr_t)&g_bt_gatt_cf_cfg) /*=0x2000aed5*/;
+    while ((*(volatile unsigned char*)(iVar3 - 1) != param_1) ||
+           (bt_addr_le_eq_0(param_2, iVar3, param_3, (unsigned int)*(volatile unsigned char*)(iVar3 - 1), param_4) == 0))
+    {
+        iVar2 = iVar2 + 0x10;
+        iVar3 = iVar3 + 0x10;
+        if (iVar2 == 0x30) {
+            return 0;
+        }
+    }
+    return ((uintptr_t)&g_bt_gatt_cf_cfg) /*=0x2000aed4*/ + iVar2;
+}
+

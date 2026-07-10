@@ -1,0 +1,26 @@
+/* Reconstructed FUN_000678d0 @ 0x678d0  (parity: 300/300 trials, PROVEN) */
+
+extern void FUN_0007e2fa(int a, int b, int c, int d, int e);
+extern int FUN_0007e2ec(int a, int b);
+
+void FUN_000678d0(int *param_1, int param_2, int param_3, int param_4)
+{
+    unsigned char byte = *(unsigned char *)((int)param_1 + 4);
+    int iVar2 = (int)((unsigned int)byte * 0x28 + 0x2000b3cc);
+    int r3 = iVar2;
+    int r0 = (int)param_1;
+
+    if (*(volatile char *)(iVar2 + 0x22) == 0) {
+        FUN_0007e2fa(0x99cbd, 0xf6e3a, 0xf6fef, 0x176, param_4);
+        r3 = 0x176;
+        r0 = FUN_0007e2ec(0xf6fef, 0x176);
+    }
+    *(volatile int *)(r3 + 8) = 0;
+    int r2 = *(volatile int *)r0;
+    *(volatile int *)(r2 + 0x308) = 0x019c0202;
+    *(volatile unsigned int *)(r2 + 0x200) = *(volatile unsigned int *)(r2 + 0x200) & 0xffffe87f;
+    *(volatile int *)(r2 + 0x500) = 0;
+    *(volatile char *)(r3 + 0x24) = 0;
+    *(volatile char *)(r3 + 0x22) = 1;
+}
+

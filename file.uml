@@ -1,0 +1,128 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Система приема заявок на практику (Текущее состояние)
+
+Person(student, "Практикант", "Студент, подающий заявку на практику")
+Person(hr, "HR-менеджер", "Обрабатывает заявки и координирует процесс")
+Person(mentor, "Наставник", "Технический специалист, принимающий решение о собеседовании")
+
+System_Boundary(forms, "Системы подачи заявок") {
+    Container(google_forms, "Google Forms", "Веб-форма", "Сбор заявок через сарафанное радио")
+    Container(yandex_forms, "Yandex Forms", "Веб-форма", "Сбор заявок с сайта компании")
+}
+
+System_Boundary(storage, "Хранение данных") {
+    ContainerDb(google_sheets, "Google Sheets", "Таблицы", "Хранение данных из Google Forms")
+    ContainerDb(excel_tables, "Excel файлы", "Таблицы", "Ручная выгрузка из Yandex Forms")
+}
+
+System_Boundary(communication, "Коммуникации") {
+    Container(telegram_chat, "Telegram чат", "Мессенджер", "Уведомления наставников")
+    Container(phone_email, "Телефон/Email", "Связь", "Обратная связь кандидатам")
+}
+
+' Relationships - подача заявок
+Rel(student, google_forms, "Заполняет заявку", "HTTPS")
+Rel(student, yandex_forms, "Заполняет заявку", "HTTPS")
+
+' Relationships - сохранение данных
+Rel(google_forms, google_sheets, "Автоматически сохраняет", "API")
+Rel(yandex_forms, excel_tables, "Ручная выгрузка", "Export")
+
+' Relationships - обработка HR
+Rel(hr, google_sheets, "Просматривает заявки", "Веб-интерфейс")
+Rel(hr, excel_tables, "Просматривает заявки", "Локально")
+
+' Relationships - уведомления наставников
+Rel(hr, telegram_chat, "Отправляет уведомление\n(тег + фамилия)", "Сообщение")
+Rel(mentor, telegram_chat, "Получает уведомление", "Сообщение")
+Rel(mentor, telegram_chat, "Отвечает о решении", "Сообщение")
+
+' Relationships - обратная связь
+Rel(hr, phone_email, "Связывается с кандидатом", "Звонок/Email")
+Rel(phone_email, student, "Получает обратную связь", "Звонок/Email")
+
+' Проблемные места (выделены красным)
+Rel(hr, excel_tables, "ПРОБЛЕМА:\nРучная выгрузка", "Export", $tags="problem")
+Rel(hr, google_sheets, "ПРОБЛЕМА:\nСверка данных в разных таблицах", "Manual", $tags="problem")
+
+@enduml
+
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+
+title Автоматизированная система приема заявок на практику
+
+Person(student, "Практикант", "Студент, подающий заявку через Telegram")
+Person(hr, "HR-менеджер", "Получает уведомления и управляет процессом")
+Person(mentor, "Наставник", "Получает уведомления о подходящих кандидатах")
+
+System_Boundary(telegram_system, "Telegram Ecosystem") {
+    Container(telegram_api, "Telegram Bot API", "API", "Интерфейс взаимодействия с Telegram")
+}
+
+System_Boundary(bot_system, "Система автоматизации заявок") {
+    Container(interview_bot, "Интервью-бот", "Java/Spring Boot", "Проведение структурированных интервью")
+    Container(interview_bot_admin, "Административные команды в боте", "Java/Spring Boot", "Управление системой и аналитика")
+    Container(question_system, "Система типов вопросов", "Java", "Управление различными форматами вопросов")
+    Container(status_system, "Система статусов", "Java", "Управление жизненным циклом заявки")
+    Container(notification_system, "Система уведомлений", "Java", "Отправка уведомлений участникам")
+}
+
+System_Boundary(data_layer, "Слой данных") {
+    ContainerDb(postgresql, "PostgreSQL", "База данных", "Централизованное хранение всех данных")
+    Container(google_api, "Google Sheets API", "API", "Интеграция с Google таблицами")
+}
+
+System_Boundary(external, "Внешние системы") {
+    ContainerDb(google_sheets, "Google Sheets", "Таблицы", "Автоматическое заполнение отчетов")
+}
+
+' Основные потоки данных
+Rel(student, telegram_api, "Взаимодействие с ботом", "HTTPS/Bot API")
+Rel(telegram_api, interview_bot, "Получение сообщений", "Long Polling")
+
+' Внутренние взаимодействия бота
+Rel(interview_bot, question_system, "Получение вопросов", "Internal API")
+Rel(interview_bot, status_system, "Обновление статуса", "Internal API")
+Rel(interview_bot, notification_system, "Триггер уведомлений", "Internal API")
+Rel(interview_bot, postgresql, "Сохранение ответов", "JDBC")
+
+' Система уведомлений
+Rel(notification_system, telegram_api, "Отправка уведомлений", "Bot API")
+Rel(telegram_api, hr, "Уведомления о заявках", "Telegram")
+Rel(telegram_api, mentor, "Уведомления о кандидатах", "Telegram")
+
+' Административное управление
+Rel(interview_bot_admin, question_system, "Настройка вопросов", "REST API")
+Rel(interview_bot_admin, postgresql, "Просмотр данных", "JDBC")
+
+' HR управление
+Rel(hr, interview_bot_admin, "Просмотр заявок", "HTTPS")
+Rel(hr, telegram_api, "Обратная связь", "Telegram")
+
+' Интеграция с Google Sheets
+Rel(interview_bot, google_api, "Синхронизация данных", "REST API")
+Rel(google_api, google_sheets, "Автозаполнение", "Google API")
+Rel(hr, google_sheets, "Просмотр отчетов", "Веб-интерфейс")
+
+' Хранение данных
+Rel(question_system, postgresql, "Хранение конфигурации", "JDBC")
+Rel(status_system, postgresql, "Хранение статусов", "JDBC")
+Rel(interview_bot_admin, postgresql, "Аналитика", "JDBC")
+
+' Обратная связь от наставников
+Rel(mentor, telegram_api, "Решение о собеседовании", "Telegram")
+Rel(telegram_api, status_system, "Обновление статуса", "Webhook")
+
+' Уведомления студентам о статусе
+Rel(status_system, notification_system, "Изменение статуса", "Event")
+Rel(notification_system, telegram_api, "Уведомление студенту", "Bot API")
+Rel(telegram_api, student, "Статус заявки", "Telegram")
+
+
+@enduml
+

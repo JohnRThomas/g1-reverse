@@ -1,0 +1,15 @@
+# West manifest for the reconstructed Even G1 firmware.
+# Pinned to the exact NCS/Zephyr revisions the original firmware was built from
+# (recovered from manifest.json shipped in the OTA package).
+manifest:
+  remotes:
+    - name: nordic
+      url-base: https://github.com/nrfconnect
+  projects:
+    - name: sdk-nrf
+      remote: nordic
+      # manifest.json firmware.nrf.revision (—dirty stripped)
+      revision: 87355af5914e498f449b7a68bb5641031a7b8885
+      import: true
+  self:
+    path: application

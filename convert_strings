@@ -1,0 +1,42 @@
+import idaapi
+import idautils
+import idc
+import ida_bytes
+
+def find_and_make_strings():
+    """Find potential strings starting with %s and convert them"""
+    
+    converted = 0
+    errors = 0
+    
+    # Get all string candidates from Strings window
+    for s in idautils.Strings():
+        ea = s.ea
+        
+        # Check if it's already properly defined
+        flags = idc.get_full_flags(ea)
+        if not idc.is_strlit(flags):
+            try:
+                # Get the string content
+                string_data = idc.get_strlit_contents(ea, -1, s.strtype)
+                
+                if string_data and string_data.startswith(b'%s'):
+                    # Undefine existing data
+                    idc.del_items(ea, idc.DELIT_SIMPLE)
+                    
+                    # Create string
+                    if idc.create_strlit(ea, idc.BADADDR):
+                        converted += 1
+                        print(f"Converted string at {hex(ea)}: {string_data[:50]}...")
+                    else:
+                        errors += 1
+                        
+            except Exception as e:
+                print(f"Error at {hex(ea)}: {e}")
+                errors += 1
+    
+    print(f"\nConverted {converted} strings, {errors} errors")
+    idaapi.refresh_idaview_anyway()
+
+# Run the conversion
+find_and_make_strings()

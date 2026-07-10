@@ -1,0 +1,2969 @@
+Functions with debug_print calls and their strings
+============================================================
+
+Function: burial_point_record_info_init
+Strings found: 2
+----------------------------------------
+  1. "%s(): burial_point_record_info_init
+"
+  2. "burial_point_record_info_init"
+
+Function: check_work_mode
+Strings found: 13
+----------------------------------------
+  1. "%s(): EVENT_ENTER_WARED
+"
+  2. "%s(): EVENT_GLASS_BOX_SOC %d
+"
+  3. "%s(): EVENT_GLASS_BOX_STATUS %d
+"
+  4. "%s(): EVENT_GLASS_HAS_FINISH_BIND
+"
+  5. "%s(): EVENT_PUT_IN_GLASS_BOX_CLOSE
+"
+  6. "%s(): EVENT_PUT_IN_GLASS_BOX_OPEN
+"
+  7. "%s(): EVENT_STATE_BATTERY_PERCENT %d
+"
+  8. "%s(): EVENT_STATE_CHARGING %d
+"
+  9. "%s(): EVENT_UNWARED_OUTBOX
+"
+  10. "%s(): MODE_CHARGING_LOW_POWER_ID
+"
+  11. "%s(): MODE_NORMAL_STANBY_ID
+"
+  12. "%s(): last_box_soc is %d, box_soc is %d
+"
+  13. "check_work_mode"
+
+Function: display_DelayClose
+Strings found: 2
+----------------------------------------
+  1. "%s(): send display delay close command.......
+"
+  2. "display_DelayClose"
+
+Function: display_MasterSendClose
+Strings found: 2
+----------------------------------------
+  1. "%s(): send display delay close command.......
+"
+  2. "display_MasterSendClose"
+
+Function: display_inputEvent
+Strings found: 2
+----------------------------------------
+  1. "%s(): send display input event command.......
+"
+  2. "display_inputEvent"
+
+Function: display_powerEvent
+Strings found: 2
+----------------------------------------
+  1. "%s(): send display power event command , low_power_en = %d
+"
+  2. "display_powerEvent"
+
+Function: get_box_charging_status
+Strings found: 2
+----------------------------------------
+  1. "%s(): bIsCharging is :%d 
+
+"
+  2. "get_glassbox_charge_status"
+
+Function: get_box_soc
+Strings found: 2
+----------------------------------------
+  1. "%s(): batterPercent is :%d 
+
+"
+  2. "get_glassbox_charge_percent"
+
+Function: handle_dashboard_action
+Strings found: 2
+----------------------------------------
+  1. "%s():  %s index = %d
+"
+  2. "setStocksIndex"
+
+Function: handle_stocks_action
+Strings found: 2
+----------------------------------------
+  1. "%s():  %s index = %d
+"
+  2. "setNewsIndex"
+
+Function: set_brightness
+Strings found: 2
+----------------------------------------
+  1. "%s(): set brightness level = %d
+"
+  2. "set_brightness_to_panel_reg_in_running"
+
+Function: set_language
+Strings found: 3
+----------------------------------------
+  1. "%s(): send app language store Command, language = %d
+"
+  2. "%s(): setting flash store queue fill failed
+
+"
+  3. "upgradeAppLanguageInfoToFlash"
+
+Function: set_work_mode
+Strings found: 2
+----------------------------------------
+  1. "%s(): change_work_mode to %d
+"
+  2. "change_work_mode"
+
+Function: slave_display_thread
+Strings found: 24
+----------------------------------------
+  1. "%s():  SLAVE received app language infomation 
+"
+  2. "%s():  SLAVE received dashboard double click startup command 
+"
+  3. "%s():  SLAVE received dashboard startup mode changed infomation ,startup mode = %d
+"
+  4. "%s(): ****RESUME end****
+"
+  5. "%s(): ****RESUME start****
+"
+  6. "%s(): ****SUSPEND start****
+"
+  7. "%s(): Ignore data...
+"
+  8. "%s(): QUICK NOTE SLAVE Delay EXIT
+"
+  9. "%s(): Quick Note Slave Start up...,current screen ID = %d
+"
+  10. "%s(): The information sent by the host is different from that of the APP
+"
+  11. "%s(): The master Send the navigation command, but the slave's current ScreenID is not navigation.drop this command..
+"
+  12. "%s(): dashboard SLAVE received power infomation 
+"
+  13. "%s(): enter
+"
+  14. "%s(): navigation SLAVE disconnect EXIT
+"
+  15. "%s(): received key press event ,slave screen id = %d,drop it ...
+"
+  16. "%s(): received master send Stocks index sync commmand ,timestamp = %d,exec index update %d
+"
+  17. "%s(): received master send sync command
+"
+  18. "%s(): received master send touch sigle click command,timestamp = %d,exec key function,%d
+"
+  19. "%s(): resume because SYNC_DISPLAY_CMD_DATA
+"
+  20. "%s(): slave rcv canvas_distance_gear:%d,raster_height_gear:%d
+"
+  21. "%s(): slave sync not_disturb sub_step %d
+"
+  22. "%s(): slave sync onboarding action_cmd %d, sub_step %d, data: %d
+"
+  23. "%s(): teleprompter SLAVE disconnect EXIT
+"
+  24. "slave_display_thread"
+
+Function: sub_10A68
+Strings found: 2
+----------------------------------------
+  1. "%s(): opt3007_get_max_lux %d %f luminance_curve_a0 %d
+"
+  2. "opt3007_get_max_lux"
+
+Function: sub_10B18
+Strings found: 4
+----------------------------------------
+  1. "%s(): #############################Abnormal temperature################################
+
+"
+  2. "%s(): Original soc %.2f, New Soc %.2f, %s
+"
+  3. "%s(): V: %.3f, I: %.3f, T: %.2f
+"
+  4. "fuel_gauge_update"
+
+Function: sub_10FE8
+Strings found: 2
+----------------------------------------
+  1. "%s(): curve_lux:0x%x
+
+"
+  2. "get_lux_info"
+
+Function: sub_157B4
+Strings found: 3
+----------------------------------------
+  1. "%s(): IPC send at %d ticks %lld ms
+"
+  2. "%s(): RTC has sync at %lld ms
+"
+  3. "timeout_handler"
+
+Function: sub_158BC
+Strings found: 3
+----------------------------------------
+  1. "%s(): failed to switch to ble mode [%d]
+"
+  2. "%s(): sys reboot because system reset %d, %d
+"
+  3. "switch_to_dfu_mode"
+
+Function: sub_15960
+Strings found: 7
+----------------------------------------
+  1. "%s(): ###############loss package new_data_pkg->package_id %d data_pkg->package_id %d
+"
+  2. "%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_END slave before
+"
+  3. "%s(): ##########%s %d SYNC_DISPLAY_CMD_COMFIRM_NOTIFY_FIRST slave before
+"
+  4. "%s(): slave even ai recv down recving
+"
+  5. "%s(): slave recv down recving
+"
+  6. "%s(): slave recv same package
+"
+  7. "local_esbs_ipc_service_recv"
+
+Function: sub_15DF4
+Strings found: 6
+----------------------------------------
+  1. "%s(): Could not set buck2.
+"
+  2. "%s(): Could not set ldsw1.
+"
+  3. "%s(): enable buck2.
+"
+  4. "%s(): enable ldsw1 1.8v for panel
+"
+  5. "%s(): set buck2 to 1.1v
+"
+  6. "power_for_panel"
+
+Function: sub_15F80
+Strings found: 2
+----------------------------------------
+  1. "%s(): Could not set ldsw2.
+"
+  2. "power_for_imu_and_mic"
+
+Function: sub_15FDC
+Strings found: 4
+----------------------------------------
+  1. "%s(): Could not set buck2.
+"
+  2. "%s(): disable buck2 1.2v
+"
+  3. "%s(): turn off -2v for panel.
+"
+  4. "power_down_panel"
+
+Function: sub_160B4
+Strings found: 2
+----------------------------------------
+  1. "%s(): Could not set ldsw2.
+"
+  2. "power_down_imu_and_mic"
+
+Function: sub_16268
+Strings found: 2
+----------------------------------------
+  1. "%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X
+"
+  2. "runtime_info_sync"
+
+Function: sub_16738
+Strings found: 2
+----------------------------------------
+  1. "%s(): delete memory_keep_data
+"
+  2. "reset_all_static_info"
+
+Function: sub_16EB8
+Strings found: 19
+----------------------------------------
+  1. "%s(): Master!------
+"
+  2. "%s(): Synchronization using %s driver
+"
+  3. "%s(): [Build Info: Ver:v%d.%d.%d Commit:%s] [Build Time:%s]
+"
+  4. "%s(): [ble_context init] fail: 0x%x
+
+"
+  5. "%s(): [cpuapp] global context init
+
+"
+  6. "%s(): [imu_context init] fail: 0x%x
+
+"
+  7. "%s(): [opt3007 init] fail: 0x%x
+
+"
+  8. "%s(): [panel_controler init] fail: 0x%x
+
+"
+  9. "%s(): [spi_master init] fail: 0x%x
+
+"
+  10. "%s(): enter
+"
+  11. "%s(): error --hw_id:0x%x
+"
+  12. "%s(): exit
+"
+  13. "%s(): exit!
+"
+  14. "2024-12-28 20:20:45"
+  15. "component_init"
+  16. "init_context"
+  17. "main"
+  18. "mbox"
+  19. "role_init"
+
+Function: sub_17A40
+Strings found: 11
+----------------------------------------
+  1. "%s(): DEVICE_ID1_PIN: %d, device1_status: %d
+"
+  2. "%s(): DEVICE_ID2_PIN: %d, device2_status: %d
+"
+  3. "%s(): DEVICE_ID3_PIN: %d, device3_status: %d
+"
+  4. "%s(): DEVICE_ID4_PIN: %d, device4_status: %d
+"
+  5. "%s(): SW0 GPIO port device not ready
+
+"
+  6. "%s(): device_compat_val: %d %d %d %d
+"
+  7. "%s(): done, pin= %d
+
+"
+  8. "%s(): panel_power_status %d tmr_status %d nfc_lpd_status %d touch_power_status %d
+"
+  9. "button_init"
+  10. "get_device_hw_id"
+  11. "nfc_gpo_init"
+
+Function: sub_17EEC
+Strings found: 2
+----------------------------------------
+  1. "enqueue_bt_data drop package! 
+"
+  2. "enqueue_bt_data failed !
+"
+
+Function: sub_183E4
+Strings found: 2
+----------------------------------------
+  1. "%s(): Got %s bind addr %d
+
+"
+  2. "check_bonded_addr"
+
+Function: sub_18444
+Strings found: 2
+----------------------------------------
+  1. "%s(): bt_conn_disconnect because Pairing failed
+"
+  2. "pairing_failed"
+
+Function: sub_1849C
+Strings found: 2
+----------------------------------------
+  1. "%s(): bt_conn_disconnect because Pairing cancelled
+"
+  2. "auth_cancel"
+
+Function: sub_18A38
+Strings found: 2
+----------------------------------------
+  1. "%s(): disconnect because can not discover ancs.
+"
+  2. "indicate_sc_cb"
+
+Function: sub_18ADE
+Strings found: 2
+----------------------------------------
+  1. "%s(): from %s (reason 0x%02x)
+"
+  2. "ancs_disconnected"
+
+Function: sub_18B6C
+Strings found: 2
+----------------------------------------
+  1. "%s(): k_msgq alloc failed
+"
+  2. "init_msgq_ancs"
+
+Function: sub_18BB4
+Strings found: 3
+----------------------------------------
+  1. "%s(): en ancs F
+"
+  2. "enqueue ancs drop package! 
+"
+  3. "enqueue_ancs"
+
+Function: sub_18D94
+Strings found: 2
+----------------------------------------
+  1. "%s(): D ancs F
+"
+  2. "dequeue_ancs"
+
+Function: sub_18E04
+Strings found: 2
+----------------------------------------
+  1. "%s(): k_msgq alloc failed
+"
+  2. "init_msgq_uid"
+
+Function: sub_18E4A
+Strings found: 4
+----------------------------------------
+  1. "%s(): en uid F
+"
+  2. "%s(): local_data uid %d
+"
+  3. "enqueue uid drop package! 
+"
+  4. "enqueue_uid"
+
+Function: sub_18EF4
+Strings found: 2
+----------------------------------------
+  1. "%s(): ============================>bt_ancs_get_attr_req_sem %d count %d notif->evt_id %d
+"
+  2. "bt_ancs_notification_source_handler"
+
+Function: sub_18FFA
+Strings found: 2
+----------------------------------------
+  1. "%s(): D uid F
+"
+  2. "dequeue_uid"
+
+Function: sub_1905C
+Strings found: 2
+----------------------------------------
+  1. "%s(): %d: err=%d
+"
+  2. "ancs_c_init"
+
+Function: sub_19308
+Strings found: 2
+----------------------------------------
+  1. "%s(): Failed to set device name (err %d)
+
+"
+  2. "bt_start"
+
+Function: sub_1965E
+Strings found: 1
+----------------------------------------
+  1. "blocked! app(%s) not in whitelist 
+"
+
+Function: sub_19CD0
+Strings found: 4
+----------------------------------------
+  1. "[%s-%d]error, curCmd is %d, but parseCmd is %d ! 
+"
+  2. "[%s-%d]error, req is NULL ! 
+"
+  3. "[%s-%d]error, req_len is %d, too short ! 
+"
+  4. "parse_receiver_pack_pkcs7"
+
+Function: sub_19DA4
+Strings found: 5
+----------------------------------------
+  1. "[%s-%d]error, curCmd is %d, but parseCmd is %d ! 
+"
+  2. "[%s-%d]error, req is NULL ! 
+"
+  3. "[%s-%d]error, req_len is %d, too short ! 
+"
+  4. "origin_data is %s 
+"
+  5. "parse_receiver_msg_pack_pkcs7"
+
+Function: sub_19ED6
+Strings found: 3
+----------------------------------------
+  1. "%s(): BLE send failed for %d times
+"
+  2. "%s(): dmic_send_count %d send_fail_count %d time %lld
+"
+  3. "send_dmic_msg"
+
+Function: sub_19FF0
+Strings found: 2
+----------------------------------------
+  1. "%s(): dashboard lock timeout,release .
+"
+  2. "DashboardLockTimerExpiry_callback"
+
+Function: sub_1A064
+Strings found: 15
+----------------------------------------
+  1. "%s(): #tx error get req_type: %d
+"
+  2. "%s(): %s mobile phone is connected,raw_data[1] = %d
+"
+  3. "%s(): BLE_GET_BURIAL_POINT_DATA
+
+"
+  4. "%s(): BLE_REQ_GET_BRIGHTNESS: 0x%02x,0x%02x,0x%02x,0x%02x,
+"
+  5. "%s(): BLE_REQ_GET_DEVICE_INFO: CHG:0x%02x,0x%02x,0x%02x,0x%02x,0x%02x M_SW_VER:v%d.%d.%d S_SW_VER:v%d.%d.%d BLE_SW_VER:v%d.%d
+"
+  6. "%s(): BLE_REQ_GET_DEVICE_SN: %s
+"
+  7. "%s(): BLE_REQ_GET_DISPLAY_MODE: 0x%02x,0x%02x,
+"
+  8. "%s(): BLE_REQ_GET_M_N_S_MAC: 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x, 0x%02x
+"
+  9. "%s(): get device  information packet length error,input data length = %d,packet data length = %d
+"
+  10. "%s(): globle->check_mode %d
+"
+  11. "%s(): packet length error,input data length = %d,packet data length = %d
+"
+  12. "%s(): return system status to app,current running app is %d
+"
+  13. "%s(): return system status to app,current running app is E_ID_SCREEN_IDLE
+"
+  14. "Android"
+  15. "ble_process_get_req"
+
+Function: sub_1A75C
+Strings found: 131
+----------------------------------------
+  1. "%s(): #BLE_REQ_PUT_COUNTDOWN_TIMER:
+"
+  2. "%s(): *******************------ received app send timestamp = %lld,current system timestamp = %lld
+"
+  3. "%s(): @tx error put req_type: %d
+"
+  4. "%s(): A serious packet order error occurred!
+"
+  5. "%s(): ACTIION ID = 3,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.
+"
+  6. "%s(): ACTION ID = 1,Successfully assembled multiple packages of data, and updated the complete content to the UI thread for data update.
+"
+  7. "%s(): ACTION ID = 1,Successfully received the subpackage content, the packet sequence is %d
+"
+  8. "%s(): ACTION ID = 3,A serious packet order error occurred!
+"
+  9. "%s(): ACTION ID = 3,Received multiple initialization packets, currently the first packet of data
+"
+  10. "%s(): ACTION ID = 3,Successfully received the subpackage content, the packet sequence is %d
+"
+  11. "%s(): ACTION ID = 3,There is a packet order error, current packet order = %d, expected packet order =%d
+"
+  12. "%s(): APP delete voice block num error %d
+"
+  13. "%s(): APP success received audio data ,delete voice block num %d
+"
+  14. "%s(): Action ID = 1,Received multiple initialization packets, currently the first packet of data
+"
+  15. "%s(): Action ID = 1,Received schedule multiple initialization packets, currently the first packet of data
+"
+  16. "%s(): CURRENT_SPEED_STRING_SIZE oversize
+"
+  17. "%s(): Dashboard display mode :%d  custom display Area value : %d
+"
+  18. "%s(): Failed to set security (err %d)
+
+"
+  19. "%s(): Global Working Mode: %d get_glasses_ble_status %d ble_is_connected %d
+"
+  20. "%s(): KILOMETER_REMAINNING_STRING_SIZE oversize
+"
+  21. "%s(): MARK POSITION = %d
+"
+  22. "%s(): Panoramic map : The data length of the current packet is too long, the current data length %d,wait write data length = %d
+"
+  23. "%s(): Quick Note Title = %s,TXET = %s
+"
+  24. "%s(): Quick Note Title =%s,QuickNote TXET =%s
+"
+  25. "%s(): REMAINING_DISTANCE_STRING_SIZE oversize
+"
+  26. "%s(): ROAD_NAME_STRING_SIZE oversize
+"
+  27. "%s(): Received multiple initialization packets, currently the first packet of data,total packet = %d
+"
+  28. "%s(): SUSPEND status ,app send counter time = %d
+"
+  29. "%s(): Successfully received multiple initialization packets, currently the first packet of data,received data size = %d,total packet len = %d
+"
+  30. "%s(): Successfully received navigation data .Maps are compressed to only one pack!!!
+"
+  31. "%s(): Successfully received panoramic map  last packet,Packet id = %d,total received size = %d
+"
+  32. "%s(): Successfully received the last packet,packet length = %d,total packet size = %d
+"
+  33. "%s(): Successfully received the subpackage content, the packet sequence is %d,total received size = %d
+"
+  34. "%s(): Successfully received the subpackage content, the packet sequence is %d,total size = %d
+"
+  35. "%s(): TIME_REMAINNING_STRING_SIZE oversize
+"
+  36. "%s(): There is a packet order error, current packet order = %d, expected packet order =%d
+"
+  37. "%s(): We received %d byte of data from the App
+"
+  38. "%s(): We received %d byte of data from the News App
+"
+  39. "%s(): app return error response information
+"
+  40. "%s(): app send parameter error,qucik note num = %d
+"
+  41. "%s(): app send prompt word oversize,drop it...
+"
+  42. "%s(): app send x/y parameter overstep!!! x= %d,y= %d
+"
+  43. "%s(): ble clear user horiz pitch
+"
+  44. "%s(): ble set lum gear:%d
+"
+  45. "%s(): ble set user horiz pitch:%d
+"
+  46. "%s(): countdown expect_ts:%d, enable:%d
+"
+  47. "%s(): current news index num = %d
+"
+  48. "%s(): current stocks index num = %d
+"
+  49. "%s(): dashboard details packet error,invalid data
+"
+  50. "%s(): dashboard information packet length error,input data length = %d,packet data length = %d
+"
+  51. "%s(): date: %u: %04d/%02d/%02d-%02d:%02d:%02d
+"
+  52. "%s(): delete audio record num = %d
+"
+  53. "%s(): delete news index num = %d
+"
+  54. "%s(): delete stocks index num = %d
+"
+  55. "%s(): direction = %d,x = %d,y = %d,time_remaining = %s,remainning_kilometers = %s,road_name_info = %s,                            remaining_distance_info= %s,current speed = %s
+"
+  56. "%s(): give mic_transm_sem
+"
+  57. "%s(): msg_data: %02x,%02x,%02x,%02x,%02x
+"
+  58. "%s(): msg_data:%02x, %02x, %02x, %02x
+"
+  59. "%s(): navigation don't startup, sync packet return
+"
+  60. "%s(): news change rate data struct error, error type = %d
+"
+  61. "%s(): news data struct error, error type = %d
+"
+  62. "%s(): news display mode = %d
+"
+  63. "%s(): news index num  oversize!!!!
+"
+  64. "%s(): news source : %s
+"
+  65. "%s(): news source oversize !!!
+"
+  66. "%s(): news txt format oversize !!!
+"
+  67. "%s(): onboarding post_to_host failed ret = %d
+"
+  68. "%s(): origin ms timestamp = %lld,origin second timestamp = %d
+"
+  69. "%s(): overview map : The data length of the current packet is too long, the current data length %d,wait write data length = %d
+"
+  70. "%s(): packet length error,input data length = %d,packet data length = %d
+"
+  71. "%s(): post_to_host failed ret = %d
+"
+  72. "%s(): reboot because dfu exceed time
+"
+  73. "%s(): received TEXT UPGRADE Single PACKET ...
+"
+  74. "%s(): received app send sync packet ....
+"
+  75. "%s(): received arrived status packet. arrived status = %d ,arrived prompt word = %s
+"
+  76. "%s(): received clean audio voice command
+"
+  77. "%s(): received close dmic command
+"
+  78. "%s(): received dashboard details packet
+"
+  79. "%s(): received delete all quick note audio file command .
+"
+  80. "%s(): received empty quick note data ,delete quick note num.%d
+"
+  81. "%s(): received navigation func exit packet ....
+"
+  82. "%s(): received navigation func startup  packet ....
+"
+  83. "%s(): received navigation panoramic map data packet ....
+"
+  84. "%s(): received onboarding init packet ....
+"
+  85. "%s(): received open dmic command
+"
+  86. "%s(): received request voice data commmand
+"
+  87. "%s(): received request voice data next data
+"
+  88. "%s(): received start/Pause command,origin language type = %d,translate origin language type = %d,Suspend status = %d
+"
+  89. "%s(): received sync id = %d
+"
+  90. "%s(): received teleprompter func exit packet ....
+"
+  91. "%s(): received teleprompter init  packet ....
+"
+  92. "%s(): received teleprompter init packet,total packet = 1
+"
+  93. "%s(): received teleprompter suspend packet ....
+"
+  94. "%s(): received teleprompter text upgrade packet ....
+"
+  95. "%s(): recv upgrade font failed
+"
+  96. "%s(): recv upgrade font success
+"
+  97. "%s(): schedule data oversize!!!!
+"
+  98. "%s(): schedule display mode = %d
+"
+  99. "%s(): schedule location data format error!!!
+"
+  100. "%s(): schedule record num = %d
+"
+  101. "%s(): schedule time data format error!!!
+"
+  102. "%s(): schedule time data struct error, error type = %d
+"
+  103. "%s(): schedule title : %s , time :%s , location : %s 
+"
+  104. "%s(): schedule title data format error!!!
+"
+  105. "%s(): schedule title data struct error, error type = %d
+"
+  106. "%s(): schedule total record num = %d
+"
+  107. "%s(): stock change rate : %s
+"
+  108. "%s(): stock change status : %d
+"
+  109. "%s(): stock code data struct error, error type = %d
+"
+  110. "%s(): stock code name : %s
+"
+  111. "%s(): stock company name : %s
+"
+  112. "%s(): stock price  : %s
+"
+  113. "%s(): stock price change  : %s
+"
+  114. "%s(): stocks change rate data struct error, error type = %d
+"
+  115. "%s(): stocks change status sformat error !!!
+"
+  116. "%s(): stocks code oversize !!!
+"
+  117. "%s(): stocks company name data struct error, error type = %d
+"
+  118. "%s(): stocks data oversize!!!!
+"
+  119. "%s(): stocks display mode = %d
+"
+  120. "%s(): stocks image format oversize !!!
+"
+  121. "%s(): stocks price change data struct error, error type = %d
+"
+  122. "%s(): stocks price change oversize !!!
+"
+  123. "%s(): stocks share price data struct error, error type = %d
+"
+  124. "%s(): stocks share price oversize !!!
+"
+  125. "%s(): teleprompter packet length error,input data length = %d,packet data length = %d
+"
+  126. "%s(): time display format :%s hours, temperature display format %s 
+"
+  127. "%s(): title length = %d,text length = %d
+"
+  128. "%s(): wrong package id %d
+"
+  129. "ble_process_put_req"
+  130. "centigrade degree"
+  131. "low_speed_peripheral_dispatch_thread"
+
+Function: sub_21460
+Strings found: 12
+----------------------------------------
+  1. "%s(): *****will unbond current bt connection*****
+
+"
+  2. "%s(): @tx error post req_type: %d
+"
+  3. "%s(): ble_process_post_req BLE_REQ_POST_DELETE_NOTIFICATION_MSG
+"
+  4. "%s(): bt_conn_disconnect because recv unpair
+"
+  5. "%s(): master exec dashboard lock process.
+"
+  6. "%s(): packet length error,input data length = %d,packet data length = %d
+"
+  7. "%s(): received Dashboard lock command.
+"
+  8. "%s(): received error dashboard lock action command.
+"
+  9. "%s(): tx error req_type. %d
+"
+  10. "ble_process_post_req"
+  11. "ble_process_report_response"
+  12. "ble_process_req_dispatch"
+
+Function: sub_21A40
+Strings found: 5
+----------------------------------------
+  1. "%s(): #"
+  2. "%s(): PKCS-7#"
+  3. "%s(): integer_num: %d, tail_len: %d, raw_data_len: %d
+"
+  4. "%s(): total-size:%d
+"
+  5. "subcontracing_send_data_pkcs7"
+
+Function: sub_21C04
+Strings found: 2
+----------------------------------------
+  1. "%s(): %s
+"
+  2. "mobile_send_notification_to_ble_device_test"
+
+Function: sub_21CD8
+Strings found: 2
+----------------------------------------
+  1. "%s(): enter
+"
+  2. "simulator_ancs_calendar_schedule_trigger"
+
+Function: sub_22518
+Strings found: 3
+----------------------------------------
+  1. "%s(): Failed to initialize settings subsystem, error: %d
+"
+  2. "%s(): init ok
+"
+  3. "sett_init"
+
+Function: sub_225B4
+Strings found: 2
+----------------------------------------
+  1. "%s(): flash read fail, retry again, retry time %d
+"
+  2. "flash_settings_read"
+
+Function: sub_22658
+Strings found: 2
+----------------------------------------
+  1. "[%s-%d]error, have no memory ! 
+"
+  2. "flash_settings_write_and_verify"
+
+Function: sub_227D0
+Strings found: 1
+----------------------------------------
+  1. "size is %d
+"
+
+Function: sub_22974
+Strings found: 5
+----------------------------------------
+  1. "%s(): 
+
+"
+  2. "%s(): 0x%x 
+"
+  3. "%s(): calc_flash_crc para is NULL
+
+"
+  4. "%s(): join in calc_flash_crc
+
+"
+  5. "calc_flash_crc"
+
+Function: sub_22BD0
+Strings found: 4
+----------------------------------------
+  1. "%s(): FIRST BOOT, full default sys value!
+"
+  2. "%s(): read sys settings success!
+"
+  3. "%s(): sys_flash_settings_read error!
+"
+  4. "load_sys_setting"
+
+Function: sub_22DDC
+Strings found: 2
+----------------------------------------
+  1. "%s(): reset_usr_setting
+"
+  2. "reset_usr_setting"
+
+Function: sub_22E78
+Strings found: 3
+----------------------------------------
+  1. "%s(): read user settings success!
+"
+  2. "%s(): usr_flash_settings_read error!
+"
+  3. "load_usr_setting"
+
+Function: sub_23014
+Strings found: 3
+----------------------------------------
+  1. "%s(): burial_point read error!
+"
+  2. "%s(): update_burial_point_to_flash!!!
+"
+  3. "update_burial_point_to_flash"
+
+Function: sub_230E0
+Strings found: 2
+----------------------------------------
+  1. "%s(): burial_point read error!
+"
+  2. "load_burial_point"
+
+Function: sub_2316C
+Strings found: 2
+----------------------------------------
+  1. "%s(): sys reboot because enter ship mode failed
+"
+  2. "reset_all_usr_data"
+
+Function: sub_232F8
+Strings found: 3
+----------------------------------------
+  1. "%s(): read sys settings success!
+"
+  2. "%s(): sys_flash_settings_read error!
+"
+  3. "read_sys_settting_from_flash"
+
+Function: sub_23400
+Strings found: 3
+----------------------------------------
+  1. "%s(): read usr settings success!
+"
+  2. "%s(): usr_flash_settings_read error!
+"
+  3. "read_usr_settting_from_flash"
+
+Function: sub_23480
+Strings found: 2
+----------------------------------------
+  1. "%s(): flash op thread startup ...
+"
+  2. "flash_ops_thread"
+
+Function: sub_23514
+Strings found: 3
+----------------------------------------
+  1. "%s(): enqueue_file failed
+
+"
+  2. "%s(): enqueue_file is full
+"
+  3. "enqueue_file"
+
+Function: sub_23B78
+Strings found: 3
+----------------------------------------
+  1. "%s(): SEND APP Language Command...
+"
+  2. "%s(): setting flash store queue fill failed
+
+"
+  3. "cleanAppLanguageInfo"
+
+Function: sub_23C88
+Strings found: 3
+----------------------------------------
+  1. "%s(): SEND APP Language Command...
+"
+  2. "%s(): setting flash store queue fill failed
+
+"
+  3. "cleanDashBoardStartUpModeInfo"
+
+Function: sub_23D0C
+Strings found: 5
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+
+"
+  2. "%s():  form address [%d] read data failed.
+
+"
+  3. "%s(): read setting flash data to ram...
+
+"
+  4. "%s(): system language type = %d
+"
+  5. "getAppLanguageInfofromFlash"
+
+Function: sub_23DF4
+Strings found: 5
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+
+"
+  2. "%s():  form address [%d] read data failed.
+
+"
+  3. "%s(): dashboard startup mode = %d
+"
+  4. "%s(): read setting flash data to ram...
+
+"
+  5. "getDashboardStartUpModeInfofromFlash"
+
+Function: sub_23F04
+Strings found: 11
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+
+"
+  2. "%s():  form address [%d] read data failed.
+
+"
+  3. "%s(): App language clean success.
+"
+  4. "%s(): language infomation  %d store sucess
+"
+  5. "%s(): received setting command .
+"
+  6. "%s(): setting storage get queue data failed
+"
+  7. "%s(): setting storage queue get failed
+
+"
+  8. "%s(): start setting  parameter check. language type = %d
+"
+  9. "%s(): start setting  parameter check. startup_mode type = %d
+"
+  10. "SettingStoreHandler"
+  11. "getSettingStorageQueueCacheData"
+
+Function: sub_24420
+Strings found: 3
+----------------------------------------
+  1. "%s(): SEND QUICKNOTE TEXT Store(%d) Command...
+"
+  2. "%s(): quicknote flash store queue fill failed
+
+"
+  3. "upgradeQuickNoteDataToFlash"
+
+Function: sub_244A8
+Strings found: 3
+----------------------------------------
+  1. "%s(): SEND QUICKNOTE TEXT delete(%d) Command...
+"
+  2. "%s(): quicknote flash store queue fill failed
+
+"
+  3. "deleteQuickNoteData"
+
+Function: sub_24534
+Strings found: 5
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+
+"
+  2. "%s(): export flash data to global ram...
+"
+  3. "%s(): quicknote upgrade index out of range
+"
+  4. "%s(): read quicknote flash data to ram...
+
+"
+  5. "getQuickNoteDataFromFlash"
+
+Function: sub_24684
+Strings found: 10
+----------------------------------------
+  1. "%s():  form address [%d] read data failed.
+
+"
+  2. "%s(): Flash erase failed! %d
+
+"
+  3. "%s(): Flash write failed! %d
+
+"
+  4. "%s(): The current quicknote text is stored the same as in flash and does not need to be updated
+"
+  5. "%s(): quick note file queue get failed
+
+"
+  6. "%s(): quick note get queue data failed
+"
+  7. "%s(): quicknote %d store sucess
+"
+  8. "%s(): start quicknote text check...
+
+"
+  9. "QuickNoteStoreHandler"
+  10. "getQuickNoteBKPQueueCacheData"
+
+Function: sub_24B98
+Strings found: 3
+----------------------------------------
+  1. "%s(): ADC controller device %s not ready
+
+"
+  2. "%s(): Could not setup channel #%d (%d)
+
+"
+  3. "adc_nfc_init"
+
+Function: sub_24C14
+Strings found: 3
+----------------------------------------
+  1. "%s():  (value in mV not available)
+
+"
+  2. "%s(): Could not read (%d)
+
+"
+  3. "adc_nfc_run"
+
+Function: sub_25AE8
+Strings found: 3
+----------------------------------------
+  1. "%s(): ipc_service_register(%d,%s) %d,SUCCESS
+"
+  2. "%s(): ipc_service_register(%d,%s) %d,total must < %d
+"
+  3. "register_ipc_service_recv_callback"
+
+Function: sub_25B78
+Strings found: 4
+----------------------------------------
+  1. "%s(): ipc_service not ready!
+"
+  2. "%s(): ipc_service_send data failed with ret %d %d
+"
+  3. "%s(): sys reboot because ipc failed
+"
+  4. "global_ipc_service_send"
+
+Function: sub_25C54
+Strings found: 5
+----------------------------------------
+  1. "%s(): IPC-service HOST init started
+"
+  2. "%s(): ipc open %d
+"
+  3. "%s(): ipc_service[HOST] has ready!
+
+"
+  4. "%s(): ipc_service_open_instance() failure
+"
+  5. "serialization_init"
+
+Function: sub_25D40
+Strings found: 2
+----------------------------------------
+  1. "%s(): exit
+
+"
+  2. "register_ipc_service_context"
+
+Function: sub_25DC4
+Strings found: 2
+----------------------------------------
+  1. "%s(): enter!
+"
+  2. "resume"
+
+Function: sub_25DF8
+Strings found: 2
+----------------------------------------
+  1. "%s(): enter!
+"
+  2. "suspend"
+
+Function: sub_26100
+Strings found: 3
+----------------------------------------
+  1. "%s(): imu sensor update to mode %d
+"
+  2. "%s(): imu_fusion: algo is existed
+
+"
+  3. "update_imu_mode"
+
+Function: sub_26250
+Strings found: 2
+----------------------------------------
+  1. "%s(): exit
+
+"
+  2. "register_imu_funsion_context"
+
+Function: sub_262AC
+Strings found: 3
+----------------------------------------
+  1. "%s(): sipm(bus=%d)-sync fail: status: %d -- %d
+"
+  2. "%s(): wait init_done.
+"
+  3. "spi_master_trans_data_tx_rx"
+
+Function: sub_26418
+Strings found: 5
+----------------------------------------
+  1. "%s():  SPIM BUS ERR!
+"
+  2. "%s(): *SPIM(%d)speed=%dM, sck=%d, mosi=%d, miso=%d, ss=%d
+"
+  3. "%s(): spim(bus=%d): init finish
+"
+  4. "size"
+  5. "spi_master_init"
+
+Function: sub_26A08
+Strings found: 2
+----------------------------------------
+  1. "%s(): ready to show onboarding...
+"
+  2. "check_disp_onboarding"
+
+Function: sub_26B88
+Strings found: 2
+----------------------------------------
+  1. "%s(): enable allow bind mode
+"
+  2. "check_bind_status"
+
+Function: sub_26C8C
+Strings found: 7
+----------------------------------------
+  1. "%s(): enter low power mode
+"
+  2. "%s(): force exit low power mode becase can not enter low power mode %d
+"
+  3. "%s(): force reboot becase can not enter low power mode %d
+"
+  4. "%s(): glass box is close, wait enter low power mode again.
+"
+  5. "%s(): try to sleep chargerGetVdcRect() %d GLOBAL->battery_info[0] %d can_enter_low_power %d
+"
+  6. "%s(): wakeup chargerGetVdcRect() %d GLOBAL->battery_info[0] %d can_enter_low_power %d
+"
+  7. "try_enter_low_power_mode"
+
+Function: sub_26F74
+Strings found: 5
+----------------------------------------
+  1. "%s(): ESB send data after suspend cmd, ignore it.
+"
+  2. "%s(): ESB send imu status is changed, ignore it.
+"
+  3. "%s(): ESB send same type cmd %d, exit
+"
+  4. "%s(): sync to slave failed!!!!!! wait_count %d
+"
+  5. "sync_to_slave"
+
+Function: sub_2893C
+Strings found: 1
+----------------------------------------
+  1. "#############################on_double_click################################
+"
+
+Function: sub_289E4
+Strings found: 1
+----------------------------------------
+  1. "#############################on_triple_click################################
+"
+
+Function: sub_2A65C
+Strings found: 2
+----------------------------------------
+  1. "%s(): enter.
+"
+  2. "run_main_dispatch_thread"
+
+Function: sub_2A868
+Strings found: 3
+----------------------------------------
+  1. "%s(): interrupt line abnormal, now reset
+"
+  2. "%s(): interrupt line low!!!
+"
+  3. "check_sw0_status"
+
+Function: sub_2ACE0
+Strings found: 8
+----------------------------------------
+  1. "%s(): %s: device not ready.
+"
+  2. "%s(): Callback in RESET_SOC disabled for this platform
+"
+  3. "%s(): Callback support rejected, continuing anyway
+"
+  4. "%s(): Feeding watchdog %d times
+"
+  5. "%s(): Watchdog install error
+"
+  6. "%s(): Watchdog sample application
+"
+  7. "%s(): Watchdog setup error
+"
+  8. "init_watchdog"
+
+Function: sub_2AEB4
+Strings found: 3
+----------------------------------------
+  1. "%s(): disable watchdog...
+"
+  2. "%s(): watchdog is disabled
+"
+  3. "disable_watchdog"
+
+Function: sub_2AF4C
+Strings found: 49
+----------------------------------------
+  1. "%s(): BLE_REQ_GET_ANTI_SHAKE_ENABLE:0x%02x, 0x%02x,
+"
+  2. "%s(): BLE_REQ_GET_BRIGHTNESS:0x%02x, 0x%02x,
+"
+  3. "%s(): BLE_REQ_GET_DEVICE_INFO:0x%02x,0x%02x,0x%02x,0x%02x, 0x%02x,0x%02x,0x%02x,0x%02x, 0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x
+"
+  4. "%s(): BLE_REQ_GET_DEVICE_SN: %s
+"
+  5. "%s(): BLE_REQ_GET_DISPLAY_MODE:0x%02x, 0x%02x, 0x%02x, 0x%02x,
+"
+  6. "%s(): BLE_REQ_GET_ESB_CHANNEL: %d
+"
+  7. "%s(): BLE_REQ_GET_M_N_S_MAC:master[0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x], [0x%02x,0x%02x,0x%02x,0x%02x,0x%02x,0x%02x]
+"
+  8. "%s(): BLE_REQ_PUT_ANTI_SHAKE_ENABLE: ignore: %d
+"
+  9. "%s(): BLE_REQ_PUT_ANTI_SHAKE_ENABLE: new state: %d
+"
+  10. "%s(): BLE_REQ_PUT_BRIGHTNESS ignore:%d
+"
+  11. "%s(): BLE_REQ_PUT_BRIGHTNESS new level:%d
+"
+  12. "%s(): BLE_REQ_PUT_DISPLAY_MODE error mode:%d
+"
+  13. "%s(): BLE_REQ_PUT_DISPLAY_MODE new mode:%d
+"
+  14. "%s(): BLE_REQ_PUT_DISPLAY_MODE: "
+  15. "%s(): BLE_REQ_PUT_DISPLAY_MODE: %d, flag_show_tip: %d
+"
+  16. "%s(): BLE_REQ_PUT_INTERNAL_DEBUG:op_code=0x%02x,op_val=0x%02x
+"
+  17. "%s(): BLE_REQ_PUT_NOTIFY_EN enable:%d
+"
+  18. "%s(): BLE_REQ_PUT_WAKEUP_ANGLE ignore:%d
+"
+  19. "%s(): BLE_REQ_PUT_WAKEUP_ANGLE new level:%d offset %d
+"
+  20. "%s(): ble recv raster_config_info:enable is %d, raster_height_gear is %d, canvas_distance_gear is %d
+"
+  21. "%s(): db_info->stocks_disp_mode = %d
+"
+  22. "%s(): display_mode = %d ,exec screen clear
+"
+  23. "%s(): fahrenheit_temperature = %d
+"
+  24. "%s(): master enter dfu mode
+"
+  25. "%s(): news num.%d is vaild
+"
+  26. "%s(): playload: %02x,%02x,%02x,%02x,%02x,%02x
+"
+  27. "%s(): quick note num.%d is vaild
+"
+  28. "%s(): read flash fail: %d
+
+"
+  29. "%s(): receive dfu_soc=0x%02x
+
+"
+  30. "%s(): recev: pack_index:%d, start_addr:0x%x, rx_buf_len:%d
+"
+  31. "%s(): recv#BLE_REQ_PUT_GLASSES_SETTING,type is 0x%x
+"
+  32. "%s(): recv#BLE_REQ_PUT_NAVIGATION_INFO:
+"
+  33. "%s(): recv#BLE_REQ_PUT_SCHEDULE_TASK
+"
+  34. "%s(): recv#BLE_REQ_PUT_TELEPROMPTER_INFO:
+"
+  35. "%s(): recv#SCHEDULE_TASK: save
+"
+  36. "%s(): screen_id=%d
+"
+  37. "%s(): temperature = %d
+"
+  38. "%s(): total news num = %d
+"
+  39. "%s(): total quick note num = %d
+"
+  40. "%s(): tx error req_type head->req_type %d.
+
+"
+  41. "%s(): update->BLE_REQ_PUT_COUNTDOWN_TIMER: %d(%02d:%02d:%02d), enable:%d
+"
+  42. "%s(): weather icon num = %d
+"
+  43. "DashBoard_Reflash"
+  44. "master_process_audio_fw_load_req"
+  45. "master_process_get_req"
+  46. "master_process_post_req"
+  47. "master_process_put_req"
+  48. "process_recv_ble_req"
+  49. "read_fw_pack_from_nor_flash_by_qspi"
+
+Function: sub_2BCBC
+Strings found: 3
+----------------------------------------
+  1. "%s(): %s new status: %d
+
+"
+  2. "%s(): imu wakeup thd-> 
+"
+  3. "update_imu_trigger_status"
+
+Function: sub_2BD7C
+Strings found: 3
+----------------------------------------
+  1. "%s(): begin.
+"
+  2. "%s(): end.
+"
+  3. "global_system_suspend"
+
+Function: sub_2BDF0
+Strings found: 3
+----------------------------------------
+  1. "%s(): begin.
+"
+  2. "%s(): end.
+"
+  3. "global_system_resume"
+
+Function: sub_2BE64
+Strings found: 2
+----------------------------------------
+  1. "%s(): persist task is status: %d, screen: %d/%d
+"
+  2. "now_has_persist_task"
+
+Function: sub_2C0E8
+Strings found: 2
+----------------------------------------
+  1. "%s(): persist task [stop]: %d
+"
+  2. "update_persist_task_status_to_idle"
+
+Function: sub_2C180
+Strings found: 2
+----------------------------------------
+  1. "%s(): persist task [stop]: %d
+"
+  2. "update_persist_task_status_to_wait_blow_head"
+
+Function: sub_2C224
+Strings found: 2
+----------------------------------------
+  1. "retry sync_to_slave failed !"
+  2. "sync_message_signal_to_slave"
+
+Function: sub_2C324
+Strings found: 1
+----------------------------------------
+  1. "[csh_debug_msg] set touch key flag get_msg_show_state() %d
+"
+
+Function: sub_2E4E8
+Strings found: 3
+----------------------------------------
+  1. "%s(): FAILURE!
+"
+  2. "%s(): flash init success!
+"
+  3. "ext_flash_api_init"
+
+Function: sub_2E594
+Strings found: 3
+----------------------------------------
+  1. "%s(): Bus device is not ready
+"
+  2. "%s(): ERR: opt3007 i2c read addr=0x%x,
+"
+  3. "opt3001_reg_read"
+
+Function: sub_2E67C
+Strings found: 11
+----------------------------------------
+  1. "%s(): Bus device is not ready
+"
+  2. "%s(): dev_id=0x%x,
+"
+  3. "%s(): mfg_id=0x%x,
+"
+  4. "%s(): opt3007 Bad manufacturer id 0x%x
+"
+  5. "%s(): opt3007 Failed to set mode to continuous conversion
+"
+  6. "%s(): opt3007 i2c write err=%d,
+"
+  7. "%s(): opt3007 init done!
+"
+  8. "%s(): opt3007 init start:
+"
+  9. "%s(): opt3007 mfg id=0x%x, err
+"
+  10. "opt3001_reg_write"
+  11. "opt3007_chip_init"
+
+Function: sub_2E8B4
+Strings found: 2
+----------------------------------------
+  1. "%s(): opt3007_chip_deinit done!
+"
+  2. "opt3007_chip_deinit"
+
+Function: sub_2EB40
+Strings found: 1
+----------------------------------------
+  1. "[csh_debug_box]isInbox is %d 
+"
+
+Function: sub_2EBD8
+Strings found: 2
+----------------------------------------
+  1. "%s(): dmic init failed
+"
+  2. "init_dmic_msgq"
+
+Function: sub_2EC1C
+Strings found: 2
+----------------------------------------
+  1. "%s(): dmic cleanup failed
+"
+  2. "clean_dmic_msgq"
+
+Function: sub_2EC5C
+Strings found: 3
+----------------------------------------
+  1. "%s(): enqueue_dmic failed
+
+"
+  2. "%s(): enqueue_dmic num is full, drop it %d
+
+"
+  3. "enqueue_dmic"
+
+Function: sub_2ED00
+Strings found: 2
+----------------------------------------
+  1. "%s(): dequeue_dmic failed
+
+"
+  2. "dequeue_dmic"
+
+Function: sub_2ED68
+Strings found: 5
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+
+"
+  2. "%s(): Flash write to addr 0x%x
+
+"
+  3. "%s(): malloc error
+
+"
+  4. "%s(): send audio stream data to storage thread,timestemp = %lld
+"
+  5. "app_codec_lc3_test"
+
+Function: sub_2F008
+Strings found: 3
+----------------------------------------
+  1. "%s(): Flash erase failed! %d
+
+"
+  2. "%s(): Flash erase ok 
+
+"
+  3. "erase_audio_buffer"
+
+Function: sub_2F080
+Strings found: 11
+----------------------------------------
+  1. "%s():  [%s] device not ready.
+"
+  2. "%s(): !!!do_pdm_transfer exec failed.
+"
+  3. "%s(): %s is not ready
+"
+  4. "%s(): %s is ready
+"
+  5. "%s(): DMIC sample
+"
+  6. "%s(): Exiting
+"
+  7. "%s(): Failed to erase_audio_buffer %d
+"
+  8. "%s(): Flash write to addr 0x%x
+
+"
+  9. "%s(): STOP trigger failed
+"
+  10. "dmic_stream_start"
+  11. "do_pdm_transfer"
+
+Function: sub_2F460
+Strings found: 2
+----------------------------------------
+  1. "%s(): dequeue_dmic failed
+
+"
+  2. "getAudioMessageQueueCacheData"
+
+Function: sub_2F4A8
+Strings found: 4
+----------------------------------------
+  1. "%s(): received audio delete command
+"
+  2. "%s(): success delete all voice block 
+"
+  3. "%s(): success delete voice block num.(%d)
+"
+  4. "delVoiceBlock"
+
+Function: sub_2F6B0
+Strings found: 3
+----------------------------------------
+  1. "%s(): enqueue dmic stream num is full, drop it %d
+
+"
+  2. "%s(): enqueue_dmic failed
+
+"
+  3. "sendAudioStram2Cache"
+
+Function: sub_2F764
+Strings found: 3
+----------------------------------------
+  1. "%s(): because startup auido record failed,exit quicknote ....
+"
+  2. "%s(): start up audio record failed
+
+"
+  3. "startAudioStreamRecord"
+
+Function: sub_2F80C
+Strings found: 2
+----------------------------------------
+  1. "%s(): enqueue_dmic failed
+
+"
+  2. "stopAudioStreamRecord"
+
+Function: sub_2F878
+Strings found: 3
+----------------------------------------
+  1. "%s(): enqueue_dmic failed
+
+"
+  2. "%s(): received audio delete command
+"
+  3. "delAudioStreamRecord"
+
+Function: sub_2F94C
+Strings found: 22
+----------------------------------------
+  1. "%s():  form address [%d] read data failed.
+
+"
+  2. "%s(): A delete command occurred during the recording process. The recording was stopped and the deletion action was performed,Delete num = %d
+"
+  3. "%s(): Catch touch release is not recognized, start QuickNote exception recovery mechanism
+"
+  4. "%s(): Copy remain %d byte data into cache memory
+"
+  5. "%s(): Flash write failed! %d
+
+"
+  6. "%s(): To complete a sector of data, perform flash write operations
+"
+  7. "%s(): audio manager start check success,will fill up audio stream to Num%d block
+"
+  8. "%s(): copy %d byte into audio cache
+"
+  9. "%s(): filesystem format sucess
+"
+  10. "%s(): filesystem need format,try to format,please wait..
+"
+  11. "%s(): find a free voice block(%d)!
+
+"
+  12. "%s(): get audio message queue data failed!
+"
+  13. "%s(): no free voice block,try to use the oldest voice block(%d)!
+"
+  14. "%s(): received audio stop command,stop audio write process
+"
+  15. "%s(): start audio stream record!
+
+"
+  16. "%s(): the number of recording files exceeds the upper limit, system automatically stops
+"
+  17. "%s(): upgrade Num.%d voice manager block,total write sector num = %d, total write byte = %d ,crc32 = %d
+"
+  18. "%s(): voice block start addr = voice block end addr
+"
+  19. "%s(): voice_block_store_timestamp = %d, voice_stream_block_ts = %d
+"
+  20. "%s(): wirte 4k voice data to flash,write address = 0x%08x
+"
+  21. "%s(): wirte addr = 0x%08x
+"
+  22. "audioStreamFileManagerHandler"
+
+Function: sub_30F0E
+Strings found: 3
+----------------------------------------
+  1. "%s(): BLE_REQ_PUT_BRIGHTNESS ignore:%d
+"
+  2. "%s(): BLE_REQ_PUT_BRIGHTNESS new level:%d
+"
+  3. "set_brightness"
+
+Function: sub_30FB6
+Strings found: 2
+----------------------------------------
+  1. "%s(): [csh_debug]set g->force_bind as 2
+"
+  2. "disable_bt_auto_connect"
+
+Function: sub_311E4
+Strings found: 2
+----------------------------------------
+  1. "%s(): join in get_esb_info
+
+"
+  2. "get_esb_info"
+
+Function: sub_312D0
+Strings found: 2
+----------------------------------------
+  1. "%s(): get canvas_x is:%d, canvas_y is:%d
+"
+  2. "get_canvas_pos_info"
+
+Function: sub_31EE8
+Strings found: 2
+----------------------------------------
+  1. "%s(): BLE_REQ_PUT_DEVICE_SN new sn:%16s
+"
+  2. "set_glasses_sn_info"
+
+Function: sub_32164
+Strings found: 2
+----------------------------------------
+  1. "%s(): BLE_REQ_PUT_DEVICE_SN new sn:%16s
+"
+  2. "set_device_sn_info"
+
+Function: sub_32336
+Strings found: 2
+----------------------------------------
+  1. "[%s-%d]invalid vaule 
+"
+  2. "set_panel_voltage"
+
+Function: sub_32420
+Strings found: 2
+----------------------------------------
+  1. "%s(): $$$$$$$$$$$$$$$$$$$$$enter agemode!$$$$$$$$$$$$$$$$$$$$$
+"
+  2. "aging_test_thread"
+
+Function: sub_32C28
+Strings found: 4
+----------------------------------------
+  1. "%s(): flash read fail, retry again, retry time %d
+"
+  2. "%s(): join in is_ext_flash_burned
+
+"
+  3. "%s(): read flash idx %d, calc crc is:0x%x
+"
+  4. "is_ext_flash_burned"
+
+Function: sub_32EF0
+Strings found: 1
+----------------------------------------
+  1. "set testmode is %d 
+"
+
+Function: sub_32F1C
+Strings found: 3
+----------------------------------------
+  1. "[%s-%d]invalid vaule 
+"
+  2. "enter_into_testmode"
+  3. "recv_value[4] is %d 
+"
+
+Function: sub_330EC
+Strings found: 3
+----------------------------------------
+  1. "%s(): sys reboot because process_pt_data cmd %d and ACK_SUCC
+"
+  2. "%s(): sys reboot because process_pt_data cmd PTP_DEVICE_RESTART
+"
+  3. "process_pt_data"
+
+Function: sub_33730
+Strings found: 2
+----------------------------------------
+  1. "[csh_debug] failed to send whitelist !!
+"
+  2. "[csh_debug]:send_notifi_app_white_list app buf is: %s 
+"
+
+Function: sub_338EC
+Strings found: 4
+----------------------------------------
+  1. "%s(): ANCS"
+  2. "%s(): ncs data receive okay !
+
+"
+  3. "[%s-%d] malloc failed !!
+"
+  4. "post_notification_cmd_process"
+
+Function: sub_33A5C
+Strings found: 3
+----------------------------------------
+  1. "%s(): [csh_debug]unread_msg_num is: %d
+"
+  2. "%s(): input param is error !
+"
+  3. "get_notification_counts_cmd_response"
+
+Function: sub_33ABC
+Strings found: 2
+----------------------------------------
+  1. "%s(): BLE_REQ_GET_ESB_CHANNEL: %d
+"
+  2. "get_notification_counts_cmd_process"
+
+Function: sub_33D58
+Strings found: 2
+----------------------------------------
+  1. "%s(): ######clear_timeout_message copy data from %d to  i %d
+"
+  2. "clear_timeout_message"
+
+Function: sub_33F54
+Strings found: 5
+----------------------------------------
+  1. "%s(): update pos to %d, uidtail %d message->startShowTime %d
+"
+  2. "%s(): update pos to %d, uidtail %d message->startShowTime %d action %d
+"
+  3. "[%s-%d] message is NULL 
+"
+  4. "[csh_debug_msg]push_message g_msg_num_push is %d 
+"
+  5. "push_message"
+
+Function: sub_340C4
+Strings found: 6
+----------------------------------------
+  1. "%s(): BLE_REQ_POST_NOTIFICATION_MSG source:%d
+"
+  2. "%s(): [%s-%d] invliad  message len, data_len is %d
+
+"
+  3. "%s(): ble:ANCS"
+  4. "%s(): input parm invalid !
+"
+  5. "%s(): schedule_notif#title:%s, desc:%s, ts:%d, date:%s
+"
+  6. "post_notification_cmd_response"
+
+Function: sub_34274
+Strings found: 1
+----------------------------------------
+  1. "[csh_debug_msg]msg_count_dec unread_msg_num is %d 
+"
+
+Function: sub_342E0
+Strings found: 4
+----------------------------------------
+  1. "%s(): [%s-%d] message is NULL 
+
+"
+  2. "[csh_debug_msg]g_curShowMsgIdx is %d 
+"
+  3. "exception handle, GLOBAL->master_sync_pkg.panel_data_pkg.unread_msg_num is %d 
+"
+  4. "pull_message"
+
+Function: sub_3444C
+Strings found: 3
+----------------------------------------
+  1. "%s(): [csh_debug_msg]the msg has expirtion,g_curShowMsgIdx is %u, startShowTime is %u, now is %d
+
+"
+  2. "error startShowTime, greate than now time ! 
+"
+  3. "is_msg_expiration"
+
+Function: sub_34524
+Strings found: 2
+----------------------------------------
+  1. "%s(): add found same message, uidtail %d
+"
+  2. "confirm_message"
+
+Function: sub_34980
+Strings found: 2
+----------------------------------------
+  1. "%s(): NOT FOUND NCS JSON NODE!
+"
+  2. "parse_ncs_notification"
+
+Function: sub_34B34
+Strings found: 2
+----------------------------------------
+  1. "[%s-%d] flash_settings_read error,ret is %d 
+"
+  2. "load_whitelist"
+
+Function: sub_34BD4
+Strings found: 7
+----------------------------------------
+  1. "[%s-%d] pkg_name is NULL !
+"
+  2. "appcounts is %d 
+"
+  3. "is_on_whitelist_by_identifier"
+  4. "pkg_name is %s 
+"
+  5. "whitelist type call is disable ! 
+"
+  6. "whitelist type call is enable ! 
+"
+  7. "whitelist type mail is disable ! 
+"
+
+Function: sub_34DBC
+Strings found: 3
+----------------------------------------
+  1. "callEnable is NULL !
+"
+  2. "error root JSON NODE,json_buffer is %s
+"
+  3. "singleAppJson is NULL !
+"
+
+Function: sub_34FF0
+Strings found: 1
+----------------------------------------
+  1. "invalid param ! 
+"
+
+Function: sub_35050
+Strings found: 5
+----------------------------------------
+  1. "callEnable is NULL !
+"
+  2. "error root JSON NODE !
+"
+  3. "is_the_same_whitelist_app ret is %d
+"
+  4. "singleAppJson is NULL !
+"
+  5. "the same whitelist ! 
+"
+
+Function: sub_352E8
+Strings found: 4
+----------------------------------------
+  1. "[%s-%d]appJson is null 
+"
+  2. "[%s-%d]buf is null 
+"
+  3. "cJsonStr is %s 
+"
+  4. "convert_app_whitelist_to_json"
+
+Function: sub_35608
+Strings found: 3
+----------------------------------------
+  1. "[%s-%d] flash_settings_write_and_verify ret is %d 
+"
+  2. "store_whitelist"
+  3. "write to flash failed, should retry ! 
+"
+
+Function: sub_35688
+Strings found: 3
+----------------------------------------
+  1. "[%s-%d] malloc failed !!
+"
+  2. "put_whitelist_app_from_app"
+  3. "store_write#whitelist_app: FAIL"
+
+Function: sub_357DC
+Strings found: 3
+----------------------------------------
+  1. "currentTime is %d,recvTime is %d,unReadTime is %d 
+"
+  2. "date: %u: %04d/%02d/%02d-%02d:%02d:%02d"
+  3. "time_disp_mode is %d 
+"
+
+Function: sub_35AFC
+Strings found: 4
+----------------------------------------
+  1. "[%s-%d]curMsg is NULL !
+"
+  2. "draw_message"
+  3. "recvTime is %u,curMsg->message %s
+"
+  4. "show msgType is %d unReadCount %d
+"
+
+Function: sub_3603C
+Strings found: 3
+----------------------------------------
+  1. "message has not set to show!
+"
+  2. "pull message error !
+"
+  3. "ui_ancs_notificaton_task exit !"
+
+Function: sub_36B3C
+Strings found: 2
+----------------------------------------
+  1. "new msgType is %d 
+"
+  2. "ui_new_message_come_on_task exit !"
+
+Function: sub_36ED8
+Strings found: 5
+----------------------------------------
+  1. "%s(): !!!! getQuickNoteDataFromFlash return unknown value.
+"
+  2. "%s(): QuickNote %d is invaild,don't export
+"
+  3. "%s(): system startup ,NCS memory is invaild
+"
+  4. "%s(): system startup ,NCS memory is vaild
+"
+  5. "init_dashboard_info"
+
+Function: sub_370BC
+Strings found: 2
+----------------------------------------
+  1. "%s():  %s index = %d
+"
+  2. "getStocksIndex"
+
+Function: sub_3719C
+Strings found: 2
+----------------------------------------
+  1. "%s():  %s index = %d
+"
+  2. "getNewsIndex"
+
+Function: sub_3727C
+Strings found: 13
+----------------------------------------
+  1. "%s(): BLE Connect status : %s
+"
+  2. "%s(): db_info->stocks_disp_mode = %d
+"
+  3. "%s(): display_mode = %d
+"
+  4. "%s(): display_mode = %d ,exec screen clear
+"
+  5. "%s(): fahrenheit_temperature = %d
+"
+  6. "%s(): news num.%d is vaild
+"
+  7. "%s(): quick note num.%d is vaild
+"
+  8. "%s(): temperature = %d
+"
+  9. "%s(): total news num = %d
+"
+  10. "%s(): total quick note num = %d
+"
+  11. "%s(): weather icon num = %d
+"
+  12. "DashBoard_Reflash"
+  13. "connect"
+
+Function: sub_3AF78
+Strings found: 19
+----------------------------------------
+  1. "%s(): DASHBOARD INIT .......
+"
+  2. "%s(): Enter DASHBOARD_INIT_STATUS task....
+"
+  3. "%s(): Enter DASHBOARD_RUNING_STATUS task....
+"
+  4. "%s(): SYNC TO Slave failed...,don't exec key function.
+"
+  5. "%s(): current index = %d
+"
+  6. "%s(): current quicknote index = %d
+"
+  7. "%s(): dashboard function exit ...
+"
+  8. "%s(): db_info->news_disp_mode = %d
+"
+  9. "%s(): db_info->schedule_disp_status = %d
+"
+  10. "%s(): db_info->stocks_disp_mode = %d
+"
+  11. "%s(): master sync quicknote index to slave ,index = %d
+"
+  12. "%s(): notify message count has changed,send message count to app. unread messgae count = %d
+"
+  13. "%s(): quicknote index = %d,stocks index = %d,news index = %d
+"
+  14. "%s(): received key press event,_dashboard_prv_data.display_mode = %d
+"
+  15. "%s(): received system  power resume event.
+"
+  16. "%s(): received system low power event.
+"
+  17. "%s(): send dashboard lock info to app ,status = %d 
+"
+  18. "%s(): sync to slave return value = %d,exec key function. ts = %d
+"
+  19. "ui_DashBoard_task"
+
+Function: sub_3B78C
+Strings found: 2
+----------------------------------------
+  1. "%s(): received open dmic command
+"
+  2. "dmic_record_start"
+
+Function: sub_3B824
+Strings found: 13
+----------------------------------------
+  1. "%s(): GLOBAL->quicknote_info->enable = %d
+"
+  2. "%s(): QUICK NOTE INIT.....
+"
+  3. "%s(): QUICK NOTE RUNING.....
+"
+  4. "%s(): exec even logo reflash....
+"
+  5. "%s(): exec quick note exit display...
+"
+  6. "%s(): quick init,exec function exit ...
+"
+  7. "%s(): quick note function delay exit ...
+"
+  8. "%s(): quick note function exit -164 ...
+"
+  9. "%s(): quick note function exit ...
+"
+  10. "%s(): quick note function start ...
+"
+  11. "%s(): quick note process exec.....
+"
+  12. "Loslassen zum Abschluss"
+  13. "ui_QuickNote_task"
+
+Function: sub_3BFE0
+Strings found: 4
+----------------------------------------
+  1. "%s(): ENTER evenai INIT process...
+"
+  2. "%s(): SYNC_AREA_REFALSH Upgrade ....
+"
+  3. "%s(): evenai process received exit packet ...
+"
+  4. "ui_even_ai_task"
+
+Function: sub_3CE04
+Strings found: 2
+----------------------------------------
+  1. "%s(): not_disturb SYNC TO Slave failed...
+"
+  2. "not_disturb_sync_data"
+
+Function: sub_3CF44
+Strings found: 23
+----------------------------------------
+  1. "%s(): DECETED TIMEOUT ...... _tpm_thread_prv_data.sync_cnt = %d
+"
+  2. "%s(): GLOBAL->temeprompter_info->enable = %d
+"
+  3. "%s(): Received exit command from master, exit teleprompter mode
+"
+  4. "%s(): SYNC TO Slave failed...,don't exec teleprompter exit action,master auto exit...
+"
+  5. "%s(): The teleprompter automatically shuts down due to disconnection.
+"
+  6. "%s(): There is a disconnection between the AR Glasses and the Bluetooth application!
+"
+  7. "%s(): bluetooth connect is break,Send Stop Teleprompter command to slave.
+"
+  8. "%s(): counter down break,received sync message...
+"
+  9. "%s(): counter down timeout . exit counter down status ,switch TEXT DISPLAY 
+"
+  10. "%s(): na sync arar reflash,update counter down timer
+"
+  11. "%s(): received exit command,clear screen...
+"
+  12. "%s(): received sync area command ,send store cache data to app
+"
+  13. "%s(): received teleprompter counter down timer start event..
+"
+  14. "%s(): remain time end ,switch text display ...
+"
+  15. "%s(): running  TELEPROMPTER_DISPLAY_IDLE STATUS.
+"
+  16. "%s(): running TELEPROMPTER_DISPLAY_ABNORMAL_EXIT STATUS.
+"
+  17. "%s(): running TELEPROMPTER_TEXT_DISPLAY STATUS.
+"
+  18. "%s(): setp1: received teleprompter command.
+"
+  19. "%s(): suspend enable...
+"
+  20. "%s(): teleprompter work mode = %d
+"
+  21. "%s(): upgrade counterdown timer = %s
+"
+  22. "App-Trennung gestoppt."
+  23. "ui_teleprompter_task"
+
+Function: sub_3E05C
+Strings found: 6
+----------------------------------------
+  1. "%s(): Data is in raw format.
+"
+  2. "%s(): Data is in rle compress raw format.
+"
+  3. "%s(): reflash overview map && text
+"
+  4. "%s(): reflash overview map ....
+"
+  5. "%s(): reflash text info ....
+"
+  6. "navigation_overview_map_display"
+
+Function: sub_3E7F8
+Strings found: 6
+----------------------------------------
+  1. "%s(): APP send navigation offset overstep ,stop draw....
+"
+  2. "%s(): Data is in raw format.
+"
+  3. "%s(): Data is in rle compress raw format.
+"
+  4. "%s(): reflash panoramic map to lcd
+"
+  5. "Neuberechnung..."
+  6. "navigation_panoramic_map_display"
+
+Function: sub_3F410
+Strings found: 21
+----------------------------------------
+  1. "%s(): DECETED TIMEOUT ...... _tpm_thread_prv_data.sync_cnt = %d
+"
+  2. "%s(): ENTER NAVIGATION INIT status ....
+"
+  3. "%s(): INIT STATUS  SYNC ACTION ENTER
+"
+  4. "%s(): Received exit command from master, exit teleprompter mode
+"
+  5. "%s(): SYNC TO Slave failed...,don't exec Navigation exit action,master auto exit...
+"
+  6. "%s(): The navigation automatically shuts down due to disconnection.
+"
+  7. "%s(): There is a disconnection between the AR Glasses and the Bluetooth application!
+"
+  8. "%s(): arrived status = %d,  nav->imu_action_status = %d
+"
+  9. "%s(): bluetooth connect is break,Send Stop Navigation command to slave.
+"
+  10. "%s(): dynamic image reflash
+"
+  11. "%s(): exec navigation auto exit ...
+"
+  12. "%s(): navigation arrived 1 rst reflash
+"
+  13. "%s(): navigation arrived 2 rst reflash, navigation_panoramic_map_display reflash
+"
+  14. "%s(): navigation_overview_map_display reflash
+"
+  15. "%s(): received arrived command,draw arrived page
+"
+  16. "%s(): received arrived complte command
+"
+  17. "%s(): received exit command,clear screen...
+"
+  18. "%s(): running exit command..
+"
+  19. "%s(): running navigation DISPLAY ABNORMAL EXIT STATUS.
+"
+  20. "%s(): switch NAVIGATION_RUNNING_STATUS .....
+"
+  21. "ui_navigation_task"
+
+Function: sub_3FECC
+Strings found: 7
+----------------------------------------
+  1. "%s(): ENTER translate INIT process...
+"
+  2. "%s(): SYNC_AREA_REFALSH Upgrade ....
+"
+  3. "%s(): draw translate type content
+"
+  4. "%s(): suspend_en is 1, reflash suspend icon
+"
+  5. "%s(): translate language type error! trans_info->original_type %d trans_info->translation_type %d
+"
+  6. "%s(): translate process received exit packet ...
+"
+  7. "ui_translate_task"
+
+Function: sub_42A64
+Strings found: 3
+----------------------------------------
+  1. "%s(): ble rcv onboarding action:%d
+"
+  2. "%s(): ble rcv unknown onboarding action:%d
+"
+  3. "onboarding_ble_process"
+
+Function: sub_42C8C
+Strings found: 2
+----------------------------------------
+  1. "%s(): onboarding sync to Slave failed...
+"
+  2. "onboarding_sync_data"
+
+Function: sub_42D44
+Strings found: 3
+----------------------------------------
+  1. "%s(): SYNC onboarding action_cmd %d and sub_step %d to slave
+"
+  2. "%s(): onboarding: disconnection between the AR Glasses and the Bluetooth application!
+"
+  3. "ui_onboarding_task"
+
+Function: sub_430C0
+Strings found: 3
+----------------------------------------
+  1. "%s(): ui_raster_height_task exit...
+"
+  2. "%s(): ui_raster_height_task reflash...
+"
+  3. "ui_raster_height_task"
+
+Function: sub_431C0
+Strings found: 3
+----------------------------------------
+  1. "%s(): c->init_done = 0,init failed, can't write data!
+"
+  2. "%s(): exec screen clear command....
+"
+  3. "gui_screen_clear"
+
+Function: sub_43228
+Strings found: 3
+----------------------------------------
+  1. "%s(): c->init_done = 0,init failed, can't write data!
+"
+  2. "%s(): exec area clear command....
+"
+  3. "gui_area_clear"
+
+Function: sub_4334C
+Strings found: 2
+----------------------------------------
+  1. "%s(): can't find resource,please check resource name !
+"
+  2. "gui_bmp_dynamic_bitmap_draw"
+
+Function: sub_43484
+Strings found: 2
+----------------------------------------
+  1. "%s(): can't find resource,please check resource name !
+"
+  2. "gui_bmp_bitmap_draw"
+
+Function: sub_435D4
+Strings found: 2
+----------------------------------------
+  1. "%s(): dark light value parampter error,exit!
+"
+  2. "gui_bmp_bitmap_draw_ex"
+
+Function: sub_4372C
+Strings found: 2
+----------------------------------------
+  1. "%s(): unkonown adv command
+"
+  2. "gui_utf_adv_draw_configure"
+
+Function: sub_4396C
+Strings found: 2
+----------------------------------------
+  1. "%s(): input param error,please check postion content
+"
+  2. "gui_verticalLine_process_bar"
+
+Function: sub_43A68
+Strings found: 2
+----------------------------------------
+  1. "%s(): input param error,please check postion content
+"
+  2. "gui_bitmap_draw"
+
+Function: sub_43BD8
+Strings found: 2
+----------------------------------------
+  1. "%s(): input param error,please check postion content
+"
+  2. "gui_bitmps_merge_draw"
+
+Function: sub_43D78
+Strings found: 3
+----------------------------------------
+  1. "%s(): can't find resource,please check resource name !
+"
+  2. "%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d
+"
+  3. "gui_4bit_bitmap_override"
+
+Function: sub_43E90
+Strings found: 3
+----------------------------------------
+  1. "%s(): can not find 0x%x font resource
+"
+  2. "%s(): exex process effect callback function
+"
+  3. "gui_utf_draw"
+
+Function: sub_442BC
+Strings found: 2
+----------------------------------------
+  1. "%s(): The content cannot be found in the current font library,unicode content = %2d,font libray is %s
+"
+  2. "gui_clock_draw"
+
+Function: sub_44544
+Strings found: 4
+----------------------------------------
+  1. "%s(): dark_light_flag 0
+"
+  2. "%s(): dark_light_flag 1 code = 0x%x
+"
+  3. "%s(): exex process effect callback function
+"
+  4. "gui_utf_draw_dark_light_split"
+
+Function: sub_44818
+Strings found: 5
+----------------------------------------
+  1. "%s(): can not find 0x%x font resource
+"
+  2. "%s(): end line x0=%d
+"
+  3. "%s(): exex process effect callback function
+"
+  4. "%s(): truncate can not find [%d]0x%x font resource
+"
+  5. "gui_utf_draw_truncate"
+
+Function: sub_44BD8
+Strings found: 3
+----------------------------------------
+  1. "%s(): can not find 0x%x font resource
+"
+  2. "%s(): exex process effect callback function
+"
+  3. "gui_utf_draw_middle"
+
+Function: sub_44EC4
+Strings found: 3
+----------------------------------------
+  1. "%s(): can not find 0x%x font resource
+"
+  2. "%s(): exex process effect callback function
+"
+  3. "gui_utf_draw_align_right"
+
+Function: sub_451E0
+Strings found: 4
+----------------------------------------
+  1. "%s(): The word is too long and will not be processed
+"
+  2. "%s(): can not find 0x%x font resource
+"
+  3. "%s(): exex process effect callback function
+"
+  4. "gui_utf_Wordwrap_draw"
+
+Function: sub_455CC
+Strings found: 2
+----------------------------------------
+  1. "%s(): find ascii postion failed
+"
+  2. "gui_string_draw"
+
+Function: sub_4588C
+Strings found: 3
+----------------------------------------
+  1. "%s(): read flash fail
+
+"
+  2. "%s(): read flash fail: %d
+
+"
+  3. "resource_manger_get"
+
+Function: sub_469BC
+Strings found: 2
+----------------------------------------
+  1. "%s(): set_imu_pitch:horiz_step over E_IMU_PITCH_STEP_MAX
+"
+  2. "set_imu_pitch_reflash"
+
+Function: sub_46B80
+Strings found: 2
+----------------------------------------
+  1. "%s(): set_imu_pitch process received exit packet ...
+"
+  2. "ui_set_imu_pitch_task"
+
+Function: sub_46E3C
+Strings found: 2
+----------------------------------------
+  1. "%s(): set brightness level = %d
+"
+  2. "set_brightness_to_panel_reg"
+
+Function: sub_46FC0
+Strings found: 2
+----------------------------------------
+  1. "%s(): JBD PANEL init failure!
+"
+  2. "jdb_panel_init"
+
+Function: sub_471CC
+Strings found: 2
+----------------------------------------
+  1. "%s(): clean frame buffer parameter error!!!
+"
+  2. "_clean_fb_data"
+
+Function: sub_47260
+Strings found: 3
+----------------------------------------
+  1. "%s(): c->init_done = 0,init failed, can't write data!
+"
+  2. "%s(): spi transfer error....
+"
+  3. "_reflash_fb_data_to_lcd"
+
+Function: sub_473C8
+Strings found: 3
+----------------------------------------
+  1. "%s(): c->init_done = 0,init failed, can't write data!
+"
+  2. "%s(): spi transfer error....
+"
+  3. "_reflash_fb_data_to_lcd_ex"
+
+Function: sub_47538
+Strings found: 2
+----------------------------------------
+  1. "%s(): enter
+"
+  2. "panel_init"
+
+Function: sub_475F0
+Strings found: 2
+----------------------------------------
+  1. "%s(): SPI_DEEP_POWER_DOWN
+"
+  2. "jbd_panel_suspend"
+
+Function: sub_47724
+Strings found: 2
+----------------------------------------
+  1. "%s(): jbd panel devicve id: %02x, %02x, %02x, %02x
+"
+  2. "spi_read_id"
+
+Function: sub_477A0
+Strings found: 2
+----------------------------------------
+  1. "%s(): length error!
+
+"
+  2. "utf8_to_unicode"
+
+Function: sub_4792C
+Strings found: 3
+----------------------------------------
+  1. "%s(): read flash fail
+
+"
+  2. "%s(): read flash fail: %d
+
+"
+  3. "find_chinese_bitmap_by_unicode"
+
+Function: sub_47B1C
+Strings found: 2
+----------------------------------------
+  1. "%s(): send data length more than %d,can't load it,exit ...
+"
+  2. "send_response_data_to_msgqueue"
+
+Function: sub_48840
+Strings found: 2
+----------------------------------------
+  1. "%s(): requestAudioInfoToApp ...
+"
+  2. "requestAudioInfoToApp"
+
+Function: sub_488BC
+Strings found: 4
+----------------------------------------
+  1. "%s(): GLOBAL->battery_info[0] = %d , GLOBAL->battery_info[1] = %d
+"
+  2. "%s(): send power infomation to slave . power status = %s
+"
+  3. "SendPowerInfoToSlave"
+  4. "battery value > 20"
+
+Function: sub_48998
+Strings found: 2
+----------------------------------------
+  1. "%s(): send APP Language infomation to slave . app language = %s
+"
+  2. "SendSystemLanguageInfoToSlave"
+
+Function: sub_48A3C
+Strings found: 3
+----------------------------------------
+  1. "%s(): send dashboard startup mode to slave . startup mode  = %s
+"
+  2. "Head-up startup"
+  3. "SendDashBoardStartupModeInfoToSlave"
+
+Function: sub_48AD4
+Strings found: 2
+----------------------------------------
+  1. "%s(): received slave send double click event ,boot or close dashboard function
+"
+  2. "SlaveDoubleClickEventInject"
+
+Function: sub_48B5C
+Strings found: 3
+----------------------------------------
+  1. "%s(): enter screen_id = %d
+"
+  2. "%s(): exit screen_id = %d
+"
+  3. "ui_refalsh_warp"
+
+Function: sub_48E28
+Strings found: 9
+----------------------------------------
+  1. "%s(): !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+"
+  2. "%s(): *************************************************************************************************
+"
+  3. "%s(): ----------------------------------------------------------------------------------------
+"
+  4. "%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d
+"
+  5. "%s(): The UI framework closes the opened UI application first, and the closed application ScreenID is %d
+"
+  6. "%s(): The wrong screen ID has appeared, and the exception handling is closed,The message ID at startup is %d. The current message ID is%d
+"
+  7. "%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d
+"
+  8. "%s(): To perform exception handling, close the previous SCREEN ID = %d UI application first
+"
+  9. "display_reflash_handler"
+
+Function: sub_49000
+Strings found: 2
+----------------------------------------
+  1. "%s(): set delay exit time = %d
+"
+  2. "setDelayExitValue"
+
+Function: sub_49090
+Strings found: 22
+----------------------------------------
+  1. "%s(): ----received command without screen ID
+"
+  2. "%s(): ---USE screen ID %d
+"
+  3. "%s(): ---screen ID message parampter error!
+"
+  4. "%s(): KEY EVENT INJECT,REFLASH SCREEN
+"
+  5. "%s(): USE screen ID %d
+"
+  6. "%s(): When the UI exit command is not received in IDLE state, the UI exit is performed by itself
+"
+  7. "%s(): display thread delay %dms close ...
+"
+  8. "%s(): display thread handler start up...
+"
+  9. "%s(): display thread startup... 
+"
+  10. "%s(): display thread switch display close ...
+"
+  11. "%s(): exit .display thread switch display close ...
+"
+  12. "%s(): exit .received command without screen ID
+"
+  13. "%s(): exit.USE screen ID %d
+"
+  14. "%s(): init LCD data...
+"
+  15. "%s(): master send exit command ,UI framewrok handler it...
+"
+  16. "%s(): master send low power resume command ,UI framewrok handler it...
+"
+  17. "%s(): master send low power waring command ,UI framewrok handler it...
+"
+  18. "%s(): no one call display_close function, UI don't draw anything ,screen id = %d
+"
+  19. "%s(): received command without screen ID
+"
+  20. "%s(): unknow display thread state
+"
+  21. "%s(): upgrade sync content area...
+"
+  22. "display_thread_handler"
+
+Function: sub_4967C
+Strings found: 5
+----------------------------------------
+  1. "%s(): send data length more than %d,can't load it,exit ...
+"
+  2. "%s(): send reflash command cost %lldMs
+"
+  3. "%s(): send reflash command end .......
+"
+  4. "%s(): send reflash command......
+"
+  5. "display_reflash"
+
+Function: sub_497B0
+Strings found: 3
+----------------------------------------
+  1. "%s(): send data length more than %d,can't load it,exit ...
+"
+  2. "%s(): send display close command.......
+"
+  3. "display_close"
+
+Function: sub_4985A
+Strings found: 2
+----------------------------------------
+  1. "%s(): display_close_screen %d
+"
+  2. "display_close_screen"
+
+Function: sub_4A3D0
+Strings found: 2
+----------------------------------------
+  1. "app_identifier:(%s)
+"
+  2. "message:(%s)
+"
+
+Function: sub_4A51C
+Strings found: 2
+----------------------------------------
+  1. "%s(): [csh_debug] bootSeconds is %d
+"
+  2. "get_boot_seconds"
+
+Function: sub_4A568
+Strings found: 2
+----------------------------------------
+  1. "%s(): buf is NULL !
+"
+  2. "uint32_to_little_endian"
+
+Function: sub_4A5B0
+Strings found: 2
+----------------------------------------
+  1. "%s(): burial point date was not init!
+"
+  2. "update_burial_point_day_index"
+
+Function: sub_4A960
+Strings found: 2
+----------------------------------------
+  1. "%s(): get_dashboard_sum_time is %d
+"
+  2. "get_dashboard_sum_time"
+
+Function: sub_4AAB0
+Strings found: 2
+----------------------------------------
+  1. "%s(): [exit_dashboard_burial_point] sum_time is %d ms,dashboard_sum_time is %d s
+"
+  2. "exit_dashboard_burial_point"
+
+Function: sub_EF28
+Strings found: 22
+----------------------------------------
+  1. "%s(): "
+  2. "%s(): #cmd_type:%s, title=%s, msg=%s
+
+"
+  3. "%s(): **cmd_type:%s, value=%s, tx_len=%d
+
+"
+  4. "%s(): 11 len=%d
+"
+  5. "%s(): 22 len=%d
+"
+  6. "%s(): BLE_REQ_PUT_NOTIFI_WHIHTLIST_APP"
+  7. "%s(): buf:%s
+
+"
+  8. "%s(): cmd:%s
+
+"
+  9. "%s(): cmd=%d
+"
+  10. "%s(): cmd_type:%s, value=%s, tx_len=%d, jstr_len=%d, jsonstr=%s
+
+"
+  11. "%s(): en:%s
+
+"
+  12. "%s(): enable: %d, sec:%d
+
+"
+  13. "%s(): pos:%s, new log_level_set=%d
+
+"
+  14. "%s(): pos:%s, new screen_id=%d
+
+"
+  15. "%s(): pos=%s, tx_data_len=%d
+
+"
+  16. "%s(): simulator->BLE_REQ_PUT_NAVIGATION_INFO.
+
+"
+  17. "%s(): simulator->BLE_REQ_PUT_TELEPROMPTER_INFO.
+
+"
+  18. "%s(): simulator:SCHEDULE "
+  19. "%s(): sys reboot because reboot cmd
+"
+  20. "%s(): test:BLE_REQ_POST_BT_UNPAIR
+
+"
+  21. "%s(): unable to change MTU for audio transfer, due to no connected or notification disabled
+"
+  22. "spec_ble_command_hook"
+
+Function: trigger_notification
+Strings found: 3
+----------------------------------------
+  1. "%s(): persist task [pause]: %d
+"
+  2. "%s(): persist task [running]: %d
+"
+  3. "update_temp_task_status"
+
+Function: trigger_screen_change
+Strings found: 3
+----------------------------------------
+  1. "%s(): persist task [pause]: %d
+"
+  2. "%s(): persist task [running]: %d
+"
+  3. "update_persist_task_status"
+
+Function: trigger_screen_state_change
+Strings found: 3
+----------------------------------------
+  1. "%s(): %s: ignore:%d.
+"
+  2. "%s(): %s: trigger_on_screen -> %d
+"
+  3. "trigger_screen_state_change"
+
+Function: update_display_settings
+Strings found: 2
+----------------------------------------
+  1. "%s(): canvas_distance_gear:%d, pos_x:%d
+"
+  2. "cal_panel_canvas_coord"
+
+Function: update_startup_mode
+Strings found: 3
+----------------------------------------
+  1. "%s(): send startup mode  store Command, mode = %d
+"
+  2. "%s(): setting flash store queue fill failed
+
+"
+  3. "upgradeDashboardStartupModeInfoToFlash"
+
+============================================================
+SUMMARY:
+Total functions with debug_print calls: 241
+Functions with resolved strings: 238
+Total unique strings found: 986

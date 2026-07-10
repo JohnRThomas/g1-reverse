@@ -1,0 +1,53 @@
+/* named: settings_parse_and_lookup */
+/* globals referenced:
+//   0x000882b0  __settings_handler_static_list_start 
+//   0x00088328  __settings_handler_static_list_end 
+//   0x2000a10c  g_settings_handlers          
+*/
+/* Reconstructed settings_parse_and_lookup @ 0x4e540  (parity: 300/300 trials, PROVEN) */
+
+#include <stdint.h>
+extern void assert_post_action(uint32_t,int);
+extern void printk(uint32_t,...);
+extern int settings_name_steq(uint32_t,uint32_t,void*);
+
+uint32_t* settings_parse_and_lookup(uint32_t param_1, uint32_t *param_2, uint32_t param_3){
+  uint32_t *puVar1, *puVar3, *puVar5;
+  int *piVar4;
+  int iVar2;
+  uint32_t uVar6, uVar7;
+  volatile uint32_t *local_24;
+  volatile uint32_t uStack_20;
+  if (param_2 != 0) *param_2 = 0;
+  puVar1 = (uint32_t*)0x88328;
+  puVar5 = 0;
+  puVar3 = (uint32_t*)0x882b0;
+  uVar7 = param_1;
+  local_24 = param_2;
+  uStack_20 = param_3;
+  while (1){
+    if (puVar1 < puVar3){
+      printk(0x99cbd, 0xf1158, 0xf1126, 0x94, uVar7);
+      printk(0xf0d20);
+      assert_post_action(0xf1126, 0x94);
+    }
+    if (puVar1 <= puVar3) break;
+    uVar6 = *puVar3;
+    iVar2 = settings_name_steq(param_1, uVar6, (void*)&local_24);
+    if (iVar2 != 0 && (puVar5 == 0 || (iVar2 = settings_name_steq(uVar6, *puVar5, 0), iVar2 != 0))
+        && (puVar5 = puVar3, param_2 != 0)){
+      *param_2 = (uint32_t)local_24;
+    }
+    puVar3 = puVar3 + 5;
+  }
+  for (piVar4 = (int*)*(volatile uint32_t*)0x2000a10c; piVar4 != 0; piVar4 = (int*)*piVar4){
+    uVar7 = piVar4[-5];
+    iVar2 = settings_name_steq(param_1, uVar7, (void*)&local_24);
+    if (iVar2 != 0 && ((puVar5 == 0 || (iVar2 = settings_name_steq(uVar7, *puVar5, 0), iVar2 != 0))
+        && (puVar5 = (uint32_t*)(piVar4 - 5), param_2 != 0))){
+      *param_2 = (uint32_t)local_24;
+    }
+  }
+  return puVar5;
+}
+

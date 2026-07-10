@@ -1,0 +1,25 @@
+/* Reconstructed FUN_0005cc68 @ 0x5cc68  (parity: 300/300 trials, PROVEN) */
+
+extern void FUN_00083090(int a, int b);
+extern int FUN_00055e74(int a, int b);
+extern void FUN_0008304c(int a, int b);
+extern void FUN_00083074(int a, int b, void *c);
+
+int FUN_0005cc68(int param_1)
+{
+  int iVar1;
+  unsigned int local_18;
+  unsigned int local_14;
+
+  FUN_00083090(param_1 + 4, 8);
+  iVar1 = FUN_00055e74(param_1 + 0x57, 0x0008349d);
+  if (iVar1 != 0) {
+    FUN_0008304c(param_1 + 4, 8);
+    local_14 = 0x000f4e47;
+    local_18 = 2;
+    FUN_00083074(0x00088180, 0x1040, &local_18);
+    iVar1 = 8;
+  }
+  return iVar1;
+}
+

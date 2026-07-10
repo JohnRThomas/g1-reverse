@@ -1,0 +1,72 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_0102ac0c @ 0x102ac0c  (parity 300 trials PROVEN) */
+
+extern void FUN_01039722(void*);
+extern int FUN_0102d558(void*);
+extern unsigned long long FUN_0102d5b4(void*, void*, void*);
+extern void FUN_0103689c(void*, int, int, int);
+
+__attribute__((naked)) unsigned int FUN_0102ac0c(void)
+{
+    __asm__ volatile(
+        "push {r4, lr}\n"
+        "ldr r4, =0x21000580\n"
+        "ldr r3, [r4]\n"
+        "cmp r3, #2\n"
+        "ble 1f\n"
+        "ldr r0, =0x0103ce92\n"
+        "bl FUN_01039722\n"
+        "1:\n"
+        "ldr r0, =0x0103bfac\n"
+        "bl FUN_0102d558\n"
+        "subs r1, r0, #0\n"
+        "ldr r3, [r4]\n"
+        "bge 2f\n"
+        "cmn.w r1, #0x78\n"
+        "beq 2f\n"
+        "cmp r3, #0\n"
+        "ble 3f\n"
+        "ldr r0, =0x0103ceac\n"
+        "bl FUN_01039722\n"
+        "3:\n"
+        "mov.w r0, #-1\n"
+        "b 7f\n"
+        "2:\n"
+        "cmp r3, #2\n"
+        "ble 4f\n"
+        "ldr r0, =0x0103cec3\n"
+        "bl FUN_01039722\n"
+        "4:\n"
+        "ldr r2, =0x21000584\n"
+        "ldr r1, =0x210045f8\n"
+        "ldr r0, =0x0103bfac\n"
+        "bl FUN_0102d5b4\n"
+        "cmp r0, #0\n"
+        "bge 5f\n"
+        "ldr r3, [r4]\n"
+        "cmp r3, #0\n"
+        "ble 3b\n"
+        "ldr r0, =0x0103ced0\n"
+        "b 6f\n"
+        "5:\n"
+        "mov.w r2, #-1\n"
+        "mov.w r3, #-1\n"
+        "ldr r0, =0x21000914\n"
+        "bl FUN_0103689c\n"
+        "movs r2, #1\n"
+        "ldr r3, =0x21004600\n"
+        "str r2, [r3]\n"
+        "ldr r3, [r4]\n"
+        "cmp r3, r2\n"
+        "bgt 8f\n"
+        "movs r0, #0\n"
+        "7:\n"
+        "pop {r4, pc}\n"
+        "8:\n"
+        "ldr r0, =0x0103cef6\n"
+        "6:\n"
+        "bl FUN_01039722\n"
+        "b 3b\n"
+    );
+}
+

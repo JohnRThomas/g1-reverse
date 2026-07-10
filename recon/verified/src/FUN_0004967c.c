@@ -1,0 +1,63 @@
+/* Reconstructed FUN_0004967c @ 0x4967c  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void DEBUG_PRINT(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_00019c70(unsigned,unsigned);
+extern void FUN_0004904c(void);
+extern int FUN_000720d0(unsigned,void*,int,int);
+extern void FUN_00086c04(void*,int,unsigned);
+extern void FUN_00086c78(void*,int,unsigned);
+extern long long thunk_FUN_00074f68(void);
+
+unsigned FUN_0004967c(int param_1, unsigned param_2){
+  unsigned char local_30, uStack_2f;
+  unsigned short local_2e;
+  unsigned char auStack_2c[20];
+  volatile int *piVar1 = (volatile int*)0x2000230cUL;
+  FUN_00086c78(&local_30,0,0x18);
+  if(param_2 < 0xb){
+    long long lVar7 = thunk_FUN_00074f68();
+    if(*piVar1 > 2){
+      if(*(volatile int*)0x20007554UL == 0)
+        DEBUG_PRINT(0x000effd2,0x000f019a,0,0);
+      else
+        FUN_00019c70(0,0);
+    }
+    FUN_00086c78(&uStack_2f,0,0x17);
+    local_30 = 2;
+    if(param_1 != 0){
+      FUN_00086c04(auStack_2c,param_1,param_2);
+      local_2e = (unsigned short)param_2;
+    }
+    int iVar2 = FUN_000720d0(0x200038c4,&local_30,0,0);
+    if(iVar2 == 0){
+      if(*piVar1 > 2){
+        if(*(volatile int*)0x20007554UL == 0)
+          DEBUG_PRINT(0x000efff4,0x000f019a,0,0);
+        else
+          FUN_00019c70(0,0);
+      }
+      long long lVar8 = thunk_FUN_00074f68();
+      if(*piVar1 > 2){
+        unsigned uVar5 = (unsigned)((unsigned long long)(lVar8*1000) >> 0x20);
+        unsigned uVar3 = (unsigned)((unsigned long long)(lVar7*1000) >> 0x20);
+        unsigned uVar4 = (unsigned)(lVar8*1000) >> 0xf | uVar5*0x20000;
+        unsigned uVar6 = (unsigned)(lVar7*1000) >> 0xf | uVar3*0x20000;
+        if(*(volatile int*)0x20007554UL == 0)
+          DEBUG_PRINT(0x000f001c,0x000f019a, uVar4-uVar6,
+                      ((uVar5>>0xf)-(uVar3>>0xf)) - (unsigned)(uVar4<uVar6));
+        else
+          FUN_00019c70(0x000f001c,0x000f019a);
+      }
+      FUN_0004904c();
+      return 0;
+    }
+    DEBUG_PRINT(0x000ef058,0x000f019a,0,0);
+  } else if(*piVar1 > 0){
+    if(*(volatile int*)0x20007554UL == 0)
+      DEBUG_PRINT(0x000ef01c,0x000f019a,10,0);
+    else
+      FUN_00019c70(0,0);
+  }
+  return 0xffffffff;
+}
+

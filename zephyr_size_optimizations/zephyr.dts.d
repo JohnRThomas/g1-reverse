@@ -1,0 +1,30 @@
+empty_file.o: \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/misc/empty_file.c \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340dk_nrf5340_cpuapp.dts \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf5340_cpuapp_qkaa.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/common/mem.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf5340_cpuapp.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/armv8-m.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/common/skeleton.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf_common.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/adc/adc.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/adc/nrf-adc.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/dt-util.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/sys/util_macro.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/sys/util_internal.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/sys/util_loops.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/gpio/gpio.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/i2c/i2c.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/pinctrl/nrf-pinctrl.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/pwm/pwm.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/common/freq.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/override.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf5340_cpuapp_peripherals.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf5340_cpuapp_ipc.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/dts/arm/nordic/nrf5340_cpuapp_peripherals_ns.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_cpuapp_common.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_cpuapp_common-pinctrl.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_cpuapp_partition_conf.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/zephyr/boards/arm/nrf5340dk_nrf5340/nrf5340_shared_sram_planning_conf.dtsi \
+ /Users/freedomcoder/zephyr_sigwork_v2.5.1/app/nrf5340dk_nrf5340_cpuapp.overlay

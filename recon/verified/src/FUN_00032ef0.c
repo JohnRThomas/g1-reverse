@@ -1,0 +1,17 @@
+/* Reconstructed FUN_00032ef0 @ 0x32ef0  (parity: 300/300 trials, PROVEN) */
+
+extern void DEBUG_PRINT(unsigned int, unsigned int);
+extern void FUN_00019c70(void);
+
+void FUN_00032ef0(unsigned int param_1)
+{
+  if (*(volatile unsigned int*)0x20007554UL == 0) {
+    DEBUG_PRINT(0x000a756aUL, param_1);
+  }
+  else {
+    FUN_00019c70();
+  }
+  *(volatile unsigned char*)0x20019ef3UL = (unsigned char)param_1;
+  return;
+}
+

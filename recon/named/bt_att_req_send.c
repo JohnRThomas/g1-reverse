@@ -1,0 +1,40 @@
+/* named: bt_att_req_send */
+/* Reconstructed bt_att_req_send @ 0x59a90  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+extern void printk(unsigned,unsigned,unsigned,unsigned);
+extern long long assert_post_action(unsigned,unsigned);
+extern int att_get(void);
+extern void att_req_send_process(void);
+unsigned bt_att_req_send(int param_1, unsigned* param_2){
+    unsigned r1;
+    if (param_1 != 0){
+        r1 = (unsigned)(uintptr_t)param_2;
+    } else {
+        printk(0x99cbd,0xf3ebd,0xf4388,0xf38);
+        long long r = assert_post_action(0xf4388, 0xf38);
+        r1 = (unsigned)((unsigned long long)r >> 32);
+    }
+L_aae:
+    if (r1 != 0) goto L_ac4;
+    printk(0x99cbd,0xf4590,0xf4388,0xf39);
+    { long long r = assert_post_action(0xf4388, 0xf39);
+      r1 = (unsigned)((unsigned long long)r >> 32); }
+    goto L_aae;
+L_ac4:
+    {
+        int iVar1 = att_get();
+        if (iVar1 == 0) return 0xffffff80;
+        *param_2 = 0;
+        unsigned* r3 = *(unsigned**)(iVar1 + 8);
+        if (r3 == 0){
+            *(unsigned**)(iVar1 + 4) = param_2;
+            *(unsigned**)(iVar1 + 8) = param_2;
+        } else {
+            *r3 = (unsigned)(uintptr_t)param_2;
+            *(unsigned**)(iVar1 + 8) = param_2;
+        }
+        att_req_send_process();
+        return 0;
+    }
+}
+
