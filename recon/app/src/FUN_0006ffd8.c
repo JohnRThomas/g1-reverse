@@ -1,4 +1,4 @@
-/* Reconstructed FUN_0006ffd8 @ 0x6ffd8  (parity: 20/20 trials, PROVEN) */
+/* Reconstructed FUN_0006ffd8 @ 0x6ffd8  (parity: 40/40 trials, PROVEN) */
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 
