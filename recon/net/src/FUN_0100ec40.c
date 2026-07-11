@@ -1,8 +1,8 @@
 /* net-core FUN_0100ec40 @ 0x100ec40  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern void FUN_0102583c(unsigned int a);
-extern unsigned int g1_irq_lock(void);
-extern void g1_irq_unlock(unsigned int key);
 
 void FUN_0100ec40(void)
 {
@@ -15,7 +15,8 @@ void FUN_0100ec40(void)
     if (puVar2[0x20] != 0) return;
     *(unsigned int *)(puVar2 + 0x1c) = 0x0100f2e5;
     puVar2[0x20] = 2;
-    primask = g1_irq_lock();
+    primask = __get_PRIMASK();
+    __disable_irq();
     puVar5 = (unsigned int *)(puVar2 + 8);
     *(unsigned int **)(puVar2 + 0x18) = puVar5;
     uVar3 = 0x21000ee0;
@@ -24,6 +25,6 @@ void FUN_0100ec40(void)
     }
     *puVar5 = uVar3;
     *(unsigned int *)(puVar2+4) = uVar3;
-    g1_irq_unlock(primask);
+    if (primask == 0) __enable_irq();
     FUN_0102583c(*puVar2);
 }

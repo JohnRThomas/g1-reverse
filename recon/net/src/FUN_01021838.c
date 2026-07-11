@@ -1,4 +1,4 @@
-/* net-core FUN_01021838 @ 0x1021838  (parity 300 trials PROVEN) */
+/* net-core FUN_01021838 @ 0x1021838 — true CFG extent 30 bytes (ends 0x1021856) */
 #include <stdint.h>
 
 extern void FUN_01021800(void);
@@ -13,4 +13,3 @@ void FUN_01021838(int32_t param_1)
     g[10] = g[10] - 1;
     FUN_010217cc();
 }
-

@@ -4,7 +4,6 @@
 
 extern uint64_t FUN_0102a21e(uint32_t, uint32_t);
 extern void FUN_010256dc(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
-extern void g1_fatal_physical_fallthrough(void);
 
 struct words4 { uint32_t word[4]; };
 
@@ -20,7 +19,7 @@ uint64_t FUN_0102411c(uint32_t requested, uint32_t context,
 
     if (*requested_state == 0) {
         FUN_010256dc(0x70, 0xbf1, fatal_arg, 0, fatal_extra);
-        for (;;) g1_fatal_physical_fallthrough();
+        return 0;
     }
 
     /* Bring a stopped/starting/stopping entry to the stable state.  The

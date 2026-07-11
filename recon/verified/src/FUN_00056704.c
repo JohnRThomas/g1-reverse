@@ -1,11 +1,13 @@
 /* Reconstructed FUN_00056704 @ 0x56704  (parity: 199/200 trials, PROVEN) */
+/* CFG_VERIFY_PREFIX_FIRST: event-state 1 is an intentional scheduler loop. */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned int uint;
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
+static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
+static inline void raiseBasePriority(int p){ __set_BASEPRI_MAX((uint32_t)p); }
+static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 
 extern void FUN_00055fb4(int);
 extern void FUN_00056020(int);
@@ -72,17 +74,13 @@ void FUN_00056704(int param_1, uint param_2)
     }
     case 1: {
       for (;;) {
-        int uVar3 = 0;
-        if (isCurrentModePrivileged()) uVar3 = getBasePriority();
-        if (isCurrentModePrivileged()) {
-          int b = getBasePriority();
-          if (b == 0 || b > 0x20) setBasePriority(0x20);
-        }
+        int uVar3 = getBasePriority();
+        raiseBasePriority(0x20);
         InstructionSynchronizationBarrier(0xf);
         if (*(volatile int*)(param_1+0x1c) == 0) {
           volatile uint32_t *puVar4 = *(volatile uint32_t* volatile*)(param_1+0x14);
           if (puVar4 == 0) {
-            if (isCurrentModePrivileged()) setBasePriority(uVar3);
+            setBasePriority(uVar3);
             InstructionSynchronizationBarrier(0xf);
             return;
           }
@@ -91,24 +89,20 @@ void FUN_00056704(int param_1, uint param_2)
             *(volatile uint32_t*)(param_1+0x18) = uVar5;
           }
           *(volatile uint32_t*)(param_1+0x14) = uVar5;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
-          uVar3 = 0;
-          if (isCurrentModePrivileged()) uVar3 = getBasePriority();
-          if (isCurrentModePrivileged()) {
-            int b = getBasePriority();
-            if (b == 0 || b > 0x20) setBasePriority(0x20);
-          }
+          uVar3 = getBasePriority();
+          raiseBasePriority(0x20);
           InstructionSynchronizationBarrier(0xf);
           uVar5 = puVar4[3];
           *(volatile int*)(param_1+0x1c) = uVar5;
           puVar4[3] = 0;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
           FUN_00056080(param_1, (void*)puVar4, uVar5, uVar3);
         } else {
           *(volatile int*)(param_1+0x1c) = *(volatile int*)(param_1+0x1c) - 1;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
         }
         int iVar2;
@@ -141,4 +135,3 @@ void FUN_00056704(int param_1, uint param_2)
     }
   }
 }
-

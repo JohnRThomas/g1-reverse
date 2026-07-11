@@ -4,6 +4,11 @@
 extern int FUN_01036198(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
 extern void FUN_01039722(const void *message, int status);
+/* Zephyr wiring (one out-of-line platform boundary shared with FUN_01031928):
+ *   void g1_arch_runtime_exception(unsigned reason) { ARCH_EXCEPT(reason); }
+ * ARCH_EXCEPT clears BASEPRI, places reason in r0, and raises runtime-exception
+ * SVC 2. The function is noreturn; no ordinary C fallback is valid here. */
+extern __attribute__((noreturn)) void g1_arch_runtime_exception(unsigned reason);
 
 int FUN_0102b900(uint32_t value)
 {
@@ -16,8 +21,5 @@ int FUN_0102b900(uint32_t value)
     if (*(volatile int *)0x21000580u > 0)
         FUN_01039722((const void *)0x0103d23bu, status);
 
-    /* The original requests supervisor service 2 with operation 3 and does not
-     * resume in this function.  Keep that non-returning contract explicit; the
-     * integrated Zephyr wrapper replaces the trap with the real syscall. */
-    __builtin_trap();
+    g1_arch_runtime_exception(3);
 }

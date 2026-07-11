@@ -4,7 +4,7 @@ extern void* FUN_00059bcc(int,int);
 extern void FUN_000828da(void*,unsigned);
 extern void FUN_00082a42(int,int,void*);
 extern int FUN_00080f92(int,void*);
-extern void sub_5a0e8(void*);
+extern void FUN_0005a0e8(void *entry);
 
 void FUN_0005a128(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     unsigned char *puVar1 = (unsigned char*)FUN_00059bcc(0,0);
@@ -33,7 +33,7 @@ void FUN_0005a128(unsigned char param_1, unsigned param_2, unsigned param_3, uns
     {
         int iVar2 = FUN_00080f92(*puVar1, puVar1+1);
         if (iVar2 == 0) return;
-        sub_5a0e8(puVar1);
+        FUN_0005a0e8(puVar1);
         return;
     }
   L196:
@@ -44,4 +44,3 @@ void FUN_0005a128(unsigned char param_1, unsigned param_2, unsigned param_3, uns
     if (param_4 <= uVar3) goto L178;
     goto L176;
 }
-

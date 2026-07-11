@@ -3,6 +3,7 @@
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+#include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
@@ -59,19 +60,19 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long FUN_0000e244();
-extern long long FUN_00075174();
-extern long long FUN_00084840();
-extern long long FUN_0008484e();
-extern long long FUN_00084880();
-extern long long FUN_000848b0();
-extern long long FUN_000849da();
-extern long long FUN_00084a24();
-extern long long FUN_00084a54();
-extern long long FUN_00084ade();
-extern long long FUN_00084b32();
-extern long long FUN_0008673e();
-extern long long FUN_00086c78();
+extern uint64_t FUN_0000e244(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint64_t FUN_00075174(uint32_t, uint32_t, uint32_t, uint32_t, uint64_t);
+extern uint64_t FUN_00084840(uint32_t, const void *);
+extern uint64_t FUN_0008484e(uint32_t);
+extern uint64_t FUN_00084880(uint32_t, uint32_t);
+extern uint64_t FUN_000848b0(uint32_t);
+extern uint64_t FUN_000849da(uint32_t);
+extern int32_t FUN_00084a24(uint32_t);
+extern uint64_t FUN_00084a54(uint32_t, uint32_t, uint32_t);
+extern uint64_t FUN_00084ade(uint32_t, uint32_t);
+extern uint64_t FUN_00084b32(uint32_t, uint32_t);
+extern uint64_t FUN_0008673e(uint32_t);
+extern uint64_t FUN_00086c78(void *, uint32_t, uint32_t, ...);
 #define DAT_00063494 0xf423fUL
 #define DAT_00063498 0xf4240UL
 

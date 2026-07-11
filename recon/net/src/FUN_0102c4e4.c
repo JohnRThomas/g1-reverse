@@ -36,6 +36,10 @@ int FUN_0102c4e4(int *param_1, uint param_2, uint param_3, undefined4 param_4)
         if (((uVar5 - 1) & uVar5) != 0) {
             FUN_01039bbe(STRA, STRB, 0x144, uVar5, param_4);
             FUN_01039bb0(STRB, 0x144);
+            /* The diagnostic backend is normally terminal. If it returns,
+               r2 still contains the line number and becomes the subsequent
+               heap-size comparison operand in the original. */
+            uVar4 = 0x144;
         }
     }
 
@@ -44,7 +48,7 @@ int FUN_0102c4e4(int *param_1, uint param_2, uint param_3, undefined4 param_4)
         uVar4 = FUN_01039874(iVar7, uVar1);
         if (uVar4 != 0) {
             int iVar6b = (*(volatile unsigned int*)(iVar7+8) < 0x8000) ? 4 : 8;
-            int iVar6 = (int)(uVar5 * ((uVar8 + uVar4*8 + iVar6b + iVar7 + (uVar5-1)) / uVar5) - uVar8);
+            int iVar6 = (int)(uVar5 * ((uVar8 + uVar4*8 + iVar6b + iVar7 + (uVar5-1)) / uVar5) - uVar5);
             unsigned int uVar5b = FUN_010397ac(iVar7, iVar6);
             unsigned int uVar3b = (unsigned int)(((param_3 + (unsigned)iVar6 + 7) & 0xfffffff8u) - iVar7) >> 3;
             if (uVar4 < uVar5b) {
@@ -62,4 +66,3 @@ int FUN_0102c4e4(int *param_1, uint param_2, uint param_3, undefined4 param_4)
     }
     return 0;
 }
-

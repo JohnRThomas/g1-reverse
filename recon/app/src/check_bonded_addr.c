@@ -1,22 +1,22 @@
-/* Reconstructed check_bonded_addr @ 0x183e4  (parity: 300/300 trials, PROVEN) */
+/* Full ABI-faithful reconstruction check_bonded_addr @ 0x183e4. */
+#include <stdint.h>
 
-extern void FUN_00018334(void);
-extern void DEBUG_PRINT(void);
-extern void FUN_00019c70(void);
+extern void FUN_00018334(const void *connection, char description[36]);
+extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void FUN_00019c70(uintptr_t format, ...);
 
-void check_bonded_addr(unsigned int param_1)
+void check_bonded_addr(const void *connection)
 {
-    FUN_00018334();
-    unsigned int *cnt = (unsigned int*)0x20007514UL;
-    *cnt = *cnt + 1;
-    unsigned int ptr = *(volatile unsigned int*)0x20006ab8UL;
-    *(volatile unsigned char*)(ptr + 0x367) = 0;
-    if (*(volatile int*)0x2000230cUL > 0) {
-        if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT();
-        } else {
-            FUN_00019c70();
-        }
+    char description[36];
+
+    FUN_00018334(connection, description);
+    ++*(volatile uint32_t *)0x20007514u;
+    *(volatile uint8_t *)(*(volatile uintptr_t *)0x20006ab8u + 0x367u) = 0;
+
+    if (*(volatile int32_t *)0x2000230cu > 0) {
+        if (*(volatile uint32_t *)0x20007554u == 0)
+            DEBUG_PRINT(0x0009a46fu, 0x0009b108u, description);
+        else
+            FUN_00019c70(0x0009a46fu, 0x0009b108u, description);
     }
 }
-

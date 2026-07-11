@@ -13,13 +13,17 @@ void FUN_01016cc8(uint32_t param_1, uint32_t param_2)
 
     if (cVar1 == 0x7f) {
         FUN_01016828();
-        for (;;) {}
+        return;
     }
 
     *p1 = 0x7f;
-    int32_t iVar2 = FUN_01019aa0(param_1, param_2, 0, 0, 0, 0, (uint32_t)cVar1, 0);
+    volatile uint8_t * const state = (uint8_t *)0x21000f90;
+    uint32_t mode_arg = state[0x70] == 5 ? 0 : (state[0x70] == 8 ? 3 : 1);
+    int32_t iVar2 = FUN_01019aa0(param_1, param_2,
+                                 0x21000fd6, state[0xb9],
+                                 state[0x8f], state[0x79],
+                                 (uint32_t)(int32_t)cVar1, mode_arg);
     if (iVar2 != 0) {
         FUN_01019660();
     }
 }
-

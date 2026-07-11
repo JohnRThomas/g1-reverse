@@ -1,4 +1,5 @@
-/* Reconstructed FUN_000286f8 @ 0x286f8  (parity: 1/1 trials, PROVEN) */
+/* Reconstructed FUN_000286f8 @ 0x286f8  (parity: 1/1 trials, PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: intentional non-returning service loop. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -153,4 +154,3 @@ LAB_0002884a:
         FUN_0007cb8e(200);
     } while (1);
 }
-

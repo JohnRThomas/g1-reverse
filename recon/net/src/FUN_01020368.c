@@ -25,6 +25,5 @@ void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t par
     }
 
     FUN_01008d00(0x3e, 0x349, (uint32_t)(uint8_t)*param_1, iVar1, param_4);
-    for (;;) {}
+    return;
 }
-

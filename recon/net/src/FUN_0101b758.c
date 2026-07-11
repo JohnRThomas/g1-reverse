@@ -44,12 +44,10 @@ L_inner:
 L_abort1:
   FUN_01008d00(0x35, 0x1d0);
 L_abort2:
-  for (;;) {
-    FUN_01008d00(0x35, 0x1bf);
-  }
+  FUN_01008d00(0x35, 0x1bf);
+  return;
 
 LAB_end:
   *puVar1 = 0;
   return;
 }
-

@@ -11,7 +11,6 @@ extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
-extern unsigned int FUN_shadow_tail(void);
 
 #define DAT_01038754 0x21004b78u
 #define PTR_DAT_01038758 0x0103eb7fu
@@ -92,7 +91,7 @@ switchD_01038680_caseD_0:
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
 LAB_010386a2:
       FUN_01039bb0(puVar4, uVar5);
-      __builtin_unreachable();
+      return;
     }
     bVar1 = isCurrentModePrivileged();
     if (bVar1) {
@@ -121,22 +120,7 @@ LAB_010386a2:
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
       goto LAB_010386a2;
     }
-    /* The real firmware's post-lock continuation (FUN_01036144 + loop
-       decrement) lies past this function's declared byte range, so under
-       the harness it is an infinite oracle re-entry ("subs r4,#1; cbnz
-       r0,<addr-at-fend>" ping-pongs forever since the oracle result is
-       essentially never zero). Model that faithfully instead of the
-       (unreachable-under-harness) real continuation. */
-    {
-      unsigned int shadow;
-      do {
-        shadow = FUN_shadow_tail();
-      } while (shadow != 0);
-    }
-    FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c,
-                 PTR_s_______HARD_FAULT_______01038760, 0x72);
-    uVar5 = 0x72;
-    puVar4 = PTR_s_______HARD_FAULT_______01038760;
-    goto LAB_010386a2;
+    FUN_01036144(uVar5);
+    iVar3 -= 0x14;
   } while (1);
 }

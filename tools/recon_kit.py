@@ -22,6 +22,15 @@ from capstone import *
 
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
+TRUE_SIZE_OVERRIDES = {
+    # CFG-reviewed wrapper; catalog folded following utility functions.
+    0x00050b8c: 36,
+    0x000566a4: 0x50,
+    0x00030cd0: 0x3a,
+    0x0005505c: 0x34,
+    0x000531cc: 0x8,
+    0x0004d578: 0xe,
+}
 # Each reconstruction agent sets RECON_LEDGER to its own file to avoid races;
 # merge later. Defaults to the shared ledger.
 LEDGER = os.environ.get("RECON_LEDGER", SCRATCH + "/recon_ledger.json")
@@ -72,6 +81,7 @@ def info(va):
         size = max(gsize, true_extent(f["entry"], gsize))
     except Exception:
         size = gsize
+    size = TRUE_SIZE_OVERRIDES.get(f["entry"], size)
     code = extract.func_bytes_padded(f["entry"], size, pad=8)
     lines = []
     for i in _md.disasm(code, f["entry"]):
@@ -137,6 +147,7 @@ def prove(va, size, name, csrc, nptr=2, trials=300, save_src=True):
         eff = max(size, true_extent(va, size))
     except Exception:
         eff = size
+    eff = TRUE_SIZE_OVERRIDES.get(va, eff)
     v = recon.prove(va, eff, csrc, name, trials=trials, nptr=nptr, ret_kind=rk)
     # Non-returning supervisor loop (main / *_thread): every trial ran to the
     # cap without returning, so nothing was checked. Retry comparing the ordered

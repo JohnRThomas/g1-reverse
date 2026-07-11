@@ -1,4 +1,7 @@
-/* Reconstructed ui_refalsh_warp @ 0x48b5c  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed ui_refalsh_warp @ 0x48b5c.
+ * Reachable code ends at 0x48e10; the six-word literal pool occupies
+ * [0x48e10,0x48e28), so the complete function extent is 716 bytes.
+ * Bytes from 0x48e28 onward belong to separately reconstructed functions. */
 
 extern int FUN_00032ee4(void);
 extern int FUN_00036a18(int,int,int);
@@ -59,4 +62,3 @@ int ui_refalsh_warp(int param_1,int param_2,int param_3,int param_4){
     }
     }
 }
-

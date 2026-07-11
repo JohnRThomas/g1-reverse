@@ -432,6 +432,9 @@ switchD_0101a5bc_caseD_2:
         }
         /* Returning through the firmware's noreturn panic island physically
            enters its final timing-maintenance loop. */
+        (void)FUN_010209f0();
+        *(volatile uint32_t *)(pcVar6 + 0x50) = 0;
+        *(volatile uint32_t *)(pcVar6 + 0x54) = 0;
         for (;;) {
           (void)FUN_010209f0();
           (void)FUN_0101a0e8(0);

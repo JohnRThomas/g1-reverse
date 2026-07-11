@@ -16,10 +16,10 @@ int32_t FUN_0103a076(void *object)
     uint8_t *configuration = *(uint8_t **)(outer + 4);
     volatile uint32_t *lock = (volatile uint32_t *)(state + 0x37c);
 
-    uint32_t old = *lock;
-    if (old != 2)
+    uint32_t expected = 2;
+    if (!__atomic_compare_exchange_n(lock, &expected, 1, 0,
+                                     __ATOMIC_ACQ_REL, __ATOMIC_ACQUIRE))
         return -0x78;
-    *lock = 1;
 
     int32_t result = -0x10;
     if (state[0x64] || state[0xd4])

@@ -3,12 +3,16 @@
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
 typedef unsigned long long undefined8,ulonglong;
 typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
+typedef long long(*code0)(void);
+typedef long long(*code1)(int);
+typedef long long(*code2)(int, void *);
 #define bool int
 #define false 0
 #define true 1
@@ -19,10 +23,10 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){ return (__get_CONTROL() & 1u) == 0; }
+static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
+static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
+static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -65,30 +69,30 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long FUN_000573f4();
-extern long long FUN_00057484();
-extern long long FUN_000574ec();
-extern long long FUN_00057874();
-extern long long FUN_000579b4();
-extern long long FUN_0005f24c();
-extern long long FUN_0005f594();
-extern long long FUN_0005f5d0();
-extern long long FUN_00073518();
-extern long long FUN_0008145c();
-extern long long FUN_0008149a();
-extern long long FUN_00081626();
-extern long long FUN_00081660();
-extern long long FUN_000816a2();
-extern long long FUN_00081720();
-extern long long FUN_00081746();
-extern long long FUN_0008174c();
-extern long long FUN_00081788();
-extern long long FUN_000817b6();
-extern long long FUN_00081820();
-extern long long FUN_00081940();
-extern long long FUN_00081a4e();
-extern long long FUN_00081b30();
-extern long long FUN_00083740();
+extern long long FUN_000573f4(int, ...);
+extern long long FUN_00057484(int, ...);
+extern long long FUN_000574ec(int, ...);
+extern long long FUN_00057874(int, ...);
+extern long long FUN_000579b4(int, ...);
+extern long long FUN_0005f24c(int, ...);
+extern long long FUN_0005f594(int, ...);
+extern long long FUN_0005f5d0(int, ...);
+extern long long FUN_00073518(int, ...);
+extern long long FUN_0008145c(int, ...);
+extern long long FUN_0008149a(int, ...);
+extern long long FUN_00081626(int, ...);
+extern long long FUN_00081660(int, ...);
+extern long long FUN_000816a2(int, ...);
+extern long long FUN_00081720(int, ...);
+extern long long FUN_00081746(int, ...);
+extern long long FUN_0008174c(int, ...);
+extern long long FUN_00081788(int, ...);
+extern long long FUN_000817b6(int, ...);
+extern long long FUN_00081820(int, ...);
+extern long long FUN_00081940(int, ...);
+extern long long FUN_00081a4e(int, ...);
+extern long long FUN_00081b30(int, ...);
+extern long long FUN_00083740(int, ...);
 #define DAT_00058054 0xf41a7UL
 #define DAT_00058058 0x88160UL
 #define DAT_0005805c 0xf41c5UL
@@ -264,7 +268,7 @@ LAB_00057ed4:
           sVar20 = 10;
           goto LAB_00057ed6;
         }
-        iVar9 = (**(code **)(puVar15 + 2))(iVar21,&local_44);
+        iVar9 = (**(code2 **)(puVar15 + 2))(iVar21,&local_44);
         iVar16 = local_44;
         uVar13 = DAT_00058074;
         if (iVar9 < 0) {
@@ -325,10 +329,10 @@ LAB_00057ed6:
         if (sVar20 != 0) {
           return 0;
         }
-        if ((code *)**(undefined4 **)(local_44 + 4) == (code *)0x0) {
+        if ((code0 *)**(undefined4 **)(local_44 + 4) == (code0 *)0x0) {
           return 0;
         }
-        (*(code *)**(undefined4 **)(local_44 + 4))();
+        (*(code0 *)**(undefined4 **)(local_44 + 4))();
         return 0;
       }
       break;
@@ -383,8 +387,8 @@ LAB_0005809c:
               *(undefined2 *)(piVar10 + 9) = uVar6;
               *(undefined2 *)((int)piVar10 + 0x26) = uVar4;
               *(undefined2 *)(piVar10 + 10) = uVar5;
-              if (*(code **)piVar10[1] != (code *)0x0) {
-                (**(code **)piVar10[1])(piVar10);
+              if (*(code1 **)piVar10[1] != (code1 *)0x0) {
+                (**(code1 **)piVar10[1])((int)piVar10);
               }
               FUN_0008174c(piVar10,local_4c);
               return 0;
@@ -457,5 +461,3 @@ LAB_000581ac:
   }
   return 0;
 }
-
-

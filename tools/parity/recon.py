@@ -45,8 +45,12 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
         return None, "cc: " + r.stderr
     undef = [s for s in _undef_syms(opath) if s != func_name]
     # generate distinct stub bodies (each 8 bytes so they occupy separate addrs)
+    # Keep every callee at a distinct address. Identical empty stubs can be
+    # folded by GCC/linker, which makes a logger followed by panic look like a
+    # repeated call to the same target and breaks terminal-call recognition.
     stubs = "\n".join(
-        'void %s(void){__asm__ volatile("nop");}' % s for s in undef)
+        '__attribute__((noinline,used)) unsigned %s(void){return %du;}' % (s, i + 1)
+        for i, s in enumerate(undef))
     spath = os.path.join(d, "stubs.c"); sopath = os.path.join(d, "stubs.o")
     open(spath, "w").write(stubs + "\n")
     subprocess.run([GCC] + CFLAGS + [spath, "-o", sopath], capture_output=True, text=True)

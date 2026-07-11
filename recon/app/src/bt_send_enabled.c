@@ -1,18 +1,18 @@
-/* Reconstructed bt_send_enabled @ 0x17e3c  (parity: 300/300 trials, PROVEN) */
+/* Full ABI-faithful reconstruction bt_send_enabled @ 0x17e3c. */
+#include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned int, unsigned int, int);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void FUN_00019c70(uintptr_t format, ...);
 
-void bt_send_enabled(int param_1)
+void bt_send_enabled(int32_t error)
 {
-    if (*(volatile int*)0x2000230cUL > 2) {
-        if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x9a143UL, 0x9a2cdUL, param_1);
-        } else {
-            FUN_00019c70();
-        }
+    if (*(volatile int32_t *)0x2000230cu > 2) {
+        if (*(volatile uint32_t *)0x20007554u == 0)
+            DEBUG_PRINT(0x0009a143u, 0x0009a2cdu, error);
+        else
+            FUN_00019c70(0x0009a143u, 0x0009a2cdu, error);
     }
-    int *p = *(int* volatile*)0x20006a30UL;
-    *(volatile unsigned char*)((char*)p + 0x366) = (param_1 == 0);
-}
 
+    *(volatile uint8_t *)(*(volatile uintptr_t *)0x20006a30u + 0x366u) =
+        error == 0;
+}

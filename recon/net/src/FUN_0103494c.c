@@ -30,4 +30,3 @@ unsigned int FUN_0103494c(unsigned int param_1, int param_2)
     }
     return uVar2;
 }
-

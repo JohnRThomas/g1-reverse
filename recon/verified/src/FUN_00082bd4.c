@@ -4,7 +4,7 @@ extern int FUN_0008256e(void);
 extern void *FUN_00059c04(int a);
 extern void FUN_00082bb8(void *a, int b);
 extern void *FUN_00059bcc(unsigned char a, int b);
-extern int FUN_0005a0e8(void *a);
+extern void FUN_0005a0e8(void *a);
 
 void FUN_00082bd4(int param_1, unsigned int param_2, int param_3, unsigned int param_4)
 {
@@ -29,4 +29,3 @@ void FUN_00082bd4(int param_1, unsigned int param_2, int param_3, unsigned int p
         }
     }
 }
-

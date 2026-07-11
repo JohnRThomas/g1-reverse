@@ -7,9 +7,6 @@ extern int FUN_0101a130(void);
 extern int FUN_0101a38c(void *a, int b, int c, unsigned int d);
 extern int FUN_01022e34(unsigned int a, int b);
 extern int FUN_010231c8(unsigned char a, void *b);
-/* If the fatal routine violates its noreturn contract, execution reaches the
-   literal-pool/next-function boundary.  The platform owns that terminal path. */
-extern void g1_fatal_physical_fallthrough(void);
 
 #define PCVAR2 ((volatile char *)0x210010a0u)
 #define DAT_afa4 (0x0101b321u)
@@ -67,16 +64,15 @@ unsigned int FUN_0101aee0(int param_1, unsigned int param_2)
     if (iVar5 != 0) {
         return 0;
     }
-    /* These labels deliberately mirror the physical fallthrough in the
-       binary when the normally-noreturn fatal routine unexpectedly returns. */
     FUN_01008d00(0x21, 0x312);
+    return 0;
 fatal_311:
     FUN_01008d00(0x21, 0x311);
+    return 0;
 fatal_30e:
     FUN_01008d00(0x21, 0x30e);
+    return 0;
 fatal_300:
     FUN_01008d00(0x21, 0x300);
-    for (;;) {
-        g1_fatal_physical_fallthrough();
-    }
+    return 0;
 }

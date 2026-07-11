@@ -1,4 +1,4 @@
-/* net-core FUN_010294a2 @ 0x10294a2  (parity 300 trials PROVEN) */
+/* net-core FUN_010294a2 @ 0x10294a2 — true CFG extent 12 bytes (ends 0x10294ae) */
 
 extern unsigned int FUN_0102946c(unsigned short, unsigned char);
 
@@ -9,4 +9,3 @@ unsigned int FUN_010294a2(volatile unsigned short *param_1, volatile unsigned sh
   unsigned char cVar1 = *((volatile unsigned char *)param_1 + 2);
   return FUN_0102946c(uVar2, cVar1);
 }
-

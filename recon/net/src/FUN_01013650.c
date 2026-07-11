@@ -29,6 +29,15 @@ extern void FUN_0100b5f8(uint32_t, uint32_t);
 #define U32(p,o) (*(volatile uint32_t *)((uintptr_t)(p) + (o)))
 #define U64(p,o) (*(volatile uint64_t *)((uintptr_t)(p) + (o)))
 
+/* Production panic is noreturn. Repeating the platform call if a test double
+ * returns preserves that contract without executing bytes from the following
+ * unrelated function. */
+static __attribute__((always_inline, noreturn)) inline void
+panic(uint32_t domain, uint32_t reason)
+{
+    for (;;) FUN_01008d00(domain, reason);
+}
+
 static __attribute__((always_inline)) inline void advance_receive_window(void *context)
 {
     uint64_t elapsed = FUN_01022f08() - U64(context, 0x350);
@@ -40,12 +49,10 @@ static __attribute__((always_inline)) inline void advance_receive_window(void *c
     uint16_t limit;
 
     if (high < (int32_t)(low == 0)) {
-        FUN_01008d00(0x30, 0x64c);
-        return;
+        panic(0x30, 0x64c);
     }
     if (high != 0 || low > 0xfffffffeu) {
-        FUN_01008d00(0x30, 0x64d);
-        return;
+        panic(0x30, 0x64d);
     }
 
     if (U8(context, 0xc6) == 0x0e) {
@@ -80,8 +87,7 @@ static __attribute__((always_inline)) inline void advance_receive_window(void *c
             return;
         }
         if (result != 1) {
-            FUN_01008d00(0x30, 0x68c);
-            return;
+            panic(0x30, 0x68c);
         }
         next = (uint16_t)(U16(context, 0x32e) + consumed);
         if ((U16(context, 0x32e) - U16(context, 0x2e0)) & 0x8000u) {
@@ -168,8 +174,7 @@ void FUN_01013650(void *context, uint32_t event)
 {
     uint32_t result;
     if (context == 0) {
-        FUN_01008d00(0x30, 0x97);
-        return;
+        panic(0x30, 0x97);
     }
     switch (event) {
     case 0: finish_interval(context); return;
@@ -183,16 +188,13 @@ void FUN_01013650(void *context, uint32_t event)
         return;
     case 7:
         if (U8(context, 0x31c) != 4) {
-            FUN_01008d00(0x30, 0xbb);
-            return;
+            panic(0x30, 0xbb);
         }
         U8(context, 0x31c) = 0;
         return;
     case 8:
-        FUN_01008d00(0x30, 0xc1);
-        return;
+        panic(0x30, 0xc1);
     default:
-        FUN_01008d00(0x30, 0xc5);
-        return;
+        panic(0x30, 0xc5);
     }
 }

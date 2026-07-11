@@ -1,4 +1,6 @@
-/* Reconstructed FUN_00070b38 @ 0x70b38  (parity: 1/1 trials, PROVEN) */
+/* Reconstructed FUN_00070b38 @ 0x70b38
+ * PROVEN: 240/240 bounded differential trials spanning loop counts 0..3 and
+ * symbols 0,1,2,4,8, with all eight table indices constrained in range. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned short ushort;
@@ -137,4 +139,3 @@ void FUN_00070b38(int param_1,int *param_2,uint param_3,uint param_4)
   }
   return;
 }
-

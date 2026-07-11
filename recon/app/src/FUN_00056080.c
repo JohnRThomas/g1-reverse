@@ -3,7 +3,7 @@
 #include <stdint.h>
 typedef int (*fnptr_t)(int,int,int);
 extern void FUN_0007e2fa(int a,int b,int c,int d);
-extern void FUN_0007e2ec(int a,int b);
+extern unsigned long long FUN_0007e2ec(int a,int b);
 extern void FUN_00086502(int a);
 void FUN_00056080(int param_1, int param_2)
 {
@@ -11,7 +11,7 @@ void FUN_00056080(int param_1, int param_2)
   int uVar1;
   if (param_2 == 0) {
     FUN_0007e2fa(0x99cbd, 0xf3aa8, 0xf3a5d, 0x46);
-    FUN_0007e2ec(0xf3a5d, 0x46);
+    param_2 = (int)(FUN_0007e2ec(0xf3a5d, 0x46) >> 32);
   }
   UNRECOVERED_JUMPTABLE = (fnptr_t)*(volatile uint32_t *)(param_2 + 4);
   uVar1 = *(volatile int *)(param_2 + 8);
@@ -21,4 +21,3 @@ void FUN_00056080(int param_1, int param_2)
   FUN_00086502(0x20003a60);
   (*UNRECOVERED_JUMPTABLE)(param_1, uVar1, 0xffffff92);
 }
-

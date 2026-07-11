@@ -183,7 +183,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
   int local_41c;
   int iStack_418;
   int local_414;
-  
+
   iVar4 = FUN_000181fc(0);
   local_520 = 0;
   uStack_51f = 0;
@@ -870,5 +870,3 @@ LAB_0000ef7e:
   FUN_0007c244((uintptr_t)&local_520,uVar12);
   return 0;
 }
-
-

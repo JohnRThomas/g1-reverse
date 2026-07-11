@@ -31,10 +31,64 @@ _CACHE = {}
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    ("net", 0x01013e98): 0x1cc,  # reviewed dispatcher code ends at 0x01014064
+    ("net", 0x01038654): 0x100,  # loop continuation ends at branch 0x01038752
     ("app", 0x1a064): 1764,
     ("app", 0x5fb8c): 218,
+    # Wrapper ends at the tail branch; catalog folded following utility code.
+    ("app", 0x50b8c): 36,
+    # Atomic release wrapper ends before the literal pool at 0x566f4.
+    ("app", 0x566a4): 0x50,
+    # The catalog stops inside the state-1 queue handler.  The default-state
+    # logger tail at 0x568da branches back into the shared epilogue; executable
+    # code therefore continues through the branch at 0x568e2.
+    ("app", 0x56704): 0x1e0,
+    # Four-argument dispatcher ends before literal data at 0x30d0a.
+    ("app", 0x30cd0): 0x3a,
+    # Privacy admission wrapper tail-branches at 0x5508a; next symbol starts 0x55094.
+    ("app", 0x5505c): 0x34,
+    ("app", 0x531cc): 0x8,
+    # Ten bytes of executable wrapper plus alignment/literal ownership to 0x4d586.
+    ("app", 0x4d578): 0xe,
+    # TBH case handlers and three fatal tails continue past catalog end 0x101d810.
+    ("net", 0x101d404): 0x478,
     # Ghidra folded nine following utility symbols into this wrapper.
     ("net", 0x103b1c4): 16,
+    # Thin adapter ends at the next symbol; old 174-byte extent absorbed eight.
+    ("net", 0x10294a2): 12,
+    # Null-guarded tail wrapper; old extent included FUN_0103b0f0.
+    ("net", 0x103b0e8): 8,
+    # Alignment adapter ends before the independent range-check helper.
+    ("net", 0x103b530): 8,
+    # Readiness wrapper ends before alignment/literal data and FUN_01037f14.
+    ("net", 0x1037f00): 14,
+    ("net", 0x100cb10): 20,
+    ("net", 0x101fc14): 22,
+    ("net", 0x1021838): 30,
+    ("net", 0x102e23c): 58,
+    ("net", 0x10323cc): 38,
+    ("net", 0x103a8d0): 22,
+    # Parser wrapper ends before arithmetic helper at 0x103a056 / a076.
+    ("net", 0x1039fe6): 112,
+    # Atomic bit-test/set owns code through 0x1034398; following words are literals.
+    ("net", 0x1034368): 48,
+    # The outer switch default handler continues through the terminal BL at
+    # 0x101b226; the catalog stops inside the preceding case body.
+    ("net", 0x101b15c): 0xce,
+    # NCS mpsc_pbuf_alloc is an internal entry omitted from the catalog.  Code
+    # ends at 0x4bdf2 and its owned assertion literal pool extends to 0x4be0c.
+    ("app", 0x4bc8c): 0x180,
+    # NCS mpsc_pbuf_claim internal entry; code ends at 0x4bfae and the owned
+    # checked-lock assertion literals end immediately before 0x4bfc8.
+    ("app", 0x4beb8): 0x110,
+}
+
+# Full-width fuzz values are not useful for caller-supplied iteration counts:
+# they only spend the instruction budget repeating an already-covered body.
+# Keep these reviewed loop counts small while the remaining arguments and RAM
+# state retain their normal randomized coverage.
+BOUNDED_RANDOM_ARGS = {
+    ("net", 0x01038654): {1: (0, 1, 2, 3)},
 }
 
 def core_ctx(core):
@@ -51,8 +105,12 @@ def core_ctx(core):
     return c
 
 def _reg(tok):
+    aliases = {"sb": 9, "sl": 10, "fp": 11, "ip": 12}
+    if tok.strip() in aliases: return aliases[tok.strip()]
     m = re.match(r'r(\d+)$', tok.strip())
     return int(m.group(1)) if m else None
+
+_RT = r'(?:r\d+|sb|sl|fp|ip)'
 
 def selector_values(rawread, va, size):
     """Return {arg_index (0..3): sorted list of interesting values}."""
@@ -65,12 +123,34 @@ def selector_values(rawread, va, size):
             vals.setdefault(ai, set()).update(vs)
     pending_bound = None                          # (regnum, k) from a recent cmp, may gate a switch
     skip_until = 0
+    stack_taint = {}                              # fixed SP spill slot -> arg taint
     for ins in _md.disasm(code, va):
         if ins.address < skip_until:
             continue
         m, ops = ins.mnemonic, ins.op_str
+        if m in ("bl", "blx"):
+            # ABI return registers are defined by the callee, not derived from
+            # the incoming pointer/scalar argument previously held in r0/r1.
+            taint[0] = set(); taint[1] = set()
+            continue
+        # Preserve argument provenance through the compiler's fixed stack
+        # spills (for example `str r1,[sp,#8]` followed by `ldr r3,[sp,#8]`).
+        # This is value flow, unlike the stale pointee taint intentionally
+        # cleared below when a register is overwritten by an arbitrary load.
+        stsp = re.match(r'(' + _RT + r'),\s*\[sp(?:,\s*#(0x[0-9a-fA-F]+|\d+))?\]$', ops) \
+               if m in ("str", "str.w") else None
+        if stsp:
+            rs, off = _reg(stsp.group(1)), int(stsp.group(2), 0) if stsp.group(2) else 0
+            stack_taint[off] = set(taint.get(rs, ()))
+            continue
+        ldsp = re.match(r'(' + _RT + r'),\s*\[sp(?:,\s*#(0x[0-9a-fA-F]+|\d+))?\]$', ops) \
+               if m in ("ldr", "ldr.w") else None
+        if ldsp:
+            rd, off = _reg(ldsp.group(1)), int(ldsp.group(2), 0) if ldsp.group(2) else 0
+            taint[rd] = set(stack_taint.get(off, ()))
+            continue
         # switch on a register
-        tb = re.search(r'\[pc,\s*(r\d+)', ops) if m in ("tbb", "tbh") else None
+        tb = re.search(r'\[pc,\s*(' + _RT + r')', ops) if m in ("tbb", "tbh") else None
         if tb:
             rn = _reg(tb.group(1))
             if pending_bound and pending_bound[0] == rn:
@@ -81,7 +161,7 @@ def selector_values(rawread, va, size):
             entries = (pending_bound[1] + 1) if pending_bound and pending_bound[0] == rn else 18
             skip_until = (ins.address + 4 + entries * (2 if m == "tbh" else 1) + 1) & ~1
         # cmp argReg, #imm
-        cm = re.match(r'(r\d+),\s*#(0x[0-9a-fA-F]+|\d+)$', ops) if m == "cmp" else None
+        cm = re.match(r'(' + _RT + r'),\s*#(0x[0-9a-fA-F]+|\d+)$', ops) if m in ("cmp", "cmp.w") else None
         if cm:
             rn = _reg(cm.group(1)); k = int(cm.group(2), 0)
             add(rn, {max(k - 1, 0), k, k + 1})
@@ -94,14 +174,14 @@ def selector_values(rawread, va, size):
             rn = _reg(ops.split(",")[0])
             if rn is not None: add(rn, {0, 1})
         # taint propagation: mov rd, rs
-        mv = re.match(r'(r\d+),\s*(r\d+)$', ops) if m in ("mov", "movs", "mov.w") else None
+        mv = re.match(r'(' + _RT + r'),\s*(' + _RT + r')$', ops) if m in ("mov", "movs", "mov.w") else None
         if mv:
             rd, rs = _reg(mv.group(1)), _reg(mv.group(2))
             if rd is not None: taint[rd] = set(taint.get(rs, ()))
         else:
             # any instruction writing a low reg (first operand) clears its taint,
             # except the compares/branches handled above
-            if m not in ("cmp", "cmn", "tst", "teq", "tbb", "tbh", "cbz", "cbnz",
+            if m not in ("cmp", "cmp.w", "cmn", "tst", "teq", "tbb", "tbh", "cbz", "cbnz",
                          "push", "str", "strb", "strh", "stm", "b", "bl", "bx", "blx") \
                and not m.startswith("b"):
                 first = ops.split(",")[0].strip()
@@ -156,11 +236,6 @@ def pointer_control_inputs(rawread, va, size):
                 width = 1 if m.startswith("ldrb") else 4
                 origin[rd] = ("ptr", base[1], base[2] + off, 0, width)
                 if width == 4: loaded_slots[rd] = (base[1], base[2] + off)
-                # Common firmware object ABI: callback/send vtable entry at
-                # object + 0x0c. Literal islands can prevent linear Capstone
-                # decoding from reaching the later BLX, so retain this slot.
-                if width == 4 and base[2] + off == 0x0c:
-                    callback_slots.add((base[1], base[2] + off))
             else:
                 origin[rd] = None; loaded_slots.pop(rd, None)
             continue
@@ -203,6 +278,13 @@ def pointer_control_inputs(rawread, va, size):
                 # is a pointer (regression: net FUN_01023ad8 arg1+1236).
                 if 0 <= slot[1] <= 0x100:
                     data_pointer_slots.add(slot)
+    # A small reviewed exception list covers functions whose literal islands
+    # stop linear decoding before the later BLX. Do not infer callbacks merely
+    # from a conventional-looking offset: +0x0c is rd_idx in mpsc_pbuf_free.
+    reviewed_callback_slots = {
+        0x1a064: {(0, 0x0c)},  # ble_process_get_req send callback
+    }
+    callback_slots.update(reviewed_callback_slots.get(va, ()))
     return cases, sorted(callback_slots), sorted(data_pointer_slots)
 
 def verify(core, name, trials_random=40):
@@ -230,6 +312,11 @@ def verify(core, name, trials_random=40):
     orig = ctx["read"](va, size, 64)
     rk = ctx["ret"](va)
     trials = len(ovs) + trials_random
+    bounded = BOUNDED_RANDOM_ARGS.get((core, va))
+    if bounded:
+        while len(ovs) < trials:
+            n = len(ovs)
+            ovs.append({ai: vals[n % len(vals)] for ai, vals in bounded.items()})
     callback_setup = [(ai, off, (0x00080001).to_bytes(4, "little"))
                       for ai, off in callback_slots]
     pointer_setup = [(ai, off, (0x20030000 + 0x100 * n).to_bytes(4, "little"))
@@ -247,20 +334,28 @@ def verify(core, name, trials_random=40):
     required_nptr = 1 + max([ai for ai, _, _ in ptr_cases] +
                             [ai for ai, _ in callback_slots] +
                             [ai for ai, _ in data_pointer_slots], default=-1)
-    nptr_modes = tuple(n for n in (2, 1, 3, 4) if n >= required_nptr)
+    nptr_modes = tuple(dict.fromkeys(
+        n for n in (max(1, required_nptr), 2, 1, 3, 4) if n >= required_nptr))
+    # Both cores use Zephyr's ARCH_EXCEPT(4): clear BASEPRI, load reason 4,
+    # SVC #2. The SVC is a production-noreturn runtime exception even though
+    # the compiler emits a defensive BX LR after it.
+    terminal_targets = ({0x01008d00, 0x0100ebb8, 0x01016828, 0x010256dc, 0x01039bb0}
+                        if core == "net" else {0x0007e2ec})
     for nptr in nptr_modes:
         if prefix_first:
             v = emu.compare(orig, va, size, cb + ct, cva, cs, code_base=ctx["cb"],
                             trials=trials, nptr=nptr, ret_kind=rk, no_return=True,
-                            arg_overrides=ovs, memory_overrides=movs)
+                            arg_overrides=ovs, memory_overrides=movs,
+                            terminal_targets=terminal_targets)
         else:
             v = emu.compare(orig, va, size, cb + ct, cva, cs, code_base=ctx["cb"],
                             trials=trials, nptr=nptr, ret_kind=rk, arg_overrides=ovs,
-                            memory_overrides=movs)
+                            memory_overrides=movs, terminal_targets=terminal_targets)
             if not v.get("pass") and v.get("checked") == 0:
                 v = emu.compare(orig, va, size, cb + ct, cva, cs, code_base=ctx["cb"],
                                 trials=trials, nptr=nptr, ret_kind=rk, no_return=True,
-                                arg_overrides=ovs, memory_overrides=movs)
+                                arg_overrides=ovs, memory_overrides=movs,
+                                terminal_targets=terminal_targets)
         if v.get("pass"):
             return {"status": "PASS", "selectors": selvals, "pointer_cases": ptr_cases,
                     "callback_slots": callback_slots, "data_pointer_slots": data_pointer_slots,
@@ -297,6 +392,10 @@ def self_test():
     assert cases == [(1, 0, x) for x in range(0x29, 0x3f)], cases
     assert (0, 0x0c) in slots, slots
     assert (0, 0x10) in data_slots, data_slots
+    # mpsc_pbuf_free has a real get_wlen callback at +0x1c. Its +0x0c member
+    # is the scalar rd_idx and must never be seeded as executable code.
+    _, free_slots, _ = pointer_control_inputs(c["rawread"], 0x4bfc8, 224)
+    assert free_slots == [(0, 0x1c)], free_slots
     n = core_ctx("net")
     _, _, bad_slots = pointer_control_inputs(n["rawread"], 0x1023ad8,
                                              n["sizes"][0x1023ad8])
@@ -306,10 +405,49 @@ def self_test():
     # FUN_0102f580 overwrites entry r3 with a PC-relative literal and later
     # with IPSR before CBZ. Neither branch is controlled by argument 3.
     assert selector_values(n["rawread"], 0x102f580, 36) == {}
+    # Capstone spells r10 as `sl`; the event switch in FUN_0101ab20 moves
+    # argument 1 there before CMP/TBB, so aliases must retain provenance.
+    assert set(range(10)) <= set(selector_values(n["rawread"], 0x101ab20, 532)[1])
     # FUN_0005fb8c's catalog ends at 0x5fc62, in the middle of its epilogue.
     # The reachable branch at 0x5fc64 proves the body extends through 0x5fc66.
     assert core_ctx("app")["sizes"][0x5fb8c] == 214
     assert true_extent(0x5fb8c, 214) == 218
+    # FUN_0102b900's production fatal path must remain reason 3 followed by
+    # runtime-exception SVC 2; this anchors the readable platform boundary to
+    # the exact shipped opcode sequence.
+    fatal = core_ctx("net")["rawread"](0x0102b926, 12)
+    assert fatal == bytes.fromhex("404080f311884ff0030002df"), fatal.hex()
+    # Net timing reconstruction spills arg1 to [sp,#8] before branching on
+    # the restored value. Directed coverage must retain that dependency.
+    nctx = core_ctx("net")
+    assert selector_values(nctx["rawread"], 0x101a38c, 1940).get(1) == [0, 1]
+
+    # Strict terminal-key regressions. Post-terminal state is absent by design;
+    # only the complete prefix hash, event count and call ordinal participate.
+    base = {"terminal": True, "terminal_call_ordinal": 2,
+            "terminal_event_count": 5, "terminal_prefix_hash": "abc"}
+    assert emu._terminal_key(base) == (2, 5, "abc")
+    assert emu._terminal_key({**base, "terminal_prefix_hash": "changed-write"}) != emu._terminal_key(base)
+    assert emu._terminal_key({**base, "terminal_call_ordinal": 3,
+                              "terminal_event_count": 6}) != emu._terminal_key(base)
+    assert emu._terminal_key({"terminal": False, "returned": True}) is None
+    # App assert_post_action is byte-for-byte the same Zephyr runtime-exception
+    # sequence as the net panic endpoint: BASEPRI=0; reason=4; SVC #2; BX LR.
+    assert ax.read(0x7e2ec, 14) == bytes.fromhex(
+        "404080f311884ff0040002df7047")
+    # Net fatal logger begins by saving the complete call context and disabling
+    # interrupts before entering its diagnostic output loop.
+    assert nx.read(0x010256dc, 6) == bytes.fromhex("1fb572b6134b")
+    # Prefix verification for a genuine reset loop must still reject a
+    # changed pre-loop write even though neither side returns.
+    loop_ok = bytes.fromhex("0121" "0160" "fee7")
+    loop_bad = bytes.fromhex("0221" "0160" "fee7")
+    v = emu.compare(loop_ok, 0x50000, len(loop_ok), loop_ok, 0x50000,
+                    len(loop_ok), trials=1, nptr=1, no_return=True)
+    assert v["pass"], v
+    v = emu.compare(loop_ok, 0x50000, len(loop_ok), loop_bad, 0x50000,
+                    len(loop_bad), trials=1, nptr=1, no_return=True)
+    assert not v["pass"], v
     return True
 
 if __name__ == "__main__":

@@ -4,7 +4,6 @@ extern unsigned long long thunk_FUN_01025034(void);
 extern int FUN_0100cfc0(unsigned short, void *, unsigned int, unsigned int);
 extern int FUN_0101e2fc(void *, int, int, int);
 extern void FUN_01008d00(unsigned int, unsigned int);
-extern unsigned int FUN_shadow_tail(void);
 
 #define DAT_01010574 0x21000f04
 
@@ -63,13 +62,7 @@ void FUN_01010470(int param_1)
                             (uVar9 - uVar7) - (unsigned int)!bVar10);
       if (iVar6 != 0) {
         FUN_01008d00(0x7a, 0x85);
-        /* This call is the very last instruction in the original 258-byte
-           window; the harness's oracle "returns" from it landing exactly at
-           fend, which immediately re-triggers as another out-of-body call,
-           forever. Replicate that infinite oracle ping-pong. */
-        for (;;) {
-          FUN_shadow_tail();
-        }
+        return;
       }
       iVar4 = FUN_0101e2fc(auStack_28, cVar3 + 1, cVar4, 2);
       if (iVar4 == 0) {
@@ -82,4 +75,3 @@ void FUN_01010470(int param_1)
   }
   return;
 }
-

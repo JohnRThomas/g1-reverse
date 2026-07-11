@@ -112,7 +112,8 @@ def run_sweeplist():
     core = sys.argv[2]; si = int(sys.argv[3]); ns = int(sys.argv[4])
     names = json.load(open(SCR + "/sweep_todo.json"))[core][si::ns]
     outp = SCR + "/reverify_%s_L%d.json" % (core, si)
-    if os.path.exists(outp):
+    recheck = os.environ.get("CFG_VERIFY_RECHECK") == "1"
+    if os.path.exists(outp) and not recheck:
         old = json.load(open(outp))
         res = {k: list(old.get(k, [])) for k in ("PASS", "FAIL", "other", "timeout")}
     else:
@@ -120,6 +121,7 @@ def run_sweeplist():
     done = set(sum((res[k] for k in res), []))
     timeout_s = int(os.environ.get("CFG_VERIFY_TIMEOUT", "120"))
     t0 = time.time()
+    processed = 0
     for i, nm in enumerate(names, 1):
         if nm in done:
             continue
@@ -137,10 +139,14 @@ def run_sweeplist():
         bucket = "PASS" if st == "PASS" else "FAIL" if st == "FAIL" else "timeout" if st == "timeout" else "other"
         res[bucket].append(nm)
         done.add(nm)
-        if i % 40 == 0:
-            print("[%s L%d] %d/%d fail=%d (%.0fs)" % (core, si, i, len(names),
-                  len(res["FAIL"]), time.time() - t0), flush=True)
-        json.dump(res, open(outp, "w"))
+        processed += 1
+        if processed % 20 == 0:
+            print("[%s L%d] %d/%d fail=%d timeout=%d (%.0fs)" % (core, si, len(done), len(names),
+                  len(res["FAIL"]), len(res["timeout"]), time.time() - t0), flush=True)
+        tmp = outp + ".tmp.%d" % os.getpid()
+        with open(tmp, "w") as fp:
+            json.dump(res, fp)
+        os.replace(tmp, outp)
     print("[%s L%d] DONE pass=%d FAIL=%d other=%d timeout=%d" % (core, si, len(res["PASS"]),
           len(res["FAIL"]), len(res["other"]), len(res["timeout"])), flush=True)
 

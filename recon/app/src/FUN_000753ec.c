@@ -1,4 +1,5 @@
 /* Reconstructed FUN_000753ec @ 0x753ec  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 static inline unsigned read_basepri(void){return __get_BASEPRI();}
 static inline void write_basepri(unsigned v){__set_BASEPRI(v);}

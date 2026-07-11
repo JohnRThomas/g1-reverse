@@ -1,7 +1,7 @@
 /* net-core FUN_0100e95c @ 0x100e95c  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void FUN_01008d00(unsigned int, unsigned int) __attribute__((noreturn));
 extern int FUN_0100cfc0(unsigned short, void*);
 extern int FUN_0100a17c(unsigned short);
 extern void FUN_0100ec40(void);
@@ -36,7 +36,7 @@ int FUN_0100e95c(unsigned int *param_1)
             return 1;
         }
         iVar6 = FUN_0100a17c(uVar1);
-        if (iVar6 == 0) { FUN_01008d00(0x2b, 0x67); return 0; }
+        if (iVar6 == 0) FUN_01008d00(0x2b, 0x67);
         iVar4 = FUN_010269ce(iVar6, uVar2);
         if (iVar4 == 0 || G_LEN < uVar2) { FUN_0100ec40(); return 1; }
         FUN_0102709e(iVar6, iVar4, &ptrA);
@@ -45,7 +45,7 @@ int FUN_0100e95c(unsigned int *param_1)
         FUN_0100e5dc(ptrA, 2);
         FUN_01025998((char *)ptrA + 3, uVar8, uVar2);
         iVar6 = FUN_01026acc(iVar6, uVar2);
-        if (iVar6 == 0) { FUN_01008d00(0x2b, 0x7c); return 0; }
+        if (iVar6 == 0) FUN_01008d00(0x2b, 0x7c);
         if (locA.b0 != 0) {
             int local_24 = locA.ctx;
             if (*(volatile unsigned char *)(local_24 + 0x2ea) != 0) {
@@ -71,7 +71,7 @@ int FUN_0100e95c(unsigned int *param_1)
             return 1;
         }
         iVar4 = FUN_0100a17c(uVar1);
-        if (iVar4 == 0) { FUN_01008d00(0x2b, 0x67); return 0; }
+        if (iVar4 == 0) FUN_01008d00(0x2b, 0x67);
         iVar5 = FUN_010269ce(iVar4, uVar2);
         if (iVar5 == 0 || G_LEN < uVar2) { FUN_0100ec40(); return 1; }
         FUN_0102709e(iVar4, iVar5, &ptrB);
@@ -82,7 +82,7 @@ int FUN_0100e95c(unsigned int *param_1)
         FUN_0100e5dc(ptrB, uVar7);
         FUN_01025998((char *)ptrB + 3, uVar8, uVar2);
         iVar6 = FUN_01026acc(iVar4, uVar2);
-        if (iVar6 == 0) { FUN_01008d00(0x2b, 0x7c); return 0; }
+        if (iVar6 == 0) FUN_01008d00(0x2b, 0x7c);
         if (locB.b0 != 0) {
             if (*(volatile unsigned char *)(locB.ctx + 0x2ea) != 0) {
                 *(volatile unsigned char *)(locB.ctx + 0x2ea) = 0;
@@ -94,5 +94,4 @@ int FUN_0100e95c(unsigned int *param_1)
         return iVar6;
     }
 }
-
 

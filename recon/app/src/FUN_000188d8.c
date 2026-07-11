@@ -7,10 +7,10 @@ extern int FUN_0004ee68(int,...);
 extern int FUN_0004f040(int,...);
 extern int FUN_0004f0ec(int,...);
 extern int FUN_0007c08e(int,...);
-extern int FUN_0007f4c8(void);
+extern int FUN_0007f4c8(int callback_object);
 extern int FUN_0007f594(int,...);
 void FUN_000188d8(void *param_1, void *param_2){
-  int uVar1 = FUN_0007f4c8();
+  int uVar1 = FUN_0007f4c8((int)param_1);
   DEBUG_PRINT(0x9a6f2);
   int iVar2 = FUN_0004ee68((int)param_1,(int)param_2);
   unsigned fmt = 0x9a71e;
@@ -29,4 +29,3 @@ L:
   FUN_0007c08e(0x20006ab4, 0xfffffffe);
   FUN_000187e8(uVar1, 1);
 }
-

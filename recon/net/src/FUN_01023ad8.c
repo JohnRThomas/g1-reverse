@@ -19,7 +19,6 @@ extern void FUN_01024e1c(u32,u32);
 extern u64  FUN_01025084(void);
 extern u32  FUN_010250d0(u32);
 extern void FUN_010256dc(u32,u32);
-extern void g1_fatal_physical_fallthrough(void);
 
 #define DAT_01023cfc 0x210016f0u
 #define CARRY4(a,b) ((u32)(a) > (0xFFFFFFFFu - (u32)(b)))
@@ -150,14 +149,14 @@ LAB_01023b1c:
 
 fatal_889:
   FUN_010256dc(0x70, 0x889);
+  return;
 fatal_858:
   FUN_010256dc(0x70, 0x858);
+  return;
 fatal_871:
   FUN_010256dc(0x70, 0x871);
+  return;
 fatal_894:
   FUN_010256dc(0x70, 0x894);
-  for (;;) {
-    g1_fatal_physical_fallthrough();
-  }
+  return;
 }
-

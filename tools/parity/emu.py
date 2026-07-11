@@ -54,6 +54,17 @@ SREG = [getattr(__import__("unicorn.arm_const", fromlist=["x"]),
                 "UC_ARM_REG_S%d" % i) for i in range(16)]
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 
+def _gpr_index(name):
+    """Map Capstone's ARM aliases to the r0-r12 indices used by REG."""
+    name = name.strip().lower()
+    aliases = {"sb": 9, "sl": 10, "fp": 11, "ip": 12}
+    if name in aliases:
+        return aliases[name]
+    if name.startswith("r") and name[1:].isdigit():
+        value = int(name[1:])
+        return value if 0 <= value < len(REG) else None
+    return None
+
 
 def _prng_fill(seed_bytes, n):
     """Deterministic keystream from SHA-256 in counter mode."""
@@ -76,6 +87,14 @@ def _oracle(idx):
     h = hashlib.sha256(struct.pack("<I", idx & 0xffffffff)).digest()
     return struct.unpack_from("<I", h, 0)[0], struct.unpack_from("<I", h, 4)[0]
 
+def _terminal_key(state):
+    """Strict semantic prefix identity through a production-noreturn call."""
+    if not state.get("terminal"):
+        return None
+    return (state.get("terminal_call_ordinal"),
+            state.get("terminal_event_count"),
+            state.get("terminal_prefix_hash"))
+
 
 class Runner:
     def __init__(self, func_va, func_size, func_bytes, code_base=CODE_BASE):
@@ -93,7 +112,8 @@ class Runner:
         return uc
 
     def run(self, seed, args, scratch_seed, max_insns=200000, stop_events=0,
-            memory_overrides=None):
+            memory_overrides=None, terminal_targets=None, terminal_ordinal=None,
+            detect_repeated_terminal=False):
         """Run one trial. Returns dict(state) or {'error':...}.
         stop_events>0: stop after that many side-effect events (for non-returning
         supervisor loops — we compare the ordered event-trace prefix instead of a
@@ -125,7 +145,8 @@ class Runner:
         uc.reg_write(UC_ARM_REG_SP, STACK_TOP)
         uc.reg_write(UC_ARM_REG_LR, RETURN_MAGIC | 1)
 
-        state = {"ncalls": 0, "returned": False, "events": []}
+        state = {"ncalls": 0, "returned": False, "events": [],
+                 "call_targets": [], "call_event_positions": []}
         fstart, fend = self.va, self.va + self.size
 
         # ordered event trace: every non-stack memory write + every call marker.
@@ -170,6 +191,20 @@ class Runner:
                 # original or candidate code.
                 raw = bytes(uc.mem_read(pc, size))
                 ins = next(_md.disasm(raw, pc), None)
+                # Zephyr's ARCH_EXCEPT(reason) is an in-body `svc #2` in the
+                # shipped image and a named platform-boundary call in readable
+                # reconstruction C. Represent both as the same terminal call
+                # event, preserving every preceding call/write in the prefix.
+                if ins and ins.mnemonic == "svc" and int(ins.op_str.lstrip("#"), 0) == 2:
+                    idx = state["ncalls"]
+                    state["ncalls"] += 1
+                    state["events"].append(("C", idx))
+                    state["call_targets"].append(pc & ~1)
+                    state["call_event_positions"].append(len(state["events"]) - 1)
+                    state["terminal"] = True
+                    state["terminal_call_ordinal"] = idx
+                    state["terminal_event_count"] = len(state["events"])
+                    uc.emu_stop(); return
                 if ins and re.match(r'^(?:ld|st)[arl]?ex', ins.mnemonic):
                     bm = re.search(r'\[(r\d+)\]', ins.op_str)
                     if bm:
@@ -182,12 +217,57 @@ class Runner:
                             state["alignment_fault"] = True
                             state["fault_pc"] = pc
                             uc.emu_stop(); return
+                        # Unicorn lacks reliable ARMv8-M LDAEX/STLEX support.
+                        # Emulate the architectural word forms symmetrically,
+                        # including the local exclusive monitor.
+                        if ins.mnemonic in ("ldaex", "ldrex"):
+                            rd = _gpr_index(ins.op_str.split(",")[0])
+                            if rd is None:
+                                return
+                            uc.reg_write(REG[rd], int.from_bytes(uc.mem_read(addr, 4), "little"))
+                            state["exclusive_addr"] = addr
+                            state["_resume"] = (pc + size) | 1
+                            uc.emu_stop(); return
+                        if ins.mnemonic in ("stlex", "strex"):
+                            parts = [x.strip() for x in ins.op_str.split(",")]
+                            rd, rs = _gpr_index(parts[0]), _gpr_index(parts[1])
+                            if rd is None or rs is None:
+                                return
+                            ok = state.get("exclusive_addr") == addr
+                            if ok: uc.mem_write(addr, int(uc.reg_read(REG[rs])).to_bytes(4, "little"))
+                            uc.reg_write(REG[rd], 0 if ok else 1)
+                            state.pop("exclusive_addr", None)
+                            state["_resume"] = (pc + size) | 1
+                            uc.emu_stop(); return
+                if ins and ins.mnemonic in ("lda", "ldr") and ins.mnemonic == "lda":
+                    mm = re.match(r'r(\d+),\s*\[r(\d+)\]', ins.op_str)
+                    if mm:
+                        rd, rb = int(mm.group(1)), int(mm.group(2)); addr = uc.reg_read(REG[rb])
+                        uc.reg_write(REG[rd], int.from_bytes(uc.mem_read(addr, 4), "little"))
+                        state["_resume"] = (pc + size) | 1
+                        uc.emu_stop(); return
                 return  # normal in-body execution
             # out of body: a call or tail-branch to another function -> oracle it
             lr = uc.reg_read(UC_ARM_REG_LR)
             idx = state["ncalls"]
             state["ncalls"] += 1
             state["events"].append(("C", idx))
+            state["call_targets"].append(pc & ~1)
+            state["call_event_positions"].append(len(state["events"]) - 1)
+            if ((terminal_targets and (pc & ~1) in terminal_targets) or
+                    (terminal_ordinal is not None and idx == terminal_ordinal)):
+                state["terminal"] = True
+                state["terminal_call_ordinal"] = idx
+                state["terminal_event_count"] = len(state["events"])
+                uc.emu_stop(); return
+            if (detect_repeated_terminal and len(state["call_targets"]) >= 2 and
+                    state["call_targets"][-1] == state["call_targets"][-2]):
+                # Candidate panic loops call the same generated stub forever.
+                # The first of the repeated pair is the semantic terminal event.
+                state["terminal"] = True
+                state["terminal_call_ordinal"] = idx - 1
+                state["terminal_event_count"] = state["call_event_positions"][-2] + 1
+                uc.emu_stop(); return
             if stop_events and len(state["events"]) >= stop_events:
                 state["capped_events"] = True; uc.emu_stop(); return
             o0, o1 = _oracle(idx)
@@ -214,6 +294,8 @@ class Runner:
                     break
                 if state.get("capped_events"):
                     break  # collected enough events for a non-returning function
+                if state.get("terminal"):
+                    break
                 resume = state.get("_resume")
                 if resume is None:
                     break  # stopped w/o call/return (count limit)
@@ -245,12 +327,22 @@ class Runner:
         except UcError:
             s0 = s1 = 0
         ev = state["events"]
+        terminal_count = state.get("terminal_event_count")
+        terminal_events = ev[:terminal_count] if terminal_count else ev
         eh = hashlib.sha256(repr(ev).encode()).hexdigest()
         ph = hashlib.sha256(repr(ev[:stop_events] if stop_events else ev).encode()).hexdigest()
         return {"r0": r0, "r1": r1, "s0": s0, "s1": s1,
                 "returned": state["returned"], "prefix_hash": ph,
                 "events_hash": eh, "ncalls": state["ncalls"],
-                "nevents": len(ev)}
+                "nevents": len(ev), "terminal": bool(state.get("terminal")),
+                "terminal_call_ordinal": state.get("terminal_call_ordinal"),
+                "terminal_event_count": terminal_count,
+                "terminal_prefix_hash": hashlib.sha256(repr(terminal_events).encode()).hexdigest(),
+                "last_call_event_count": (state["call_event_positions"][-1] + 1
+                                          if state["call_event_positions"] else None),
+                "last_call_prefix_hash": (hashlib.sha256(
+                    repr(ev[:state["call_event_positions"][-1] + 1]).encode()).hexdigest()
+                    if state["call_event_positions"] else None)}
 
 
 def make_args(seed, nptr=2):
@@ -285,7 +377,7 @@ def compare(orig_bytes, orig_va, orig_size,
             cand_bytes, cand_va, cand_size,
             code_base=CODE_BASE, trials=64, nptr=2, verbose=False,
             ret_kind="i32", no_return=False, prefix_k=200, arg_overrides=None,
-            memory_overrides=None):
+            memory_overrides=None, terminal_targets=None):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
     first len(arg_overrides) trials pin those argument registers to the specified
     values (control-flow-derived, to guarantee every branch/switch-case is
@@ -330,9 +422,33 @@ def compare(orig_bytes, orig_va, orig_size,
                 if 0 <= i < len(args):
                     args[i] = v & 0xffffffff
         mov = memory_overrides[t] if memory_overrides and t < len(memory_overrides) else None
-        a = ro.run(t, args, t, stop_events=se, memory_overrides=mov)
+        run_cap = 5000 if no_return else 200000
+        a = ro.run(t, args, t, max_insns=run_cap, stop_events=se, memory_overrides=mov,
+                   terminal_targets=terminal_targets)
         # candidate emulated at its own VA but identical inputs/scratch
-        b = rc.run(t, args, t, stop_events=se, memory_overrides=mov)
+        b = rc.run(t, args, t, max_insns=run_cap, stop_events=se, memory_overrides=mov,
+                   terminal_ordinal=(a.get("terminal_call_ordinal")
+                                     if a.get("terminal") else None),
+                   detect_repeated_terminal=False)
+        if a.get("terminal"):
+            # A readable noreturn declaration can still compile as BL followed
+            # by an epilogue instead of a tail branch. If the matching ordinal
+            # is the candidate's final call and it immediately returns without
+            # another side effect, that call is the semantic terminal.
+            ordinal = a.get("terminal_call_ordinal")
+            if (not b.get("terminal") and b.get("returned") and
+                    ordinal is not None and b.get("ncalls") == ordinal + 1 and
+                    b.get("last_call_event_count") == b.get("nevents")):
+                b["terminal"] = True
+                b["terminal_call_ordinal"] = ordinal
+                b["terminal_event_count"] = b.get("last_call_event_count")
+                b["terminal_prefix_hash"] = b.get("last_call_prefix_hash")
+            checked += 1
+            ka = _terminal_key(a)
+            kb = _terminal_key(b)
+            if not b.get("terminal") or ka != kb:
+                mism.append((t, "terminal-prefix", ka, kb, b.get("returned")))
+            continue
         if no_return and "error" not in a and "error" not in b:
             # Non-returning supervisor loop: compare the ordered side-effect
             # prefix (calls + memory writes). Robust to instructions-per-loop
@@ -385,6 +501,7 @@ def compare(orig_bytes, orig_va, orig_size,
 if __name__ == "__main__":
     # self-test: identical bytes must always pass
     import sys
+    assert [_gpr_index(x) for x in ("r9", "sb", "sl", "fp", "ip")] == [9, 9, 10, 11, 12]
     va = 0x50000
     # leaf: movs r0,#5 ; bx lr   -> returns constant 5
     leaf = bytes.fromhex("0520" "7047")

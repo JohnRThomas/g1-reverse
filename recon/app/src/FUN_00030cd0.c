@@ -1,4 +1,4 @@
-/* Reconstructed FUN_00030cd0 @ 0x30cd0 */
+/* Reconstructed FUN_00030cd0 @ 0x30cd0  true code extent: 0x3a bytes */
 #include <stdint.h>
 
 extern int DEBUG_PRINT(uint32_t, ...);

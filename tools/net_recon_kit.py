@@ -13,6 +13,10 @@ NET_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/net/src"
 LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
+TRUE_SIZE_OVERRIDES = {
+    # CFG-reviewed TBH handlers and fatal tails through 0x101d87c.
+    0x0101d404: 0x478,
+}
 def _load():
     global _fw
     if _fw is None:
@@ -31,7 +35,7 @@ def info(va):
     f = fw.get(va) or fw.get(va & ~1)
     if not f:
         return None
-    size = f["size"]
+    size = TRUE_SIZE_OVERRIDES.get(f["entry"], f["size"])
     code = nx.func_bytes_padded(f["entry"], size, 8)
     lines = []
     for i in _md.disasm(code, f["entry"]):
@@ -69,6 +73,7 @@ def _ret_kind(va):
     return "i32"
 
 def prove(va, size, name, csrc, nptr=2, trials=300, save_src=True):
+    size = TRUE_SIZE_OVERRIDES.get(va, size)
     rk = _ret_kind(va)
     orig = nx.func_bytes_padded(va, size, pad=64)
     comp, err = recon.compile_func(csrc, name, va)

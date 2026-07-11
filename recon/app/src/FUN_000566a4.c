@@ -1,22 +1,22 @@
-/* Reconstructed FUN_000566a4 @ 0x566a4  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_000566a4 @ 0x566a4  true code extent: 0x50 bytes */
 #include <stdint.h>
-extern int FUN_0007e2fa(int, ...);
-extern int FUN_0007e2ec(int,int);
-extern int FUN_00055aac(int);
 
-void FUN_000566a4(int param_1)
+extern void FUN_0007e2fa(uint32_t module, ...);
+extern void FUN_0007e2ec(uint32_t source, uint32_t line);
+extern void FUN_00055aac(void *object);
+
+void FUN_000566a4(uint8_t *object)
 {
-    int *piVar4 = (int *)(param_1 + 0xd0);
-    int iVar3 = *piVar4;
-    *piVar4 = iVar3 - 1;
-    if (iVar3 < 1) {
-        FUN_0007e2fa(0, 0, 0, 0x525);
-        FUN_0007e2fa(0);
-        FUN_0007e2ec(0, 0x525);
-    }
-    if ((*(short *)(param_1 + 2) == 0x101) && (*piVar4 == 0)) {
-        FUN_00055aac(param_1);
-    }
-    return;
-}
+    uint32_t *references = (uint32_t *)(object + 0xd0);
+    uint32_t previous = __atomic_fetch_sub(references, 1, __ATOMIC_ACQ_REL);
 
+    if ((int32_t)previous <= 0) {
+        FUN_0007e2fa(0x00099cbd, 0x000f3c07, 0x000f3a5d, 0x525);
+        FUN_0007e2fa(0x000f3c0f);
+        FUN_0007e2ec(0x000f3a5d, 0x525);
+    }
+
+    if (*(volatile uint16_t *)(object + 2) == 0x101 &&
+        __atomic_load_n(references, __ATOMIC_ACQUIRE) == 0)
+        FUN_00055aac(object);
+}

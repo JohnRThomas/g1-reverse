@@ -1,29 +1,37 @@
-/* Reconstructed FUN_0003384c @ 0x3384c  (parity: 300/300 trials, PROVEN) */
+/* Full owned-CFG reconstruction FUN_0003384c @ 0x3384c. */
 #include <stdint.h>
-extern int DEBUG_PRINT(void);
-extern void FUN_0000ef12(void);
-extern int FUN_000167a8(void);
-extern int FUN_00019c70(void);
-extern int FUN_00033730(void);
-extern int FUN_00087036(void);
 
-int FUN_0003384c(int param_1)
+extern uint32_t DEBUG_PRINT(uintptr_t format, ...);
+extern uint32_t FUN_0000ef12(uint32_t command);
+extern uintptr_t FUN_000167a8(void);
+extern uint32_t FUN_00019c70(uintptr_t format, ...);
+extern uint32_t FUN_00033730(void *transport, const void *name,
+                             const void *payload);
+extern int FUN_00087036(uint32_t command, const void *name, uint32_t value);
+
+uint32_t FUN_0003384c(const uint8_t *request)
 {
-    int iVar4;
-    int cVar5;
+    const uint32_t *commands = (const uint32_t *)0x000883c8u;
+    uint32_t command_copy[9];
+    unsigned int i;
 
-    if (param_1 == 0) return 0;
-    cVar5 = 9;
-    do {
-        FUN_0000ef12();
-        iVar4 = FUN_00087036();
-        if (iVar4 == 0) {
-            if (*(volatile int*)0x20007554 == 0) return DEBUG_PRINT();
-            return FUN_00019c70();
+    if (request == 0)
+        return 0;
+
+    for (i = 0; i < 9; ++i)
+        command_copy[i] = commands[i];
+
+    for (i = 0; i < 9; ++i) {
+        uint32_t value = FUN_0000ef12(command_copy[i]);
+        if (FUN_00087036(command_copy[i], request + 0x10, value) == 0) {
+            if (*(volatile int *)0x20007554u == 0)
+                return DEBUG_PRINT(0x000a7bf5u, 0x000a833eu,
+                                   0x137, request + 0x10);
+            return FUN_00019c70(0x000a7bf5u, 0x000a833eu,
+                                0x137, request + 0x10);
         }
-        cVar5 = (cVar5 - 1) & 0xff;
-    } while (cVar5 != 0);
-    FUN_000167a8();
-    return FUN_00033730();
-}
+    }
 
+    return FUN_00033730((void *)(FUN_000167a8() + 0x77c),
+                         request + 0x10, request + 0x30);
+}

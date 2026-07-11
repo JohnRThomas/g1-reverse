@@ -2,9 +2,9 @@
 #include <stdint.h>
 extern int DEBUG_PRINT(int, ...);
 extern int FUN_000167a8(void);
-extern int FUN_000181fc(void);
+extern int FUN_000181fc(int);
 extern int FUN_00018bb4(int);
-extern int FUN_00019c70(int);
+extern int FUN_00019c70(uintptr_t, ...);
 extern int FUN_00072880(int);
 extern int FUN_0007c0c8(void);
 extern int FUN_00086c78(int,int,int);
@@ -20,12 +20,14 @@ void FUN_00018c48(int param_1, unsigned char *param_2, int param_3)
     int iVar6, iVar7, iVar8;
     unsigned int uVar9, uVar10;
 
-    iVar6 = FUN_000181fc();
+    iVar6 = FUN_000181fc(param_1);
     if (0 < *piVar4) {
         if (*g_d70 == 0) {
             DEBUG_PRINT(0x9a992, 0x9b20d, (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
         } else {
-            FUN_00019c70(0);
+            FUN_00019c70(0x9a992, 0x9b20d, (unsigned int)*param_2,
+                         *(volatile unsigned int*)0x20007554, param_1,
+                         (uintptr_t)param_2, param_3);
         }
     }
     if (*param_2 == 0) {
@@ -61,7 +63,10 @@ void FUN_00018c48(int param_1, unsigned char *param_2, int param_3)
                                             DEBUG_PRINT(0x9a9cd, 0x9b20d, *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         } else {
-                                            FUN_00019c70(0x9a9cd);
+                                            FUN_00019c70(0x9a9cd, 0x9b20d,
+                                                         *piVar3,
+                                                         (unsigned int)*(unsigned char *)((int)piVar3 + 4),
+                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         }
                                     }
                                     FUN_00086c78(iVar6 + 0x34, 0, 0x1b4);
@@ -77,4 +82,3 @@ void FUN_00018c48(int param_1, unsigned char *param_2, int param_3)
     }
     return;
 }
-

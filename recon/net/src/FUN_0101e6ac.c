@@ -3,7 +3,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-extern void FUN_01008d00(int,int) __attribute__((noreturn));
+extern void FUN_01008d00(int,int);
 extern int FUN_01009f58(u16,u16,u16,u8,u8);
 extern int FUN_0100d14c(void*,int);
 extern u32 FUN_0100d600(u16);
@@ -77,6 +77,7 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
                               puVar2[0], puVar2[1]);
     if (iVar5 != 0) {
         FUN_01008d00(0x39, 0xffb);
+        return 0;
     }
 
     u32 rc = FUN_01028256();
@@ -130,4 +131,3 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
     FUN_0100d14c(param_1, 1);
     return uVar6c;
 }
-

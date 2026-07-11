@@ -1,4 +1,4 @@
-/* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */
+/* net-core FUN_010323cc @ 0x10323cc — true CFG extent 38 bytes (ends 0x10323f2) */
 /* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */
 /* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */
 /* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */
@@ -16,7 +16,6 @@ unsigned int FUN_010323cc(int param_1, unsigned char *param_2)
   }
   return FUN_0102665c(param_1, (void*)param_2);
 }
-
 
 
 

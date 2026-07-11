@@ -1,10 +1,8 @@
 /* net-core FUN_0102d1c0 @ 0x102d1c0 */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern uint32_t FUN_0103a6c6(void);
-/* Returns zero when the caller-established exclusive reservation permits the
- * byte store, mirroring ARM STREXB. */
-extern uint32_t g1_store_exclusive_u8(volatile uint8_t *address, uint8_t value);
 
 uint8_t FUN_0102d1c0(void)
 {
@@ -20,7 +18,7 @@ uint8_t FUN_0102d1c0(void)
     uint8_t next;
     uint32_t now;
 
-    if (g1_store_exclusive_u8(lock, 0) != 0)
+    if (__STREXB(0, lock) != 0)
         goto disable;
 
     active = *enabled;
