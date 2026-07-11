@@ -1,44 +1,27 @@
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
+/* net-core FUN_01033354 @ 0x1033354 */
+#include <stdint.h>
 
 extern void FUN_01033ee4(void);
 extern void FUN_01032908(void);
-extern void FUN_01035068(int);
+extern void FUN_01035068(uint32_t);
 extern void FUN_01033f38(void);
-extern unsigned long long FUN_010327a0(int,int);
-extern void FUN_0103b62e(int,int,int);
+extern uint64_t FUN_010327a0(uint32_t, uint32_t);
+extern void FUN_0103b62e(uint32_t, uint32_t, uint32_t);
 extern void FUN_0103a83e(void);
-__attribute__((naked)) void FUN_01033354(void)
+
+void FUN_01033354(void)
 {
-    __asm__ volatile(
-        "push {r4,lr}\n"
-        "movs r4,#0\n"
-        "bl FUN_01033ee4\n"
-        "bl FUN_01032908\n"
-        "ldr r0, =0x21000698\n"
-        "bl FUN_01035068\n"
-        "bl FUN_01033f38\n"
-        "ldr r2, =0x41008000\n"
-        "mov r1,r4\n"
-        "ldr.w r3,[r2,#0x650]\n"
-        "ldr r0, =0x21004b7c\n"
-        "and r3,r3,#0x300\n"
-        "str.w r3,[r2,#0x650]\n"
-        "ldr r3, =0x21006458\n"
-        "strb r4,[r3]\n"
-        "ldr r3, =0x21006459\n"
-        "strb r4,[r3]\n"
-        "bl FUN_010327a0\n"
-        "movs r2,#0x20\n"
-        "bl FUN_0103b62e\n"
-        "ldr r3, =0x21006256\n"
-        "str r4,[r3]\n"
-        "str r4,[r3,#4]\n"
-        "pop.w {r4,lr}\n"
-        "b.w FUN_0103a83e\n"
-    );
+    FUN_01033ee4();
+    FUN_01032908();
+    FUN_01035068(0x21000698u);
+    FUN_01033f38();
+    volatile uint32_t *radio = (volatile uint32_t *)0x41008650u;
+    *radio &= 0x300u;
+    *(volatile uint8_t *)0x21006458u = 0;
+    *(volatile uint8_t *)0x21006459u = 0;
+    uint64_t value = FUN_010327a0(0x21004b7cu, 0);
+    FUN_0103b62e((uint32_t)value, (uint32_t)(value >> 32), 0x20u);
+    *(volatile uint32_t *)0x21006256u = 0;
+    *(volatile uint32_t *)0x2100625au = 0;
+    FUN_0103a83e();
 }
-
-
-

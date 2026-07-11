@@ -9,7 +9,7 @@ Modes:
 READ-ONLY. Fast path: nptr=2 first (false proofs are arg-VALUE bugs, nptr-agnostic),
 escalate nptr only on fail; trials default 40.
 """
-import sys, os, re, json, glob, time
+import sys, os, re, json, glob, time, subprocess
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract as ax, net_extract as nx
 from parity import recon, emu
@@ -111,21 +111,38 @@ def run_sweeplist():
     import cfg_verify
     core = sys.argv[2]; si = int(sys.argv[3]); ns = int(sys.argv[4])
     names = json.load(open(SCR + "/sweep_todo.json"))[core][si::ns]
-    res = {"PASS": [], "FAIL": [], "other": []}
     outp = SCR + "/reverify_%s_L%d.json" % (core, si)
+    if os.path.exists(outp):
+        old = json.load(open(outp))
+        res = {k: list(old.get(k, [])) for k in ("PASS", "FAIL", "other", "timeout")}
+    else:
+        res = {"PASS": [], "FAIL": [], "other": [], "timeout": []}
+    done = set(sum((res[k] for k in res), []))
+    timeout_s = int(os.environ.get("CFG_VERIFY_TIMEOUT", "120"))
     t0 = time.time()
     for i, nm in enumerate(names, 1):
+        if nm in done:
+            continue
         try:
-            st = cfg_verify.verify(core, nm)["status"]
+            env = dict(os.environ, PYTHONSAFEPATH="1")
+            cp = subprocess.run([sys.executable, BASE + "/tools/cfg_verify.py", core, nm],
+                                cwd="/private/tmp", env=env, capture_output=True,
+                                text=True, timeout=timeout_s)
+            m = re.search(r'^\S+\s+(PASS|FAIL|\S+)', cp.stdout, re.M)
+            st = m.group(1) if m else "other-exc"
+        except subprocess.TimeoutExpired:
+            st = "timeout"
         except Exception:
             st = "other-exc"
-        (res["PASS"] if st == "PASS" else res["FAIL"] if st == "FAIL" else res["other"]).append(nm)
+        bucket = "PASS" if st == "PASS" else "FAIL" if st == "FAIL" else "timeout" if st == "timeout" else "other"
+        res[bucket].append(nm)
+        done.add(nm)
         if i % 40 == 0:
             print("[%s L%d] %d/%d fail=%d (%.0fs)" % (core, si, i, len(names),
                   len(res["FAIL"]), time.time() - t0), flush=True)
         json.dump(res, open(outp, "w"))
-    print("[%s L%d] DONE pass=%d FAIL=%d other=%d" % (core, si, len(res["PASS"]),
-          len(res["FAIL"]), len(res["other"])), flush=True)
+    print("[%s L%d] DONE pass=%d FAIL=%d other=%d timeout=%d" % (core, si, len(res["PASS"]),
+          len(res["FAIL"]), len(res["other"]), len(res["timeout"])), flush=True)
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "sweep"

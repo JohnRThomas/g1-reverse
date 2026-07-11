@@ -1,4 +1,5 @@
 /* Reconstructed FUN_00028a1c @ 0x28a1c  (parity: 60/60 trials, PROVEN) */
+/* CFG_VERIFY_PREFIX_FIRST: modeled first oracle result cannot take the only return. */
 
 #include <stdint.h>
 
@@ -144,5 +145,4 @@ LAB_00028b4e:
   iVar7 = iVar6;
   goto LAB_00028a32;
 }
-
 

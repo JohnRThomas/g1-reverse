@@ -25,10 +25,13 @@ int FUN_0005b754(int param_1, int *param_2)
     FUN_0007e2fa(0x99cbd, 0xf4b3d, 0xf46b8, 0xae3);
     FUN_0007e2fa(0xf4a0a);
     uVar2 = 0xae3;
+    FUN_0007e2ec(0xf46b8, uVar2);
+    param_2 = (int *)0xae3;
   } else {
+again:
     if (param_2[1] != 0 || param_2[0] != 0) {
       iVar1 = FUN_0008270c(0x200020d4);
-      if (-1 < (iVar1 << 0x1d)) {
+      if ((iVar1 & 4) == 0) {
         return 0xfffffff5;
       }
       if (param_1 != 0 && *(char*)(param_1+0xd) != 7) {
@@ -49,7 +52,7 @@ LAB:
           local_26 = 0x2803;
           iVar1 = FUN_00080d3e(*local_24, local_28);
           if (iVar1 == 0) {
-            if (-1 < (int)((unsigned int)(*(unsigned char*)(local_24[3]+6)) << 0x1b)) {
+            if ((*(unsigned char*)(local_24[3]+6) & 0x10) == 0) {
               return 0xffffffea;
             }
             local_20 = (unsigned short)FUN_00082c0e();
@@ -72,8 +75,10 @@ LAB:
     FUN_0007e2fa(0x99cbd, 0xf4b44, 0xf46b8, 0xae4);
     FUN_0007e2fa(0xf4a0a);
     uVar2 = 0xae4;
+    FUN_0007e2ec(0xf46b8, uVar2);
+    param_2 = (int *)0xae4;
+    goto again;
   }
-  FUN_0007e2ec(0xf46b8, uVar2);
-  return 0;
+  /* A returning diagnostic oracle continues at the common dereference. */
+  goto again;
 }
-

@@ -1,58 +1,29 @@
-/* net-core FUN_01008d00 @ 0x1008d00  (parity 300 trials PROVEN) */
+/* net-core FUN_01008d00 @ 0x1008d00 */
+#include <stdint.h>
 
-__attribute__((naked)) void FUN_01008d00(void)
+typedef void (*panic_print_fn)(const char *);
+
+__attribute__((noreturn)) void FUN_01008d00(uint32_t reason)
 {
-    __asm__ volatile(
-        "push {r0, r1, r2, r3, r7, lr}\n"
-        "cpsid i\n"
-        "ldr r3, =0x21000a30\n"
-        "ldr r5, [r3, #0x28]\n"
-        "cbnz r5, LL44\n"
-        "LL0a:\n"
-        "dsb sy\n"
-        "ldr r1, =0xe000ed00\n"
-        "ldr r3, =0x05fa0004\n"
-        "ldr r2, [r1, #0xc]\n"
-        "and r2, r2, #0x700\n"
-        "orrs r3, r2\n"
-        "str r3, [r1, #0xc]\n"
-        "dsb sy\n"
-        "LL20:\n"
-        "nop\n"
-        "b LL20\n"
-        "LL24:\n"
-        "udiv r4, r4, r6\n"
-        "LL28:\n"
-        "uxtb r3, r2\n"
-        "adds r2, #1\n"
-        "cmp r4, #0\n"
-        "bne LL24\n"
-        "add.w r2, r3, #0x10\n"
-        "add r2, sp, r2\n"
-        "strb r4, [r2, #-0xc]\n"
-        "movs r4, #0xa\n"
-        "LL3c:\n"
-        "cbnz r3, LL4c\n"
-        "add r0, sp, #4\n"
-        "blx r5\n"
-        "b LL0a\n"
-        "LL44:\n"
-        "mov r4, r0\n"
-        "movs r2, #0\n"
-        "movs r6, #0xa\n"
-        "b LL28\n"
-        "LL4c:\n"
-        "subs r3, #1\n"
-        "uxtb r3, r3\n"
-        "add.w r2, r3, #0x10\n"
-        "add.w r6, sp, r2\n"
-        "uxtb r2, r0\n"
-        "udiv r7, r2, r4\n"
-        "mls r2, r4, r7, r2\n"
-        "adds r2, #0x30\n"
-        "udiv r0, r0, r4\n"
-        "strb r2, [r6, #-0xc]\n"
-        "b LL3c\n"
-    );
-}
+    panic_print_fn print = *(panic_print_fn volatile *)0x21000a58U;
+    if (print != 0) {
+        char text[12];
+        unsigned length = 0;
+        uint32_t n = reason;
+        do {
+            ++length;
+            n /= 10U;
+        } while (n != 0);
+        text[length] = '\0';
+        n = reason;
+        while (length != 0) {
+            text[--length] = (char)('0' + n % 10U);
+            n /= 10U;
+        }
+        print(text);
+    }
 
+    volatile uint32_t *aircr = (volatile uint32_t *)0xe000ed0cU;
+    *aircr = 0x05fa0004U | (*aircr & 0x700U);
+    for (;;) { }
+}

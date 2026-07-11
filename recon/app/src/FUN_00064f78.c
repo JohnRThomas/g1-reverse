@@ -11,4 +11,3 @@ void FUN_00064f78(unsigned int param_1, int param_2, unsigned int param_3, unsig
   }
   *(volatile unsigned int *)(param_2 + 0x80) = val | 0x80000000UL;
 }
-

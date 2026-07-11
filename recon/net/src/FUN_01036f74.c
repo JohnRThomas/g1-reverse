@@ -1,54 +1,33 @@
-/* net-core FUN_01036f74 @ 0x1036f74  (parity 300 trials PROVEN) */
-/* net-core FUN_01036f74 @ 0x1036f74  (parity 300 trials PROVEN) */
-/* net-core FUN_01036f74 @ 0x1036f74  (parity 300 trials PROVEN) */
+/* net-core FUN_01036f74 @ 0x1036f74 */
+#include <stdint.h>
 
-extern void FUN_01036f24(int);
-extern void FUN_01039bbe(int,int,int,int,int);
-extern void FUN_01039bb0(int,int);
-__attribute__((naked)) void FUN_01036f74(void)
+extern void FUN_01036f24(void *node);
+extern void FUN_01039bbe(uintptr_t file, uintptr_t message, unsigned line, ...);
+extern void FUN_01039bb0(uintptr_t message, unsigned line);
+
+void FUN_01036f74(int force_advance)
 {
-    __asm__ volatile(
-        "push {r3,r4,r5,lr}\n"
-        "ldr r5, =0x21004b28\n"
-        "mov r3, r5\n"
-        "ldr r4, [r3, #0x18]!\n"
-        "cmp r4, r3\n"
-        "beq 1f\n"
-        "cbnz r4, 2f\n"
-        "1:\n"
-        "ldr r4, [r5, #0xc]\n"
-        "2:\n"
-        "ldr r3, [r5, #8]\n"
-        "cbnz r0, 3f\n"
-        "cbnz r3, 4f\n"
-        "ldr r1, =0x0103eb0e\n"
-        "ldr r0, =0x0103d2a7\n"
-        "movs r2, #0x8f\n"
-        "bl FUN_01039bbe\n"
-        "movs r1, #0x8f\n"
-        "ldr r0, =0x0103eb0e\n"
-        "bl FUN_01039bb0\n"
-        "4:\n"
-        "ldrb r2, [r3, #0xd]\n"
-        "lsls r2, r2, #0x1b\n"
-        "bne 3f\n"
-        "ldr r2, [r4, #0x18]\n"
-        "cbnz r2, 3f\n"
-        "ldrh r2, [r3, #0xe]\n"
-        "cmp r2, #0x7f\n"
-        "bhi 6f\n"
-        "3:\n"
-        "cmp r4, r3\n"
-        "beq 5f\n"
-        "mov r0, r4\n"
-        "bl FUN_01036f24\n"
-        "5:\n"
-        "mov r3, r4\n"
-        "6:\n"
-        "str r3, [r5, #0x14]\n"
-        "pop {r3,r4,r5,pc}\n"
-    );
+    uint8_t *state = (uint8_t *)0x21004b28;
+    uint8_t *head = *(uint8_t **)(state + 8);
+    uint8_t *candidate = *(uint8_t **)(state + 0x18);
+
+    if (candidate == state + 0x18 || candidate == 0)
+        candidate = *(uint8_t **)(state + 0x0c);
+
+    if (force_advance == 0) {
+        if (head == 0) {
+            FUN_01039bbe(0x0103d2a7, 0x0103eb0e, 0x8f, 0);
+            FUN_01039bb0(0x0103eb0e, 0x8f);
+        }
+        if ((head[0x0d] & 0x1f) == 0 &&
+            *(uint32_t *)(candidate + 0x18) == 0 &&
+            *(uint16_t *)(head + 0x0e) > 0x7f) {
+            *(uint8_t **)(state + 0x14) = head;
+            return;
+        }
+    }
+
+    if (candidate != head)
+        FUN_01036f24(candidate);
+    *(uint8_t **)(state + 0x14) = candidate;
 }
-
-
-

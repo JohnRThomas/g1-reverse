@@ -20,16 +20,19 @@ int FUN_0005eeb4(int param_1, unsigned param_2, int param_3, int param_4)
     FUN_0008669c();
     if (param_1 == 0) {
         FUN_0007e2fa();
-        goto EF12;
+        FUN_0007e2ec();
+        goto CONTINUE_AFTER_FATAL;
     }
     {
         int iVar6b = FUN_00072040();
         if (iVar6b == 0) {
             FUN_0007e2fa();
             FUN_0007e2fa();
-            goto EF12;
+            FUN_0007e2ec();
+            goto CONTINUE_AFTER_FATAL;
         }
     }
+CONTINUE_AFTER_FATAL:
     FUN_00072078();
     uVar_h = *(volatile uint16_t*)(param_1 + 0x22);
     if (uVar_h == 0) {
@@ -87,7 +90,8 @@ EF60:
             if (r5v <= local_24) goto EF2E;
             FUN_0007e2fa();
             FUN_0007e2fa();
-            goto EF12;
+            FUN_0007e2ec();
+            goto CONTINUE_AFTER_FATAL;
         }
     }
 EF2E:
@@ -100,10 +104,6 @@ EF2E:
 EF40:
     FUN_0007e2fa();
     FUN_0007e2fa();
-    goto EF12;
-EF12:
     FUN_0007e2ec();
-    FUN_00072078();
-    (void)*(volatile uint16_t *)(param_1 + 0x22);
-    return 0;
+    goto CONTINUE_AFTER_FATAL;
 }

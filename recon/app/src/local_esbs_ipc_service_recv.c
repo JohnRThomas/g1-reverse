@@ -19,10 +19,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -65,17 +61,17 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long FUN_000158bc();
-extern long long FUN_00019c70();
-extern long long FUN_00033c18();
-extern long long FUN_00033c5c();
-extern long long FUN_00034524();
-extern long long FUN_0007ce60();
-extern long long FUN_0007d230();
-extern long long FUN_00086c78();
-extern long long thunk_FUN_00072880();
-extern long long update_persist_task_status();
+extern long long DEBUG_PRINT(unsigned long first, ...);
+extern long long FUN_000158bc(unsigned long);
+extern long long FUN_00019c70(unsigned long first, ...);
+extern long long FUN_00033c18(unsigned long);
+extern long long FUN_00033c5c(void);
+extern long long FUN_00034524(unsigned long);
+extern long long FUN_0007ce60(unsigned long);
+extern long long FUN_0007d230(unsigned long);
+extern long long FUN_00086c78(void *, unsigned long, unsigned long);
+extern long long thunk_FUN_00072880(unsigned long);
+extern long long update_persist_task_status(unsigned long, unsigned long);
 #define DAT_00015b90 ((volatile int*)0x2000230cUL)
 #define DAT_00015b94 ((volatile int*)0x20007554UL)
 #define DAT_00015b98 0x99b89UL
@@ -198,7 +194,7 @@ undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
         DEBUG_PRINT(PTR_s__s____slave_even_ai_recv_down_re_00015bb4,DAT_00015b98);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
     *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
@@ -232,7 +228,7 @@ undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
         format_string = DAT_00015bc0;
 LAB_000159b4:
         if (iVar7 != 0) {
-          FUN_00019c70();
+          ((long long (*)(void))FUN_00019c70)();
           return 0;
         }
         DEBUG_PRINT(format_string,DAT_00015b98);
@@ -350,5 +346,3 @@ switchD_00015c70_caseD_c:
   }
   return 0;
 }
-
-

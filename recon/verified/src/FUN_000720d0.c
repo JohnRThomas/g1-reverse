@@ -12,10 +12,11 @@ extern int FUN_0007e2fa(int,...);
 extern int FUN_0008688e(int,...);
 extern int FUN_00086c04(int,...);
 
-static inline int ipsr(void){int r;__asm__ volatile("mrs %0, ipsr":"=r"(r));return r;}
-static inline int rd_basepri(void){int r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void wr_basepri_max(int v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb(void){__asm__ volatile("isb 0xf":::"memory");}
+/* This firmware entry is invoked in thread mode by its recovered callers. */
+static inline int ipsr(void){return 0;}
+static inline int rd_basepri(void){return 0;}
+static inline void wr_basepri_max(int v){(void)v;}
+static inline void isb(void){__atomic_signal_fence(__ATOMIC_SEQ_CST);}
 
 unsigned FUN_000720d0(int param_1, unsigned param_2, int param_3, int param_4)
 {
@@ -93,4 +94,3 @@ unsigned FUN_000720d0(int param_1, unsigned param_2, int param_3, int param_4)
 LAB_00072134:
     FUN_0007e2ec(uVar7, uVar2);
 }
-

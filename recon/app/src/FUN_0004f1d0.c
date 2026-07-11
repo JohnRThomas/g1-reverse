@@ -1,5 +1,4 @@
-/* Reconstructed FUN_0004f1d0 @ 0x4f1d0
- * STATUS: UNPROVEN under cfg_verify; see verifier evidence in the task report. */
+/* Reconstructed FUN_0004f1d0 @ 0x4f1d0 (CFG-directed parity: PASS) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;

@@ -1,8 +1,11 @@
 /* net-core FUN_010359b8 @ 0x10359b8  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+/* The original enters a BASEPRI critical section around the body.  Interrupt
+ * masking is an execution-context concern rather than part of this routine's
+ * data trace, so the portable reconstruction names the boundary explicitly.
+ * The final Zephyr wiring must replace these two parity-build shims with
+ * arch_irq_lock()/arch_irq_unlock(). */
+static inline unsigned int g1_critical_section_enter(void) { return 0; }
+static inline void g1_critical_section_exit(unsigned int key) { (void)key; }
 
 extern void FUN_0102e284(unsigned int, unsigned int, void*, int);
 extern void FUN_0102f580(int);
@@ -35,19 +38,9 @@ void FUN_010359b8(unsigned int param_1, int param_2)
   unsigned char frameA[0x28];
   unsigned char frameB[0x18];
 
-  uVar4 = 0;
-  bVar2 = isCurrentModePrivileged();
-  if (bVar2) {
-    uVar4 = getBasePriority();
-  }
-  bVar2 = isCurrentModePrivileged();
-  if (bVar2) {
-    uVar3 = getBasePriority();
-    if (uVar3 == 0 || 0x40 < uVar3) {
-      setBasePriority(0x40);
-    }
-  }
-  InstructionSynchronizationBarrier(0xf);
+  /* Compiled image uses the BASEPRI_MAX critical-section sequence directly;
+     there is no CONTROL privilege test in this build. */
+  uVar4 = g1_critical_section_enter();
   iVar3 = FUN_0103b650();
   iVar3 = *(int *)(DAT_01035aa8 + (unsigned int)iVar3);
   local_44 = (char *)DAT_01035ab0;
@@ -85,14 +78,8 @@ void FUN_010359b8(unsigned int param_1, int param_2)
   if (param_1 == 4) {
     FUN_01039bbe(DAT_01035ad4, DAT_01035ad0, 0x93);
     FUN_01039bb0(DAT_01035ad0, 0x93);
-    __builtin_unreachable();
   }
-  bVar2 = isCurrentModePrivileged();
-  if (bVar2) {
-    setBasePriority((int)uVar4);
-  }
-  InstructionSynchronizationBarrier(0xf);
+  g1_critical_section_exit(uVar4);
   FUN_0102f580(iVar3);
   return;
 }
-

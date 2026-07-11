@@ -1,15 +1,13 @@
-/* Reconstructed FUN_0007ef3e @ 0x7ef3e  (parity: 300/300 trials, PROVEN) */
-
+/* Reconstructed FUN_0007ef3e @ 0x7ef3e */
 #include <stdint.h>
-void FUN_0007ef3e(char *param_1) {
-    int v = *(int*)(param_1 + 0x14);
-    if (v != 0) {
-        unsigned int addr = (unsigned int)(v + 4);
-        unsigned int rv;
-        __asm__ volatile ("ldaex %0, [%1]" : "=r"(rv) : "r"(addr));
-        rv |= 1;
-        unsigned int st;
-        __asm__ volatile ("stlex %0, %1, [%2]" : "=&r"(st) : "r"(rv), "r"(addr) : "memory");
+
+void FUN_0007ef3e(void *object)
+{
+    uint8_t *base = object;
+    uintptr_t member = *(uintptr_t *)(base + 0x14);
+    if (member) {
+        volatile uint32_t *flags = (volatile uint32_t *)(member + 4);
+        uint32_t value = *flags;
+        *flags = value | 1u;
     }
 }
-

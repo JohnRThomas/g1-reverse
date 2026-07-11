@@ -1,5 +1,6 @@
 /* Reconstructed FUN_000757b0 @ 0x757b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef uint32_t u32;
 extern void FUN_0007e2fa(u32,u32,...);
 extern void FUN_0007e2ec(u32,u32);
@@ -8,10 +9,10 @@ extern void FUN_00072078(u32);
 extern int FUN_0007205c(u32);
 extern u32 FUN_000867da(void);
 extern void FUN_000739f0(u32,u32);
-static inline u32 rd_basepri(void){u32 v;__asm__ volatile("mrs %0, basepri":"=r"(v));return v;}
-static inline void wr_basepri_max(u32 v){__asm__ volatile("msr basepri_max, %0"::"r"(v):"memory");}
-static inline void wr_basepri(u32 v){__asm__ volatile("msr basepri, %0"::"r"(v):"memory");}
-static inline void isb_(void){__asm__ volatile("isb");}
+static inline u32 rd_basepri(void){return __get_BASEPRI();}
+static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
+static inline void wr_basepri(u32 v){__set_BASEPRI(v);}
+static inline void isb_(void){__ISB();}
 u32 FUN_000757b0(int* param_1, int param_2){
     u32 uVar7 = rd_basepri();
     wr_basepri_max(0x20);
@@ -51,4 +52,3 @@ u32 FUN_000757b0(int* param_1, int param_2){
     FUN_0007e2ec(0x000f08c7, 0x72);
     return 0;
 }
-

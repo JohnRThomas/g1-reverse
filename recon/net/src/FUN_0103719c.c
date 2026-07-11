@@ -1,63 +1,31 @@
-/* net-core FUN_0103719c @ 0x103719c  (parity 300 trials PROVEN) */
+/* net-core FUN_0103719c @ 0x103719c */
+#include <stdint.h>
 
-extern void FUN_0103610c(void);
-extern void FUN_01036128(void);
-extern void FUN_01036144(void);
-extern void FUN_01036fcc(void);
-extern void FUN_01037130(void);
-extern void FUN_01039bb0(void);
-extern void FUN_01039bbe(void);
+extern int FUN_0103610c(void *lock);
+extern int FUN_01036128(void *lock);
+extern void FUN_01036144(void *lock);
+extern void FUN_01036fcc(void *item);
+extern void FUN_01037130(void *lock, unsigned int key);
+extern void FUN_01039bb0(uintptr_t message, unsigned line);
+extern void FUN_01039bbe(uintptr_t file, uintptr_t message, unsigned line);
 
-__attribute__((naked)) void FUN_0103719c(void)
+void FUN_0103719c(uint8_t *item)
 {
-    __asm__ volatile(
-        "push {r3, r4, r5, lr}\n"
-        "mov r4, r0\n"
-        "mov.w r3, #0x40\n"
-        "mrs r5, basepri\n"
-        "msr basepri_max, r3\n"
-        "isb sy\n"
-        "ldr r0, =0x21004b68\n"
-        "bl FUN_0103610c\n"
-        "cbnz r0, 1f\n"
-        "ldr r1, =0x0103d3b6\n"
-        "movs r2, #0x72\n"
-        "ldr r0, =0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "movs r1, #0x72\n"
-        "ldr r0, =0x0103d3b6\n"
-        "bl FUN_01039bb0\n"
-        "1:\n"
-        "ldr r0, =0x21004b68\n"
-        "bl FUN_01036144\n"
-        "ldrb r3, [r4, #0xd]\n"
-        "lsls r2, r3, #0x1d\n"
-        "bmi 4f\n"
-        "ldr r0, =0x21004b68\n"
-        "bl FUN_01036128\n"
-        "cbnz r0, 2f\n"
-        "ldr r1, =0x0103d3b6\n"
-        "movs r2, #0xf0\n"
-        "ldr r0, =0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "movs r1, #0xf0\n"
-        "b 3f\n"
-        "2:\n"
-        "msr basepri, r5\n"
-        "isb sy\n"
-        "pop {r3, r4, r5, pc}\n"
-        "4:\n"
-        "bic r3, r3, #4\n"
-        "mov r0, r4\n"
-        "strb r3, [r4, #0xd]\n"
-        "bl FUN_01036fcc\n"
-        "mov r1, r5\n"
-        "pop.w {r3, r4, r5, lr}\n"
-        "ldr r0, =0x21004b68\n"
-        "b.w FUN_01037130\n"
-        "3:\n"
-        "ldr r0, =0x0103d3b6\n"
-        "bl FUN_01039bb0\n"
-    );
-}
+    void *lock = (void *)0x21004b68;
 
+    if (!FUN_0103610c(lock)) {
+        FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0x72);
+        FUN_01039bb0(0x0103d3b6, 0x72);
+    }
+    FUN_01036144(lock);
+    if ((item[0x0d] & 4) != 0) {
+        item[0x0d] &= (uint8_t)~4u;
+        FUN_01036fcc(item);
+        FUN_01037130(lock, 0);
+        return;
+    }
+    if (!FUN_01036128(lock)) {
+        FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);
+        FUN_01039bb0(0x0103d3b6, 0xf0);
+    }
+}

@@ -1,18 +1,20 @@
-/* net-core FUN_0102f580 @ 0x102f580  (parity 300 trials PROVEN) */
-typedef unsigned int uint;
-extern void tailcall_body_0102f580(void);
+/* net-core FUN_0102f580 @ 0x102f580 — true extent 36 bytes */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-void FUN_0102f580(int param_1)
+/* The final branch is the shared Zephyr thread-abort implementation at
+   0x1037cc8; it is a tail call, not trailing code owned by this wrapper. */
+extern void z_impl_k_thread_abort(void *thread);
+
+void FUN_0102f580(void *thread)
 {
-  int iVar_cmp = *(volatile int *)(0x21004b28 + 8);
-  if (iVar_cmp == param_1) {
-    unsigned int ipsr;
-    __asm volatile ("mrs %0, ipsr" : "=r"(ipsr));
-    if (ipsr != 0) {
-      *(volatile uint *)(0xe000ed00 + 4) = *(volatile uint *)(0xe000ed00 + 4) | 0x10000000;
-      *(volatile uint *)(0xe000ed00 + 0x24) = *(volatile uint *)(0xe000ed00 + 0x24) & 0xffff7fff;
-    }
-  }
-  tailcall_body_0102f580();
-}
+    volatile uint32_t *const current_thread_slot =
+        (volatile uint32_t *)0x21004b30U;
+    volatile uint32_t *const scb = (volatile uint32_t *)0xe000ed00U;
 
+    if (*current_thread_slot == (uint32_t)(uintptr_t)thread && __get_IPSR() != 0) {
+        scb[1] |= 0x10000000U;       /* PendSV set */
+        scb[0x24 / 4] &= ~0x8000U;   /* clear active exception bookkeeping */
+    }
+    z_impl_k_thread_abort(thread);
+}

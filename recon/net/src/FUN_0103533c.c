@@ -1,64 +1,30 @@
-/* net-core FUN_0103533c @ 0x103533c  (parity 300 trials PROVEN) */
+/* net-core FUN_0103533c @ 0x103533c */
+#include <stdint.h>
+extern int FUN_0103ac0c(void *, uint16_t, uint32_t, void *, uint32_t,
+                        uint32_t, uint32_t);
 
-extern void FUN_0103ac0c(void);
-
-__attribute__((naked)) void FUN_0103533c(void)
+int FUN_0103533c(uint8_t *object, uint32_t unused, uint32_t count,
+                 const uint32_t *first_values, const uint32_t *second_values)
 {
-    __asm__ volatile(
-        "push.w {r4, r5, r6, r7, r8, sb, lr}\n"
-        "sub sp, #0x14\n"
-        "mov r6, r2\n"
-        "mov r7, r3\n"
-        "mov r4, r0\n"
-        "ldr.w r8, [sp, #0x30]\n"
-        "cbz r0, 6f\n"
-        "ldr r5, [r0, #0x20]\n"
-        "cbz r5, 1f\n"
-        "ldr r5, [r5]\n"
-        "cbz r5, 1f\n"
-        "mov ip, r5\n"
-        "add sp, #0x14\n"
-        "pop.w {r4, r5, r6, r7, r8, sb, lr}\n"
-        "bx ip\n"
-        "1:\n"
-        "ldr r3, [r4, #0x28]\n"
-        "cmp r6, r3\n"
-        "bhi 7f\n"
-        "movs r5, #0\n"
-        "mov.w sb, #0x18\n"
-        "2:\n"
-        "cmp r5, r6\n"
-        "bne 3f\n"
-        "movs r0, #0\n"
-        "4:\n"
-        "add sp, #0x14\n"
-        "pop.w {r4, r5, r6, r7, r8, sb, pc}\n"
-        "3:\n"
-        "mul r2, sb, r5\n"
-        "ldr r1, [r4, #0x2c]\n"
-        "mov r0, r4\n"
-        "adds r3, r1, r2\n"
-        "ldr r2, [r1, r2]\n"
-        "adds r3, #4\n"
-        "str r2, [sp, #8]\n"
-        "ldr r2, [r4, #0x20]\n"
-        "uxth r1, r5\n"
-        "ldr r2, [r2, #0x28]\n"
-        "str r2, [sp, #4]\n"
-        "ldr.w r2, [r8, r5, lsl #2]\n"
-        "str r2, [sp]\n"
-        "ldr.w r2, [r7, r5, lsl #2]\n"
-        "bl FUN_0103ac0c\n"
-        "cmp r0, #0\n"
-        "bne 4b\n"
-        "adds r5, #1\n"
-        "b 2b\n"
-        "6:\n"
-        "mvn r0, #0x15\n"
-        "b 4b\n"
-        "7:\n"
-        "ldr r0, =0xfffff440\n"
-        "b 4b\n"
-    );
-}
+    (void)unused;
+    if (object == 0) return -22;
+    uint8_t *operations = *(uint8_t **)(object + 0x20);
+    if (operations != 0 && *(void **)operations != 0) {
+        int (*override)(uint8_t *, uint32_t, uint32_t,
+                        const uint32_t *, const uint32_t *) =
+            *(int (**)(uint8_t *, uint32_t, uint32_t,
+                       const uint32_t *, const uint32_t *))operations;
+        return override(object, unused, count, first_values, second_values);
+    }
+    if (count > *(uint32_t *)(object + 0x28)) return (int)0xfffff440;
 
+    uint8_t *records = *(uint8_t **)(object + 0x2c);
+    for (uint32_t i = 0; i < count; ++i) {
+        int status = FUN_0103ac0c(object, (uint16_t)i, first_values[i],
+                                  records + i * 24 + 4, second_values[i],
+                                  *(uint32_t *)(operations + 0x28),
+                                  *(uint32_t *)(records + i * 24));
+        if (status != 0) return status;
+    }
+    return 0;
+}

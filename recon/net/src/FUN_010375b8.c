@@ -2,10 +2,10 @@
 /* net-core FUN_010375b8 @ 0x10375b8  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){return 1;}
+static inline int getBasePriority(void){return 0;}
+static inline void setBasePriority(int p){(void)p;}
+static inline void InstructionSynchronizationBarrier(int x){(void)x; __atomic_signal_fence(__ATOMIC_SEQ_CST);}
 
 extern void FUN_0102ec10(unsigned int);
 extern int FUN_0103610c(int,int,int,int);
@@ -21,8 +21,8 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
     volatile int * const p_1037658 = (volatile int *)0x21004b28;
     volatile int * const p_103765c = (volatile int *)0x21004b68;
     volatile int * const p_1037660 = (volatile int *)0x21004b5c;
-    int iVar2 = *p_103765c;
-    int iVar4 = *p_1037658;
+    int iVar2 = (int)(unsigned int)p_103765c;
+    int iVar4 = (int)(unsigned int)p_1037658;
     int bVar7 = (param_1 == iVar2);
     *p_1037660 = *(volatile int *)(iVar4 + 8);
     unsigned int uVar6;
@@ -61,5 +61,3 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
         }
     }
 }
-
-

@@ -1,55 +1,27 @@
-/* net-core FUN_01034f24 @ 0x1034f24  (parity 300 trials PROVEN) */
+/* net-core FUN_01034f24 @ 0x1034f24 */
+#include <stdint.h>
+extern void FUN_0102eb2c(int32_t, uint32_t);
 
-extern void FUN_0102eb2c(int, unsigned int);
-
-__attribute__((naked)) unsigned int FUN_01034f24(int *param_1, unsigned int *param_2)
+uint32_t FUN_01034f24(volatile uint32_t **peripheral_ref,
+                      const uint32_t *configuration)
 {
-    __asm__ volatile(
-        "push {r4, r5, r6, lr}\n"
-        "ldr r2, =0x00f42400\n"
-        "ldr r4, [r1]\n"
-        "udiv r3, r2, r4\n"
-        "mls r5, r4, r3, r2\n"
-        "cbnz r5, 1f\n"
-        "cmp r4, r2\n"
-        "bhi 1f\n"
-        "subs r4, r3, #1\n"
-        "ands r4, r3\n"
-        "bne 1f\n"
-        "cmp.w r3, #0x200\n"
-        "bhi 1f\n"
-        "rbit r3, r3\n"
-        "clz r3, r3\n"
-        "ldr r2, [r0]\n"
-        "ldrb r5, [r1, #5]\n"
-        "ldr.w r6, [r2, #0x504]\n"
-        "ldrb r1, [r1, #4]\n"
-        "bic r6, r6, #3\n"
-        "and r1, r1, #3\n"
-        "orrs r1, r6\n"
-        "str.w r1, [r2, #0x504]\n"
-        "ldr.w r1, [r2, #0x508]\n"
-        "and r5, r5, #3\n"
-        "bic r1, r1, #3\n"
-        "orrs r1, r5\n"
-        "str.w r1, [r2, #0x508]\n"
-        "str.w r3, [r2, #0x510]\n"
-        "movs r3, #0x40\n"
-        "ldr r0, [r0]\n"
-        "add.w r2, r0, #0x100\n"
-        "2:\n"
-        "str r4, [r2, r3]\n"
-        "ldr r1, [r2, r3]\n"
-        "adds r3, #4\n"
-        "cmp r3, #0x60\n"
-        "bne 2b\n"
-        "sbfx r0, r0, #0xc, #8\n"
-        "bl FUN_0102eb2c\n"
-        "ldr r0, =0x0bad0000\n"
-        "pop {r4, r5, r6, pc}\n"
-        "1:\n"
-        "ldr r0, =0x0bad0004\n"
-        "pop {r4, r5, r6, pc}\n"
-    );
-}
+    uint32_t divisor = configuration[0];
+    uint32_t ratio = 1000000u / divisor;
+    if (divisor * ratio != 1000000u || divisor > 1000000u ||
+        (ratio & (ratio - 1)) != 0 || ratio > 0x200)
+        return 0x0bad0004;
 
+    volatile uint32_t *peripheral = *peripheral_ref;
+    peripheral[0x504 / 4] =
+        (peripheral[0x504 / 4] & ~3u) | (((const uint8_t *)configuration)[4] & 3u);
+    peripheral[0x508 / 4] =
+        (peripheral[0x508 / 4] & ~3u) | (((const uint8_t *)configuration)[5] & 3u);
+    peripheral[0x510 / 4] = (uint32_t)__builtin_ctz(ratio);
+    for (unsigned offset = 0x140; offset != 0x160; offset += 4) {
+        *(volatile uint32_t *)((uintptr_t)peripheral + offset) = 0;
+        (void)*(volatile uint32_t *)((uintptr_t)peripheral + offset);
+    }
+    FUN_0102eb2c(((int32_t)(uintptr_t)peripheral << 12) >> 24,
+                 *(volatile uint32_t *)((uintptr_t)peripheral + 0x15c));
+    return 0x0bad0000;
+}

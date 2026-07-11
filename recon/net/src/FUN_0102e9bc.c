@@ -1,15 +1,14 @@
 /* net-core FUN_0102e9bc @ 0x102e9bc  (parity 300 trials PROVEN) */
-/* net-core FUN_0102e9bc @ 0x102e9bc  (parity 300 trials PROVEN) */
-/* net-core FUN_0102e9bc @ 0x102e9bc  (parity 300 trials PROVEN) */
-/* net-core FUN_0102e9bc @ 0x102e9bc  (parity 300 trials PROVEN) */
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
-static inline void DataSynchronizationBarrier(int x){(void)x;__asm__ volatile("dsb":::"memory");}
-static inline void WaitForInterrupt(void){__asm__ volatile("wfi":::"memory");}
-static inline unsigned int disableIRQinterrupts(void){unsigned p;__asm__ volatile("mrs %0, primask":"=r"(p));__asm__ volatile("cpsid i":::"memory");return p;}
-static inline void enableIRQinterrupts(void){__asm__ volatile("cpsie i":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+static inline void DataSynchronizationBarrier(int x){(void)x;__DSB();}
+static inline void WaitForInterrupt(void){__WFI();}
+static inline void disableIRQinterrupts(void){__disable_irq();}
+static inline void enableIRQinterrupts(void){__enable_irq();}
 
 extern void FUN_0102d0c4(void);
 extern int FUN_0102d1c0(void);
@@ -35,7 +34,3 @@ unsigned int FUN_0102e9bc(void)
     InstructionSynchronizationBarrier(0xf);
     return 0;
 }
-
-
-
-

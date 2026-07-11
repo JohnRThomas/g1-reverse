@@ -4,6 +4,10 @@
 
 extern int  FUN_01008a58(int, int);
 extern void FUN_0101fbbc(void);
+/* Ghidra split these two reachable return blocks out of the declared body.
+ * Keep them as explicit tail-block oracles rather than silently inlining them. */
+extern int FUN_01008fc0(void);
+extern int FUN_01008fc6(void);
 
 int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
 {
@@ -13,7 +17,7 @@ int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
     int r;
 
     if (param_1 != 0)
-        return -0x2d;
+        return FUN_01008fc0();
     if (D[0x2c] != 0)
         return -1;
 
@@ -115,7 +119,7 @@ int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
             *(volatile uint16_t *)(D + 0x1b) = param_3[0];
             break;
         default:
-            return -0x2d;
+            return FUN_01008fc0();
         }
     }
 
@@ -124,7 +128,6 @@ int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
     if (r < 0x10000)
         D[0x2d] = 1;
     else
-        r = -0xc;
+        r = FUN_01008fc6();
     return r;
 }
-

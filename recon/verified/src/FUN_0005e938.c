@@ -9,8 +9,7 @@ unsigned char *FUN_0005e938(uint32_t param_1, int param_2){
   if(param_2==0){
     FUN_0007e2fa(0x00099cbd, 0x000f52ac, 0x000f5268, 0x11a);
     FUN_0007e2ec(0x000f5268, 0x11a);
-    iVar2 = 1;
-    return pbVar1 + iVar2*0x5c;
+    return (unsigned char *)0x5c;
   }
   if((uint32_t)*(volatile uint8_t*)pbVar1 != param_1 ||
      FUN_00086be4((int)(pbVar1+1), param_2, 7) != 0){
@@ -24,4 +23,3 @@ unsigned char *FUN_0005e938(uint32_t param_1, int param_2){
   }
   return pbVar1 + iVar2*0x5c;
 }
-

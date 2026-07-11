@@ -1,16 +1,15 @@
 /* Reconstructed FUN_00086634 @ 0x86634  (parity: 300/300 trials, PROVEN) */
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern void FUN_000501d4(void);
 void FUN_00086634(int param_1) {
     if (param_1 == 0) {
-        unsigned int ipsr;
-        __asm__ volatile ("mrs %0, ipsr" : "=r"(ipsr));
+        unsigned int ipsr = __get_IPSR();
         if (ipsr == 0) {
             FUN_000501d4();
             return;
         }
     }
-    __asm__ volatile ("msr basepri, %0" :: "r"(param_1) : "memory");
-    __asm__ volatile ("isb sy" ::: "memory");
+    __set_BASEPRI((unsigned int)param_1);
+    __ISB();
 }
-

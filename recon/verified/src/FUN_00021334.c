@@ -67,9 +67,9 @@ unsigned FUN_00021334(int param_1, unsigned short *param_2){
   loc[2] = bVar2;
   goto call;
 def:
-  for(;;){ __asm volatile(""); }
+  *(unsigned short*)loc = (unsigned short)(((unsigned)bVar2 << 8) | 0xf5u);
+  goto call;
 call:
   (*(int(**)(void*,int))(param_1 + 0xc))(loc, 0x15);
   return 0;
 }
-

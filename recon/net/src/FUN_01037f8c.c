@@ -1,138 +1,89 @@
-/* net-core FUN_01037f8c @ 0x1037f8c  (parity 300 trials PROVEN) */
+/* net-core FUN_01037f8c @ 0x1037f8c */
+#include <stdint.h>
 
-extern void FUN_0103175c(void);
-extern void FUN_0103610c(void);
-extern void FUN_01036128(void);
-extern void FUN_01036144(void);
-extern void FUN_01037f00(void);
-extern void FUN_01037f14(void);
-extern void FUN_01039bb0(void);
-extern void FUN_01039bbe(void);
+struct timeout_node {
+    struct timeout_node *next;
+    struct timeout_node *prev;
+    void *handler;
+    uint32_t reserved;
+    uint64_t ticks;
+};
 
-__attribute__((naked)) void FUN_01037f8c(int *param_1, int param_2, unsigned int param_3, int param_4)
+extern int FUN_0103610c(void *lock);
+extern void FUN_01036144(void *lock);
+extern int FUN_01036128(void *lock);
+extern uint32_t FUN_01037f00(void);
+extern uint32_t FUN_01037f14(void);
+extern void FUN_0103175c(uint32_t event, int flags);
+extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void FUN_01039bb0(const void *file, unsigned line);
+
+void FUN_01037f8c(struct timeout_node *node, void *handler,
+                  uint32_t ticks_low, int32_t ticks_high)
 {
-    __asm__ volatile(
-    "cmp.w r3, #-1\n"
-    "it eq\n"
-    "cmpeq.w r2, #-1\n"
-    "push.w {r4,r5,r6,r7,r8,r9,r10,lr}\n"
-    "mov r4, r0\n"
-    "mov r10, r2\n"
-    "mov r5, r3\n"
-    "beq.w 99f\n"
-    "ldr r6, [r0]\n"
-    "cbz r6, 1f\n"
-    "ldr r1, =0x0103eb5b\n"
-    "ldr r0, =0x0103d2a7\n"
-    "movs r2, #0x6e\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0x6e\n"
-    "ldr r0, =0x0103eb5b\n"
-    "9:\n"
-    "bl FUN_01039bb0\n"
-    "1:\n"
-    "str r1, [r0, #8]\n"
-    "mov.w r3, #0x40\n"
-    "mrs r7, basepri\n"
-    "msr basepri_max, r3\n"
-    "isb sy\n"
-    "ldr r0, =0x21004b70\n"
-    "bl FUN_0103610c\n"
-    "cbnz r0, 2f\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0x72\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0x72\n"
-    "ldr r0, =0x0103d3b6\n"
-    "b 9b\n"
-    "2:\n"
-    "ldr r0, =0x21004b70\n"
-    "bl FUN_01036144\n"
-    "cmp.w r10, #-1\n"
-    "sbcs r3, r5, #-1\n"
-    "bge 3f\n"
-    "mvn r3, #1\n"
-    "ldr r1, =0x210044f0\n"
-    "ldrd r2, r0, [r1]\n"
-    "subs r3, r3, r2\n"
-    "mov.w r2, #-1\n"
-    "sbc.w r0, r2, r0\n"
-    "subs.w r3, r3, r10\n"
-    "sbc.w r0, r0, r5\n"
-    "cmp r3, #1\n"
-    "sbcs r2, r0, #0\n"
-    "bge 4f\n"
-    "movs r3, #1\n"
-    "mov r0, r6\n"
-    "4:\n"
-    "strd r3, r0, [r4, #0x10]\n"
-    "5:\n"
-    "ldr r3, =0x21000750\n"
-    "ldr r2, [r3]\n"
-    "ldr.w r12, [r3, #4]\n"
-    "cmp r2, r3\n"
-    "it ne\n"
-    "movne r6, r2\n"
-    "cbnz r6, 6f\n"
-    "strd r3, r12, [r4]\n"
-    "str.w r4, [r12]\n"
-    "str r4, [r3, #4]\n"
-    "b 7f\n"
-    "3:\n"
-    "bl FUN_01037f00\n"
-    "adds.w r8, r10, #1\n"
-    "adc r5, r5, #0\n"
-    "adds.w r3, r8, r0\n"
-    "adc.w r0, r5, r0, asr #31\n"
-    "b 4b\n"
-    "6:\n"
-    "ldrd r1, r5, [r6, #0x10]\n"
-    "ldrd r2, r0, [r4, #0x10]\n"
-    "cmp r2, r1\n"
-    "sbcs.w lr, r0, r5\n"
-    "bge 8f\n"
-    "subs r1, r1, r2\n"
-    "ldr r2, [r6, #4]\n"
-    "sbc.w r5, r5, r0\n"
-    "strd r1, r5, [r6, #0x10]\n"
-    "strd r6, r2, [r4]\n"
-    "str r4, [r2]\n"
-    "str r4, [r6, #4]\n"
-    "7:\n"
-    "ldr r2, [r3]\n"
-    "cmp r2, r3\n"
-    "beq 10f\n"
-    "cmp r4, r2\n"
-    "bne 10f\n"
-    "bl FUN_01037f14\n"
-    "movs r1, #0\n"
-    "bl FUN_0103175c\n"
-    "10:\n"
-    "ldr r0, =0x21004b70\n"
-    "bl FUN_01036128\n"
-    "cbnz r0, 11f\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0xf0\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0xf0\n"
-    "ldr r0, =0x0103d3b6\n"
-    "b 9b\n"
-    "8:\n"
-    "subs r2, r2, r1\n"
-    "sbc.w r0, r0, r5\n"
-    "cmp r6, r12\n"
-    "strd r2, r0, [r4, #0x10]\n"
-    "beq 5b\n"
-    "ldr r6, [r6]\n"
-    "b 6b\n"
-    "11:\n"
-    "msr basepri, r7\n"
-    "isb sy\n"
-    "99:\n"
-    "pop.w {r4,r5,r6,r7,r8,r9,r10,pc}\n"
-    );
+    /* Queue mutation is enclosed by BASEPRI masking in the original image. */
+    void *const lock = (void *)0x21004b70u;
+    struct timeout_node *const queue = (struct timeout_node *)0x21000750u;
+    uint64_t requested = ((uint64_t)(uint32_t)ticks_high << 32) | ticks_low;
+    struct timeout_node *position;
+    uint64_t delay;
+
+    if (requested == UINT64_MAX)
+        return;
+    if (node->next != 0) {
+        FUN_01039bbe((const void *)0x0103d2a7u,
+                     (const void *)0x0103eb5bu, 0x6e);
+        FUN_01039bb0((const void *)0x0103eb5bu, 0x6e);
+        return;
+    }
+
+    node->handler = handler;
+    if (FUN_0103610c(lock) == 0) {
+        FUN_01039bbe((const void *)0x0103d2a7u,
+                     (const void *)0x0103d3b6u, 0x72);
+        FUN_01039bb0((const void *)0x0103d3b6u, 0x72);
+        return;
+    }
+    FUN_01036144(lock);
+
+    if ((int64_t)requested >= -1) {
+        delay = requested + 1u + FUN_01037f00();
+    } else {
+        uint64_t uptime = *(volatile uint64_t *)0x210044f0u;
+        int64_t absolute_delay =
+            (int64_t)(UINT64_MAX - UINT64_C(1) - uptime - requested);
+        delay = absolute_delay < 1 ? 1u : (uint64_t)absolute_delay;
+    }
+    node->ticks = delay;
+
+    position = queue->next == queue ? 0 : queue->next;
+    while (position != 0) {
+        if ((int64_t)node->ticks < (int64_t)position->ticks) {
+            position->ticks -= node->ticks;
+            node->next = position;
+            node->prev = position->prev;
+            position->prev->next = node;
+            position->prev = node;
+            goto inserted;
+        }
+        node->ticks -= position->ticks;
+        if (position == queue->prev)
+            break;
+        position = position->next;
+    }
+
+    node->next = queue;
+    node->prev = queue->prev;
+    queue->prev->next = node;
+    queue->prev = node;
+
+inserted:
+    if (queue->next != queue && queue->next == node)
+        FUN_0103175c(FUN_01037f14(), 0);
+
+    if (FUN_01036128(lock) == 0) {
+        FUN_01039bbe((const void *)0x0103d2a7u,
+                     (const void *)0x0103d3b6u, 0xf0);
+        FUN_01039bb0((const void *)0x0103d3b6u, 0xf0);
+    }
 }
-
-

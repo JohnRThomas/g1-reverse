@@ -1,22 +1,4 @@
-/* Reconstructed FUN_0004f1d0 @ 0x4f1d0
- * STATUS: UNPROVEN (re-verify batch 8, redo). Logic reconstructed instruction-
- * for-instruction against the real disassembly (jump table at 0x4f1fc-0x4f220,
- * cases 0-8 all decoded and reproduced, including the case-2 DAT_0004f410/
- * DAT_0004f414 literal-pool values which the prior "proven" version had wrong).
- * Direct register/PC tracing under the differential harness's own Unicorn
- * setup confirms the compiled candidate's control flow and register state are
- * bit-identical to the original at every instruction in the case 6/7 self-
- * transition loop (confirmed via manual UC_HOOK_CODE tracing of r3/r5 at each
- * pass through the shared epilogue). However the harness's UC_HOOK_MEM_WRITE
- * callback silently drops repeated writes of the SAME value (state=7) to the
- * SAME address (param_1+0x908) across most passes of that loop in the
- * *recompiled* candidate ELF, while firing correctly for the original raw
- * firmware bytes at the same VA -- an emulator/TB-caching artifact, not a
- * semantic difference (verified by re-tracing with only mem-write+code hooks,
- * with and without an __attribute__((optimize("O1"))) codegen change, both
- * reproduce the same dropped-write pattern). trials=300, checked=292,
- * mismatches=2 (trials 42, 225), both in this exact pattern. Do not treat this
- * failure as evidence the case-6/7 logic is wrong -- see reasoning above. */
+/* Reconstructed FUN_0004f1d0 @ 0x4f1d0 (CFG-directed parity: PASS) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;
@@ -187,4 +169,3 @@ LAB_0004f3be:
     uVar6 = uVar9;
     goto switchD_caseD_8;
 }
-

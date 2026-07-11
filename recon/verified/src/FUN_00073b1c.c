@@ -1,4 +1,6 @@
 /* Reconstructed FUN_00073b1c @ 0x73b1c  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern int FUN_00072040(unsigned a);
 extern int FUN_0007205c(unsigned a);
@@ -7,10 +9,10 @@ extern void FUN_0007e2ec(unsigned a, unsigned b);
 extern void FUN_0007e2fa(unsigned a, unsigned b, unsigned c, unsigned d);
 void FUN_00073b1c(void){
     unsigned r4;
-    __asm__ volatile("mrs %0, basepri" : "=r"(r4));
+    r4 = __get_BASEPRI();
     unsigned tmp = 0x20;
-    __asm__ volatile("msr basepri_max, %0" :: "r"(tmp) : "memory");
-    __asm__ volatile("isb");
+    __set_BASEPRI_MAX(tmp);
+    __ISB();
     int iVar3 = FUN_00072040(0x2000b490);
     if (iVar3 == 0){
         FUN_0007e2fa(0x00099cbd,0x000f0920,0x000f08c7,0x72);
@@ -20,7 +22,7 @@ void FUN_00073b1c(void){
     }
     FUN_00072078(0x2000b490);
     unsigned ipsr;
-    __asm__ volatile("mrs %0, ipsr" : "=r"(ipsr));
+    ipsr = __get_IPSR();
     if (ipsr != 0){
         FUN_0007e2fa(0x00099cbd,0x000f801f,0x000f84f7,0xfd);
         FUN_0007e2fa(0x000f53ff,0,0,0);
@@ -43,8 +45,7 @@ void FUN_00073b1c(void){
         FUN_0007e2ec(0x000f08c7,0xf0);
         return;
     }
-    __asm__ volatile("msr basepri, %0" :: "r"(r4) : "memory");
-    __asm__ volatile("isb");
+    __set_BASEPRI(r4);
+    __ISB();
     return;
 }
-

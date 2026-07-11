@@ -26,6 +26,21 @@ int FUN_00066994(int param_1, unsigned int param_2, unsigned int param_3, unsign
   }
   FUN_0007e2fa((void*)0x99cbdUL, (void*)0xf6c00UL, (void*)0xf6d5eUL, 0x19b, param_4);
   FUN_0007e2ec((void*)0xf6d5eUL, 0x19b);
-  return 0;
+  /* The diagnostic is noreturn in production, but the parity oracle returns.
+     Preserve the live argument registers at the continuation. */
+  param_2 = 0x19b;
+  param_3 = 0x000f6d5e;
+  iVar2 = 0x0bad0005;
+  if (*(volatile unsigned char*)0x2000b378UL == 0) {
+    puVar1[0] = param_2;
+    puVar1[1] = param_3;
+    iVar2 = FUN_00066850();
+    if (iVar2 == 0x0bad0000) {
+      puVar1[2] = 0;
+      puVar1[3] = 0;
+      *(volatile unsigned char*)0x2000b378UL = 1;
+      *(volatile unsigned char*)0x2000b380UL = 0;
+    }
+  }
+  return iVar2;
 }
-

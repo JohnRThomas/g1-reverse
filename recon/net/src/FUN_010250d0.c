@@ -1,118 +1,72 @@
-/* net-core FUN_010250d0 @ 0x10250d0  (parity 3 trials PROVEN) */
-extern void FUN_010256dc(void);
+/* net-core FUN_010250d0 @ 0x10250d0 */
+#include <stdbool.h>
+#include <stdint.h>
 
-__attribute__((naked)) void FUN_010250d0(void)
+extern void FUN_010256dc(uint32_t subsystem, uint32_t reason);
+
+static __attribute__((noreturn)) void panic_forever(uint32_t first_reason)
 {
-    __asm__ volatile(
-        "cmp r0, #3\n"
-        "bic r2, r2, #0xff000000\n"
-        "push {r4,r5,r6,lr}\n"
-        "bhi Lge4\n"
-        "ldr r3, =0x21001bf8\n"
-        "ldrd r4, r1, [r3, #8]\n"
-        "cmp.w r1, #-1\n"
-        "it eq\n"
-        "cmpeq.w r4, #-1\n"
-        "beq Lnoinit\n"
-        "Lresume:\n"
-        "ldrb r1, [r3]\n"
-        "cmp r1, #2\n"
-        "beq Lspecial\n"
-        "Lcommon:\n"
-        "ldr r5, =0x4100c000\n"
-        "lsls r1, r0, #2\n"
-        "movs r3, #1\n"
-        "adds r0, #0x10\n"
-        "lsl.w r6, r3, r0\n"
-        "add.w r0, r1, #0x40\n"
-        "add r1, r5\n"
-        "str.w r6, [r5, #0x308]\n"
-        "str r3, [r0, r5]\n"
-        "ldr.w r4, [r1, #0x540]\n"
-        "sub.w ip, r2, r4\n"
-        "bic ip, ip, #0xff000000\n"
-        "cmp.w ip, #2\n"
-        "bhi Ltrue1\n"
-        "movs r3, #0\n"
-        "mov r0, r3\n"
-        "str.w r3, [r1, #0x540]\n"
-        "Lret0:\n"
-        "pop {r4,r5,r6,pc}\n"
-        "Lge4:\n"
-        "subs r3, r0, #4\n"
-        "uxtb r5, r3\n"
-        "cmp r5, #1\n"
-        "bhi Lpanic1\n"
-        "ldr r3, =0x21001bf8\n"
-        "ldrb r1, [r3]\n"
-        "cbz r1, Lnoflag\n"
-        "ldrb r3, [r3, #1]\n"
-        "cmp r3, r0\n"
-        "beq Lpanic2\n"
-        "Lnoflag:\n"
-        "mov.w r4, #0x10000\n"
-        "lsls r1, r5, #2\n"
-        "ldr r3, =0x41011000\n"
-        "movs r0, #0\n"
-        "lsls r4, r5\n"
-        "add.w r1, r1, #0x140\n"
-        "str.w r4, [r3, #0x308]\n"
-        "str.w r4, [r3, #0x348]\n"
-        "str r0, [r1, r3]\n"
-        "ldr.w r0, [r3, #0x504]\n"
-        "ldr r1, =0x00fffffe\n"
-        "subs r0, r2, r0\n"
-        "ands r1, r0\n"
-        "bic r0, r0, #0xff000000\n"
-        "cmp.w r0, #0x800000\n"
-        "ite hi\n"
-        "movhi r0, #0\n"
-        "movls r0, #1\n"
-        "cmp r1, #0\n"
-        "it eq\n"
-        "moveq r0, #0\n"
-        "cmp r0, #0\n"
-        "beq Lret0\n"
-        "add.w r5, r5, #0x150\n"
-        "str.w r2, [r3, r5, lsl #2]\n"
-        "str.w r4, [r3, #0x304]\n"
-        "str.w r4, [r3, #0x344]\n"
-        "pop {r4,r5,r6,pc}\n"
-        "Lnoinit:\n"
-        "ldrb r1, [r3, #0x14]\n"
-        "cmp r1, #0\n"
-        "bne Lresume\n"
-        "mov.w r1, #0x384\n"
-        "movs r0, #0x6c\n"
-        "bl FUN_010256dc\n"
-        "Ltrue1:\n"
-        "str.w r2, [r1, #0x540]\n"
-        "mov r0, r3\n"
-        "str.w r6, [r5, #0x304]\n"
-        "pop {r4,r5,r6,pc}\n"
-        "Lspecial:\n"
-        "ldrb r4, [r3, #1]\n"
-        "ldr r1, =0x41011140\n"
-        "subs r3, r4, #4\n"
-        "cmp r4, #3\n"
-        "uxtb r3, r3\n"
-        "lsl.w r3, r3, #2\n"
-        "add r1, r3\n"
-        "bls Lcommon\n"
-        "Lspin:\n"
-        "ldr r3, [r1]\n"
-        "cmp r3, #0\n"
-        "beq Lspin\n"
-        "b Lcommon\n"
-        "Lpanic1:\n"
-        "movw r1, #0x3a7\n"
-        "movs r0, #0x6c\n"
-        "bl FUN_010256dc\n"
-        "Lpanic2:\n"
-        "movw r1, #0x3a3\n"
-        "movs r0, #0x6c\n"
-        "bl FUN_010256dc\n"
-        "nop\n"
-    );
+    FUN_010256dc(0x6c, first_reason);
+    for (;;)
+        FUN_010256dc(0x6c, 0x3a3);
 }
 
+bool FUN_010250d0(uint32_t channel, uint32_t unused, uint32_t timestamp)
+{
+    volatile uint8_t *const state = (volatile uint8_t *)UINT32_C(0x21001bf8);
+    timestamp &= UINT32_C(0x00ffffff);
+
+    if (channel < 4) {
+        volatile uint32_t *const radio =
+            (volatile uint32_t *)UINT32_C(0x4100c000);
+
+        if (*(volatile int32_t *)(state + 8) == -1 &&
+            *(volatile int32_t *)(state + 12) == -1 && state[0x14] == 0)
+            FUN_010256dc(0x6c, 0x384);
+
+        if (state[0] == 2 && state[1] > 3) {
+            volatile uint32_t *ready =
+                (volatile uint32_t *)(UINT32_C(0x41011140) +
+                                      (uint8_t)(state[1] - 4) * 4);
+            while (*ready == 0) { }
+        }
+
+        uint32_t mask = UINT32_C(1) << (channel + 16);
+        radio[0x308 / 4] = mask;
+        radio[(0x40 / 4) + channel] = 1;
+
+        volatile uint32_t *capture =
+            (volatile uint32_t *)((uintptr_t)radio + 0x540 + channel * 4);
+        if (((timestamp - *capture) & UINT32_C(0x00ffffff)) > 2) {
+            *capture = timestamp;
+            radio[0x304 / 4] = mask;
+            return true;
+        }
+
+        *capture = 0;
+        return false;
+    }
+
+    uint32_t index = (uint8_t)(channel - 4);
+    if (index > 1)
+        panic_forever(0x3a7);
+    if (state[0] != 0 && state[1] == channel)
+        panic_forever(0x3a3);
+
+    volatile uint32_t *const timer =
+        (volatile uint32_t *)UINT32_C(0x41011000);
+    uint32_t mask = UINT32_C(0x10000) << index;
+    timer[0x308 / 4] = mask;
+    timer[0x348 / 4] = mask;
+    timer[(0x140 / 4) + index] = 0;
+
+    uint32_t delta = timestamp - timer[0x504 / 4];
+    bool valid = (delta & UINT32_C(0x00fffffe)) != 0 &&
+                 (delta & UINT32_C(0x00ffffff)) <= UINT32_C(0x00800000);
+    if (valid) {
+        timer[0x540 / 4 + index] = timestamp;
+        timer[0x304 / 4] = mask;
+        timer[0x344 / 4] = mask;
+    }
+    return valid;
+}

@@ -37,7 +37,7 @@ void FUN_010144e4(uint param_1)
     byte *buf;
 
     if (FUN_0100a904(frame + 8) == 0) goto L_071e;
-    __asm__ volatile("" ::: "memory");
+    __atomic_signal_fence(__ATOMIC_ACQUIRE);
     buf = *(byte * volatile *)(frame + 8);
     FUN_01025a84(buf, 0, 0x32);
     FUN_0100e5dc(buf, 3);
@@ -197,4 +197,3 @@ L_0728:
     FUN_01008d00(0x31, 0x8e8);
     return;
 }
-

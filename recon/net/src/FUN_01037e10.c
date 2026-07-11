@@ -1,7 +1,9 @@
 /* net-core FUN_01037e10 @ 0x1037e10  (parity 300 trials PROVEN) */
-static inline unsigned int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return b;}
-static inline void setBasePriority(unsigned p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void isb(void){__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned int getBasePriority(void){ return __get_BASEPRI(); }
+static inline void setBasePriority(unsigned p){ __set_BASEPRI(p); }
+static inline void isb(void){ __ISB(); }
 
 #define C_01037e9c 0x21004b68
 #define C_01037ea0 0x0103d3b6
@@ -68,4 +70,3 @@ L_e6e:
   r0 = C_01037ea0;
   goto L_e40;
 }
-

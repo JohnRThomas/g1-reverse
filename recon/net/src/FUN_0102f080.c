@@ -2,8 +2,8 @@
 
 typedef unsigned int u32;
 typedef int i32;
-
-static inline void setProcessStackPointer(u32 v){__asm__ volatile("msr psp, %0"::"r"(v):"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern u32 FUN_0102ed18(u32 a, u32 b);
 extern void FUN_01039bb0(u32 a, u32 b);
@@ -72,7 +72,7 @@ u32 FUN_0102f080(u32 param_1, i32 param_2, unsigned char *param_3)
                     __builtin_unreachable();
                 }
             } else {
-                setProcessStackPointer(r0v);
+                __set_PSP(r0v);
                 uVar4 = 2;
             }
         }
@@ -81,5 +81,4 @@ u32 FUN_0102f080(u32 param_1, i32 param_2, unsigned char *param_3)
     *param_3 = 0;
     return uVar4;
 }
-
 

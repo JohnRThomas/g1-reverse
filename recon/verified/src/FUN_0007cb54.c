@@ -1,17 +1,7 @@
-/* Reconstructed FUN_0007cb54 @ 0x7cb54  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0007cb54 @ 0x7cb54 */
+#include <stdint.h>
 
-void FUN_0007cb54(unsigned int *param_1)
+void FUN_0007cb54(volatile uint32_t *flags)
 {
-    unsigned int tmp, fail;
-    __asm__ volatile (
-        "1: ldaex %0, [%2]\n"
-        "orr %0, %0, #2\n"
-        "stlex %1, %0, [%2]\n"
-        "cmp %1, #0\n"
-        "bne 1b\n"
-        : "=&r"(tmp), "=&r"(fail)
-        : "r"(param_1)
-        : "memory", "cc"
-    );
+    __atomic_fetch_or(flags, 2u, __ATOMIC_RELAXED);
 }
-

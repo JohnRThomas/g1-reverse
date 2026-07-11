@@ -6,16 +6,15 @@ extern unsigned int FUN_01037f00(void);
 extern int FUN_01036128(unsigned int);
 extern int FUN_01039bbe(int, int, int);
 extern void FUN_01039bb0(int, int) __attribute__((noreturn));
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 unsigned long long FUN_01038284(void)
 {
     unsigned int basepri_save;
-    __asm__ volatile (
-        "mrs %0, basepri\n"
-        "movs r3, #0x40\n"
-        "msr basepri_max, r3\n"
-        "isb sy\n"
-        : "=r"(basepri_save) :: "r3","memory");
+    basepri_save = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40);
+    __ISB();
 
     int iVar2 = FUN_0103610c(0x21004b70);
     if (iVar2 == 0) {
@@ -35,7 +34,7 @@ unsigned long long FUN_01038284(void)
         FUN_01039bbe(0x103d2a7, 0x103d3b6, 0xf0);
         FUN_01039bb0(0x103d3b6, 0xf0);
     }
-    __asm__ volatile ("msr basepri, %0\nisb sy\n" :: "r"(basepri_save) : "memory");
+    __set_BASEPRI(basepri_save);
+    __ISB();
     return ((unsigned long long)r5 << 32) | r4;
 }
-

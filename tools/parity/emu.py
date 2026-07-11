@@ -26,8 +26,10 @@ unit whose dependencies are abstracted.
 """
 import struct
 import hashlib
+import re
 from unicorn import *
 from unicorn.arm_const import *
+from capstone import Cs, CS_ARCH_ARM, CS_MODE_THUMB, CS_MODE_MCLASS
 
 # ---- fixed memory map -------------------------------------------------------
 CODE_BASE = 0x00000000
@@ -50,6 +52,7 @@ REG = [UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3,
 # float/double return) is compared for float-returning functions.
 SREG = [getattr(__import__("unicorn.arm_const", fromlist=["x"]),
                 "UC_ARM_REG_S%d" % i) for i in range(16)]
+_md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 
 
 def _prng_fill(seed_bytes, n):
@@ -89,7 +92,8 @@ class Runner:
         uc.mem_map(RAM_BASE, RAM_SIZE)
         return uc
 
-    def run(self, seed, args, scratch_seed, max_insns=200000, stop_events=0):
+    def run(self, seed, args, scratch_seed, max_insns=200000, stop_events=0,
+            memory_overrides=None):
         """Run one trial. Returns dict(state) or {'error':...}.
         stop_events>0: stop after that many side-effect events (for non-returning
         supervisor loops — we compare the ordered event-trace prefix instead of a
@@ -105,6 +109,12 @@ class Runner:
             uc.reg_write(r, 0)
         for i in range(4):
             uc.reg_write(REG[i], args[i] & 0xffffffff)
+        # CFG-directed pointee inputs. Each item is (arg_index, byte_offset,
+        # bytes); applying it before hooks means test setup is not an observed
+        # side effect. Both original and candidate receive identical memory.
+        for ai, off, data in (memory_overrides or ()):
+            address = ((args[ai] & 0xffffffff) + off) & 0xffffffff
+            uc.mem_write(address, bytes(data))
         # seed VFP s0..s15 identically (float args + float-return coverage)
         fseed = _prng_fill(b"vfp" + struct.pack("<I", scratch_seed), 64)
         for i, sr in enumerate(SREG):
@@ -153,6 +163,25 @@ class Runner:
                 state["returned"] = True
                 uc.emu_stop(); return
             if fstart <= pc < fend:
+                # Unicorn inconsistently enforces alignment for M-profile
+                # exclusive instructions depending on the encoded Rt register.
+                # Cortex-M word/halfword exclusives architecturally fault on
+                # misalignment, so enforce that rule before executing either
+                # original or candidate code.
+                raw = bytes(uc.mem_read(pc, size))
+                ins = next(_md.disasm(raw, pc), None)
+                if ins and re.match(r'^(?:ld|st)[arl]?ex', ins.mnemonic):
+                    bm = re.search(r'\[(r\d+)\]', ins.op_str)
+                    if bm:
+                        reg = int(bm.group(1)[1:])
+                        if reg >= len(REG):
+                            return
+                        addr = uc.reg_read(REG[reg])
+                        align = 1 if ins.mnemonic.endswith('b') else (2 if ins.mnemonic.endswith('h') else 4)
+                        if addr & (align - 1):
+                            state["alignment_fault"] = True
+                            state["fault_pc"] = pc
+                            uc.emu_stop(); return
                 return  # normal in-body execution
             # out of body: a call or tail-branch to another function -> oracle it
             lr = uc.reg_read(UC_ARM_REG_LR)
@@ -202,6 +231,13 @@ class Runner:
                     "events_hash": hashlib.sha256(repr(ev).encode()).hexdigest(),
                     "fault_off": (uc.reg_read(UC_ARM_REG_PC) - self.va) & 0xffffffff}
 
+        if state.get("alignment_fault"):
+            ev = state["events"]
+            return {"error": "Unhandled CPU exception",
+                    "ncalls": state["ncalls"],
+                    "events_hash": hashlib.sha256(repr(ev).encode()).hexdigest(),
+                    "fault_off": (state["fault_pc"] - self.va) & 0xffffffff}
+
         r0 = uc.reg_read(UC_ARM_REG_R0)
         r1 = uc.reg_read(UC_ARM_REG_R1)
         try:
@@ -248,7 +284,8 @@ def make_args(seed, nptr=2):
 def compare(orig_bytes, orig_va, orig_size,
             cand_bytes, cand_va, cand_size,
             code_base=CODE_BASE, trials=64, nptr=2, verbose=False,
-            ret_kind="i32", no_return=False, prefix_k=200, arg_overrides=None):
+            ret_kind="i32", no_return=False, prefix_k=200, arg_overrides=None,
+            memory_overrides=None):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
     first len(arg_overrides) trials pin those argument registers to the specified
     values (control-flow-derived, to guarantee every branch/switch-case is
@@ -292,15 +329,21 @@ def compare(orig_bytes, orig_va, orig_size,
             for i, v in arg_overrides[t].items():
                 if 0 <= i < len(args):
                     args[i] = v & 0xffffffff
-        a = ro.run(t, args, t, stop_events=se)
+        mov = memory_overrides[t] if memory_overrides and t < len(memory_overrides) else None
+        a = ro.run(t, args, t, stop_events=se, memory_overrides=mov)
         # candidate emulated at its own VA but identical inputs/scratch
-        b = rc.run(t, args, t, stop_events=se)
+        b = rc.run(t, args, t, stop_events=se, memory_overrides=mov)
         if no_return and "error" not in a and "error" not in b:
             # Non-returning supervisor loop: compare the ordered side-effect
             # prefix (calls + memory writes). Robust to instructions-per-loop
             # differences because events are semantic, not instruction-counted.
             checked += 1
-            if a["prefix_hash"] != b["prefix_hash"]:
+            if a["returned"] or b["returned"]:
+                key_a = (_retkey(a), a["returned"], a["ncalls"], a["events_hash"])
+                key_b = (_retkey(b), b["returned"], b["ncalls"], b["events_hash"])
+                if key_a != key_b:
+                    mism.append((t, "prefix-return", key_a, key_b))
+            elif a["prefix_hash"] != b["prefix_hash"]:
                 mism.append((t, "prefix", a["nevents"], b["nevents"]))
             continue
         ea, eb = "error" in a, "error" in b
@@ -308,8 +351,13 @@ def compare(orig_bytes, orig_va, orig_size,
             # Both must fault identically (same kind, same call/write trace,
             # same faulting offset) to count as parity; otherwise mismatch.
             if ea and eb:
-                sa = (a["error"], a["ncalls"], a["events_hash"], a["fault_off"])
-                sb = (b["error"], b["ncalls"], b["events_hash"], b["fault_off"])
+                # The instruction offset is code-generation-specific: two C
+                # implementations can perform the same calls/writes and raise
+                # the same architectural fault at different text offsets.
+                # Preserve fault_off in diagnostics, but semantic parity is
+                # fault kind plus the complete ordered side-effect trace.
+                sa = (a["error"], a["ncalls"], a["events_hash"])
+                sb = (b["error"], b["ncalls"], b["events_hash"])
                 checked += 1
                 if sa != sb:
                     mism.append((t, "fault", sa, sb))
@@ -342,6 +390,26 @@ if __name__ == "__main__":
     leaf = bytes.fromhex("0520" "7047")
     v = compare(leaf, va, len(leaf), leaf, va, len(leaf), trials=8, nptr=0)
     print("self-test identical-leaf:", v["pass"], {k: v[k] for k in ("checked", "mismatches")})
+    # Fault locations differ when equivalent C compiles with an extra harmless
+    # instruction.  Same fault class and empty trace must still be semantic
+    # parity; a returning candidate remains a one-sided-fault failure.
+    fault_a = bytes.fromhex("0068" "7047")             # ldr r0,[r0]; bx lr
+    fault_b = bytes.fromhex("00bf" "0068" "7047")     # nop; same fault
+    ovs = [{0: 0xffffffff}]
+    v = compare(fault_a, va, len(fault_a), fault_b, va, len(fault_b),
+                trials=1, nptr=0, arg_overrides=ovs)
+    assert v["pass"], v
+    v = compare(fault_a, va, len(fault_a), bytes.fromhex("7047"), va, 2,
+                trials=1, nptr=0, arg_overrides=ovs)
+    assert not v["pass"], v
+    # Unicorn historically faulted an unaligned LDAEX for Rt=r1 but silently
+    # executed the same architectural operation for Rt=r4.  The runner must
+    # enforce Cortex-M alignment independently of that emulator quirk.
+    ex_r1 = bytes.fromhex("0346" "d3e8ef1f" "7047")
+    ex_r4 = bytes.fromhex("0346" "d3e8ef4f" "7047")
+    v = compare(ex_r1, va, len(ex_r1), ex_r4, va, len(ex_r4),
+                trials=1, nptr=0, arg_overrides=[{0: 1}])
+    assert v["pass"], v
     # add r0,r0,r1 ; bx lr  -> returns arg0+arg1  (exercises inputs)
     addf = bytes.fromhex("0844" "7047")
     v2 = compare(addf, va, len(addf), addf, va, len(addf), trials=16, nptr=0)

@@ -1,4 +1,5 @@
 /* net-core FUN_01018690 @ 0x1018690  (parity 300 trials PROVEN) */
+#include <stdint.h>
 extern unsigned char FUN_0100d760(void);
 extern void FUN_0101a070(unsigned char *param_1, void *out);
 extern int FUN_0101746c(void *p, unsigned int a, unsigned int b);
@@ -15,15 +16,16 @@ extern void FUN_01008d00(unsigned int a, unsigned int b);
    them to a trap even through "volatile"); routing the address through an
    asm operand keeps it opaque so the real store/load actually happens. */
 static inline void st8(unsigned int addr, unsigned char val) {
-  __asm__ volatile("strb %1, [%0]" :: "r"(addr), "r"(val) : "memory");
+  volatile unsigned int opaque = addr;
+  *(volatile unsigned char *)(uintptr_t)opaque = val;
 }
 static inline unsigned char ld8(unsigned int addr) {
-  unsigned char v;
-  __asm__ volatile("ldrb %0, [%1]" : "=r"(v) : "r"(addr) : "memory");
-  return v;
+  volatile unsigned int opaque = addr;
+  return *(volatile unsigned char *)(uintptr_t)opaque;
 }
 static inline void st32(unsigned int addr, unsigned int val) {
-  __asm__ volatile("str %1, [%0]" :: "r"(addr), "r"(val) : "memory");
+  volatile unsigned int opaque = addr;
+  *(volatile unsigned int *)(uintptr_t)opaque = val;
 }
 
 struct loc_s { unsigned int w0, w1, w2; };
@@ -132,4 +134,3 @@ switchD_01018786_default:
     FUN_01008d00(0x32, 0x13b3);
   }
 }
-

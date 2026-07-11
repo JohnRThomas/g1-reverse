@@ -1,8 +1,10 @@
 /* net-core FUN_01024778 @ 0x1024778  (parity 300 trials PROVEN) */
+#include <stdint.h>
 /* net-core FUN_01024778 @ 0x1024778  (parity 300 trials PROVEN) */
 
 extern void FUN_01024aa8(void);
 extern void FUN_010256dc(int,int) __attribute__((noreturn));
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 volatile unsigned char *const G6 = (volatile unsigned char*)0x21001bd6;
 volatile unsigned char *const Gf = (volatile unsigned char*)0x21001bdf;
@@ -10,8 +12,8 @@ volatile unsigned char *const Gf = (volatile unsigned char*)0x21001bdf;
 void FUN_01024778(void)
 {
   unsigned int primask;
-  __asm__ volatile("mrs %0, primask" : "=r"(primask));
-  __asm__ volatile("cpsid i");
+  primask = __get_PRIMASK();
+  __disable_irq();
   if (*G6 == 0) {
     FUN_010256dc(0x6d,300);
   }
@@ -20,9 +22,7 @@ void FUN_01024778(void)
     FUN_01024aa8();
   }
   if (primask == 0) {
-    __asm__ volatile("cpsie i");
+    __enable_irq();
   }
 }
-
-
 

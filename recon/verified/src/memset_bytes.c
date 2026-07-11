@@ -7,6 +7,4 @@ void memset_bytes(unsigned char *param_1, unsigned char param_2, int param_3){
         *p = param_2;
         p = p + 1;
     }
-    __asm__ volatile("" :: "r"(param_1));
 }
-

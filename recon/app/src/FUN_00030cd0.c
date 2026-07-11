@@ -1,19 +1,20 @@
 /* Reconstructed FUN_00030cd0 @ 0x30cd0 */
 #include <stdint.h>
 
-extern int DEBUG_PRINT(int, ...);
-extern uint32_t FUN_00025950(int, int, uint8_t *, int);
-extern uint32_t FUN_0003364c(int, int, uint8_t *, int);
+extern int DEBUG_PRINT(uint32_t, ...);
+extern uint32_t FUN_00025950(int, uint8_t *, int, int);
+extern uint32_t FUN_0003364c(int, uint8_t *, int, int);
 
-uint32_t FUN_00030cd0(int param_1, int param_2, uint8_t *param_3, int param_4)
+uint32_t FUN_00030cd0(int operation, int context, uint8_t *buffer, int length)
 {
-    if (param_2 == 0 || param_3 == 0 || param_4 == 0 || param_1 == 2) {
+    if (context == 0 || buffer == 0 || length == 0 || operation == 2) {
         DEBUG_PRINT(0x000a6589);
         return UINT32_MAX;
     }
-    if (param_1 == 0)
-        return FUN_00025950(param_1, param_2, param_3, param_4);
-    if (param_1 == 1)
-        return FUN_0003364c(param_1, param_2, param_3, param_4);
+
+    if (operation == 0)
+        return FUN_00025950(context, buffer, length, length);
+    if (operation == 1)
+        return FUN_0003364c(context, buffer, length, length);
     return 0;
 }

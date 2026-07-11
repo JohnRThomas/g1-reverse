@@ -1,8 +1,9 @@
 /* Reconstructed FUN_000753ec @ 0x753ec  (parity: 300/300 trials, PROVEN) */
-static inline unsigned read_basepri(void){unsigned r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void write_basepri(unsigned v){__asm__ volatile("msr basepri, %0"::"r"(v):"memory");}
-static inline void write_basepri_max(unsigned v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb_sy(void){__asm__ volatile("isb":::"memory");}
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned read_basepri(void){return __get_BASEPRI();}
+static inline void write_basepri(unsigned v){__set_BASEPRI(v);}
+static inline void write_basepri_max(unsigned v){__set_BASEPRI_MAX(v);}
+static inline void isb_sy(void){__ISB();}
 
 extern int FUN_00072040(unsigned,...);
 extern int FUN_0007205c(unsigned,...);
@@ -106,4 +107,3 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
 LAB:
   FUN_0007e2ec(uVar4, uVar5);
 }
-

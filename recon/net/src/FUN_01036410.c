@@ -1,10 +1,12 @@
 /* net-core FUN_01036410 @ 0x1036410  (parity 300 trials PROVEN) */
 #define ALWI __attribute__((always_inline)) static inline
-ALWI unsigned int readIPSR(void){unsigned c;__asm__ volatile("mrs %0, ipsr":"=r"(c));return c;}
-ALWI int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-ALWI int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-ALWI void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-ALWI void isb_(void){__asm__ volatile("isb sy":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+ALWI unsigned int readIPSR(void){return __get_IPSR();}
+ALWI int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+ALWI int getBasePriority(void){return (int)__get_BASEPRI();}
+ALWI void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+ALWI void isb_(void){__ISB();}
 
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
@@ -137,4 +139,3 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
     FUN_01039bbe(STRA, STR72, 0xf0);
     panic(STR72, 0xf0);
 }
-

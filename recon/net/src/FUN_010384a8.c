@@ -1,9 +1,11 @@
 /* net-core FUN_010384a8 @ 0x10384a8  (parity 36 trials PROVEN) */
 typedef unsigned int uint;
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
@@ -136,4 +138,3 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
     iVar6 = iVar6 + 1;
   }
 }
-

@@ -1,52 +1,29 @@
-/* net-core FUN_0101ddc0 @ 0x101ddc0  (parity 300 trials PROVEN) */
-/* net-core FUN_0101ddc0 @ 0x101ddc0  (parity 300 trials PROVEN) */
-/* net-core FUN_0101ddc0 @ 0x101ddc0  (parity 300 trials PROVEN) */
+/* net-core FUN_0101ddc0 @ 0x101ddc0 */
+#include <stdint.h>
 
-__attribute__((naked)) void FUN_0101ddc0(void)
+struct range_node {
+    uint8_t reserved[12];
+    uint32_t lower_bound;
+    uint8_t reserved2[8];
+    struct range_node *next;
+};
+
+struct range_node *FUN_0101ddc0(uint32_t value, int require_match)
 {
-    __asm__ volatile(
-        "ldr r3, =0x2100113c\n"
-        "ldr r3, [r3]\n"
-        "cbz r3, 5f\n"
-        "mov.w ip, #-1\n"
-        "push {lr}\n"
-        "mov lr, r0\n"
-        "movs r0, #0\n"
-        "b 2f\n"
-        "1:\n"
-        "mov r3, r2\n"
-        "2:\n"
-        "ldr r2, [r3, #0xc]\n"
-        "cmp lr, r2\n"
-        "bhi 3f\n"
-        "cmp r2, ip\n"
-        "bhs 3f\n"
-        "mov r0, r3\n"
-        "mov ip, r2\n"
-        "3:\n"
-        "ldr r2, [r3, #0x18]\n"
-        "cmp r2, #0\n"
-        "bne 1b\n"
-        "clz r2, r0\n"
-        "lsrs r2, r2, #5\n"
-        "cbnz r1, 4f\n"
-        "cmp r2, #0\n"
-        "it ne\n"
-        "movne r0, r3\n"
-        "4:\n"
-        "pop {pc}\n"
-        "5:\n"
-        "mov r0, r3\n"
-        "movs r2, #1\n"
-        "cbnz r1, 6f\n"
-        "cmp r2, #0\n"
-        "it ne\n"
-        "movne r0, r3\n"
-        "bx lr\n"
-        "6:\n"
-        "bx lr\n"
-    );
+    struct range_node *node = *(struct range_node *volatile *)0x2100113c;
+    struct range_node *best = 0;
+    struct range_node *last = node;
+    uint32_t best_bound = UINT32_MAX;
+
+    while (node != 0) {
+        last = node;
+        if (value <= node->lower_bound && node->lower_bound < best_bound) {
+            best = node;
+            best_bound = node->lower_bound;
+        }
+        node = node->next;
+    }
+    if (!require_match && best == 0)
+        best = last;
+    return best;
 }
-
-
-

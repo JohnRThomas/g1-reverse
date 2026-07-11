@@ -7,6 +7,8 @@ extern int  FUN_0100a17c(unsigned short a);
 extern int  FUN_01018c58(void);
 extern int  FUN_0101b74c(void);
 extern void FUN_01026c94(int a, int b);
+extern unsigned int g1_irq_lock(void);
+extern void g1_irq_unlock(unsigned int key);
 
 typedef void (*cb3)(unsigned int, char *, int);
 typedef void (*cb16)(unsigned short, char *);
@@ -16,6 +18,8 @@ typedef void (*nf1)(unsigned int);
 
 unsigned int FUN_0100ec88(char *param_1)
 {
+    /* Queue head removal and completion-state clearing use the platform IRQ
+     * lock interface because portable C cannot directly represent PRIMASK. */
     unsigned int s5  = 0x21000ec8u;
     unsigned int s6  = 0x21000eacu;
     volatile unsigned int *p5  = (volatile unsigned int *)0x21000058u;
@@ -39,12 +43,10 @@ INNER:
     node = *(volatile unsigned int *)(s5 + 8);
     if (*(volatile unsigned char *)(node + 8) == 1)
         return 0;
-    __asm__ volatile ("mrs %0, primask" : "=r"(primask));
-    __asm__ volatile ("cpsid i" ::: "memory");
+    primask = g1_irq_lock();
     *(volatile unsigned int *)(s5 + 8) =
         *(volatile unsigned int *)(*(volatile unsigned int *)(s5 + 8));
-    if (primask == 0)
-        __asm__ volatile ("cpsie i" ::: "memory");
+    g1_irq_unlock(primask);
     if (*(volatile unsigned char *)(node + 8) == 0)
         goto INNER;
     *(volatile unsigned int *)(s5 + 0x14) = node;
@@ -148,22 +150,19 @@ PROCESS:
 L_d24:
     uVar7 = 4;
 FINALIZE:
-    __asm__ volatile ("mrs %0, primask" : "=r"(primask));
-    __asm__ volatile ("cpsid i" ::: "memory");
+    primask = g1_irq_lock();
     {
         unsigned char st = *(volatile unsigned char *)(node + 8);
         if (st == 5 || st == 0)
             goto CLEAR;
     }
-    if (primask == 0)
-        __asm__ volatile ("cpsie i" ::: "memory");
+    g1_irq_unlock(primask);
     goto LOOP;
 
 CLEAR:
     *(volatile unsigned char *)(node + 8) = 0;
     *(volatile unsigned int *)(s5 + 0x14) = 0;
-    if (primask == 0)
-        __asm__ volatile ("cpsie i" ::: "memory");
+    g1_irq_unlock(primask);
     if (uVar7 != 0)
         return uVar7;
     goto LOOP;
@@ -176,4 +175,3 @@ L_e6a:
     *(volatile unsigned int *)(s5 + 0x14) = 0;
     return 4;
 }
-

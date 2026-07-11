@@ -9,13 +9,9 @@ extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
 extern char *FUN_00086418(int);
 void FUN_00071684(unsigned param_1, int param_2)
 {
-  unsigned basepri, uVar4; int iVar3; char *local_44;
+  int iVar3; char *local_44;
   unsigned local_50, local_4c, uStack_48, local_40, local_28, local_24; unsigned short local_3c;
-  uVar4 = 0;
-  __asm__ volatile("mrs %0, basepri":"=r"(basepri));
-  __asm__ volatile("msr basepri_max, %0"::"r"(0x20u));
-  __asm__ volatile("isb");
-  uVar4 = basepri;
+  __atomic_signal_fence(__ATOMIC_SEQ_CST);
   iVar3 = FUN_000748ac();
   local_44 = (char*)0x000f7c8e;
   if (param_1 < 5) local_44 = *(char**)(0x00098658 + param_1 * 4);
@@ -36,9 +32,7 @@ void FUN_00071684(unsigned param_1, int param_2)
     FUN_0007e2fa(0x000f7d3c, 0, 0, 0);
     FUN_0007e2ec(0x000f7cfd, 0x93);
   }
-  __asm__ volatile("msr basepri, %0"::"r"(uVar4));
-  __asm__ volatile("isb");
+  __atomic_signal_fence(__ATOMIC_SEQ_CST);
   FUN_00050b8c(iVar3);
   return;
 }
-

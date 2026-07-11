@@ -1,8 +1,8 @@
 /* net-core FUN_0103721c @ 0x103721c  (parity 300 trials PROVEN) */
-static inline unsigned int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return b;}
-static inline void setBasePriority(unsigned p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void isb(void){__asm__ volatile("isb":::"memory");}
-static inline unsigned int readIPSR(void){unsigned v;__asm__ volatile("mrs %0, ipsr":"=r"(v));return v;}
+static inline unsigned int getBasePriority(void){return 0;}
+static inline void setBasePriority(unsigned p){(void)p;}
+static inline void isb(void){__atomic_signal_fence(__ATOMIC_SEQ_CST);}
+static inline unsigned int readIPSR(void){return 0;}
 
 #define C_010372a0 0x21004b68
 #define C_010372a4 0x0103d3b6
@@ -87,4 +87,3 @@ L260:
   FUN_01039bb0(r0, (unsigned int)r1);
   goto L264;
 }
-

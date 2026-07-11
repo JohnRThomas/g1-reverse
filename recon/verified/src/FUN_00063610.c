@@ -5,7 +5,7 @@ unsigned long long FUN_00063610(void)
   unsigned int counterVal = *(volatile unsigned int *)0x2000b2dcUL;
   unsigned int uVar1 = counterVal >> 8;
   unsigned int shifted = counterVal << 24;
-  __asm__ volatile("dmb sy" ::: "memory");
+  __atomic_thread_fence(__ATOMIC_SEQ_CST);
   unsigned int uVar3 = *(volatile unsigned int *)0x50015504UL;
   unsigned int uVar2 = uVar3 + shifted;
   unsigned int carry1 = (uVar2 < uVar3) ? 1 : 0;
@@ -24,4 +24,3 @@ unsigned long long FUN_00063610(void)
   }
   return ((unsigned long long)uVar1 << 32) | uVar2;
 }
-

@@ -1,7 +1,9 @@
 /* net-core FUN_01024ef0 @ 0x1024ef0  (parity 300 trials PROVEN) */
+#include <stdint.h>
 typedef unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 #define PC6 0x21001bf8u
 #define NP  0x41011000u
@@ -34,8 +36,8 @@ void FUN_01024ef0(void)
     __builtin_unreachable();
   }
 
-  u32 primask; __asm__ volatile("mrs %0, primask":"=r"(primask));
-  __asm__ volatile("cpsid i":::"memory");
+  u32 primask = __get_PRIMASK();
+  __disable_irq();
 
   u32 r0 = RW(NP+0x504);
   u32 r3 = RW(NP+0x104);
@@ -50,7 +52,7 @@ void FUN_01024ef0(void)
   u32 r2 = RW(PC6+0x10);
 
   if (primask == 0) {
-    __asm__ volatile("cpsie i":::"memory");
+    __enable_irq();
   }
 
   u32 r5 = 0x1000000u;
@@ -117,4 +119,3 @@ L_9c8:
   WW(CC+0x200, 1);
   return;
 }
-

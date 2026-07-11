@@ -1,173 +1,77 @@
-/* net-core FUN_01019750 @ 0x1019750  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(void);
-extern void FUN_0100a5a0(void);
-extern void FUN_0100a5b4(void);
-extern void FUN_0100ca98(void);
-extern void FUN_0100ef88(void);
-extern void FUN_01026d3e(void);
-extern void FUN_01026f32(void);
-extern void FUN_0102714a(void);
-extern void FUN_010270d2(void);
+/* net-core FUN_01019750 @ 0x1019750 */
+#include <stdint.h>
+extern void FUN_01008d00(uint32_t, uint32_t);
+extern uint32_t FUN_0100a5a0(void);
+extern uint32_t FUN_0100a5b4(void);
+extern int FUN_0100ca98(int8_t, void *);
+extern void FUN_0100ef88(void *, const void *, uint32_t);
+extern int FUN_01026d3e(void);
+extern int FUN_01026f32(uint32_t, uint16_t, uint32_t);
+extern uint8_t *FUN_010270d2(uint32_t);
+extern void FUN_0102714a(uint32_t, uint32_t *, uint16_t *);
 
-__attribute__((naked)) void FUN_01019750(void)
+static void copy_six(uint8_t *destination, const uint8_t *source)
 {
-    __asm__ volatile(
-        "push.w {r4,r5,r6,r7,r8,r9,r10,r11,lr}\n"
-        "sub sp, #0xc\n"
-        "mov r5, r1\n"
-        "mov r8, r2\n"
-        "mov r7, r3\n"
-        "mov r6, r0\n"
-        "ldrb.w r9, [sp, #0x30]\n"
-        "ldrb.w r10, [sp, #0x34]\n"
-        "ldrsb.w r11, [sp, #0x38]\n"
-        "bl FUN_0100a5a0\n"
-        "mov r4, r0\n"
-        "bl FUN_01026d3e\n"
-        "cmp r0, #1\n"
-        "beq Lret\n"
-        "mov r0, r4\n"
-        "add.w r2, sp, #2\n"
-        "add r1, sp, #4\n"
-        "bl FUN_0102714a\n"
-        "ldr r0, [sp, #4]\n"
-        "bl FUN_010270d2\n"
-        "movs r3, #0\n"
-        "mov r4, r0\n"
-        "str.w r3, [r0, #0x12]\n"
-        "str.w r3, [r0, #0x16]\n"
-        "str.w r3, [r0, #0x1a]\n"
-        "str.w r3, [r0, #0x1e]\n"
-        "str.w r3, [r0, #0x22]\n"
-        "str.w r3, [r0, #0x26]\n"
-        "str.w r3, [r0, #0x2a]\n"
-        "movs r3, #1\n"
-        "strb r3, [r0, #0x12]\n"
-        "cmp r5, #6\n"
-        "bhi LpanicChain\n"
-        "cmp r5, #0\n"
-        "beq Lcase0\n"
-        "cmp r5, #1\n"
-        "beq Lcase1\n"
-        "cmp r5, #2\n"
-        "beq Lcase2\n"
-        "cmp r5, #6\n"
-        "beq Lcase6\n"
-        "b LpanicChain\n"
-        "Lcase0:\n"
-        "ldrb r3, [r0, #0x1c]\n"
-        "bic r3, r3, #0x13\n"
-        "orr r3, r3, #0x13\n"
-        "strb r3, [r0, #0x1c]\n"
-        "b Lshared\n"
-        "Lcase2:\n"
-        "ldrb r3, [r0, #0x1c]\n"
-        "orr r3, r3, #0x10\n"
-        "strb r3, [r0, #0x1c]\n"
-        "b Lshared\n"
-        "Lcase6:\n"
-        "ldrb r3, [r0, #0x1c]\n"
-        "bic r3, r3, #0x12\n"
-        "orr r3, r3, #0x12\n"
-        "strb r3, [r0, #0x1c]\n"
-        "b Lshared\n"
-        "Lcase1:\n"
-        "ldrb r3, [r0, #0x1c]\n"
-        "cmp.w r9, #0xff\n"
-        "add.w r2, r4, #0x14\n"
-        "bic r3, r3, #0x15\n"
-        "orr r3, r3, #0x15\n"
-        "strb r3, [r0, #0x1c]\n"
-        "bne Lparam5nonneg\n"
-        "b Lparam5eq\n"
-        "Lshared:\n"
-        "cmp.w r9, #0xff\n"
-        "add.w r2, r4, #0x14\n"
-        "beq Lparam5eq\n"
-        "Lparam5nonneg:\n"
-        "mov r0, r9\n"
-        "add.w r1, r4, #0x13\n"
-        "bl FUN_0100ca98\n"
-        "cmp r0, #0\n"
-        "beq LpanicChain2\n"
-        "ldrb r3, [r4, #0x13]\n"
-        "orr r3, r3, #2\n"
-        "strb r3, [r4, #0x13]\n"
-        "Ljoin1:\n"
-        "movs r3, #1\n"
-        "ldrb r2, [r4, #0x1c]\n"
-        "strb.w r11, [r4, #0x1b]\n"
-        "strh r3, [r4, #0x1e]\n"
-        "lsls r2, r2, #0x1d\n"
-        "mov.w r3, #0xff\n"
-        "strb.w r3, [r4, #0x20]\n"
-        "bmi Lbig\n"
-        "strb.w r3, [r4, #0x25]\n"
-        "Ltail1:\n"
-        "movs r3, #0x7f\n"
-        "strb.w r10, [r4, #0x2d]\n"
-        "strb.w r3, [r4, #0x2c]\n"
-        "bl FUN_0100a5a0\n"
-        "mov r5, r0\n"
-        "bl FUN_0100a5b4\n"
-        "mov r1, r0\n"
-        "movs r2, #1\n"
-        "mov r0, r5\n"
-        "uxth r1, r1\n"
-        "bl FUN_01026f32\n"
-        "cmp r0, #0\n"
-        "beq LpanicChain3\n"
-        "movs r3, #0\n"
-        "movs r2, #6\n"
-        "ldr r1, =0x01019a9d\n"
-        "mov r0, r4\n"
-        "strb r3, [r4, #8]\n"
-        "add sp, #0xc\n"
-        "pop.w {r4,r5,r6,r7,r8,r9,r10,r11,lr}\n"
-        "b FUN_0100ef88\n"
-        "Lparam5eq:\n"
-        "ldrb r3, [r6, #0x11]\n"
-        "strb r3, [r4, #0x13]\n"
-        "ldr r3, [r6, #4]\n"
-        "ldr r1, [r3]\n"
-        "str r1, [r4, #0x14]\n"
-        "ldrh r3, [r3, #4]\n"
-        "strh r3, [r2, #4]\n"
-        "b Ljoin1\n"
-        "Lbig:\n"
-        "subs r3, r7, #2\n"
-        "add.w r2, r4, #0x26\n"
-        "cmp r3, #1\n"
-        "bls Lparam4near\n"
-        "ldr r3, [r6, #8]\n"
-        "ldr r1, [r3]\n"
-        "str.w r1, [r4, #0x26]\n"
-        "ldrh r3, [r3, #4]\n"
-        "strh r3, [r2, #4]\n"
-        "Ljoin2:\n"
-        "strb.w r7, [r4, #0x25]\n"
-        "b Ltail1\n"
-        "Lparam4near:\n"
-        "ldr.w r3, [r8]\n"
-        "str.w r3, [r4, #0x26]\n"
-        "ldrh.w r3, [r8, #4]\n"
-        "strh r3, [r2, #4]\n"
-        "b Ljoin2\n"
-        "Lret:\n"
-        "add sp, #0xc\n"
-        "pop.w {r4,r5,r6,r7,r8,r9,r10,r11,pc}\n"
-        "LpanicChain:\n"
-        "mov.w r1, #0x314\n"
-        "movs r0, #0x33\n"
-        "bl FUN_01008d00\n"
-        "LpanicChain3:\n"
-        "mov.w r1, #0x334\n"
-        "movs r0, #0x33\n"
-        "bl FUN_01008d00\n"
-        "LpanicChain2:\n"
-        "movs r1, #0xe6\n"
-        "movs r0, #0x33\n"
-        "bl FUN_01008d00\n"
-    );
+    *(uint32_t *)destination = *(const uint32_t *)source;
+    *(uint16_t *)(destination + 4) = *(const uint16_t *)(source + 4);
 }
 
+void FUN_01019750(const uint8_t *owner, uint32_t kind,
+                   const uint8_t *near_address, uint32_t address_kind,
+                   int8_t identity, uint8_t channel, int8_t power)
+{
+    uint32_t token = FUN_0100a5a0();
+    uint32_t handle;
+    uint16_t unused;
+    uint8_t *entry;
+
+    if (FUN_01026d3e() == 1)
+        return;
+    FUN_0102714a(token, &handle, &unused);
+    entry = FUN_010270d2(handle);
+
+    for (unsigned offset = 0x12; offset <= 0x2a; offset += 4)
+        *(uint32_t *)(entry + offset) = 0;
+    entry[0x12] = 1;
+
+    switch (kind) {
+    case 0: entry[0x1c] = (entry[0x1c] & 0xec) | 0x13; break;
+    case 1: entry[0x1c] = (entry[0x1c] & 0xea) | 0x15; break;
+    case 2: entry[0x1c] |= 0x10; break;
+    case 6: entry[0x1c] = (entry[0x1c] & 0xed) | 0x12; break;
+    default:
+        FUN_01008d00(0x33, 0x314);
+        entry[0x1c] = (entry[0x1c] & 0xed) | 0x12;
+        break;
+    }
+
+    if (identity == -1) {
+        entry[0x13] = owner[0x11];
+        copy_six(entry + 0x14, *(const uint8_t *const *)(owner + 4));
+    } else {
+        if (FUN_0100ca98(identity, entry + 0x13) == 0)
+            FUN_01008d00(0x33, 0xe6);
+        entry[0x13] |= 2;
+    }
+
+    entry[0x1b] = (uint8_t)power;
+    *(uint16_t *)(entry + 0x1e) = 1;
+    entry[0x20] = 0xff;
+    if (entry[0x1c] & 4) {
+        const uint8_t *source = near_address;
+        if ((uint32_t)(address_kind - 2) > 1)
+            source = *(const uint8_t *const *)(owner + 8);
+        copy_six(entry + 0x26, source);
+        entry[0x25] = (uint8_t)address_kind;
+    } else {
+        entry[0x25] = 0xff;
+    }
+    entry[0x2d] = channel;
+    entry[0x2c] = 0x7f;
+
+    token = FUN_0100a5a0();
+    if (FUN_01026f32(token, (uint16_t)FUN_0100a5b4(), 1) == 0)
+        FUN_01008d00(0x33, 0x334);
+    entry[8] = 0;
+    FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
+}

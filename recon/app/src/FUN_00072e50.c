@@ -22,4 +22,3 @@ void FUN_00072e50(int param_1, int param_2, unsigned int param_3, unsigned int p
     }
     FUN_0007e2ec(0x000f820fUL, uVar1);
 }
-

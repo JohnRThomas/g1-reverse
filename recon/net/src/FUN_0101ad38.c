@@ -1,8 +1,10 @@
 /* net-core FUN_0101ad38 @ 0x101ad38  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int isIRQinterruptsEnabled(void){unsigned p;__asm__ volatile("mrs %0, primask":"=r"(p));return (int)p;}
-static inline void disableIRQinterrupts(void){__asm__ volatile("cpsid i":::"memory");}
-static inline void enableIRQinterrupts(void){__asm__ volatile("cpsie i":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u) == 0;}
+static inline int isIRQinterruptsEnabled(void){return (int)__get_PRIMASK();}
+static inline void disableIRQinterrupts(void){__disable_irq();}
+static inline void enableIRQinterrupts(void){__enable_irq();}
 
 extern void FUN_01008d00(unsigned int, unsigned int);
 extern void FUN_010190d0(void);
@@ -103,4 +105,3 @@ LAB_0101ad88:
   FUN_01008d00(0x21, 0x396);
   __builtin_unreachable();
 }
-

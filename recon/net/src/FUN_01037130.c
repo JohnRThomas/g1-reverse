@@ -6,19 +6,17 @@ extern void FUN_01039bbe(int a, int b, int c);
 
 static inline unsigned int read_ipsr(void)
 {
-    unsigned int v;
-    __asm__ volatile("mrs %0, ipsr" : "=r"(v));
-    return v;
+    return 0;
 }
 
 static inline void write_basepri(unsigned int v)
 {
-    __asm__ volatile("msr basepri, %0" : : "r"(v));
+    (void)v;
 }
 
 static inline void isb_sy(void)
 {
-    __asm__ volatile("isb sy");
+    __atomic_signal_fence(__ATOMIC_SEQ_CST);
 }
 
 void FUN_01037130(unsigned int param_1, unsigned int param_2)
@@ -58,5 +56,4 @@ void FUN_01037130(unsigned int param_1, unsigned int param_2)
     FUN_01039bb0(0x103d3b6, r1val);
     FUN_0102ec10((int)r5);
 }
-
 

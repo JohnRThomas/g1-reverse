@@ -1,45 +1,26 @@
-/* net-core FUN_0102eb8c @ 0x102eb8c  (parity 300 trials PROVEN) */
-/* net-core FUN_0102eb8c @ 0x102eb8c  (parity 300 trials PROVEN) */
-/* net-core FUN_0102eb8c @ 0x102eb8c  (parity 300 trials PROVEN) */
-/* net-core FUN_0102eb8c @ 0x102eb8c  (parity 300 trials PROVEN) */
+/* net-core FUN_0102eb8c @ 0x102eb8c */
+#include <stdint.h>
 
-extern void FUN_01039bbe(int,int,int,int,int);
-extern void FUN_01039bb0(int,int);
-__attribute__((naked)) void FUN_0102eb8c(void)
+extern void FUN_01039bbe(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+extern int32_t FUN_01039bb0(uint32_t, uint32_t);
+
+void FUN_0102eb8c(int8_t irq, uint32_t priority, uint32_t flags, uint32_t unused)
 {
-    __asm__ volatile(
-        "push {r3,lr}\n"
-        "lsls r3, r2, #0x1f\n"
-        "bmi 1f\n"
-        "adds r1, #2\n"
-        "cmp r1, #7\n"
-        "bls 2f\n"
-        "ldr r1, =0x0103d8c5\n"
-        "ldr r0, =0x0103d2a7\n"
-        "movs r2, #0x5c\n"
-        "bl FUN_01039bbe\n"
-        "movs r1, #0x5c\n"
-        "ldr r0, =0x0103d8c5\n"
-        "bl FUN_01039bb0\n"
-        "1:\n"
-        "movs r1, #0\n"
-        "2:\n"
-        "sxtb r0, r0\n"
-        "cmp r0, #0\n"
-        "ite ge\n"
-        "addge.w r0, r0, #-0x20000000\n"
-        "ldrlt r3, =0xe000ed14\n"
-        "lsl.w r1, r1, #5\n"
-        "uxtb r1, r1\n"
-        "itete ge\n"
-        "addge.w r0, r0, #0xe100\n"
-        "andlt r0, r0, #0xf\n"
-        "strbge.w r1, [r0, #0x300]\n"
-        "strblt r1, [r3, r0]\n"
-        "pop {r3,pc}\n"
-    );
+    uint32_t encoded;
+    if (flags & 1u) {
+        encoded = 0;
+    } else {
+        encoded = priority + 2u;
+        if (encoded > 7u) {
+            FUN_01039bbe(0x0103d2a7u, 0x0103d8c5u, 0x5cu, flags << 31, unused);
+            irq = (int8_t)FUN_01039bb0(0x0103d8c5u, 0x5cu);
+            encoded = 0; /* physical fall-through of the fatal-report path */
+        }
+    }
+
+    uint8_t value = (uint8_t)(encoded << 5);
+    if (irq >= 0)
+        *(volatile uint8_t *)(uintptr_t)(0xe000e400u + (uint32_t)irq) = value;
+    else
+        *(volatile uint8_t *)(uintptr_t)(0xe000ed14u + ((uint32_t)irq & 15u)) = value;
 }
-
-
-
-

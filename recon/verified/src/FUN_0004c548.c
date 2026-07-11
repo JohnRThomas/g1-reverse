@@ -1,4 +1,5 @@
-/* Reconstructed FUN_0004c548 @ 0x4c548  (parity: 150/150 trials, PROVEN) */
+/* Reconstructed FUN_0004c548 @ 0x4c548  (parity: 300/300 trials, PROVEN) */
+
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
@@ -12,10 +13,6 @@ typedef signed char sbyte; typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 
 #define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
 #define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
@@ -46,20 +43,20 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ vola
 #define __ROL4(x,n) (((unsigned)(x)<<((n)&31))|((unsigned)(x)>>((32-(n))&31)))
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-(n))&31)))
 
-extern long long FUN_0004c4e4();
-extern long long FUN_000723b8();
-extern long long FUN_00072558();
-extern long long FUN_0007e53e();
-extern long long FUN_0007e55a();
-extern long long FUN_0007e5da();
-extern long long FUN_0007e624();
-extern long long FUN_0007e658();
-extern long long FUN_0007e65e();
-extern long long FUN_0007e672();
-extern long long FUN_0007e80c();
-extern long long FUN_0007e83a();
-extern long long FUN_00083a92();
-extern long long FUN_000864c2();
+extern long long FUN_0004c4e4(long long, long long);
+extern long long FUN_000723b8(long long, long long, long long, long long);
+extern long long FUN_00072558(long long);
+extern long long FUN_0007e53e(long long, long long, long long, long long);
+extern long long FUN_0007e55a(long long, long long);
+extern long long FUN_0007e5da(long long, long long, long long, long long);
+extern long long FUN_0007e624(long long, ...);
+extern long long FUN_0007e658(long long, long long, long long);
+extern long long FUN_0007e65e(long long, long long);
+extern long long FUN_0007e672(long long, long long);
+extern long long FUN_0007e80c(long long);
+extern long long FUN_0007e83a(long long);
+extern long long FUN_00083a92(long long, long long, long long);
+extern long long FUN_000864c2(long long);
 #define DAT_0004c7a0 0xf0af8UL
 #define DAT_0004c7a4 0x881b8UL
 #define DAT_0004c7a8 0xf0b1aUL

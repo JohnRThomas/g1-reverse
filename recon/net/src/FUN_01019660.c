@@ -1,67 +1,46 @@
-/* net-core FUN_01019660 @ 0x1019660  (parity 300 trials PROVEN) */
+/* Reconstructed net-core setup routine @ 0x01019660. */
+#include <stdint.h>
 
-extern void FUN_01008d00(void);
-extern void FUN_0100a5a0(void);
-extern void FUN_0100a5b4(void);
-extern void FUN_0100ef88(void);
-extern void FUN_01026d3e(void);
-extern void FUN_01026f32(void);
-extern void FUN_010270d2(void);
-extern void FUN_0102714a(void);
+extern void FUN_01008d00(uint32_t, uint32_t);
+extern void *FUN_0100a5a0(void);
+extern uint32_t FUN_0100a5b4(void);
+extern void FUN_0100ef88(void *, const void *, uint32_t);
+extern uint32_t FUN_01026d3e(void *);
+extern uint32_t FUN_01026f32(void *, uint16_t, uint32_t);
+extern uint8_t *FUN_010270d2(void *);
+extern void FUN_0102714a(void *, void *, void *);
 
-__attribute__((naked)) void FUN_01019660(void)
+void FUN_01019660(void)
 {
-    __asm__ volatile(
-        "push {r4, r5, r6, lr}\n"
-        "sub sp, #8\n"
-        "bl FUN_0100a5a0\n"
-        "mov r4, r0\n"
-        "add.w r2, sp, #2\n"
-        "add r1, sp, #4\n"
-        "bl FUN_0102714a\n"
-        "ldr r0, [sp, #4]\n"
-        "bl FUN_010270d2\n"
-        "ldrb r6, [r0, #0x1f]\n"
-        "cbnz r6, 1f\n"
-        "mov r5, r0\n"
-        "mov r0, r4\n"
-        "bl FUN_01026d3e\n"
-        "cmp r0, #1\n"
-        "beq 2f\n"
-        "bl FUN_0100a5b4\n"
-        "movs r2, #1\n"
-        "uxth r1, r0\n"
-        "mov r0, r4\n"
-        "bl FUN_01026f32\n"
-        "cbz r0, 5f\n"
-        "mov r0, r4\n"
-        "bl FUN_01026d3e\n"
-        "cbz r0, 4f\n"
-        "movs r2, #6\n"
-        "ldr r1, =0x01019a9d\n"
-        "mov r0, r5\n"
-        "strb r6, [r5, #8]\n"
-        "bl FUN_0100ef88\n"
-        "3:\n"
-        "ldr r3, =0x21001058\n"
-        "movs r2, #0\n"
-        "strh.w r2, [r3, #0x44]\n"
-        "2:\n"
-        "add sp, #8\n"
-        "pop {r4, r5, r6, pc}\n"
-        "1:\n"
-        "mov r0, r4\n"
-        "bl FUN_01026d3e\n"
-        "cmp r0, #0\n"
-        "bne 3b\n"
-        "4:\n"
-        "movw r1, #0x2be\n"
-        "movs r0, #0x33\n"
-        "bl FUN_01008d00\n"
-        "5:\n"
-        "movw r1, #0x2ba\n"
-        "movs r0, #0x33\n"
-        "bl FUN_01008d00\n"
-    );
-}
+    uint16_t auxiliary;
+    void *handle;
+    void *controller = FUN_0100a5a0();
+    uint8_t *entry;
+    uint8_t initial_flag;
 
+    FUN_0102714a(controller, &handle, &auxiliary);
+    entry = FUN_010270d2(handle);
+    initial_flag = entry[0x1f];
+
+    if (initial_flag == 0) {
+        if (FUN_01026d3e(controller) == 1)
+            return;
+        if (FUN_01026f32(controller, (uint16_t)FUN_0100a5b4(), 1) == 0) {
+            FUN_01008d00(0x33, 0x2ba);
+            return;
+        }
+        if (FUN_01026d3e(controller) == 0) {
+            FUN_01008d00(0x33, 0x2be);
+            FUN_01008d00(0x33, 0x2ba);
+            return;
+        }
+        entry[8] = initial_flag;
+        FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
+    } else if (FUN_01026d3e(controller) == 0) {
+        FUN_01008d00(0x33, 0x2be);
+        FUN_01008d00(0x33, 0x2ba);
+        return;
+    }
+
+    *(volatile uint16_t *)0x2100109c = 0;
+}

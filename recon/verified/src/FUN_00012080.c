@@ -19,10 +19,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -65,17 +61,17 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long FUN_00053cd4();
-extern long long FUN_00053d70();
-extern long long FUN_000549ec();
-extern long long FUN_00055c64();
-extern long long FUN_00057358();
-extern long long FUN_0005f24c();
-extern long long FUN_0005f5d0();
-extern long long FUN_00080ea2();
-extern long long FUN_00080eb8();
-extern long long FUN_00081158();
-extern long long FUN_00086534();
+extern long long FUN_00053cd4(int, int);
+extern long long FUN_00053d70(int, int, ...);
+extern long long FUN_000549ec(void);
+extern long long FUN_00055c64(void);
+extern long long FUN_00057358(void);
+extern long long FUN_0005f24c(int, ...);
+extern long long FUN_0005f5d0(int, int);
+extern long long FUN_00080ea2(int, int, ...);
+extern long long FUN_00080eb8(int, int, int);
+extern long long FUN_00081158(void);
+extern long long FUN_00086534(void *, int);
 #define DAT_00012388 0x20002000UL
 #define DAT_0001238c ((volatile int*)0x20002078UL)
 #define DAT_00012390 0xf325bUL
@@ -170,7 +166,7 @@ int FUN_00012080(void)
   *(undefined1 *)(iVar5 + 0x71) = *(undefined1 *)(iVar1 + 4);
   *(undefined2 *)(iVar5 + 0x74) = *(undefined2 *)(iVar1 + 7);
   *(undefined2 *)(iVar5 + 0x76) = *(undefined2 *)(iVar1 + 5);
-  FUN_0005f24c();
+  FUN_0005f24c(local_30[0]);
   iVar1 = FUN_00053d70(0x1002,0,local_30);
   if (iVar1 != 0) {
     return iVar1;
@@ -238,7 +234,7 @@ int FUN_00012080(void)
     uVar7 = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 5);
     *(undefined4 *)(iVar5 + 0xe0) = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 1);
     *(undefined4 *)(iVar5 + 0xe4) = uVar7;
-    FUN_0005f24c();
+    FUN_0005f24c(local_30[0]);
   }
   if ((int)((uint)*(byte *)(iVar5 + 0xd8) << 0x19) < 0) {
     iVar1 = FUN_00053d70(0x202a,0,local_30);
@@ -246,7 +242,7 @@ int FUN_00012080(void)
       return iVar1;
     }
     *(undefined1 *)(iVar5 + 0x120) = *(undefined1 *)(*(int *)(local_30[0] + 0xc) + 1);
-    FUN_0005f24c();
+    FUN_0005f24c(local_30[0]);
   }
   iVar1 = FUN_00053cd4(0x2001,8);
   if (iVar1 == 0) {
@@ -361,13 +357,13 @@ int FUN_00012080(void)
     puVar13 = DAT_00012564;
     if (iVar1 == 0) {
       *(undefined2 *)(DAT_00012568 + 0xc1) = *(undefined2 *)(*(int *)(local_34 + 0xc) + 1);
-      FUN_0005f24c();
+      FUN_0005f24c(local_34);
       if (-1 < (int)((uint)*(byte *)(iVar5 + 0xc1) << 0x1d)) goto LAB_000123fe;
       iVar1 = FUN_00053d70(0xfc03,0,&local_34);
       puVar13 = DAT_0001256c;
       if (iVar1 == 0) {
         *(undefined1 *)(iVar5 + 0xc0) = *(undefined1 *)(*(int *)(local_34 + 0xc) + 1);
-        FUN_0005f24c();
+        FUN_0005f24c(local_34);
         goto LAB_000123fe;
       }
     }
@@ -387,5 +383,4 @@ LAB_000123fe:
   }
   return iVar5;
 }
-
 

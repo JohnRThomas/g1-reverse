@@ -4,9 +4,7 @@ typedef unsigned char byte;
 typedef unsigned short ushort;
 
 static inline unsigned ctz32(unsigned x){
-  unsigned r;
-  __asm__ volatile("rbit %0, %1\n\tclz %0, %0" : "=r"(r) : "r"(x));
-  return r;
+  return (unsigned)__builtin_ctz(x);
 }
 
 extern int FUN_0103467c(uint);
@@ -118,4 +116,3 @@ LAB_d16:
     } while (r5 != 0);
   }
 }
-

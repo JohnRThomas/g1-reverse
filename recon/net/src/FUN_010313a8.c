@@ -1,4 +1,6 @@
 /* net-core FUN_010313a8 @ 0x10313a8  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 unsigned long long FUN_010313a8(void)
 {
@@ -6,7 +8,7 @@ unsigned long long FUN_010313a8(void)
   unsigned int raw = *g1;
   unsigned int hi = raw >> 8;
   unsigned int lo = raw << 24;
-  __asm__ volatile("dmb sy" ::: "memory");
+  __DMB();
   volatile unsigned int *g2 = (volatile unsigned int*)0x41016000;
   unsigned int uVar3 = *(volatile unsigned int*)((char*)g2 + 0x504);
   unsigned int sum = uVar3 + lo;
@@ -36,4 +38,3 @@ unsigned long long FUN_010313a8(void)
   }
   return ((unsigned long long)uVar1 << 32) | uVar2;
 }
-

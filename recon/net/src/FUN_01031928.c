@@ -1,7 +1,7 @@
 /* net-core FUN_01031928 @ 0x1031928  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void software_interrupt(int n){(void)n;__asm__ volatile("movs r0,#4\nsvc #2\n":::"r0","memory");}
+/* Platform boundary: implemented by the Zephyr ARM ARCH_EXCEPT(4) primitive.
+ * It clears BASEPRI and raises runtime-exception SVC 2 with reason 4. */
+extern __attribute__((noreturn)) void g1_arch_runtime_exception(unsigned int reason);
 
 extern void FUN_01008ddc(unsigned int);
 extern int FUN_01008e74(int, int, void*);
@@ -71,12 +71,7 @@ int FUN_01031928(void)
                     uStack_20 = 0x16c3;
                     local_28 = 4;
                     FUN_0102e284(DAT_01031a64, 0x2040, &local_28, 0);
-                    bVar1 = isCurrentModePrivileged();
-                    if (bVar1) {
-                      setBasePriority(0);
-                    }
-                    software_interrupt(2);
-                    local_1c = -0xc;
+                    g1_arch_runtime_exception(4);
                   }
                 }
               }
@@ -90,4 +85,3 @@ int FUN_01031928(void)
   }
   return local_1c;
 }
-

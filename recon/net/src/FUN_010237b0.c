@@ -1,13 +1,15 @@
 /* net-core FUN_010237b0 @ 0x10237b0  (parity 300 trials PROVEN) */
+#include <stdint.h>
 extern int FUN_0102286c(int a0, unsigned int a1);
 extern void FUN_01024440(void);
 extern unsigned long long FUN_01025084(int a0, int a1);
 extern void FUN_010256dc(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-static inline void enableIRQinterrupts(void) { __asm__ volatile("" ::: "memory"); }
-static inline void disableIRQinterrupts(void) { __asm__ volatile("" ::: "memory"); }
-static inline int isIRQinterruptsEnabled(void) { return 0; }
-static inline int isCurrentModePrivileged(void) { return 0; }
+static inline void enableIRQinterrupts(void) { __enable_irq(); }
+static inline void disableIRQinterrupts(void) { __disable_irq(); }
+static inline int isIRQinterruptsEnabled(void) { return (int)__get_PRIMASK(); }
+static inline int isCurrentModePrivileged(void) { return (__get_CONTROL() & 1u) == 0; }
 
 typedef void (*cbfn)(unsigned int);
 
@@ -138,4 +140,3 @@ LAB_010238e0:
 LAB_010238cc:
     goto LAB_010238e0;
 }
-

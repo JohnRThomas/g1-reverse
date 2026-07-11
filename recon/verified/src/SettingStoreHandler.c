@@ -8,7 +8,8 @@ typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
 typedef unsigned long long undefined8,ulonglong;
 typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
+typedef long long(*code)(long long,long long,long long,long long);
+typedef long long(*code3)(long long,long long,long long);
 #define bool int
 #define false 0
 #define true 1
@@ -19,10 +20,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -65,11 +62,11 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long FUN_000167a8();
-extern long long FUN_00019c70();
-extern long long FUN_00072240();
-extern long long FUN_0008638c();
+extern long long DEBUG_PRINT(long long format, ...);
+extern long long FUN_000167a8(void);
+extern long long FUN_00019c70(void);
+extern long long FUN_00072240(long long,long long,long long,long long);
+extern long long FUN_0008638c(long long);
 #define DAT_0002418c 0x20003994UL
 #define DAT_00024190 ((volatile int*)0x2000230cUL)
 #define DAT_00024194 ((volatile int*)0x20007554UL)
@@ -168,7 +165,7 @@ uint SettingStoreHandler(void)
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1038);
             uVar6 = FUN_000167a8();
-            uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+            uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
             if (uVar8 != 0) goto LAB_00024044;
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1034);
@@ -225,7 +222,7 @@ LAB_00023fe2:
           iVar4 = FUN_000167a8();
           pcVar11 = *(code **)(iVar4 + 0x1038);
           uVar6 = FUN_000167a8();
-          uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+          uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
           if (uVar8 != 0) {
 LAB_00024044:
             if (*piVar1 < 3) {
@@ -330,7 +327,7 @@ LAB_00023fc4:
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1038);
             uVar6 = FUN_000167a8();
-            uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+            uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
             if (uVar8 != 0) goto LAB_00024044;
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1034);
@@ -382,7 +379,7 @@ LAB_00023fc4:
       iVar4 = FUN_000167a8();
       pcVar11 = *(code **)(iVar4 + 0x1038);
       uVar6 = FUN_000167a8();
-      uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+      uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
       if (uVar8 != 0) goto LAB_00024044;
       iVar4 = FUN_000167a8();
       pcVar11 = *(code **)(iVar4 + 0x1034);
@@ -450,5 +447,4 @@ LAB_00023f56:
 switchD_00023f2c_caseD_4:
   return uVar8;
 }
-
 

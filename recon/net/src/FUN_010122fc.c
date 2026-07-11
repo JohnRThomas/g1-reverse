@@ -1,13 +1,11 @@
-/* net-core FUN_010122fc @ 0x10122fc  (parity 300 trials PROVEN) */
+/* net-core FUN_010122fc @ 0x10122fc */
+#include <stdint.h>
 
-__attribute__((naked)) unsigned int FUN_010122fc(int param_1, unsigned int param_2)
+extern uint32_t FUN_01012308(void *, uint32_t);
+
+uint32_t FUN_010122fc(void *record, uint32_t value)
 {
-  __asm__ volatile(
-    "ldrh r3, [r0, #2]\n"
-    "tst.w r3, #0x18\n"
-    "beq.n 0x1012308\n"
-    "movs r0, #1\n"
-    "bx lr\n"
-  );
+    if ((*(uint16_t *)((uint8_t *)record + 2) & 0x18) != 0)
+        return 1;
+    return FUN_01012308(record, value);
 }
-

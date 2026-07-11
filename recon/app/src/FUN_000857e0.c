@@ -1,12 +1,13 @@
 /* Reconstructed FUN_000857e0 @ 0x857e0  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fn_t)(int *);
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 void FUN_000857e0(int *param_1)
 {
     int iVar1;
 
-    __asm__ volatile("dmb sy" ::: "memory");
+    __DMB();
     iVar1 = *(int *)(*param_1 + 0x18);
     if ((*(unsigned int *)(*param_1 + 0x10) & 0x20000000) == 0) {
         if ((iVar1 != 0) || ((int)((unsigned int)*(unsigned short *)param_1[8] << 0x1f) < 0)) goto LAB_00085810;
@@ -22,4 +23,3 @@ void FUN_000857e0(int *param_1)
 LAB_00085810:
     *(unsigned short *)((int)param_1 + 0x26) = 0;
 }
-

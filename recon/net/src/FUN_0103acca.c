@@ -1,9 +1,10 @@
 /* net-core FUN_0103acca @ 0x103acca  (parity 300 trials PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 void FUN_0103acca(int32_t *param_1)
 {
-    __asm__ volatile("dmb ish" ::: "memory");
+    __DMB();
 
     int32_t base = *(volatile int32_t *)param_1;
     uint32_t flags = *(volatile uint32_t *)(base + 0x10);
@@ -41,4 +42,3 @@ void FUN_0103acca(int32_t *param_1)
     }
     *(volatile uint16_t *)((int8_t *)param_1 + 0x26) = 0;
 }
-

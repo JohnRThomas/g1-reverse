@@ -1,27 +1,17 @@
-/* Reconstructed FUN_0007d8c4 @ 0x7d8c4  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0007d8c4 @ 0x7d8c4. */
+#include <stdint.h>
 
-__attribute__((naked))
-void FUN_0007d8c4(int param_1, unsigned char *param_2, unsigned int param_3)
+/* Assemble little-endian input bytes into aligned destination words. */
+void FUN_0007d8c4(uint32_t *dst, const uint8_t *src, uint32_t byte_count)
 {
-    __asm__ volatile(
-        "push {r4, r5, lr}\n"
-        "movs r4, #0\n"
-        "1: cmp r4, r2\n"
-        "add.w r1, r1, #4\n"
-        "blo 2f\n"
-        "pop {r4, r5, pc}\n"
-        "2: ldrb r3, [r1, #-0x2]\n"
-        "ldrb r5, [r1, #-0x3]\n"
-        "lsls r3, r3, #0x10\n"
-        "orr.w r3, r3, r5, lsl #8\n"
-        "ldrb r5, [r1, #-0x4]\n"
-        "orrs r3, r5\n"
-        "ldrb r5, [r1, #-0x1]\n"
-        "orr.w r3, r3, r5, lsl #24\n"
-        "str r3, [r0, r4]\n"
-        "adds r4, #4\n"
-        "b 1b\n"
-        ::: "memory"
-    );
-}
+    uint32_t offset = 0;
 
+    while (offset < byte_count) {
+        uint32_t word = (uint32_t)src[offset]
+                      | (uint32_t)src[offset + 1] << 8
+                      | (uint32_t)src[offset + 2] << 16
+                      | (uint32_t)src[offset + 3] << 24;
+        dst[offset / 4] = word;
+        offset += 4;
+    }
+}

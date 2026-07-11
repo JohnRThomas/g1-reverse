@@ -12,10 +12,6 @@ typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -58,21 +54,21 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long FUN_00019c70();
-extern long long FUN_00034390();
-extern long long FUN_0003483c();
-extern long long FUN_000357dc();
-extern long long FUN_00043484();
-extern long long FUN_00043e90();
-extern long long FUN_00044818();
-extern long long FUN_00044bd8();
-extern long long FUN_000451e0();
-extern long long FUN_00077914();
-extern long long FUN_0007d3ee();
-extern long long FUN_0007d446();
-extern long long FUN_00086c78();
-extern long long FUN_00086f00();
+extern long long DEBUG_PRINT(long long format, ...);
+extern long long FUN_00019c70(void);
+extern long long FUN_00034390(void);
+extern long long FUN_0003483c(void);
+extern long long FUN_000357dc(long long, long long);
+extern long long FUN_00043484(long long,long long,long long,long long,long long,long long);
+extern long long FUN_00043e90(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long FUN_00044818(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long FUN_00044bd8(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long FUN_000451e0(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long FUN_00077914(long long destination, long long size, long long format, ...);
+extern long long FUN_0007d3ee(void);
+extern long long FUN_0007d446(void);
+extern long long FUN_00086c78(long long,long long,long long);
+extern long long FUN_00086f00(long long,long long,long long,long long,long long);
 #define DAT_00035e74 ((volatile int*)0x20007554UL)
 #define DAT_00035e78 0xa8ce7UL
 #define DAT_00035e7c 0xa8bcdUL
@@ -252,5 +248,4 @@ LAB_00035de8:
   FUN_000451e0(0,&local_144,0,uVar6,iVar2 + 0x36,iVar7 + 0x240,iVar3 + 0x87,3,0,0,0,0);
   return;
 }
-
 

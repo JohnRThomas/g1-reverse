@@ -2,7 +2,7 @@
 extern unsigned long long FUN_00078c44(int, int*);
 extern unsigned long long FUN_0000db4c(int, int, int, int);
 
-unsigned long long FUN_000875e4(int param_1, int param_2)
+double FUN_000875e4(int param_1, int param_2)
 {
   unsigned long long uVar4, uVar5;
   int iVar2, iVar3, iVar1;
@@ -19,7 +19,6 @@ unsigned long long FUN_000875e4(int param_1, int param_2)
     iVar2 = iVar2 + iVar1 * 0x100000;
   }
   uVar4 = FUN_0000db4c((int)uVar4, iVar2, (int)uVar5, iVar3);
-  __asm__ volatile("vmov d0, %0, %1" :: "r"((unsigned)uVar4), "r"((unsigned)(uVar4 >> 32)));
-  return uVar4;
+  union { unsigned long long bits; double value; } result = { uVar4 };
+  return result.value;
 }
-

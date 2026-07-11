@@ -1,53 +1,34 @@
-/* net-core FUN_0102cb84 @ 0x102cb84  (parity 300 trials PROVEN) */
-/* net-core FUN_0102cb84 @ 0x102cb84  (parity 300 trials PROVEN) */
-/* net-core FUN_0102cb84 @ 0x102cb84  (parity 300 trials PROVEN) */
+/* net-core FUN_0102cb84 @ 0x102cb84 */
+#include <stdint.h>
 
-extern void FUN_010388c8(void);
-extern void FUN_01039bbe(int,int,int,int,int);
-extern void FUN_01039bb0(int,int);
-__attribute__((naked)) void FUN_0102cb84(void)
+extern void FUN_010388c8(uint32_t object);
+extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void FUN_01039bb0(const void *file, unsigned line);
+
+int FUN_0102cb84(uint32_t state[3], uint32_t completion)
 {
-    __asm__ volatile(
-        "push {r3,lr}\n"
-        "ldr r2,[r0,#4]\n"
-        "mov r3,r0\n"
-        "and r2,r2,#3\n"
-        "cmp r2,#2\n"
-        "str r1,[r0,#8]\n"
-        "beq 1f\n"
-        "cmp r2,#3\n"
-        "mov.w r1,#0\n"
-        "beq 2f\n"
-        "cmp r2,#1\n"
-        "bne 3f\n"
-        "str r1,[r3,#4]\n"
-        "b 4f\n"
-        "2:\n"
-        "ldr r0,[r3]\n"
-        "str r1,[r3,#4]\n"
-        "6:\n"
-        "pop {r3,pc}\n"
-        "1:\n"
-        "ldr r0,[r3]\n"
-        "movs r2,#0\n"
-        "str r2,[r3,#4]\n"
-        "cbnz r0, 5f\n"
-        "4:\n"
-        "movs r0,#0\n"
-        "b 6b\n"
-        "3:\n"
-        "ldr r1, =0x0103d3e3\n"
-        "ldr r0, =0x0103d2a7\n"
-        "movs r2,#0x45\n"
-        "bl FUN_01039bbe\n"
-        "movs r1,#0x45\n"
-        "ldr r0, =0x0103d3e3\n"
-        "bl FUN_01039bb0\n"
-        "5:\n"
-        "bl FUN_010388c8\n"
-        "b 4b\n"
-    );
+    uint32_t mode = state[1] & 3u;
+    uint32_t object;
+
+    state[2] = completion;
+    switch (mode) {
+    case 1:
+        state[1] = 0;
+        return 0;
+    case 2:
+        object = state[0];
+        state[1] = 0;
+        if (object != 0)
+            FUN_010388c8(object);
+        return 0;
+    case 3:
+        object = state[0];
+        state[1] = 0;
+        return (int)object;
+    default:
+        FUN_01039bbe((const void *)0x0103d2a7u,
+                     (const void *)0x0103d3e3u, 0x45);
+        FUN_01039bb0((const void *)0x0103d3e3u, 0x45);
+        return 0;
+    }
 }
-
-
-

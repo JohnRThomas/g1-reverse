@@ -1,5 +1,6 @@
 /* Reconstructed FUN_00072240 @ 0x72240  (parity: 48/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_00072040(int,...);
 extern int FUN_0007205c(int,...);
 extern int FUN_00072078(int,...);
@@ -10,10 +11,10 @@ extern int FUN_000744a4(int,...);
 extern int FUN_0007e2ec(int,...) __attribute__((noreturn));
 extern int FUN_0007e2fa(int,...);
 extern int FUN_00086c04(int,...);
-static inline int ipsr(void){int r;__asm__ volatile("mrs %0, ipsr":"=r"(r));return r;}
-static inline int rd_basepri(void){int r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void wr_basepri_max(int v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb(void){__asm__ volatile("isb 0xf":::"memory");}
+static inline int ipsr(void){return (int)__get_IPSR();}
+static inline int rd_basepri(void){return (int)__get_BASEPRI();}
+static inline void wr_basepri_max(int v){__set_BASEPRI_MAX((uint32_t)v);}
+static inline void isb(void){__ISB();}
 
 int FUN_00072240(int param_1, unsigned param_2, int param_3, int param_4)
 {
@@ -93,4 +94,3 @@ int FUN_00072240(int param_1, unsigned param_2, int param_3, int param_4)
 LAB_000722a4:
     FUN_0007e2ec(uVar7,uVar3);
 }
-

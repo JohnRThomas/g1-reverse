@@ -19,10 +19,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -65,26 +61,29 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long FUN_00010840();
-extern long long FUN_000167a8();
-extern long long FUN_00016940();
-extern long long FUN_00019c70();
-extern long long FUN_00027448();
-extern long long FUN_0002bed0();
-extern long long FUN_0002eba0();
-extern long long FUN_000304f0();
-extern long long FUN_00030c90();
-extern long long FUN_00032784();
-extern long long FUN_000327c4();
-extern long long FUN_0004a890();
-extern long long FUN_0007cb2c();
-extern long long FUN_0007cbfe();
-extern long long FUN_0007dada();
-extern long long change_work_mode_to();
-extern long long send_event_status();
-extern long long sync_to_slave();
-extern long long thunk_FUN_00072908();
+extern long long DEBUG_PRINT(long long format, ...);
+extern long long FUN_00010840(long long);
+extern long long FUN_000167a8(void);
+extern long long FUN_00016940(void);
+extern long long FUN_00019c70(void);
+extern long long FUN_00027448(long long,long long,long long,long long);
+extern long long FUN_0002bed0(void);
+extern long long FUN_0002eba0(void);
+extern long long FUN_000304f0(void);
+extern long long FUN_00030c90(void);
+extern long long FUN_00032784(void);
+extern long long FUN_000327c4(void);
+extern long long FUN_0004a890(void);
+extern long long FUN_0007cb2c(void);
+extern long long FUN_0007cbfe(long long,long long);
+extern long long FUN_0007dada(void);
+extern long long change_work_mode_to(long long);
+extern long long send_event_status(long long);
+extern long long sync_to_slave(long long,long long,long long,long long);
+extern long long thunk_FUN_00072908(long long,long long,long long,long long);
+typedef long long (*log2_fn)(long long,long long);
+typedef long long (*log3_fn)(long long,long long,long long);
+typedef long long (*log4_fn)(long long,long long,long long,long long);
 #define DAT_00027a6c ((volatile int*)0x200069e8UL)
 #define DAT_00027a70 ((volatile int*)0x20018d93UL)
 #define DAT_00027a74 ((volatile int*)0x2000230cUL)
@@ -462,7 +461,7 @@ LAB_00027b72:
         DEBUG_PRINT(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
         return;
       }
-      FUN_00019c70(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
+      ((log4_fn)FUN_00019c70)(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
       return;
     }
     *DAT_00027cdc = 0;
@@ -475,7 +474,7 @@ LAB_00027b72:
           DEBUG_PRINT(DAT_00027ce4,DAT_00027cc8,uVar4,uVar4);
         }
         else {
-          FUN_00019c70(DAT_00027ce4,DAT_00027cc8,uVar4);
+          ((log3_fn)FUN_00019c70)(DAT_00027ce4,DAT_00027cc8,uVar4);
         }
       }
       _event_id2 = 0xf;
@@ -486,7 +485,7 @@ LAB_00027b72:
         DEBUG_PRINT(_DAT_00027cf8,DAT_00027cc8,(uint)*DAT_00027ce0,uVar4);
       }
       else {
-        FUN_00019c70(_DAT_00027cf8,DAT_00027cc8);
+        ((log2_fn)FUN_00019c70)(_DAT_00027cf8,DAT_00027cc8);
       }
     }
   }
@@ -506,5 +505,4 @@ LAB_00027af8:
   }
   return;
 }
-
 

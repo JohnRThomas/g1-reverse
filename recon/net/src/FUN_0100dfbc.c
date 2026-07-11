@@ -1,6 +1,8 @@
 /* net-core FUN_0100dfbc @ 0x100dfbc  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern __attribute__((noreturn)) void FUN_01008d00(unsigned int a, unsigned int b,
+                                                   unsigned int c, unsigned int d,
+                                                   unsigned int e);
 
 void FUN_0100dfbc(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -21,7 +23,5 @@ void FUN_0100dfbc(unsigned char *param_1, unsigned int param_2, unsigned int par
         param_1[1] = 0xe; return;
     default:
         FUN_01008d00(0x2a, 0xa8, param_2 & 0xf, uVar1, param_4);
-        return;
     }
 }
-

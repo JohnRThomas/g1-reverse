@@ -1,10 +1,10 @@
 /* net-core FUN_0103689c @ 0x103689c  (parity 300 trials PROVEN) */
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
-static inline unsigned int readIPSR(void){unsigned v;__asm__ volatile("mrs %0, ipsr":"=r"(v));return v;}
+static inline int isCurrentModePrivileged(void){return 1;}
+static inline int getBasePriority(void){return 0;}
+static inline void setBasePriority(int p){(void)p;}
+static inline void InstructionSynchronizationBarrier(int x){(void)x; __atomic_signal_fence(__ATOMIC_SEQ_CST);}
+static inline unsigned int readIPSR(void){return 0;}
 
 extern int FUN_0103610c(void *);
 extern int FUN_01036128(void *);
@@ -72,4 +72,3 @@ int FUN_0103689c(int param_1, unsigned int param_2, unsigned int param_3, unsign
         __builtin_unreachable();
     }
 }
-

@@ -1,44 +1,24 @@
-/* net-core FUN_0100ac34 @ 0x100ac34  (parity 300 trials PROVEN) */
-/* net-core FUN_0100ac34 @ 0x100ac34  (parity 300 trials PROVEN) */
-/* net-core FUN_0100ac34 @ 0x100ac34  (parity 300 trials PROVEN) */
-/* net-core FUN_0100ac34 @ 0x100ac34  (parity 300 trials PROVEN) */
+/* net-core FUN_0100ac34 @ 0x100ac34 */
+#include <stdint.h>
 
 extern void FUN_01020500(void);
 extern void FUN_0101ff4c(void);
-extern void FUN_0100efc8(int,int,int);
-__attribute__((naked)) void FUN_0100ac34(void)
+extern void FUN_0100efc8(void *, const void *, unsigned);
+
+void FUN_0100ac34(void)
 {
-    __asm__ volatile(
-        "push {r4,lr}\n"
-        "ldr r4, =0x21000c48\n"
-        "bl FUN_01020500\n"
-        "bl FUN_0101ff4c\n"
-        "movs r1, #0\n"
-        "ldr r3, [r4, #0x34]\n"
-        "ldrh r0, [r4, #0x30]\n"
-        "blx r3\n"
-        "ldrb r3, [r4, #0x18]\n"
-        "cbnz r3, 1f\n"
-        "2:\n"
-        "ldr r3, [r4, #0x40]\n"
-        "ldrb.w r1, [r4, #0x3d]\n"
-        "ldrb.w r0, [r4, #0x3e]\n"
-        "blx r3\n"
-        "movs r3, #0\n"
-        "strb.w r3, [r4, #0x44]\n"
-        "pop {r4,pc}\n"
-        "1:\n"
-        "ldm.w r4, {r0,r1,r2}\n"
-        "add.w r3, r4, #0xc\n"
-        "stm.w r3, {r0,r1,r2}\n"
-        "movs r2, #2\n"
-        "ldr r1, =0x0100b381\n"
-        "add.w r0, r4, #0x19\n"
-        "bl FUN_0100efc8\n"
-        "b 2b\n"
-    );
+    volatile uint8_t *const state = (volatile uint8_t *)0x21000c48U;
+    FUN_01020500();
+    FUN_0101ff4c();
+    ((void (*)(uint16_t, unsigned))*(volatile uintptr_t *)(state + 0x34))(
+        *(volatile uint16_t *)(state + 0x30), 0);
+    if (state[0x18] != 0) {
+        *(volatile uint32_t *)(state + 0x0c) = *(volatile uint32_t *)(state + 0x00);
+        *(volatile uint32_t *)(state + 0x10) = *(volatile uint32_t *)(state + 0x04);
+        *(volatile uint32_t *)(state + 0x14) = *(volatile uint32_t *)(state + 0x08);
+        FUN_0100efc8((void *)(state + 0x19), (const void *)0x0100b381U, 2);
+    }
+    ((void (*)(uint8_t, uint8_t))*(volatile uintptr_t *)(state + 0x40))(
+        state[0x3e], state[0x3d]);
+    state[0x44] = 0;
 }
-
-
-
-

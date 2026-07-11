@@ -1,34 +1,23 @@
-/* net-core FUN_0102b900 @ 0x102b900  (parity 300 trials PROVEN) */
+/* net-core FUN_0102b900 @ 0x102b900 */
+#include <stdint.h>
 
-extern void FUN_01036198(void);
-extern void FUN_01039722(void);
+extern int FUN_01036198(void *queue, const uint8_t *value,
+                        unsigned flags, unsigned timeout);
+extern void FUN_01039722(const void *message, int status);
 
-__attribute__((naked)) void FUN_0102b900(void)
+int FUN_0102b900(uint32_t value)
 {
-    __asm__ volatile(
-        "push {r0, r1, r2, lr}\n"
-        "strb.w r0, [sp, #7]\n"
-        "movs r2, #0\n"
-        "add.w r1, sp, #7\n"
-        "movs r3, #0\n"
-        "ldr r0, =0x210008e0\n"
-        "bl FUN_01036198\n"
-        "mov r1, r0\n"
-        "cbz r0, 1f\n"
-        "ldr r3, =0x21000580\n"
-        "ldr r3, [r3]\n"
-        "cmp r3, #0\n"
-        "ble 2f\n"
-        "ldr r0, =0x0103d23b\n"
-        "bl FUN_01039722\n"
-        "2:\n"
-        "eors r0, r0\n"
-        "msr basepri, r0\n"
-        "mov.w r0, #3\n"
-        "svc #2\n"
-        "1:\n"
-        "add sp, #0xc\n"
-        "ldr pc, [sp], #4\n"
-    );
-}
+    uint8_t byte = (uint8_t)value;
+    int status = FUN_01036198((void *)0x210008e0u, &byte, 0, 0);
 
+    if (status == 0)
+        return 0;
+
+    if (*(volatile int *)0x21000580u > 0)
+        FUN_01039722((const void *)0x0103d23bu, status);
+
+    /* The original requests supervisor service 2 with operation 3 and does not
+     * resume in this function.  Keep that non-returning contract explicit; the
+     * integrated Zephyr wrapper replaces the trap with the real syscall. */
+    __builtin_trap();
+}

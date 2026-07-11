@@ -1,4 +1,6 @@
 /* net-core FUN_01037b5c @ 0x1037b5c  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char u8;
 typedef unsigned int u32;
 typedef int i32;
@@ -30,8 +32,7 @@ i32 FUN_01037b5c(u32 param_1, i32 param_2)
   u32 r8v;
 
   {
-    u32 ipsr;
-    __asm__ volatile ("mrs %0, ipsr" : "=r"(ipsr));
+    u32 ipsr = __get_IPSR();
     if (ipsr != 0) {
       FUN_01039bbe(DAT_01037c4c, DAT_01037c48, 0x596);
       r1v = 0x596;
@@ -55,10 +56,9 @@ i32 FUN_01037b5c(u32 param_1, i32 param_2)
 
 COMMON: ;
   {
-    u32 oldpri;
-    __asm__ volatile ("mrs %0, basepri" : "=r"(oldpri));
-    __asm__ volatile ("msr basepri_max, %0" :: "r"(0x40u) : "memory");
-    __asm__ volatile ("isb sy" ::: "memory");
+    u32 oldpri = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
     r8v = oldpri;
   }
   {
@@ -116,4 +116,3 @@ FINAL_CALL:
     }
   }
 }
-

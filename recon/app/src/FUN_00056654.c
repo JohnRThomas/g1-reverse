@@ -1,29 +1,28 @@
-/* Reconstructed FUN_00056654 @ 0x56654 */
-__attribute__((naked)) int FUN_00056654(int param_1)
+/* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
+
+extern void FUN_0007e2ec(int,int);
+extern void FUN_0007e2fa(int,int,int,int);
+
+int FUN_00056654(int param_1)
 {
-    __asm volatile(
-        "push {r4,lr}\n"
-        "cbz r0,1f\n"
-        "add r2,r0,#0xd0\n"
-        "2: lda r3,[r2]\n"
-        "cbz r3,5f\n"
-        "adds r1,r3,#1\n"
-        "3: ldaex r4,[r2]\n"
-        "cmp r4,r3\n"
-        "bne 4f\n"
-        "stlex r12,r1,[r2]\n"
-        "cmp r12,#0\n"
-        "bne 3b\n"
-        "4: bne 2b\n"
-        "pop {r4,pc}\n"
-        "1: ldr r1,=0x000f3ebd\n"
-        "ldr r0,=0x00099cbd\n"
-        "movw r3,#0x509\n"
-        "ldr r2,=0x000f3a5d\n"
-        "bl FUN_0007e2fa\n"
-        "movw r1,#0x509\n"
-        "ldr r0,=0x000f3a5d\n"
-        "bl FUN_0007e2ec\n"
-        "5: mov r0,r3\n"
-        "pop {r4,pc}\n");
+    int *counter;
+    int old_value;
+    if (param_1 == 0) {
+        FUN_0007e2fa(0x00099cbd, 0x000f3ebd, 0x000f3a5d, 0x509);
+        FUN_0007e2ec(0x000f3a5d, 0x509);
+        return 0x509;
+    }
+    counter = (int *)(param_1 + 0xd0);
+    for (;;) {
+        old_value = __atomic_load_n(counter, __ATOMIC_ACQUIRE);
+        if (old_value == 0)
+            return 0;
+        {
+            int expected = old_value;
+            if (__atomic_compare_exchange_n(counter, &expected, old_value + 1,
+                                            1, __ATOMIC_ACQ_REL,
+                                            __ATOMIC_ACQUIRE))
+                return param_1;
+        }
+    }
 }

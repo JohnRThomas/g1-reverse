@@ -1,4 +1,6 @@
 /* net-core FUN_01037c64 @ 0x1037c64  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void FUN_01037768(unsigned int);
@@ -6,8 +8,7 @@ extern int FUN_01037b5c(void);
 
 unsigned int FUN_01037c64(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
-    unsigned int ipsr;
-    __asm__ volatile("mrs %0, ipsr" : "=r"(ipsr));
+    unsigned int ipsr = __get_IPSR();
     if (ipsr != 0) {
         FUN_01039bbe(0x0103d2a7, 0x0103eb0e, 0x5c1, ipsr);
         FUN_01039bb0(0x0103eb0e, 0x5c1);
@@ -25,4 +26,3 @@ unsigned int FUN_01037c64(int param_1, int param_2, unsigned int param_3, unsign
     }
     return uVar3;
 }
-

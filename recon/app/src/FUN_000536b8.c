@@ -14,7 +14,7 @@ extern int  FUN_000865fc(int,int);
 #define VI(a) (*(volatile int*)(a))
 #define VH(a) (*(volatile unsigned short*)(a))
 #define VB(a) (*(volatile unsigned char*)(a))
-#define ASSERT() __asm__ volatile("svc #2")
+#define ASSERT() __builtin_trap()
 
 void FUN_000536b8(void){
   int iVar4,iVar6,iVar8; unsigned int uVar10; int uVar9;
@@ -65,4 +65,3 @@ LAB_00053792:
     }
   }
 }
-

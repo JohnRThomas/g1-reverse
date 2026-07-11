@@ -7,14 +7,17 @@ extern int FUN_0101a130(void);
 extern int FUN_0101a38c(void *a, int b, int c, unsigned int d);
 extern int FUN_01022e34(unsigned int a, int b);
 extern int FUN_010231c8(unsigned char a, void *b);
+/* If the fatal routine violates its noreturn contract, execution reaches the
+   literal-pool/next-function boundary.  The platform owns that terminal path. */
+extern void g1_fatal_physical_fallthrough(void);
 
-#define PCVAR2 ((char *)0x210010a0u)
+#define PCVAR2 ((volatile char *)0x210010a0u)
 #define DAT_afa4 (0x0101b321u)
 
 unsigned int FUN_0101aee0(int param_1, unsigned int param_2)
 {
-    char *pcVar2;
-    unsigned char *puVar3;
+    volatile char *pcVar2;
+    volatile unsigned char *puVar3;
     int iVar4;
     int iVar6;
     unsigned int iVar5;
@@ -26,20 +29,16 @@ unsigned int FUN_0101aee0(int param_1, unsigned int param_2)
     if (*pcVar2 != 0) {
         return 0xc;
     }
-    puVar3 = (unsigned char *)FUN_01019204();
+    puVar3 = (volatile unsigned char *)FUN_01019204();
     cVar1 = *(volatile char *)(param_1 + 0x300);
     *(volatile int *)(pcVar2 + 0x28) = param_1;
-    if (cVar1 != 0) {
-        for (;;) {
-            FUN_01008d00(0x21, 0x300);
-        }
-    }
+    if (cVar1 != 0)
+        goto fatal_300;
 
     pcVar2[1] = 0;
     pcVar2[0x2e] = 0;
     *pcVar2 = 5;
-    pcVar2[0x74] = 0;
-    pcVar2[0x75] = 0;
+    *(volatile uint16_t *)(pcVar2 + 0x74) = 0;
     pcVar2[0x2c] = 0;
     iVar4 = FUN_0101a130();
     iVar5 = 0;
@@ -56,30 +55,28 @@ unsigned int FUN_0101aee0(int param_1, unsigned int param_2)
     iVar5 = FUN_01022e34(DAT_afa4, 0);
     *puVar3 = (unsigned char)iVar5;
     if (iVar5 == 0x20) {
-        FUN_01008d00(0x21, 0x30e);
-        for (;;) {
-            FUN_01008d00(0x21, 0x300);
-        }
+        goto fatal_30e;
     }
 
     iVar5 = FUN_0101a38c(auStack_30, 1, 0, param_2);
     if (iVar5 == 0) {
-        FUN_01008d00(0x21, 0x311);
-        FUN_01008d00(0x21, 0x30e);
-        for (;;) {
-            FUN_01008d00(0x21, 0x300);
-        }
+        goto fatal_311;
     }
 
     iVar5 = FUN_010231c8(*puVar3, auStack_30);
     if (iVar5 != 0) {
         return 0;
     }
+    /* These labels deliberately mirror the physical fallthrough in the
+       binary when the normally-noreturn fatal routine unexpectedly returns. */
     FUN_01008d00(0x21, 0x312);
+fatal_311:
     FUN_01008d00(0x21, 0x311);
+fatal_30e:
     FUN_01008d00(0x21, 0x30e);
+fatal_300:
+    FUN_01008d00(0x21, 0x300);
     for (;;) {
-        FUN_01008d00(0x21, 0x300);
+        g1_fatal_physical_fallthrough();
     }
 }
-

@@ -1,5 +1,6 @@
 /* Reconstructed FUN_00074060 @ 0x74060  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_00072040(unsigned);
 extern int FUN_0007205c(unsigned);
 extern void FUN_00072078(unsigned);
@@ -12,9 +13,9 @@ int FUN_00074060(int *param_1, char param_2, unsigned param_3, unsigned param_4)
   unsigned basepri, uVar10, uVar5; int iVar3, iVar4;
   unsigned *puVar6, *puVar8, *puVar9; unsigned char bVar7;
   uVar10 = 0; uVar5 = 0;
-  __asm__ volatile("mrs %0, basepri":"=r"(basepri));
-  __asm__ volatile("msr basepri_max, %0"::"r"(0x20u));
-  __asm__ volatile("isb");
+  basepri = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20u);
+  __ISB();
   uVar10 = basepri;
   iVar3 = FUN_00072040(0x2000b490);
   if (iVar3 == 0) {
@@ -61,8 +62,8 @@ LAB138:
     }
     iVar4 = FUN_0007205c(0x2000b490);
     if (iVar4 != 0) {
-      __asm__ volatile("msr basepri, %0"::"r"(uVar10));
-      __asm__ volatile("isb");
+      __set_BASEPRI(uVar10);
+      __ISB();
       return iVar3;
     }
     FUN_0007e2fa(0x00099cbd, 0x000f08f4, 0x000f08c7, 0xf0);
@@ -73,4 +74,3 @@ LABe0:
   FUN_0007e2ec(uVar10, uVar5);
   return 0;
 }
-
