@@ -1,135 +1,130 @@
-/* net-core FUN_01008e74 @ 0x1008e74  (parity 300 trials PROVEN) */
+/* net-core FUN_01008e74 @ 0x1008e74  (parity 500 trials PROVEN) */
 
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef int i32;
+#include <stdint.h>
 
-extern i32 FUN_01008a58(u32 a, u32 b);
+extern int  FUN_01008a58(int, int);
 extern void FUN_0101fbbc(void);
 
-#define DAT 0x21000a30u
-#define DAT2 0x21000a40u
-
-i32 FUN_01008e74(i32 param_1, i32 param_2, u16 *param_3)
+int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
 {
-    u8 *pbVar2 = (u8*)DAT;
-    i32 iVar3;
-    u16 uVar1;
+    volatile uint8_t *D = (volatile uint8_t *)0x21000a30; /* DAT_01008fcc */
+    volatile uint8_t *E = (volatile uint8_t *)0x21000a40; /* DAT_01008fd0 */
+    uint8_t *q;
+    int r;
 
-    if (param_1 != 0) {
+    if (param_1 != 0)
         return -0x2d;
-    }
-    if (*(volatile u8*)(DAT+0x2c) != 0) {
+    if (D[0x2c] != 0)
         return -1;
-    }
-    if (param_2 == 0) goto tail;
-    if (param_3 == 0) {
-        iVar3 = -0x16;
-        return iVar3;
-    }
-    switch (param_2) {
-    case 1:
-        *(volatile u8*)(DAT+0) = (u8)*param_3;
-        break;
-    case 2:
-        *(volatile u8*)(DAT+1) = (u8)*param_3;
-        break;
-    case 3:
-        if ( (((u8)((u8*)param_3)[2] == 0) || (((u8*)param_3)[3] == 0)) ||
-             ((u8)*param_3 < 0x1b) || (((u8*)param_3)[1] < 0x1b) ) {
-            iVar3 = -0x16; return iVar3;
-        }
-        *(volatile u32*)(DAT+5) = *(volatile u32*)param_3;
-        break;
-    case 4:
-        if ((u8)*param_3 < *(volatile u8*)(DAT+3)) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+2) = (u8)*param_3;
-        break;
-    case 5:
-        if ((*(volatile u8*)(DAT+0x1f) != 0) && ((u8)*param_3 < 2)) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+9) = (u8)*param_3;
-        break;
-    case 6:
-        *(volatile u16*)(DAT+10) = *param_3;
-        break;
-    case 7:
-        if (0xff < *param_3) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+0xc) = (u8)*param_3;
-        break;
-    case 8:
-        if (*(volatile u8*)(DAT+2) < (u8)*param_3) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+3) = (u8)*param_3;
-        break;
-    case 9:
-        *(volatile u8*)(DAT+4) = (u8)*param_3;
-        break;
-    case 10:
-        if (*(volatile u8*)(DAT+0x1e) == 0) {
-            if (1 < (u8)*param_3) {
-                *(volatile u8*)(DAT+0xd) = (u8)*param_3;
-                break;
-            }
-        } else if ((u8)*param_3 != 0) {
-            *(volatile u8*)(DAT+0xd) = (u8)*param_3;
-            break;
-        }
-        iVar3 = -0x16; return iVar3;
-    case 0xb:
-        if (8 < (u8)*param_3) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+0xe) = (u8)*param_3;
-        break;
-    case 0xc:
-        if (*(volatile u8*)(DAT+2) < (u8)*param_3) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+0xf) = (u8)*param_3;
-        break;
-    case 0xd:
-        if (((u8)*param_3 == 0) || (0xf8 < (u8)(((u8*)param_3)[1] - 1))) { iVar3=-0x16; return iVar3; }
-        uVar1 = param_3[1];
-        *(volatile u16*)(DAT+0x10) = *param_3;
-        *(volatile u8*)(DAT2+2) = (u8)uVar1;
-        break;
-    case 0xe:
-        *(volatile u8*)(DAT+0x13) = (u8)*param_3;
-        FUN_0101fbbc();
-        break;
-    case 0xf:
-        if ((u8)*param_3 == 0) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+0x14) = (u8)*param_3;
-        break;
-    case 0x10:
-        *(volatile u8*)(DAT+0x15) = (u8)*param_3;
-        break;
-    case 0x11:
-        if (0xe < (u8)*param_3) { iVar3=-0x16; return iVar3; }
-        *(volatile u8*)(DAT+0x16) = (u8)*param_3;
-        break;
-    case 0x12:
-        *(volatile u8*)(DAT+0x17) = (u8)*param_3;
-        break;
-    case 0x13:
-        *(volatile u8*)(DAT+0x18) = (u8)*param_3;
-        break;
-    case 0x14:
-        *(volatile u8*)(DAT+0x19) = (u8)*param_3;
-        break;
-    case 0x15:
-        *(volatile u8*)(DAT+0x1a) = (u8)*param_3;
-        break;
-    case 0x16:
-        *(volatile u16*)(DAT+0x1b) = *param_3;
-        break;
-    default:
-        return -0x2d;
-    }
-tail:
-    iVar3 = FUN_01008a58(0, 1);
-    if (iVar3 < 0x10000) {
-        pbVar2[0x2d] = 1;
-    } else {
-        iVar3 = -0xc;
-    }
-    return iVar3;
-}
 
+    if (param_2 != 0) {
+        if (param_3 == 0)
+            return -0x16;
+        q = (uint8_t *)param_3;
+        switch (param_2) {
+        case 1:
+            D[0] = q[0];
+            break;
+        case 2:
+            D[1] = q[0];
+            break;
+        case 3:
+            if (q[2] == 0 || q[3] == 0 || q[0] < 0x1b || q[1] < 0x1b)
+                return -0x16;
+            *(volatile uint32_t *)(D + 5) = *(uint32_t *)param_3;
+            break;
+        case 4:
+            if (q[0] < D[3])
+                return -0x16;
+            D[2] = q[0];
+            break;
+        case 5:
+            if (D[0x1f] != 0 && q[0] < 2)
+                return -0x16;
+            D[9] = q[0];
+            break;
+        case 6:
+            *(volatile uint16_t *)(D + 0xa) = param_3[0];
+            break;
+        case 7:
+            if (param_3[0] > 0xff)
+                return -0x16;
+            D[0xc] = (uint8_t)param_3[0];
+            break;
+        case 8:
+            if (q[0] > D[2])
+                return -0x16;
+            D[3] = q[0];
+            break;
+        case 9:
+            D[4] = q[0];
+            break;
+        case 0xa:
+            if (D[0x1e] == 0) {
+                if (q[0] > 1) { D[0xd] = q[0]; break; }
+            } else {
+                if (q[0] != 0) { D[0xd] = q[0]; break; }
+            }
+            return -0x16;
+        case 0xb:
+            if (q[0] > 8)
+                return -0x16;
+            D[0xe] = q[0];
+            break;
+        case 0xc:
+            if (q[0] > D[2])
+                return -0x16;
+            D[0xf] = q[0];
+            break;
+        case 0xd:
+            if (q[0] == 0 || (uint8_t)(q[1] - 1) > 0xf8)
+                return -0x16;
+            *(volatile uint16_t *)(D + 0x10) = param_3[0];
+            E[2] = q[2];
+            break;
+        case 0xe:
+            D[0x13] = q[0];
+            FUN_0101fbbc();
+            break;
+        case 0xf:
+            if (q[0] == 0)
+                return -0x16;
+            D[0x14] = q[0];
+            break;
+        case 0x10:
+            D[0x15] = q[0];
+            break;
+        case 0x11:
+            if (q[0] > 0xe)
+                return -0x16;
+            D[0x16] = q[0];
+            break;
+        case 0x12:
+            D[0x17] = q[0];
+            break;
+        case 0x13:
+            D[0x18] = q[0];
+            break;
+        case 0x14:
+            D[0x19] = q[0];
+            break;
+        case 0x15:
+            D[0x1a] = q[0];
+            break;
+        case 0x16:
+            *(volatile uint16_t *)(D + 0x1b) = param_3[0];
+            break;
+        default:
+            return -0x2d;
+        }
+    }
+
+    /* LAB_01008eb4 */
+    r = FUN_01008a58(0, 1);
+    if (r < 0x10000)
+        D[0x2d] = 1;
+    else
+        r = -0xc;
+    return r;
+}
 
