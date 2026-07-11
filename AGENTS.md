@@ -142,10 +142,13 @@ tools/
 - **Partial link succeeds** (full_link.py); undefined = pinned globals + library + Ghidra pseudo-ops
   (SCARRY4/EPILOGUE/__impl) + the unproven residue. Zero surprise application gaps.
 - **Harness false-proof fix + CFG verifier landed and committed.**
-- **IN PROGRESS:** authoritative CFG sweep of ~1459 suspect functions is running (bg). Early rate
-  ~6% FAIL (more than biased fuzzing found). Known still-failing incl. `FUN_01013650`,
-  `FUN_0101ba58`, `FUN_0101a38c` (net), `FUN_00018334`, `FUN_0004f1d0` (app) — the last two were
-  "redone" overnight but fail under proper case coverage.
+- **IN PROGRESS — CFG sweep is PARTIAL:** `cfg_sweep_fails.json` (repo root) holds **40 confirmed
+  false proofs so far (24 app + 16 net)** but only ~44% of suspects were checked before the shards
+  ended (~409/919 app, ~266/540 net). **Next session step 1: re-run the CFG sweep to completion**
+  (`for i in 0..7: PYTHONSAFEPATH=1 .venv/bin/python tools/reverify.py sweeplist app|net i 8`,
+  then aggregate `reverify_{app,net}_L*.json` FAIL arrays) — the full list will be larger than 40.
+  Known fails incl. `FUN_01013650`,`FUN_0101ba58`,`FUN_0101a38c` (net), `FUN_00018334`,`FUN_0004f1d0`
+  (app) — the last two were "redone" overnight but STILL fail under proper case coverage.
 
 ---
 

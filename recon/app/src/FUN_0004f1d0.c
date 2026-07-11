@@ -1,4 +1,5 @@
-/* Reconstructed FUN_0004f1d0 @ 0x4f1d0  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0004f1d0 @ 0x4f1d0
+ * STATUS: UNPROVEN under cfg_verify; see verifier evidence in the task report. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;
@@ -60,10 +61,9 @@ switchD_caseD_8:
     case 2:
         uVar6 = U32(0x914);
         if (0xff < uVar6) {
-            local_1c = 0xf4270 & 0; local_1c = 0x000f2496; /* DAT_0004f410 */
-            local_1c = 0x000f2496;
+            local_1c = 0x000f15f9; /* DAT_0004f410 */
             local_20 = 2;
-            FUN_0004d944(0x88208 & 0, 0x1080, &local_20, 0);
+            FUN_0004d944(0x000880e8 /* DAT_0004f414 */, 0x1080, &local_20, 0);
             goto LAB_0004f296;
         }
         cVar4 = *(volatile char *)(param_2 + uVar9);
@@ -169,4 +169,3 @@ LAB_0004f3be:
     uVar6 = uVar9;
     goto switchD_caseD_8;
 }
-
