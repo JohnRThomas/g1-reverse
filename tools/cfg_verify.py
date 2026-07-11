@@ -140,3 +140,4 @@ if __name__ == "__main__":
     core, name = sys.argv[1], sys.argv[2]
     r = verify(core, name)
     print(name, r["status"], "cases=%s" % r.get("cover_cases"), "sel=%s" % r.get("selectors"))
+    print("mismatches=%r" % (r.get("mismatches"),))
