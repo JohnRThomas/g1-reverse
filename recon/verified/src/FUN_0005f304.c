@@ -9,6 +9,7 @@ int FUN_0005f304(int param_1, unsigned int param_2, unsigned int param_3, unsign
   if (param_1 == 0) {
     FUN_0007e2fa(0x99cbd, 0xf45be, 0xf539a, 0x236, param_4);
     FUN_0007e2ec(0xf539a, 0x236);
+    return 0x236;
   }
   do {
     iVar1 = param_1;
@@ -16,4 +17,3 @@ int FUN_0005f304(int param_1, unsigned int param_2, unsigned int param_3, unsign
   } while (param_1 != 0);
   return iVar1;
 }
-

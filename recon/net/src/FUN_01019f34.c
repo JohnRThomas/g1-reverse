@@ -43,4 +43,3 @@ void FUN_01019f34(int param_1, int param_2, unsigned int param_3)
     *(volatile unsigned int *)(param_2 + 0xc) = uVar3;
 }
 
-

@@ -1,0 +1,63 @@
+{
+ "app": {
+  "pass": 383,
+  "fail": 24,
+  "other": 2,
+  "fail_list": [
+   "FUN_00018334",
+   "FUN_00030cd0",
+   "FUN_000456fc",
+   "FUN_0004d8f8",
+   "FUN_0004f1d0",
+   "FUN_00056654",
+   "FUN_00056704",
+   "FUN_000574ec",
+   "FUN_00058bfc",
+   "FUN_0005d568",
+   "FUN_0005e938",
+   "FUN_0005eeb4",
+   "FUN_0005f074",
+   "FUN_0005f304",
+   "FUN_00064f48",
+   "FUN_00064f78",
+   "FUN_00065d3c",
+   "FUN_00066994",
+   "FUN_00072f28",
+   "FUN_00073518",
+   "FUN_000751d0",
+   "FUN_0007f772",
+   "FUN_0008174c",
+   "FUN_000818dc"
+  ]
+ },
+ "net": {
+  "pass": 250,
+  "fail": 16,
+  "other": 0,
+  "fail_list": [
+   "FUN_01008e74",
+   "FUN_0100dfbc",
+   "FUN_01012c84",
+   "FUN_01013650",
+   "FUN_01016430",
+   "FUN_01019f34",
+   "FUN_0101a070",
+   "FUN_0101a38c",
+   "FUN_0101aee0",
+   "FUN_0101ba58",
+   "FUN_0101c6d0",
+   "FUN_01020368",
+   "FUN_01023ad8",
+   "FUN_01026122",
+   "FUN_0102d1c0",
+   "FUN_010359b8"
+  ]
+ },
+ "_status": "PARTIAL \u2014 CFG sweep did not finish (only ~409/919 app + ~266/540 net suspects checked). Re-run to completion for the full false-proof list: for i in 0..7: reverify.py sweeplist app|net i 8",
+ "coverage": {
+  "app_checked": 409,
+  "app_todo": 919,
+  "net_checked": 266,
+  "net_todo": 540
+ }
+}

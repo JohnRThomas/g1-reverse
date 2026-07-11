@@ -103,6 +103,7 @@ EF40:
     goto EF12;
 EF12:
     FUN_0007e2ec();
+    FUN_00072078();
+    (void)*(volatile uint16_t *)(param_1 + 0x22);
     return 0;
 }
-
