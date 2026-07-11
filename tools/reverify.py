@@ -92,22 +92,45 @@ def run_sweep():
           len(res["FAIL"]), len(res["other"])), flush=True)
 
 def run_batch():
+    import cfg_verify
     idx = int(sys.argv[2])
     batch = json.load(open(SCR + "/reverify_agent_batches.json"))[idx]
     fails = []
     for it in batch:
-        p = core_ctx(it["core"])["srcdir"] + "/" + it["name"] + ".c"
-        if not os.path.exists(p):
-            print("%-30s MISSING" % it["name"], flush=True); continue
-        st = verify(it["core"], p, 50)
+        try:
+            st = cfg_verify.verify(it["core"], it["name"])["status"]
+        except Exception as e:
+            st = "other-exc"
         print("%-30s %s" % (it["name"], st), flush=True)
         if st == "FAIL":
             fails.append("%s:%s" % (it["core"], it["name"]))
     print("\nFAILS(%d): %s" % (len(fails), " ".join(fails)), flush=True)
 
+def run_sweeplist():
+    # sweeplist <core> <shard> <nShards>  -- CFG-directed sweep of sweep_todo.json[core]
+    import cfg_verify
+    core = sys.argv[2]; si = int(sys.argv[3]); ns = int(sys.argv[4])
+    names = json.load(open(SCR + "/sweep_todo.json"))[core][si::ns]
+    res = {"PASS": [], "FAIL": [], "other": []}
+    outp = SCR + "/reverify_%s_L%d.json" % (core, si)
+    t0 = time.time()
+    for i, nm in enumerate(names, 1):
+        try:
+            st = cfg_verify.verify(core, nm)["status"]
+        except Exception:
+            st = "other-exc"
+        (res["PASS"] if st == "PASS" else res["FAIL"] if st == "FAIL" else res["other"]).append(nm)
+        if i % 40 == 0:
+            print("[%s L%d] %d/%d fail=%d (%.0fs)" % (core, si, i, len(names),
+                  len(res["FAIL"]), time.time() - t0), flush=True)
+        json.dump(res, open(outp, "w"))
+    print("[%s L%d] DONE pass=%d FAIL=%d other=%d" % (core, si, len(res["PASS"]),
+          len(res["FAIL"]), len(res["other"])), flush=True)
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "sweep"
-    if cmd == "batch": run_batch()
+    if cmd == "sweeplist": run_sweeplist()
+    elif cmd == "batch": run_batch()
     elif cmd == "check": print(sys.argv[3], verify(sys.argv[2],
         core_ctx(sys.argv[2])["srcdir"] + "/" + sys.argv[3] + ".c"))
     else: run_sweep()

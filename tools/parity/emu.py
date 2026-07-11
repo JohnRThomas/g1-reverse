@@ -248,7 +248,12 @@ def make_args(seed, nptr=2):
 def compare(orig_bytes, orig_va, orig_size,
             cand_bytes, cand_va, cand_size,
             code_base=CODE_BASE, trials=64, nptr=2, verbose=False,
-            ret_kind="i32", no_return=False, prefix_k=200):
+            ret_kind="i32", no_return=False, prefix_k=200, arg_overrides=None):
+    """arg_overrides: optional list of {arg_index: value} dicts. When given, the
+    first len(arg_overrides) trials pin those argument registers to the specified
+    values (control-flow-derived, to guarantee every branch/switch-case is
+    exercised) while other args keep their seeded values; remaining trials are
+    fully seeded. This makes coverage a property of the CFG, not of luck."""
     """ret_kind selects which register(s) form the return part of the parity key,
     so we compare exactly what the function's ABI defines as its result:
       void -> none;  i32 -> r0;  i64 -> r0,r1;  f32 -> s0;  f64 -> s0,s1.
@@ -283,6 +288,10 @@ def compare(orig_bytes, orig_va, orig_size,
     se = prefix_k if no_return else 0
     for t in range(trials):
         args = make_args(t, nptr)
+        if arg_overrides and t < len(arg_overrides):
+            for i, v in arg_overrides[t].items():
+                if 0 <= i < len(args):
+                    args[i] = v & 0xffffffff
         a = ro.run(t, args, t, stop_events=se)
         # candidate emulated at its own VA but identical inputs/scratch
         b = rc.run(t, args, t, stop_events=se)
