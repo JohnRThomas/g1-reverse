@@ -16,12 +16,12 @@ extern int32_t FUN_0100f0fc(void *);
 extern uint64_t FUN_010209f0(uint32_t);
 extern uint32_t FUN_01023dec(uint32_t, uint32_t, uint32_t);
 extern int32_t FUN_01023ea8(uint32_t, uint32_t);
-extern uint32_t FUN_0100f368(void *, int32_t, uint32_t);
+extern uint32_t FUN_0100f368(void *, int32_t, uint32_t, int32_t);
 extern void FUN_01023d38(int32_t, uint32_t, uint32_t);
 extern void FUN_01016144(void *, uint32_t);
 extern void FUN_01020d1c(void *, uint32_t);
-extern uint32_t FUN_01022a30(uint32_t);
-extern void FUN_0100b5f8(uint32_t, uint32_t);
+extern uint64_t FUN_01022a30(uint32_t);
+extern void FUN_0100b5f8(uint64_t);
 
 #define U8(p,o)  (*(volatile uint8_t *)((uintptr_t)(p) + (o)))
 #define U16(p,o) (*(volatile uint16_t *)((uintptr_t)(p) + (o)))
@@ -160,8 +160,8 @@ static __attribute__((always_inline)) inline void finish_interval(void *context)
     available = available > (uint32_t)fixed ? available - fixed : 0;
     if (duration < available) available = duration;
     if (FUN_01023ea8(available, 2) == 0) fixed += available;
-    U32((void *)0x21000f54u, 0x0c) =
-        FUN_0100f368(context, fixed, (mode & 0x0c) ? 0x25e : 0x236);
+    U32((void *)0x21000f54u, 0x0c) = FUN_0100f368(
+        context, fixed, (mode & 0x0c) ? 0x25e : 0x236, fixed - 0x28);
 
     timing = FUN_010209f0(mode);
     product = 0x10624dd3ull * ((uint32_t)timing + 0xdf41u);
@@ -172,7 +172,7 @@ static __attribute__((always_inline)) inline void finish_interval(void *context)
 
 void FUN_01013650(void *context, uint32_t event)
 {
-    uint32_t result;
+    uint64_t result;
     if (context == 0) {
         panic(0x30, 0x97);
     }
@@ -184,7 +184,7 @@ void FUN_01013650(void *context, uint32_t event)
     case 4: FUN_01020d1c(context, event); return;
     case 6:
         result = FUN_01022a30(1);
-        FUN_0100b5f8(result, event);
+        FUN_0100b5f8(result);
         return;
     case 7:
         if (U8(context, 0x31c) != 4) {

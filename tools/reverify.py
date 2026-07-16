@@ -110,7 +110,25 @@ def run_sweeplist():
     # sweeplist <core> <shard> <nShards>  -- CFG-directed sweep of sweep_todo.json[core]
     import cfg_verify
     core = sys.argv[2]; si = int(sys.argv[3]); ns = int(sys.argv[4])
-    names = json.load(open(SCR + "/sweep_todo.json"))[core][si::ns]
+    todo_path = SCR + "/sweep_todo.json"
+    if not os.path.exists(todo_path):
+        # The scratchpad is volatile.  Rebuild a complete, deterministic list
+        # from the source trees instead of silently losing sweep coverage.
+        todo = {}
+        for todo_core in ("app", "net"):
+            srcdir = (BASE + "/recon/app/src" if todo_core == "app"
+                      else BASE + "/recon/net/src")
+            todo[todo_core] = sorted(
+                os.path.basename(path)[:-2]
+                for path in glob.glob(srcdir + "/*.c")
+            )
+        os.makedirs(SCR, exist_ok=True)
+        tmp = todo_path + ".tmp.%d" % os.getpid()
+        with open(tmp, "w") as fp:
+            json.dump(todo, fp, indent=2)
+            fp.write("\n")
+        os.replace(tmp, todo_path)
+    names = json.load(open(todo_path))[core][si::ns]
     outp = SCR + "/reverify_%s_L%d.json" % (core, si)
     recheck = os.environ.get("CFG_VERIFY_RECHECK") == "1"
     if os.path.exists(outp) and not recheck:

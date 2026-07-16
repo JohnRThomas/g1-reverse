@@ -267,9 +267,9 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
             else
                 FUN_00019c70();
         }
-        OP10_OVERVIEW_TOTAL = total; __asm__ volatile("" ::: "memory");
-        OP10_OVERVIEW_PACKET = 0; __asm__ volatile("" ::: "memory");
-        OP10_OVERVIEW_SIZE = 0; __asm__ volatile("" ::: "memory");
+        OP10_OVERVIEW_TOTAL = total;
+        OP10_OVERVIEW_PACKET = 0;
+        OP10_OVERVIEW_SIZE = 0;
         root = (uint8_t *)(uintptr_t)FUN_000167a8();
         nav = *(uint8_t **)(void *)(root + 0x1000);
         OP10_MAP_READY = 0;
@@ -279,7 +279,6 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
                      (uint32_t)(advertised - 9U), 0x1210);
         FUN_00019b48();
         OP10_OVERVIEW_SIZE = data_length;
-        __asm__ volatile("" ::: "memory");
         OP10_OVERVIEW_PACKET = (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
         if (total == 1U) {
             nav[6] = (uint8_t)total;
@@ -373,8 +372,8 @@ int ble_put_op10_subcmd_2(struct ble_put_context_09_10 *ctx,
                 ble_put_ack_copy9((struct ble_put_ack20 *)(void *)response, request, 0);
                 OP10_OVERVIEW_PACKET =
                     (uint16_t)(OP10_OVERVIEW_PACKET + 1U);
-                OP10_OVERVIEW_TOTAL = 0; __asm__ volatile("" ::: "memory");
-                OP10_OVERVIEW_PACKET = 0; __asm__ volatile("" ::: "memory");
+                OP10_OVERVIEW_TOTAL = 0;
+                OP10_OVERVIEW_PACKET = 0;
                 OP10_OVERVIEW_SIZE = 0;
                 if (FUN_00016568() == 1)
                     FUN_00047b1c(response, 10);
@@ -411,8 +410,8 @@ op10_overview_order_error_with_lookup:
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_OVERVIEW_PACKET + 1U));
         }
-        OP10_OVERVIEW_TOTAL = total; __asm__ volatile("" ::: "memory");
-        OP10_OVERVIEW_PACKET = 0; __asm__ volatile("" ::: "memory");
+        OP10_OVERVIEW_TOTAL = total;
+        OP10_OVERVIEW_PACKET = 0;
         OP10_OVERVIEW_SIZE = 0;
         FUN_00019b38(0xffffffffU, 0xffffffffU);
         FUN_00086c78((void *)(uintptr_t)OP10_OVERVIEW_MAP, 0, 0x1210);
@@ -434,8 +433,8 @@ op10_overview_order_error_with_lookup:
                          "ble_process_put_req", (unsigned)sequence,
                          (unsigned)(OP10_OVERVIEW_PACKET + 1U));
     }
-    OP10_OVERVIEW_TOTAL = total; __asm__ volatile("" ::: "memory");
-    OP10_OVERVIEW_PACKET = 0; __asm__ volatile("" ::: "memory");
+    OP10_OVERVIEW_TOTAL = total;
+    OP10_OVERVIEW_PACKET = 0;
     OP10_OVERVIEW_SIZE = 0;
     FUN_00019b38(0xffffffffU, 0xffffffffU);
     FUN_00086c78((void *)(uintptr_t)OP10_OVERVIEW_MAP, 0, 0x1210);
@@ -469,8 +468,8 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
 
     if (sequence == 1U) {
         first_length = (uint32_t)advertised - 10U;
-        OP10_PAN_TOTAL = total; __asm__ volatile("" ::: "memory");
-        OP10_PAN_PACKET = 0; __asm__ volatile("" ::: "memory");
+        OP10_PAN_TOTAL = total;
+        OP10_PAN_PACKET = 0;
         OP10_PAN_SIZE = 0;
         root = (uint8_t *)(uintptr_t)FUN_000167a8();
         OP10_PAN_READY = 0;
@@ -559,8 +558,8 @@ int ble_put_op10_subcmd_3(struct ble_put_context_09_10 *ctx,
                 nav[0xaf] = 3;
                 nav[0xb0] = request[3];
                 ble_put_ack_copy10((struct ble_put_ack20 *)(void *)response, request, 0);
-                OP10_PAN_TOTAL = 0; __asm__ volatile("" ::: "memory");
-                OP10_PAN_PACKET = 0; __asm__ volatile("" ::: "memory");
+                OP10_PAN_TOTAL = 0;
+                OP10_PAN_PACKET = 0;
                 OP10_PAN_SIZE = 0;
                 if (FUN_00016568() == 1)
                     FUN_00047b1c(response, 11);
@@ -597,8 +596,8 @@ op10_pan_order_error:
                              "ble_process_put_req", (unsigned)sequence,
                              (unsigned)(OP10_PAN_PACKET + 1U));
         }
-        OP10_PAN_TOTAL = total; __asm__ volatile("" ::: "memory");
-        OP10_PAN_PACKET = 0; __asm__ volatile("" ::: "memory");
+        OP10_PAN_TOTAL = total;
+        OP10_PAN_PACKET = 0;
         OP10_PAN_SIZE = 0;
         FUN_00086c78((void *)(uintptr_t)OP10_PAN_MAP, 0, 0x40d0);
         OP10_PAN_READY = 0;
@@ -618,8 +617,8 @@ op10_pan_order_error:
                          "ble_process_put_req", (unsigned)sequence,
                          (unsigned)(OP10_PAN_PACKET + 1U));
     }
-    OP10_PAN_TOTAL = total; __asm__ volatile("" ::: "memory");
-    OP10_PAN_PACKET = 0; __asm__ volatile("" ::: "memory");
+    OP10_PAN_TOTAL = total;
+    OP10_PAN_PACKET = 0;
     OP10_PAN_SIZE = 0;
     FUN_00086c78((void *)(uintptr_t)OP10_PAN_MAP, 0, 0x40d0);
     OP10_PAN_READY = 0;
