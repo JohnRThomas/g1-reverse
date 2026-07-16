@@ -61,6 +61,7 @@ CALL_ARITY_OVERRIDES = {
     ("net", 0x010218cc): 2,  # request object and immutable descriptor
     ("net", 0x010218c0): 2,  # request object and type selector
     ("app", 0x00019950): 1,  # BLE worker initializer consumes context only
+    ("app", 0x0007c172): 1,  # k_sem_give thunk consumes only the semaphore
     ("app", 0x00086698): 0,  # 64-bit clock query returns r1:r0; no arguments
     ("app", 0x000835ae): 3,  # block transform consumes dst, src, and byte count
     ("app", 0x000826b2): 2,  # byte-sequence comparator consumes pointer and key
@@ -815,6 +816,45 @@ def _op10_nav_case(subcmd, *, active=0, oversize=False):
          (0x20010323, bytes(4)),
          (0x2000230c, (0).to_bytes(4, "little")),
          (0x20007554, (0).to_bytes(4, "little"))],
+    )
+
+def _ble_put_outer_cfg_case(command):
+    """Production-shaped base state for one CFG-derived PUT opcode.
+
+    The outer selector is packet[0], so scalar argument overrides cannot drive
+    it.  Reviewed nested fixtures exercise opcodes 1..10 in depth, while these
+    cases preserve a valid context/callback/buffer graph for every value from
+    the original 39-entry TBH table.  Keeping the selector in the absolute
+    packet image is important: absolute fixture writes are applied after the
+    generic argument-relative pointee writes.
+    """
+    ctx = emu.SCRATCH + 0x2000
+    packet = emu.SCRATCH + 0x4000
+    request = emu.SCRATCH + 0x5000
+    transfer = emu.SCRATCH + 0x6000
+    left = emu.SCRATCH + 0x7000
+    right = emu.SCRATCH + 0x8000
+    state = bytearray(0x1000)
+    state[0x0c:0x10] = (0x00080001).to_bytes(4, "little")
+    state[0x10:0x14] = transfer.to_bytes(4, "little")
+    state[0x870:0x874] = left.to_bytes(4, "little")
+    state[0x880:0x884] = right.to_bytes(4, "little")
+    state[0x888:0x88c] = left.to_bytes(4, "little")
+    state[0x88c:0x890] = right.to_bytes(4, "little")
+    body = bytearray(256)
+    body[:12] = bytes((0xa0, 20, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0))
+    return (
+        {0: ctx, 1: packet, 2: request},
+        [(ctx, bytes(state)),
+         (packet, bytes((command, 0, 20, 0)) + bytes(252)),
+         (request, bytes(body)), (transfer, bytes(0x400)),
+         (left, bytes(0x600)), (right, bytes(0x600)),
+         (0x20018fec, left.to_bytes(4, "little")),
+         (0x20019000, left.to_bytes(4, "little")),
+         (0x2000230c, bytes(4)), (0x20007554, bytes(4)),
+         (0x20007564, bytes(8)), (0x200079e0, bytes(4)),
+         (0x20007aac, bytes(4)), (0x20002fe2, bytes(1)),
+         (0x20018d99, bytes(3))],
     )
 
 REVIEWED_STATE_CASES = {
@@ -2864,6 +2904,21 @@ def verify(core, name, trials_random=40):
     if reviewed_state_cases:
         ovs = [case[0] for case in reviewed_state_cases]
         absolute_movs = [case[1] for case in reviewed_state_cases]
+    ble_outer_cfg_cases = ()
+    if (core, va) == ("app", 0x0001a75c):
+        # REVIEWED_STATE_CASES used to replace the generic overrides while the
+        # argument-relative selector writes were then overwritten by those
+        # cases' absolute packet images.  Materialize the original TBH values
+        # as complete production-shaped cases so nested fixtures augment,
+        # rather than erase, CFG-derived outer-opcode coverage.
+        outer_values = sorted({value for ai, off, value in ptr_cases
+                               if ai == 1 and off == 0})
+        ble_outer_cfg_cases = tuple(_ble_put_outer_cfg_case(value)
+                                    for value in outer_values)
+        if absolute_movs is None:
+            absolute_movs = [[] for _ in ovs]
+        ovs.extend(case[0] for case in ble_outer_cfg_cases)
+        absolute_movs.extend(case[1] for case in ble_outer_cfg_cases)
     additional_state_cases = ADDITIONAL_STATE_CASES.get((core, va), ())
     if additional_state_cases:
         if absolute_movs is None:
@@ -3056,7 +3111,8 @@ def verify(core, name, trials_random=40):
                      for n, (ai, off) in enumerate(data_pointer_slots)]
     common_setup = callback_setup + pointer_setup
     movs = []
-    for ai, off, value in ptr_cases:
+    relative_ptr_cases = (() if ble_outer_cfg_cases else ptr_cases)
+    for ai, off, value in relative_ptr_cases:
         movs.append([(ai, off, bytes((value,)))] + common_setup)
     for t in range(len(movs), trials):
         # A scalar selector override may reuse an argument that is a pointer
@@ -3156,6 +3212,25 @@ def verify(core, name, trials_random=40):
 
 def self_test():
     """Regression gates for pointee setup and the recovered TBH selector."""
+    # ble_process_put_req owns a 39-entry pointer-loaded TBH selector.  Its
+    # production fixtures must not overwrite the CFG-derived opcode byte, as
+    # happened when absolute packet images replaced generic pointee writes.
+    ble_ctx = core_ctx("app")
+    ble_va = 0x0001a75c
+    ble_size = TRUE_SIZE_OVERRIDES[("app", ble_va)]
+    ble_ptr_cases, _, _ = pointer_control_inputs(
+        ble_ctx["rawread"], ble_va, ble_size)
+    ble_commands = sorted({value for ai, off, value in ble_ptr_cases
+                           if ai == 1 and off == 0})
+    assert ble_commands == list(range(1, 0x28)), ble_commands
+    generated_commands = []
+    for command in ble_commands:
+        overrides, writes = _ble_put_outer_cfg_case(command)
+        packet = overrides[1]
+        packet_images = [data for address, data in writes if address == packet]
+        assert len(packet_images) == 1, (command, packet_images)
+        generated_commands.append(packet_images[0][0])
+    assert generated_commands == list(range(1, 0x28)), generated_commands
     # A function's executable extent does not include its trailing literal
     # pool.  Mapping only that extent must not be mistaken for a valid
     # differential environment: it turns original PC-relative loads into
