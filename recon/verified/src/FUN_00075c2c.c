@@ -2,7 +2,7 @@
 extern int FUN_00075f88(void);
 extern int FUN_000868ee(float);
 extern int* thunk_FUN_00071678(void);
-extern int tail_76a88(void);
+extern float FUN_00076a88(unsigned int descriptor);
 float FUN_00075c2c(float param_1){
     int uVar1 = FUN_00075f88();
     (void)uVar1;
@@ -12,10 +12,8 @@ float FUN_00075c2c(float param_1){
         if (param_1 > 1.0f){
             int* p = thunk_FUN_00071678();
             *p = 0x21;
-            tail_76a88();
-            return param_1;
+            return FUN_00076a88(0x000a8ea0u);
         }
     }
     return param_1;
 }
-

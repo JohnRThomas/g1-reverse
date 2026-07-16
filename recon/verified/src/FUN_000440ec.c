@@ -1,61 +1,61 @@
-/* Reconstructed FUN_000440ec @ 0x440ec  (parity: 300/300 trials, PROVEN) */
-extern int FUN_000167a8(int,...);
-extern int FUN_000431a8(int,...);
-extern int FUN_000432d0(int,...);
-extern int FUN_000432ec(int,...);
-extern int FUN_00043e90(int,...);
-extern int FUN_000471cc(int,...);
-extern int FUN_000473c8(int,...);
-extern int FUN_0007d446(int,...);
-extern int FUN_0007d5f2(int,...);
+/* Full reconstruction of FUN_000440ec @ 0x440ec, exact extent 450 bytes.
+ * Call arities are derived by target so optional calls cannot shift ordinal
+ * metadata onto unrelated callees. */
+#include <stdint.h>
 
-void FUN_000440ec(int param_1, int param_2, int param_3, int param_4, int param_5,
-                  int param_6, int param_7, int param_8, int param_9)
+extern int FUN_0007d446(void);
+extern int FUN_000431a8(void);
+extern void FUN_000432ec(void);
+extern void FUN_000432d0(void);
+extern uintptr_t FUN_000167a8(void);
+extern void FUN_000471cc(uintptr_t, int, int, int, int, int);
+extern unsigned FUN_00043e90(unsigned, uintptr_t, unsigned, int, int, int, int,
+                            unsigned, unsigned, int, void *, int);
+extern void FUN_000473c8(uintptr_t, uintptr_t, int, int, int, int, uint32_t);
+extern void FUN_0007d5f2(uintptr_t, int, int, int, int, int, int);
+
+static uintptr_t display(void) { return *(volatile uintptr_t *)0x2000a034u; }
+
+void FUN_000440ec(int unused, uintptr_t text, int unused2, int left, int top,
+                  int right, int bottom, unsigned rows, unsigned mask)
 {
-    int iVar3, iVar4;
-    volatile int sink;
-
-    iVar3 = FUN_0007d446(0);
-    if (iVar3 < 0x21) {
-        iVar3 = FUN_000431a8(0);
-        if ((iVar3 << 0x1e) < 0) FUN_000471cc(0);
-        FUN_000432ec(0);
-        FUN_00043e90(0);
-        FUN_000432d0(0);
-        iVar3 = 0;
-        do {
-            iVar4 = FUN_000167a8(0);
-            sink = *(volatile int *)(iVar4 + 0xeb4);
-            iVar4 = FUN_000167a8(0);
-            sink = *(volatile int *)(iVar4 + 0xeb8);
-            iVar3 = iVar3 + 1;
-            FUN_000473c8(0);
-        } while (iVar3 != 9);
-        FUN_0007d5f2(0);
-        iVar3 = FUN_000431a8(0);
-        if ((iVar3 << 0x1e) < 0) { FUN_000471cc(0); return; }
-    } else {
-        iVar3 = FUN_0007d446(0);
-        if (0x20 < iVar3) {
-            FUN_0007d5f2(0);
-            iVar3 = FUN_000431a8(0);
-            if ((iVar3 << 0x1e) < 0) FUN_000471cc(0);
-            FUN_000432ec(0);
-            FUN_00043e90(0);
-            FUN_000432d0(0);
-            iVar3 = 0;
-            do {
-                iVar4 = FUN_000167a8(0);
-                sink = *(volatile int *)(iVar4 + 0xeb4);
-                iVar4 = FUN_000167a8(0);
-                sink = *(volatile int *)(iVar4 + 0xeb8);
-                iVar3 = iVar3 + 1;
-                FUN_000473c8(0);
-            } while (iVar3 != 9);
-            iVar3 = FUN_000431a8(0);
-            if ((iVar3 << 0x1e) < 0) { FUN_000471cc(0); return; }
+    (void)unused; (void)unused2;
+    uint32_t glyphs[9];
+    if (FUN_0007d446() <= 0x20) {
+        int shifted_top = top + 0x1b;
+        int shifted_bottom = bottom + 0x1b;
+        if ((FUN_000431a8() & 2) != 0)
+            FUN_000471cc(display(), 0, left, shifted_top, right, shifted_bottom);
+        FUN_000432ec();
+        FUN_00043e90(0, text, 0, left, shifted_top, right, shifted_bottom,
+                     rows, mask, 0, 0, 0);
+        FUN_000432d0();
+        for (unsigned i = 0; i < 9; ++i) glyphs[i] = ((const uint32_t *)0x000883ecu)[i];
+        for (unsigned i = 0; i < 9; ++i) {
+            uintptr_t s = FUN_000167a8(); uintptr_t d = FUN_000167a8();
+            FUN_000473c8(*(uint32_t *)(s + 0xeb4), *(uint32_t *)(d + 0xeb8),
+                         left, top, right, bottom, glyphs[i]);
         }
+        FUN_0007d5f2(display(), left, top, left, shifted_top, 0x1b, right - left);
+        if ((FUN_000431a8() & 2) != 0)
+            FUN_000471cc(display(), 0, left, bottom, right, shifted_bottom);
+        return;
     }
-    (void)sink;
-}
 
+    if (FUN_0007d446() > 0x20) {
+        FUN_0007d5f2(display(), left, top - 0x1b, left, top, 0x1b, right - left);
+        if ((FUN_000431a8() & 2) != 0)
+            FUN_000471cc(display(), 0, left, top, right, bottom);
+        FUN_000432ec();
+        FUN_00043e90(0, text, 0, left, top, right, bottom, rows, mask, 0, 0, 0);
+        FUN_000432d0();
+        for (unsigned i = 0; i < 9; ++i) glyphs[i] = ((const uint32_t *)0x00088410u)[i];
+        for (unsigned i = 0; i < 9; ++i) {
+            uintptr_t s = FUN_000167a8(); uintptr_t d = FUN_000167a8();
+            FUN_000473c8(*(uint32_t *)(s + 0xeb4), *(uint32_t *)(d + 0xeb8),
+                         left, top, right, bottom, glyphs[i]);
+        }
+        if ((FUN_000431a8() & 2) != 0)
+            FUN_000471cc(display(), 0, left, top, right, top);
+    }
+}

@@ -3,7 +3,7 @@ extern void FUN_01039752(unsigned int, unsigned int, unsigned int, unsigned int)
 extern unsigned int FUN_01039774(unsigned int, unsigned int, unsigned int);
 extern void FUN_010397a4(unsigned int, unsigned int, unsigned int);
 extern int FUN_010397c0(unsigned int, unsigned int);
-extern int FUN_010397d2(unsigned int, unsigned int);
+extern int FUN_010397d2(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void FUN_01039972(unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
@@ -43,7 +43,7 @@ void FUN_0102c5ec(unsigned int *param_1, int param_2, unsigned int param_3)
   *param_1 = uVar6;
   *(volatile unsigned int *)(uVar6 + 8) = uVar7;
   *(volatile unsigned int *)(uVar6 + 0xc) = 0;
-  iVar5 = FUN_010397d2(uVar7, uVar7);
+  iVar5 = FUN_010397d2(uVar7, uVar7, param_3 - iVar5, iVar5);
   iVar4 = iVar5 + 5;
   iVar1 = FUN_010397c0(uVar7, 1);
   uVar3 = (unsigned int)(iVar4 * 4 + 7U) >> 3;
@@ -68,4 +68,3 @@ void FUN_0102c5ec(unsigned int *param_1, int param_2, unsigned int param_3)
   FUN_01039bb0(DAT_0102c6f0, 0x20c);
   __builtin_unreachable();
 }
-

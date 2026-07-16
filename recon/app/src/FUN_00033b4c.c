@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void FUN_00019c70(uint32_t,uint32_t);
+extern void FUN_00019c70(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void FUN_00033b4c(void)
 {
@@ -14,10 +14,9 @@ void FUN_00033b4c(void)
     if (*piVar1 == 0) {
       DEBUG_PRINT(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     } else {
-      FUN_00019c70(format_string, (uint32_t)iVar2);
+      FUN_00019c70(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     }
     iVar2 = iVar2 + 1;
     puVar3 = puVar3 + 0x6d;
   } while (iVar2 != 0x14);
 }
-

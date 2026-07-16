@@ -1,50 +1,54 @@
 /* Reconstructed FUN_0005eeb4 @ 0x5eeb4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_00072040(void);
-extern int FUN_0007205c(void);
-extern void FUN_00072078(void);
-extern int FUN_000727ac(void);
-extern void FUN_0007e2ec(void);
-extern void FUN_0007e2fa(void);
-extern void FUN_00086518(void);
-extern void FUN_0008669c(void);
-extern void FUN_000866e4(void);
+extern int FUN_00072040(int);
+extern int FUN_0007205c(int);
+extern void FUN_00072078(int);
+extern int FUN_000727ac(int,int,int,int);
+extern void FUN_0007e2ec(uint32_t,uint32_t);
+extern void FUN_0007e2fa(uint32_t,...);
+extern void FUN_00086518(int,int);
+extern void FUN_0008669c(void *);
+extern void FUN_000866e4(void *,int,int,unsigned);
 
 int FUN_0005eeb4(int param_1, unsigned param_2, int param_3, int param_4)
 {
+    uint32_t frame[4] = {(uint32_t)param_1,param_2,(uint32_t)param_3,param_2};
     unsigned local_24 = param_2;
     int r4 = 0;
     int iVar6;
     unsigned uVar_h, uVar2, uVar1;
 
-    FUN_0008669c();
+    FUN_0008669c(frame);
     if (param_1 == 0) {
-        FUN_0007e2fa();
-        goto EF12;
+        FUN_0007e2fa(0x99cbdu,0xf53e9u,0xf539au,0xf8u);
+        FUN_0007e2ec(0xf539au,0xf8u);
+        goto CONTINUE_AFTER_FATAL;
     }
     {
-        int iVar6b = FUN_00072040();
+        int iVar6b = FUN_00072040(param_1 + 0x1c);
         if (iVar6b == 0) {
-            FUN_0007e2fa();
-            FUN_0007e2fa();
-            goto EF12;
+            FUN_0007e2fa(0x99cbdu,0xf0920u,0xf08c7u,0x72u);
+            FUN_0007e2fa(0xf0935u,param_1 + 0x1c);
+            FUN_0007e2ec(0xf08c7u,0x72u);
+            goto CONTINUE_AFTER_FATAL;
         }
     }
-    FUN_00072078();
+CONTINUE_AFTER_FATAL:
+    FUN_00072078(param_1 + 0x1c);
     uVar_h = *(volatile uint16_t*)(param_1 + 0x22);
     if (uVar_h == 0) {
-        int t = FUN_0007205c();
+        int t = FUN_0007205c(param_1 + 0x1c);
         if (t == 0) goto EF40;
-        r4 = FUN_000727ac();
+        r4 = FUN_000727ac(param_1,0,param_3,param_4);
         if (r4 != 0) goto EF60;
         return 0;
     } else {
         uVar2 = *(volatile uint16_t*)(param_1 + 0x20);
         if (uVar2 <= uVar_h) goto EFA0;
-        r4 = FUN_000727ac();
+        r4 = FUN_000727ac(param_1,0,0,0);
         if (r4 == 0) goto EFA0;
         {
-            int t = FUN_0007205c();
+            int t = FUN_0007205c(param_1 + 0x1c);
             if (t == 0) goto EF40;
             goto EF60;
         }
@@ -53,7 +57,7 @@ EFA0:
     uVar1 = *(volatile uint16_t*)(param_1 + 0x22);
     *(volatile uint16_t*)(param_1 + 0x22) = (uint16_t)(uVar1 - 1);
     {
-        int t = FUN_0007205c();
+        int t = FUN_0007205c(param_1 + 0x1c);
         if (t == 0) goto EF40;
     }
     {
@@ -72,7 +76,7 @@ EF60:
             *(volatile int*)(r4 + 0x14) = 0;
             goto EF2E;
         }
-        FUN_000866e4();
+        FUN_000866e4(frame,0,frame[0],frame[1]);
         {
             unsigned idx = *(volatile uint8_t*)(r4 + 0xa);
             int p = *(volatile int*)(0x34 * idx + 0x20003a7c + 0x2c);
@@ -81,13 +85,14 @@ EF60:
             iVar6 = ((int(*)(int,int,int,int))(intptr_t)fn)(r4, (int)(intptr_t)&local_24, param_1, param_2);
             *(volatile int*)(r4 + 0x14) = iVar6;
             if (iVar6 == 0) {
-                FUN_00086518();
+                FUN_00086518(0x20003a7c + 0x34 * *(volatile uint8_t*)(r4 + 0xa),r4);
                 return 0;
             }
             if (r5v <= local_24) goto EF2E;
-            FUN_0007e2fa();
-            FUN_0007e2fa();
-            goto EF12;
+            FUN_0007e2fa(0x99cbdu,0xf53eeu,0xf539au,0x14fu);
+            FUN_0007e2fa(0xf53ffu);
+            FUN_0007e2ec(0xf539au,0x14fu);
+            goto CONTINUE_AFTER_FATAL;
         }
     }
 EF2E:
@@ -98,11 +103,8 @@ EF2E:
     *(volatile int*)(r4 + 0xc) = *(volatile int*)(r4 + 0x14);
     return r4;
 EF40:
-    FUN_0007e2fa();
-    FUN_0007e2fa();
-    goto EF12;
-EF12:
-    FUN_0007e2ec();
-    return 0;
+    FUN_0007e2fa(0x99cbdu,0xf08f4u,0xf08c7u,0xf0u);
+    FUN_0007e2fa(0xf090bu,param_1 + 0x1c);
+    FUN_0007e2ec(0xf08c7u,0xf0u);
+    goto CONTINUE_AFTER_FATAL;
 }
-

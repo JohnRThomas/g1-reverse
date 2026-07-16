@@ -52,9 +52,9 @@ void FUN_010225ac(uint param_1,uint param_2,char *param_3,uint *param_4,undefine
   if (cVar3 != '\0') {
     FUN_010244cc(0x1e847fff - (uint)uVar1,&local_34,param_4 + 3);
     sVar4 = *(short *)((int)param_4 + 0xe);
-    FUN_010244cc(sVar4,&local_30,&uStack_35);
-    FUN_01024644();
-    uVar7 = FUN_010245d8(0);
+    FUN_010244cc((unsigned short)sVar4,&local_30,&uStack_35);
+    iVar5 = FUN_01024644();
+    uVar7 = FUN_010245d8(iVar5);
     if (*(char *)(0x210016f0 + 0x4a) == ' ') {
       uVar8 = param_1 + 0xb;
       uVar9 = param_2 + (0xfffffff4 < param_1);
@@ -139,4 +139,3 @@ void FUN_010225ac(uint param_1,uint param_2,char *param_3,uint *param_4,undefine
   param_4[2] = 1000;
   return;
 }
-

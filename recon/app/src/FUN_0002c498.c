@@ -12,14 +12,14 @@ extern void FUN_0002c0e8(byte *a);
 extern void FUN_0002c180(void);
 extern void FUN_0002c1fc(void);
 extern void FUN_0002c224(int a);
-extern unsigned char FUN_0002c30c(byte a, int b, ...);
+extern unsigned char FUN_0002c30c(byte a, int b);
 extern void FUN_00033d58(int a);
 extern int FUN_00033c4c(int a);
 extern void FUN_0003439c(void);
 extern void FUN_0003443c(int a);
 extern void FUN_00036030(void);
 extern void sync_to_slave(byte *a, int b, int c);
-extern void thunk_FUN_00074844(int a, int b);
+extern void FUN_0007ce5c(int a, int b);
 
 undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *param_4)
 {
@@ -32,7 +32,7 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
     uint uVar8, uVar9;
     int bVar10;
 
-    uVar3 = FUN_0002c30c(param_1[0xfea], 0xf, param_3, param_4, param_1, param_2, param_3);
+    uVar3 = FUN_0002c30c(param_1[0xfea], 0xf);
     *(volatile undefined1 *)(param_2 + 7) = uVar3;
     FUN_0003443c(2);
     iVar4 = FUN_000167a8();
@@ -43,8 +43,8 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
         if (((param_1[1] == 1) || (iVar6 = FUN_000167a8(), *(volatile char *)(iVar6 + 1) == '\b')) ||
             (iVar6 = FUN_000167a8(), *(volatile char *)(iVar6 + 0xfea) == '\f')) {
             if (2 < *piVar1) {
-                if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1));
-                else FUN_00019c70(0);
+                if (*piVar2 == 0) DEBUG_PRINT(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+                else FUN_00019c70(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             }
             FUN_0002c0e8(param_1);
             *param_4 = 0xa2795;
@@ -62,8 +62,8 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
         }
         if (*(volatile char *)(param_2 + 1) != '\x05') {
             if (*piVar1 < 1) return 0xb;
-            if (*piVar2 != 0) { FUN_00019c70(0); return 0xb; }
-            DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1));
+            if (*piVar2 != 0) { FUN_00019c70(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2); return 0xb; }
+            DEBUG_PRINT(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {
@@ -93,7 +93,7 @@ undefined1 FUN_0002c498(byte *param_1, int param_2, char *param_3, unsigned *par
             if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 7));
             else FUN_00019c70(0);
         }
-        thunk_FUN_00074844(0x667, 0);
+        FUN_0007ce5c(0x667, 0);
         if (*param_1 == 1) {
             uVar8 = uVar9 * -0x33333333;
             bVar10 = (uVar8 >> 2 | uVar9 * 0x40000000) <= 0xccccccc;
@@ -118,4 +118,3 @@ LAB_0002c4ec:
     }
     return uVar3;
 }
-

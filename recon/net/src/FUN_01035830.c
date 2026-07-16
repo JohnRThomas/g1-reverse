@@ -57,8 +57,8 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
       } while (0);
     }
     {
-      typedef unsigned int (*fp3_t)(void);
-      uVar1 = ((fp3_t)(*(volatile unsigned int *)(*(volatile int *)(*(volatile int *)(param_1 + 0xa0) + 0x20) + 0x10)))();
+      typedef unsigned int (*fp3_t)(int);
+      uVar1 = ((fp3_t)(*(volatile unsigned int *)(*(volatile int *)(*(volatile int *)(param_1 + 0xa0) + 0x20) + 0x10)))(param_2);
     }
     *(volatile unsigned int *)(param_2 + 0x10) = uVar1;
     *(volatile unsigned int *)(param_2 + 0x14) = 0;
@@ -88,5 +88,4 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
   }
   return iVar3;
 }
-
 

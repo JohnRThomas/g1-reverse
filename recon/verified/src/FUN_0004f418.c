@@ -14,19 +14,19 @@ int FUN_0004f418(volatile int *param_1, int param_2, uint32_t param_3, uint32_t 
     iVar1 = -0x16;
   } else {
     puVar3 = (volatile unsigned*)(param_1 + 10);
-    uVar2 = *puVar3;
-    *puVar3 = uVar2 | 1;
+    uVar2 = __atomic_fetch_or((unsigned *)puVar3, 1u, __ATOMIC_ACQ_REL);
     iVar1 = 0x7f895;
     if ((uVar2 & 1) == 0){
       param_1[9] = param_2;
       param_1[2] = iVar1;
       *(volatile int16_t*)(param_1 + 6) = 2;
       param_1[5] = param_1[1];
-      param_1[7] |= 1;
+      (void)__atomic_fetch_or((unsigned *)&param_1[7], 1u, __ATOMIC_ACQ_REL);
       uStack_18 = param_4;
       iVar1 = FUN_0005c3c4((uint32_t)*param_1, (void*)(param_1 + 2));
       if (iVar1 != 0){
-        *puVar3 = *puVar3 & 0xfffffffe;
+        (void)__atomic_fetch_and((unsigned *)puVar3, 0xfffffffeu,
+                                 __ATOMIC_ACQ_REL);
         local_24 = 0xf1625;
         local_28 = 3;
         iStack_20 = iVar1;
@@ -38,4 +38,3 @@ int FUN_0004f418(volatile int *param_1, int param_2, uint32_t param_3, uint32_t 
   }
   return iVar1;
 }
-

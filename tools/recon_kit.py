@@ -23,6 +23,8 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # Full 39-entry PUT dispatcher extent through the final handler return.
+    0x0001a75c: 0x6bae,
     # CFG-reviewed wrapper; catalog folded following utility functions.
     0x00050b8c: 36,
     0x000566a4: 0x50,

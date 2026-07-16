@@ -1,4 +1,4 @@
-/* Reconstructed FUN_0005d5c0 @ 0x5d5c0  (parity: 80/80 trials, PROVEN) */
+/* Full reconstruction of FUN_0005d5c0 @ 0x5d5c0, exact extent 930 bytes. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char byte;
@@ -12,7 +12,9 @@ extern uint32_t FUN_0005cc30(int);
 extern int FUN_0005d568(int,uint);
 extern int FUN_0005e6a8(uint8_t,int);
 extern int FUN_0005e938(uint8_t,int);
-extern int FUN_00082ff6(int,int);
+/* The concrete helper leaves a decision byte in r1 on the feature-test path.
+ * Model r1:r0 so the otherwise caller-clobbered value is represented in C. */
+extern uint64_t FUN_00082ff6(int,int);
 extern int FUN_00083002(int,int);
 extern int FUN_00083074(uint32_t,uint32_t,void*);
 extern int FUN_00083090(int,int);
@@ -33,7 +35,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
   }
 
   int iVar11 = param_1 + 4;
-  int iVar4 = FUN_00082ff6(iVar11, 0xf);
+  int iVar4 = (int)(uint32_t)FUN_00082ff6(iVar11, 0xf);
   if (iVar4 == 0) {
     uint32_t uVar5 = FUN_0005cc30(param_1);
     if (uVar5 != 0) return uVar5 & 0xff;
@@ -51,13 +53,13 @@ uint FUN_0005d5c0(int param_1, int param_2)
   *(volatile uint8_t*)(param_1 + 0x15) = pbVar13[4] & 3;
   *(volatile uint8_t*)(param_1 + 0x16) = pbVar13[5] & 1;
 
-  if ((int8_t)(*(volatile uint8_t*)(param_1 + 0x13)) < 0 && (int8_t)pbVar13[2] < 0) {
+  if ((*(volatile uint8_t*)(param_1 + 0x13) & 8) != 0 && (pbVar13[2] & 8) != 0) {
     FUN_00083090(iVar11, 5);
     *(volatile uint8_t*)(param_1 + 0x15) = *(volatile uint8_t*)(param_1 + 0x15) & 2;
     *(volatile uint8_t*)(param_1 + 0x16) = 0;
   }
 
-  iVar4 = FUN_00082ff6(iVar11, 5);
+  iVar4 = (int)(uint32_t)FUN_00082ff6(iVar11, 5);
   uint8_t puVar9val;
   if (iVar4 != 0) {
     puVar9val = *(volatile uint8_t*)0x2001d534UL;
@@ -66,13 +68,9 @@ uint FUN_0005d5c0(int param_1, int param_2)
   }
   *(volatile uint8_t*)(param_1 + 0x12) = puVar9val;
 
-  if ((int8_t)(uint8_t)(*(volatile uint8_t*)(param_1 + 0x13) << 6) < 0 &&
-      (int8_t)(uint8_t)(pbVar13[2] << 6) < 0) {
+  if ((*(volatile uint8_t*)(param_1 + 0x13) & 0x20) != 0 &&
+      (pbVar13[2] & 0x20) != 0) {
     FUN_00083090(iVar11, 0x14);
-  }
-
-  if ((int8_t)(*(volatile uint8_t*)(param_1 + 0x13)) < 0 == 0 /*placeholder*/) {
-    /* handled below properly */
   }
 
   if ( ((int32_t)((uint32_t)*(volatile uint8_t*)(param_1 + 0x13) << 0x1f)) < 0 &&
@@ -87,7 +85,8 @@ uint FUN_0005d5c0(int param_1, int param_2)
   *(volatile uint8_t*)(param_1 + 0xe9) = *(volatile uint8_t*)(param_1 + 0x15);
   int uVar6 = FUN_00083090(iVar11, 3);
   uint uVar5b = *pbVar13;
-  iVar4 = FUN_00082ff6(uVar6, 5);
+  uint64_t feature_result = FUN_00082ff6(uVar6, 5);
+  iVar4 = (int)(uint32_t)feature_result;
   uint8_t bVar8;
   if (iVar4 == 0) {
     if (uVar5b < 5) {
@@ -120,7 +119,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
       }
     }
   } else {
-    bVar8 = 6; /* extraout_r1 unknown, approximate */
+    bVar8 = (uint8_t)(feature_result >> 32);
   }
   *(volatile uint8_t*)(param_1 + 8) = bVar8;
 
@@ -135,7 +134,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
       uint8_t b2 = *(volatile uint8_t*)(param_1+0xd);
       uint8_t bb = (b1 >= b2) ? b2 : b1;
       if (bb != 0x10) return 6;
-      iVar4 = FUN_00082ff6(iVar11, 5);
+      iVar4 = (int)(uint32_t)FUN_00082ff6(iVar11, 5);
       if (iVar4 == 0) return 3;
       goto LAB_d80e;
     }
@@ -145,10 +144,10 @@ LAB_d80e:
     if (*(volatile int8_t*)(param_1 + 8) == 0) return 3;
   }
 
-  iVar4 = FUN_00082ff6(iVar11, 5);
+  iVar4 = (int)(uint32_t)FUN_00082ff6(iVar11, 5);
   if (iVar4 != 0) {
     if ( (*(volatile int8_t*)(param_1+8) == 0) &&
-         (FUN_00082ff6(iVar11,0xf) == 0) &&
+         ((uint32_t)FUN_00082ff6(iVar11,0xf) == 0) &&
          (iVar3 != 0) && (*(volatile int*)(iVar3+0x14) != 0) ) {
       FUN_00083090(iVar11, 10);
       int (*pcVar10)(int) = *(volatile void* volatile*)(iVar3+0x14);
@@ -156,7 +155,7 @@ LAB_d80e:
       pcVar10(iv2);
       return 0;
     }
-    int p1 = FUN_00083090(param_1, 3);
+    int p1 = FUN_00083090(param_1, 0xc);
     FUN_00083090(p1, 0xe);
     uint r = FUN_000830ee();
     return r;
@@ -199,10 +198,14 @@ LAB_d80e:
     }
     case 6: {
       if (piVar7 == 0 || piVar7[3] == 0) return 2;
-      uint32_t local_38 = 0;
+      union {
+        uint32_t word;
+        uint16_t half[2];
+      } local_38;
+      local_38.half[0] = 0;
       FUN_00083090(iVar11, 10);
       void (*fp)(int,void*) = (void(*)(int,void*))(intptr_t)piVar7[3];
-      fp(*(volatile int*)(param_1+0xf0), &local_38);
+      fp(*(volatile int*)(param_1+0xf0), &local_38.word);
       break;
     }
     default: {
@@ -214,7 +217,7 @@ LAB_d80e:
 
   if (*(volatile int8_t*)(param_1 + 8) == 0) {
 caseD0:
-    iVar12b = FUN_00082ff6(iVar11, 0xf);
+    iVar12b = (int)(uint32_t)FUN_00082ff6(iVar11, 0xf);
     if (iVar12b == 0 && iVar3 != 0 && *(volatile int*)(iVar3+0x14) != 0) {
       FUN_00083090(iVar11, 10);
       int (*pcVar10)(int) = *(volatile void* volatile*)(iVar3+0x14);
@@ -230,4 +233,3 @@ caseD0:
     return r;
   }
 }
-

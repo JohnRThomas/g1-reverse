@@ -4,7 +4,7 @@ extern void FUN_0007e2ec(void*, int);
 extern void FUN_0007e2fa(void*, void*, void*, int, int);
 extern unsigned int FUN_000635a4(unsigned int);
 extern void FUN_00064fd4(unsigned int, unsigned int);
-extern void FUN_00064f78(void);
+extern void FUN_00064f78(unsigned int, unsigned int);
 
 void FUN_0004c278(unsigned int param_1, unsigned int param_2, unsigned int param_3, int param_4)
 {
@@ -21,9 +21,8 @@ void FUN_0004c278(unsigned int param_1, unsigned int param_2, unsigned int param
     FUN_00064fd4(param_1, uVar1);
     *puVar2 = 0;
   } else {
-    FUN_00064f78();
+    FUN_00064f78(param_1, uVar1);
     *puVar2 = param_1 | 0x80000000;
   }
   return;
 }
-

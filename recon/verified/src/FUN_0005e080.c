@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 extern int FUN_00082ff6(int,int);
-extern int FUN_0005e9d0(int,int,int);
+extern int FUN_0005e9d0(int,int,int,int);
 extern uint32_t FUN_00052cdc(int);
 extern void FUN_00083074(uint32_t,int,void*);
 extern void FUN_00083090(int,uint32_t);
@@ -20,7 +20,7 @@ uint32_t FUN_0005e080(int param_1, int param_2){
   if (iVar2 != 0){
     iVar5 = iVar6 + 0x90;
     puVar4 = *(uint16_t**)(param_2+0xc);
-    iVar2 = FUN_0005e9d0(4, *(uint8_t*)(iVar6+8), iVar5);
+    iVar2 = FUN_0005e9d0(4, *(uint8_t*)(iVar6+8), iVar5, param_2);
     if (iVar2 == 0){
       uStack_20 = FUN_00052cdc(iVar5);
       local_24 = 0xf4e60;
@@ -48,4 +48,3 @@ LAB:
   }
   return 0;
 }
-

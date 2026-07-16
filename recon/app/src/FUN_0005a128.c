@@ -7,7 +7,7 @@ extern int FUN_00080f92(int,void*);
 extern void FUN_0005a0e8(void *entry);
 
 void FUN_0005a128(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned param_4){
-    unsigned char *puVar1 = (unsigned char*)FUN_00059bcc(0,0);
+    unsigned char *puVar1 = (unsigned char*)FUN_00059bcc(param_1,param_2);
     volatile int loc[4];
     if (puVar1 == 0){
         puVar1 = (unsigned char*)FUN_00059bcc(0, 0x000f2b3a);

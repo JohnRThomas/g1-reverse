@@ -26,8 +26,8 @@ int FUN_000530c4(void){
     {
         u32 v = *puVar1;
         if((int)(v << 0x1d) >= 0) FUN_000548b8();
-        u32 uVar3 = *puVar1;
-        *puVar1 = uVar3 & 0xfffeffff;
+        u32 uVar3 = __atomic_fetch_and((u32 *)puVar1, 0xfffeffffu,
+                                      __ATOMIC_ACQ_REL);
         if((int)(uVar3 << 0xf) < 0) FUN_000530b4();
     }
     return 0;
@@ -38,4 +38,3 @@ RS: ;
     FUN_0004d944(0x00088178, 0x1040, local, 0);
     return iVar2;
 }
-

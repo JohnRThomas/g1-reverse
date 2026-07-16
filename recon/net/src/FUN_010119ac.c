@@ -22,29 +22,6 @@ extern int FUN_01021108(int,int);
 extern void FUN_01011664(void*);
 extern int FUN_01020820(int);
 
-/* The reported 628-byte body merges several trailing functions past three
-   consecutive no-return FUN_01008d00 panic sites.  Because the harness models
-   the no-return panic as a returning oracle, the switch-default path (taken by
-   essentially every random input) executes past the panics into the merged
-   trailing code and deterministically faults branching to address 0 after a
-   fixed 13-call / 3-write side-effect trace.  Reproduce that exact trace
-   inline (must stay in-body, hence always_inline). */
-#define NET_PANIC_WANDER() do { \
-    FUN_01008d00(0x2d, 0x64a); \
-    FUN_01008d00(0x2d, 0xd79); \
-    FUN_01008d00(0x2d, 0xd65); \
-    FUN_01020764((void *)0); \
-    FUN_010208f0(0, 0, 0); \
-    FUN_01020820(0); \
-    *(volatile unsigned char *)0x21000f24 = 2; \
-    FUN_01020764((void *)0); \
-    FUN_010208f0(0, 0, 0); \
-    FUN_01020820(0); \
-    *(volatile unsigned char *)0x21000f24 = 2; \
-    *(volatile unsigned char *)0x21000f24 = 2; \
-    ((void (*)(void))0)(); \
-} while (0)
-
 void FUN_010119ac(unsigned char *param_1, int param_2)
 {
     volatile unsigned int *puVar9 = (volatile unsigned int *)0x21000f20;
@@ -107,8 +84,8 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
         }
         break;
     default:
-        NET_PANIC_WANDER();
-        return;
+        FUN_01008d00(0x2d, 0x64a);
+        __builtin_unreachable();
     }
 
     FUN_0100e008(pbVar6, param_1 + 0x61);
@@ -154,4 +131,3 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
         FUN_01008d00(0x2d, 0xd79);
     }
 }
-

@@ -4,7 +4,7 @@ extern int FUN_0007e2ec(int,int);
 extern int FUN_0007e2fa(int,int,int,int);
 extern int FUN_00084abe(int);
 extern int FUN_00084b14(int,int);
-extern int thunk_FUN_00086384(int);
+extern void FUN_000850d8(int);
 
 unsigned int FUN_00062c54(int param_1, int param_2)
 {
@@ -51,7 +51,7 @@ LAB_00062cb8:
             do {
                 iVar2 = FUN_00084abe(*(int *)(param_1 + 4));
                 if (iVar2 != 0) break;
-                thunk_FUN_00086384(1);
+                FUN_000850d8(1);
                 iVar7 = iVar7 + -1;
             } while (iVar7 != 0);
             if (*(int *)(iVar6 + 0x158) == 0) {
@@ -62,7 +62,7 @@ LAB_00062cb8:
         iVar7 = 1000;
         do {
             if (*(int *)(iVar6 + 0x158) != 0) break;
-            thunk_FUN_00086384(1);
+            FUN_000850d8(1);
             iVar7 = iVar7 + -1;
         } while (iVar7 != 0);
         if (uVar1 == 0) {
@@ -88,4 +88,3 @@ LAB_00062cb8:
     }
     return 0;
 }
-

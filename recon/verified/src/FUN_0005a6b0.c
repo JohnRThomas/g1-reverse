@@ -27,4 +27,3 @@ void FUN_0005a6b0(unsigned p1,unsigned p2,unsigned p3,unsigned p4){
   } while(iVar4!=3);
   return;
 }
-

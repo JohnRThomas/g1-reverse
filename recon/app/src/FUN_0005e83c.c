@@ -2,19 +2,22 @@
 #include <stdint.h>
 typedef unsigned int uint;
 extern void FUN_0007e2ec(uint,int);
-extern void FUN_0007e2fa();
+extern void FUN_0007e2fa(uint,uint,uint,uint);
 extern int FUN_00080ca0(uint,void*);
-extern int FUN_00086be4(void*,uint,int,uint,uint);
+extern int FUN_00086be4(void*,uint,int);
 uint8_t* FUN_0005e83c(uint param_1, uint8_t* param_2, uint param_3, uint param_4){
     volatile uint8_t* r4=(volatile uint8_t*)0x2000af4c;
     int r3int; uint8_t* r7;
-    if(param_2==0){ FUN_0007e2fa(); FUN_0007e2ec(param_4,0xe9); }
+    if(param_2==0){
+        FUN_0007e2fa(0x00099cbdu,0x000f52acu,0x000f5268u,0xe9u);
+        FUN_0007e2ec(0x000f5268u,0xe9);
+    }
     if(*(volatile uint8_t*)param_2 != 1) return 0;
     if((param_2[6]&0xc0) != 0x40) return 0;
     if(((uint)*(volatile uint16_t*)(r4+0xe)<<0x1e)&0x80000000u) goto L894;
     if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) return 0;
     if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L8aa;
-    if(FUN_00086be4(param_2+1,0x2000af4c+0x96,6,(uint)*(volatile uint8_t*)(r4+0x5c),param_4)!=0) goto L8a2;
+    if(FUN_00086be4(param_2+1,0x2000af4c+0x96,6)!=0) goto L8a2;
     goto L8fe;
 L894:
     if((uint)*(volatile uint8_t*)r4 == param_1) goto L8d4;
@@ -36,11 +39,11 @@ L8c2:
         return ret;
     }
 L8d4:
-    if(FUN_00086be4(param_2+1,0x2000af4c+0x3a,6,(uint)*(volatile uint8_t*)r4,param_4)==0) return (uint8_t*)((int)r4+0);
+    if(FUN_00086be4(param_2+1,0x2000af4c+0x3a,6)==0) return (uint8_t*)((int)r4+0);
     if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) goto L904;
 L8ea:
     if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L904;
-    if(FUN_00086be4(param_2+1,0x2000afe2,6,(uint)*(volatile uint8_t*)(r4+0x5c),param_4)!=0) goto L904;
+    if(FUN_00086be4(param_2+1,0x2000afe2,6)!=0) goto L904;
 L8fe:
     return (uint8_t*)((int)r4+0x5c);
 L904:
@@ -50,4 +53,3 @@ L904:
     r3int=0;
     goto L8c2;
 }
-

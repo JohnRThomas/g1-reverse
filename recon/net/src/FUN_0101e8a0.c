@@ -51,16 +51,17 @@ int FUN_0101e8a0(int param_1, int param_2, int param_3, int param_4)
     int iVar3call = FUN_0101e660(param_1);
     int ret_r6 = iVar3call;
     if (iVar3call != 0) {
-        int iVar3c = FUN_01009d64(0,1);
+        int iVar3c = FUN_01009d64(H(param_1,0),1);
         if (iVar3c == 0) return 9;
         FUN_01008d00(0x39, 0x57d);
         /* falls through into shared block below with ret_r6 = iVar3call (nonzero) */
     }
     {
-        (void)H(param_1,0);
         int iVar3b;
         for (;;) {
-            iVar3b = FUN_01009f58(0,0,0,0,0,0);
+            iVar3b = FUN_01009f58(H(param_1,0), H(param_1,2),
+                                  H(param_1,4), B(param_1,0),
+                                  B(param_1,1), 0);
             if (iVar3b == 0) {
                 return ret_r6;
             }
@@ -72,4 +73,3 @@ int FUN_0101e8a0(int param_1, int param_2, int param_3, int param_4)
         }
     }
 }
-

@@ -1,185 +1,175 @@
-/* net-core FUN_01020a6c @ 0x1020a6c  (parity 200 trials PROVEN) */
-/* net-core FUN_01020a6c @ 0x1020a6c  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(unsigned int a, unsigned int b);
-extern unsigned int FUN_01023e88(void);
-extern int FUN_01025bb0(void *p);
-extern void FUN_01020a00(int p3);
-extern void FUN_010216d4(int p3, unsigned int a, int b, void *p);
-extern void FUN_010215a8(int a);
-extern unsigned long long FUN_010218fc(void *p);
-extern void FUN_01020108(int lo, int hi);
+/* net-core FUN_01020a6c @ 0x01020a6c */
+#include <stdint.h>
+
+extern void FUN_01008d00(uint32_t, uint32_t);
+extern uint32_t FUN_01023e88(void);
+extern int FUN_01025bb0(void *);
+extern void FUN_01020a00(int);
+extern void FUN_010216d4(int, uint32_t, int, void *);
+extern void FUN_010215a8(int);
+extern uint64_t FUN_010218fc(void *);
+extern void FUN_01020108(uint32_t, uint32_t);
 extern void FUN_01020500(void);
-extern int FUN_01020168(int p3);
-extern void FUN_01025c9c(void *p, unsigned int a, int b);
-extern int FUN_010218cc(int a, int b);
-extern int FUN_010218c0(int a, int b);
-extern int FUN_01025bc8(void *p);
+extern uint64_t FUN_01020168(int);
+extern void FUN_01025c9c(void *);
+extern int FUN_010218cc(void *, const void *);
+extern int FUN_010218c0(void *, uint32_t);
+extern int FUN_01025bc8(void *);
 
-#define IVAR6    0x210015f0u   /* DAT_01020cfc */
-#define IVAR5_0  0x0103c4d0u   /* DAT_01020d00 */
-#define IVAR4_0  0x41008000u   /* DAT_01020d04 */
-#define DAT_D08  0x10624dd3u
-#define DAT_D0C  0x80000008u
-#define DAT_D10  0x4100c000u
-#define DAT_D14  0x21000028u
+#define STATE ((volatile uint8_t *)0x210015f0u)
+#define TABLE ((volatile uint8_t *)0x0103c4d0u)
+#define RADIO ((volatile uint32_t *)0x41008000u)
+#define TIMER ((volatile uint32_t *)0x4100c000u)
+#define REQUEST ((volatile uint32_t *)0x21000028u)
+#define REQUEST_DESCRIPTOR ((const void *)0x0103c578u)
+#define SCALE 0x10624dd3u
+#define TASK 0x80000008u
 
-int FUN_01020a6c(int param_1, unsigned int param_2, int param_3)
+int FUN_01020a6c(int kind, uint32_t deadline, int channel)
 {
-  unsigned int uVar3;
-  int iVar4, iVar5, iVar6;
-  unsigned long long uVar7 = 0;
-  unsigned char local_3d = 0, local_3b, local_3a;
-  int local_38;
-  unsigned int local_34, local_30, local_2c;
-  unsigned int r5 = param_2;
-  signed char loc3c;
+    uint8_t result = 0;
+    int8_t command;
+    uint8_t available;
+    uint8_t unused = 0;
+    uint32_t timer_base;
+    uint32_t reserved = 0;
+    uint32_t adjusted_deadline;
+    uint32_t duration;
+    uint64_t start = 0;
+    uint32_t mode;
+    int rc;
 
-  if (param_1 == 0) {
-    local_3a = 0;
-    loc3c = 4;
-    uVar3 = FUN_01023e88();
-    local_3b = (uVar3 > 1) ? 0 : 0xff;
-    iVar4 = FUN_01025bb0(&loc3c);
-    if (iVar4 != 0) goto LAB_ca4;
+    if (kind == 0) {
+        command = 4;
+        available = FUN_01023e88() <= 1 ? 0xff : 0;
+        if (FUN_01025bb0(&command) != 0)
+            goto fatal_a69;
 
-    iVar6 = IVAR6;
-    iVar5 = IVAR5_0;
-    *(volatile unsigned char *)(IVAR6 + 0x45) = 1;
-    FUN_01020a00(param_3);
-    {
-      unsigned int b = *(volatile unsigned char *)(IVAR6 + 0x1a);
-      *(volatile unsigned int *)(IVAR4_0 + 0x508) = *(volatile unsigned char *)(iVar5 + b);
-      *(volatile unsigned int *)(IVAR4_0 + 0x554) = b & 0x7f;
-      FUN_010216d4(param_3, b, *(volatile signed char *)(IVAR6 + 0x19), &loc3c);
+        STATE[0x45] = 1;
+        FUN_01020a00(channel);
+        mode = STATE[0x1a];
+        RADIO[0x508 / 4] = TABLE[mode];
+        RADIO[0x554 / 4] = mode & 0x7f;
+        FUN_010216d4(channel, mode, (int8_t)STATE[0x19], &command);
+        FUN_010215a8(command);
+        start = FUN_010218fc(&available);
+        if ((uint32_t)start != 0)
+            goto fatal_57e;
+        STATE[9] = 1;
+        mode = STATE[7];
+        if (mode != 1) {
+            uint64_t product = (uint64_t)SCALE *
+                ((volatile uint16_t *)TABLE)[channel + 0x70] +
+                (uint64_t)SCALE * 500u;
+            deadline -= (uint32_t)(product >> 38);
+            start = product << 32;
+            if (mode == 0)
+                RADIO[0x80 / 4] = TASK;
+        }
+    } else {
+        command = 2;
+        available = FUN_01023e88() <= 1 ? 0xff : 0;
+        if (FUN_01025bb0(&command) != 0)
+            goto fatal_a69;
+        STATE[0x45] = 1;
+        if (kind != 1)
+            goto fatal_7c3;
+        start = FUN_01020168(channel);
+        STATE[9] = 2;
+        mode = STATE[7];
+        if (mode != 1) {
+            deadline -= 0x29;
+            if (mode == 0)
+                RADIO[0x84 / 4] = TASK;
+        }
     }
-    FUN_010215a8((int)loc3c);
-    uVar7 = FUN_010218fc(&local_3b);
-    if ((int)uVar7 != 0) goto LAB_57e;
 
-    *(volatile unsigned char *)(IVAR6 + 9) = 1;
-    uVar7 &= 0xffffffff00000000ull;
-    {
-      unsigned long long lVar1 = (unsigned long long)DAT_D08 *
-          (unsigned long long)(*(volatile unsigned short *)(IVAR5_0 + param_3 * 2 + 0xe0) + 500u);
-      r5 = r5 - (unsigned int)(lVar1 >> 0x26);
-      *(volatile unsigned int *)(IVAR4_0 + 0x80) = DAT_D0C;
-      uVar7 = lVar1 << 0x20;
+    TIMER[0x540 / 4] = deadline;
+    TIMER[0x1c0 / 4] = TASK;
+    *(volatile uint32_t *)0x41008304u = 0x10;
+    if (STATE[7] == 0)
+        STATE[0x35] |= 2;
+    else if (STATE[7] == 1)
+        STATE[0x35] |= 4;
+
+    FUN_01020108((uint32_t)start, (uint32_t)(start >> 32));
+    timer_base = 0x4100c000u;
+    TIMER[0x4c / 4] = 1;
+    if (deadline <= TIMER[0x54c / 4]) {
+        TIMER[0x540 / 4] = 0;
+        TIMER[0x1c0 / 4] = 0;
+        FUN_01020500();
+        return 0;
     }
-  } else {
-    loc3c = 2;
-    local_3a = 0;
-    uVar3 = FUN_01023e88();
-    local_3b = (uVar3 > 1) ? 0 : 0xff;
-    iVar5 = FUN_01025bb0(&loc3c);
-    iVar6 = IVAR6;
-    if (iVar5 != 0) goto LAB_ca4;
-    *(volatile unsigned char *)(IVAR6 + 0x45) = 1;
-    if (param_1 != 1) goto LAB_7c3;
-    uVar7 = (unsigned int)FUN_01020168(param_3);
-    *(volatile unsigned char *)(IVAR6 + 9) = 2;
-    r5 = r5 - 0x29;
-    *(volatile unsigned int *)(IVAR4_0 + 0x84) = DAT_D0C;
-  }
 
-  *(volatile unsigned int *)(DAT_D10 + 0x540) = r5;
-  *(volatile unsigned int *)(DAT_D10 + 0x1c0) = DAT_D0C;
-  *(volatile unsigned int *)(DAT_D10 - 0x3cfc) = 0x10;
-  *(volatile unsigned char *)(iVar6 + 0x35) |= 2;
-
-  FUN_01020108((int)uVar7, (int)(uVar7 >> 32));
-  local_38 = DAT_D10;
-  *(volatile unsigned int *)(DAT_D10 + 0x4c) = 1;
-  if ((int)r5 <= (int)*(volatile unsigned int *)(local_38 + 0x54c)) {
-    *(volatile unsigned int *)(local_38 + 0x540) = 0;
-    *(volatile unsigned int *)(local_38 + 0x1c0) = 0;
-    FUN_01020500();
-    return 0;
-  }
-
-  loc3c = 0;
-  local_34 = 0;
-  local_3b = (param_1 == 0);
-  local_30 = r5;
-  if (param_1 != 0) {
-    local_2c = 0x28;
-    FUN_01025c9c(&loc3c, 0, 0);
-    iVar5 = DAT_D14;
-    if (0x95 < *(volatile unsigned short *)(iVar6 + 0x1c)) {
-      if (param_1 != 1) goto LAB_6fa;
-      *(volatile unsigned int *)(DAT_D14 + 8) = r5;
-      *(volatile unsigned int *)(iVar5 + 0xc) = r5 + 0x29;
-      iVar5 = FUN_010218cc(iVar5, DAT_D14 /*approx*/);
-      if ((unsigned int)(iVar5 + 1) > 1) goto LAB_6f6;
+    command = 0;
+    reserved = 0;
+    available = kind == 0;
+    adjusted_deadline = deadline;
+    if (kind != 0) {
+        duration = 0x28;
+        FUN_01025c9c(&command);
+        if (*(volatile uint16_t *)(STATE + 0x1c) > 0x95) {
+            if (kind != 1)
+                goto fatal_6fa;
+            REQUEST[2] = deadline;
+            REQUEST[3] = deadline + 0x29;
+            rc = FUN_010218cc((void *)REQUEST, REQUEST_DESCRIPTOR);
+            if ((uint32_t)(rc + 1) > 1) {
+                FUN_01008d00(0x3e, 0x6f6);
+                result = (uint8_t)((((deadline + 0x29) ^ 2u) >> 1) & 1u);
+                goto store_result;
+            }
+        }
+    } else {
+        uint64_t product = (uint64_t)SCALE *
+            ((volatile uint16_t *)TABLE)[channel + 0x70] +
+            (uint64_t)SCALE * 600u;
+        duration = (uint32_t)(product >> 38);
+        FUN_01025c9c(&command);
+        if (*(volatile uint16_t *)(STATE + 0x1c) > 0x95) {
+            REQUEST[2] = deadline;
+            REQUEST[3] = deadline + 0x28;
+            rc = FUN_010218c0((void *)REQUEST, (uint32_t)kind + 0xa8);
+            if ((uint32_t)(rc + 1) > 1)
+                goto fatal_6e9;
+        }
     }
-  } else {
-    unsigned long long lVar1 = (unsigned long long)DAT_D08 *
-        (unsigned long long)(*(volatile unsigned short *)(IVAR5_0 + param_3 * 2 + 0xe0) + 600u);
-    local_2c = (unsigned int)(lVar1 >> 0x26);
-    FUN_01025c9c(&loc3c, 0, (int)lVar1);
-    iVar4 = DAT_D14;
-    if (0x95 < *(volatile unsigned short *)(iVar6 + 0x1c)) {
-      *(volatile unsigned int *)(DAT_D14 + 8) = r5;
-      *(volatile unsigned int *)(iVar4 + 0xc) = r5 + 0x28;
-      goto LAB_cae;
+
+after_request:
+    rc = FUN_01025bc8(&result);
+    if (rc != 0)
+        goto fatal_a8b;
+    if (STATE[9] == 1)
+        result = (uint8_t)(((result ^ 4u) >> 2) & 1u);
+    else if (STATE[9] == 2)
+        result = (uint8_t)(((result ^ 2u) >> 1) & 1u);
+    else
+        result = 0;
+
+store_result:
+    STATE[0x46] = result;
+    if (result != 0) {
+        RADIO[0x80 / 4] = 0;
+        RADIO[0x84 / 4] = 0;
+        RADIO[0x10 / 4] = 1;
     }
-  }
-
-  iVar5 = FUN_01025bc8(&local_3d);
-  if (iVar5 != 0) goto LAB_a8b;
-
-  if (*(volatile unsigned char *)(iVar6 + 9) == 1) {
-    iVar5 = (local_3d ^ 4) << 0x1d;
-  } else {
-    if (*(volatile unsigned char *)(iVar6 + 9) != 2) {
-      *(volatile unsigned char *)(iVar6 + 0x46) = 0;
-      return 1;
-    }
-    iVar5 = (local_3d ^ 2) << 0x1e;
-  }
-  *(volatile unsigned char *)(iVar6 + 0x46) = (unsigned char)(-(iVar5 >> 31));
-  if (-(iVar5 >> 31) != 0) {
-    *(volatile unsigned int *)(IVAR4_0 + 0x80) = 0;
-    *(volatile unsigned int *)(IVAR4_0 + 0x84) = 0;
-    *(volatile unsigned int *)(IVAR4_0 + 0x10) = 1;
-  }
-  return 1;
-
-LAB_6f6:
-  /* real: falls through into the (iVar6+9==2)-style tail via shared bytes */
-  {
-    unsigned char t = *(volatile unsigned char *)(iVar6 + 9);
-    t = (t ^ 4) & 2 ? 1 : 0; /* approximation of "eor r3,4; ubfx r3,#2,1" on iVar5-derived r3 */
-    *(volatile unsigned char *)(iVar6 + 0x46) = t;
-    if (t == 0) return 1;
-    *(volatile unsigned int *)(IVAR4_0 + 0x80) = 0;
-    *(volatile unsigned int *)(IVAR4_0 + 0x84) = 0;
-    *(volatile unsigned int *)(IVAR4_0 + 0x10) = 1;
+    (void)unused;
+    (void)timer_base;
+    (void)reserved;
+    (void)adjusted_deadline;
+    (void)duration;
     return 1;
-  }
 
-LAB_ca4:
-  FUN_01008d00(0x3e, 0xa69);
-LAB_cae:
-  {
-    volatile unsigned int *p = (volatile unsigned int *)(unsigned long)DAT_D14;
-    p[2] = r5;
-    p[3] = r5 + 0x28;
-    iVar5 = FUN_010218c0(DAT_D14, (unsigned int)param_1 + 0xa8);
-  }
-  if ((unsigned int)(iVar5 + 1) <= 1) return 0;
-LAB_6e9:
-  FUN_01008d00(0x3e, 0x6e9);
-LAB_a8b:
-  FUN_01008d00(0x3e, 0xa8b);
-LAB_7c3:
-  FUN_01008d00(0x3e, 0x7c3);
-LAB_57e:
-  FUN_01008d00(0x3e, 0x57e);
-LAB_6fa:
-  FUN_01008d00(0x3e, 0x6fa);
-  for (;;) {
-    FUN_01008d00(0, 0);
-  }
+fatal_a69: FUN_01008d00(0x3e, 0xa69);
+    REQUEST[2] = deadline;
+    REQUEST[3] = deadline + 0x28;
+    rc = FUN_010218c0((void *)REQUEST, (uint32_t)kind + 0xa8);
+    if ((uint32_t)(rc + 1) <= 1) goto after_request;
+fatal_6e9: FUN_01008d00(0x3e, 0x6e9);
+fatal_a8b: FUN_01008d00(0x3e, 0xa8b);
+fatal_7c3: FUN_01008d00(0x3e, 0x7c3);
+fatal_57e: FUN_01008d00(0x3e, 0x57e);
+fatal_6fa: FUN_01008d00(0x3e, 0x6fa);
+    for (;;) FUN_01008d00(0, 0);
 }
-
-

@@ -7,8 +7,8 @@ uint32_t FUN_010312d0(uint32_t channel, uint32_t enable)
         return channel;
     uint32_t shift = channel & 255u;
     uint32_t bit = shift < 32u ? 1u << shift : 0u;
-    volatile uint32_t *enabled = (volatile uint32_t *)0x2100496cu;
-    *enabled = *enabled | bit;
+    uint32_t *enabled = (uint32_t *)0x2100496cu;
+    (void)__atomic_fetch_or(enabled, bit, __ATOMIC_ACQ_REL);
     *(volatile uint32_t *)0x41016304u = shift < 16u ? 0x10000u << shift : 0u;
     uint32_t pending = *(volatile uint32_t *)0x21004964u;
     if (shift < 32u && ((pending >> shift) & 1u))

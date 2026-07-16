@@ -26,7 +26,7 @@ unsigned int FUN_01033888(void)
     p4[0x530/4] = (unsigned int)pb2[0x12];
     unsigned int uVar5b = (unsigned int)pb2[0x13] + 0x960u;
     if (uVar5b > 0x9c4u) {
-        FUN_01039bbe(0x0103d2a7, 0x0103e3e0, 0x6b7, uVar5b, 0);
+        FUN_01039bbe(0x0103d2a7, 0x0103e3e0, 0x6b7, 0, 0);
         FUN_01039bb0(0x0103e3e0, 0x6b7);
         __builtin_unreachable();
     }
@@ -44,4 +44,3 @@ unsigned int FUN_01033888(void)
     p_1033964[0x18/4] = 1;
     return 0;
 }
-

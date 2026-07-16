@@ -14,6 +14,7 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    0x010119ac: 0x1d8,
     # CFG-reviewed TBH handlers and fatal tails through 0x101d87c.
     0x0101d404: 0x478,
 }

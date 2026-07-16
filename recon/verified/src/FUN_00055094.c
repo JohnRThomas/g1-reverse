@@ -28,7 +28,8 @@ void FUN_00055094(int param_1)
     } else if((unsigned)bVar1 <= *(volatile unsigned char*)0x20002120U + 1){
         iVar3 = FUN_00056f08(0,0,6);
         if(iVar3 != 0){
-            *(volatile unsigned*)(iVar2+0xd4) |= 0x8000;
+            __atomic_fetch_or((unsigned *)(uintptr_t)(iVar2 + 0xd4), 0x8000,
+                              __ATOMIC_RELAXED);
             *(unsigned char*)(param_1+8) |= 2;
             FUN_000566a4();
             return;
@@ -74,4 +75,3 @@ LAB_00055142:
     *(unsigned char*)(param_1+8) &= 0xfb;
     return;
 }
-

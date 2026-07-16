@@ -13,12 +13,11 @@ extern void FUN_01021b04(void);
 extern void FUN_0102460c(void);
 extern u32  FUN_01024664(void);
 extern void FUN_010246e4(void);
-extern void FUN_01024ad0_v(void); /* placeholder unused */
 extern u32  FUN_01024ad0(void);
 extern void FUN_01024e1c(u32,u32);
 extern u64  FUN_01025084(void);
 extern u32  FUN_010250d0(u32);
-extern void FUN_010256dc(u32,u32);
+extern __attribute__((noreturn)) void FUN_010256dc(u32,u32);
 
 #define DAT_01023cfc 0x210016f0u
 #define CARRY4(a,b) ((u32)(a) > (0xFFFFFFFFu - (u32)(b)))
@@ -54,7 +53,7 @@ void FUN_01023ad8(u32 param_1)
     if ((*(volatile i32*)(iVar2 + 0xc) != -1 || *(volatile i32*)(iVar2 + 8) != -1)) {
       iVar4 = (i32)FUN_010250d0(5);
       if (iVar4 == 0) {
-        goto fatal_858;
+        FUN_010256dc(0x70, 0x858);
       }
     }
     if (*(volatile i8*)(iVar2 + 0x21) == 1) {
@@ -90,13 +89,13 @@ void FUN_01023ad8(u32 param_1)
       }
       return;
     }
-    goto fatal_889;
+    FUN_010256dc(0x70, 0x889);
   case 2:
     FUN_0102460c();
     if ((*(volatile i16*)(iVar2 + 0x1e) != 0)) {
       iVar4 = (i32)FUN_01024ad0();
       if (iVar4 == 0) {
-        goto fatal_894;
+        FUN_010256dc(0x70, 0x894);
       }
     }
     iVar4 = (i32)FUN_01024664();
@@ -115,7 +114,7 @@ void FUN_01023ad8(u32 param_1)
       *(volatile u32*)(iVar2 + 8) = 0xffffffffu;
       *(volatile u32*)(iVar2 + 0xc) = 0xffffffffu;
       if (*(volatile i8*)(iVar2 + 0x37) == 0) {
-        goto fatal_871;
+        FUN_010256dc(0x70, 0x871);
       }
       bVar1 = *(volatile u8*)(iVar2 + 0x4a);
       uVar5 = 6;
@@ -145,18 +144,5 @@ LAB_01023b1c:
   default:
     break;
   }
-  return;
-
-fatal_889:
-  FUN_010256dc(0x70, 0x889);
-  return;
-fatal_858:
-  FUN_010256dc(0x70, 0x858);
-  return;
-fatal_871:
-  FUN_010256dc(0x70, 0x871);
-  return;
-fatal_894:
-  FUN_010256dc(0x70, 0x894);
   return;
 }

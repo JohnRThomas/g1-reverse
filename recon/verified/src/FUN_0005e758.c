@@ -1,14 +1,14 @@
 /* Reconstructed FUN_0005e758 @ 0x5e758  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef void (*fnptr)(unsigned int, unsigned int);
-extern void FUN_0007e2ec(void);
-extern void FUN_0007e2fa(void);
+extern void FUN_0007e2ec(uint32_t, uint32_t);
+extern void FUN_0007e2fa(uint32_t, uint32_t, uint32_t, uint32_t);
 
 void FUN_0005e758(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {
     if (param_2 == 0) {
-        FUN_0007e2fa();
-        FUN_0007e2ec();
+        FUN_0007e2fa(0x00099cbdU, 0x000f52c0U, 0x000f5268U, 0xb3U);
+        FUN_0007e2ec(0x000f5268U, 0xb3U);
         return;
     }
     uintptr_t base = 0x2000af4cUL;

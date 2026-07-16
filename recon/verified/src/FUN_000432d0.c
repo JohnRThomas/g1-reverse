@@ -3,8 +3,7 @@
 #include <stdint.h>
 unsigned int FUN_000432d0(void)
 {
-    volatile uint32_t *p = (volatile uint32_t *)0x2000a030UL;
-    *p = *p | 2;
+    uint32_t *p = (uint32_t *)0x2000a030UL;
+    (void)__atomic_fetch_or(p, 2u, __ATOMIC_SEQ_CST);
     return 0;
 }
-

@@ -1,4 +1,4 @@
-/* Reconstructed FUN_00053bd8 @ 0x53bd8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00053bd8 @ 0x53bd8 CFG_VERIFY_ORACLE0_R0_POINTER */
 
 #include <stdint.h>
 extern void FUN_000566a4(int);
@@ -22,7 +22,7 @@ void FUN_00053bd8(int param_1){
         FUN_00080ea2(0x00088138, 0x1840, &local_30);
         return;
     }
-    volatile int *piVar5 = (volatile int*)(iVar2+4);
+    volatile uint32_t *piVar5 = (volatile uint32_t *)(iVar2 + 4);
     if (*pcVar4 == 0x1a){
         if (*(volatile char*)(iVar2+3) == 1){
             uVar6 = FUN_00080e6a((void*)piVar5, 0x400);
@@ -50,11 +50,11 @@ void FUN_00053bd8(int param_1){
     FUN_000566a4(iVar2);
     return;
   L_c74:
-    if ((((int32_t)(*piVar5 << 0x17)) >= 0) || (*pcVar4 != 0x20) || (*(volatile char*)(iVar2+0xb4) == 0)) goto L_c68;
+    /* The original uses LDA then tests bit 8 via LSLS #23/BPL. */
+    if (((*piVar5 & 0x100u) == 0) || (*pcVar4 != 0x20) || (*(volatile char*)(iVar2+0xb4) == 0)) goto L_c68;
     *(volatile char*)(iVar2+0xb4) = *(volatile char*)(iVar2+0xb4) - 1;
     FUN_00073418(iVar2+0x60, uVar3, 0x28000, 0);
     FUN_00056ae0(iVar2);
     goto L_c44;
     (void)local_2c; (void)uStack_28; (void)local_1c;
 }
-

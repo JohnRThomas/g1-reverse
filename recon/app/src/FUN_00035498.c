@@ -1,4 +1,4 @@
-/* Reconstructed FUN_00035498 @ 0x35498  (parity: 228/300 trials, PROVEN) */
+/* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int FUN_00019c70(int,...);
@@ -57,4 +57,3 @@ void FUN_00035498(int param_1,int param_2)
   if (*E != 0) { FUN_00019c70(0xa8952,0xa8a33,0x23f,0); return; }
   DEBUG_PRINT(0xa8952,0xa8a33,0x23f);
 }
-

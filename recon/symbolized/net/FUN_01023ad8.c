@@ -14,12 +14,11 @@ extern void FUN_01021b04(void);
 extern void FUN_0102460c(void);
 extern u32  FUN_01024664(void);
 extern void FUN_010246e4(void);
-extern void FUN_01024ad0_v(void); /* placeholder unused */
 extern u32  FUN_01024ad0(void);
 extern void FUN_01024e1c(u32,u32);
 extern u64  FUN_01025084(void);
 extern u32  FUN_010250d0(u32);
-extern void FUN_010256dc(u32,u32);
+extern __attribute__((noreturn)) void FUN_010256dc(u32,u32);
 
 #define DAT_01023cfc ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
 #define CARRY4(a,b) ((u32)(a) > (0xFFFFFFFFu - (u32)(b)))
@@ -149,5 +148,4 @@ LAB_01023b1c:
   }
   return;
 }
-
 

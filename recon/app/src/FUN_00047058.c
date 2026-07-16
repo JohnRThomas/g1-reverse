@@ -1,16 +1,21 @@
 /* Reconstructed FUN_00047058 @ 0x47058  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT();
+extern void DEBUG_PRINT(uint32_t, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(uint32_t, ...);
 extern void FUN_00047028(int,int);
 extern void FUN_0007d642(int,int);
-extern void thunk_FUN_0007d77c(int);
+extern void FUN_0007d63e(int);
 extern void FUN_0007d772(int);
 void FUN_00047058(uint param_1){
     if(*(volatile int*)0x2000230c > 2){
-        if(*(volatile int*)0x20007554 == 0) DEBUG_PRINT(); else FUN_00019c70();
+        if(*(volatile int*)0x20007554 == 0)
+            DEBUG_PRINT(0x000d7251u, 0x000d72e9u, param_1,
+                        *(volatile uint32_t *)0x20007554u);
+        else
+            FUN_00019c70(0x000d7251u, 0x000d72e9u, param_1,
+                         *(volatile uint32_t *)0x20007554u);
     }
     int iVar2=FUN_000167a8();
     if(*(volatile int*)(iVar2+0xec8)==0) return;
@@ -34,9 +39,8 @@ void FUN_00047058(uint param_1){
             sVar4=(short)(((short)((param_1*0x6f)/6)+1)*(*(volatile short*)(iVar2+0xed8)+1)); }
         uVar5=0;
     }
-    thunk_FUN_0007d77c(6); thunk_FUN_0007d77c(0xa9);
+    FUN_0007d63e(6); FUN_0007d63e(0xa9);
     FUN_00047028(sVar4,uVar5); FUN_0007d642(0x31,4);
-    thunk_FUN_0007d77c(0xa3); thunk_FUN_0007d77c(0x97);
+    FUN_0007d63e(0xa3); FUN_0007d63e(0x97);
     FUN_0007d772(1);
 }
-

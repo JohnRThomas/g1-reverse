@@ -38,22 +38,14 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define FUN_000167a8(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define FUN_00019c70(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00045764__impl(int, ...);
-#define FUN_00045764(...) FUN_00045764__impl(0, ##__VA_ARGS__)
-extern long long FUN_000457b0__impl(int, ...);
-#define FUN_000457b0(...) FUN_000457b0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000457f4__impl(int, ...);
-#define FUN_000457f4(...) FUN_000457f4__impl(0, ##__VA_ARGS__)
-extern long long FUN_00045840__impl(int, ...);
-#define FUN_00045840(...) FUN_00045840__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define FUN_00086c78(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
+extern long long DEBUG_PRINT(uintptr_t, ...);
+extern int FUN_000167a8(void);
+extern void FUN_00019c70(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+extern int FUN_00045764(uint16_t, uint32_t *, uint32_t *);
+extern int FUN_000457b0(uint16_t, uint32_t *, uint32_t *);
+extern int FUN_000457f4(uint16_t, uint32_t *, uint32_t *);
+extern int FUN_00045840(uint16_t, uint32_t *, uint32_t *);
+extern void *FUN_00086c78(void *, int, uint32_t);
 
 #define DAT_00045bac ((volatile int*)0x2000230cUL)
 #define DAT_00045bb0 ((volatile int*)0x20007554UL)
@@ -147,49 +139,49 @@ extern long long FUN_00086c78__impl(int, ...);
 #define DAT_0004661c (0xc5a6dUL)
 #define DAT_00046620 (0xc558bUL)
 #define DAT_00046624 (0xc50a9UL)
-#define DAT_0004689c (0x0UL) /* unknown lit */
-#define DAT_000468a0 (0x0UL) /* unknown lit */
-#define DAT_000468a4 (0x0UL) /* unknown lit */
-#define DAT_000468a8 (0x0UL) /* unknown lit */
-#define DAT_000468ac (0x0UL) /* unknown lit */
-#define DAT_000468b0 (0x0UL) /* unknown lit */
-#define DAT_000468b4 (0x0UL) /* unknown lit */
-#define DAT_000468b8 (0x0UL) /* unknown lit */
-#define DAT_000468bc (0x0UL) /* unknown lit */
-#define DAT_000468c0 (0x0UL) /* unknown lit */
-#define DAT_000468c4 (0x0UL) /* unknown lit */
-#define DAT_000468c8 (0x0UL) /* unknown lit */
-#define DAT_000468cc (0x0UL) /* unknown lit */
-#define DAT_000468d0 (0x0UL) /* unknown lit */
-#define DAT_000468d4 (0x0UL) /* unknown lit */
-#define DAT_000468d8 (0x0UL) /* unknown lit */
-#define DAT_000468dc (0x0UL) /* unknown lit */
-#define DAT_000468e0 (0x0UL) /* unknown lit */
-#define DAT_000468e4 (0x0UL) /* unknown lit */
-#define DAT_000468e8 (0x0UL) /* unknown lit */
-#define DAT_000468ec (0x0UL) /* unknown lit */
-#define DAT_000468f0 (0x0UL) /* unknown lit */
-#define DAT_000468f4 (0x0UL) /* unknown lit */
-#define DAT_000468f8 (0x0UL) /* unknown lit */
-#define DAT_000468fc (0x0UL) /* unknown lit */
-#define DAT_00046900 (0x0UL) /* unknown lit */
-#define DAT_00046904 (0x0UL) /* unknown lit */
-#define DAT_00046908 (0x0UL) /* unknown lit */
-#define DAT_0004690c (0x0UL) /* unknown lit */
-#define DAT_00046910 (0x0UL) /* unknown lit */
-#define DAT_00046914 (0x0UL) /* unknown lit */
-#define DAT_00046918 (0x0UL) /* unknown lit */
-#define DAT_0004691c (0x0UL) /* unknown lit */
-#define DAT_00046920 (0x0UL) /* unknown lit */
-#define DAT_00046924 (0x0UL) /* unknown lit */
-#define DAT_00046928 (0x0UL) /* unknown lit */
-#define DAT_0004692c (0x0UL) /* unknown lit */
-#define DAT_00046930 (0x0UL) /* unknown lit */
-#define DAT_00046934 (0x0UL) /* unknown lit */
-#define DAT_00046998 (0x0UL) /* unknown lit */
-#define DAT_0004699c (0x0UL) /* unknown lit */
-#define DAT_000469a0 (0x0UL) /* unknown lit */
-#define DAT_000469a4 (0x0UL) /* unknown lit */
+#define DAT_0004689c (0xc4bc7UL)
+#define DAT_000468a0 (0xc46e5UL)
+#define DAT_000468a4 (0xc4203UL)
+#define DAT_000468a8 (0xc3d21UL)
+#define DAT_000468ac (0xc383fUL)
+#define DAT_000468b0 (0xc335dUL)
+#define DAT_000468b4 (0xc2e7bUL)
+#define DAT_000468b8 (0xc2999UL)
+#define DAT_000468bc (0xc24b7UL)
+#define DAT_000468c0 (0xc1fd5UL)
+#define DAT_000468c4 (0xc1af3UL)
+#define DAT_000468c8 (0xc1611UL)
+#define DAT_000468cc (0xc112fUL)
+#define DAT_000468d0 (0xc0c4dUL)
+#define DAT_000468d4 (0xc076bUL)
+#define DAT_000468d8 (0xc0289UL)
+#define DAT_000468dc (0xbfda7UL)
+#define DAT_000468e0 (0xbf8c5UL)
+#define DAT_000468e4 (0xbf3e3UL)
+#define DAT_000468e8 (0xbef01UL)
+#define DAT_000468ec (0xbea1fUL)
+#define DAT_000468f0 (0xbe53dUL)
+#define DAT_000468f4 (0xbe05bUL)
+#define DAT_000468f8 (0xbdb79UL)
+#define DAT_000468fc (0xbd697UL)
+#define DAT_00046900 (0xbd1b5UL)
+#define DAT_00046904 (0xbccd3UL)
+#define DAT_00046908 (0xbc7f1UL)
+#define DAT_0004690c (0xbc7e0UL)
+#define DAT_00046910 (0xbc7caUL)
+#define DAT_00046914 (0xbc6fdUL)
+#define DAT_00046918 (0xd43bfUL)
+#define DAT_0004691c (0xd328fUL)
+#define DAT_00046920 (0xd215fUL)
+#define DAT_00046924 (0xd15a7UL)
+#define DAT_00046928 (0xd0e9fUL)
+#define DAT_0004692c (0xd06cfUL)
+#define DAT_00046930 (0xcff13UL)
+#define DAT_00046934 (0xce483UL)
+#define DAT_00046998 (0xcd5abUL)
+#define DAT_0004699c (0xcc863UL)
+#define DAT_000469a0 (0xcb7fbUL)
+#define DAT_000469a4 (0xca153UL)
 
 
 undefined4
@@ -238,7 +230,7 @@ resource_manger_get(uint param_1,uint param_2,uint *param_3,uint *param_4,int *p
         if (param_2 - 0x1100 < 0xfa) {
           local_28 = uVar5;
           local_24 = uVar5;
-          iVar8 = FUN_000167a8(0,0);
+          iVar8 = FUN_000167a8();
           pcVar10 = *(code **)(iVar8 + 0x1030);
           uVar4 = FUN_000167a8();
           iVar9 = (*pcVar10)(uVar4,DAT_00045bc4 + iVar9,&local_24);
@@ -263,7 +255,7 @@ LAB_000459fc:
 LAB_00045cb8:
           if (0x5d < param_2 - 0xff01) {
             if (0x2e < param_2 - 0x2010) goto LAB_00045b4e;
-            uVar12 = FUN_000167a8(0,0);
+            uVar12 = FUN_000167a8();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = FUN_000167a8();
@@ -274,7 +266,7 @@ LAB_00045cb8:
             }
             goto LAB_00045e48;
           }
-          uVar12 = FUN_000167a8(0,0);
+          uVar12 = FUN_000167a8();
           uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
           if (*(int *)((int)uVar12 + 0x1030) != 0) {
             iVar8 = FUN_000167a8();
@@ -300,7 +292,7 @@ LAB_00045cb8:
             goto LAB_00045d4a;
           }
 LAB_00045e4e:
-          iVar8 = FUN_000167a8((int)uVar2,(int)(uVar2 >> 0x20));
+          iVar8 = FUN_000167a8();
           if (*(int *)(iVar8 + 0x1030) != 0) {
             iVar8 = FUN_000167a8();
             pcVar10 = *(code **)(iVar8 + 0x1030);
@@ -322,7 +314,7 @@ LAB_00045db4:
         }
         else {
           if (param_2 - 0x302e < 2) {
-            uVar12 = FUN_000167a8(0,0);
+            uVar12 = FUN_000167a8();
             iVar8 = (int)((ulonglong)uVar12 >> 0x20);
             iVar6 = (int)uVar12 + 0x1000;
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
@@ -339,7 +331,7 @@ LAB_00045b4e:
               iVar8 = iVar6;
               if (0xfd < param_2 - 0x3001) goto LAB_00045caa;
             }
-            uVar12 = FUN_000167a8(iVar6,iVar8);
+            uVar12 = FUN_000167a8();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
             iVar8 = FUN_000167a8();
@@ -371,7 +363,7 @@ LAB_0004597a:
             goto LAB_00045958;
           }
           if (param_2 - 0x3131 < 0x5e) {
-            uVar12 = FUN_000167a8(0,0);
+            uVar12 = FUN_000167a8();
             uVar11 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = FUN_000167a8();
@@ -401,7 +393,7 @@ LAB_0004597a:
 LAB_00045caa:
             if (param_2 - 0x3231 < 0x19d) {
 LAB_00045d4a:
-              uVar12 = FUN_000167a8((int)uVar11,(int)(uVar11 >> 0x20));
+              uVar12 = FUN_000167a8();
               uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
               iVar8 = FUN_000167a8();
@@ -413,7 +405,7 @@ LAB_00045d4a:
 LAB_00045c26:
               uVar2 = uVar11;
               if (0x5177 < param_2 - 0x4e00) goto LAB_00045c68;
-              uVar12 = FUN_000167a8((int)uVar11,(int)(uVar11 >> 0x20));
+              uVar12 = FUN_000167a8();
               uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
               iVar8 = FUN_000167a8();
@@ -438,7 +430,7 @@ LAB_00045d74:
           }
           else {
             if (param_2 - 0x3200 < 0x80) {
-              uVar12 = FUN_000167a8(0,0);
+              uVar12 = FUN_000167a8();
               uVar11 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) != 0) {
                 iVar8 = FUN_000167a8();
@@ -463,7 +455,7 @@ LAB_00045a8a:
               goto LAB_00045caa;
             }
             if (0x2bab < param_2 - 0xac00) goto LAB_00045cb8;
-            uVar12 = FUN_000167a8(0,0);
+            uVar12 = FUN_000167a8();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = FUN_000167a8();
@@ -478,7 +470,7 @@ LAB_00045a8a:
             }
 LAB_00045c68:
             if (param_2 - 0xe001 < 0xfd) {
-              iVar8 = FUN_000167a8((int)uVar2,(int)(uVar2 >> 0x20));
+              iVar8 = FUN_000167a8();
               if (*(int *)(iVar8 + 0x1030) != 0) {
                 iVar8 = FUN_000167a8();
                 pcVar10 = *(code **)(iVar8 + 0x1030);
@@ -522,7 +514,7 @@ LAB_00045958:
         DEBUG_PRINT(uVar4,uVar7,param_2);
         return 0xffffffff;
       }
-      FUN_00019c70();
+      FUN_00019c70(uVar4,uVar7,param_1 == 4 ? param_2 - 0x16 : param_2,iVar8);
       return 0xffffffff;
     }
 LAB_00045902:
@@ -1060,7 +1052,7 @@ LAB_00045912:
       DEBUG_PRINT(uVar4,uVar7);
     }
     else {
-      FUN_00019c70();
+      FUN_00019c70(uVar4,uVar7,(uintptr_t)param_3,iVar8);
     }
     break;
   case 5:
@@ -1163,5 +1155,3 @@ LAB_00046850:
 switchD_0004589e_caseD_6:
   return 0xffffffff;
 }
-
-

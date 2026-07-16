@@ -1,21 +1,21 @@
 /* Reconstructed FUN_000516ac @ 0x516ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0004e048(int,...);
-extern int FUN_0005169c(int,...);
+extern int FUN_0005169c(int);
 extern int FUN_00076a94(int,...);
 extern int FUN_0007ef7e(int,...);
 extern int FUN_0007ef80(int,...);
 extern int FUN_0007efd4(int,...);
 extern int FUN_0007f012(int,...);
 extern int FUN_0008096a(int,...);
-int FUN_000516ac(void)
+int FUN_000516ac(int param_1)
 {
   unsigned int uVar1;
   int iVar5;
   int local_6c, local_64;
   int aiStack_60[17];
   int dummy[16];
-  uVar1 = (unsigned int)FUN_0005169c(0);
+  uVar1 = (unsigned int)FUN_0005169c(param_1);
   if ((int)uVar1 < 0) {
     iVar5 = 0xe;
   } else {
@@ -58,4 +58,3 @@ int FUN_000516ac(void)
   }
   return iVar5;
 }
-

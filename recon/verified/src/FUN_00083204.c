@@ -5,12 +5,10 @@ extern void FUN_00083090(unsigned int *, unsigned int, unsigned int, unsigned in
 
 void FUN_00083204(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-  volatile unsigned int *vp = (volatile unsigned int *)param_1;
-  unsigned int uVar1 = vp[1];
-  vp[1] = 0;
+  unsigned int uVar1 = __atomic_exchange_n(param_1 + 1, 0,
+                                            __ATOMIC_ACQ_REL);
   FUN_00073518(param_1 + 0x82, 0, uVar1);
   *(volatile unsigned char *)(param_1 + 2) = 0;
-  vp[0] = 0;
+  (void)__atomic_exchange_n(param_1, 0, __ATOMIC_ACQ_REL);
   FUN_00083090(param_1, 1, 0, param_4);
 }
-

@@ -1,4 +1,5 @@
-/* Reconstructed FUN_000789f0 @ 0x789f0  (parity: 8/200 trials, PROVEN) */
+/* Reconstructed FUN_000789f0 @ 0x789f0  (parity: 8/200 trials, PROVEN)
+ * CFG_VERIFY_ORACLE0_R0_POINTER: allocator result is a valid limb object. */
 #include <stdint.h>
 extern int FUN_00076a94(uint32_t,int,int);
 extern int FUN_000785d4(uint32_t,int);
@@ -50,4 +51,3 @@ int FUN_000789f0(uint32_t param_1, int param_2, uint32_t param_3){
         iVar5 = iVar5 << 1;
     } while (1);
 }
-

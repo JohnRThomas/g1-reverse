@@ -1,4 +1,4 @@
-/* Reconstructed main @ 0x16eb8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed main @ 0x16eb8  CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=500 */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
 #pragma GCC diagnostic warning "-Wimplicit-int"
@@ -14,112 +14,59 @@ typedef long long code(int,...);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000158bc__impl(int, ...);
-#define FUN_000158bc(...) FUN_000158bc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00015df4__impl(int, ...);
-#define FUN_00015df4(...) FUN_00015df4__impl(0, ##__VA_ARGS__)
-extern long long FUN_00015f80__impl(int, ...);
-#define FUN_00015f80(...) FUN_00015f80__impl(0, ##__VA_ARGS__)
-extern long long FUN_00016110__impl(int, ...);
-#define FUN_00016110(...) FUN_00016110__impl(0, ##__VA_ARGS__)
-extern long long FUN_00016268__impl(int, ...);
-#define FUN_00016268(...) FUN_00016268__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167b4__impl(int, ...);
-#define FUN_000167b4(...) FUN_000167b4__impl(0, ##__VA_ARGS__)
-extern long long FUN_00017a40__impl(int, ...);
-#define FUN_00017a40(...) FUN_00017a40__impl(0, ##__VA_ARGS__)
-extern long long FUN_00018208__impl(int, ...);
-#define FUN_00018208(...) FUN_00018208__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define FUN_00019c70(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00022518__impl(int, ...);
-#define FUN_00022518(...) FUN_00022518__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023230__impl(int, ...);
-#define FUN_00023230(...) FUN_00023230__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023acc__impl(int, ...);
-#define FUN_00023acc(...) FUN_00023acc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023d0c__impl(int, ...);
-#define FUN_00023d0c(...) FUN_00023d0c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023df4__impl(int, ...);
-#define FUN_00023df4(...) FUN_00023df4__impl(0, ##__VA_ARGS__)
-extern long long FUN_000243fc__impl(int, ...);
-#define FUN_000243fc(...) FUN_000243fc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00025290__impl(int, ...);
-#define FUN_00025290(...) FUN_00025290__impl(0, ##__VA_ARGS__)
-extern long long FUN_00025c54__impl(int, ...);
-#define FUN_00025c54(...) FUN_00025c54__impl(0, ##__VA_ARGS__)
-extern long long FUN_00025d40__impl(int, ...);
-#define FUN_00025d40(...) FUN_00025d40__impl(0, ##__VA_ARGS__)
-extern long long FUN_00026250__impl(int, ...);
-#define FUN_00026250(...) FUN_00026250__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002659c__impl(int, ...);
-#define FUN_0002659c(...) FUN_0002659c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002a65c__impl(int, ...);
-#define FUN_0002a65c(...) FUN_0002a65c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002e4e8__impl(int, ...);
-#define FUN_0002e4e8(...) FUN_0002e4e8__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002e8fc__impl(int, ...);
-#define FUN_0002e8fc(...) FUN_0002e8fc__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002ea28__impl(int, ...);
-#define FUN_0002ea28(...) FUN_0002ea28__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002ea78__impl(int, ...);
-#define FUN_0002ea78(...) FUN_0002ea78__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002eaa8__impl(int, ...);
-#define FUN_0002eaa8(...) FUN_0002eaa8__impl(0, ##__VA_ARGS__)
-extern long long FUN_0002f080__impl(int, ...);
-#define FUN_0002f080(...) FUN_0002f080__impl(0, ##__VA_ARGS__)
-extern long long FUN_00030c90__impl(int, ...);
-#define FUN_00030c90(...) FUN_00030c90__impl(0, ##__VA_ARGS__)
-extern long long FUN_00032808__impl(int, ...);
-#define FUN_00032808(...) FUN_00032808__impl(0, ##__VA_ARGS__)
-extern long long FUN_00034944__impl(int, ...);
-#define FUN_00034944(...) FUN_00034944__impl(0, ##__VA_ARGS__)
-extern long long FUN_00036ed8__impl(int, ...);
-#define FUN_00036ed8(...) FUN_00036ed8__impl(0, ##__VA_ARGS__)
-extern long long FUN_000406e4__impl(int, ...);
-#define FUN_000406e4(...) FUN_000406e4__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047148__impl(int, ...);
-#define FUN_00047148(...) FUN_00047148__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004a500__impl(int, ...);
-#define FUN_0004a500(...) FUN_0004a500__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004ab3c__impl(int, ...);
-#define FUN_0004ab3c(...) FUN_0004ab3c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004f564__impl(int, ...);
-#define FUN_0004f564(...) FUN_0004f564__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004f770__impl(int, ...);
-#define FUN_0004f770(...) FUN_0004f770__impl(0, ##__VA_ARGS__)
-extern long long FUN_000622a0__impl(int, ...);
-#define FUN_000622a0(...) FUN_000622a0__impl(0, ##__VA_ARGS__)
-extern long long FUN_00062644__impl(int, ...);
-#define FUN_00062644(...) FUN_00062644__impl(0, ##__VA_ARGS__)
-extern long long FUN_00072908__impl(int, ...);
-#define FUN_00072908(...) FUN_00072908__impl(0, ##__VA_ARGS__)
-extern long long FUN_00075174__impl(int, ...);
-#define FUN_00075174(...) FUN_00075174__impl(0, ##__VA_ARGS__)
-extern long long FUN_00076d6c__impl(int, ...);
-#define FUN_00076d6c(...) FUN_00076d6c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007c030__impl(int, ...);
-#define FUN_0007c030(...) FUN_0007c030__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007c038__impl(int, ...);
-#define FUN_0007c038(...) FUN_0007c038__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007c34a__impl(int, ...);
-#define FUN_0007c34a(...) FUN_0007c34a__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007c360__impl(int, ...);
-#define FUN_0007c360(...) FUN_0007c360__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007cefc__impl(int, ...);
-#define FUN_0007cefc(...) FUN_0007cefc__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d0aa__impl(int, ...);
-#define FUN_0007d0aa(...) FUN_0007d0aa__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d230__impl(int, ...);
-#define FUN_0007d230(...) FUN_0007d230__impl(0, ##__VA_ARGS__)
-extern long long FUN_0008638c__impl(int, ...);
-#define FUN_0008638c(...) FUN_0008638c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define FUN_00086c78(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long change_work_mode_to__impl(int, ...);
-#define change_work_mode_to(...) change_work_mode_to__impl(0, ##__VA_ARGS__)
+extern long long DEBUG_PRINT(int, ...);
+extern long long FUN_000158bc(int, ...);
+extern long long FUN_00015df4(int, ...);
+extern long long FUN_00015f80(int, ...);
+extern long long FUN_00016110(int, ...);
+extern long long FUN_00016268(int, ...);
+extern long long FUN_000167b4(int, ...);
+extern long long FUN_00017a40(int, ...);
+extern long long FUN_00018208(int, ...);
+extern long long FUN_00019c70(int, ...);
+extern long long FUN_00022518(int, ...);
+extern long long FUN_00023230(int, ...);
+extern long long FUN_00023acc(int, ...);
+extern long long FUN_00023d0c(int, ...);
+extern long long FUN_00023df4(int, ...);
+extern long long FUN_000243fc(int, ...);
+extern long long FUN_00025290(int, ...);
+extern long long FUN_00025c54(int, ...);
+extern long long FUN_00025d40(int, ...);
+extern long long FUN_00026250(int, ...);
+extern long long FUN_0002659c(int, ...);
+extern long long FUN_0002a65c(int, ...);
+extern long long FUN_0002e4e8(int, ...);
+extern long long FUN_0002e8fc(int, ...);
+extern long long FUN_0002ea28(int, ...);
+extern long long FUN_0002ea78(int, ...);
+extern long long FUN_0002eaa8(int, ...);
+extern long long FUN_0002f080(int, ...);
+extern long long FUN_00030c90(int, ...);
+extern long long FUN_00032808(int, ...);
+extern long long FUN_00034944(int, ...);
+extern long long FUN_00036ed8(int, ...);
+extern long long FUN_000406e4(int, ...);
+extern long long FUN_00047148(int, ...);
+extern long long FUN_0004a500(int, ...);
+extern long long FUN_0004ab3c(int, ...);
+extern long long FUN_0004f564(int, ...);
+extern long long FUN_0004f770(int, ...);
+extern long long FUN_000622a0(int, ...);
+extern long long FUN_00062644(int, ...);
+extern long long FUN_00072908(int, ...);
+extern long long FUN_00075174(int, ...);
+extern long long FUN_00076d6c(int, ...);
+extern long long FUN_0007c030(int, ...);
+extern long long FUN_0007c038(int, ...);
+extern long long FUN_0007c34a(int, ...);
+extern long long FUN_0007c360(int, ...);
+extern long long FUN_0007cefc(int, ...);
+extern long long FUN_0007d0aa(int, ...);
+extern long long FUN_0007d230(int, ...);
+extern long long FUN_0008638c(int, ...);
+extern long long FUN_00086c78(int, ...);
+extern long long change_work_mode_to(int, ...);
 
 #define DAT_00017200 (0x000fa9b4UL)
 #define DAT_00017204 (0x000faa2cUL)
@@ -191,6 +138,7 @@ void main(void)
   int iVar6;
   char *pcVar7;
   undefined4 uVar8;
+  undefined8 uVar64;
   undefined4 *puVar9;
   undefined1 *puVar10;
   undefined2 *puVar11;
@@ -201,7 +149,7 @@ void main(void)
   uint uVar13;
   char *pcVar14;
 
-  FUN_0004a500();
+  ((long long (*)(void))FUN_0004a500)();
   iVar6 = FUN_0004f564(0x10);
   if (iVar6 != 0) {
     *(volatile undefined4 *)(iVar6 + 4) = DAT_00017200;
@@ -209,17 +157,17 @@ void main(void)
   piVar1 = DAT_00017208;
   *(volatile undefined4 *)(iVar6 + 8) = DAT_00017204;
   *(volatile undefined1 *)(iVar6 + 0xc) = 0;
-  FUN_0004f770();
+  ((long long (*)(void))FUN_0004f770)();
   if (0 < *piVar1) {
     if (*DAT_0001720c == 0) {
       DEBUG_PRINT(DAT_00017218,DAT_00017214,DAT_00017210);
     }
     else {
-      FUN_00019c70();
+      ((long long (*)(void))FUN_00019c70)();
     }
   }
   FUN_00075174(DAT_0001721c);
-  FUN_00025c54();
+  ((long long (*)(void))FUN_00025c54)();
   piVar2 = DAT_0001720c;
   if (1 < *piVar1) {
     if (*DAT_0001720c == 0) {
@@ -234,7 +182,7 @@ void main(void)
         DEBUG_PRINT(PTR_s__s_____cpuapp__global_context_in_00017230,PTR_s_init_context_0001722c);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
   }
@@ -320,7 +268,7 @@ void main(void)
   }
   uVar8 = FUN_00076d6c(0x21);
   *(undefined4 *)(pcVar7 + 0x1014) = uVar8;
-  FUN_000406e4();
+  ((long long (*)(void))FUN_000406e4)();
   puVar10 = (undefined1 *)FUN_00076d6c(1);
   *(undefined1 **)(pcVar7 + 0x1018) = puVar10;
   if (puVar10 != (undefined1 *)0x0) {
@@ -357,7 +305,7 @@ void main(void)
   *(volatile undefined4 *)(pcVar7 + 0xb28) = uVar8;
   *(volatile undefined2 *)(pcVar7 + 0xb2c) = 0x200b;
   FUN_0002659c(pcVar7 + 0xb10);
-  iVar6 = FUN_00017a40();
+  iVar6 = ((long long (*)(void))FUN_00017a40)();
   *DAT_0001725c = iVar6;
   cVar5 = FUN_0002e4e8(pcVar7 + 0x1030,pcVar7 + 0x1034,pcVar7 + 0x1038);
   pcVar7[0x1089] = cVar5;
@@ -375,7 +323,7 @@ LAB_000172a6:
         DEBUG_PRINT(uVar8,DAT_00017510);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
   }
@@ -392,10 +340,10 @@ LAB_000172a6:
       DEBUG_PRINT(DAT_00017514,DAT_00017510);
     }
     else {
-      FUN_00019c70();
+      ((long long (*)(void))FUN_00019c70)();
     }
   }
-  FUN_00016268(pcVar7);
+  uVar64 = FUN_00016268(pcVar7);
   if (*pcVar7 == '\x01') {
     *(volatile undefined2 *)(pcVar7 + 0xfcc) = 0x0401;
     *(volatile undefined1 *)(pcVar7 + 0xfce) = 5;
@@ -406,7 +354,7 @@ LAB_000172a6:
     *(volatile undefined2 *)(pcVar7 + 0xfd0) = 0x0504;
     pcVar7[0x6de] = pcVar7[0x6de] | 4;
   }
-  FUN_00072908(pcVar7 + 8,extraout_r1,0xffffffff,0xffffffff);
+  FUN_00072908(pcVar7 + 8,(uint)(uVar64 >> 32),0xffffffff,0xffffffff);
   if (pcVar7[1] == '\x01') {
 LAB_00017372:
     if (1 < *piVar1) {
@@ -414,34 +362,34 @@ LAB_00017372:
         DEBUG_PRINT(DAT_00017538,DAT_00017534);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
   }
   else {
     FUN_00018208(pcVar7 + 0x77c);
-    FUN_00015df4();
+    ((long long (*)(void))FUN_00015df4)();
     if (*pcVar7 == '\x01') {
-      FUN_0004ab3c();
+      ((long long (*)(void))FUN_0004ab3c)();
       FUN_00075174(DAT_00017524);
-      FUN_00015f80();
+      ((long long (*)(void))FUN_00015f80)();
       *(undefined4 *)(pcVar7 + 0xf00) = DAT_00017528;
-      FUN_000622a0();
+      FUN_000622a0(DAT_00017528);
       FUN_00026250(pcVar7 + 0xee4);
       FUN_0002e8fc(pcVar7 + 0xf80);
     }
     else if (*pcVar7 == '\x02') {
-      FUN_00015f80();
+      ((long long (*)(void))FUN_00015f80)();
       *(undefined4 *)(pcVar7 + 0xf00) = DAT_00017528;
-      FUN_000622a0();
+      FUN_000622a0(DAT_00017528);
     }
     FUN_00047148(pcVar7 + 0xb6c);
-    FUN_00025290();
+    ((long long (*)(void))FUN_00025290)();
     FUN_00036ed8(*(undefined4 *)(*piVar2 + 0xfec));
-    FUN_00023df4();
-    FUN_00023d0c();
-    FUN_00023acc();
-    FUN_000243fc();
+    ((long long (*)(void))FUN_00023df4)();
+    ((long long (*)(void))FUN_00023d0c)();
+    ((long long (*)(void))FUN_00023acc)();
+    ((long long (*)(void))FUN_000243fc)();
     pcVar7[0x108e] = '\0';
     *(undefined2 *)(pcVar7 + 0xed8) = *(undefined2 *)(pcVar7 + 0xede);
     pcVar7[0x108c] = '\0';
@@ -450,7 +398,7 @@ LAB_00017372:
         DEBUG_PRINT(DAT_00017530,DAT_0001752c);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
       goto LAB_00017372;
     }
@@ -462,7 +410,7 @@ LAB_00017372:
       DEBUG_PRINT(DAT_0001753c,DAT_00017534,iVar6);
     }
     else {
-      FUN_00019c70();
+      ((long long (*)(void))FUN_00019c70)();
     }
   }
   if (*pcVar7 == '\x01') {
@@ -472,7 +420,7 @@ LAB_00017372:
         DEBUG_PRINT(DAT_00017540,DAT_00017534,iVar6);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
     iVar6 = (**(code **)(pcVar7 + 0xf80))(pcVar7 + 0xf80);
@@ -481,7 +429,7 @@ LAB_00017372:
         DEBUG_PRINT(DAT_00017544,DAT_00017534,iVar6);
       }
       else {
-        FUN_00019c70();
+        ((long long (*)(void))FUN_00019c70)();
       }
     }
   }
@@ -496,11 +444,11 @@ LAB_00017372:
        (iVar6 = FUN_00062644(DAT_0001755c), uVar8 = DAT_00017568, -1 < iVar6)) {
       DEBUG_PRINT(DAT_00017664);
       DEBUG_PRINT(DAT_00017668);
-      FUN_00016110();
-      iVar6 = FUN_0007cefc();
+      ((long long (*)(void))FUN_00016110)();
+      iVar6 = ((long long (*)(void))FUN_0007cefc)();
       if (iVar6 != 0) {
         DEBUG_PRINT(DAT_0001766c);
-        FUN_0002ea78();
+        ((long long (*)(void))FUN_0002ea78)();
       }
       iVar6 = (**(code **)(pcVar7 + 0xb10))(pcVar7 + 0xb10);
       if ((iVar6 != 0) && (1 < *piVar1)) {
@@ -508,7 +456,7 @@ LAB_00017372:
           DEBUG_PRINT(DAT_00017678,DAT_00017674,iVar6);
         }
         else {
-          FUN_00019c70();
+          ((long long (*)(void))FUN_00019c70)();
         }
       }
       iVar6 = (**(code **)(pcVar7 + 0xb6c))(pcVar7 + 0xb6c);
@@ -517,17 +465,17 @@ LAB_00017372:
           DEBUG_PRINT(DAT_0001767c,DAT_00017674,iVar6);
         }
         else {
-          FUN_00019c70();
+          ((long long (*)(void))FUN_00019c70)();
         }
       }
-      FUN_00030c90();
-      FUN_00034944();
+      ((long long (*)(void))FUN_00030c90)();
+      ((long long (*)(void))FUN_00034944)();
       if (1 < *piVar1) {
         if (*DAT_00017670 == 0) {
           DEBUG_PRINT(DAT_00017680,DAT_00017674);
         }
         else {
-          FUN_00019c70();
+          ((long long (*)(void))FUN_00019c70)();
         }
       }
       *(volatile undefined4 *)(pcVar7 + 0x1078) = 0;
@@ -539,9 +487,9 @@ LAB_00017372:
   DEBUG_PRINT(uVar8);
 LAB_00017414:
   FUN_0002a65c(pcVar7);
-  FUN_0002eaa8();
+  uVar64 = ((long long (*)(void))FUN_0002eaa8)();
   pcVar4 = DAT_00017550;
-  uVar8 = extraout_r1_00;
+  uVar8 = (uint)(uVar64 >> 32);
   do {
     FUN_00072908(pcVar14,uVar8,0xffffffff,0xffffffff);
     if (*pcVar4 == '\x01') {
@@ -561,19 +509,18 @@ LAB_00017414:
         goto LAB_0001762a;
       }
       if ((int)(uVar13 << 0x1d) < 0) {
-        FUN_0002f080();
+        ((long long (*)(void))FUN_0002f080)();
         bVar12 = pcVar7[0x1059] & 0xfb;
         goto LAB_0001762a;
       }
       if ((int)(uVar13 << 0x1c) < 0) {
-        FUN_000167b4();
+        ((long long (*)(void))FUN_000167b4)();
         bVar12 = pcVar7[0x1059] & 0xf7;
 LAB_0001762a:
         pcVar7[0x1059] = bVar12;
       }
     }
-    FUN_0007c038(1);
-    uVar8 = extraout_r1_01;
+    uVar64 = FUN_0007c038(1);
+    uVar8 = (uint)(uVar64 >> 32);
   } while( true );
 }
-

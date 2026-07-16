@@ -7,7 +7,7 @@ extern int FUN_00065494(uint32_t);
 extern int FUN_000654ac(uint32_t);
 extern int FUN_00065584(void*);
 extern int FUN_000655ec(void);
-extern void FUN_0007e2ec(uint32_t,uint32_t);
+extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t,uint32_t);
 extern void FUN_0007e2fa(uint32_t,...);
 extern void FUN_000851ca(uint32_t,int);
 
@@ -17,7 +17,7 @@ void FUN_000659e4(uint32_t param_1, uint32_t param_2){
     iVar1 = FUN_00065478();
     if (iVar1 == 0){
         FUN_0007e2fa(0x00099cbd,0x000f6b87,0x000f6b00,0x364,uVar2);
-        goto Lec_364;
+        FUN_0007e2ec(0x000f6b00,0x364);
     }
   L_a08:
     iVar1 = FUN_00065460(param_1);
@@ -48,9 +48,4 @@ void FUN_000659e4(uint32_t param_1, uint32_t param_2){
     }
     FUN_0007e2fa(0x00099cbd,0x000f6b9c,0x000f6b00,0x373,uVar2);
     FUN_0007e2ec(0x000f6b00,0x373);
-    goto L_a08;
-  Lec_364:
-    FUN_0007e2ec(0x000f6b00,0x364);
-    goto L_a08;
 }
-

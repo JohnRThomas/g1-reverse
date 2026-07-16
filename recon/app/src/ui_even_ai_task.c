@@ -38,58 +38,32 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define FUN_000167a8(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define FUN_00019c70(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023ee0__impl(int, ...);
-#define FUN_00023ee0(...) FUN_00023ee0__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003be18__impl(int, ...);
-#define FUN_0003be18(...) FUN_0003be18__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431b4__impl(int, ...);
-#define FUN_000431b4(...) FUN_000431b4__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431c0__impl(int, ...);
-#define FUN_000431c0(...) FUN_000431c0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432d0__impl(int, ...);
-#define FUN_000432d0(...) FUN_000432d0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432ec__impl(int, ...);
-#define FUN_000432ec(...) FUN_000432ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043308__impl(int, ...);
-#define FUN_00043308(...) FUN_00043308__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043484__impl(int, ...);
-#define FUN_00043484(...) FUN_00043484__impl(0, ##__VA_ARGS__)
-extern long long FUN_000436f8__impl(int, ...);
-#define FUN_000436f8(...) FUN_000436f8__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004382c__impl(int, ...);
-#define FUN_0004382c(...) FUN_0004382c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004396c__impl(int, ...);
-#define FUN_0004396c(...) FUN_0004396c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043e90__impl(int, ...);
-#define FUN_00043e90(...) FUN_00043e90__impl(0, ##__VA_ARGS__)
-extern long long FUN_000440ec__impl(int, ...);
-#define FUN_000440ec(...) FUN_000440ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_00044bd8__impl(int, ...);
-#define FUN_00044bd8(...) FUN_00044bd8__impl(0, ##__VA_ARGS__)
-extern long long FUN_000471cc__impl(int, ...);
-#define FUN_000471cc(...) FUN_000471cc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047260__impl(int, ...);
-#define FUN_00047260(...) FUN_00047260__impl(0, ##__VA_ARGS__)
-extern long long FUN_000723b8__impl(int, ...);
-#define FUN_000723b8(...) FUN_000723b8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00072558__impl(int, ...);
-#define FUN_00072558(...) FUN_00072558__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d3dc__impl(int, ...);
-#define FUN_0007d3dc(...) FUN_0007d3dc__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d3ee__impl(int, ...);
-#define FUN_0007d3ee(...) FUN_0007d3ee__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d446__impl(int, ...);
-#define FUN_0007d446(...) FUN_0007d446__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c1e__impl(int, ...);
-#define FUN_00086c1e(...) FUN_00086c1e__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define FUN_00086c78(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
+extern int FUN_0007dda4(int, int, int, int);
+extern int FUN_000167a8(void);
+extern int FUN_00019c70(int, int, int, int);
+extern int FUN_00023ee0(void);
+extern int FUN_0003be18(int, ...);
+extern int FUN_000431b4(int);
+extern int FUN_000431c0(void);
+extern int FUN_000432d0(void);
+extern int FUN_000432ec(void);
+extern int FUN_00043308(void);
+extern int FUN_00043484(int, ...);
+extern int FUN_000436f8(void);
+extern int FUN_0004382c(void);
+extern int FUN_0004396c(int, ...);
+extern int FUN_00043e90(int, ...);
+extern int FUN_000440ec(int, ...);
+extern int FUN_00044bd8(int, ...);
+extern int FUN_000471cc(int, ...);
+extern int FUN_00047260(int, ...);
+extern int FUN_000723b8(int, ...);
+extern int FUN_00072558(int);
+extern int FUN_0007d3dc(void);
+extern int FUN_0007d3ee(void);
+extern int FUN_0007d446(void);
+extern int FUN_00086c1e(int, ...);
+extern long long FUN_00086c78(int, ...);
 
 #define DAT_0003c2dc ((volatile int*)0x200024ecUL)
 #define DAT_0003c2e0 (0x8a3a8UL)
@@ -107,23 +81,23 @@ extern long long FUN_00086c78__impl(int, ...);
 #define DAT_0003c310 (0xaae20UL)
 #define DAT_0003c314 (0xa989fUL)
 #define DAT_0003c318 ((volatile undefined4*)0xa8e98UL)
-#define DAT_0003c644 (0x0UL) /* unknown lit */
-#define DAT_0003c648 (0x0UL) /* unknown lit */
-#define DAT_0003c64c ((volatile int*)0x0UL)
-#define DAT_0003c650 (0x0UL) /* unknown lit */
-#define DAT_0003c654 ((volatile int*)0x0UL)
-#define DAT_0003c658 ((volatile undefined4*)0x0UL)
-#define DAT_0003c9a8 (0x0UL) /* unknown lit */
-#define DAT_0003c9ac (0x0UL) /* unknown lit */
-#define DAT_0003c9b0 ((volatile int*)0x0UL)
-#define DAT_0003cb2c (0x0UL) /* unknown lit */
-#define DAT_0003cb30 ((volatile int*)0x0UL)
-#define DAT_0003cb34 ((volatile int*)0x0UL)
-#define DAT_0003cb38 (0x0UL) /* unknown lit */
-#define DAT_0003cb3c ((volatile int*)0x0UL)
-#define DAT_0003cb40 ((volatile int*)0x0UL)
-#define DAT_0003cb44 (0x0UL) /* unknown lit */
-#define DAT_0003cb48 (0x0UL) /* unknown lit */
+#define DAT_0003c644 (0x2001b818UL)
+#define DAT_0003c648 (0x20007b3cUL)
+#define DAT_0003c64c ((volatile int*)0x200024ecUL)
+#define DAT_0003c650 (0xaae20UL)
+#define DAT_0003c654 ((volatile int*)0x20009fd8UL)
+#define DAT_0003c658 ((volatile undefined4*)0xa8e98UL)
+#define DAT_0003c9a8 (0xaae20UL)
+#define DAT_0003c9ac (0x2001b818UL)
+#define DAT_0003c9b0 ((volatile int*)0x20009fd8UL)
+#define DAT_0003cb2c (0xf7b6fUL)
+#define DAT_0003cb30 ((volatile int*)0x20009fd8UL)
+#define DAT_0003cb34 ((volatile int*)0x20009fd4UL)
+#define DAT_0003cb38 (0x2001b818UL)
+#define DAT_0003cb3c ((volatile int*)0x2000230cUL)
+#define DAT_0003cb40 ((volatile int*)0x20007554UL)
+#define DAT_0003cb44 (0xa98ceUL)
+#define DAT_0003cb48 (0xa989fUL)
 
 
 undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
@@ -150,6 +124,7 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
   undefined4 uVar18;
   int iVar19;
   undefined4 uVar20;
+  unsigned long long uVar21_ret;
   int iVar21;
   int iVar22;
   undefined4 local_30;
@@ -186,10 +161,10 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
       FUN_00086c78(DAT_0003c2f0,0,400);
       if (0 < *piVar16) {
         if (*DAT_0003c2f4 == 0) {
-          DEBUG_PRINT(DAT_0003c2fc,DAT_0003c2f8);
+          FUN_0007dda4(DAT_0003c2fc,DAT_0003c2f8,-1,0);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_0003c2fc,DAT_0003c2f8,-1,1);
         }
       }
       if (pcVar3[1] != '\0') {
@@ -197,10 +172,10 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
       }
       if (0 < *piVar16) {
         if (*DAT_0003c2f4 == 0) {
-          DEBUG_PRINT(DAT_0003c300,DAT_0003c2f8);
+          FUN_0007dda4(DAT_0003c300,DAT_0003c2f8,-1,0);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_0003c300,DAT_0003c2f8,-1,1);
         }
       }
       FUN_0007d3dc();
@@ -308,18 +283,17 @@ LAB_0003c204:
     }
     if (2 < *DAT_0003c2ec) {
       if (*DAT_0003c2f4 == 0) {
-        DEBUG_PRINT(DAT_0003c314,DAT_0003c2f8);
+        FUN_0007dda4(DAT_0003c314,DAT_0003c2f8,-1,0);
       }
       else {
-        FUN_00019c70();
+        FUN_00019c70(DAT_0003c314,DAT_0003c2f8,-1,1);
       }
     }
     FUN_000431c0();
 LAB_0003c2be:
     FUN_0007d3dc();
     puVar4 = DAT_0003c308;
-    pcVar3[0] = '\0';
-    pcVar3[1] = '\0';
+    *(volatile uint16_t *)pcVar3 = 0;
     puVar4[2] = 0;
     puVar4[3] = 0;
     puVar4[5] = 0;
@@ -334,7 +308,7 @@ LAB_0003c2be:
   iVar14 = iVar5 + 0xef;
   if (param_3 != 1) {
     if (param_3 == 0) {
-      FUN_0003be18(iVar14);
+      FUN_0003be18(iVar14,1,-1,iVar14);
       return 0;
     }
     if (param_3 != 2) {
@@ -342,17 +316,17 @@ LAB_0003c2be:
     }
     if (2 < *DAT_0003cb3c) {
       if (*DAT_0003cb40 == 0) {
-        DEBUG_PRINT(DAT_0003cb48,DAT_0003cb44);
+        FUN_0007dda4(DAT_0003cb48,DAT_0003cb44,-1,0);
       }
       else {
-        FUN_00019c70();
+        FUN_00019c70(DAT_0003cb48,DAT_0003cb44,-1,1);
       }
     }
     FUN_0004382c();
     goto LAB_0003c2be;
   }
-  FUN_00086c78(DAT_0003c644,0,400);
-  FUN_000723b8(DAT_0003c648,extraout_r1,0xffffffff,0xffffffff);
+  uVar21_ret = FUN_00086c78(DAT_0003c644,0,400);
+  FUN_000723b8(DAT_0003c648,(undefined4)(uVar21_ret >> 32),0xffffffff,0xffffffff);
   cVar1 = *(char *)(iVar5 + 0xf0);
   uVar8 = FUN_00072558(DAT_0003c648);
   uVar7 = (uint)*(byte *)(iVar5 + 0xef);
@@ -639,5 +613,3 @@ LAB_0003c89e:
   *DAT_0003c9b0 = 1;
   return 0;
 }
-
-

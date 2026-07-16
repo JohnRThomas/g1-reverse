@@ -38,48 +38,27 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define FUN_000167a8(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define FUN_00019c70(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023ee0__impl(int, ...);
-#define FUN_00023ee0(...) FUN_00023ee0__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003b78c__impl(int, ...);
-#define FUN_0003b78c(...) FUN_0003b78c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003b800__impl(int, ...);
-#define FUN_0003b800(...) FUN_0003b800__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431b4__impl(int, ...);
-#define FUN_000431b4(...) FUN_000431b4__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431c0__impl(int, ...);
-#define FUN_000431c0(...) FUN_000431c0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432d0__impl(int, ...);
-#define FUN_000432d0(...) FUN_000432d0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432ec__impl(int, ...);
-#define FUN_000432ec(...) FUN_000432ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043308__impl(int, ...);
-#define FUN_00043308(...) FUN_00043308__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004334c__impl(int, ...);
-#define FUN_0004334c(...) FUN_0004334c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043484__impl(int, ...);
-#define FUN_00043484(...) FUN_00043484__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004382c__impl(int, ...);
-#define FUN_0004382c(...) FUN_0004382c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043e90__impl(int, ...);
-#define FUN_00043e90(...) FUN_00043e90__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047260__impl(int, ...);
-#define FUN_00047260(...) FUN_00047260__impl(0, ##__VA_ARGS__)
-extern long long FUN_00049040__impl(int, ...);
-#define FUN_00049040(...) FUN_00049040__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d3ee__impl(int, ...);
-#define FUN_0007d3ee(...) FUN_0007d3ee__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d446__impl(int, ...);
-#define FUN_0007d446(...) FUN_0007d446__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define FUN_00086c78(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long thunk_FUN_00074f68__impl(int, ...);
-#define thunk_FUN_00074f68(...) thunk_FUN_00074f68__impl(0, ##__VA_ARGS__)
+extern int DEBUG_PRINT(uint, uint, ...);
+extern int FUN_000167a8(void);
+extern int FUN_00019c70(uint, uint, ...);
+extern int FUN_00023ee0(void);
+extern int FUN_0003b78c(void);
+extern int FUN_0003b800(void);
+extern int FUN_000431b4(uint);
+extern int FUN_000431c0(void);
+extern int FUN_000432d0(void);
+extern int FUN_000432ec(void);
+extern int FUN_00043308(void);
+extern int FUN_0004334c(uint, uint, uint, uint, uint, uint, uint);
+extern int FUN_00043484(uint, uint, uint, uint, uint, uint);
+extern int FUN_0004382c(void);
+extern int FUN_00043e90(uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint, uint);
+extern int FUN_00047260(uint, uint, uint, uint, uint, uint);
+extern int FUN_00049040(void);
+extern int FUN_0007d3ee(void);
+extern int FUN_0007d446(void);
+extern int FUN_00086c78(uint, uint, uint);
+extern longlong thunk_FUN_00074f68(void);
 
 #define DAT_0003bb28 ((volatile char*)0x20004978UL)
 #define DAT_0003bb2c ((volatile int*)0x2000230cUL)
@@ -109,8 +88,8 @@ extern long long thunk_FUN_00074f68__impl(int, ...);
 #define DAT_0003be04 (0xa97e4UL)
 #define DAT_0003be08 (0xa980bUL)
 #define DAT_0003be0c (0xa981aUL)
-#define DAT_0003be10 (0x0UL) /* unknown lit */
-#define DAT_0003be14 (0x0UL) /* unknown lit */
+#define DAT_0003be10 (0xa97bbUL)
+#define DAT_0003be14 (0x20004978UL)
 
 
 undefined4 ui_QuickNote_task(int param_1,undefined4 param_2,int param_3)
@@ -160,7 +139,7 @@ undefined4 ui_QuickNote_task(int param_1,undefined4 param_2,int param_3)
           DEBUG_PRINT(DAT_0003bb38,DAT_0003bb34);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_0003bb38,DAT_0003bb34);
         }
       }
       FUN_00086c78(DAT_0003bb28,0,0x10);
@@ -184,7 +163,7 @@ undefined4 ui_QuickNote_task(int param_1,undefined4 param_2,int param_3)
             DEBUG_PRINT(DAT_0003bb40,DAT_0003bb34);
           }
           else {
-            FUN_00019c70();
+            FUN_00019c70(DAT_0003bb40,DAT_0003bb34);
           }
         }
         FUN_000431c0();
@@ -266,7 +245,7 @@ LAB_0003bac4:
           DEBUG_PRINT(uVar20,DAT_0003bb34);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(uVar20,DAT_0003bb34);
         }
       }
       goto LAB_0003bacc;
@@ -279,7 +258,7 @@ LAB_0003bac4:
         DEBUG_PRINT(DAT_0003bdf8,DAT_0003bde0);
       }
       else {
-        FUN_00019c70();
+        FUN_00019c70(DAT_0003bdf8,DAT_0003bde0);
       }
       if (param_3 != 2) {
 LAB_0003bd76:
@@ -299,7 +278,7 @@ LAB_0003bd76:
               DEBUG_PRINT(DAT_0003be10,DAT_0003bde0);
             }
             else {
-              FUN_00019c70();
+              FUN_00019c70(DAT_0003be10,DAT_0003bde0);
             }
           }
           FUN_0004382c();
@@ -323,7 +302,7 @@ LAB_0003bd76:
               DEBUG_PRINT(DAT_0003be04,DAT_0003bde0);
             }
             else {
-              FUN_00019c70();
+              FUN_00019c70(DAT_0003be04,DAT_0003bde0);
             }
           }
           FUN_000431c0();
@@ -364,7 +343,7 @@ LAB_0003bd76:
           DEBUG_PRINT(DAT_0003bdfc,DAT_0003bde0);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_0003bdfc,DAT_0003bde0);
         }
       }
     }
@@ -386,7 +365,7 @@ LAB_0003bd76:
       DEBUG_PRINT(DAT_0003bb5c,DAT_0003bb34);
     }
     else {
-      FUN_00019c70();
+      FUN_00019c70(DAT_0003bb5c,DAT_0003bb34);
     }
     if (param_3 != 2) {
       if (param_3 == 3) {
@@ -395,7 +374,7 @@ LAB_0003bd76:
             DEBUG_PRINT(DAT_0003bde4,DAT_0003bde0);
           }
           else {
-            FUN_00019c70();
+            FUN_00019c70(DAT_0003bde4,DAT_0003bde0);
           }
         }
 LAB_0003bb86:
@@ -417,7 +396,7 @@ LAB_0003bb86:
           return 0;
         }
         if (*DAT_0003bdec != 0) {
-          FUN_00019c70();
+          FUN_00019c70(DAT_0003bdf0,DAT_0003bde0);
           return 0;
         }
         DEBUG_PRINT(DAT_0003bdf0,DAT_0003bde0);
@@ -452,5 +431,3 @@ LAB_0003bade:
   FUN_00086c78(DAT_0003bb28,0,0x10);
   return 0;
 }
-
-

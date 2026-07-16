@@ -11,7 +11,7 @@ int FUN_00030224(void){
     if(v0 == 0x4414){
       *puVar1 = v1;
     } else {
-      FUN_00030178(v0 & 0xffff);
+      FUN_00030178(v0 & 0xffff, v1);
     }
     iVar3 += 2;
     puVar2 += 2;
@@ -24,4 +24,3 @@ int FUN_00030224(void){
   iVar3 = FUN_00030178(0x4414, (int)*puVar1);
   return (iVar3 != 0) ? -1 : 0;
 }
-

@@ -9,17 +9,81 @@ Reconstruction convention (makes parity exact):
   * Callees are opaque; the emulator models them as identical order/arg-keyed
     oracles for both original and candidate.
 """
-import os, subprocess, tempfile, sys
+import os, re, json, subprocess, tempfile, sys
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 from elftools.elf.elffile import ELFFile
 import extract
 from parity import emu
 
 GCC = "arm-none-eabi-gcc"
+LAST_DIRECT_TARGET_MAP = {}
+_SEMANTIC_NAME_MAPS = {}
+_BASE = "/Users/freedomcoder/Projects/G1disasm2"
+_SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
+        "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+
+def _semantic_name_map(core):
+    """Return unambiguous external symbol name -> original firmware VA.
+
+    Raw FUN names are sufficient for early reconstructions, but readable C
+    calls SDK/library and renamed application symbols.  Those identities are
+    equally semantic and must not collapse to call ordinal merely because the
+    generated oracle stubs move at link time.
+    """
+    if core in _SEMANTIC_NAME_MAPS:
+        return _SEMANTIC_NAME_MAPS[core]
+    candidates = {}
+    def add(name, va):
+        if not name:
+            return
+        candidates.setdefault(name, set()).add(int(va) & ~1)
+    catalog = os.path.join(_SCR, "net_funcs.json" if core == "net" else "app_funcs.json")
+    try:
+        obj = json.load(open(catalog))
+        funcs = obj.get("functions", obj) if isinstance(obj, dict) else obj
+        for f in funcs:
+            va = f.get("entry", f.get("address"))
+            if va is None:
+                continue
+            for key in ("name", "ida_name", "ghidra_name"):
+                add(f.get(key), va)
+            for name in (f.get("matched_lib") or ()):
+                add(name, va)
+    except (OSError, ValueError, TypeError):
+        pass
+    # Alias linker entries preserve the raw address on the left while naming
+    # the readable implementation on the right.
+    alias = os.path.join(_BASE, "recon/symbols/g1_%s_aliases.ld" % core)
+    try:
+        for line in open(alias):
+            m = re.search(r'PROVIDE\(FUN_([0-9a-fA-F]{8})[^=]*=\s*([A-Za-z_$][\w$]*)\s*\)', line)
+            if m:
+                add(m.group(2), int(m.group(1), 16))
+    except OSError:
+        pass
+    result = {name: next(iter(values)) for name, values in candidates.items()
+              if len(values) == 1}
+    _SEMANTIC_NAME_MAPS[core] = result
+    return result
 CFLAGS = ["-mcpu=cortex-m33", "-mthumb", "-Os", "-ffreestanding", "-nostdlib",
+          # Preserve the firmware-era C rule that an empty parameter list is
+          # unprototyped. Newer host GCC defaults to gnu23 where `f()` means
+          # `f(void)`, rejecting recovered callees whose exact arity varies.
+          "-std=gnu11",
           # match the nRF5340 app core: single-precision hardware FPU, hard-float
           # ABI, so float arithmetic compiles to inline VFP (not __aeabi_* calls)
           "-mfpu=fpv5-sp-d16", "-mfloat-abi=hard",
+          # The shipped image uses the hardware VSQRT instruction directly;
+          # errno-setting libm fallbacks are not part of this freestanding ABI.
+          "-fno-math-errno",
+          "-I/Users/freedomcoder/ncs251/modules/lib/liblc3/include",
+          "-I/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include",
+          # Reconstructed functions may be split into readable, always-inlined
+          # family includes.  The temporary parity TU keeps only the canonical
+          # .c text, so expose both reconstruction source roots explicitly.
+          "-I/Users/freedomcoder/Projects/G1disasm2/recon/app/src",
+          "-I/Users/freedomcoder/Projects/G1disasm2/recon/net/src",
+          "-isystem/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/include",
           "-fno-jump-tables", "-fomit-frame-pointer", "-c"]
 
 def _undef_syms(opath):
@@ -49,7 +113,7 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
     # folded by GCC/linker, which makes a logger followed by panic look like a
     # repeated call to the same target and breaks terminal-call recognition.
     stubs = "\n".join(
-        '__attribute__((noinline,used)) unsigned %s(void){return %du;}' % (s, i + 1)
+        '__attribute__((noinline,used,section(".oracle_stubs"))) unsigned %s(void){return %du;}' % (s, i + 1)
         for i, s in enumerate(undef))
     spath = os.path.join(d, "stubs.c"); sopath = os.path.join(d, "stubs.o")
     open(spath, "w").write(stubs + "\n")
@@ -57,7 +121,9 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
     # linker script: function first at link_va, stubs after
     lds = os.path.join(d, "link.ld")
     open(lds, "w").write(
-        "ENTRY(%s)\nSECTIONS{ . = 0x%x; .text : { *(.text .text.*) *(.rodata .rodata.*) } }\n"
+        "ENTRY(%s)\nSECTIONS{ . = 0x%x; .text : { *(.text .text.*) } "
+        ".rodata : { *(.rodata .rodata.*) } "
+        ".oracle_stubs : { *(.oracle_stubs) } }\n"
         % (func_name, link_va))
     epath = os.path.join(d, "f.elf")
     lr = subprocess.run([GCC, "-mcpu=cortex-m33", "-mthumb", "-nostdlib",
@@ -66,21 +132,51 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
                         capture_output=True, text=True, cwd=d)
     if lr.returncode != 0:
         return None, "ld: " + lr.stderr
+    global LAST_DIRECT_TARGET_MAP
+    LAST_DIRECT_TARGET_MAP = {}
     with open(epath, "rb") as f:
         elf = ELFFile(f)
         st = elf.get_section_by_name(".symtab")
+        semantic_names = _semantic_name_map("net" if link_va >= 0x01000000 else "app")
+        for name in undef:
+            mm = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", name)
+            semantic_va = (int(mm.group(1), 16) if mm else semantic_names.get(name))
+            if semantic_va is None:
+                continue
+            ss = next((s for s in st.iter_symbols() if s.name == name), None)
+            if ss:
+                LAST_DIRECT_TARGET_MAP[int(ss["st_value"]) & ~1] = semantic_va & ~1
         sym = next((s for s in st.iter_symbols()
                     if s.name == func_name and s["st_info"]["type"] == "STT_FUNC"), None)
         if not sym:
             return None, "symbol %s not found after link" % func_name
         va = sym["st_value"] & ~1
-        size = sym["st_size"]
-        # read bytes from the ELF .text at the function's VA
+        # The executable candidate boundary includes every local helper emitted
+        # from the reconstruction TU, not just the public symbol's STT_FUNC
+        # range.  Oracle stubs live in their own later section and therefore
+        # remain external boundaries.  This distinction is essential for
+        # compiler-outlined helpers in large functions.
         text = elf.get_section_by_name(".text")
-        base = text["sh_addr"]; data = text.data()
+        base = text["sh_addr"]; size = text["sh_size"]
+        end = max(s["sh_addr"] + s["sh_size"] for s in elf.iter_sections()
+                  if s["sh_type"] != "SHT_NOBITS" and s["sh_addr"] >= base)
+        data = bytearray(end - base)
+        for sec in elf.iter_sections():
+            if (sec["sh_type"] != "SHT_NOBITS" and sec["sh_size"] and
+                    base <= sec["sh_addr"] < end):
+                so = sec["sh_addr"] - base
+                data[so:so + sec["sh_size"]] = sec.data()
         off = va - base
         body = data[off:off + size]
-        tail = data[off + size: off + size + 64]
+        # Keep the complete linked tail, not merely the first literal-pool
+        # window.  Large reconstructed functions can own readable static const
+        # tables after their STT_FUNC extent; truncating those bytes makes
+        # otherwise-valid PC-relative loads read zero/unrelated flash and can
+        # even manufacture stack corruption in the differential run.  The
+        # executable boundary remains `size`: Runner still oracles control flow
+        # outside the function, while ordinary data reads can see every byte
+        # emitted by the candidate translation unit.
+        tail = data[off + size:]
         return (bytes(body), bytes(tail), size, va), None
 
 def prove(orig_va, orig_size, csrc, func_name, code_base=emu.CODE_BASE,

@@ -1,0 +1,19 @@
+{
+  "0x0006b3c8": {
+    "status": "genuine_function",
+    "name": "liblc3_fft",
+    "catalog_size": "0x5ea",
+    "evidence": "Payload-correct bytes begin with a full integer/VFP prologue. All late branches rejoin the body and return at 0x6b990 or 0x6b99a; the final pop/returns end at 0x6b996 and 0x6b9a2. The catalog boundary at 0x6b9b2 is valid (NOP/alignment and two literal halfwords follow).",
+    "owns": ["0x0006b3c8-0x0006b9b1"],
+    "does_not_own": ["0x0006b9b8"]
+  },
+  "0x0006b9b8": {
+    "status": "genuine_function",
+    "name": "lc3_mdct_forward",
+    "catalog_size": "0x3ae",
+    "evidence": "Payload bytes 2de9f04f14462ded028b decode as push.w {r4-r11,lr}; mov r4,r2; vpush {d8}, followed by a dynamic stack frame. A direct BL at 0x69318 targets this address. It calls the distinct FFT at 0x6bc84 and returns through its own matching epilogue at 0x6bd48-0x6bd50. No predecessor CFG edge from FUN_0006b3c8 reaches this prologue.",
+    "owns": ["0x0006b9b8-0x0006bd65"],
+    "data": ["0x0006bd68", "0x0006bd6c", "0x0006bd70"],
+    "must_not_be_excluded_as_interior_entry": true
+  }
+}

@@ -9,6 +9,6 @@ void FUN_00063898(int param_1, unsigned int param_2, unsigned int param_3, unsig
         FUN_0007e2fa(0x99cbdUL, 0xf66a6UL, 0xf6659UL, 0x257UL);
         FUN_0007e2ec(0xf6659UL, 0x257UL);
     }
-    *(volatile unsigned int*)0x2000b2d4UL |= 2;
+    (void)__atomic_fetch_or((unsigned int *)0x2000b2d4UL, 2,
+                            __ATOMIC_ACQ_REL);
 }
-

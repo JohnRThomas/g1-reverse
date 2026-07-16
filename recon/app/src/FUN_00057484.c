@@ -14,6 +14,6 @@ void FUN_00057484(int param_1){
         FUN_00081746(0x88160, 0x1080, &local_10);
         *(short*)(param_1 + 0x16) = *(short*)(param_1 + 0x18) - 2;
     }
-    *(volatile int*)(param_1 + 0x1c) = 1;
+    __atomic_exchange_n((unsigned int *)(param_1 + 0x1c), 1,
+                        __ATOMIC_ACQ_REL);
 }
-

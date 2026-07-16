@@ -8,6 +8,5 @@ void FUN_000811a4(unsigned int *param_1, unsigned int param_2, int param_3)
         FUN_00081180(param_1, ~uVar1);
         return;
     }
-    *param_1 = *param_1 | uVar1;
+    (void)__atomic_fetch_or(param_1, uVar1, __ATOMIC_SEQ_CST);
 }
-

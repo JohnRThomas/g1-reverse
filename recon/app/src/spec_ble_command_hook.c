@@ -198,7 +198,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
         DEBUG_PRINT(PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4,DAT_0000f1f0);
       }
       else {
-        FUN_00019c70(0);
+        FUN_00019c70(PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4,DAT_0000f1f0);
       }
     }
     uVar12 = 1;

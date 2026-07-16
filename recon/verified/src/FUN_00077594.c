@@ -13,19 +13,19 @@ u32 FUN_00077594(u32 param_1, u32 *param_2, u32 param_3, u32 param_4, int *param
     bVar13 = (byte)param_2[6];
     puVar6 = (byte*)((char*)param_2 + 0x43);
     local_24 = param_4;
-    if (0x78 < bVar13) { *(byte*)((char*)param_2 + 0x42) = bVar13; return TAIL(); }
+    if (0x78 < bVar13) { *(byte*)((char*)param_2 + 0x42) = bVar13; puVar11=(byte*)param_2+0x42; uVar8=1; goto L77798; }
     puVar11 = puVar6;
     if (bVar13 < 99) {
         if (bVar13 == 0) { param_2[4] = 0; goto AA; }
         iVar2 = 0xf8b88;
-        if (bVar13 != 0x58) { *(byte*)((char*)param_2 + 0x42) = bVar13; return TAIL(); }
+        if (bVar13 != 0x58) { *(byte*)((char*)param_2 + 0x42) = bVar13; puVar11=(byte*)param_2+0x42; uVar8=1; goto L77798; }
     } else {
         switch (bVar13) {
         case 99:
             uVar7 = *(u32*)(uintptr_t)*param_5;
             *param_5 = (int)(uintptr_t)((u32*)(uintptr_t)*param_5 + 1);
             *(char*)((char*)param_2 + 0x42) = (char)uVar7;
-            return TAIL();
+            puVar11=(byte*)param_2+0x42; uVar8=1; goto L77798;
         case 100:
         case 0x69:
             uVar9 = *param_2;
@@ -40,7 +40,7 @@ u32 FUN_00077594(u32 param_1, u32 *param_2, u32 param_3, u32 param_4, int *param
             uVar8 = -uVar8; uVar9 = 10; iVar2 = 0xf8b88;
             goto L77674;
         default:
-            *(byte*)((char*)param_2 + 0x42) = bVar13; return TAIL();
+            *(byte*)((char*)param_2 + 0x42) = bVar13; puVar11=(byte*)param_2+0x42; uVar8=1; goto L77798;
         case 0x6e:
             puVar10 = (u32*)(uintptr_t)*param_5;
             uVar9 = *param_2; uVar8 = param_2[5];
@@ -69,7 +69,9 @@ u32 FUN_00077594(u32 param_1, u32 *param_2, u32 param_3, u32 param_4, int *param
             *param_5 = (int)(uintptr_t)(puVar10 + 1);
             puVar6 = (byte*)(uintptr_t)*puVar10;
             iVar2 = FUN_00086bc8((u32)(uintptr_t)puVar6,0,param_2[1],(u32)(uintptr_t)puVar10,param_1,(u32)(uintptr_t)param_2,param_3);
-            for(;;){ volatile int z=0; (void)z; }
+            if (iVar2 != 0) param_2[1] = (u32)iVar2 - (u32)(uintptr_t)puVar6;
+            uVar8 = param_2[1];
+            goto L77798;
         }
     }
     /* shared X block (bVar13 == 0x58 / 0x78 / 0x70) */
@@ -105,6 +107,23 @@ L77674:
 AA:
     iVar2 = FUN_00086e1c(param_1,param_2,&local_24,param_3,param_4);
     if (iVar2 == -1) return 0xffffffffUL;
-    for(;;){ volatile int z=0; (void)z; }
-}
+    iVar2 = ((int (*)(u32,u32,const void*,u32))(uintptr_t)param_4)
+        (param_1,param_3,puVar6,param_2[4]);
+    if (iVar2 == -1) return 0xffffffffUL;
+    if ((int)(*param_2 << 0x1e) < 0) {
+        int pad = 0;
+        while (pad < (int)(param_2[3] - local_24)) {
+            iVar2 = ((int (*)(u32,u32,const void*,u32))(uintptr_t)param_4)
+                (param_1,param_3,(byte*)param_2+0x19,1);
+            if (iVar2 == -1) return 0xffffffffUL;
+            ++pad;
+        }
+    }
+    return param_2[3] < local_24 ? local_24 : param_2[3];
 
+L77798:
+    param_2[4] = uVar8;
+    *((byte*)param_2 + 0x43) = 0;
+    puVar6 = puVar11;
+    goto AA;
+}

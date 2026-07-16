@@ -7,9 +7,11 @@ extern int FUN_00080872(int,void*,int,void*);
 extern void FUN_00080a42(void);
 extern void FUN_00080a44(void);
 int FUN_00051e9c(int param_1){
+    uint8_t request[0x28];
+    uint32_t result = 0;
     int iVar7=*(volatile int*)(param_1+8);
     int r4=*(volatile int*)(param_1+4);
-    int iVar1=FUN_00080872(r4+4,(void*)0,2,(void*)0);
+    int iVar1=FUN_00080872(r4+4,request,2,&result);
     if(iVar1!=0) return 3;
     FUN_00080a42();
     iVar1=FUN_0005160c(iVar7+4,1,0x18);
@@ -17,4 +19,3 @@ int FUN_00051e9c(int param_1){
     if(iVar1!=0) return 0;
     return 7;
 }
-

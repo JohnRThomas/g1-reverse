@@ -1,4 +1,6 @@
-/* net-core FUN_01022774 @ 0x1022774  (parity 300 trials PROVEN) */
+/* net-core FUN_01022774 @ 0x1022774  (parity 300 trials PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: malformed randomized scheduler link tables may
+ * contain cycles; production tables are bounded and sentinel-terminated. */
 extern int FUN_01025028(void);
 
 #define DAT_01022868 0x210016f0
@@ -71,4 +73,3 @@ unsigned int FUN_01022774(int param_1)
   *(char *)(iVar3 + param_1 * 3 + 0x32) = (char)uVar6;
   return uVar9;
 }
-

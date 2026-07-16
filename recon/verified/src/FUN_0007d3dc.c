@@ -1,8 +1,8 @@
-/* Reconstructed FUN_0007d3dc @ 0x7d3dc  (parity: 300/300 trials, PROVEN) */
+/* Full reconstruction FUN_0007d3dc @ 0x7d3dc (exact extent 18 bytes). */
 
-extern unsigned int FUN_0007d3dc_tail(unsigned int a, unsigned int b, unsigned int c);
+extern unsigned int FUN_0004372c(unsigned int mode);
+
 unsigned int FUN_0007d3dc(void)
 {
-  return FUN_0007d3dc_tail(8, 0, 0);
+    return FUN_0004372c(8);
 }
-

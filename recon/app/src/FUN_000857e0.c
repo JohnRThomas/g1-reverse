@@ -1,5 +1,6 @@
 /* Reconstructed FUN_000857e0 @ 0x857e0  (parity: 300/300 trials, PROVEN) */
 
+#include <stdint.h>
 typedef void (*fn_t)(int *);
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 

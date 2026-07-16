@@ -9,10 +9,9 @@ extern int FUN_00086c1e(void*,void*,uint32_t,int);
 
 int FUN_0004ed8c(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4){
     int iVar3;
-    volatile uint32_t *g = (volatile uint32_t*)0x2000a28cUL;
+    uint32_t *g = (uint32_t*)0x2000a28cUL;
     if ( (param_2==0 || (( *(uint8_t*)param_2 & 0xfd)==0)) && (param_3!=0) ) {
-        uint32_t uVar4 = *g;
-        *g = uVar4 | 1;
+        uint32_t uVar4 = __atomic_fetch_or(g, 1u, __ATOMIC_SEQ_CST);
         if ((uVar4 & 1) == 0) {
             uint32_t one = uVar4 & 1;
             *(volatile uint32_t*)0x2000a154UL = param_1;
@@ -43,4 +42,3 @@ int FUN_0004ed8c(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t
     } else { iVar3 = -0x16; }
     return iVar3;
 }
-

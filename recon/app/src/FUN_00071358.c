@@ -39,9 +39,12 @@ int FUN_00071358(int param_1,int param_2,int param_3,int *param_4,int param_5,in
         if (param_6 == (int*)0) return (int)0xfffff82d;
         uVar1 = param_6[1];
         uVar3 = param_6[2];
-        *(int*)(param_1 + 0x94) = *param_6;
-        *(int*)(param_1 + 0x98) = uVar1;
-        *(int*)(param_1 + 0x9c) = uVar3;
+        /* The firmware copies this descriptor in ascending word order with
+         * one LDM/STM pair.  Keep that observable order even on a later
+         * faulting path; ordinary stores may be freely reordered by C. */
+        *(volatile int*)(param_1 + 0x94) = *param_6;
+        *(volatile int*)(param_1 + 0x98) = uVar1;
+        *(volatile int*)(param_1 + 0x9c) = uVar3;
     }
     {
         fn1_t fp = *(fn1_t*)((*(int*)(iVar6 + 0x20)) + 0x10);
@@ -102,4 +105,3 @@ LAB_00071498:
     }
     return 0;
 }
-

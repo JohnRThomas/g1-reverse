@@ -1,8 +1,14 @@
-/* Reconstructed FUN_00085f9c @ 0x85f9c  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00085f9c @ 0x85f9c (exact 6-byte tail wrapper). */
+#include <stdint.h>
 
-extern void FUN_00085ebc(int*,int,unsigned int,unsigned int,unsigned int);
-void FUN_00085f9c(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
+/* Catalogless internal entry at 0x85ef0; the verifier maps the encoded name
+ * directly to that reviewed firmware address. */
+extern void FUN_00085ef0(void *object, void *item, uint32_t mode,
+                         uint32_t inherited_r3);
+
+void FUN_00085f9c(void *object, void *item, uint32_t ignored,
+                  uint32_t inherited_r3)
 {
-  FUN_00085ebc(param_1, param_2, 3, param_4, param_4);
+    (void)ignored;
+    FUN_00085ef0(object, item, 3, inherited_r3);
 }
-

@@ -1,14 +1,14 @@
 /* Reconstructed FUN_00059730 @ 0x59730  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int FUN_00059708(void);
-extern int FUN_00073518(int,...);
+extern int FUN_00059708(void *);
+extern int FUN_00073518(void *, unsigned, unsigned, unsigned);
 extern int FUN_00081ddc(int,...);
 extern int FUN_000820ae(int,...);
 typedef void (*codep)(unsigned,...);
 unsigned FUN_00059730(unsigned *param_1, unsigned param_2, unsigned param_3, unsigned param_4){
   volatile unsigned local[2];
-  FUN_00073518((int)(param_1+0x58));
+  FUN_00073518(param_1+0x58, param_2, param_3, param_4);
   int iVar1 = (int)param_1[0x49];
   if(iVar1==0){
     local[1]=0xf4680;
@@ -19,7 +19,7 @@ unsigned FUN_00059730(unsigned *param_1, unsigned param_2, unsigned param_3, uns
       codep pcVar2 = *(codep*)(iVar1+4);
       *(volatile unsigned*)(iVar1+4)=0;
       unsigned uVar3 = *(volatile unsigned*)((int)param_1[0x49]+0x18);
-      FUN_00059708();
+      FUN_00059708((void *)param_1[0x49]);
       param_1[0x49]=0;
       FUN_000820ae((int)param_1[0]);
       if(pcVar2==0) return 0;
@@ -31,4 +31,3 @@ unsigned FUN_00059730(unsigned *param_1, unsigned param_2, unsigned param_3, uns
   FUN_000820ae((int)param_1[0]);
   return 0;
 }
-

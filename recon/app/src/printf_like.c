@@ -10,7 +10,7 @@
 typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
 typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
 typedef uint32_t undefined4; typedef uint32_t uint;
-typedef long long code(int,...);
+typedef int code(int,uint32_t);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 static inline int CARRY4(uint a, uint b){return (a+b)<a;}
@@ -38,24 +38,15 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long FUN_0000ef12__impl(int, ...);
-#define FUN_0000ef12(...) FUN_0000ef12__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb64__impl(int, ...);
-#define FUN_0004bb64(...) FUN_0004bb64__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb90__impl(int, ...);
-#define FUN_0004bb90(...) FUN_0004bb90__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e260__impl(int, ...);
-#define FUN_0007e260(...) FUN_0007e260__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e290__impl(int, ...);
-#define FUN_0007e290(...) FUN_0007e290__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e2be__impl(int, ...);
-#define FUN_0007e2be(...) FUN_0007e2be__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define FUN_00086c78(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long FUN_000870a6__impl(int, ...);
-#define FUN_000870a6(...) FUN_000870a6__impl(0, ##__VA_ARGS__)
-extern long long SCARRY4__impl(int, ...);
-#define SCARRY4(...) SCARRY4__impl(0, ##__VA_ARGS__)
+extern long long FUN_0000ef12(int, ...);
+extern long long FUN_0004bb64(int, ...);
+extern long long FUN_0004bb90(int, ...);
+extern long long FUN_0007e260(int, ...);
+extern long long FUN_0007e290(int, ...);
+extern long long FUN_0007e2be(int, ...);
+extern long long FUN_00086c78(int, ...);
+extern long long FUN_000870a6(int, ...);
+static inline int SCARRY4(int a, int b) { int r = (int)((uint)a + (uint)b); return ((a ^ r) & (b ^ r)) < 0; }
 
 #define DAT_00011dd0 (0x0UL)
 #define DAT_00011dd8 (0xf8a6aUL)
@@ -131,6 +122,12 @@ LAB_000113cc:
       goto switchD_0001194e_caseD_59;
     }
     FUN_00086c78(&local_60,0,0x18);
+    local_60 = (byte *)0;
+    local_5c = 0;
+    local_58 = 0;
+    local_56 = 0;
+    local_54 = (byte *)0;
+    local_50 = (byte *)0;
     if (param_3[1] == 0x25) {
       local_88 = param_3 + 2;
       local_56 = CONCAT11(0x25,(byte)local_56);
@@ -1053,7 +1050,7 @@ LAB_000119fa:
             pbVar28 = (byte *)(*param_1)(0x2e,param_2);
             while( true ) {
               if ((int)pbVar28 < 0) {
-                return pbVar28;
+      return pbVar28;
               }
               pbVar21 = pbVar21 + 1;
               if ((int)pbVar15 < 1) break;
@@ -1099,5 +1096,3 @@ switchD_0001194e_caseD_59:
     param_3 = local_88;
   } while( true );
 }
-
-

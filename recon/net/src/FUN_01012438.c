@@ -23,34 +23,8 @@ extern u32 FUN_010280d8(u32);
 #define DAT_0101263c 0x0103c1bcu
 #define DAT_01012640 0xd1b71759ull
 
-/* FUN_010129a4/b4/b8 are external (oracled): the harness never actually
-   executes their real bytes, so the &local_68 scratch buffer they're
-   "supposed" to fill is never really written on either side - it just
-   retains whatever the per-trial PRNG seeded into that fixed stack
-   location. Model that directly: read from the exact absolute address the
-   original's compiled frame uses (STACK_TOP=0x2007f000, minus the 9-reg
-   push, minus its 0x5c-byte frame, plus the +0x18 local_68 offset) instead
-   of relying on our own (differently laid out) compiler stack frame. */
-#define LOCAL68_ADDR (0x2007f000u - 0x24u - 0x5cu + 0x18u)
-
 static inline u32 read_u24(volatile u8 *p) {
   return (u32)p[0] | ((u32)p[1] << 8) | ((u32)p[2] << 16);
-}
-
-/* These panic branches are reached by a plain conditional branch (no call),
-   at a point where LR still holds the return address of the earlier
-   FUN_010129a4 call. The recon harness treats any PC outside the function's
-   declared byte range as an external call and resumes execution at LR - so
-   in the real binary this doesn't cleanly "return": it bounces forever
-   between the boundary and the instruction right after that earlier call
-   (which re-checks the same never-changing inputs and branches right back
-   out), until the harness's own iteration cap kicks in. Replicate that
-   bounce as a real infinite external-call loop so both sides hit the same
-   iteration cap and land on the same final oracle value. */
-static inline void panic_bounce(void) {
-  for (;;) {
-    FUN_01008d00(6, 0x2a6);
-  }
 }
 
 u32 FUN_01012438(u32 *param_1, u8 *param_2)
@@ -64,6 +38,7 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
   i32 iVar7;
   u32 uVar14;
   u32 uVar8;
+  u8 local_68[6];
 
   cVar12 = (i8)pb1[5];
   cVar9 = (i8)pb1[0xe];
@@ -79,7 +54,7 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
   uStack_2c = param_1[9];
   (void)local_48;
 
-  FUN_010129a4((void *)0);
+  FUN_010129a4(local_68);
 
   uVar1 = param_2[0];
   bVar2 = param_2[1];
@@ -92,7 +67,8 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
     if ((int)((u32)bVar2 << 0x1b) >= 0) {
       uVar10 = (u32)((u8)(param_2[0x16] - 1));
       if (uVar10 > 2) {
-        panic_bounce();
+        FUN_01008d00(6, 0x2a6);
+        __builtin_unreachable();
       }
       cVar12 = (i8)tbl[uVar10];
     }
@@ -100,17 +76,17 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
       if (cVar13 == 8) cVar13 = 4;
       if (cVar12 == 8) cVar12 = 4;
     }
-    FUN_010129b4((void *)0, param_2[9]);
+    FUN_010129b4(local_68, param_2[9]);
     if (param_2[0x14] == 2) {
       cVar9 = (i8)(param_2[0x15] + 1);
     } else {
       cVar9 = 1;
     }
-    FUN_010129b8((void *)0, cVar9, (u8)(param_2[0x1a] + 1));
+    FUN_010129b8(local_68, cVar9, (u8)(param_2[0x1a] + 1));
     if ((int)(uVar11 << 0x1c) < 0) {
       uVar10 = 0;
     } else {
-      uVar14 = FUN_01012b24((void *)0);
+      uVar14 = FUN_01012b24(local_68);
       if ((int)((u32)bVar2 << 0x1b) < 0) {
         iVar7 = FUN_01012b50(uVar14, uVar11, 0x28);
       } else {
@@ -139,13 +115,13 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
       if (((uVar6 & 0xffff) == 0) || ((bVar2 & 0x18) != 0)) {
         take_slow = 1;
       } else {
-        iVar7 = FUN_01011d14(uVar6 & 0xffff, (void *)0);
+        iVar7 = FUN_01011d14(uVar6 & 0xffff, local_68);
         if (iVar7 != 0) take_slow = 1;
       }
       if (take_slow) {
         u32 new_local_50, new_local_4c, new_local_44, new_local_40;
-        u32 local68 = *(volatile u32 *)(LOCAL68_ADDR);
-        u16 uStack_64 = *(volatile u16 *)(LOCAL68_ADDR + 4);
+        u32 local68 = *(u32 *)local_68;
+        u16 uStack_64 = *(u16 *)(local_68 + 4);
 
         new_local_50 = (local_50 & 0xff00u) | (u32)uVar1 | ((u32)(u16)uVar11 << 16);
         new_local_4c = (local_4c & 0xffff0000u) | (u32)(u8)cVar13 | ((u32)(u8)cVar12 << 8);
@@ -153,17 +129,17 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
         new_local_40 = (local_40 & 0xff0000ffu) | ((u32)uVar3 << 8) | ((u32)uVar4 << 16);
 
         uVar14 = 0;
-        *param_1 = new_local_50;
-        param_1[1] = new_local_4c;
-        param_1[2] = uVar10;
-        param_1[3] = new_local_44;
-        param_1[4] = new_local_40;
-        param_1[5] = uStack_3c;
-        param_1[6] = uStack_38;
-        param_1[7] = uStack_34;
-        param_1[8] = local_30;
-        param_1[9] = uStack_2c;
-        param_1[10] = local68;
+        *(volatile u32 *)(pb1 + 0) = new_local_50;
+        *(volatile u32 *)(pb1 + 4) = new_local_4c;
+        *(volatile u32 *)(pb1 + 8) = uVar10;
+        *(volatile u32 *)(pb1 + 12) = new_local_44;
+        *(volatile u32 *)(pb1 + 16) = new_local_40;
+        *(volatile u32 *)(pb1 + 20) = uStack_3c;
+        *(volatile u32 *)(pb1 + 24) = uStack_38;
+        *(volatile u32 *)(pb1 + 28) = uStack_34;
+        *(volatile u32 *)(pb1 + 32) = local_30;
+        *(volatile u32 *)(pb1 + 36) = uStack_2c;
+        *(volatile u32 *)(pb1 + 40) = local68;
         *(volatile u16 *)(param_1 + 0xb) = uStack_64;
         *(volatile u8 *)((u8 *)param_1 + 0x67) = (u8)((param_2[0xb] & 0xfd) != 0);
         param_1[0x1a] = *(volatile u32 *)(param_2 + 0xc);
@@ -176,7 +152,6 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
     }
     return uVar14;
   }
-  panic_bounce();
+  FUN_01008d00(6, 0x2a6);
+  __builtin_unreachable();
 }
-
-

@@ -1,4 +1,6 @@
-/* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN) */
+/* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
+ * asynchronous completion flag written by hardware/ISR code. */
 #define P_0102b640 0x21004628
 #define C_0102b644 0xf0000010
 #define P_0102b648 0x21004fa2
@@ -66,4 +68,3 @@ int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_
   }
   return iVar3;
 }
-

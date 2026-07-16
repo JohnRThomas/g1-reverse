@@ -15,9 +15,7 @@ extern void FUN_01024440(unsigned int);
 extern void FUN_010244cc(short, void *, void *);
 extern void FUN_0102460c(void);
 extern unsigned char FUN_01024644(void);
-extern void FUN_01024650_dummy(void); /* placeholder unused */
 extern undefined1 FUN_01024650(void);
-extern void FUN_01024678_dummy(void);
 extern unsigned int FUN_01024678(unsigned int, unsigned int);
 extern int FUN_010245d8(void);
 extern int FUN_010246d8(void);
@@ -28,7 +26,7 @@ extern void FUN_01024ef0(void);
 extern unsigned long long FUN_01025084(void);
 extern void FUN_0102524c(int);
 extern void FUN_01025344(void);
-extern void FUN_010256dc(unsigned int, unsigned int);
+extern __attribute__((noreturn)) void FUN_010256dc(unsigned int, unsigned int);
 extern void FUN_0102583c(unsigned char);
 
 #define DAT_01022dbc ((volatile undefined4 *)0x210016f0)
@@ -75,10 +73,9 @@ void FUN_01022a84(void)
        uVar18 = puVar8[5] + (uint)CARRY4(puVar8[6], puVar8[4]) + (uint)CARRY4(uVar10, uVar17),
        uVar18 < uVar13 || uVar13 - uVar18 < (uint)(uVar10 + uVar17 <= (uint)lVar19))) {
     uint cbidx = (uint)*(volatile byte *)((int)puVar8 + 0x4a);
-    fnptr_t f = (fnptr_t)puVar8[cbidx * 8 + 0x34];
-    /* args don't affect proof: indirect callback call, real target is a
-       runtime-random pointer so this is always oracled by the harness */
-    f();
+    void (*f)(unsigned int, unsigned int) =
+        (void (*)(unsigned int, unsigned int))puVar8[cbidx * 8 + 0x34];
+    f(puVar8[cbidx * 8 + 0x35], 8);
     FUN_010256dc(0x70, 0x3cb);
     return;
   }
@@ -240,4 +237,3 @@ LAB_01022b66:
     }
   } while (1);
 }
-

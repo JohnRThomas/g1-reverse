@@ -8,10 +8,9 @@ unsigned int FUN_0006385c(void)
     val = *addr;
     if (val == 0) return 0xfffffff4;
     idx = 31 - __builtin_clz(val);
-    old = *addr;
-    *addr = old & ~(1u << (idx & 0xff));
+    old = __atomic_fetch_and(addr, ~(1u << (idx & 0xff)),
+                             __ATOMIC_ACQ_REL);
     if ((int)((old >> (idx & 0xff)) << 0x1f) < 0) break;
   }
   return idx;
 }
-

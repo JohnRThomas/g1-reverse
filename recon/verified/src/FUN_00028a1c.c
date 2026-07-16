@@ -11,9 +11,9 @@ extern int64_t FUN_00032fdc(void);
 extern void FUN_0007cb8e(int32_t);
 extern void FUN_0007d0aa(void *a);
 extern int32_t FUN_00086690(void);
-extern void thunk_FUN_00072908(void *a, int32_t b, int32_t c, int32_t d, int32_t e, int32_t f, uint32_t g);
+extern void FUN_0007cb48(void *queue, int32_t oracle_r1, int32_t timeout, int32_t oracle_r3);
 extern void FUN_0002893c(void);
-extern void on_triple_click(void);
+extern void FUN_000289e4(void);
 extern void FUN_00028964(void);
 extern uint32_t FUN_0004c0a8(int32_t a);
 extern void FUN_00019c70(uint32_t a, uint32_t b, uint32_t c, ...);
@@ -30,7 +30,6 @@ void FUN_00028a1c(char *param_1, int32_t param_2, uint32_t param_3)
   int32_t iVar8;
   int32_t iVar9;
   int64_t uVar10;
-  int32_t iVar11;
 
   pcVar2 = (volatile uint8_t *)0x20019dacUL;
   piVar1 = (volatile int32_t *)0x20006a00UL;
@@ -38,7 +37,6 @@ void FUN_00028a1c(char *param_1, int32_t param_2, uint32_t param_3)
   iVar8 = 0;
   iVar7 = 0;
   iVar9 = 0;
-  iVar11 = (int32_t)(intptr_t)param_1;
 LAB_00028a32:
   do {
     while (1) {
@@ -46,8 +44,7 @@ LAB_00028a32:
       if ((int32_t)uVar10 == 1) {
         return;
       }
-      thunk_FUN_00072908(param_1 + 0xb0, (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0, iVar11, param_2,
-                          param_3);
+      FUN_0007cb48(param_1 + 0xb0, (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0);
       if ((*(char *)(param_1 + 1) != '\x01') &&
           (iVar3 = (int32_t)FUN_000167a8(), *(char *)(iVar3 + 1) != '\b')) break;
       FUN_0007cb8e(5000);
@@ -121,7 +118,7 @@ code_r0x00028b4a:
       FUN_0002893c();
       break;
     case 3:
-      on_triple_click();
+      FUN_000289e4();
       break;
     case 4:
       if (0 < *(volatile int32_t *)0x2000230cUL) {
@@ -145,4 +142,3 @@ LAB_00028b4e:
   iVar7 = iVar6;
   goto LAB_00028a32;
 }
-
