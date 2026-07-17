@@ -1,33 +1,31 @@
-/* Reconstructed panel_off @ 0x46d2c  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed panel_off @ 0x46d2c. */
+#include <stdint.h>
 
-typedef void (*fn_t)(int);
-extern void DEBUG_PRINT(int a, int b);
-extern int FUN_00019c70(void);
+typedef void (*panel_callback_t)(void *panel);
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void FUN_00019c70(uint32_t format, ...);
 extern int FUN_0001655c(void);
-extern int FUN_0002e8b4(void);
-extern int FUN_00015fdc(void);
+extern void FUN_0002e8b4(void);
+extern void FUN_00015fdc(void);
 
-unsigned int panel_off(int param_1)
+uint32_t panel_off(uint8_t *context)
 {
-    int iVar1;
+    void *panel = context - 0x5c;
 
-    *(int *)(param_1 + 0x374) = param_1 + -0x5c;
-    if (*(int *)(param_1 + -0x48) != 0) {
-        *(int *)(param_1 + 0x35c) = 0;
+    *(void **)(context + 0x374) = panel;
+    if (*(uint32_t *)(context - 0x48) != 0) {
+        *(uint32_t *)(context + 0x35c) = 0;
         if (*(volatile int *)0x2000230cUL > 2) {
             if (*(volatile int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xd721e, 0xd72d1);
+                DEBUG_PRINT(0x000d721eu, 0x000d72d1u);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x000d721eu, 0x000d72d1u);
             }
         }
-        iVar1 = FUN_0001655c();
-        if (iVar1 == 0) {
+        if (FUN_0001655c() == 0)
             FUN_0002e8b4();
-        }
-        ((fn_t)(*(int *)(param_1 + -0x58)))(*(int *)(param_1 + 0x374));
+        ((panel_callback_t)*(uintptr_t *)(context - 0x58))(panel);
         FUN_00015fdc();
     }
     return 0;
 }
-

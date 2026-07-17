@@ -1,45 +1,64 @@
-/* Reconstructed sendAudioStram2Cache @ 0x2f6b0  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed sendAudioStram2Cache @ 0x2f6b0  (CFG-directed parity verified) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(void);
-extern int FUN_000720d0(int a, void *b, int c, int d);
-extern void FUN_00072880(void *a);
-extern void FUN_00086c04(void *dst, void *src, int n);
-extern void FUN_00086c78(void *dst, int val, int n);
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
 
-unsigned int sendAudioStram2Cache(void *param_1)
+struct audio_cache_record {
+    uint8_t type;
+    uint8_t reserved;
+    uint16_t payload_length;
+    uint8_t payload[200];
+};
+
+extern void DEBUG_PRINT(uint32_t format, uint32_t module);
+extern void FUN_00019c70(uint32_t format, uint32_t module);
+extern int FUN_000720d0(void *queue, const void *record, int timeout, int flags);
+extern void FUN_00072880(void *event);
+extern void FUN_00086c04(void *destination, const void *source, int length);
+extern void FUN_00086c78(void *destination, int value, int length);
+
+#define AUDIO_CACHE_QUEUE       ((void *)0x20003890u)
+#define AUDIO_CACHE_EVENT       ((void *)0x200079e4u)
+#define LOG_LEVEL               (*(volatile int *)0x2000230cu)
+#define DEFERRED_LOGGER_ENABLED (*(volatile int *)0x20007554u)
+
+#define LOG_MODULE_AUDIO_CACHE  0x000a4986u
+#define LOG_CACHE_FULL          0x000a42cfu
+#define LOG_CACHE_SEND_FAILED   0x000a3f45u
+
+uint32_t sendAudioStram2Cache(const void *audio_stream)
 {
-    unsigned char local_buf[204];
-    int iVar1;
+    struct audio_cache_record record;
 
-    FUN_00086c78(local_buf, 0, 0xcc);
-    iVar1 = 0x20003890;
-    if (*(int *)(0x20003890 + 0x24) == 0x12) {
-        if (0 < *(int *)0x2000230cUL) {
-            if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa42cfU, 0xa4986U);
+    FUN_00086c78(&record, 0, sizeof(record));
+
+    if (*(volatile int *)((uint8_t *)AUDIO_CACHE_QUEUE + 0x24) == 0x12) {
+        if (LOG_LEVEL > 0) {
+            if (DEFERRED_LOGGER_ENABLED == 0) {
+                DEBUG_PRINT(LOG_CACHE_FULL, LOG_MODULE_AUDIO_CACHE);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(LOG_CACHE_FULL, LOG_MODULE_AUDIO_CACHE);
             }
         }
-    } else {
-        unsigned char *hdr = local_buf + 4;
-        FUN_00086c04(hdr, param_1, 200);
-        *(unsigned short *)(local_buf + 2) = 200;
-        local_buf[0] = 2;
-        iVar1 = FUN_000720d0(iVar1, local_buf, 0, 0);
-        if (iVar1 == 0) {
-            FUN_00072880((void*)0x200079e4UL);
-            return 0;
-        }
-        if (0 < *(int *)0x2000230cUL) {
-            if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa3f45U, 0xa4986U);
-            } else {
-                FUN_00019c70();
-            }
+        return 0xffffffffu;
+    }
+
+    FUN_00086c04(record.payload, audio_stream, sizeof(record.payload));
+    record.payload_length = sizeof(record.payload);
+    record.type = 2;
+
+    if (FUN_000720d0(AUDIO_CACHE_QUEUE, &record, 0, 0) == 0) {
+        FUN_00072880(AUDIO_CACHE_EVENT);
+        return 0;
+    }
+
+    if (LOG_LEVEL > 0) {
+        if (DEFERRED_LOGGER_ENABLED == 0) {
+            DEBUG_PRINT(LOG_CACHE_SEND_FAILED, LOG_MODULE_AUDIO_CACHE);
+        } else {
+            FUN_00019c70(LOG_CACHE_SEND_FAILED, LOG_MODULE_AUDIO_CACHE);
         }
     }
-    return 0xffffffff;
+    return 0xffffffffu;
 }
-

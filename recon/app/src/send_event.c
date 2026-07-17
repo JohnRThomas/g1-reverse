@@ -1,40 +1,37 @@
-/* Reconstructed send_event @ 0x276ec  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed send_event @ 0x276ec. */
 
-extern int FUN_00017eec(void*, int);
-extern int FUN_000181fc(void);
-extern void FUN_0007cb8e(int);
-extern void thunk_FUN_00072880(int);
+#include <stdint.h>
 
-void send_event(int param_1, unsigned int param_2, unsigned int param_3)
+extern int FUN_00017eec(const void *event, unsigned int length);
+extern void *FUN_000181fc(void);
+extern void FUN_0007cb4c(void *work);
+extern void FUN_0007cb8e(int enabled);
+
+void send_event(int event_id, unsigned int unused_2, unsigned int unused_3)
 {
-  int iVar3;
-  unsigned char cVar1;
-  unsigned char *pcVar2 = (unsigned char*)0x2000302eUL;
-  unsigned char buf[8];
+    uint8_t *pending_event = (uint8_t *)0x2000302eUL;
+    uint8_t event[3];
+    uint8_t *state = FUN_000181fc();
 
-  iVar3 = FUN_000181fc();
-  if ((unsigned int)(param_1 - 0xf0) > 2 || *pcVar2 == 0xff) {
-    cVar1 = *(unsigned char*)(iVar3 + 0x248);
-    *pcVar2 = (unsigned char)param_1;
-    if (cVar1 != 0) {
-      goto build;
+    (void)unused_2;
+    (void)unused_3;
+
+    if ((unsigned int)(event_id - 0xf0) <= 2 && *pending_event != 0xff) {
+        return;
     }
-    if (*(int*)(iVar3 + 0x220) != 0) {
-      goto build;
+
+    *pending_event = (uint8_t)event_id;
+    if (state[0x248] != 0 || *(uint32_t *)(state + 0x220) != 0) {
+        event[0] = 0xf5;
+        event[1] = (uint8_t)event_id;
+        event[2] = 0xcb;
+        FUN_00017eec(event, sizeof(event));
+        *pending_event = 0xff;
+        return;
     }
-    if (*(unsigned char*)(iVar3 + 0x248) != 0) {
-      return;
+
+    if (state[0x248] == 0) {
+        FUN_0007cb4c(state + 0x218);
+        FUN_0007cb8e(1);
     }
-    thunk_FUN_00072880(iVar3 + 0x218);
-    FUN_0007cb8e(1);
-    return;
-  build:
-    buf[0] = 0xf5;
-    buf[1] = (unsigned char)param_1;
-    buf[2] = 0xcb;
-    FUN_00017eec(buf, 3);
-    *pcVar2 = 0xff;
-    return;
-  }
 }
-

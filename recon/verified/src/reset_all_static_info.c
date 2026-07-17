@@ -1,16 +1,17 @@
 /* Reconstructed reset_all_static_info @ 0x16738  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int a1, unsigned int a2, unsigned int a3);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void FUN_00086c78(void *dst, int val, unsigned int len);
 
 void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
     if (*(volatile int *)0x2000230cUL > 2) {
-        if (*(volatile int *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x99707U, 0x99bd8U, param_3, 0U);
+        unsigned int sink = *(volatile int *)0x20007554UL;
+        if (sink == 0) {
+            DEBUG_PRINT(0x99707U, 0x99bd8U, param_3, sink, param_4);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0x99707U, 0x99bd8U, param_3, sink, param_4);
         }
     }
     volatile unsigned char *base = (volatile unsigned char *)0x2007fc00UL;
@@ -26,4 +27,3 @@ void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned 
     FUN_00086c78((void *)(base + 0x35), 0, 0x25);
     *(volatile unsigned int *)(base + 0x64) = 0;
 }
-

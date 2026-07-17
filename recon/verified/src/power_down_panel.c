@@ -38,7 +38,7 @@ unsigned int power_down_panel(void)
             }
         }
         FUN_0007c038(5);
-        iVar2 = FUN_00083dc8(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087cf8UL + 4) + 0x1c), 8, 1);
+        iVar2 = FUN_00083dc8(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087cf8UL + 4) + 0x1c), 8, 1, 1);
         if (iVar2 < 0) {
             if (*piVar1 < 1) {
                 return 0;
@@ -60,4 +60,3 @@ unsigned int power_down_panel(void)
     }
     return 0;
 }
-
