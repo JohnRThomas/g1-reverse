@@ -41,6 +41,18 @@ Before every reproducible build, verify these revisions with `west manifest
 recorded in the catalogs; do not silently accept a different co-located tag or
 archive variant.
 
+Run the repository's read-only preflight before configuring either image:
+
+```text
+PYTHONSAFEPATH=1 .venv/bin/python tools/upstream_preflight.py
+```
+
+It checks the pinned manifests at their committed revisions, annotated-tag
+objects and peeled commits, checkout HEADs, catalog/archive path and SHA-256
+agreement, and ELF attributes for the app hard-float CC312 and net soft-float
+no-DSP multirole SDC variants. `--json` emits deterministic machine-readable
+output for build automation; any failed check produces a nonzero exit status.
+
 ## Minimal build shells
 
 Add separate, initially standalone image shells only after the generated
