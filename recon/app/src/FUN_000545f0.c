@@ -6,12 +6,14 @@ extern uint32_t FUN_000755f8(uintptr_t events, uint32_t count,
                             uint32_t timeout_lo, uint32_t timeout_hi);
 extern uint64_t FUN_0007e2fa(uintptr_t module, uintptr_t file,
                             uintptr_t condition, uint32_t line);
-extern void FUN_0007e2ec(uint32_t reason, uint32_t inherited,
-                         uintptr_t condition, uint32_t line) __attribute__((noreturn));
-extern uint64_t FUN_000836e8(uintptr_t queue, uint32_t inherited,
-                            uint32_t zero, uint32_t zero2);
-extern int FUN_00072908(uintptr_t event, uint32_t inherited,
-                       uint32_t timeout_lo, uint32_t timeout_hi);
+/* The image inlines the fatal SVC veneer here.  The semantic external boundary
+ * is therefore the SVC instruction at 0x5463e, not the separate 0x7e2ec
+ * wrapper used by ordinary callers. */
+extern void FUN_0005463e(uint32_t reason) __attribute__((noreturn));
+extern void FUN_00054688(uint32_t reason) __attribute__((noreturn));
+/* AAPCS aligns the 64-bit timeout in r2:r3, leaving r1 as unused padding. */
+extern uintptr_t FUN_000836e8(uintptr_t queue, uint64_t timeout);
+extern int FUN_00072908(uintptr_t event, uint64_t timeout);
 extern void FUN_00080ea2(uintptr_t source, uint32_t level, const void *record);
 extern void FUN_0005f24c(void *buffer);
 extern uintptr_t FUN_0005f2d4(void *buffer);
@@ -46,9 +48,9 @@ void FUN_000545f0(void)
         uint32_t wait_result = FUN_000755f8(0x20002944u, count,
                                            UINT32_MAX, UINT32_MAX);
         if (wait_result != 0) {
-            uint64_t fatal = FUN_0007e2fa(0x00099cbdu, 0x000a7a10u,
-                                          0x000f2e84u, 0xadeu);
-            FUN_0007e2ec(3, (uint32_t)(fatal >> 32), 0x000f2e84u, 0xadeu);
+            (void)FUN_0007e2fa(0x00099cbdu, 0x000a7a10u,
+                               0x000f2e84u, 0xadeu);
+            FUN_0005463e(3);
         }
 
         volatile uint8_t *event = event_table;
@@ -61,17 +63,15 @@ void FUN_000545f0(void)
             if (type == 4) {
                 uint8_t state = *(volatile uint8_t *)(event + 12);
                 if (state == 0) {
-                    uint64_t dequeued = FUN_000836e8(0x2000214cu, count, 0, 0);
-                    void *buffer = (void *)(uintptr_t)(uint32_t)dequeued;
+                    uintptr_t dequeued = FUN_000836e8(0x2000214cu, 0);
+                    void *buffer = (void *)dequeued;
                     if (buffer == 0) {
-                        uint64_t fatal = FUN_0007e2fa(0x00099cbdu, 0x000f45beu,
-                                                      0x000f2e84u, 0xa70u);
-                        FUN_0007e2ec(3, (uint32_t)(fatal >> 32),
-                                     0x000f2e84u, 0xa70u);
+                        (void)FUN_0007e2fa(0x00099cbdu, 0x000f45beu,
+                                          0x000f2e84u, 0xa70u);
+                        FUN_00054688(3);
                     }
 
-                    FUN_00072908(0x20002128u, (uint32_t)(dequeued >> 32),
-                                 UINT32_MAX, UINT32_MAX);
+                    FUN_00072908(0x20002128u, UINT64_MAX);
 
                     void **const pending = (void **)0x20002140u;
                     if (*pending != 0) {
