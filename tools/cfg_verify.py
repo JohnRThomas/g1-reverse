@@ -81,6 +81,10 @@ REVIEWED_PREFIX_PROOFS = {
     # callback and AIRCR reset request.  Two events cover callback+reset; the
     # null-callback case has the single reset event before the terminal loop.
     ("net", 0x01008d00): 2,
+    # CC3xx abort preserves AIRCR priority grouping, requests a system reset,
+    # then intentionally spins forever.  Its single ordered AIRCR write is
+    # the complete externally observable prefix before the terminal loop.
+    ("app", 0x00050af8): 1,
 }
 
 # Direct callees absent from, or ambiguous in, the decompiler catalog.  These
