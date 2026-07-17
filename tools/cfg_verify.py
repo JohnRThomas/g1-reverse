@@ -19906,7 +19906,8 @@ REVIEWED_NPTR_COUNTS[("net", 0x010333b4)] = 1
 _DISPLAY_DISPATCH_CONTEXT = emu.SCRATCH + 0xc000
 
 
-def _display_dispatch_case(mode, pending=0, mode16_tag=13):
+def _display_dispatch_case(mode, pending=0, mode16_tag=13,
+                           log_level=0, log_sink=0):
     """One production-shaped display-dispatch iteration for a mode byte."""
     context = bytearray(0x1800)
     context[0] = 1                  # primary display owner
@@ -19938,8 +19939,8 @@ def _display_dispatch_case(mode, pending=0, mode16_tag=13):
     # intentionally replace the preliminary image above.
     memory[0] = (_DISPLAY_DISPATCH_CONTEXT, bytes(context))
     memory.extend([
-        (0x2000230c, (0).to_bytes(4, "little", signed=True)),
-        (0x20007554, (0).to_bytes(4, "little", signed=True)),
+        (0x2000230c, int(log_level).to_bytes(4, "little", signed=True)),
+        (0x20007554, int(log_sink).to_bytes(4, "little", signed=True)),
         (0x20007af4, bytes(12)),
         (0x20007b3c, bytes(0x40)),
         (0x2000a098, int(mode).to_bytes(4, "little", signed=True)),
@@ -19952,30 +19953,31 @@ def _display_dispatch_case(mode, pending=0, mode16_tag=13):
     # Calls 0/1 initialize geometry, call 3 is the loop-head device lookup,
     # and calls 4/5 are the two panel-owner gates.  Remaining generic returns
     # keep subsequent prefix iterations mapped and deterministic.
+    prefix_logs = int(int(log_level) > 1) + int(int(log_level) > 0)
     oracles = {ordinal: {0: _DISPLAY_DISPATCH_CONTEXT, 1: 0}
                for ordinal in range(96)}
-    oracles[4] = {0: 1}
-    oracles[5] = {0: 1}
-    writes = {3: [(None, _DISPLAY_DISPATCH_CONTEXT + 0xd5,
+    oracles[prefix_logs + 4] = {0: 1}
+    oracles[prefix_logs + 5] = {0: 1}
+    writes = {prefix_logs + 3: [(None, _DISPLAY_DISPATCH_CONTEXT + 0xd5,
                    bytes((int(mode) & 0xff,)), 0x000167a8)]}
 
     # Force the first iteration's comparison to equality where that arm has
     # a buffer.  The selected call ordinal differs for the few setup-heavy
     # modes and is part of the reviewed call-order contract.
-    compare_ordinal = 7
+    compare_ordinal = prefix_logs + 7
     if mode == 2:
-        compare_ordinal = 8
+        compare_ordinal = prefix_logs + 8
     elif mode == 4:
         language = buffers + 0x7800
         memory.append((language, bytes(0x400)))
-        oracles[7] = {0: 0}
-        oracles[8] = {0: language}
-        oracles[9] = {0: 0}
-        oracles[10] = {0: _DISPLAY_DISPATCH_CONTEXT}
+        oracles[prefix_logs + 7] = {0: 0}
+        oracles[prefix_logs + 8] = {0: language}
+        oracles[prefix_logs + 9] = {0: 0}
+        oracles[prefix_logs + 10] = {0: _DISPLAY_DISPATCH_CONTEXT}
         compare_ordinal = None
     elif mode == 14:
-        oracles[7] = {0: _DISPLAY_DISPATCH_CONTEXT}
-        compare_ordinal = 8
+        oracles[prefix_logs + 7] = {0: _DISPLAY_DISPATCH_CONTEXT}
+        compare_ordinal = prefix_logs + 8
     elif mode == 16 and mode16_tag in (13, 15):
         compare_ordinal = None       # valid tag exits immediately after unlock
     elif mode in (0, 1, 3, 13):
@@ -19994,6 +19996,11 @@ REVIEWED_ORACLE_CASES[("app", 0x00028bec)] = [
     _display_dispatch_case(5, pending=0x0d),
     _display_dispatch_case(16, mode16_tag=7),
     _display_dispatch_case(0xff),
+    # The two entry diagnostics exercise both real sink selections and the
+    # raster payload ABI.  Mode 5 continues into the MAX_WAIT diagnostic;
+    # mode 6 also covers the dashboard-data diagnostic before that tail.
+    _display_dispatch_case(5, log_level=3, log_sink=0),
+    _display_dispatch_case(6, log_level=3, log_sink=1),
 ]
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x00028bec)] = {
     0x0000e244: 4,
@@ -20022,6 +20029,17 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00028bec)] = {
     0x00086be4: 3,
     0x00086c04: 3,
     0x00086c78: 3,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00028bec)] = {
+    **{(target, fmt): arity
+       for target in (0x00019c70, 0x0007dda4)
+       for fmt, arity in (
+           (0x00099969, 2), (0x000a0ca9, 4), (0x000a0cdf, 2),
+           (0x000a0d03, 2), (0x000a0d1d, 2), (0x000a0d34, 2),
+           (0x000a0d50, 2), (0x000a0d77, 2), (0x000a0d92, 3),
+           (0x000a0dcb, 3), (0x000a0e04, 3), (0x000a0e3d, 4),
+           (0x000a0e91, 2), (0x000a0eab, 2), (0x000a0ec3, 2),
+           (0x000a0ee6, 2), (0x000a0f08, 3))}
 }
 REVIEWED_NPTR_COUNTS[("app", 0x00028bec)] = 1
 
