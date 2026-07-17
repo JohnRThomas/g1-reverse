@@ -178,6 +178,20 @@ TRUE_SIZE_OVERRIDES = {
     0x010119ac: 0x1d8,
     # CFG-reviewed TBH handlers and fatal tails through 0x101d87c.
     0x0101d404: 0x478,
+    # Catalog-missing NCS/Zephyr entries.  Each bound ends at an ordinary
+    # return or tail branch and excludes the immediately following literals,
+    # alignment, or independent entry documented at the call site.
+    0x010317c0: 0x0e,  # sys_clock_elapsed: return 17cc; literal starts 17d0
+    0x010343e0: 0x20,  # endpoint enable: return 43fe; literals start 4400
+    0x01035e1c: 0x78,  # k_heap_free: return 5e92; literals start 5e94
+    0x010372b4: 0x94,  # k_sched_unlock: tail ends 7348; literals start there
+    0x01037438: 0x8a,  # reschedule body: return 74c2; alignment/literals follow
+    0x01037670: 0xe0,  # z_set_prio: return ends 7750; literals start there
+    0x01038958: 0x40,  # z_heap_aligned_alloc: return ends 8998; literals follow
+    0x010389a0: 0x3e,  # k_aligned_alloc: tail ends 89de; literals start 89e0
+    # Catalog-missing controller timestamp getter; the literal at 0x010202ec
+    # follows its BX LR and is not executable ownership.
+    0x010202e4: 0x06,
 }
 def _load():
     global _fw
