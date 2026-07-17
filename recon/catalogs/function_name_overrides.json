@@ -539,6 +539,14 @@
    "name": "sdc_llcp_get_active_link_index",
    "evidence": "The LLCP receive dispatcher stores this byte as the active controller link index before decoding each control PDU. Raw identity remains FUN_0100d760."
   },
+  "0x010270d2": {
+   "name": "sdc_buffer_payload_get",
+   "evidence": "Returns the byte payload immediately after a controller buffer's two-byte private header; all recovered callers pass the buffer pointer produced by sdc_buffer_descriptor_resolve. Raw identity remains FUN_010270d2."
+  },
+  "0x0102714a": {
+   "name": "sdc_buffer_descriptor_resolve",
+   "evidence": "Resolves a controller buffer descriptor into its payload pointer and clamped minimum length, returning descriptor word 6; recovered SDC callers immediately pass the emitted pointer to sdc_buffer_payload_get. Raw identity remains FUN_0102714a."
+  },
   "0x0101a070": {
    "name": "sdc_llcp_decode_control_pdu",
    "evidence": "All callers pass an on-air LL control PDU and a stack output record subsequently inspected by opcode/response fields. Raw identity remains FUN_0101a070."

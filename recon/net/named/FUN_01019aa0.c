@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
+ *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  * address symbols (name @ address):
  *   g_ll_conn_default_ctx                    @ 0x21001058
  */
@@ -19,8 +21,8 @@ typedef unsigned short ushort;
 #define DAT_01019eb0 0x01019a9d
 
 extern undefined4 FUN_0100a5a0(void);
-extern void FUN_0102714a(undefined4, undefined4 *, undefined1 *);
-extern int FUN_010270d2(undefined4);
+extern void sdc_buffer_descriptor_resolve(undefined4, undefined4 *, undefined1 *);
+extern int sdc_buffer_payload_get(undefined4);
 extern void sdc_assertion_fail(int, int);
 extern int FUN_010199f4(int, ushort *, char, int, uint, char);
 extern int FUN_0100ca98(char, int);
@@ -56,8 +58,8 @@ int FUN_01019aa0(ushort *param_1,int param_2,undefined4 *param_3,uint param_4,un
   uVar3 = FUN_0100a5a0();
   uVar7 = (undefined1)param_4;
   if (param_8 == '\0') {
-    FUN_0102714a(uVar3,local_2c,auStack_2e);
-    iVar4 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+    iVar4 = sdc_buffer_payload_get(local_2c[0]);
     *(undefined1 *)(iVar4 + 0x1b) = param_7;
     *(undefined1 *)(iVar4 + 0x12) = 1;
     switch(param_4) {
@@ -76,8 +78,8 @@ switchD_01019af8_caseD_3:
     local_40 = *(uint *)(param_1 + 10);
     if (local_40 != 0) {
       uVar3 = FUN_0100a5a0();
-      FUN_0102714a(uVar3,local_2c,auStack_2e);
-      FUN_010270d2(local_2c[0]);
+      sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+      sdc_buffer_payload_get(local_2c[0]);
       local_40 = *param_1 & 0x10ff;
       if ((*param_1 & 0x10ff) != 0) {
         local_40 = 0;
@@ -107,8 +109,8 @@ LAB_01019b72:
       }
       *(short *)(DAT_01019eac + 0x44) = (short)uVar9;
     }
-    FUN_0102714a(uVar3,local_2c,auStack_2e);
-    iVar4 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+    iVar4 = sdc_buffer_payload_get(local_2c[0]);
     *(undefined1 *)(iVar4 + 0x1b) = param_7;
     *(undefined1 *)(iVar4 + 0x12) = 1;
     switch(param_4) {
@@ -125,8 +127,8 @@ LAB_01019b72:
     *(undefined1 *)(iVar4 + 0x2d) = param_5;
     if (*(int *)(param_1 + 10) != 0) {
       uVar3 = FUN_0100a5a0();
-      FUN_0102714a(uVar3,local_2c,auStack_2e);
-      iVar5 = FUN_010270d2(local_2c[0]);
+      sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+      iVar5 = sdc_buffer_payload_get(local_2c[0]);
       if ((param_8 != '\x03') || (-1 < (int)((uint)*(byte *)(iVar5 + 0x1c) << 0x1c)))
       goto LAB_01019b3a;
       goto LAB_01019b72;
@@ -146,8 +148,8 @@ LAB_01019b56:
        (byte)((uVar9 & cVar13 == '\0') << 3);
   if ((*(int *)(param_1 + 4) != 0) && (param_8 != '\x02')) {
     uVar3 = FUN_0100a5a0();
-    FUN_0102714a(uVar3,local_2c,auStack_2e);
-    iVar5 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+    iVar5 = sdc_buffer_payload_get(local_2c[0]);
     iVar5 = FUN_010199f4(iVar5 + 0x12,param_1,cVar13,1,param_4,param_8);
     if (iVar5 == 0) {
       *(byte *)(iVar4 + 0x1c) = *(byte *)(iVar4 + 0x1c) | 4;
@@ -173,8 +175,8 @@ LAB_01019b56:
   }
   if (*(int *)(param_1 + 2) != 0) {
     uVar3 = FUN_0100a5a0();
-    FUN_0102714a(uVar3,local_2c,auStack_2e);
-    iVar5 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+    iVar5 = sdc_buffer_payload_get(local_2c[0]);
     iVar5 = FUN_010199f4(iVar5 + 0x12,param_1,cVar1,0,param_4,param_8);
     if (iVar5 == 0) {
       if (param_6 == -1) {
@@ -195,8 +197,8 @@ LAB_01019b56:
   if (*(int *)(param_1 + 4) != 0) {
     if (param_8 == '\x02') goto LAB_01019c9c;
     uVar3 = FUN_0100a5a0();
-    FUN_0102714a(uVar3,local_2c,auStack_2e);
-    iVar5 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar3,local_2c,auStack_2e);
+    iVar5 = sdc_buffer_payload_get(local_2c[0]);
     iVar5 = FUN_010199f4(iVar5 + 0x12,param_1,cVar1,1,param_4,param_8);
     if (iVar5 == 0) {
       if (param_2 - 2U < 2) {
@@ -255,8 +257,8 @@ LAB_01019c9c:
   uVar2 = FUN_0100a5b4();
   iVar5 = FUN_01026f32(uVar6,uVar2,1);
   if (iVar5 != 0) {
-    FUN_0102714a(uVar6,local_2c,auStack_2e);
-    iVar11 = FUN_010270d2(local_2c[0]);
+    sdc_buffer_descriptor_resolve(uVar6,local_2c,auStack_2e);
+    iVar11 = sdc_buffer_payload_get(local_2c[0]);
     uVar3 = *(undefined4 *)(iVar4 + 0x16);
     uVar6 = *(undefined4 *)(iVar4 + 0x1a);
     uVar12 = *(undefined4 *)(iVar4 + 0x1e);

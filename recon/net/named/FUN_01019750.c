@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
+ *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  */
 /* net-core FUN_01019750 @ 0x1019750 */
 #include <stdint.h>
@@ -14,8 +16,8 @@ extern int FUN_0100ca98(uint8_t, void *);
 extern void sdc_work_submit(void *, const void *, uint32_t);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(uint32_t, uint16_t, uint32_t);
-extern uint8_t *FUN_010270d2(uint32_t);
-extern void FUN_0102714a(uint32_t, uint32_t *, uint16_t *);
+extern uint8_t *sdc_buffer_payload_get(uint32_t);
+extern void sdc_buffer_descriptor_resolve(uint32_t, uint32_t *, uint16_t *);
 
 static void copy_six(uint8_t *destination, const uint8_t *source)
 {
@@ -34,8 +36,8 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
 
     if (FUN_01026d3e() == 1)
         return;
-    FUN_0102714a(token, &handle, &unused);
-    entry = FUN_010270d2(handle);
+    sdc_buffer_descriptor_resolve(token, &handle, &unused);
+    entry = sdc_buffer_payload_get(handle);
 
     for (unsigned offset = 0x12; offset <= 0x2a; offset += 4)
         *(uint32_t *)(entry + offset) = 0;

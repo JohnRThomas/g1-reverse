@@ -6599,11 +6599,13 @@
   "0x010270d2": {
    "address": "0x010270d2",
    "raw_name": "FUN_010270d2",
-   "name": "FUN_010270d2",
-   "display_name": "FUN_010270d2",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_buffer_payload_get",
+   "display_name": "sdc_buffer_payload_get",
+   "human": true,
+   "source": "function_name_overrides.json: Returns the byte payload immediately after a controller buffer's two-byte private header; all recovered callers pass the buffer pointer produced by sdc_buffer_descriptor_resolve. Raw identity remains FUN_010270d2.",
+   "aliases": [
+    "FUN_010270d2"
+   ]
   },
   "0x010270e8": {
    "address": "0x010270e8",
@@ -6617,11 +6619,13 @@
   "0x0102714a": {
    "address": "0x0102714a",
    "raw_name": "FUN_0102714a",
-   "name": "FUN_0102714a",
-   "display_name": "FUN_0102714a",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_buffer_descriptor_resolve",
+   "display_name": "sdc_buffer_descriptor_resolve",
+   "human": true,
+   "source": "function_name_overrides.json: Resolves a controller buffer descriptor into its payload pointer and clamped minimum length, returning descriptor word 6; recovered SDC callers immediately pass the emitted pointer to sdc_buffer_payload_get. Raw identity remains FUN_0102714a.",
+   "aliases": [
+    "FUN_0102714a"
+   ]
   },
   "0x01027196": {
    "address": "0x01027196",
@@ -12171,9 +12175,7 @@
   "FUN_01026f32": "0x01026f32",
   "FUN_01027044": "0x01027044",
   "FUN_0102709e": "0x0102709e",
-  "FUN_010270d2": "0x010270d2",
   "FUN_010270e8": "0x010270e8",
-  "FUN_0102714a": "0x0102714a",
   "FUN_01027196": "0x01027196",
   "FUN_010271b8": "0x010271b8",
   "FUN_010271da": "0x010271da",
@@ -12743,6 +12745,8 @@
   "schedule_node_tail_get": "0x0101dda8",
   "schedule_phase_offset_get": "0x0101de10",
   "sdc_assertion_fail": "0x01008d00",
+  "sdc_buffer_descriptor_resolve": "0x0102714a",
+  "sdc_buffer_payload_get": "0x010270d2",
   "sdc_byte_lock_release": "0x0102a208",
   "sdc_byte_lock_try_acquire": "0x0102a1ea",
   "sdc_conn_event_process": "0x01014b18",

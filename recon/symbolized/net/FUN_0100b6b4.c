@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
  *   g_net_link_drv_ctx_0x24                  @ 0x21000c6c
@@ -38,7 +39,7 @@ extern void FUN_01020048(void);
 extern void FUN_010209b8(void);
 extern int FUN_01026bfe(unsigned,void*);
 extern unsigned FUN_01026e48(unsigned);
-extern unsigned FUN_010270d2(void);
+extern unsigned sdc_buffer_payload_get(void);
 
 #define IV4  ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
 #define DAT_0100b964 ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
@@ -236,7 +237,7 @@ after_bVar3:
   FUN_01010578(DAT_0100b968);
 
   if (local_28 != 0) {
-    u32 r13 = FUN_010270d2();
+    u32 r13 = sdc_buffer_payload_get();
     u32 u7 = W32(iVar4+0x28);
     W8(r13+9) = 0;
     sdc_work_submit(r13+1, u7, 8);

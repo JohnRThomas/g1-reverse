@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
+ *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  * address symbols (name @ address):
  *   g_2100109c                               @ 0x2100109c
  */
@@ -17,8 +19,8 @@ extern uint32_t FUN_0100a5b4(void);
 extern void sdc_work_submit(void *, const void *, uint32_t);
 extern uint32_t FUN_01026d3e(void *);
 extern uint32_t FUN_01026f32(void *, uint16_t, uint32_t);
-extern uint8_t *FUN_010270d2(void *);
-extern void FUN_0102714a(void *, void *, void *);
+extern uint8_t *sdc_buffer_payload_get(void *);
+extern void sdc_buffer_descriptor_resolve(void *, void *, void *);
 
 void FUN_01019660(void)
 {
@@ -28,8 +30,8 @@ void FUN_01019660(void)
     uint8_t *entry;
     uint8_t initial_flag;
 
-    FUN_0102714a(controller, &handle, &auxiliary);
-    entry = FUN_010270d2(handle);
+    sdc_buffer_descriptor_resolve(controller, &handle, &auxiliary);
+    entry = sdc_buffer_payload_get(handle);
     initial_flag = entry[0x1f];
 
     if (initial_flag == 0) {

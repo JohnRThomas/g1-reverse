@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
+ *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  */
 /* net-core FUN_010198cc @ 0x10198cc  (parity 300 trials PROVEN) */
 extern void sdc_assertion_fail(unsigned int, unsigned int);
@@ -13,8 +15,8 @@ extern int FUN_0100ca98(unsigned int, int);
 extern void sdc_work_submit(int, unsigned int, unsigned int);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(unsigned int, unsigned short, unsigned int);
-extern int FUN_010270d2(unsigned int);
-extern void FUN_0102714a(unsigned int, unsigned int *, unsigned char *);
+extern int sdc_buffer_payload_get(unsigned int);
+extern void sdc_buffer_descriptor_resolve(unsigned int, unsigned int *, unsigned char *);
 
 #define DAT_010199c8 0x01019a9du
 
@@ -34,8 +36,8 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   if (iVar3 == 1) {
     return;
   }
-  FUN_0102714a(uVar2, local_24, auStack_26);
-  iVar3 = FUN_010270d2(local_24[0]);
+  sdc_buffer_descriptor_resolve(uVar2, local_24, auStack_26);
+  iVar3 = sdc_buffer_payload_get(local_24[0]);
   *(volatile unsigned int *)(long)(iVar3 + 0x12) = 0;
   *(volatile unsigned int *)(long)(iVar3 + 0x16) = 0;
   *(volatile unsigned int *)(long)(iVar3 + 0x1a) = 0;
