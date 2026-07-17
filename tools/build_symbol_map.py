@@ -155,6 +155,21 @@ def main():
                     "address_names_%s.json" % CORE)
     if os.path.exists(durable_path):
         durable_records = json.load(open(durable_path)).get("by_address", {})
+    # A small reviewed catalog records RAM layouts that cannot be inferred from
+    # a single address cast.  In particular, net 0x21000ea6 is a two-byte
+    # object whose second byte is normally referenced as base+1.  Keeping the
+    # scalar type override here prevents a later symbolization pass from
+    # regressing its base declaration to the uint32_t fallback (which would
+    # falsely overlap the independent object at 0x21000ea8).
+    layout_types = {}
+    layout_path = ("/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/"
+                   "%s_data_alias_resolutions.json" % CORE)
+    if os.path.exists(layout_path):
+        for resolution in json.load(open(layout_path)).get("resolutions", []):
+            base = resolution.get("base_address")
+            ctype = resolution.get("base_scalar_ctype")
+            if base and ctype:
+                layout_types[int(base, 16)] = ctype
     function_records = {}
     function_path = ("/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/"
                      "function_names_%s.json" % CORE)
@@ -273,6 +288,9 @@ def main():
             rec["symbol_base"] = durable["base_address"]
             rec["symbol_offset"] = durable["offset"]
             rec["name_source"] = "durable_address_map"
+        if c == "ram" and v in layout_types:
+            rec["ctype"] = layout_types[v]
+            rec["ctype_source"] = "reviewed_data_alias_catalog"
         smap[hex(v)] = rec
 
     json.dump(smap, open(OUT, "w"), indent=1)

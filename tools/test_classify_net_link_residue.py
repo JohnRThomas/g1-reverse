@@ -53,12 +53,9 @@ class NetLinkResidueTest(unittest.TestCase):
             by_symbol["FUN_shadow_default"]["category"],
             "compiler_or_ghidra_pseudo",
         )
-        self.assertEqual(
-            by_symbol["g_21000ea7"]["category"],
-            "data_or_global_alias_gap",
-        )
         # These previously reported integration residues have been resolved;
         # the refreshed catalog must not silently reintroduce them.
+        self.assertNotIn("g_21000ea7", by_symbol)
         self.assertNotIn("FUN_01008fc0", by_symbol)
         self.assertNotIn("controller_assert", by_symbol)
 

@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "core": "net",
+  "image": "netcore_image.bin",
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "policy": {
+    "allocate_storage": false,
+    "absolute_address_backmap_preserved": true,
+    "require_thumb_access_proof": true,
+    "require_nonoverlap_proof": true
+  },
+  "resolutions": [
+    {
+      "symbol": "g_21000ea7",
+      "address": "0x21000ea7",
+      "resolution": "reviewed_interior_data_alias",
+      "base_symbol": "g_net_rssi_cal_offset",
+      "base_address": "0x21000ea6",
+      "base_scalar_ctype": "unsigned char",
+      "offset": 1,
+      "access_width": 1,
+      "object_width": 2,
+      "next_object_symbol": "g_net_esb_own_addr_valid",
+      "next_object_address": "0x21000ea8",
+      "linker_expression": "PROVIDE(g_21000ea7 = g_net_rssi_cal_offset + 1);",
+      "storage_ownership": "No storage is allocated. Both names resolve inside the original two-byte CPUNET RAM object at 0x21000ea6..0x21000ea7.",
+      "firmware_semantics": "The two bytes are signed calibration corrections for two signal-sample paths. FUN_0100d738 reads byte 0; sdc_llcp_get_active_link_index/FUN_0100d760 loads the same base literal and reads byte 1. FUN_0100d7ac clears exactly both bytes during controller initialization.",
+      "thumb_evidence": [
+        "0x0100d738: ldr r3,[pc,#0x20] => 0x21000ea6; ldrb r3,[r3]",
+        "0x0100d77e: ldr r2,[pc,#0x28] => 0x21000ea6; 0x0100d784: ldrb r0,[r2,#1]",
+        "0x0100d7ac: ldr r3,[pc,#8] => 0x21000ea6; strb r2,[r3]; strb r2,[r3,#1]",
+        "0x0100d7bc: ldr r3,[pc,#0x1c] => 0x21000ea8; ldrb r2,[r3]",
+        "0x0100d822: ldr r3,[pc,#0x18] => 0x21000ea8; byte stores target only [r3]"
+      ],
+      "direct_function_references": {
+        "0x21000ea6": [
+          "FUN_0100d738",
+          "FUN_0100d7ac"
+        ],
+        "0x21000ea7": [
+          "FUN_0100d760",
+          "FUN_0100d7ac"
+        ],
+        "0x21000ea8": [
+          "FUN_0100d7bc",
+          "FUN_0100d808"
+        ]
+      },
+      "callers": {
+        "FUN_0100d738": [
+          "FUN_0101e94c"
+        ],
+        "FUN_0100d760": [
+          "FUN_01010578",
+          "FUN_01017154",
+          "FUN_01017344",
+          "FUN_01018690",
+          "FUN_01018bf8",
+          "FUN_01018c28"
+        ],
+        "FUN_0100d7ac": [
+          "FUN_0101e828"
+        ]
+      }
+    }
+  ]
+}

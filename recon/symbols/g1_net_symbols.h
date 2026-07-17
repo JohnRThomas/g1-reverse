@@ -119,7 +119,7 @@ extern volatile unsigned int g_ll_conn_tx_ctx_addr; /* @0x21000cc4 */
 extern volatile unsigned int g_ll_conn_trace_ctx_addr; /* @0x21000cd0 */
 extern volatile unsigned int g_ll_conn_pdu_hdr_ptr; /* @0x21000cfc */
 extern volatile unsigned int g_net_radio_addr_match_tbl; /* @0x21000d18 */
-extern volatile unsigned int g_net_rssi_cal_offset; /* @0x21000ea6 */
+extern volatile unsigned char g_net_rssi_cal_offset; /* two-byte object base @0x21000ea6 */
 extern volatile unsigned char g_21000ea7; /* @0x21000ea7 */
 extern volatile unsigned int g_net_esb_own_addr_valid; /* @0x21000ea8 */
 extern volatile unsigned int g_net_ble_conn_create_ctx; /* @0x21000eac */

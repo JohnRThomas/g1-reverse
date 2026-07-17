@@ -18,20 +18,20 @@
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "47f597df98c4039f2ab8382f45761dc7839cec836468414d979fd055fcf8f3ab"
+   "sha256": "80f3e31280f7f16fb4d932aa134d9cd87f95299fda925338d76a0b3e609552f8"
   }
  ],
  "summary": {
   "undefined_total": 633,
-  "already_pinned_or_aliased": 390,
-  "classified_residue": 243,
+  "already_pinned_or_aliased": 391,
+  "classified_residue": 242,
   "by_category": {
    "true_missing_reconstructed_entry": 178,
    "interior_or_tail_alias": 0,
    "sdk_or_config_symbol": 58,
    "compiler_or_ghidra_pseudo": 1,
    "naming_or_symbolization_defect": 0,
-   "data_or_global_alias_gap": 6
+   "data_or_global_alias_gap": 5
   },
   "missing_by_adoption_component": {
    "net_sdk_or_glue": 46,
@@ -3523,21 +3523,6 @@
    "reference_count": 1,
    "reference_objects": [
     "sdc_default_tx_power_set.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "g_21000ea7",
-   "va": null,
-   "category": "data_or_global_alias_gap",
-   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_llcp_get_active_link_index.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,

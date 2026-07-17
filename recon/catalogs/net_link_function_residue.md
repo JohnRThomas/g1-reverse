@@ -5,8 +5,8 @@ reconstruction partial link. SDC report-only matches remain missing code;
 only reviewed `exclude_reconstruction` decisions count as SDK owners.
 
 - Undefined symbols in partial link: **633**
-- Already covered by address pins/aliases: **390**
-- Function/pseudo residue classified here: **243**
+- Already covered by address pins/aliases: **391**
+- Function/pseudo residue classified here: **242**
 
 | Category | Count |
 |---|---:|
@@ -15,7 +15,7 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 | `sdk_or_config_symbol` | 58 |
 | `compiler_or_ghidra_pseudo` | 1 |
 | `naming_or_symbolization_defect` | 0 |
-| `data_or_global_alias_gap` | 6 |
+| `data_or_global_alias_gap` | 5 |
 
 ## Per-symbol classification
 
@@ -243,7 +243,6 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 | `controller_radio_time_mode2_to_mode2` | 0x01021634 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
 | `controller_transition_pending_check` | 0x01025cf0 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
 | `g_21000a5c` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
-| `g_21000ea7` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
 | `ipc_rpmsg_init` | 0x0102dac0 | `sdk_or_config_symbol` | 1 | NCS IPC-service RPMsg backend |
 | `ipc_static_vrings_init` | 0x0102db30 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
 | `ipc_static_vrings_shm_size` | 0x0103a056 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
