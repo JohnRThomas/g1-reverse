@@ -1,0 +1,233 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "fail_closed": true,
+  "reason": "Application/static/header-inline identities cannot be supplied by a distinct public SDK export; retain their verified configured bodies.",
+  "forbid": [
+   "weak stub",
+   "byte blob",
+   "assembly wrapper",
+   "same-name alias guess"
+  ],
+  "shared_derivatives": "delegated_to_centralized_batch3_batch4_consolidation"
+ },
+ "summary": {
+  "function_count": 8,
+  "reference_count_before": 48,
+  "cfg_verified": 8,
+  "application_functions": 1,
+  "configured_sdk_helpers": 7
+ },
+ "functions": [
+  {
+   "symbol": "flash_settings_read",
+   "va": "0x000225b4",
+   "size": 150,
+   "checked": 80,
+   "upstream_owner": "G1 application flash-settings wrapper",
+   "linkage": "application_function",
+   "config": [
+    "device API read callback at +0x1030",
+    "11 attempts",
+    "0x0ccd tick backoff"
+   ],
+   "sha256": "75d79d28b02cca0a693a59fd8bfe572e063527520e759b843c19376b5f00450e",
+   "source": "recon/app/src/flash_settings_read.c",
+   "verified_mirror": "recon/verified/src/flash_settings_read.c",
+   "reference_count_before": 7,
+   "reference_sites_before": [
+    "load_burial_point.c:31",
+    "load_sys_setting.c:81",
+    "load_usr_setting.c:60",
+    "load_whitelist.c:32",
+    "read_sys_settting_from_flash.c:31",
+    "read_usr_settting_from_flash.c:28",
+    "update_burial_point_to_flash.c:41"
+   ],
+   "verification": "cfg_verify.py app flash_settings_read: PASS (80 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_or",
+   "va": "0x00080e6a",
+   "size": 22,
+   "checked": 80,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic_builtin.h:atomic_or",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "__ATOMIC_SEQ_CST",
+    "32-bit atomic_t"
+   ],
+   "sha256": "79ae9d3a44efbddfe4baa8f63352210beab277eec843ee1fb288bf0a713c24eb",
+   "source": "recon/app/src/atomic_or.c",
+   "verified_mirror": "recon/verified/src/atomic_or.c",
+   "reference_count_before": 7,
+   "reference_sites_before": [
+    "FUN_000538f8.c:48",
+    "FUN_00053bd8.c:43",
+    "FUN_000548b8.c:31",
+    "FUN_000549ec.c:28",
+    "bt_hci_driver_close.c:49",
+    "bt_hci_driver_close.c:71",
+    "bt_send.c:53"
+   ],
+   "verification": "cfg_verify.py app atomic_or: PASS (80 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_and_2",
+   "va": "0x000813b4",
+   "size": 22,
+   "checked": 80,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic_builtin.h:atomic_and",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "__ATOMIC_SEQ_CST",
+    "32-bit atomic_t"
+   ],
+   "sha256": "1b42192ea04c30132efc57ad7754f18a755e8f02f093888c746935b1f51758ee",
+   "source": "recon/app/src/atomic_and_2.c",
+   "verified_mirror": "recon/verified/src/atomic_and_2.c",
+   "reference_count_before": 7,
+   "reference_sites_before": [
+    "FUN_000565c4.c:29",
+    "FUN_000571e8.c:56",
+    "ble_conn_process_complete_or_disconnect.c:66",
+    "ble_conn_process_complete_or_disconnect.c:73",
+    "ble_notify_le_param_updated.c:31",
+    "bt_conn_le_param_update.c:26",
+    "bt_conn_set_security.c:24"
+   ],
+   "verification": "cfg_verify.py app atomic_and_2: PASS (80 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_or_0",
+   "va": "0x000826e0",
+   "size": 22,
+   "checked": 80,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic_builtin.h:atomic_or",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "__ATOMIC_SEQ_CST",
+    "second outlined instance"
+   ],
+   "sha256": "ce748a407dff28e09c4f0f5d61becbccd1c98fe7d8518f8cfd62c811fa64da86",
+   "source": "recon/app/src/atomic_or_0.c",
+   "verified_mirror": "recon/verified/src/atomic_or_0.c",
+   "reference_count_before": 6,
+   "reference_sites_before": [
+    "bt_gatt_service_init.c:33",
+    "gatt_db_hash_gen.c:52",
+    "gatt_db_hash_process.c:36",
+    "gatt_delayed_store_enqueue.c:61",
+    "sc_indicate.c:25",
+    "set_change_aware_no_store.c:22"
+   ],
+   "verification": "cfg_verify.py app atomic_or_0: PASS (80 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "qspi_get_zephyr_ret_code",
+   "va": "0x00060990",
+   "size": 24,
+   "checked": 300,
+   "upstream_owner": "zephyr/drivers/flash/nrf_qspi_nor.c:qspi_get_zephyr_ret_code",
+   "linkage": "source_static_inline_outlined",
+   "config": [
+    "nrfx_err_t range 0x0bad0000..0x0bad000a",
+    "firmware error table"
+   ],
+   "sha256": "3d8d94b198eb762e33fc2f884794eb2e08ef57ffd8198d5753eb7f3d59a069b9",
+   "source": "recon/app/src/qspi_get_zephyr_ret_code.c",
+   "verified_mirror": "recon/verified/src/qspi_get_zephyr_ret_code.c",
+   "reference_count_before": 6,
+   "reference_sites_before": [
+    "qspi_nor_acquire.c:35",
+    "qspi_nor_configure.c:108",
+    "qspi_nor_erase.c:91",
+    "qspi_nor_send_cinstr.c:58",
+    "qspi_nor_write.c:93",
+    "storage_read_with_word_cache.c:79"
+   ],
+   "verification": "cfg_verify.py app qspi_get_zephyr_ret_code: PASS (300 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "spim_pin_uninit",
+   "va": "0x00067138",
+   "size": 146,
+   "checked": 300,
+   "upstream_owner": "modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c:spim_pin_uninit",
+   "linkage": "source_static_configured",
+   "config": [
+    "NRFX_SPIM_EXTENDED_ENABLED",
+    "PIN_CNF masked to disconnected input"
+   ],
+   "sha256": "2bea3e5df9626fd85700791fd4dac14d16f8ab48e30247017cf8335e25521833",
+   "source": "recon/app/src/spim_pin_uninit.c",
+   "verified_mirror": "recon/verified/src/spim_pin_uninit.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "FUN_00067248.c:47",
+    "FUN_00067248.c:48",
+    "FUN_00067248.c:49",
+    "FUN_00067248.c:50",
+    "FUN_00067248.c:53"
+   ],
+   "verification": "cfg_verify.py app spim_pin_uninit: PASS (300 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "qspi_activate",
+   "va": "0x000664f0",
+   "size": 40,
+   "checked": 302,
+   "upstream_owner": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:qspi_activate",
+   "linkage": "source_static_configured",
+   "config": [
+    "NRFX_QSPI_ACTIVATION_WAIT",
+    "both wait selector cases covered"
+   ],
+   "sha256": "30f0090799c6dea5409664fa5054daa32228b71967a64610cf4b9537126c0ef7",
+   "source": "recon/app/src/qspi_activate.c",
+   "verified_mirror": "recon/verified/src/qspi_activate.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "nrfx_qspi_erase.c:46",
+    "nrfx_qspi_read.c:41",
+    "nrfx_qspi_read.c:56",
+    "qspi_xfer.c:100",
+    "qspi_xfer.c:73"
+   ],
+   "verification": "cfg_verify.py app qspi_activate: PASS (302 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "print_formatted",
+   "va": "0x0004da6c",
+   "size": 30,
+   "checked": 300,
+   "upstream_owner": "zephyr/subsys/logging/log_output.c:print_formatted",
+   "linkage": "source_static_configured",
+   "config": [
+    "cbvprintf formatter",
+    "log_output callback at 0x0004daad"
+   ],
+   "sha256": "cedf05addc7a4b523521d75e34dc257ec0ea4a8cd2db56574212680c291abc23",
+   "source": "recon/app/src/print_formatted.c",
+   "verified_mirror": "recon/verified/src/print_formatted.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "FUN_0004da90.c:24",
+    "FUN_0004db04.c:101",
+    "FUN_0004db04.c:92",
+    "FUN_0004db04.c:95",
+    "FUN_0004db04.c:96"
+   ],
+   "verification": "cfg_verify.py app print_formatted: PASS (300 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  }
+ ]
+}
