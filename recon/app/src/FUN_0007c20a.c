@@ -8,17 +8,20 @@ unsigned int FUN_0007c20a(int param_1)
 {
     short sVar1;
     int iVar2;
-    unsigned char local_d4;
-    unsigned char auStack_d3[203];
+    struct queue_frame {
+        unsigned char reserved[4];
+        unsigned char control;
+        unsigned char payload[203];
+    } frame;
 
     while (1) {
-        FUN_00086c78(auStack_d3, 0, 0xca);
-        local_d4 = 0xf4;
-        iVar2 = FUN_00019c44(auStack_d3);
+        FUN_00086c78(frame.payload, 0, 0xca);
+        frame.control = 0xf4;
+        iVar2 = FUN_00019c44(frame.payload);
         if (iVar2 != 0) break;
-        sVar1 = FUN_0000ef12(&local_d4);
-        (*(void (**)(void *, unsigned short))(param_1 + 0xc))(&local_d4, sVar1 + 1);
+        sVar1 = FUN_0000ef12(&frame.control);
+        (*(void (**)(void *, unsigned short))(param_1 + 0xc))
+            (&frame.control, (unsigned short)(sVar1 + 1));
     }
     return 0;
 }
-
