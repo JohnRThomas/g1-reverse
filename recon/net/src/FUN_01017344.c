@@ -23,7 +23,7 @@ struct S1017344 {
   unsigned char local_3f;
   unsigned int local_3c;
   int local_38;
-  unsigned char pad[4];
+  unsigned char pad[5];
   unsigned char local_2f;
   char local_2e;
 };
@@ -98,4 +98,3 @@ LAB_010173d0:
   }
   return 1;
 }
-
