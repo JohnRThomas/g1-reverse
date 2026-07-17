@@ -1,0 +1,56 @@
+{
+  "schema": "g1-net-public-owner-build-proof-v1",
+  "generated_at": "2026-07-18",
+  "scope": "CPUNET retain-all Zephyr integration shell",
+  "build_directory": "/private/tmp/g1-net-shell-symbolized-retain-all",
+  "build_command": "cmake --build /private/tmp/g1-net-shell-symbolized-retain-all -j 8",
+  "configuration": {
+    "CONFIG_LOG": true,
+    "CONFIG_LOG_MODE_DEFERRED": true,
+    "CONFIG_LOG_FRONTEND": false,
+    "CONFIG_LOG_PRINTK": true,
+    "CONFIG_PRINTK": true,
+    "prj_conf_sha256": "54d0da11e44b461a22f30e8d70372c503e02e960c76144e6fcf8f2840abc6274"
+  },
+  "result": {
+    "reached_final_link": true,
+    "link_succeeded": false,
+    "expected_unresolved_residue_count": 264,
+    "multiple_definition_count": 0,
+    "owner_symbol_undefined_count": 0,
+    "build_log_sha256": "2b78363318ba8cb70ba6daad6f63e33fd3d3da3d31eb0815cbaca0753e3eb42e",
+    "note": "The retain-all shell still stops on the separately tracked unresolved reconstruction residue; enabling the shipped logging selection introduced no ownership collision."
+  },
+  "owners": [
+    {
+      "va": "0x0102e284",
+      "raw_symbol": "FUN_0102e284",
+      "symbol": "z_impl_z_log_msg_static_create",
+      "archive_member": "zephyr/libzephyr.a(log_msg.c.obj)",
+      "strong_definition_count": 1,
+      "object_sha256": "09ccf69168619f1c1e7b21efbfa91449f4fed3d949c43994d6cacf34808e52f7",
+      "undefined": false,
+      "duplicate": false
+    },
+    {
+      "va": "0x01039722",
+      "raw_symbol": "FUN_01039722",
+      "symbol": "printk",
+      "archive_member": "zephyr/libzephyr.a(printk.c.obj)",
+      "strong_definition_count": 1,
+      "object_sha256": "9ff9f6bf75d390d715db189b2b4525b49bb640a85039cd925d492ea5278a9463",
+      "undefined": false,
+      "duplicate": false
+    },
+    {
+      "va": "0x01039bbe",
+      "raw_symbol": "FUN_01039bbe",
+      "symbol": "assert_print",
+      "archive_member": "zephyr/libzephyr.a(assert.c.obj)",
+      "strong_definition_count": 1,
+      "object_sha256": "eec317d289ed598049a3b724a52acee0951f5a353b8e288c6ec44f7484c822bd",
+      "undefined": false,
+      "duplicate": false
+    }
+  ]
+}
