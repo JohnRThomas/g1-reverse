@@ -173,6 +173,7 @@ CALL_ARITY_OVERRIDES = {
     ("app", 0x0007e390): 2,
     ("app", 0x00016574): 1,
     ("app", 0x00074d74): 1,  # work submission consumes queue node only
+    ("app", 0x000742b4): 1,  # z_unpend_thread consumes one thread pointer
     ("app", 0x00086534): 2,  # object initializer consumes object and mode
     ("app", 0x0008669c): 1,  # output-window initializer consumes its pointer
     ("app", 0x00084602): 1,  # lookup consumes one selector
