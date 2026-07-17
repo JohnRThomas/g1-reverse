@@ -509,6 +509,14 @@
    "name": "__nrfy_internal_twim_event_handle",
    "evidence": "Pinned nrfx nrfy_twim.h helper used by the adjacent outlined TWIM event processor. The previous PWM label was a cross-peripheral same-shape guess; event offsets and all callers prove TWIM ownership. Raw identity remains FUN_00085378 at 0x00085378."
   },
+  "0x00057038": {
+   "name": "send_conn_le_param_update",
+   "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/conn.c static helper. The recovered body validates parameters, selects LL or L2CAP update from the configured feature/role/flag state, and preserves fallback parameters after a successful LL update. Raw identity remains FUN_00057038@0x00057038."
+  },
+  "0x0007e18e": {
+   "name": "process_recheck",
+   "evidence": "Pinned NCS 2.5.1 lib/os/onoff.c static helper. The recovered body maps OFF/ON/ERROR manager state plus clients/reference count to EVT_START/STOP/RESET or EVT_NOP. Raw identity remains FUN_0007e18e@0x0007e18e."
+  },
   "0x00086698": {
    "name": "uptime_ticks_get",
    "evidence": "The four-byte tail thunk branches directly to the 64-bit uptime tick implementation at 0x00074f68. This unique name resolves the rejected generated thunk-name collision while preserving raw identity FUN_00086698."
