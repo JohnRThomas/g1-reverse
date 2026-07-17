@@ -1,5 +1,10 @@
-/* named: frexpf */
-/* Reconstructed frexpf @ 0x759b8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000759b8 @ 0x000759b8
+ * public-name: frexpf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   frexpf                                   <= FUN_000759b8 @ 0x000759b8
+ */
+/* Reconstructed FUN_000759b8 @ 0x759b8  (parity: 300/300 trials, PROVEN) */
 
 float frexpf(float param_1, volatile int *param_2)
 {
@@ -31,4 +36,3 @@ float frexpf(float param_1, volatile int *param_2)
   }
   return param_1;
 }
-

@@ -1,8 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000553f8 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_000553f8 @ 0x000553f8
+ * public-name: FUN_000553f8
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_000553f8 @ 0x553f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00054d18(int,void*);
@@ -13,7 +15,7 @@ int FUN_000553f8(void){
   uint8_t local30;
   uint8_t stack2f[7];
   uint8_t stack28[24];
-  volatile uint8_t *g = (volatile uint8_t*)((uintptr_t)&g_ble_dev_state) /*=0x20002000*/;
+  volatile uint8_t *g = (volatile uint8_t*)((unsigned long)&g_ble_dev_state) /*=0x20002000*/;
   if(*(volatile uint8_t*)(g+7) == 0){
     int iVar1 = FUN_00055350(stack28, 1);
     *(volatile uint8_t*)(g+7) = (uint8_t)iVar1;
@@ -32,4 +34,3 @@ int FUN_000553f8(void){
   }
   return FUN_00055204(0);
 }
-

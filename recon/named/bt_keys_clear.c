@@ -1,5 +1,19 @@
-/* named: bt_keys_clear */
-/* Reconstructed bt_keys_clear @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005ea18 @ 0x0005ea18
+ * public-name: bt_keys_clear
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_settings_save_or_delete_key           <= FUN_00053184 @ 0x00053184
+ *   ble_privacy_id_remove                    <= FUN_00055094 @ 0x00055094
+ *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5268                             @ 0x000f5268
+ *   rodata_f5298                             @ 0x000f5298
+ */
+/* Reconstructed FUN_0005ea18 @ 0x5ea18  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a,int b,int c,int d);
 extern unsigned char *assert_post_action(int a,int b);
@@ -21,4 +35,3 @@ void bt_keys_clear(unsigned char *param_1)
   bt_settings_save_or_delete_key(*param_1, param_1 + 1);
   memset_bytes(param_1, 0, 0x5c);
 }
-

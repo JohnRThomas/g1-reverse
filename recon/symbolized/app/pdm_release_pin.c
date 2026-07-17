@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: pdm_release_pin */
-/* Reconstructed pdm_release_pin @ 0x66130  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066130 @ 0x00066130
+ * public-name: pdm_release_pin
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pdm_release_pin                          <= FUN_00066130 @ 0x00066130
+ */
+/* Reconstructed FUN_00066130 @ 0x66130  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_00065ff4(int *p);
@@ -15,4 +20,3 @@ void pdm_release_pin(int param_1, unsigned int param_2, unsigned int param_3)
   volatile uint32_t *p = (volatile uint32_t *)(iVar1 + 0x200);
   *p = (0xfffcf0f0u & *p) | 2;
 }
-

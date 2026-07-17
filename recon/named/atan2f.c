@@ -1,5 +1,13 @@
-/* named: atan2f */
-/* Reconstructed atan2f @ 0x76154  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076154 @ 0x00076154
+ * public-name: atan2f
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atan2f                                   <= FUN_00076154 @ 0x00076154
+ * address symbols (name @ address):
+ *   rodata_98684                             @ 0x00098684
+ *   rodata_98690                             @ 0x00098690
+ */
+/* Reconstructed FUN_00076154 @ 0x76154  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float FUN_000768e0(void);
 extern void FUN_000868ee(float);
@@ -45,4 +53,3 @@ float atan2f(float param_1, float param_2){
   }
   return param_1 + param_2;
 }
-

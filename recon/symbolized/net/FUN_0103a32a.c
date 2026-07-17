@@ -12,4 +12,3 @@ void FUN_0103a32a(fnptr param_1, int param_2, int param_3, unsigned int param_4)
     param_2 = param_2 + iVar1;
   } while (param_3 != 0);
 }
-

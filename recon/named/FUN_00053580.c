@@ -1,4 +1,12 @@
-/* named: FUN_00053580 */
+/* readable reconstruction; identity: FUN_00053580 @ 0x00053580
+ * public-name: FUN_00053580
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_hex                                   <= FUN_00052c98 @ 0x00052c98
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2df8                             @ 0x000f2df8
+ */
 /* Reconstructed FUN_00053580 @ 0x53580  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int bt_hex(unsigned int a, unsigned int b);
@@ -23,4 +31,3 @@ void FUN_00053580(unsigned int param_1, int param_2)
     local_1c = (unsigned int)uVar1;
     FUN_00080ea2(0x00088138UL, 0x2c80, &local_28);
 }
-

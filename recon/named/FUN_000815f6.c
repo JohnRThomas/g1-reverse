@@ -1,4 +1,7 @@
-/* named: FUN_000815f6 */
+/* readable reconstruction; identity: FUN_000815f6 @ 0x000815f6
+ * public-name: FUN_000815f6
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000815f6 @ 0x815f6  (parity: 300/300 trials, PROVEN) */
 
 void FUN_000815f6(unsigned int *param_1,unsigned int *param_2,unsigned int *param_3)
@@ -19,4 +22,3 @@ void FUN_000815f6(unsigned int *param_1,unsigned int *param_2,unsigned int *para
   *param_3 = 0;
   return;
 }
-

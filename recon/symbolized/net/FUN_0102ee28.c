@@ -2,15 +2,15 @@
 /* net-core FUN_0102ee28 @ 0x102ee28  (parity 300 trials PROVEN) */
 extern void FUN_0103a3d6(unsigned int, unsigned int, void*);
 
-#define DAT_0102ef34 ((uintptr_t)&rodata_103d8fb) /*=0x103d8fb*/
-#define DAT_0102ef38 ((uintptr_t)&rodata_103c0c4) /*=0x103c0c4*/
+#define DAT_0102ef34 ((unsigned long)&rodata_103d8fb) /*=0x103d8fb*/
+#define DAT_0102ef38 ((unsigned long)&rodata_103c0c4) /*=0x103c0c4*/
 #define DAT_0102ef3c 0xe000ed00u
-#define PTR_s_I_Channel_0102ef40 "I Channel" /*=0x103d911*/
-#define PTR_s_013000_0102ef44 "013000" /*=0x103d922*/
-#define PTR_s_rte_0102ef48 "rte" /*=0x103d935*/
-#define PTR_s_ivers_timer_nrf_rtc_timer_c_0102ef4c "ivers/timer/nrf_rtc_timer.c" /*=0x103d94e*/
-#define PTR_s_imer_c_0102ef50 "imer.c" /*=0x103d963*/
-#define PTR_s_al_error_0102ef54 "al_error" /*=0x103d97e*/
+#define PTR_s_I_Channel_0102ef40 ((unsigned long)&rodata_103d911) /*=0x103d911*/
+#define PTR_s_013000_0102ef44 ((unsigned long)&rodata_103d922) /*=0x103d922*/
+#define PTR_s_rte_0102ef48 ((unsigned long)&rodata_103d935) /*=0x103d935*/
+#define PTR_s_ivers_timer_nrf_rtc_timer_c_0102ef4c ((unsigned long)&rodata_103d94e) /*=0x103d94e*/
+#define PTR_s_imer_c_0102ef50 ((unsigned long)&rodata_103d963) /*=0x103d963*/
+#define PTR_s_al_error_0102ef54 ((unsigned long)&rodata_103d97e) /*=0x103d97e*/
 
 unsigned int FUN_0102ee28(int param_1, unsigned char *param_2)
 {
@@ -73,4 +73,3 @@ unsigned int FUN_0102ee28(int param_1, unsigned char *param_2)
   *param_2 = 0;
   return uVar2;
 }
-

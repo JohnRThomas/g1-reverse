@@ -1,8 +1,13 @@
-/* named: k_aligned_alloc */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed k_aligned_alloc @ 0x75944  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00075944 @ 0x00075944
+ * public-name: k_aligned_alloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_aligned_alloc                          <= FUN_00075944 @ 0x00075944
+ *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ * address symbols (name @ address):
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_00075944 @ 0x75944  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int k_is_in_isr(void);
@@ -18,4 +23,3 @@ int* k_aligned_alloc(unsigned p1, unsigned p2, unsigned p3, unsigned p4){
   }
   return FUN_00075864(iVar3, p1, p2);
 }
-

@@ -11,4 +11,3 @@ unsigned int FUN_010397ac(int param_1, int param_2)
     }
     return (unsigned int)((param_2 - iVar1) - param_1) >> 3;
 }
-

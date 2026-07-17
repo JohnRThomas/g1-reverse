@@ -1,9 +1,12 @@
-/* named: FUN_00080b42 */
+/* readable reconstruction; identity: FUN_00080b42 @ 0x00080b42
+ * public-name: FUN_00080b42
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080b42 @ 0x80b42  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int FUN_000526e4(void);
-extern void net_buf_simple_push_mem(int,int,uint);
+extern void FUN_00083740(int,int,uint);
 uint FUN_00080b42(int param_1,int param_2,uint param_3){
   int iVar1;
   if(*(volatile int*)(param_1+0x40)==0){
@@ -20,9 +23,8 @@ uint FUN_00080b42(int param_1,int param_2,uint param_3){
   } else if(*(volatile uint16_t*)(param_1+0x44)<param_3){
     return 0xffffff75;
   }
-  net_buf_simple_push_mem(*(volatile int*)(param_1+0x40)+0xc,param_2,param_3);
+  FUN_00083740(*(volatile int*)(param_1+0x40)+0xc,param_2,param_3);
   param_3=*(volatile uint16_t*)(param_1+0x44)-param_3;
   *(volatile int16_t*)(param_1+0x44)=(int16_t)param_3;
   return param_3&0xffff;
 }
-

@@ -9,14 +9,14 @@ extern unsigned int *FUN_0100e294(unsigned char*, int);
 extern void FUN_0100ef88(unsigned int, unsigned int, int);
 extern void FUN_0100efc8(unsigned int, unsigned int, int);
 
-#define DAT_010167e0 ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define DAT_010167e4 ((uintptr_t)&g_net_ieee802154_txctx_ptr) /*=0x21000fa4*/
-#define DAT_010167e8_ADDR ((uintptr_t)&g_net_ieee802154_txctx_field1) /*=0x21000f9e*/
-#define DAT_010167ec ((uintptr_t)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT_010167f0 ((uintptr_t)&g_net_ieee802154_txctx_field2) /*=0x21000faa*/
-#define DAT_010167f4 ((uintptr_t)&rodata_10175c9) /*=0x10175c9*/
-#define DAT_010167f8 ((uintptr_t)&rodata_1016a71) /*=0x1016a71*/
-#define DAT_010167fc ((uintptr_t)&g_net_ieee802154_txctx_end) /*=0x21000fba*/
+#define DAT_010167e0 0x21000f90u
+#define DAT_010167e4 (DAT_010167e0 + 0x14u)
+#define DAT_010167e8_ADDR (DAT_010167e0 + 0x0eu)
+#define DAT_010167ec (DAT_010167e0 + 0x89u)
+#define DAT_010167f0 (DAT_010167e0 + 0x1au)
+#define DAT_010167f4 0x010175c9u
+#define DAT_010167f8 0x01016a71u
+#define DAT_010167fc (DAT_010167e0 + 0x2au)
 
 void FUN_010166c0(int param_1, unsigned char *param_2)
 {
@@ -99,4 +99,3 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
   FUN_0100efc8(uVar4, uVar6, 2);
   return;
 }
-

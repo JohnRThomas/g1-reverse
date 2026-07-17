@@ -55,4 +55,3 @@ void FUN_010088e8(int32_t *param_1, uint32_t *param_2, uint32_t *param_3)
     *(volatile int32_t *)&param_1[7] = ((uVar15 - uVar18) - (uint32_t)(uVar8 >= uVar14 && !bVar4)) + uVar6 +
                  (CARRY4(uVar13,uVar5) || CARRY4(uVar13+uVar5,(uint32_t)bVar1));
 }
-

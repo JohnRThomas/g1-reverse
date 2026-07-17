@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: list_unlink_and_release */
-/* Reconstructed list_unlink_and_release @ 0x828e8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000828e8 @ 0x000828e8
+ * public-name: list_unlink_and_release
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
+ *   list_unlink_and_release                  <= FUN_000828e8 @ 0x000828e8
+ */
+/* Reconstructed FUN_000828e8 @ 0x828e8  (parity: 300/300 trials, PROVEN) */
 
 extern void gatt_sub_free(int);
 typedef void (*fp_t)(unsigned int, void*, int);
@@ -28,4 +34,3 @@ void list_unlink_and_release(unsigned int param_1, int param_2, unsigned int *pa
     if (*(int*)(param_2+8) != 0) return;
     gatt_sub_free(param_2);
 }
-

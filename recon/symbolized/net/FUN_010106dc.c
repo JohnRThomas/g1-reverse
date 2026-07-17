@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_010106dc @ 0x10106dc  (parity 300 trials PROVEN) */
-#define P_01010778 ((uintptr_t)&g_net_lookup_table_desc) /*=0x21000f14*/
+#define P_01010778 ((unsigned long)&g_net_lookup_table_desc) /*=0x21000f14*/
 
 int FUN_010106dc(unsigned int param_1, unsigned int param_2, unsigned char *param_3)
 {
@@ -52,4 +52,3 @@ int FUN_010106dc(unsigned int param_1, unsigned int param_2, unsigned char *para
   *param_3 = (unsigned char)uVar8;
   return 0;
 }
-

@@ -1,5 +1,14 @@
-/* named: bt_att_create_rsp_pdu */
-/* Reconstructed bt_att_create_rsp_pdu @ 0x58f34  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00058f34 @ 0x00058f34
+ * public-name: bt_att_create_rsp_pdu
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
+ *   bt_att_create_rsp_pdu                    <= FUN_00058f34 @ 0x00058f34
+ * address symbols (name @ address):
+ *   rodata_88100                             @ 0x00088100
+ *   rodata_f4651                             @ 0x000f4651
+ */
+/* Reconstructed FUN_00058f34 @ 0x58f34  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_att_chan_create_pdu(void);
 extern void FUN_00081ddc(int,int,void*);
@@ -24,4 +33,3 @@ int bt_att_create_rsp_pdu(int param_1, int param_2, int param_3, int param_4)
         return bt_att_chan_create_pdu();
     }
 }
-

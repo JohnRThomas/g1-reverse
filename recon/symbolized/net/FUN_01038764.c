@@ -1,146 +1,102 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01038764 @ 0x1038764  (parity 300 trials PROVEN) */
+/* net-core FUN_01038764 @ 0x1038764 */
+#include <stdint.h>
+#include <cmsis_gcc.h>
 
-extern void FUN_0103610c(void);
-extern void FUN_01036128(void);
-extern void FUN_01036144(void);
-extern void FUN_010375b8(void);
-extern void FUN_010384a8(void);
-extern void FUN_01038654(void);
-extern void FUN_01039bb0(void);
-extern void FUN_01039bbe(void);
+extern int FUN_0103610c(void *lock);
+extern void FUN_01036144(void *lock);
+extern int FUN_01036128(void *lock);
+extern uint32_t FUN_010384a8(void *work, int priority, void *state,
+                             int immediate);
+extern void FUN_01038654(void *work, uint32_t token, uint32_t irq_key);
+extern int FUN_010375b8(void *lock, uint32_t irq_key, void *wait_queue,
+                        uint32_t has_timeout,
+                        uint32_t ticks_low, uint32_t ticks_high);
+extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void FUN_01039bb0(const void *file, unsigned line);
 
-__attribute__((naked)) int FUN_01038764(int param_1, int param_2, unsigned int param_3, unsigned int param_4)
+static __attribute__((always_inline)) inline void scheduler_fatal(unsigned line)
 {
-    __asm__ volatile(
-    "push.w {r0,r1,r2,r4,r5,r6,r7,r8,r9,r10,r11,lr}\n"
-    "mov r6, r3\n"
-    "ldr r3, =0x21004b28\n"
-    "mov r7, r2\n"
-    "ldr.w r8, [r3, #8]\n"
-    "movs r3, #1\n"
-    "mov r5, r0\n"
-    "add.w r2, r8, #0x60\n"
-    "strb.w r3, [r8, #0x60]\n"
-    "strb.w r3, [r8, #0x61]\n"
-    "mrs r11, ipsr\n"
-    "cmp.w r11, #0\n"
-    "beq 1f\n"
-    "ldr r1, =0x0103eb7f\n"
-    "movw r2, #0x12d\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movw r1, #0x12d\n"
-    "ldr r0, =0x0103eb7f\n"
-    "9:\n"
-    "bl FUN_01039bb0\n"
-    "1:\n"
-    "cbnz r0, 2f\n"
-    "ldr r1, =0x0103eb7f\n"
-    "mov.w r2, #0x12e\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "mov.w r1, #0x12e\n"
-    "b 9b\n"
-    "2:\n"
-    "cmp r1, #0\n"
-    "bge 3f\n"
-    "ldr r1, =0x0103eb7f\n"
-    "movw r2, #0x12f\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movw r1, #0x12f\n"
-    "b 9b\n"
-    "3:\n"
-    "orrs.w r3, r7, r6\n"
-    "ite eq\n"
-    "moveq r3, #1\n"
-    "movne r3, #0\n"
-    "bl FUN_010384a8\n"
-    "mov r9, r0\n"
-    "mov.w r3, #0x40\n"
-    "mrs r10, basepri\n"
-    "msr basepri_max, r3\n"
-    "isb sy\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_0103610c\n"
-    "cbnz r0, 4f\n"
-    "5:\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0x72\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0x72\n"
-    "ldr r0, =0x0103d3b6\n"
-    "b 9b\n"
-    "4:\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_01036144\n"
-    "ldrb.w r4, [r8, #0x60]\n"
-    "cbnz r4, 6f\n"
-    "mov r0, r5\n"
-    "mov r2, r10\n"
-    "mov r1, r9\n"
-    "bl FUN_01038654\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_01036128\n"
-    "cbnz r0, 7f\n"
-    "8:\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0xf0\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0xf0\n"
-    "ldr r0, =0x0103d3b6\n"
-    "b 9b\n"
-    "7:\n"
-    "msr basepri, r10\n"
-    "isb sy\n"
-    "b 20f\n"
-    "6:\n"
-    "orrs.w r3, r7, r6\n"
-    "strb.w r11, [r8, #0x60]\n"
-    "bne 10f\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_01036128\n"
-    "cmp r0, #0\n"
-    "beq 8b\n"
-    "msr basepri, r10\n"
-    "isb sy\n"
-    "mvn r4, #0xa\n"
-    "b 20f\n"
-    "10:\n"
-    "mov r1, r10\n"
-    "strd r7, r6, [sp]\n"
-    "ldr r2, =0x21000758\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_010375b8\n"
-    "mov r4, r0\n"
-    "mov.w r3, #0x40\n"
-    "mrs r6, basepri\n"
-    "msr basepri_max, r3\n"
-    "isb sy\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_0103610c\n"
-    "cmp r0, #0\n"
-    "beq 5b\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_01036144\n"
-    "mov r0, r5\n"
-    "mov r2, r6\n"
-    "mov r1, r9\n"
-    "bl FUN_01038654\n"
-    "ldr r0, =0x21004b78\n"
-    "bl FUN_01036128\n"
-    "cmp r0, #0\n"
-    "beq 8b\n"
-    "msr basepri, r6\n"
-    "isb sy\n"
-    "20:\n"
-    "mov r0, r4\n"
-    "add sp, #0xc\n"
-    "pop.w {r4,r5,r6,r7,r8,r9,r10,r11,pc}\n"
-    );
+    FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+                 (const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
+    FUN_01039bb0((const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
 }
 
+static __attribute__((always_inline)) inline void scheduler_lock_fatal(unsigned line)
+{
+    FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+                 (const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
+    FUN_01039bb0((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
+}
 
+int FUN_01038764(void *work, int priority,
+                 uint32_t ticks_low, uint32_t ticks_high)
+{
+    void *const lock = (void *)0x21004b78u;
+    void *const wait_queue = (void *)0x21000758u;
+    volatile uintptr_t *runtime = (volatile uintptr_t *)0x21004b28u;
+    volatile uint8_t *state = (volatile uint8_t *)(runtime[2] + 0x60u);
+    uint32_t token, irq_key;
+    int result;
+
+    state[0] = 1;
+    state[1] = 1;
+    if ((__get_IPSR() & 0x1fu) != 0) {
+        scheduler_fatal(0x12d);
+        return -1;
+    }
+    if (work == 0) {
+        scheduler_fatal(0x12e);
+        return -1;
+    }
+    if (priority < 0) {
+        scheduler_fatal(0x12f);
+        return -1;
+    }
+
+    token = FUN_010384a8(work, priority, (void *)state,
+                         (ticks_low | ticks_high) == 0);
+    irq_key = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
+    if (FUN_0103610c(lock) == 0) {
+        scheduler_lock_fatal(0x72);
+        return -1;
+    }
+    FUN_01036144(lock);
+
+    if (state[0] == 0) {
+        FUN_01038654(work, token, irq_key);
+        if (FUN_01036128(lock) == 0)
+            scheduler_lock_fatal(0xf0);
+        __set_BASEPRI(irq_key);
+        __ISB();
+        return 0;
+    }
+
+    state[0] = 0;
+    if ((ticks_low | ticks_high) == 0) {
+        if (FUN_01036128(lock) == 0)
+            scheduler_lock_fatal(0xf0);
+        __set_BASEPRI(irq_key);
+        __ISB();
+        return -11;
+    }
+
+    result = FUN_010375b8(lock, irq_key, wait_queue, ticks_low | ticks_high,
+                          ticks_low, ticks_high);
+    irq_key = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
+    if (FUN_0103610c(lock) == 0) {
+        scheduler_lock_fatal(0x72);
+        return result;
+    }
+    FUN_01036144(lock);
+    FUN_01038654(work, token, irq_key);
+    if (FUN_01036128(lock) == 0)
+        scheduler_lock_fatal(0xf0);
+    __set_BASEPRI(irq_key);
+    __ISB();
+    return result;
+}

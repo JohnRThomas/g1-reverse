@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000844e0 */
+/* readable reconstruction; identity: FUN_000844e0 @ 0x000844e0
+ * public-name: FUN_000844e0
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000844e0 @ 0x844e0  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fnptr)(int, void *, int, short);
@@ -19,4 +22,3 @@ void FUN_000844e0(int *param_1, unsigned char param_2, unsigned int param_3, uns
   (void)local_24; (void)local_20; (void)local_1c; (void)uStack_18; (void)local_14;
   fp(base, &local_28, 2, (short)param_1[1]);
 }
-

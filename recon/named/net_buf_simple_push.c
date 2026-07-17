@@ -1,5 +1,16 @@
-/* named: net_buf_simple_push */
-/* Reconstructed net_buf_simple_push @ 0x5f518  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005f518 @ 0x0005f518
+ * public-name: net_buf_simple_push
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_push                      <= FUN_0005f518 @ 0x0005f518
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f543a                             @ 0x000f543a
+ *   rodata_f5484                             @ 0x000f5484
+ */
+/* Reconstructed FUN_0005f518 @ 0x5f518  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
@@ -20,4 +31,3 @@ void net_buf_simple_push(int *param_1, unsigned int param_2, unsigned int param_
     *(volatile unsigned int*)r3 = r0 - r1;
     *(volatile short*)(r3 + 4) = (short)r1 + (short)r2;
 }
-

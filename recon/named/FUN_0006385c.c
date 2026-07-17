@@ -1,4 +1,9 @@
-/* named: FUN_0006385c */
+/* readable reconstruction; identity: FUN_0006385c @ 0x0006385c
+ * public-name: FUN_0006385c
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   nrf_rtc_timer_free_channels              @ 0x2000b2d4
+ */
 /* Reconstructed FUN_0006385c @ 0x6385c  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_0006385c(void)
@@ -9,10 +14,9 @@ unsigned int FUN_0006385c(void)
     val = *addr;
     if (val == 0) return 0xfffffff4;
     idx = 31 - __builtin_clz(val);
-    old = *addr;
-    *addr = old & ~(1u << (idx & 0xff));
+    old = __atomic_fetch_and(addr, ~(1u << (idx & 0xff)),
+                             __ATOMIC_ACQ_REL);
     if ((int)((old >> (idx & 0xff)) << 0x1f) < 0) break;
   }
   return idx;
 }
-

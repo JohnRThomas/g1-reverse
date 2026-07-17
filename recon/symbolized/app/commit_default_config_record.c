@@ -1,6 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: commit_default_config_record */
-/* Reconstructed commit_default_config_record @ 0x30710  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00030710 @ 0x00030710
+ * public-name: commit_default_config_record
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   verify_image_checksum                    <= FUN_000302cc @ 0x000302cc
+ *   flash_write_and_verify_blob              <= FUN_00030528 @ 0x00030528
+ *   commit_default_config_record             <= FUN_00030710 @ 0x00030710
+ * address symbols (name @ address):
+ *   rodata_883b8                             @ 0x000883b8
+ *   rodata_a49ed                             @ 0x000a49ed
+ */
+/* Reconstructed FUN_00030710 @ 0x30710  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int verify_image_checksum(void);
@@ -20,10 +30,10 @@ int commit_default_config_record(void)
   } buf;
   iVar1 = verify_image_checksum();
   if (iVar1 == 0) {
-    volatile uint32_t *src = (volatile uint32_t*)((uintptr_t)&tbl_88340) /*=0x883b8*/;
+    volatile uint32_t *src = (volatile uint32_t*)((unsigned long)&rodata_883b8) /*=0x883b8*/;
     local_2c[0]=src[0]; local_2c[1]=src[1]; local_2c[2]=src[2]; local_2c[3]=src[3];
     buf.flag = 1;
-    buf.val_18 = ((uintptr_t)&rodata_a49ed) /*=0xa49ed*/;
+    buf.val_18 = ((unsigned long)&rodata_a49ed) /*=0xa49ed*/;
     buf.val_14 = 0x1b9c;
     buf.val_10 = 0x2000;
     buf.ptr = local_2c;
@@ -33,4 +43,3 @@ int commit_default_config_record(void)
   }
   return uVar2;
 }
-

@@ -1,4 +1,16 @@
-/* named: FUN_00025ecc */
+/* readable reconstruction; identity: FUN_00025ecc @ 0x00025ecc
+ * public-name: FUN_00025ecc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_type                          <= FUN_00016568 @ 0x00016568
+ * address symbols (name @ address):
+ *   g_level_calc_result_cache                @ 0x200023f4
+ *   g_panel_calib_last_divisor               @ 0x200023f8
+ *   g_level_calc_input_c_cache               @ 0x20003024
+ *   g_panel_calib_last_param84               @ 0x20007a98
+ *   g_level_calc_input_sl_cache              @ 0x20007a9c
+ *   g_level_calc_input_b_cache               @ 0x20018c6b
+ */
 /* Reconstructed FUN_00025ecc @ 0x25ecc  (parity: 300/300 trials, PROVEN) */
 extern void get_device_type(void);
 int FUN_00025ecc(char *param_1){
@@ -36,4 +48,3 @@ int FUN_00025ecc(char *param_1){
   }
   return *(volatile int*)0x200023f4UL;
 }
-

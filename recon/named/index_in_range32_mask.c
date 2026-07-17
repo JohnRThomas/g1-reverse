@@ -1,5 +1,10 @@
-/* named: index_in_range32_mask */
-/* Reconstructed index_in_range32_mask @ 0x7d860  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d860 @ 0x0007d860
+ * public-name: index_in_range32_mask
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ */
+/* Reconstructed FUN_0007d860 @ 0x7d860  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 unsigned int index_in_range32_mask(unsigned int param_1)
@@ -11,4 +16,3 @@ unsigned int index_in_range32_mask(unsigned int param_1)
   }
   return uVar1;
 }
-

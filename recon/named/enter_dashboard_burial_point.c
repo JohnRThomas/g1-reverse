@@ -1,9 +1,19 @@
-/* named: enter_dashboard_burial_point */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed enter_dashboard_burial_point @ 0x4a9ec  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a9ec @ 0x0004a9ec
+ * public-name: enter_dashboard_burial_point
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   enter_dashboard_burial_point             <= FUN_0004a9ec @ 0x0004a9ec
+ *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
+ *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
+ * address symbols (name @ address):
+ *   rodata_f038d                             @ 0x000f038d
+ *   rodata_f0475                             @ 0x000f0475
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_0004a9ec @ 0x4a9ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 extern unsigned get_current_burial_point_type(void);
@@ -34,4 +44,3 @@ void enter_dashboard_burial_point(void){
         }
     }
 }
-

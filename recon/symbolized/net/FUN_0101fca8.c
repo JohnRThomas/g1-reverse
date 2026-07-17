@@ -6,7 +6,7 @@ extern void FUN_01020088(unsigned int a);
 void FUN_0101fca8(void)
 {
     unsigned int base = REG_4100e000 /*=0x4100e000*/;
-    volatile unsigned char *pcVar1 = (volatile unsigned char *)((uintptr_t)&g_net_ccm_op_status) /*=0x210014d8*/;
+    volatile unsigned char *pcVar1 = (volatile unsigned char *)((unsigned long)&g_net_ccm_op_status) /*=0x210014d8*/;
     unsigned char cVar4=0, cVar3;
     int iVar5;
     if (*pcVar1 != 0) {
@@ -27,4 +27,3 @@ void FUN_0101fca8(void)
     }
     FUN_01020088(0);
 }
-

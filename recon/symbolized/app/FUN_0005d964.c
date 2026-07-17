@@ -1,8 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0005d964 */
-/* globals referenced:
-//   0x2001d532  g_bt_settings_load_done      
-*/
+/* readable reconstruction; identity: FUN_0005d964 @ 0x0005d964
+ * public-name: FUN_0005d964
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_auth_get_pairing_method              <= FUN_0005caec @ 0x0005caec
+ *   smp_init                                 <= FUN_0005cc30 @ 0x0005cc30
+ *   bt_keys_get_addr                         <= FUN_0005e6a8 @ 0x0005e6a8
+ *   bt_keys_find                             <= FUN_0005e7c8 @ 0x0005e7c8
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ * address symbols (name @ address):
+ *   g_bt_settings_load_done                  @ 0x2001d532
+ */
 /* Reconstructed FUN_0005d964 @ 0x5d964  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0005cac0(int);
@@ -53,7 +66,7 @@ int FUN_0005d964(int param_1)
             if (cac == 0) goto MAIN;
             if (*(volatile int*)(cac + 0xc) == 0) goto MAIN;
         }
-        uVar7 = *(volatile uint8_t*)((uintptr_t)&g_bt_settings_load_done) /*=0x2001d532*/;
+        uVar7 = *(volatile uint8_t*)((unsigned long)&g_bt_settings_load_done) /*=0x2001d532*/;
         if (uVar7 == 0) goto MAIN;
         goto LAB_5da60;
     } else {
@@ -103,4 +116,3 @@ LAB_5da60:
         return rv;
     }
 }
-

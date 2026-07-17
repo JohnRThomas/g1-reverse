@@ -1,4 +1,7 @@
-/* named: FUN_00080c06 */
+/* readable reconstruction; identity: FUN_00080c06 @ 0x00080c06
+ * public-name: FUN_00080c06
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080c06 @ 0x80c06  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -10,4 +13,3 @@ void FUN_00080c06(volatile int *param_1)
   }
   return;
 }
-

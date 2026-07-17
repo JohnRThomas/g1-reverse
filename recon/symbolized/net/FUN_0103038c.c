@@ -1,131 +1,90 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0103038c @ 0x103038c  (parity 300 trials PROVEN) */
-/* net-core FUN_0103038c @ 0x103038c  (parity 300 trials PROVEN) */
+/* net-core FUN_0103038c @ 0x103038c; exact executable extent 268 bytes. */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-extern unsigned int FUN_0102ca80(void);
-extern void FUN_01039bbe(void);
-extern void FUN_01039bb0(void);
-extern unsigned int FUN_0103b14a(void);
-extern void FUN_0102ea00(void);
-extern void FUN_01037c64(void);
+extern int32_t FUN_0102ca80(uint32_t object, uint32_t state);
+extern void FUN_01039bbe(uint32_t source, uint32_t message, uint32_t line);
+extern void FUN_01039bb0(uint32_t message, uint32_t line)
+    __attribute__((noreturn));
+extern uint32_t FUN_0103b14a(void);
+extern void FUN_0102ea00(uint32_t saved_basepri);
+extern void FUN_01037c64(uint32_t irq, uint32_t unused);
 
-__attribute__((naked)) void FUN_0103038c(void)
+#define CLOCK ((volatile uint32_t *)REG_41005000 /*=0x41005000*/)
+
+uint32_t FUN_0103038c(uint32_t mode)
 {
-    __asm__ volatile(
-        "push.w {r4,r5,r6,r7,r8,lr}\n"
-        "movs r2,#1\n"
-        "mov r6,r0\n"
-        "ldr r1,=0x21004810\n"
-        "Lb1030396:\n"
-        "ldaex r3,[r1]\n"
-        "stlex r0,r2,[r1]\n"
-        "cmp r0,#0\n"
-        "bne Lb1030396\n"
-        "cbnz r3, Lb10303cc\n"
-        "ldr r1,=0x21004800\n"
-        "ldr r0,=0x21004834\n"
-        "str r3,[r1,#4]\n"
-        "str r3,[r1,#0xc]\n"
-        "str r2,[r1,#8]\n"
-        "bl FUN_0102ca80\n"
-        "cmp r0,#0\n"
-        "bge Lb10303cc\n"
-        "ldr r1,=0x0103dea5\n"
-        "mov.w r2,#0x230\n"
-        "ldr r0,=0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "mov.w r1,#0x230\n"
-        "Lb10303c6:\n"
-        "ldr r0,=0x0103dea5\n"
-        "bl FUN_01039bb0\n"
-        "Lb10303cc:\n"
-        "cbz r6, Lb1030426\n"
-        "subs r3, r6, #1\n"
-        "cmp r3, #1\n"
-        "bhi Lb1030486\n"
-        "cmp r6, #1\n"
-        "bne Lb10303e6\n"
-        "ldr r3,=0x41005000\n"
-        "ldr.w r3,[r3,#0x41c]\n"
-        "and r3,r3,#3\n"
-        "cmp r3,#2\n"
-        "beq Lb1030426\n"
-        "Lb10303e6:\n"
-        "bl FUN_0103b14a\n"
-        "mov r5,r0\n"
-        "cbnz r0, Lb103042a\n"
-        "ldr r3,=0x21006461\n"
-        "ldrb r3,[r3]\n"
-        "cbz r3, Lb103042a\n"
-        "movs r2,#2\n"
-        "mov r7,r0\n"
-        "ldr r3,=0x41005000\n"
-        "str.w r2,[r3,#0x308]\n"
-        "Lb10303fe:\n"
-        "ldr r4,=0x41005000\n"
-        "ldr.w r8,=0xe000e100\n"
-        "Lb1030404:\n"
-        "ldr.w r2,[r4,#0x418]\n"
-        "ldr.w r3,[r4,#0x418]\n"
-        "lsls r2,r2,#0xf\n"
-        "bpl Lb103043e\n"
-        "and r3,r3,#3\n"
-        "cmp r3,#2\n"
-        "beq Lb103041c\n"
-        "cmp r6,#1\n"
-        "bne Lb103043e\n"
-        "Lb103041c:\n"
-        "cbz r5, Lb103047c\n"
-        "msr basepri, r7\n"
-        "isb sy\n"
-        "Lb1030426:\n"
-        "pop.w {r4,r5,r6,r7,r8,pc}\n"
-        "Lb103042a:\n"
-        "mov.w r3,#0x40\n"
-        "mrs r7, basepri\n"
-        "msr basepri_max, r3\n"
-        "isb sy\n"
-        "movs r5,#1\n"
-        "b Lb10303fe\n"
-        "Lb103043e:\n"
-        "cbz r5, Lb1030472\n"
-        "mov r0,r7\n"
-        "bl FUN_0102ea00\n"
-        "Lb1030446:\n"
-        "ldr.w r3,[r4,#0x518]\n"
-        "uxtb r3,r3\n"
-        "cmp r3,#1\n"
-        "bne Lb1030404\n"
-        "ldr.w r2,[r4,#0x104]\n"
-        "cmp r2,#0\n"
-        "beq Lb1030404\n"
-        "movs r2,#0\n"
-        "str.w r2,[r4,#0x104]\n"
-        "ldr.w r2,[r4,#0x104]\n"
-        "movs r2,#2\n"
-        "str.w r2,[r4,#0x518]\n"
-        "movs r2,#0x20\n"
-        "str.w r2,[r8,#0x180]\n"
-        "str r3,[r4,#8]\n"
-        "b Lb1030404\n"
-        "Lb1030472:\n"
-        "movs r1,#0\n"
-        "movs r0,#0x21\n"
-        "bl FUN_01037c64\n"
-        "b Lb1030446\n"
-        "Lb103047c:\n"
-        "movs r2,#2\n"
-        "ldr r3,=0x41005000\n"
-        "str.w r2,[r3,#0x304]\n"
-        "b Lb1030426\n"
-        "Lb1030486:\n"
-        "ldr r1,=0x0103dea5\n"
-        "movw r2,#0x242\n"
-        "ldr r0,=0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "movw r1,#0x242\n"
-        "b Lb10303c6\n"
-    );
+    volatile uint32_t *const initialized = (volatile uint32_t *)0x21004810u;
+    uint32_t old_initialized;
+
+    /* Atomic acquire/release exchange used by the one-time initializer. */
+    do {
+        old_initialized = __LDAEX(initialized);
+    } while (__STLEX(1u, initialized) != 0u);
+
+    if (old_initialized == 0u) {
+        volatile uint32_t *const state = (volatile uint32_t *)0x21004800u;
+
+        state[1] = 0u;
+        state[3] = 0u;
+        state[2] = 1u;
+        if (FUN_0102ca80(0x21004834u, 0x21004800u) < 0) {
+            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
+            FUN_01039bb0(0x0103dea5u, 0x230u);
+        }
+    }
+
+    if (mode == 0u)
+        return 0u;
+    if (mode > 2u) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x242u);
+        FUN_01039bb0(0x0103dea5u, 0x242u);
+    }
+
+    if (mode == 1u && (CLOCK[0x41c / 4] & 3u) == 2u)
+        return 0u;
+
+    /* A zero helper result requires this routine to establish the BASEPRI
+     * context itself.  Thereafter both paths have an active context. */
+    uint32_t context_result = FUN_0103b14a();
+    uint32_t has_context = context_result;
+    uint32_t saved_basepri = 0u;
+    if (has_context == 0u) {
+        if (*(volatile uint8_t *)0x21006461u != 0u)
+            CLOCK[0x308 / 4] = 2u;
+        saved_basepri = __get_BASEPRI();
+        __set_BASEPRI_MAX(0x40u);
+        __ISB();
+        has_context = 1u;
+    }
+
+    for (;;) {
+        uint32_t status = CLOCK[0x418 / 4];
+        uint32_t source = CLOCK[0x418 / 4] & 3u;
+
+        if ((status & 0x00010000u) != 0u &&
+            (source == 2u || mode == 1u)) {
+            if (has_context != 0u) {
+                __set_BASEPRI(saved_basepri);
+                __ISB();
+            } else
+                CLOCK[0x304 / 4] = 2u;
+            return context_result;
+        }
+
+        if (has_context != 0u)
+            FUN_0102ea00(saved_basepri);
+        else
+            FUN_01037c64(0x21u, 0u);
+
+        while ((uint8_t)CLOCK[0x518 / 4] == 1u &&
+               CLOCK[0x104 / 4] != 0u) {
+            CLOCK[0x104 / 4] = 0u;
+            (void)CLOCK[0x104 / 4];
+            CLOCK[0x518 / 4] = 2u;
+            *(volatile uint32_t *)0xe000e280u = 0x20u;
+            CLOCK[2] = 1u;
+        }
+    }
 }
-
-

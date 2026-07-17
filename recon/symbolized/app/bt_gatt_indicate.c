@@ -1,9 +1,27 @@
 #include "g1_app_symbols.h"
-/* named: bt_gatt_indicate */
-/* globals referenced:
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
-/* Reconstructed bt_gatt_indicate @ 0x5b378  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b378 @ 0x0005b378
+ * public-name: bt_gatt_indicate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_attr_get_handle                  <= FUN_0005a9f4 @ 0x0005a9f4
+ *   bt_gatt_foreach_attr_type                <= FUN_0005aa84 @ 0x0005aa84
+ *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
+ *   bt_gatt_indicate                         <= FUN_0005b378 @ 0x0005b378
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   bt_gatt_attr_value_handle                <= FUN_00082c0e @ 0x00082c0e
+ * address symbols (name @ address):
+ *   ADDR_gatt_send_ccc_update_THUMB          @ 0x0005b891
+ *   rodata_825fb                             @ 0x000825fb
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b44                             @ 0x000f4b44
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
+/* Reconstructed FUN_0005b378 @ 0x5b378  (parity: 300/300 trials, PROVEN) */
 extern int bt_gatt_attr_get_handle(int a0);
 extern int bt_gatt_foreach_attr_type(int a0,int a1,int a2,int a3,int a4,int a5,void *a6);
 extern int gatt_indicate(int a0,int a1,int *a2);
@@ -26,14 +44,14 @@ int bt_gatt_indicate(int param_1,int *param_2)
     int uVar2;
 
     if (param_2 == (int*)0) {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "params" /*=0xf4b3d*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, 0xbc4);
-        printk("\tinvalid parameters\n\n" /*=0xf4a0a*/, 0, 0, 0);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f4b3d) /*=0xf4b3d*/, ((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0xbc4);
+        printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/, 0, 0, 0);
         uVar2 = 0xbc4;
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, uVar2);
+        assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/, uVar2);
         return 0;
     } else {
         if ((param_2[1] != 0) || (param_2[0] != 0)) {
-            iVar1 = FUN_0008270c(((uintptr_t)&g_ble_dev_ncmd_sem) /*=0x200020d4*/);
+            iVar1 = FUN_0008270c(((unsigned long)&g_ble_dev_ncmd_sem) /*=0x200020d4*/);
             if (-1 < (int)((unsigned int)iVar1 << 0x1d)) {
                 return 0xfffffff5;
             }
@@ -48,7 +66,7 @@ int bt_gatt_indicate(int param_1,int *param_2)
                 return 0xfffffffe;
             } else {
                 local_24 = (unsigned int*)0;
-                bt_gatt_foreach_attr_type(iVar1,((uintptr_t)&tbl_ffc8) /*=0xffff*/,param_2[0],0,1,((uintptr_t)&tbl_825bb) /*=0x825fb*/,&local_24);
+                bt_gatt_foreach_attr_type(iVar1,0xffff,param_2[0],0,1,((unsigned long)&rodata_825fb) /*=0x825fb*/,&local_24);
                 if (local_24 != (unsigned int*)0) {
                     param_2[1] = (int)local_24;
 LAB_0005b40a:
@@ -72,17 +90,16 @@ LAB_0005b40a:
                     *(unsigned char*)((int)param_2 + 0x16) = 0;
                     local_28[0] = 0;
                     local_14 = param_2;
-                    bt_gatt_foreach_attr_type(local_20,((uintptr_t)&tbl_ffc8) /*=0xffff*/,(int)local_28,0,1,((uintptr_t)&tbl_5b870) /*=0x5b891*/,&local_24);
+                    bt_gatt_foreach_attr_type(local_20,0xffff,(int)local_28,0,1,ADDR_gatt_send_ccc_update_THUMB /*=0x5b891*/,&local_24);
                     return local_1c;
                 }
                 return 0xfffffffe;
             }
         }
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "params->attr || params->uuid" /*=0xf4b44*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, 0xbc5);
-        printk("\tinvalid parameters\n\n" /*=0xf4a0a*/, 0, 0, 0);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f4b44) /*=0xf4b44*/, ((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0xbc5);
+        printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/, 0, 0, 0);
         uVar2 = 0xbc5;
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, uVar2);
+        assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/, uVar2);
         return 0;
     }
 }
-

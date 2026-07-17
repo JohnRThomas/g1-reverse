@@ -1,4 +1,11 @@
-/* named: FUN_00085b0c */
+/* readable reconstruction; identity: FUN_00085b0c @ 0x00085b0c
+ * public-name: FUN_00085b0c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   virtqueue_get_buffer                     <= FUN_00085734 @ 0x00085734
+ *   mutex_lock_wait_forever_dup              <= FUN_000859b6 @ 0x000859b6
+ *   rpmsg_virtio_shm_pool_get_buffer         <= FUN_00085aee @ 0x00085aee
+ */
 /* Reconstructed FUN_00085b0c @ 0x85b0c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00074844(int,int);
@@ -53,4 +60,3 @@ L70:
     *param_2=*(volatile int*)param_2-0x10;
     return (int*)((int)piVar3+0x10);
 }
-

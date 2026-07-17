@@ -6,19 +6,26 @@ extern int FUN_01034458(unsigned int a);
 extern int FUN_01034480(unsigned int a);
 extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, unsigned int d);
 
-#define DAT_eb0 ((uintptr_t)&g_esb_ppi_ch_id_6) /*=0x21006460*/
+#define DAT_eb0 ((unsigned long)&g_esb_ppi_ch_id_6) /*=0x21006460*/
 #define DAT_eb4 0x0bad0000
-#define DAT_eb8 ((uintptr_t)&g_esb_ppi_ch_id_5) /*=0x2100645f*/
-#define DAT_ebc ((uintptr_t)&g_net_radio_trx_ppi_ch_e) /*=0x2100645e*/
-#define DAT_ec0 ((uintptr_t)&g_esb_ppi_ch_id_3) /*=0x2100645d*/
-#define DAT_ec4 ((uintptr_t)&g_154_dppi_channel_ack) /*=0x2100645c*/
-#define DAT_ec8 ((uintptr_t)&g_esb_ppi_ch_id_1) /*=0x2100645b*/
-#define DAT_ecc ((uintptr_t)&g_net_radio_trx_ppi_ch_a) /*=0x2100645a*/
-#define DAT_ed0 ((uintptr_t)&rodata_103e4af) /*=0x103e4af*/
-#define DAT_ed4 ((uintptr_t)&rodata_103c05c) /*=0x103c05c*/
+#define DAT_eb8 ((unsigned long)&g_esb_ppi_ch_id_5) /*=0x2100645f*/
+#define DAT_ebc ((unsigned long)&g_net_radio_trx_ppi_ch_e) /*=0x2100645e*/
+#define DAT_ec0 ((unsigned long)&g_esb_ppi_ch_id_3) /*=0x2100645d*/
+#define DAT_ec4 ((unsigned long)&g_154_dppi_channel_ack) /*=0x2100645c*/
+#define DAT_ec8 ((unsigned long)&g_esb_ppi_ch_id_1) /*=0x2100645b*/
+#define DAT_ecc ((unsigned long)&g_net_radio_trx_ppi_ch_a) /*=0x2100645a*/
+#define DAT_ed0 ((unsigned long)&rodata_103e4af) /*=0x103e4af*/
+#define DAT_ed4 ((unsigned long)&rodata_103c05c) /*=0x103c05c*/
 #define DAT_ed8 REG_41008000 /*=0x41008000*/
-#define DAT_edc REG_4100f000 /*=0x4100f000*/
-#define DAT_ee0 ((uintptr_t)&rodata_103e4d1) /*=0x103e4d1*/
+#define DAT_edc 0x4100f000u
+#define DAT_ee0 ((unsigned long)&rodata_103e4d1) /*=0x103e4d1*/
+
+typedef struct {
+    int severity;
+    unsigned int message;
+    int status;
+    unsigned int transport_reserved[3];
+} diagnostic_record_t;
 
 unsigned int FUN_01033df0(void)
 {
@@ -57,20 +64,19 @@ unsigned int FUN_01033df0(void)
             *(volatile unsigned int *)(DAT_edc + 0x504) = 1u << (unsigned int)bVar1;
             return 0;
         } else {
-            struct { int a; unsigned int b; int c; } local;
-            local.a = 3;
-            local.b = DAT_ed0;
-            local.c = rv;
+            diagnostic_record_t local;
+            local.severity = 3;
+            local.message = DAT_ed0;
+            local.status = rv;
             FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
             return 0xffffffed;
         }
     } else {
-        struct { int a; unsigned int b; int c; } local;
-        local.a = 3;
-        local.b = DAT_ee0;
-        local.c = iStack_20;
+        diagnostic_record_t local;
+        local.severity = 3;
+        local.message = DAT_ee0;
+        local.status = iStack_20;
         FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
         return 0xffffffed;
     }
 }
-

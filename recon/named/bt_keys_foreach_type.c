@@ -1,18 +1,28 @@
-/* named: bt_keys_foreach_type */
-/* globals referenced:
-//   0x2000af4c  bt_keys_pool                 
-*/
-/* Reconstructed bt_keys_foreach_type @ 0x5e758  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e758 @ 0x0005e758
+ * public-name: bt_keys_foreach_type
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_keys_foreach_type                     <= FUN_0005e758 @ 0x0005e758
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5268                             @ 0x000f5268
+ *   rodata_f52c0                             @ 0x000f52c0
+ *   bt_keys_pool                             @ 0x2000af4c
+ *   bt_keys_pool_1                           @ 0x2000afa8
+ */
+/* Reconstructed FUN_0005e758 @ 0x5e758  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef void (*fnptr)(unsigned int, unsigned int);
-extern void assert_post_action(void);
-extern void printk(void);
+extern void assert_post_action(uint32_t, uint32_t);
+extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
 
 void bt_keys_foreach_type(unsigned short param_1, fnptr param_2, unsigned int param_3)
 {
     if (param_2 == 0) {
-        printk();
-        assert_post_action();
+        printk(0x00099cbdU, 0x000f52c0U, 0x000f5268U, 0xb3U);
+        assert_post_action(0x000f5268U, 0xb3U);
         return;
     }
     uintptr_t base = 0x2000af4cUL;

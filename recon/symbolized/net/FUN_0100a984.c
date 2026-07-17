@@ -3,9 +3,9 @@
 
 unsigned int FUN_0100a984(void)
 {
-  volatile unsigned short *p34 = (volatile unsigned short *)((uintptr_t)&g_net_ctrl_pending_req_id) /*=0x21000c2c*/;
-  volatile unsigned short *p38 = (volatile unsigned short *)((uintptr_t)&g_net_ctrl_pending_req_target_id) /*=0x21000c30*/;
-  volatile unsigned char  *p32 = (volatile unsigned char  *)((uintptr_t)&g_net_ctrl_pending_req_busy_flag) /*=0x21000c2a*/;
+  volatile unsigned short *p34 = (volatile unsigned short *)((unsigned long)&g_net_ctrl_pending_req_id) /*=0x21000c2c*/;
+  volatile unsigned short *p38 = (volatile unsigned short *)((unsigned long)&g_net_ctrl_pending_req_target_id) /*=0x21000c30*/;
+  volatile unsigned char  *p32 = (volatile unsigned char  *)((unsigned long)&g_net_ctrl_pending_req_busy_flag) /*=0x21000c2a*/;
 
   if (*p34 == *p38) {
     *p34 = 0xffff;
@@ -16,4 +16,3 @@ unsigned int FUN_0100a984(void)
   }
   return 0;
 }
-

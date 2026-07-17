@@ -1,4 +1,11 @@
-/* named: FUN_0004cbec */
+/* readable reconstruction; identity: FUN_0004cbec @ 0x0004cbec
+ * public-name: FUN_0004cbec
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_881d8                             @ 0x000881d8
+ *   rodata_f0c14                             @ 0x000f0c14
+ *   rodata_f0c32                             @ 0x000f0c32
+ */
 /* Reconstructed FUN_0004cbec @ 0x4cbec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007e9ea(int,int,void*);
@@ -21,4 +28,3 @@ uint32_t FUN_0004cbec(int param_1, int *param_2, int param_3){
   FUN_0007e9ea(0x000881d8, 0x1040, local);
   return 0xfffffffb;
 }
-

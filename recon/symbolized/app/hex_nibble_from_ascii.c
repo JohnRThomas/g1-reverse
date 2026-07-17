@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: hex_nibble_from_ascii */
-/* Reconstructed hex_nibble_from_ascii @ 0x87340  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087340 @ 0x00087340
+ * public-name: hex_nibble_from_ascii
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hex_nibble_from_ascii                    <= FUN_00087340 @ 0x00087340
+ */
+/* Reconstructed FUN_00087340 @ 0x87340  (parity: 300/300 trials, PROVEN) */
 
 char hex_nibble_from_ascii(int param_1)
 {
@@ -16,4 +21,3 @@ char hex_nibble_from_ascii(int param_1)
     }
     return cVar1;
 }
-

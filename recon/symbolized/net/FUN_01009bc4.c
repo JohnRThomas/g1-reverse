@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01009bc4 @ 0x1009bc4  (parity 300 trials PROVEN) */
-#define P_01009c64 ((uintptr_t)&g_net_ctx_ptr_table) /*=0x21000b7c*/
+#define P_01009c64 0x21000b7c
 
 extern unsigned char FUN_0102741e(int, int, unsigned char);
 extern unsigned int FUN_0102751a(int, short, unsigned char);
@@ -33,4 +33,3 @@ unsigned int FUN_01009bc4(short *param_1, unsigned char param_2)
   }
   return uVar5;
 }
-

@@ -1,10 +1,26 @@
 #include "g1_app_symbols.h"
-/* named: ancs_main */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006ab8  g_ancs_active_conn           
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00019950 @ 0x00019950
+ * public-name: ancs_main
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   ancs_c_init                              <= FUN_0001905c @ 0x0001905c
+ *   ancs_discover_params_reset               <= FUN_000191d8 @ 0x000191d8
+ *   bt_start                                 <= FUN_00019308 @ 0x00019308
+ *   start_ancs_work_thread                   <= FUN_000198cc @ 0x000198cc
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   bt_send                                  <= FUN_00054a44 @ 0x00054a44
+ *   bt_hci_driver_close                      <= FUN_00054b70 @ 0x00054b70
+ *   bt_conn_auth_info_cb_register            <= FUN_00057330 @ 0x00057330
+ *   bt_gatt_cb_register                      <= FUN_0005a9d8 @ 0x0005a9d8
+ *   bt_foreach_bond                          <= FUN_0005e6d4 @ 0x0005e6d4
+ *   settings_load                            <= FUN_0007f192 @ 0x0007f192
+ * address symbols (name @ address):
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_active_conn                       @ 0x20006ab8
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed ancs_main @ 0x19950  (parity: 300/300 trials, PROVEN) */
 extern int DEBUG_PRINT(int a, ...);
 extern int get_device_info(int a, ...);
@@ -32,10 +48,10 @@ unsigned int ancs_main(int param_1, unsigned int param_2, unsigned int param_3, 
     int iVar4;
     int iVar5;
 
-    piVar1 = (int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-    *(volatile unsigned int*)((uintptr_t)&g_ancs_active_conn) /*=0x20006ab8*/ = (unsigned int)param_1;
+    piVar1 = (int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
+    *(volatile unsigned int*)((unsigned long)&g_ancs_active_conn) /*=0x20006ab8*/ = (unsigned int)param_1;
     if (0 < *piVar1) {
-        if (*(volatile unsigned int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+        if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
             DEBUG_PRINT(0,0,param_3,0,param_4);
         } else {
             debug_print(0);
@@ -70,7 +86,7 @@ unsigned int ancs_main(int param_1, unsigned int param_2, unsigned int param_3, 
             DEBUG_PRINT(0,0);
             FUN_0007c0a8(1000);
             if (0 < *piVar1) {
-                if (*(volatile unsigned int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     DEBUG_PRINT(0,0);
                 } else {
                     debug_print(0);
@@ -105,4 +121,3 @@ LAB_00019a2c:
     } while (1);
     return iVar4;
 }
-

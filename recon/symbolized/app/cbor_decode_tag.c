@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_tag */
-/* Reconstructed cbor_decode_tag @ 0x8603c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008603c @ 0x0008603c
+ * public-name: cbor_decode_tag
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_check_major_type             <= FUN_00085da2 @ 0x00085da2
+ *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
+ *   cbor_decode_tag                          <= FUN_0008603c @ 0x0008603c
+ */
+/* Reconstructed FUN_0008603c @ 0x8603c  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_check_major_type(void *a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern int cbor_decode_extract_value(void *a, unsigned int b, unsigned int c);
@@ -16,4 +23,3 @@ int cbor_decode_tag(char *param_1, unsigned int param_2, unsigned int param_3, u
     }
     return iVar1;
 }
-

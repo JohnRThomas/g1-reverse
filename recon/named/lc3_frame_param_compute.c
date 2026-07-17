@@ -1,5 +1,10 @@
-/* named: lc3_frame_param_compute */
-/* Reconstructed lc3_frame_param_compute @ 0x68ecc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00068ecc @ 0x00068ecc
+ * public-name: lc3_frame_param_compute
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_frame_param_compute                  <= FUN_00068ecc @ 0x00068ecc
+ */
+/* Reconstructed FUN_00068ecc @ 0x68ecc  (parity: 300/300 trials, PROVEN) */
 int lc3_frame_param_compute(int param_1, int param_2){
   int iVar1, iVar2;
   if (param_1==0x1d4c){
@@ -26,4 +31,3 @@ int lc3_frame_param_compute(int param_1, int param_2){
     return (iVar2+iVar1+300)*4;
   }
 }
-

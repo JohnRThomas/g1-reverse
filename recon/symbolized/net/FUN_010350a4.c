@@ -7,15 +7,15 @@ void FUN_010350a4(void)
     unsigned int uVar3, uVar6 = 0;
 
     for (uVar3 = 0x40; uVar3 != 0x60; uVar3 += 4) {
-        volatile unsigned int *slot = (volatile unsigned int *)(REG_41019100 /*=0x41019100*/ + uVar3);
+        volatile unsigned int *slot = (volatile unsigned int *)(0x41019100u + uVar3);
         if (*slot != 0) {
             *slot = 0;
             uVar6 = uVar6 | (1u << ((uVar3 >> 2) & 0xff));
         }
     }
 
-    volatile unsigned int *puVar2 = (volatile unsigned int *)((uintptr_t)&g_net_gpiote_evt_handler_table) /*=0x21004af8*/;
-    unsigned int uVar7 = *(volatile unsigned int *)(REG_41019000 /*=0x41019000*/ + 0x304);
+    volatile unsigned int *puVar2 = (volatile unsigned int *)((unsigned long)&g_net_gpiote_evt_handler_table) /*=0x21004af8*/;
+    unsigned int uVar7 = *(volatile unsigned int *)(0x41019000u + 0x304);
 
     for (uVar3 = 0x40; uVar3 != 0x60; uVar3 += 4) {
         unsigned int uVar4 = 1u << ((uVar3 >> 2) & 0xff);
@@ -28,5 +28,3 @@ void FUN_010350a4(void)
         }
     }
 }
-
-

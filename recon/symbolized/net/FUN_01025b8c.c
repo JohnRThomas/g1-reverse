@@ -12,4 +12,3 @@ void FUN_01025b8c(void)
   base[0x90/4] = 0;
   return;
 }
-

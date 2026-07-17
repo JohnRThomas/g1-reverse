@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101124c @ 0x101124c  (parity 300 trials PROVEN) */
-#define P_010112d8 ((uintptr_t)&g_net_own_addr_info) /*=0x21000f20*/
+#define P_010112d8 ((unsigned long)&g_net_own_addr_info) /*=0x21000f20*/
 
 extern int FUN_0100ca68(unsigned char);
 extern int FUN_0100bc04(unsigned char);
@@ -36,4 +36,3 @@ void FUN_0101124c(int param_1, unsigned int param_2)
   }
   return;
 }
-

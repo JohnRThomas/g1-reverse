@@ -1,8 +1,20 @@
-/* named: ble_notify_remote_info_available */
-/* globals referenced:
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_notify_remote_info_available @ 0x56da8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056da8 @ 0x00056da8
+ * public-name: ble_notify_remote_info_available
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_00056da8 @ 0x56da8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_000819ea(void);
 extern void printk(unsigned,...);
@@ -34,4 +46,3 @@ void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned pa
         uVar4 = uVar4 + 0x24;
     }
 }
-

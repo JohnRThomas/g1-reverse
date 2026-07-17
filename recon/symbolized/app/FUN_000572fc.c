@@ -1,11 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000572fc */
+/* readable reconstruction; identity: FUN_000572fc @ 0x000572fc
+ * public-name: FUN_000572fc
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_bt_conn_auth_cb                        @ 0x2000ad28
+ */
 /* Reconstructed FUN_000572fc @ 0x572fc  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_000572fc(int *param_1)
 {
     if (param_1 != (int*)0) {
-        if (*(volatile int*)((uintptr_t)&g_bt_conn_auth_cb) /*=0x2000ad28*/ != 0) {
+        if (*(volatile int*)((unsigned long)&g_bt_conn_auth_cb) /*=0x2000ad28*/ != 0) {
             return 0xffffff88;
         }
         if (param_1[4] == 0 &&
@@ -13,7 +18,6 @@ unsigned int FUN_000572fc(int *param_1)
             return 0xffffffea;
         }
     }
-    *(volatile int*)((uintptr_t)&g_bt_conn_auth_cb) /*=0x2000ad28*/ = (int)param_1;
+    *(volatile int*)((unsigned long)&g_bt_conn_auth_cb) /*=0x2000ad28*/ = (int)param_1;
     return 0;
 }
-

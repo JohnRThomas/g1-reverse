@@ -1,7 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01021614 @ 0x1021614  (parity 300 trials PROVEN) */
 
-#define DAT_0102162c ((unsigned int)"%02X-0x%02X\n" /*=0x103c5c4*/)
+#define DAT_0102162c ((unsigned int)((unsigned long)&rodata_103c5c4) /*=0x103c5c4*/)
 #define DAT_01021630 ((unsigned int)0x10624dd3)
 
 int FUN_01021614(int param_1, int param_2)
@@ -10,4 +10,3 @@ int FUN_01021614(int param_1, int param_2)
     unsigned long long prod = (unsigned long long)DAT_01021630 * (unsigned long long)(v + 1000);
     return param_1 + (unsigned int)(prod >> 0x26);
 }
-

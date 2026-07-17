@@ -1,10 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: mutex_unlock_syscall_handler */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed mutex_unlock_syscall_handler @ 0x745c8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000745c8 @ 0x000745c8
+ * public-name: mutex_unlock_syscall_handler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
+ *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
+/* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_000501d4(int,...);
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
@@ -15,23 +37,32 @@ extern int assert_post_action(int,...);
 extern int printk(int,...);
 void mutex_unlock_syscall_handler(void)
 {
-  int iVar2 = z_spin_lock_valid(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
-  int iVar3 = ((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/;
-  if (iVar2 == 0) {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_lock_valid(l)" /*=0xf0920*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x72);
-    printk("\tInvalid spinlock %p\n" /*=0xf0935*/,((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
-    assert_post_action("WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x72);
+  if (__get_IPSR() != 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x57a);
+    printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
+    assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0x57a);
     return;
   }
-  z_spin_lock_set_owner(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
+  unsigned key = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
+  int iVar2 = z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  int iVar3 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+  if (iVar2 == 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+    return;
+  }
+  z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
   int *puVar9 = (int*)(iVar3+0x1c);
   *(unsigned char*)(*(int*)(iVar3+8)+0xd) &= 0x7f;
   dlist_unlink_node((int)puVar9);
   int *piVar8 = *(int**)(iVar3+8);
   *(unsigned char*)((int)piVar8+0xd) |= 0x80;
-  if (piVar8 == (int*)((uintptr_t)&g_thread_dummy) /*=0x20006720*/) {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"!z_is_idle_thread_object(thread)" /*=0xf84d6*/,"WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
-    assert_post_action("WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
+  if (piVar8 == (int*)0x20006720) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
+    assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     return;
   }
   int *puVar6 = *(int**)(iVar3+0x1c);
@@ -49,10 +80,9 @@ void mutex_unlock_syscall_handler(void)
   *piVar8 = (int)puVar9; piVar8[1]=(int)puVar5; *puVar5=(int)piVar8; *(int**)(iVar3+0x20)=piVar8;
 L:
   FUN_000737d8(1);
-  int r = z_spin_unlock_valid(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
-  if (r != 0) { FUN_000501d4(0); return; }
-  printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_unlock_valid(l)" /*=0xf08f4*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x111);
-  printk("\tNot my spinlock %p\n" /*=0xf090b*/,((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
-  assert_post_action("WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x111);
+  int r = z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  if (r != 0) { FUN_000501d4(key); return; }
+  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x111);
+  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x111);
 }
-

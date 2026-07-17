@@ -1,5 +1,26 @@
-/* named: k_uptime_ticks_impl */
-/* Reconstructed k_uptime_ticks_impl @ 0x74f68  (parity: 80/80 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00074f68 @ 0x00074f68
+ * public-name: k_uptime_ticks_impl
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   rtc_get_elapsed_cycles_since_baseline    <= FUN_00074b68 @ 0x00074b68
+ *   k_uptime_ticks_impl                      <= FUN_00074f68 @ 0x00074f68
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   g_curr_tick_lo                           @ 0x200069e0
+ *   g_curr_tick_hi                           @ 0x200069e4
+ *   g_timeout_list_spinlock                  @ 0x2000b498
+ */
+/* Reconstructed FUN_00074f68 @ 0x74f68  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
 extern int z_spin_lock_valid(unsigned int);
 extern void z_spin_lock_set_owner(unsigned int);
@@ -30,4 +51,3 @@ unsigned long long k_uptime_ticks_impl(void){
   unsigned int r1res=uVar5 + (unsigned int)((int)uVar3>>31) + (unsigned int)(((unsigned long long)uVar3+uVar4)>>32);
   return ((unsigned long long)r1res<<32)|r0res;
 }
-

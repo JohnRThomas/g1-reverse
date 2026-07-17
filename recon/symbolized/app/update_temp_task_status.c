@@ -1,9 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: update_temp_task_status */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002bffc @ 0x0002bffc
+ * public-name: update_temp_task_status
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ * address symbols (name @ address):
+ *   rodata_a2597                             @ 0x000a2597
+ *   rodata_a25b9                             @ 0x000a25b9
+ *   rodata_a25d9                             @ 0x000a25d9
+ *   rodata_a2648                             @ 0x000a2648
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ */
 /* Reconstructed update_temp_task_status @ 0x2bffc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -13,7 +23,7 @@ extern void FUN_0007cdf8(void);
 
 unsigned int update_temp_task_status(int param_1, unsigned int param_2, unsigned int param_3)
 {
-    volatile char *pcVar1 = (volatile char*)((uintptr_t)&g_persist_task_status_lock) /*=0x20018d9c*/;
+    volatile char *pcVar1 = (volatile char*)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/;
     uint32_t format_string;
     unsigned int uVar2;
     unsigned char *puVar3;
@@ -34,14 +44,14 @@ unsigned int update_temp_task_status(int param_1, unsigned int param_2, unsigned
     if ((*(char*)(intptr_t)(param_1 + 0xd5) == 0) || (*(char*)(intptr_t)(param_1 + 0xd5) == 1)) {
         if (param_3 != 2) goto LAB_0002c08a;
 LAB_0002c052:
-        if (0 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-            iVar4 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            format_string = "%s(): persist task [running]: %d\n" /*=0xa2597*/;
+        if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+            iVar4 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            format_string = ((unsigned long)&rodata_a2597) /*=0xa2597*/;
 LAB_0002c0ac:
             if (iVar4 == 0) {
-                DEBUG_PRINT(format_string, "update_temp_task_status" /*=0xa2648*/, param_2);
+                DEBUG_PRINT(format_string, ((unsigned long)&rodata_a2648) /*=0xa2648*/, param_2);
             } else {
-                debug_print(format_string, "update_temp_task_status" /*=0xa2648*/, param_2);
+                debug_print(format_string, ((unsigned long)&rodata_a2648) /*=0xa2648*/, param_2);
             }
         }
     } else {
@@ -52,14 +62,14 @@ LAB_0002c0ac:
         }
 LAB_0002c08a:
         if (param_3 == 3) {
-            if (*(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/ < 1) goto LAB_0002c05a;
-            iVar4 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            format_string = "%s(): persist task [pause]: %d\n" /*=0xa25b9*/;
+            if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ < 1) goto LAB_0002c05a;
+            iVar4 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            format_string = ((unsigned long)&rodata_a25b9) /*=0xa25b9*/;
             goto LAB_0002c0ac;
         }
-        if (0 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-            iVar4 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            format_string = "%s(): persist task [stop]: %d\n" /*=0xa25d9*/;
+        if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+            iVar4 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            format_string = ((unsigned long)&rodata_a25d9) /*=0xa25d9*/;
             goto LAB_0002c0ac;
         }
     }
@@ -75,4 +85,3 @@ LAB_0002c076:
     *pcVar1 = 0;
     return param_3;
 }
-

@@ -1,34 +1,46 @@
 #include "g1_app_symbols.h"
-/* named: whitelist_contains_app */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001a22c  g_app_whitelist_buffer       
-*/
-/* Reconstructed whitelist_contains_app @ 0x34ff0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00034ff0 @ 0x00034ff0
+ * public-name: whitelist_contains_app
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   whitelist_contains_app                   <= FUN_00034ff0 @ 0x00034ff0
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ * address symbols (name @ address):
+ *   rodata_a8750                             @ 0x000a8750
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_app_whitelist_buffer                   @ 0x2001a22c
+ *   g_on_whitelist_by_identifier             @ 0x2001a22d
+ */
+/* Reconstructed FUN_00034ff0 @ 0x34ff0 (strict CFG parity). */
+#include <stdint.h>
 
-extern void debug_print(void);
-extern void log_message(int a);
-extern int strncmp(int a, int b, int c);
+extern void debug_print(uintptr_t format);
+extern void log_message(uintptr_t format);
+extern int FUN_00087036(const void *left, const void *right, uint32_t length);
 
-unsigned int whitelist_contains_app(int param_1, int param_2)
+uint32_t whitelist_contains_app(const void *name, const void *identifier)
 {
-    int iVar1, iVar2, iVar3;
+    uint8_t *row;
+    uint8_t *end;
 
-    if (param_1 == 0 || param_2 == 0) {
-        if (*(volatile int *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            log_message("invalid param ! \n" /*=0xa8750*/);
+    if (name == 0 || identifier == 0) {
+        if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            log_message(((unsigned long)&rodata_a8750) /*=0xa8750*/);
         } else {
-            debug_print();
+            debug_print(((unsigned long)&rodata_a8750) /*=0xa8750*/);
         }
-    } else {
-        iVar3 = (g_app_whitelist_buffer) /*=0x2001a22c*/ + (unsigned int)(*(volatile unsigned char *)((uintptr_t)&g_on_whitelist_by_identifier) /*=0x2001a22d*/) * 0x38;
-        for (iVar2 = (g_app_whitelist_buffer) /*=0x2001a22c*/; iVar2 != iVar3; iVar2 += 0x38) {
-            iVar1 = strncmp(iVar2 + 2, param_1, 0x28);
-            if (iVar1 == 0 && (iVar1 = strncmp(iVar2 + 0x2a, param_2, 0x10), iVar1 == 0)) {
-                return 1;
-            }
+        return 0;
+    }
+
+    row = (uint8_t *)((unsigned long)g_app_whitelist_buffer) /*=0x2001a22c*/;
+    end = row + (uint32_t)*(volatile uint8_t *)((unsigned long)&g_on_whitelist_by_identifier) /*=0x2001a22d*/ * 0x38U;
+    while (row != end) {
+        if (FUN_00087036(row + 2, name, 0x28U) == 0 &&
+            FUN_00087036(row + 0x2a, identifier, 0x10U) == 0) {
+            return 1;
         }
+        row += 0x38;
     }
     return 0;
 }
-

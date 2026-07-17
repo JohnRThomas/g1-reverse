@@ -1,4 +1,16 @@
-/* named: FUN_000732d4 */
+/* readable reconstruction; identity: FUN_000732d4 @ 0x000732d4
+ * public-name: FUN_000732d4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f820f                             @ 0x000f820f
+ *   rodata_f8230                             @ 0x000f8230
+ *   rodata_f82df                             @ 0x000f82df
+ */
 /* Reconstructed FUN_000732d4 @ 0x732d4  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(void*, int);
@@ -24,4 +36,3 @@ void FUN_000732d4(int param_1, int param_2, unsigned int param_3, unsigned int p
   }
   assert_post_action((void*)0xf820fUL,uVar1);
 }
-

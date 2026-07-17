@@ -8,4 +8,3 @@ void FUN_01029d68(int param_1,int param_2)
     *(int *)(param_1 + 4) = param_2;
     FUN_01023d38(param_2 - 0x62);
 }
-

@@ -17,8 +17,8 @@ extern void FUN_0101f87c(uint32_t a);
 
 void FUN_0101e828(void)
 {
-    const uint32_t p1 = ((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
-    const uint32_t p2 = ((uintptr_t)&g_net_ble_conn_role_cfg) /*=0x21001208*/;
+    const uint32_t p1 = ((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
+    const uint32_t p2 = ((unsigned long)&g_net_ble_conn_role_cfg) /*=0x21001208*/;
 
     FUN_0100a9d0();
     FUN_0100bc1c();
@@ -42,4 +42,3 @@ void FUN_0101e828(void)
     W8(p1+0x10)  = 0;
     W8(p2+0x1d)  = 0;
 }
-

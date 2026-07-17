@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: nrfx_dppi_channel_slot_reset */
-/* Reconstructed nrfx_dppi_channel_slot_reset @ 0x67f1c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00067f1c @ 0x00067f1c
+ * public-name: nrfx_dppi_channel_slot_reset
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_dppi_channel_slot_reset             <= FUN_00067f1c @ 0x00067f1c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f79c8                             @ 0x000f79c8
+ *   rodata_f7a3f                             @ 0x000f7a3f
+ *   m_dppi_channels                          @ 0x2000b41c
+ */
+/* Reconstructed FUN_00067f1c @ 0x67f1c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
@@ -8,13 +20,13 @@ extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 void nrfx_dppi_channel_slot_reset(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
     unsigned char idx = *(volatile unsigned char*)((char*)param_1+4);
-    volatile unsigned char *tbl = (volatile unsigned char*)((uintptr_t)&m_dppi_channels) /*=0x2000b41c*/;
+    volatile unsigned char *tbl = (volatile unsigned char*)((unsigned long)&m_dppi_channels) /*=0x2000b41c*/;
     int *basePtr;
     int idxVal;
     if (*(volatile char*)(tbl+idx*8) != 2) {
         unsigned long long r;
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"m_cb[p_instance->drv_inst_idx].state == NRFX_DRV_STATE_POWERED_ON" /*=0xf7a3f*/,"WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_wdt.c" /*=0xf79c8*/,0xb8);
-        r = assert_post_action("WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_wdt.c" /*=0xf79c8*/,0xb8);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a3f) /*=0xf7a3f*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xb8);
+        r = assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xb8);
         basePtr = (int*)(unsigned int)(r & 0xffffffffUL);
         idxVal = (int)(unsigned int)(r >> 32);
     } else {
@@ -26,4 +38,3 @@ void nrfx_dppi_channel_slot_reset(int *param_1, int param_2, unsigned int param_
         *(volatile unsigned int*)(base + (idxVal+0x180)*4) = 0x6e524635UL;
     }
 }
-

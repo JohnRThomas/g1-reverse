@@ -1,5 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c0e2 */
+/* readable reconstruction; identity: FUN_0007c0e2 @ 0x0007c0e2
+ * public-name: FUN_0007c0e2
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
+ *   enqueue_uid                              <= FUN_00018e48 @ 0x00018e48
+ */
 /* Reconstructed FUN_0007c0e2 @ 0x7c0e2  (parity: 300/300 trials, PROVEN) */
 
 extern int ancs_get_conn_ctx(void);
@@ -8,17 +14,14 @@ extern void FUN_00072880(unsigned int a);
 
 void FUN_0007c0e2(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
-  unsigned int local_18 = param_1;
-  unsigned int local_14 = param_2;
-  unsigned int uStack_10 = param_3;
-  (void)uStack_10;
+  struct event_record {
+    unsigned int value;
+    unsigned int mode;
+    unsigned int context;
+  } event = { param_1, (param_2 & 0xffffff00u) | 2u, param_3 };
   int iVar1 = ancs_get_conn_ctx();
-  local_14 = (local_14 & 0xffffff00u) | 2u;
-  (void)local_14;
-  local_18 = param_1;
-  int iVar2 = enqueue_uid(&local_18);
+  int iVar2 = enqueue_uid(&event);
   if (iVar2 == 0) {
     FUN_00072880((unsigned int)iVar1 + 0x200);
   }
 }
-

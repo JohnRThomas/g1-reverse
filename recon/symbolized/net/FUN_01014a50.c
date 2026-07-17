@@ -12,7 +12,7 @@ extern void FUN_0100f2d0(unsigned short a, void *b, void *c);
 extern void FUN_0100f798(int a);
 extern unsigned int FUN_0100f834(int a, unsigned int b);
 
-#define DAT_b14 ((uintptr_t)&g_net_link_ctx_a) /*=0x21000f68*/
+#define DAT_b14 ((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/
 
 unsigned int FUN_01014a50(int param_1, unsigned int param_2)
 {
@@ -57,4 +57,3 @@ unsigned int FUN_01014a50(int param_1, unsigned int param_2)
     FUN_0100f798(param_1);
     return 0;
 }
-

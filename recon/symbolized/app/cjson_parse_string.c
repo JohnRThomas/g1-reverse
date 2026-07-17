@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: cjson_parse_string */
-/* Reconstructed cjson_parse_string @ 0x64290  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064290 @ 0x00064290
+ * public-name: cjson_parse_string
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_parse_string                       <= FUN_00064290 @ 0x00064290
+ *   hex4_to_uint                             <= FUN_00084e9a @ 0x00084e9a
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00064290 @ 0x64290  (parity: 300/300 trials, PROVEN) */
 extern unsigned int hex4_to_uint(void *a0);
 extern int FUN_0006446c(void);
 
@@ -63,23 +71,23 @@ LAB_642d6:
                 case 0x74: bVar7 = 9; goto esc_common;
                 case 0x75: {
                     if (((int)pbVar11 - (int)pbVar10 < 6) ||
-                        (uVar2 = hex4_to_uint(pbVar10 + 2), (uVar2 - ((uintptr_t)&rodata_dc00) /*=0xdc00*/) < 0x400))
+                        (uVar2 = hex4_to_uint(pbVar10 + 2), (uVar2 - 0xdc00) < 0x400))
                         goto esc_default;
-                    if ((uVar2 - ((uintptr_t)&rodata_d800) /*=0xd800*/) < 0x400) {
+                    if ((uVar2 - 0xd800) < 0x400) {
                         if (((int)pbVar11 - (int)(pbVar10 + 6) < 6) || (pbVar10[6] != 0x5c) ||
                             (pbVar10[7] != 0x75) ||
-                            (uVar3 = hex4_to_uint(pbVar10 + 8), (uVar3 - ((uintptr_t)&rodata_dc00) /*=0xdc00*/) > 0x3ff))
+                            (uVar3 = hex4_to_uint(pbVar10 + 8), (uVar3 - 0xdc00) > 0x3ff))
                             goto esc_default;
                         iVar5 = 0xc;
-                        uVar2 = ((((uintptr_t)&rodata_ffc00) /*=0xffc00*/ & (uVar2 << 10)) | (uVar3 & 0x3ff)) + ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+                        uVar2 = ((0x000ffc00 & (uVar2 << 10)) | (uVar3 & 0x3ff)) + ((unsigned long)&rodata_10000) /*=0x10000*/;
                         bVar1 = 0xf0; iVar8 = 4;
                     } else if (uVar2 < 0x80) {
                         iVar5 = 6; bVar1 = 0; iVar8 = 1;
                     } else if (uVar2 < 0x800) {
                         iVar5 = 6; bVar1 = 0xc0; iVar8 = 2;
                     } else {
-                        if (((uintptr_t)&tbl_ffc8) /*=0xffff*/ < uVar2) {
-                            if (uVar2 < FLASH_OFF_110000 /*=0x110000*/) {
+                        if (0xffff < uVar2) {
+                            if (uVar2 < 0x110000) {
                                 iVar5 = 6; bVar1 = 0xf0; iVar8 = 4;
                             } else goto esc_default;
                         } else {
@@ -124,4 +132,3 @@ store_common:
 LAB_end:
     return FUN_0006446c();
 }
-

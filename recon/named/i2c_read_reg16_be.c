@@ -1,5 +1,10 @@
-/* named: i2c_read_reg16_be */
-/* Reconstructed i2c_read_reg16_be @ 0x847d8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000847d8 @ 0x000847d8
+ * public-name: i2c_read_reg16_be
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   i2c_read_reg16_be                        <= FUN_000847d8 @ 0x000847d8
+ */
+/* Reconstructed FUN_000847d8 @ 0x847d8  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*vfn847d8)(int, void*, int, short);
 int i2c_read_reg16_be(int *param_1, unsigned char param_2, unsigned short *param_3)
@@ -31,4 +36,3 @@ int i2c_read_reg16_be(int *param_1, unsigned char param_2, unsigned short *param
   }
   return uVar2;
 }
-

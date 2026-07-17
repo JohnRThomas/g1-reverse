@@ -1,6 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: bt_smp_distribute_keys */
-/* Reconstructed bt_smp_distribute_keys @ 0x5e1a8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e1a8 @ 0x0005e1a8
+ * public-name: bt_smp_distribute_keys
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
+ *   bt_security_err_lookup                   <= FUN_00054250 @ 0x00054250
+ *   bt_rand                                  <= FUN_00055cb4 @ 0x00055cb4
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
+ *   bt_smp_distribute_keys                   <= FUN_0005e1a8 @ 0x0005e1a8
+ *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ *   atomic_test_and_clear_bit                <= FUN_000831be @ 0x000831be
+ *   att_chan_reset                           <= FUN_00083204 @ 0x00083204
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_5e41d                             @ 0x0005e41d
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f516d                             @ 0x000f516d
+ *   rodata_f5182                             @ 0x000f5182
+ *   rodata_f519d                             @ 0x000f519d
+ *   rodata_f51c4                             @ 0x000f51c4
+ */
+/* Reconstructed FUN_0005e1a8 @ 0x5e1a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;
@@ -48,7 +74,7 @@ void bt_smp_distribute_keys(int *param_1, int param_2)
         if (iVar1 == 0) return;
         iVar1 = bt_security_err_lookup(param_2);
         uVar2 = iVar1 - 1U & 0xff;
-        if (uVar2 < 9) uVar8 = *(volatile undefined1 *)(((uintptr_t)&rodata_f5217) /*=0xf5217*/ + uVar2);
+        if (uVar2 < 9) uVar8 = *(volatile undefined1 *)(0xf5217 + uVar2);
         else uVar8 = 0;
         atomic_set_bit((int)piVar10, 2);
         goto LAB_0005e1fa;
@@ -86,18 +112,18 @@ LAB_0005e264:
     uVar5 = atomic_set_bit((int)piVar10, 2);
     if (*(volatile int *)(*param_1 + 0xc0) == 0) {
         uStack_68 = bt_addr_le_str(*param_1 + 0x90);
-        local_6c = "No keys space for %s" /*=0xf516d*/;
+        local_6c = ((unsigned long)&rodata_f516d) /*=0xf516d*/;
         local_64 = 0x200;
         local_70 = 0x01000003;
-        FUN_00083074(((uintptr_t)&tbl_880d8) /*=0x88180*/, 0x1c40, &local_70);
+        FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1c40, &local_70);
         return;
     }
     iVar1 = atomic_test_bit((int *)uVar5, 5);
     if ((iVar1 == 0) && ((int)((uint)*(volatile unsigned char *)((int)param_1 - 8) << 0x1f) < 0)) {
         iVar11 = *(volatile int *)(*param_1 + 0xc0);
         iVar1 = bt_rand(local_44, 0x1a);
-        uVar5 = "Unable to get random bytes" /*=0xf5182*/;
-        if ((iVar1 == 0) && (iVar1 = smp_create_pdu(piVar9, 6), uVar5 = "Unable to allocate Encrypt Info buffer" /*=0xf519d*/, iVar1 != 0)) {
+        uVar5 = ((unsigned long)&rodata_f5182) /*=0xf5182*/;
+        if ((iVar1 == 0) && (iVar1 = smp_create_pdu(piVar9, 6), uVar5 = ((unsigned long)&rodata_f519d) /*=0xf519d*/, iVar1 != 0)) {
             iVar3 = net_buf_simple_add(iVar1 + 0xc, 0x10);
             memcpy(iVar3, local_44, *(volatile unsigned char *)(iVar11 + 0xc));
             uVar2 = (uint)*(volatile unsigned char *)(iVar11 + 0xc);
@@ -106,13 +132,13 @@ LAB_0005e264:
             }
             bt_smp_send_pdu(piVar9, iVar1, 0);
             iVar1 = smp_create_pdu(piVar9, 7);
-            uVar5 = "Unable to allocate Central Ident buffer" /*=0xf51c4*/;
+            uVar5 = ((unsigned long)&rodata_f51c4) /*=0xf51c4*/;
             if (iVar1 != 0) {
                 puVar4 = (undefined2 *)net_buf_simple_add(iVar1 + 0xc, 10);
                 *(undefined4 *)(puVar4 + 1) = local_34;
                 *(undefined4 *)(puVar4 + 3) = uStack_30;
                 *puVar4 = local_2c;
-                bt_smp_send_pdu(piVar9, iVar1, ((uintptr_t)&tbl_5e3c0) /*=0x5e41d*/);
+                bt_smp_send_pdu(piVar9, iVar1, ((unsigned long)&rodata_5e41d) /*=0x5e41d*/);
                 iVar1 = atomic_test_bit(piVar10, 0xd);
                 if (iVar1 != 0) {
                     bt_keys_add_type(iVar11, 1);
@@ -135,7 +161,7 @@ LAB_0005e264:
         }
         local_50 = 2;
         local_4c = uVar5;
-        FUN_00083074(((uintptr_t)&tbl_880d8) /*=0x88180*/, 0x1040, &local_50);
+        FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1040, &local_50);
     }
 LAB_0005e2f2:
     if ((short)param_1[-2] != 0) return;
@@ -144,4 +170,3 @@ LAB_0005e1fa:
     smp_pairing_complete(piVar9, uVar8);
     return;
 }
-

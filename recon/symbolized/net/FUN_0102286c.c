@@ -7,7 +7,7 @@ extern unsigned long long FUN_01025084(void);
 extern void FUN_0102524c(int);
 extern void FUN_01025344(void);
 
-#define G ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define G ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 
 unsigned int FUN_0102286c(unsigned int param_1, int param_2)
 {
@@ -92,4 +92,3 @@ unsigned int FUN_0102286c(unsigned int param_1, int param_2)
         }
     }
 }
-

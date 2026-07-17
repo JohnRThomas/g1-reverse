@@ -1,8 +1,19 @@
-/* named: st25dv_read_chip_ids */
-/* globals referenced:
-//   0x20007a44  g_st25dv_dev                 
-*/
-/* Reconstructed st25dv_read_chip_ids @ 0x25290  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00025290 @ 0x00025290
+ * public-name: st25dv_read_chip_ids
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   adc_nfc_init                             <= FUN_00024b98 @ 0x00024b98
+ *   st25dv_read_chip_ids                     <= FUN_00025290 @ 0x00025290
+ *   serialization_ipc_ept_register           <= FUN_000259d4 @ 0x000259d4
+ *   clear_pending_state_flags                <= FUN_0002ebc8 @ 0x0002ebc8
+ * address symbols (name @ address):
+ *   rodata_9f145                             @ 0x0009f145
+ *   rodata_9f176                             @ 0x0009f176
+ *   rodata_9f186                             @ 0x0009f186
+ *   g_st25dv_dev                             @ 0x20007a44
+ *   g_board_rev_flag                         @ 0x20018c69
+ */
+/* Reconstructed FUN_00025290 @ 0x25290  (parity: 300/300 trials, PROVEN) */
 extern int serialization_ipc_ept_register(void);
 extern void FUN_00074844(int,int);
 extern void FUN_0007c932(int,void*);
@@ -40,4 +51,3 @@ int st25dv_read_chip_ids(void){
   }
   return 0;
 }
-

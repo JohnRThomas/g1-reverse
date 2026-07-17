@@ -1,5 +1,14 @@
-/* named: utf8_decode_to_utf16_buffer */
-/* Reconstructed utf8_decode_to_utf16_buffer @ 0x47844  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00047844 @ 0x00047844
+ * public-name: utf8_decode_to_utf16_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   utf8_to_unicode                          <= FUN_000477a0 @ 0x000477a0
+ *   utf8_decode_to_utf16_buffer              <= FUN_00047844 @ 0x00047844
+ *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ * address symbols (name @ address):
+ *   rodata_d74d7                             @ 0x000d74d7
+ */
+/* Reconstructed FUN_00047844 @ 0x47844  (parity: 300/300 trials, PROVEN) */
 
 extern int utf8_to_unicode(int a, int b);
 extern void printf(unsigned a, int b);
@@ -41,4 +50,3 @@ int utf8_decode_to_utf16_buffer(int param_1, int param_2, int param_3, int param
         iVar3 = iVar3 + 1;
     }
 }
-

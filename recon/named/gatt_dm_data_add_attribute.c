@@ -1,5 +1,17 @@
-/* named: gatt_dm_data_add_attribute */
-/* Reconstructed gatt_dm_data_add_attribute @ 0x4e9a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e9a0 @ 0x0004e9a0
+ * public-name: gatt_dm_data_add_attribute
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_dm_attr_alloc                       <= FUN_0004e8e8 @ 0x0004e8e8
+ *   gatt_dm_data_add_attribute               <= FUN_0004e9a0 @ 0x0004e9a0
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88130                             @ 0x00088130
+ *   rodata_f1237                             @ 0x000f1237
+ *   rodata_f1253                             @ 0x000f1253
+ *   cur_service_val                          @ 0x2000a154
+ */
+/* Reconstructed FUN_0004e9a0 @ 0x4e9a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int gatt_dm_attr_alloc(int);
 extern int FUN_0004e98c(int);
@@ -29,4 +41,3 @@ int gatt_dm_data_add_attribute(unsigned int* param_1,int param_2){
   FUN_0007f406(0x00088130,0x1040,&s);
   return 0;
 }
-

@@ -1,5 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0008504c */
+/* readable reconstruction; identity: FUN_0008504c @ 0x0008504c
+ * public-name: FUN_0008504c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_add_item_to_object                 <= FUN_0006466c @ 0x0006466c
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   cjson_create_bool                        <= FUN_00064c3c @ 0x00064c3c
+ */
 /* Reconstructed FUN_0008504c @ 0x8504c  (parity: 300/300 trials, PROVEN) */
 
 extern int cjson_create_bool(int);
@@ -15,4 +22,3 @@ int FUN_0008504c(int param_1,int param_2,int param_3)
     }
     return uVar1;
 }
-

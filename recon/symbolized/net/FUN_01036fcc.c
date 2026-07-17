@@ -8,10 +8,10 @@ extern void FUN_01036f74(int param);
 extern void FUN_01039bb0(void *a, int b);
 extern void FUN_01039bbe(void *a, void *b, int c);
 
-#define DAT_0103704c (*(int * volatile *)((uintptr_t)&rodata_103704c) /*=0x103704c*/)
-#define DAT_01037050 (*(void * volatile *)((uintptr_t)&rodata_1037050) /*=0x1037050*/)
-#define DAT_01037054 (*(void * volatile *)((uintptr_t)&rodata_1037054) /*=0x1037054*/)
-#define DAT_01037058 (*(int volatile *)"(K" /*=0x1037058*/)
+#define DAT_0103704c (*(int * volatile *)((unsigned long)&rodata_103704c) /*=0x103704c*/)
+#define DAT_01037050 (*(void * volatile *)((unsigned long)&rodata_1037050) /*=0x1037050*/)
+#define DAT_01037054 (*(void * volatile *)((unsigned long)&rodata_1037054) /*=0x1037054*/)
+#define DAT_01037058 (*(int volatile *)((unsigned long)&rodata_1037058) /*=0x1037058*/)
 
 void FUN_01036fcc(int *param_1)
 {
@@ -57,4 +57,3 @@ LAB_01037036:
   FUN_01036f74(0);
   return;
 }
-

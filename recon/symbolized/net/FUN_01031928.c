@@ -1,8 +1,8 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01031928 @ 0x1031928  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void software_interrupt(int n){(void)n;__asm__ volatile("movs r0,#4\nsvc #2\n":::"r0","memory");}
+/* Platform boundary: implemented by the Zephyr ARM ARCH_EXCEPT(4) primitive.
+ * It clears BASEPRI and raises runtime-exception SVC 2 with reason 4. */
+extern __attribute__((noreturn)) void g1_arch_runtime_exception(unsigned int reason);
 
 extern void FUN_01008ddc(unsigned int);
 extern int FUN_01008e74(int, int, void*);
@@ -18,11 +18,11 @@ extern int FUN_010091a8(void);
 extern void FUN_0102e284(unsigned int, unsigned int, void*, int);
 extern void FUN_0102fbac(unsigned int);
 
-#define DAT_01031a54 " used for %%p argument. It's recommended to cast it to void * because it may cause misbehavior in certain configurations. String:\"%s\" argument:%d" /*=0x103cad0*/
-#define DAT_01031a58 ((uintptr_t)&rodata_103aecf) /*=0x103aecf*/
+#define DAT_01031a54 ((unsigned long)&rodata_103cad0) /*=0x103cad0*/
+#define DAT_01031a58 0x0103aecfu
 #define DAT_01031a5c 0x0203fbfbu
-#define DAT_01031a60 ((uintptr_t)&rodata_103e1f4) /*=0x103e1f4*/
-#define DAT_01031a64 ((uintptr_t)&rodata_103c044) /*=0x103c044*/
+#define DAT_01031a60 ((unsigned long)&rodata_103e1f4) /*=0x103e1f4*/
+#define DAT_01031a64 ((unsigned long)&rodata_103c044) /*=0x103c044*/
 
 int FUN_01031928(void)
 {
@@ -72,12 +72,7 @@ int FUN_01031928(void)
                     uStack_20 = 0x16c3;
                     local_28 = 4;
                     FUN_0102e284(DAT_01031a64, 0x2040, &local_28, 0);
-                    bVar1 = isCurrentModePrivileged();
-                    if (bVar1) {
-                      setBasePriority(0);
-                    }
-                    software_interrupt(2);
-                    local_1c = -0xc;
+                    g1_arch_runtime_exception(4);
                   }
                 }
               }
@@ -91,4 +86,3 @@ int FUN_01031928(void)
   }
   return local_1c;
 }
-

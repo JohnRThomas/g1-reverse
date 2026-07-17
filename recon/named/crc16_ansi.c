@@ -1,5 +1,11 @@
-/* named: crc16_ansi */
-/* Reconstructed crc16_ansi @ 0x7da4a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007da4a @ 0x0007da4a
+ * public-name: crc16_ansi
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   crc16_reflect                            <= FUN_0007d9c0 @ 0x0007d9c0
+ *   crc16_ansi                               <= FUN_0007da4a @ 0x0007da4a
+ */
+/* Reconstructed FUN_0007da4a @ 0x7da4a  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int crc16_reflect(unsigned int a,unsigned int b,unsigned int c,unsigned int d,unsigned int e,unsigned int f,unsigned int g,unsigned int h);
 
@@ -13,4 +19,3 @@ unsigned int crc16_ansi(unsigned int param_1, int param_2, int param_3, unsigned
   }
   return uVar1;
 }
-

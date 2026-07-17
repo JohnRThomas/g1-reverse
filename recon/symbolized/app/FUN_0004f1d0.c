@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0004f1d0 */
-/* Reconstructed FUN_0004f1d0 @ 0x4f1d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004f1d0 @ 0x0004f1d0
+ * public-name: FUN_0004f1d0
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_880e8                             @ 0x000880e8
+ *   rodata_f15f9                             @ 0x000f15f9
+ */
+/* Reconstructed FUN_0004f1d0 @ 0x4f1d0 (CFG-directed parity: PASS) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;
@@ -62,10 +68,9 @@ switchD_caseD_8:
     case 2:
         uVar6 = U32(0x914);
         if (0xff < uVar6) {
-            local_1c = 0xf4270 /*=0xf4270*/ & 0; local_1c = "/posix/cond.c" /*=0xf2496*/; /* DAT_0004f410 */
-            local_1c = "/posix/cond.c" /*=0xf2496*/;
+            local_1c = ((unsigned long)&rodata_f15f9) /*=0xf15f9*/; /* DAT_0004f410 */
             local_20 = 2;
-            FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88208*/ & 0, 0x1080, &local_20, 0);
+            FUN_0004d944(((unsigned long)&rodata_880e8) /*=0x880e8*/ /* DAT_0004f414 */, 0x1080, &local_20, 0);
             goto LAB_0004f296;
         }
         cVar4 = *(volatile char *)(param_2 + uVar9);
@@ -171,4 +176,3 @@ LAB_0004f3be:
     uVar6 = uVar9;
     goto switchD_caseD_8;
 }
-

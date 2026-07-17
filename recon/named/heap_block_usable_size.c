@@ -1,5 +1,10 @@
-/* named: heap_block_usable_size */
-/* Reconstructed heap_block_usable_size @ 0x87996  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087996 @ 0x00087996
+ * public-name: heap_block_usable_size
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_block_usable_size                   <= FUN_00087996 @ 0x00087996
+ */
+/* Reconstructed FUN_00087996 @ 0x87996  (parity: 300/300 trials, PROVEN) */
 
 int heap_block_usable_size(unsigned int param_1,char *param_2)
 {
@@ -10,4 +15,3 @@ int heap_block_usable_size(unsigned int param_1,char *param_2)
   }
   return r0;
 }
-

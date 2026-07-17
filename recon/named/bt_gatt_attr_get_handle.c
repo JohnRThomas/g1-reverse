@@ -1,5 +1,19 @@
-/* named: bt_gatt_attr_get_handle */
-/* Reconstructed bt_gatt_attr_get_handle @ 0x5a9f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a9f4 @ 0x0005a9f4
+ * public-name: bt_gatt_attr_get_handle
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_attr_get_handle                  <= FUN_0005a9f4 @ 0x0005a9f4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_88070                             @ 0x00088070
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f49a5                             @ 0x000f49a5
+ */
+/* Reconstructed FUN_0005a9f4 @ 0x5a9f4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(unsigned int,...);
 extern void assert_post_action(unsigned int,...);
@@ -28,4 +42,3 @@ unsigned int bt_gatt_attr_get_handle(unsigned int param_1){
   }
   return uVar1;
 }
-

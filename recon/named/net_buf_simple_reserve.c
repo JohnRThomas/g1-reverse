@@ -1,5 +1,17 @@
-/* named: net_buf_simple_reserve */
-/* Reconstructed net_buf_simple_reserve @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005f4d4 @ 0x0005f4d4
+ * public-name: net_buf_simple_reserve
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_reserve                   <= FUN_0005f4d4 @ 0x0005f4d4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f45be                             @ 0x000f45be
+ *   rodata_f543a                             @ 0x000f543a
+ *   rodata_f5465                             @ 0x000f5465
+ */
+/* Reconstructed FUN_0005f4d4 @ 0x5f4d4  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned long long assert_post_action(unsigned int, unsigned int);
@@ -31,4 +43,3 @@ void net_buf_simple_reserve(int *param_1, int param_2, unsigned int param_3, uns
     unsigned long long rv = assert_post_action(0xf543aUL, 0x2cUL);
     merge_tail((unsigned int)rv, (unsigned int)(rv >> 32));
 }
-

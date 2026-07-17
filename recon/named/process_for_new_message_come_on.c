@@ -1,9 +1,32 @@
-/* named: process_for_new_message_come_on */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed process_for_new_message_come_on @ 0x2c498  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002c498 @ 0x0002c498
+ * public-name: process_for_new_message_come_on
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   trigger_screen_state_change              <= FUN_0002bc2c @ 0x0002bc2c
+ *   update_temp_task_status                  <= FUN_0002bffc @ 0x0002bffc
+ *   update_persist_task_status_to_idle       <= FUN_0002c0e8 @ 0x0002c0e8
+ *   update_persist_task_status_to_wait_blow_head <= FUN_0002c180 @ 0x0002c180
+ *   check_pending_messages_flag              <= FUN_0002c1fc @ 0x0002c1fc
+ *   sync_message_signal_to_slave             <= FUN_0002c224 @ 0x0002c224
+ *   get_message_type_param                   <= FUN_0002c30c @ 0x0002c30c
+ *   process_for_new_message_come_on          <= FUN_0002c498 @ 0x0002c498
+ *   get_message_entry                        <= FUN_00033c4c @ 0x00033c4c
+ *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
+ *   push_message_3439c                       <= FUN_0003439c @ 0x0003439c
+ *   set_new_message_pending_flag             <= FUN_00036030 @ 0x00036030
+ * address symbols (name @ address):
+ *   rodata_a0a7b                             @ 0x000a0a7b
+ *   rodata_a2768                             @ 0x000a2768
+ *   rodata_a2795                             @ 0x000a2795
+ *   rodata_a27b1                             @ 0x000a27b1
+ *   rodata_a28d4                             @ 0x000a28d4
+ *   rodata_a39ef                             @ 0x000a39ef
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_0002c498 @ 0x2c498  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char byte;
@@ -17,14 +40,14 @@ extern void update_persist_task_status_to_idle(byte *a);
 extern void update_persist_task_status_to_wait_blow_head(void);
 extern void check_pending_messages_flag(void);
 extern void sync_message_signal_to_slave(int a);
-extern unsigned char get_message_type_param(byte a, int b, ...);
+extern unsigned char get_message_type_param(byte a, int b);
 extern void clear_timeout_message(int a);
 extern int get_message_entry(int a);
 extern void push_message_3439c(void);
 extern void FUN_0003443c(int a);
 extern void set_new_message_pending_flag(void);
 extern void sync_to_slave(byte *a, int b, int c);
-extern void thunk_FUN_00074844(int a, int b);
+extern void FUN_0007ce5c(int a, int b);
 
 undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *param_3, unsigned *param_4)
 {
@@ -37,7 +60,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
     uint uVar8, uVar9;
     int bVar10;
 
-    uVar3 = get_message_type_param(param_1[0xfea], 0xf, param_3, param_4, param_1, param_2, param_3);
+    uVar3 = get_message_type_param(param_1[0xfea], 0xf);
     *(volatile undefined1 *)(param_2 + 7) = uVar3;
     FUN_0003443c(2);
     iVar4 = get_device_info();
@@ -48,8 +71,8 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         if (((param_1[1] == 1) || (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 1) == '\b')) ||
             (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 0xfea) == '\f')) {
             if (2 < *piVar1) {
-                if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1));
-                else debug_print(0);
+                if (*piVar2 == 0) DEBUG_PRINT(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+                else debug_print(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             }
             update_persist_task_status_to_idle(param_1);
             *param_4 = 0xa2795;
@@ -67,8 +90,8 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         }
         if (*(volatile char *)(param_2 + 1) != '\x05') {
             if (*piVar1 < 1) return 0xb;
-            if (*piVar2 != 0) { debug_print(0); return 0xb; }
-            DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1));
+            if (*piVar2 != 0) { debug_print(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2); return 0xb; }
+            DEBUG_PRINT(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {
@@ -98,7 +121,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
             if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 7));
             else debug_print(0);
         }
-        thunk_FUN_00074844(0x667, 0);
+        FUN_0007ce5c(0x667, 0);
         if (*param_1 == 1) {
             uVar8 = uVar9 * -0x33333333;
             bVar10 = (uVar8 >> 2 | uVar9 * 0x40000000) <= 0xccccccc;
@@ -123,4 +146,3 @@ LAB_0002c4ec:
     }
     return uVar3;
 }
-

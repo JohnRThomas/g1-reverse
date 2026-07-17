@@ -28,7 +28,7 @@ extern void FUN_01029bea(void *);
 extern void FUN_0100e83c(void *, int, int);
 extern int  FUN_0100a934(void);
 
-#define GBASE ((uintptr_t)&g_net_link_ctx_a) /*=0x21000f68*/
+#define GBASE ((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/
 #define G4  (*(volatile int *)(GBASE + 4))
 
 void FUN_010144e4(uint param_1)
@@ -38,7 +38,7 @@ void FUN_010144e4(uint param_1)
     byte *buf;
 
     if (FUN_0100a904(frame + 8) == 0) goto L_071e;
-    __asm__ volatile("" ::: "memory");
+    __atomic_signal_fence(__ATOMIC_ACQUIRE);
     buf = *(byte * volatile *)(frame + 8);
     FUN_01025a84(buf, 0, 0x32);
     FUN_0100e5dc(buf, 3);
@@ -91,7 +91,7 @@ L_05b0:
 L_05ba:
     {
         void (*f)(uint, void *, int) =
-            *(void (* volatile *)(uint, void *, int))0x210001ec;
+            *(void (* volatile *)(uint, void *, int))((unsigned long)&g_210001ec) /*=0x210001ec*/;
         f(param_1, buf, GBASE);
     }
     goto L_058a;
@@ -129,7 +129,7 @@ L_061e:
 
 L_0638:
     {
-        void (*f)(void *, int) = *(void (* volatile *)(void *, int))0x210001d4;
+        void (*f)(void *, int) = *(void (* volatile *)(void *, int))((unsigned long)&g_210001d4) /*=0x210001d4*/;
         if (f != 0) f(buf, GBASE);
     }
     goto L_058a;
@@ -148,7 +148,7 @@ L_065e:
 
 L_066e:
     {
-        void (*f)(void *, int) = *(void (* volatile *)(void *, int))0x210001e4;
+        void (*f)(void *, int) = *(void (* volatile *)(void *, int))((unsigned long)&g_210001e4) /*=0x210001e4*/;
         if (f != 0) {
                 f(buf, G4 + 0x160);
         }
@@ -198,4 +198,3 @@ L_0728:
     FUN_01008d00(0x31, 0x8e8);
     return;
 }
-

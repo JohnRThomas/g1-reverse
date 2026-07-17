@@ -1,58 +1,87 @@
-/* named: find_chinese_bitmap_by_unicode */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed find_chinese_bitmap_by_unicode @ 0x4792c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004792c @ 0x0004792c
+ * public-name: find_chinese_bitmap_by_unicode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   expand_bytes_via_lut32                   <= FUN_0004790c @ 0x0004790c
+ *   find_chinese_bitmap_by_unicode           <= FUN_0004792c @ 0x0004792c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a1ce0                             @ 0x000a1ce0
+ *   rodata_bbfee                             @ 0x000bbfee
+ *   rodata_d74f4                             @ 0x000d74f4
+ *   rodata_d750b                             @ 0x000d750b
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_chinese_glyph_bitmap_buf               @ 0x2001cf92
+ */
+/* Reconstructed FUN_0004792c @ 0x4792c */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
-extern int get_device_info(int,...);
-extern int debug_print(int,...);
-extern int expand_bytes_via_lut32(int,...);
-extern int FUN_0007d84c(int,...);
-extern int memset_bytes(int,...);
-typedef int (*codeptr)(int,...);
-unsigned int find_chinese_bitmap_by_unicode(unsigned int param_1, short param_2, short param_3)
-{
-  unsigned int uVar1 = 0;
-  int iVar2;
-  volatile int *piVar1 = (volatile int*)0x2000230cUL;
-  volatile int *E = (volatile int*)0x20007554UL;
-  unsigned char dummy[16];
-  unsigned short lh[4];
-  unsigned int uVar3 = ((int)param_2 * (int)param_3) & 0xffff;
-  if (param_1 - 0x20 < 0x60) {
-    uVar1 = (unsigned int)FUN_0007d84c(param_1 & 0xff, uVar3);
-  } else {
-    iVar2 = get_device_info(0);
-    if (*(int*)(iVar2 + 0x1030) != 0) {
-      iVar2 = get_device_info(0);
-      codeptr pcVar6 = *(codeptr*)(iVar2 + 0x1030);
-      int u = get_device_info(0);
-      iVar2 = pcVar6(u, (param_1 - 0xa4)*4 + 0x140000, (int)lh);
-      if (iVar2 != 0) {
-        if (0 < *piVar1) {
-          if (*E == 0) DEBUG_PRINT(0xbbfee, 0xd750b);
-          else debug_print(0);
-        }
-        return 0;
-      }
-      DEBUG_PRINT(0xd74f4, (unsigned int)lh[0], (unsigned int)lh[1]);
-      unsigned int puVar4 = (uVar3 >> 2) * (unsigned int)lh[1];
-      if (uVar3 == 0x1b0) puVar4 = 0xcf120 + puVar4;
-      memset_bytes((int)dummy, 0, uVar3);
-      iVar2 = get_device_info(0);
-      pcVar6 = *(codeptr*)(iVar2 + 0x1030);
-      u = get_device_info(0);
-      iVar2 = pcVar6(u, puVar4 + 0x200000, (int)dummy, uVar3 >> 2);
-      if ((iVar2 != 0) && (0 < *piVar1)) {
-        if (*E == 0) DEBUG_PRINT(0xa1ce0, 0xd750b, iVar2);
-        else debug_print(0);
-      }
-    }
-    uVar1 = 0x2001cf92;
-    expand_bytes_via_lut32((int)dummy, uVar3, 0x2001cf92);
-  }
-  return uVar1;
-}
 
+extern void DEBUG_PRINT(unsigned int, ...);
+extern void debug_print(unsigned int, ...);
+extern void *get_device_info(void);
+extern unsigned int expand_bytes_via_lut32(void *, unsigned int, unsigned int);
+extern unsigned int FUN_0007d84c(unsigned int, unsigned int);
+extern void memset_bytes(void *, int, unsigned int);
+
+typedef int (*storage_callback)();
+
+unsigned int find_chinese_bitmap_by_unicode(unsigned int codepoint, int16_t width, int16_t height)
+{
+    unsigned int bitmap_size = ((int)width * (int)height) & 0xffff;
+    unsigned char bitmap[(bitmap_size + 7) & ~7U];
+    unsigned char *result = bitmap;
+    uint16_t dimensions[2];
+    void *context;
+    storage_callback callback;
+    int status;
+
+    if (codepoint - 0x20 < 0x60)
+        return FUN_0007d84c(codepoint & 0xff, bitmap_size);
+
+    context = get_device_info();
+    callback = *(storage_callback *)((unsigned char *)context + 0x1030);
+    if (callback == 0) {
+        result = 0;
+    } else {
+        context = get_device_info();
+        callback = *(storage_callback *)((unsigned char *)context + 0x1030);
+        context = get_device_info();
+        status = callback(context, (codepoint - 0xa4) * 4 + 0x140000,
+                          dimensions);
+        if (status != 0) {
+            if (*(volatile int *)0x2000230c > 0) {
+                if (*(volatile int *)0x20007554 == 0)
+                    DEBUG_PRINT(0x000bbfee, 0x000d750b);
+                else
+                    debug_print(0x000bbfee, 0x000d750b);
+            }
+            return 0;
+        }
+
+        DEBUG_PRINT(0x000d74f4, dimensions[0], dimensions[1], 4);
+        {
+            unsigned int offset = (bitmap_size >> 2) * dimensions[1];
+            if (bitmap_size == 0x1b0)
+                offset += 0xcf120;
+
+            memset_bytes(result, 0, bitmap_size);
+            context = get_device_info();
+            callback = *(storage_callback *)((unsigned char *)context + 0x1030);
+            context = get_device_info();
+            status = callback(context, offset + 0x200000,
+                              result, bitmap_size >> 2);
+            if (status != 0 && *(volatile int *)0x2000230c > 0) {
+                if (*(volatile int *)0x20007554 == 0)
+                    DEBUG_PRINT(0x000a1ce0, 0x000d750b, status);
+                else
+                    debug_print(0x000a1ce0, 0x000d750b, status);
+            }
+        }
+    }
+
+    expand_bytes_via_lut32(result, bitmap_size, 0x2001cf92);
+    return 0x2001cf92;
+}

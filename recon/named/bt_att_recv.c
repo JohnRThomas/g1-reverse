@@ -1,5 +1,24 @@
-/* named: bt_att_recv */
-/* Reconstructed bt_att_recv @ 0x58cfc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00058cfc @ 0x00058cfc
+ * public-name: bt_att_recv
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_op_get_type                          <= FUN_000582b8 @ 0x000582b8
+ *   bt_att_recv                              <= FUN_00058cfc @ 0x00058cfc
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
+ *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   att_send_error_rsp                       <= FUN_000821f4 @ 0x000821f4
+ *   atomic_test_and_set_bit_0                <= FUN_00082236 @ 0x00082236
+ * address symbols (name @ address):
+ *   rodata_88100                             @ 0x00088100
+ *   rodata_8b2b4                             @ 0x0008b2b4
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f4388                             @ 0x000f4388
+ *   rodata_f45af                             @ 0x000f45af
+ */
+/* Reconstructed FUN_00058cfc @ 0x58cfc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern uint64_t att_op_get_type(int);
 extern void net_buf_unref(int);
@@ -87,4 +106,3 @@ LAB_d9c:
     *(volatile int*)(param_1 + 0x13c) = 0;
     return 0;
 }
-

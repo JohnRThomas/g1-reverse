@@ -5,9 +5,7 @@ typedef unsigned char byte;
 typedef unsigned short ushort;
 
 static inline unsigned ctz32(unsigned x){
-  unsigned r;
-  __asm__ volatile("rbit %0, %1\n\tclz %0, %0" : "=r"(r) : "r"(x));
-  return r;
+  return (unsigned)__builtin_ctz(x);
 }
 
 extern int FUN_0103467c(uint);
@@ -18,15 +16,15 @@ extern void FUN_0103a9be(uint, uint);
 
 void FUN_01034be4(void)
 {
-  volatile uint *p304 = (volatile uint *)(REG_4100a000 /*=0x4100a000*/ + 0x304);
+  volatile uint *p304 = (volatile uint *)(0x4100a000 + 0x304);
   uint r0 = *p304 & 0xffu;
   r0 |= 0x80000000u;
   int uVar6 = FUN_0103467c(r0);
 
-  volatile uint *sl20 = (volatile uint *)(REG_418c0500 /*=0x418c0500*/ + 0x20);
-  volatile uint *sb20 = (volatile uint *)(REG_418c0800 /*=0x418c0800*/ + 0x20);
-  const byte *tbl_d84 = (const byte *)((uintptr_t)&rodata_103e6f2) /*=0x103e6f2*/;
-  const volatile ushort *tbl_d88 = (const volatile ushort *)((uintptr_t)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/;
+  volatile uint *sl20 = (volatile uint *)(0x418c0500 + 0x20);
+  volatile uint *sb20 = (volatile uint *)(0x418c0800 + 0x20);
+  const byte *tbl_d84 = (const byte *)((unsigned long)&rodata_103e6f2) /*=0x103e6f2*/;
+  const volatile ushort *tbl_d88 = (const volatile ushort *)((unsigned long)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/;
 
   uint local_30[2];
 
@@ -108,7 +106,7 @@ LAB_d16:
     do {
       uint pos = ctz32(r5);
       uint r2 = 1u << pos;
-      uint addr = REG_4100a510 /*=0x4100a510*/ + pos * 4u;
+      uint addr = 0x4100a510u + pos * 4u;
       volatile uint *ap = (volatile uint *)addr;
       uint v0 = *ap;
       uint v1 = *ap;
@@ -119,4 +117,3 @@ LAB_d16:
     } while (r5 != 0);
   }
 }
-

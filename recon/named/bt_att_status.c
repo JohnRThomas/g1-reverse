@@ -1,5 +1,11 @@
-/* named: bt_att_status */
-/* Reconstructed bt_att_status @ 0x8206c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008206c @ 0x0008206c
+ * public-name: bt_att_status
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sys_slist_get                            <= FUN_00081bac @ 0x00081bac
+ *   bt_att_status                            <= FUN_0008206c @ 0x0008206c
+ */
+/* Reconstructed FUN_0008206c @ 0x8206c  (parity: 300/300 trials, PROVEN) */
 
 extern void* sys_slist_get(int);
 extern int FUN_00058b78(int, void*);
@@ -26,4 +32,3 @@ void bt_att_status(char *param_1, int *param_2)
     }
   }
 }
-

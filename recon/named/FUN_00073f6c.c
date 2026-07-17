@@ -1,7 +1,26 @@
-/* named: FUN_00073f6c */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073f6c @ 0x00073f6c
+ * public-name: FUN_00073f6c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   pend_locked                              <= FUN_00073f3c @ 0x00073f3c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f8584                             @ 0x000f8584
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   g_pend_locked_thread_tmp                 @ 0x2000b484
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
 /* Reconstructed FUN_00073f6c @ 0x73f6c  (parity: 300/300 trials, PROVEN) */
 extern int z_spin_lock_valid(int,int,int,int);
 extern int z_spin_unlock_valid(int);
@@ -42,4 +61,3 @@ void FUN_00073f6c(int param_1,int param_2,int param_3,int param_4,int param_5,in
   }
   FUN_000501d4(param_2);
 }
-

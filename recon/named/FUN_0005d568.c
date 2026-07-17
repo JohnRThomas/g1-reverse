@@ -1,7 +1,12 @@
-/* named: FUN_0005d568 */
-/* globals referenced:
-//   0x2001d532  g_bt_settings_load_done      
-*/
+/* readable reconstruction; identity: FUN_0005d568 @ 0x0005d568
+ * public-name: FUN_0005d568
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_auth_get_pairing_method              <= FUN_0005caec @ 0x0005caec
+ * address symbols (name @ address):
+ *   g_smp_bondable_default                   @ 0x200035ae
+ *   g_bt_settings_load_done                  @ 0x2001d532
+ */
 /* Reconstructed FUN_0005d568 @ 0x5d568  (parity: 300/300 trials, PROVEN) */
 
 extern int smp_auth_get_pairing_method(int param_1);
@@ -35,4 +40,3 @@ unsigned int FUN_0005d568(int param_1, unsigned int param_2)
     }
     return param_2;
 }
-

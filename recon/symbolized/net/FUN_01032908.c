@@ -9,7 +9,7 @@ extern void FUN_010218b4(void);
 
 void FUN_01032908(void)
 {
-  volatile unsigned int * const *pp = (volatile unsigned int * const *)((uintptr_t)&g_net_log_msg_ctx) /*=0x21000698*/;
+  volatile unsigned int * const *pp = (volatile unsigned int * const *)((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/;
   *(volatile unsigned int *)((*pp) + (0x10/4)) = 1;
   FUN_010218e4();
   FUN_010218d8();
@@ -18,4 +18,3 @@ void FUN_01032908(void)
   FUN_010218b4();
   return;
 }
-

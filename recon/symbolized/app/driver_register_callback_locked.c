@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: driver_register_callback_locked */
-/* Reconstructed driver_register_callback_locked @ 0x848d2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000848d2 @ 0x000848d2
+ * public-name: driver_register_callback_locked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   driver_register_callback_locked          <= FUN_000848d2 @ 0x000848d2
+ */
+/* Reconstructed FUN_000848d2 @ 0x848d2  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 uint32_t driver_register_callback_locked(int *param_1, uint32_t param_2, uint32_t param_3){
     int iVar4 = **(volatile int* volatile*)((char*)param_1 + 4);
@@ -21,4 +26,3 @@ uint32_t driver_register_callback_locked(int *param_1, uint32_t param_2, uint32_
     }
     return uVar3;
 }
-

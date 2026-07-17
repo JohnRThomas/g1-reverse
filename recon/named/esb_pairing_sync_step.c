@@ -1,5 +1,19 @@
-/* named: esb_pairing_sync_step */
-/* Reconstructed esb_pairing_sync_step @ 0x275fc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000275fc @ 0x000275fc
+ * public-name: esb_pairing_sync_step
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
+ *   esb_pairing_sync_step                    <= FUN_000275fc @ 0x000275fc
+ *   stage_pending_message_for_resend         <= FUN_00033b88 @ 0x00033b88
+ *   set_message_pool_entry_status            <= FUN_00033bf0 @ 0x00033bf0
+ *   confirm_message                          <= FUN_00034524 @ 0x00034524
+ * address symbols (name @ address):
+ *   g_esb_notify_sync_retry_cnt              @ 0x20018d82
+ *   g_esb_notify_sync_substate               @ 0x20018d98
+ *   g_esb_notify_slave_role_guard            @ 0x20018d9f
+ */
+/* Reconstructed FUN_000275fc @ 0x275fc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int get_device_info(void);
@@ -61,4 +75,3 @@ void esb_pairing_sync_step(void){
         return;
     }
 }
-

@@ -1,10 +1,26 @@
-/* named: get_assign_channel_info */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019ef3  g_test_mode_flag             
-*/
-/* Reconstructed get_assign_channel_info @ 0x31fd8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00031fd8 @ 0x00031fd8
+ * public-name: get_assign_channel_info
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   get_assign_channel_info                  <= FUN_00031fd8 @ 0x00031fd8
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a672f                             @ 0x000a672f
+ *   rodata_a723e                             @ 0x000a723e
+ *   rodata_a7266                             @ 0x000a7266
+ *   rodata_a7293                             @ 0x000a7293
+ *   rodata_a72ab                             @ 0x000a72ab
+ *   rodata_a72c6                             @ 0x000a72c6
+ *   rodata_a76da                             @ 0x000a76da
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_test_mode_flag                         @ 0x20019ef3
+ */
+/* Reconstructed FUN_00031fd8 @ 0x31fd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned char byte;
 extern int DEBUG_PRINT(int,...);
@@ -21,12 +37,12 @@ unsigned get_assign_channel_info(int param_1, unsigned param_2, unsigned *param_
     piVar1 = (volatile int*)0x2000230c;
     if(3 < *piVar1){
         if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x000a723e, 0x000a76da); }
-        else { debug_print(0); }
+        else { debug_print(0x000a723e, 0x000a76da); }
     }
     if(param_3 == 0 || param_4 == 0){
         if(0 < *piVar1){
             if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x000a7266, 0x000a76da); }
-            else { debug_print(0); }
+            else { debug_print(0x000a7266, 0x000a76da); }
         }
         uVar3 = 0xffffffff;
     } else if(*(volatile char*)0x20019ef3 == 1){
@@ -91,4 +107,3 @@ LAB_00032102:
     }
     return uVar3;
 }
-

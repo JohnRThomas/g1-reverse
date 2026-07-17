@@ -1,12 +1,14 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01037e10 @ 0x1037e10  (parity 300 trials PROVEN) */
-static inline unsigned int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return b;}
-static inline void setBasePriority(unsigned p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void isb(void){__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned int getBasePriority(void){ return __get_BASEPRI(); }
+static inline void setBasePriority(unsigned p){ __set_BASEPRI(p); }
+static inline void isb(void){ __ISB(); }
 
-#define C_01037e9c ((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/
-#define C_01037ea0 "***** HARD FAULT *****" /*=0x103d3b6*/
-#define C_01037ea4 "acking error (context area might be not valid)" /*=0x103d2a7*/
+#define C_01037e9c 0x21004b68
+#define C_01037ea0 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define C_01037ea4 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
 
 extern int FUN_0103610c(int);
 extern void FUN_01036144(int);
@@ -69,4 +71,3 @@ L_e6e:
   r0 = C_01037ea0;
   goto L_e40;
 }
-

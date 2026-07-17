@@ -1,8 +1,12 @@
-/* named: crc32_table_init */
-/* globals referenced:
-//   0x200075a0  g_crc32_table                
-*/
-/* Reconstructed crc32_table_init @ 0x235dc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000235dc @ 0x000235dc
+ * public-name: crc32_table_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   crc32_table_init                         <= FUN_000235dc @ 0x000235dc
+ * address symbols (name @ address):
+ *   g_crc32_table                            @ 0x200075a0
+ */
+/* Reconstructed FUN_000235dc @ 0x235dc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 void crc32_table_init(void)
@@ -24,4 +28,3 @@ void crc32_table_init(void)
     puVar2 = puVar2 + 1;
   } while (uVar4 != 0x100);
 }
-

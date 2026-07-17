@@ -1,8 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00073d1c */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073d1c @ 0x00073d1c
+ * public-name: FUN_00073d1c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   g_sched_ready_runq                       @ 0x2000b464
+ */
 /* Reconstructed FUN_00073d1c @ 0x73d1c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000737d8(int a);
@@ -13,13 +23,13 @@ void FUN_00073d1c(int *param_1){
     volatile unsigned char *p = (volatile unsigned char*)param_1;
     if ((signed char)p[0xd] < 0){
         p[0xd] = p[0xd] & 0x7f;
-        dlist_unlink_node(((uintptr_t)&g_sched_ready_runq) /*=0x2000b464*/, param_1);
+        dlist_unlink_node(((unsigned long)&g_sched_ready_runq) /*=0x2000b464*/, param_1);
     }
     p[0xd] = p[0xd] | 0x80;
-    int iVar1 = ((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/;
-    if ((unsigned)param_1 == ((uintptr_t)&g_thread_dummy) /*=0x20006720*/){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"!z_is_idle_thread_object(thread)" /*=0xf84d6*/,"WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
-        assert_post_action("WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
+    int iVar1 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+    if ((unsigned)param_1 == 0x20006720u){
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
+        assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     }
     volatile int *puVar3 = (volatile int*)(iVar1 + 0x1c);
     volatile int *puVar4 = (volatile int*)*puVar3;
@@ -45,4 +55,3 @@ void FUN_00073d1c(int *param_1){
 done:
     FUN_000737d8(*(volatile int*)(iVar1 + 8) == (int)param_1);
 }
-

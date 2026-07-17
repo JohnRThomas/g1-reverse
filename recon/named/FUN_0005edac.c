@@ -1,4 +1,11 @@
-/* named: FUN_0005edac */
+/* readable reconstruction; identity: FUN_0005edac @ 0x0005edac
+ * public-name: FUN_0005edac
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_crypto_aes_cmac                       <= FUN_000835ae @ 0x000835ae
+ * address symbols (name @ address):
+ *   rodata_f4240                             @ 0x000f4240
+ */
 /* Reconstructed FUN_0005edac @ 0x5edac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0005ec84(void*,int,int);
@@ -18,4 +25,3 @@ void FUN_0005edac(int param_1,int param_2,int param_3,int param_4,int *param_5){
     *param_5 = rem;
   }
 }
-

@@ -1,12 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: ancs_get_conn_ctx */
-/* globals referenced:
-//   0x20006a30  g_ble_conn_ctx_ptr           
-*/
-/* Reconstructed ancs_get_conn_ctx @ 0x181fc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000181fc @ 0x000181fc
+ * public-name: ancs_get_conn_ctx
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
+ * address symbols (name @ address):
+ *   g_ble_conn_ctx_ptr                       @ 0x20006a30
+ */
+/* Reconstructed FUN_000181fc @ 0x181fc  (parity: 300/300 trials, PROVEN) */
 
 unsigned int ancs_get_conn_ctx(void)
 {
-    return *(volatile unsigned int *)((uintptr_t)&g_ble_conn_ctx_ptr) /*=0x20006a30*/;
+    return *(volatile unsigned int *)((unsigned long)&g_ble_conn_ctx_ptr) /*=0x20006a30*/;
 }
-

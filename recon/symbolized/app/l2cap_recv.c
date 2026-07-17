@@ -1,16 +1,58 @@
 #include "g1_app_symbols.h"
-/* named: l2cap_recv */
-/* Reconstructed l2cap_recv @ 0x57db0  (parity: 30/30 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057db0 @ 0x00057db0
+ * public-name: l2cap_recv
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_chan_rx_init                       <= FUN_00057484 @ 0x00057484
+ *   l2cap_chan_tx_init                       <= FUN_000574ec @ 0x000574ec
+ *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
+ *   l2cap_recv                               <= FUN_00057db0 @ 0x00057db0
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_conn_ltk_present                      <= FUN_0008145c @ 0x0008145c
+ *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
+ *   ctx_list_unlink_by_key16                 <= FUN_00081660 @ 0x00081660
+ *   conn_ctx_cleanup_if_pending              <= FUN_00081720 @ 0x00081720
+ *   atomic_counter_add_and_signal            <= FUN_0008174c @ 0x0008174c
+ *   ctx_list_unlink_node                     <= FUN_00081788 @ 0x00081788
+ *   context_release_and_notify               <= FUN_000817b6 @ 0x000817b6
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ *   att_send_simple                          <= FUN_00081940 @ 0x00081940
+ *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
+ * address symbols (name @ address):
+ *   rodata_582b4                             @ 0x000582b4
+ *   rodata_816af                             @ 0x000816af
+ *   rodata_88160                             @ 0x00088160
+ *   rodata_f41a7                             @ 0x000f41a7
+ *   rodata_f41c5                             @ 0x000f41c5
+ *   rodata_f41e6                             @ 0x000f41e6
+ *   rodata_f4207                             @ 0x000f4207
+ *   rodata_f4223                             @ 0x000f4223
+ *   rodata_f4245                             @ 0x000f4245
+ *   rodata_f426f                             @ 0x000f426f
+ *   rodata_f4291                             @ 0x000f4291
+ *   rodata_f42b3                             @ 0x000f42b3
+ *   rodata_f42d4                             @ 0x000f42d4
+ *   rodata_f42f9                             @ 0x000f42f9
+ *   rodata_f431a                             @ 0x000f431a
+ *   rodata_f4346                             @ 0x000f4346
+ */
+/* Reconstructed FUN_00057db0 @ 0x57db0  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
 typedef unsigned long long undefined8,ulonglong;
 typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
+typedef long long(*code0)(void);
+typedef long long(*code1)(int);
+typedef long long(*code2)(int, void *);
 #define bool int
 #define false 0
 #define true 1
@@ -21,13 +63,13 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){ return (__get_CONTROL() & 1u) == 0; }
+static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
+static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
+static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
 static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
@@ -67,47 +109,47 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long FUN_000573f4();
-extern long long l2cap_chan_rx_init();
-extern long long l2cap_chan_tx_init();
-extern long long l2cap_chan_add();
-extern long long bt_l2cap_le_lookup_tx_cid();
-extern long long net_buf_unref();
-extern long long net_buf_simple_pull_5f594();
-extern long long net_buf_simple_add();
-extern long long FUN_00073518();
-extern long long bt_conn_ltk_present();
-extern long long bt_conn_set_security();
-extern long long FUN_00081626();
-extern long long ctx_list_unlink_by_key16();
-extern long long FUN_000816a2();
-extern long long conn_ctx_cleanup_if_pending();
-extern long long FUN_00081746();
-extern long long atomic_counter_add_and_signal();
-extern long long ctx_list_unlink_node();
-extern long long context_release_and_notify();
-extern long long bt_conn_create_pdu();
-extern long long att_send_simple();
-extern long long bt_l2cap_le_lookup_tx_cid();
-extern long long gatt_send_service_changed_ind();
-extern long long net_buf_simple_push_mem();
-#define DAT_00058054 "Too small L2CAP signaling PDU" /*=0xf41a7*/
-#define DAT_00058058 ((uintptr_t)&tbl_880d8) /*=0x88160*/
-#define DAT_0005805c "L2CAP length mismatch (%u != %u)" /*=0xf41c5*/
-#define DAT_00058060 "Invalid ident value in L2CAP PDU" /*=0xf41e6*/
-#define DAT_00058064 "Too small LE conn param rsp" /*=0xf4207*/
-#define DAT_00058068 "Too small LE conn req packet size" /*=0xf4223*/
-#define DAT_0005806c "Invalid LE-Conn Req params: mtu %u mps %u" /*=0xf4245*/
-#define DAT_00058070 "Mandatory callback 'recv' missing" /*=0xf426f*/
-#define DAT_00058074 ((uintptr_t)&tbl_81699) /*=0x816af*/
-#define DAT_00058078 "Too small LE conn rsp packet size" /*=0xf4291*/
-#define DAT_0005807c "Cannot find channel for ident %u" /*=0xf42b3*/
-#define DAT_000582a0 "Too small LE disconn rsp packet size" /*=0xf42d4*/
-#define DAT_000582a4 "Too small LE Credits packet size" /*=0xf42f9*/
-#define DAT_000582a8 "Unable to find channel of LE Credits packet" /*=0xf431a*/
-#define DAT_000582ac "Credits overflow" /*=0xf4346*/
-#define DAT_000582b0 ((uintptr_t)&tbl_880d8) /*=0x88160*/
-#define DAT_000582b4 (*(volatile int*)((uintptr_t)&tbl_582a0) /*=0x582b4*/)
+extern long long FUN_000573f4(int, ...);
+extern long long l2cap_chan_rx_init(int, ...);
+extern long long l2cap_chan_tx_init(int, ...);
+extern long long l2cap_chan_add(int, ...);
+extern long long FUN_000579b4(int, ...);
+extern long long net_buf_unref(int, ...);
+extern long long net_buf_simple_pull_5f594(int, ...);
+extern long long net_buf_simple_add(int, ...);
+extern long long FUN_00073518(int, ...);
+extern long long bt_conn_ltk_present(int, ...);
+extern long long bt_conn_set_security(int, ...);
+extern long long FUN_00081626(int, ...);
+extern long long ctx_list_unlink_by_key16(int, ...);
+extern long long FUN_000816a2(int, ...);
+extern long long conn_ctx_cleanup_if_pending(int, ...);
+extern long long FUN_00081746(int, ...);
+extern long long atomic_counter_add_and_signal(int, ...);
+extern long long ctx_list_unlink_node(int, ...);
+extern long long context_release_and_notify(int, ...);
+extern long long bt_conn_create_pdu(int, ...);
+extern long long att_send_simple(int, ...);
+extern long long FUN_00081a4e(int, ...);
+extern long long gatt_send_service_changed_ind(int, ...);
+extern long long FUN_00083740(int, ...);
+#define DAT_00058054 ((unsigned long)&rodata_f41a7) /*=0xf41a7*/
+#define DAT_00058058 ((unsigned long)&rodata_88160) /*=0x88160*/
+#define DAT_0005805c ((unsigned long)&rodata_f41c5) /*=0xf41c5*/
+#define DAT_00058060 ((unsigned long)&rodata_f41e6) /*=0xf41e6*/
+#define DAT_00058064 ((unsigned long)&rodata_f4207) /*=0xf4207*/
+#define DAT_00058068 ((unsigned long)&rodata_f4223) /*=0xf4223*/
+#define DAT_0005806c ((unsigned long)&rodata_f4245) /*=0xf4245*/
+#define DAT_00058070 ((unsigned long)&rodata_f426f) /*=0xf426f*/
+#define DAT_00058074 ((unsigned long)&rodata_816af) /*=0x816af*/
+#define DAT_00058078 ((unsigned long)&rodata_f4291) /*=0xf4291*/
+#define DAT_0005807c ((unsigned long)&rodata_f42b3) /*=0xf42b3*/
+#define DAT_000582a0 ((unsigned long)&rodata_f42d4) /*=0xf42d4*/
+#define DAT_000582a4 ((unsigned long)&rodata_f42f9) /*=0xf42f9*/
+#define DAT_000582a8 ((unsigned long)&rodata_f431a) /*=0xf431a*/
+#define DAT_000582ac ((unsigned long)&rodata_f4346) /*=0xf4346*/
+#define DAT_000582b0 ((unsigned long)&rodata_88160) /*=0x88160*/
+#define DAT_000582b4 (*(volatile int*)((unsigned long)&rodata_582b4) /*=0x582b4*/)
 
 
 /* WARNING: Removing unreachable block (ram,0x0005811a) */
@@ -147,7 +189,9 @@ undefined4 l2cap_recv(int *param_1,int param_2)
   undefined2 local_3e;
   undefined4 local_30;
   undefined4 local_2c;
-  
+  struct { uint count, format, value0, value1; } log4;
+  struct { uint count, format, value; } log3;
+
   uVar13 = DAT_00058054;
   if (*(ushort *)(param_2 + 0x10) < 4) goto LAB_00057dc4;
   pbVar7 = (byte *)net_buf_simple_pull_5f594(param_2 + 0xc,4);
@@ -157,8 +201,11 @@ undefined4 l2cap_recv(int *param_1,int param_2)
     local_5c = DAT_0005805c;
     local_58 = uVar17;
 LAB_00057e04:
-    local_60 = 4;
-    FUN_00081746(DAT_00058058,0x2040,&local_60);
+    log4.count = 4;
+    log4.format = local_5c;
+    log4.value0 = local_58;
+    log4.value1 = local_54;
+    FUN_00081746(DAT_00058058,0x2040,&log4);
     return 0;
   }
   uVar18 = (uint)pbVar7[1];
@@ -191,7 +238,7 @@ LAB_000581ee:
         puVar12 = (undefined1 *)net_buf_simple_add(iVar11 + 0xc,2);
         puVar12[1] = 0;
         *puVar12 = 2;
-        net_buf_simple_push_mem(iVar11 + 0xc,&local_40,4);
+        FUN_00083740(iVar11 + 0xc,&local_40,4);
       }
       else {
         iVar11 = FUN_000573f4(7,uVar18,4);
@@ -242,7 +289,7 @@ LAB_000581ee:
         *puVar8 = 0;
         puVar8[1] = 0;
         *(undefined2 *)(puVar8 + 2) = 0;
-        puVar15 = (undefined2 *)bt_l2cap_le_lookup_tx_cid(uVar4);
+        puVar15 = (undefined2 *)FUN_000579b4(uVar4);
         if (puVar15 == (undefined2 *)0x0) {
 LAB_00057ed4:
           sVar20 = 2;
@@ -261,12 +308,12 @@ LAB_00057ed4:
           sVar20 = 9;
           goto LAB_00057ed6;
         }
-        local_44 = bt_l2cap_le_lookup_tx_cid(iVar21,(uint)uVar2);
+        local_44 = FUN_00081a4e(iVar21,(uint)uVar2);
         if (local_44 != 0) {
           sVar20 = 10;
           goto LAB_00057ed6;
         }
-        iVar9 = (**(code **)(puVar15 + 2))(iVar21,&local_44);
+        iVar9 = (**(code2 **)(puVar15 + 2))(iVar21,&local_44);
         iVar16 = local_44;
         uVar13 = DAT_00058074;
         if (iVar9 < 0) {
@@ -327,10 +374,10 @@ LAB_00057ed6:
         if (sVar20 != 0) {
           return 0;
         }
-        if ((code *)**(undefined4 **)(local_44 + 4) == (code *)0x0) {
+        if ((code0 *)**(undefined4 **)(local_44 + 4) == (code0 *)0x0) {
           return 0;
         }
-        (*(code *)**(undefined4 **)(local_44 + 4))();
+        (*(code0 *)**(undefined4 **)(local_44 + 4))();
         return 0;
       }
       break;
@@ -344,7 +391,7 @@ LAB_00057ed6:
         uVar5 = puVar15[2];
         uVar2 = puVar15[4];
         uVar6 = *puVar15;
-        if (((uVar2 & ((uintptr_t)&tbl_ffc8) /*=0xfff7*/) == 0) || (uVar2 == 5)) {
+        if (((uVar2 & 0xfff7) == 0) || (uVar2 == 5)) {
           piVar10 = (int *)FUN_00081626(iVar21,uVar18,0);
           if (piVar10 == (int *)0x0) goto LAB_00058032;
           FUN_00073518(piVar10 + 0x30);
@@ -370,10 +417,10 @@ LAB_00057ed6:
           piVar10 = (int *)FUN_00081626(iVar21,uVar18,1);
           if (piVar10 == (int *)0x0) {
 LAB_00058032:
-            local_5c = DAT_0005807c;
-            local_60 = 3;
-            local_58 = uVar18;
-            FUN_00081746(DAT_00058058,0x1840,&local_60);
+            log3.count = 3;
+            log3.format = DAT_0005807c;
+            log3.value = uVar18;
+            FUN_00081746(DAT_00058058,0x1840,&log3);
             return 0;
           }
           FUN_00073518(piVar10 + 0x30);
@@ -385,8 +432,8 @@ LAB_0005809c:
               *(undefined2 *)(piVar10 + 9) = uVar6;
               *(undefined2 *)((int)piVar10 + 0x26) = uVar4;
               *(undefined2 *)(piVar10 + 10) = uVar5;
-              if (*(code **)piVar10[1] != (code *)0x0) {
-                (**(code **)piVar10[1])(piVar10);
+              if (*(code1 **)piVar10[1] != (code1 *)0x0) {
+                (**(code1 **)piVar10[1])((int)piVar10);
               }
               atomic_counter_add_and_signal(piVar10,local_4c);
               return 0;
@@ -418,11 +465,11 @@ LAB_00058136:
       uVar13 = DAT_000582a4;
       if (3 < uVar17) {
         uVar17 = (uint)(ushort)(*(undefined2 **)(param_2 + 0xc))[1];
-        iVar21 = bt_l2cap_le_lookup_tx_cid(*param_1,**(undefined2 **)(param_2 + 0xc));
+        iVar21 = FUN_00081a4e(*param_1,**(undefined2 **)(param_2 + 0xc));
         uVar13 = DAT_000582a8;
         if (iVar21 != 0) {
           iVar11 = FUN_000816a2(iVar21 + 0x2c);
-          if (((uintptr_t)&tbl_ffc8) /*=0xffff*/ < (int)(iVar11 + uVar17)) {
+          if (0xffff < (int)(iVar11 + uVar17)) {
             local_2c = DAT_000582ac;
             local_30 = 2;
             FUN_00081746(DAT_000582b0,0x1040,&local_30);
@@ -442,10 +489,10 @@ LAB_00057dc4:
   }
   else {
 switchD_00057e38_caseD_2:
-    local_5c = DAT_000582b4;
-    local_60 = 3;
-    local_58 = uVar14;
-    FUN_00081746(DAT_000582b0,0x1880,&local_60);
+    log3.count = 3;
+    log3.format = DAT_000582b4;
+    log3.value = uVar14;
+    FUN_00081746(DAT_000582b0,0x1880,&log3);
     iVar21 = *param_1;
     iVar11 = FUN_000573f4(1,pbVar7[1],2);
     if (iVar11 == 0) {
@@ -459,5 +506,3 @@ LAB_000581ac:
   }
   return 0;
 }
-
-

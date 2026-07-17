@@ -1,4 +1,16 @@
-/* named: FUN_0005d0ac */
+/* readable reconstruction; identity: FUN_0005d0ac @ 0x0005d0ac
+ * public-name: FUN_0005d0ac
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   bt_crypto_f5                             <= FUN_0005ecdc @ 0x0005ecdc
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ */
 /* Reconstructed FUN_0005d0ac @ 0x5d0ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void bt_smp_send_pdu(int, int, int);
@@ -7,8 +19,8 @@ extern int net_buf_simple_add(int, int);
 extern int FUN_00083074(int, int, int);
 extern void atomic_set_bit(int, int);
 extern int smp_create_pdu(int, int);
-extern int bt_crypto_f6(int, int, int, int);
-extern int memcmp(int, int, int);
+extern int FUN_00083634(int, int, int, int);
+extern int FUN_00086be4(int, int, int);
 extern void memset_bytes(void*, int, int);
 
 int FUN_0005d0ac(int param_1)
@@ -54,7 +66,7 @@ int FUN_0005d0ac(int param_1)
     iVar8 = param_1 + 0x27;
     iVar1 = bt_crypto_f5(param_1 + 0x97, iVar7, iVar8, *(volatile int*)(param_1 + 0xf0) + 0x97);
     if (iVar1 == 0) {
-        iVar1 = bt_crypto_f6(iVar6, iVar8, iVar7, (int)(intptr_t)local_48);
+        iVar1 = FUN_00083634(iVar6, iVar8, iVar7, (int)(intptr_t)local_48);
         if (iVar1 == 0) {
             if (*(volatile int8_t*)(param_1 + 8) == 5) {
                 puVar4 = (uint32_t*)(intptr_t)*(volatile uint32_t*)(param_1 + 0xe0);
@@ -71,9 +83,9 @@ int FUN_0005d0ac(int param_1)
                     } while (puVar4 != puVar10);
                 }
             }
-            iVar1 = bt_crypto_f6(iVar6, iVar7, iVar8, (int)(intptr_t)local_48);
+            iVar1 = FUN_00083634(iVar6, iVar7, iVar8, (int)(intptr_t)local_48);
             if (iVar1 == 0) {
-                iVar1 = memcmp(param_1 + 0xb7, (int)(intptr_t)auStack_68, 0x10);
+                iVar1 = FUN_00086be4(param_1 + 0xb7, (int)(intptr_t)auStack_68, 0x10);
                 if (iVar1 != 0) return 0xb;
                 iVar1 = smp_create_pdu(param_1, 0xd);
                 if (iVar1 == 0) return 8;
@@ -94,4 +106,3 @@ int FUN_0005d0ac(int param_1)
     FUN_00083074(0x00088180, 0x1040, (int)(intptr_t)logbuf);
     return 8;
 }
-

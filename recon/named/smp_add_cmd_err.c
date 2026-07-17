@@ -1,5 +1,17 @@
-/* named: smp_add_cmd_err */
-/* Reconstructed smp_add_cmd_err @ 0x5160c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005160c @ 0x0005160c
+ * public-name: smp_add_cmd_err
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
+ *   cbor_encode_uint32                       <= FUN_00086320 @ 0x00086320
+ *   cbor_encode_bstr                         <= FUN_0008633e @ 0x0008633e
+ *   cbor_encode_map_indef_start              <= FUN_0008634c @ 0x0008634c
+ * address symbols (name @ address):
+ *   rodata_f0f61                             @ 0x000f0f61
+ *   rodata_f2558                             @ 0x000f2558
+ *   rodata_f255b                             @ 0x000f255b
+ */
+/* Reconstructed FUN_0005160c @ 0x5160c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int cbor_encode_uint32(int,...);
@@ -28,4 +40,3 @@ unsigned smp_add_cmd_err(int param_1, unsigned param_2, int param_3){
   }
   return 0;
 }
-

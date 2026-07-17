@@ -1,5 +1,10 @@
-/* named: _ldiv5 */
-/* Reconstructed _ldiv5 @ 0x7e260  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e260 @ 0x0007e260
+ * public-name: _ldiv5
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _ldiv5                                   <= FUN_0007e260 @ 0x0007e260
+ */
+/* Reconstructed FUN_0007e260 @ 0x7e260  (parity: 300/300 trials, PROVEN) */
 
 void _ldiv5(unsigned int *param_1)
 {
@@ -15,4 +20,3 @@ void _ldiv5(unsigned int *param_1)
     unsigned long long result = (unsigned long long)param_1[1]*0x33333333ULL + X;
     *(volatile unsigned long long*)param_1 = result;
 }
-

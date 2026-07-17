@@ -1,5 +1,19 @@
-/* named: flash_write_and_verify_blob */
-/* Reconstructed flash_write_and_verify_blob @ 0x30528  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00030528 @ 0x00030528
+ * public-name: flash_write_and_verify_blob
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_set                           <= FUN_00030178 @ 0x00030178
+ *   attr_store_init_sequence                 <= FUN_00030288 @ 0x00030288
+ *   flash_write_and_verify_blob              <= FUN_00030528 @ 0x00030528
+ *   wait_attr_0x4714_clear                   <= FUN_0007cfac @ 0x0007cfac
+ *   attr_configure_pair                      <= FUN_0007cfdc @ 0x0007cfdc
+ *   attr_configure_pair_with_init            <= FUN_0007d02a @ 0x0007d02a
+ *   attr_configure_mode3_readback            <= FUN_0007d05e @ 0x0007d05e
+ * address symbols (name @ address):
+ *   rodata_ff20                              @ 0x0000ff20
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00030528 @ 0x30528  (parity: 300/300 trials, PROVEN) */
 extern int attr_store_set(int a0,int a1,int a2,int a3,int a4);
 extern int attr_store_init_sequence(int a0);
 extern int FUN_0007cf34(int a0,int a1,int a2);
@@ -92,4 +106,3 @@ LAB_00030622:
     }
     return iVar6;
 }
-

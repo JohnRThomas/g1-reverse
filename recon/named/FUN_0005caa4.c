@@ -1,4 +1,11 @@
-/* named: FUN_0005caa4 */
+/* readable reconstruction; identity: FUN_0005caa4 @ 0x0005caa4
+ * public-name: FUN_0005caa4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ * address symbols (name @ address):
+ *   g_misc_kobj_6454                         @ 0x20006454
+ */
 /* Reconstructed FUN_0005caa4 @ 0x5caa4  (parity: 300/300 trials, PROVEN) */
 
 extern int atomic_test_bit(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -13,4 +20,3 @@ int FUN_0005caa4(unsigned int param_1, unsigned int param_2, unsigned int param_
     }
     return iVar2;
 }
-

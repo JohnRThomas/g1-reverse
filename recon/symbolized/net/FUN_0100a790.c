@@ -8,6 +8,5 @@ void FUN_0100a790(void) {
   FUN_0100a718();
   FUN_0100a760();
   FUN_0100a7cc();
-  *(volatile unsigned int *)(REG_4100f000 /*=0x4100f000*/ + 0x508) = 0x1ff8;
+  *(volatile unsigned int *)(0x4100f000 + 0x508) = 0x1ff8;
 }
-

@@ -1,8 +1,29 @@
-/* named: FUN_00073b1c */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073b1c @ 0x00073b1c
+ * public-name: FUN_00073b1c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f84f7                             @ 0x000f84f7
+ *   rodata_f8522                             @ 0x000f8522
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
 /* Reconstructed FUN_00073b1c @ 0x73b1c  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern int z_spin_lock_valid(unsigned a);
 extern int z_spin_unlock_valid(unsigned a);
@@ -11,10 +32,10 @@ extern void assert_post_action(unsigned a, unsigned b);
 extern void printk(unsigned a, unsigned b, unsigned c, unsigned d);
 void FUN_00073b1c(void){
     unsigned r4;
-    __asm__ volatile("mrs %0, basepri" : "=r"(r4));
+    r4 = __get_BASEPRI();
     unsigned tmp = 0x20;
-    __asm__ volatile("msr basepri_max, %0" :: "r"(tmp) : "memory");
-    __asm__ volatile("isb");
+    __set_BASEPRI_MAX(tmp);
+    __ISB();
     int iVar3 = z_spin_lock_valid(0x2000b490);
     if (iVar3 == 0){
         printk(0x00099cbd,0x000f0920,0x000f08c7,0x72);
@@ -24,7 +45,7 @@ void FUN_00073b1c(void){
     }
     z_spin_lock_set_owner(0x2000b490);
     unsigned ipsr;
-    __asm__ volatile("mrs %0, ipsr" : "=r"(ipsr));
+    ipsr = __get_IPSR();
     if (ipsr != 0){
         printk(0x00099cbd,0x000f801f,0x000f84f7,0xfd);
         printk(0x000f53ff,0,0,0);
@@ -47,8 +68,7 @@ void FUN_00073b1c(void){
         assert_post_action(0x000f08c7,0xf0);
         return;
     }
-    __asm__ volatile("msr basepri, %0" :: "r"(r4) : "memory");
-    __asm__ volatile("isb");
+    __set_BASEPRI(r4);
+    __ISB();
     return;
 }
-

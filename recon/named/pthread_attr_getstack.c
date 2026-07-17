@@ -1,5 +1,10 @@
-/* named: pthread_attr_getstack */
-/* Reconstructed pthread_attr_getstack @ 0x7c65c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c65c @ 0x0007c65c
+ * public-name: pthread_attr_getstack
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pthread_attr_getstack                    <= FUN_0007c65c @ 0x0007c65c
+ */
+/* Reconstructed FUN_0007c65c @ 0x7c65c  (parity: 300/300 trials, PROVEN) */
 
 unsigned int pthread_attr_getstack(int param_1, unsigned int *param_2)
 {
@@ -10,4 +15,3 @@ unsigned int pthread_attr_getstack(int param_1, unsigned int *param_2)
     }
     return 7;
 }
-

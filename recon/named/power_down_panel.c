@@ -1,8 +1,20 @@
-/* named: power_down_panel */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00015fdc @ 0x00015fdc
+ * public-name: power_down_panel
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   panel_pwr_gpio_deassert                  <= FUN_000179e0 @ 0x000179e0
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ * address symbols (name @ address):
+ *   rodata_99329                             @ 0x00099329
+ *   rodata_9940b                             @ 0x0009940b
+ *   rodata_9949a                             @ 0x0009949a
+ *   rodata_994b9                             @ 0x000994b9
+ *   rodata_99c17                             @ 0x00099c17
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed power_down_panel @ 0x15fdc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -43,7 +55,7 @@ unsigned int power_down_panel(void)
             }
         }
         app_msleep_thunk_a(5);
-        iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087cf8UL + 4) + 0x1c), 8, 1);
+        iVar2 = dev_write_reg3(*(volatile uint32_t*)(*(volatile uint32_t*)(0x00087cf8UL + 4) + 0x1c), 8, 1, 1);
         if (iVar2 < 0) {
             if (*piVar1 < 1) {
                 return 0;
@@ -65,4 +77,3 @@ unsigned int power_down_panel(void)
     }
     return 0;
 }
-

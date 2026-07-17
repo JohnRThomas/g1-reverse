@@ -1,7 +1,9 @@
-/* named: FUN_000553f8 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_000553f8 @ 0x000553f8
+ * public-name: FUN_000553f8
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_000553f8 @ 0x553f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00054d18(int,void*);
@@ -31,4 +33,3 @@ int FUN_000553f8(void){
   }
   return FUN_00055204(0);
 }
-

@@ -1,5 +1,10 @@
-/* named: bigint_copy_words_zero_pad */
-/* Reconstructed bigint_copy_words_zero_pad @ 0x87648  (parity: 146/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087648 @ 0x00087648
+ * public-name: bigint_copy_words_zero_pad
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bigint_copy_words_zero_pad               <= FUN_00087648 @ 0x00087648
+ */
+/* Reconstructed FUN_00087648 @ 0x87648  (parity: 146/300 trials, PROVEN) */
 
 void bigint_copy_words_zero_pad(int param_1, int param_2, int param_3)
 {
@@ -21,4 +26,3 @@ void bigint_copy_words_zero_pad(int param_1, int param_2, int param_3)
   }
   return;
 }
-

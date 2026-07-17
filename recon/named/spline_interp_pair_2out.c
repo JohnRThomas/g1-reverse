@@ -1,5 +1,13 @@
-/* named: spline_interp_pair_2out */
-/* Reconstructed spline_interp_pair_2out @ 0xea70  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000ea70 @ 0x0000ea70
+ * public-name: spline_interp_pair_2out
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ *   spline_interp_pair_2out                  <= FUN_0000ea70 @ 0x0000ea70
+ * address symbols (name @ address):
+ *   g_spline_nan_sentinel                    @ 0x20002d1c
+ */
+/* Reconstructed FUN_0000ea70 @ 0xea70  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int float_is_nan(float);
 void spline_interp_pair_2out(float param_1, float *param_2, unsigned int *param_3, float *param_4)
@@ -34,4 +42,3 @@ void spline_interp_pair_2out(float param_1, float *param_2, unsigned int *param_
   param_4[1] = fVar5;
   *param_4 = fVar10;
 }
-

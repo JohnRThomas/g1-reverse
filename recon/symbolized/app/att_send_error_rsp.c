@@ -1,20 +1,35 @@
 #include "g1_app_symbols.h"
-/* named: att_send_error_rsp */
-/* Reconstructed att_send_error_rsp @ 0x821f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000821f4 @ 0x000821f4
+ * public-name: att_send_error_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_att_chan_send_rsp                     <= FUN_000821a4 @ 0x000821a4
+ *   att_send_error_rsp                       <= FUN_000821f4 @ 0x000821f4
+ */
+/* Reconstructed FUN_000821f4 @ 0x821f4. */
 #include <stdint.h>
-extern long long bt_att_chan_create_pdu(unsigned,int);
-extern int tail_58568(void);
+extern int bt_att_chan_create_pdu(uintptr_t, unsigned, unsigned);
+extern void FUN_00058568(void);
 extern unsigned char* net_buf_simple_add(int,int);
-extern int bt_att_chan_send_rsp(unsigned,int);
-void att_send_error_rsp(unsigned param_1, int param_2, unsigned short param_3, unsigned param_4){
-    if (param_2 == 0) return;
-    long long uVar5 = bt_att_chan_create_pdu(param_1, 1);
-    int iVar1 = (int)uVar5;
-    if (iVar1 == 0){ tail_58568(); return; }
-    unsigned char* puVar2 = net_buf_simple_add(iVar1 + 0xc, 4);
-    *(volatile unsigned char*)puVar2 = (unsigned char)param_2;
-    *(volatile unsigned short*)(puVar2 + 1) = param_3;
-    *(volatile unsigned char*)(puVar2 + 3) = (unsigned char)param_4;
-    bt_att_chan_send_rsp(param_1, iVar1);
-}
+extern void bt_att_chan_send_rsp(uintptr_t,int);
 
+void att_send_error_rsp(uintptr_t owner, int opcode, uint16_t handle,
+                  unsigned status)
+{
+    if (opcode == 0)
+        return;
+
+    int item = bt_att_chan_create_pdu(owner, 1, 4);
+    if (item == 0) {
+        FUN_00058568();
+        return;
+    }
+
+    uint8_t *payload = net_buf_simple_add(item + 0xc, 4);
+    *(volatile uint8_t *)(payload + 0) = (uint8_t)opcode;
+    *(volatile uint16_t *)(payload + 1) = handle;
+    *(volatile uint8_t *)(payload + 3) = (uint8_t)status;
+    bt_att_chan_send_rsp(owner, item);
+}

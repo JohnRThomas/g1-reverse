@@ -1,7 +1,10 @@
-/* named: FUN_00018300 */
-/* globals referenced:
-//   0x20006ab8  g_ancs_active_conn           
-*/
+/* readable reconstruction; identity: FUN_00018300 @ 0x00018300
+ * public-name: FUN_00018300
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_9a436                             @ 0x0009a436
+ *   g_ancs_active_conn                       @ 0x20006ab8
+ */
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(int);
@@ -18,4 +21,3 @@ void FUN_00018300(int param_1, unsigned int param_2)
         }
     }
 }
-

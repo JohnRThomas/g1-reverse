@@ -1,19 +1,38 @@
-/* named: onboarding_ble_process */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001cdce  onboarding_secondary_reset_flag 
-//   0x2001cdd2  onboarding_attempt_counter   
-*/
+/* readable reconstruction; identity: FUN_00042a64 @ 0x00042a64
+ * public-name: onboarding_ble_process
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   check_ancs_inbox_flag_change             <= FUN_0002eb40 @ 0x0002eb40
+ *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ *   k_uptime_get_8                           <= FUN_0007d382 @ 0x0007d382
+ * address symbols (name @ address):
+ *   rodata_aa611                             @ 0x000aa611
+ *   rodata_aa63d                             @ 0x000aa63d
+ *   rodata_aa661                             @ 0x000aa661
+ *   rodata_aa665                             @ 0x000aa665
+ *   rodata_aa669                             @ 0x000aa669
+ *   rodata_aa66d                             @ 0x000aa66d
+ *   rodata_aa671                             @ 0x000aa671
+ *   rodata_aa675                             @ 0x000aa675
+ *   rodata_aa778                             @ 0x000aa778
+ *   g_log_level                              @ 0x2000230c
+ *   g_onboarding_step_retry_cnt              @ 0x20004bf0
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   onboarding_secondary_reset_flag          @ 0x2001cdce
+ *   g_onboarding_primary_reset_flag          @ 0x2001cdcf
+ *   onboarding_attempt_counter               @ 0x2001cdd2
+ */
 /* Reconstructed onboarding_ble_process @ 0x42a64  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void DEBUG_PRINT(u32,u32,u32,u32,u32);
+extern void DEBUG_PRINT(u32,u32,...);
 extern u32 get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(u32,u32,...);
 extern u32 check_ancs_inbox_flag_change(void);
 extern void onboarding_retry_watchdog_update(void);
 extern u64 k_uptime_get_8(void);
@@ -31,9 +50,11 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (0x17 < *(volatile u8*)(param_3 + 1)) {
     if (0 < *(volatile int*)0x2000230cUL) {
       if (*(volatile int*)0x20007554UL == 0) {
-        DEBUG_PRINT(0x000aa611UL, 0x000aa778UL, (u32)*(volatile u8*)(param_3+1), 0, 0);
+        DEBUG_PRINT(0x000aa611UL, 0x000aa778UL,
+                    (u32)*(volatile u8*)(param_3+1));
       } else {
-        debug_print();
+        debug_print(0x000aa611UL, 0x000aa778UL,
+                     (u32)*(volatile u8*)(param_3+1));
       }
     }
     *(volatile u16*)(param_4) = *(volatile u16*)(param_3);
@@ -60,9 +81,11 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (2 < *(volatile int*)0x2000230cUL) {
     ctx = *(volatile u32*)(param_1 + 0x1014);
     if (*(volatile int*)0x20007554UL == 0) {
-      DEBUG_PRINT(0x000aa63dUL, 0x000aa778UL, (u32)*(volatile u8*)(ctx+2), 0, 0);
+      DEBUG_PRINT(0x000aa63dUL, 0x000aa778UL,
+                  (u32)*(volatile u8*)(ctx+2));
     } else {
-      debug_print();
+      debug_print(0x000aa63dUL, 0x000aa778UL,
+                   (u32)*(volatile u8*)(ctx+2));
     }
   }
 
@@ -183,4 +206,3 @@ LAB_tail:
 
   return uVar4;
 }
-

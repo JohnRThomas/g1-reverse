@@ -1,8 +1,25 @@
-/* named: bt_hci_driver_close */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed bt_hci_driver_close @ 0x54b70  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054b70 @ 0x00054b70
+ * public-name: bt_hci_driver_close
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arm_mpu_configure_partition_region       <= FUN_00050b8c @ 0x00050b8c
+ *   bt_hci_driver_close                      <= FUN_00054b70 @ 0x00054b70
+ *   bt_pub_key_hci_disrupted                 <= FUN_00055e1c @ 0x00055e1c
+ *   bt_conn_cleanup_all                      <= FUN_00056990 @ 0x00056990
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f3376                             @ 0x000f3376
+ *   rodata_f33b7                             @ 0x000f33b7
+ *   g_ble_dev_state                          @ 0x20002000
+ *   rx_thread_data                           @ 0x20005e30
+ *   bt_workqueue                             @ 0x20005f08
+ *   g_bt_hci_pending_opcode                  @ 0x2000ff06
+ */
+/* Reconstructed FUN_00054b70 @ 0x54b70  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int arm_mpu_configure_partition_region(int);
@@ -56,4 +73,3 @@ int bt_hci_driver_close(void)
     }
     return iVar2;
 }
-

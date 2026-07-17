@@ -1,4 +1,9 @@
-/* named: FUN_0006897c */
+/* readable reconstruction; identity: FUN_0006897c @ 0x0006897c
+ * public-name: FUN_0006897c
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
 /* Reconstructed FUN_0006897c @ 0x6897c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
@@ -44,4 +49,3 @@ void FUN_0006897c(int param_1){
         if(uVar1 >= 0x10000) return;
     } while(1);
 }
-

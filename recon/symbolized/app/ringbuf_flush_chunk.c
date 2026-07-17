@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: ringbuf_flush_chunk */
-/* Reconstructed ringbuf_flush_chunk @ 0x84a24  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084a24 @ 0x00084a24
+ * public-name: ringbuf_flush_chunk
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ringbuf_flush_chunk                      <= FUN_00084a24 @ 0x00084a24
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
+/* Reconstructed FUN_00084a24 @ 0x84a24  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
@@ -21,4 +27,3 @@ unsigned int ringbuf_flush_chunk(int param_1, unsigned int param_2, unsigned int
     }
     return uVar1;
 }
-

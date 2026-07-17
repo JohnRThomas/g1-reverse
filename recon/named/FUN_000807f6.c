@@ -1,4 +1,7 @@
-/* named: FUN_000807f6 */
+/* readable reconstruction; identity: FUN_000807f6 @ 0x000807f6
+ * public-name: FUN_000807f6
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000807f6 @ 0x807f6  (parity: 300/300 trials, PROVEN) */
 void FUN_000807f6(unsigned char *param_1, unsigned char *param_2, unsigned int param_3)
 {
@@ -24,4 +27,3 @@ void FUN_000807f6(unsigned char *param_1, unsigned char *param_2, unsigned int p
     *(volatile unsigned short *)(param_2 + 4) = (unsigned short)((uVar1 & 0xff) << 8) | (uVar1 >> 8);
     *(volatile unsigned short *)(param_2 + 6) = uVar2;
 }
-

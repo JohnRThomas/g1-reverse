@@ -1,5 +1,20 @@
-/* named: bt_smp_send_pairing_confirm */
-/* Reconstructed bt_smp_send_pairing_confirm @ 0x5cdc4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005cdc4 @ 0x0005cdc4
+ * public-name: bt_smp_send_pairing_confirm
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   bt_smp_send_pairing_confirm              <= FUN_0005cdc4 @ 0x0005cdc4
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   atomic_clear_bit_1                       <= FUN_0008304c @ 0x0008304c
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ *   bt_crypto_f4                             <= FUN_000835ea @ 0x000835ea
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4e7a                             @ 0x000f4e7a
+ *   g_smp_local_public_key                   @ 0x2000af48
+ */
+/* Reconstructed FUN_0005cdc4 @ 0x5cdc4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
 extern int bt_smp_send_pdu(int,int,int);
@@ -38,4 +53,3 @@ u32 bt_smp_send_pairing_confirm(int param_1){
     }
     return 8;
 }
-

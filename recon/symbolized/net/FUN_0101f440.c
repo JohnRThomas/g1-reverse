@@ -54,7 +54,7 @@ int FUN_0101f440(uint param_1, unsigned char *param_2)
   iVar5 = FUN_01009d18(*param_2, 3);
   iVar4 = FUN_01009d18(*param_2, 5);
 
-  volatile int *DAT_0101f5d8 = (volatile int *)((uintptr_t)&g_net_ble_conn_setup_ok_cb) /*=0x210004dc*/;
+  volatile int *DAT_0101f5d8 = (volatile int *)((unsigned long)&g_net_ble_conn_setup_ok_cb) /*=0x210004dc*/;
   volatile int *piVar3 = DAT_0101f5d8;
 
   int bVar1;
@@ -81,15 +81,15 @@ LAB_0101f4d4:
     iVar5 = FUN_01029b38(iVar4);
     if ((iVar5 != 0) && (iVar5 = FUN_01029b24(iVar4), iVar5 == 0)) {
       if (cVar8 == '\0') {
-        int (*fp)(int, int, int) = (int (*)(int, int, int)) *(volatile int *)((uintptr_t)&g_net_ble_conn_setup_ok_cb) /*=0x210004dc*/;
-        int p2 = *(volatile int *)(((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/ + 0xc);
+        int (*fp)(int, int, int) = (int (*)(int, int, int)) *(volatile int *)((unsigned long)&g_net_ble_conn_setup_ok_cb) /*=0x210004dc*/;
+        int p2 = *(volatile int *)(((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/ + 0xc);
         iVar4 = fp(iVar4, p2, 0);
         if (iVar4 != 0) {
           uVar7 = 0x1760;
           goto LAB_0101f4c8;
         }
       } else {
-        int (*fp2)(int) = (int (*)(int)) *(volatile int *)((uintptr_t)&g_net_ble_conn_setup_err_cb) /*=0x210004d8*/;
+        int (*fp2)(int) = (int (*)(int)) *(volatile int *)((unsigned long)&g_net_ble_conn_setup_err_cb) /*=0x210004d8*/;
         iVar4 = fp2(iVar4);
         if (iVar4 != 0) {
           uVar7 = 0x175b;
@@ -110,7 +110,7 @@ LAB_after_dispatch:;
   } else {
     iVar4 = FUN_010126c0(param_1);
     if (((iVar4 != 0) && (iVar4 = FUN_010126e8(param_1), iVar4 == 0)) &&
-        (*(volatile char *)(((uintptr_t)&g_net_ble_conn_role_cfg) /*=0x21001208*/ + 4) == '\0')) {
+        (*(volatile char *)(((unsigned long)&g_net_ble_conn_role_cfg) /*=0x21001208*/ + 4) == '\0')) {
       return 0x12;
     }
     unsigned short outparam;
@@ -134,7 +134,7 @@ LAB_after_dispatch:;
     iVar4 = FUN_01013b4c(param_1, puVar6, (uint)uVar2 * 10000);
     if (iVar4 == 0) {
       void (*fp3)(void *, void *, int) =
-          (void (*)(void *, void *, int)) *(volatile int *)(((uintptr_t)&g_net_ble_conn_role_cfg) /*=0x21001208*/ + 0x24);
+          (void (*)(void *, void *, int)) *(volatile int *)(((unsigned long)&g_net_ble_conn_role_cfg) /*=0x21001208*/ + 0x24);
       if (fp3 != 0) {
         fp3(puVar6, puVar6 + 0xb1, 0);
         return 0;
@@ -148,4 +148,3 @@ LAB_0101f4c8:
   FUN_01008d00(0x39, uVar7);
   __builtin_unreachable();
 }
-

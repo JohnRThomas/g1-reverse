@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007a2b8 */
+/* readable reconstruction; identity: FUN_0007a2b8 @ 0x0007a2b8
+ * public-name: FUN_0007a2b8
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0007a2b8 @ 0x7a2b8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_0007a3a4(unsigned int);
@@ -11,4 +14,3 @@ unsigned int FUN_0007a2b8(unsigned int param_1)
     }
     return FUN_0007a3a4(param_1);
 }
-

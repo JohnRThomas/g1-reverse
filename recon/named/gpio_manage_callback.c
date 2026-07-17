@@ -1,5 +1,19 @@
-/* named: gpio_manage_callback */
-/* Reconstructed gpio_manage_callback @ 0x613c4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000613c4 @ 0x000613c4
+ * public-name: gpio_manage_callback
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_manage_callback                     <= FUN_000613c4 @ 0x000613c4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5dfc                             @ 0x000f5dfc
+ *   rodata_f5e38                             @ 0x000f5e38
+ *   rodata_f5e41                             @ 0x000f5e41
+ *   rodata_f5e50                             @ 0x000f5e50
+ *   rodata_f5e62                             @ 0x000f5e62
+ */
+/* Reconstructed FUN_000613c4 @ 0x613c4  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
 extern int printk(int,...);
@@ -30,4 +44,3 @@ int gpio_manage_callback(int param_1, int *param_2, int param_3){
   if(*(int*)(iVar4+8)==0) *(volatile int*)(iVar4+8)=(int)param_2;
   return 0;
 }
-

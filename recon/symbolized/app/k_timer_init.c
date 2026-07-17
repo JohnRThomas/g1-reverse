@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: k_timer_init */
-/* Reconstructed k_timer_init @ 0x86726  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086726 @ 0x00086726
+ * public-name: k_timer_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_timer_init                             <= FUN_00086726 @ 0x00086726
+ */
+/* Reconstructed FUN_00086726 @ 0x86726  (parity: 300/300 trials, PROVEN) */
 
 void k_timer_init(unsigned int *param_1, unsigned int param_2, unsigned int param_3) {
     volatile unsigned int *p = (volatile unsigned int*)param_1;
@@ -13,4 +18,3 @@ void k_timer_init(unsigned int *param_1, unsigned int param_2, unsigned int para
     p[0xc] = 0;
     p[0xd] = 0;
 }
-

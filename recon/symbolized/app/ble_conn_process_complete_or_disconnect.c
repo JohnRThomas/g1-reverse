@@ -1,37 +1,54 @@
 #include "g1_app_symbols.h"
-/* named: ble_conn_process_complete_or_disconnect */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_conn_process_complete_or_disconnect @ 0x570a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000570a0 @ 0x000570a0
+ * public-name: ble_conn_process_complete_or_disconnect
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_disconnected                        <= FUN_00018adc @ 0x00018adc
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_process_complete_or_disconnect  <= FUN_000570a0 @ 0x000570a0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   rodata_f3dff                             @ 0x000f3dff
+ *   rodata_f3e24                             @ 0x000f3e24
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_000570a0 @ 0x570a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
-extern int send_conn_le_param_update(int,void*);
+extern int FUN_00057038(int,void*);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
 extern void FUN_000813ca(unsigned,unsigned,void*);
-extern void bt_l2cap_disconnected(int);
+extern void FUN_000817ea(int);
 
 void ble_conn_process_complete_or_disconnect(int param_1){
   int iVar5 = param_1 - 0x60;
   unsigned uVar1, uVar3;
   int iVar2;
   if(*(volatile char*)(param_1-0x53) == 0){
-    bt_l2cap_disconnected(iVar5);
-    for(iVar2 = *(volatile int*)((uintptr_t)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;
-        uVar1 = ((uintptr_t)&tbl_88058) /*=0x88058*/, uVar3 = ((uintptr_t)&tbl_87fc8) /*=0x87fec*/, iVar2 != 0;
+    FUN_000817ea(iVar5);
+    for(iVar2 = *(volatile int*)((unsigned long)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;
+        uVar1 = ((unsigned long)&rodata_88058) /*=0x88058*/, uVar3 = ((unsigned long)&rodata_87fec) /*=0x87fec*/, iVar2 != 0;
         iVar2 = *(volatile int*)(iVar2+0x20)){
       if(*(void**)(iVar2+4) != 0)
         (*(void(**)(int,unsigned char))(iVar2+4))(iVar5,*(volatile uint8_t*)(param_1-0x54));
     }
     while(1){
       if(uVar1 < uVar3){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"cb <= _bt_conn_cb_list_end" /*=0xf3a8d*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/,0x5fe);
-        printk("\tunexpected list end location\n" /*=0xf0d20*/);
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/,0x5fe);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3a8d) /*=0xf3a8d*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x5fe);
+        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x5fe);
       }
       if(uVar1 <= uVar3) break;
       if(*(void**)(uVar3+4) != 0)
@@ -49,8 +66,8 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   if((int)(iVar2 << 0x16) < 0){
     local_20 = *(volatile unsigned*)(param_1+0x48);
     local_1c = *(volatile unsigned*)(param_1+0x50);
-    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
-    local_2c = "Send LE param update failed (err %d)" /*=0xf3dff*/;
+    iStack_28 = FUN_00057038(iVar5,&local_20);
+    local_2c = ((unsigned long)&rodata_f3dff) /*=0xf3dff*/;
     if(iStack_28 == 0){
       atomic_and_2(puVar4, 0xfffffeffU);
       goto LAB;
@@ -58,18 +75,17 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   } else {
     local_20 = 0x00280018U;
     local_1c = 0x2a0000U;
-    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
-    local_2c = "Send auto LE param update failed (err %d)" /*=0xf3e24*/;
+    iStack_28 = FUN_00057038(iVar5,&local_20);
+    local_2c = ((unsigned long)&rodata_f3e24) /*=0xf3e24*/;
     if(iStack_28 == 0){
       *puVar4 = *puVar4 | 0x100;
       goto LAB;
     }
   }
   local_30 = 3;
-  FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_30);
+  FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_30);
 LAB:
   *puVar4 = *puVar4 | 0x80;
   (void)local_2c; (void)local_1c;
   return;
 }
-

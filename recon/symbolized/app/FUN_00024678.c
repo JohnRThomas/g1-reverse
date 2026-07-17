@@ -1,11 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00024678 */
-/* globals referenced:
-//   0x20003960  g_quicknote_flash_msgq       
-*/
+/* readable reconstruction; identity: FUN_00024678 @ 0x00024678
+ * public-name: FUN_00024678
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_quicknote_flash_msgq                   @ 0x20003960
+ */
 /* Reconstructed FUN_00024678 @ 0x24678  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_00024678(void) {
-    return *(volatile unsigned int*)(((uintptr_t)&g_quicknote_flash_msgq) /*=0x20003960*/ + 0x24);
+    return *(volatile unsigned int*)(((unsigned long)&g_quicknote_flash_msgq) /*=0x20003960*/ + 0x24);
 }
-

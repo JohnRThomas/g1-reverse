@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: libc_write_buffer_via_putc */
-/* Reconstructed libc_write_buffer_via_putc @ 0x86cb6  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086cb6 @ 0x00086cb6
+ * public-name: libc_write_buffer_via_putc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_putc_buffered                       <= FUN_00086c88 @ 0x00086c88
+ *   libc_write_buffer_via_putc               <= FUN_00086cb6 @ 0x00086cb6
+ */
+/* Reconstructed FUN_00086cb6 @ 0x86cb6  (parity: 300/300 trials, PROVEN) */
 
 extern int libc_putc_buffered(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
 
@@ -20,4 +26,3 @@ int libc_write_buffer_via_putc(unsigned int param_1, unsigned int param_2, unsig
   }
   return iVar1;
 }
-

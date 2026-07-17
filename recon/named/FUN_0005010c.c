@@ -1,4 +1,15 @@
-/* named: FUN_0005010c */
+/* readable reconstruction; identity: FUN_0005010c @ 0x0005010c
+ * public-name: FUN_0005010c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f1ba8                             @ 0x000f1ba8
+ *   rodata_f1bde                             @ 0x000f1bde
+ *   rodata_f1bf9                             @ 0x000f1bf9
+ */
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 
 extern int printk(int a, int b, int c, int d, int e);
@@ -38,4 +49,3 @@ void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)
         *(char *)(r2 + r0) = cVar1;
     }
 }
-

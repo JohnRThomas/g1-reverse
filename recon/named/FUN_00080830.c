@@ -1,4 +1,10 @@
-/* named: FUN_00080830 */
+/* readable reconstruction; identity: FUN_00080830 @ 0x00080830
+ * public-name: FUN_00080830
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ */
 /* Reconstructed FUN_00080830 @ 0x80830  (parity: 300/300 trials, PROVEN) */
 
 extern void net_buf_reset(unsigned int);
@@ -18,4 +24,3 @@ void FUN_00080830(int *param_1, unsigned int param_2, unsigned int param_3)
   uVar1 = net_buf_simple_tailroom((int *)(param_2 + 0xc));
   thunk_FUN_00085cf2(param_1 + 1, 2, iVar2 + 8, uVar1, 0, iVar3, param_3);
 }
-

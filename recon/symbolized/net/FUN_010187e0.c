@@ -19,18 +19,18 @@ extern int FUN_0101fca8(void);
 extern int FUN_010208b0(void);
 extern int FUN_0102961a(int);
 
-#define G8(o)  (*(volatile signed char*)(((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/+(o)))
-#define G16(o) (*(volatile short*)(((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/+(o)))
+#define G8(o)  (*(volatile signed char*)(0x21000f90+(o)))
+#define G16(o) (*(volatile short*)(0x21000f90+(o)))
 
 /* DAT pointers */
-#define P_ac0 ((void*)((uintptr_t)&g_net_ll_event_scratch_buf) /*=0x21000fd6*/)
-#define P_ac4 ((volatile signed char*)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
-#define P_ac8 ((void*)((uintptr_t)&g_net_link_ctx_field_buf) /*=0x21000fec*/)
-#define P_acc ((void*)((uintptr_t)&g_sdc_ll_ctx_struct) /*=0x21001014*/)
-#define P_abc ((volatile u32*)((uintptr_t)&g_sdc_ll_ctx_field_308) /*=0x21000308*/)
-#define P_bec ((volatile signed char*)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
-#define P_bf0 ((void*)((uintptr_t)&g_net_ll_event_scratch_buf) /*=0x21000fd6*/)
-#define P_bf4 ((void*)((uintptr_t)&g_sdc_ll_ctx_struct) /*=0x21001014*/)
+#define P_ac0 ((void*)0x21000fd6)
+#define P_ac4 ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
+#define P_ac8 ((void*)((unsigned long)&g_net_link_ctx_field_buf) /*=0x21000fec*/)
+#define P_acc ((void*)0x21001014)
+#define P_abc ((volatile u32*)((unsigned long)&g_sdc_ll_ctx_field_308) /*=0x21000308*/)
+#define P_bec ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
+#define P_bf0 ((void*)0x21000fd6)
+#define P_bf4 ((void*)0x21001014)
 
 unsigned int FUN_010187e0(u32 param_1, u32 param_2)
 {
@@ -183,7 +183,7 @@ L_8932:
     uVar8=1;
 L_882e:
     if (G8(0x7c)!=0) {
-        FUN_010208b0(); FUN_0101fca8(); *(volatile signed char*)(((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/+0x7c)=0;
+        FUN_010208b0(); FUN_0101fca8(); *(volatile signed char*)(0x21000f90+0x7c)=0;
         return uVar8;
     }
     return uVar8;
@@ -192,4 +192,3 @@ L_8be8:
     FUN_01016828();
     return uVar8;
 }
-

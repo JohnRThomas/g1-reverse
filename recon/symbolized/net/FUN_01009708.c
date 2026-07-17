@@ -5,9 +5,9 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-static volatile u8 *const DAT_01009868 = (volatile u8*)((uintptr_t)&g_net_bump_alloc_state) /*=0x21000ba8*/;
-static volatile u32 *const DAT_0100986c = (volatile u32*)((uintptr_t)&g_net_bump_alloc_cursor) /*=0x21000bac*/;
-static volatile u32 *const DAT_01009870 = (volatile u32*)((uintptr_t)&g_net_ctx_ptr_table) /*=0x21000b7c*/;
+static volatile u8 *const DAT_01009868 = (volatile u8*)((unsigned long)&g_net_bump_alloc_state) /*=0x21000ba8*/;
+static volatile u32 *const DAT_0100986c = (volatile u32*)((unsigned long)&g_net_bump_alloc_cursor) /*=0x21000bac*/;
+static volatile u32 *const DAT_01009870 = (volatile u32*)0x21000b7c;
 
 extern void FUN_01008d00(u32,u32);
 extern u32 FUN_010274d0(u8);
@@ -44,5 +44,3 @@ void FUN_01009708(u8 param_1, u8 *param_2)
     *DAT_0100986c = param_2[7]*uVar5 + uVar4;
   }
 }
-
-

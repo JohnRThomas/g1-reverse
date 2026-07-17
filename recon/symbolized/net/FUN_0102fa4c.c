@@ -8,9 +8,8 @@ void FUN_0102fa4c(unsigned int param_1, unsigned int param_2, int param_3, int p
   unsigned char buf[0x1c];
   FUN_0103b62e(buf, 0, 0x10);
   buf[2] = 2;
-  *(unsigned int*)(buf+4) = ((uintptr_t)&rodata_103ac2f) /*=0x103ac2f*/;
+  *(unsigned int*)(buf+4) = 0x0103ac2f;
   *(unsigned int*)(buf+0x10) = param_1;
   *(unsigned int*)(buf+0x14) = param_2;
   FUN_01039190(buf, param_3, param_4);
 }
-

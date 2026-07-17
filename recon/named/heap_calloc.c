@@ -1,5 +1,12 @@
-/* named: heap_calloc */
-/* Reconstructed heap_calloc @ 0x876d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000876d0 @ 0x000876d0
+ * public-name: heap_calloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   heap_calloc                              <= FUN_000876d0 @ 0x000876d0
+ */
+/* Reconstructed FUN_000876d0 @ 0x876d0  (parity: 300/300 trials, PROVEN) */
 
 extern int _malloc_r(unsigned int, int, int, unsigned int, unsigned int);
 extern void memset_bytes(int, int, int);
@@ -14,4 +21,3 @@ int heap_calloc(unsigned int param_1,int param_2,int param_3,unsigned int param_
   }
   return iVar1;
 }
-

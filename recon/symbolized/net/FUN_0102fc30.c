@@ -1,9 +1,9 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0102fc30 @ 0x102fc30  (parity 300 trials PROVEN) */
-#define C_0102fcbc ((uintptr_t)&g_net_bufpool_type0) /*=0x210009c8*/
-#define C_0102fcc0 ((uintptr_t)&g_net_bufpool_type2) /*=0x21000994*/
-#define C_0102fcb4 "RF_RPC_OS" /*=0x103ddcd*/
-#define C_0102fcb8 ((uintptr_t)&rodata_103c024) /*=0x103c024*/
+#define C_0102fcbc 0x210009c8
+#define C_0102fcc0 0x21000994
+#define C_0102fcb4 ((unsigned long)&rodata_103ddcd) /*=0x103ddcd*/
+#define C_0102fcb8 ((unsigned long)&rodata_103c024) /*=0x103c024*/
 
 extern int FUN_0103a44c(int);
 extern void FUN_01030014(int, int);
@@ -18,9 +18,11 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
   int iVar1;
   unsigned int uVar3;
   int iVar4;
-  int local_30;
-  int local_2c;
-  int iStack_28;
+  struct {
+    int kind;
+    int descriptor;
+    int value;
+  } diagnostic;
   unsigned int uStack_20;
   unsigned int uVar2;
 
@@ -46,11 +48,10 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
       FUN_0102ff94(iVar1);
     }
   } else {
-    local_2c = C_0102fcb4;
-    local_30 = 3;
-    iStack_28 = param_1;
-    FUN_0102e284(C_0102fcb8, 0x1840, &local_30, 0);
+    diagnostic.kind = 3;
+    diagnostic.descriptor = C_0102fcb4;
+    diagnostic.value = param_1;
+    FUN_0102e284(C_0102fcb8, 0x1840, &diagnostic, 0);
   }
   return 0;
 }
-

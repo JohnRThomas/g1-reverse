@@ -1,8 +1,15 @@
-/* named: stdio_fclose */
-/* globals referenced:
-//   0x20002d20  g_libc_heap_ctrl             
-*/
-/* Reconstructed stdio_fclose @ 0x77d54  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00077d54 @ 0x00077d54
+ * public-name: stdio_fclose
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   smakebuf_r                               <= FUN_00076cec @ 0x00076cec
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
+ * address symbols (name @ address):
+ *   g_libc_heap_ctrl                         @ 0x20002d20
+ */
+/* Reconstructed FUN_00077d54 @ 0x77d54  (parity: 300/300 trials, PROVEN) */
 extern void stdio_streams_init(int);
 extern void smakebuf_r(void*,void*);
 extern void heap_free_core(void*);
@@ -48,4 +55,3 @@ int stdio_fclose(int *param_1, int *param_2){
     return -1;
   }
 }
-

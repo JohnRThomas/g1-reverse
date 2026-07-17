@@ -1,5 +1,10 @@
-/* named: product_code_is_supported_egp_family */
-/* Reconstructed product_code_is_supported_egp_family @ 0x7cefc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007cefc @ 0x0007cefc
+ * public-name: product_code_is_supported_egp_family
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   product_code_is_supported_egp_family     <= FUN_0007cefc @ 0x0007cefc
+ */
+/* Reconstructed FUN_0007cefc @ 0x7cefc  (parity: 300/300 trials, PROVEN) */
 
 extern char *FUN_000232b8(void);
 
@@ -16,4 +21,3 @@ int product_code_is_supported_egp_family(void)
   }
   return 0;
 }
-

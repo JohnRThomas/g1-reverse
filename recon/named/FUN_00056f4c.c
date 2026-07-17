@@ -1,7 +1,18 @@
-/* named: FUN_00056f4c */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_00056f4c @ 0x00056f4c
+ * public-name: FUN_00056f4c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_conn_enc_key_size                     <= FUN_0008148a @ 0x0008148a
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3de7                             @ 0x000f3de7
+ *   rodata_f3e4e                             @ 0x000f3e4e
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_00056f4c @ 0x56f4c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(uint32_t,...);
@@ -61,4 +72,3 @@ uint32_t FUN_00056f4c(int param_1, uint8_t *param_2v){
     }
     return 0xffffffea;
 }
-

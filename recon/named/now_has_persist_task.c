@@ -1,8 +1,13 @@
-/* named: now_has_persist_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002be64 @ 0x0002be64
+ * public-name: now_has_persist_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ */
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007cdf8(void);
@@ -30,4 +35,3 @@ unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
     }
     return uVar2;
 }
-

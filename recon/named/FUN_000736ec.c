@@ -1,4 +1,10 @@
-/* named: FUN_000736ec */
+/* readable reconstruction; identity: FUN_000736ec @ 0x000736ec
+ * public-name: FUN_000736ec
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_sched_ready_runq_prio_cache            @ 0x2000b488
+ *   g_sched_ready_runq_nonempty_flag         @ 0x2000b48c
+ */
 /* Reconstructed FUN_000736ec @ 0x736ec  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_000736ec(unsigned int param_1)
@@ -23,4 +29,3 @@ unsigned int FUN_000736ec(unsigned int param_1)
 LAB:
     return uVar1 & 1;
 }
-

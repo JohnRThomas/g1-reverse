@@ -20,7 +20,7 @@ extern u64  FUN_01025084(void);
 extern u32  FUN_010250d0(u32);
 extern __attribute__((noreturn)) void FUN_010256dc(u32,u32);
 
-#define DAT_01023cfc ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define DAT_01023cfc ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 #define CARRY4(a,b) ((u32)(a) > (0xFFFFFFFFu - (u32)(b)))
 
 void FUN_01023ad8(u32 param_1)
@@ -91,7 +91,6 @@ void FUN_01023ad8(u32 param_1)
       return;
     }
     FUN_010256dc(0x70, 0x889);
-    break;
   case 2:
     FUN_0102460c();
     if ((*(volatile i16*)(iVar2 + 0x1e) != 0)) {
@@ -148,4 +147,3 @@ LAB_01023b1c:
   }
   return;
 }
-

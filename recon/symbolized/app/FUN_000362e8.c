@@ -1,5 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000362e8 */
+/* readable reconstruction; identity: FUN_000362e8 @ 0x000362e8
+ * public-name: FUN_000362e8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
+ *   find_chinese_bitmap_by_unicode           <= FUN_0004792c @ 0x0004792c
+ *   load_icon_bitmap_expanded                <= FUN_00047a4c @ 0x00047a4c
+ *   nullsub_2                                <= FUN_0007d2d6 @ 0x0007d2d6
+ *   fb_blit_rows_wrap320                     <= FUN_0007d4f8 @ 0x0007d4f8
+ *   font_glyph_pixel_offset                  <= FUN_0007d850 @ 0x0007d850
+ * address symbols (name @ address):
+ *   rodata_a8d52                             @ 0x000a8d52
+ *   rodata_a8d5d                             @ 0x000a8d5d
+ */
 /* Reconstructed FUN_000362e8 @ 0x362e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
@@ -31,7 +45,7 @@ undefined4 FUN_000362e8(int param_1,undefined4 param_2)
   iVar4 = 0xc;
   fb_blit_rows_wrap320(param_1,uVar3,0xc,0x18,0xc,0xc);
   if (bVar1) {
-    iVar4 = utf8_string_to_utf16(((uintptr_t)&tbl_a892b) /*=0xa8d52*/,(int)local_2a);
+    iVar4 = utf8_string_to_utf16(((unsigned long)&rodata_a8d52) /*=0xa8d52*/,(int)local_2a);
     for (iVar5 = 0; iVar5 < (int)(uint)local_2a[0]; iVar5 = iVar5 + 1) {
       uVar3 = find_chinese_bitmap_by_unicode(*(undefined2 *)(iVar4 + iVar5 * 2),0xc,0x24);
       fb_blit_rows_wrap320(param_1,uVar3,0xc,0x24,iVar5 * 0xc + 0x20,8);
@@ -62,7 +76,7 @@ undefined4 FUN_000362e8(int param_1,undefined4 param_2)
   } else {
     uVar3 = load_icon_bitmap_expanded(0xc,0x120);
     fb_blit_rows_wrap320(param_1,uVar3,0xc,0x18,0xe2,0x14);
-    iVar2 = utf8_string_to_utf16(((uintptr_t)&tbl_a892b) /*=0xa8d5d*/,(int)local_2a);
+    iVar2 = utf8_string_to_utf16(((unsigned long)&rodata_a8d5d) /*=0xa8d5d*/,(int)local_2a);
     for (iVar4 = 0; iVar4 < (int)(uint)local_2a[0]; iVar4 = iVar4 + 1) {
       uVar3 = find_chinese_bitmap_by_unicode(*(undefined2 *)(iVar2 + iVar4 * 2),0xc,0x20);
       fb_blit_rows_wrap320(param_1,uVar3,0xc,0x20,iVar4 * 0xc + 0xf4,8);
@@ -70,4 +84,3 @@ undefined4 FUN_000362e8(int param_1,undefined4 param_2)
   }
   return 0;
 }
-

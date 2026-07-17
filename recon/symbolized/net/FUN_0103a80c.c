@@ -10,4 +10,3 @@ unsigned int FUN_0103a80c(unsigned int *param_1)
   uVar1 = ((uVar1 >> 2) & 0x33333333u) | ((uVar1 << 2) & 0xccccccccu);
   return ((uVar1 >> 1) & 0x55555555u) | ((uVar1 << 1) & 0xaaaaaaaau);
 }
-

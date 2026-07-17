@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: mem_find_byte */
-/* Reconstructed mem_find_byte @ 0x86bc8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086bc8 @ 0x00086bc8
+ * public-name: mem_find_byte
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ */
+/* Reconstructed FUN_00086bc8 @ 0x86bc8  (parity: 300/300 trials, PROVEN) */
 
 char * mem_find_byte(char *param_1, unsigned int param_2, int param_3)
 {
@@ -18,4 +23,3 @@ char * mem_find_byte(char *param_1, unsigned int param_2, int param_3)
   } while (*pcVar2 != b2);
   return (char *)pcVar2;
 }
-

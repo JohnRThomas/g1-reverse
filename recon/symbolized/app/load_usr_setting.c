@@ -1,88 +1,126 @@
 #include "g1_app_symbols.h"
-/* named: load_usr_setting */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed load_usr_setting @ 0x22e78  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00022e78 @ 0x00022e78
+ * public-name: load_usr_setting
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
+ *   reset_usr_setting                        <= FUN_00022ddc @ 0x00022ddc
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   set_test_mode                            <= FUN_00032ef0 @ 0x00032ef0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9e60c                             @ 0x0009e60c
+ *   rodata_9e632                             @ 0x0009e632
+ *   rodata_9e7a6                             @ 0x0009e7a6
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed load_usr_setting @ 0x22e78 */
+
 #include <stdint.h>
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
-extern int flash_settings_read(int, void*, int);
-extern void reset_usr_setting(int);
+
+struct __attribute__((packed)) user_settings_record {
+    uint8_t display_mode;
+    uint8_t language;
+    uint8_t secondary_language;
+    uint8_t interaction_mode;
+    uint32_t timeout;
+    uint8_t brightness;
+    uint8_t gesture_mode;
+    uint8_t auxiliary_mode;
+    uint8_t primary_index;
+    uint32_t identifier;
+    uint16_t interval;
+    uint8_t identifier_tail;
+    uint8_t language_extension;
+    uint8_t boolean_mode;
+    uint8_t option_a;
+    uint8_t option_b;
+    uint8_t critical_mode;
+    uint8_t secondary_index;
+    uint8_t reserved[3];
+    uint32_t counter;
+};
+
+extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
+extern void debug_print(uint32_t format, uint32_t function_name, ...);
+extern int flash_settings_read(uint32_t address, void *destination, uint32_t length);
+extern void reset_usr_setting(void *settings);
 extern int is_battery_critical(void);
-extern void set_test_mode(int);
-extern void FUN_0007c28e(int, int);
-extern void memset_bytes(void*, int, int);
+extern void set_test_mode(uint32_t mode);
+extern void FUN_0007c28e(void *settings, uint32_t value);
+extern void memset_bytes(void *destination, int value, uint32_t length);
 
-int load_usr_setting(int param_1)
+int load_usr_setting(uint8_t *settings)
 {
-    volatile int *dbg = (volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-    volatile int *a4 = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    volatile uint8_t buf[0x20];
-    int iVar1;
-    int local_34;
-    uint8_t local_24, local_21;
+    struct user_settings_record record;
 
-    memset_bytes((void*)buf, 0, 0x20);
-    iVar1 = flash_settings_read(FLASH_OFF_134000 /*=0x134000*/, (void*)buf, 0x20);
-    if (iVar1 != 0) {
-        if (1 < *dbg) { if (*a4 == 0) DEBUG_PRINT(); else debug_print(); }
+    memset_bytes(&record, 0, sizeof(record));
+    if (flash_settings_read(0x00134000UL, &record, sizeof(record)) != 0) {
+        if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
+            if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                DEBUG_PRINT(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+            } else {
+                debug_print(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+            }
+        }
         return -1;
     }
-    if (1 < *dbg) { if (*a4 == 0) DEBUG_PRINT(); else debug_print(); }
 
-    *(volatile uint8_t*)(param_1 + 0xed5) = buf[1];
-    *(volatile uint8_t*)(param_1 + 0xef4) = buf[2];
-    local_34 = *(volatile int*)(buf + 4);
-    if (local_34 == 0) local_34 = 400;
-    *(volatile int*)(param_1 + 0xf6c) = local_34;
-    *(volatile uint8_t*)(param_1 + 0xfea) = buf[0];
-    *(volatile uint8_t*)(param_1 + 0xf98) = buf[8];
-    *(volatile uint8_t*)(param_1 + 0xf60) = buf[3];
-    *(volatile uint8_t*)(param_1 + 0x1070) = buf[9];
-    *(volatile uint8_t*)(param_1 + 0x108d) = buf[0xa];
-    *(volatile uint8_t*)(param_1 + 0xec0) = buf[0xb];
-    *(volatile uint32_t*)(param_1 + 0x1069) = *(volatile uint32_t*)(buf + 0xc);
-    *(volatile uint8_t*)(param_1 + 0x106f) = buf[0x12];
-    *(volatile uint16_t*)(param_1 + 0x106d) = *(volatile uint16_t*)(buf + 0x10);
-    *(volatile uint8_t*)(param_1 + 0xef5) = buf[0x13];
-    local_24 = buf[0x14];
-    if (1 < local_24) local_24 = 0;
-    *(volatile uint8_t*)(param_1 + 0x108f) = local_24;
-    *(volatile uint8_t*)(param_1 + 0x1090) = buf[0x15];
-    *(volatile uint8_t*)(param_1 + 0x1091) = buf[0x16];
-    *(volatile uint8_t*)(param_1 + 0xec1) = buf[0x18];
-    *(volatile uint32_t*)(param_1 + 0xf68) = *(volatile uint32_t*)(buf + 0x1c);
+    if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
+        if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            DEBUG_PRINT(((unsigned long)&rodata_9e632) /*=0x9e632*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+        } else {
+            debug_print(((unsigned long)&rodata_9e632) /*=0x9e632*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+        }
+    }
 
-    if ((uint8_t)(buf[0] & buf[3]) == 0xff) {
-        reset_usr_setting(param_1);
+    settings[0xed5] = record.language;
+    settings[0xef4] = record.secondary_language;
+    *(uint32_t *)(settings + 0xf6c) =
+        record.timeout == 0 ? 400 : record.timeout;
+    settings[0xfea] = record.display_mode;
+    settings[0xf98] = record.brightness;
+    settings[0xf60] = record.interaction_mode;
+    settings[0x1070] = record.gesture_mode;
+    settings[0x108d] = record.auxiliary_mode;
+    settings[0xec0] = record.primary_index;
+    *(uint32_t *)(settings + 0x1069) = record.identifier;
+    settings[0x106f] = record.identifier_tail;
+    *(uint16_t *)(settings + 0x106d) = record.interval;
+    settings[0xef5] = record.language_extension;
+    settings[0x108f] = record.boolean_mode < 2 ? record.boolean_mode : 0;
+    settings[0x1090] = record.option_a;
+    settings[0x1091] = record.option_b;
+    settings[0xec1] = record.secondary_index;
+    *(uint32_t *)(settings + 0xf68) = record.counter;
+
+    if ((uint8_t)(record.display_mode & record.interaction_mode) == 0xff) {
+        reset_usr_setting(settings);
     }
-    if (8 < *(volatile uint8_t*)(param_1 + 0xec0)) {
-        *(volatile uint8_t*)(param_1 + 0xec0) = 3;
+    if (settings[0xec0] > 8) {
+        settings[0xec0] = 3;
     }
-    if ((uint32_t)(*(volatile uint8_t*)(param_1 + 0xec1) - 1) > 8) {
-        *(volatile uint8_t*)(param_1 + 0xec1) = 3;
+    if ((uint32_t)(settings[0xec1] - 1) > 8) {
+        settings[0xec1] = 3;
     }
-    if (*(volatile int8_t*)(param_1 + 0xfea) == 11) {
-        *(volatile uint8_t*)(param_1 + 0xfea) = 10;
-        FUN_0007c28e(param_1, 0);
+    if ((int8_t)settings[0xfea] == 11) {
+        settings[0xfea] = 10;
+        FUN_0007c28e(settings, 0);
     }
-    local_21 = buf[0x17];
-    if (1 < local_21) local_21 = 0;
-    set_test_mode(local_21);
-    iVar1 = is_battery_critical();
-    if (iVar1 == 1) {
-        *(volatile uint8_t*)(param_1 + 0xf98) = 0;
-        *(volatile uint8_t*)(param_1 + 0xfea) = 0xb;
-        *(volatile uint8_t*)(param_1 + 0xed5) = 0x15;
-        *(volatile uint16_t*)(param_1 + 0xec0) = 0x303;
+
+    set_test_mode(record.critical_mode < 2 ? record.critical_mode : 0);
+    if (is_battery_critical() == 1) {
+        settings[0xf98] = 0;
+        settings[0xfea] = 11;
+        settings[0xed5] = 0x15;
+        *(uint16_t *)(settings + 0xec0) = 0x303;
     } else {
-        *(volatile uint8_t*)(param_1 + 0xfea) = 10;
+        settings[0xfea] = 10;
     }
-    if (*(volatile int*)(param_1 + 0xf68) == -1) {
-        *(volatile uint32_t*)(param_1 + 0xf68) = 0;
+    if (*(int32_t *)(settings + 0xf68) == -1) {
+        *(uint32_t *)(settings + 0xf68) = 0;
     }
     return 0;
 }
-

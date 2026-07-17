@@ -1,5 +1,23 @@
-/* named: qspi_nor_write */
-/* Reconstructed qspi_nor_write @ 0x60f20  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00060f20 @ 0x00060f20
+ * public-name: qspi_nor_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_write                           <= FUN_00060f20 @ 0x00060f20
+ *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ *   qspi_nor_write_protection_set            <= FUN_00083954 @ 0x00083954
+ *   audio_i2s_stream0_trigger_start          <= FUN_00085200 @ 0x00085200
+ *   audio_i2s_stream1_trigger_start          <= FUN_00085206 @ 0x00085206
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5cd8                             @ 0x000f5cd8
+ *   g_sram_base_word                         @ 0x20000000
+ */
+/* Reconstructed FUN_00060f20 @ 0x60f20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int,...);
 extern int FUN_000609f4(int,...);
@@ -75,4 +93,3 @@ LAB_00061054:
     FUN_00060a5c(param_1);
     return iVar1;
 }
-

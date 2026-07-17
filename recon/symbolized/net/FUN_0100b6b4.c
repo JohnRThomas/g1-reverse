@@ -29,9 +29,9 @@ extern int FUN_01026bfe(unsigned,void*);
 extern unsigned FUN_01026e48(unsigned);
 extern unsigned FUN_010270d2(void);
 
-#define IV4  ((uintptr_t)&g_net_radio_drv_ctx) /*=0x21000c48*/
-#define DAT_0100b964 ((uintptr_t)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
-#define DAT_0100b968 ((uintptr_t)&g_net_link_drv_ctx_0x24) /*=0x21000c6c*/
+#define IV4  ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
+#define DAT_0100b964 ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
+#define DAT_0100b968 ((unsigned long)&g_net_link_drv_ctx_0x24) /*=0x21000c6c*/
 
 void FUN_0100b6b4(unsigned param_1, unsigned param_2)
 {
@@ -241,4 +241,3 @@ after_bVar3:
   }
   FUN_0100ac34();
 }
-

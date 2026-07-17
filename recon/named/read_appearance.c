@@ -1,13 +1,17 @@
-/* named: read_appearance */
-/* Reconstructed read_appearance @ 0x82a1a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00082a1a @ 0x00082a1a
+ * public-name: read_appearance
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   read_appearance                          <= FUN_00082a1a @ 0x00082a1a
+ */
+/* Reconstructed FUN_00082a1a @ 0x82a1a  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_00080f8c(void);
-extern void bt_gatt_attr_read.constprop.0(unsigned int a, unsigned int b, unsigned int c, void *d, unsigned int e);
+extern void FUN_00082932(unsigned int a, unsigned int b, unsigned int c, void *d, unsigned int e);
 
 void read_appearance(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4, unsigned short param_5)
 {
     unsigned short local_12[3];
     local_12[0] = (unsigned short)FUN_00080f8c();
-    bt_gatt_attr_read.constprop.0(param_3, param_4, param_5, local_12, 2);
+    FUN_00082932(param_3, param_4, param_5, local_12, 2);
 }
-

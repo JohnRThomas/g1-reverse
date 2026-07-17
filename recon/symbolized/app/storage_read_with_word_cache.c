@@ -1,6 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: storage_read_with_word_cache */
-/* Reconstructed storage_read_with_word_cache @ 0x61070  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00061070 @ 0x00061070
+ * public-name: storage_read_with_word_cache
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   storage_read_with_word_cache             <= FUN_00061070 @ 0x00061070
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ *   audio_i2s_stream1_trigger_start          <= FUN_00085206 @ 0x00085206
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88270                             @ 0x00088270
+ */
+/* Reconstructed FUN_00061070 @ 0x61070  (parity: 300/300 trials, PROVEN) */
 extern int  qspi_get_zephyr_ret_code(int);
 extern int  FUN_000609f4(int,int);
 extern int  qspi_nor_acquire(void);
@@ -10,7 +23,7 @@ extern void audio_i2s_start_channels(int);
 extern void FUN_000838d6(int,int,void*);
 extern int  audio_i2s_stream1_trigger_start(int,int,int);
 extern int  memcpy(int,int,int);
-extern int  memmove(int,int,int);
+extern int  FUN_00086c44(int,int,int);
 #define VI(a) (*(volatile int*)(a))
 
 int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,unsigned int param_4){
@@ -20,7 +33,7 @@ int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,un
   if (param_3==0) return -0x16;
   if (param_4==0) return 0;
   if ((param_2<0) || ((unsigned int)VI(VI(param_1+4)+0x2c) < (unsigned int)(param_2+param_4))) {
-    FUN_000838d6(((uintptr_t)&tbl_880d8) /*=0x88270*/,0x2040,st);
+    FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/,0x2040,st);
     return -0x16;
   }
   iVar1 = qspi_nor_acquire();
@@ -42,7 +55,7 @@ int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,un
   iVar1 = audio_i2s_stream1_trigger_start(L34, (int)uVar3, param_2 + (int)uVar6);
   FUN_000609f4(VI(param_1+0x10), iVar1);
   if (iVar1 == 0x0bad0000) {
-    if (uVar6 != (unsigned int)L38) memmove((int)(param_3+uVar6), L34, (int)uVar3);
+    if (uVar6 != (unsigned int)L38) FUN_00086c44((int)(param_3+uVar6), L34, (int)uVar3);
     goto LAB_61156;
   }
   goto LAB_611be;
@@ -67,4 +80,3 @@ LAB_611cc:
   FUN_00060a5c(param_1);
   return iVar1;
 }
-

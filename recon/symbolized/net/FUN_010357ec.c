@@ -20,4 +20,3 @@ done:
     FUN_0103aec2(param_1 + 0x58);
     return iVar1;
 }
-

@@ -4,7 +4,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-extern void FUN_01008d00(int,int) __attribute__((noreturn));
+extern void FUN_01008d00(int,int);
 extern int FUN_01009f58(u16,u16,u16,u8,u8);
 extern int FUN_0100d14c(void*,int);
 extern u32 FUN_0100d600(u16);
@@ -16,10 +16,10 @@ extern u32 FUN_0101e660(void*);
 extern unsigned long long FUN_0101f8cc(void);
 extern u32 FUN_01028256(void);
 
-#define SRC1   ((uintptr_t)&rodata_103ec0a) /*=0x103ec0a*/          /* DAT_0101e818 */
-#define CONST2 ((uintptr_t)&g_net_bufpool_id_tag) /*=0x21001225*/         /* DAT_0101e81c */
-#define TBL2   ((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/          /* DAT_0101e820, r6 */
-#define TBL3   ((uintptr_t)&g_net_ble_conn_role_cfg) /*=0x21001208*/          /* DAT_0101e824, r7 */
+#define SRC1   ((unsigned long)&rodata_103ec0a) /*=0x103ec0a*/          /* DAT_0101e818 */
+#define CONST2 ((unsigned long)&g_net_bufpool_id_tag) /*=0x21001225*/         /* DAT_0101e81c */
+#define TBL2   ((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/          /* DAT_0101e820, r6 */
+#define TBL3   ((unsigned long)&g_net_ble_conn_role_cfg) /*=0x21001208*/          /* DAT_0101e824, r7 */
 
 unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int param_3, int param_4)
 {
@@ -52,11 +52,11 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
     unsigned int extraout_r1 = (unsigned int)(f2 >> 32);
 
     if ((int)(extraout_r1 << 30) < 0) {
-        unsigned char local_20[4];
-        unsigned short *local_1c;
-        local_20[0] = 0;
-        local_1c = param_1;
-        FUN_0101e274(local_20);
+        struct {
+            u32 mode;
+            unsigned short *owner;
+        } descriptor = {0, param_1};
+        FUN_0101e274(&descriptor);
     }
 
     int iVarS = TBL3;
@@ -78,6 +78,7 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
                               puVar2[0], puVar2[1]);
     if (iVar5 != 0) {
         FUN_01008d00(0x39, 0xffb);
+        return 0;
     }
 
     u32 rc = FUN_01028256();
@@ -131,4 +132,3 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
     FUN_0100d14c(param_1, 1);
     return uVar6c;
 }
-

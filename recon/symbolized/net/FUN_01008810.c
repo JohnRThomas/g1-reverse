@@ -14,4 +14,3 @@ unsigned int FUN_01008810(unsigned char *param_1, unsigned char *param_2, int pa
   } while (param_3 != 0);
   return (uVar1 - 1) >> 0x1f;
 }
-

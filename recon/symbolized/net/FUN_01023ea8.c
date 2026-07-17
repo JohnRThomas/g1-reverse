@@ -13,7 +13,7 @@ extern void FUN_0102524c(u32);
 extern void FUN_010256dc(u32, u32);
 extern void FUN_0102583c(u8);
 
-#define DAT_01024114 ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define DAT_01024114 ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 #define DAT_01024118 0x0f423f8au
 
 static inline int CARRY4(u32 a, u32 b) {
@@ -146,4 +146,3 @@ LAB_01023f84:
   }
   return 0;
 }
-

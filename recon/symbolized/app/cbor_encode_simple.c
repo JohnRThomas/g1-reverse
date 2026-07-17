@@ -1,12 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: cbor_encode_simple */
-/* Reconstructed cbor_encode_simple @ 0x86378  (parity: 200/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086378 @ 0x00086378
+ * public-name: cbor_encode_simple
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_encode_simple                       <= FUN_00086378 @ 0x00086378
+ */
+/* Reconstructed FUN_00086378 @ 0x86378 */
+#include <stdint.h>
 
-extern void cbor_encode_length_header(int a, int b, void *c, int d, int e, unsigned int f);
-void cbor_encode_simple(int param_1, char param_2)
+extern void FUN_00086360(void *, uint8_t);
+
+void cbor_encode_simple(void *destination, uint8_t value)
 {
-  char local;
-  unsigned char v = (unsigned char)(param_2 + 0x14);
-  cbor_encode_length_header(param_1, 7, &local, 1, param_1, v);
+  FUN_00086360(destination, (uint8_t)(value + 0x14));
 }
-

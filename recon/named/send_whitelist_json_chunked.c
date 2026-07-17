@@ -1,8 +1,21 @@
-/* named: send_whitelist_json_chunked */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed send_whitelist_json_chunked @ 0x35498  (parity: 228/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00035498 @ 0x00035498
+ * public-name: send_whitelist_json_chunked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   convert_app_whitelist_to_json            <= FUN_000352e8 @ 0x000352e8
+ *   send_whitelist_json_chunked              <= FUN_00035498 @ 0x00035498
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a893c                             @ 0x000a893c
+ *   rodata_a8952                             @ 0x000a8952
+ *   rodata_a8a33                             @ 0x000a8a33
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int debug_print(int,...);
@@ -61,4 +74,3 @@ void send_whitelist_json_chunked(int param_1,int param_2)
   if (*E != 0) { debug_print(0xa8952,0xa8a33,0x23f,0); return; }
   DEBUG_PRINT(0xa8952,0xa8a33,0x23f);
 }
-

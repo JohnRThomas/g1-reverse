@@ -1,0 +1,26 @@
+/* readable reconstruction; identity: FUN_00063b7c @ 0x00063b7c
+ * public-name: FUN_00063b7c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_init                                 <= FUN_0004d678 @ 0x0004d678
+ *   nrf_cc3xx_platform_abort                 <= FUN_00050af8 @ 0x00050af8
+ * address symbols (name @ address):
+ *   rodata_881a8                             @ 0x000881a8
+ *   rodata_f66f9                             @ 0x000f66f9
+ */
+/* Full reconstruction FUN_00063b7c @ 0x00063b7c (44-byte exact extent). */
+#include <stdint.h>
+
+extern void log_init(void);
+extern void FUN_0004d944(uintptr_t, uint32_t, const void *, uint32_t, ...);
+extern void nrf_cc3xx_platform_abort(uint32_t) __attribute__((noreturn));
+
+struct log_record2 { uint32_t count, format; };
+
+void FUN_00063b7c(uint32_t a, uint32_t b, uint32_t c, uint32_t d)
+{
+    struct log_record2 record = { 2, 0x000f66f9u };
+    log_init();
+    FUN_0004d944(0x000881a8u, 0x1040u, &record, 0, a, b, c, d);
+    nrf_cc3xx_platform_abort(0);
+}

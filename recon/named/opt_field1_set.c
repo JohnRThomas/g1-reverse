@@ -1,5 +1,10 @@
-/* named: opt_field1_set */
-/* Reconstructed opt_field1_set @ 0x7c430  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c430 @ 0x0007c430
+ * public-name: opt_field1_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_field1_set                           <= FUN_0007c430 @ 0x0007c430
+ */
+/* Reconstructed FUN_0007c430 @ 0x7c430  (parity: 300/300 trials, PROVEN) */
 
 unsigned int opt_field1_set(unsigned char *param_1, unsigned int param_2, int *param_3)
 {
@@ -12,4 +17,3 @@ unsigned int opt_field1_set(unsigned char *param_1, unsigned int param_2, int *p
   }
   return 7;
 }
-

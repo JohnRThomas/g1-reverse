@@ -1,8 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000569a0 */
-/* globals referenced:
-//   0x20006138  g_ble_conn_pool              
-*/
+/* readable reconstruction; identity: FUN_000569a0 @ 0x000569a0
+ * public-name: FUN_000569a0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3c92                             @ 0x000f3c92
+ *   rodata_f3d5b                             @ 0x000f3d5b
+ *   g_ble_conn_pool                          @ 0x20006138
+ */
 /* Reconstructed FUN_000569a0 @ 0x569a0  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
@@ -10,15 +19,14 @@ extern void assert_post_action(unsigned int, unsigned int);
 
 unsigned int FUN_000569a0(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-    int diff = param_1 - (int)((uintptr_t)&g_ble_conn_pool) /*=0x20006138*/;
+    int diff = param_1 - (int)((unsigned long)&g_ble_conn_pool) /*=0x20006138*/;
     int shifted = diff >> 3;
     unsigned int R = (0x684bda13U * (unsigned int)shifted) & 0xffU;
-    if (param_1 != (int)((uintptr_t)&g_ble_conn_pool) /*=0x20006138*/) {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, ((uintptr_t)&rodata_f3c92) /*=0xf3c92*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x543UL);
-        printk("\tInvalid bt_conn pointer\n" /*=0xf3d5b*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x543UL, 0x543UL);
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x543UL);
+    if (param_1 != (int)((unsigned long)&g_ble_conn_pool) /*=0x20006138*/) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3c92) /*=0xf3c92*/, ((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x543UL);
+        printk(((unsigned long)&rodata_f3d5b) /*=0xf3d5b*/, ((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x543UL, 0x543UL);
+        assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x543UL);
         return 0x543U & 0xffU;
     }
     return R;
 }
-

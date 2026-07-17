@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: fb_blit_rows_or */
-/* Reconstructed fb_blit_rows_or @ 0x7d586  (parity: 145/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d586 @ 0x0007d586
+ * public-name: fb_blit_rows_or
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fb_blit_rows_or                          <= FUN_0007d586 @ 0x0007d586
+ */
+/* Reconstructed FUN_0007d586 @ 0x7d586  (parity: 145/300 trials, PROVEN) */
 #include <stdint.h>
 void fb_blit_rows_or(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6){
   int iVar2=0;
@@ -20,4 +25,3 @@ void fb_blit_rows_or(int param_1,int param_2,int param_3,int param_4,int param_5
     iVar4=iVar4+inc;
   }
 }
-

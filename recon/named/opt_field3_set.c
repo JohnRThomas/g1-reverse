@@ -1,5 +1,10 @@
-/* named: opt_field3_set */
-/* Reconstructed opt_field3_set @ 0x7c48a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c48a @ 0x0007c48a
+ * public-name: opt_field3_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_field3_set                           <= FUN_0007c48a @ 0x0007c48a
+ */
+/* Reconstructed FUN_0007c48a @ 0x7c48a  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 unsigned int opt_field3_set(uint8_t *param_1, int *param_2)
@@ -21,4 +26,3 @@ unsigned int opt_field3_set(uint8_t *param_1, int *param_2)
     }
     return 7;
 }
-

@@ -1,4 +1,11 @@
-/* named: FUN_00063be0 */
+/* readable reconstruction; identity: FUN_00063be0 @ 0x00063be0
+ * public-name: FUN_00063be0
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_caf_power_manager_timer                @ 0x200066f0
+ *   g_caf_power_manager_wake_evt_cnt         @ 0x2000b310
+ *   g_caf_power_manager_system_off_flag      @ 0x2001d563
+ */
 /* Reconstructed FUN_00063be0 @ 0x63be0  (parity: 300/300 trials, PROVEN) */
 
 extern long long FUN_00063ba8(int a0);
@@ -14,4 +21,3 @@ void FUN_00063be0(void)
     }
   }
 }
-

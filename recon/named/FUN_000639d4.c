@@ -1,4 +1,19 @@
-/* named: FUN_000639d4 */
+/* readable reconstruction; identity: FUN_000639d4 @ 0x000639d4
+ * public-name: FUN_000639d4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99c84                             @ 0x00099c84
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cda                             @ 0x00099cda
+ *   rodata_99dad                             @ 0x00099dad
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
 /* Reconstructed FUN_000639d4 @ 0x639d4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -12,7 +27,7 @@ unsigned FUN_000639d4(int param_1){
   iVar2 = z_device_is_ready(*puVar5);
   if (iVar2 != 0) {
     if (puVar5[1] == 0) { return 0; }
-    iVar2 = z_device_is_ready(0);
+    iVar2 = z_device_is_ready(puVar5[1]);
     if (iVar2 != 0) {
       uVar7 = (unsigned)*(unsigned short *)((int)puVar5 + 10);
       iVar2 = puVar5[1];
@@ -44,4 +59,3 @@ unsigned FUN_000639d4(int param_1){
   }
   return 0xffffffed;
 }
-

@@ -26,4 +26,3 @@ int FUN_0103ac0c(unsigned int param_1, unsigned short param_2, unsigned int para
     *(volatile unsigned int *)(p + 0x20) = (iVar5 + (uVar3 + 2) * 2 + iVar2 + 1) & -iVar2;
     return 0;
 }
-

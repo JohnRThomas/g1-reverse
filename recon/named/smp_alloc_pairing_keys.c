@@ -1,11 +1,25 @@
-/* named: smp_alloc_pairing_keys */
-/* Reconstructed smp_alloc_pairing_keys @ 0x5e47c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e47c @ 0x0005e47c
+ * public-name: smp_alloc_pairing_keys
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
+ *   smp_error                                <= FUN_0005dc2c @ 0x0005dc2c
+ *   smp_alloc_pairing_keys                   <= FUN_0005e47c @ 0x0005e47c
+ *   bt_keys_get_addr                         <= FUN_0005e6a8 @ 0x0005e6a8
+ *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
+ *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4e60                             @ 0x000f4e60
+ */
+/* Reconstructed FUN_0005e47c @ 0x5e47c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int bt_addr_le_str(int);
 extern int smp_error(int,int);
 extern int bt_keys_get_addr(int,int);
 extern int bt_keys_add_type(int,int);
-extern int bt_keys_clear(void);
+extern void bt_keys_clear(int record);
 extern int atomic_test_bit(int,int);
 extern int FUN_00083074(int,int,void*);
 extern int FUN_0008307a(void);
@@ -30,7 +44,7 @@ void smp_alloc_pairing_keys(int param_1)
     iVar2 = atomic_test_bit(iVar9, 3);
     if (iVar2 == 0) return;
     if (*(int *)(param_1 + 0xc0) != 0) {
-        bt_keys_clear();
+        bt_keys_clear(*(int *)(param_1 + 0xc0));
     }
     iVar2 = bt_keys_get_addr(*(unsigned char *)(param_1 + 8), param_1 + 0x90);
     *(int *)(param_1 + 0xc0) = iVar2;
@@ -95,4 +109,3 @@ LAB_0005e51c:
     }
     return;
 }
-

@@ -1,5 +1,16 @@
-/* named: log_output_process */
-/* Reconstructed log_output_process @ 0x4def8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004def8 @ 0x0004def8
+ * public-name: log_output_process
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_output_process                       <= FUN_0004def8 @ 0x0004def8
+ *   log_output_flush                         <= FUN_0007eece @ 0x0007eece
+ *   audio_hw_lock_get_status_byte            <= FUN_0007ef1c @ 0x0007ef1c
+ * address symbols (name @ address):
+ *   rodata_87bc0                             @ 0x00087bc0
+ *   rodata_8ad08                             @ 0x0008ad08
+ *   log_output_flush_done                    @ 0x2001d44e
+ */
+/* Reconstructed FUN_0004def8 @ 0x4def8  (parity: 300/300 trials, PROVEN) */
 
 extern int audio_hw_lock_get_status_byte(unsigned int, void*, unsigned int, unsigned int, unsigned int);
 extern void FUN_0004dfb8(unsigned int);
@@ -19,4 +30,3 @@ void log_output_process(unsigned int param_1, unsigned int param_2, unsigned int
     log_output_flush(uVar1);
     return;
 }
-

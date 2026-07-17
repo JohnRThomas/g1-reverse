@@ -1,4 +1,7 @@
-/* named: FUN_00080b32 */
+/* readable reconstruction; identity: FUN_00080b32 @ 0x00080b32
+ * public-name: FUN_00080b32
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080b32 @ 0x80b32  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_00080b32(unsigned char *param_1) {
@@ -7,4 +10,3 @@ unsigned int FUN_00080b32(unsigned char *param_1) {
   }
   return 0xffffffea;
 }
-

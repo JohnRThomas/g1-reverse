@@ -1,152 +1,150 @@
 #include "g1_app_symbols.h"
-/* named: parse_whitelist_json */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001a22c  g_app_whitelist_buffer       
-*/
-/* Reconstructed parse_whitelist_json @ 0x34dbc  (parity: 300/300 trials, PROVEN) */
-typedef unsigned int undefined4;
-typedef unsigned char byte;
-typedef unsigned int uint;
+/* readable reconstruction; identity: FUN_00034dbc @ 0x00034dbc
+ * public-name: parse_whitelist_json
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   parse_whitelist_json                     <= FUN_00034dbc @ 0x00034dbc
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
+ *   sllist_node_at_index                     <= FUN_00085030 @ 0x00085030
+ *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_9a1dd                             @ 0x0009a1dd
+ *   rodata_9e1b6                             @ 0x0009e1b6
+ *   rodata_9e235                             @ 0x0009e235
+ *   rodata_a8604                             @ 0x000a8604
+ *   rodata_a862c                             @ 0x000a862c
+ *   rodata_a8638                             @ 0x000a8638
+ *   rodata_a864e                             @ 0x000a864e
+ *   rodata_a866e                             @ 0x000a866e
+ *   rodata_a869b                             @ 0x000a869b
+ *   rodata_a870b                             @ 0x000a870b
+ *   rodata_f33e4                             @ 0x000f33e4
+ *   rodata_f3630                             @ 0x000f3630
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_app_whitelist_buffer                   @ 0x2001a22c
+ */
+/* Reconstructed FUN_00034dbc @ 0x34dbc. */
+#include <stdint.h>
 
-extern void DEBUG_PRINT(undefined4 fmt, ...);
-extern void debug_print(void);
-extern void cjson_delete(int a);
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void debug_print(uint32_t format, ...);
+extern void cjson_delete(int object);
 extern int FUN_0008500c(void);
-extern unsigned int sllist_count_nodes(int a);
-extern int sllist_node_at_index(int a);
-extern int sllist_find_by_name_ci(int a, ...);
+extern unsigned int sllist_count_nodes(int object);
+extern int sllist_node_at_index(int object);
+extern int sllist_find_by_name_ci(int object, uint32_t key);
 extern int FUN_000850c8(void);
-extern void memset_bytes(void *dst, int val, int n);
-extern void strncpy_zero_pad(void *dst, void *src, int n);
+extern void memset_bytes(void *destination, int value, unsigned int count);
+extern void strncpy_zero_pad(void *destination, const void *source,
+                         unsigned int limit);
 
-undefined4 parse_whitelist_json(undefined4 param_1,undefined4 param_2,undefined4 param_3)
+#define REPORT_ERROR(format_) do {                                      \
+    if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)                              \
+        DEBUG_PRINT((format_));                                         \
+    else                                                                \
+        debug_print((format_));                                        \
+} while (0)
+
+uint32_t parse_whitelist_json(uint32_t request, uint32_t unused_2,
+                      uint32_t unused_3)
 {
-  volatile byte *pbVar2;
-  byte bVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  int iVar9;
-  uint uVar10;
-  volatile byte *pbVar11;
-  uint uVar12;
-  byte bVar13;
-  int bVar14;
+    volatile uint8_t *const output = (volatile uint8_t *)((unsigned long)g_app_whitelist_buffer) /*=0x2001a22c*/;
+    int root = FUN_0008500c();
+    int object;
+    uint32_t error_format;
+    uint8_t item_count;
+    uint8_t source_index;
+    uint8_t output_index;
+    (void)unused_2;
+    (void)unused_3;
 
-  iVar5 = FUN_0008500c();
-  pbVar2 = (volatile byte *)(g_app_whitelist_buffer) /*=0x2001a22c*/;
-  if (iVar5 == 0) {
-    if (*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT(0,param_1);
-    } else {
-      debug_print();
+    if (root == 0) {
+        if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
+            DEBUG_PRINT(((unsigned long)&rodata_a8604) /*=0xa8604*/, request);
+        else
+            debug_print(((unsigned long)&rodata_a8604) /*=0xa8604*/, request);
+        return 0;
     }
+
+    memset_bytes((void *)output, 0, 0x15e2);
+    object = sllist_find_by_name_ci(root, ((unsigned long)&rodata_a862c) /*=0xa862c*/);
+    if (object == 0) { error_format = ((unsigned long)&rodata_a8638) /*=0xa8638*/; goto fail; }
+    output[0] = (output[0] & 0xfeu) | (*(int *)(object + 0xc) == 2);
+
+    object = sllist_find_by_name_ci(root, ((unsigned long)&rodata_a864e) /*=0xa864e*/);
+    if (object == 0) { error_format = 0x000a8659; goto fail; }
+    output[0] = (output[0] & 0xfdu) |
+                ((uint32_t)(*(int *)(object + 0xc) == 2) << 1);
+
+    object = sllist_find_by_name_ci(root, ((unsigned long)&rodata_a866e) /*=0xa866e*/);
+    if (object == 0) { error_format = 0x000a867e; goto fail; }
+    output[0] = (output[0] & 0xf7u) |
+                ((uint32_t)(*(int *)(object + 0xc) == 2) << 3);
+
+    object = sllist_find_by_name_ci(root, ((unsigned long)&rodata_a869b) /*=0xa869b*/);
+    if (object == 0) { error_format = 0x000a86ab; goto fail; }
+    output[0] = (output[0] & 0xfbu) |
+                ((uint32_t)(*(int *)(object + 0xc) == 2) << 2);
+
+    object = sllist_find_by_name_ci(root, ((unsigned long)&rodata_9e1b6) /*=0x9e1b6*/);
+    if (object == 0) { error_format = 0x000a86c8; goto fail; }
+    {
+        int nested = sllist_find_by_name_ci(object, ((unsigned long)&rodata_9e235) /*=0x9e235*/);
+        if (nested == 0) { error_format = 0x000a86db; goto fail; }
+        output[0] = (output[0] & 0xefu) |
+                    ((uint32_t)(*(int *)(nested + 0xc) == 2) << 4);
+    }
+
+    object = sllist_find_by_name_ci(object, ((unsigned long)&rodata_f3630) /*=0xf3630*/);
+    if (object == 0) { error_format = 0x000a86f4; goto fail; }
+
+    if (FUN_000850c8() != 0) {
+        item_count = (uint8_t)sllist_count_nodes(object);
+        if (item_count > 99)
+            item_count = 100;
+        output[1] = item_count;
+        output_index = 0;
+
+        for (source_index = 0; source_index < output[1]; ++source_index) {
+            int item = sllist_node_at_index(object);
+            int name;
+            int value;
+            volatile uint8_t *record;
+
+            if (item == 0) {
+                REPORT_ERROR(((unsigned long)&rodata_a870b) /*=0xa870b*/);
+                continue;
+            }
+            name = sllist_find_by_name_ci(item, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/);
+            if (name == 0) {
+                REPORT_ERROR(0x000a8724);
+                continue;
+            }
+            value = sllist_find_by_name_ci(item, ((unsigned long)&rodata_f33e4) /*=0xf33e4*/);
+            if (value == 0) {
+                REPORT_ERROR(0x000a8739);
+                continue;
+            }
+
+            record = output + (uint32_t)output_index * 0x38 + 2;
+            memset_bytes((void *)record, 0, 0x28);
+            memset_bytes((void *)(record + 0x28), 0, 0x10);
+            strncpy_zero_pad((void *)record, *(const void **)(name + 0x10), 0x27);
+            strncpy_zero_pad((void *)(record + 0x28),
+                         *(const void **)(value + 0x10), 0x0f);
+            output_index = (uint8_t)(output_index + 1);
+        }
+    }
+
+    cjson_delete(root);
+    return 1;
+
+fail:
+    REPORT_ERROR(error_format);
+    cjson_delete(root);
     return 0;
-  }
-  memset_bytes((void*)pbVar2,0,0x15e2);
-  iVar6 = sllist_find_by_name_ci(iVar5,0);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  bVar14 = *(int *)(iVar6 + 0xc) == 2;
-  bVar4 = (byte)((*pbVar2 & 0xfe) | (byte)bVar14);
-  *pbVar2 = bVar4;
-  iVar6 = sllist_find_by_name_ci(iVar5,0,bVar4,bVar14,param_1,param_2,param_3);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  uVar12 = (uint)(*(int *)(iVar6 + 0xc) == 2);
-  uVar10 = (uint)((*pbVar2 & 0xfffffffd) | (uVar12 << 1));
-  *pbVar2 = (byte)uVar10;
-  iVar6 = sllist_find_by_name_ci(iVar5,0,uVar10,uVar12,param_1,param_2,param_3);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  *pbVar2 = (byte)((*pbVar2 & 0xf7) | (byte)((*(int *)(iVar6 + 0xc) == 2) << 3));
-  iVar6 = sllist_find_by_name_ci(iVar5,0);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  *pbVar2 = (byte)((*pbVar2 & 0xfb) | (byte)((*(int *)(iVar6 + 0xc) == 2) << 2));
-  iVar6 = sllist_find_by_name_ci(iVar5,0);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  iVar7 = sllist_find_by_name_ci(iVar6,0);
-  if (iVar7 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  *pbVar2 = (byte)((*pbVar2 & 0xef) | (byte)((*(int *)(iVar7 + 0xc) == 2) << 4));
-  iVar6 = sllist_find_by_name_ci(iVar6,0);
-  if (iVar6 == 0) {
-    iVar6 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    goto tail;
-  }
-  iVar7 = FUN_000850c8();
-  if (iVar7 != 0) {
-    bVar4 = (byte)(sllist_count_nodes(iVar6) & 0xffu);
-    bVar13 = 0;
-    if (99 < bVar4) {
-      bVar4 = 100;
-    }
-    uVar12 = 0;
-    pbVar2[1] = bVar4;
-    for (; bVar13 < pbVar2[1]; bVar13 = bVar13 + 1) {
-      iVar7 = sllist_node_at_index(iVar6);
-      if (iVar7 == 0) {
-        iVar7 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-        if (iVar7 == 0) {
-          DEBUG_PRINT(0);
-        } else {
-          debug_print();
-        }
-        continue;
-      }
-      iVar9 = sllist_find_by_name_ci(iVar7,0);
-      if (iVar9 == 0) {
-        iVar7 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-        if (iVar7 == 0) {
-          DEBUG_PRINT(0);
-        } else {
-          debug_print();
-        }
-        continue;
-      }
-      iVar7 = sllist_find_by_name_ci(iVar7,0);
-      if (iVar7 == 0) {
-        iVar7 = *(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-        if (iVar7 == 0) {
-          DEBUG_PRINT(0);
-        } else {
-          debug_print();
-        }
-        continue;
-      }
-      pbVar11 = pbVar2 + uVar12 * 0x38 + 2;
-      memset_bytes((void*)pbVar11,0,0x28);
-      memset_bytes((void*)(pbVar2 + uVar12 * 0x38 + 0x2a),0,0x10);
-      strncpy_zero_pad((void*)pbVar11,*(void **)(iVar9 + 0x10),0x27);
-      strncpy_zero_pad((void*)(pbVar2 + uVar12 * 0x38 + 0x2a),*(void **)(iVar7 + 0x10),0xf);
-      uVar12 = (uVar12 + 1) & 0xff;
-    }
-  }
-  cjson_delete(iVar5);
-  return 1;
-
-tail:
-  if (iVar6 == 0) {
-    DEBUG_PRINT(0);
-  } else {
-    debug_print();
-  }
-  cjson_delete(iVar5);
-  return 0;
 }
-

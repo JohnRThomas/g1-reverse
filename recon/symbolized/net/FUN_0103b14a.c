@@ -1,14 +1,9 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0103b14a @ 0x103b14a  (parity 300 trials PROVEN) */
+/* net-core FUN_0103b14a @ 0x103b14a */
+#include <stdint.h>
+#include <cmsis_gcc.h>
 
-__attribute__((naked)) unsigned int FUN_0103b14a(void)
+uint32_t FUN_0103b14a(void)
 {
-  __asm__ volatile(
-    "mrs r0, ipsr\n"
-    "subs r0, #0\n"
-    "it ne\n"
-    "movne r0, #1\n"
-    "bx lr\n"
-  );
+    return __get_IPSR() != 0U;
 }
-

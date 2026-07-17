@@ -1,8 +1,13 @@
-/* named: expf */
-/* globals referenced:
-//   0x200035af  g_libm_ieee_mode_flag        
-*/
-/* Reconstructed expf @ 0x75c90  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00075c90 @ 0x00075c90
+ * public-name: expf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   expf                                     <= FUN_00075c90 @ 0x00075c90
+ *   isfinitef                                <= FUN_000869f2 @ 0x000869f2
+ * address symbols (name @ address):
+ *   g_libm_ieee_mode_flag                    @ 0x200035af
+ */
+/* Reconstructed FUN_00075c90 @ 0x75c90  (parity: 300/300 trials, PROVEN) */
 
 extern float FUN_00076290(void);
 extern unsigned* thunk_FUN_00071678(void);
@@ -20,4 +25,3 @@ float expf(float param_1){
   }
   return uVar3;
 }
-

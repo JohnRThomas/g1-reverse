@@ -1,5 +1,21 @@
-/* named: img_mgmt_state_read_51c98 */
-/* Reconstructed img_mgmt_state_read_51c98 @ 0x51c98  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00051c98 @ 0x00051c98
+ * public-name: img_mgmt_state_read_51c98
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   img_mgmt_state_encode_image              <= FUN_00051ac0 @ 0x00051ac0
+ *   img_mgmt_state_read_51c98                <= FUN_00051c98 @ 0x00051c98
+ *   k_heap_alloc                             <= FUN_0008099e @ 0x0008099e
+ *   nullsub_4                                <= FUN_00080a42 @ 0x00080a42
+ *   nullsub_5                                <= FUN_00080a44 @ 0x00080a44
+ *   cbor_encode_int32                        <= FUN_0008630c @ 0x0008630c
+ *   cbor_encode_array_indef_start            <= FUN_00086344 @ 0x00086344
+ *   cbor_encode_break                        <= FUN_00086354 @ 0x00086354
+ * address symbols (name @ address):
+ *   rodata_f275f                             @ 0x000f275f
+ *   rodata_f2766                             @ 0x000f2766
+ *   rodata_f27cc                             @ 0x000f27cc
+ */
+/* Reconstructed FUN_00051c98 @ 0x51c98  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int img_mgmt_state_encode_image(int,unsigned,int);
 extern unsigned FUN_00051c38(void);
@@ -80,4 +96,3 @@ LAB_00051d30:
     iVar7 = iVar7 + 1;
   } while( 1 );
 }
-

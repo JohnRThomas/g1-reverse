@@ -1,11 +1,25 @@
 #include "g1_app_symbols.h"
-/* named: gui_bmp_bitmap_draw */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
-/* Reconstructed gui_bmp_bitmap_draw @ 0x43484  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00043484 @ 0x00043484
+ * public-name: gui_bmp_bitmap_draw
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   load_icon_bitmap_expanded                <= FUN_00047a4c @ 0x00047a4c
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ * address symbols (name @ address):
+ *   rodata_aa8eb                             @ 0x000aa8eb
+ *   rodata_aadd0                             @ 0x000aadd0
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
+/* Reconstructed FUN_00043484 @ 0x43484  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int, ...);
 extern int get_device_info(void);
@@ -19,7 +33,7 @@ extern int fb_blit_rows_copy(int,int,int,int,int,int);
 
 int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int param_4, int param_5, int param_6)
 {
-    volatile uint32_t *puVar1 = (volatile uint32_t *)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/;
+    volatile uint32_t *puVar1 = (volatile uint32_t *)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/;
     int iVar2;
     unsigned int uVar3;
     int iVar4, iVar5;
@@ -27,8 +41,8 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
     unsigned long long uVar7;
     int local_24;
     int local_20, local_1c;
-    volatile int *g5c0 = (volatile int *)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-    volatile int *g5c4 = (volatile int *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+    volatile int *g5c0 = (volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/;
+    volatile int *g5c4 = (volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
 
     if (((param_4 == 0) && (param_5 == 0)) && (param_6 == 0)) {
         local_20 = param_6;
@@ -38,7 +52,7 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
             if (iVar2 < 0) {
                 if (1 < *g5c0) {
                     if (*g5c4 == 0) {
-                        DEBUG_PRINT("%s(): can't find resource,please check resource name !\n" /*=0xaa8eb*/, "gui_bmp_bitmap_draw" /*=0xaadd0*/);
+                        DEBUG_PRINT(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aadd0) /*=0xaadd0*/);
                     } else {
                         debug_print(0);
                     }
@@ -81,4 +95,3 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
     }
     return 0;
 }
-

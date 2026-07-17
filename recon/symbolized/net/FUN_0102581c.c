@@ -9,6 +9,5 @@ void FUN_0102581c(unsigned int param_1, unsigned int param_2, unsigned int param
   if (param_1 > 4) {
     idx = FUN_010256dc(0x69, 0x4f, param_3, param_4, param_4);
   }
-  *(volatile unsigned char *)(((uintptr_t)&g_sdc_resource_pool_table) /*=0x21001c24*/ + idx * 8 + 4) = 0;
+  *(volatile unsigned char *)(0x21001c24 + idx * 8 + 4) = 0;
 }
-

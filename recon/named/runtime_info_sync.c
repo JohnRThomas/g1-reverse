@@ -1,37 +1,52 @@
-/* named: runtime_info_sync */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed runtime_info_sync @ 0x16268  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00016268 @ 0x00016268
+ * public-name: runtime_info_sync
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   global_ipc_service_send                  <= FUN_00025b78 @ 0x00025b78
+ * address symbols (name @ address):
+ *   rodata_9957c                             @ 0x0009957c
+ *   rodata_99bee                             @ 0x00099bee
+ *   g_log_level                              @ 0x2000230c
+ *   g_esb_bringup_log_pending_flag           @ 0x20002fe0
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed runtime_info_sync @ 0x16268 */
 
-extern int global_ipc_service_send(void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+#include <stdint.h>
 
-unsigned int runtime_info_sync(unsigned short *param_1)
+struct __attribute__((packed)) runtime_sync_packet {
+    uint16_t marker;
+    uint8_t runtime[5];
+    uint8_t reserved;
+};
+
+extern uint32_t global_ipc_service_send(const void *packet, uint32_t length);
+extern void DEBUG_PRINT(uint32_t format, uint32_t function_name, ...);
+extern void debug_print(uint32_t format, uint32_t function_name, ...);
+
+uint32_t runtime_info_sync(const uint8_t *runtime)
 {
-    unsigned int local_18;
-    unsigned int local_14;
-    unsigned int uVar1;
-    unsigned char *b = (unsigned char*)param_1;
+    struct runtime_sync_packet packet = {
+        .marker = 1,
+        .runtime = {runtime[0], runtime[1], runtime[2], runtime[3], runtime[4]},
+        .reserved = 0,
+    };
 
-    local_18 = ((unsigned int)(*param_1) << 16) | 1;
-    local_14 = (unsigned int)b[2] | ((unsigned int)b[3] << 8) | ((unsigned int)b[4] << 16);
-    uVar1 = global_ipc_service_send(&local_18, 8);
-    if (*(volatile unsigned char*)0x20002fe0UL != 0) {
-        *(volatile unsigned char*)0x20002fe0UL = 0;
-        if (1 < *(volatile int*)0x2000230cUL) {
-            if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9957c, 0x99bee,
-                    (local_18 >> 16) & 0xff, local_18 >> 24,
-                    local_14 & 0xff, uVar1,
-                    (unsigned int)b[3], (unsigned int)b[4]);
+    uint32_t result = global_ipc_service_send(&packet, sizeof(packet));
+    if (*(volatile uint8_t *)0x20002fe0UL != 0) {
+        *(volatile uint8_t *)0x20002fe0UL = 0;
+        if (*(volatile int32_t *)0x2000230cUL > 1) {
+            if (*(volatile uint32_t *)0x20007554UL == 0) {
+                DEBUG_PRINT(0x0009957cUL, 0x00099beeUL,
+                            runtime[0], runtime[1], runtime[2], result,
+                            runtime[3], runtime[4]);
             } else {
-                debug_print();
+                debug_print(0x0009957cUL, 0x00099beeUL,
+                             runtime[0], runtime[1], runtime[2], result,
+                             runtime[3], runtime[4]);
             }
         }
     }
-    return uVar1;
+    return result;
 }
-

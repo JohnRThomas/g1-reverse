@@ -1,5 +1,20 @@
-/* named: pow5mult */
-/* Reconstructed pow5mult @ 0x7893c  (parity: 134/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007893c @ 0x0007893c
+ * public-name: pow5mult
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   Bfree                                    <= FUN_00078654 @ 0x00078654
+ *   multadd                                  <= FUN_00078698 @ 0x00078698
+ *   i2b                                      <= FUN_000787bc @ 0x000787bc
+ *   bigint_mult                              <= FUN_000787e8 @ 0x000787e8
+ *   pow5mult                                 <= FUN_0007893c @ 0x0007893c
+ * address symbols (name @ address):
+ *   rodata_98774                             @ 0x00098774
+ *   rodata_f8bb7                             @ 0x000f8bb7
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_0007893c @ 0x7893c  (parity: 134/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef unsigned int uint;
@@ -55,4 +70,3 @@ uint32_t pow5mult(int param_1, uint32_t param_2, uint param_3, uint32_t param_4)
   }
   return param_2;
 }
-

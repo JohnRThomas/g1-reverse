@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101c420 @ 0x101c420  (parity 300 trials PROVEN) */
-#define P_0101c4a4 ((uintptr_t)&g_net_link_ctx_b) /*=0x21001124*/
+#define P_0101c4a4 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
 
 extern int FUN_010091f8(int, unsigned int);
 extern void FUN_01008d00(int, int);
@@ -48,4 +48,3 @@ L478:
   *(unsigned char *)(r2 + 0x154) = r3;
   goto L42e;
 }
-

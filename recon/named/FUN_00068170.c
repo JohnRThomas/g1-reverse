@@ -1,4 +1,12 @@
-/* named: FUN_00068170 */
+/* readable reconstruction; identity: FUN_00068170 @ 0x00068170
+ * public-name: FUN_00068170
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   metal_bus_find                           <= FUN_00068134 @ 0x00068134
+ * address symbols (name @ address):
+ *   rodata_f7a8c                             @ 0x000f7a8c
+ *   g_metal_generic_bus                      @ 0x2000b424
+ */
 /* Reconstructed FUN_00068170 @ 0x68170  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int metal_bus_find(int,int);
@@ -26,4 +34,3 @@ uint32_t FUN_00068170(uint32_t *param_1){
   }
   return 0;
 }
-

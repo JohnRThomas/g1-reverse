@@ -1,4 +1,12 @@
-/* named: FUN_00031bd8 */
+/* readable reconstruction; identity: FUN_00031bd8 @ 0x00031bd8
+ * public-name: FUN_00031bd8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ * address symbols (name @ address):
+ *   rodata_a6603                             @ 0x000a6603
+ *   rodata_a704b                             @ 0x000a704b
+ */
 /* Reconstructed FUN_00031bd8 @ 0x31bd8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -15,4 +23,3 @@ unsigned FUN_00031bd8(int param_1, unsigned param_2, uint32_t *param_3, uint8_t 
   *(uint16_t*)(puVar3+8)=uVar2;
   LAB: *param_4=10; return 0;
 }
-

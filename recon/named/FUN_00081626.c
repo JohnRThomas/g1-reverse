@@ -1,4 +1,7 @@
-/* named: FUN_00081626 */
+/* readable reconstruction; identity: FUN_00081626 @ 0x00081626
+ * public-name: FUN_00081626
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00081626 @ 0x81626  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000815f6(int a, int *b, int *c, int d, unsigned int e);
@@ -28,4 +31,3 @@ int *FUN_00081626(int param_1, unsigned int param_2, int param_3, unsigned int p
     }
     return piVar1;
 }
-

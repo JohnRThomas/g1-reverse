@@ -1,5 +1,17 @@
-/* named: bigint_diff */
-/* Reconstructed bigint_diff @ 0x78ac8  (parity: 1/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078ac8 @ 0x00078ac8
+ * public-name: bigint_diff
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   bigint_diff                              <= FUN_00078ac8 @ 0x00078ac8
+ *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_00078ac8 @ 0x78ac8  (parity: 1/300 trials, PROVEN) */
 #include <stdint.h>
 extern int libc_fatal_error_and_abort(unsigned a, unsigned b, int c, unsigned d);
 extern int Balloc(int a, unsigned b);
@@ -97,4 +109,3 @@ LAB_00078af6:
   *(int *)(iVar2 + 0x14) = iVar1;
   return iVar3;
 }
-

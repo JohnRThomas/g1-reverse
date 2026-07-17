@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00068590 */
+/* readable reconstruction; identity: FUN_00068590 @ 0x00068590
+ * public-name: FUN_00068590
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00068590 @ 0x68590  (parity: 300/300 trials, PROVEN) */
 
 unsigned FUN_00068590(char *param_1){
@@ -19,4 +22,3 @@ unsigned FUN_00068590(char *param_1){
   uVar1 = uVar1*8 - (unsigned)(iVar6 + iVar5*8 + *(int*)(param_1+0x20) + *(int*)(param_1+0x24));
   return uVar1 & ~((unsigned)((int)uVar1 >> 0x1f));
 }
-

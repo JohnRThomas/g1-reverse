@@ -6,7 +6,7 @@ extern void FUN_01008d00(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 
 void FUN_0101dd48(int32_t param_1, int32_t param_2, uint32_t param_3, uint32_t param_4)
 {
-    volatile int32_t * const g_head = (int32_t *)((uintptr_t)&g_timeout_list) /*=0x2100113c*/;
+    volatile int32_t * const g_head = (int32_t *)((unsigned long)&g_timeout_list) /*=0x2100113c*/;
     int32_t r1;
     int32_t r3;
     uint32_t r2;
@@ -56,4 +56,3 @@ merge_point:
     }
     *(int32_t *)(r1 + 0xc) = 0;
 }
-

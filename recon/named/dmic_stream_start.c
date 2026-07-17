@@ -1,9 +1,22 @@
-/* named: dmic_stream_start */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed dmic_stream_start @ 0x2f080  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002f080 @ 0x0002f080
+ * public-name: dmic_stream_start
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   init_dmic_msgq                           <= FUN_0002ebd8 @ 0x0002ebd8
+ *   dmic_stream_start                        <= FUN_0002f080 @ 0x0002f080
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_87d40                             @ 0x00087d40
+ *   rodata_a4038                             @ 0x000a4038
+ *   rodata_a404b                             @ 0x000a404b
+ *   rodata_a41b0                             @ 0x000a41b0
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_0002f080 @ 0x2f080  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern int DEBUG_PRINT(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
@@ -46,4 +59,3 @@ uint dmic_stream_start(void)
   (void)iVar7;
   return uVar12;
 }
-

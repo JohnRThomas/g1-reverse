@@ -8,4 +8,3 @@ unsigned short FUN_0100f100(char *param_1, unsigned int param_2)
   }
   return 0xa90;
 }
-

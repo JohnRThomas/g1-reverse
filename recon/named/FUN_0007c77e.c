@@ -1,4 +1,9 @@
-/* named: FUN_0007c77e */
+/* readable reconstruction; identity: FUN_0007c77e @ 0x0007c77e
+ * public-name: FUN_0007c77e
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_list_total_len                       <= FUN_0007c754 @ 0x0007c754
+ */
 /* Reconstructed FUN_0007c77e @ 0x7c77e  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0007c6a0(int a, void* b);
@@ -28,4 +33,3 @@ int FUN_0007c77e(int *param_1,int *param_2,int param_3,unsigned param_4){
   }
   return iVar2;
 }
-

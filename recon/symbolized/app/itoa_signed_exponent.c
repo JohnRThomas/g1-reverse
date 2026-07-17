@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: itoa_signed_exponent */
-/* Reconstructed itoa_signed_exponent @ 0x86daa  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086daa @ 0x00086daa
+ * public-name: itoa_signed_exponent
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   itoa_signed_exponent                     <= FUN_00086daa @ 0x00086daa
+ */
+/* Reconstructed FUN_00086daa @ 0x86daa  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 int itoa_signed_exponent(uint8_t *param_1, unsigned int param_2, unsigned int param_3){
   int bVar1; char cVar2; uint8_t *puVar3; uint8_t uVar4; uint8_t *puVar5,*puVar6,*puVar8; int iVar7;
@@ -37,4 +42,3 @@ int itoa_signed_exponent(uint8_t *param_1, unsigned int param_2, unsigned int pa
   }
   return (int)((intptr_t)puVar3) - (int)((intptr_t)param_1);
 }
-

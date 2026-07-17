@@ -1,4 +1,9 @@
-/* named: FUN_000531e4 */
+/* readable reconstruction; identity: FUN_000531e4 @ 0x000531e4
+ * public-name: FUN_000531e4
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_f2cc8                             @ 0x000f2cc8
+ */
 /* Reconstructed FUN_000531e4 @ 0x531e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 void FUN_000531e4(char *param_1,char *param_2){
@@ -31,4 +36,3 @@ void FUN_000531e4(char *param_1,char *param_2){
     *(volatile uint8_t*)(param_2+0xe)=(uint8_t)(uVar2>>8);
   }
 }
-

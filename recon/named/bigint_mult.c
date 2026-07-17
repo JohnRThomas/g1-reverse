@@ -1,5 +1,16 @@
-/* named: bigint_mult */
-/* Reconstructed bigint_mult @ 0x787e8  (parity: 3/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000787e8 @ 0x000787e8
+ * public-name: bigint_mult
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   bigint_mult                              <= FUN_000787e8 @ 0x000787e8
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_000787e8 @ 0x787e8  (parity: 3/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned short ushort;
 extern int libc_fatal_error_and_abort(int,...);
@@ -69,4 +80,3 @@ void bigint_mult(unsigned param_1, int param_2, int param_3)
     *(int*)(iVar1+0x10) = iVar8;
     return;
 }
-

@@ -1,6 +1,26 @@
 #include "g1_app_symbols.h"
-/* named: gatt_indicate */
-/* Reconstructed gatt_indicate @ 0x5b270  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b270 @ 0x0005b270
+ * public-name: gatt_indicate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
+ *   bt_att_req_alloc                         <= FUN_000596c0 @ 0x000596c0
+ *   bt_att_req_free                          <= FUN_00059708 @ 0x00059708
+ *   bt_att_req_send                          <= FUN_00059a90 @ 0x00059a90
+ *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_att_set_tx_meta_data                  <= FUN_000825ac @ 0x000825ac
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   ADDR_gatt_indicate_rsp_THUMB             @ 0x000825d5
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f0000                             @ 0x000f0000
+ *   rodata_f4ad5                             @ 0x000f4ad5
+ *   rodata_f4aeb                             @ 0x000f4aeb
+ *   rodata_f4b16                             @ 0x000f4b16
+ */
+/* Reconstructed FUN_0005b270 @ 0x5b270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int bt_att_create_pdu(unsigned,int,int);
 extern int bt_att_req_alloc(int,int);
@@ -20,12 +40,12 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
   if (iVar3 == 0) {
     iVar3 = FUN_0005b0dc(param_1, *(unsigned*)(param_3+4), 2);
     if (iVar3 == 0) {
-      local_24 = "Device is not subscribed to characteristic" /*=0xf4aeb*/; local_28 = 2; iVar3 = -0x16;
-      FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+      local_24 = ((unsigned long)&rodata_f4aeb) /*=0xf4aeb*/; local_28 = 2; iVar3 = -0x16;
+      FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
     } else {
       uVar1 = *(unsigned short*)(param_3+0x14);
-      iVar3 = bt_att_req_alloc("eflash command end .......\n" /*=0xf0000*/, 0);
-      uVar2 = ((uintptr_t)&tbl_825bb) /*=0x825d5*/;
+      iVar3 = bt_att_req_alloc(((unsigned long)&rodata_f0000) /*=0xf0000*/, 0);
+      uVar2 = ADDR_gatt_indicate_rsp_THUMB /*=0x825d5*/;
       iVar5 = uVar1 + 2;
       if (iVar3 != 0) {
         *(volatile int*)(iVar3+0x14) = iVar5;
@@ -46,17 +66,16 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
           bt_att_req_free(iVar3);
           return iVar5;
         }
-        local_24 = "No buffer available to send indication" /*=0xf4b16*/; local_28 = 2;
-        FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+        local_24 = ((unsigned long)&rodata_f4b16) /*=0xf4b16*/; local_28 = 2;
+        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
         bt_att_req_free(iVar3);
       }
       iVar3 = -0xc;
     }
   } else {
     iVar3 = -1;
-    local_24 = "Link is not encrypted" /*=0xf4ad5*/; local_28 = 2;
-    FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+    local_24 = ((unsigned long)&rodata_f4ad5) /*=0xf4ad5*/; local_28 = 2;
+    FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
   }
   return iVar3;
 }
-

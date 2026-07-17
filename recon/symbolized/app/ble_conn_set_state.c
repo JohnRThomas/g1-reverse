@@ -1,17 +1,33 @@
 #include "g1_app_symbols.h"
-/* named: ble_conn_set_state */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed ble_conn_set_state @ 0x56704  (parity: 199/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056704 @ 0x00056704
+ * public-name: ble_conn_set_state
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   tx_notify                                <= FUN_00056020 @ 0x00056020
+ *   net_buf_destroy                          <= FUN_00056080 @ 0x00056080
+ *   ble_conn_ref                             <= FUN_00056654 @ 0x00056654
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ * address symbols (name @ address):
+ *   rodata_28000                             @ 0x00028000
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_f3c37                             @ 0x000f3c37
+ *   rodata_f3c48                             @ 0x000f3c48
+ *   rodata_f3c5f                             @ 0x000f3c5f
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_ble_conn_poll_signal                   @ 0x20002990
+ */
+/* Reconstructed FUN_00056704 @ 0x56704  (parity: 199/200 trials, PROVEN) */
+/* CFG_VERIFY_PREFIX_FIRST: event-state 1 is an intentional scheduler loop. */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned int uint;
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
+static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
+static inline void raiseBasePriority(int p){ __set_BASEPRI_MAX((uint32_t)p); }
+static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 
 extern void FUN_00055fb4(int);
 extern void tx_notify(int);
@@ -31,11 +47,11 @@ void ble_conn_set_state(int param_1, uint param_2)
   uint uVar7 = *(volatile uint8_t*)(param_1 + 0xd);
   if (uVar7 == param_2) {
     uint32_t local_28 = 0x01000003UL;
-    uint32_t local_24 = "no transition %s" /*=0xf3c37*/;
-    uint32_t uStack_20 = (uVar7 < 9) ? *(volatile uint32_t*)(((uintptr_t)&rodata_8b220) /*=0x8b220*/ + uVar7*4) : "(unknown)" /*=0xf3c2d*/;
+    uint32_t local_24 = ((unsigned long)&rodata_f3c37) /*=0xf3c37*/;
+    uint32_t uStack_20 = (uVar7 < 9) ? *(volatile uint32_t*)(0x0008b220UL + uVar7*4) : 0x000f3c2dUL;
     uint16_t local_1c = 0x200;
     struct { uint32_t a,b,c; uint16_t d; } s = { local_28, local_24, uStack_20, local_1c };
-    FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1c80, &s);
+    FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1c80, &s);
     return;
   }
   *(volatile uint8_t*)(param_1 + 0xd) = (uint8_t)param_2;
@@ -51,8 +67,8 @@ void ble_conn_set_state(int param_1, uint param_2)
       }
       switch (uVar7) {
         case 0: case 7: case 8: {
-          struct { uint32_t a,b,c; } s = { 3, "Invalid (%u) old state" /*=0xf3c48*/, param_2 };
-          FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
+          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f3c48) /*=0xf3c48*/, param_2 };
+          FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
           return;
         }
         case 1: {
@@ -64,7 +80,7 @@ void ble_conn_set_state(int param_1, uint param_2)
           volatile uint32_t *p = (volatile uint32_t*)(param_1+4);
           uint32_t v;
           do { v = *p; } while (!__sync_bool_compare_and_swap((uint32_t*)p, v, v | 0x40));
-          FUN_000757b0(((uintptr_t)&g_ble_conn_poll_signal) /*=0x20002990*/, 0);
+          FUN_000757b0(((unsigned long)&g_ble_conn_poll_signal) /*=0x20002990*/, 0);
           break;
         }
         case 2: case 5: case 6:
@@ -78,17 +94,13 @@ void ble_conn_set_state(int param_1, uint param_2)
     }
     case 1: {
       for (;;) {
-        int uVar3 = 0;
-        if (isCurrentModePrivileged()) uVar3 = getBasePriority();
-        if (isCurrentModePrivileged()) {
-          int b = getBasePriority();
-          if (b == 0 || b > 0x20) setBasePriority(0x20);
-        }
+        int uVar3 = getBasePriority();
+        raiseBasePriority(0x20);
         InstructionSynchronizationBarrier(0xf);
         if (*(volatile int*)(param_1+0x1c) == 0) {
           volatile uint32_t *puVar4 = *(volatile uint32_t* volatile*)(param_1+0x14);
           if (puVar4 == 0) {
-            if (isCurrentModePrivileged()) setBasePriority(uVar3);
+            setBasePriority(uVar3);
             InstructionSynchronizationBarrier(0xf);
             return;
           }
@@ -97,29 +109,25 @@ void ble_conn_set_state(int param_1, uint param_2)
             *(volatile uint32_t*)(param_1+0x18) = uVar5;
           }
           *(volatile uint32_t*)(param_1+0x14) = uVar5;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
-          uVar3 = 0;
-          if (isCurrentModePrivileged()) uVar3 = getBasePriority();
-          if (isCurrentModePrivileged()) {
-            int b = getBasePriority();
-            if (b == 0 || b > 0x20) setBasePriority(0x20);
-          }
+          uVar3 = getBasePriority();
+          raiseBasePriority(0x20);
           InstructionSynchronizationBarrier(0xf);
           uVar5 = puVar4[3];
           *(volatile int*)(param_1+0x1c) = uVar5;
           puVar4[3] = 0;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
           net_buf_destroy(param_1, (void*)puVar4, uVar5, uVar3);
         } else {
           *(volatile int*)(param_1+0x1c) = *(volatile int*)(param_1+0x1c) - 1;
-          if (isCurrentModePrivileged()) setBasePriority(uVar3);
+          setBasePriority(uVar3);
           InstructionSynchronizationBarrier(0xf);
         }
         int iVar2;
-        if (*(volatile uint16_t*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/ + 0x104) == 0) iVar2 = 0;
-        else iVar2 = ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/ + 0x108;
+        if (*(volatile uint16_t*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + 0x104) == 0) iVar2 = 0;
+        else iVar2 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + 0x108;
         FUN_00072880(iVar2);
       }
     }
@@ -128,7 +136,7 @@ void ble_conn_set_state(int param_1, uint param_2)
     case 7:
       if (*(volatile uint8_t*)(param_1+2) != 4) {
         z_impl_k_queue_init(param_1+0x38);
-        FUN_000757b0(((uintptr_t)&g_ble_conn_poll_signal) /*=0x20002990*/, 0);
+        FUN_000757b0(((unsigned long)&g_ble_conn_poll_signal) /*=0x20002990*/, 0);
         *(volatile uint32_t*)(param_1+0x54) = 0;
         *(volatile uint32_t*)(param_1+0x58) = 0;
         if (*(volatile uint8_t*)(param_1+3) == 1) {
@@ -136,15 +144,14 @@ void ble_conn_set_state(int param_1, uint param_2)
           int isOne = (c == 1);
           if (isOne) c = 3;
           if (isOne) *(volatile uint8_t*)(param_1+0xb4) = c;
-          FUN_00073418(param_1+0x60, 0, ((uintptr_t)&rodata_28000) /*=0x28000*/, 0);
+          FUN_00073418(param_1+0x60, 0, ((unsigned long)&rodata_28000) /*=0x28000*/, 0);
         }
       }
       break;
     default: {
-      struct { uint32_t a,b,c; } s = { 3, "no valid (%u) state was set" /*=0xf3c5f*/, param_2 };
-      FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
+      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f3c5f) /*=0xf3c5f*/, param_2 };
+      FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &s);
       return;
     }
   }
 }
-

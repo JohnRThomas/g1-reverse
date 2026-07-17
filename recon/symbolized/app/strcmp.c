@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: strcmp */
-/* Reconstructed strcmp @ 0xeefe  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000eefe @ 0x0000eefe
+ * public-name: strcmp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ */
+/* Reconstructed FUN_0000eefe @ 0xeefe  (parity: 300/300 trials, PROVEN) */
 
 int strcmp(unsigned char *param_1, unsigned char *param_2)
 {
@@ -19,4 +24,3 @@ int strcmp(unsigned char *param_1, unsigned char *param_2)
     } while (bVar3);
     return (int)uVar2 - (int)bVar1;
 }
-

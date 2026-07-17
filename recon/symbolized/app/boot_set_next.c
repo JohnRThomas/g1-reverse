@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: boot_set_next */
-/* Reconstructed boot_set_next @ 0x641e4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000641e4 @ 0x000641e4
+ * public-name: boot_set_next
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   boot_set_next                            <= FUN_000641e4 @ 0x000641e4
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   flash_write_close_ate_marker             <= FUN_00084e58 @ 0x00084e58
+ * address symbols (name @ address):
+ *   rodata_f68d7                             @ 0x000f68d7
+ *   rodata_f692c                             @ 0x000f692c
+ *   rodata_f7a30                             @ 0x000f7a30
+ */
+/* Reconstructed FUN_000641e4 @ 0x641e4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_00063ff8(char*);
@@ -50,8 +61,7 @@ int boot_set_next(char *param_1, int param_2, int param_3){
       if (local[3] != 3) return 0;
       return flash_write_close_ate_marker(param_1);
     }
-    libc_fatal_error_and_abort("WEST_TOPDIR/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c" /*=0xf68d7*/, 0x22e, "boot_set_next" /*=0xf692c*/, ((uintptr_t)&rodata_f7a30) /*=0xf7a30*/);
+    libc_fatal_error_and_abort(((unsigned long)&rodata_f68d7) /*=0xf68d7*/, 0x22e, ((unsigned long)&rodata_f692c) /*=0xf692c*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/);
   }
   return 4;
 }
-

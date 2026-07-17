@@ -8,9 +8,8 @@ int FUN_01034650(unsigned int param_1, unsigned int param_2, unsigned int param_
 {
   unsigned int r0 = param_1;
   if (param_1 > 7) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103e6ad) /*=0x103e6ad*/, 0x2aa, param_4, param_4);
-    r0 = FUN_01039bb0(((uintptr_t)&rodata_103e6ad) /*=0x103e6ad*/, 0x2aa);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e6ad) /*=0x103e6ad*/, 0x2aa, param_4, param_4);
+    r0 = FUN_01039bb0(((unsigned long)&rodata_103e6ad) /*=0x103e6ad*/, 0x2aa);
   }
   return (int)(r0 << 2) + 0x100;
 }
-

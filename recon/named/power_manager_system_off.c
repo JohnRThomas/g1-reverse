@@ -1,5 +1,20 @@
-/* named: power_manager_system_off */
-/* Reconstructed power_manager_system_off @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00063c3c @ 0x00063c3c
+ * public-name: power_manager_system_off
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   power_manager_system_off                 <= FUN_00063c3c @ 0x00063c3c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88268                             @ 0x00088268
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6716                             @ 0x000f6716
+ *   rodata_f6749                             @ 0x000f6749
+ *   rodata_f6769                             @ 0x000f6769
+ *   rodata_f67a5                             @ 0x000f67a5
+ *   g_caf_power_manager_system_off_flag      @ 0x2001d563
+ */
+/* Reconstructed FUN_00063c3c @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0004d944(unsigned,int,void*,int);
 extern int FUN_0004f770(int);
@@ -30,4 +45,3 @@ void power_manager_system_off(void){
   FUN_0004f770(iVar1);
   return;
 }
-

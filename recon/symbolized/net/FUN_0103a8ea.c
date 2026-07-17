@@ -16,4 +16,3 @@ unsigned int FUN_0103a8ea(unsigned int param_1)
   }
   return (uVar1 >> (param_1 & 0x1f)) & 1;
 }
-

@@ -1,5 +1,13 @@
-/* named: bt_conn_auth_info_cb_register */
-/* Reconstructed bt_conn_auth_info_cb_register @ 0x57330  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057330 @ 0x00057330
+ * public-name: bt_conn_auth_info_cb_register
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_conn_auth_info_cb_register            <= FUN_00057330 @ 0x00057330
+ * address symbols (name @ address):
+ *   g_bt_conn_auth_info_cb_list              @ 0x2000ad20
+ *   auth_info_cbs                            @ 0x2000ad24
+ */
+/* Reconstructed FUN_00057330 @ 0x57330  (parity: 300/300 trials, PROVEN) */
 
 unsigned int bt_conn_auth_info_cb_register(int param_1)
 {
@@ -17,4 +25,3 @@ unsigned int bt_conn_auth_info_cb_register(int param_1)
   }
   return 0xffffffea;
 }
-

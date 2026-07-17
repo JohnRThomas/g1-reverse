@@ -1,6 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: gatt_hash_settings_set */
-/* Reconstructed gatt_hash_settings_set @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a28c @ 0x0005a28c
+ * public-name: gatt_hash_settings_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_hash_settings_set                   <= FUN_0005a28c @ 0x0005a28c
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4783                             @ 0x000f4783
+ *   g_bt_gatt_db_hash                        @ 0x20006390
+ */
+/* Reconstructed FUN_0005a28c @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00082a42(unsigned int a, unsigned int b, void *c);
 typedef int (*fn_t)(unsigned int, unsigned int, unsigned int);
@@ -12,15 +21,14 @@ int gatt_hash_settings_set(unsigned int param_1, unsigned int param_2, fn_t para
     unsigned int local_1c;
     int iStack_18;
 
-    iVar1 = param_3(param_4, ((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006390*/, 0x10);
+    iVar1 = param_3(param_4, ((unsigned long)&g_bt_gatt_db_hash + 0x10) /*=0x20006390*/, 0x10);
     if (iVar1 < 0) {
-        local_1c = "Failed to decode value (err %zd)" /*=0xf4783*/;
+        local_1c = ((unsigned long)&rodata_f4783) /*=0xf4783*/;
         local_20 = 3;
         iStack_18 = iVar1;
-        FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1840, &local_20);
+        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &local_20);
         return iVar1;
     } else {
         return 0;
     }
 }
-

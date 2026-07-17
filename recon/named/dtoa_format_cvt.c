@@ -1,5 +1,11 @@
-/* named: dtoa_format_cvt */
-/* Reconstructed dtoa_format_cvt @ 0x86cda  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086cda @ 0x00086cda
+ * public-name: dtoa_format_cvt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_dcmpeq                           <= FUN_0000ddc8 @ 0x0000ddc8
+ *   dtoa_format_cvt                          <= FUN_00086cda @ 0x00086cda
+ */
+/* Reconstructed FUN_00086cda @ 0x86cda  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern char* FUN_00014b60(double, uint32_t, int, int, int*, void*, void*);
 extern int __aeabi_dcmpeq(uint32_t,int,int,int);
@@ -45,4 +51,3 @@ char* dtoa_format_cvt(double in_d0, uint32_t param_1, int param_2, uint32_t para
     *param_7 = (int)(uintptr_t)local_2c[0] - (int)(uintptr_t)pcVar1;
     return pcVar1;
 }
-

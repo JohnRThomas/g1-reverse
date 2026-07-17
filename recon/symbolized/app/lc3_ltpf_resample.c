@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: lc3_ltpf_resample */
-/* Reconstructed lc3_ltpf_resample @ 0x6954c  (parity: 23/150 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006954c @ 0x0006954c
+ * public-name: lc3_ltpf_resample
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_resample                        <= FUN_0006954c @ 0x0006954c
+ */
+/* Reconstructed FUN_0006954c @ 0x6954c  (parity: 23/150 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
@@ -14,10 +19,6 @@ typedef signed char sbyte; typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 
 #define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
 #define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
@@ -87,7 +88,7 @@ void lc3_ltpf_resample(int param_1,short *param_2,int param_3,float *param_4,int
   float *pfVar31;
   float *pfVar32;
   float *pfVar33;
-  
+
   param_3 = param_3 >> 4;
   psVar30 = param_2;
   pfVar33 = param_4;
@@ -263,5 +264,3 @@ void lc3_ltpf_resample(int param_1,short *param_2,int param_3,float *param_4,int
                          (int)((ulonglong)(lVar24 + 0x20) >> 0x20) * 0x4000000);
   return;
 }
-
-

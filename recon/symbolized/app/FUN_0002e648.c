@@ -1,5 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0002e648 */
+/* readable reconstruction; identity: FUN_0002e648 @ 0x0002e648
+ * public-name: FUN_0002e648
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt3001_reg_read                         <= FUN_0002e594 @ 0x0002e594
+ * address symbols (name @ address):
+ *   g_opt3007_chip_ready                     @ 0x20018da1
+ */
 /* Reconstructed FUN_0002e648 @ 0x2e648  (parity: 300/300 trials, PROVEN) */
 
 extern int opt3001_reg_read(int, void*, unsigned int, unsigned char, unsigned int);
@@ -9,7 +16,7 @@ int FUN_0002e648(unsigned int param_1, unsigned int param_2, unsigned int param_
     int iVar1;
     unsigned int uStack_c;
     unsigned int uStack_8;
-    unsigned char g = *(volatile unsigned char*)((uintptr_t)&g_opt3007_chip_ready) /*=0x20018da1*/;
+    unsigned char g = *(volatile unsigned char*)((unsigned long)&g_opt3007_chip_ready) /*=0x20018da1*/;
     if (g == 0) {
         iVar1 = -1;
     } else {
@@ -25,4 +32,3 @@ int FUN_0002e648(unsigned int param_1, unsigned int param_2, unsigned int param_
     }
     return iVar1;
 }
-

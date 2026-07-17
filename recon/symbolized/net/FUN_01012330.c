@@ -9,4 +9,3 @@ char FUN_01012330(int param_1)
   }
   return cVar1;
 }
-

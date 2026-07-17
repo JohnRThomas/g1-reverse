@@ -1,7 +1,12 @@
-/* named: FUN_00073788 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073788 @ 0x00073788
+ * public-name: FUN_00073788
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_73729                             @ 0x00073729
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   g_sched_ready_runq_nonempty_flag         @ 0x2000b48c
+ *   g_percpu_timeout_abort_flag              @ 0x2001d565
+ */
 /* Reconstructed FUN_00073788 @ 0x73788  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00074d74(int a);
@@ -24,4 +29,3 @@ void FUN_00073788(int param_1)
     return;
   }
 }
-

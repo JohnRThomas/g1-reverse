@@ -6,4 +6,3 @@ void FUN_01012970(int param_1, unsigned char param_2, unsigned char param_3)
   *(unsigned char *)(param_1 + 0x20) = param_2;
   *(unsigned char *)(param_1 + 0x21) = param_3;
 }
-

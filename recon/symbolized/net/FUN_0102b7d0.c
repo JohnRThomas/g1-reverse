@@ -4,9 +4,9 @@
 typedef void (*fptr_t)(int);
 void FUN_0102b7d0(int param_1)
 {
-  volatile unsigned char *A = (volatile unsigned char*)((uintptr_t)&g_net_evt_notify_disabled_flag) /*=0x21004fa5*/;
-  volatile unsigned char *B = (volatile unsigned char*)((uintptr_t)&g_net_evt_last_notified_state) /*=0x21004fa6*/;
-  fptr_t *Cp = (fptr_t*)((uintptr_t)&g_net_evt_callback_fn) /*=0x2100463c*/;
+  volatile unsigned char *A = (volatile unsigned char*)((unsigned long)&g_net_evt_notify_disabled_flag) /*=0x21004fa5*/;
+  volatile unsigned char *B = (volatile unsigned char*)((unsigned long)&g_net_evt_last_notified_state) /*=0x21004fa6*/;
+  fptr_t *Cp = (fptr_t*)((unsigned long)&g_net_evt_callback_fn) /*=0x2100463c*/;
   if (*A == 0) {
     if (param_1 == 0) {
       if (*B != 0) {
@@ -19,4 +19,3 @@ void FUN_0102b7d0(int param_1)
     }
   }
 }
-

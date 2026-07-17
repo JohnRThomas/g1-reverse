@@ -1,11 +1,17 @@
-/* named: click_event_dispatch_loop */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a00  g_touch_key_irq_pending      
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019dac  g_touch_key_irq_line_status  
-*/
-/* Reconstructed click_event_dispatch_loop @ 0x28a1c  (parity: 4/4 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00028a1c @ 0x00028a1c
+ * public-name: click_event_dispatch_loop
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   click_event_dispatch_loop                <= FUN_00028a1c @ 0x00028a1c
+ * address symbols (name @ address):
+ *   g_log_level                              @ 0x2000230c
+ *   g_touch_key_irq_pending                  @ 0x20006a00
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_touch_key_irq_line_status              @ 0x20019dac
+ */
+/* Reconstructed FUN_00028a1c @ 0x28a1c  (parity: 60/60 trials, PROVEN) */
+/* CFG_VERIFY_PREFIX_FIRST: modeled first oracle result cannot take the only return. */
+
 #include <stdint.h>
 
 extern void DEBUG_PRINT(uint32_t a, ...);
@@ -16,7 +22,8 @@ extern int64_t FUN_00032fdc(void);
 extern void k_msleep_ticks32768_a(int32_t);
 extern void read_rtc_counter_ms(void *a);
 extern int32_t get_uptime_ms(void);
-extern void thunk_FUN_00072908(void *a, int32_t b, int32_t c, int32_t d, int32_t e, int32_t f, uint32_t g);
+extern void update_sync_buffer(void *queue, int32_t key, int32_t timeout,
+                               int32_t flags);
 extern void FUN_0002893c(void);
 extern void on_triple_click(void);
 extern void FUN_00028964(void);
@@ -35,7 +42,6 @@ void click_event_dispatch_loop(char *param_1, int32_t param_2, uint32_t param_3)
   int32_t iVar8;
   int32_t iVar9;
   int64_t uVar10;
-  int32_t iVar11;
 
   pcVar2 = (volatile uint8_t *)0x20019dacUL;
   piVar1 = (volatile int32_t *)0x20006a00UL;
@@ -43,7 +49,6 @@ void click_event_dispatch_loop(char *param_1, int32_t param_2, uint32_t param_3)
   iVar8 = 0;
   iVar7 = 0;
   iVar9 = 0;
-  iVar11 = (int32_t)(intptr_t)param_1;
 LAB_00028a32:
   do {
     while (1) {
@@ -51,8 +56,8 @@ LAB_00028a32:
       if ((int32_t)uVar10 == 1) {
         return;
       }
-      thunk_FUN_00072908(param_1 + 0xb0, (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0, iVar11, param_2,
-                          param_3);
+      update_sync_buffer(param_1 + 0xb0,
+                         (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0);
       if ((*(char *)(param_1 + 1) != '\x01') &&
           (iVar3 = (int32_t)get_device_info(), *(char *)(iVar3 + 1) != '\b')) break;
       k_msleep_ticks32768_a(5000);
@@ -150,4 +155,3 @@ LAB_00028b4e:
   iVar7 = iVar6;
   goto LAB_00028a32;
 }
-

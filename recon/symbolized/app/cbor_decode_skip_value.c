@@ -1,12 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_skip_value */
-/* Reconstructed cbor_decode_skip_value @ 0x86064  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086064 @ 0x00086064
+ * public-name: cbor_decode_skip_value
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
+ *   cbor_decode_expect_break                 <= FUN_00085dd2 @ 0x00085dd2
+ *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
+ *   cbor_decode_tag                          <= FUN_0008603c @ 0x0008603c
+ *   cbor_decode_skip_value                   <= FUN_00086064 @ 0x00086064
+ */
+/* Reconstructed FUN_00086064 @ 0x86064  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00085d36(int,...);
 extern int FUN_00085d70(int,...);
 extern int cbor_decode_precheck(void);
 extern int cbor_decode_expect_break(int,...);
-extern int cbor_decode_extract_value(int,...);
+extern int cbor_decode_extract_value(void *, void *, unsigned int);
 extern int cbor_decode_tag(int,...);
 
 int cbor_decode_skip_value(unsigned *param_1, int param_2)
@@ -14,7 +23,10 @@ int cbor_decode_skip_value(unsigned *param_1, int param_2)
     unsigned char bVar1; int iVar2; unsigned char *pbVar3; int iVar4; unsigned uVar5;
     unsigned char *pbVar6; unsigned *puVar7; int bVar8; unsigned uVar9;
     unsigned char **ppbVar10; int bVar11;
-    unsigned char auStack_3c[4]; unsigned local_38, local_34;
+    unsigned char auStack_3c[4];
+    struct { unsigned lo, hi; } decoded_width;
+#define local_38 (decoded_width.lo)
+#define local_34 (decoded_width.hi)
     unsigned char *local_30[6];
 #define local_24 (local_30[3])
 
@@ -73,11 +85,11 @@ LAB_00086162:
             }
             goto LAB_000860ee;
         }
-        iVar4 = cbor_decode_extract_value((int)local_30, (int)&local_38);
+        iVar4 = cbor_decode_extract_value(local_30, &local_38, 8);
         if(iVar4 == 0) return 0;
         if(4 < uVar9) goto LAB_000860ee;
     } else {
-        iVar4 = cbor_decode_extract_value((int)local_30, (int)&local_38);
+        iVar4 = cbor_decode_extract_value(local_30, &local_38, 8);
         if(iVar4 == 0) return 0;
         if(uVar9 == 4){
             bVar8 = 0;
@@ -108,5 +120,6 @@ LAB_000860ee:
     param_1[2] = param_1[2] - 1;
     return iVar2;
 #undef local_24
+#undef local_34
+#undef local_38
 }
-

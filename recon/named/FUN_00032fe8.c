@@ -1,4 +1,14 @@
-/* named: FUN_00032fe8 */
+/* readable reconstruction; identity: FUN_00032fe8 @ 0x00032fe8
+ * public-name: FUN_00032fe8
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_32421                             @ 0x00032421
+ *   rodata_a757f                             @ 0x000a757f
+ *   rodata_a75c2                             @ 0x000a75c2
+ *   g_aging_mode_thread                      @ 0x20004870
+ *   g_aging_mode_thread_started_flag         @ 0x20019ef1
+ *   g_aging_mode_thread_stack                @ 0x20027a68
+ */
 /* Reconstructed FUN_00032fe8 @ 0x32fe8  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(void*, void*, unsigned int);
@@ -19,4 +29,3 @@ void FUN_00032fe8(void)
   }
   return;
 }
-

@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: fminf */
-/* Reconstructed fminf @ 0x8693c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008693c @ 0x0008693c
+ * public-name: fminf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __fpclassifyf                            <= FUN_00075980 @ 0x00075980
+ *   fminf                                    <= FUN_0008693c @ 0x0008693c
+ */
+/* Reconstructed FUN_0008693c @ 0x8693c  (parity: 300/300 trials, PROVEN) */
 
 extern int __fpclassifyf(float x);
 float fminf(float param_1,float param_2)
@@ -12,4 +18,3 @@ float fminf(float param_1,float param_2)
   }
   return param_1;
 }
-

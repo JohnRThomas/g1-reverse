@@ -1,15 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: msg_content_recalc_unread */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
-/* Reconstructed msg_content_recalc_unread @ 0x33cf8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033cf8 @ 0x00033cf8
+ * public-name: msg_content_recalc_unread
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
+/* Reconstructed FUN_00033cf8 @ 0x33cf8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 uint32_t msg_content_recalc_unread(void){
   uint32_t counter = 0, uVar4 = 0, uVar5 = 0, bVar1 = 0;
-  uint32_t iVar6 = (g_message_pool) /*=0x20007dac*/;
-  volatile uint8_t *DAT = (volatile uint8_t*)((uintptr_t)&g_message_pool_index) /*=0x2001a22a*/;
+  uint32_t iVar6 = ((unsigned long)g_message_pool) /*=0x20007dac*/;
+  volatile uint8_t *DAT = (volatile uint8_t*)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/;
   uint32_t r0;
   while(1){
     r0 = counter & 0xff;
@@ -35,4 +39,3 @@ uint32_t msg_content_recalc_unread(void){
   uVar5 = 0; *DAT = 0;
   return (r0 - uVar5) & 0xff;
 }
-

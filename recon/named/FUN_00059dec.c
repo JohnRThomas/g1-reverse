@@ -1,4 +1,12 @@
-/* named: FUN_00059dec */
+/* readable reconstruction; identity: FUN_00059dec @ 0x00059dec
+ * public-name: FUN_00059dec
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ccc_find_cfg                             <= FUN_000826c2 @ 0x000826c2
+ * address symbols (name @ address):
+ *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ */
 /* Reconstructed FUN_00059dec @ 0x59dec  (parity: 300/300 trials, PROVEN) */
 
 extern int ccc_find_cfg(int,...);
@@ -37,4 +45,3 @@ L_e2a:;
   *(volatile int*)((int)param_3+8)=param_3[2]+4;
   return ret;
 }
-

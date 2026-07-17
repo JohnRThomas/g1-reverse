@@ -4,8 +4,7 @@
 #include <stdint.h>
 typedef long long (*code)(void);
 void FUN_010218f0(void) {
-    uint32_t v = *(volatile uint32_t*)((uintptr_t)&g_net_radio_ops_table_ptr) /*=0x21000530*/;
+    uint32_t v = *(volatile uint32_t*)((unsigned long)&g_net_radio_ops_table_ptr) /*=0x21000530*/;
     code fn = *(code*)(v + 0x18);
     fn();
 }
-

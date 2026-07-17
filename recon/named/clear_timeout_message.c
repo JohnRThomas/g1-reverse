@@ -1,10 +1,23 @@
-/* named: clear_timeout_message */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007dac  g_message_pool               
-*/
-/* Reconstructed clear_timeout_message @ 0x33d58  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033d58 @ 0x00033d58
+ * public-name: clear_timeout_message
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a7d87                             @ 0x000a7d87
+ *   rodata_a8265                             @ 0x000a8265
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_message_pool                           @ 0x20007dac
+ *   g_msg_queue_busy                         @ 0x20018d8e
+ */
+/* Reconstructed FUN_00033d58 @ 0x33d58  (parity: 300/300 trials, PROVEN) */
 extern int DEBUG_PRINT(int,...);
 extern int get_device_info(int,...);
 extern int debug_print(int,...);
@@ -61,7 +74,7 @@ LAB_00033e20:
         local_2c = iVar9 * 0x1b4;
         iVar11 = iVar11 + 1;
         iVar7 = iVar11 + iVar9;
-        memset_bytes(0);
+        memset_bytes(iVar5, 0, 0x1b4);
         if (9 < iVar7) goto LAB_00033e3e;
         if (*(volatile int *)(iVar2 + local_2c) != 0) {
             iVar9 = iVar9 + 1;
@@ -86,7 +99,7 @@ LAB_00033e8a:
         if ((iVar5 != 0) && (uVar6 = get_timestamp(0), (unsigned)(*(volatile int *)(iVar8 + 4) + 5) < uVar6)) {
             iVar11 = iVar11 + 1;
             iVar7 = iVar11 + iVar9;
-            memset_bytes(0);
+            memset_bytes(iVar8, 0, 0x1b4);
             if (iVar7 < 10) {
                 if (*(volatile int *)(iVar2 + iVar9 * 0x1b4) != 0) goto LAB_00033e8a;
                 goto LAB_00033e98;
@@ -104,13 +117,13 @@ LAB_00033e98:
         iVar11 = iVar11 + 1;
         goto LAB_00033d76;
     }
-    memcpy(0);
-    memset_bytes(0);
+    memcpy(iVar2 + iVar9 * 0x1b4, iVar5);
+    memset_bytes(iVar5, 0, 0x1b4);
     if (0 < *(volatile int *)0x2000230cUL) {
         if (*(volatile int *)0x20007554UL == 0) {
-            DEBUG_PRINT(0);
+            DEBUG_PRINT(0x000a7d87, 0x000a8265, iVar7, iVar9);
         } else {
-            debug_print(0);
+            debug_print(0x000a7d87, 0x000a8265, iVar7, iVar9);
         }
     }
 LAB_00033dc8:
@@ -125,4 +138,3 @@ LAB_00033e3e:
     }
     goto LAB_00033d76;
 }
-

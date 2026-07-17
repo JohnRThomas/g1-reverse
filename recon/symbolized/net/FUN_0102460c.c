@@ -3,7 +3,7 @@
 
 void FUN_0102460c(void)
 {
-  volatile signed char *p = (volatile signed char *)((uintptr_t)&g_net_deferred_irq_num) /*=0x21001bca*/;
+  volatile signed char *p = (volatile signed char *)((unsigned long)&g_net_deferred_irq_num) /*=0x21001bca*/;
   int v = (int)*p;
   if (v >= 0) {
     volatile unsigned int *base = (volatile unsigned int *)0xe000e100;
@@ -11,4 +11,3 @@ void FUN_0102460c(void)
   }
   return;
 }
-

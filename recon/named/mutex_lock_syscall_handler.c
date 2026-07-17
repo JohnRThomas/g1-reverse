@@ -1,6 +1,28 @@
-/* named: mutex_lock_syscall_handler */
-/* Reconstructed mutex_lock_syscall_handler @ 0x72908  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00072908 @ 0x00072908
+ * public-name: mutex_lock_syscall_handler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f8198                             @ 0x000f8198
+ *   rodata_f81b8                             @ 0x000f81b8
+ *   g_mutex_lock_spinlock                    @ 0x2000b474
+ */
+/* Reconstructed FUN_00072908 @ 0x72908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int z_spin_lock_valid(uint32_t);
 extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
@@ -10,7 +32,7 @@ extern void printk(uint32_t,...);
 
 int mutex_lock_syscall_handler(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
     uint32_t ipsr, bp, v; int iVar2; int r3;
-    __asm__ volatile("mrs %0, ipsr":"=r"(ipsr));
+    ipsr = __get_IPSR();
     if (ipsr != 0 && (param_3 | param_4) != 0){
         printk(0x00099cbd,0x000f81b8,0x000f8198,0x80,(uint32_t)param_1,param_2,param_3);
         printk(0x000f53ff);
@@ -18,10 +40,10 @@ int mutex_lock_syscall_handler(int param_1, uint32_t param_2, uint32_t param_3, 
         goto L936;
     }
   L936:
-    __asm__ volatile("mrs %0, basepri":"=r"(bp));
+    bp = __get_BASEPRI();
     v = 0x20;
-    __asm__ volatile("msr basepri_max, %0"::"r"(v));
-    __asm__ volatile("isb sy");
+    __set_BASEPRI_MAX(v);
+    __ISB();
     iVar2 = z_spin_lock_valid(0x2000b474);
     if (iVar2 == 0){
         printk(0x00099cbd,0x000f0920,0x000f08c7,0x72,(uint32_t)param_1,param_2,param_3);
@@ -37,16 +59,16 @@ int mutex_lock_syscall_handler(int param_1, uint32_t param_2, uint32_t param_3, 
         }
         iVar2 = z_spin_unlock_valid(0x2000b474);
         if (iVar2 != 0){
-            __asm__ volatile("msr basepri, %0"::"r"(bp));
-            __asm__ volatile("isb sy");
+            __set_BASEPRI(bp);
+            __ISB();
             return 0xfffffff0;
         }
     } else {
         *(volatile int*)(param_1+8) = r3 - 1;
         iVar2 = z_spin_unlock_valid(0x2000b474);
         if (iVar2 != 0){
-            __asm__ volatile("msr basepri, %0"::"r"(bp));
-            __asm__ volatile("isb sy");
+            __set_BASEPRI(bp);
+            __ISB();
             return 0;
         }
     }
@@ -55,4 +77,3 @@ int mutex_lock_syscall_handler(int param_1, uint32_t param_2, uint32_t param_3, 
     assert_post_action(0x000f08c7,0xf0);
     goto L936;
 }
-

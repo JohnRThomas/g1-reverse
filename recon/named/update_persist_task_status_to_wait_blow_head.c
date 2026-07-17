@@ -1,8 +1,16 @@
-/* named: update_persist_task_status_to_wait_blow_head */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002c180 @ 0x0002c180
+ * public-name: update_persist_task_status_to_wait_blow_head
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ * address symbols (name @ address):
+ *   rodata_a25d9                             @ 0x000a25d9
+ *   rodata_a25f8                             @ 0x000a25f8
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ */
 /* Reconstructed update_persist_task_status_to_wait_blow_head @ 0x2c180  (parity: 300/300 trials, PROVEN) */
 
 extern void debug_print(void);
@@ -41,4 +49,3 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
   iVar3[4] = 1;
   return 0;
 }
-

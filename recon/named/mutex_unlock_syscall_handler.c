@@ -1,9 +1,31 @@
-/* named: mutex_unlock_syscall_handler */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed mutex_unlock_syscall_handler @ 0x745c8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000745c8 @ 0x000745c8
+ * public-name: mutex_unlock_syscall_handler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
+ *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
+/* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_000501d4(int,...);
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
@@ -14,6 +36,15 @@ extern int assert_post_action(int,...);
 extern int printk(int,...);
 void mutex_unlock_syscall_handler(void)
 {
+  if (__get_IPSR() != 0) {
+    printk(0x99cbd,0xf801f,0xf82f4,0x57a);
+    printk(0xf53ff);
+    assert_post_action(0xf82f4,0x57a);
+    return;
+  }
+  unsigned key = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
   int iVar2 = z_spin_lock_valid(0x2000b490);
   int iVar3 = 0x2000b448;
   if (iVar2 == 0) {
@@ -49,9 +80,8 @@ void mutex_unlock_syscall_handler(void)
 L:
   FUN_000737d8(1);
   int r = z_spin_unlock_valid(0x2000b490);
-  if (r != 0) { FUN_000501d4(0); return; }
+  if (r != 0) { FUN_000501d4(key); return; }
   printk(0x99cbd,0xf08f4,0xf08c7,0x111);
   printk(0xf090b,0x2000b490);
   assert_post_action(0xf08c7,0x111);
 }
-

@@ -1,6 +1,28 @@
 #include "g1_app_symbols.h"
-/* named: bt_att_chan_create_pdu */
-/* Reconstructed bt_att_chan_create_pdu @ 0x585f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000585f0 @ 0x000585f0
+ * public-name: bt_att_chan_create_pdu
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_op_get_type                          <= FUN_000582b8 @ 0x000582b8
+ *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
+ *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
+ *   net_buf_simple_reserve                   <= FUN_0005f4d4 @ 0x0005f4d4
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   k_current_get                            <= FUN_000748ac @ 0x000748ac
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88100                             @ 0x00088100
+ *   rodata_f0000                             @ 0x000f0000
+ *   rodata_f3ec2                             @ 0x000f3ec2
+ *   rodata_f4475                             @ 0x000f4475
+ *   rodata_f449a                             @ 0x000f449a
+ *   rodata_f44c2                             @ 0x000f44c2
+ *   g_bt_att_pool                            @ 0x20003a28
+ */
+/* Reconstructed FUN_000585f0 @ 0x585f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int att_op_get_type(int);
 extern int net_buf_reset(void);
@@ -30,7 +52,7 @@ int bt_att_chan_create_pdu(unsigned int param_1, unsigned int param_2, int param
         uStack_40 = (unsigned int)*(unsigned short *)(param_1 + 0x1e);
     }
     if (uStack_40 < param_3 + 1U) {
-        local_44 = "ATT MTU exceeded, max %u, wanted %zu" /*=0xf4475*/;
+        local_44 = ((unsigned long)&rodata_f4475) /*=0xf4475*/;
         uVar4 = 0x2080;
         local_48 = 4;
         local_3c = param_3 + 1U;
@@ -50,12 +72,12 @@ int bt_att_chan_create_pdu(unsigned int param_1, unsigned int param_2, int param
             net_buf_simple_reserve(iVar1 + 0xc, 9);
             goto LAB_000586ce;
         }
-        local_44 = "already processing a REQ/RSP on chan %p" /*=0xf449a*/;
+        local_44 = ((unsigned long)&rodata_f449a) /*=0xf449a*/;
         uStack_40 = param_1;
     } else {
         if (iVar1 == 4) {
 LAB_000586e2:
-            uVar5 = "eflash command end .......\n" /*=0xf0000*/;
+            uVar5 = ((unsigned long)&rodata_f0000) /*=0xf0000*/;
             uVar4 = 0;
         } else {
             uVar5 = 0xffffffff;
@@ -64,11 +86,11 @@ LAB_000586e2:
         iVar1 = FUN_0008181a(0, 0, uVar5, uVar4);
         if (iVar1 != 0) {
             k_current_get();
-            puVar3 = (unsigned int *)FUN_000727ac(((uintptr_t)&g_bt_att_pool) /*=0x20003a28*/);
+            puVar3 = (unsigned int *)FUN_000727ac(((unsigned long)&g_bt_att_pool) /*=0x20003a28*/);
             if (puVar3 == (unsigned int *)0x0) {
-                local_24 = "Unable to allocate ATT TX meta" /*=0xf44c2*/;
+                local_24 = ((unsigned long)&rodata_f44c2) /*=0xf44c2*/;
                 local_28 = 2;
-                FUN_00081ddc(((uintptr_t)&tbl_880d8) /*=0x88100*/, 0x1080, &local_28);
+                FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1080, &local_28);
                 net_buf_unref(iVar1);
                 return 0;
             }
@@ -79,14 +101,13 @@ LAB_000586ce:
             *puVar2 = (char)param_2;
             return iVar1;
         }
-        local_44 = "Unable to allocate buffer for op 0x%02x" /*=0xf3ec2*/;
+        local_44 = ((unsigned long)&rodata_f3ec2) /*=0xf3ec2*/;
         uStack_40 = param_2;
     }
     uVar4 = 0x1840;
     local_48 = 3;
 LAB_00058624:
     (void)local_44; (void)uStack_40; (void)local_3c;
-    FUN_00081ddc(((uintptr_t)&tbl_880d8) /*=0x88100*/, uVar4, &local_48);
+    FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, uVar4, &local_48);
     return 0;
 }
-

@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: tc_sha256_compress_block */
-/* Reconstructed tc_sha256_compress_block @ 0x4fadc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004fadc @ 0x0004fadc
+ * public-name: tc_sha256_compress_block
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   tc_sha256_compress_block                 <= FUN_0004fadc @ 0x0004fadc
+ * address symbols (name @ address):
+ *   rodata_8af10                             @ 0x0008af10
+ *   rodata_8af4c                             @ 0x0008af4c
+ */
+/* Reconstructed FUN_0004fadc @ 0x4fadc  (parity: 300/300 trials, PROVEN) */
 void tc_sha256_compress_block(unsigned *param_1, int param_2)
 {
     unsigned uVar1, uVar2, uVar3, uVar4, uVar5, uVar6, uVar7, uVar8, uVar9;
@@ -15,7 +23,7 @@ void tc_sha256_compress_block(unsigned *param_1, int param_2)
     uVar2 = param_1[0]; uVar3 = param_1[1]; uVar4 = param_1[2]; uVar5 = param_1[3];
     uVar6 = param_1[4]; uVar7 = param_1[5]; uVar8 = param_1[6]; uVar9 = param_1[7];
     uVar14 = uVar6; uVar10 = uVar2; uVar12 = uVar3; uVar17 = uVar9;
-    piVar19 = (const unsigned *)((uintptr_t)&tbl_8af10) /*=0x8af10*/;
+    piVar19 = (const unsigned *)((unsigned long)&rodata_8af10) /*=0x8af10*/;
     uVar13 = uVar4; uVar11 = uVar7; uVar23 = uVar5; uVar1 = uVar8;
     do {
         local_94 = uVar1;
@@ -42,7 +50,7 @@ void tc_sha256_compress_block(unsigned *param_1, int param_2)
         uVar23 = uVar21;
     } while (iVar16 != 0x40);
 
-    local_6c = (const unsigned *)((uintptr_t)&tbl_8af10) /*=0x8af4c*/;
+    local_6c = (const unsigned *)((unsigned long)&rodata_8af4c) /*=0x8af4c*/;
     uVar17 = 0x10;
     do {
         local_98 = uVar10;
@@ -84,4 +92,3 @@ void tc_sha256_compress_block(unsigned *param_1, int param_2)
     param_1[6] = uVar8 + uVar1;
     param_1[7] = uVar9 + uVar22;
 }
-

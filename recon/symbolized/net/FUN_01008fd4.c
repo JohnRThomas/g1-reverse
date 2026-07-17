@@ -1,38 +1,40 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01008fd4 @ 0x1008fd4  (parity 300 trials PROVEN) */
+/* net-core FUN_01008fd4 @ 0x1008fd4 */
 #include <stdint.h>
 
 extern int32_t FUN_01009210(void);
-extern uint8_t FUN_010257e4(int32_t a);
-extern void FUN_01008a58(uint32_t a, int32_t b);
+extern uint8_t FUN_010257e4(int32_t handle);
+extern void FUN_01008a58(uint32_t size, int32_t flags);
 extern void FUN_0101fc14(void);
-extern void FUN_0101f818(uint8_t a, int32_t b);
+extern void FUN_0101f818(uint8_t value, int32_t setting);
 extern void FUN_01008d7c(void);
 
-int32_t FUN_01008fd4(int32_t param_1, uint32_t param_2)
-{
-    if (param_1 == 0 || param_2 == 0 || (param_2 & 7) != 0) {
-        return (int32_t)0xffffffea;
-    }
+struct controller_state {
+    uint8_t reserved_00[0x24];
+    int32_t setting;
+    uint8_t reserved_28[4];
+    uint8_t ready;
+    uint8_t reserved_2d;
+    uint8_t value;
+};
 
-    int32_t r0 = FUN_01009210();
-    if (r0 == 0) {
+int32_t FUN_01008fd4(int32_t handle, uint32_t size)
+{
+    volatile struct controller_state *const state =
+        (volatile struct controller_state *)((unsigned long)&g_net_layout_count_table) /*=0x21000a30*/;
+
+    if (handle == 0 || size == 0 || (size & 7u) != 0) {
+        return -22;
+    }
+    if (FUN_01009210() == 0) {
         return -1;
     }
 
-    int32_t iVar1 = ((uintptr_t)&g_net_layout_count_table) /*=0x21000a30*/;
-    uint8_t v = FUN_010257e4(param_1);
-    *(volatile uint8_t *)(iVar1 + 0x2e) = v;
-
-    FUN_01008a58(param_2, 0);
+    state->value = FUN_010257e4(handle);
+    FUN_01008a58(size, 0);
     FUN_0101fc14();
-
-    uint8_t a = *(volatile uint8_t *)(iVar1 + 0x2e);
-    int32_t b = *(volatile int32_t *)(iVar1 + 0x24);
-    FUN_0101f818(a, b);
-
+    FUN_0101f818(state->value, state->setting);
     FUN_01008d7c();
-    *(volatile uint8_t *)(iVar1 + 0x2c) = 1;
+    state->ready = 1;
     return 0;
 }
-

@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: stdio_flush_write_buffer */
-/* Reconstructed stdio_flush_write_buffer @ 0x86a0e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086a0e @ 0x00086a0e
+ * public-name: stdio_flush_write_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   stdio_flush_write_buffer                 <= FUN_00086a0e @ 0x00086a0e
+ */
+/* Reconstructed FUN_00086a0e @ 0x86a0e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int heap_free_core(int,...);
 typedef int (*codeptr)(int,...);
@@ -84,4 +90,3 @@ LAB_00086a70:
   }
   return 0;
 }
-

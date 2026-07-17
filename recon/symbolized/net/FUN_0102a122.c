@@ -101,4 +101,3 @@ BVAR7_2_BLOCK:
         return 0;
     }
 }
-

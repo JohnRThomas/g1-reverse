@@ -1,6 +1,31 @@
 #include "g1_app_symbols.h"
-/* named: cjson_print_value */
-/* Reconstructed cjson_print_value @ 0x646c0  (parity: 150/150 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000646c0 @ 0x000646c0
+ * public-name: cjson_print_value
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dcmp_negate_rhs                          <= FUN_0000d588 @ 0x0000d588
+ *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
+ *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
+ *   __aeabi_dcmple                           <= FUN_0000ddf0 @ 0x0000ddf0
+ *   double_is_unordered                      <= FUN_0000de2c @ 0x0000de2c
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   cjson_print_value                        <= FUN_000646c0 @ 0x000646c0
+ *   vsnprintf_setup                          <= FUN_000779bc @ 0x000779bc
+ *   cursor_advance_past_cstring              <= FUN_00084f16 @ 0x00084f16
+ *   growbuf_ensure_capacity                  <= FUN_00084f58 @ 0x00084f58
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strcpy                                   <= FUN_00086fee @ 0x00086fee
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_f6977                             @ 0x000f6977
+ *   rodata_f697c                             @ 0x000f697c
+ *   rodata_f6983                             @ 0x000f6983
+ *   rodata_f6987                             @ 0x000f6987
+ *   rodata_f698e                             @ 0x000f698e
+ *   rodata_f6994                             @ 0x000f6994
+ */
+/* Reconstructed FUN_000646c0 @ 0x646c0  (parity: 150/150 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
@@ -14,13 +39,9 @@ typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
 static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
@@ -60,29 +81,29 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long dcmp_negate_rhs();
-extern long long __muldf3();
-extern long long __aeabi_dcmplt();
-extern long long __aeabi_dcmple();
-extern long long double_is_unordered();
-extern long long strlen();
-extern long long FUN_000644f8();
-extern long long FUN_00077914();
-extern long long vsnprintf_setup();
-extern long long cursor_advance_past_cstring();
-extern long long growbuf_ensure_capacity();
-extern long long memcpy();
-extern long long memset_bytes();
-extern long long strcpy();
-extern long long strncpy_zero_pad();
-#define DAT_0006498c "null" /*=0xf6977*/
-#define DAT_00064990 ((volatile int*)"false" /*=0xf698e*/)
-#define DAT_00064994 "true" /*=0xf6994*/
+extern long long dcmp_negate_rhs(int,int,int,int);
+extern long long __muldf3(int,int,int,int);
+extern long long __aeabi_dcmplt(int,int,int,int,int,int);
+extern long long __aeabi_dcmple(int,int,int,int);
+extern long long double_is_unordered(int,int,int,int);
+extern long long strlen(void);
+extern long long FUN_000644f8(int, ...);
+extern long long FUN_00077914(int,int,int);
+extern long long vsnprintf_setup(int,int,int);
+extern long long cursor_advance_past_cstring(int);
+extern long long growbuf_ensure_capacity(int,int);
+extern long long memcpy(int,int,int);
+extern long long memset_bytes(int,int,int);
+extern long long strcpy(int,int);
+extern long long strncpy_zero_pad(int,int,int);
+#define DAT_0006498c ((unsigned long)&rodata_f6977) /*=0xf6977*/
+#define DAT_00064990 ((volatile int*)((unsigned long)&rodata_f698e) /*=0xf698e*/)
+#define DAT_00064994 ((unsigned long)&rodata_f6994) /*=0xf6994*/
 #define DAT_00064998 0x7fefffffUL
-#define DAT_0006499c "%1.15g" /*=0xf697c*/
-#define DAT_000649a0 "%lg" /*=0xf6983*/
+#define DAT_0006499c ((unsigned long)&rodata_f697c) /*=0xf697c*/
+#define DAT_000649a0 ((unsigned long)&rodata_f6983) /*=0xf6983*/
 #define DAT_000649a4 0x3cb00000UL
-#define DAT_000649a8 "%1.17g" /*=0xf6987*/
+#define DAT_000649a8 ((unsigned long)&rodata_f6987) /*=0xf6987*/
 
 
 uint cjson_print_value(int param_1,int param_2)
@@ -109,7 +130,7 @@ uint cjson_print_value(int param_1,int param_2)
   uint uStack_4c;
   undefined4 local_44;
   undefined2 local_40 [14];
-  
+
   if ((param_1 == 0) || (param_2 == 0)) goto switchD_000646e2_caseD_3;
   bVar1 = *(byte *)(param_1 + 0xc);
   uVar9 = (uint)bVar1;
@@ -346,5 +367,3 @@ LAB_000647a8:
   }
   return uVar9;
 }
-
-

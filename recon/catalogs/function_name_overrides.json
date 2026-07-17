@@ -1,0 +1,14 @@
+{
+ "schema": 1,
+ "app": {
+  "0x0004e434": {
+   "name": "settings_load_subtree_direct",
+   "evidence": "Body and ABI match NCS 2.5.1 settings_store.c; legacy settings_save_one assignment belongs to 0x0004e374."
+  },
+  "0x00061624": {
+   "name": "gpio_nrfx_pin_configure",
+   "evidence": "Firmware gpio_driver_api at 0x8b748 points pin_configure slot to 0x61625; body and NCS reference match."
+  }
+ },
+ "net": {}
+}

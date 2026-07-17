@@ -1,5 +1,10 @@
-/* named: rpmsg_release_rx_buffer */
-/* Reconstructed rpmsg_release_rx_buffer @ 0x858da  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000858da @ 0x000858da
+ * public-name: rpmsg_release_rx_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   rpmsg_release_rx_buffer                  <= FUN_000858da @ 0x000858da
+ */
+/* Reconstructed FUN_000858da @ 0x858da  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fnptr)(void);
 
@@ -13,4 +18,3 @@ void rpmsg_release_rx_buffer(int param_1, int param_2)
         }
     }
 }
-

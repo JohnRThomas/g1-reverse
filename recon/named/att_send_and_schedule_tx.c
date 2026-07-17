@@ -1,5 +1,12 @@
-/* named: att_send_and_schedule_tx */
-/* Reconstructed att_send_and_schedule_tx @ 0x81962  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081962 @ 0x00081962
+ * public-name: att_send_and_schedule_tx
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ *   att_send_and_schedule_tx                 <= FUN_00081962 @ 0x00081962
+ */
+/* Reconstructed FUN_00081962 @ 0x81962  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long bt_conn_create_pdu(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
 extern void net_buf_unref(unsigned int a);
@@ -15,4 +22,3 @@ void att_send_and_schedule_tx(unsigned int *param_1, unsigned int param_2, unsig
     }
     FUN_0007350c(param_1 + 0x30, (unsigned int)(uVar1 >> 32), param_3, param_4);
 }
-

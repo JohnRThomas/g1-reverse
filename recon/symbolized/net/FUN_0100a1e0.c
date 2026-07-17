@@ -6,9 +6,9 @@ typedef unsigned short u16;
 typedef unsigned char u8;
 typedef int i32;
 
-#define A_0100a310 ((uintptr_t)&g_net_bufpool_slot_cnt) /*=0x21000bb8*/
-#define A_0100a314 ((uintptr_t)&g_net_bufpool_base_ptr) /*=0x21000bbc*/
-#define A_0100a318 ((uintptr_t)&g_net_storage_area_id) /*=0x21000bc0*/
+#define A_0100a310 ((unsigned long)&g_net_bufpool_slot_cnt) /*=0x21000bb8*/
+#define A_0100a314 ((unsigned long)&g_net_bufpool_base_ptr) /*=0x21000bbc*/
+#define A_0100a318 ((unsigned long)&g_net_storage_area_id) /*=0x21000bc0*/
 
 extern void FUN_01008d00(u32 a, u32 b);
 
@@ -60,5 +60,3 @@ u32 FUN_0100a1e0(u32 param_1, u32 param_2_raw, u32 param_3_raw, u32 param_4_raw)
     }
     return (local_c + 7U) & 0xfffffff8;
 }
-
-

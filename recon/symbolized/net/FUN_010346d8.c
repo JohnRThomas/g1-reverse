@@ -16,9 +16,9 @@ extern void FUN_01034578(uint);
 extern uint FUN_0103a90e(uint);
 extern void FUN_0103a924(uint,int,int,int,int,int,byte*);
 
-#define TBL   ((volatile int*)((uintptr_t)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/)
-#define TBLH  ((volatile ushort*)((uintptr_t)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/)
-#define BASE2 ((uintptr_t)&g_net_conn_teardown_ctx_b) /*=0x2100071c*/
+#define TBL   ((volatile int*)((unsigned long)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/)
+#define TBLH  ((volatile ushort*)((unsigned long)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/)
+#define BASE2 ((unsigned long)&g_net_conn_teardown_ctx_b) /*=0x2100071c*/
 #define ERR4  0x0bad0004u
 #define OKV   0x0bad0000u
 
@@ -67,10 +67,10 @@ int FUN_010346d8(uint param_1, uint param_2, byte *param_3, int *param_4)
                 bVar2 = **(byte**)(param_3+4);
                 iVar9 = (uint)bVar2 * 4;
                 if (uVar10 == 0) {
-                    *(volatile undefined4*)(iVar9 + REG_4100a510 /*=0x4100a510*/) = 0;
-                    *(volatile undefined4*)(iVar9 + REG_4100a510 /*=0x4100a510*/) = 0;
+                    *(volatile undefined4*)(iVar9 + 0x4100a510) = 0;
+                    *(volatile undefined4*)(iVar9 + 0x4100a510) = 0;
                 } else {
-                    volatile uint *reg = (volatile uint*)(iVar9 + REG_4100a510 /*=0x4100a510*/);
+                    volatile uint *reg = (volatile uint*)(iVar9 + 0x4100a510);
                     *reg = *reg & 0xfffffffc;
                     *reg = *reg & 0xfffcc0ff;
                     *reg = (param_1 & 0x3f) << 8 | *reg | uVar10 << 0x10;
@@ -104,4 +104,3 @@ int FUN_010346d8(uint param_1, uint param_2, byte *param_3, int *param_4)
     }
     return (int)OKV;
 }
-

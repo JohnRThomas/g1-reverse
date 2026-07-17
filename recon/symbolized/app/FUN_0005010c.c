@@ -1,5 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0005010c */
+/* readable reconstruction; identity: FUN_0005010c @ 0x0005010c
+ * public-name: FUN_0005010c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f1ba8                             @ 0x000f1ba8
+ *   rodata_f1bde                             @ 0x000f1bde
+ *   rodata_f1bf9                             @ 0x000f1bf9
+ */
 /* Reconstructed FUN_0005010c @ 0x5010c  (parity: 300/300 trials, PROVEN) */
 
 extern int printk(int a, int b, int c, int d, int e);
@@ -14,11 +25,11 @@ void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)
     int bVar5;
 
     if ((unsigned int)r3 > 7) {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "prio <= ((1UL << (3)) - 1)" /*=0xf1bde*/, "WEST_TOPDIR/zephyr/arch/arm/core/aarch32/irq_manage.c" /*=0xf1ba8*/, 0x5c, param_4);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f1bde) /*=0xf1bde*/, ((unsigned long)&rodata_f1ba8) /*=0xf1ba8*/, 0x5c, param_4);
         r3 = 7;
         r2 = param_1;
-        printk("\tinvalid priority %d for %d irq! values must be less than %lu\n\n" /*=0xf1bf9*/, (int)param_2, r2, r3, 0);
-        r0 = assert_post_action("WEST_TOPDIR/zephyr/arch/arm/core/aarch32/irq_manage.c" /*=0xf1ba8*/, 0x5c);
+        printk(((unsigned long)&rodata_f1bf9) /*=0xf1bf9*/, (int)param_2, r2, r3, 0);
+        r0 = assert_post_action(((unsigned long)&rodata_f1ba8) /*=0xf1ba8*/, 0x5c);
     }
     r0 = (int)(signed char)r0;
     bVar5 = (r0 >= 0);
@@ -30,7 +41,7 @@ void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)
     r3 = r3 << 5;
     r3 = (unsigned char)r3;
     if (bVar5) {
-        r0 = r0 + ((uintptr_t)&rodata_e100) /*=0xe100*/;
+        r0 = r0 + 0xe100;
         cVar1 = (signed char)r3;
         *(char *)(r0 + 0x300) = cVar1;
     } else {
@@ -39,4 +50,3 @@ void FUN_0005010c(int param_1, unsigned int param_2, int param_3, int param_4)
         *(char *)(r2 + r0) = cVar1;
     }
 }
-

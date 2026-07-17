@@ -1,8 +1,13 @@
-/* named: count_chars_in_default_font_table */
-/* globals referenced:
-//   0x0008ac28  g_default_font_glyph_table_count 
-*/
-/* Reconstructed count_chars_in_default_font_table @ 0x43e58  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00043e58 @ 0x00043e58
+ * public-name: count_chars_in_default_font_table
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   count_chars_in_default_font_table        <= FUN_00043e58 @ 0x00043e58
+ * address symbols (name @ address):
+ *   g_default_font_glyph_table_count         @ 0x0008ac28
+ *   rodata_9890c                             @ 0x0009890c
+ */
+/* Reconstructed FUN_00043e58 @ 0x43e58  (parity: 300/300 trials, PROVEN) */
 
 int count_chars_in_default_font_table(unsigned int param_1, unsigned int param_2)
 {
@@ -25,4 +30,3 @@ int count_chars_in_default_font_table(unsigned int param_1, unsigned int param_2
     }
     return iVar1;
 }
-

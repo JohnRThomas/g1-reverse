@@ -28,12 +28,11 @@ void FUN_01039972(int param_1, int param_2)
     iVar1 = param_2;
   } else {
     uVar3 = FUN_0103973c(param_1, iVar1, 2);
-    FUN_01039752(param_1, param_2, 0, 0);
+    FUN_01039752(param_1, param_2, 2, uVar3);
     FUN_01039752(param_1, param_2, 3, iVar1);
-    FUN_01039752(param_1, uVar3, 0, 0);
+    FUN_01039752(param_1, uVar3, 3, param_2);
     uVar3 = 2;
   }
-  FUN_01039752(param_1, iVar1, uVar3, 0);
+  FUN_01039752(param_1, iVar1, uVar3, param_2);
   return;
 }
-

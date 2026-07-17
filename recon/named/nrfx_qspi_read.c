@@ -1,9 +1,22 @@
-/* named: nrfx_qspi_read */
-/* globals referenced:
-//   0x2000b348  g_qspi_cb                    
-//   0x5002b000  NRF_QSPI_BASE                
-*/
-/* Reconstructed nrfx_qspi_read @ 0x66bc4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066bc4 @ 0x00066bc4
+ * public-name: nrfx_qspi_read
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_ready_wait                          <= FUN_0006649c @ 0x0006649c
+ *   qspi_activate                            <= FUN_000664f0 @ 0x000664f0
+ *   nrfx_qspi_read                           <= FUN_00066bc4 @ 0x00066bc4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6d5e                             @ 0x000f6d5e
+ *   rodata_f6d9a                             @ 0x000f6d9a
+ *   g_qspi_cb                                @ 0x2000b348
+ *   g_qspi_drv_state                         @ 0x2000b378
+ *   g_qspi_skip_activate_flag                @ 0x2000b380
+ *   NRF_QSPI_BASE                            @ 0x5002b000
+ */
+/* Reconstructed FUN_00066bc4 @ 0x66bc4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int qspi_ready_wait(void);
@@ -50,4 +63,3 @@ int nrfx_qspi_read(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_
   }
   return iVar3;
 }
-

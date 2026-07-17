@@ -1,5 +1,20 @@
-/* named: l2cap_chan_le_recv_seg */
-/* Reconstructed l2cap_chan_le_recv_seg @ 0x57a04  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057a04 @ 0x00057a04
+ * public-name: l2cap_chan_le_recv_seg
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_chan_le_recv_seg                   <= FUN_00057a04 @ 0x00057a04
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_append_bytes                     <= FUN_0005f450 @ 0x0005f450
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   net_buf_frags_len                        <= FUN_00081616 @ 0x00081616
+ *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
+ * address symbols (name @ address):
+ *   rodata_81699                             @ 0x00081699
+ *   rodata_88160                             @ 0x00088160
+ *   rodata_f4079                             @ 0x000f4079
+ */
+/* Reconstructed FUN_00057a04 @ 0x57a04  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0005774c(int,int);
 extern int net_buf_unref(int);
@@ -88,4 +103,3 @@ void l2cap_chan_le_recv_seg(int param_1, int param_2)
     gatt_send_service_changed_ind(param_1);
     return;
 }
-

@@ -1,73 +1,50 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0101a070 @ 0x101a070  (parity 300 trials PROVEN) */
+/* net-core FUN_0101a070 @ 0x101a070 */
+#include <stdint.h>
 
-extern void FUN_0100e04c(void);
-extern void FUN_0100e064(void);
-extern void FUN_01019f9c(void);
+extern uint8_t FUN_0100e04c(const uint8_t *packet);
+extern uint8_t FUN_0100e064(const uint8_t *packet);
+extern void FUN_01019f9c(const uint8_t *packet, void *description);
 
-__attribute__((naked)) void FUN_0101a070(void)
+void FUN_0101a070(const uint8_t *packet, void *description)
 {
-    __asm__ volatile(
-        "push {r4, r5, r6, lr}\n"
-        "ldrb r6, [r0]\n"
-        "and r6, r6, #0xf\n"
-        "cmp r6, #7\n"
-        "beq 7f\n"
-        "mov r4, r1\n"
-        "mov r5, r0\n"
-        "bl FUN_0100e04c\n"
-        "mov r3, r0\n"
-        "mov r0, r5\n"
-        "strb r3, [r4, #0x11]\n"
-        "bl FUN_0100e064\n"
-        "strb r0, [r4, #0x12]\n"
-        "cmp r6, #6\n"
-        "bhi 8f\n"
-        "tbb [pc, r6]\n"
-        "1:\n"
-        ".byte (2f-1b)/2\n"
-        ".byte (9f-1b)/2\n"
-        ".byte (2f-1b)/2\n"
-        ".byte (8f-1b)/2\n"
-        ".byte (2f-1b)/2\n"
-        ".byte (8f-1b)/2\n"
-        ".byte (2f-1b)/2\n"
-        ".align 1\n"
-        "2:\n"
-        "movs r3, #0\n"
-        "movs r1, #1\n"
-        "adds r2, r5, #3\n"
-        "strb r1, [r4, #1]\n"
-        "strd r2, r3, [r4, #4]\n"
-        "ldrb r3, [r5, #1]\n"
-        "subs r3, #6\n"
-        "uxtb r3, r3\n"
-        "strb r3, [r4, #0x10]\n"
-        "cbz r3, 3f\n"
-        "adds r5, #9\n"
-        "str r5, [r4, #0xc]\n"
-        "pop {r4, r5, r6, pc}\n"
-        "8:\n"
-        "movs r3, #0\n"
-        "strb r3, [r4, #1]\n"
-        "strb r3, [r4, #0x10]\n"
-        "strd r3, r3, [r4, #4]\n"
-        "3:\n"
-        "str r3, [r4, #0xc]\n"
-        "pop {r4, r5, r6, pc}\n"
-        "7:\n"
-        "pop.w {r4, r5, r6, lr}\n"
-        "b.w FUN_01019f9c\n"
-        "9:\n"
-        "movs r1, #3\n"
-        "movs r3, #0\n"
-        "adds r2, r5, r1\n"
-        "adds r5, #9\n"
-        "strb r1, [r4, #1]\n"
-        "strb r3, [r4, #0x10]\n"
-        "str r3, [r4, #0xc]\n"
-        "strd r2, r5, [r4, #4]\n"
-        "pop {r4, r5, r6, pc}\n"
-    );
-}
+    volatile uint8_t *out = (volatile uint8_t *)description;
+    uint8_t kind = packet[0] & 0x0fU;
+    uint32_t value;
 
+    if (kind == 7) {
+        FUN_01019f9c(packet, description);
+        return;
+    }
+    out[0x11] = FUN_0100e04c(packet);
+    out[0x12] = FUN_0100e064(packet);
+
+    switch (kind) {
+    case 0: case 2: case 4: case 6:
+        out[1] = 1;
+        *(volatile uintptr_t *)(out + 4) = (uintptr_t)(packet + 3);
+        *(volatile uint32_t *)(out + 8) = 0;
+        value = (uint8_t)(packet[1] - 6U);
+        out[0x10] = (uint8_t)value;
+        if (value != 0) {
+            *(volatile uintptr_t *)(out + 0x0c) = (uintptr_t)(packet + 9);
+            return;
+        }
+        break;
+    case 1:
+        out[1] = 3;
+        out[0x10] = 0;
+        *(volatile uint32_t *)(out + 0x0c) = 0;
+        *(volatile uintptr_t *)(out + 4) = (uintptr_t)(packet + 3);
+        *(volatile uintptr_t *)(out + 8) = (uintptr_t)(packet + 9);
+        return;
+    default:
+        value = 0;
+        out[1] = 0;
+        out[0x10] = 0;
+        *(volatile uint32_t *)(out + 4) = 0;
+        *(volatile uint32_t *)(out + 8) = 0;
+        break;
+    }
+    *(volatile uint32_t *)(out + 0x0c) = value;
+}

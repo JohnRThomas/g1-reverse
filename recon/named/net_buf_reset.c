@@ -1,5 +1,17 @@
-/* named: net_buf_reset */
-/* Reconstructed net_buf_reset @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005ee6c @ 0x0005ee6c
+ * public-name: net_buf_reset
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f539a                             @ 0x000f539a
+ *   rodata_f53be                             @ 0x000f53be
+ *   rodata_f53cf                             @ 0x000f53cf
+ */
+/* Reconstructed FUN_0005ee6c @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int assert_post_action(unsigned int, unsigned int);
@@ -31,4 +43,3 @@ void net_buf_reset(int param_1, unsigned int param_2, unsigned int param_3, unsi
     fakeParam1 = assert_post_action(0xf539a, 0x5b);
   }
 }
-

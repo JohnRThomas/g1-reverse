@@ -1,5 +1,11 @@
-/* named: is_system_idle_ready */
-/* Reconstructed is_system_idle_ready @ 0x7ce00  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007ce00 @ 0x0007ce00
+ * public-name: is_system_idle_ready
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
+ */
+/* Reconstructed FUN_0007ce00 @ 0x7ce00  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
 
@@ -19,4 +25,3 @@ int is_system_idle_ready(void)
   }
   return 0;
 }
-

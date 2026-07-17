@@ -1,5 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0005fc7c */
+/* readable reconstruction; identity: FUN_0005fc7c @ 0x0005fc7c
+ * public-name: FUN_0005fc7c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   nrfx_pdm_init                            <= FUN_0006615c @ 0x0006615c
+ *   nrfx_pdm_uninit                          <= FUN_000661dc @ 0x000661dc
+ * address symbols (name @ address):
+ *   rodata_881a0                             @ 0x000881a0
+ *   rodata_f5871                             @ 0x000f5871
+ */
 /* Reconstructed FUN_0005fc7c @ 0x5fc7c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
@@ -19,7 +29,7 @@ undefined4 FUN_0005fc7c(int param_1,uint *param_2)
   byte bVar4; uint uVar2,uVar3,uVar6,uVar8,uVar9; int stk[16];
 
   if (VB(iVar5 + 0x51) != 0) {
-    FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/,0x1040,(int)stk);
+    FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/,0x1040,(int)stk);
     return 0xfffffff0;
   }
   bVar4 = (byte)param_2[9];
@@ -52,7 +62,7 @@ LAB_fd14:
     if ((char)puVar7[1] == 0x10) {
       uint local_60 = (*(char *)((int)puVar12 + 0x20) == 2) ? 0x00bb8000u : 0x01e84800u;
       uint local_70 = *param_2;
-      byte *pbVar11 = (byte *)((uintptr_t)&rodata_f5871) /*=0xf5871*/;
+      byte *pbVar11 = (byte *)((unsigned long)&rodata_f5871) /*=0xf5871*/;
       int local_68 = 1;
       uVar8 = 0xffffffff;
       while (1) {
@@ -60,7 +70,7 @@ LAB_fd14:
         uVar6 = *puVar7;
         uVar2 = local_5c * uVar6;
         uVar2 = __aeabi_uldivmod(uVar2 << 0x14, uVar2 >> 0xc, local_60 + (uVar2 >> 1), 0);
-        uVar9 = local_60 / (FLASH_OFF_100000 /*=0x100000*/ / uVar2);
+        uVar9 = local_60 / (0x100000u / uVar2);
         if ((local_70 <= uVar9) && (uVar9 <= param_2[1])) {
           uVar3 = uVar9 / local_5c;
           if (uVar3 < uVar6) {
@@ -83,18 +93,18 @@ LAB_fd14:
   goto err_ea;
 
 err_ea:
-  FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/,0x1040,(int)stk);
+  FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/,0x1040,(int)stk);
   return 0xffffffea;
 
 LAB_fe56:
-  FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/,0x20c0,(int)stk);
+  FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/,0x20c0,(int)stk);
   if ((int)(((uint)VB(iVar5 + 0x50)) << 0x1e) < 0) {
     nrfx_pdm_uninit(0);
     VB(iVar5 + 0x50) = VB(iVar5 + 0x50) & 0xfd;
   }
   uVar9 = nrfx_pdm_init((int)stk, *puVar12);
   if (uVar9 != 0x0bad0000) {
-    FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/,0x1840,(int)stk);
+    FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/,0x1840,(int)stk);
     return 0xfffffffb;
   }
   VU(iVar5 + 0x18) = (uint)*(ushort *)((int)puVar7 + 6);
@@ -105,4 +115,3 @@ LAB_fe56:
   VB(iVar5 + 0x50) = bVar4;
   return 0;
 }
-

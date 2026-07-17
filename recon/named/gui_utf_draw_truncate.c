@@ -1,9 +1,28 @@
-/* named: gui_utf_draw_truncate */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
+/* readable reconstruction; identity: FUN_00044818 @ 0x00044818
+ * public-name: gui_utf_draw_truncate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   count_chars_in_default_font_table        <= FUN_00043e58 @ 0x00043e58
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ * address symbols (name @ address):
+ *   rodata_aaa58                             @ 0x000aaa58
+ *   rodata_aaa7f                             @ 0x000aaa7f
+ *   rodata_aab9e                             @ 0x000aab9e
+ *   rodata_aabd2                             @ 0x000aabd2
+ *   rodata_aad78                             @ 0x000aad78
+ *   g_log_level                              @ 0x2000230c
+ *   g_gui_dark_light_dither_mask             @ 0x200034f6
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
 /* Reconstructed gui_utf_draw_truncate @ 0x44818  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -206,4 +225,3 @@ LAB_00044b96:
   uVar9 = (*param_11)(0, param_2, param_3, param_4, param_5);
   return uVar9;
 }
-

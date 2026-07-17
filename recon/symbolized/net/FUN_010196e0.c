@@ -15,7 +15,7 @@ void FUN_010196e0(void)
     uVar3 = FUN_0100a5a0();
     FUN_0102714a(uVar3, (void*)(buf+4), (void*)(buf+2));
     iVar4 = FUN_010270d2(*(unsigned int*)(buf+4));
-    iVar2 = ((uintptr_t)&g_ll_conn_default_ctx) /*=0x21001058*/;
+    iVar2 = ((unsigned long)&g_ll_conn_default_ctx) /*=0x21001058*/;
     if (*(volatile char*)(iVar4+0x1f) != 0) {
         iVar4 = *(volatile int*)(iVar2+0x40);
         if (iVar4 != 0) {
@@ -24,10 +24,10 @@ void FUN_010196e0(void)
             r3 = (r3 & 0x9f) | 0x40;
             *(volatile unsigned char*)(iVar4+0x1c) = r3;
             *(volatile unsigned char*)(iVar4+8) = 0;
-            FUN_0100ef88(iVar4, ((uintptr_t)&rodata_1019a9d) /*=0x1019a9d*/, 6);
+            FUN_0100ef88(iVar4, 0x1019a9d, 6);
             if (cVar1 != 0) {
                 *(volatile unsigned char*)(iVar4+0x11) = 0;
-                FUN_0100ef88(iVar4+9, ((uintptr_t)&rodata_1019a9d) /*=0x1019a9d*/, 6);
+                FUN_0100ef88(iVar4+9, 0x1019a9d, 6);
             }
             *(volatile unsigned int*)(iVar2+0x40) = 0;
             *(volatile unsigned char*)(iVar2+0x46) = 0;
@@ -37,4 +37,3 @@ void FUN_010196e0(void)
     }
     return;
 }
-

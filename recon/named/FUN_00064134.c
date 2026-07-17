@@ -1,4 +1,13 @@
-/* named: FUN_00064134 */
+/* readable reconstruction; identity: FUN_00064134 @ 0x00064134
+ * public-name: FUN_00064134
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvs_ate_id_matches                       <= FUN_00084d70 @ 0x00084d70
+ *   flash_area_write_and_close               <= FUN_00084e72 @ 0x00084e72
+ * address symbols (name @ address):
+ *   rodata_8bb90                             @ 0x0008bb90
+ *   rodata_f694f                             @ 0x000f694f
+ */
 /* Reconstructed FUN_00064134 @ 0x64134  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -44,4 +53,3 @@ uint FUN_00064134(uint param_1, uint32_t param_2, uint param_3, uint32_t param_4
   }
   return 0xff;
 }
-

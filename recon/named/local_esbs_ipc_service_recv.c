@@ -1,9 +1,34 @@
-/* named: local_esbs_ipc_service_recv */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x200069fc  device_info                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00015960 @ 0x00015960
+ * public-name: local_esbs_ipc_service_recv
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   switch_to_dfu_mode                       <= FUN_000158bc @ 0x000158bc
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   find_message_pool_entry_by_id            <= FUN_00033c18 @ 0x00033c18
+ *   msg_queue_init                           <= FUN_00033c5c @ 0x00033c5c
+ *   confirm_message                          <= FUN_00034524 @ 0x00034524
+ *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_15b9c                             @ 0x00015b9c
+ *   rodata_15ba0                             @ 0x00015ba0
+ *   rodata_15ba4                             @ 0x00015ba4
+ *   rodata_15ba8                             @ 0x00015ba8
+ *   rodata_15bac                             @ 0x00015bac
+ *   rodata_15bb0                             @ 0x00015bb0
+ *   rodata_15bb4                             @ 0x00015bb4
+ *   rodata_15dd8                             @ 0x00015dd8
+ *   rodata_15ddc                             @ 0x00015ddc
+ *   rodata_15de0                             @ 0x00015de0
+ *   rodata_99297                             @ 0x00099297
+ *   rodata_992e1                             @ 0x000992e1
+ *   rodata_99b89                             @ 0x00099b89
+ *   g_log_level                              @ 0x2000230c
+ *   device_info                              @ 0x200069fc
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_esb_notify_sync_substate               @ 0x20018d98
+ */
 /* Reconstructed local_esbs_ipc_service_recv @ 0x15960  (parity: 40/40 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -25,10 +50,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -71,17 +92,17 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long switch_to_dfu_mode();
-extern long long debug_print();
-extern long long find_message_pool_entry_by_id();
-extern long long msg_queue_init();
-extern long long confirm_message();
-extern long long reset_esb_sync_state();
-extern long long set_device_sync_timestamp();
-extern long long memset_bytes();
-extern long long thunk_FUN_00072880();
-extern long long update_persist_task_status();
+extern long long DEBUG_PRINT(unsigned long first, ...);
+extern long long switch_to_dfu_mode(unsigned long);
+extern long long debug_print(unsigned long first, ...);
+extern long long find_message_pool_entry_by_id(unsigned long);
+extern long long msg_queue_init(void);
+extern long long confirm_message(unsigned long);
+extern long long reset_esb_sync_state(unsigned long);
+extern long long set_device_sync_timestamp(unsigned long);
+extern long long memset_bytes(void *, unsigned long, unsigned long);
+extern long long thunk_FUN_00072880(unsigned long);
+extern long long update_persist_task_status(unsigned long, unsigned long);
 #define DAT_00015b90 ((volatile int*)0x2000230cUL)
 #define DAT_00015b94 ((volatile int*)0x20007554UL)
 #define DAT_00015b98 0x99b89UL
@@ -123,7 +144,7 @@ undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
   byte local_24 [4];
   byte local_20;
   undefined4 local_1f;
-  
+
   local_30 = 0;
   memset_bytes(&uStack_2c,0,0x12);
   puVar2 = &local_30;
@@ -204,7 +225,7 @@ undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
         DEBUG_PRINT(PTR_s__s____slave_even_ai_recv_down_re_00015bb4,DAT_00015b98);
       }
       else {
-        debug_print();
+        ((long long (*)(void))debug_print)();
       }
     }
     *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
@@ -238,7 +259,7 @@ undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
         format_string = DAT_00015bc0;
 LAB_000159b4:
         if (iVar7 != 0) {
-          debug_print();
+          ((long long (*)(void))debug_print)();
           return 0;
         }
         DEBUG_PRINT(format_string,DAT_00015b98);
@@ -356,5 +377,3 @@ switchD_00015c70_caseD_c:
   }
   return 0;
 }
-
-

@@ -1,5 +1,23 @@
-/* named: bt_smp_recv */
-/* Reconstructed bt_smp_recv @ 0x5dce0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005dce0 @ 0x0005dce0
+ * public-name: bt_smp_recv
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_error                                <= FUN_0005dc2c @ 0x0005dc2c
+ *   bt_smp_recv                              <= FUN_0005dce0 @ 0x0005dce0
+ *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   atomic_test_and_clear_bit                <= FUN_000831be @ 0x000831be
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_8b508                             @ 0x0008b508
+ *   rodata_f4617                             @ 0x000f4617
+ *   rodata_f4ff0                             @ 0x000f4ff0
+ *   rodata_f500b                             @ 0x000f500b
+ *   rodata_f503c                             @ 0x000f503c
+ *   rodata_f505e                             @ 0x000f505e
+ *   rodata_f5078                             @ 0x000f5078
+ */
+/* Reconstructed FUN_0005dce0 @ 0x5dce0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef int (* volatile codeptr)(int,int);
 extern int smp_error(int,int);
@@ -75,4 +93,3 @@ int bt_smp_recv(int param_1, int param_2)
     }
     return 0;
 }
-

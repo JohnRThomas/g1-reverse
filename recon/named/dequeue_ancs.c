@@ -1,13 +1,22 @@
-/* named: dequeue_ancs */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a6c  g_ancs_msgq                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00018d94 @ 0x00018d94
+ * public-name: dequeue_ancs
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9aa1f                             @ 0x0009aa1f
+ *   rodata_9b190                             @ 0x0009b190
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_msgq                              @ 0x20006a6c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void debug_print(void);
+extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(void *a, void *b, unsigned int c, unsigned int d);
 extern void memcpy(void *dst, void *src, unsigned int len);
 extern void memset_bytes(void *dst, int val, unsigned int len);
@@ -29,9 +38,8 @@ int dequeue_ancs(void *param_1)
         if (*(volatile int *)0x20007554UL == 0) {
             DEBUG_PRINT(0x9aa1fU, 0x9b190U);
         } else {
-            debug_print();
+            debug_print(0x9aa1fU, 0x9b190U);
         }
     }
     return iVar1;
 }
-

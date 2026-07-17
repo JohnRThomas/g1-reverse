@@ -1,8 +1,14 @@
-/* named: try_enter_low_power_mode */
-/* globals referenced:
-//   0x20018d94  g_low_power_mode_enabled     
-*/
-/* Reconstructed try_enter_low_power_mode @ 0x26c8c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00026c8c @ 0x00026c8c
+ * public-name: try_enter_low_power_mode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   try_enter_low_power_mode                 <= FUN_00026c8c @ 0x00026c8c
+ *   disable_watchdog                         <= FUN_0002aeb4 @ 0x0002aeb4
+ * address symbols (name @ address):
+ *   g_low_power_mode_enabled                 @ 0x20018d94
+ */
+/* Reconstructed FUN_00026c8c @ 0x26c8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef unsigned int uint;
 extern int FUN_00025448(int,...); extern int get_device_info(int,...);
@@ -21,4 +27,3 @@ void try_enter_low_power_mode(void)
   disable_watchdog(0);
   for(;;) disable_watchdog(0);
 }
-

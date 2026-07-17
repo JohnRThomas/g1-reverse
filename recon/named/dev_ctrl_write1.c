@@ -1,5 +1,10 @@
-/* named: dev_ctrl_write1 */
-/* Reconstructed dev_ctrl_write1 @ 0x83d60  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00083d60 @ 0x00083d60
+ * public-name: dev_ctrl_write1
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_ctrl_write1                          <= FUN_00083d60 @ 0x00083d60
+ */
+/* Reconstructed FUN_00083d60 @ 0x83d60  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fnptr)(int, void*, int, short, void*);
 void dev_ctrl_write1(int *param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
@@ -19,4 +24,3 @@ void dev_ctrl_write1(int *param_1,unsigned int param_2,unsigned int param_3,unsi
   f(base, &local_14, 1, (short)h, param_1);
   return;
 }
-

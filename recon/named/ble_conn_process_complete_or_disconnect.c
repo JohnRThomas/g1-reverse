@@ -1,25 +1,42 @@
-/* named: ble_conn_process_complete_or_disconnect */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_conn_process_complete_or_disconnect @ 0x570a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000570a0 @ 0x000570a0
+ * public-name: ble_conn_process_complete_or_disconnect
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_disconnected                        <= FUN_00018adc @ 0x00018adc
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_process_complete_or_disconnect  <= FUN_000570a0 @ 0x000570a0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   rodata_f3dff                             @ 0x000f3dff
+ *   rodata_f3e24                             @ 0x000f3e24
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_000570a0 @ 0x570a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void ancs_disconnected(void);
 extern void ble_conn_unref(int);
-extern int send_conn_le_param_update(int,void*);
+extern int FUN_00057038(int,void*);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
 extern void FUN_000813ca(unsigned,unsigned,void*);
-extern void bt_l2cap_disconnected(int);
+extern void FUN_000817ea(int);
 
 void ble_conn_process_complete_or_disconnect(int param_1){
   int iVar5 = param_1 - 0x60;
   unsigned uVar1, uVar3;
   int iVar2;
   if(*(volatile char*)(param_1-0x53) == 0){
-    bt_l2cap_disconnected(iVar5);
+    FUN_000817ea(iVar5);
     for(iVar2 = *(volatile int*)0x2000ad1cUL;
         uVar1 = 0x00088058U, uVar3 = 0x00087fecU, iVar2 != 0;
         iVar2 = *(volatile int*)(iVar2+0x20)){
@@ -48,7 +65,7 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   if((int)(iVar2 << 0x16) < 0){
     local_20 = *(volatile unsigned*)(param_1+0x48);
     local_1c = *(volatile unsigned*)(param_1+0x50);
-    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
+    iStack_28 = FUN_00057038(iVar5,&local_20);
     local_2c = 0x000f3dff;
     if(iStack_28 == 0){
       atomic_and_2(puVar4, 0xfffffeffU);
@@ -57,7 +74,7 @@ void ble_conn_process_complete_or_disconnect(int param_1){
   } else {
     local_20 = 0x00280018U;
     local_1c = 0x2a0000U;
-    iStack_28 = send_conn_le_param_update(iVar5,&local_20);
+    iStack_28 = FUN_00057038(iVar5,&local_20);
     local_2c = 0x000f3e24;
     if(iStack_28 == 0){
       *puVar4 = *puVar4 | 0x100;
@@ -71,4 +88,3 @@ LAB:
   (void)local_2c; (void)local_1c;
   return;
 }
-

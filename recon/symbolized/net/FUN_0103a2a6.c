@@ -8,4 +8,3 @@ void FUN_0103a2a6(unsigned int param_1, unsigned int param_2)
 {
   FUN_0102e3a8(0, 0, 0, 0, 0, 0, param_1, param_2);
 }
-

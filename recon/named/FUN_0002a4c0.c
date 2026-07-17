@@ -1,4 +1,10 @@
-/* named: FUN_0002a4c0 */
+/* readable reconstruction; identity: FUN_0002a4c0 @ 0x0002a4c0
+ * public-name: FUN_0002a4c0
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_misc_dispatch_ctx                      @ 0x20007b00
+ *   g_misc_dispatch_pending_flag             @ 0x20018d88
+ */
 /* Reconstructed FUN_0002a4c0 @ 0x2a4c0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -12,4 +18,3 @@ void FUN_0002a4c0(void)
   }
   return;
 }
-

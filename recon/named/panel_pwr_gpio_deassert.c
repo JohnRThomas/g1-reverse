@@ -1,9 +1,19 @@
-/* named: panel_pwr_gpio_deassert */
-/* Reconstructed panel_pwr_gpio_deassert @ 0x179e0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000179e0 @ 0x000179e0
+ * public-name: panel_pwr_gpio_deassert
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   panel_pwr_gpio_deassert                  <= FUN_000179e0 @ 0x000179e0
+ * address symbols (name @ address):
+ *   rodata_889f8                             @ 0x000889f8
+ */
+/* FUN_000179e0 @ 0x179e0: disable the device described at 0x889f8. */
 
-extern void gpio_pin_set_checked(unsigned int a, unsigned char b, unsigned int c);
-void panel_pwr_gpio_deassert(void)
+extern void FUN_0007c084(unsigned int descriptor, unsigned int enable,
+                         unsigned int arg2, unsigned int arg3);
+
+void panel_pwr_gpio_deassert(unsigned int unused0, unsigned int unused1, unsigned int arg2, unsigned int arg3)
 {
-    gpio_pin_set_checked(*(volatile unsigned int*)0x889f8UL, *(volatile unsigned char*)0x889f9UL, 0);
+    (void)unused0;
+    (void)unused1;
+    FUN_0007c084(0x000889f8u, 0, arg2, arg3);
 }
-

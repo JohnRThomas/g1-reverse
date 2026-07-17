@@ -1,5 +1,17 @@
-/* named: gpio_pin_get_raw_checked */
-/* Reconstructed gpio_pin_get_raw_checked @ 0x177c4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000177c4 @ 0x000177c4
+ * public-name: gpio_pin_get_raw_checked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_pin_get_raw_checked                 <= FUN_000177c4 @ 0x000177c4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
+/* Reconstructed FUN_000177c4 @ 0x177c4  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void assert_post_action(unsigned int, unsigned int);
@@ -21,4 +33,3 @@ int gpio_pin_get_raw_checked(char *param_1, unsigned int param_2)
   }
   return iVar1;
 }
-

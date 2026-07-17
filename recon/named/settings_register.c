@@ -1,11 +1,23 @@
-/* named: settings_register */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-//   0x00088328  __settings_handler_static_list_end 
-//   0x20003868  g_settings_lock              
-//   0x2000a10c  g_settings_handlers          
-*/
-/* Reconstructed settings_register @ 0x4e494  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e494 @ 0x0004e494
+ * public-name: settings_register
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ *   settings_register                        <= FUN_0004e494 @ 0x0004e494
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f1126                             @ 0x000f1126
+ *   rodata_f1158                             @ 0x000f1158
+ *   g_settings_lock                          @ 0x20003868
+ *   g_settings_handlers                      @ 0x2000a10c
+ */
+/* Reconstructed FUN_0004e494 @ 0x4e494  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long strcmp(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, unsigned b, unsigned c, unsigned d);
@@ -57,4 +69,3 @@ unlock:
     k_mutex_unlock(0x20003868);
     return r4res;
 }
-

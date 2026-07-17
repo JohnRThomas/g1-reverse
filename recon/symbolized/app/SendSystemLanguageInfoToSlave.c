@@ -1,10 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: SendSystemLanguageInfoToSlave */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x2000392c  g_dashboard_response_msgq    
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00048998 @ 0x00048998
+ * public-name: SendSystemLanguageInfoToSlave
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef596                             @ 0x000ef596
+ *   rodata_ef59e                             @ 0x000ef59e
+ *   rodata_ef6d4                             @ 0x000ef6d4
+ *   g_log_level                              @ 0x2000230c
+ *   g_translate_lang_string_table            @ 0x200024f4
+ *   g_dashboard_response_msgq                @ 0x2000392c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed SendSystemLanguageInfoToSlave @ 0x48998  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
@@ -25,27 +36,26 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
     local[0] = 5;
     local[4] = (u8)param_1;
     *(u16*)&local[2] = 1;
-    iVar1 = k_msgq_put(((uintptr_t)&g_dashboard_response_msgq) /*=0x2000392c*/, local, 0, 0);
+    iVar1 = k_msgq_put(((unsigned long)&g_dashboard_response_msgq) /*=0x2000392c*/, local, 0, 0);
     if (iVar1 == 0) {
         uVar4 = 0;
-        if (*(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/ > 2) {
+        if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             u32 uVar3 = (u32)(param_1 - 1);
             u32 uVar2;
             if ((uVar3 & 0xff) < 0x11) {
-                uVar2 = *(volatile u32*)(((uintptr_t)&g_translate_lang_string_table) /*=0x200024f4*/ + (uVar3 & 0xff) * 4);
+                uVar2 = *(volatile u32*)(((unsigned long)&g_translate_lang_string_table) /*=0x200024f4*/ + (uVar3 & 0xff) * 4);
             } else {
-                uVar2 = "unknown" /*=0xef596*/;
+                uVar2 = ((unsigned long)&rodata_ef596) /*=0xef596*/;
             }
-            if (*(volatile u32*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT("%s(): send APP Language infomation to slave . app language = %s\n" /*=0xef59e*/, "SendSystemLanguageInfoToSlave" /*=0xef6d4*/, uVar2);
+            if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                DEBUG_PRINT(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
             } else {
-                debug_print("%s(): send APP Language infomation to slave . app language = %s\n" /*=0xef59e*/, "SendSystemLanguageInfoToSlave" /*=0xef6d4*/, uVar2);
+                debug_print(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
             }
         }
     } else {
-        DEBUG_PRINT("message queue send failed %s\r\n" /*=0xef058*/, "SendSystemLanguageInfoToSlave" /*=0xef6d4*/);
+        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/);
         uVar4 = 0xffffffffU;
     }
     return uVar4;
 }
-

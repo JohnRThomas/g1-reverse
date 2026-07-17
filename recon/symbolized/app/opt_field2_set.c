@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: opt_field2_set */
-/* Reconstructed opt_field2_set @ 0x7c456  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c456 @ 0x0007c456
+ * public-name: opt_field2_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_field2_set                           <= FUN_0007c456 @ 0x0007c456
+ */
+/* Reconstructed FUN_0007c456 @ 0x7c456  (parity: 300/300 trials, PROVEN) */
 
 int opt_field2_set(unsigned char *param_1, int *param_2)
 {
@@ -17,4 +22,3 @@ int opt_field2_set(unsigned char *param_1, int *param_2)
     *(volatile unsigned int*)((char*)param_1+0x10) = *(volatile unsigned int*)((char*)param_2+4);
     return 0;
 }
-

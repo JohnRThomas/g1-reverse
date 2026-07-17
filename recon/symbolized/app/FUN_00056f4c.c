@@ -1,8 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00056f4c */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_00056f4c @ 0x00056f4c
+ * public-name: FUN_00056f4c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_conn_enc_key_size                     <= FUN_0008148a @ 0x0008148a
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3de7                             @ 0x000f3de7
+ *   rodata_f3e4e                             @ 0x000f3e4e
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_00056f4c @ 0x56f4c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(uint32_t,...);
@@ -19,14 +30,14 @@ uint32_t FUN_00056f4c(int param_1, uint8_t *param_2v){
     p2[2] = p1[8];
     uint32_t uVar5 = p1[0xd];
     if (uVar5 > 8){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,((uintptr_t)&rodata_f7a30) /*=0xf7a30*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/,0x9b0);
-        printk("\tInvalid conn state %u\n" /*=0xf3de7*/, uVar5);
-        uint64_t re = assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x9b0);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a30) /*=0xf7a30*/,((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/,0x9b0);
+        printk(((unsigned long)&rodata_f3de7) /*=0xf3de7*/, uVar5);
+        uint64_t re = assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x9b0);
         pb = (volatile uint8_t*)(uint32_t)(re >> 32);
-        pm = (volatile uint8_t*)"WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/;   /* r2 clobbered to last e2fa arg */
+        pm = (volatile uint8_t*)((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/;   /* r2 clobbered to last e2fa arg */
         goto L_faa;
     }
-    p2[0x24] = *(volatile uint8_t*)(((uintptr_t)&rodata_f3e4e) /*=0xf3e4e*/ + uVar5);
+    p2[0x24] = *(volatile uint8_t*)(((unsigned long)&rodata_f3e4e) /*=0xf3e4e*/ + uVar5);
     p2[0x27] = 0;
     p2[0x25] = p1[9];
     uint64_t r = bt_conn_enc_key_size();
@@ -36,7 +47,7 @@ uint32_t FUN_00056f4c(int param_1, uint8_t *param_2v){
         pm = p1;
       L_faa:
         *(volatile uint32_t*)(pb+8) = (uint32_t)((uint32_t)pm + 0x90);
-        *(volatile uint32_t*)(pb+4) = (uint32_t)((uint32_t)pm[8]*7 + ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/);
+        *(volatile uint32_t*)(pb+4) = (uint32_t)((uint32_t)pm[8]*7 + ((unsigned long)&g_ble_dev_state) /*=0x20002000*/);
         {
             uint32_t iVar3 = (uint32_t)pm + 0x97, iVar4 = (uint32_t)pm + 0x9e;
             if (pm[3] != 0){ iVar3 = (uint32_t)pm + 0x9e; iVar4 = (uint32_t)pm + 0x97; }
@@ -62,4 +73,3 @@ uint32_t FUN_00056f4c(int param_1, uint8_t *param_2v){
     }
     return 0xffffffea;
 }
-

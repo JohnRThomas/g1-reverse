@@ -1,56 +1,154 @@
 #include "g1_app_symbols.h"
-/* named: post_notification_cmd_response */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed post_notification_cmd_response @ 0x340c4  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
-extern void debug_print(int,...);
-extern void send_data_in_ble_chunks(int);
-extern void push_message(int);
-extern int  is_on_whitelist_by_identifier(int);
-extern void strncpy_zero_pad(int,int,int);
-#define VI(a) (*(volatile int*)(a))
-#define VB(a) (*(volatile unsigned char*)(a))
-#define VH(a) (*(volatile unsigned short*)(a))
+/* readable reconstruction; identity: FUN_000340c4 @ 0x000340c4
+ * public-name: post_notification_cmd_response
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   send_data_in_ble_chunks                  <= FUN_0003384c @ 0x0003384c
+ *   push_message                             <= FUN_00033f54 @ 0x00033f54
+ *   is_on_whitelist_by_identifier            <= FUN_00034bd4 @ 0x00034bd4
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_a1f49                             @ 0x000a1f49
+ *   rodata_a1f4d                             @ 0x000a1f4d
+ *   rodata_a7ef6                             @ 0x000a7ef6
+ *   rodata_a7f12                             @ 0x000a7f12
+ *   rodata_a7f41                             @ 0x000a7f41
+ *   rodata_a7f79                             @ 0x000a7f79
+ *   rodata_a7fae                             @ 0x000a7fae
+ *   rodata_a8300                             @ 0x000a8300
+ *   rodata_a831f                             @ 0x000a831f
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed post_notification_cmd_response @ 0x340c4. */
+#include <stdint.h>
 
-int post_notification_cmd_response(int param_1,int param_2,int param_3,int param_4,int param_5,int *param_6){
-  volatile int *lvl=(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/, *g8=(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-  int iVar5, format;
-  if (param_1==0||param_2==0||param_3==0||param_4==0||param_5==0||param_6==0) {
-    if (1 < *lvl) { if(*g8==0) DEBUG_PRINT("%s(): input parm invalid !\n" /*=0xa7ef6*/,"post_notification_cmd_response" /*=0xa831f*/,param_5,0,param_1,param_2,param_3); else debug_print(0); }
-    return 0;
-  }
-  if (2 < *lvl) { if(*g8==0) DEBUG_PRINT("%s(): BLE_REQ_POST_NOTIFICATION_MSG source:%d\n" /*=0xa7f12*/,"post_notification_cmd_response" /*=0xa831f*/,VB(param_4+1),0,param_1,param_2,param_3); else debug_print(0); }
-  if (VB(param_4+1) == 4) {
-    strncpy_zero_pad(VI(param_1+0xff8)+8, param_2+0x54, 0x10);
-    strncpy_zero_pad(VI(param_1+0xff8)+0x19, param_2+0x94, 0x96);
-    { int p3=VI(param_1+0xff8); VB(p3)=0; VB(p3+1)=0; VB(p3+2)=0; VB(p3+3)=0; }
-    if (VB(param_1+0xd5)==0) VB(param_1+0xb0d)=1;
-    if (2 < *lvl) { if(*g8==0) DEBUG_PRINT("%s(): schedule_notif#title:%s, desc:%s, ts:%d, date:%s\n" /*=0xa7f41*/,"post_notification_cmd_response" /*=0xa831f*/); else debug_print("%s(): schedule_notif#title:%s, desc:%s, ts:%d, date:%s\n" /*=0xa7f41*/); }
-  } else {
-    if (VH(param_4+2) != 0x1b4) {
-      if (*lvl < 1) return 0;
-      if (*g8 != 0) { debug_print("%s(): [%s-%d] invliad  message len, data_len is %d\n\n" /*=0xa7f79*/,"post_notification_cmd_response" /*=0xa831f*/,"post_notification_cmd_response" /*=0xa8300*/); return 0; }
-      DEBUG_PRINT("%s(): [%s-%d] invliad  message len, data_len is %d\n\n" /*=0xa7f79*/,"post_notification_cmd_response" /*=0xa831f*/,"post_notification_cmd_response" /*=0xa8300*/,0x158,VH(param_4+2),param_2,param_3); return 0;
-    }
-    if ((unsigned int)VI(param_2+0x1b4) < 2) {
-      iVar5 = is_on_whitelist_by_identifier(param_2+0x14);
-      if ((((unsigned int)(iVar5-2)) & 0xff) > 1) { if (iVar5 == 1) send_data_in_ble_chunks(param_2+4); }
-      else push_message(param_2+4);
-    } else push_message(param_2+4);
-  }
-  if (VB(param_3+1) == 4) {
-    if (*lvl < 3) goto LAB_341a8;
-    iVar5 = *g8; format = ((uintptr_t)&tbl_a7e85) /*=0xa7fae*/;
-  } else {
-    if (VB(param_3+1) != 6 || *lvl < 3) goto LAB_341a8;
-    iVar5 = *g8; format = ((uintptr_t)&rodata_a7fe3) /*=0xa7fe3*/;
-  }
-  if (iVar5 == 0) DEBUG_PRINT(format,"post_notification_cmd_response" /*=0xa831f*/); else debug_print(0);
-LAB_341a8:
-  { int d="Good" /*=0xa1f49*/; *(volatile int*)param_6 = VI(d); *(volatile unsigned char*)((int)param_6+4)=VB(d+4); }
-  return 5;
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void debug_print(uint32_t format, ...);
+extern void send_data_in_ble_chunks(void *notification);
+extern void push_message(void *notification);
+extern int is_on_whitelist_by_identifier(const void *classification);
+extern void strncpy_zero_pad(void *destination, const void *source, uint32_t length);
+
+struct notification_command {
+    uint8_t reserved;
+    uint8_t opcode;
+    uint16_t length;
+};
+
+static inline uint32_t read_u32(const void *address)
+{
+    return *(const volatile uint32_t *)address;
 }
 
+static inline uint16_t read_u16(const void *address)
+{
+    return *(const volatile uint16_t *)address;
+}
+
+static inline uint8_t read_u8(const void *address)
+{
+    return *(const volatile uint8_t *)address;
+}
+
+int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
+                                   const struct notification_command *response,
+                                   const struct notification_command *command,
+                                   const void *payload, uint8_t output[5])
+{
+    volatile int *log_level = (volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/;
+    volatile int *deferred_logger = (volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+
+    if (context == 0 || notification == 0 || response == 0 || command == 0 ||
+        payload == 0 || output == 0) {
+        if (*log_level > 1) {
+            if (*deferred_logger == 0)
+                DEBUG_PRINT(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
+                            *deferred_logger,
+                            context, notification, response);
+            else
+                debug_print(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
+                              *deferred_logger,
+                              context, notification, response);
+        }
+        return 0;
+    }
+
+    if (*log_level > 2) {
+        if (*deferred_logger == 0)
+            DEBUG_PRINT(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
+                        *deferred_logger,
+                        context, notification, response);
+        else
+            debug_print(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
+                          *deferred_logger,
+                          context, notification, response);
+    }
+
+    if (command->opcode == 4) {
+        uint8_t *state = *(uint8_t **)(context + 0xff8);
+
+        strncpy_zero_pad(state + 8, notification + 0x54, 0x10);
+        strncpy_zero_pad(state + 0x19, notification + 0x94, 0x96);
+        state[0] = 0;
+        state[1] = 0;
+        state[2] = 0;
+        state[3] = 0;
+        if (context[0xd5] == 0)
+            context[0xb0d] = 1;
+
+        if (*log_level > 2) {
+            if (*deferred_logger == 0)
+                DEBUG_PRINT(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8, state + 0x19,
+                            *(uint32_t *)state, notification + 0x194);
+            else
+                debug_print(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8,
+                              state + 0x19, *(uint32_t *)state,
+                              notification + 0x194);
+        }
+    } else {
+        if (command->length != 0x1b4) {
+            if (*log_level < 1)
+                return 0;
+            if (*deferred_logger != 0) {
+                debug_print(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/,
+                              0x158u, command->length, notification, response);
+                return 0;
+            }
+            DEBUG_PRINT(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/, 0x158u,
+                        command->length, notification, response);
+            return 0;
+        }
+
+        if (read_u32(notification + 0x1b4) > 1) {
+            push_message(notification + 4);
+        } else {
+            int kind = is_on_whitelist_by_identifier(notification + 0x14);
+            uint8_t normalized = (uint8_t)(kind - 2);
+
+            if (normalized <= 1)
+                push_message(notification + 4);
+            else if (kind == 1)
+                send_data_in_ble_chunks(notification + 4);
+        }
+    }
+
+    if (response->opcode == 4) {
+        if (*log_level > 2) {
+            if (*deferred_logger == 0)
+                DEBUG_PRINT(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+            else
+                debug_print(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+        }
+    } else if (response->opcode == 6 && *log_level > 2) {
+        if (*deferred_logger == 0)
+            DEBUG_PRINT(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+        else
+            debug_print(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+    }
+
+    *(uint32_t *)output = read_u32((const void *)((unsigned long)&rodata_a1f49) /*=0xa1f49*/);
+    output[4] = read_u8((const void *)((unsigned long)&rodata_a1f4d) /*=0xa1f4d*/);
+    return 5;
+}

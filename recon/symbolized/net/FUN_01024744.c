@@ -12,7 +12,7 @@ void FUN_01024744(void)
 
   FUN_010246e4();
   iVar3 = FUN_01024ad0();
-  iVar2 = ((uintptr_t)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/;
+  iVar2 = ((unsigned long)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/;
   iVar1 = REG_41005000 /*=0x41005000*/;
   if (iVar3 == 0) {
     *(volatile unsigned char *)(iVar2 + 0xd) = 3;
@@ -24,4 +24,3 @@ void FUN_01024744(void)
   *(volatile unsigned char *)(iVar2 + 0xe) = 0;
   return;
 }
-

@@ -1,5 +1,11 @@
-/* named: curve_table_interp_201pt */
-/* Reconstructed curve_table_interp_201pt @ 0xe3a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000e3a0 @ 0x0000e3a0
+ * public-name: curve_table_interp_201pt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   curve_table_interp_201pt                 <= FUN_0000e3a0 @ 0x0000e3a0
+ *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ */
+/* Reconstructed FUN_0000e3a0 @ 0xe3a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float FUN_000868fc(float);
 extern int float_is_nan(float);
@@ -60,4 +66,3 @@ E49C:
         return (e == 0) ? fVar6 : 0.0f;
     }
 }
-

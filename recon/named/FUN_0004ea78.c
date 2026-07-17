@@ -1,4 +1,37 @@
-/* named: FUN_0004ea78 */
+/* readable reconstruction; identity: FUN_0004ea78 @ 0x0004ea78
+ * public-name: FUN_0004ea78
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_dm_data_add_attribute               <= FUN_0004e9a0 @ 0x0004e9a0
+ *   gatt_dm_data_add_uuid                    <= FUN_0004ea28 @ 0x0004ea28
+ *   bt_gatt_discover                         <= FUN_0005b9cc @ 0x0005b9cc
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   attr_find_by_handle                      <= FUN_0007f386 @ 0x0007f386
+ *   discovery_complete_error                 <= FUN_0007f40c @ 0x0007f40c
+ *   discovery_complete_not_found             <= FUN_0007f438 @ 0x0007f438
+ *   bt_gatt_dm_attr_service_val              <= FUN_0007f460 @ 0x0007f460
+ *   bt_gatt_dm_attr_chrc_val                 <= FUN_0007f4a0 @ 0x0007f4a0
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ * address symbols (name @ address):
+ *   rodata_88130                             @ 0x00088130
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f11bc                             @ 0x000f11bc
+ *   rodata_f1299                             @ 0x000f1299
+ *   rodata_f12bb                             @ 0x000f12bb
+ *   rodata_f13bc                             @ 0x000f13bc
+ *   rodata_f13e5                             @ 0x000f13e5
+ *   rodata_f1404                             @ 0x000f1404
+ *   rodata_f1432                             @ 0x000f1432
+ *   rodata_f1459                             @ 0x000f1459
+ *   rodata_f1484                             @ 0x000f1484
+ *   rodata_f14c2                             @ 0x000f14c2
+ *   rodata_f1541                             @ 0x000f1541
+ *   rodata_f155e                             @ 0x000f155e
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   cur_service_val                          @ 0x2000a154
+ *   g_gatt_dm_discover_params_uuid           @ 0x2000a15c
+ */
 /* Reconstructed FUN_0004ea78 @ 0x4ea78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
@@ -112,4 +145,3 @@ LAB_eb7e:
   assert_post_action(0xf11bc,uVar9);
   return 0;
 }
-

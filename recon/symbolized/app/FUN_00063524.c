@@ -1,19 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00063524 */
-/* Reconstructed FUN_00063524 @ 0x63524  (parity: 300/300 trials, PROVEN) */
-
+/* readable reconstruction; identity: FUN_00063524 @ 0x00063524
+ * public-name: FUN_00063524
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   g_gpio_pin_latch_mask                    @ 0x2000b2d0
+ *   g_gpio_pin_enabled_mask                  @ 0x2000b2d8
+ *   REG_50015304                             @ 0x50015304
+ */
+/* Full reconstruction of FUN_00063524 @ 0x63524 (60 bytes). */
 #include <stdint.h>
-void FUN_00063524(unsigned int param_1, int param_2)
-{
-  if (param_2 != 0) {
-    volatile uint32_t *p0 = (volatile uint32_t*)((uintptr_t)&g_gpio_pin_enabled_mask) /*=0x2000b2d8*/;
-    *p0 = *p0 | (1u << (param_1 & 0xff));
-    *(volatile uint32_t*)(REG_50015000 /*=0x50015000*/ + 0x304) = ((uintptr_t)&tbl_ffc8) /*=0x10000*/ << (param_1 & 0xff);
-    uint32_t v = *(volatile uint32_t*)((uintptr_t)&g_gpio_pin_latch_mask) /*=0x2000b2d0*/;
-    int iVar2 = (int)((v >> (param_1 & 0xff)) << 0x1f);
-    if (iVar2 < 0) {
-      *(volatile uint32_t*)(0xe000e100UL + 0x100) = 0x200000;
-    }
-  }
-}
 
+uint32_t FUN_00063524(uint32_t line, uint32_t enable)
+{
+    uint32_t shift = line & 0xffu;
+
+    if (enable != 0) {
+        uint32_t bit = shift < 32u ? UINT32_C(1) << shift : 0;
+        __atomic_fetch_or((uint32_t *)((unsigned long)&g_gpio_pin_enabled_mask) /*=0x2000b2d8*/, bit, __ATOMIC_ACQ_REL);
+
+        uint32_t event = shift < 16u ? UINT32_C(0x10000) << shift : 0;
+        *(volatile uint32_t *)REG_50015304 /*=0x50015304*/ = event;
+
+        uint32_t pending = *(volatile uint32_t *)((unsigned long)&g_gpio_pin_latch_mask) /*=0x2000b2d0*/;
+        if (shift < 32u && ((pending >> shift) & 1u) != 0)
+            *(volatile uint32_t *)0xe000e200u = UINT32_C(0x200000);
+    }
+
+    /* The leaf preserves its incoming r0 on every path. */
+    return line;
+}

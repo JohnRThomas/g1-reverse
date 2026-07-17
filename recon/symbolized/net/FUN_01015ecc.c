@@ -14,7 +14,7 @@ extern void FUN_01020864(u32);
 extern int FUN_0100d3c0(u32,u32,u32,u32);
 extern void FUN_0100cff4(u32,u32);
 extern int FUN_01014748(void);
-extern int FUN_010144e4(void);
+extern int FUN_010144e4(u32);
 extern void FUN_01014b18(u32);
 extern void FUN_0100b170(void);
 extern void FUN_01008d00(u32,u32);
@@ -22,7 +22,7 @@ extern void FUN_01014884(void);
 
 void FUN_01015ecc(u32 param_1)
 {
-  u32 G = ((uintptr_t)&g_net_link_ctx_a) /*=0x21000f68*/;
+  u32 G = ((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/;
   u32 r0,r1,r2,r3,r5,r6;
   r3 = param_1;
   RB(G) = 1;
@@ -47,7 +47,7 @@ void FUN_01015ecc(u32 param_1)
   r0 = RB(r1 + 0x14e);
   if (r0 == 0xfe) goto L1015fe4;
  L1015f16:
-  FUN_010144e4();
+  FUN_010144e4(r0);
   r1 = RW(G+4);
  L1015f1c:
   r3 = RB(r1 + 0x2ed);
@@ -197,7 +197,7 @@ void FUN_01015ecc(u32 param_1)
   RB(r3 + 0x2ea) = (u8)r0;
   RB(r3 + 0x100) = (u8)r5;
   RB(r3 + 0x14e) = 2;
-  FUN_010144e4();
+  FUN_010144e4(r0);
   r1 = RW(G+4);
   goto L1015f1c;
  L1016114:
@@ -210,4 +210,3 @@ void FUN_01015ecc(u32 param_1)
  L101612e:
   for(;;) FUN_01014884();
 }
-

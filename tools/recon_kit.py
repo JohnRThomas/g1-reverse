@@ -17,11 +17,34 @@ CLI:
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract
+import function_names
 from capstone import *
 
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    0x00033384: 0x188,  # shared switch epilogue through 0x3350a
+    # Response-kind 3 continues at 0x42c3e and returns at 0x42c4a; the
+    # catalog stops at that live tail's entry.
+    0x00042a64: 0x1ec,
+    # Final short-payload branch rejoins completion at 0x1817e; literals start
+    # immediately afterward at 0x18180.
+    0x00017f70: 0x210,
+    # UI refresh dispatch returns through 0x48e0e.  Its six-word literal pool
+    # begins at 0x48e10; the catalog folds many independent handler bodies.
+    0x00048b5c: 0x2b4,
+    # Final mode-7 dispatch arm and its shared return.
+    0x0001694c: 0x28c,
+    # Late logger islands remain reachable through the branch at 0x17dee.
+    0x00017a40: 0x3b0,
+    # Shared epilogue and buffered logger island end before literals at 0x3e7b4.
+    0x0003e05c: 0x758,
+    # This atomic flag-clear wrapper returns at 0x810a8.  The independent
+    # atomic/setter helpers beginning at 0x810aa were folded into its catalog.
+    0x00081080: 0x2a,
+    # Computed-switch default island continues through 0x4f40e; the catalog
+    # stops at its entry 0x4f40a.
+    0x0004f1d0: 0x23e,
     0x0000e53c: 0x3fc,
     0x0000fcf0: 0x178,
     0x000113a8: 0xecc,
@@ -32,7 +55,14 @@ TRUE_SIZE_OVERRIDES = {
     0x00023844: 0x1d0,
     0x00028a1c: 0x198,
     0x0002a8d8: 0x3f4,
+    # The 0x4a..0x4f command islands live after the embedded literal pool at
+    # 0x2baa0.  They rejoin the shared epilogue and end before literals at
+    # 0x2bc0c; the catalog's 0xb54 bytes stop at the pool itself.
+    0x0002af4c: 0xcc0,
     0x00030cd0: 0x3a,
+    # Executable CFG ends at 0x338d8; 0x338dc..0x338e8 is the owned literal
+    # pool and FUN_000338ec is the next independent catalog entry.
+    0x0003384c: 0x8c,
     0x0003727c: 0x3bdc,
     0x0003af78: 0x7e6,
     0x0003b824: 0x5ba,
@@ -40,6 +70,7 @@ TRUE_SIZE_OVERRIDES = {
     0x0003e7f8: 0xc80,
     0x000442bc: 0x266,
     0x0004588c: 0x110c,
+    0x00049acc: 0x634,
     0x0004abc0: 0x444,
     0x0004b4fc: 0x394,
     0x0004bc8c: 0x166,
@@ -52,9 +83,19 @@ TRUE_SIZE_OVERRIDES = {
     0x0005505c: 0x34,
     0x000566a4: 0x50,
     0x00056704: 0x1e0,
+    0x00059690: 0x28,
     0x00059834: 0xe6,
+    # Include the default-state arm's final branch at 0x599c0; literals start
+    # at 0x599c4 after an alignment NOP.
+    0x00059920: 0xa2,
     0x0005b9cc: 0x1e0,
+    # Two CBZ arms enter the shared FUN_0005f638 call at 0x5f948 and rejoin
+    # through the branch at 0x5f94e; literals begin at 0x5f950.
+    0x0005f760: 0x1f0,
     0x0005fb8c: 0xda,
+    # FUN_0005cff0 tail-branches at 0x5d09a; its branch completes at 0x5d09e.
+    # The following NOP/literals precede an independent function at 0x5d0ac.
+    0x0005cff0: 0xae,
     0x00068240: 0x3a,
     0x000698d0: 0xc82,
     0x0006b3c8: 0x5ea,
@@ -64,6 +105,8 @@ TRUE_SIZE_OVERRIDES = {
     0x00075d5c: 0x5e,
     0x0007712c: 0x466,
     0x00077594: 0x254,
+    # scanf conversion handlers and shared epilogue continue through 0x79272.
+    0x00078f88: 0x2ea,
     0x000778d4: 0x0a,
     0x00078110: 0x45a,
     0x0007d1d6: 0x40,
@@ -136,10 +179,33 @@ def info(va):
         if i.address >= f["entry"] + size:
             break
         lines.append("  %05x  %-9s %s%s" % (i.address, i.mnemonic, i.op_str, ann))
-    return {"name": c.get("name") or f["name"], "entry": f["entry"],
+    identity_name = c.get("name") or f["name"]
+    readable = (function_names.readable_name("app", f["entry"])
+                if function_names.available("app") else identity_name)
+    decompiled_raw = f["decompiled"]
+    decompiled = (function_names.substitute(decompiled_raw, "app")
+                  if function_names.available("app") else decompiled_raw)
+    callee_records = []
+    for callee in f["callees"]:
+        match = re.fullmatch(r"(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})", callee)
+        address = (int(match.group(1), 16) & ~1) if match else (
+            function_names.address_for_name("app", callee)
+            if function_names.available("app") else None)
+        callee_records.append({"identity": callee,
+                               "address": hex(address) if address is not None else None,
+                               "readable": (function_names.readable_name("app", address)
+                                            if address is not None and function_names.available("app")
+                                            else callee)})
+    return {"name": identity_name, "readable_name": readable,
+            "raw_name": function_names.raw_name("app", f["entry"]),
+            "entry": f["entry"],
             "entry_hex": f["entry_hex"], "size": size,
-            "class": c.get("class"), "callees": f["callees"],
-            "decompiled": f["decompiled"], "disasm": "\n".join(lines)}
+            "class": c.get("class"),
+            "callees": [record["readable"] for record in callee_records],
+            "callee_records": callee_records,
+            "decompiled": decompiled, "decompiled_raw": decompiled_raw,
+            "function_name_map": function_names.MAP_PATH.get("app"),
+            "disasm": "\n".join(lines)}
 
 def _ret_kind(va):
     """Infer the ABI return kind from the Ghidra signature so the prover
@@ -237,8 +303,9 @@ if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "help"
     if cmd == "info":
         d = info(int(sys.argv[2], 0))
-        print("### %s  %s  size=%d  class=%s" % (d["name"], d["entry_hex"], d["size"], d["class"]))
-        print("callees:", d["callees"])
+        print("### %s  [%s @ %s]  size=%d  class=%s" %
+              (d["readable_name"], d["raw_name"], d["entry_hex"], d["size"], d["class"]))
+        print("callees:", d["callee_records"])
         print("--- decompiled ---\n" + d["decompiled"])
         print("--- disasm (literal-pool values annotated) ---\n" + d["disasm"])
     elif cmd == "list-app":

@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007da70 */
+/* readable reconstruction; identity: FUN_0007da70 @ 0x0007da70
+ * public-name: FUN_0007da70
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
 /* Reconstructed FUN_0007da70 @ 0x7da70  (parity: 300/300 trials, PROVEN) */
 
 extern int memset_bytes(int, unsigned int, unsigned int, int, unsigned int);
@@ -20,4 +25,3 @@ int FUN_0007da70(unsigned char *param_1, unsigned int param_2, int param_3, unsi
   }
   return iVar3;
 }
-

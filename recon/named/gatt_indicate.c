@@ -1,5 +1,25 @@
-/* named: gatt_indicate */
-/* Reconstructed gatt_indicate @ 0x5b270  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b270 @ 0x0005b270
+ * public-name: gatt_indicate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
+ *   bt_att_req_alloc                         <= FUN_000596c0 @ 0x000596c0
+ *   bt_att_req_free                          <= FUN_00059708 @ 0x00059708
+ *   bt_att_req_send                          <= FUN_00059a90 @ 0x00059a90
+ *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_att_set_tx_meta_data                  <= FUN_000825ac @ 0x000825ac
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   ADDR_gatt_indicate_rsp_THUMB             @ 0x000825d5
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f0000                             @ 0x000f0000
+ *   rodata_f4ad5                             @ 0x000f4ad5
+ *   rodata_f4aeb                             @ 0x000f4aeb
+ *   rodata_f4b16                             @ 0x000f4b16
+ */
+/* Reconstructed FUN_0005b270 @ 0x5b270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int bt_att_create_pdu(unsigned,int,int);
 extern int bt_att_req_alloc(int,int);
@@ -58,4 +78,3 @@ int gatt_indicate(unsigned param_1, unsigned short param_2, int param_3)
   }
   return iVar3;
 }
-

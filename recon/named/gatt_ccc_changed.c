@@ -1,5 +1,10 @@
-/* named: gatt_ccc_changed */
-/* Reconstructed gatt_ccc_changed @ 0x825c0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000825c0 @ 0x000825c0
+ * public-name: gatt_ccc_changed
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_ccc_changed                         <= FUN_000825c0 @ 0x000825c0
+ */
+/* Reconstructed FUN_000825c0 @ 0x825c0  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fnptr_t)(void);
 
@@ -14,4 +19,3 @@ void gatt_ccc_changed(unsigned int param_1, int param_2)
         }
     }
 }
-

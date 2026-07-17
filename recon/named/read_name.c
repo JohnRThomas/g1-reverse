@@ -1,14 +1,21 @@
-/* named: read_name */
-/* Reconstructed read_name @ 0x829f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000829f0 @ 0x000829f0
+ * public-name: read_name
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   bt_dev_get                               <= FUN_00054ce0 @ 0x00054ce0
+ *   read_name                                <= FUN_000829f0 @ 0x000829f0
+ */
+/* Reconstructed FUN_000829f0 @ 0x829f0  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(void);
-extern int bt_dev_get(void);
-extern void bt_gatt_attr_read.constprop.0(int,int,int,int);
-void read_name(int param_1,int param_2,int param_3,int param_4,short param_5)
+extern int strlen(const void *);
+extern unsigned int bt_dev_get(void);
+extern void FUN_00082932(int,int,int,unsigned int,unsigned short);
+void read_name(int param_1, int param_2, int param_3, int param_4,
+                  unsigned short param_5)
 {
-    int uVar1 = bt_dev_get();
-    int r0 = strlen();
-    unsigned short u = (unsigned short)r0;
-    bt_gatt_attr_read.constprop.0(param_3, param_4, (int)u, uVar1);
+    unsigned int text = bt_dev_get();
+    unsigned short length =
+        (unsigned short)strlen((const void *)(unsigned long)text);
+    FUN_00082932(param_3, param_4, param_5, text, length);
 }
-

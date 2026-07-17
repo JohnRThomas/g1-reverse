@@ -1,9 +1,11 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01036660 @ 0x1036660  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 extern int FUN_0103610c(unsigned int*);
 extern int FUN_01036128(unsigned int*);
@@ -16,8 +18,8 @@ extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b4f6(unsigned int*, int);
 
-#define DAT_0103676c "***** HARD FAULT *****" /*=0x103d3b6*/
-#define DAT_01036770 "acking error (context area might be not valid)" /*=0x103d2a7*/
+#define DAT_0103676c ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define DAT_01036770 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
 
 unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, int param_4, char param_5)
 {
@@ -109,4 +111,3 @@ LAB_010366c4:
   FUN_01037130(puVar5, uVar6);
   return 0;
 }
-

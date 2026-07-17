@@ -3,6 +3,5 @@
 extern int FUN_0102cc34(int,int,int,int);
 int FUN_0102def4(unsigned int param_1)
 {
-    return FUN_0102cc34(((uintptr_t)&g_net_periodic_work_obj) /*=0x2100086c*/, (int)param_1, 0, 0);
+    return FUN_0102cc34(((unsigned long)&g_net_periodic_work_obj) /*=0x2100086c*/, (int)param_1, 0, 0);
 }
-

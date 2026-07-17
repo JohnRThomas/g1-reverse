@@ -1,8 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00072cd4 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00072cd4 @ 0x00072cd4
+ * public-name: FUN_00072cd4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f820f                             @ 0x000f820f
+ *   rodata_f8247                             @ 0x000f8247
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_00072cd4 @ 0x72cd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -22,15 +31,15 @@ unsigned FUN_00072cd4(volatile uint32_t *param_1, volatile int *param_2, uint32_
     if (!(r3 & 1)) goto L_d3a;
     v = param_1[2];
     if (v == 0){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"work->queue != ((void *)0)" /*=0xf8247*/,"WEST_TOPDIR/zephyr/kernel/work.c" /*=0xf820f*/,0x14e,param_4);
-        assert_post_action("WEST_TOPDIR/zephyr/kernel/work.c" /*=0xf820f*/,0x14e);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8247) /*=0xf8247*/,((unsigned long)&rodata_f820f) /*=0xf820f*/,0x14e,param_4);
+        assert_post_action(((unsigned long)&rodata_f820f) /*=0xf820f*/,0x14e);
     }
     uVar4 = 2;
     *param_2 = (int)v;
   L_d16:
     r5 = *param_2;
     if (r5 == 0) goto L_d96;
-    if (*(volatile int*)(((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/+8) == r5){
+    if (*(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8) == r5){
         int rc = k_is_in_isr();
         iVar3 = *(volatile uint32_t*)(r5+0xf0);
         if (rc != 0) goto L_d28;
@@ -76,4 +85,3 @@ unsigned FUN_00072cd4(volatile uint32_t *param_1, volatile int *param_2, uint32_
   L_d8a:
     return uVar4;
 }
-

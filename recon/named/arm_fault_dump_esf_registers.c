@@ -1,5 +1,19 @@
-/* named: arm_fault_dump_esf_registers */
-/* Reconstructed arm_fault_dump_esf_registers @ 0x4ff6c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004ff6c @ 0x0004ff6c
+ * public-name: arm_fault_dump_esf_registers
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arm_fault_dump_esf_registers             <= FUN_0004ff6c @ 0x0004ff6c
+ *   z_fatal_error                            <= FUN_00071684 @ 0x00071684
+ * address symbols (name @ address):
+ *   rodata_88258                             @ 0x00088258
+ *   rodata_f1abb                             @ 0x000f1abb
+ *   rodata_f1aea                             @ 0x000f1aea
+ *   rodata_f1b19                             @ 0x000f1b19
+ *   rodata_f1b28                             @ 0x000f1b28
+ *   rodata_f1b6b                             @ 0x000f1b6b
+ *   rodata_f1b7a                             @ 0x000f1b7a
+ */
+/* Reconstructed FUN_0004ff6c @ 0x4ff6c  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0004d944(int,int,void*,int);
 extern int z_fatal_error(int,int*);
@@ -10,64 +24,56 @@ void arm_fault_dump_esf_registers(int param_1, int *param_2, int param_3, int pa
   int iVar2;
   int iVar3;
   int *piVar4;
-  int local_50;
-  int local_4c;
-  int iStack_48;
-  int local_44;
-  int local_40;
-  int local_3c;
-  int local_38;
-  int local_34;
-  int local_30;
-  int iStack_2c;
-  int uStack_28;
-
-  uStack_28 = param_4;
+  struct { int count, format, value0, value1, value2; } log5;
+  struct { int count, format, value; } log3;
+  struct {
+    int count, format;
+    int index0, value0;
+    int index1, value1;
+    int index2, value2;
+    int index3, value3;
+  } log10;
   if (param_2 != 0) {
-    local_38 = param_2[0];
-    local_34 = param_2[1];
-    local_30 = param_2[2];
-    local_3c = 0xf1abb;
-    local_40 = 5;
-    FUN_0004d944(0x88258, 0x2840, &local_40, 0);
-    local_38 = param_2[3];
-    local_34 = param_2[4];
-    local_30 = param_2[5];
-    local_3c = 0xf1aea;
-    local_40 = 5;
-    FUN_0004d944(0x88258, 0x2840, &local_40, 0);
-    local_30 = param_2[7];
-    local_34 = 0xf1b19;
-    local_38 = 3;
-    FUN_0004d944(0x88258, 0x1840, &local_38, 0);
+    log5.count = 5;
+    log5.format = 0xf1abb;
+    log5.value0 = param_2[0];
+    log5.value1 = param_2[1];
+    log5.value2 = param_2[2];
+    FUN_0004d944(0x88258, 0x2840, &log5, 0);
+    log5.format = 0xf1aea;
+    log5.value0 = param_2[3];
+    log5.value1 = param_2[4];
+    log5.value2 = param_2[5];
+    FUN_0004d944(0x88258, 0x2840, &log5, 0);
+    log3.count = 3;
+    log3.format = 0xf1b19;
+    log3.value = param_2[7];
+    FUN_0004d944(0x88258, 0x1840, &log3, 0);
     uVar1 = 0xf1b28;
     iVar2 = 0;
     piVar4 = param_2;
     do {
-      local_44 = piVar4[8];
-      local_3c = piVar4[9];
-      local_34 = piVar4[10];
-      iStack_2c = piVar4[11];
-      local_40 = iVar2 + 1;
-      local_38 = iVar2 + 2;
-      local_30 = iVar2 + 3;
-      local_4c = uVar1;
-      local_50 = 10;
+      log10.count = 10;
+      log10.format = uVar1;
+      log10.index0 = iVar2;
+      log10.value0 = piVar4[8];
+      log10.index1 = iVar2 + 1;
+      log10.value1 = piVar4[9];
+      log10.index2 = iVar2 + 2;
+      log10.value2 = piVar4[10];
+      log10.index3 = iVar2 + 3;
+      log10.value3 = piVar4[11];
       iVar3 = iVar2 + 4;
-      iStack_48 = iVar2;
-      FUN_0004d944(0x88258, 0x5040, &local_50, 0);
+      FUN_0004d944(0x88258, 0x5040, &log10, 0);
       piVar4 = piVar4 + 4;
       iVar2 = iVar3;
     } while (iVar3 != 0x10);
-    local_30 = param_2[0x18];
-    local_34 = 0xf1b6b;
-    local_38 = 3;
-    FUN_0004d944(0x88258, 0x1840, &local_38, 0);
-    local_30 = param_2[6];
-    local_34 = 0xf1b7a;
-    local_38 = 3;
-    FUN_0004d944(0x88258, 0x1840, &local_38, 0);
+    log3.format = 0xf1b6b;
+    log3.value = param_2[0x18];
+    FUN_0004d944(0x88258, 0x1840, &log3, 0);
+    log3.format = 0xf1b7a;
+    log3.value = param_2[6];
+    FUN_0004d944(0x88258, 0x1840, &log3, 0);
   }
   z_fatal_error(param_1, param_2);
 }
-

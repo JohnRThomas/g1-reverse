@@ -126,7 +126,7 @@ L_888:
       puVar12 = nx;
   }
   if (pcVar9 != 0) {
-      ((pc_t)pcVar9)(p, ((uintptr_t)&rodata_102d22d) /*=0x102d22d*/);
+      ((pc_t)pcVar9)(p, ((unsigned long)&rodata_102d22d) /*=0x102d22d*/);
   }
   if (FUN_0103610c(piv) == 0) goto ASSERTL;
   FUN_01036144(piv);
@@ -184,8 +184,7 @@ L_906:  /* case 5 */
 
 ASSERTL:
   for (;;) {
-      FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "thread mode does not indicate PSP" /*=0x103d394*/, 0x156);
-      FUN_01039bb0("thread mode does not indicate PSP" /*=0x103d394*/, 0x156);
+      FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d394) /*=0x103d394*/, 0x156);
+      FUN_01039bb0(((unsigned long)&rodata_103d394) /*=0x103d394*/, 0x156);
   }
 }
-

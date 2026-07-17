@@ -6,8 +6,8 @@ extern int FUN_0100aeac(int);
 extern void FUN_0100af3c(void);
 extern void FUN_0101fdd0(int, unsigned int, unsigned char, unsigned char, int);
 
-#define DAT_0100b10c ((uintptr_t)&g_net_radio_drv_ctx) /*=0x21000c48*/
-#define DAT_0100b110 ((uintptr_t)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
+#define DAT_0100b10c ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
+#define DAT_0100b110 ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
 
 typedef int (*fp0_t)(void);
 typedef void (*fp1_t)(int);
@@ -94,4 +94,3 @@ LAB_0100b03e:
   FUN_0100ac34();
   return;
 }
-

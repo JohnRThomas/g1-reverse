@@ -1,8 +1,16 @@
-/* named: FUN_00065d8c */
-/* globals referenced:
-//   0x2000b324  g_nrfx_hal_init_flag         
-//   0x5002a000  NRF_GPIOTE1_S                
-*/
+/* readable reconstruction; identity: FUN_00065d8c @ 0x00065d8c
+ * public-name: FUN_00065d8c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6bc5                             @ 0x000f6bc5
+ *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_f6c09                             @ 0x000f6c09
+ *   g_nrfx_hal_init_flag                     @ 0x2000b324
+ */
 /* Reconstructed FUN_00065d8c @ 0x65d8c  (parity: 2/300 trials, PROVEN) */
 #include <stdint.h>
 extern void assert_post_action(uint32_t,uint32_t);
@@ -36,4 +44,3 @@ void FUN_00065d8c(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4
   assert_post_action(0xf6bc5,0x47);
   goto L;
 }
-

@@ -1,7 +1,16 @@
-/* named: FUN_000569a0 */
-/* globals referenced:
-//   0x20006138  g_ble_conn_pool              
-*/
+/* readable reconstruction; identity: FUN_000569a0 @ 0x000569a0
+ * public-name: FUN_000569a0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3c92                             @ 0x000f3c92
+ *   rodata_f3d5b                             @ 0x000f3d5b
+ *   g_ble_conn_pool                          @ 0x20006138
+ */
 /* Reconstructed FUN_000569a0 @ 0x569a0  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int);
@@ -20,4 +29,3 @@ unsigned int FUN_000569a0(int param_1, unsigned int param_2, unsigned int param_
     }
     return R;
 }
-

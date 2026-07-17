@@ -1,5 +1,23 @@
-/* named: qspi_nor_erase */
-/* Reconstructed qspi_nor_erase @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00060dd0 @ 0x00060dd0
+ * public-name: qspi_nor_erase
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_log_erase_range_error           <= FUN_000609c4 @ 0x000609c4
+ *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_erase                           <= FUN_00060dd0 @ 0x00060dd0
+ *   nrfx_qspi_read                           <= FUN_00066bc4 @ 0x00066bc4
+ *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ *   qspi_nor_write_protection_set            <= FUN_00083954 @ 0x00083954
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5c9c                             @ 0x000f5c9c
+ *   rodata_f5cba                             @ 0x000f5cba
+ */
+/* Reconstructed FUN_00060dd0 @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int);
 extern int qspi_nor_log_erase_range_error(int,int);
@@ -90,4 +108,3 @@ LAB_00060e40:
     FUN_00060a5c(param_1);
     return iVar1;
 }
-

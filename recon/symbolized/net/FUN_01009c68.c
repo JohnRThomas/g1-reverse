@@ -9,7 +9,7 @@ extern unsigned int FUN_0102751a(void *, unsigned short, signed char);
 
 unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
 {
-  volatile int * const tbl = (volatile int *)((uintptr_t)&g_net_ctx_ptr_table) /*=0x21000b7c*/;
+  volatile int * const tbl = (volatile int *)0x21000b7c;
   int iVar3 = tbl[param_2];
   if (iVar3 == 0) {
     return 0;
@@ -32,4 +32,3 @@ unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
   }
   return FUN_0102751a((void *)iVar3, param_1, cVar2);
 }
-

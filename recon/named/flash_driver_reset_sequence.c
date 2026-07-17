@@ -1,5 +1,14 @@
-/* named: flash_driver_reset_sequence */
-/* Reconstructed flash_driver_reset_sequence @ 0x301bc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000301bc @ 0x000301bc
+ * public-name: flash_driver_reset_sequence
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_retry_delay                   <= FUN_0003016c @ 0x0003016c
+ *   attr_store_set                           <= FUN_00030178 @ 0x00030178
+ *   flash_driver_reset_sequence              <= FUN_000301bc @ 0x000301bc
+ * address symbols (name @ address):
+ *   rodata_ff20                              @ 0x0000ff20
+ */
+/* Reconstructed FUN_000301bc @ 0x301bc  (parity: 300/300 trials, PROVEN) */
 
 extern int attr_store_retry_delay(int);
 extern int attr_store_set(unsigned,unsigned,...);
@@ -20,4 +29,3 @@ int flash_driver_reset_sequence(unsigned p1,unsigned p2,unsigned p3,unsigned p4)
   }
   return -1;
 }
-

@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: bt_smp_send_pdu */
-/* Reconstructed bt_smp_send_pdu @ 0x5cb38  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005cb38 @ 0x0005cb38
+ * public-name: bt_smp_send_pdu
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f0000                             @ 0x000f0000
+ *   rodata_f4557                             @ 0x000f4557
+ */
+/* Reconstructed FUN_0005cb38 @ 0x5cb38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern long long bt_conn_create_pdu(unsigned,int,unsigned,unsigned,int);
 extern void net_buf_unref(unsigned);
@@ -12,14 +23,13 @@ void bt_smp_send_pdu(int param_1, unsigned param_2, unsigned param_3){
   if((int)uVar1 != 0){
     if((int)uVar1 == -0x69){
       unsigned local_18, local_14;
-      local_14 = "Ran out of TX buffers or contexts." /*=0xf4557*/;
+      local_14 = ((unsigned long)&rodata_f4557) /*=0xf4557*/;
       local_18 = 2;
-      FUN_00083074(((uintptr_t)&tbl_880d8) /*=0x88180*/, 0x1040, &local_18);
+      FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1040, &local_18);
       (void)local_14;
     }
     net_buf_unref(param_2);
     return;
   }
-  FUN_0007350c(param_1+0x208, (int)((unsigned long long)uVar1 >> 0x20), "eflash command end .......\n" /*=0xf0000*/, 0);
+  FUN_0007350c(param_1+0x208, (int)((unsigned long long)uVar1 >> 0x20), ((unsigned long)&rodata_f0000) /*=0xf0000*/, 0);
 }
-

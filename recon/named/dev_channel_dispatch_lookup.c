@@ -1,5 +1,10 @@
-/* named: dev_channel_dispatch_lookup */
-/* Reconstructed dev_channel_dispatch_lookup @ 0x84090  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084090 @ 0x00084090
+ * public-name: dev_channel_dispatch_lookup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_channel_dispatch_lookup              <= FUN_00084090 @ 0x00084090
+ */
+/* Reconstructed FUN_00084090 @ 0x84090  (parity: 300/300 trials, PROVEN) */
 
 int dev_channel_dispatch_lookup(int param_1, unsigned int param_2)
 {
@@ -27,4 +32,3 @@ int dev_channel_dispatch_lookup(int param_1, unsigned int param_2)
   } while(pbVar3 != pbVar2+uVar5);
   return 0xffffff7a;
 }
-

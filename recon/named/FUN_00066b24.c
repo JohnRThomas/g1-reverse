@@ -1,8 +1,18 @@
-/* named: FUN_00066b24 */
-/* globals referenced:
-//   0x2000b348  g_qspi_cb                    
-//   0x5002b000  NRF_QSPI_BASE                
-*/
+/* readable reconstruction; identity: FUN_00066b24 @ 0x00066b24
+ * public-name: FUN_00066b24
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_disable                         <= FUN_000500c8 @ 0x000500c8
+ *   qspi_deactivate                          <= FUN_00066478 @ 0x00066478
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6d5e                             @ 0x000f6d5e
+ *   rodata_f6d9a                             @ 0x000f6d9a
+ *   g_qspi_cb                                @ 0x2000b348
+ *   NRF_QSPI_BASE                            @ 0x5002b000
+ */
 /* Reconstructed FUN_00066b24 @ 0x66b24  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_disable(int a);
@@ -37,4 +47,3 @@ void FUN_00066b24(void){
     }
     g[0x30] = 0;
 }
-

@@ -1,5 +1,12 @@
-/* named: cbor_decode_bool */
-/* Reconstructed cbor_decode_bool @ 0x86006  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086006 @ 0x00086006
+ * public-name: cbor_decode_bool
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_undo_and_fail                <= FUN_00085dc4 @ 0x00085dc4
+ *   cbor_decode_simple_value                 <= FUN_00085fd2 @ 0x00085fd2
+ *   cbor_decode_bool                         <= FUN_00086006 @ 0x00086006
+ */
+/* Reconstructed FUN_00086006 @ 0x86006  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_simple_value(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void cbor_decode_undo_and_fail(unsigned int, unsigned int);
@@ -21,4 +28,3 @@ int cbor_decode_bool(unsigned int param_1, unsigned char *param_2, unsigned int 
   }
   return 0;
 }
-

@@ -18,7 +18,7 @@ void FUN_01039138(uint8_t *param_1, uint32_t param_2, uint32_t param_3, uint32_t
     uStack_4 = param_4;
     FUN_0103b62e(auStack_34, 0, 0x1c);
     local_32 = 2;
-    local_30 = ((uintptr_t)&rodata_103be3f) /*=0x103be3f*/;
+    local_30 = ((unsigned long)&rodata_103be3f) /*=0x103be3f*/;
 
     uVar1 = param_2;
     if (param_2 != 0) {
@@ -37,4 +37,3 @@ void FUN_01039138(uint8_t *param_1, uint32_t param_2, uint32_t param_3, uint32_t
     }
     (void)local_32; (void)local_30; (void)local_20;
 }
-

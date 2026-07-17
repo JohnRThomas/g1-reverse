@@ -2,7 +2,7 @@
 /* net-core FUN_01021a1c @ 0x1021a1c  (parity 300 trials PROVEN) */
 
 extern void FUN_01022a84(void);
-#define DAT_01021a34 ((unsigned int *)((uintptr_t)&g_net_deferred_cb_fn) /*=0x210016e0*/)
+#define DAT_01021a34 ((unsigned int *)((unsigned long)&g_net_deferred_cb_fn) /*=0x210016e0*/)
 
 void FUN_01021a1c(void)
 {
@@ -15,4 +15,3 @@ void FUN_01021a1c(void)
     FUN_01022a84();
     return;
 }
-

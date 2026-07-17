@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c0a8 */
+/* readable reconstruction; identity: FUN_0007c0a8 @ 0x0007c0a8
+ * public-name: FUN_0007c0a8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ */
 /* Reconstructed FUN_0007c0a8 @ 0x7c0a8  (parity: 300/300 trials, PROVEN) */
 
 extern void __aeabi_uldivmod(int,int,int,int);
@@ -10,4 +15,3 @@ void FUN_0007c0a8(int param_1)
   thunk_FUN_00074844();
   return;
 }
-

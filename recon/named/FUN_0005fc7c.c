@@ -1,4 +1,14 @@
-/* named: FUN_0005fc7c */
+/* readable reconstruction; identity: FUN_0005fc7c @ 0x0005fc7c
+ * public-name: FUN_0005fc7c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   nrfx_pdm_init                            <= FUN_0006615c @ 0x0006615c
+ *   nrfx_pdm_uninit                          <= FUN_000661dc @ 0x000661dc
+ * address symbols (name @ address):
+ *   rodata_881a0                             @ 0x000881a0
+ *   rodata_f5871                             @ 0x000f5871
+ */
 /* Reconstructed FUN_0005fc7c @ 0x5fc7c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
@@ -104,4 +114,3 @@ LAB_fe56:
   VB(iVar5 + 0x50) = bVar4;
   return 0;
 }
-

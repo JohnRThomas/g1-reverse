@@ -1,25 +1,29 @@
-/* named: FUN_00075c2c */
-/* globals referenced:
-//   0x200035af  g_libm_ieee_mode_flag        
-*/
+/* readable reconstruction; identity: FUN_00075c2c @ 0x00075c2c
+ * public-name: FUN_00075c2c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   thunk_FUN_00071678                       <= FUN_000807f2 @ 0x000807f2
+ * address symbols (name @ address):
+ *   rodata_a8ea0                             @ 0x000a8ea0
+ *   g_libm_ieee_mode_flag                    @ 0x200035af
+ */
 /* Reconstructed FUN_00075c2c @ 0x75c2c  (parity: 300/300 trials, PROVEN) */
-extern int FUN_00075f88(void);
-extern int FUN_000868ee(float);
-extern int* thunk_FUN_00071678(void);
-extern int tail_76a88(void);
-float FUN_00075c2c(float param_1){
-    int uVar1 = FUN_00075f88();
-    (void)uVar1;
-    signed char c = *(volatile signed char*)0x200035afUL;
-    if ((c + 1) != 0 && !(param_1 != param_1)){
-        FUN_000868ee(param_1);
-        if (param_1 > 1.0f){
-            int* p = thunk_FUN_00071678();
-            *p = 0x21;
-            tail_76a88();
-            return param_1;
+extern float FUN_00075f88(void);
+extern float FUN_000868ee(float);
+extern int *thunk_FUN_00071678(void);
+extern float FUN_00076a88(unsigned int descriptor);
+
+float FUN_00075c2c(float value)
+{
+    float fallback = FUN_00075f88();
+
+    if (*(volatile signed char *)0x200035afUL != -1 && value == value) {
+        float converted = FUN_000868ee(value);
+        if (converted > 1.0f) {
+            int *error_number = thunk_FUN_00071678();
+            *error_number = 0x21;
+            return FUN_00076a88(0x000a8ea0u);
         }
     }
-    return param_1;
+    return fallback;
 }
-

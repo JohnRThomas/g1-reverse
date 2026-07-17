@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: bignum_parse_hex_literal */
-/* Reconstructed bignum_parse_hex_literal @ 0x873b6  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000873b6 @ 0x000873b6
+ * public-name: bignum_parse_hex_literal
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hex_nibble_from_ascii                    <= FUN_00087340 @ 0x00087340
+ *   bignum_limbs_merge_shift_left            <= FUN_0008736a @ 0x0008736a
+ *   bignum_parse_hex_literal                 <= FUN_000873b6 @ 0x000873b6
+ */
+/* Reconstructed FUN_000873b6 @ 0x873b6  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int hex_nibble_from_ascii(int);
 extern int bignum_limbs_merge_shift_left(int,int,int);
@@ -46,7 +53,7 @@ LAB_000873e6:
         if (uVar2 != 0) {
             iVar12 = iVar12 + 1;
             iVar14 = iVar14 + 1;
-            if (8 < iVar12) goto code_r_874aa /*=0x874aa*/;
+            if (8 < iVar12) goto code_r0x000874aa;
             goto LAB_000874b6;
         }
         if (0x20 < bVar1) {
@@ -108,7 +115,7 @@ LAB_000874e8:
         uVar3 = 5;
     }
     return uVar3;
-code_r_874aa: /*=0x874aa*/
+code_r0x000874aa:
     iVar4 = iVar7;
     if (param_3 < (unsigned int *)puVar11) {
         puVar11 = puVar11 + -1;
@@ -120,4 +127,3 @@ LAB_000874b6:
     }
     goto LAB_000873e6;
 }
-

@@ -1,37 +1,48 @@
-/* named: vsnprintf_setup */
-/* globals referenced:
-//   0x20002d20  g_libc_heap_ctrl             
-*/
-/* Reconstructed vsnprintf_setup @ 0x779bc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000779bc @ 0x000779bc
+ * public-name: vsnprintf_setup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   vsnprintf_setup                          <= FUN_000779bc @ 0x000779bc
+ *   vfprintf_core                            <= FUN_00078f88 @ 0x00078f88
+ * address symbols (name @ address):
+ *   rodata_86f57                             @ 0x00086f57
+ *   g_libc_heap_ctrl                         @ 0x20002d20
+ */
+/* Reconstructed FUN_000779bc @ 0x779bc  (parity: 300/300 trials, PROVEN) */
 
-extern int strlen(void);
+extern int strlen(const char *text);
 extern void vfprintf_core(unsigned int a, void* b, unsigned int c, void* d);
+
+struct format_record {
+  unsigned int value;
+  unsigned int text_length;
+  unsigned int reserved_08;
+  unsigned short type;
+  unsigned short limit;
+  unsigned int repeated_value;
+  unsigned int repeated_length;
+  unsigned int reserved_18[3];
+  unsigned int formatter;
+  unsigned int reserved_28[3];
+  unsigned int state_34;
+  unsigned int reserved_38[4];
+  unsigned int state_48;
+};
 
 void vsnprintf_setup(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-  unsigned int local_80;
-  int local_7c;
-  unsigned short local_74;
-  unsigned short local_72;
-  unsigned int local_70;
-  unsigned int local_6c;
-  unsigned int local_5c;
-  unsigned int local_4c;
-  unsigned int local_38;
-  unsigned int uStack_8;
-  unsigned int uStack_4;
+  struct format_record record;
+  unsigned int arguments[2] = {param_3, param_4};
 
-  local_74 = 0x204;
-  local_80 = param_1;
-  local_70 = param_1;
-  uStack_8 = param_3;
-  uStack_4 = param_4;
-  local_7c = strlen();
-  local_5c = 0x86f57;
-  local_4c = 0;
-  local_38 = 0;
-  local_72 = 0xffff;
-  local_6c = local_7c;
-  vfprintf_core(*(volatile unsigned int *)0x20002d20UL, &local_80, param_2, &uStack_8);
+  record.type = 0x204;
+  record.value = param_1;
+  record.repeated_value = param_1;
+  record.text_length = strlen((const char *)param_1);
+  record.formatter = 0x86f57;
+  record.limit = 0xffff;
+  record.repeated_length = record.text_length;
+  record.state_34 = 0;
+  record.state_48 = 0;
+  vfprintf_core(*(volatile unsigned int *)0x20002d20UL, &record, param_2, arguments);
 }
-

@@ -1,8 +1,15 @@
-/* named: erase_audio_buffer */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002f008 @ 0x0002f008
+ * public-name: erase_audio_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_87bf0                             @ 0x00087bf0
+ *   g_log_level                              @ 0x2000230c
+ *   g_audio_flash_write_offset               @ 0x20002404
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed erase_audio_buffer @ 0x2f008  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*fn3)(int,int,int);

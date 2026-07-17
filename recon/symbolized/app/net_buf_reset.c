@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: net_buf_reset */
-/* Reconstructed net_buf_reset @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005ee6c @ 0x0005ee6c
+ * public-name: net_buf_reset
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f539a                             @ 0x000f539a
+ *   rodata_f53be                             @ 0x000f53be
+ *   rodata_f53cf                             @ 0x000f53cf
+ */
+/* Reconstructed FUN_0005ee6c @ 0x5ee6c  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int assert_post_action(unsigned int, unsigned int);
@@ -15,21 +27,20 @@ void net_buf_reset(int param_1, unsigned int param_2, unsigned int param_3, unsi
       *(unsigned int *)(param_1 + 0xc) = *(unsigned int *)(param_1 + 0x14);
       return;
     }
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "buf->frags == ((void *)0)" /*=0xf53cf*/, "WEST_TOPDIR/zephyr/subsys/net/buf.c" /*=0xf539a*/, 0x5b, param_4);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f53cf) /*=0xf53cf*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x5b, param_4);
     uVar1 = 0x5b;
   } else {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "buf->flags == 0U" /*=0xf53be*/, "WEST_TOPDIR/zephyr/subsys/net/buf.c" /*=0xf539a*/, 0x5a, param_4);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f53be) /*=0xf53be*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x5a, param_4);
     uVar1 = 0x5a;
   }
-  fakeParam1 = assert_post_action("WEST_TOPDIR/zephyr/subsys/net/buf.c" /*=0xf539a*/, uVar1);
+  fakeParam1 = assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, uVar1);
   while (1) {
     if (*(int *)(fakeParam1 + 4) == 0) {
       *(unsigned short *)(fakeParam1 + 0x10) = 0;
       *(unsigned int *)(fakeParam1 + 0xc) = *(unsigned int *)(fakeParam1 + 0x14);
       return;
     }
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "buf->frags == ((void *)0)" /*=0xf53cf*/, "WEST_TOPDIR/zephyr/subsys/net/buf.c" /*=0xf539a*/, 0x5b, param_4);
-    fakeParam1 = assert_post_action("WEST_TOPDIR/zephyr/subsys/net/buf.c" /*=0xf539a*/, 0x5b);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f53cf) /*=0xf53cf*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x5b, param_4);
+    fakeParam1 = assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x5b);
   }
 }
-

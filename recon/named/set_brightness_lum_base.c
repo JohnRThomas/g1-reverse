@@ -1,9 +1,22 @@
-/* named: set_brightness_lum_base */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019ef3  g_test_mode_flag             
-*/
+/* readable reconstruction; identity: FUN_00031cbc @ 0x00031cbc
+ * public-name: set_brightness_lum_base
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a672f                             @ 0x000a672f
+ *   rodata_a70a0                             @ 0x000a70a0
+ *   rodata_a70c1                             @ 0x000a70c1
+ *   rodata_a70e7                             @ 0x000a70e7
+ *   rodata_a7655                             @ 0x000a7655
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_test_mode_flag                         @ 0x20019ef3
+ */
 /* Reconstructed set_brightness_lum_base @ 0x31cbc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned,...);
@@ -68,4 +81,3 @@ LAB_7c:
   }
   return uVar5;
 }
-

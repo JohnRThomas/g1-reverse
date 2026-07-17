@@ -7,9 +7,9 @@ extern void FUN_010095c0(void);
 
 int32_t FUN_01009874(void)
 {
-    volatile uint8_t * const p1 = (uint8_t *)((uintptr_t)&g_net_bump_alloc_state) /*=0x21000ba8*/;
-    volatile uint32_t * const p2 = (uint32_t *)((uintptr_t)&g_net_bump_alloc_offset) /*=0x21000bb0*/;
-    volatile uint32_t * const p3 = (uint32_t *)((uintptr_t)&g_net_bump_alloc_cursor) /*=0x21000bac*/;
+    volatile uint8_t * const p1 = (uint8_t *)((unsigned long)&g_net_bump_alloc_state) /*=0x21000ba8*/;
+    volatile uint32_t * const p2 = (uint32_t *)((unsigned long)&g_net_bump_alloc_offset) /*=0x21000bb0*/;
+    volatile uint32_t * const p3 = (uint32_t *)((unsigned long)&g_net_bump_alloc_cursor) /*=0x21000bac*/;
     int32_t iVar1;
 
     if (*p1 != 1 && *p1 != 3) {
@@ -29,4 +29,3 @@ int32_t FUN_01009874(void)
     }
     return iVar1;
 }
-

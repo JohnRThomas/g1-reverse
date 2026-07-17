@@ -1,4 +1,7 @@
-/* named: FUN_000844a8 */
+/* readable reconstruction; identity: FUN_000844a8 @ 0x000844a8
+ * public-name: FUN_000844a8
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000844a8 @ 0x844a8  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int (*fn_t)(int, void*, int, short);
@@ -22,4 +25,3 @@ void FUN_000844a8(int *param_1, unsigned char param_2, unsigned int param_3, uns
     uStack_18 = param_4;
     ((fn_t)(*(int *)(*(int *)(*param_1 + 8) + 8)))(*param_1, &local_28, 2, (short)param_1[1]);
 }
-

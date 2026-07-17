@@ -1,5 +1,14 @@
-/* named: gatt_send_service_changed_ind */
-/* Reconstructed gatt_send_service_changed_ind @ 0x81b30  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081b30 @ 0x00081b30
+ * public-name: gatt_send_service_changed_ind
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   att_send_and_schedule_tx                 <= FUN_00081962 @ 0x00081962
+ *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00081b30 @ 0x81b30  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00057394(void);
 extern int FUN_000573f4(int a, int b, int c);
@@ -30,4 +39,3 @@ unsigned int gatt_send_service_changed_ind(int *param_1, int param_2, int param_
     }
     return uVar1;
 }
-

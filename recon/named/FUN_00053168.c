@@ -1,4 +1,11 @@
-/* named: FUN_00053168 */
+/* readable reconstruction; identity: FUN_00053168 @ 0x00053168
+ * public-name: FUN_00053168
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_settings_store                        <= FUN_00052f18 @ 0x00052f18
+ * address symbols (name @ address):
+ *   rodata_f5373                             @ 0x000f5373
+ */
 /* Reconstructed FUN_00053168 @ 0x53168  (parity: 300/300 trials, PROVEN) */
 
 extern void bt_settings_store(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -7,4 +14,3 @@ void FUN_00053168(unsigned int param_1, unsigned int param_2, unsigned int param
 {
     bt_settings_store(0xf5373UL, param_1, param_2, param_3, param_4, param_2, param_3);
 }
-

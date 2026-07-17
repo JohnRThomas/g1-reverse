@@ -1,10 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: get_active_message_count */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
-/* Reconstructed get_active_message_count @ 0x33cb0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033cb0 @ 0x00033cb0
+ * public-name: get_active_message_count
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_active_message_count                 <= FUN_00033cb0 @ 0x00033cb0
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
+/* Reconstructed FUN_00033cb0 @ 0x33cb0  (parity: 300/300 trials, PROVEN) */
 
 unsigned int get_active_message_count(void)
 {
@@ -14,7 +18,7 @@ unsigned int get_active_message_count(void)
   int iVar4;
 
   uVar2 = 9;
-  iVar4 = (g_message_pool) /*=0x20007dac*/;
+  iVar4 = ((unsigned long)g_message_pool) /*=0x20007dac*/;
   do {
     if (*(volatile char *)(iVar4 + 0xf63) != 0) {
       uVar3 = uVar2 & 0xff;
@@ -27,7 +31,6 @@ unsigned int get_active_message_count(void)
   uVar3 = 0xff;
   uVar1 = 0;
 LAB_00033cc6:
-  *(volatile unsigned char *)((uintptr_t)&g_message_pool_index) /*=0x2001a22a*/ = uVar1;
+  *(volatile unsigned char *)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/ = uVar1;
   return uVar3;
 }
-

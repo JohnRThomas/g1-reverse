@@ -5,4 +5,3 @@ unsigned int FUN_0103ac46(int param_1, int param_2)
 {
   return *(unsigned int *)(*(int *)(param_1 + 0x18) + param_2 * 0x10 + 8);
 }
-

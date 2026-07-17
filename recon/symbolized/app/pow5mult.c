@@ -1,6 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: pow5mult */
-/* Reconstructed pow5mult @ 0x7893c  (parity: 134/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007893c @ 0x0007893c
+ * public-name: pow5mult
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   Bfree                                    <= FUN_00078654 @ 0x00078654
+ *   multadd                                  <= FUN_00078698 @ 0x00078698
+ *   i2b                                      <= FUN_000787bc @ 0x000787bc
+ *   bigint_mult                              <= FUN_000787e8 @ 0x000787e8
+ *   pow5mult                                 <= FUN_0007893c @ 0x0007893c
+ * address symbols (name @ address):
+ *   rodata_98774                             @ 0x00098774
+ *   rodata_f8bb7                             @ 0x000f8bb7
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_0007893c @ 0x7893c  (parity: 134/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef unsigned int uint;
@@ -16,7 +31,7 @@ uint32_t pow5mult(int param_1, uint32_t param_2, uint param_3, uint32_t param_4)
   int iVar3, iVar5;
   uint32_t uVar4;
   if ((param_3 & 3) != 0){
-    param_2 = multadd(param_1, param_2, *(uint32_t*)(((uintptr_t)&tbl_9873c) /*=0x98774*/ + ((param_3&3)-1)*4), 0, param_4);
+    param_2 = multadd(param_1, param_2, *(uint32_t*)(((unsigned long)&rodata_98774) /*=0x98774*/ + ((param_3&3)-1)*4), 0, param_4);
   }
   iVar3 = (int)param_3 >> 2;
   if (iVar3 != 0){
@@ -24,7 +39,7 @@ uint32_t pow5mult(int param_1, uint32_t param_2, uint param_3, uint32_t param_4)
       puVar1 = (uint32_t*)malloc(0x10);
       *(uint32_t**)(param_1+0x24) = puVar1;
       if (puVar1 == 0){
-        puVar1 = (uint32_t*)libc_fatal_error_and_abort("/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c" /*=0xf8cd5*/, 0x1ae, 0, "REENT malloc succeeded" /*=0xf8bb7*/);
+        puVar1 = (uint32_t*)libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/, 0x1ae, 0, ((unsigned long)&rodata_f8bb7) /*=0xf8bb7*/);
       }
       puVar1[1] = 0; puVar1[2] = 0; puVar1[0] = 0; puVar1[3] = 0;
     }
@@ -56,4 +71,3 @@ uint32_t pow5mult(int param_1, uint32_t param_2, uint param_3, uint32_t param_4)
   }
   return param_2;
 }
-

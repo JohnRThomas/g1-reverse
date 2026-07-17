@@ -1,4 +1,12 @@
-/* named: update_display_status */
+/* readable reconstruction; identity: FUN_0007cce8 @ 0x0007cce8
+ * public-name: update_display_status
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
+ *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
 /* Reconstructed update_display_status @ 0x7cce8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int check_battery_critical(void);
@@ -68,4 +76,3 @@ LAB_0007cd8a:
     memset_bytes((void*)(intptr_t)(param_1 + 0xef), 0, 0x5dc);
     return;
 }
-

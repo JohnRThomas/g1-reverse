@@ -1,10 +1,36 @@
-/* named: SettingStoreHandler */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20003994  g_flash_store_cmd_msgq       
-//   0x20007554  g_log_use_alt_sink           
-//   0x20018462  g_ui_mode_flag               
-*/
+/* readable reconstruction; identity: FUN_00023f04 @ 0x00023f04
+ * public-name: SettingStoreHandler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_243dc                             @ 0x000243dc
+ *   rodata_243e0                             @ 0x000243e0
+ *   rodata_243e4                             @ 0x000243e4
+ *   rodata_243e8                             @ 0x000243e8
+ *   rodata_243ec                             @ 0x000243ec
+ *   rodata_243f0                             @ 0x000243f0
+ *   rodata_243f4                             @ 0x000243f4
+ *   rodata_243f8                             @ 0x000243f8
+ *   rodata_87bf0                             @ 0x00087bf0
+ *   rodata_9e9ea                             @ 0x0009e9ea
+ *   rodata_9ea0a                             @ 0x0009ea0a
+ *   rodata_9ea7b                             @ 0x0009ea7b
+ *   rodata_9ead2                             @ 0x0009ead2
+ *   rodata_9eaf4                             @ 0x0009eaf4
+ *   rodata_9eb2e                             @ 0x0009eb2e
+ *   rodata_9eba7                             @ 0x0009eba7
+ *   rodata_9ebc6                             @ 0x0009ebc6
+ *   rodata_9ecd5                             @ 0x0009ecd5
+ *   rodata_9ecf5                             @ 0x0009ecf5
+ *   g_log_level                              @ 0x2000230c
+ *   g_flash_store_cmd_msgq                   @ 0x20003994
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ui_mode_flag                           @ 0x20018462
+ */
 /* Reconstructed SettingStoreHandler @ 0x23f04  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -15,7 +41,8 @@ typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
 typedef unsigned long long undefined8,ulonglong;
 typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
+typedef unsigned int(*code)(unsigned int,unsigned int,unsigned int,unsigned int);
+typedef unsigned int(*code3)(unsigned int,unsigned int,unsigned int);
 #define bool int
 #define false 0
 #define true 1
@@ -26,10 +53,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -72,11 +95,11 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long get_device_info();
-extern long long debug_print();
-extern long long k_msgq_get();
-extern long long z_device_is_ready();
+extern void DEBUG_PRINT(unsigned int format, ...);
+extern unsigned int get_device_info(void);
+extern void debug_print(unsigned int format, ...);
+extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
+extern int z_device_is_ready(unsigned int);
 #define DAT_0002418c 0x20003994UL
 #define DAT_00024190 ((volatile int*)0x2000230cUL)
 #define DAT_00024194 ((volatile int*)0x20007554UL)
@@ -123,9 +146,8 @@ uint SettingStoreHandler(void)
   bool bVar13;
   undefined2 local_24;
   byte local_22;
-  undefined1 local_20 [4];
-  byte local_1c;
-  
+  undefined1 local_20 [5];
+
   iVar4 = k_msgq_get(DAT_0002418c,local_20,0,0);
   piVar2 = DAT_00024194;
   piVar1 = DAT_00024190;
@@ -135,7 +157,7 @@ uint SettingStoreHandler(void)
         DEBUG_PRINT(DAT_000241a8,DAT_000241a0);
       }
       else {
-        debug_print();
+        debug_print(DAT_000241a8,DAT_000241a0);
       }
     }
     puVar3 = DAT_000243f4;
@@ -143,13 +165,13 @@ uint SettingStoreHandler(void)
     uVar8 = 0;
     switch(local_20[0]) {
     case 1:
-      uVar8 = (uint)local_1c;
+      uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_00024194 == 0) {
           DEBUG_PRINT(DAT_000241ac,DAT_000241a0,uVar8);
         }
         else {
-          debug_print();
+          debug_print(DAT_000241ac,DAT_000241a0,uVar8);
         }
       }
       puVar10 = DAT_000241bc;
@@ -171,11 +193,11 @@ uint SettingStoreHandler(void)
           uVar6 = get_device_info();
           iVar7 = (*pcVar11)(uVar6,0x13e000,&local_24,3);
           if (iVar7 == 0) {
-            local_24 = CONCAT11(local_1c,0xaa);
+            local_24 = CONCAT11(local_20[4],0xaa);
             iVar7 = get_device_info();
             pcVar11 = *(code **)(iVar7 + 0x1038);
             uVar6 = get_device_info();
-            uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+            uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
             if (uVar8 != 0) goto LAB_00024044;
             iVar7 = get_device_info();
             pcVar11 = *(code **)(iVar7 + 0x1034);
@@ -232,7 +254,7 @@ LAB_00023fe2:
           iVar4 = get_device_info();
           pcVar11 = *(code **)(iVar4 + 0x1038);
           uVar6 = get_device_info();
-          uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+          uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
           if (uVar8 != 0) {
 LAB_00024044:
             if (*piVar1 < 3) {
@@ -244,7 +266,7 @@ LAB_00024044:
             uVar9 = uVar8;
 LAB_000240c6:
             if (iVar4 != 0) {
-              debug_print();
+              debug_print(uVar6,uVar5,uVar8);
               return uVar9;
             }
             DEBUG_PRINT(uVar6,uVar5,uVar8);
@@ -278,7 +300,7 @@ LAB_00024074:
                 DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
               }
               else {
-                debug_print();
+                debug_print(DAT_000243e4,DAT_000243e0);
               }
             }
             *(undefined1 *)(DAT_000243e8 + 1) = 2;
@@ -298,13 +320,13 @@ LAB_000240dc:
       }
       break;
     case 3:
-      uVar8 = (uint)local_1c;
+      uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_000243dc == 0) {
           DEBUG_PRINT(DAT_000243ec,DAT_000243e0,uVar8);
         }
         else {
-          debug_print();
+          debug_print(DAT_000243ec,DAT_000243e0,uVar8);
         }
       }
       puVar10 = DAT_000243f4;
@@ -332,12 +354,12 @@ LAB_00023fc4:
           uVar6 = get_device_info();
           iVar7 = (*pcVar11)(uVar6,0x13e000,&local_24,3);
           if (iVar7 == 0) {
-            local_22 = local_1c;
+            local_22 = local_20[4];
             local_24 = CONCAT11(((unsigned long long)(local_24)>>8 & 0xffULL),0xaa);
             iVar7 = get_device_info();
             pcVar11 = *(code **)(iVar7 + 0x1038);
             uVar6 = get_device_info();
-            uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+            uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
             if (uVar8 != 0) goto LAB_00024044;
             iVar7 = get_device_info();
             pcVar11 = *(code **)(iVar7 + 0x1034);
@@ -389,7 +411,7 @@ LAB_00023fc4:
       iVar4 = get_device_info();
       pcVar11 = *(code **)(iVar4 + 0x1038);
       uVar6 = get_device_info();
-      uVar8 = (*pcVar11)(uVar6,0x13e000,0x1000);
+      uVar8 = ((code3)pcVar11)(uVar6,0x13e000,0x1000);
       if (uVar8 != 0) goto LAB_00024044;
       iVar4 = get_device_info();
       pcVar11 = *(code **)(iVar4 + 0x1034);
@@ -409,7 +431,7 @@ LAB_00023fc4:
             DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
           }
           else {
-            debug_print();
+            debug_print(DAT_000243e4,DAT_000243e0);
           }
         }
         *(undefined1 *)(DAT_000243e8 + 2) = 0;
@@ -425,7 +447,7 @@ LAB_00023fea:
           DEBUG_PRINT(uVar5,DAT_000241a0,uVar6);
         }
         else {
-          debug_print();
+          debug_print(uVar5,DAT_000241a0,uVar6);
         }
       }
       break;
@@ -438,7 +460,7 @@ LAB_00023fea:
       DEBUG_PRINT(DAT_0002419c,DAT_00024198);
     }
     else {
-      debug_print();
+      debug_print(DAT_0002419c,DAT_00024198);
     }
     if (0 < *piVar1) {
       iVar4 = *piVar2;
@@ -449,7 +471,7 @@ LAB_00023f56:
         DEBUG_PRINT(uVar6,uVar5);
       }
       else {
-        debug_print();
+        debug_print(uVar6,uVar5);
       }
     }
   }
@@ -457,5 +479,3 @@ LAB_00023f56:
 switchD_00023f2c_caseD_4:
   return uVar8;
 }
-
-

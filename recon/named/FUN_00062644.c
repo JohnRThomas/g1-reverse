@@ -1,4 +1,20 @@
-/* named: FUN_00062644 */
+/* readable reconstruction; identity: FUN_00062644 @ 0x00062644
+ * public-name: FUN_00062644
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __floatunsidf                            <= FUN_0000d804 @ 0x0000d804
+ *   __extendsfdf2                            <= FUN_0000d848 @ 0x0000d848
+ *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
+ *   __fixunsdfsi                             <= FUN_0000dea8 @ 0x0000dea8
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   dev_write_reg4                           <= FUN_00083de6 @ 0x00083de6
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_8ba64                             @ 0x0008ba64
+ *   rodata_8ba7c                             @ 0x0008ba7c
+ *   rodata_8ba88                             @ 0x0008ba88
+ *   rodata_8ba94                             @ 0x0008ba94
+ */
 /* Reconstructed FUN_00062644 @ 0x62644  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
@@ -87,4 +103,3 @@ int FUN_00062644(int param_1)
   }
   return iVar4;
 }
-

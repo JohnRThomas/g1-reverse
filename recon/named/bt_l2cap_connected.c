@@ -1,5 +1,20 @@
-/* named: bt_l2cap_connected */
-/* Reconstructed bt_l2cap_connected @ 0x5791c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005791c @ 0x0005791c
+ * public-name: bt_l2cap_connected
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
+ *   bt_l2cap_connected                       <= FUN_0005791c @ 0x0005791c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_87fc8                             @ 0x00087fc8
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3f55                             @ 0x000f3f55
+ *   rodata_f402a                             @ 0x000f402a
+ */
+/* Reconstructed FUN_0005791c @ 0x5791c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int l2cap_chan_add(int,int,int);
@@ -27,4 +42,3 @@ void bt_l2cap_connected(int param_1,int param_2){
     puVar5=puVar5+6;
   }
 }
-

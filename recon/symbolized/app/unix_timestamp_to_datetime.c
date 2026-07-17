@@ -1,12 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: unix_timestamp_to_datetime */
-/* Reconstructed unix_timestamp_to_datetime @ 0x4a1b8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a1b8 @ 0x0004a1b8
+ * public-name: unix_timestamp_to_datetime
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   unix_timestamp_to_datetime               <= FUN_0004a1b8 @ 0x0004a1b8
+ * address symbols (name @ address):
+ *   rodata_99014                             @ 0x00099014
+ */
+/* Reconstructed FUN_0004a1b8 @ 0x4a1b8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 uint32_t unix_timestamp_to_datetime(uint param_1, int16_t* param_2){
-    uint16_t* puVar7=(uint16_t*)((uintptr_t)&tbl_98fbc) /*=0x99014*/;
-    uint uVar3=param_1/((uintptr_t)&rodata_15180) /*=0x15180*/;
-    param_1=param_1-((uintptr_t)&rodata_15180) /*=0x15180*/*uVar3;
+    uint16_t* puVar7=(uint16_t*)((unsigned long)&rodata_99014) /*=0x99014*/;
+    uint uVar3=param_1/0x15180;
+    param_1=param_1-0x15180*uVar3;
     uint uVar2=0x7b2; uint uVar4;
     while(1){
         if(((uVar2&3)==0)&&(uVar2%100!=0)) uVar4=0x16e;
@@ -14,7 +21,7 @@ uint32_t unix_timestamp_to_datetime(uint param_1, int16_t* param_2){
         else uVar4=0x16d;
         if(uVar3<uVar4) break;
         uVar3-=uVar4;
-        uVar2=(uVar2+1)&((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+        uVar2=(uVar2+1)&0xffff;
     }
     int iVar5=0; int16_t sVar6;
     *(volatile int16_t*)param_2=(int16_t)uVar2;
@@ -51,4 +58,3 @@ L26c:
     *(volatile int16_t*)(param_2+4)=sVar1;
     return 0;
 }
-

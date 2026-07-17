@@ -1,11 +1,16 @@
-/* named: onboarding_retry_watchdog_update */
-/* globals referenced:
-//   0x200034f5  onboarding_last_step_cache   
-//   0x2001cdd1  onboarding_retry_counter     
-//   0x2001cdd2  onboarding_attempt_counter   
-//   0x2001cdd3  onboarding_watchdog_active_flag 
-*/
-/* Reconstructed onboarding_retry_watchdog_update @ 0x40708  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00040708 @ 0x00040708
+ * public-name: onboarding_retry_watchdog_update
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ * address symbols (name @ address):
+ *   onboarding_last_step_cache               @ 0x200034f5
+ *   onboarding_retry_counter                 @ 0x2001cdd1
+ *   onboarding_attempt_counter               @ 0x2001cdd2
+ *   onboarding_watchdog_active_flag          @ 0x2001cdd3
+ */
+/* Reconstructed FUN_00040708 @ 0x40708  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 void onboarding_retry_watchdog_update(void){
@@ -24,4 +29,3 @@ void onboarding_retry_watchdog_update(void){
   iVar3=get_device_info();
   *(volatile char*)0x200034f5UL=*(volatile unsigned char*)(*(volatile int*)(iVar3+0x1014)+2);
 }
-

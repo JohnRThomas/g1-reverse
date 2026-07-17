@@ -1,23 +1,60 @@
-/* named: gpio_pin_cnf_build_fields */
-/* Reconstructed gpio_pin_cnf_build_fields @ 0x85130  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085130 @ 0x00085130
+ * public-name: gpio_pin_cnf_build_fields
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_pin_cnf_build_fields                <= FUN_00085130 @ 0x00085130
+ * address symbols (name @ address):
+ *   rodata_30000                             @ 0x00030000
+ */
+/* Reconstructed FUN_00085130 @ 0x85130 */
 #include <stdint.h>
-typedef uint32_t u32; typedef uint8_t u8;
-extern int FUN_00065584(int*);
-void gpio_pin_cnf_build_fields(int param_1, u8* param_2, u8* param_3, u8* param_4, u8* param_5, u8* param_6){
-    int local_1c = param_1;
-    int iVar1 = FUN_00065584(&local_1c);
-    iVar1 = iVar1 + local_1c * 4;
-    u32 pbVar2 = (param_3 != 0) ? 1 : 0;
-    u32 pbVar7 = (param_2 != 0) ? 1 : 0;
-    u32 uVar3 = (param_4 != 0) ? 0xc : 0;
-    u32 uVar4 = (param_5 != 0) ? 0xf00 : 0;
-    u32 uVar5 = (param_6 != 0) ? 0x30000 : 0;
-    u32 v2 = (param_2 != 0) ? (u32)*param_2 : 0;
-    u32 v3 = (param_3 != 0) ? ((u32)*param_3 << 1) : 0;
-    u32 v4 = (param_4 != 0) ? ((u32)*param_4 << 2) : 0;
-    u32 uVar6 = (param_5 != 0) ? ((u32)*param_5 << 8) : 0;
-    u32 v6 = (param_6 != 0) ? ((u32)*param_6 << 0x10) : 0;
-    u32 mask = ~(pbVar7 | (pbVar2 << 1) | uVar3 | uVar4 | uVar5);
-    *(volatile u32*)(iVar1+0x200) = uVar6 | v2 | (*(volatile u32*)(iVar1+0x200) & mask) | v3 | v4 | v6;
-}
 
+extern uintptr_t FUN_00065584(uint32_t *);
+
+void gpio_pin_cnf_build_fields(uint32_t channel,
+                  const uint8_t *enable,
+                  const uint8_t *polarity,
+                  const uint8_t *drive,
+                  const uint8_t *pull,
+                  const uint8_t *sense)
+{
+  uint32_t index = channel;
+  uintptr_t table = FUN_00065584(&index);
+  volatile uint32_t *configuration =
+      (volatile uint32_t *)(table + index * 4 + 0x200);
+
+  uint32_t clear_mask = 0;
+  if (enable != 0) {
+    clear_mask |= 1;
+  }
+  if (polarity != 0) {
+    clear_mask |= 2;
+  }
+  if (drive != 0) {
+    clear_mask |= 0x0c;
+  }
+  if (pull != 0) {
+    clear_mask |= 0x0f00;
+  }
+  if (sense != 0) {
+    clear_mask |= 0x30000;
+  }
+
+  uint32_t value = *configuration & ~clear_mask;
+  if (enable != 0) {
+    value |= *enable;
+  }
+  if (polarity != 0) {
+    value |= (uint32_t)*polarity << 1;
+  }
+  if (drive != 0) {
+    value |= (uint32_t)*drive << 2;
+  }
+  if (pull != 0) {
+    value |= (uint32_t)*pull << 8;
+  }
+  if (sense != 0) {
+    value |= (uint32_t)*sense << 16;
+  }
+  *configuration = value;
+}

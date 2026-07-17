@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: dev_ctrl_write2 */
-/* Reconstructed dev_ctrl_write2 @ 0x83d80  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00083d80 @ 0x00083d80
+ * public-name: dev_ctrl_write2
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_ctrl_write2                          <= FUN_00083d80 @ 0x00083d80
+ */
+/* Reconstructed FUN_00083d80 @ 0x83d80  (parity: 300/300 trials, PROVEN) */
 
 void dev_ctrl_write2(int param_1, unsigned char param_2, unsigned char param_3,
                    unsigned int param_4, unsigned int param_5)
@@ -29,4 +34,3 @@ void dev_ctrl_write2(int param_1, unsigned char param_2, unsigned char param_3,
     (*(void (**)(int, unsigned char **, int, unsigned short))(*(int *)(iVar1 + 8) + 8))(
         iVar1, &local_28, 2, *(unsigned short *)((char *)r4 + 4));
 }
-

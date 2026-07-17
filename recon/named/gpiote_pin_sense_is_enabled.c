@@ -1,8 +1,13 @@
-/* named: gpiote_pin_sense_is_enabled */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_pin_sense_is_enabled @ 0x65478  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065478 @ 0x00065478
+ * public-name: gpiote_pin_sense_is_enabled
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   gpiote_pin_sense_is_enabled              <= FUN_00065478 @ 0x00065478
+ * address symbols (name @ address):
+ *   g_gpiote_cb                              @ 0x20002bc0
+ */
+/* Reconstructed FUN_00065478 @ 0x65478  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int get_pin_idx(void);
@@ -15,4 +20,3 @@ unsigned short gpiote_pin_sense_is_enabled(void) {
     }
     return uVar2;
 }
-

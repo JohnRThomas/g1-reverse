@@ -1,9 +1,20 @@
-/* named: SendSystemLanguageInfoToSlave */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x2000392c  g_dashboard_response_msgq    
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00048998 @ 0x00048998
+ * public-name: SendSystemLanguageInfoToSlave
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef596                             @ 0x000ef596
+ *   rodata_ef59e                             @ 0x000ef59e
+ *   rodata_ef6d4                             @ 0x000ef6d4
+ *   g_log_level                              @ 0x2000230c
+ *   g_translate_lang_string_table            @ 0x200024f4
+ *   g_dashboard_response_msgq                @ 0x2000392c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed SendSystemLanguageInfoToSlave @ 0x48998  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
@@ -47,4 +58,3 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
     }
     return uVar4;
 }
-

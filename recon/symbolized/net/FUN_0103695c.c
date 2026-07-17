@@ -1,5 +1,11 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0103695c @ 0x103695c  (parity 300 trials PROVEN) */
+/* net-core FUN_0103695c @ 0x103695c
+ * Complete 424-byte worker-loop body through 0x1036b03; its five literals
+ * occupy 0x1036b04..0x1036b17 and the next function starts at 0x1036b18.
+ * Includes empty-queue waiting, callback dispatch, cancellation-list removal,
+ * lock release/reacquisition, and scheduler wakeup. CFG parity: PASS. */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern int FUN_01036144(int);
@@ -15,16 +21,13 @@ typedef int (*fpv_t)(unsigned int);
 
 void FUN_0103695c(int param_1)
 {
-    unsigned int uVar4 = ((uintptr_t)&g_net_workq_queue) /*=0x21004b58*/;   /* DAT_01036b04, call-arg only, value irrelevant */
-    unsigned int puVar2 = ((uintptr_t)&g_net_workq_pending_sync_list) /*=0x21004b50*/;  /* DAT_01036b08, real struct base */
-
-    /* NOTE: isCurrentModePrivileged()/getBasePriority()/setBasePriority()/
-       InstructionSynchronizationBarrier() in the decompile are Ghidra's
-       pattern-match for raw mrs/msr basepri_max/isb instructions -- not real
-       calls. They touch only the BASEPRI special register, never memory, so
-       they produce no observable event under this harness; safe to omit. */
+    unsigned int uVar4 = 0x21004b58u;   /* DAT_01036b04, call-arg only, value irrelevant */
+    unsigned int puVar2 = ((unsigned long)&g_net_workq_pending_sync_list) /*=0x21004b50*/;  /* DAT_01036b08, real struct base */
 
     for (;;) {
+        uint32_t saved_basepri = __get_BASEPRI();
+        __set_BASEPRI_MAX(0x40);
+        __ISB();
         {
             int r = FUN_0103610c((int)uVar4);
             if (r == 0) goto ASSERT_A;
@@ -40,7 +43,8 @@ void FUN_0103695c(int param_1)
                         iVar3 = FUN_01037e10(param_1 + 0xa8, 1, 0);
                     } while (iVar3 != 0);
                 }
-                FUN_01037ea8((int)uVar4, 0, param_1 + 0xa0, -1, -1, -1, 0);
+                FUN_01037ea8((int)uVar4, (int)saved_basepri,
+                             param_1 + 0xa0, -1, -1, -1, 0);
                 continue;
             }
             unsigned int uVar7 = *(volatile unsigned int*)puVar9;
@@ -56,8 +60,13 @@ void FUN_0103695c(int param_1)
                 int r2 = FUN_01036128((int)uVar4);
                 if (r2 == 0) goto ASSERT_B;
             }
+            __set_BASEPRI(saved_basepri);
+            __ISB();
             if (pcVar12 == 0) goto ASSERT_C;
             ((fpv_t)(unsigned long)pcVar12)(puVar9);
+            uint32_t callback_basepri = __get_BASEPRI();
+            __set_BASEPRI_MAX(0x40);
+            __ISB();
             {
                 int r3 = FUN_0103610c((int)uVar4);
                 if (r3 == 0) goto ASSERT_A;
@@ -105,6 +114,8 @@ void FUN_0103695c(int param_1)
                 int r4 = FUN_01036128((int)uVar4);
                 if (r4 == 0) goto ASSERT_B;
             }
+            __set_BASEPRI(callback_basepri);
+            __ISB();
             if ((int)(uVar8b << 0x17) >= 0) {
                 FUN_01037a60();
             }
@@ -112,17 +123,16 @@ void FUN_0103695c(int param_1)
         }
 
     ASSERT_A:
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         goto L_CONT;
     ASSERT_B:
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         goto L_CONT;
     ASSERT_C:
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
-        FUN_01039bb0(((uintptr_t)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
+        FUN_01039bb0(((unsigned long)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
         goto L_CONT;
     }
 }
-

@@ -1,4 +1,13 @@
-/* named: FUN_0004f518 */
+/* readable reconstruction; identity: FUN_0004f518 @ 0x0004f518
+ * public-name: FUN_0004f518
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_notify_cb                        <= FUN_0005b754 @ 0x0005b754
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_4f4f1                             @ 0x0004f4f1
+ *   rodata_8ad40                             @ 0x0008ad40
+ */
 /* Reconstructed FUN_0004f518 @ 0x4f518  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*,int,int);
@@ -20,4 +29,3 @@ int FUN_0004f518(int param_1, int param_2, short param_3)
         return 0xffffffea;
     }
 }
-

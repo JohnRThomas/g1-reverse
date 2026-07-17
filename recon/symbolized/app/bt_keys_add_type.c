@@ -1,16 +1,29 @@
 #include "g1_app_symbols.h"
-/* named: bt_keys_add_type */
-/* Reconstructed bt_keys_add_type @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e9a0 @ 0x0005e9a0
+ * public-name: bt_keys_add_type
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5268                             @ 0x000f5268
+ *   rodata_f5298                             @ 0x000f5298
+ */
+/* Reconstructed FUN_0005e9a0 @ 0x5e9a0  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int a0, unsigned int a1);
-extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3, unsigned int a4);
+extern unsigned long long assert_post_action(unsigned int a0, unsigned int a1);
+extern void printk(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
 
 void bt_keys_add_type(int param_1, unsigned short param_2, unsigned int param_3, unsigned int param_4)
 {
   if (param_1 == 0) {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "keys != ((void *)0)" /*=0xf5298*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/keys.c" /*=0xf5268*/, 0x12a, param_4);
-    assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/keys.c" /*=0xf5268*/, 0x12a);
+    unsigned long long r;
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5298) /*=0xf5298*/, ((unsigned long)&rodata_f5268) /*=0xf5268*/, 0x12a);
+    r = assert_post_action(((unsigned long)&rodata_f5268) /*=0xf5268*/, 0x12a);
+    param_1 = (int)r;
+    param_2 = (unsigned short)(r >> 32);
   }
   *(volatile unsigned short *)(param_1 + 0xe) = param_2 | *(volatile unsigned short *)(param_1 + 0xe);
 }
-

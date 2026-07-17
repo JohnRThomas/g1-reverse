@@ -1,10 +1,20 @@
-/* named: settings_commit_subtree */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-//   0x00088328  __settings_handler_static_list_end 
-//   0x2000a10c  g_settings_handlers          
-*/
-/* Reconstructed settings_commit_subtree @ 0x4e6a8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e6a8 @ 0x0004e6a8
+ * public-name: settings_commit_subtree
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   settings_commit_subtree                  <= FUN_0004e6a8 @ 0x0004e6a8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
+ * address symbols (name @ address):
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f1126                             @ 0x000f1126
+ *   rodata_f1158                             @ 0x000f1158
+ *   g_settings_handlers                      @ 0x2000a10c
+ */
+/* Reconstructed FUN_0004e6a8 @ 0x4e6a8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_000530c4(int,...);
@@ -39,4 +49,3 @@ int settings_commit_subtree(int param_1,unsigned param_2,unsigned param_3,unsign
   }
   return iVar5;
 }
-

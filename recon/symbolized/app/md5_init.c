@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: md5_init */
-/* Reconstructed md5_init @ 0x49aa0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00049aa0 @ 0x00049aa0
+ * public-name: md5_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   md5_init                                 <= FUN_00049aa0 @ 0x00049aa0
+ */
+/* Reconstructed FUN_00049aa0 @ 0x49aa0  (parity: 300/300 trials, PROVEN) */
 
 void md5_init(unsigned int *param_1)
 {
@@ -13,4 +18,3 @@ void md5_init(unsigned int *param_1)
   param_1[4] = iVar1 + 0x3175b9fd;
   param_1[5] = iVar1 + 0xa8ed3175;
 }
-

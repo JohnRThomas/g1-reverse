@@ -20,10 +20,10 @@ extern void FUN_010208f0(int, int, u8);
 extern void *FUN_01026b58(u32, u16 *, i8 *);
 extern int FUN_01026dae(u32);
 
-#define DAT_0100ae9c ((uintptr_t)&g_net_radio_drv_ctx) /*=0x21000c48*/
-#define DAT_0100aea0 ((uintptr_t)&g_ll_conn_tx_ctx_addr) /*=0x21000cc4*/
-#define DAT_0100aea4 ((uintptr_t)&g_ll_conn_empty_pdu_buf) /*=0x21000c90*/
-#define DAT_0100aea8 ((uintptr_t)&g_ll_conn_pdu_hdr_ptr) /*=0x21000cfc*/
+#define DAT_0100ae9c ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
+#define DAT_0100aea0 ((unsigned long)&g_ll_conn_tx_ctx_addr) /*=0x21000cc4*/
+#define DAT_0100aea4 ((unsigned long)&g_ll_conn_empty_pdu_buf) /*=0x21000c90*/
+#define DAT_0100aea8 ((unsigned long)&g_ll_conn_pdu_hdr_ptr) /*=0x21000cfc*/
 
 void FUN_0100ac98(int param_1)
 {
@@ -71,7 +71,7 @@ LAB_0100acca:
       pbVar7 = (volatile u8 *)*(volatile u32 *)(iVar4 + 0x7c);
       *(volatile u8 *)(iVar11 + 0xb9) = 1;
       bVar2 = pbVar7[3];
-      goto joined_r_100adce /*=0x100adce*/;
+      goto joined_r0x0100adce;
     }
     puVar5 = (volatile u16 *)FUN_01026b58(*(volatile u32 *)(iVar4 + 0x80), &local_12, &local_13);
     *(volatile u32 *)(iVar4 + 0x7c) = (u32)(unsigned long)puVar5;
@@ -106,7 +106,7 @@ switchD_0100acd8_caseD_1:
     }
     pbVar7 = (volatile u8 *)*(volatile u32 *)(iVar4 + 0x7c);
     bVar2 = pbVar7[3];
-joined_r_100adce: /*=0x100adce*/
+joined_r0x0100adce:
     if (bVar2 == 0x1b) {
       FUN_01020368(iVar11 + 0x10, 1);
       pbVar7 = (volatile u8 *)*(volatile u32 *)(iVar4 + 0x7c);
@@ -137,7 +137,7 @@ joined_r_100adce: /*=0x100adce*/
 LAB_0100ad76:
   *pbVar7 = bVar8;
   if ((*(volatile i8 *)(iVar11 + 0xca) == 0) || (pbVar7[1] == 0)) {
-    FUN_01020764(0);
+    FUN_01020764((u32)(unsigned long)pbVar7);
     FUN_0101ff4c();
   } else {
     FUN_01020764(*(volatile u32 *)(iVar4 + 0x84));
@@ -156,12 +156,10 @@ LAB_0100ad76:
   {
     volatile u16 *pp = (volatile u16 *)*(volatile u32 *)(iVar4 + 0x7c);
     uVar3 = *pp;
-    uVar1 = *((volatile u8 *)pp + 1);
+    uVar1 = *((volatile u8 *)pp + 2);
   }
   *(volatile u8 *)(iVar4 + 0xb0) = 1;
   *(volatile u16 *)(iVar4 + 0xb4) = uVar3;
   *(volatile u8 *)(iVar4 + 0x44) = 1;
   *(volatile u8 *)(iVar11 + 2) = uVar1;
 }
-
-

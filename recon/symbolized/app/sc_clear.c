@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: sc_clear */
-/* Reconstructed sc_clear @ 0x5a090  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a090 @ 0x0005a090
+ * public-name: sc_clear
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   bt_gatt_clear_sc                         <= FUN_0005a044 @ 0x0005a044
+ *   sc_clear                                 <= FUN_0005a090 @ 0x0005a090
+ *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f47c1                             @ 0x000f47c1
+ */
+/* Reconstructed FUN_0005a090 @ 0x5a090  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_addr_le_is_bonded(unsigned char a, int b);
 extern int find_sc_cfg_59bcc(unsigned char a, int b);
@@ -22,10 +33,9 @@ void sc_clear(int param_1)
         int iStack_18 = bt_gatt_clear_sc();
         if (iStack_18 != 0) {
             int local_20 = 3;
-            int local_1c = "Failed to clear SC %d" /*=0xf47c1*/;
+            int local_1c = ((unsigned long)&rodata_f47c1) /*=0xf47c1*/;
             (void)local_1c;
-            FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1840, &local_20);
+            FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, &local_20);
         }
     }
 }
-

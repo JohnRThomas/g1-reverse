@@ -1,8 +1,25 @@
-/* named: gpiote_in_event_enable */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_in_event_enable @ 0x659e4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000659e4 @ 0x000659e4
+ * public-name: gpiote_in_event_enable
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   pin_in_use_by_te                         <= FUN_00065460 @ 0x00065460
+ *   gpiote_pin_sense_is_enabled              <= FUN_00065478 @ 0x00065478
+ *   pin_is_output                            <= FUN_00065494 @ 0x00065494
+ *   pin_te_get                               <= FUN_000654ac @ 0x000654ac
+ *   gpiote_in_event_reg_offset               <= FUN_000655ec @ 0x000655ec
+ *   gpiote_in_event_enable                   <= FUN_000659e4 @ 0x000659e4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   nrf_gpio_cfg_sense_set                   <= FUN_000851ca @ 0x000851ca
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6b00                             @ 0x000f6b00
+ *   rodata_f6b87                             @ 0x000f6b87
+ *   rodata_f6b9c                             @ 0x000f6b9c
+ *   g_gpiote_cb                              @ 0x20002bc0
+ */
+/* Reconstructed FUN_000659e4 @ 0x659e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_pin_idx(uint32_t);
 extern int pin_in_use_by_te(uint32_t);
@@ -11,7 +28,7 @@ extern int pin_is_output(uint32_t);
 extern int pin_te_get(uint32_t);
 extern int FUN_00065584(void*);
 extern int gpiote_in_event_reg_offset(void);
-extern void assert_post_action(uint32_t,uint32_t);
+extern __attribute__((noreturn)) void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,...);
 extern void nrf_gpio_cfg_sense_set(uint32_t,int);
 
@@ -21,7 +38,7 @@ void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){
     iVar1 = gpiote_pin_sense_is_enabled();
     if (iVar1 == 0){
         printk(0x00099cbd,0x000f6b87,0x000f6b00,0x364,uVar2);
-        goto Lec_364;
+        assert_post_action(0x000f6b00,0x364);
     }
   L_a08:
     iVar1 = pin_in_use_by_te(param_1);
@@ -52,9 +69,4 @@ void gpiote_in_event_enable(uint32_t param_1, uint32_t param_2){
     }
     printk(0x00099cbd,0x000f6b9c,0x000f6b00,0x373,uVar2);
     assert_post_action(0x000f6b00,0x373);
-    goto L_a08;
-  Lec_364:
-    assert_post_action(0x000f6b00,0x364);
-    goto L_a08;
 }
-

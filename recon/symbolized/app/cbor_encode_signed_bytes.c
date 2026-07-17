@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: cbor_encode_signed_bytes */
-/* Reconstructed cbor_encode_signed_bytes @ 0x8629e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008629e @ 0x0008629e
+ * public-name: cbor_encode_signed_bytes
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_encode_set_error                    <= FUN_000861c2 @ 0x000861c2
+ *   cbor_encode_length_header                <= FUN_00086208 @ 0x00086208
+ *   cbor_encode_signed_bytes                 <= FUN_0008629e @ 0x0008629e
+ */
+/* Reconstructed FUN_0008629e @ 0x8629e  (parity: 300/300 trials, PROVEN) */
 
 extern void cbor_encode_set_error(int a, int b);
 extern int cbor_encode_length_header(int a, int b, void *c);
@@ -39,4 +46,3 @@ unsigned int cbor_encode_signed_bytes(int param_1, unsigned char *param_2, unsig
     cbor_encode_set_error(param_1, uVar1);
     return 0;
 }
-

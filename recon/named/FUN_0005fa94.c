@@ -1,4 +1,14 @@
-/* named: FUN_0005fa94 */
+/* readable reconstruction; identity: FUN_0005fa94 @ 0x0005fa94
+ * public-name: FUN_0005fa94
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ * address symbols (name @ address):
+ *   rodata_881a0                             @ 0x000881a0
+ *   rodata_f5660                             @ 0x000f5660
+ *   rodata_f5679                             @ 0x000f5679
+ */
 /* Reconstructed FUN_0005fa94 @ 0x5fa94  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long __aeabi_uldivmod(int a,int b,int c,int d);
@@ -30,4 +40,3 @@ int FUN_0005fa94(int param_1, unsigned param_2, unsigned param_3, unsigned *para
     }
     return iVar2;
 }
-

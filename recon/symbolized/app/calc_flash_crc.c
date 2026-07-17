@@ -1,88 +1,130 @@
 #include "g1_app_symbols.h"
-/* named: calc_flash_crc */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed calc_flash_crc @ 0x22974  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00022974 @ 0x00022974
+ * public-name: calc_flash_crc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   calc_flash_crc                           <= FUN_00022974 @ 0x00022974
+ *   watchdog_feed_retry                      <= FUN_0002ae84 @ 0x0002ae84
+ *   crc16_ansi                               <= FUN_0007da4a @ 0x0007da4a
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_87bf0                             @ 0x00087bf0
+ *   rodata_9e484                             @ 0x0009e484
+ *   rodata_9e4a3                             @ 0x0009e4a3
+ *   rodata_9e4c7                             @ 0x0009e4c7
+ *   rodata_9e4e3                             @ 0x0009e4e3
+ *   rodata_9e4f0                             @ 0x0009e4f0
+ *   rodata_9e4f9                             @ 0x0009e4f9
+ *   rodata_a40ec                             @ 0x000a40ec
+ *   g_log_level                              @ 0x2000230c
+ *   g_flash_crc_active_flag                  @ 0x2000302c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_flash_crc_skip_watchdog_flag           @ 0x20018d90
+ */
+/* Reconstructed FUN_00022974 @ 0x22974. */
 #include <stdint.h>
-typedef unsigned uint;
-extern int DEBUG_PRINT(int,...);
-extern int get_device_info(int,...);
-extern int debug_print(int,...);
-extern int watchdog_feed_retry(int,...);
-extern int crc16_ansi(int,...);
-extern int z_device_is_ready(int,...);
-extern int memset_bytes(int,...);
 
-unsigned calc_flash_crc(unsigned short *param_1, int param_2, uint param_3)
+typedef int (*flash_read_fn)(int context, int address, void *destination,
+                             int count);
+
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern int get_device_info(void);
+extern void debug_print(uint32_t format, ...);
+extern void watchdog_feed_retry(void);
+extern uint16_t crc16_ansi(uint16_t crc, const void *data, int count);
+extern int z_device_is_ready(const void *device);
+extern void memset_bytes(void *destination, int value, unsigned int count);
+
+uint32_t calc_flash_crc(uint16_t *crc, int start_address,
+                      uint32_t byte_count)
 {
-    volatile int *piVar1,*piVar3; unsigned *puVar2; unsigned short uVar4; int iVar5;
-    unsigned uVar6,uVar8; int iVar7,iVar10; int(*pcVar11)(int,...); uint uVar9,uVar12;
-    unsigned char local_428[1028];
-    piVar3 = (volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-    piVar1 = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    if(*piVar3 < 3){
-        if(param_1 == 0) return 0xffffffff;
-        if(param_3 == 0) return 0xffffffff;
-    } else {
-        if(*piVar1 == 0){ DEBUG_PRINT("%s(): join in calc_flash_crc\n\n" /*=0x9e484*/, "calc_flash_crc" /*=0x9e4f9*/); }
-        else { debug_print(0); }
-        if(param_1 == 0 || param_3 == 0){
-            if(*piVar3 < 3) return 0xffffffff;
-            uVar6 = "%s(): calc_flash_crc para is NULL\n\n" /*=0x9e4a3*/;
-            uVar8 = "calc_flash_crc" /*=0x9e4f9*/;
-            if(*piVar1 != 0){ debug_print(0); return 0xffffffff; }
-            goto LAB_00022a22;
-        }
-    }
-    uVar9 = (param_3 << 6) >> 0x10;
-    if((param_3 & 0x3ff) != 0){ uVar9 = (uVar9 + 1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/; }
-    local_428[0] = 0xff; local_428[1]=0; local_428[2]=0; local_428[3]=0;
-    memset_bytes((int)(local_428+4), 0, 0x3fc);
-    puVar2 = (unsigned*)((uintptr_t)&tbl_87b30) /*=0x87bf0*/;
-    iVar5 = z_device_is_ready(((uintptr_t)&tbl_87b30) /*=0x87bf0*/);
-    uVar6 = "calc_flash_crc" /*=0x9e4f9*/;
-    piVar1 = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    if(iVar5 != 0){
-        iVar5 = param_2;
-        while(1){
-            if(iVar5 == param_2 + (int)(uVar9 * 0x400)){
-                if(*(volatile char*)((uintptr_t)&g_flash_crc_active_flag) /*=0x2000302c*/ != 0 && *(volatile char*)((uintptr_t)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0){ watchdog_feed_retry(0); }
-                return 0;
-            }
-            iVar10 = (param_3 + param_2) - iVar5;
-            if(0x3ff < iVar10){ iVar10 = 0x400; }
-            iVar7 = get_device_info(0);
-            pcVar11 = *(int(**)(int,...))(iVar7 + 0x1030);
-            uVar8 = get_device_info(0);
-            iVar7 = (*pcVar11)(uVar8, iVar5, (int)local_428, iVar10);
-            if(iVar7 != 0) break;
-            uVar12 = 0;
-            while(1){
-                iVar7 = *piVar3;
-                if(iVar10 <= (int)(uVar12 & 0xff)) break;
-                if(2 < iVar7){
-                    if(*piVar1 == 0){ DEBUG_PRINT("%s(): 0x%x \n" /*=0x9e4e3*/, uVar6, (uint)local_428[uVar12 & 0xff]); }
-                    else { debug_print("%s(): 0x%x \n" /*=0x9e4e3*/, uVar6); }
-                }
-                uVar12 = uVar12 + 1;
-            }
-            if(2 < iVar7){
-                if(*piVar1 == 0){ DEBUG_PRINT("%s(): \n\n" /*=0x9e4f0*/, uVar6); }
-                else { debug_print(0); }
-            }
-            uVar4 = crc16_ansi(*param_1, (int)local_428, iVar10);
-            iVar5 = iVar5 + 0x400;
-            *param_1 = uVar4;
-        }
-        DEBUG_PRINT("Flash read 0x%x failed: %d\n" /*=0x9e4c7*/, iVar5, iVar7);
-        return 0xffffffff;
-    }
-    uVar8 = *puVar2;
-    uVar6 = " [%s] device not ready.\n" /*=0xa40ec*/;
-LAB_00022a22:
-    DEBUG_PRINT(uVar6, uVar8);
-    return 0xffffffff;
-}
+    volatile int *const log_level = (volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/;
+    volatile int *const alternate_log = (volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+    uint8_t buffer[1028];
+    uint32_t block_count;
+    int cursor;
+    int end_address;
 
+    if (*log_level >= 3) {
+        if (*alternate_log == 0)
+            DEBUG_PRINT(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+        else
+            debug_print(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+    }
+
+    if (crc == 0 || byte_count == 0) {
+        if (*log_level >= 3) {
+            if (*alternate_log == 0)
+                DEBUG_PRINT(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            else
+                debug_print(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+        }
+        return UINT32_MAX;
+    }
+
+    block_count = (byte_count >> 10) & 0xffffu;
+    if ((byte_count & 0x3ffu) != 0)
+        block_count = (block_count + 1) & 0xffffu;
+
+    *(uint32_t *)buffer = 0xff;
+    memset_bytes(buffer + 4, 0, 0x3fc);
+    if (z_device_is_ready((const void *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/) == 0) {
+        DEBUG_PRINT(((unsigned long)&rodata_a40ec) /*=0xa40ec*/, *(volatile uint32_t *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/);
+        return UINT32_MAX;
+    }
+
+    cursor = start_address;
+    end_address = start_address + (int)(block_count * 0x400);
+    while (cursor != end_address) {
+        int chunk_size = (int)(byte_count + (uint32_t)start_address) - cursor;
+        int context;
+        int status;
+        flash_read_fn read;
+        unsigned int dump_index;
+        int level;
+
+        if (chunk_size >= 0x400)
+            chunk_size = 0x400;
+
+        context = get_device_info();
+        read = *(flash_read_fn *)(context + 0x1030);
+        context = get_device_info();
+        status = read(context, cursor, buffer, chunk_size);
+        if (status != 0) {
+            DEBUG_PRINT(((unsigned long)&rodata_9e4c7) /*=0x9e4c7*/, cursor, status);
+            return UINT32_MAX;
+        }
+
+        dump_index = 0;
+        for (;;) {
+            level = *log_level;
+            if (chunk_size <= (int)(uint8_t)dump_index)
+                break;
+            if (level > 2) {
+                if (*alternate_log == 0)
+                    DEBUG_PRINT(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/,
+                                buffer[(uint8_t)dump_index]);
+                else
+                    debug_print(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            }
+            ++dump_index;
+        }
+
+        if (level > 2) {
+            if (*alternate_log == 0)
+                DEBUG_PRINT(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            else
+                debug_print(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+        }
+        *crc = crc16_ansi(*crc, buffer, chunk_size);
+        cursor += 0x400;
+    }
+
+    if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_active_flag) /*=0x2000302c*/ != 0 &&
+        *(volatile uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0)
+        watchdog_feed_retry();
+    return 0;
+}

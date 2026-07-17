@@ -1,19 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_leave_container */
-/* Reconstructed cbor_decode_leave_container @ 0x85df6  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085df6 @ 0x00085df6
+ * public-name: cbor_decode_leave_container
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_expect_break                 <= FUN_00085dd2 @ 0x00085dd2
+ *   cbor_decode_leave_container              <= FUN_00085df6 @ 0x00085df6
+ */
+/* Reconstructed FUN_00085df6 @ 0x85df6 */
 #include <stdint.h>
-typedef uint32_t u32; typedef uint8_t u8;
-extern int cbor_decode_expect_break(void);
-extern int FUN_00085c12(u32*,int,u32,u32);
-int cbor_decode_leave_container(u32* param_1, u32 param_2, u32 param_3, u32 param_4){
-    u8 r2 = *(u8*)((char*)param_1 + 0x10);
-    u32 uVar3 = r2;
-    if(r2 != 0){
-        int iVar1 = cbor_decode_expect_break();
-        if(iVar1 == 0) return 0;
-        uVar3 = 0xffffffff;
-        *(u8*)((char*)param_1 + 0x10) = 0;
-    }
-    return FUN_00085c12(param_1, 7, uVar3, param_4);
-}
 
+extern int cbor_decode_expect_break(void *);
+extern int FUN_00085c86(void *, uint32_t, uint32_t, uint32_t);
+
+int cbor_decode_leave_container(void *decoder, uint32_t reserved_1,
+                 uint32_t reserved_2, uint32_t options)
+{
+  (void)reserved_1;
+  (void)reserved_2;
+  uint8_t *restart_pending = (uint8_t *)decoder + 0x10;
+  uint32_t restart_value = *restart_pending;
+
+  if (restart_value != 0) {
+    if (cbor_decode_expect_break(decoder) == 0) {
+      return 0;
+    }
+    restart_value = UINT32_MAX;
+    options = 0;
+    *restart_pending = 0;
+  }
+  return FUN_00085c86(decoder, 7, restart_value, options);
+}

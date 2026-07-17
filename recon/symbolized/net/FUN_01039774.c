@@ -18,4 +18,3 @@ void FUN_01039774(int param_1,int param_2,int param_3)
     *(unsigned short *)(iVar1 + 2) = uVar2;
   }
 }
-

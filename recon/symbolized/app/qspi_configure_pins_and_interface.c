@@ -1,10 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: qspi_configure_pins_and_interface */
-/* globals referenced:
-//   0x2000b348  g_qspi_cb                    
-//   0x5002b000  NRF_QSPI_BASE                
-*/
-/* Reconstructed qspi_configure_pins_and_interface @ 0x66850  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066850 @ 0x00066850
+ * public-name: qspi_configure_pins_and_interface
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   gpio_configure_pin_output                <= FUN_0006666c @ 0x0006666c
+ *   nrf_qspi_pins_set                        <= FUN_00066784 @ 0x00066784
+ *   qspi_workaround_apply                    <= FUN_000667e0 @ 0x000667e0
+ *   qspi_configure_pins_and_interface        <= FUN_00066850 @ 0x00066850
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_30000                             @ 0x00030000
+ *   g_qspi_cb                                @ 0x2000b348
+ *   NRF_QSPI_BASE                            @ 0x5002b000
+ */
+/* Reconstructed FUN_00066850 @ 0x66850  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int arch_irq_enable(int);
 extern int gpio_configure_pin_output(int,int);
@@ -13,7 +23,7 @@ extern int qspi_workaround_apply(void);
 
 unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
 {
-    volatile int *piVar1 = (volatile int *)((uintptr_t)&g_qspi_cb) /*=0x2000b348*/;
+    volatile int *piVar1 = (volatile int *)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;
 
     if ((*(char *)((int)param_1 + 0x29) == '\0') || (*(char *)((int)param_1 + 0x2a) == '\0')) {
         if (param_1[1] == 0xff) return 0x0bad0004;
@@ -37,8 +47,8 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
             nrf_qspi_pins_set((int)(param_1 + 1));
         }
     }
-    *(volatile int *)(((uintptr_t)&g_qspi_cb) /*=0x2000b348*/ + 0x34) = param_1[9];
-    *(volatile unsigned char *)(((uintptr_t)&g_qspi_cb) /*=0x2000b348*/ + 0x3a) = *(unsigned char *)((int)param_1 + 0x29);
+    *(volatile int *)(((unsigned long)&g_qspi_cb) /*=0x2000b348*/ + 0x34) = param_1[9];
+    *(volatile unsigned char *)(((unsigned long)&g_qspi_cb) /*=0x2000b348*/ + 0x3a) = *(unsigned char *)((int)param_1 + 0x29);
     *(volatile int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x308) = 1;
     qspi_workaround_apply();
     *(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x540) = *param_1;
@@ -50,9 +60,9 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
     {
         unsigned int uVar3;
         if (*(char *)((int)param_1 + 0x23) == '\0') {
-            uVar3 = *(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x544) | ((uintptr_t)&rodata_30000) /*=0x30000*/;
+            uVar3 = *(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x544) | ((unsigned long)&rodata_30000) /*=0x30000*/;
         } else {
-            uVar3 = (*(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x544) & 0xfffdffff) | ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+            uVar3 = (*(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x544) & 0xfffdffff) | ((unsigned long)&rodata_10000) /*=0x10000*/;
         }
         *(volatile unsigned int *)(NRF_QSPI_BASE /*=0x5002b000*/ + 0x544) = uVar3;
     }
@@ -68,4 +78,3 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
     }
     return 0x0bad0000;
 }
-

@@ -1,5 +1,18 @@
-/* named: nrf_gpiote_int_disable */
-/* Reconstructed nrf_gpiote_int_disable @ 0x65e4c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065e4c @ 0x00065e4c
+ * public-name: nrf_gpiote_int_disable
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrf_gpiote_int_disable                   <= FUN_00065e4c @ 0x00065e4c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6bc5                             @ 0x000f6bc5
+ *   rodata_f6c09                             @ 0x000f6c09
+ *   g_nrfx_gpiote_init_flag                  @ 0x2000b328
+ *   REG_5002a308                             @ 0x5002a308
+ */
+/* Reconstructed FUN_00065e4c @ 0x65e4c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int assert_post_action(unsigned int a, unsigned int b);
 extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
@@ -13,4 +26,3 @@ void nrf_gpiote_int_disable(unsigned int param_1, unsigned int param_2, unsigned
     }
     *(volatile int*)0x5002a308UL = 1 << (r0 & 0xff);
 }
-

@@ -19,13 +19,13 @@ unsigned int FUN_01034b64(int param_1, int param_2)
         iVar1 = FUN_010344d4(param_1);
         if (iVar1 != 0) {
             iVar1 = FUN_01034520(param_1);
-            volatile unsigned int *vp = (volatile unsigned int*)(iVar1 * 4 + REG_4100a510 /*=0x4100a510*/);
+            volatile unsigned int *vp = (volatile unsigned int*)(iVar1 * 4 + 0x4100a510);
             *vp = 0;
             *vp = 0;
         }
         FUN_01034578(param_1);
         iVar1 = FUN_010344a8(param_1);
-        *(unsigned short*)(((uintptr_t)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/ + (iVar1 + 8) * 2) = 0;
+        *(unsigned short*)(((unsigned long)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/ + (iVar1 + 8) * 2) = 0;
         local_c = param_1;
         iVar1 = FUN_010345f4(&local_c);
         iVar1 = iVar1 + local_c * 4;
@@ -34,4 +34,3 @@ unsigned int FUN_01034b64(int param_1, int param_2)
     }
     return uVar2;
 }
-

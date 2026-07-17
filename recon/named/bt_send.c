@@ -1,8 +1,31 @@
-/* named: bt_send */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed bt_send @ 0x54a44  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054a44 @ 0x00054a44
+ * public-name: bt_send
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
+ *   bt_send                                  <= FUN_00054a44 @ 0x00054a44
+ *   k_work_queue_init                        <= FUN_000730b4 @ 0x000730b4
+ *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
+ *   posix_stub_enosys                        <= FUN_00086412 @ 0x00086412
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ * address symbols (name @ address):
+ *   ADDR_FUN_000545f0_THUMB                  @ 0x000545f1
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f3376                             @ 0x000f3376
+ *   rodata_f338f                             @ 0x000f338f
+ *   rodata_f3395                             @ 0x000f3395
+ *   rodata_f339b                             @ 0x000f339b
+ *   g_ble_dev_state                          @ 0x20002000
+ *   rx_thread_data                           @ 0x20005e30
+ *   bt_workqueue                             @ 0x20005f08
+ *   ready_cb                                 @ 0x2000ac6c
+ *   rx_thread_stack                          @ 0x2002bb80
+ *   bt_workqueue_stack                       @ 0x2002bf80
+ */
+/* Reconstructed FUN_00054a44 @ 0x54a44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int hci_vs_init(void);
 extern int FUN_00052edc(void);
@@ -54,4 +77,3 @@ int bt_send(int param_1)
   }
   return iVar3;
 }
-

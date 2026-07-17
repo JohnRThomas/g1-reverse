@@ -1,9 +1,25 @@
-/* named: set_glasses_sn_info */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019ef3  g_test_mode_flag             
-*/
+/* readable reconstruction; identity: FUN_00031ee8 @ 0x00031ee8
+ * public-name: set_glasses_sn_info
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a672f                             @ 0x000a672f
+ *   rodata_a718e                             @ 0x000a718e
+ *   rodata_a71ab                             @ 0x000a71ab
+ *   rodata_a71cd                             @ 0x000a71cd
+ *   rodata_a71e0                             @ 0x000a71e0
+ *   rodata_a7209                             @ 0x000a7209
+ *   rodata_a769d                             @ 0x000a769d
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_test_mode_flag                         @ 0x20019ef3
+ */
 /* Reconstructed set_glasses_sn_info @ 0x31ee8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -16,7 +32,7 @@ extern int FUN_000232dc(int);
 extern int read_sys_settting_from_flash(void*);
 extern int printf(int,int);
 extern int k_msleep_ticks32768_b(int);
-extern int memcmp(int,void*,int);
+extern int FUN_00086be4(int,void*,int);
 
 uint32_t set_glasses_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_t *param_4){
     uint32_t uVar1;
@@ -41,7 +57,7 @@ uint32_t set_glasses_sn_info(int param_1, uint32_t param_2, uint32_t *param_3, u
         *puVar4=0x29; puVar4[1]=1; puVar4[3]=1; cVar3=5; puVar4[2]=3; puVar4[4]=0; *param_4=5;
         do {
             iVar2 = read_sys_settting_from_flash(auStack_9c);
-            if (iVar2==0 && (iVar2=memcmp(param_1, auStack_67, 0xb))==0){ DEBUG_PRINT(0x000a7209); goto done; }
+            if (iVar2==0 && (iVar2=FUN_00086be4(param_1, auStack_67, 0xb))==0){ DEBUG_PRINT(0x000a7209); goto done; }
             cVar3 = cVar3 - 1;
             k_msleep_ticks32768_b(100);
         } while (cVar3 != 0);
@@ -50,4 +66,3 @@ done:   uVar1=0;
     } else { DEBUG_PRINT(0x000a672f); uVar1=0xfffffffe; }
     return uVar1;
 }
-

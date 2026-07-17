@@ -8,7 +8,7 @@ void FUN_0101dd0c(int *param_1)
   int iVar2;
   if (iVar3 == 0) {
     iVar2 = *(int*)((char*)base + 0x18);
-    *(int*)((uintptr_t)&g_timeout_list) /*=0x2100113c*/ = iVar2;
+    *(int*)((unsigned long)&g_timeout_list) /*=0x2100113c*/ = iVar2;
     if (iVar2 == 0) goto tail;
   } else {
     int iVar1 = *(int*)((char*)base + 8);
@@ -26,4 +26,3 @@ tail:
   *(int*)((char*)base + 0x18) = 0;
   *(int*)((char*)base + 0x1c) = 0;
 }
-

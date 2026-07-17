@@ -1,16 +1,30 @@
 #include "g1_app_symbols.h"
-/* named: init_dashboard_info */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00036ed8 @ 0x00036ed8
+ * public-name: init_dashboard_info
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   uarte_nrfx_irq_rx_ready                  <= FUN_000165b4 @ 0x000165b4
+ *   init_dashboard_startup_mode_info_defaults <= FUN_00016658 @ 0x00016658
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   getQuickNoteDataFromFlash                <= FUN_00024534 @ 0x00024534
+ *   record_dashboard_startup_snapshot        <= FUN_0004a4b4 @ 0x0004a4b4
+ * address symbols (name @ address):
+ *   rodata_a8eee                             @ 0x000a8eee
+ *   rodata_a8f19                             @ 0x000a8f19
+ *   rodata_a8f46                             @ 0x000a8f46
+ *   rodata_a8fb7                             @ 0x000a8fb7
+ *   rodata_a95f9                             @ 0x000a95f9
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed init_dashboard_info @ 0x36ed8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int uarte_nrfx_irq_rx_ready(void);
 extern void init_dashboard_startup_mode_info_defaults(void);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(int, int, ...);
 extern int getQuickNoteDataFromFlash(int,int,int,int,int);
 extern void record_dashboard_startup_snapshot(int,int);
 extern void DEBUG_PRINT(int,int,int);
@@ -18,20 +32,20 @@ extern void DEBUG_PRINT(int,int,int);
 #define VI(a) (*(volatile int*)(a))
 
 void init_dashboard_info(void){
-  volatile int *p40 = (volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-  volatile int *p44 = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  volatile int *p40 = (volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
+  volatile int *p44 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int iVar3, iVar4, iVar5, iVar7;
   iVar3 = uarte_nrfx_irq_rx_ready();
   if (iVar3 == 0) {
     if (2 < *p40) {
-      if (*p44 == 0) { DEBUG_PRINT("%s(): system startup ,NCS memory is vaild\n" /*=0xa8eee*/, "init_dashboard_info" /*=0xa95f9*/, 0); }
-      else { debug_print(); }
+      if (*p44 == 0) { DEBUG_PRINT(((unsigned long)&rodata_a8eee) /*=0xa8eee*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
+      else { debug_print(((unsigned long)&rodata_a8eee) /*=0xa8eee*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/); }
     }
     init_dashboard_startup_mode_info_defaults();
   } else {
     if (2 < *p40) {
-      if (*p44 == 0) { DEBUG_PRINT("%s(): system startup ,NCS memory is invaild\n" /*=0xa8f19*/, "init_dashboard_info" /*=0xa95f9*/, 0); }
-      else { debug_print(); }
+      if (*p44 == 0) { DEBUG_PRINT(((unsigned long)&rodata_a8f19) /*=0xa8f19*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
+      else { debug_print(((unsigned long)&rodata_a8f19) /*=0xa8f19*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/); }
     }
     iVar3 = get_device_info();
     { unsigned int pb = VI(iVar3 + 0xfec);
@@ -54,23 +68,22 @@ void init_dashboard_info(void){
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 0;
       if (2 < *p40) {
-        if (*p44 == 0) DEBUG_PRINT("%s(): QuickNote %d is invaild,don't export\n" /*=0xa8f46*/, "init_dashboard_info" /*=0xa95f9*/, iVar3);
-        else debug_print();
+        if (*p44 == 0) DEBUG_PRINT(((unsigned long)&rodata_a8f46) /*=0xa8f46*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
+        else debug_print(((unsigned long)&rodata_a8f46) /*=0xa8f46*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
       }
     } else if (iVar4 == 0) {
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 1;
       if (2 < *p40) {
-        if (*p44 == 0) DEBUG_PRINT("%s(): success export quicknote text from flash,quicknote index = %d\n" /*=0xa8f72*/, "init_dashboard_info" /*=0xa95f9*/, iVar3);
-        else debug_print();
+        if (*p44 == 0) DEBUG_PRINT(0x000a8f72, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
+        else debug_print(0x000a8f72, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
       }
     } else if (0 < *p40) {
-      if (*p44 == 0) DEBUG_PRINT("%s(): !!!! getQuickNoteDataFromFlash return unknown value.\n" /*=0xa8fb7*/, "init_dashboard_info" /*=0xa95f9*/, 0);
-      else debug_print();
+      if (*p44 == 0) DEBUG_PRINT(((unsigned long)&rodata_a8fb7) /*=0xa8fb7*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0);
+      else debug_print(((unsigned long)&rodata_a8fb7) /*=0xa8fb7*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/);
     }
     iVar3++;
     iVar7 += 0x143;
     if (iVar3 == 4) return;
   } while (1);
 }
-

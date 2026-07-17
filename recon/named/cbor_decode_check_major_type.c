@@ -1,5 +1,11 @@
-/* named: cbor_decode_check_major_type */
-/* Reconstructed cbor_decode_check_major_type @ 0x85da2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085da2 @ 0x00085da2
+ * public-name: cbor_decode_check_major_type
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
+ *   cbor_decode_check_major_type             <= FUN_00085da2 @ 0x00085da2
+ */
+/* Reconstructed FUN_00085da2 @ 0x85da2  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_precheck(void);
 extern void FUN_00085d70(int *a, int b, int c, unsigned char d, int e);
@@ -16,4 +22,3 @@ int cbor_decode_check_major_type(int **param_1, unsigned int param_2, int param_
   }
   return 0;
 }
-

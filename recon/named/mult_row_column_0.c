@@ -1,4 +1,9 @@
-/* named: mult_row_column_0 */
+/* readable reconstruction; identity: FUN_0007ffd6 @ 0x0007ffd6
+ * public-name: mult_row_column_0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _double_byte                             <= FUN_0007fec8 @ 0x0007fec8
+ */
 /* Reconstructed mult_row_column_0 @ 0x7ffd6  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char byte;
@@ -29,4 +34,3 @@ void mult_row_column_0(byte *param_1, byte *param_2)
   param_1[3] = tmp ^ bVar5;
   return;
 }
-

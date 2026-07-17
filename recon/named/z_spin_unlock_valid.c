@@ -1,5 +1,13 @@
-/* named: z_spin_unlock_valid */
-/* Reconstructed z_spin_unlock_valid @ 0x7205c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007205c @ 0x0007205c
+ * public-name: z_spin_unlock_valid
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ * address symbols (name @ address):
+ *   g_current_thread_ptr                     @ 0x2000b450
+ *   g_spinlock_validate_owner                @ 0x2000b458
+ */
+/* Reconstructed FUN_0007205c @ 0x7205c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 int z_spin_unlock_valid(unsigned int *param_1) {
@@ -10,4 +18,3 @@ int z_spin_unlock_valid(unsigned int *param_1) {
     }
     return bVar1;
 }
-

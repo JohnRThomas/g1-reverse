@@ -11,7 +11,7 @@ typedef unsigned long long u64;
 typedef long long i64;
 
 extern void FUN_01008d00(u32,u32);
-extern u32  FUN_0100d58c(u32,u32);
+extern u32  FUN_0100d58c(u32,u32,u32,u32);
 extern u16  FUN_0100d624(u32,i32);
 extern u32  FUN_0100d6b0(u32,u32);
 extern void FUN_0100f1a8(u32,u32);
@@ -25,10 +25,10 @@ extern void FUN_01020634(void);
 extern u32  FUN_010209f0(u32);
 extern void FUN_01022a84(void);
 
-#define DAT_0101b73c ((uintptr_t)&g_net_session_state_block) /*=0x210010a0*/
-#define DAT_0101b740 ((uintptr_t)&rodata_103c254) /*=0x103c254*/
+#define DAT_0101b73c ((unsigned long)&g_net_session_state_block) /*=0x210010a0*/
+#define DAT_0101b740 ((unsigned long)&rodata_103c254) /*=0x103c254*/
 #define DAT_0101b744 0x10624dd3u
-#define DAT_0101b748 ((uintptr_t)&g_net_session_queue_obj) /*=0x210010f0*/
+#define DAT_0101b748 ((unsigned long)&g_net_session_queue_obj) /*=0x210010f0*/
 
 #define CARRY4(a,b) ((u32)(a) > (0xFFFFFFFFu - (u32)(b)))
 
@@ -92,7 +92,7 @@ void FUN_0101b54c(u32 param_1)
   iVar8 = *(volatile i32*)(pcVar5 + 0x28);
   *(volatile u8*)((u32)iVar11 + 0x70) = 0xff;
   FUN_0100f1a8((u32)iVar8 + 0x30, (bVar3 & 0xc) != 0);
-  uVar9 = FUN_0100d58c(param_1 & 1, uVar16);
+  uVar9 = FUN_0100d58c(param_1 & 1, uVar16, 0, 0xff);
   iVar8 = (i32)FUN_010209f0(uVar16);
   if (param_1 == 1) {
     if (uVar16 == 8) uVar12 = 0xbe8;
@@ -174,5 +174,3 @@ TRAP_40f:
   FUN_01008d00(0x21,0x40f);
   for (;;) { FUN_01008d00(0x21,0x40f); }
 }
-
-

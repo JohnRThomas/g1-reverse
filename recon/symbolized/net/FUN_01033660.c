@@ -1,10 +1,12 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01033660 @ 0x1033660  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 typedef unsigned char u8;
 typedef unsigned int u32;
@@ -13,13 +15,13 @@ typedef int i32;
 extern void FUN_0103b614(i32 a, u8* b, i32 c, i32 d, u32 e);
 extern void FUN_01032c28(void);
 
-#define A_01033790 ((uintptr_t)&g_esb_enabled_flag) /*=0x21006459*/
-#define A_01033794 ((uintptr_t)&g_esb_state) /*=0x21004a94*/
-#define A_01033798 ((uintptr_t)&g_esb_pipe_table) /*=0x21004a60*/
-#define A_0103379c ((uintptr_t)&g_esb_pipe_pid_cnt) /*=0x21006256*/
-#define A_010337a0 ((uintptr_t)&g_esb_tx_buf_pool) /*=0x210049d4*/
-#define A_010337a4 ((uintptr_t)&g_esb_pipe_queue_heads) /*=0x210049b4*/
-#define A_010337a8 ((uintptr_t)&g_net_radio_busy_flag) /*=0x21006458*/
+#define A_01033790 ((unsigned long)&g_esb_enabled_flag) /*=0x21006459*/
+#define A_01033794 ((unsigned long)&g_esb_state) /*=0x21004a94*/
+#define A_01033798 0x21004a60u
+#define A_0103379c ((unsigned long)&g_esb_pipe_pid_cnt) /*=0x21006256*/
+#define A_010337a0 ((unsigned long)&g_esb_tx_buf_pool) /*=0x210049d4*/
+#define A_010337a4 0x210049b4u
+#define A_010337a8 ((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/
 
 u32 FUN_01033660(u8 *param_1, u32 param_2, u32 param_3, u32 param_4)
 {
@@ -106,5 +108,3 @@ u32 FUN_01033660(u8 *param_1, u32 param_2, u32 param_3, u32 param_4)
     }
     return 0xffffffea;
 }
-
-

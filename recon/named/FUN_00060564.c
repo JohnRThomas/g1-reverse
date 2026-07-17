@@ -1,4 +1,9 @@
-/* named: FUN_00060564 */
+/* readable reconstruction; identity: FUN_00060564 @ 0x00060564
+ * public-name: FUN_00060564
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_87b30                             @ 0x00087b30
+ */
 /* Reconstructed FUN_00060564 @ 0x60564  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_000604e4(unsigned int,int,unsigned int);
@@ -10,4 +15,3 @@ void FUN_00060564(int param_1, fnptr UNRECOVERED_JUMPTABLE)
   (*UNRECOVERED_JUMPTABLE)(param_1,uVar1);
   return;
 }
-

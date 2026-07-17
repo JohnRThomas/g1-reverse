@@ -13,4 +13,3 @@ int FUN_0102a268(char *param_1)
     } while (cVar1 != 0);
     return (int)(pcVar2 - 1 - param_1);
 }
-

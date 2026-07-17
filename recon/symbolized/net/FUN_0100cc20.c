@@ -5,7 +5,7 @@ extern void FUN_01025a84(void *a0, unsigned int a1);
 
 int FUN_0100cc20(unsigned int param_1, unsigned char *param_2, unsigned int param_3)
 {
-    volatile unsigned char *D = (volatile unsigned char *)((uintptr_t)&g_net_radio_addr_match_tbl) /*=0x21000d18*/;
+    volatile unsigned char *D = (volatile unsigned char *)((unsigned long)&g_net_radio_addr_match_tbl) /*=0x21000d18*/;
     unsigned char bVar1, bVar2, bVar3, bVar4, bVar6, bVar7;
     signed char cVar9;
     int iVar8;
@@ -149,4 +149,3 @@ int FUN_0100cc20(unsigned int param_1, unsigned char *param_2, unsigned int para
     }
     return iVar8;
 }
-

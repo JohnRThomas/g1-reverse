@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: lshift */
-/* Reconstructed lshift @ 0x789f0  (parity: 8/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000789f0 @ 0x000789f0
+ * public-name: lshift
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   Bfree                                    <= FUN_00078654 @ 0x00078654
+ *   lshift                                   <= FUN_000789f0 @ 0x000789f0
+ * address symbols (name @ address):
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_000789f0 @ 0x789f0  (parity: 8/200 trials, PROVEN)
+ * CFG_VERIFY_ORACLE0_R0_POINTER: allocator result is a valid limb object. */
 #include <stdint.h>
 extern int libc_fatal_error_and_abort(uint32_t,int,int);
 extern int Balloc(uint32_t,int);
@@ -45,11 +57,10 @@ int lshift(uint32_t param_1, int param_2, uint32_t param_3){
                 Bfree(param_1, param_2);
                 return iVar1;
             }
-            iVar5 = "Balloc succeeded" /*=0xf8c42*/;
-            iVar1 = libc_fatal_error_and_abort("/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c" /*=0xf8cd5*/, 0x1d9, 0);
+            iVar5 = ((unsigned long)&rodata_f8c42) /*=0xf8c42*/;
+            iVar1 = libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/, 0x1d9, 0);
         }
         iVar1 = iVar1 + 1;
         iVar5 = iVar5 << 1;
     } while (1);
 }
-

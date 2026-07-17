@@ -1,5 +1,10 @@
-/* named: sllist_insert_after */
-/* Reconstructed sllist_insert_after @ 0x84f2e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084f2e @ 0x00084f2e
+ * public-name: sllist_insert_after
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sllist_insert_after                      <= FUN_00084f2e @ 0x00084f2e
+ */
+/* Reconstructed FUN_00084f2e @ 0x84f2e  (parity: 300/300 trials, PROVEN) */
 
 int sllist_insert_after(int *param_1, int *param_2)
 {
@@ -25,4 +30,3 @@ int sllist_insert_after(int *param_1, int *param_2)
     }
     return 0;
 }
-

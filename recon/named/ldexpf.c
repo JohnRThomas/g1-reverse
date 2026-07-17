@@ -1,5 +1,12 @@
-/* named: ldexpf */
-/* Reconstructed ldexpf @ 0x86976  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086976 @ 0x00086976
+ * public-name: ldexpf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   scalbnf                                  <= FUN_00075a0c @ 0x00075a0c
+ *   ldexpf                                   <= FUN_00086976 @ 0x00086976
+ *   isfinitef                                <= FUN_000869f2 @ 0x000869f2
+ */
+/* Reconstructed FUN_00086976 @ 0x86976  (parity: 300/300 trials, PROVEN) */
 
 extern int isfinitef(void);
 extern float scalbnf(float a, unsigned int b);
@@ -21,4 +28,3 @@ float ldexpf(float param_1, unsigned int param_2)
   }
   return param_1;
 }
-

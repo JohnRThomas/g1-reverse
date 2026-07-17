@@ -1,4 +1,7 @@
-/* named: FUN_00068b14 */
+/* readable reconstruction; identity: FUN_00068b14 @ 0x00068b14
+ * public-name: FUN_00068b14
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00068b14 @ 0x68b14  (parity: 300/300 trials, PROVEN) */
 
 char FUN_00068b14(unsigned int param_1) {
@@ -7,4 +10,3 @@ char FUN_00068b14(unsigned int param_1) {
     if (3 < param_1) cVar1 = cVar1 + 1;
     return cVar1;
 }
-

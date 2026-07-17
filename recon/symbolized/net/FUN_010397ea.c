@@ -17,5 +17,3 @@ void FUN_010397ea(int param_1, int param_2, unsigned int param_3)
     FUN_01039752(param_1, uVar2, 3, iVar1);
     FUN_01039752(param_1, iVar1, 2, uVar2);
 }
-
-

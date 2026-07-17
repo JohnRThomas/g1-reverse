@@ -15,9 +15,9 @@ extern void FUN_0100ef88(int, undefined4, int, undefined4);
 extern undefined1 FUN_0102029c(void);
 extern undefined8 thunk_FUN_01025034(void);
 
-#define DAT_010106d0 ((char *)((uintptr_t)&g_sdc_rssi_filter_cfg) /*=0x21000f04*/)
-#define DAT_010106d4 ((undefined4)((uintptr_t)&rodata_1010c61) /*=0x1010c61*/)
-#define DAT_010106d8 ((undefined4)((uintptr_t)&rodata_1010c71) /*=0x1010c71*/)
+#define DAT_010106d0 ((char *)((unsigned long)&g_sdc_rssi_filter_cfg) /*=0x21000f04*/)
+#define DAT_010106d4 ((undefined4)0x01010c61)
+#define DAT_010106d8 ((undefined4)0x01010c71)
 
 void FUN_01010578(char *param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
@@ -104,5 +104,3 @@ LAB_010105c8:
   }
   return;
 }
-
-

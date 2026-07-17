@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: build_status_notify_packet */
-/* Reconstructed build_status_notify_packet @ 0x21334  (parity: 11/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00021334 @ 0x00021334
+ * public-name: build_status_notify_packet
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   build_status_notify_packet               <= FUN_00021334 @ 0x00021334
+ *   get_glassbox_charge_status               <= FUN_00032784 @ 0x00032784
+ *   get_glassbox_charge_percent              <= FUN_000327c4 @ 0x000327c4
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   g_ble_xfer_seq_prev                      @ 0x20018d99
+ *   g_ble_xfer_seq_cur                       @ 0x20018d9a
+ */
+/* Reconstructed FUN_00021334 @ 0x21334  (parity: 11/300 trials, PROVEN) */
 #include <stdint.h>
 extern void memset_bytes(void*,int,int);
 extern unsigned char get_glassbox_charge_status(void);
@@ -13,21 +24,21 @@ unsigned build_status_notify_packet(int param_1, unsigned short *param_2){
   unsigned char bVar2 = *((unsigned char*)param_2 + 1);
   if(bVar2 > 0x12){
     if(bVar2 == 0xf1){
-      *(unsigned short*)loc = ((uintptr_t)&rodata_c90f) /*=0xc90f*/;
+      *(unsigned short*)loc = 0xc90f;
       loc[2] = *(unsigned char*)(param_1 - 0x6b0);
     } else if(bVar2 == 0xf2){
-      *(unsigned short*)loc = ((uintptr_t)&rodata_c94e) /*=0xc94e*/;
+      *(unsigned short*)loc = 0xc94e;
       loc[2] = *(unsigned char*)(param_1 - 0x6b0);
     } else if(bVar2 == 0xf0){
-      *(unsigned short*)loc = ((uintptr_t)&rodata_c90d) /*=0xc90d*/;
+      *(unsigned short*)loc = 0xc90d;
       loc[2] = *(unsigned char*)(param_1 - 0x6af);
     } else {
       goto def;
     }
-    loc[3] = *(volatile unsigned char*)((uintptr_t)&g_ble_xfer_seq_cur) /*=0x20018d9a*/;
-    *(volatile unsigned char*)((uintptr_t)&g_ble_xfer_seq_cur) /*=0x20018d9a*/ = 0;
-    loc[4] = *(volatile unsigned char*)((uintptr_t)&g_ble_xfer_seq_prev) /*=0x20018d99*/;
-    *(volatile unsigned char*)((uintptr_t)&g_ble_xfer_seq_prev) /*=0x20018d99*/ = 0;
+    loc[3] = *(volatile unsigned char*)((unsigned long)&g_ble_xfer_seq_cur) /*=0x20018d9a*/;
+    *(volatile unsigned char*)((unsigned long)&g_ble_xfer_seq_cur) /*=0x20018d9a*/ = 0;
+    loc[4] = *(volatile unsigned char*)((unsigned long)&g_ble_xfer_seq_prev) /*=0x20018d99*/;
+    *(volatile unsigned char*)((unsigned long)&g_ble_xfer_seq_prev) /*=0x20018d99*/ = 0;
     goto call;
   }
   if(bVar2 <= 8) goto def;
@@ -69,9 +80,9 @@ unsigned build_status_notify_packet(int param_1, unsigned short *param_2){
   loc[2] = bVar2;
   goto call;
 def:
-  for(;;){ __asm volatile(""); }
+  *(unsigned short*)loc = (unsigned short)(((unsigned)bVar2 << 8) | 0xf5u);
+  goto call;
 call:
   (*(int(**)(void*,int))(param_1 + 0xc))(loc, 0x15);
   return 0;
 }
-

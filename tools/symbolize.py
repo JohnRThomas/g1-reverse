@@ -52,16 +52,24 @@ def repl_for(rec):
     k = rec.get("kind")
     n = rec.get("name")
     if k == "string":
-        return c_string(rec["value"])
+        return "((unsigned long)&%s)" % n
+    offset = int(rec.get("symbol_offset", 0))
+    suffix = (" + 0x%x" % offset if offset > 0 else
+              " - 0x%x" % -offset if offset < 0 else "")
     if k in ("ram_global", "kobject"):
-        return "((uintptr_t)&%s)" % n if not rec.get("is_buffer") else "(%s)" % n
+        if rec.get("is_buffer"):
+            return "((unsigned long)%s%s)" % (n, suffix)
+        return "((unsigned long)&%s%s)" % (n, suffix)
     if k == "rodata_ref":
-        return "((uintptr_t)&%s)" % n
+        return "((unsigned long)&%s%s)" % (n, suffix)
     if k in ("partition_off", "mmio_reg"):
+        return n
+    if k == "function_addr":
         return n
     return None  # const: keep literal
 
-ADDRRE = re.compile(r'0x[0-9a-fA-F]{4,8}(?:UL|ul|U|u|L|l)?')
+ADDRRE = re.compile(
+    r'(?<![A-Za-z0-9_])0x[0-9a-fA-F]{4,8}(?:UL|ul|U|u|L|l)?(?![A-Za-z0-9_])')
 
 # comments and string/char literals — spans where addresses must NOT be touched
 # (substituting inside a /*...*/ block would inject a nested */ and break it;
@@ -70,26 +78,33 @@ _SKIP = re.compile(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
 
 def substitute(txt):
     used = collections.Counter()
-    def rep(m):
-        raw = m.group(0)
-        v = int(re.sub(r'[ULul]+$', '', raw), 16)
-        rec = smap.get(hex(v))
-        if not rec: return raw
-        r = repl_for(rec)
-        if r is None: return raw
-        used[rec.get("kind")] += 1
-        # keep the ORIGINAL address inline so a wrong/coincidental substitution
-        # is always auditable and the real value is recoverable at review time.
-        return "%s /*=%s*/" % (r, hex(v))
+    def apply(segment):
+        def rep(m):
+            raw = m.group(0)
+            # UINT*_C pastes an integer suffix onto its token argument.  A
+            # symbolic expression or already-suffixed macro is invalid there;
+            # preserve the numeric literal at that use site.
+            if re.search(r'UINT(?:8|16|32|64)_C\(\s*$', segment[:m.start()]):
+                return raw
+            v = int(re.sub(r'[ULul]+$', '', raw), 16)
+            rec = smap.get(hex(v))
+            if not rec: return raw
+            r = repl_for(rec)
+            if r is None: return raw
+            used[rec.get("kind")] += 1
+            # keep the ORIGINAL address inline so a wrong/coincidental substitution
+            # is always auditable and the real value is recoverable at review time.
+            return "%s /*=%s*/" % (r, hex(v))
+        return ADDRRE.sub(rep, segment)
     # walk the text, copying skip-spans (comments/strings) verbatim and only
     # applying the address substitution to the code in between.
     out = []
     pos = 0
     for m in _SKIP.finditer(txt):
-        out.append(ADDRRE.sub(rep, txt[pos:m.start()]))
+        out.append(apply(txt[pos:m.start()]))
         out.append(m.group(0))
         pos = m.end()
-    out.append(ADDRRE.sub(rep, txt[pos:]))
+    out.append(apply(txt[pos:]))
     return "".join(out), used
 
 # types the compat header + stdint make legal; anything else in a decompiler-
@@ -110,6 +125,18 @@ _NORM = {
     "undefined": "uint8_t", "undefined1": "uint8_t", "undefined2": "uint16_t",
     "undefined4": "uint32_t", "undefined8": "uint64_t", "uint3": "uint32_t",
 }
+_BUILTIN = {
+    "uint8_t": "unsigned char", "int8_t": "signed char",
+    "uint16_t": "unsigned short", "int16_t": "signed short",
+    "uint32_t": "unsigned int", "int32_t": "signed int",
+    "uint64_t": "unsigned long long", "int64_t": "signed long long",
+    "uintptr_t": "unsigned long", "size_t": "unsigned int",
+}
+def builtin_type(value):
+    for old, new in _BUILTIN.items():
+        value = re.sub(r'\b%s\b' % re.escape(old), new, value)
+    return value
+
 def san_ctype(ct):
     """Return a STANDARD compilable type for a decompiler-derived ctype string.
     Pointers/callbacks -> void*; struct/union kept; short names normalized to
@@ -126,20 +153,23 @@ def san_ctype(ct):
     base = ct.replace("volatile", "").replace("const", "").replace("[]", "").strip()
     norm = _NORM.get(base)
     if norm:
-        return (quals + " " + norm).strip()
+        return builtin_type((quals + " " + norm).strip())
     if all(b in _OK_TYPES or b in ("volatile", "const") for b in ct.replace("[]","").split()):
         # already standard/stdint (u8 etc. handled above); keep as-is
-        return " ".join(_NORM.get(w, w) for w in ct.replace("[]","").split())
-    return "uintptr_t"
+        normalized = " ".join(_NORM.get(w, w) for w in ct.replace("[]","").split())
+        return builtin_type(normalized)
+    return "unsigned long"
 
 def gen_headers():
     os.makedirs(HDR, exist_ok=True)
-    globs, parts, regs, rodata = [], [], [], []
+    globs, parts, regs, rodata, functions = [], [], [], [], []
     for a, rec in sorted(smap.items(), key=lambda kv: int(kv[0], 16)):
         k = rec.get("kind"); n = rec.get("name"); v = int(a, 16)
+        if rec.get("symbol_offset", 0):
+            continue
         if k in ("ram_global",):
             ct = san_ctype(rec.get("ctype", "uint32_t"))
-            if rec.get("is_buffer"): globs.append("extern uint8_t %s[]; /* @%s */" % (n, a))
+            if rec.get("is_buffer"): globs.append("extern unsigned char %s[]; /* @%s */" % (n, a))
             else: globs.append("extern volatile %s %s; /* @%s */" % (ct.replace("[]",""), n, a))
         elif k == "kobject":
             globs.append("extern struct k_%s_placeholder %s; /* %s @%s conf=%s */"
@@ -148,29 +178,36 @@ def gen_headers():
             parts.append("#define %-20s %sUL" % (n, a))
         elif k == "mmio_reg":
             regs.append("#define %-16s %sUL" % (n, a))
-        elif k == "rodata_ref":
-            rodata.append("extern const uint8_t %s[]; /* @%s */" % (n, a))
+        elif k in ("rodata_ref", "string"):
+            rodata.append("extern const unsigned char %s[]; /* @%s */" % (n, a))
+        elif k == "function_addr":
+            functions.append("#define %-36s %s /* %s */" %
+                             (n, a, rec.get("function_name", "function")))
     guard = "G1_%s_SYMBOLS_H" % CORE.upper()
     lines = ["#ifndef %s" % guard, "#define %s" % guard,
-             "#include <stdint.h>", "",
+             "#ifndef bool", "#define bool _Bool", "#define true 1", "#define false 0", "#endif", "",
              "/* ---- flash partitions ---- */", *sorted(set(parts)), "",
              "/* ---- MMIO registers ---- */", *sorted(set(regs)), "",
+             "/* ---- function addresses ---- */", *sorted(set(functions)), "",
              "/* ---- RAM globals / kernel objects (%d) ---- */" % len(globs), *globs, "",
              "/* ---- rodata table externs (%d) ---- */" % len(set(rodata)), *sorted(set(rodata)), "",
              "#endif"]
     path = HDR + "/g1_%s_symbols.h" % CORE
     if WRITE:
         open(path, "w").write("\n".join(lines) + "\n")
-    return path, len(globs), len(parts), len(regs), len(set(rodata))
+    return path, len(globs), len(parts), len(regs), len(set(rodata)), len(set(functions))
 
 def main():
     files = glob.glob(NAMED + "/*.c")
+    expected = {os.path.basename(path) for path in files}
     total = collections.Counter()
     remain_addr = collections.Counter()
     if WRITE: os.makedirs(OUTSRC, exist_ok=True)
     for f in files:
         txt = open(f).read()
         new, used = substitute(txt)
+        new = re.sub(r'(\bextern\s+[^;\n()]+\b[A-Za-z_$][\w$]*)\s*\(\s*\.\.\.\s*\)\s*;',
+                     r'\1();', new)
         total.update(used)
         # count residual absolute addrs that stayed literal (const-class / unmapped)
         for m in ADDRRE.findall(new):
@@ -179,13 +216,20 @@ def main():
                 remain_addr["const_kept"] += 1
         if WRITE:
             hdr_inc = '#include "g1_%s_symbols.h"\n' % CORE
-            open(os.path.join(OUTSRC, os.path.basename(f)), "w").write(hdr_inc + new)
-    path, ng, npart, nreg, nrod = gen_headers()
+            rendered = hdr_inc + new
+            rendered = "\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n"
+            open(os.path.join(OUTSRC, os.path.basename(f)), "w").write(rendered)
+    if WRITE:
+        for path in glob.glob(OUTSRC + "/*.c"):
+            if os.path.basename(path) not in expected:
+                os.unlink(path)
+    path, ng, npart, nreg, nrod, nfunc = gen_headers()
     print("[%s] files: %d  | substitutions by kind:" % (CORE, len(files)))
     for k, n in total.most_common():
         print("   %-14s %6d" % (k, n))
     print("   header:", path, "(%swritten)" % ("" if WRITE else "DRY-not-"))
-    print("   header symbols: globals=%d partitions=%d regs=%d rodata=%d" % (ng, npart, nreg, nrod))
+    print("   header symbols: globals=%d partitions=%d regs=%d rodata=%d functions=%d" %
+          (ng, npart, nreg, nrod, nfunc))
     print("   const literals intentionally kept:", remain_addr["const_kept"])
     print("   mode:", "WROTE recon/symbolized/%s/" % CORE if WRITE else "DRY-RUN (no source files written)")
 

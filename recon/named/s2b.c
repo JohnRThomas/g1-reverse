@@ -1,5 +1,16 @@
-/* named: s2b */
-/* Reconstructed s2b @ 0x78728  (parity: 71/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078728 @ 0x00078728
+ * public-name: s2b
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   multadd                                  <= FUN_00078698 @ 0x00078698
+ *   s2b                                      <= FUN_00078728 @ 0x00078728
+ * address symbols (name @ address):
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_00078728 @ 0x78728  (parity: 71/300 trials, PROVEN) */
 
 extern int libc_fatal_error_and_abort(unsigned a, unsigned b);
 extern int Balloc(unsigned a, int b);
@@ -46,4 +57,3 @@ found:;
     }
     return;
 }
-

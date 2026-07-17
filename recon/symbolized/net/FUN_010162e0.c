@@ -6,6 +6,19 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef int i32;
 
+struct packed_u32 { u32 value; } __attribute__((packed));
+_Static_assert(sizeof(struct packed_u32) == 4, "packed u32 layout");
+
+static inline u32 load_packed_u32(const volatile void *address)
+{
+    return ((const volatile struct packed_u32 *)address)->value;
+}
+
+static inline void store_packed_u32(volatile void *address, u32 value)
+{
+    ((volatile struct packed_u32 *)address)->value = value;
+}
+
 extern void* FUN_0100cbbc(u32 a);
 extern u32 FUN_0100d5d0(u32 a);
 extern u32 FUN_0100d64c(u32 a, u32 b);
@@ -18,9 +31,9 @@ extern void FUN_0100e054(u32 a, u32 b);
 extern u32 FUN_0101f924(void);
 extern void FUN_01020764(u32 a);
 
-#define DAT ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define DAT2 ((uintptr_t)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT3 ((uintptr_t)&g_net_ll_event_scratch_buf) /*=0x21000fd6*/
+#define DAT 0x21000f90u
+#define DAT2 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
+#define DAT3 0x21000fd6u
 
 void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
 {
@@ -37,7 +50,8 @@ void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
         u32 uVar8, uVar4;
         FUN_0100dfbc((u32)puVar5, 5, param_3, 0, param_4);
         iVar10 = *(volatile i32*)(iVar2+0xc0);
-        *(volatile u32*)(iVar10+0xf) = *(volatile u32*)(*(volatile i32*)(iVar2+0x50)+0x18);
+        store_packed_u32((volatile void *)(iVar10 + 0xf),
+                         *(volatile u32*)(*(volatile i32*)(iVar2+0x50)+0x18));
         iVar7 = *(volatile i32*)(iVar2+0x50);
         uVar8 = *(volatile u32*)(iVar7+0x20);
         *(volatile u8*)(iVar10+0x13) = (u8)uVar8;
@@ -61,7 +75,8 @@ void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
         uVar4 = *(volatile u16*)(iVar7+0x1e);
         *(volatile u8*)(iVar10+0x1d) = (u8)uVar4;
         *(volatile u8*)(iVar10+0x1e) = (u8)(uVar4 >> 8);
-        *(volatile u32*)(iVar10+0x1f) = *(volatile u32*)(iVar7+0xce);
+        store_packed_u32((volatile void *)(iVar10 + 0x1f),
+                         load_packed_u32((volatile void *)(iVar7 + 0xce)));
         *(volatile u8*)(iVar10+0x23) = *(volatile u8*)(iVar7+0xd2);
         *(volatile u8*)(iVar10+0x24) = (*(volatile u8*)(*(volatile i32*)(iVar2+0x50)+0xd9) & 0x1f) | (*(volatile u8*)(iVar10+0x24) & 0xe0);
         {
@@ -73,7 +88,7 @@ void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
     FUN_0100e028((u32)puVar5, DAT2);
     FUN_0100e054(*(volatile u32*)(iVar2+0xc0), *(volatile u8*)(iVar2+0x90));
     uVar3 = *(volatile u8*)(iVar2+0x45);
-    puVar9 = *(volatile u32**)DAT3;
+    puVar9 = (u32 *)DAT3;
     if (*(volatile char*)(iVar2+0x7d) != 0) {
         u8 uVar1;
         void *puVar6;
@@ -83,7 +98,7 @@ void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
             uVar1 = *(volatile u8*)(iVar2+0x78);
         }
         puVar6 = FUN_0100cbbc(uVar1);
-        puVar9 = *(volatile u32**)DAT3;
+        puVar9 = (u32 *)DAT3;
         if (puVar6 != 0) {
             uVar3 = 1;
             puVar9 = (u32*)puVar6;
@@ -94,12 +109,11 @@ void FUN_010162e0(i32 param_1, u32 param_2, u32 param_3, u32 param_4)
     FUN_01020764(*(volatile u32*)(iVar2+0xc0));
     if (param_1 == 5) {
         i32 iVar7 = *(volatile i32*)(iVar2+0x50);
-        *(volatile u32*)(iVar7+10) = *(volatile u32*)puVar9;
+        store_packed_u32((volatile void *)(iVar7 + 10),
+                         load_packed_u32((volatile void *)puVar9));
         *(volatile u16*)(iVar7+0xe) = *(volatile u16*)((u8*)puVar9+4);
         *(volatile u8*)(*(volatile i32*)(iVar2+0x50)+9) = (u8)uVar3;
         return;
     }
     return;
 }
-
-

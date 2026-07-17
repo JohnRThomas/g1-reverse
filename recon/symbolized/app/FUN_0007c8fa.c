@@ -1,5 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c8fa */
+/* readable reconstruction; identity: FUN_0007c8fa @ 0x0007c8fa
+ * public-name: FUN_0007c8fa
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ipc_ept_op_b_locked_retry                <= FUN_000257ec @ 0x000257ec
+ *   ipc_ept_op_c_locked_retry                <= FUN_00025850 @ 0x00025850
+ */
 /* Reconstructed FUN_0007c8fa @ 0x7c8fa  (parity: 300/300 trials, PROVEN) */
 
 extern int ipc_ept_op_b_locked_retry(int, int, void*, int, int, int);
@@ -15,4 +21,3 @@ void FUN_0007c8fa(int param_1, int param_2)
     ipc_ept_op_c_locked_retry(param_1, 1, &local);
   }
 }
-

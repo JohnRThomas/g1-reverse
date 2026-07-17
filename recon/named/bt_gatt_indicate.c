@@ -1,8 +1,26 @@
-/* named: bt_gatt_indicate */
-/* globals referenced:
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
-/* Reconstructed bt_gatt_indicate @ 0x5b378  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b378 @ 0x0005b378
+ * public-name: bt_gatt_indicate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_attr_get_handle                  <= FUN_0005a9f4 @ 0x0005a9f4
+ *   bt_gatt_foreach_attr_type                <= FUN_0005aa84 @ 0x0005aa84
+ *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
+ *   bt_gatt_indicate                         <= FUN_0005b378 @ 0x0005b378
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   bt_gatt_attr_value_handle                <= FUN_00082c0e @ 0x00082c0e
+ * address symbols (name @ address):
+ *   ADDR_gatt_send_ccc_update_THUMB          @ 0x0005b891
+ *   rodata_825fb                             @ 0x000825fb
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b44                             @ 0x000f4b44
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
+/* Reconstructed FUN_0005b378 @ 0x5b378  (parity: 300/300 trials, PROVEN) */
 extern int bt_gatt_attr_get_handle(int a0);
 extern int bt_gatt_foreach_attr_type(int a0,int a1,int a2,int a3,int a4,int a5,void *a6);
 extern int gatt_indicate(int a0,int a1,int *a2);
@@ -84,4 +102,3 @@ LAB_0005b40a:
         return 0;
     }
 }
-

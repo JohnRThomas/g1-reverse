@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01016628 @ 0x1016628  (parity 300 trials PROVEN) */
-#define P_010166bc ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
+#define P_010166bc 0x21000f90
 
 extern unsigned long long FUN_01022f08(void);
 extern unsigned int FUN_0100c738(void);
@@ -41,4 +41,3 @@ void FUN_01016628(void)
   *(volatile unsigned char *)(iVar2 + 0x70) = 2;
   return;
 }
-

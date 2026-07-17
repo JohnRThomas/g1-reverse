@@ -12,11 +12,11 @@ extern void FUN_01039bbe(int,int,int);
 extern void FUN_01039bb0(int,int) __attribute__((noreturn));
 extern void FUN_010372b4(void);
 
-#define START ((int*)((uintptr_t)&rodata_103bfc0) /*=0x103bfc0*/)
-#define END   ((int*)((uintptr_t)&rodata_103bfec) /*=0x103bfec*/)
-#define STRA   "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define STR2F3 ((uintptr_t)&rodata_103ea45) /*=0x103ea45*/
-#define MAGIC7 ((uintptr_t)&rodata_103bac9) /*=0x103bac9*/
+#define START ((int*)((unsigned long)&rodata_103bfc0) /*=0x103bfc0*/)
+#define END   ((int*)((unsigned long)&rodata_103bfec) /*=0x103bfec*/)
+#define STRA   ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define STR2F3 ((unsigned long)&rodata_103ea45) /*=0x103ea45*/
+#define MAGIC7 ((unsigned long)&rodata_103bac9) /*=0x103bac9*/
 
 void FUN_0103601c(void)
 {
@@ -67,4 +67,3 @@ void FUN_0103601c(void)
     FUN_01039bbe(STRA, STR2F3, 0x312);
     FUN_01039bb0(STR2F3, 0x312);
 }
-

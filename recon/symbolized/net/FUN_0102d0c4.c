@@ -5,15 +5,15 @@
 extern int FUN_01039dec(unsigned int a, unsigned int b, unsigned int c, unsigned int *d);
 extern uint64_t FUN_0102cfec(void);
 
-#define DAT_19c ((uintptr_t)&g_sdc_clock_calc_lock) /*=0x21004fab*/
-#define DAT_1a0 REG_41011000 /*=0x41011000*/
-#define DAT_1a4 REG_41016000 /*=0x41016000*/
-#define DAT_1a8 ((uintptr_t)&g_net_rtc_timer_sync_valid) /*=0x21004fa9*/
+#define DAT_19c ((unsigned long)&g_sdc_clock_calc_lock) /*=0x21004fab*/
+#define DAT_1a0 0x41011000u
+#define DAT_1a4 0x41016000u
+#define DAT_1a8 ((unsigned long)&g_net_rtc_timer_sync_valid) /*=0x21004fa9*/
 #define DAT_1ac 0x007ffffeu
-#define DAT_1b0 REG_41012000 /*=0x41012000*/
+#define DAT_1b0 0x41012000u
 #define DAT_1b4 REG_4100b000 /*=0x4100b000*/
 #define DAT_1b8 0x007ffffbu
-#define DAT_1bc ((uintptr_t)&g_sdc_clock_calc_valid) /*=0x21004faa*/
+#define DAT_1bc ((unsigned long)&g_sdc_clock_calc_valid) /*=0x21004faa*/
 
 void FUN_0102d0c4(void)
 {
@@ -89,4 +89,3 @@ LAB_18c:
     *(volatile unsigned char *)DAT_1bc = uVar5;
     return;
 }
-

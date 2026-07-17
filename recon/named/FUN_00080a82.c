@@ -1,11 +1,15 @@
-/* named: FUN_00080a82 */
+/* readable reconstruction; identity: FUN_00080a82 @ 0x00080a82
+ * public-name: FUN_00080a82
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ */
 /* Reconstructed FUN_00080a82 @ 0x80a82  (parity: 300/300 trials, PROVEN) */
 
-#include <stdint.h>
-extern void img_mgmt_read_hash_and_flags(unsigned int,unsigned int,unsigned int);
+extern void img_mgmt_read_hash_and_flags(unsigned int, unsigned int,
+                         unsigned int, unsigned int);
+
 void FUN_00080a82(unsigned int param_1)
 {
-  img_mgmt_read_hash_and_flags(0,param_1,0);
-  return;
+  img_mgmt_read_hash_and_flags(0, param_1, 0, 0);
 }
-

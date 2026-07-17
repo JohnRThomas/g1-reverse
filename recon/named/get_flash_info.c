@@ -1,8 +1,23 @@
-/* named: get_flash_info */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00032628 @ 0x00032628
+ * public-name: get_flash_info
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_87bf0                             @ 0x00087bf0
+ *   rodata_9e2da                             @ 0x0009e2da
+ *   rodata_a40e6                             @ 0x000a40e6
+ *   rodata_a69f3                             @ 0x000a69f3
+ *   rodata_a6a0b                             @ 0x000a6a0b
+ *   rodata_a6aab                             @ 0x000a6aab
+ *   rodata_a76cb                             @ 0x000a76cb
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_flash_info                             @ 0x20019daf
+ */
 /* Reconstructed get_flash_info @ 0x32628  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -52,4 +67,3 @@ uint32_t get_flash_info(int param_1, uint32_t param_2, uint32_t *param_3, uint8_
     *(volatile uint8_t*)param_4=uVar3;
     return 0;
 }
-

@@ -1,8 +1,13 @@
-/* named: check_charging_and_touch_flags */
-/* globals referenced:
-//   0x20018d91  g_box_lid_or_charge_state    
-*/
-/* Reconstructed check_charging_and_touch_flags @ 0x26c28  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00026c28 @ 0x00026c28
+ * public-name: check_charging_and_touch_flags
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   check_charging_and_touch_flags           <= FUN_00026c28 @ 0x00026c28
+ * address symbols (name @ address):
+ *   g_box_lid_or_charge_state                @ 0x20018d91
+ */
+/* Reconstructed FUN_00026c28 @ 0x26c28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 extern int FUN_00019b2c(void);
@@ -24,4 +29,3 @@ int check_charging_and_touch_flags(void){
   }
   return (*(volatile uint8_t*)(iVar2+0xe4) & 3) == 3;
 }
-

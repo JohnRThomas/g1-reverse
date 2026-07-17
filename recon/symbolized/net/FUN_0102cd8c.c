@@ -1,12 +1,14 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0102cd8c @ 0x102cd8c  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
-#define P_0102ce0c "***** HARD FAULT *****" /*=0x103d3b6*/
-#define P_0102ce10 "acking error (context area might be not valid)" /*=0x103d2a7*/
+#define P_0102ce0c ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define P_0102ce10 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
 
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
@@ -67,4 +69,3 @@ unsigned int FUN_0102cd8c(int param_1, unsigned char *param_2)
   FUN_01039bb0(P_0102ce0c, uVar3);
   return uVar3;
 }
-

@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00084c7e */
+/* readable reconstruction; identity: FUN_00084c7e @ 0x00084c7e
+ * public-name: FUN_00084c7e
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ */
 /* Reconstructed FUN_00084c7e @ 0x84c7e  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int dev_write_reg3(unsigned int, unsigned int, unsigned int, unsigned int);
@@ -12,4 +17,3 @@ unsigned int FUN_00084c7e(void *param_1, int param_2)
     }
     return 0xffffffea;
 }
-

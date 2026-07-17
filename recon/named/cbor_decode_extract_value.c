@@ -1,5 +1,12 @@
-/* named: cbor_decode_extract_value */
-/* Reconstructed cbor_decode_extract_value @ 0x85e1a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085e1a @ 0x00085e1a
+ * public-name: cbor_decode_extract_value
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
+ *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
+/* Reconstructed FUN_00085e1a @ 0x85e1a  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_00085d70(int*, uint32_t);
@@ -59,4 +66,3 @@ int cbor_decode_extract_value(int *param_1, uint8_t *param_2, uint32_t param_3){
   FUN_00085d70(param_1, uVar2);
   return 0;
 }
-

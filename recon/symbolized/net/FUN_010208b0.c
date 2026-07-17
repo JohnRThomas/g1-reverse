@@ -10,4 +10,3 @@ void FUN_010208b0(void)
     *(volatile unsigned int *)(iVar1 + 0x560) = 0;
     return;
 }
-

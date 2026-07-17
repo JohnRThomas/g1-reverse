@@ -1,126 +1,128 @@
-/* named: try_to_save_file */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed try_to_save_file @ 0x23634  (parity: 200/200 trials, PROVEN) */
-typedef unsigned int uint;
-typedef unsigned char byte;
-typedef unsigned int undefined4;
+/* readable reconstruction; identity: FUN_00023634 @ 0x00023634
+ * public-name: try_to_save_file
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   write_font_to_flash_with_verify          <= FUN_00022834 @ 0x00022834
+ *   dequeue_file                             <= FUN_000235a4 @ 0x000235a4
+ *   crc32_update                             <= FUN_0002360c @ 0x0002360c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_9e873                             @ 0x0009e873
+ *   rodata_9e88b                             @ 0x0009e88b
+ *   rodata_9e8e5                             @ 0x0009e8e5
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_font_total_size                        @ 0x200079d4
+ *   g_font_buf_len                           @ 0x200079d8
+ *   g_font_flash_write_offset                @ 0x200079dc
+ *   g_font_crc32                             @ 0x200079e0
+ *   g_font_write_buf                         @ 0x20017062
+ */
+/* Reconstructed try_to_save_file @ 0x23634 */
+typedef unsigned char uint8_t;
+typedef unsigned int uint32_t;
 
-extern void DEBUG_PRINT(undefined4 fmt, ...);
+extern void DEBUG_PRINT(uint32_t format, ...);
 extern int get_device_info(void);
 extern void debug_print(void);
-extern void write_font_to_flash_with_verify(uint a, uint b, ...);
-extern void dequeue_file(void *a);
-extern undefined4 crc32_update(uint a, uint b, uint c);
-extern void memcpy(void *dst, void *src, uint n);
-extern void FUN_00086c1e(void *dst, void *src, uint n, uint m);
-extern void update_persist_task_status(uint a, int b, int c);
+extern void write_font_to_flash_with_verify(uint32_t address, uint32_t buffer, ...);
+extern void dequeue_file(void *packet);
+extern uint32_t crc32_update(uint32_t checksum, uint32_t buffer, uint32_t length);
+extern void memcpy(void *destination, const void *source, uint32_t length);
+extern void FUN_00086c1e(void *destination, const void *source,
+                         uint32_t length, uint32_t capacity);
+extern void update_persist_task_status(uint32_t context, int type, int status);
 
-void try_to_save_file(int param_1)
+#define FILE_ADDRESS (*(volatile uint32_t *)0x200079dcUL)
+#define FILE_TYPE (*(volatile int *)0x200079d4UL)
+#define BUFFERED_LENGTH (*(volatile uint32_t *)0x200079d8UL)
+#define FILE_CHECKSUM (*(volatile uint32_t *)0x200079e0UL)
+#define LOG_LEVEL (*(volatile int *)0x2000230cUL)
+#define LOG_SINK (*(volatile int *)0x20007554UL)
+#define FILE_BUFFER ((uint8_t *)0x20017062UL)
+
+void try_to_save_file(int context)
 {
-  const unsigned long BUF = 0x2007EF08UL;
-  volatile byte *f4 = (volatile byte*)(BUF+4);
-  volatile byte *f3 = (volatile byte*)(BUF+5);
-  volatile byte *f2 = (volatile byte*)(BUF+6);
-  volatile byte *f1 = (volatile byte*)(BUF+7);
-  volatile byte *f0 = (volatile byte*)(BUF+8);
-  volatile byte *l2c = (volatile byte*)(BUF+0xcc);
+    uint8_t packet[201];
+    uint32_t packet_length;
+    uint32_t buffered;
+    uint32_t checksum;
 
-  volatile uint *DAT_818 = (volatile uint*)0x200079dcUL;
-  volatile int  *DAT_81c = (volatile int*)0x200079d4UL;
-  volatile uint *DAT_820 = (volatile uint*)0x200079d8UL;
-  volatile undefined4 *DAT_828 = (volatile undefined4*)0x200079e0UL;
-  volatile int *DAT_82c = (volatile int*)0x2000230cUL;
-  volatile int *DAT_830 = (volatile int*)0x20007554UL;
+    dequeue_file(packet);
+    packet_length = packet[200];
 
-  uint uVar8, uVar9, uVar10;
-  int iVar6, iVar7;
-  undefined4 uVar5;
-
-  dequeue_file((void*)(BUF+4));
-  uVar9 = (uint)(*l2c);
-
-  if (uVar9 < 0x15 && *f4 == 0x0d && *f3 == 0x0e) {
-    if (*DAT_81c == 0x1c0000 && 0x1fffff < (int)*DAT_818) {
-      return;
-    }
-    if (*DAT_820 < 0x1000) {
-      write_font_to_flash_with_verify(*DAT_818, 0x20017062u);
-      uVar5 = crc32_update(*DAT_828, 0x20017062u, *DAT_820);
-      iVar7 = *DAT_82c;
-      *DAT_828 = uVar5;
-      if (iVar7 < 1) return;
-      if (*DAT_830 != 0) { debug_print(); return; }
-      DEBUG_PRINT(0x0009e88bu, 0x0009e8e5u, uVar5);
-      return;
-    }
-    goto LAB_save;
-  }
-
-  uVar10 = *DAT_818;
-  if (uVar10 == 0) {
-    uint local_f8;
-    local_f8 = ((uint)(*f3) << 24) | ((uint)(*f2) << 16) | ((uint)(*f1) << 8) | (uint)(*f0);
-    *DAT_818 = local_f8;
-    uVar5 = crc32_update(*DAT_828, (uint)(BUF+5), 4);
-    *DAT_828 = uVar5;
-    if (local_f8 == 0x1c0000) {
-      *DAT_81c = 0x1c0000;
-      iVar6 = get_device_info();
-      *(volatile byte*)(long)(*(int*)(long)(iVar6+0x100c)) = 0xc;
-      iVar6 = get_device_info();
-      if (*(int*)(long)(*(int*)(long)(iVar6+0x1054)) != 0x10) {
-        if (*(char*)(long)(*(int*)(long)(param_1+0x100c)+7) == 0) {
-          *(volatile byte*)(long)(*(int*)(long)(param_1+0x100c)+7) = 10;
+    if (packet_length < 0x15 && packet[0] == 0x0d && packet[1] == 0x0e) {
+        if (FILE_TYPE == 0x1c0000 && FILE_ADDRESS > 0x1fffff)
+            return;
+        if (BUFFERED_LENGTH < 0x1000) {
+            write_font_to_flash_with_verify(FILE_ADDRESS, (uint32_t)FILE_BUFFER,
+                         BUFFERED_LENGTH);
+            checksum = crc32_update(FILE_CHECKSUM, (uint32_t)FILE_BUFFER,
+                                    BUFFERED_LENGTH);
+            FILE_CHECKSUM = checksum;
+            if (LOG_LEVEL < 1)
+                return;
+            if (LOG_SINK != 0) {
+                debug_print();
+                return;
+            }
+            DEBUG_PRINT(0x0009e88b, 0x0009e8e5, checksum);
+            return;
         }
-        uVar5 = get_device_info();
-        update_persist_task_status(uVar5, 0x10, 2);
-      }
+        goto save_block;
     }
-    uVar10 = *DAT_820;
-    memcpy(0, 0, uVar9 - 5);
-    iVar7 = *DAT_81c;
-    uVar9 = (uVar10 - 5) + uVar9;
-    *DAT_820 = uVar9;
-    if (iVar7 == 0x1c0000) {
-      uVar10 = *DAT_818;
-      goto LAB_237ec;
-    }
-  } else {
-    uVar8 = *DAT_820;
-    memcpy(0, 0, uVar9 - 1);
-    iVar7 = *DAT_81c;
-    uVar9 = (uVar8 - 1) + uVar9;
-    *DAT_820 = uVar9;
-    if (iVar7 == 0x1c0000) {
-LAB_237ec:
-      if (0x1fffff < uVar10) {
-        return;
-      }
-    }
-  }
-  if (uVar9 < 0x1000) {
-    return;
-  }
-LAB_save:
-  write_font_to_flash_with_verify(*DAT_818, 0x20017062u, 0x1000u);
-  uVar5 = crc32_update(*DAT_828, 0x20017062u, 0x1000u);
-  iVar7 = *DAT_82c;
-  *DAT_828 = uVar5;
-  if (0 < iVar7) {
-    if (*DAT_830 == 0) {
-      DEBUG_PRINT(0x0009e873u, 0x0009e8e5u, uVar5);
-    } else {
-      debug_print();
-    }
-  }
-  iVar7 = 0x20018062;
-  *DAT_818 = *DAT_818 + 0x1000;
-  uVar9 = *DAT_820;
-  FUN_00086c1e((void*)(long)(iVar7-0x1000), (void*)(long)iVar7, uVar9-0x1000, 0x1400u);
-  *DAT_820 = uVar9-0x1000;
-  return;
-}
 
+    if (FILE_ADDRESS == 0) {
+        uint32_t address = ((uint32_t)packet[1] << 24) |
+                           ((uint32_t)packet[2] << 16) |
+                           ((uint32_t)packet[3] << 8) | packet[4];
+        FILE_ADDRESS = address;
+        FILE_CHECKSUM = crc32_update(FILE_CHECKSUM,
+                                     (uint32_t)(packet + 1), 4);
+        if (address == 0x1c0000) {
+            int system = get_device_info();
+            FILE_TYPE = 0x1c0000;
+            **(volatile uint8_t **)(system + 0x100c) = 0x0c;
+            system = get_device_info();
+            if (**(volatile int **)(system + 0x1054) != 0x10) {
+                volatile uint8_t *status =
+                    *(volatile uint8_t **)(context + 0x100c) + 7;
+                if (*status == 0)
+                    *status = 10;
+                update_persist_task_status(get_device_info(), 0x10, 2);
+            }
+        }
+        buffered = BUFFERED_LENGTH;
+        memcpy(FILE_BUFFER + buffered, packet + 5, packet_length - 5);
+        buffered = buffered + packet_length - 5;
+        BUFFERED_LENGTH = buffered;
+    } else {
+        buffered = BUFFERED_LENGTH;
+        memcpy(FILE_BUFFER + buffered, packet + 1, packet_length - 1);
+        buffered = buffered + packet_length - 1;
+        BUFFERED_LENGTH = buffered;
+    }
+
+    if (FILE_TYPE == 0x1c0000 && FILE_ADDRESS > 0x1fffff)
+        return;
+    if (buffered < 0x1000)
+        return;
+
+save_block:
+    write_font_to_flash_with_verify(FILE_ADDRESS, (uint32_t)FILE_BUFFER, 0x1000);
+    checksum = crc32_update(FILE_CHECKSUM, (uint32_t)FILE_BUFFER, 0x1000);
+    FILE_CHECKSUM = checksum;
+    if (LOG_LEVEL > 0) {
+        if (LOG_SINK == 0)
+            DEBUG_PRINT(0x0009e873, 0x0009e8e5, checksum);
+        else
+            debug_print();
+    }
+    FILE_ADDRESS += 0x1000;
+    buffered = BUFFERED_LENGTH;
+    FUN_00086c1e(FILE_BUFFER, FILE_BUFFER + 0x1000,
+                 buffered - 0x1000, 0x1400);
+    BUFFERED_LENGTH = buffered - 0x1000;
+}

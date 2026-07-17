@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00080ab4 */
+/* readable reconstruction; identity: FUN_00080ab4 @ 0x00080ab4
+ * public-name: FUN_00080ab4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_process_request_packet               <= FUN_000513e8 @ 0x000513e8
+ */
 /* Reconstructed FUN_00080ab4 @ 0x80ab4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -20,4 +25,3 @@ void FUN_00080ab4(int param_1, uint32_t param_2)
     param_2 = iVar1;
   }
 }
-

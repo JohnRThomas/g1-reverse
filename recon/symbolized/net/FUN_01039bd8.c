@@ -22,4 +22,3 @@ int FUN_01039bd8(unsigned int *param_1, int *param_2)
   *param_2 = iVar3;
   return iVar1;
 }
-

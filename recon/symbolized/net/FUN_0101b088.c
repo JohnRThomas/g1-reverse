@@ -10,9 +10,9 @@ extern unsigned int FUN_010231c8(unsigned int a, void *b);
 
 unsigned int FUN_0101b088(unsigned int param_1, int param_2)
 {
-  volatile unsigned char *pcVar1 = (volatile unsigned char *)((uintptr_t)&g_net_session_state_block) /*=0x210010a0*/;
+  volatile unsigned char *pcVar1 = (volatile unsigned char *)((unsigned long)&g_net_session_state_block) /*=0x210010a0*/;
   void *puVar3;
-  unsigned int uVar2 = ((uintptr_t)&rodata_101b321) /*=0x101b321*/;
+  unsigned int uVar2 = ((unsigned long)&rodata_101b321) /*=0x101b321*/;
   int iVar4, iVar5, iVar7;
   unsigned int uVar6, uVar8;
   unsigned char auStack_30[24];
@@ -55,4 +55,3 @@ unsigned int FUN_0101b088(unsigned int param_1, int param_2)
   FUN_01008d00(0x21, 0x369);
   return 0;
 }
-

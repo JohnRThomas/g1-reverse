@@ -19,7 +19,7 @@ extern i32 FUN_0101dec4(void);
 extern i32 FUN_010209f0(u8);
 extern void FUN_0100f48c(int, u32);
 
-#define DAT_0101ba50 ((uintptr_t)&rodata_103c290) /*=0x103c290*/
+#define DAT_0101ba50 ((unsigned long)&rodata_103c290) /*=0x103c290*/
 #define DAT_0101ba54 0x10624dd3ull
 
 static inline int CARRY4(u32 a, u32 b) {
@@ -194,4 +194,3 @@ LAB_0101b828:
     }
   }
 }
-

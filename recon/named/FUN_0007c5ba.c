@@ -1,4 +1,9 @@
-/* named: FUN_0007c5ba */
+/* readable reconstruction; identity: FUN_0007c5ba @ 0x0007c5ba
+ * public-name: FUN_0007c5ba
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_node_value_len                       <= FUN_0007c408 @ 0x0007c408
+ */
 /* Reconstructed FUN_0007c5ba @ 0x7c5ba  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned opt_node_value_len(void);
@@ -29,4 +34,3 @@ unsigned FUN_0007c5ba(unsigned char* param_1, int* param_2){
   param_2[1] = iVar5;
   return 0;
 }
-

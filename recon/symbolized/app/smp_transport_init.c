@@ -1,23 +1,37 @@
 #include "g1_app_symbols.h"
-/* named: smp_transport_init */
-/* Reconstructed smp_transport_init @ 0x526f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000526f4 @ 0x000526f4
+ * public-name: smp_transport_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_transport_init                       <= FUN_000526f4 @ 0x000526f4
+ *   k_work_init                              <= FUN_00072e50 @ 0x00072e50
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ * address symbols (name @ address):
+ *   ADDR_FUN_00080ab4_THUMB                  @ 0x00080ab5
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f2901                             @ 0x000f2901
+ *   rodata_f293b                             @ 0x000f293b
+ *   rodata_f2963                             @ 0x000f2963
+ */
+/* Reconstructed FUN_000526f4 @ 0x526f4  (parity: 300/300 trials, PROVEN) */
 
 extern void k_work_init(int a, unsigned int b);
 extern void assert_post_action(unsigned int a, unsigned int b);
-extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern void printk(unsigned int a, ...);
 extern void FUN_00080b28(void);
 extern void z_impl_k_queue_init(int a);
 
 unsigned int smp_transport_init(int param_1)
 {
     if (*(volatile int *)(param_1 + 0x2c) == 0) {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "(smpt->functions.output != ((void *)0))" /*=0xf293b*/, "WEST_TOPDIR/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c" /*=0xf2901*/, 0x92);
-        printk("\tRequired transport output function pointer cannot be NULL\n" /*=0xf2963*/, 0, 0, 0);
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c" /*=0xf2901*/, 0x92);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f293b) /*=0xf293b*/, ((unsigned long)&rodata_f2901) /*=0xf2901*/, 0x92);
+        printk(((unsigned long)&rodata_f2963) /*=0xf2963*/);
+        assert_post_action(((unsigned long)&rodata_f2901) /*=0xf2901*/, 0x92);
     }
     FUN_00080b28();
-    k_work_init(param_1, ((uintptr_t)&rodata_80ab5) /*=0x80ab5*/);
+    k_work_init(param_1, ADDR_FUN_00080ab4_THUMB /*=0x80ab5*/);
     z_impl_k_queue_init(param_1 + 0x10);
     return 0;
 }
-

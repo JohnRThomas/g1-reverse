@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: lc3_bits_accu_flush */
-/* Reconstructed lc3_bits_accu_flush @ 0x68908  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00068908 @ 0x00068908
+ * public-name: lc3_bits_accu_flush
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ */
+/* Reconstructed FUN_00068908 @ 0x68908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 static uint LSL(uint v,uint n){ n&=0xff; return n<32?(v<<n):0; }
@@ -38,4 +43,3 @@ void lc3_bits_accu_flush(int param_1, uint param_2, uint param_3){
   *(volatile uint*)(param_1+0x1c)=LSR(param_2,uVar3&0xff);
   *(volatile uint*)(param_1+0x20)=param_3-uVar3;
 }
-

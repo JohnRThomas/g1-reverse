@@ -69,4 +69,3 @@ LAB_0103b052:
   *param_2 = *param_2 + -0x10;
   return piVar5 + 4;
 }
-

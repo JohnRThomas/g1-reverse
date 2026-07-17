@@ -1,6 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: dev_configure_channel */
-/* Reconstructed dev_configure_channel @ 0x84418  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084418 @ 0x00084418
+ * public-name: dev_configure_channel
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   dev_channel_validate_and_set             <= FUN_000840cc @ 0x000840cc
+ *   dev_write_channel_mode                   <= FUN_000843ba @ 0x000843ba
+ *   dev_configure_channel                    <= FUN_00084418 @ 0x00084418
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ */
+/* Reconstructed FUN_00084418 @ 0x84418  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
 extern int FUN_00062070(int,int,void*);
@@ -39,4 +48,3 @@ int dev_configure_channel(int param_1, u32 param_2, u32 param_3){
     }
     return iVar2;
 }
-

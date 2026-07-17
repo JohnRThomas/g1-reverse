@@ -1,10 +1,10 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01008ddc @ 0x1008ddc  (parity 300 trials PROVEN) */
-static inline unsigned int disableIRQinterrupts(void){unsigned p;__asm__ volatile("mrs %0, primask":"=r"(p));__asm__ volatile("cpsid i":::"memory");return p;}
-static inline void enableIRQinterrupts(void){__asm__ volatile("cpsie i":::"memory");}
+extern unsigned int g1_irq_lock(void);
+extern void g1_irq_unlock(unsigned int key);
 
-#define P_01008e6c ((uintptr_t)&g_net_layout_count_table) /*=0x21000a30*/
-#define C_01008e70 ((uintptr_t)&rodata_100957d) /*=0x100957d*/
+#define P_01008e6c ((unsigned long)&g_net_layout_count_table) /*=0x21000a30*/
+#define C_01008e70 0x0100957d
 
 extern int FUN_0102575c(void);
 extern unsigned int FUN_010246cc(void);
@@ -19,7 +19,7 @@ int FUN_01008ddc(int param_1)
   int uVar4;
 
   if (param_1 == 0) {
-    return -0x15;
+    return -0x16;
   }
   iVar3 = FUN_0102575c();
   if (iVar3 == 0) {
@@ -48,14 +48,9 @@ int FUN_01008ddc(int param_1)
   *(volatile unsigned short *)(P_01008e6c + 0xc) = 0x208;
   *(volatile unsigned short *)(P_01008e6c + 0x10) = 0x4901;
 
-  iVar3 = (int)disableIRQinterrupts();
+  iVar3 = (int)g1_irq_lock();
   FUN_0100a790();
-  if (iVar3 == 0) {
-    enableIRQinterrupts();
-    uVar4 = 0;
-  } else {
-    uVar4 = 0;
-  }
+  g1_irq_unlock((unsigned int)iVar3);
+  uVar4 = 0;
   return uVar4;
 }
-

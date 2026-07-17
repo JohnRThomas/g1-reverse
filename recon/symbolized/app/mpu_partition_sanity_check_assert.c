@@ -1,15 +1,30 @@
 #include "g1_app_symbols.h"
-/* named: mpu_partition_sanity_check_assert */
-/* Reconstructed mpu_partition_sanity_check_assert @ 0x50e64  (parity: 147/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00050e64 @ 0x00050e64
+ * public-name: mpu_partition_sanity_check_assert
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   mpu_partition_sanity_check_assert        <= FUN_00050e64 @ 0x00050e64
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   arm_cmse_mpu_region_get                  <= FUN_00080786 @ 0x00080786
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f219e                             @ 0x000f219e
+ *   rodata_f2201                             @ 0x000f2201
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   g_arm_mpu_dynamic_regions_tbl            @ 0x2000a7f4
+ *   g_arm_mpu_static_regions_num             @ 0x2001d450
+ */
+/* Reconstructed FUN_00050e64 @ 0x50e64  (parity: 147/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(uint32_t,...);
 extern void assert_post_action(uint32_t,uint32_t);
 extern int arm_cmse_mpu_region_get(int);
 
 void mpu_partition_sanity_check_assert(int *param_1, int param_2, uint32_t param_3){
-    volatile int *fp = (volatile int*)((uintptr_t)&g_arm_mpu_dynamic_regions_tbl) /*=0x2000a7f4*/;
+    volatile int *fp = (volatile int*)((unsigned long)&g_arm_mpu_dynamic_regions_tbl) /*=0x2000a7f4*/;
     volatile int *scb = (volatile int*)0xe000ed00UL;
-    volatile uint8_t *pbVar3 = (volatile uint8_t*)((uintptr_t)&g_arm_mpu_static_regions_num) /*=0x2001d450*/;
+    volatile uint8_t *pbVar3 = (volatile uint8_t*)((unsigned long)&g_arm_mpu_static_regions_num) /*=0x2001d450*/;
     int iVar7 = 0;
     volatile int *piVar6 = fp;
     int *cur = param_1;
@@ -57,10 +72,9 @@ void mpu_partition_sanity_check_assert(int *param_1, int param_2, uint32_t param
         cur = cur + 3;
         continue;
       assert:
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, ((uintptr_t)&rodata_f7a30) /*=0xf7a30*/, "WEST_TOPDIR/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c" /*=0xf219e*/, 0x12b, (uint32_t)param_1, (uint32_t)iVar5, param_3);
-        printk("\tMarking %u areas for dynamic regions failed\n\n" /*=0xf2201*/, (uint32_t)param_2);
-        assert_post_action("WEST_TOPDIR/zephyr/arch/arm/core/aarch32/mpu/arm_mpu.c" /*=0xf219e*/, 0x12b);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f219e) /*=0xf219e*/, 0x12b, (uint32_t)param_1, (uint32_t)iVar5, param_3);
+        printk(((unsigned long)&rodata_f2201) /*=0xf2201*/, (uint32_t)param_2);
+        assert_post_action(((unsigned long)&rodata_f219e) /*=0xf219e*/, 0x12b);
         goto L_ed8;
     }
 }
-

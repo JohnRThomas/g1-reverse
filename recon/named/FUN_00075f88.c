@@ -1,4 +1,7 @@
-/* named: FUN_00075f88 */
+/* readable reconstruction; identity: FUN_00075f88 @ 0x00075f88
+ * public-name: FUN_00075f88
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00075f88 @ 0x75f88  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float FUN_000868ee(void);
@@ -81,4 +84,3 @@ float FUN_00075f88(float param_1)
         return res;
     }
 }
-

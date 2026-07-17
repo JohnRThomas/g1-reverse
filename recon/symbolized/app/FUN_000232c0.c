@@ -1,11 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000232c0 */
+/* readable reconstruction; identity: FUN_000232c0 @ 0x000232c0
+ * public-name: FUN_000232c0
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_a8c37                             @ 0x000a8c37
+ *   g_device_serial_buf                      @ 0x20003003
+ */
 /* Reconstructed FUN_000232c0 @ 0x232c0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_00077914(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 unsigned int FUN_000232c0(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
 {
-  FUN_00077914(((uintptr_t)&g_device_serial_buf) /*=0x20003003*/, 0x10, "%s" /*=0xa8c37*/, param_1, param_4);
+  FUN_00077914(((unsigned long)&g_device_serial_buf) /*=0x20003003*/, 0x10, ((unsigned long)&rodata_a8c37) /*=0xa8c37*/, param_1, param_4);
   return 0;
 }
-

@@ -1,5 +1,10 @@
-/* named: k_msgq_cleanup */
-/* Reconstructed k_msgq_cleanup @ 0x86480  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086480 @ 0x00086480
+ * public-name: k_msgq_cleanup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_msgq_cleanup                           <= FUN_00086480 @ 0x00086480
+ */
+/* Reconstructed FUN_00086480 @ 0x86480  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000868b4(int);
 
@@ -19,4 +24,3 @@ int k_msgq_cleanup(int *param_1)
         return (int)0xfffffff0;
     }
 }
-

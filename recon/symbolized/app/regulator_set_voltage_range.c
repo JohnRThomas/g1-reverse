@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: regulator_set_voltage_range */
-/* Reconstructed regulator_set_voltage_range @ 0x84300  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084300 @ 0x00084300
+ * public-name: regulator_set_voltage_range
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   dev_reg_modify_bits                      <= FUN_00083e0e @ 0x00083e0e
+ *   regulator_set_voltage_range              <= FUN_00084300 @ 0x00084300
+ */
+/* Reconstructed FUN_00084300 @ 0x84300  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00062070(unsigned int, unsigned int, void*);
 extern int dev_write_reg3(unsigned int, int, int, int);
@@ -22,4 +29,3 @@ void regulator_set_voltage_range(int param_1, unsigned int param_2, unsigned int
   }
   return;
 }
-

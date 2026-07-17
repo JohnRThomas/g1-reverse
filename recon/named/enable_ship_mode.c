@@ -1,11 +1,21 @@
-/* named: enable_ship_mode */
-/* Reconstructed enable_ship_mode @ 0x167f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000167f4 @ 0x000167f4
+ * public-name: enable_ship_mode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   power_down_panel                         <= FUN_00015fdc @ 0x00015fdc
+ *   power_down_imu_and_mic                   <= FUN_000160b4 @ 0x000160b4
+ *   enable_ship_mode                         <= FUN_000167f4 @ 0x000167f4
+ *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ */
+/* Reconstructed FUN_000167f4 @ 0x167f4  (parity: 300/300 trials, PROVEN) */
 
 extern void power_down_panel(void);
 extern void power_down_imu_and_mic(void);
 extern void app_msleep_thunk_a(unsigned int a);
-extern int dev_write_reg3(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void DEBUG_PRINT(unsigned int a);
+extern int dev_write_reg3(unsigned int a, unsigned int b,
+                        unsigned int c, unsigned int d);
+extern void DEBUG_PRINT(unsigned int, ...);
 
 unsigned int enable_ship_mode(void)
 {
@@ -15,8 +25,8 @@ unsigned int enable_ship_mode(void)
     app_msleep_thunk_a(2000);
     int base = *(volatile int*)(0x00087d10UL + 4);
     unsigned int arg0 = *(volatile unsigned int*)(base + 0x1c);
-    int iVar1 = dev_write_reg3(arg0, 0xb, 2, 1, 0);
-    if (iVar1 < 0) {
+    int status = dev_write_reg3(arg0, 0xb, 2, 1);
+    if (status < 0) {
         format_string = 0x0009973dUL;
     } else {
         format_string = 0x00099756UL;
@@ -24,4 +34,3 @@ unsigned int enable_ship_mode(void)
     DEBUG_PRINT(format_string);
     return 0;
 }
-

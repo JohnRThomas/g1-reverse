@@ -4,6 +4,5 @@
 #include <stdint.h>
 extern void FUN_0103b268(uint32_t, uint32_t);
 void FUN_010318d8(void) {
-    FUN_0103b268(((uintptr_t)&g_net_sync_obj_a) /*=0x210042f0*/, ((uintptr_t)&g_net_config_record_copy_dst) /*=0x21004974*/);
+    FUN_0103b268(0x210042f0, 0x21004974);
 }
-

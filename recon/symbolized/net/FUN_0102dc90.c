@@ -7,7 +7,7 @@ typedef int (*call_fn_t)(int arg);
 unsigned int FUN_0102dc90(unsigned int param_1)
 {
     unsigned int uVar10 = param_1;
-    int iVar5 = ((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/;
+    int iVar5 = ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
 
     while (param_1 != 0) {
         int iVar8 = __builtin_ctz(param_1);
@@ -25,5 +25,3 @@ unsigned int FUN_0102dc90(unsigned int param_1)
     }
     return uVar10;
 }
-
-

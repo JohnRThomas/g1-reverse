@@ -1,5 +1,21 @@
-/* named: bt_gatt_subscribe */
-/* Reconstructed bt_gatt_subscribe @ 0x5c4f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005c4f0 @ 0x0005c4f0
+ * public-name: bt_gatt_subscribe
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
+ *   gatt_write_ccc                           <= FUN_0005a540 @ 0x0005a540
+ *   bt_gatt_subscribe                        <= FUN_0005c4f0 @ 0x0005c4f0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   sys_slist_find_and_remove_0              <= FUN_00082ab8 @ 0x00082ab8
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3ebd                             @ 0x000f3ebd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ */
+/* Reconstructed FUN_0005c4f0 @ 0x5c4f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern void assert_post_action(unsigned,unsigned);
@@ -8,7 +24,7 @@ extern int gatt_sub_free(int);
 extern int gatt_write_ccc(int,int*);
 extern int FUN_0008270c(int*);
 extern void sys_slist_find_and_remove_0(int,int*);
-extern void bt_gatt_cancel(int,int*);
+extern void FUN_00082e24(int,int*);
 typedef int (*codef)(int,int*,int);
 int bt_gatt_subscribe(int param_1, int *param_2, unsigned param_3, unsigned param_4)
 {
@@ -34,7 +50,7 @@ int bt_gatt_subscribe(int param_1, int *param_2, unsigned param_3, unsigned para
     } while (piVar5 != 0);
     if (bVar4) {
       iVar2 = FUN_0008270c(param_2 + 5);
-      if (iVar2 << 0x1d < 0) bt_gatt_cancel(param_1, param_2);
+      if (iVar2 << 0x1d < 0) FUN_00082e24(param_1, param_2);
       if (bVar6) {
         sys_slist_find_and_remove_0(iVar1+8, param_2+6);
         if (*(int*)(iVar1+8) == 0) gatt_sub_free(iVar1);
@@ -51,4 +67,3 @@ int bt_gatt_subscribe(int param_1, int *param_2, unsigned param_3, unsigned para
   }
   return -0x16;
 }
-

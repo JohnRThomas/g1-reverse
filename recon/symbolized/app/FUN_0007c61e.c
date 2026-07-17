@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c61e */
+/* readable reconstruction; identity: FUN_0007c61e @ 0x0007c61e
+ * public-name: FUN_0007c61e
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_node_value_len                       <= FUN_0007c408 @ 0x0007c408
+ */
 /* Reconstructed FUN_0007c61e @ 0x7c61e  (parity: 300/300 trials, PROVEN) */
 extern unsigned int opt_node_value_len(void);
 
@@ -20,4 +25,3 @@ unsigned int FUN_0007c61e(unsigned char *param_1, unsigned char *param_2)
     }
     return uVar2;
 }
-

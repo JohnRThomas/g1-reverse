@@ -9,9 +9,9 @@ void FUN_0103735c(unsigned int param_1, int *param_2, unsigned int param_3, unsi
   int *piVar1;
   int iVar2;
 
-  if ((unsigned int)param_2 == ((uintptr_t)&g_net_dlist_sentinel) /*=0x210043a8*/) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0x484);
-    FUN_01039bb0(((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0x484);
+  if ((unsigned int)param_2 == 0x210043a8u) {
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x484);
+    FUN_01039bb0(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x484);
   }
   iVar2 = param_2[0];
   piVar1 = (int *)param_2[1];
@@ -21,4 +21,3 @@ void FUN_0103735c(unsigned int param_1, int *param_2, unsigned int param_3, unsi
   param_2[1] = 0;
   return;
 }
-

@@ -1,6 +1,31 @@
 #include "g1_app_symbols.h"
-/* named: gatt_notify */
-/* Reconstructed gatt_notify @ 0x5b680  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b680 @ 0x0005b680
+ * public-name: gatt_notify
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_get                                  <= FUN_0005858c @ 0x0005858c
+ *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
+ *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
+ *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   process_queue                            <= FUN_00082114 @ 0x00082114
+ *   bt_att_set_tx_meta_data                  <= FUN_000825ac @ 0x000825ac
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4ad5                             @ 0x000f4ad5
+ *   rodata_f4aeb                             @ 0x000f4aeb
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b44                             @ 0x000f4b44
+ *   rodata_f4bde                             @ 0x000f4bde
+ */
+/* Reconstructed FUN_0005b680 @ 0x5b680  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0005833c(int,...);
 extern int att_get(int,...);
@@ -25,8 +50,8 @@ unsigned gatt_notify(int param_1, unsigned short param_2, int param_3)
     if(iVar2 == 0){
         iVar2 = FUN_0005b0dc(param_1, *(unsigned*)(param_3+4), 1);
         if(iVar2 == 0){
-            local_24 = "Device is not subscribed to characteristic" /*=0xf4aeb*/; local_28 = 2;
-            FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+            local_24 = ((unsigned long)&rodata_f4aeb) /*=0xf4aeb*/; local_28 = 2;
+            FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
             uVar3 = 0xffffffea;
         } else {
             iVar2 = bt_att_create_pdu(param_1, 0x1b, *(unsigned short*)(param_3+0xc) + 2);
@@ -37,7 +62,7 @@ unsigned gatt_notify(int param_1, unsigned short param_2, int param_3)
                 memcpy((int)(puVar4+1), *(unsigned*)(param_3+8), *(unsigned short*)(param_3+0xc));
                 bt_att_set_tx_meta_data(iVar2, *(unsigned*)(param_3+0x10), *(unsigned*)(param_3+0x14), 1);
                 if(param_1 == 0){
-                    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "params" /*=0xf4b3d*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, 0xf22);
+                    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f4b3d) /*=0xf4b3d*/, ((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0xf22);
                     uVar3 = 0xf22;
                 } else {
                     if(iVar2 != 0){
@@ -69,20 +94,19 @@ LAB_00059a5a:
                         }
                         return uVar3;
                     }
-                    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "params->attr || params->uuid" /*=0xf4b44*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, 0xf23);
+                    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f4b44) /*=0xf4b44*/, ((unsigned long)&rodata_f46b8) /*=0xf46b8*/, 0xf23);
                     uVar3 = 0xf23;
                 }
-                assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/, uVar3);
+                assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/, uVar3);
             }
-            local_24 = "No buffer available to send notification" /*=0xf4bde*/; local_28 = 2;
-            FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+            local_24 = ((unsigned long)&rodata_f4bde) /*=0xf4bde*/; local_28 = 2;
+            FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
             uVar3 = 0xfffffff4;
         }
     } else {
-        local_24 = "Link is not encrypted" /*=0xf4ad5*/; local_28 = 2;
-        FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+        local_24 = ((unsigned long)&rodata_f4ad5) /*=0xf4ad5*/; local_28 = 2;
+        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
         uVar3 = 0xffffffff;
     }
     return uVar3;
 }
-

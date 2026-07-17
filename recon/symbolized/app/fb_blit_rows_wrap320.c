@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: fb_blit_rows_wrap320 */
-/* Reconstructed fb_blit_rows_wrap320 @ 0x7d4f8  (parity: 145/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d4f8 @ 0x0007d4f8
+ * public-name: fb_blit_rows_wrap320
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fb_blit_rows_wrap320                     <= FUN_0007d4f8 @ 0x0007d4f8
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
+/* Reconstructed FUN_0007d4f8 @ 0x7d4f8  (parity: 145/300 trials, PROVEN) */
 
 extern void memcpy(int, int, int);
 
@@ -15,4 +21,3 @@ int fb_blit_rows_wrap320(int *param_1,int param_2,int param_3,int param_4,int pa
   }
   return param_6;
 }
-

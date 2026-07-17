@@ -1,5 +1,10 @@
-/* named: float_to_ascii_signed_2dp */
-/* Reconstructed float_to_ascii_signed_2dp @ 0x4a300  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a300 @ 0x0004a300
+ * public-name: float_to_ascii_signed_2dp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   float_to_ascii_signed_2dp                <= FUN_0004a300 @ 0x0004a300
+ */
+/* Reconstructed FUN_0004a300 @ 0x4a300  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
 int float_to_ascii_signed_2dp(float param_1, char *param_2v){
@@ -45,4 +50,3 @@ int float_to_ascii_signed_2dp(float param_1, char *param_2v){
     while (iVar6 - 1 != -1){ param_2 = param_2 + 1; *param_2 = local_25[iVar6]; iVar6 = iVar6 - 1; }
     return iVar1 + 3;
 }
-

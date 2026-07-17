@@ -12,25 +12,24 @@ void FUN_0103705c(unsigned int param_1)
   int iVar3;
   unsigned int r1val;
 
-  iVar3 = FUN_0103610c(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  iVar3 = FUN_0103610c(0x21004b68);
   if (iVar3 == 0) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
     r1val = 0x72;
     goto L_shared;
   }
 
 L_main:
-  FUN_01036144(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  FUN_01036144(0x21004b68);
   FUN_01036fcc(param_1);
-  iVar3 = FUN_01036128(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+  iVar3 = FUN_01036128(0x21004b68);
   if (iVar3 != 0) {
     return;
   }
-  FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+  FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
   r1val = 0xf0;
 
 L_shared:
-  FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, r1val);
+  FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, r1val);
   goto L_main;
 }
-

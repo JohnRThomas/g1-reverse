@@ -1,9 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: send_whitelist_json_chunked */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed send_whitelist_json_chunked @ 0x35498  (parity: 228/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00035498 @ 0x00035498
+ * public-name: send_whitelist_json_chunked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   convert_app_whitelist_to_json            <= FUN_000352e8 @ 0x000352e8
+ *   send_whitelist_json_chunked              <= FUN_00035498 @ 0x00035498
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a893c                             @ 0x000a893c
+ *   rodata_a8952                             @ 0x000a8952
+ *   rodata_a8a33                             @ 0x000a8a33
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int debug_print(int,...);
@@ -15,11 +28,11 @@ extern int memset_bytes(int,...);
 typedef int (*codeptr)(int,...);
 void send_whitelist_json_chunked(int param_1,int param_2)
 {
-  volatile int *E = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  volatile int *E = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int iVar1 = malloc(0x15e3);
   if (iVar1 == 0) {
-    if (*E != 0) { debug_print("[%s-%d] buf is NULL \n" /*=0xa893c*/,"get_whitelist_app_from_device" /*=0xa8a33*/,0x237); return; }
-    DEBUG_PRINT("[%s-%d] buf is NULL \n" /*=0xa893c*/,"get_whitelist_app_from_device" /*=0xa8a33*/,0x237); return;
+    if (*E != 0) { debug_print(((unsigned long)&rodata_a893c) /*=0xa893c*/,((unsigned long)&rodata_a8a33) /*=0xa8a33*/,0x237); return; }
+    DEBUG_PRINT(((unsigned long)&rodata_a893c) /*=0xa893c*/,((unsigned long)&rodata_a8a33) /*=0xa8a33*/,0x237); return;
   }
   *(volatile unsigned char*)(param_2+1) = 0x6a;
   memset_bytes(iVar1,0,0x15e3,0x6a,param_1);
@@ -59,7 +72,6 @@ void send_whitelist_json_chunked(int param_1,int param_2)
     heap_free(iVar1);
     return;
   }
-  if (*E != 0) { debug_print("[%s-%d] total_len is %d \n" /*=0xa8952*/,"get_whitelist_app_from_device" /*=0xa8a33*/,0x23f,0); return; }
-  DEBUG_PRINT("[%s-%d] total_len is %d \n" /*=0xa8952*/,"get_whitelist_app_from_device" /*=0xa8a33*/,0x23f);
+  if (*E != 0) { debug_print(((unsigned long)&rodata_a8952) /*=0xa8952*/,((unsigned long)&rodata_a8a33) /*=0xa8a33*/,0x23f,0); return; }
+  DEBUG_PRINT(((unsigned long)&rodata_a8952) /*=0xa8952*/,((unsigned long)&rodata_a8a33) /*=0xa8a33*/,0x23f);
 }
-

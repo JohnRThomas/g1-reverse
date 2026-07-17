@@ -1,9 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: ble_notify_remote_info_available */
-/* globals referenced:
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_notify_remote_info_available @ 0x56da8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056da8 @ 0x00056da8
+ * public-name: ble_notify_remote_info_available
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_00056da8 @ 0x56da8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_000819ea(void);
 extern void printk(unsigned,...);
@@ -12,7 +24,7 @@ typedef void (*fp)(int,...);
 void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     *(unsigned char*)(param_1 + 10) = *(unsigned char*)(param_1 + 9);
     FUN_000819ea();
-    int iVar3 = *(volatile int*)((uintptr_t)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;
+    int iVar3 = *(volatile int*)((unsigned long)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;
     while (iVar3 != 0){
         fp pcVar2 = *(fp*)(iVar3 + 0x14);
         if (pcVar2 != 0){
@@ -20,13 +32,13 @@ void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned pa
         }
         iVar3 = *(int*)(iVar3 + 0x20);
     }
-    unsigned uVar4 = ((uintptr_t)&tbl_87fc8) /*=0x87fec*/;
-    unsigned uVar1 = ((uintptr_t)&tbl_88058) /*=0x88058*/;
+    unsigned uVar4 = ((unsigned long)&rodata_87fec) /*=0x87fec*/;
+    unsigned uVar1 = ((unsigned long)&rodata_88058) /*=0x88058*/;
     while (1){
         if (uVar1 < uVar4){
-            printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "cb <= _bt_conn_cb_list_end" /*=0xf3a8d*/, "WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x8ca);
-            printk("\tunexpected list end location\n" /*=0xf0d20*/);
-            assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/conn.c" /*=0xf3a5d*/, 0x8ca);
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f3a8d) /*=0xf3a8d*/, ((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x8ca);
+            printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+            assert_post_action(((unsigned long)&rodata_f3a5d) /*=0xf3a5d*/, 0x8ca);
         }
         if (uVar1 <= uVar4) break;
         if (*(fp*)(uVar4 + 0x14) != 0){
@@ -35,4 +47,3 @@ void ble_notify_remote_info_available(int param_1, unsigned param_2, unsigned pa
         uVar4 = uVar4 + 0x24;
     }
 }
-

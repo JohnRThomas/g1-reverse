@@ -1,8 +1,10 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01022774 @ 0x1022774  (parity 300 trials PROVEN) */
+/* net-core FUN_01022774 @ 0x1022774  (parity 300 trials PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: malformed randomized scheduler link tables may
+ * contain cycles; production tables are bounded and sentinel-terminated. */
 extern int FUN_01025028(void);
 
-#define DAT_01022868 ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define DAT_01022868 ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 
 unsigned int FUN_01022774(int param_1)
 {
@@ -72,4 +74,3 @@ unsigned int FUN_01022774(int param_1)
   *(char *)(iVar3 + param_1 * 3 + 0x32) = (char)uVar6;
   return uVar9;
 }
-

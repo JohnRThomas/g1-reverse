@@ -1,9 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: bt_send */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed bt_send @ 0x54a44  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054a44 @ 0x00054a44
+ * public-name: bt_send
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
+ *   bt_send                                  <= FUN_00054a44 @ 0x00054a44
+ *   k_work_queue_init                        <= FUN_000730b4 @ 0x000730b4
+ *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
+ *   posix_stub_enosys                        <= FUN_00086412 @ 0x00086412
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ * address symbols (name @ address):
+ *   ADDR_FUN_000545f0_THUMB                  @ 0x000545f1
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f3376                             @ 0x000f3376
+ *   rodata_f338f                             @ 0x000f338f
+ *   rodata_f3395                             @ 0x000f3395
+ *   rodata_f339b                             @ 0x000f339b
+ *   g_ble_dev_state                          @ 0x20002000
+ *   rx_thread_data                           @ 0x20005e30
+ *   bt_workqueue                             @ 0x20005f08
+ *   ready_cb                                 @ 0x2000ac6c
+ *   rx_thread_stack                          @ 0x2002bb80
+ *   bt_workqueue_stack                       @ 0x2002bf80
+ */
+/* Reconstructed FUN_00054a44 @ 0x54a44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int hci_vs_init(void);
 extern int FUN_00052edc(void);
@@ -20,11 +43,11 @@ extern void z_impl_k_sem_init(int,int);
 typedef int (*cf)(void);
 int bt_send(int param_1)
 {
-  int iVar1 = ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/, iVar3; unsigned uVar2;
+  int iVar1 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/, iVar3; unsigned uVar2;
   int local_40, local_38; unsigned local_3c, uStack_34, local_20, local_1c;
   if (*(int*)(iVar1 + 0x168) == 0) {
-    iVar3 = -0x13; local_1c = "No HCI driver registered" /*=0xf3376*/; local_20 = 2;
-    FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1040, &local_20);
+    iVar3 = -0x13; local_1c = ((unsigned long)&rodata_f3376) /*=0xf3376*/; local_20 = 2;
+    FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1040, &local_20);
   } else {
     uVar2 = atomic_and_3(iVar1 + 0xd4, 0xfffffffd);
     iVar3 = atomic_or(uVar2, 1);
@@ -33,26 +56,25 @@ int bt_send(int param_1)
     } else {
       iVar3 = FUN_00052edc();
       if (iVar3 == 0) {
-        *(volatile int*)((uintptr_t)&ready_cb) /*=0x2000ac6c*/ = param_1;
+        *(volatile int*)((unsigned long)&ready_cb) /*=0x2000ac6c*/ = param_1;
         z_impl_k_sem_init(iVar1 + 0x128, 1);
         z_impl_k_queue_init(iVar1 + 0x14c);
         local_38 = 0; uStack_34 = 0; local_40 = iVar3;
-        FUN_00071eac(((uintptr_t)&rx_thread_data) /*=0x20005e30*/, ((uintptr_t)&rx_thread_stack) /*=0x2002bb80*/, 0x400, ((uintptr_t)&tbl_545e8) /*=0x545f1*/, 0, 0, 0, 0xfffffff7);
-        posix_stub_enosys(((uintptr_t)&rx_thread_data) /*=0x20005e30*/, "BT TX" /*=0xf338f*/);
-        k_work_queue_init(((uintptr_t)&bt_workqueue) /*=0x20005f08*/);
-        k_work_queue_start(((uintptr_t)&bt_workqueue) /*=0x20005f08*/, ((uintptr_t)&bt_workqueue_stack) /*=0x2002bf80*/, 0x898, 0xfffffff8, 0);
-        posix_stub_enosys(((uintptr_t)&bt_workqueue) /*=0x20005f08*/, "BT RX" /*=0xf3395*/);
+        FUN_00071eac(((unsigned long)&rx_thread_data) /*=0x20005e30*/, ((unsigned long)&rx_thread_stack) /*=0x2002bb80*/, 0x400, ADDR_FUN_000545f0_THUMB /*=0x545f1*/, 0, 0, 0, 0xfffffff7);
+        posix_stub_enosys(((unsigned long)&rx_thread_data) /*=0x20005e30*/, ((unsigned long)&rodata_f338f) /*=0xf338f*/);
+        k_work_queue_init(((unsigned long)&bt_workqueue) /*=0x20005f08*/);
+        k_work_queue_start(((unsigned long)&bt_workqueue) /*=0x20005f08*/, ((unsigned long)&bt_workqueue_stack) /*=0x2002bf80*/, 0x898, 0xfffffff8, 0);
+        posix_stub_enosys(((unsigned long)&bt_workqueue) /*=0x20005f08*/, ((unsigned long)&rodata_f3395) /*=0xf3395*/);
         iVar3 = (*(cf*)(*(int*)(iVar1 + 0x168) + 0xc))();
         if (iVar3 == 0) {
           if (param_1 == 0) iVar3 = hci_vs_init();
           else FUN_00072fdc(iVar1 + 0xc4);
         } else {
-          local_3c = "HCI driver open failed (%d)" /*=0xf339b*/; local_40 = 3; local_38 = iVar3;
-          FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1840, &local_40);
+          local_3c = ((unsigned long)&rodata_f339b) /*=0xf339b*/; local_40 = 3; local_38 = iVar3;
+          FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840, &local_40);
         }
       }
     }
   }
   return iVar3;
 }
-

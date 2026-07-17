@@ -1,5 +1,13 @@
-/* named: attr_configure_pair_with_init */
-/* Reconstructed attr_configure_pair_with_init @ 0x7d02a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d02a @ 0x0007d02a
+ * public-name: attr_configure_pair_with_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_set                           <= FUN_00030178 @ 0x00030178
+ *   attr_store_init_sequence                 <= FUN_00030288 @ 0x00030288
+ *   attr_configure_pair                      <= FUN_0007cfdc @ 0x0007cfdc
+ *   attr_configure_pair_with_init            <= FUN_0007d02a @ 0x0007d02a
+ */
+/* Reconstructed FUN_0007d02a @ 0x7d02a  (parity: 300/300 trials, PROVEN) */
 
 extern int attr_store_init_sequence(unsigned int);
 extern int attr_configure_pair(unsigned int, unsigned int);
@@ -18,4 +26,3 @@ int attr_configure_pair_with_init(unsigned int param_1, unsigned int param_2, un
   }
   return iVar1;
 }
-

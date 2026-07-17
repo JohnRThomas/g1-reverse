@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0008307a */
+/* readable reconstruction; identity: FUN_0008307a @ 0x0008307a
+ * public-name: FUN_0008307a
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
+ */
 /* Reconstructed FUN_0008307a @ 0x8307a  (parity: 300/300 trials, PROVEN) */
 
 extern long long bt_l2cap_le_lookup_tx_cid(unsigned int, int);
@@ -14,4 +19,3 @@ int FUN_0008307a(unsigned int param_1, unsigned int param_2, unsigned int param_
   }
   return (int)uVar1 - 0xf0;
 }
-

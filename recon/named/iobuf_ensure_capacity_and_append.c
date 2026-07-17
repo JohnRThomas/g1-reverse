@@ -1,10 +1,19 @@
-/* named: iobuf_ensure_capacity_and_append */
-/* Reconstructed iobuf_ensure_capacity_and_append @ 0x87736  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087736 @ 0x00087736
+ * public-name: iobuf_ensure_capacity_and_append
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ *   iobuf_ensure_capacity_and_append         <= FUN_00087736 @ 0x00087736
+ */
+/* Reconstructed FUN_00087736 @ 0x87736  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int heap_free_core(void*,int);
 extern int _malloc_r(void*,unsigned);
 extern void memcpy(int,int,int);
-extern void memmove(int,unsigned,unsigned);
+extern void FUN_00086c44(int,unsigned,unsigned);
 extern int heap_realloc_grow(void*,int,unsigned);
 
 unsigned iobuf_ensure_capacity_and_append(uint32_t *param_1, int *param_2, unsigned param_3, unsigned param_4){
@@ -39,7 +48,7 @@ unsigned iobuf_ensure_capacity_and_append(uint32_t *param_1, int *param_2, unsig
     }
     uVar3 = param_4;
   L877a8:
-    memmove(param_2[0], param_3, uVar3);
+    FUN_00086c44(param_2[0], param_3, uVar3);
     param_2[2] = param_2[2] - uVar3;
     param_2[0] = param_2[0] + uVar3;
     return 0;
@@ -48,4 +57,3 @@ unsigned iobuf_ensure_capacity_and_append(uint32_t *param_1, int *param_2, unsig
     *(unsigned short*)((char*)param_2+0xc) |= 0x40;
     return 0xffffffff;
 }
-

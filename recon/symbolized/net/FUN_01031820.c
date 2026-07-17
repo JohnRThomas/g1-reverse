@@ -6,8 +6,8 @@ extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, unsigned int d
 extern void FUN_0102f4ec(unsigned int a);
 extern void FUN_01031814(void);
 
-#define DAT_01031844 "ndling\n" /*=0x103e16a*/
-#define DAT_01031848 ((uintptr_t)&rodata_103c064) /*=0x103c064*/
+#define DAT_01031844 ((unsigned long)&rodata_103e16a) /*=0x103e16a*/
+#define DAT_01031848 ((unsigned long)&rodata_103c064) /*=0x103c064*/
 
 int FUN_01031820(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -23,4 +23,3 @@ int FUN_01031820(unsigned int param_1, unsigned int param_2, unsigned int param_
         FUN_01031814();
     }
 }
-

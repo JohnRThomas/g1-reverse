@@ -1,12 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00062c54 */
+/* readable reconstruction; identity: FUN_00062c54 @ 0x00062c54
+ * public-name: FUN_00062c54
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   is_tx_ready                              <= FUN_00084abe @ 0x00084abe
+ *   thunk_FUN_00086384                       <= FUN_000850d8 @ 0x000850d8
+ */
 /* Reconstructed FUN_00062c54 @ 0x62c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int assert_post_action(int,int);
 extern int printk(int,int,int,int);
 extern int is_tx_ready(int);
-extern int pinctrl_apply_state_constprop_0(int,int) __asm__("pinctrl_apply_state.constprop.0");
-extern int thunk_FUN_00086384(int);
+extern int FUN_00084b14(int,int);
+extern void thunk_FUN_00086384(int);
 
 unsigned int FUN_00062c54(int param_1, int param_2)
 {
@@ -72,14 +80,14 @@ LAB_00062cb8:
         }
         *(uint32_t *)(**(int **)(param_1 + 4) + 0x500) = 0;
         if ((int)(puVar5[1] << 0x1f) < 0) {
-            uVar1 = pinctrl_apply_state_constprop_0(puVar5[3], 1);
+            uVar1 = FUN_00084b14(puVar5[3], 1);
             return uVar1 & ((int)uVar1 >> 0x1f);
         }
     } else {
         if (param_2 != 1) {
             return 0xffffff7a;
         }
-        if (((int)(puVar5[1] << 0x1f) < 0) && (uVar1 = pinctrl_apply_state_constprop_0(puVar5[3], 0), (int)uVar1 < 0)) {
+        if (((int)(puVar5[1] << 0x1f) < 0) && (uVar1 = FUN_00084b14(puVar5[3], 0), (int)uVar1 < 0)) {
             return uVar1;
         }
         puVar4[0x140] = 8;
@@ -90,4 +98,3 @@ LAB_00062cb8:
     }
     return 0;
 }
-

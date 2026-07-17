@@ -12,7 +12,7 @@ extern int FUN_01022ebc(unsigned int);
 
 void FUN_0101a2e0(void)
 {
-  volatile unsigned char * const pcVar2 = (volatile unsigned char *)((uintptr_t)&g_net_session_state_block) /*=0x210010a0*/;
+  volatile unsigned char * const pcVar2 = (volatile unsigned char *)((unsigned long)&g_net_session_state_block) /*=0x210010a0*/;
   volatile unsigned char *puVar3;
   unsigned char r2;
 
@@ -51,7 +51,7 @@ L_34e:
   }
 
 L_2f6:
-  FUN_0101dd0c(((uintptr_t)&g_net_session_queue_obj) /*=0x210010f0*/);
+  FUN_0101dd0c(((unsigned long)&g_net_session_queue_obj) /*=0x210010f0*/);
 
 L_2fc:
   if (pcVar2[2] == 0) goto L_306;
@@ -83,4 +83,3 @@ L_306:
   }
   puVar3[0] = 0x20;
 }
-

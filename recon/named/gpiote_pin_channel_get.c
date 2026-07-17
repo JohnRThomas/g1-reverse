@@ -1,8 +1,19 @@
-/* named: gpiote_pin_channel_get */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_pin_channel_get @ 0x658e8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000658e8 @ 0x000658e8
+ * public-name: gpiote_pin_channel_get
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   pin_in_use_by_te                         <= FUN_00065460 @ 0x00065460
+ *   gpiote_pin_channel_get                   <= FUN_000658e8 @ 0x000658e8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6b00                             @ 0x000f6b00
+ *   rodata_f6b7d                             @ 0x000f6b7d
+ *   g_gpiote_cb                              @ 0x20002bc0
+ */
+/* Reconstructed FUN_000658e8 @ 0x658e8  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long get_pin_idx(unsigned int a);
 extern int pin_in_use_by_te(void);
@@ -30,4 +41,3 @@ unsigned int gpiote_pin_channel_get(unsigned int param_1, int param_2)
   }
   return uVar2;
 }
-

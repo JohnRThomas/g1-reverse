@@ -1,5 +1,11 @@
-/* named: opt_list_total_len */
-/* Reconstructed opt_list_total_len @ 0x7c754  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c754 @ 0x0007c754
+ * public-name: opt_list_total_len
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_node_total_len                       <= FUN_0007c41c @ 0x0007c41c
+ *   opt_list_total_len                       <= FUN_0007c754 @ 0x0007c754
+ */
+/* Reconstructed FUN_0007c754 @ 0x7c754  (parity: 300/300 trials, PROVEN) */
 
 extern int opt_node_total_len(int);
 int opt_list_total_len(int *param_1, int *param_2)
@@ -17,4 +23,3 @@ int opt_list_total_len(int *param_1, int *param_2)
     param_2[1] = iVar4;
     return 0;
 }
-

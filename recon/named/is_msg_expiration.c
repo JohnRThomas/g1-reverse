@@ -1,10 +1,20 @@
-/* named: is_msg_expiration */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
+/* readable reconstruction; identity: FUN_0003444c @ 0x0003444c
+ * public-name: is_msg_expiration
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
+ * address symbols (name @ address):
+ *   rodata_a80e3                             @ 0x000a80e3
+ *   rodata_a8146                             @ 0x000a8146
+ *   rodata_a820f                             @ 0x000a820f
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -67,4 +77,3 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
     }
     return uVar6;
 }
-

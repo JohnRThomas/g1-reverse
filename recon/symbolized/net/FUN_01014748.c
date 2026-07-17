@@ -13,10 +13,10 @@ typedef void (*fptr_t)(int);
 
 int FUN_01014748(void)
 {
-  volatile int * const iVar6base = (volatile int *)((uintptr_t)&g_net_link_ctx_a) /*=0x21000f68*/;
-  volatile fptr_t * const pfp = (volatile fptr_t *)((uintptr_t)&g_net_link_ctx_a_close_cb) /*=0x210001f4*/;
+  volatile int * const iVar6base = (volatile int *)((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/;
+  volatile fptr_t * const pfp = (volatile fptr_t *)((unsigned long)&g_net_link_ctx_a_close_cb) /*=0x210001f4*/;
 
-  int iVar6 = ((uintptr_t)&g_net_link_ctx_a) /*=0x21000f68*/;
+  int iVar6 = ((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/;
   int iVar11 = iVar6base[1];
 
   volatile unsigned char *b11 = (volatile unsigned char *)iVar11;
@@ -68,4 +68,3 @@ int FUN_01014748(void)
   }
   return 1;
 }
-

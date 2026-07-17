@@ -1,8 +1,15 @@
-/* named: update_imu_trigger_status */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002bcbc @ 0x0002bcbc
+ * public-name: update_imu_trigger_status
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   rodata_a24a9                             @ 0x000a24a9
+ *   rodata_a24c3                             @ 0x000a24c3
+ *   rodata_a2530                             @ 0x000a2530
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00072880(unsigned int);
@@ -40,4 +47,3 @@ unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int pa
     }
     return uVar2;
 }
-

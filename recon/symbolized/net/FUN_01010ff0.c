@@ -12,7 +12,7 @@ void FUN_01010ff0(unsigned char *param_1, int param_2)
     }
     param_1[0xc9] = param_1[0];
     if (param_2 == 0xff) {
-        unsigned char *pbVar2 = *(unsigned char**)((uintptr_t)&g_net_own_addr_info) /*=0x21000f20*/;
+        unsigned char *pbVar2 = *(unsigned char**)((unsigned long)&g_net_own_addr_info) /*=0x21000f20*/;
         param_1[0xca] = (unsigned char)(((unsigned int)pbVar2[0] << 0x19) >> 0x1f);
         *(unsigned int*)(param_1 + 0xcb) = *(unsigned int*)(pbVar2 + 3);
         *(unsigned short*)(param_1 + 0xcf) = *(unsigned short*)(pbVar2 + 7);
@@ -23,6 +23,5 @@ void FUN_01010ff0(unsigned char *param_1, int param_2)
         }
         param_1[0xca] = param_1[0xca] | 2;
     }
-    FUN_0100ef88(param_1 + 0xc0, ((uintptr_t)&rodata_101113d) /*=0x101113d*/, 2);
+    FUN_0100ef88(param_1 + 0xc0, ((unsigned long)&rodata_101113d) /*=0x101113d*/, 2);
 }
-

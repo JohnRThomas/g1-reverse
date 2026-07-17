@@ -1,10 +1,20 @@
-/* named: settings_parse_and_lookup */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-//   0x00088328  __settings_handler_static_list_end 
-//   0x2000a10c  g_settings_handlers          
-*/
-/* Reconstructed settings_parse_and_lookup @ 0x4e540  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e540 @ 0x0004e540
+ * public-name: settings_parse_and_lookup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   settings_parse_and_lookup                <= FUN_0004e540 @ 0x0004e540
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
+ * address symbols (name @ address):
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f1126                             @ 0x000f1126
+ *   rodata_f1158                             @ 0x000f1158
+ *   g_settings_handlers                      @ 0x2000a10c
+ */
+/* Reconstructed FUN_0004e540 @ 0x4e540  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void assert_post_action(uint32_t,int);
@@ -50,4 +60,3 @@ uint32_t* settings_parse_and_lookup(uint32_t param_1, uint32_t *param_2, uint32_
   }
   return puVar5;
 }
-

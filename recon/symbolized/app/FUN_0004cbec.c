@@ -1,14 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0004cbec */
+/* readable reconstruction; identity: FUN_0004cbec @ 0x0004cbec
+ * public-name: FUN_0004cbec
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_881d8                             @ 0x000881d8
+ *   rodata_f0c14                             @ 0x000f0c14
+ *   rodata_f0c32                             @ 0x000f0c32
+ */
 /* Reconstructed FUN_0004cbec @ 0x4cbec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0007e9ea(int,int,void*);
 uint32_t FUN_0004cbec(int param_1, int *param_2, int param_3){
   uint32_t local[2];
   if(param_1==0 || param_2==0 || param_3==0){
-    local[1] = "Invalid instance, endpoint or configuration" /*=0xf0c32*/;
+    local[1] = ((unsigned long)&rodata_f0c32) /*=0xf0c32*/;
     local[0] = 2;
-    FUN_0007e9ea(((uintptr_t)&tbl_880d8) /*=0x881d8*/, 0x1040, local);
+    FUN_0007e9ea(((unsigned long)&rodata_881d8) /*=0x881d8*/, 0x1040, local);
     return 0xffffffea;
   }
   int iVar2 = *(volatile int*)(param_1+8);
@@ -17,9 +24,8 @@ uint32_t FUN_0004cbec(int param_1, int *param_2, int param_3){
     uint32_t fp = *(volatile uint32_t*)(iVar2+0xc);
     return ((uint32_t(*)(int,int*))(uintptr_t)fp)(param_1, param_2+1);
   }
-  local[1] = "Invalid backend configuration" /*=0xf0c14*/;
+  local[1] = ((unsigned long)&rodata_f0c14) /*=0xf0c14*/;
   local[0] = 2;
-  FUN_0007e9ea(((uintptr_t)&tbl_880d8) /*=0x881d8*/, 0x1040, local);
+  FUN_0007e9ea(((unsigned long)&rodata_881d8) /*=0x881d8*/, 0x1040, local);
   return 0xfffffffb;
 }
-

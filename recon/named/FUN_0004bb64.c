@@ -1,4 +1,9 @@
-/* named: FUN_0004bb64 */
+/* readable reconstruction; identity: FUN_0004bb64 @ 0x0004bb64
+ * public-name: FUN_0004bb64
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ */
 /* Reconstructed FUN_0004bb64 @ 0x4bb64  (parity: 300/300 trials, PROVEN) */
 
 int FUN_0004bb64(unsigned int *param_1)
@@ -15,4 +20,3 @@ int FUN_0004bb64(unsigned int *param_1)
   *param_1 = (unsigned int)pbVar2;
   return iVar1;
 }
-

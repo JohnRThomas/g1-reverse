@@ -1,11 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: find_message_pool_entry_by_id */
-/* Reconstructed find_message_pool_entry_by_id @ 0x33c18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033c18 @ 0x00033c18
+ * public-name: find_message_pool_entry_by_id
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_message_pool_entry_by_id            <= FUN_00033c18 @ 0x00033c18
+ * address symbols (name @ address):
+ *   rodata_33c44                             @ 0x00033c44
+ *   rodata_33c48                             @ 0x00033c48
+ */
+/* Reconstructed FUN_00033c18 @ 0x33c18  (parity: 300/300 trials, PROVEN) */
 
 int find_message_pool_entry_by_id(int param_1)
 {
     int iVar1 = 10;
-    volatile int *piVar2 = *(volatile int**)((uintptr_t)&tbl_33afc) /*=0x33c44*/;
+    volatile int *piVar2 = *(volatile int**)((unsigned long)&rodata_33c44) /*=0x33c44*/;
     while ((*(volatile char*)((int)piVar2+8) == 0) ||
            (*(volatile char*)((int)piVar2+6) != 0) ||
            (piVar2[0] != param_1)) {
@@ -15,6 +23,5 @@ int find_message_pool_entry_by_id(int param_1)
             return 0;
         }
     }
-    return iVar1 * 0x1b4 + *(volatile int*)((uintptr_t)&tbl_33afc) /*=0x33c48*/;
+    return iVar1 * 0x1b4 + *(volatile int*)((unsigned long)&rodata_33c48) /*=0x33c48*/;
 }
-

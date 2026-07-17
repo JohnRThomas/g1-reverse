@@ -1,7 +1,16 @@
-/* named: FUN_00074844 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00074844 @ 0x00074844
+ * public-name: FUN_00074844
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_00074844 @ 0x74844  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000741a4(int);
@@ -23,4 +32,3 @@ uint32_t FUN_00074844(int param_1,int param_2,int param_3,int param_4){
   int iVar2 = FUN_000746fc();
   return (uint32_t)(((int64_t)iVar2 * 1000) >> 15);
 }
-

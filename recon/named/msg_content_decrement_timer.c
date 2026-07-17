@@ -1,9 +1,13 @@
-/* named: msg_content_decrement_timer */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
-/* Reconstructed msg_content_decrement_timer @ 0x3441c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0003441c @ 0x0003441c
+ * public-name: msg_content_decrement_timer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   msg_content_decrement_timer              <= FUN_0003441c @ 0x0003441c
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
+/* Reconstructed FUN_0003441c @ 0x3441c  (parity: 300/300 trials, PROVEN) */
 
 void msg_content_decrement_timer(void)
 {
@@ -14,4 +18,3 @@ void msg_content_decrement_timer(void)
         *(volatile int*)(base + 4) = iVar1 - 10;
     }
 }
-

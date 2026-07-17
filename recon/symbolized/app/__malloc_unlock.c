@@ -1,13 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: __malloc_unlock */
-/* globals referenced:
-//   0x200037f0  g_malloc_lock                
-*/
-/* Reconstructed __malloc_unlock @ 0x785c8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000785c8 @ 0x000785c8
+ * public-name: __malloc_unlock
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
+ *   __malloc_unlock                          <= FUN_000785c8 @ 0x000785c8
+ * address symbols (name @ address):
+ *   g_malloc_lock                            @ 0x200037f0
+ */
+/* Reconstructed FUN_000785c8 @ 0x785c8  (parity: 300/300 trials, PROVEN) */
 
 extern void lock_release_or_fatal(void *p);
 void __malloc_unlock(void)
 {
-    lock_release_or_fatal((void*)((uintptr_t)&g_malloc_lock) /*=0x200037f0*/);
+    lock_release_or_fatal((void*)((unsigned long)&g_malloc_lock) /*=0x200037f0*/);
 }
-

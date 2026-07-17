@@ -1,9 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: sched_ready_queue_insert */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed sched_ready_queue_insert @ 0x73840  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00073840 @ 0x00073840
+ * public-name: sched_ready_queue_insert
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sched_ready_queue_insert                 <= FUN_00073840 @ 0x00073840
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_00073840 @ 0x73840  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_000737d8(int,...);
@@ -14,15 +23,15 @@ void sched_ready_queue_insert(int *param_1){
       || (*(uint8_t*)((int)param_1+0xd) & 0x1f)!=0
       || param_1[6]!=0 ) return;
   *(uint8_t*)((int)param_1+0xd) = *(uint8_t*)((int)param_1+0xd) | 0x80;
-  int iVar1 = ((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/;
-  if(param_1 == (int*)((uintptr_t)&g_thread_dummy) /*=0x20006720*/){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"!z_is_idle_thread_object(thread)" /*=0xf84d6*/,"WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
-    assert_post_action("WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/,0xc1);
+  int iVar1 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+  if(param_1 == (int*)0x20006720){
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
+    assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
   }
-  unsigned *puVar2 = (unsigned*)(((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/+0x1c);
+  unsigned *puVar2 = (unsigned*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+0x1c);
   unsigned *puVar3 = 0;
   if((unsigned*)*puVar2 != puVar2) puVar3 = (unsigned*)*puVar2;
-  unsigned *puVar4 = *(unsigned**)(((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/+0x20);
+  unsigned *puVar4 = *(unsigned**)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+0x20);
   for(; puVar3!=0; puVar3=(unsigned*)*puVar3){
     if( *(int8_t*)((int)param_1+0xe) != *(int8_t*)((int)puVar3+0xe)
         && *(int8_t*)((int)param_1+0xe) < *(int8_t*)((int)puVar3+0xe) ){
@@ -42,4 +51,3 @@ void sched_ready_queue_insert(int *param_1){
 LAB:
   FUN_000737d8(0);
 }
-

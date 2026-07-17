@@ -1,21 +1,40 @@
-/* named: ble_conn_ref */
-/* Reconstructed ble_conn_ref @ 0x56654  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056654 @ 0x00056654
+ * public-name: ble_conn_ref
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_ref                             <= FUN_00056654 @ 0x00056654
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3ebd                             @ 0x000f3ebd
+ */
+/* Reconstructed FUN_00056654 @ 0x56654  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(int,int) __attribute__((noreturn));
+extern void assert_post_action(int,int);
 extern void printk(int,int,int,int);
 
 int ble_conn_ref(int param_1)
 {
-    volatile int *piVar1;
-    int iVar2;
+    int *counter;
+    int old_value;
     if (param_1 == 0) {
         printk(0x00099cbd, 0x000f3ebd, 0x000f3a5d, 0x509);
         assert_post_action(0x000f3a5d, 0x509);
+        return 0x509;
     }
-    piVar1 = (volatile int*)(param_1 + 0xd0);
-    iVar2 = *piVar1;
-    if (iVar2 == 0) return 0;
-    *piVar1 = iVar2 + 1;
-    return param_1;
+    counter = (int *)(param_1 + 0xd0);
+    for (;;) {
+        old_value = __atomic_load_n(counter, __ATOMIC_ACQUIRE);
+        if (old_value == 0)
+            return 0;
+        {
+            int expected = old_value;
+            if (__atomic_compare_exchange_n(counter, &expected, old_value + 1,
+                                            1, __ATOMIC_ACQ_REL,
+                                            __ATOMIC_ACQUIRE))
+                return param_1;
+        }
+    }
 }
-

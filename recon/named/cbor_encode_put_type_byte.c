@@ -1,5 +1,12 @@
-/* named: cbor_encode_put_type_byte */
-/* Reconstructed cbor_encode_put_type_byte @ 0x861d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000861d4 @ 0x000861d4
+ * public-name: cbor_encode_put_type_byte
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_encode_check_ok                     <= FUN_000861ae @ 0x000861ae
+ *   cbor_encode_set_error                    <= FUN_000861c2 @ 0x000861c2
+ *   cbor_encode_put_type_byte                <= FUN_000861d4 @ 0x000861d4
+ */
+/* Reconstructed FUN_000861d4 @ 0x861d4  (parity: 300/300 trials, PROVEN) */
 
 extern long long cbor_encode_check_ok(unsigned int);
 extern void cbor_encode_set_error(unsigned int *, unsigned int);
@@ -26,4 +33,3 @@ int cbor_encode_put_type_byte(unsigned int *param_1, unsigned int param_2, unsig
   }
   return 0;
 }
-

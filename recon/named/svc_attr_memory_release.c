@@ -1,7 +1,12 @@
-/* named: svc_attr_memory_release */
-/* Reconstructed svc_attr_memory_release @ 0x7f3c2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f3c2 @ 0x0007f3c2
+ * public-name: svc_attr_memory_release
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   svc_attr_memory_release                  <= FUN_0007f3c2 @ 0x0007f3c2
+ */
+/* Reconstructed FUN_0007f3c2 @ 0x7f3c2  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_000868b4(void);
+extern void FUN_000868b4(void *);
 
 void svc_attr_memory_release(int param_1)
 {
@@ -14,9 +19,8 @@ void svc_attr_memory_release(int param_1)
         if (puVar1 == *(unsigned int**)(param_1 + 0x154)) {
             *(unsigned int*)(param_1 + 0x154) = uVar2;
         }
-        FUN_000868b4();
+        FUN_000868b4(puVar1);
     }
     *(unsigned int*)(param_1 + 0x158) = 0;
     return;
 }
-

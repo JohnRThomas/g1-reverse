@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: set_display_brightness */
-/* Reconstructed set_display_brightness @ 0x32254  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00032254 @ 0x00032254
+ * public-name: set_display_brightness
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   read_usr_settting_from_flash             <= FUN_00023400 @ 0x00023400
+ *   set_display_brightness                   <= FUN_00032254 @ 0x00032254
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a731c                             @ 0x000a731c
+ *   rodata_a7336                             @ 0x000a7336
+ */
+/* Reconstructed FUN_00032254 @ 0x32254  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned a);
 extern int get_device_info(void);
@@ -9,10 +20,10 @@ extern void FUN_0002eaa8(void);
 extern void FUN_0007c28e(int a, int b);
 extern void k_msleep_ticks32768_b(int a);
 unsigned set_display_brightness(int param_1, unsigned param_2, unsigned *param_3, unsigned char *param_4){
-    unsigned char stk[0x20];
-    DEBUG_PRINT("join in set_charge_limit\n" /*=0xa731c*/);
+    unsigned char stk[0x18];
+    DEBUG_PRINT(((unsigned long)&rodata_a731c) /*=0xa731c*/);
     if (param_3 == 0 || param_4 == 0){
-        DEBUG_PRINT("set_charge_limit para is NULL\n" /*=0xa7336*/);
+        DEBUG_PRINT(((unsigned long)&rodata_a7336) /*=0xa7336*/);
         return 0xffffffffu;
     }
     volatile unsigned char *puVar5 = (volatile unsigned char*)*param_3;
@@ -41,4 +52,3 @@ unsigned set_display_brightness(int param_1, unsigned param_2, unsigned *param_3
     *param_4 = 5;
     return 0;
 }
-

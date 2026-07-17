@@ -26,12 +26,11 @@ unsigned int FUN_0102b094(unsigned char *param_1)
       param_1[0] = (unsigned char)uVar1;
       param_1[2] = (unsigned char)(uVar1 >> 0x10);
       param_1[4] = (unsigned char)uVar2;
-      FUN_01039138(auStack_2c, 0x12, "h/arm/core/aarch32/irq_manage.c" /*=0x103d0db*/, uVar3, uVar2 & 0xff, uVar1 >> 0x18,
+      FUN_01039138(auStack_2c, 0x12, ((unsigned long)&rodata_103d0db) /*=0x103d0db*/, uVar3, uVar2 & 0xff, uVar1 >> 0x18,
                    (uVar1 << 8) >> 0x18, (uVar1 << 0x10) >> 0x18, uVar1 & 0xff);
-      FUN_01039722(((uintptr_t)&rodata_103d0f9) /*=0x103d0f9*/, auStack_2c);
+      FUN_01039722(((unsigned long)&rodata_103d0f9) /*=0x103d0f9*/, auStack_2c);
       uVar1 = 1;
     }
   }
   return uVar1;
 }
-

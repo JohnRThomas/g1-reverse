@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: att_req_sent */
-/* Reconstructed att_req_sent @ 0x822fc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000822fc @ 0x000822fc
+ * public-name: att_req_sent
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_req_sent                             <= FUN_000822fc @ 0x000822fc
+ * address symbols (name @ address):
+ *   rodata_f0000                             @ 0x000f0000
+ */
+/* Reconstructed FUN_000822fc @ 0x822fc  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000822ae(void);
 extern void FUN_0007350c(int,int*,int,int);
@@ -12,8 +19,7 @@ void att_req_sent(int param_1,int *param_2,int param_3)
         FUN_000822ae();
     }
     if (*(int*)(*param_2 + 0x124) != 0) {
-        FUN_0007350c(*param_2 + 0x160, piVar1, "eflash command end .......\n" /*=0xf0000*/, 0);
+        FUN_0007350c(*param_2 + 0x160, piVar1, ((unsigned long)&rodata_f0000) /*=0xf0000*/, 0);
     }
     FUN_0005833c(param_2);
 }
-

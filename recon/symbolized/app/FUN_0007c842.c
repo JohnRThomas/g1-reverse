@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c842 */
+/* readable reconstruction; identity: FUN_0007c842 @ 0x0007c842
+ * public-name: FUN_0007c842
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_box_field_state                      <= FUN_00025364 @ 0x00025364
+ */
 /* Reconstructed FUN_0007c842 @ 0x7c842  (parity: 300/300 trials, PROVEN) */
 
 extern int get_box_field_state(void);
@@ -12,4 +17,3 @@ void FUN_0007c842(int param_1)
   else { uVar2 = 2; }
   *(volatile unsigned char *)(param_1 + 2) = uVar2;
 }
-

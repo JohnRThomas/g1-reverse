@@ -1,5 +1,15 @@
-/* named: gatt_parse_find_by_type_rsp */
-/* Reconstructed gatt_parse_find_by_type_rsp @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005bbf4 @ 0x0005bbf4
+ * public-name: gatt_parse_find_by_type_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_parse_find_by_type_rsp              <= FUN_0005bbf4 @ 0x0005bbf4
+ *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4ca8                             @ 0x000f4ca8
+ */
+/* Reconstructed FUN_0005bbf4 @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_00082a42(unsigned,unsigned,void*);
 extern void gatt_discover_next(unsigned,unsigned,void*);
@@ -52,4 +62,3 @@ LAB_bc40:
   pcVar6 = *(fp_t*)(param_5+4);
   pcVar6(param_1, 0, param_5);
 }
-

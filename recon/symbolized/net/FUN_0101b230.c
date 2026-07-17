@@ -20,15 +20,15 @@ extern int FUN_01023d38(void);
 extern unsigned int FUN_01023dec(void);
 extern unsigned int FUN_01023e88(void);
 extern int FUN_01023ea8(int,int);
-extern int thunk_FUN_010246cc(void);
+extern int FUN_01029638(void);
 extern int FUN_0101a0e8(void);
 
 /* NOTE: DAT_0101b4e0/e4/e8/ec/f0 literal-pool slots sit at entry+0x2b0..0x2c0,
    which is past func_bytes_padded's (size+pad=634-byte) load window used by
    the proof harness -- those loads read 0 in actual emulation, not their
    "real firmware" values. Model that truncation exactly (base=0, consts=0). */
-#define I14 0u
-#define TBL 0u
+#define I14 ((unsigned long)&g_net_session_state_block) /*=0x210010a0*/
+#define TBL ((unsigned long)&rodata_103c254) /*=0x103c254*/
 #define IB(off) (*(volatile unsigned char*)(I14+(off)))
 #define IW(off) (*(volatile unsigned int*)(I14+(off)))
 #define TB(off) (*(volatile unsigned char*)(TBL+(off)))
@@ -48,7 +48,7 @@ void FUN_0101b230(void)
     } else {
         uVar18 = 0;
     }
-    unsigned int uVar13 = 0u;
+    unsigned int uVar13 = 0x10624dd3u;
     unsigned char bVar2 = *(volatile unsigned char*)(iVar7+3);
     signed char c2 = *(volatile signed char*)(iVar7+2);
     int iVar8a = (c2 < 0) ? 300 : 0x1e;
@@ -58,11 +58,11 @@ void FUN_0101b230(void)
     int iVar8 = FUN_010202f0();
     unsigned char rawc2 = *(volatile unsigned char*)(iVar7+2);
     int iVar7b = ((rawc2 & 0x40) == 0) ? 500 : 0x32;
-    int iVar10 = thunk_FUN_010246cc();
-    unsigned int uVar15 = (unsigned int)(iVar9 + iVar17) * (unsigned int)(iVar10 + iVar7b) + 0u;
-    unsigned long long uVar3 = 0ull;
-    FUN_0102029c();
-    int iVar7c = FUN_010209f0(0);
+    int iVar10 = FUN_01029638();
+    unsigned int uVar15 = (unsigned int)(iVar9 + iVar17) * (unsigned int)(iVar10 + iVar7b) + 0x000f423fu;
+    unsigned long long uVar3 = 0x431bde83ull;
+    iVar7 = FUN_0102029c();
+    int iVar7c = FUN_010209f0(iVar7);
     unsigned int uVar16 = (unsigned int)((uVar3 * (unsigned long long)uVar15) >> 0x32);
     int iVar7d = (iVar9 - (int)(unsigned int)(((unsigned long long)uVar13 * (unsigned long long)(unsigned int)(iVar7c + 999)) >> 0x26)) - (int)uVar16;
     uVar15 = (unsigned int)iVar7d - 0x59;
@@ -154,5 +154,3 @@ LAB_final:
     }
     return;
 }
-
-

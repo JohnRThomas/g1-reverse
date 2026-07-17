@@ -1,5 +1,13 @@
-/* named: spline_interp_3pt */
-/* Reconstructed spline_interp_3pt @ 0xeb7c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000eb7c @ 0x0000eb7c
+ * public-name: spline_interp_3pt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ *   spline_interp_3pt                        <= FUN_0000eb7c @ 0x0000eb7c
+ * address symbols (name @ address):
+ *   g_spline_nan_sentinel                    @ 0x20002d1c
+ */
+/* Reconstructed FUN_0000eb7c @ 0xeb7c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int float_is_nan(float);
 
@@ -19,4 +27,3 @@ float spline_interp_3pt(float param_1, float *param_2, float *param_3){
     fVar5 = ((fVar6-fVar9)/(fVar5-fVar3) - fVar4)/(fVar5-fVar7);
     return fVar8 + (fVar4 + -(fVar3-fVar7)*fVar5 + fVar5*(param_1-fVar7))*(param_1-fVar7);
 }
-

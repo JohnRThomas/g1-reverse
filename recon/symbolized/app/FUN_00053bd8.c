@@ -1,6 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00053bd8 */
-/* Reconstructed FUN_00053bd8 @ 0x53bd8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00053bd8 @ 0x00053bd8
+ * public-name: FUN_00053bd8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
+ *   ble_notify_le_param_updated              <= FUN_00056ae0 @ 0x00056ae0
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
+ * address symbols (name @ address):
+ *   rodata_28000                             @ 0x00028000
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2db7                             @ 0x000f2db7
+ */
+/* Reconstructed FUN_00053bd8 @ 0x53bd8 CFG_VERIFY_ORACLE0_R0_POINTER */
 
 #include <stdint.h>
 extern void ble_conn_unref(int);
@@ -20,11 +33,11 @@ void FUN_00053bd8(int param_1){
     int iVar2 = (int)(uint32_t)uVar6;
     uint32_t local_30, local_2c, uStack_28, local_20, local_1c;
     if (iVar2 == 0){
-        local_2c = "Unable to lookup conn for handle %u" /*=0xf2db7*/; local_30 = 3; uStack_28 = uVar1;
-        FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1840, &local_30);
+        local_2c = ((unsigned long)&rodata_f2db7) /*=0xf2db7*/; local_30 = 3; uStack_28 = uVar1;
+        FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840, &local_30);
         return;
     }
-    volatile int *piVar5 = (volatile int*)(iVar2+4);
+    volatile uint32_t *piVar5 = (volatile uint32_t *)(iVar2 + 4);
     if (*pcVar4 == 0x1a){
         if (*(volatile char*)(iVar2+3) == 1){
             uVar6 = atomic_or((void*)piVar5, 0x400);
@@ -52,11 +65,11 @@ void FUN_00053bd8(int param_1){
     ble_conn_unref(iVar2);
     return;
   L_c74:
-    if ((((int32_t)(*piVar5 << 0x17)) >= 0) || (*pcVar4 != 0x20) || (*(volatile char*)(iVar2+0xb4) == 0)) goto L_c68;
+    /* The original uses LDA then tests bit 8 via LSLS #23/BPL. */
+    if (((*piVar5 & 0x100u) == 0) || (*pcVar4 != 0x20) || (*(volatile char*)(iVar2+0xb4) == 0)) goto L_c68;
     *(volatile char*)(iVar2+0xb4) = *(volatile char*)(iVar2+0xb4) - 1;
-    FUN_00073418(iVar2+0x60, uVar3, ((uintptr_t)&rodata_28000) /*=0x28000*/, 0);
+    FUN_00073418(iVar2+0x60, uVar3, ((unsigned long)&rodata_28000) /*=0x28000*/, 0);
     ble_notify_le_param_updated(iVar2);
     goto L_c44;
     (void)local_2c; (void)uStack_28; (void)local_1c;
 }
-

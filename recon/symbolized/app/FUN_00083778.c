@@ -1,16 +1,23 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00083778 */
+/* readable reconstruction; identity: FUN_00083778 @ 0x00083778
+ * public-name: FUN_00083778
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   adc_context_start_sampling               <= FUN_0005f638 @ 0x0005f638
+ */
 /* Reconstructed FUN_00083778 @ 0x83778  (parity: 300/300 trials, PROVEN) */
 
+/* Full reconstruction of the 42-byte atomic reference-count helper. */
+#include <stdint.h>
+
 extern void adc_context_start_sampling(void);
-void FUN_00083778(int param_1)
+void FUN_00083778(uint8_t *param_1)
 {
-    int iVar1 = *(volatile int*)(param_1 - 8);
-    *(volatile int*)(param_1 - 8) = iVar1 + 1;
-    if (iVar1 != 0) {
-        *(int*)(param_1 + 0x68) = 0xfffffff0;
+    uint32_t old_count = __atomic_fetch_add((uint32_t *)(param_1 - 8), 1,
+                                             __ATOMIC_RELAXED);
+    if (old_count != 0) {
+        *(int32_t *)(param_1 + 0x68) = -16;
         return;
     }
     adc_context_start_sampling();
 }
-

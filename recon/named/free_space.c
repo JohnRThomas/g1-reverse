@@ -1,5 +1,10 @@
-/* named: free_space */
-/* Reconstructed free_space @ 0x7e314  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e314 @ 0x0007e314
+ * public-name: free_space
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   free_space                               <= FUN_0007e314 @ 0x0007e314
+ */
+/* Reconstructed FUN_0007e314 @ 0x7e314  (parity: 300/300 trials, PROVEN) */
 
 int free_space(unsigned int *param_1, int *param_2)
 {
@@ -12,4 +17,3 @@ int free_space(unsigned int *param_1, int *param_2)
   *param_2 = iVar3;
   return iVar1;
 }
-

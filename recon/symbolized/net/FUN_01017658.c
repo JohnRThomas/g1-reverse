@@ -10,7 +10,7 @@ extern unsigned int FUN_0100cb10(void);
 extern int FUN_010199cc(void);
 extern unsigned int thunk_FUN_0101fd20(void);
 
-#define DAT_773c ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
+#define DAT_773c 0x21000f90u
 
 void FUN_01017658(int param_1, unsigned int param_2, char *param_3, unsigned char *param_4)
 {
@@ -96,4 +96,3 @@ LAB_be:
     *param_4 = uVar7;
     return;
 }
-

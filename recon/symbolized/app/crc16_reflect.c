@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: crc16_reflect */
-/* Reconstructed crc16_reflect @ 0x7d9c0  (parity: 157/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d9c0 @ 0x0007d9c0
+ * public-name: crc16_reflect
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   crc16_reflect                            <= FUN_0007d9c0 @ 0x0007d9c0
+ */
+/* Reconstructed FUN_0007d9c0 @ 0x7d9c0  (parity: 157/300 trials, PROVEN) */
 
 unsigned crc16_reflect(unsigned param_1, unsigned param_2, unsigned param_3, int param_4,
                       char param_5, unsigned char *param_6, int param_7){
@@ -27,7 +32,7 @@ unsigned crc16_reflect(unsigned param_1, unsigned param_2, unsigned param_3, int
         int iVar5 = 8;
         do {
             unsigned hi = param_1 & 0x8000;
-            param_1 = (param_1 << 1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+            param_1 = (param_1 << 1) & 0xffff;
             if (hi != 0) param_1 = param_1 ^ param_2;
             iVar5--;
         } while (iVar5 != 0);
@@ -36,12 +41,11 @@ unsigned crc16_reflect(unsigned param_1, unsigned param_2, unsigned param_3, int
     if (param_5 != 0){
         unsigned r1 = param_1; int uVar3 = 0xf; uVar4 = 0;
         for(;;){
-            if ((int)(r1 << 31) < 0){ uVar4 = ((1u << uVar3) | uVar4) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/; }
+            if ((int)(r1 << 31) < 0){ uVar4 = ((1u << uVar3) | uVar4) & 0xffff; }
             int cont = (uVar3 != 0);
-            uVar3 = uVar3 - 1; r1 = (r1 >> 1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+            uVar3 = uVar3 - 1; r1 = (r1 >> 1) & 0xffff;
             if (!cont) break;
         }
     }
     return param_3 ^ uVar4;
 }
-

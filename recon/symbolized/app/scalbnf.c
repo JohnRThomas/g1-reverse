@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: scalbnf */
-/* Reconstructed scalbnf @ 0x75a0c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00075a0c @ 0x00075a0c
+ * public-name: scalbnf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   scalbnf                                  <= FUN_00075a0c @ 0x00075a0c
+ */
+/* Reconstructed FUN_00075a0c @ 0x75a0c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef union { float f; uint32_t u; } FU;
@@ -44,4 +49,3 @@ float scalbnf(float param_1, int param_2){
   FU sel2; sel2.u = ((int32_t)r3 >= 0) ? 0x7149f2cau : 0xf149f2cau;
   return sel2.f * s15c.f;
 }
-

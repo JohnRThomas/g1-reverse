@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: metal_device_open */
-/* Reconstructed metal_device_open @ 0x85406  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085406 @ 0x00085406
+ * public-name: metal_device_open
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   metal_bus_find                           <= FUN_00068134 @ 0x00068134
+ *   metal_device_open                        <= FUN_00085406 @ 0x00085406
+ */
+/* Reconstructed FUN_00085406 @ 0x85406  (parity: 300/300 trials, PROVEN) */
 
 extern int metal_bus_find(char *a, char **b, int c, char d, char *e);
 
@@ -25,4 +31,3 @@ int metal_device_open(char *param_1, char *param_2, int param_3)
   }
   return iVar1;
 }
-

@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: memcpy */
-/* Reconstructed memcpy @ 0x86c04  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086c04 @ 0x00086c04
+ * public-name: memcpy
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
+/* Reconstructed FUN_00086c04 @ 0x86c04  (parity: 300/300 trials, PROVEN) */
 
 void memcpy(unsigned char *param_1, unsigned char *param_2, int param_3)
 {
@@ -15,4 +20,3 @@ void memcpy(unsigned char *param_1, unsigned char *param_2, int param_3)
     } while (param_2 != end);
   }
 }
-

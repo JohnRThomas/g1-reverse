@@ -11,8 +11,8 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
     unsigned int uStack_8 = param_3;
     (void)uStack_8;
 
-    unsigned char *p13 = (unsigned char *)((uintptr_t)&g_net_radio_crc_scratch) /*=0x21000684*/;
-    signed char *p10 = (signed char *)((uintptr_t)&g_esb_state) /*=0x21004a94*/;
+    unsigned char *p13 = (unsigned char *)((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/;
+    signed char *p10 = (signed char *)((unsigned long)&g_esb_state) /*=0x21004a94*/;
     int arg0 = (int)p10[10];
     int arg2 = (int)p13[0x13] + 0x960;
 
@@ -21,8 +21,8 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
     int iVar3 = FUN_010218fc((int)&local_c + 1);
     int r0carry;
     if (iVar3 != 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "ol.c" /*=0x103e3bf*/, 0x242);
-        r0carry = FUN_01039bb0("ol.c" /*=0x103e3bf*/, 0x242);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e3bf) /*=0x103e3bf*/, 0x242);
+        r0carry = FUN_01039bb0(((unsigned long)&rodata_103e3bf) /*=0x103e3bf*/, 0x242);
     } else {
         r0carry = 0;
     }
@@ -33,10 +33,8 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
         use_r0 = 1;
         local_c = (unsigned int)(unsigned char)(cl - 3);
     }
-    volatile unsigned int *base = (volatile unsigned int *)REG_41004000 /*=0x41004000*/;
+    volatile unsigned int *base = (volatile unsigned int *)0x41004000;
     base[0x500 / 4] = (unsigned int)use_r0;
     unsigned char byte_val = *(unsigned char *)&local_c;
     *(volatile unsigned int *)((char *)base + 0x4000 + 0x50c) = (unsigned int)byte_val;
 }
-
-

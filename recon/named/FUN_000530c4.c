@@ -1,7 +1,15 @@
-/* named: FUN_000530c4 */
-/* globals referenced:
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
+/* readable reconstruction; identity: FUN_000530c4 @ 0x000530c4
+ * public-name: FUN_000530c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_set_name_internal                     <= FUN_00054c74 @ 0x00054c74
+ *   bt_setup_public_id_addr                  <= FUN_00055330 @ 0x00055330
+ * address symbols (name @ address):
+ *   rodata_88178                             @ 0x00088178
+ *   rodata_9ac7c                             @ 0x0009ac7c
+ *   rodata_f2c8c                             @ 0x000f2c8c
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
 /* Reconstructed FUN_000530c4 @ 0x530c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
@@ -30,8 +38,8 @@ int FUN_000530c4(void){
     {
         u32 v = *puVar1;
         if((int)(v << 0x1d) >= 0) FUN_000548b8();
-        u32 uVar3 = *puVar1;
-        *puVar1 = uVar3 & 0xfffeffff;
+        u32 uVar3 = __atomic_fetch_and((u32 *)puVar1, 0xfffeffffu,
+                                      __ATOMIC_ACQ_REL);
         if((int)(uVar3 << 0xf) < 0) FUN_000530b4();
     }
     return 0;
@@ -42,4 +50,3 @@ RS: ;
     FUN_0004d944(0x00088178, 0x1040, local, 0);
     return iVar2;
 }
-

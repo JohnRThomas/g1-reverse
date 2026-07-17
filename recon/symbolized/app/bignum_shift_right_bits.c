@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: bignum_shift_right_bits */
-/* Reconstructed bignum_shift_right_bits @ 0x8729e  (parity: 163/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008729e @ 0x0008729e
+ * public-name: bignum_shift_right_bits
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bignum_shift_right_bits                  <= FUN_0008729e @ 0x0008729e
+ */
+/* Reconstructed FUN_0008729e @ 0x8729e  (parity: 163/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef unsigned int uint;
@@ -49,4 +54,3 @@ void bignum_shift_right_bits(int param_1, uint param_2){
   }
   *(uint*)(param_1+0x14) = 0;
 }
-

@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: fb_blit_rows_halved */
-/* Reconstructed fb_blit_rows_halved @ 0x7d5f2  (parity: 154/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d5f2 @ 0x0007d5f2
+ * public-name: fb_blit_rows_halved
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fb_blit_rows_halved                      <= FUN_0007d5f2 @ 0x0007d5f2
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
+/* Reconstructed FUN_0007d5f2 @ 0x7d5f2  (parity: 154/300 trials, PROVEN) */
 
 extern void memcpy(int a, int b, int c);
 void fb_blit_rows_halved(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,int param_7)
@@ -17,4 +23,3 @@ void fb_blit_rows_halved(int param_1,int param_2,int param_3,int param_4,int par
     piVar2 = piVar2 + 1;
   }
 }
-

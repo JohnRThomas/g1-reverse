@@ -1,8 +1,16 @@
-/* named: cal_panel_canvas_coord */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00042fb0 @ 0x00042fb0
+ * public-name: cal_panel_canvas_coord
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   rodata_aa7a2                             @ 0x000aa7a2
+ *   rodata_aa7cb                             @ 0x000aa7cb
+ *   rodata_aa855                             @ 0x000aa855
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed cal_panel_canvas_coord @ 0x42fb0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned,...);
@@ -56,4 +64,3 @@ void cal_panel_canvas_coord(int *param_1, int *param_2)
   }
   return;
 }
-

@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: _malloc_r */
-/* Reconstructed _malloc_r @ 0x76e20  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076e20 @ 0x00076e20
+ * public-name: _malloc_r
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   _sbrk_r                                  <= FUN_000778f4 @ 0x000778f4
+ *   __malloc_lock                            <= FUN_000785bc @ 0x000785bc
+ *   __malloc_unlock                          <= FUN_000785c8 @ 0x000785c8
+ * address symbols (name @ address):
+ *   g_malloc_sbrk_start                      @ 0x2000cc1c
+ *   g_malloc_free_list                       @ 0x2000cc20
+ */
+/* Reconstructed FUN_00076e20 @ 0x76e20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int _sbrk_r(void*,...);
@@ -18,9 +29,9 @@ uint _malloc_r(uint *param_1, uint param_2, uint param_3, uint param_4){
         return 0;
     }
     __malloc_lock();
-    int *piVar1 = (int*)((uintptr_t)&g_malloc_sbrk_start) /*=0x2000cc1c*/;
-    puVar3 = *(uint**)((uintptr_t)&g_malloc_free_list) /*=0x2000cc20*/;
-    for (puVar5 = *(uint**)((uintptr_t)&g_malloc_free_list) /*=0x2000cc20*/; puVar5 != 0; puVar5 = (uint*)puVar5[1]){
+    int *piVar1 = (int*)((unsigned long)&g_malloc_sbrk_start) /*=0x2000cc1c*/;
+    puVar3 = *(uint**)((unsigned long)&g_malloc_free_list) /*=0x2000cc20*/;
+    for (puVar5 = *(uint**)((unsigned long)&g_malloc_free_list) /*=0x2000cc20*/; puVar5 != 0; puVar5 = (uint*)puVar5[1]){
         uVar4 = *puVar5 - uVar6;
         if (-1 < (int)uVar4){
             if (0xb < uVar4){
@@ -29,13 +40,13 @@ uint _malloc_r(uint *param_1, uint param_2, uint param_3, uint param_4){
                 goto LAB_e84;
             }
             uVar6 = puVar5[1];
-            if (puVar3 == puVar5) *(uint*)((uintptr_t)&g_malloc_free_list) /*=0x2000cc20*/ = uVar6;
+            if (puVar3 == puVar5) *(uint*)((unsigned long)&g_malloc_free_list) /*=0x2000cc20*/ = uVar6;
             if (puVar3 != puVar5) puVar3[1] = uVar6;
             goto LAB_e92;
         }
         puVar3 = puVar5;
     }
-    if (*(int*)((uintptr_t)&g_malloc_sbrk_start) /*=0x2000cc1c*/ == 0){
+    if (*(int*)((unsigned long)&g_malloc_sbrk_start) /*=0x2000cc1c*/ == 0){
         iVar2 = _sbrk_r(param_1,0,puVar3,0,param_4);
         *piVar1 = iVar2;
     }
@@ -59,4 +70,3 @@ uint _malloc_r(uint *param_1, uint param_2, uint param_3, uint param_4){
     __malloc_unlock(param_1);
     return 0;
 }
-

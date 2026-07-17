@@ -1,10 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: bt_set_name_internal */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-//   0x2000216c  g_bt_dev.name                [g_bt_dev (base 0x20002000) + 0x16c: device/BLE local-name storage buffer, max 29 bytes]
-*/
-/* Reconstructed bt_set_name_internal @ 0x54c74  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054c74 @ 0x00054c74
+ * public-name: bt_set_name_internal
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   bt_set_name_internal                     <= FUN_00054c74 @ 0x00054c74
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f33d4                             @ 0x000f33d4
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_bt_dev_name                            @ 0x2000216c
+ */
+/* Reconstructed FUN_00054c74 @ 0x54c74  (parity: 300/300 trials, PROVEN) */
 extern unsigned strlen(void);
 extern int strcmp(unsigned a, unsigned b);
 extern void memcpy(unsigned a, unsigned b, unsigned c);
@@ -14,21 +23,20 @@ unsigned bt_set_name_internal(unsigned param_1){
     unsigned uVar1 = strlen();
     unsigned uVar3;
     if (uVar1 < 0x1d){
-        int iVar2 = strcmp(((uintptr_t)&g_bt_dev_name) /*=0x2000216c*/, param_1);
+        int iVar2 = strcmp(((unsigned long)g_bt_dev_name) /*=0x2000216c*/, param_1);
         if (iVar2 != 0){
-            memcpy(((uintptr_t)&g_bt_dev_name) /*=0x2000216c*/, param_1, uVar1);
-            int base = ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/ + 0x16c;
-            *(volatile unsigned char*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/ + uVar1 + 0x16c) = 0;
+            memcpy(((unsigned long)g_bt_dev_name) /*=0x2000216c*/, param_1, uVar1);
+            int base = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + 0x16c;
+            *(volatile unsigned char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + uVar1 + 0x16c) = 0;
             iVar2 = FUN_00053098(base, uVar1);
             if (iVar2 != 0){
                 volatile unsigned local_18 = 2;
-                volatile unsigned local_14 = "Unable to store name" /*=0xf33d4*/;
+                volatile unsigned local_14 = ((unsigned long)&rodata_f33d4) /*=0xf33d4*/;
                 (void)local_14;
-                FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1080, (void*)&local_18);
+                FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1080, (void*)&local_18);
             }
         }
         uVar3 = 0;
     } else uVar3 = 0xfffffff4;
     return uVar3;
 }
-

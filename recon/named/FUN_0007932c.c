@@ -1,4 +1,12 @@
-/* named: FUN_0007932c */
+/* readable reconstruction; identity: FUN_0007932c @ 0x0007932c
+ * public-name: FUN_0007932c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   fnmatch_build_class_table                <= FUN_0008789c @ 0x0008789c
+ * address symbols (name @ address):
+ *   rodata_885b0                             @ 0x000885b0
+ */
 /* Reconstructed FUN_0007932c @ 0x7932c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
@@ -112,4 +120,3 @@ u32 FUN_0007932c(u32 param_1, u32 *param_2, int *param_3, u32 *param_4){
     param_2[4] = (u32)((int)(uintptr_t)puVar11 + param_2[4] + (iVar12 - (int)(uintptr_t)puVar9));
     return 0;
 }
-

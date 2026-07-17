@@ -4,14 +4,14 @@
 extern unsigned long long FUN_0103a80c(unsigned int*, int, int, unsigned int, int);
 int FUN_01033a20(unsigned int *param_1, int param_2, int param_3, int param_4)
 {
-  volatile unsigned char *flag = (volatile unsigned char*)((uintptr_t)&g_net_radio_busy_flag) /*=0x21006458*/;
+  volatile unsigned char *flag = (volatile unsigned char*)((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/;
   int uVar3;
   if (*flag == 0) {
     if (param_1 == 0) {
       uVar3 = 0xffffffea;
     } else {
       unsigned int v = *param_1;
-      unsigned int *puVar1 = (unsigned int*)(((uintptr_t)&g_net_radio_crc_scratch) /*=0x21000684*/ + 4);
+      unsigned int *puVar1 = (unsigned int*)(((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/ + 4);
       *puVar1 = v;
       unsigned long long uVar4 = FUN_0103a80c(puVar1, 0, param_3, v, param_4);
       uVar3 = (int)(uVar4 >> 32);
@@ -24,4 +24,3 @@ int FUN_01033a20(unsigned int *param_1, int param_2, int param_3, int param_4)
   }
   return uVar3;
 }
-

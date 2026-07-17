@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00083002 */
+/* readable reconstruction; identity: FUN_00083002 @ 0x00083002
+ * public-name: FUN_00083002
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ */
 /* Reconstructed FUN_00083002 @ 0x83002  (parity: 300/300 trials, PROVEN) */
 
 extern int atomic_test_bit(int a, int b, int c, int d, unsigned int e);
@@ -26,4 +31,3 @@ unsigned char FUN_00083002(int param_1,int param_2,unsigned int param_3,unsigned
   }
   return 1;
 }
-

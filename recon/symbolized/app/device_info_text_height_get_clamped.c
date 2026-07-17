@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: device_info_text_height_get_clamped */
-/* Reconstructed device_info_text_height_get_clamped @ 0x7d446  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d446 @ 0x0007d446
+ * public-name: device_info_text_height_get_clamped
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ */
+/* Reconstructed FUN_0007d446 @ 0x7d446  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 uint16_t device_info_text_height_get_clamped(void){
@@ -26,4 +32,3 @@ uint16_t device_info_text_height_get_clamped(void){
   *(volatile uint16_t*)(b+0x1074)=0x20;
   goto L466;
 }
-

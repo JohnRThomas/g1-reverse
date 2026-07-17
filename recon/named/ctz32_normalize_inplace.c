@@ -1,5 +1,10 @@
-/* named: ctz32_normalize_inplace */
-/* Reconstructed ctz32_normalize_inplace @ 0x87554  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087554 @ 0x00087554
+ * public-name: ctz32_normalize_inplace
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ctz32_normalize_inplace                  <= FUN_00087554 @ 0x00087554
+ */
+/* Reconstructed FUN_00087554 @ 0x87554  (parity: 300/300 trials, PROVEN) */
 int ctz32_normalize_inplace(unsigned* param_1){
     unsigned uVar2 = *param_1;
     int iVar1;
@@ -18,4 +23,3 @@ int ctz32_normalize_inplace(unsigned* param_1){
     else { iVar1 = 2; *param_1 = uVar2 >> 2; }
     return iVar1;
 }
-

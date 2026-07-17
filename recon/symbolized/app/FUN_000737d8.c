@@ -1,8 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000737d8 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_000737d8 @ 0x000737d8
+ * public-name: FUN_000737d8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84af                             @ 0x000f84af
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a, int b, int c, int d, int e);
@@ -11,7 +20,7 @@ extern void FUN_00073788(int *a);
 
 void FUN_000737d8(int param_1, int param_2, int param_3, int param_4)
 {
-    int DAT = ((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/;
+    int DAT = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
     int *piVar4 = *(volatile int **)(DAT + 0x1c);
     int r3;
     int specialPath = 0;
@@ -23,10 +32,10 @@ void FUN_000737d8(int param_1, int param_2, int param_3, int param_4)
 
     if (param_1 == 0) {
         if (r3 == 0) {
-            printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "_kernel.cpus[0].current != ((void *)0)" /*=0xf84af*/, "WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/, 0x8f, param_4);
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f84af) /*=0xf84af*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x8f, param_4);
             r3 = 0x8f;
-            printk("\t\n" /*=0xf53ff*/, 0, 0, 0, 0);
-            assert_post_action("WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/, 0x8f);
+            printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/, 0, 0, 0, 0);
+            assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x8f);
         }
         if (((*(volatile unsigned char *)(r3 + 0xd) & 0x1f) == 0)
             && (*(volatile int *)((int)piVar4 + 0x18) == 0)
@@ -42,4 +51,3 @@ void FUN_000737d8(int param_1, int param_2, int param_3, int param_4)
     }
     *(volatile int *)(DAT + 0x18) = r3;
 }
-

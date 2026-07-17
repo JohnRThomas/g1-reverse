@@ -14,11 +14,10 @@ int FUN_0101077c(unsigned int param_1, int param_2, unsigned int param_3, unsign
     }
   }
   if (param_1 != 0) {
-    volatile unsigned char *p = (volatile unsigned char *)((uintptr_t)&g_net_lookup_table_desc) /*=0x21000f14*/;
+    volatile unsigned char *p = (volatile unsigned char *)((unsigned long)&g_net_lookup_table_desc) /*=0x21000f14*/;
     p[8] = (unsigned char)param_2;
     *(volatile unsigned int *)(p + 4) = param_1;
     *p = (unsigned char)r2;
   }
   return param_2 << 3;
 }
-

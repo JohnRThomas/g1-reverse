@@ -1,13 +1,64 @@
 #include "g1_app_symbols.h"
-/* named: ui_DashBoard_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20004950  g_dashboard_widget_state     
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001b814  g_news_widget_index_raw      
-//   0x2001b815  g_stocks_widget_index_raw    
-//   0x2001b816  g_widget0_index_raw          
-*/
+/* readable reconstruction; identity: FUN_0003af78 @ 0x0003af78
+ * public-name: ui_DashBoard_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   set_dashboard_startup_default_language   <= FUN_0001672c @ 0x0001672c
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   sync_dashboard_default_language          <= FUN_00037060 @ 0x00037060
+ *   getStocksIndex                           <= FUN_000370bc @ 0x000370bc
+ *   getNewsIndex                             <= FUN_0003719c @ 0x0003719c
+ *   DashBoard_Reflash                        <= FUN_0003727c @ 0x0003727c
+ *   send_dashboard_status_sync               <= FUN_0003ae6c @ 0x0003ae6c
+ *   send_dashboard_status_sync_compact       <= FUN_0003af04 @ 0x0003af04
+ *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   send_response_data_to_msgqueue           <= FUN_00047b1c @ 0x00047b1c
+ *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
+ *   SendPowerInfoToSlave                     <= FUN_000488bc @ 0x000488bc
+ *   enter_dashboard_burial_point             <= FUN_0004a9ec @ 0x0004a9ec
+ *   exit_dashboard_burial_point              <= FUN_0004aab0 @ 0x0004aab0
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   check_dashboard_device_status_range      <= FUN_0007d248 @ 0x0007d248
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9f929                             @ 0x0009f929
+ *   rodata_a0fad                             @ 0x000a0fad
+ *   rodata_a0fe5                             @ 0x000a0fe5
+ *   rodata_a8c57                             @ 0x000a8c57
+ *   rodata_a9127                             @ 0x000a9127
+ *   rodata_a9243                             @ 0x000a9243
+ *   rodata_a926f                             @ 0x000a926f
+ *   rodata_a9292                             @ 0x000a9292
+ *   rodata_a92b0                             @ 0x000a92b0
+ *   rodata_a92ee                             @ 0x000a92ee
+ *   rodata_a9318                             @ 0x000a9318
+ *   rodata_a933c                             @ 0x000a933c
+ *   rodata_a93da                             @ 0x000a93da
+ *   rodata_a9437                             @ 0x000a9437
+ *   rodata_a9465                             @ 0x000a9465
+ *   rodata_a947f                             @ 0x000a947f
+ *   rodata_a94c5                             @ 0x000a94c5
+ *   rodata_a9529                             @ 0x000a9529
+ *   rodata_a9551                             @ 0x000a9551
+ *   rodata_a957d                             @ 0x000a957d
+ *   rodata_aae20                             @ 0x000aae20
+ *   g_log_level                              @ 0x2000230c
+ *   g_dashboard_widget_state                 @ 0x20004950
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_dashboard_lock_sent_flags              @ 0x2000756c
+ *   g_dashboard_lock_ready_flags             @ 0x20007570
+ *   g_dashboard_reset_pending_flags          @ 0x20007aa0
+ *   g_dashboard_reflash_frame_idx            @ 0x20009fd0
+ *   g_news_widget_index_raw                  @ 0x2001b814
+ *   g_stocks_widget_index_raw                @ 0x2001b815
+ *   g_widget0_index_raw                      @ 0x2001b816
+ */
 /* Reconstructed ui_DashBoard_task @ 0x3af78  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
@@ -25,7 +76,7 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 static inline int CARRY4(uint a, uint b){return (a+b)<a;}
 static inline int CARRY1(uint a, uint b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(uint a, uint b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(uint a, uint b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SBORROW4(int a,int b){int r=(int)((uint)a-(uint)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
 static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
@@ -48,118 +99,86 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_0001672c__impl(int, ...);
-#define set_dashboard_startup_default_language(...) FUN_0001672c__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define get_device_info(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define debug_print(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00033cf8__impl(int, ...);
-#define msg_content_recalc_unread(...) FUN_00033cf8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00037060__impl(int, ...);
-#define sync_dashboard_default_language(...) FUN_00037060__impl(0, ##__VA_ARGS__)
-extern long long FUN_000370bc__impl(int, ...);
-#define getStocksIndex(...) FUN_000370bc__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003719c__impl(int, ...);
-#define getNewsIndex(...) FUN_0003719c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003727c__impl(int, ...);
-#define DashBoard_Reflash(...) FUN_0003727c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003ae6c__impl(int, ...);
-#define send_dashboard_status_sync(...) FUN_0003ae6c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003af04__impl(int, ...);
-#define send_dashboard_status_sync_compact(...) FUN_0003af04__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431b4__impl(int, ...);
-#define gui_set_active_canvas(...) FUN_000431b4__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431c0__impl(int, ...);
-#define gui_screen_clear(...) FUN_000431c0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432d0__impl(int, ...);
-#define gui_canvas_flags_set_bit1(...) FUN_000432d0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432ec__impl(int, ...);
-#define gui_canvas_flags_clear_bit1(...) FUN_000432ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004382c__impl(int, ...);
-#define FUN_0004382c(...) FUN_0004382c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047260__impl(int, ...);
-#define reflash_fb_data_to_lcd(...) FUN_00047260__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047b1c__impl(int, ...);
-#define send_response_data_to_msgqueue(...) FUN_00047b1c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047ba8__impl(int, ...);
-#define send_response_data_to_ble(...) FUN_00047ba8__impl(0, ##__VA_ARGS__)
-extern long long FUN_000488bc__impl(int, ...);
-#define SendPowerInfoToSlave(...) FUN_000488bc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00048b44__impl(int, ...);
-#define FUN_00048b44(...) FUN_00048b44__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004a9ec__impl(int, ...);
-#define enter_dashboard_burial_point(...) FUN_0004a9ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004aab0__impl(int, ...);
-#define exit_dashboard_burial_point(...) FUN_0004aab0__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d1d0__impl(int, ...);
-#define FUN_0007d1d0(...) FUN_0007d1d0__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d224__impl(int, ...);
-#define get_timestamp(...) FUN_0007d224__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d248__impl(int, ...);
-#define check_dashboard_device_status_range(...) FUN_0007d248__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long block__impl(int, ...);
-#define block(...) block__impl(0, ##__VA_ARGS__)
-extern long long send_event_status__impl(int, ...);
-#define send_event_status(...) send_event_status__impl(0, ##__VA_ARGS__)
-extern long long sync_to_slave__impl(int, ...);
-#define sync_to_slave(...) sync_to_slave__impl(0, ##__VA_ARGS__)
-extern long long thunk_FUN_00074f68__impl(int, ...);
-#define thunk_FUN_00074f68(...) thunk_FUN_00074f68__impl(0, ##__VA_ARGS__)
+extern int DEBUG_PRINT(uint32_t, ...);
+extern int set_dashboard_startup_default_language(void);
+extern uintptr_t get_device_info(void);
+extern int debug_print();
+extern uint32_t msg_content_recalc_unread(void);
+extern uint32_t sync_dashboard_default_language(void);
+extern uint32_t getStocksIndex(void);
+extern uint32_t getNewsIndex(void);
+extern int DashBoard_Reflash(uintptr_t, uintptr_t, uint32_t, uint32_t);
+extern int send_dashboard_status_sync(void);
+extern int send_dashboard_status_sync_compact(void);
+extern int gui_set_active_canvas(uintptr_t);
+extern int gui_screen_clear(void);
+extern int gui_canvas_flags_set_bit1(void);
+extern int gui_canvas_flags_clear_bit1(void);
+extern int FUN_0004382c(void);
+extern int reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+extern int send_response_data_to_msgqueue(const void *, uint32_t);
+extern int send_response_data_to_ble(void);
+extern int SendPowerInfoToSlave(uint32_t);
+extern int FUN_00048b44(uint32_t);
+extern int enter_dashboard_burial_point(void);
+extern int exit_dashboard_burial_point(void);
+extern uint32_t FUN_0007d1d0(uintptr_t);
+extern uint32_t get_timestamp(void);
+extern uint32_t check_dashboard_device_status_range(void);
+extern void *memset_bytes(void *, int, uint32_t);
+extern int send_event_status(uint32_t);
+extern int sync_to_slave(uintptr_t, uint32_t, const void *, uint32_t);
+extern uint64_t thunk_FUN_00074f68(void);
 
-#define DAT_0003b254 ((volatile char*)((uintptr_t)&g_dashboard_widget_state) /*=0x20004950*/)
-#define DAT_0003b258 ((volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/)
-#define DAT_0003b25c ((volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_0003b260 ("ui_DashBoard_task" /*=0xa957d*/)
-#define DAT_0003b264 ("%s(): Enter DASHBOARD_INIT_STATUS task....\n" /*=0xa9243*/)
-#define DAT_0003b268 ("%s(): dashboard function exit ...\n" /*=0xa926f*/)
-#define DAT_0003b26c ((volatile int*)((uintptr_t)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/)
-#define DAT_0003b270 ("%s(): DASHBOARD INIT .......\n" /*=0xa9292*/)
-#define DAT_0003b274 ((volatile byte*)((uintptr_t)&g_widget0_index_raw) /*=0x2001b816*/)
-#define DAT_0003b278 ((volatile byte*)((uintptr_t)&g_news_widget_index_raw) /*=0x2001b814*/)
-#define DAT_0003b27c ((volatile byte*)((uintptr_t)&g_stocks_widget_index_raw) /*=0x2001b815*/)
-#define DAT_0003b280 ("%s(): quicknote index = %d,stocks index = %d,news index = %d\n" /*=0xa92b0*/)
-#define DAT_0003b284 ("%s(): db_info->schedule_disp_status = %d\n" /*=0xa92ee*/)
-#define DAT_0003b288 ("%s(): db_info->stocks_disp_mode = %d\n" /*=0xa9127*/)
-#define DAT_0003b28c ("%s(): db_info->news_disp_mode = %d\n" /*=0xa9318*/)
-#define DAT_0003b290 ("%s(): master sync quicknote index to slave ,index = %d\n" /*=0xa933c*/)
-#define DAT_0003b294 ("%s(): SYNC TO Slave failed...,don't exec key function.\n" /*=0xa0fad*/)
-#define DAT_0003b298 ((volatile int*)((uintptr_t)&g_dashboard_reflash_frame_idx) /*=0x20009fd0*/)
-#define DAT_0003b29c (((uintptr_t)&g_dashboard_lock_ready_flags) /*=0x20007570*/)
-#define DAT_0003b2a0 ((volatile int*)((uintptr_t)&g_dashboard_lock_sent_flags) /*=0x2000756c*/)
-#define DAT_0003b2a4 ("%s(): send dashboard lock info to app ,status = %d \n" /*=0x9f929*/)
-#define DAT_0003b2a8 ("%s(): master sync stocks index to slave,index = %d\n" /*=0xa9374*/)
-#define DAT_0003b584 ((volatile int*)0x0UL)
-#define DAT_0003b588 (0x0UL) /* unknown lit */
-#define DAT_0003b58c (0x0UL) /* unknown lit */
-#define DAT_0003b590 (0x0UL) /* unknown lit */
-#define DAT_0003b594 (0x0UL) /* unknown lit */
-#define DAT_0003b598 (0x0UL) /* unknown lit */
-#define DAT_0003b59c ((volatile int*)0x0UL)
-#define DAT_0003b5a0 ((volatile int*)0x0UL)
-#define DAT_0003b5a4 (0x0UL) /* unknown lit */
-#define DAT_0003b5a8 (0x0UL) /* unknown lit */
-#define DAT_0003b5ac (0x0UL) /* unknown lit */
-#define DAT_0003b5b0 (0x0UL) /* unknown lit */
-#define DAT_0003b5b4 (0x0UL) /* unknown lit */
-#define DAT_0003b5b8 ((volatile int*)0x0UL)
-#define DAT_0003b5bc (0x0UL) /* unknown lit */
-#define DAT_0003b5c0 ((volatile undefined4*)0x0UL)
-#define DAT_0003b760 ((volatile int*)0x0UL)
-#define DAT_0003b764 (0x0UL) /* unknown lit */
-#define DAT_0003b768 (0x0UL) /* unknown lit */
-#define DAT_0003b76c ((volatile int*)0x0UL)
-#define DAT_0003b770 (0x0UL) /* unknown lit */
-#define DAT_0003b774 ((volatile int*)0x0UL)
-#define DAT_0003b778 (0x0UL) /* unknown lit */
-#define DAT_0003b77c ((volatile int*)0x0UL)
-#define DAT_0003b780 (0x0UL) /* unknown lit */
-#define DAT_0003b784 (0x0UL) /* unknown lit */
-#define DAT_0003b788 (0x0UL) /* unknown lit */
+#define DAT_0003b254 ((volatile char*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
+#define DAT_0003b258 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
+#define DAT_0003b25c ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_0003b260 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
+#define DAT_0003b264 (((unsigned long)&rodata_a9243) /*=0xa9243*/)
+#define DAT_0003b268 (((unsigned long)&rodata_a926f) /*=0xa926f*/)
+#define DAT_0003b26c ((volatile int*)((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/)
+#define DAT_0003b270 (((unsigned long)&rodata_a9292) /*=0xa9292*/)
+#define DAT_0003b274 ((volatile byte*)((unsigned long)&g_widget0_index_raw) /*=0x2001b816*/)
+#define DAT_0003b278 ((volatile byte*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/)
+#define DAT_0003b27c ((volatile byte*)((unsigned long)&g_stocks_widget_index_raw) /*=0x2001b815*/)
+#define DAT_0003b280 (((unsigned long)&rodata_a92b0) /*=0xa92b0*/)
+#define DAT_0003b284 (((unsigned long)&rodata_a92ee) /*=0xa92ee*/)
+#define DAT_0003b288 (((unsigned long)&rodata_a9127) /*=0xa9127*/)
+#define DAT_0003b28c (((unsigned long)&rodata_a9318) /*=0xa9318*/)
+#define DAT_0003b290 (((unsigned long)&rodata_a933c) /*=0xa933c*/)
+#define DAT_0003b294 (((unsigned long)&rodata_a0fad) /*=0xa0fad*/)
+#define DAT_0003b298 ((volatile int*)((unsigned long)&g_dashboard_reflash_frame_idx) /*=0x20009fd0*/)
+#define DAT_0003b29c (((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/)
+#define DAT_0003b2a0 ((volatile int*)((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/)
+#define DAT_0003b2a4 (((unsigned long)&rodata_9f929) /*=0x9f929*/)
+#define DAT_0003b2a8 (0xa9374UL)
+#define DAT_0003b584 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_0003b588 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
+#define DAT_0003b58c (0xa93a8UL)
+#define DAT_0003b590 (((unsigned long)&rodata_a0fe5) /*=0xa0fe5*/)
+#define DAT_0003b594 (((unsigned long)&rodata_aae20) /*=0xaae20*/)
+#define DAT_0003b598 (((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/)
+#define DAT_0003b59c ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
+#define DAT_0003b5a0 ((volatile int*)((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/)
+#define DAT_0003b5a4 (((unsigned long)&rodata_9f929) /*=0x9f929*/)
+#define DAT_0003b5a8 (((unsigned long)&rodata_a93da) /*=0xa93da*/)
+#define DAT_0003b5ac (((unsigned long)&rodata_a9437) /*=0xa9437*/)
+#define DAT_0003b5b0 (((unsigned long)&rodata_a926f) /*=0xa926f*/)
+#define DAT_0003b5b4 (((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
+#define DAT_0003b5b8 ((volatile int*)((unsigned long)&g_dashboard_reset_pending_flags) /*=0x20007aa0*/)
+#define DAT_0003b5bc (((unsigned long)&rodata_a9465) /*=0xa9465*/)
+#define DAT_0003b5c0 ((volatile undefined4*)((unsigned long)&rodata_a8c57) /*=0xa8c57*/)
+#define DAT_0003b760 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_0003b764 (((unsigned long)&rodata_a957d) /*=0xa957d*/)
+#define DAT_0003b768 (((unsigned long)&rodata_a947f) /*=0xa947f*/)
+#define DAT_0003b76c ((volatile byte*)((unsigned long)&g_widget0_index_raw) /*=0x2001b816*/)
+#define DAT_0003b770 (((unsigned long)&rodata_a94c5) /*=0xa94c5*/)
+#define DAT_0003b774 ((volatile byte*)((unsigned long)&g_stocks_widget_index_raw) /*=0x2001b815*/)
+#define DAT_0003b778 (0xa94e9UL)
+#define DAT_0003b77c ((volatile byte*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/)
+#define DAT_0003b780 (0xa950aUL)
+#define DAT_0003b784 (((unsigned long)&rodata_a9529) /*=0xa9529*/)
+#define DAT_0003b788 (((unsigned long)&rodata_a9551) /*=0xa9551*/)
 
 
 /* WARNING: Removing unreachable block (ram,0x0003b4c6) */
@@ -193,7 +212,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
   longlong lVar23;
   undefined4 local_30;
   undefined4 local_2c;
-  
+
   iVar12 = get_device_info();
   pcVar4 = DAT_0003b254;
   iVar21 = iVar12 + 0xef;
@@ -205,7 +224,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
         DEBUG_PRINT(DAT_0003b264,DAT_0003b260);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b264,DAT_0003b260);
       }
     }
     enter_dashboard_burial_point();
@@ -215,7 +234,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
           DEBUG_PRINT(DAT_0003b268,DAT_0003b260);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003b268,DAT_0003b260);
         }
       }
       gui_screen_clear();
@@ -229,7 +248,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
         DEBUG_PRINT(DAT_0003b270,DAT_0003b260);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b270,DAT_0003b260);
       }
     }
     send_event_status(0x1e);
@@ -254,28 +273,28 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
         DEBUG_PRINT(DAT_0003b280,DAT_0003b260,(uint)bVar11,(uint)bVar1,uVar13);
       }
       else {
-        debug_print(DAT_0003b280);
+        debug_print(DAT_0003b280,DAT_0003b260,(uint)bVar11,(uint)bVar1,uVar13);
       }
       if (2 < *piVar5) {
         if (*piVar6 == 0) {
           DEBUG_PRINT(DAT_0003b284,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x155),0,uVar13);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003b284,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x155),0,uVar13);
         }
         if (2 < *piVar5) {
           if (*piVar6 == 0) {
             DEBUG_PRINT(DAT_0003b288,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x157),0,uVar13);
           }
           else {
-            debug_print();
+            debug_print(DAT_0003b288,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x157),0,uVar13);
           }
           if (2 < *piVar5) {
             if (*piVar6 == 0) {
               DEBUG_PRINT(DAT_0003b28c,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x158));
             }
             else {
-              debug_print();
+              debug_print(DAT_0003b28c,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x158));
             }
           }
         }
@@ -298,7 +317,7 @@ LAB_0003b116:
             DEBUG_PRINT(uVar16,uVar17);
           }
           else {
-            debug_print();
+            debug_print(uVar16,uVar17);
           }
         }
       }
@@ -345,7 +364,7 @@ LAB_0003b116:
           DEBUG_PRINT(DAT_0003b294,DAT_0003b260);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003b294,DAT_0003b260);
         }
       }
     }
@@ -383,7 +402,7 @@ LAB_0003b116:
     gui_canvas_flags_set_bit1();
     lVar23 = thunk_FUN_00074f68();
     uVar13 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
-    *(uint *)(pcVar4 + 0x10) = (uint)(lVar23 * 1000) >> 0xf | uVar13 * ((uintptr_t)&rodata_20000) /*=0x20000*/;
+    *(uint *)(pcVar4 + 0x10) = (uint)(lVar23 * 1000) >> 0xf | uVar13 * 0x20000;
     *(uint *)(pcVar4 + 0x14) = uVar13 >> 0xf;
     *pcVar4 = '\x01';
     FUN_00048b44(0x42);
@@ -404,7 +423,7 @@ LAB_0003b198:
         DEBUG_PRINT(DAT_0003b2a4,DAT_0003b260,2);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b2a4,DAT_0003b260,2);
       }
     }
     send_response_data_to_msgqueue(&local_30,6);
@@ -425,7 +444,7 @@ LAB_0003b198:
         DEBUG_PRINT(DAT_0003b5a4,DAT_0003b588,2);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b5a4,DAT_0003b588,2);
       }
     }
     send_response_data_to_msgqueue(&local_30,6);
@@ -442,7 +461,7 @@ LAB_0003b198:
         DEBUG_PRINT(DAT_0003b5a8,DAT_0003b588,(uint)bVar11);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b5a8,DAT_0003b588,(uint)bVar11);
       }
     }
     send_dashboard_status_sync();
@@ -457,7 +476,7 @@ LAB_0003b198:
       DEBUG_PRINT(DAT_0003b5ac,DAT_0003b588);
     }
     else {
-      debug_print();
+      debug_print(DAT_0003b5ac,DAT_0003b588);
     }
     if (param_3 != 2) {
 LAB_0003b742:
@@ -472,7 +491,7 @@ LAB_0003b742:
             DEBUG_PRINT(DAT_0003b5bc,DAT_0003b588,(uint)*(byte *)(iVar12 + 0x153));
           }
           else {
-            debug_print();
+            debug_print(DAT_0003b5bc,DAT_0003b588,(uint)*(byte *)(iVar12 + 0x153));
           }
         }
         uVar16 = get_device_info();
@@ -486,7 +505,7 @@ LAB_0003b742:
               DEBUG_PRINT(DAT_0003b784,DAT_0003b764);
             }
             else {
-              debug_print();
+              debug_print(DAT_0003b784,DAT_0003b764);
             }
           }
           iVar12 = get_device_info();
@@ -500,7 +519,7 @@ LAB_0003b742:
               DEBUG_PRINT(DAT_0003b788,DAT_0003b764);
             }
             else {
-              debug_print();
+              debug_print(DAT_0003b788,DAT_0003b764);
             }
           }
           iVar12 = get_device_info();
@@ -516,7 +535,7 @@ LAB_0003b742:
           DEBUG_PRINT(DAT_0003b768,DAT_0003b764,(uint)(byte)pcVar4[0x19]);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003b768,DAT_0003b764,(uint)(byte)pcVar4[0x19]);
         }
       }
       cVar3 = pcVar4[0x1a];
@@ -552,7 +571,7 @@ LAB_0003b614:
               DEBUG_PRINT(uVar16,DAT_0003b764,uVar13);
             }
             else {
-              debug_print();
+              debug_print(uVar16,DAT_0003b764,uVar13);
             }
           }
         }
@@ -583,7 +602,7 @@ LAB_0003b512:
       iVar12 = check_dashboard_device_status_range();
       lVar23 = thunk_FUN_00074f68();
       uVar20 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
-      uVar13 = (uint)(lVar23 * 1000) >> 0xf | uVar20 * ((uintptr_t)&rodata_20000) /*=0x20000*/;
+      uVar13 = (uint)(lVar23 * 1000) >> 0xf | uVar20 * 0x20000;
       uVar20 = uVar20 >> 0xf;
       if (iVar12 == 0) {
         iVar12 = get_device_info();
@@ -620,7 +639,7 @@ LAB_0003b512:
         DEBUG_PRINT(DAT_0003b5b0,DAT_0003b588);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003b5b0,DAT_0003b588);
       }
     }
   }
@@ -632,5 +651,3 @@ LAB_0003affc:
   exit_dashboard_burial_point();
   return 0;
 }
-
-

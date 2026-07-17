@@ -1,8 +1,14 @@
-/* named: fd_table_dispatch_op1 */
-/* globals referenced:
-//   0x20002548  g_posix_fd_table             
-*/
-/* Reconstructed fd_table_dispatch_op1 @ 0x4b088  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004b088 @ 0x0004b088
+ * public-name: fd_table_dispatch_op1
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fd_table_lookup                          <= FUN_0004b01c @ 0x0004b01c
+ *   fd_table_dispatch_op1                    <= FUN_0004b088 @ 0x0004b088
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ * address symbols (name @ address):
+ *   g_posix_fd_table                         @ 0x20002548
+ */
+/* Reconstructed FUN_0004b088 @ 0x4b088  (parity: 300/300 trials, PROVEN) */
 
 extern long long fd_table_lookup(void);
 extern void k_mutex_lock(int a, int b, int c, int d);
@@ -30,4 +36,3 @@ unsigned int fd_table_dispatch_op1(int param_1, unsigned int param_2, unsigned i
   }
   return uVar2;
 }
-

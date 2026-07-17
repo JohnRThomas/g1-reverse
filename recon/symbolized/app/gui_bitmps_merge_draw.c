@@ -1,12 +1,23 @@
 #include "g1_app_symbols.h"
-/* named: gui_bitmps_merge_draw */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
+/* readable reconstruction; identity: FUN_00043bd8 @ 0x00043bd8
+ * public-name: gui_bitmps_merge_draw
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ * address symbols (name @ address):
+ *   rodata_aa96d                             @ 0x000aa96d
+ *   rodata_aacc8                             @ 0x000aacc8
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
 /* Reconstructed gui_bitmps_merge_draw @ 0x43bd8  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void log_message(unsigned int message, unsigned int function);
 extern int  get_device_info(void);
 extern void debug_print(void);
 extern unsigned long long atomic_get_3_0(void);
@@ -17,22 +28,22 @@ extern void reflash_fb_data_to_lcd(int,int,int,int,int,int);
 
 int gui_bitmps_merge_draw(unsigned int param_1,int param_2,int param_3,int param_4,int param_5,int param_6,
                  unsigned char param_7,unsigned char param_8){
-  volatile int *lvl=(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/, *g8=(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  volatile int *lvl=(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/, *g8=(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int iVar4,iVar6,iVar7,iVar11; unsigned int uVar3,uVar5,uVar8,uVar12; int uVar9;
   unsigned char bVar1,bVar2; int pbVar10, local_5c; unsigned int local_2c[2];
   unsigned long long uVar13;
   if ((param_3 < (int)param_1) || (param_4 < param_2) || (0xf < (param_7 | param_8))) {
     if (*lvl < 2) return -1;
-    iVar4 = *g8; uVar9 = "%s(): input param error,please check postion content\n" /*=0xaa96d*/;
+    iVar4 = *g8; uVar9 = ((unsigned long)&rodata_aa96d) /*=0xaa96d*/;
   } else {
     if ((param_1 & 1) == 0) {
       iVar4 = param_3;
       uVar13 = atomic_get_3_0();
       if ((int)((unsigned int)uVar13 << 0x1e) < 0)
-        clean_fb_data(VI(((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/),(int)(param_1&1),(int)param_1,(int)(uVar13>>0x20),iVar4,param_4);
+        clean_fb_data(VI(((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/),(int)(param_1&1),(int)param_1,(int)(uVar13>>0x20),iVar4,param_4);
       iVar11 = 0;
       uVar5 = (unsigned int)((int)(param_3-(int)param_1) >> 3);
-      iVar6 = VI(((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/);
+      iVar6 = VI(((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/);
       for (iVar4 = 0; iVar4 < param_4 - param_2; iVar4++) {
         pbVar10 = param_6 + iVar11;
         local_5c = param_5 + iVar11;
@@ -66,9 +77,8 @@ int gui_bitmps_merge_draw(unsigned int param_1,int param_2,int param_3,int param
       return 0;
     }
     if (*lvl < 2) return -1;
-    iVar4 = *g8; uVar9 = "%s(): Scenarios where the starting point of x is an even number are not currently supported.\n" /*=0xaa9a3*/;
+    iVar4 = *g8; uVar9 = 0xaa9a3;
   }
-  if (iVar4 == 0) DEBUG_PRINT(uVar9, "gui_bitmps_merge_draw" /*=0xaacc8*/); else debug_print();
+  if (iVar4 == 0) log_message(uVar9, ((unsigned long)&rodata_aacc8) /*=0xaacc8*/); else debug_print();
   return -1;
 }
-

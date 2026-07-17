@@ -23,7 +23,7 @@ extern u64  FUN_0102971e(u32,u32);
 extern i32  FUN_010297b4(i32,i32,void*);
 extern i32  FUN_01029882(u16,u8,i32,u16);
 
-#define DAT_0101fba0 ((uintptr_t)&rodata_10100a1) /*=0x10100a1*/
+#define DAT_0101fba0 ((unsigned long)&rodata_10100a1) /*=0x10100a1*/
 
 u32 FUN_0101f994(i32 param_1, i32 param_2, u32 param_3)
 {
@@ -174,5 +174,3 @@ TRAP:
   FUN_01008d00(uVar6, uVar9);
   goto ELSE_BR;
 }
-
-

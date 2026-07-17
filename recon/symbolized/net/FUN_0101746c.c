@@ -18,10 +18,10 @@ extern i8 FUN_01010890(u8, u32);
 extern int FUN_010199cc(void);
 extern int FUN_01029b24(int);
 
-#define DAT_01017648 ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define DAT_0101764c ((uintptr_t)&g_net_conn_event_cb) /*=0x21000214*/
-#define DAT_01017650 ((uintptr_t)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT_01017654 ((uintptr_t)&g_net_ctrlblk_chan_field) /*=0x21001008*/
+#define DAT_01017648 0x21000f90u
+#define DAT_0101764c ((unsigned long)&g_net_conn_event_cb) /*=0x21000214*/
+#define DAT_01017650 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
+#define DAT_01017654 ((unsigned long)&g_net_ctrlblk_chan_field) /*=0x21001008*/
 
 void FUN_0101746c(int param_1, u32 param_2, int param_3)
 {
@@ -152,5 +152,3 @@ LAB_010174d0:
     *(volatile u8 *)(iVar2 + 0x81) = 1;
   }
 }
-
-

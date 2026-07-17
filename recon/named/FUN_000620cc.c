@@ -1,4 +1,19 @@
-/* named: FUN_000620cc */
+/* readable reconstruction; identity: FUN_000620cc @ 0x000620cc
+ * public-name: FUN_000620cc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99c84                             @ 0x00099c84
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cda                             @ 0x00099cda
+ *   rodata_99dad                             @ 0x00099dad
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
 /* Reconstructed FUN_000620cc @ 0x620cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -50,4 +65,3 @@ int FUN_000620cc(int param_1){
         goto L6212a;
     }
 }
-

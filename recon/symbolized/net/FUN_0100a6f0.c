@@ -4,9 +4,8 @@
 extern void FUN_010273c6(unsigned int a, unsigned int b, unsigned int c);
 void FUN_0100a6f0(unsigned int param_1)
 {
-  volatile unsigned int *p1 = (volatile unsigned int *)((uintptr_t)&g_net_pool_blk_cnt) /*=0x21000bec*/;
-  volatile unsigned int *p2 = (volatile unsigned int *)((uintptr_t)&g_net_pool_blk_size) /*=0x21000bf0*/;
+  volatile unsigned int *p1 = (volatile unsigned int *)((unsigned long)&g_net_pool_blk_cnt) /*=0x21000bec*/;
+  volatile unsigned int *p2 = (volatile unsigned int *)((unsigned long)&g_net_pool_blk_size) /*=0x21000bf0*/;
   FUN_010273c6(*p1, param_1, *p2);
   return;
 }
-

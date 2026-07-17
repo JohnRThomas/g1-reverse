@@ -1,9 +1,18 @@
-/* named: requestAudioInfoToApp */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x2000392c  g_dashboard_response_msgq    
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00048840 @ 0x00048840
+ * public-name: requestAudioInfoToApp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef4d9                             @ 0x000ef4d9
+ *   rodata_ef707                             @ 0x000ef707
+ *   g_log_level                              @ 0x2000230c
+ *   g_dashboard_response_msgq                @ 0x2000392c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed requestAudioInfoToApp @ 0x48840  (parity: 300/300 trials, PROVEN) */
 
 extern void debug_print(void);
@@ -37,4 +46,3 @@ int requestAudioInfoToApp(unsigned char param_1)
   }
   return uVar2;
 }
-

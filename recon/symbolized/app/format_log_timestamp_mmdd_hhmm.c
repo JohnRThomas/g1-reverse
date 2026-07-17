@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: format_log_timestamp_mmdd_hhmm */
-/* Reconstructed format_log_timestamp_mmdd_hhmm @ 0x7ca80  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007ca80 @ 0x0007ca80
+ * public-name: format_log_timestamp_mmdd_hhmm
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   format_log_timestamp_mmdd_hhmm           <= FUN_0007ca80 @ 0x0007ca80
+ */
+/* Reconstructed FUN_0007ca80 @ 0x7ca80  (parity: 300/300 trials, PROVEN) */
 
 int format_log_timestamp_mmdd_hhmm(unsigned char *param_1)
 {
@@ -18,4 +23,3 @@ int format_log_timestamp_mmdd_hhmm(unsigned char *param_1)
   param_1[11] = 0;
   return 0xc;
 }
-

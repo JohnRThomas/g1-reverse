@@ -1,8 +1,16 @@
-/* named: ble_conn_addr_resolve_or_create */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed ble_conn_addr_resolve_or_create @ 0x556b0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000556b0 @ 0x000556b0
+ * public-name: ble_conn_addr_resolve_or_create
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   adv_is_directed                          <= FUN_00055698 @ 0x00055698
+ *   ble_conn_addr_resolve_or_create          <= FUN_000556b0 @ 0x000556b0
+ *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   ble_conn_le_alloc                        <= FUN_00056e34 @ 0x00056e34
+ * address symbols (name @ address):
+ *   rodata_f2b33                             @ 0x000f2b33
+ *   g_ble_dev_state                          @ 0x20002000
+ */
+/* Reconstructed FUN_000556b0 @ 0x556b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int adv_is_directed(void);
 extern int ble_conn_set_state(int,unsigned int);
@@ -24,4 +32,3 @@ unsigned int ble_conn_addr_resolve_or_create(unsigned char* param_1,int* param_2
   }
   return 0xfffffff4;
 }
-

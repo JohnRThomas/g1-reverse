@@ -7,4 +7,3 @@ void FUN_0100e790(int param_1, unsigned int *param_2)
   *param_2 = *(unsigned int *)(param_1 + 4);
   param_2[1] = uVar1;
 }
-

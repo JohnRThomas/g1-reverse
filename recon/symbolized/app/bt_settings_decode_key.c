@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: bt_settings_decode_key */
-/* Reconstructed bt_settings_decode_key @ 0x80cf2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00080cf2 @ 0x00080cf2
+ * public-name: bt_settings_decode_key
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hex2bin                                  <= FUN_0007dd0a @ 0x0007dd0a
+ *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
+ *   bt_settings_decode_key                   <= FUN_00080cf2 @ 0x00080cf2
+ */
+/* Reconstructed FUN_00080cf2 @ 0x80cf2  (parity: 300/300 trials, PROVEN) */
 
 extern int settings_name_next(int, int);
 extern void hex2bin(int, int, void*, int);
@@ -37,4 +44,3 @@ int bt_settings_decode_key(int param_1, unsigned char *param_2)
   }
   return uVar2;
 }
-

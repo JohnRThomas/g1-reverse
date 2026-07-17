@@ -18,4 +18,3 @@ void FUN_01039d80(int *param_1, int param_2, int param_3)
         param_1[1] = iVar1;
     }
 }
-

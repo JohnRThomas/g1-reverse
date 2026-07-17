@@ -7,6 +7,5 @@
 extern unsigned int FUN_0102ce14(unsigned int a);
 unsigned int FUN_0102df04(void)
 {
-  return FUN_0102ce14(((uintptr_t)&g_net_periodic_work_obj) /*=0x2100086c*/);
+  return FUN_0102ce14(((unsigned long)&g_net_periodic_work_obj) /*=0x2100086c*/);
 }
-

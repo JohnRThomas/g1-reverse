@@ -1,6 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: multadd */
-/* Reconstructed multadd @ 0x78698  (parity: 152/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078698 @ 0x00078698
+ * public-name: multadd
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   Bfree                                    <= FUN_00078654 @ 0x00078654
+ *   multadd                                  <= FUN_00078698 @ 0x00078698
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_00078698 @ 0x78698  (parity: 152/300 trials, PROVEN) */
 
 extern int Balloc(int,int);
 extern int libc_fatal_error_and_abort(int,int,int,int);
@@ -13,10 +26,10 @@ int multadd(int param_1,int param_2,int param_3,unsigned param_4){
   do{
     iVar1=iVar1+1;
     unsigned v=*puVar6;
-    unsigned uVar3=param_3*(v & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)+param_4;
+    unsigned uVar3=param_3*(v & 0xffff)+param_4;
     unsigned uVar4=param_3*(v >> 0x10)+(uVar3 >> 0x10);
     param_4=uVar4 >> 0x10;
-    *(volatile unsigned*)puVar6=(uVar3 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)+uVar4*((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+    *(volatile unsigned*)puVar6=(uVar3 & 0xffff)+uVar4*((unsigned long)&rodata_10000) /*=0x10000*/;
     puVar6=puVar6+1;
   }while(iVar1<iVar5);
   int iVar1r=param_2;
@@ -24,7 +37,7 @@ int multadd(int param_1,int param_2,int param_3,unsigned param_4){
     if(*(int*)(param_2+8)<=iVar5){
       int iVar2=Balloc(param_1,*(int*)(param_2+4)+1);
       iVar1r=iVar2;
-      if(iVar2==0){ iVar2=libc_fatal_error_and_abort("/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c" /*=0xf8cd5*/,0xb5,0,"Balloc succeeded" /*=0xf8c42*/); }
+      if(iVar2==0){ iVar2=libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/,0xb5,0,((unsigned long)&rodata_f8c42) /*=0xf8c42*/); }
       memcpy(iVar2+0xc,param_2+0xc,(*(int*)(param_2+0x10)+2)*4);
       Bfree(param_1,param_2);
     }
@@ -33,4 +46,3 @@ int multadd(int param_1,int param_2,int param_3,unsigned param_4){
   }
   return iVar1r;
 }
-

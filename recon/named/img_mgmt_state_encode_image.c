@@ -1,5 +1,28 @@
-/* named: img_mgmt_state_encode_image */
-/* Reconstructed img_mgmt_state_encode_image @ 0x51ac0  (parity: 200/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00051ac0 @ 0x00051ac0
+ * public-name: img_mgmt_state_encode_image
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   img_mgmt_state_encode_image              <= FUN_00051ac0 @ 0x00051ac0
+ *   img_mgmt_ver_str                         <= FUN_00051f88 @ 0x00051f88
+ *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ *   k_heap_alloc                             <= FUN_0008099e @ 0x0008099e
+ *   cbor_encode_uint32                       <= FUN_00086320 @ 0x00086320
+ *   cbor_encode_map_indef_start              <= FUN_0008634c @ 0x0008634c
+ *   cbor_encode_simple                       <= FUN_00086378 @ 0x00086378
+ * address symbols (name @ address):
+ *   rodata_f272f                             @ 0x000f272f
+ *   rodata_f2734                             @ 0x000f2734
+ *   rodata_f273a                             @ 0x000f273a
+ *   rodata_f2743                             @ 0x000f2743
+ *   rodata_f274b                             @ 0x000f274b
+ *   rodata_f2755                             @ 0x000f2755
+ *   rodata_f349f                             @ 0x000f349f
+ *   rodata_f4a01                             @ 0x000f4a01
+ *   rodata_f5702                             @ 0x000f5702
+ *   rodata_f6589                             @ 0x000f6589
+ */
+/* Reconstructed FUN_00051ac0 @ 0x51ac0  (parity: 200/200 trials, PROVEN) */
 
 #include <stdint.h>
 extern int strlen(void*);
@@ -47,4 +70,3 @@ unsigned img_mgmt_state_encode_image(unsigned param_1,unsigned param_2,unsigned 
   } else uVar2 = 1;
   return uVar2;
 }
-

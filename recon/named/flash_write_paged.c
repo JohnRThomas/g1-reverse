@@ -1,27 +1,40 @@
-/* named: flash_write_paged */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed flash_write_paged @ 0x227d0  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(unsigned a, unsigned b);
-extern void debug_print(void);
-extern int flash_settings_write_and_verify(int a, int b, int c);
-int flash_write_paged(int param_1, int param_2, unsigned param_3){
-    if (*(volatile int*)0x20007554UL == 0){
-        DEBUG_PRINT(0x9e3db, param_3);
-    } else {
-        debug_print();
-    }
-    int iVar3 = 0;
-    unsigned r6 = (((param_3 >> 12) + 1) & 0xff);
-    int sl = (int)r6 - 1;
-    int r4 = (short)(int)(param_3 - (sl << 12));
-    unsigned uVar2 = 0;
-    for(; (uVar2 & 0xff) < r6; uVar2++){
-        int r2 = (sl <= (int)uVar2) ? r4 : 0x1000;
-        int iVar1 = flash_settings_write_and_verify(param_1 + (int)(uVar2*0x1000), param_2 + (int)(uVar2*0x1000), r2);
-        iVar3 += iVar1;
-    }
-    return iVar3;
-}
+/* readable reconstruction; identity: FUN_000227d0 @ 0x000227d0
+ * public-name: flash_write_paged
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   flash_settings_write_and_verify          <= FUN_00022658 @ 0x00022658
+ *   flash_write_paged                        <= FUN_000227d0 @ 0x000227d0
+ * address symbols (name @ address):
+ *   rodata_9e3db                             @ 0x0009e3db
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_000227d0 @ 0x227d0. */
+#include <stdint.h>
 
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void debug_print(uint32_t format, ...);
+extern int flash_settings_write_and_verify(const void *source, void *destination, int count);
+
+int flash_write_paged(const uint8_t *source, uint8_t *destination,
+                 uint32_t byte_count)
+{
+    uint32_t blocks = ((byte_count >> 12) + 1) & 0xff;
+    int final_block = (int)blocks - 1;
+    int final_count = (int16_t)(byte_count - ((uint32_t)final_block << 12));
+    unsigned int block = 0;
+    int total = 0;
+
+    if (*(volatile int *)0x20007554u == 0)
+        DEBUG_PRINT(0x0009e3db, byte_count);
+    else
+        debug_print(0x0009e3db, byte_count);
+
+    while ((uint8_t)block < blocks) {
+        int count = final_block <= (int)block ? final_count : 0x1000;
+        total += flash_settings_write_and_verify(source + block * 0x1000,
+                             destination + block * 0x1000, count);
+        ++block;
+    }
+    return total;
+}

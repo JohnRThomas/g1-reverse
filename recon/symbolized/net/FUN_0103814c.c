@@ -1,10 +1,12 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0103814c @ 0x103814c  (parity 300 trials PROVEN) */
 /* net-core FUN_0103814c @ 0x103814c  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 typedef unsigned int u32;
 typedef int i32;
@@ -23,12 +25,12 @@ extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
    second logical half of the Ghidra decompile as a single external call. */
 extern void FUN_01037438(void);
 
-#define DAT_0103826c ((uintptr_t)&g_net_kernel_timeout_lock) /*=0x21004b70*/
-#define DAT_01038270 "***** HARD FAULT *****" /*=0x103d3b6*/
-#define DAT_01038274 "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define DAT_01038278 ((uintptr_t)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/
-#define DAT_0103827c ((uintptr_t)&announce_remaining) /*=0x21004b6c*/
-#define DAT_01038280 ((uintptr_t)&g_net_kernel_curr_tick) /*=0x210044f0*/
+#define DAT_0103826c 0x21004b70u
+#define DAT_01038270 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define DAT_01038274 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define DAT_01038278 ((unsigned long)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/
+#define DAT_0103827c ((unsigned long)&announce_remaining) /*=0x21004b6c*/
+#define DAT_01038280 ((unsigned long)&g_net_kernel_curr_tick) /*=0x210044f0*/
 
 static inline int SBORROW4(i32 a, i32 b) {
     int r; return __builtin_sub_overflow(a, b, &r);
@@ -169,5 +171,3 @@ LAB_01038236:
      far below this function) — a single external call/oracle. */
   FUN_01037438();
 }
-
-

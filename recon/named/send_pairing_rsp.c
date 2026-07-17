@@ -1,5 +1,13 @@
-/* named: send_pairing_rsp */
-/* Reconstructed send_pairing_rsp @ 0x830ee  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000830ee @ 0x000830ee
+ * public-name: send_pairing_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ *   send_pairing_rsp                         <= FUN_000830ee @ 0x000830ee
+ */
+/* Reconstructed FUN_000830ee @ 0x830ee  (parity: 300/300 trials, PROVEN) */
 
 extern int smp_create_pdu(int, int, unsigned int, unsigned int, unsigned int);
 extern void *net_buf_simple_add(int, int);
@@ -22,4 +30,3 @@ unsigned int send_pairing_rsp(int param_1, unsigned int param_2, unsigned int pa
   }
   return uVar3;
 }
-

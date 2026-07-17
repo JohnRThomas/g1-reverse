@@ -1,10 +1,34 @@
 #include "g1_app_symbols.h"
-/* named: k_msgq_get */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed k_msgq_get @ 0x72240  (parity: 48/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00072240 @ 0x00072240
+ * public-name: k_msgq_get
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   z_ready_thread_locked                    <= FUN_000738d4 @ 0x000738d4
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f7df6                             @ 0x000f7df6
+ *   rodata_f80cc                             @ 0x000f80cc
+ *   rodata_f80ee                             @ 0x000f80ee
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_00072240 @ 0x72240  (parity: 48/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
@@ -15,10 +39,10 @@ extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
 extern int printk(int,...);
 extern int memcpy(int,...);
-static inline int ipsr(void){int r;__asm__ volatile("mrs %0, ipsr":"=r"(r));return r;}
-static inline int rd_basepri(void){int r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void wr_basepri_max(int v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb(void){__asm__ volatile("isb 0xf":::"memory");}
+static inline int ipsr(void){return (int)__get_IPSR();}
+static inline int rd_basepri(void){return (int)__get_BASEPRI();}
+static inline void wr_basepri_max(int v){__set_BASEPRI_MAX((uint32_t)v);}
+static inline void isb(void){__ISB();}
 
 int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
 {
@@ -37,14 +61,14 @@ int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
         iVar5 = param_1; uVar3 = param_2; iVar9 = param_3;
         iVar1 = z_spin_lock_valid(iVar6);
         if(iVar1 == 0){
-            printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_lock_valid(l)" /*=0xf0920*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x72,iVar5,uVar3,iVar9);
-            printk("\tInvalid spinlock %p\n" /*=0xf0935*/,iVar6);
-            uVar3 = 0x72; uVar7 = "WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/;
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72,iVar5,uVar3,iVar9);
+            printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,iVar6);
+            uVar3 = 0x72; uVar7 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         } else {
             z_spin_lock_set_owner(iVar6);
             if(*(int*)(param_1+0x24) == 0){
                 if(param_3 != 0 || param_4 != 0){
-                    iVar5 = *(volatile int*)(((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/+8);
+                    iVar5 = *(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8);
                     *(unsigned*)(iVar5+0x14) = param_2;
                     iVar6 = FUN_00073f6c(iVar6,uVar7,param_1,iVar5,param_3,param_4);
                     return iVar6;
@@ -74,8 +98,8 @@ int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
                         z_reschedule(iVar6,uVar7);
                         return 0;
                     }
-                    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"msgq->write_ptr >= msgq->buffer_start && msgq->write_ptr < msgq->buffer_end" /*=0xf80ee*/,"WEST_TOPDIR/zephyr/kernel/msg_q.c" /*=0xf80cc*/,0xeb,iVar5,uVar3,iVar9);
-                    uVar3 = 0xeb; uVar7 = "WEST_TOPDIR/zephyr/kernel/msg_q.c" /*=0xf80cc*/;
+                    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f80ee) /*=0xf80ee*/,((unsigned long)&rodata_f80cc) /*=0xf80cc*/,0xeb,iVar5,uVar3,iVar9);
+                    uVar3 = 0xeb; uVar7 = ((unsigned long)&rodata_f80cc) /*=0xf80cc*/;
                     goto LAB_000722a4;
                 }
             }
@@ -86,16 +110,15 @@ int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
                 isb();
                 return iVar1;
             }
-            printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_unlock_valid(l)" /*=0xf08f4*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0xf0,iVar5,uVar3,iVar9);
-            printk("\tNot my spinlock %p\n" /*=0xf090b*/,iVar6);
-            uVar3 = 0xf0; uVar7 = "WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/;
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0,iVar5,uVar3,iVar9);
+            printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,iVar6);
+            uVar3 = 0xf0; uVar7 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
         }
     } else {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"!arch_is_in_isr() || ((timeout).ticks == (((k_timeout_t) {0})).ticks)" /*=0xf7df6*/,"WEST_TOPDIR/zephyr/kernel/msg_q.c" /*=0xf80cc*/,0xd2,param_1,param_2,param_3);
-        printk("\t\n" /*=0xf53ff*/);
-        uVar3 = 0xd2; uVar7 = "WEST_TOPDIR/zephyr/kernel/msg_q.c" /*=0xf80cc*/;
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7df6) /*=0xf7df6*/,((unsigned long)&rodata_f80cc) /*=0xf80cc*/,0xd2,param_1,param_2,param_3);
+        printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
+        uVar3 = 0xd2; uVar7 = ((unsigned long)&rodata_f80cc) /*=0xf80cc*/;
     }
 LAB_000722a4:
     assert_post_action(uVar7,uVar3);
 }
-

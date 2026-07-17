@@ -1,8 +1,16 @@
-/* named: get_dashboard_sum_time */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0004a960 @ 0x0004a960
+ * public-name: get_dashboard_sum_time
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
+ * address symbols (name @ address):
+ *   rodata_f0369                             @ 0x000f0369
+ *   rodata_f0492                             @ 0x000f0492
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed get_dashboard_sum_time @ 0x4a960  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long k_uptime_get_10(void);
@@ -42,4 +50,3 @@ long long get_dashboard_sum_time(void)
     }
     return lVar8;
 }
-

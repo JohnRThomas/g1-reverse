@@ -7,10 +7,10 @@ extern void FUN_01039bb0(unsigned int, unsigned int);
 unsigned int FUN_01034d8c(unsigned int param_1, int param_2, int param_3)
 {
   if (param_2 == 0) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103e700) /*=0x103e700*/, 0x34);
-    FUN_01039bb0(((uintptr_t)&rodata_103e700) /*=0x103e700*/, 0x34);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e700) /*=0x103e700*/, 0x34);
+    FUN_01039bb0(((unsigned long)&rodata_103e700) /*=0x103e700*/, 0x34);
   }
-  int *piVar1 = (int*)((uintptr_t)&g_sdc_radio_context_area) /*=0x21004aec*/;
+  int *piVar1 = (int*)((unsigned long)&g_sdc_radio_context_area) /*=0x21004aec*/;
   unsigned int uVar2;
   if (*(char*)((char*)piVar1+4) == 0) {
     FUN_0102eb2c(0x12);
@@ -23,4 +23,3 @@ unsigned int FUN_01034d8c(unsigned int param_1, int param_2, int param_3)
   }
   return uVar2;
 }
-

@@ -4,7 +4,7 @@
 extern unsigned char FUN_0100d760(void);
 extern unsigned int FUN_010187e0(unsigned char *param_1, unsigned int x);
 extern void FUN_010196e0(void);
-static volatile unsigned char * const DAT_01018c54 = (unsigned char *)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
+static volatile unsigned char * const DAT_01018c54 = (unsigned char *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
 
 unsigned int FUN_01018c28(unsigned char *param_1)
 {
@@ -22,4 +22,3 @@ unsigned int FUN_01018c28(unsigned char *param_1)
   FUN_010196e0();
   return 1;
 }
-

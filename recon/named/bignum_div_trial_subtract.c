@@ -1,5 +1,11 @@
-/* named: bignum_div_trial_subtract */
-/* Reconstructed bignum_div_trial_subtract @ 0x87184  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087184 @ 0x00087184
+ * public-name: bignum_div_trial_subtract
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bignum_div_trial_subtract                <= FUN_00087184 @ 0x00087184
+ *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
+ */
+/* Reconstructed FUN_00087184 @ 0x87184  (parity: 300/300 trials, PROVEN) */
 
 extern int bignum_compare_abs(void *param_1);
 
@@ -65,4 +71,3 @@ unsigned int bignum_div_trial_subtract(void *param_1, void *param_2)
   }
   return uVar7;
 }
-

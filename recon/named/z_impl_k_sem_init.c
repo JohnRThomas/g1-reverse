@@ -1,5 +1,10 @@
-/* named: z_impl_k_sem_init */
-/* Reconstructed z_impl_k_sem_init @ 0x86534  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00086534 @ 0x00086534
+ * public-name: z_impl_k_sem_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ */
+/* Reconstructed FUN_00086534 @ 0x86534  (parity: 300/300 trials, PROVEN) */
 
 unsigned int z_impl_k_sem_init(int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -14,4 +19,3 @@ unsigned int z_impl_k_sem_init(int param_1, unsigned int param_2, unsigned int p
   }
   return 0xffffffea;
 }
-

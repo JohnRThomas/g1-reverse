@@ -1,5 +1,21 @@
-/* named: bt_hci_cmd_create */
-/* Reconstructed bt_hci_cmd_create @ 0x53cd4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00053cd4 @ 0x00053cd4
+ * public-name: bt_hci_cmd_create
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
+ *   net_buf_simple_reserve                   <= FUN_0005f4d4 @ 0x0005f4d4
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f2e84                             @ 0x000f2e84
+ *   rodata_f45be                             @ 0x000f45be
+ *   g_hci_cmd_pool                           @ 0x20003b4c
+ *   bt_hci_cmd_data                          @ 0x2000abf4
+ */
+/* Reconstructed FUN_00053cd4 @ 0x53cd4  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_000836de(int,int,int,int);
 extern void net_buf_simple_reserve(int,int);
@@ -23,4 +39,3 @@ int bt_hci_cmd_create(short param_1,int param_2){
   *(volatile char*)(puVar4+2)=(char)param_2;
   return iVar2;
 }
-

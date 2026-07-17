@@ -4,9 +4,8 @@
 extern void FUN_0101e828(void);
 void FUN_0101e888(void)
 {
-    volatile unsigned int * const p = (volatile unsigned int * const)((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
+    volatile unsigned int * const p = (volatile unsigned int * const)((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
     p[2] = 0xea6;
     p[3] = 0x1d4c;
     FUN_0101e828();
 }
-

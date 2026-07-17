@@ -1,10 +1,25 @@
-/* named: k_work_queue_start */
-/* Reconstructed k_work_queue_start @ 0x730e8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000730e8 @ 0x000730e8
+ * public-name: k_work_queue_start
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   posix_stub_enosys                        <= FUN_00086412 @ 0x00086412
+ * address symbols (name @ address):
+ *   rodata_72ab1                             @ 0x00072ab1
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f586b                             @ 0x000f586b
+ *   rodata_f820f                             @ 0x000f820f
+ *   rodata_f82a5                             @ 0x000f82a5
+ *   rodata_f82ab                             @ 0x000f82ab
+ */
+/* Reconstructed FUN_000730e8 @ 0x730e8  (parity: 300/300 trials, PROVEN) */
 extern void printk(int,...);
 extern void assert_post_action(int,...);
 extern void FUN_00071eac(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void posix_stub_enosys(int);
-extern void sched_thread_ready(int);
+extern void FUN_0008641c(int);
 void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_4,int *param_5){
   unsigned uVar1;
   if(param_1==0){
@@ -29,7 +44,6 @@ void k_work_queue_start(int param_1,int param_2,unsigned param_3,unsigned param_
     *(volatile unsigned*)(param_1+0xf0)=uVar1;
     FUN_00071eac(param_1,param_2,param_3,0x00072ab1,param_1,0,0,param_4,0);
     if(param_5!=0 && *param_5!=0) posix_stub_enosys(param_1);
-    sched_thread_ready(param_1); return;
+    FUN_0008641c(param_1); return;
   }
 }
-

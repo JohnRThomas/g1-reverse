@@ -7,4 +7,3 @@ void FUN_0100f7d0(char *param_1, unsigned char param_2, unsigned char param_3)
   *(unsigned char *)(p + 0xa3) = param_2;
   *(unsigned char *)(p + 0xa2) = param_3;
 }
-

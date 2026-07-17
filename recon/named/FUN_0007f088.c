@@ -1,4 +1,10 @@
-/* named: FUN_0007f088 */
+/* readable reconstruction; identity: FUN_0007f088 @ 0x0007f088
+ * public-name: FUN_0007f088
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   stream_flash_flush_buffer                <= FUN_0004e1ac @ 0x0004e1ac
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
 /* Reconstructed FUN_0007f088 @ 0x7f088  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(int,int,unsigned);
@@ -30,4 +36,3 @@ int FUN_0007f088(int *param_1,int param_2,unsigned param_3,int param_4){
   }
   return iVar1;
 }
-

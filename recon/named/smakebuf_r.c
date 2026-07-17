@@ -1,5 +1,14 @@
-/* named: smakebuf_r */
-/* Reconstructed smakebuf_r @ 0x76cec  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076cec @ 0x00076cec
+ * public-name: smakebuf_r
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smakebuf_r                               <= FUN_00076cec @ 0x00076cec
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   _isatty_r                                <= FUN_00078570 @ 0x00078570
+ * address symbols (name @ address):
+ *   rodata_76b91                             @ 0x00076b91
+ */
+/* Reconstructed FUN_00076cec @ 0x76cec  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_00086b7e(int,void*,void*,void*);
@@ -31,4 +40,3 @@ void smakebuf_r(int param_1,int *param_2,int param_3){
   *(volatile int*)((int)param_2+0x10)=(int)param_2+0x47;
   *(volatile int*)((int)param_2+0x14)=1;
 }
-

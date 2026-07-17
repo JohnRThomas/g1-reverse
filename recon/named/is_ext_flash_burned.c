@@ -1,8 +1,18 @@
-/* named: is_ext_flash_burned */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00032c28 @ 0x00032c28
+ * public-name: is_ext_flash_burned
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   calc_flash_crc                           <= FUN_00022974 @ 0x00022974
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_9e2f1                             @ 0x0009e2f1
+ *   rodata_a74dc                             @ 0x000a74dc
+ *   rodata_a7500                             @ 0x000a7500
+ *   rodata_a766d                             @ 0x000a766d
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed is_ext_flash_burned @ 0x32c28  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -95,4 +105,3 @@ LAB_00032e38:
     }
     goto LAB_00032c54;
 }
-

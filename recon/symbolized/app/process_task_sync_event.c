@@ -1,6 +1,31 @@
 #include "g1_app_symbols.h"
-/* named: process_task_sync_event */
-/* Reconstructed process_task_sync_event @ 0x286f8  (parity: 1/1 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000286f8 @ 0x000286f8
+ * public-name: process_task_sync_event
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
+ *   esb_pairing_sync_step                    <= FUN_000275fc @ 0x000275fc
+ *   process_task_sync_event                  <= FUN_000286f8 @ 0x000286f8
+ *   trigger_screen_state_change              <= FUN_0002bc2c @ 0x0002bc2c
+ *   update_temp_task_status                  <= FUN_0002bffc @ 0x0002bffc
+ *   check_pending_messages_flag              <= FUN_0002c1fc @ 0x0002c1fc
+ *   sync_message_signal_to_slave             <= FUN_0002c224 @ 0x0002c224
+ *   update_touch_key_flag                    <= FUN_0002c324 @ 0x0002c324
+ *   get_low_battery_flag_if_master           <= FUN_0002efa8 @ 0x0002efa8
+ *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
+ *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   prepare_quick_note_mode                  <= FUN_0007cdb6 @ 0x0007cdb6
+ *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ * address symbols (name @ address):
+ *   rodata_28000                             @ 0x00028000
+ *   rodata_a0a7b                             @ 0x000a0a7b
+ *   g_notify_wakeup_msg_sync_flag            @ 0x2000ff4d
+ *   g_notify_wakeup_delay_flag               @ 0x20018d97
+ */
+/* Reconstructed FUN_000286f8 @ 0x286f8  (parity: 1/1 trials, PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: intentional non-returning service loop. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -26,8 +51,8 @@ extern void update_persist_task_status(unsigned a, int b, int c);
 
 void process_task_sync_event(unsigned param_1)
 {
-    volatile char *pcVar2 = (volatile char *)((uintptr_t)&g_notify_wakeup_msg_sync_flag) /*=0x2000ff4d*/;
-    volatile char *pcVar1 = (volatile char *)((uintptr_t)&g_notify_wakeup_delay_flag) /*=0x20018d97*/;
+    volatile char *pcVar2 = (volatile char *)((unsigned long)&g_notify_wakeup_msg_sync_flag) /*=0x2000ff4d*/;
+    volatile char *pcVar1 = (volatile char *)((unsigned long)&g_notify_wakeup_delay_flag) /*=0x20018d97*/;
     int iVar3;
     char *pcVar4;
     unsigned uVar5;
@@ -37,7 +62,7 @@ void process_task_sync_event(unsigned param_1)
     do {
         while ((iVar3 = get_device_info(), *(volatile char *)(iVar3 + 1) == '\x01' ||
                (iVar3 = get_device_info(), *(volatile char *)(iVar3 + 1) == '\b'))) {
-            thunk_FUN_00074844(((uintptr_t)&rodata_28000) /*=0x28000*/, 0);
+            thunk_FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
         }
         pcVar4 = (char *)get_device_info();
         if (*(volatile char *)pcVar4 == '\x01') {
@@ -146,7 +171,7 @@ LAB_0002884a:
                 uVar5 = get_device_info();
                 update_temp_task_status(uVar5, 4, 2);
                 uVar5 = get_device_info();
-                trigger_screen_state_change("IMU:wakeup:new-notification" /*=0xa0a7b*/, uVar5, 1);
+                trigger_screen_state_change(((unsigned long)&rodata_a0a7b) /*=0xa0a7b*/, uVar5, 1);
                 check_pending_messages_flag();
             }
             *pcVar2 = '\0';
@@ -155,4 +180,3 @@ LAB_0002884a:
         k_msleep_ticks32768_a(200);
     } while (1);
 }
-

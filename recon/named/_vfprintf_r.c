@@ -1,5 +1,23 @@
-/* named: _vfprintf_r */
-/* Reconstructed _vfprintf_r @ 0x76ed4  (parity: 80/80 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076ed4 @ 0x00076ed4
+ * public-name: _vfprintf_r
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lock_acquire_or_fatal                    <= FUN_000510fc @ 0x000510fc
+ *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
+ *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   _vfprintf_r                              <= FUN_00076ed4 @ 0x00076ed4
+ *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
+ *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   libc_write_buffer_via_putc               <= FUN_00086cb6 @ 0x00086cb6
+ * address symbols (name @ address):
+ *   ADDR_FUN_0007712c_THUMB                  @ 0x0007712d
+ *   ADDR_libc_write_buffer_via_putc_THUMB    @ 0x00086cb7
+ *   rodata_f8b6b                             @ 0x000f8b6b
+ *   rodata_f8b71                             @ 0x000f8b71
+ *   rodata_f8b75                             @ 0x000f8b75
+ */
+/* Reconstructed FUN_00076ed4 @ 0x76ed4  (parity: 80/80 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -155,4 +173,3 @@ LAB_00077088:
     pbVar7 = param_3;
     goto LAB_00076f6a;
 }
-

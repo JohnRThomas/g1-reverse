@@ -1,4 +1,7 @@
-/* named: FUN_00083062 */
+/* readable reconstruction; identity: FUN_00083062 @ 0x00083062
+ * public-name: FUN_00083062
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00083062 @ 0x83062  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -9,4 +12,3 @@ void FUN_00083062(uint32_t *param_1, uint32_t *param_2)
   *(uint8_t*)((char*)param_1 + 6) = *(uint8_t*)((char*)param_2 + 6);
   return;
 }
-

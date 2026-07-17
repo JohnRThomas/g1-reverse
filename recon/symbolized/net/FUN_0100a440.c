@@ -1,7 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0100a440 @ 0x100a440  (parity 300 trials PROVEN) */
-#define P_0100a4c8 ((uintptr_t)&g_net_bufpool_base_ptr) /*=0x21000bbc*/
-#define P_0100a4cc ((uintptr_t)&g_net_bufpool_slot_cnt) /*=0x21000bb8*/
+#define P_0100a4c8 ((unsigned long)&g_net_bufpool_base_ptr) /*=0x21000bbc*/
+#define P_0100a4cc ((unsigned long)&g_net_bufpool_slot_cnt) /*=0x21000bb8*/
 
 extern void FUN_01008d00(int, int);
 extern void FUN_0100a31c(unsigned char *, int);
@@ -31,4 +31,3 @@ unsigned char *FUN_0100a440(void)
   }
   return local_c;
 }
-

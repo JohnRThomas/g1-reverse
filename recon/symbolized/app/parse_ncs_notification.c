@@ -1,9 +1,34 @@
 #include "g1_app_symbols.h"
-/* named: parse_ncs_notification */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00034980 @ 0x00034980
+ * public-name: parse_ncs_notification
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   log_notification_fields_debug            <= FUN_0004a3d0 @ 0x0004a3d0
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_9b257                             @ 0x0009b257
+ *   rodata_9d759                             @ 0x0009d759
+ *   rodata_9d76c                             @ 0x0009d76c
+ *   rodata_9d775                             @ 0x0009d775
+ *   rodata_9d790                             @ 0x0009d790
+ *   rodata_9d79d                             @ 0x0009d79d
+ *   rodata_a81b7                             @ 0x000a81b7
+ *   rodata_a838d                             @ 0x000a838d
+ *   rodata_a83aa                             @ 0x000a83aa
+ *   rodata_a83ca                             @ 0x000a83ca
+ *   rodata_a83d1                             @ 0x000a83d1
+ *   rodata_a83d8                             @ 0x000a83d8
+ *   rodata_a83e9                             @ 0x000a83e9
+ *   rodata_f3fde                             @ 0x000f3fde
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed parse_ncs_notification @ 0x34980  (parity: 300/300 trials, PROVEN) */
 extern void DEBUG_PRINT(int,...);
 extern void debug_print(void);
@@ -18,36 +43,36 @@ extern void strncpy_zero_pad(int,int,int);
 #define VI(a) (*(volatile int*)(a))
 
 void parse_ncs_notification(int param_1, int *param_2){
-  volatile int *lvl=(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-  volatile int *g8=(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  volatile int *lvl=(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
+  volatile int *g8=(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int iVar1,iVar2,iVar3,iVar4,iVar5,iVar6,iVar7,iVar8,iVar9;
   (void)param_1;
   iVar1 = FUN_0008500c();
   if (iVar1 == 0) {
     if (0 < *lvl) {
       if (*g8 != 0) { debug_print(); return; }
-      DEBUG_PRINT("%s(): error root JSON NODE!\n" /*=0xa838d*/,"parse_ncs_notification" /*=0xa83e9*/); return;
+      DEBUG_PRINT(((unsigned long)&rodata_a838d) /*=0xa838d*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); return;
     }
     return;
   }
-  iVar2 = sllist_find_by_name_ci(iVar1, "ncs_notification" /*=0x9d79d*/);
+  iVar2 = sllist_find_by_name_ci(iVar1, ((unsigned long)&rodata_9d79d) /*=0x9d79d*/);
   if (iVar2 == 0) {
-    if (0 < *lvl) { if (*g8==0) DEBUG_PRINT("%s(): NOT FOUND NCS JSON NODE!\n" /*=0xa83aa*/,"parse_ncs_notification" /*=0xa83e9*/); else debug_print(); }
+    if (0 < *lvl) { if (*g8==0) DEBUG_PRINT(((unsigned long)&rodata_a83aa) /*=0xa83aa*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); else debug_print(); }
     cjson_delete(iVar1);
     return;
   }
-  iVar3 = sllist_find_by_name_ci(iVar2, "app_identifier" /*=0x9d759*/);
-  iVar4 = sllist_find_by_name_ci(iVar2, "title" /*=0x9b257*/);
-  iVar5 = sllist_find_by_name_ci(iVar2, "subtitle" /*=0x9d76c*/);
-  iVar6 = sllist_find_by_name_ci(iVar2, "message" /*=0x9d775*/);
-  iVar7 = sllist_find_by_name_ci(iVar2, "date" /*=0xf3fde*/);
-  iVar8 = sllist_find_by_name_ci(iVar2, "display_name" /*=0x9d790*/);
-  iVar9 = sllist_find_by_name_ci(iVar2, "msg_id" /*=0xa83ca*/);
-  iVar2 = sllist_find_by_name_ci(iVar2, "action" /*=0xa83d1*/);
+  iVar3 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_9d759) /*=0x9d759*/);
+  iVar4 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_9b257) /*=0x9b257*/);
+  iVar5 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_9d76c) /*=0x9d76c*/);
+  iVar6 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_9d775) /*=0x9d775*/);
+  iVar7 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_f3fde) /*=0xf3fde*/);
+  iVar8 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_9d790) /*=0x9d790*/);
+  iVar9 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_a83ca) /*=0xa83ca*/);
+  iVar2 = sllist_find_by_name_ci(iVar2, ((unsigned long)&rodata_a83d1) /*=0xa83d1*/);
   memset_bytes(param_2,0,0x1b4);
   if (iVar3 != 0) {
     strncpy_zero_pad((int)(param_2+4), VI(iVar3+0x10), 0x1f);
-    if (strcmp(VI(iVar3+0x10), "com.android.phone_incall" /*=0xa81b7*/) == 0)
+    if (strcmp(VI(iVar3+0x10), ((unsigned long)&rodata_a81b7) /*=0xa81b7*/) == 0)
       *(volatile int*)(param_2+1) = get_timestamp();
   }
   if (iVar4 != 0) strncpy_zero_pad((int)(param_2+0x14), VI(iVar4+0x10), 0x1f);
@@ -59,6 +84,5 @@ void parse_ncs_notification(int param_1, int *param_2){
   if (iVar2 != 0) *(volatile int*)(param_2+0x6c) = VI(iVar2+0x14);
   *(volatile int*)param_2 = get_timestamp();
   cjson_delete(iVar1);
-  log_notification_fields_debug("#device-receiver" /*=0xa83d8*/, param_2);
+  log_notification_fields_debug(((unsigned long)&rodata_a83d8) /*=0xa83d8*/, param_2);
 }
-

@@ -1,17 +1,28 @@
-/* named: enqueue_ancs */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a6c  g_ancs_msgq                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00018bb4 @ 0x00018bb4
+ * public-name: enqueue_ancs
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9a964                             @ 0x0009a964
+ *   rodata_9a981                             @ 0x0009a981
+ *   rodata_9b19d                             @ 0x0009b19d
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_msgq                              @ 0x20006a6c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed enqueue_ancs @ 0x18bb4  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void*, int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void DEBUG_PRINT(unsigned int, ...);
+extern void debug_print(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {
@@ -25,9 +36,9 @@ int enqueue_ancs(unsigned int param_1)
         if (*(volatile int*)(0x20006a6cUL + 0x24) == 10) {
             k_msgq_get(0x20006a6cUL, buf, 0, 0);
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9a964, 0, 0);
+                DEBUG_PRINT(0x9a964);
             } else {
-                debug_print();
+                debug_print(0x9a964);
             }
         }
         memcpy(buf, param_1, 0x1b4);
@@ -36,10 +47,9 @@ int enqueue_ancs(unsigned int param_1)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0x9a981, 0x9b19d);
             } else {
-                debug_print();
+                debug_print(0x9a981, 0x9b19d);
             }
         }
     }
     return iVar1;
 }
-

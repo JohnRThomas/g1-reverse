@@ -1,8 +1,18 @@
-/* named: display_DelayClose */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000498c0 @ 0x000498c0
+ * public-name: display_DelayClose
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_f008c                             @ 0x000f008c
+ *   rodata_f0164                             @ 0x000f0164
+ *   g_log_level                              @ 0x2000230c
+ *   g_display_msgq                           @ 0x200038c4
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed display_DelayClose @ 0x498c0  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *dst, int val, unsigned int len);
@@ -37,4 +47,3 @@ unsigned int display_DelayClose(unsigned int param_1)
     }
     return uVar2;
 }
-

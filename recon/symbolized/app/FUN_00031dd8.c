@@ -1,12 +1,27 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00031dd8 */
-/* globals referenced:
-//   0x20007aa8  device_info.app_switch_pending_flag [g_device_info+0x10ac (new field, not yet in device_info.h)]
-//   0x20019ef3  g_test_mode_flag             
-*/
+/* readable reconstruction; identity: FUN_00031dd8 @ 0x00031dd8
+ * public-name: FUN_00031dd8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
+ * address symbols (name @ address):
+ *   rodata_9ddbf                             @ 0x0009ddbf
+ *   rodata_a672f                             @ 0x000a672f
+ *   rodata_a715d                             @ 0x000a715d
+ *   rodata_a7173                             @ 0x000a7173
+ *   g_dashboard_lock_pending_flag            @ 0x20007aa4
+ *   g_app_switch_pending_flag                @ 0x20007aa8
+ *   g_ble_switch_status_reason               @ 0x20007aac
+ *   g_test_mode_flag                         @ 0x20019ef3
+ */
 /* Reconstructed FUN_00031dd8 @ 0x31dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern uint64_t DEBUG_PRINT(unsigned, unsigned, unsigned, unsigned);
 extern int get_device_info(void);
 extern void build_and_send_device_status_report(unsigned,int);
 extern int read_sys_settting_from_flash(void*);
@@ -17,18 +32,27 @@ unsigned FUN_00031dd8(unsigned param_1, unsigned param_2, unsigned **param_3, un
 {
   int *piVar1; int iVar2, iVar4; unsigned uVar3; unsigned char *puVar5; unsigned char uVar6; char cVar7;
   unsigned local_b0; unsigned char auStack_ac[16]; unsigned char auStack_9c[12]; int local_90;
-  DEBUG_PRINT("join in set_imu_base\n" /*=0xa715d*/);
-  if ((param_3 == 0) || (param_4 == 0)) { DEBUG_PRINT("set_imu_base para is NULL\n" /*=0xa7173*/); return 0xffffffff; }
-  if (*(char*)((uintptr_t)&g_test_mode_flag) /*=0x20019ef3*/ != 1) { DEBUG_PRINT("warning: not test mode,disable setting\n" /*=0xa672f*/); return 0xfffffffe; }
+  uint64_t debug_result = DEBUG_PRINT(((unsigned long)&rodata_a715d) /*=0xa715d*/, param_2, (unsigned)param_3,
+                                      (unsigned)param_4);
+  if ((param_3 == 0) || (param_4 == 0)) {
+    DEBUG_PRINT(((unsigned long)&rodata_a7173) /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
+                (unsigned)param_4);
+    return 0xffffffff;
+  }
+  if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ != 1) {
+    DEBUG_PRINT(((unsigned long)&rodata_a672f) /*=0xa672f*/, (unsigned)(debug_result >> 32),
+                (unsigned)param_3, ((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/);
+    return 0xfffffffe;
+  }
   puVar5 = (unsigned char*)*param_3;
   *(volatile unsigned char*)(puVar5) = 0x2d;
   *(volatile unsigned char*)(puVar5+2) = 3;
   *(volatile unsigned char*)(puVar5+3) = 5;
   *(volatile unsigned char*)(puVar5+1) = 1;
-  piVar1 = (int*)((uintptr_t)&g_ble_switch_status_reason) /*=0x20007aac*/;
+  piVar1 = (int*)((unsigned long)&g_ble_switch_status_reason) /*=0x20007aac*/;
   local_b0 = 0;
   memset_bytes(auStack_ac, 0, 0x10);
-  if ((((*(int*)((uintptr_t)&g_app_switch_pending_flag) /*=0x20007aa8*/ == 0 && *piVar1 == 0) && *(int*)((uintptr_t)&g_dashboard_lock_pending_flag) /*=0x20007aa4*/ == 0) &&
+  if ((((*(int*)((unsigned long)&g_app_switch_pending_flag) /*=0x20007aa8*/ == 0 && *piVar1 == 0) && *(int*)((unsigned long)&g_dashboard_lock_pending_flag) /*=0x20007aa4*/ == 0) &&
        (iVar2 = get_device_info(), *(int*)(iVar2+0x107c) == 0)) &&
       (iVar2 = get_device_info(), *(int*)(iVar2+0x1080) == 0)) {
     iVar2 = get_device_info();
@@ -41,7 +65,7 @@ unsigned FUN_00031dd8(unsigned param_1, unsigned param_2, unsigned **param_3, un
 LAB_6e:
   iVar2 = *piVar1;
   *(volatile unsigned char*)(puVar5+4) = uVar6;
-  vdprintf_to_fd(&local_b0, 0, 0x14, "base: %d" /*=0x9ddbf*/, iVar2);
+  vdprintf_to_fd(&local_b0, 0, 0x14, ((unsigned long)&rodata_9ddbf) /*=0x9ddbf*/, iVar2);
   iVar2 = get_device_info();
   cVar7 = 0;
   *(volatile unsigned*)(puVar5+5) = *(unsigned*)(iVar2+0xf64);
@@ -60,4 +84,3 @@ LAB_c0:
   *(volatile unsigned char*)param_4 = 9;
   return 0;
 }
-

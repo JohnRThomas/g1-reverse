@@ -1,63 +1,26 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0103576c @ 0x103576c  (parity 300 trials PROVEN) */
+/* net-core FUN_0103576c @ 0x103576c */
+#include <stdint.h>
+extern uint8_t *FUN_0103aff2(void *, uint32_t *, uint32_t);
+extern uint32_t FUN_0103ab0e(void *, uint32_t, uint32_t, uint32_t);
+extern uint32_t FUN_010355bc(void *, uint32_t, uint32_t, void *, uint32_t);
+extern void FUN_01039bbe(uint32_t, uint32_t, uint32_t);
+extern void FUN_01039bb0(uint32_t, uint32_t);
 
-extern void FUN_010355bc(void);
-extern void FUN_01039bb0(void);
-extern void FUN_01039bbe(void);
-extern void FUN_0103ab0e(void);
-extern void FUN_0103aff2(void);
-
-__attribute__((naked)) void FUN_0103576c(void)
+uint32_t FUN_0103576c(uint8_t *object, uint32_t arg2, uint32_t arg3,
+                      uint32_t arg4, int32_t requested, uint32_t arg6)
 {
-    __asm__ volatile(
-        "push.w {r4, r5, r6, r7, r8, sb, lr}\n"
-        "sub sp, #0x14\n"
-        "mov r7, r1\n"
-        "mov r8, r2\n"
-        "add r1, sp, #0xc\n"
-        "ldr r2, [sp, #0x34]\n"
-        "mov r6, r0\n"
-        "mov sb, r3\n"
-        "bl FUN_0103aff2\n"
-        "mov r4, r0\n"
-        "cbz r0, 1f\n"
-        "ldr r5, [sp, #0x30]\n"
-        "ldr r3, [sp, #0xc]\n"
-        "ldr.w r0, [r6, #0xac]\n"
-        "cmp r5, r3\n"
-        "it ge\n"
-        "movge r5, r3\n"
-        "ldr r1, [r0]\n"
-        "ldr.w ip, [r0, #8]\n"
-        "subs r1, r4, r1\n"
-        "cmp r1, ip\n"
-        "it hs\n"
-        "movhs.w r1, #-1\n"
-        "mov r3, r5\n"
-        "mov r2, sb\n"
-        "bl FUN_0103ab0e\n"
-        "cmp r5, r0\n"
-        "beq 2f\n"
-        "ldr r1, =0x0103e889\n"
-        "ldr r0, =0x0103d2a7\n"
-        "movw r2, #0x207\n"
-        "bl FUN_01039bbe\n"
-        "movw r1, #0x207\n"
-        "ldr r0, =0x0103e889\n"
-        "bl FUN_01039bb0\n"
-        "2:\n"
-        "mov r3, r4\n"
-        "mov r2, r8\n"
-        "mov r1, r7\n"
-        "mov r0, r6\n"
-        "str r5, [sp]\n"
-        "bl FUN_010355bc\n"
-        "3:\n"
-        "add sp, #0x14\n"
-        "pop.w {r4, r5, r6, r7, r8, sb, pc}\n"
-        "1:\n"
-        "ldr r0, =0xfffff82e\n"
-        "b 3b\n"
-    );
-}
+    uint32_t available;
+    uint8_t *position = FUN_0103aff2(object, &available, arg6);
+    if (position == 0) return 0xfffff82e;
+    if ((int32_t)available < requested) requested = (int32_t)available;
 
+    uint32_t *window = *(uint32_t **)(object + 0xac);
+    uint32_t offset = (uint32_t)(position - (uint8_t *)(uintptr_t)window[0]);
+    if (offset >= window[2]) offset = UINT32_MAX;
+    if (FUN_0103ab0e(window, offset, arg4, (uint32_t)requested) != (uint32_t)requested) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e889) /*=0x103e889*/, 0x207);
+        FUN_01039bb0(((unsigned long)&rodata_103e889) /*=0x103e889*/, 0x207);
+    }
+    return FUN_010355bc(object, arg2, arg3, position, (uint32_t)requested);
+}

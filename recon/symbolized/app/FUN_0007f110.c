@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007f110 */
+/* readable reconstruction; identity: FUN_0007f110 @ 0x0007f110
+ * public-name: FUN_0007f110
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ */
 /* Reconstructed FUN_0007f110 @ 0x7f110  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0004e124(int,int,int,int,int);
@@ -23,4 +28,3 @@ int FUN_0007f110(int param_1,int param_2,int param_3,int param_4)
   }
   return iVar1;
 }
-

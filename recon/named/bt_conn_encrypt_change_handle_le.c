@@ -1,5 +1,20 @@
-/* named: bt_conn_encrypt_change_handle_le */
-/* Reconstructed bt_conn_encrypt_change_handle_le @ 0x54260  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054260 @ 0x00054260
+ * public-name: bt_conn_encrypt_change_handle_le
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_security_err_lookup                   <= FUN_00054250 @ 0x00054250
+ *   bt_conn_encrypt_change_handle_le         <= FUN_00054260 @ 0x00054260
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   smp_alloc_pairing_keys                   <= FUN_0005e47c @ 0x0005e47c
+ *   update_sec_level                         <= FUN_00080e38 @ 0x00080e38
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2e3c                             @ 0x000f2e3c
+ *   rodata_f30dd                             @ 0x000f30dd
+ */
+/* Reconstructed FUN_00054260 @ 0x54260  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_security_err_lookup(int a);
 extern void ble_conn_unref(int a);
@@ -38,4 +53,3 @@ void bt_conn_encrypt_change_handle_le(int param_1){
     ble_conn_unref(iVar2);
     return;
 }
-

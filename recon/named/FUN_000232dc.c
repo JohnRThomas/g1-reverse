@@ -1,7 +1,10 @@
-/* named: FUN_000232dc */
-/* globals referenced:
-//   0x20002fe3  g_product_code_buf           
-*/
+/* readable reconstruction; identity: FUN_000232dc @ 0x000232dc
+ * public-name: FUN_000232dc
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_a8c37                             @ 0x000a8c37
+ *   g_product_code_buf                       @ 0x20002fe3
+ */
 /* Reconstructed FUN_000232dc @ 0x232dc  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int FUN_00077914(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -10,4 +13,3 @@ unsigned int FUN_000232dc(unsigned int param_1,unsigned int param_2,unsigned int
   FUN_00077914(0x20002fe3UL, 0x10, 0xa8c37UL, param_1, param_4);
   return 0;
 }
-

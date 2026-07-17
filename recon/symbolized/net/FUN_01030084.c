@@ -15,10 +15,9 @@ int FUN_01030084(int *param_1, unsigned int param_2)
   iVar3 = *param_1;
   uVar2 = FUN_0103a468();
   if (uVar2 < param_2) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "PPI" /*=0x103de6b*/, 0x3e);
-    FUN_01039bb0("PPI" /*=0x103de6b*/, 0x3e);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x3e);
+    FUN_01039bb0(((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x3e);
   }
   *(unsigned short *)(param_1 + 1) = uVar1 + (short)param_2;
   return iVar3 + (unsigned int)uVar1;
 }
-

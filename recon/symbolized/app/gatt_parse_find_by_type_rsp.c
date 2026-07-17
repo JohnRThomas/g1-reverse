@@ -1,6 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: gatt_parse_find_by_type_rsp */
-/* Reconstructed gatt_parse_find_by_type_rsp @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005bbf4 @ 0x0005bbf4
+ * public-name: gatt_parse_find_by_type_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_parse_find_by_type_rsp              <= FUN_0005bbf4 @ 0x0005bbf4
+ *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4ca8                             @ 0x000f4ca8
+ */
+/* Reconstructed FUN_0005bbf4 @ 0x5bbf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_00082a42(unsigned,unsigned,void*);
 extern void gatt_discover_next(unsigned,unsigned,void*);
@@ -20,8 +30,8 @@ void gatt_parse_find_by_type_rsp(unsigned param_1, int param_2, unsigned char *p
     if(uVar3 == 0x14){ cVar2 = 2; }
     else {
       unsigned st[8];
-      st[0]=3; st[5]="Invalid data len %u" /*=0xf4ca8*/; st[6]=uVar3;
-      FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1840, st);
+      st[0]=3; st[5]=((unsigned long)&rodata_f4ca8) /*=0xf4ca8*/; st[6]=uVar3;
+      FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1840, st);
       goto LAB_bc40;
     }
   }
@@ -31,7 +41,7 @@ void gatt_parse_find_by_type_rsp(unsigned param_1, int param_2, unsigned char *p
     unsigned short *puVar10 = (unsigned short*)(param_3 + 1);
     unsigned char blk[0x14];
     unsigned uVar3b = (unsigned)(param_4 - 1);
-    while((uVar3b = uVar3b & ((uintptr_t)&tbl_ffc8) /*=0xffff*/), *param_3 <= uVar3b){
+    while((uVar3b = uVar3b & 0xffff), *param_3 <= uVar3b){
       memset_bytes(blk, 0, 0x14);
       uVar1 = *puVar10;
       if(uVar1==0 || (uVar9=puVar10[1], uVar9==0) || uVar9 < uVar1) goto LAB_bc40;
@@ -53,4 +63,3 @@ LAB_bc40:
   pcVar6 = *(fp_t*)(param_5+4);
   pcVar6(param_1, 0, param_5);
 }
-

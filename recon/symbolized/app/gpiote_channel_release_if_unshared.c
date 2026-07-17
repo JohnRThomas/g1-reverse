@@ -1,9 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: gpiote_channel_release_if_unshared */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_channel_release_if_unshared @ 0x65504  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065504 @ 0x00065504
+ * public-name: gpiote_channel_release_if_unshared
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_flag32_free                         <= FUN_00064ef8 @ 0x00064ef8
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   gpiote_channel_release_if_unshared       <= FUN_00065504 @ 0x00065504
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0ac7                             @ 0x000f0ac7
+ *   rodata_f6b00                             @ 0x000f6b00
+ *   g_gpiote_cb                              @ 0x20002bc0
+ *   g_nrfx_gpiote_channels_mask              @ 0x20002c34
+ */
+/* Reconstructed FUN_00065504 @ 0x65504  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int nrfx_flag32_free(uint32_t);
@@ -12,11 +24,11 @@ extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 void gpiote_channel_release_if_unshared(void){
   int iVar3=get_pin_idx();
-  int iVar4=((uintptr_t)&g_gpiote_cb) /*=0x20002bc0*/;
-  uint16_t uVar1=*(volatile uint16_t*)(((uintptr_t)&g_gpiote_cb) /*=0x20002bc0*/+(iVar3+8)*2);
+  int iVar4=((unsigned long)g_gpiote_cb) /*=0x20002bc0*/;
+  uint16_t uVar1=*(volatile uint16_t*)(((unsigned long)g_gpiote_cb) /*=0x20002bc0*/+(iVar3+8)*2);
   if((int)((uint)uVar1<<0x17)<0){
     uint uVar5=((uint)uVar1<<0x13)>>0x1c;
-    *(volatile uint16_t*)(((uintptr_t)&g_gpiote_cb) /*=0x20002bc0*/+(iVar3+8)*2)=uVar1 & ((uintptr_t)&rodata_e0ff) /*=0xe0ff*/;
+    *(volatile uint16_t*)(((unsigned long)g_gpiote_cb) /*=0x20002bc0*/+(iVar3+8)*2)=uVar1 & 0xe0ff;
     int i=0;
     volatile uint16_t* puVar6=(volatile uint16_t*)(iVar4+0xe);
     do{
@@ -25,11 +37,10 @@ void gpiote_channel_release_if_unshared(void){
       i=i+1;
     }while(i!=0x30);
     *(volatile uint32_t*)(iVar4+uVar5*8)=0;
-    int iVar4b=nrfx_flag32_free(((uintptr_t)&g_nrfx_gpiote_channels_mask) /*=0x20002c34*/);
+    int iVar4b=nrfx_flag32_free(((unsigned long)&g_nrfx_gpiote_channels_mask) /*=0x20002c34*/);
     if(iVar4b!=0x0bad0000){
-      printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"err == NRFX_SUCCESS" /*=0xf0ac7*/,"WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c" /*=0xf6b00*/,0x15f);
-      assert_post_action("WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c" /*=0xf6b00*/,0x15f);
+      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0ac7) /*=0xf0ac7*/,((unsigned long)&rodata_f6b00) /*=0xf6b00*/,0x15f);
+      assert_post_action(((unsigned long)&rodata_f6b00) /*=0xf6b00*/,0x15f);
     }
   }
 }
-

@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007158c */
+/* readable reconstruction; identity: FUN_0007158c @ 0x0007158c
+ * public-name: FUN_0007158c
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0007158c @ 0x7158c  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint;
@@ -17,7 +20,7 @@ uint FUN_0007158c(char *param_1, uint param_2)
     } while (*(volatile char*)(param_1 + (uVar1 - 1)) == 0);
     if (uVar1 > 2) {
         if (uVar1 - 2 < 7) {
-            sVar2 = *(volatile signed char*)(((uintptr_t)&rodata_f7c37) /*=0xf7c37*/ + (uVar1 - 2));
+            sVar2 = *(volatile signed char*)(0x000f7c37UL + (uVar1 - 2));
         } else {
             sVar2 = 0;
         }
@@ -25,4 +28,3 @@ uint FUN_0007158c(char *param_1, uint param_2)
     }
     return uVar1;
 }
-

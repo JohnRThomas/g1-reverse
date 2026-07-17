@@ -1,11 +1,25 @@
-/* named: FUN_00066ec0 */
+/* readable reconstruction; identity: FUN_00066ec0 @ 0x00066ec0
+ * public-name: FUN_00066ec0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f4240                             @ 0x000f4240
+ *   rodata_f6df0                             @ 0x000f6df0
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   g_sram_base_word                         @ 0x20000000
+ *   g_nrfx_spim_cb                           @ 0x2000b384
+ */
 /* Reconstructed FUN_00066ec0 @ 0x66ec0  (parity: 60/60 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 
 extern void arch_irq_enable(int);
-extern void pin_init(uint32_t,int,int,uint32_t,int);
-extern void assert_post_action(uint32_t,uint32_t);
+extern void FUN_00066e70(uint32_t,int,int,uint32_t,int);
+extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void FUN_00066ec0(int *param_1, uint32_t *param_2)
@@ -45,12 +59,9 @@ void FUN_00066ec0(int *param_1, uint32_t *param_2)
   }
   goto SWITCH_DONE;
 FAIL:
-  for (;;) {
-    printk(0x000f7a30UL,0x00099cbdUL,0x000f6df0UL,0x15c);
-    assert_post_action(0x000f6df0UL,0x15c);
-    if (uVar9 == 0x000f4240UL) break;
-  }
-  uVar13 = 0x10000000UL;
+  printk(0x00099cbdUL,0x000f7a30UL,0x000f6df0UL,0x15c);
+  assert_post_action(0x000f6df0UL,0x15c);
+  __builtin_unreachable();
 SWITCH_DONE:;
 
   int iVar10 = uVar14 * 0x24 + iVar7;
@@ -61,11 +72,11 @@ SWITCH_DONE:;
 
   if (*(volatile int8_t*)(p2 + 0x23) == 0) {
     uint32_t uVar15 = (*(volatile uint32_t*)(p2 + 0x14) == 0x01e84800UL) ? 3 : 0;
-    pin_init(*(volatile uint32_t*)(p2 + 0), 1, 0, uVar15, (1 < *(volatile uint8_t*)(p2 + 0x18)));
-    pin_init(*(volatile uint32_t*)(p2 + 4), 1, 0, uVar15, 0);
-    pin_init(*(volatile uint32_t*)(p2 + 8), 0, *(volatile uint8_t*)(p2 + 0x1a), uVar15, 0);
-    pin_init(*(volatile uint32_t*)(p2 + 0xc), 1, 0, uVar15, (*(volatile uint8_t*)(p2 + 0x10)) ^ 1);
-    pin_init(*(volatile uint32_t*)(p2 + 0x1c), 1, 0, uVar15, 1);
+    FUN_00066e70(*(volatile uint32_t*)(p2 + 0), 1, 0, uVar15, (1 < *(volatile uint8_t*)(p2 + 0x18)));
+    FUN_00066e70(*(volatile uint32_t*)(p2 + 4), 1, 0, uVar15, 0);
+    FUN_00066e70(*(volatile uint32_t*)(p2 + 8), 0, *(volatile uint8_t*)(p2 + 0x1a), uVar15, 0);
+    FUN_00066e70(*(volatile uint32_t*)(p2 + 0xc), 1, 0, uVar15, (*(volatile uint8_t*)(p2 + 0x10)) ^ 1);
+    FUN_00066e70(*(volatile uint32_t*)(p2 + 0x1c), 1, 0, uVar15, 1);
   }
 
   uVar9 = *(volatile uint8_t*)(p1 + 4);
@@ -129,4 +140,3 @@ SWITCH_DONE:;
   if (*(volatile int32_t*)(iVar7 + (uint32_t)*(volatile uint8_t*)(p1 + 4) * 0x24) == 0) return;
   arch_irq_enable((*(volatile int32_t*)p1 << 0xc) >> 0x18);
 }
-

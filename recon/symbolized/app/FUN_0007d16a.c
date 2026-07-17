@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007d16a */
+/* readable reconstruction; identity: FUN_0007d16a @ 0x0007d16a
+ * public-name: FUN_0007d16a
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0007d16a @ 0x7d16a  (parity: 300/300 trials, PROVEN) */
 
 int FUN_0007d16a(int *param_1, unsigned char *param_2)
@@ -17,4 +20,3 @@ int FUN_0007d16a(int *param_1, unsigned char *param_2)
     *param_2 = bVar1 + 1;
     return 0;
 }
-

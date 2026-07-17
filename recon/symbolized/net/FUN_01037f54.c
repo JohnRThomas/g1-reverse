@@ -4,7 +4,7 @@
 void FUN_01037f54(int *param_1)
 {
   if (param_1 != 0) {
-    int **p = (int**)((uintptr_t)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/;
+    int **p = (int**)((unsigned long)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/;
     if ((int*)param_1 != *(int**)((char*)p + 4)) {
       int iVar3 = *param_1;
       if (iVar3 != 0) {
@@ -25,4 +25,3 @@ void FUN_01037f54(int *param_1)
   *param_1 = 0;
   param_1[1] = 0;
 }
-

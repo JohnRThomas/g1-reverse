@@ -1,5 +1,11 @@
-/* named: lc3_ltpf_select_resampler_params */
-/* Reconstructed lc3_ltpf_select_resampler_params @ 0x68f94  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00068f94 @ 0x00068f94
+ * public-name: lc3_ltpf_select_resampler_params
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_select_resampler_params         <= FUN_00068f94 @ 0x00068f94
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
+/* Reconstructed FUN_00068f94 @ 0x68f94  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char undefined1; typedef unsigned int uint;
 extern int memset_bytes(int,...);
@@ -104,4 +110,3 @@ LAB_9026:
                         + iVar2) * 4);
   return param_4;
 }
-

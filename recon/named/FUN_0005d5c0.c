@@ -1,5 +1,25 @@
-/* named: FUN_0005d5c0 */
-/* Reconstructed FUN_0005d5c0 @ 0x5d5c0  (parity: 80/80 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005d5c0 @ 0x0005d5c0
+ * public-name: FUN_0005d5c0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_rand                                  <= FUN_00055cb4 @ 0x00055cb4
+ *   smp_auth_get_pairing_method              <= FUN_0005caec @ 0x0005caec
+ *   smp_init                                 <= FUN_0005cc30 @ 0x0005cc30
+ *   bt_keys_get_addr                         <= FUN_0005e6a8 @ 0x0005e6a8
+ *   bt_keys_find_addr                        <= FUN_0005e938 @ 0x0005e938
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   send_pairing_rsp                         <= FUN_000830ee @ 0x000830ee
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4240                             @ 0x000f4240
+ *   rodata_f4e7a                             @ 0x000f4e7a
+ *   rodata_f4f5c                             @ 0x000f4f5c
+ *   rodata_f5248                             @ 0x000f5248
+ *   g_smp_pair_method_unbonded               @ 0x2001d533
+ *   g_smp_pair_method_bonded                 @ 0x2001d534
+ */
+/* Full reconstruction of FUN_0005d5c0 @ 0x5d5c0, exact extent 930 bytes. */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char byte;
@@ -13,7 +33,9 @@ extern uint32_t smp_init(int);
 extern int FUN_0005d568(int,uint);
 extern int bt_keys_get_addr(uint8_t,int);
 extern int bt_keys_find_addr(uint8_t,int);
-extern int atomic_test_bit(int,int);
+/* The concrete helper leaves a decision byte in r1 on the feature-test path.
+ * Model r1:r0 so the otherwise caller-clobbered value is represented in C. */
+extern uint64_t atomic_test_bit(int,int);
 extern int FUN_00083002(int,int);
 extern int FUN_00083074(uint32_t,uint32_t,void*);
 extern int atomic_set_bit(int,int);
@@ -34,7 +56,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
   }
 
   int iVar11 = param_1 + 4;
-  int iVar4 = atomic_test_bit(iVar11, 0xf);
+  int iVar4 = (int)(uint32_t)atomic_test_bit(iVar11, 0xf);
   if (iVar4 == 0) {
     uint32_t uVar5 = smp_init(param_1);
     if (uVar5 != 0) return uVar5 & 0xff;
@@ -52,13 +74,13 @@ uint FUN_0005d5c0(int param_1, int param_2)
   *(volatile uint8_t*)(param_1 + 0x15) = pbVar13[4] & 3;
   *(volatile uint8_t*)(param_1 + 0x16) = pbVar13[5] & 1;
 
-  if ((int8_t)(*(volatile uint8_t*)(param_1 + 0x13)) < 0 && (int8_t)pbVar13[2] < 0) {
+  if ((*(volatile uint8_t*)(param_1 + 0x13) & 8) != 0 && (pbVar13[2] & 8) != 0) {
     atomic_set_bit(iVar11, 5);
     *(volatile uint8_t*)(param_1 + 0x15) = *(volatile uint8_t*)(param_1 + 0x15) & 2;
     *(volatile uint8_t*)(param_1 + 0x16) = 0;
   }
 
-  iVar4 = atomic_test_bit(iVar11, 5);
+  iVar4 = (int)(uint32_t)atomic_test_bit(iVar11, 5);
   uint8_t puVar9val;
   if (iVar4 != 0) {
     puVar9val = *(volatile uint8_t*)0x2001d534UL;
@@ -67,13 +89,9 @@ uint FUN_0005d5c0(int param_1, int param_2)
   }
   *(volatile uint8_t*)(param_1 + 0x12) = puVar9val;
 
-  if ((int8_t)(uint8_t)(*(volatile uint8_t*)(param_1 + 0x13) << 6) < 0 &&
-      (int8_t)(uint8_t)(pbVar13[2] << 6) < 0) {
+  if ((*(volatile uint8_t*)(param_1 + 0x13) & 0x20) != 0 &&
+      (pbVar13[2] & 0x20) != 0) {
     atomic_set_bit(iVar11, 0x14);
-  }
-
-  if ((int8_t)(*(volatile uint8_t*)(param_1 + 0x13)) < 0 == 0 /*placeholder*/) {
-    /* handled below properly */
   }
 
   if ( ((int32_t)((uint32_t)*(volatile uint8_t*)(param_1 + 0x13) << 0x1f)) < 0 &&
@@ -88,7 +106,8 @@ uint FUN_0005d5c0(int param_1, int param_2)
   *(volatile uint8_t*)(param_1 + 0xe9) = *(volatile uint8_t*)(param_1 + 0x15);
   int uVar6 = atomic_set_bit(iVar11, 3);
   uint uVar5b = *pbVar13;
-  iVar4 = atomic_test_bit(uVar6, 5);
+  uint64_t feature_result = atomic_test_bit(uVar6, 5);
+  iVar4 = (int)(uint32_t)feature_result;
   uint8_t bVar8;
   if (iVar4 == 0) {
     if (uVar5b < 5) {
@@ -121,7 +140,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
       }
     }
   } else {
-    bVar8 = 6; /* extraout_r1 unknown, approximate */
+    bVar8 = (uint8_t)(feature_result >> 32);
   }
   *(volatile uint8_t*)(param_1 + 8) = bVar8;
 
@@ -136,7 +155,7 @@ uint FUN_0005d5c0(int param_1, int param_2)
       uint8_t b2 = *(volatile uint8_t*)(param_1+0xd);
       uint8_t bb = (b1 >= b2) ? b2 : b1;
       if (bb != 0x10) return 6;
-      iVar4 = atomic_test_bit(iVar11, 5);
+      iVar4 = (int)(uint32_t)atomic_test_bit(iVar11, 5);
       if (iVar4 == 0) return 3;
       goto LAB_d80e;
     }
@@ -146,10 +165,10 @@ LAB_d80e:
     if (*(volatile int8_t*)(param_1 + 8) == 0) return 3;
   }
 
-  iVar4 = atomic_test_bit(iVar11, 5);
+  iVar4 = (int)(uint32_t)atomic_test_bit(iVar11, 5);
   if (iVar4 != 0) {
     if ( (*(volatile int8_t*)(param_1+8) == 0) &&
-         (atomic_test_bit(iVar11,0xf) == 0) &&
+         ((uint32_t)atomic_test_bit(iVar11,0xf) == 0) &&
          (iVar3 != 0) && (*(volatile int*)(iVar3+0x14) != 0) ) {
       atomic_set_bit(iVar11, 10);
       int (*pcVar10)(int) = *(volatile void* volatile*)(iVar3+0x14);
@@ -157,7 +176,7 @@ LAB_d80e:
       pcVar10(iv2);
       return 0;
     }
-    int p1 = atomic_set_bit(param_1, 3);
+    int p1 = atomic_set_bit(param_1, 0xc);
     atomic_set_bit(p1, 0xe);
     uint r = send_pairing_rsp();
     return r;
@@ -200,10 +219,14 @@ LAB_d80e:
     }
     case 6: {
       if (piVar7 == 0 || piVar7[3] == 0) return 2;
-      uint32_t local_38 = 0;
+      union {
+        uint32_t word;
+        uint16_t half[2];
+      } local_38;
+      local_38.half[0] = 0;
       atomic_set_bit(iVar11, 10);
       void (*fp)(int,void*) = (void(*)(int,void*))(intptr_t)piVar7[3];
-      fp(*(volatile int*)(param_1+0xf0), &local_38);
+      fp(*(volatile int*)(param_1+0xf0), &local_38.word);
       break;
     }
     default: {
@@ -215,7 +238,7 @@ LAB_d80e:
 
   if (*(volatile int8_t*)(param_1 + 8) == 0) {
 caseD0:
-    iVar12b = atomic_test_bit(iVar11, 0xf);
+    iVar12b = (int)(uint32_t)atomic_test_bit(iVar11, 0xf);
     if (iVar12b == 0 && iVar3 != 0 && *(volatile int*)(iVar3+0x14) != 0) {
       atomic_set_bit(iVar11, 10);
       int (*pcVar10)(int) = *(volatile void* volatile*)(iVar3+0x14);
@@ -231,4 +254,3 @@ caseD0:
     return r;
   }
 }
-

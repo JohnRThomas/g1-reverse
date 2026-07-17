@@ -1,4 +1,9 @@
-/* named: FUN_00079668 */
+/* readable reconstruction; identity: FUN_00079668 @ 0x00079668
+ * public-name: FUN_00079668
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cc_mbedtls_ctr_drbg_random_with_add      <= FUN_00079cf0 @ 0x00079cf0
+ */
 /* Reconstructed FUN_00079668 @ 0x79668  (parity: 300/300 trials, PROVEN) */
 
 extern int cc_mbedtls_ctr_drbg_random_with_add(int*, int, int, int, int);
@@ -16,4 +21,3 @@ int FUN_00079668(int *param_1, int param_2, int param_3, int *param_4)
   }
   return iVar1;
 }
-

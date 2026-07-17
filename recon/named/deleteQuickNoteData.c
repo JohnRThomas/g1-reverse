@@ -1,14 +1,22 @@
-/* named: deleteQuickNoteData */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20003960  g_quicknote_flash_msgq       
-//   0x20007554  g_log_use_alt_sink           
-//   0x200079e4  g_app_language_msgq          
-*/
+/* readable reconstruction; identity: FUN_000244a8 @ 0x000244a8
+ * public-name: deleteQuickNoteData
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ * address symbols (name @ address):
+ *   rodata_9edc2                             @ 0x0009edc2
+ *   rodata_9ee23                             @ 0x0009ee23
+ *   rodata_9f080                             @ 0x0009f080
+ *   g_log_level                              @ 0x2000230c
+ *   g_quicknote_flash_msgq                   @ 0x20003960
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_app_language_msgq                      @ 0x200079e4
+ */
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
 extern void DEBUG_PRINT(unsigned int a0, ...);
-extern void debug_print(void);
+extern void debug_print(unsigned int a0, ...);
 extern void FUN_00072880(unsigned int a0);
 
 unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -16,9 +24,10 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     unsigned int buf[3];
     int iVar1;
     unsigned int uVar2;
-    (void)param_2;
     buf[0] = 0x00010002UL;
-    buf[1] = (unsigned int)(unsigned char)param_1;
+    /* The compact record owns a byte selector and a zero byte; its upper
+       halfword is the caller's second field, exactly as queued by firmware. */
+    buf[1] = (param_2 & 0xffff0000UL) | (unsigned char)param_1;
     buf[2] = param_3;
     iVar1 = k_msgq_put(0x20003960UL, buf, 0UL, 0UL);
     if (iVar1 == 0) {
@@ -26,7 +35,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
             if (*(volatile int*)0x20007554UL == 0)
                 DEBUG_PRINT(0x9ee23UL, 0x9f080UL, param_1);
             else
-                debug_print();
+                debug_print(0x9ee23UL, 0x9f080UL, param_1);
         }
         FUN_00072880(0x200079e4UL);
         uVar2 = 0;
@@ -35,10 +44,9 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
             if (*(volatile int*)0x20007554UL == 0)
                 DEBUG_PRINT(0x9edc2UL, 0x9f080UL);
             else
-                debug_print();
+                debug_print(0x9edc2UL, 0x9f080UL);
         }
         uVar2 = 0xffffffffUL;
     }
     return uVar2;
 }
-

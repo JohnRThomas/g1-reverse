@@ -13,4 +13,3 @@ void FUN_01025b5c(void)
   v += 5; *(volatile int*)((char*)base + 0x1ec) = v;
   v -= 1; *(volatile int*)((char*)base + 0x90) = v;
 }
-

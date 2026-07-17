@@ -1,4 +1,15 @@
-/* named: FUN_00073ec0 */
+/* readable reconstruction; identity: FUN_00073ec0 @ 0x00073ec0
+ * public-name: FUN_00073ec0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   unready_thread                           <= FUN_00073e88 @ 0x00073e88
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ */
 /* Reconstructed FUN_00073ec0 @ 0x73ec0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void unready_thread(void);
@@ -37,4 +48,3 @@ void FUN_00073ec0(volatile int *param_1, volatile int *param_2, uint32_t param_3
     param_2[1]=(int)param_1;
   }
 }
-

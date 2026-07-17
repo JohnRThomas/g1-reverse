@@ -1,10 +1,21 @@
-/* named: check_disp_onboarding */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20018d93  onboarding_pending_flag      
-//   0x2001cdce  onboarding_secondary_reset_flag 
-*/
+/* readable reconstruction; identity: FUN_00026a08 @ 0x00026a08
+ * public-name: check_disp_onboarding
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ *   onboarding_sync_data                     <= FUN_00042c8c @ 0x00042c8c
+ *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
+ *   onboarding_clear_active_flag             <= FUN_0007d39e @ 0x0007d39e
+ * address symbols (name @ address):
+ *   rodata_9fcc1                             @ 0x0009fcc1
+ *   rodata_a1aea                             @ 0x000a1aea
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   onboarding_pending_flag                  @ 0x20018d93
+ *   onboarding_secondary_reset_flag          @ 0x2001cdce
+ */
 /* Reconstructed check_disp_onboarding @ 0x26a08  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -59,4 +70,3 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   iVar3=get_device_info(); iVar5=VI(iVar3+0x1014);
   iVar3=get_device_info(); VB(iVar3+0xcd)=VB(iVar5+3);
 }
-

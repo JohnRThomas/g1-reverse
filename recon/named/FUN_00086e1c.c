@@ -1,4 +1,7 @@
-/* named: FUN_00086e1c */
+/* readable reconstruction; identity: FUN_00086e1c @ 0x00086e1c
+ * public-name: FUN_00086e1c
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00086e1c @ 0x86e1c  (parity: 246/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -38,4 +41,3 @@ uint32_t FUN_00086e1c(int param_1, uint* param_2, uint* param_3, int param_4, co
     }
     return 0;
 }
-

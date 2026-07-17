@@ -5,4 +5,3 @@ unsigned int FUN_01028296(unsigned int param_1)
 {
   return (param_1 & 0xfd) != 0;
 }
-

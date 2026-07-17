@@ -1,9 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00066b24 */
-/* globals referenced:
-//   0x2000b348  g_qspi_cb                    
-//   0x5002b000  NRF_QSPI_BASE                
-*/
+/* readable reconstruction; identity: FUN_00066b24 @ 0x00066b24
+ * public-name: FUN_00066b24
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_disable                         <= FUN_000500c8 @ 0x000500c8
+ *   qspi_deactivate                          <= FUN_00066478 @ 0x00066478
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6d5e                             @ 0x000f6d5e
+ *   rodata_f6d9a                             @ 0x000f6d9a
+ *   g_qspi_cb                                @ 0x2000b348
+ *   NRF_QSPI_BASE                            @ 0x5002b000
+ */
 /* Reconstructed FUN_00066b24 @ 0x66b24  (parity: 300/300 trials, PROVEN) */
 
 extern void arch_irq_disable(int a);
@@ -12,10 +22,10 @@ extern void FUN_000851fa(unsigned a);
 extern void printk(unsigned a,unsigned b,unsigned c,unsigned d,unsigned e);
 extern void assert_post_action(unsigned a,unsigned b);
 void FUN_00066b24(void){
-    volatile unsigned char *g = (volatile unsigned char*)((uintptr_t)&g_qspi_cb) /*=0x2000b348*/;
+    volatile unsigned char *g = (volatile unsigned char*)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;
     if (g[0x30] == 0){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"m_cb.state != NRFX_QSPI_STATE_UNINITIALIZED" /*=0xf6d9a*/,"WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c" /*=0xf6d5e*/,0x2b1,0);
-        assert_post_action("WEST_TOPDIR/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c" /*=0xf6d5e*/,0x2b1);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6d9a) /*=0xf6d9a*/,((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x2b1,0);
+        assert_post_action(((unsigned long)&rodata_f6d5e) /*=0xf6d5e*/,0x2b1);
     }
     arch_irq_disable(0x2b);
     qspi_deactivate();
@@ -38,4 +48,3 @@ void FUN_00066b24(void){
     }
     g[0x30] = 0;
 }
-

@@ -1,4 +1,14 @@
-/* named: FUN_000681cc */
+/* readable reconstruction; identity: FUN_000681cc @ 0x000681cc
+ * public-name: FUN_000681cc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f7a9f                             @ 0x000f7a9f
+ *   rodata_f7ad6                             @ 0x000f7ad6
+ */
 /* Reconstructed FUN_000681cc @ 0x681cc  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(int,int);
@@ -15,7 +25,6 @@ void FUN_000681cc(int param_1)
         }
         return;
     }
-    printk(0x000f7ad6, 0x00099cbd, 0x000f7a9f, 0x51);
+    printk(0x00099cbd, 0x000f7ad6, 0x000f7a9f, 0x51);
     assert_post_action(0x000f7a9f, 0x51);
 }
-

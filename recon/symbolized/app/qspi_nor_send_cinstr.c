@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: qspi_nor_send_cinstr */
-/* Reconstructed qspi_nor_send_cinstr @ 0x60ab0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00060ab0 @ 0x00060ab0
+ * public-name: qspi_nor_send_cinstr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_send_cinstr                     <= FUN_00060ab0 @ 0x00060ab0
+ *   nrfx_qspi_erase                          <= FUN_000669f4 @ 0x000669f4
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ * address symbols (name @ address):
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5c20                             @ 0x000f5c20
+ */
+/* Reconstructed FUN_00060ab0 @ 0x60ab0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
@@ -30,8 +42,8 @@ LAB: ;
     u8 local_20 = *param_2;
     if(9 < local_24){
         u32 buf[4];
-        buf[0]=4; buf[1]="cinstr %02x transfer too long: %zu" /*=0xf5c20*/; buf[2]=*param_2; buf[3]=local_24;
-        FUN_000838d6(((uintptr_t)&tbl_880d8) /*=0x88270*/, 0x2080, buf);
+        buf[0]=4; buf[1]=((unsigned long)&rodata_f5c20) /*=0xf5c20*/; buf[2]=*param_2; buf[3]=local_24;
+        FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x2080, buf);
         return 0xffffffea;
     }
     struct { u8 b0; u8 b1; uint16_t h2; u8 b4; u8 b5; } frame;
@@ -46,4 +58,3 @@ LAB: ;
     uVar6 = qspi_get_zephyr_ret_code(uVar6);
     return uVar6;
 }
-

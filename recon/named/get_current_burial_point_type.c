@@ -1,5 +1,12 @@
-/* named: get_current_burial_point_type */
-/* Reconstructed get_current_burial_point_type @ 0x7dac0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007dac0 @ 0x0007dac0
+ * public-name: get_current_burial_point_type
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   update_burial_point_day_index            <= FUN_0004a5b0 @ 0x0004a5b0
+ *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
+ */
+/* Reconstructed FUN_0007dac0 @ 0x7dac0  (parity: 300/300 trials, PROVEN) */
 
 extern int update_burial_point_day_index(void);
 extern int get_device_info(void);
@@ -16,4 +23,3 @@ unsigned char get_current_burial_point_type(void)
   }
   return uVar1;
 }
-

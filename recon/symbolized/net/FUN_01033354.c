@@ -1,45 +1,32 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
-/* net-core FUN_01033354 @ 0x1033354  (parity 300 trials PROVEN) */
+/* net-core FUN_01033354 @ 0x1033354 */
+#include <stdint.h>
 
 extern void FUN_01033ee4(void);
 extern void FUN_01032908(void);
-extern void FUN_01035068(int);
+extern void FUN_01035068(uint32_t);
 extern void FUN_01033f38(void);
-extern unsigned long long FUN_010327a0(int,int);
-extern void FUN_0103b62e(int,int,int);
-extern void FUN_0103a83e(void);
-__attribute__((naked)) void FUN_01033354(void)
+extern uint64_t FUN_010327a0(uint32_t, uint32_t);
+extern uint64_t FUN_0103b62e(uint32_t, uint32_t, uint32_t);
+extern void FUN_0103a83e(uint32_t, uint32_t, uint32_t,
+                         volatile uint32_t *);
+
+void FUN_01033354(void)
 {
-    __asm__ volatile(
-        "push {r4,lr}\n"
-        "movs r4,#0\n"
-        "bl FUN_01033ee4\n"
-        "bl FUN_01032908\n"
-        "ldr r0, =0x21000698\n"
-        "bl FUN_01035068\n"
-        "bl FUN_01033f38\n"
-        "ldr r2, =0x41008000\n"
-        "mov r1,r4\n"
-        "ldr.w r3,[r2,#0x650]\n"
-        "ldr r0, =0x21004b7c\n"
-        "and r3,r3,#0x300\n"
-        "str.w r3,[r2,#0x650]\n"
-        "ldr r3, =0x21006458\n"
-        "strb r4,[r3]\n"
-        "ldr r3, =0x21006459\n"
-        "strb r4,[r3]\n"
-        "bl FUN_010327a0\n"
-        "movs r2,#0x20\n"
-        "bl FUN_0103b62e\n"
-        "ldr r3, =0x21006256\n"
-        "str r4,[r3]\n"
-        "str r4,[r3,#4]\n"
-        "pop.w {r4,lr}\n"
-        "b.w FUN_0103a83e\n"
-    );
+    FUN_01033ee4();
+    FUN_01032908();
+    FUN_01035068(((unsigned long)&g_net_log_msg_ctx) /*=0x21000698*/);
+    FUN_01033f38();
+    volatile uint32_t *radio = (volatile uint32_t *)REG_41008650 /*=0x41008650*/;
+    *radio &= 0x300u;
+    *(volatile uint8_t *)((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/ = 0;
+    *(volatile uint8_t *)((unsigned long)&g_esb_enabled_flag) /*=0x21006459*/ = 0;
+    uint64_t value = FUN_010327a0(0x21004b7cu, 0);
+    uint64_t completion = FUN_0103b62e((uint32_t)value,
+                                       (uint32_t)(value >> 32), 0x20u);
+    volatile uint32_t *state = (volatile uint32_t *)((unsigned long)&g_esb_pipe_pid_cnt) /*=0x21006256*/;
+    state[0] = 0;
+    state[1] = 0;
+    FUN_0103a83e((uint32_t)completion, (uint32_t)(completion >> 32),
+                 0x20u, state);
 }
-
-
-

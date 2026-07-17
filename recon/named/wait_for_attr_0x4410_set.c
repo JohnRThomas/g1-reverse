@@ -1,5 +1,12 @@
-/* named: wait_for_attr_0x4410_set */
-/* Reconstructed wait_for_attr_0x4410_set @ 0x7cf70  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007cf70 @ 0x0007cf70
+ * public-name: wait_for_attr_0x4410_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_retry_delay                   <= FUN_0003016c @ 0x0003016c
+ *   attr_store_get                           <= FUN_000302f8 @ 0x000302f8
+ *   wait_for_attr_0x4410_set                 <= FUN_0007cf70 @ 0x0007cf70
+ */
+/* Reconstructed FUN_0007cf70 @ 0x7cf70  (parity: 300/300 trials, PROVEN) */
 
 extern int attr_store_get(int a, int *b);
 extern void attr_store_retry_delay(int a);
@@ -18,4 +25,3 @@ int wait_for_attr_0x4410_set(void)
   }
   return 0;
 }
-

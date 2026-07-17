@@ -1,10 +1,10 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01036774 @ 0x1036774  (parity 300 trials PROVEN) */
 
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){return 1;}
+static inline int getBasePriority(void){return 0;}
+static inline void setBasePriority(int p){(void)p;}
+static inline void InstructionSynchronizationBarrier(int x){(void)x; __atomic_signal_fence(__ATOMIC_SEQ_CST);}
 
 extern int FUN_0103610c(void *);
 extern int FUN_01036128(void *);
@@ -31,9 +31,9 @@ unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned 
 
     int iVar2 = FUN_0103610c(puVar7);
     if (iVar2 == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         uVar8 = 0x72;
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, uVar8);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, uVar8);
         __builtin_unreachable();
     }
 
@@ -46,7 +46,7 @@ unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned 
             if (r != 0) {
                 return 0;
             }
-            volatile unsigned int * const p1 = (volatile unsigned int *)((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/;
+            volatile unsigned int * const p1 = (volatile unsigned int *)0x21004b28;
             unsigned int inner = p1[2];
             unsigned int val = *(volatile unsigned int *)(inner + 0x14);
             return val;
@@ -69,9 +69,8 @@ unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned 
         InstructionSynchronizationBarrier(0xf);
         return uVar3;
     }
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
     uVar8 = 0xf0;
-    FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, uVar8);
+    FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, uVar8);
     __builtin_unreachable();
 }
-

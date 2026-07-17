@@ -1,4 +1,9 @@
-/* named: FUN_00084cb0 */
+/* readable reconstruction; identity: FUN_00084cb0 @ 0x00084cb0
+ * public-name: FUN_00084cb0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ */
 /* Reconstructed FUN_00084cb0 @ 0x84cb0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int dev_write_reg3(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
@@ -10,4 +15,3 @@ unsigned int FUN_00084cb0(int param_1)
   }
   return 0xffffffea;
 }
-

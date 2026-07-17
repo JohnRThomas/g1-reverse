@@ -7,10 +7,9 @@ void FUN_01037ea8(unsigned int p1, unsigned int p2, unsigned int p3, unsigned in
 {
   FUN_010375b8(p1, p2, p3, p4, p5, p6);
   if (p7 != 0) {
-    volatile unsigned char *base = (volatile unsigned char *)((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/;
+    volatile unsigned char *base = (volatile unsigned char *)0x21004b28;
     unsigned int step1 = *(unsigned int *)(base + 8);
     *p7 = *(unsigned int *)((unsigned char *)step1 + 0x14);
   }
   return;
 }
-

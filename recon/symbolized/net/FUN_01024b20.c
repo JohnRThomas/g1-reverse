@@ -12,4 +12,3 @@ unsigned int FUN_01024b20(unsigned char param_1)
     }
     return uVar1;
 }
-

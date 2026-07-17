@@ -1,8 +1,20 @@
-/* named: gpiote_channel_release_if_unshared */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_channel_release_if_unshared @ 0x65504  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065504 @ 0x00065504
+ * public-name: gpiote_channel_release_if_unshared
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_flag32_free                         <= FUN_00064ef8 @ 0x00064ef8
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   gpiote_channel_release_if_unshared       <= FUN_00065504 @ 0x00065504
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0ac7                             @ 0x000f0ac7
+ *   rodata_f6b00                             @ 0x000f6b00
+ *   g_gpiote_cb                              @ 0x20002bc0
+ *   g_nrfx_gpiote_channels_mask              @ 0x20002c34
+ */
+/* Reconstructed FUN_00065504 @ 0x65504  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int nrfx_flag32_free(uint32_t);
@@ -31,4 +43,3 @@ void gpiote_channel_release_if_unshared(void){
     }
   }
 }
-

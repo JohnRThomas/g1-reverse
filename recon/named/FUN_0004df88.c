@@ -1,4 +1,16 @@
-/* named: FUN_0004df88 */
+/* readable reconstruction; identity: FUN_0004df88 @ 0x0004df88
+ * public-name: FUN_0004df88
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_87bc0                             @ 0x00087bc0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0f71                             @ 0x000f0f71
+ *   rodata_f0faf                             @ 0x000f0faf
+ */
 /* Reconstructed FUN_0004df88 @ 0x4df88  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
@@ -14,4 +26,3 @@ void FUN_0004df88(void)
   }
   return;
 }
-

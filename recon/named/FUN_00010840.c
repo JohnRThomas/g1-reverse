@@ -1,4 +1,19 @@
-/* named: FUN_00010840 */
+/* readable reconstruction; identity: FUN_00010840 @ 0x00010840
+ * public-name: FUN_00010840
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __floatsidf                              <= FUN_0000d824 @ 0x0000d824
+ *   __extendsfdf2                            <= FUN_0000d848 @ 0x0000d848
+ *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
+ *   __divdf3                                 <= FUN_0000db4c @ 0x0000db4c
+ *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
+ *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
+ *   __truncdfsf2                             <= FUN_0000dee8 @ 0x0000dee8
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ * address symbols (name @ address):
+ *   g_battery_level_bucket                   @ 0x20018da0
+ *   g_opt3007_chip_ready                     @ 0x20018da1
+ */
 /* Reconstructed FUN_00010840 @ 0x10840  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char byte;
 typedef unsigned int uint;
@@ -111,4 +126,3 @@ byte FUN_00010840(void)
   }
   return bVar5;
 }
-

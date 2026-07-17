@@ -1,11 +1,10 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01036144 @ 0x1036144  (parity 300 trials PROVEN) */
 
-static volatile unsigned char * const DAT_01036150 = (volatile unsigned char *)((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/;
+static volatile unsigned char * const DAT_01036150 = (volatile unsigned char *)0x21004b28;
 void FUN_01036144(unsigned int *param_1)
 {
   unsigned int a = *(volatile unsigned int *)(DAT_01036150 + 8);
   unsigned int b = DAT_01036150[0x10];
   *param_1 = a | b;
 }
-

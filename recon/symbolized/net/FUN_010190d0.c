@@ -7,7 +7,7 @@ extern void FUN_0101fca8(void);
 
 void FUN_010190d0(void)
 {
-    unsigned int base = ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/;
+    unsigned int base = 0x21000f90;
     if (*(volatile unsigned char*)(base+0x69)==0 && *(volatile int*)(base+0x64)!=0) {
         FUN_01022a50(*(volatile unsigned char*)(base+0x68));
     }
@@ -18,6 +18,5 @@ void FUN_010190d0(void)
     }
     *(volatile unsigned short*)(base+0xba)=0;
     *(volatile unsigned char*)(base+0x70)=0;
-    *(volatile unsigned char*)(((uintptr_t)&g_net_radio_pending_proc_flag) /*=0x2100104a*/+2)=0;
+    *(volatile unsigned char*)(((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/+2)=0;
 }
-

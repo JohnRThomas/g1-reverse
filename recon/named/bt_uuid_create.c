@@ -1,5 +1,10 @@
-/* named: bt_uuid_create */
-/* Reconstructed bt_uuid_create @ 0x80d9a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00080d9a @ 0x00080d9a
+ * public-name: bt_uuid_create
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_uuid_create                           <= FUN_00080d9a @ 0x00080d9a
+ */
+/* Reconstructed FUN_00080d9a @ 0x80d9a  (parity: 300/300 trials, PROVEN) */
 
 int bt_uuid_create(unsigned char *param_1, unsigned int *param_2, int param_3)
 {
@@ -23,4 +28,3 @@ int bt_uuid_create(unsigned char *param_1, unsigned int *param_2, int param_3)
     }
     return 1;
 }
-

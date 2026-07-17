@@ -1,8 +1,13 @@
-/* named: gpiote_pin_event_dispatch */
-/* globals referenced:
-//   0x20002bc0  g_gpiote_cb                  
-*/
-/* Reconstructed gpiote_pin_event_dispatch @ 0x654c4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000654c4 @ 0x000654c4
+ * public-name: gpiote_pin_event_dispatch
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_pin_idx                              <= FUN_00065434 @ 0x00065434
+ *   gpiote_pin_event_dispatch                <= FUN_000654c4 @ 0x000654c4
+ * address symbols (name @ address):
+ *   g_gpiote_cb                              @ 0x20002bc0
+ */
+/* Reconstructed FUN_000654c4 @ 0x654c4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long get_pin_idx(void);
 
@@ -30,4 +35,3 @@ void gpiote_pin_event_dispatch(unsigned int param_1)
     }
     return;
 }
-

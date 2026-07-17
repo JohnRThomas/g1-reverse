@@ -1,9 +1,30 @@
-/* named: ble_whitelist_app */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed ble_whitelist_app @ 0x22218  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00022218 @ 0x00022218
+ * public-name: ble_whitelist_app
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ble_whitelist_app                        <= FUN_00022218 @ 0x00022218
+ *   get_app_whitelist_buffer                 <= FUN_00034bcc @ 0x00034bcc
+ * address symbols (name @ address):
+ *   rodata_990cf                             @ 0x000990cf
+ *   rodata_9e1a8                             @ 0x0009e1a8
+ *   rodata_9e1ba                             @ 0x0009e1ba
+ *   rodata_9e1de                             @ 0x0009e1de
+ *   rodata_9e1eb                             @ 0x0009e1eb
+ *   rodata_9e201                             @ 0x0009e201
+ *   rodata_9e20e                             @ 0x0009e20e
+ *   rodata_9e21f                             @ 0x0009e21f
+ *   rodata_9e230                             @ 0x0009e230
+ *   rodata_9e23c                             @ 0x0009e23c
+ *   rodata_9e249                             @ 0x0009e249
+ *   rodata_9e259                             @ 0x0009e259
+ *   rodata_9e53c                             @ 0x0009e53c
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_00022218 @ 0x22218  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte;
 extern int DEBUG_PRINT(int,...); extern int strcmp(int,...); extern int get_device_info(int,...);
@@ -127,4 +148,3 @@ LAB_22a0:
   debug_print(0x9e1eb,0x9e53c,param_1,uVar5);
   return 0;
 }
-

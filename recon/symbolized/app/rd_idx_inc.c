@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: rd_idx_inc */
-/* Reconstructed rd_idx_inc @ 0x7e378  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e378 @ 0x0007e378
+ * public-name: rd_idx_inc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   idx_inc                                  <= FUN_0007e35c @ 0x0007e35c
+ *   rd_idx_inc                               <= FUN_0007e378 @ 0x0007e378
+ */
+/* Reconstructed FUN_0007e378 @ 0x7e378  (parity: 300/300 trials, PROVEN) */
 
 extern int idx_inc(int a,int b,int c);
 void rd_idx_inc(int *param_1, int param_2) {
@@ -11,4 +17,3 @@ void rd_idx_inc(int *param_1, int param_2) {
     unsigned int u = *(unsigned int*)(base + 0x10);
     *(unsigned int*)(base + 0x10) = u & 0xfffffff7u;
 }
-

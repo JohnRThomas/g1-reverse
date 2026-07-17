@@ -6,7 +6,7 @@ extern unsigned long long FUN_010344ec(unsigned int);
 extern int FUN_01034508(unsigned int);
 extern void FUN_0103a924(unsigned int, int, int, int, int, int, unsigned char *);
 
-#define DAT_01034934 ((uintptr_t)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/
+#define DAT_01034934 ((unsigned long)&g_sdc_res_pool_slot_tbl) /*=0x210006a8*/
 #define DAT_01034938 0x0bad0000u
 #define DAT_0103493c 0x0bad0004u
 
@@ -54,22 +54,21 @@ unsigned int FUN_01034840(unsigned int param_1, unsigned int param_2,
     bVar1 = *param_3;
     iVar7 = (unsigned int)bVar1 * 4;
     uVar8 = *(unsigned short *)(DAT_01034934 + iVar6 * 2) & 0x1fdf;
-    *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) = 0;
+    *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) = 0;
     *(unsigned short *)(iVar4 + iVar6 * 2) = uVar8;
-    *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) = 0;
+    *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) = 0;
     bVar2 = param_3[1];
     uVar5 = DAT_01034938;
     if (bVar2 != 0) {
       bVar3 = param_3[2];
-      *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) =
-          *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) & 0xffecc0ffu;
-      *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) =
+      *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) =
+          *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) & 0xffecc0ffu;
+      *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) =
           ((param_1 & 0x3f) << 8) | ((unsigned int)(bVar2 & 3) << 0x10) |
-          *(volatile unsigned int *)(long)(iVar7 + REG_4100a510 /*=0x4100a510*/) | ((unsigned int)(bVar3 & 1) << 0x14);
+          *(volatile unsigned int *)(long)(iVar7 + 0x4100a510) | ((unsigned int)(bVar3 & 1) << 0x14);
       *(unsigned short *)(iVar4 + iVar6 * 2) = uVar8 | ((unsigned short)bVar1 << 0xd) | 0x20;
       uVar5 = DAT_01034938;
     }
   }
   return uVar5;
 }
-

@@ -1,7 +1,16 @@
-/* named: FUN_000737d8 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_000737d8 @ 0x000737d8
+ * public-name: FUN_000737d8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84af                             @ 0x000f84af
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a, int b, int c, int d, int e);
@@ -41,4 +50,3 @@ void FUN_000737d8(int param_1, int param_2, int param_3, int param_4)
     }
     *(volatile int *)(DAT + 0x18) = r3;
 }
-

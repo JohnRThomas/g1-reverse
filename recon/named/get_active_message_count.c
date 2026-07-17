@@ -1,9 +1,13 @@
-/* named: get_active_message_count */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
-/* Reconstructed get_active_message_count @ 0x33cb0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033cb0 @ 0x00033cb0
+ * public-name: get_active_message_count
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_active_message_count                 <= FUN_00033cb0 @ 0x00033cb0
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
+/* Reconstructed FUN_00033cb0 @ 0x33cb0  (parity: 300/300 trials, PROVEN) */
 
 unsigned int get_active_message_count(void)
 {
@@ -29,4 +33,3 @@ LAB_00033cc6:
   *(volatile unsigned char *)0x2001a22aUL = uVar1;
   return uVar3;
 }
-

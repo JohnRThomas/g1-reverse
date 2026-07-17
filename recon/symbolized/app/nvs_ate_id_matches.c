@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: nvs_ate_id_matches */
-/* Reconstructed nvs_ate_id_matches @ 0x84d70  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084d70 @ 0x00084d70
+ * public-name: nvs_ate_id_matches
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvs_ate_id_matches                       <= FUN_00084d70 @ 0x00084d70
+ */
+/* Reconstructed FUN_00084d70 @ 0x84d70  (parity: 300/300 trials, PROVEN) */
 
 unsigned int nvs_ate_id_matches(int param_1,int param_2)
 {
@@ -13,4 +18,3 @@ unsigned int nvs_ate_id_matches(int param_1,int param_2)
   }
   return (unsigned int)(param_1 == param_2);
 }
-

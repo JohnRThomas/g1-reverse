@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: cbor_encode_check_ok */
-/* Reconstructed cbor_encode_check_ok @ 0x861ae  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000861ae @ 0x000861ae
+ * public-name: cbor_encode_check_ok
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_encode_check_ok                     <= FUN_000861ae @ 0x000861ae
+ */
+/* Reconstructed FUN_000861ae @ 0x861ae  (parity: 300/300 trials, PROVEN) */
 
 int cbor_encode_check_ok(int param_1)
 {
@@ -9,4 +14,3 @@ int cbor_encode_check_ok(int param_1)
     }
     return 1;
 }
-

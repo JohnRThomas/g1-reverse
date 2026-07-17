@@ -1,11 +1,19 @@
-/* named: sc_restore_rsp */
-/* Reconstructed sc_restore_rsp @ 0x82bd4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00082bd4 @ 0x00082bd4
+ * public-name: sc_restore_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   set_change_aware                         <= FUN_00082bb8 @ 0x00082bb8
+ *   sc_restore_rsp                           <= FUN_00082bd4 @ 0x00082bd4
+ */
+/* Reconstructed FUN_00082bd4 @ 0x82bd4  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0008256e(void);
 extern void *find_cf_cfg(int a);
 extern void set_change_aware(void *a, int b);
 extern void *find_sc_cfg_59bcc(unsigned char a, int b);
-extern int FUN_0005a0e8(void *a);
+extern void FUN_0005a0e8(void *a);
 
 void sc_restore_rsp(int param_1, unsigned int param_2, int param_3, unsigned int param_4)
 {
@@ -30,4 +38,3 @@ void sc_restore_rsp(int param_1, unsigned int param_2, int param_3, unsigned int
         }
     }
 }
-

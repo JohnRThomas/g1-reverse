@@ -1,11 +1,23 @@
-/* named: parse_receiver_msg_pack_pkcs7 */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000d6f0  g_pkcs7_rx_msg_id            
-//   0x2000d6f2  g_pkcs7_rx_offset            
-//   0x2001031f  g_pkcs7_rx_cmd_id            
-*/
-/* Reconstructed parse_receiver_msg_pack_pkcs7 @ 0x19da4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00019da4 @ 0x00019da4
+ * public-name: parse_receiver_msg_pack_pkcs7
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   parse_receiver_msg_pack_pkcs7            <= FUN_00019da4 @ 0x00019da4
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_9b371                             @ 0x0009b371
+ *   rodata_9b3b5                             @ 0x0009b3b5
+ *   rodata_9b3e0                             @ 0x0009b3e0
+ *   rodata_9b413                             @ 0x0009b413
+ *   rodata_9b44a                             @ 0x0009b44a
+ *   rodata_9e0b2                             @ 0x0009e0b2
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_pkcs7_rx_msg_id                        @ 0x2000d6f0
+ *   g_pkcs7_rx_offset                        @ 0x2000d6f2
+ *   g_pkcs7_rx_cmd_id                        @ 0x2001031f
+ */
+/* Reconstructed FUN_00019da4 @ 0x19da4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int debug_print(int,...);
@@ -64,4 +76,3 @@ unsigned int parse_receiver_msg_pack_pkcs7(int param_1, unsigned char *param_2, 
     }
   }
 }
-

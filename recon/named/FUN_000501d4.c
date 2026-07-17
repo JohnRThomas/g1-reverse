@@ -1,7 +1,9 @@
-/* named: FUN_000501d4 */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_000501d4 @ 0x000501d4
+ * public-name: FUN_000501d4
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_000501d4 @ 0x501d4  (parity: 300/300 trials, PROVEN) */
 
 int FUN_000501d4(int param_1)
@@ -16,4 +18,3 @@ int FUN_000501d4(int param_1)
     __asm volatile ("movs r3, #0\n\tmsr basepri, r3\n\tisb sy\n\t" ::: "r3");
     return *(volatile int*)(base[2] + 0x90);
 }
-

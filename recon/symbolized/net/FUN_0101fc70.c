@@ -11,11 +11,10 @@ void FUN_0101fc70(void)
   FUN_01020088(2);
   uVar2 = 0x80000003u;
   iVar1 = REG_4100e000 /*=0x4100e000*/;
-  *(volatile unsigned char *)((uintptr_t)&g_net_ccm_op_status) /*=0x210014d8*/ = 1;
+  *(volatile unsigned char *)((unsigned long)&g_net_ccm_op_status) /*=0x210014d8*/ = 1;
   *(volatile unsigned int *)(iVar1 + 0x100) = 0;
   *(volatile unsigned int *)(iVar1 + 0x104) = 0;
   *(volatile unsigned int *)(iVar1 + 0x108) = 0;
   *(volatile unsigned int *)(iVar1 + 0x80) = uVar2;
   return;
 }
-

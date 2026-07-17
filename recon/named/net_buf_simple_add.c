@@ -1,5 +1,17 @@
-/* named: net_buf_simple_add */
-/* Reconstructed net_buf_simple_add @ 0x5f5d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005f5d0 @ 0x0005f5d0
+ * public-name: net_buf_simple_add
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f543a                             @ 0x000f543a
+ *   rodata_f54a8                             @ 0x000f54a8
+ */
+/* Reconstructed FUN_0005f5d0 @ 0x5f5d0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int net_buf_simple_tailroom(void);
 extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
@@ -21,4 +33,3 @@ int net_buf_simple_add(int *param_1, unsigned int param_2, unsigned int param_3,
     *hp = uVar1 + (unsigned short)param_2;
     return iVar3 + (unsigned int)uVar1;
 }
-

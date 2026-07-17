@@ -8,7 +8,7 @@ extern void FUN_010294c2(unsigned int);
 
 void FUN_0101f818(unsigned int param_1, unsigned int param_2)
 {
-  unsigned int base = ((uintptr_t)&g_net_sdc_resource_cfg) /*=0x21001230*/;
+  unsigned int base = 0x21001230;
 
   FUN_0100ebc4();
   *(volatile unsigned int*)(base + 0x104) = param_2;
@@ -17,4 +17,3 @@ void FUN_0101f818(unsigned int param_1, unsigned int param_2)
   FUN_0100f5d8();
   *(volatile unsigned char*)(base + 0x218) = 1;
 }
-

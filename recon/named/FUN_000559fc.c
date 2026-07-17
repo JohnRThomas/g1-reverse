@@ -1,4 +1,19 @@
-/* named: FUN_000559fc */
+/* readable reconstruction; identity: FUN_000559fc @ 0x000559fc
+ * public-name: FUN_000559fc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   adv_is_directed                          <= FUN_00055698 @ 0x00055698
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   bt_conn_lookup_state_le                  <= FUN_00056f08 @ 0x00056f08
+ *   atomic_and_1                             <= FUN_00081180 @ 0x00081180
+ *   bt_le_adv_set_enable_legacy              <= FUN_000812d2 @ 0x000812d2
+ * address symbols (name @ address):
+ *   rodata_f2b33                             @ 0x000f2b33
+ *   g_bt_le_legacy_adv                       @ 0x20002018
+ *   g_ble_adv_ctx_peer_addr                  @ 0x20002021
+ *   g_ble_adv_ctx_flags                      @ 0x20002028
+ */
 /* Reconstructed FUN_000559fc @ 0x559fc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -33,4 +48,3 @@ uint FUN_000559fc(void){
   }
   return (uint)(iVar1<<0x18)>>0x1f;
 }
-

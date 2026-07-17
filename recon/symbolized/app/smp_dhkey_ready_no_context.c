@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: smp_dhkey_ready_no_context */
-/* Reconstructed smp_dhkey_ready_no_context @ 0x5cbe0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005cbe0 @ 0x0005cbe0
+ * public-name: smp_dhkey_ready_no_context
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_dhkey_ready_no_context               <= FUN_0005cbe0 @ 0x0005cbe0
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4e22                             @ 0x000f4e22
+ */
+/* Reconstructed FUN_0005cbe0 @ 0x5cbe0  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00083074(unsigned int a0, unsigned int a1, void *a2);
 
@@ -8,9 +16,8 @@ unsigned int smp_dhkey_ready_no_context(unsigned int param_1)
 {
   unsigned int local[3];
   local[0] = 3;
-  local[1] = "No available SMP context for conn %p" /*=0xf4e22*/;
+  local[1] = ((unsigned long)&rodata_f4e22) /*=0xf4e22*/;
   local[2] = param_1;
-  FUN_00083074(((uintptr_t)&tbl_880d8) /*=0x88180*/, 0x1840, local);
+  FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1840, local);
   return 0xfffffff4;
 }
-

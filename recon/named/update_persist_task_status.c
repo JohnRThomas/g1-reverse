@@ -1,8 +1,19 @@
-/* named: update_persist_task_status */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002bef4 @ 0x0002bef4
+ * public-name: update_persist_task_status
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ * address symbols (name @ address):
+ *   rodata_a2597                             @ 0x000a2597
+ *   rodata_a25b9                             @ 0x000a25b9
+ *   rodata_a25d9                             @ 0x000a25d9
+ *   rodata_a2660                             @ 0x000a2660
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ *   g_persist_task_status                    @ 0x20018d9d
+ */
 /* Reconstructed update_persist_task_status @ 0x2bef4  (parity: 3/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -58,4 +69,3 @@ L8a:
     *pcVar2=0;
     return param_3;
 }
-

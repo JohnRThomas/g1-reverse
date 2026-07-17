@@ -11,7 +11,7 @@ typedef void (*fn_t)(uint32_t);
 
 void FUN_0102e000(void)
 {
-    volatile uint8_t * const flag = (uint8_t *)((uintptr_t)&g_net_dev_init_done_flag) /*=0x21004fad*/;
+    volatile uint8_t * const flag = (uint8_t *)((unsigned long)&g_net_dev_init_done_flag) /*=0x21004fad*/;
 
     if (*flag == 0) {
         uint32_t r4, r6, p0, p1;
@@ -20,13 +20,13 @@ void FUN_0102e000(void)
 
         FUN_0102dcf4(1);
 
-        r4 = ((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/;
-        r6 = ((uintptr_t)&rodata_103c0fc) /*=0x103c0fc*/;
+        r4 = ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
+        r6 = ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/;
 
         for (;;) {
             if (r4 > r6) {
-                FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, " type: %u" /*=0x103d5d7*/, 0x188);
-                FUN_01039bb0(" type: %u" /*=0x103d5d7*/, 0x188);
+                FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x188);
+                FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x188);
             } else if (r4 == r6) {
                 break;
             }
@@ -46,4 +46,3 @@ void FUN_0102e000(void)
         *flag = 1;
     }
 }
-

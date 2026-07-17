@@ -1,9 +1,21 @@
-/* named: update_demo_image_display */
-/* globals referenced:
-//   0x2001b810  g_display_page_index         
-//   0x2001b811  g_display_page_dirty_flag    
-*/
-/* Reconstructed update_demo_image_display @ 0x36a18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00036a18 @ 0x00036a18
+ * public-name: update_demo_image_display
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   get_demo_image_source                    <= FUN_00036820 @ 0x00036820
+ *   update_demo_image_display                <= FUN_00036a18 @ 0x00036a18
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ * address symbols (name @ address):
+ *   g_demo_img_cached_height                 @ 0x200024e0
+ *   g_demo_img_cached_width                  @ 0x200024e4
+ *   g_demo_image_last_page_idx               @ 0x200033d4
+ *   g_display_page_index                     @ 0x2001b810
+ *   g_display_page_dirty_flag                @ 0x2001b811
+ */
+/* Reconstructed FUN_00036a18 @ 0x36a18  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 extern void get_demo_image_source(int);
@@ -66,4 +78,3 @@ unsigned update_demo_image_display(int param_1,unsigned param_2,int param_3,int 
     return 0;
   }
 }
-

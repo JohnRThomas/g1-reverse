@@ -6,4 +6,3 @@ int FUN_010397d2(unsigned int param_1, int param_2, unsigned int param_3, unsign
   int iVar1 = FUN_010397c0(param_1, 1, param_2, param_4, param_4);
   return 0x1f - __builtin_clz((unsigned int)((param_2 + 1) - iVar1));
 }
-

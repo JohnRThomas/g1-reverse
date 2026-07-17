@@ -78,7 +78,7 @@ undefined4 FUN_01021ee0(uint param_1,int param_2,int param_3,int param_4)
   undefined1 local_30[4];
   undefined4 uStack_2c;
 
-  iVar5 = ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/;
+  iVar5 = ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/;
   lVar24 = FUN_0102501c();
   uVar11 = (uint)((ulonglong)lVar24 >> 0x20);
   uVar16 = (uint)lVar24;
@@ -471,13 +471,13 @@ LAB_01022392:
   if (iVar13 != 0) {
     **(undefined4 **)(iVar5 + 0x4d4) = 0;
   }
-  puVar6 = ((undefined4*)((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/);
+  puVar6 = ((undefined4*)((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/);
   local_3c = ((uint)(ushort)uVar3 << 16) | (local_3c & 0xffff);
   local_30[1] = cVar2;
   local_30[0] = local_9c;
   local_3c = (local_3c & 0xffffff00) | (byte)bVar1;
   local_30[2] = 0;
-  *((undefined4*)((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/) = 0;
+  *((undefined4*)((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/) = 0;
   puVar6[1] = uStack_54;
   puVar6[2] = 0xffffffff;
   puVar6[3] = 0xffffffff;

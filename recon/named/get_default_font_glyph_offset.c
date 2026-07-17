@@ -1,8 +1,14 @@
-/* named: get_default_font_glyph_offset */
-/* globals referenced:
-//   0x0008ac28  g_default_font_glyph_table_count 
-*/
-/* Reconstructed get_default_font_glyph_offset @ 0x45840  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00045840 @ 0x00045840
+ * public-name: get_default_font_glyph_offset
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_default_font_glyph_offset            <= FUN_00045840 @ 0x00045840
+ * address symbols (name @ address):
+ *   g_default_font_glyph_table_count         @ 0x0008ac28
+ *   rodata_9890c                             @ 0x0009890c
+ *   rodata_e5f62                             @ 0x000e5f62
+ */
+/* Reconstructed FUN_00045840 @ 0x45840  (parity: 300/300 trials, PROVEN) */
 
 int get_default_font_glyph_offset(unsigned int param_1, int *param_2, unsigned int *param_3)
 {
@@ -26,4 +32,3 @@ int get_default_font_glyph_offset(unsigned int param_1, int *param_2, unsigned i
   *param_3 = 0x1a;
   return 0xe5f62 + uVar1;
 }
-

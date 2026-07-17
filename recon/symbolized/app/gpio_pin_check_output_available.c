@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: gpio_pin_check_output_available */
-/* Reconstructed gpio_pin_check_output_available @ 0x8511a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008511a @ 0x0008511a
+ * public-name: gpio_pin_check_output_available
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pin_in_use_by_te                         <= FUN_00065460 @ 0x00065460
+ *   pin_is_output                            <= FUN_00065494 @ 0x00065494
+ *   gpio_pin_check_output_available          <= FUN_0008511a @ 0x0008511a
+ */
+/* Reconstructed FUN_0008511a @ 0x8511a  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long pin_is_output(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern unsigned int pin_in_use_by_te(unsigned int);
@@ -16,4 +23,3 @@ unsigned int gpio_pin_check_output_available(unsigned int param_1, unsigned int 
     }
     return uVar1 & 1;
 }
-

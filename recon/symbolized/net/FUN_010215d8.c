@@ -10,4 +10,3 @@ int FUN_010215d8(int param_1, unsigned int param_2)
     unsigned long long prod = (unsigned long long)DAT_010215f0 * (unsigned long long)uVar1;
     return param_1 - (unsigned int)(prod >> 0x26);
 }
-

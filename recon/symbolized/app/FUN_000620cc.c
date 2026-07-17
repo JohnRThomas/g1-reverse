@@ -1,5 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000620cc */
+/* readable reconstruction; identity: FUN_000620cc @ 0x000620cc
+ * public-name: FUN_000620cc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99c84                             @ 0x00099c84
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99cda                             @ 0x00099cda
+ *   rodata_99dad                             @ 0x00099dad
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
 /* Reconstructed FUN_000620cc @ 0x620cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -21,34 +36,33 @@ int FUN_000620cc(int param_1){
             bVar1 = *(volatile uint8_t*)(iVar5+8);
             puVar8 = *(volatile uint32_t* volatile*)(iVar2+8);
             if ((uVar7 & 0x30)==0x30){
-                printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"(flags & ((1 << 4) | (1 << 5))) != ((1 << 4) | (1 << 5))" /*=0x99c84*/,"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h" /*=0x99c53*/,0x3ca);
-                printk("\tPull Up and Pull Down should not be enabled simultaneously\n" /*=0x99cda*/);
+                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_99c84) /*=0x99c84*/,((unsigned long)&rodata_99c53) /*=0x99c53*/,0x3ca);
+                printk(((unsigned long)&rodata_99cda) /*=0x99cda*/);
                 uVar3 = 0x3ca; goto L62124;
             }
           L6212a:
             if ((uVar7 & 6)==4){
-                printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"(flags & (1 << 1)) != 0 || (flags & (1 << 2)) == 0" /*=0x99dad*/,"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h" /*=0x99c53*/,0x3d1);
+                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_99dad) /*=0x99dad*/,((unsigned long)&rodata_99c53) /*=0x99c53*/,0x3d1);
                 uVar3 = 0x3d1; goto L62124;
             }
             uVar9 = 1u << bVar1;
             if ((uVar9 & **(volatile uint32_t* volatile*)(iVar2+4))==0){
-                printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"(cfg->port_pin_mask & (gpio_port_pins_t)(1UL << (pin))) != 0U" /*=0x99de0*/,"WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h" /*=0x99c53*/,0x3e4);
-                printk("\tUnsupported pin\n" /*=0x99e1e*/);
+                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_99de0) /*=0x99de0*/,((unsigned long)&rodata_99c53) /*=0x99c53*/,0x3e4);
+                printk(((unsigned long)&rodata_99e1e) /*=0x99e1e*/);
                 uVar3 = 0x3e4; goto L62124;
             }
             uVar4 = **(volatile uint32_t* volatile*)(iVar2+0x10);
             if ((int)(uVar7 << 0x1f) < 0) uVar9 = uVar9 | uVar4;
             else uVar9 = uVar4 & ~uVar9;
             **(volatile uint32_t* volatile*)(iVar2+0x10) = uVar9;
-            iVar2 = ((int(*)(int,uint32_t,uint32_t))(*puVar8))(iVar2,(uint32_t)bVar1, uVar7|((uintptr_t)&rodata_20000) /*=0x20000*/);
+            iVar2 = ((int(*)(int,uint32_t,uint32_t))(*puVar8))(iVar2,(uint32_t)bVar1, uVar7|0x20000);
             if (iVar2 != 0) return iVar2;
         }
         iVar5 = iVar5 + 8;
         if (iVar6 == iVar5) return 0;
         continue;
       L62124:
-        assert_post_action("WEST_TOPDIR/zephyr/include/zephyr/drivers/gpio.h" /*=0x99c53*/, uVar3);
+        assert_post_action(((unsigned long)&rodata_99c53) /*=0x99c53*/, uVar3);
         goto L6212a;
     }
 }
-

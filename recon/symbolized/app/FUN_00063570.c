@@ -1,5 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00063570 */
+/* readable reconstruction; identity: FUN_00063570 @ 0x00063570
+ * public-name: FUN_00063570
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6659                             @ 0x000f6659
+ *   rodata_f668a                             @ 0x000f668a
+ */
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a, int b, int c, int d, int e);
@@ -8,9 +18,8 @@ unsigned int FUN_00063570(unsigned int param_1, unsigned int param_2, unsigned i
 {
   unsigned int idx = param_1;
   if (1 < param_1) {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "chan >= 0 && chan < (1 + 1)" /*=0xf668a*/, "WEST_TOPDIR/zephyr/drivers/timer/nrf_rtc_timer.c" /*=0xf6659*/, 0x86, param_4);
-    idx = assert_post_action("WEST_TOPDIR/zephyr/drivers/timer/nrf_rtc_timer.c" /*=0xf6659*/, 0x86);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f668a) /*=0xf668a*/, ((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x86, param_4);
+    idx = assert_post_action(((unsigned long)&rodata_f6659) /*=0xf6659*/, 0x86);
   }
-  return REG_50015140 /*=0x50015140*/ + idx * 4;
+  return 0x50015140UL + idx * 4;
 }
-

@@ -1,5 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00063ff8 */
+/* readable reconstruction; identity: FUN_00063ff8 @ 0x00063ff8
+ * public-name: FUN_00063ff8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_write                         <= FUN_0007efaa @ 0x0007efaa
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ * address symbols (name @ address):
+ *   rodata_9907c                             @ 0x0009907c
+ */
 /* Reconstructed FUN_00063ff8 @ 0x63ff8  (parity: 300/300 trials, PROVEN) */
 
 extern void flash_area_erased_val(void);
@@ -7,10 +15,10 @@ extern int flash_area_write(int a, unsigned int b, void *c, int d);
 
 int FUN_00063ff8(int param_1)
 {
-  unsigned int local_28[4];
+  unsigned int local_28[5];
   unsigned int iVar2 = *(volatile unsigned int*)(param_1+8);
   unsigned int i;
-  volatile unsigned int *src = (volatile unsigned int*)((uintptr_t)&tbl_98fbc) /*=0x9907c*/;
+  volatile unsigned int *src = (volatile unsigned int*)((unsigned long)&rodata_9907c) /*=0x9907c*/;
   int r;
   flash_area_erased_val();
   for (i = 0; i < 4; i++) {
@@ -20,4 +28,3 @@ int FUN_00063ff8(int param_1)
   if (r != 0) r = 1;
   return r;
 }
-

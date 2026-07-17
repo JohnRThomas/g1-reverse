@@ -1,8 +1,24 @@
-/* named: serialization_init */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00025c54 @ 0x00025c54
+ * public-name: serialization_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ipc_service_open_instance                <= FUN_0004cb90 @ 0x0004cb90
+ *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ * address symbols (name @ address):
+ *   rodata_87c08                             @ 0x00087c08
+ *   rodata_9f5ec                             @ 0x0009f5ec
+ *   rodata_9f611                             @ 0x0009f611
+ *   rodata_9f63c                             @ 0x0009f63c
+ *   rodata_9f67e                             @ 0x0009f67e
+ *   rodata_9f6f1                             @ 0x0009f6f1
+ *   g_log_level                              @ 0x2000230c
+ *   g_serialization_ipc_ept_ctx              @ 0x200023dc
+ *   g_serialization_ipc_mutex                @ 0x200039c8
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_serialization_ipc_ept                  @ 0x20007a78
+ *   g_serialization_ipc_ready                @ 0x20007a80
+ */
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -66,4 +82,3 @@ unsigned int serialization_init(void)
     }
     return 0xffffffffUL;
 }
-

@@ -30,8 +30,5 @@ void FUN_01038448(int param_1, unsigned int param_2, int param_3, int param_4,
     *(volatile unsigned int *)(param_1 + 0x28) = param_5;
     *(volatile unsigned int *)(param_1 + 0x2c) = param_6;
     *(volatile unsigned int *)(param_1 + 0x30) = 0;
-    FUN_01037f8c(param_1, ((uintptr_t)&rodata_1038afd) /*=0x1038afd*/, param_3, param_4);
+    FUN_01037f8c(param_1, 0x1038afd, param_3, param_4);
 }
-
-
-

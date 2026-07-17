@@ -1,6 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: cjson_add_item_to_object */
-/* Reconstructed cjson_add_item_to_object @ 0x6466c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006466c @ 0x0006466c
+ * public-name: cjson_add_item_to_object
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_strdup                             <= FUN_00064640 @ 0x00064640
+ *   cjson_add_item_to_object                 <= FUN_0006466c @ 0x0006466c
+ *   sllist_insert_after                      <= FUN_00084f2e @ 0x00084f2e
+ * address symbols (name @ address):
+ *   g_cjson_free_hook                        @ 0x20002bb0
+ */
+/* Reconstructed FUN_0006466c @ 0x6466c  (parity: 300/300 trials, PROVEN) */
 
 extern int cjson_strdup(int a);
 extern int sllist_insert_after(int a, int b);
@@ -23,7 +32,7 @@ int cjson_add_item_to_object(int param_1, int param_2, int param_3, int param_4)
         {
             int shifted = (*(int *)(param_3 + 0xc)) << 0x16;
             if (shifted >= 0 && *(int *)(param_3 + 0x20) != 0) {
-                fn0_t f = *(volatile fn0_t *)((uintptr_t)&g_cjson_free_hook) /*=0x20002bb0*/;
+                fn0_t f = *(volatile fn0_t *)((unsigned long)&g_cjson_free_hook) /*=0x20002bb0*/;
                 f();
             }
         }
@@ -33,4 +42,3 @@ int cjson_add_item_to_object(int param_1, int param_2, int param_3, int param_4)
     }
     return 0;
 }
-

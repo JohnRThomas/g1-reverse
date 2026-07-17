@@ -19,4 +19,3 @@ void FUN_01020054(void)
   *(volatile unsigned int *)(iVar1 + 0x80) = 0;
   return;
 }
-

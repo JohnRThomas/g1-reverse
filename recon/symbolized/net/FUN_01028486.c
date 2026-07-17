@@ -5,6 +5,16 @@ extern unsigned int FUN_01008d00(unsigned int a, unsigned int b, unsigned int c,
 
 int FUN_01028486(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-  return (int)FUN_01008d00(6, 0x294, param_3, (unsigned int)param_1, param_4);
+  switch (param_1) {
+  case 1:
+  case 2:
+    return param_1;
+  case 4:
+  case 8:
+    return 3;
+  default:
+    (void)FUN_01008d00(6, 0x294, param_3,
+                       (unsigned int)(param_1 - 1), param_4);
+    return 3;
+  }
 }
-

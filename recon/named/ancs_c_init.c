@@ -1,10 +1,19 @@
-/* named: ancs_c_init */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006ae8  g_ancs_client                
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed ancs_c_init @ 0x1905c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0001905c @ 0x0001905c
+ * public-name: ancs_c_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_c_init                              <= FUN_0001905c @ 0x0001905c
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   bt_ancs_register_attr                    <= FUN_0007f772 @ 0x0007f772
+ *   bt_ancs_register_app_attr                <= FUN_0007f79e @ 0x0007f79e
+ * address symbols (name @ address):
+ *   rodata_9ab0c                             @ 0x0009ab0c
+ *   rodata_9b15e                             @ 0x0009b15e
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_client                            @ 0x20006ae8
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_0001905c @ 0x1905c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int debug_print(int,...);
@@ -69,4 +78,3 @@ LAB_00019090:
     debug_print(0x0009ab0c, 0x0009b15e, uVar2, iVar1);
     return iVar1;
 }
-

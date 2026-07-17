@@ -1,27 +1,36 @@
 #include "g1_app_symbols.h"
-/* named: net_buf_frag_insert */
-/* Reconstructed net_buf_frag_insert @ 0x5f338  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005f338 @ 0x0005f338
+ * public-name: net_buf_frag_insert
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_frag_last                        <= FUN_0005f304 @ 0x0005f304
+ *   net_buf_frag_insert                      <= FUN_0005f338 @ 0x0005f338
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f539a                             @ 0x000f539a
+ *   rodata_f5407                             @ 0x000f5407
+ *   rodata_f542d                             @ 0x000f542d
+ */
+/* Full reconstruction FUN_0005f338 @ 0x5f338, exact extent 70 bytes. */
 #include <stdint.h>
-extern void* net_buf_frag_last(void*);
-extern void assert_post_action(void);
-extern void printk(void);
+extern void *net_buf_frag_last(void *node);
+extern void printk(uintptr_t, uintptr_t, uintptr_t, uint32_t);
+extern __attribute__((noreturn)) void assert_post_action(uintptr_t, uint32_t);
 
-void net_buf_frag_insert(int *param_1, int *param_2)
+void net_buf_frag_insert(void *owner, void *node)
 {
-    if (param_1 == 0) {
-        printk();
-        assert_post_action();
-        return;
+    if (!owner) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f5407) /*=0xf5407*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x241);
+        assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x241);
     }
-    if (param_2 != 0) {
-        int *iVar3 = *(volatile int**)((char*)param_1 + 4);
-        if (iVar3 != 0) {
-            int *iVar1 = (int*)net_buf_frag_last(param_2);
-            *(volatile int**)((char*)iVar1 + 4) = iVar3;
-        }
-        *(volatile int**)((char*)param_1 + 4) = param_2;
-        return;
+    if (!node) {
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f542d) /*=0xf542d*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x242);
+        assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x242);
     }
-    printk();
-    assert_post_action();
+    void *previous = *(void **)((uint8_t *)owner + 4);
+    if (previous)
+        *(void **)((uint8_t *)net_buf_frag_last(node) + 4) = previous;
+    *(void **)((uint8_t *)owner + 4) = node;
 }

@@ -1,21 +1,21 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01035830 @ 0x1035830  (parity 100 trials PROVEN) */
+/* net-core FUN_01035830 @ 0x1035830  (parity 300 trials PROVEN) */
 extern int FUN_0103533c(unsigned int, int, int, void*, void*);
 extern void FUN_0103547c(int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void FUN_0103ac98(unsigned int);
 extern void FUN_0103b224(int, int);
 extern void FUN_0103b62e(int, int, int);
 
-#define DAT_01035950 ((uintptr_t)&rodata_1035f6d) /*=0x1035f6d*/
-#define DAT_01035954 ((uintptr_t)&rodata_103b6b3) /*=0x103b6b3*/
-#define DAT_01035958 ((uintptr_t)&rodata_103b7ad) /*=0x103b7ad*/
-#define DAT_0103595c ((uintptr_t)&rodata_103b7f3) /*=0x103b7f3*/
-#define DAT_01035960 ((uintptr_t)&rodata_1035dbd) /*=0x1035dbd*/
-#define DAT_01035964 ((uintptr_t)&rodata_103b6d3) /*=0x103b6d3*/
-#define DAT_01035968 ((uintptr_t)&rodata_103e8cc) /*=0x103e8cc*/
-#define DAT_0103596c ((uintptr_t)&rodata_103e8d2) /*=0x103e8d2*/
-#define DAT_01035970 ((uintptr_t)&rodata_103b6c1) /*=0x103b6c1*/
-#define DAT_01035974 ((uintptr_t)&rodata_1035e6d) /*=0x1035e6d*/
+#define DAT_01035950 ((unsigned long)&rodata_1035f6d) /*=0x1035f6d*/
+#define DAT_01035954 ((unsigned long)&rodata_103b6b3) /*=0x103b6b3*/
+#define DAT_01035958 ((unsigned long)&rodata_103b7ad) /*=0x103b7ad*/
+#define DAT_0103595c ((unsigned long)&rodata_103b7f3) /*=0x103b7f3*/
+#define DAT_01035960 0x01035dbdu
+#define DAT_01035964 ((unsigned long)&rodata_103b6d3) /*=0x103b6d3*/
+#define DAT_01035968 ((unsigned long)&rodata_103e8cc) /*=0x103e8cc*/
+#define DAT_0103596c ((unsigned long)&rodata_103e8d2) /*=0x103e8d2*/
+#define DAT_01035970 ((unsigned long)&rodata_103b6c1) /*=0x103b6c1*/
+#define DAT_01035974 0x01035e6du
 #define DAT_01035978 0x00000035u
 #define DAT_0103597c 0x00000035u
 
@@ -29,7 +29,7 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
   unsigned int local_20;
   unsigned int local_1c;
 
-  iVar3 = 0;
+  iVar3 = 0xfffff82d;
   if (((param_1 != 0) && (param_2 != 0)) && (param_4 != 0)) {
     FUN_0103b62e(param_1, 0, 0x94);
     FUN_0103b224(param_1 + 0x58, 1);
@@ -58,8 +58,8 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
       } while (0);
     }
     {
-      typedef unsigned int (*fp3_t)(void);
-      uVar1 = ((fp3_t)(*(volatile unsigned int *)(*(volatile int *)(*(volatile int *)(param_1 + 0xa0) + 0x20) + 0x10)))();
+      typedef unsigned int (*fp3_t)(int);
+      uVar1 = ((fp3_t)(*(volatile unsigned int *)(*(volatile int *)(*(volatile int *)(param_1 + 0xa0) + 0x20) + 0x10)))(param_2);
     }
     *(volatile unsigned int *)(param_2 + 0x10) = uVar1;
     *(volatile unsigned int *)(param_2 + 0x14) = 0;
@@ -89,4 +89,3 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
   }
   return iVar3;
 }
-

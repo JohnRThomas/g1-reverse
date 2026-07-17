@@ -1,14 +1,23 @@
-/* named: ext_flash_write */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007b54  g_ext_flash_mutex            
-//   0x20007b68  g_ext_flash_dev              
-*/
-/* Reconstructed ext_flash_write @ 0x2e440  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002e440 @ 0x0002e440
+ * public-name: ext_flash_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ext_flash_write                          <= FUN_0002e440 @ 0x0002e440
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ * address symbols (name @ address):
+ *   rodata_a3a72                             @ 0x000a3a72
+ *   rodata_a3ac5                             @ 0x000a3ac5
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ext_flash_mutex                        @ 0x20007b54
+ *   g_ext_flash_dev                          @ 0x20007b68
+ */
+/* Reconstructed FUN_0002e440 @ 0x2e440  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned a, unsigned b);
-extern void debug_print(void);
+extern void debug_print(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, int b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
 extern void FUN_0007c080(void);
@@ -34,8 +43,10 @@ int ext_flash_write(int param_1, unsigned param_2, unsigned param_3, unsigned pa
     if (t2 >= 0) FUN_0007c082();
     if (res == 0) return 0;
     if (*(volatile int*)0x2000230c < 1) return res;
-    if (*(volatile int*)0x20007554 != 0){ debug_print(); return res; }
-    DEBUG_PRINT(0, 0);
+    if (*(volatile int*)0x20007554 != 0){
+        debug_print(0x000a3a72UL, 0x000a3ac5UL);
+        return res;
+    }
+    DEBUG_PRINT(0x000a3a72UL, 0x000a3ac5UL);
     return res;
 }
-

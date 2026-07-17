@@ -1,5 +1,10 @@
-/* named: lc3_ns */
-/* Reconstructed lc3_ns @ 0x68e40  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00068e40 @ 0x00068e40
+ * public-name: lc3_ns
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ns                                   <= FUN_00068e40 @ 0x00068e40
+ */
+/* Reconstructed FUN_00068e40 @ 0x68e40  (parity: 300/300 trials, PROVEN) */
 
 unsigned lc3_ns(int param_1, int param_2){
     if (param_1 == 0x1d4c){
@@ -22,4 +27,3 @@ unsigned lc3_ns(int param_1, int param_2){
     }
     return 0xf0;
 }
-

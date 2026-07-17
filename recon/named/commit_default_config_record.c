@@ -1,5 +1,15 @@
-/* named: commit_default_config_record */
-/* Reconstructed commit_default_config_record @ 0x30710  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00030710 @ 0x00030710
+ * public-name: commit_default_config_record
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   verify_image_checksum                    <= FUN_000302cc @ 0x000302cc
+ *   flash_write_and_verify_blob              <= FUN_00030528 @ 0x00030528
+ *   commit_default_config_record             <= FUN_00030710 @ 0x00030710
+ * address symbols (name @ address):
+ *   rodata_883b8                             @ 0x000883b8
+ *   rodata_a49ed                             @ 0x000a49ed
+ */
+/* Reconstructed FUN_00030710 @ 0x30710  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int verify_image_checksum(void);
@@ -32,4 +42,3 @@ int commit_default_config_record(void)
   }
   return uVar2;
 }
-

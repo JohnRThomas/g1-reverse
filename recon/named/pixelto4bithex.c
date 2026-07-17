@@ -1,5 +1,18 @@
-/* named: pixelto4bithex */
-/* Reconstructed pixelto4bithex @ 0x3678c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0003678c @ 0x0003678c
+ * public-name: pixelto4bithex
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pixelto4bithex                           <= FUN_0003678c @ 0x0003678c
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a8d69                             @ 0x000a8d69
+ *   rodata_a8e18                             @ 0x000a8e18
+ *   g_pixel4bit_bitpos                       @ 0x20009fc4
+ *   g_pixel4bit_row_buf_off                  @ 0x20009fc8
+ *   g_pixel4bit_row_buf                      @ 0x20009fcc
+ */
+/* Reconstructed FUN_0003678c @ 0x3678c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
@@ -32,4 +45,3 @@ void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){
     *piVar3 = *piVar3 + 1;
   } while(uVar5!=8);
 }
-

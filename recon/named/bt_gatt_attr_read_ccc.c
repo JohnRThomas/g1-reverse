@@ -1,9 +1,14 @@
-/* named: bt_gatt_attr_read_ccc */
-/* Reconstructed bt_gatt_attr_read_ccc @ 0x8295a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008295a @ 0x0008295a
+ * public-name: bt_gatt_attr_read_ccc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_attr_read_ccc                    <= FUN_0008295a @ 0x0008295a
+ */
+/* Reconstructed FUN_0008295a @ 0x8295a  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern uint32_t FUN_00059c48(uint32_t, uint32_t);
-extern void bt_gatt_attr_read.constprop.0(uint32_t, uint32_t, uint16_t, void*, uint32_t);
+extern void FUN_00082932(uint32_t, uint32_t, uint16_t, void*, uint32_t);
 
 void bt_gatt_attr_read_ccc(uint32_t param_1, int param_2, uint32_t param_3, uint32_t param_4, uint16_t param_5)
 {
@@ -14,6 +19,5 @@ void bt_gatt_attr_read_ccc(uint32_t param_1, int param_2, uint32_t param_3, uint
     uVar1 = *(uint16_t*)(uVar1+8);
   }
   local_12[0] = (uint16_t)uVar1;
-  bt_gatt_attr_read.constprop.0(param_3, param_4, param_5, local_12, 2);
+  FUN_00082932(param_3, param_4, param_5, local_12, 2);
 }
-

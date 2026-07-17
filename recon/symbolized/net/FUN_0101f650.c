@@ -7,11 +7,10 @@ unsigned int FUN_0101f650(unsigned int *param_1, unsigned int param_2, int param
     unsigned int uVar1;
     if (uVar2 >= 1000) {
         uVar1 = 0;
-        param_3 = ((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
+        param_3 = ((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
         *(unsigned int *)(param_3 + 8) = uVar2;
     } else {
         uVar1 = 0x12;
     }
     return uVar1;
 }
-

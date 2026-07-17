@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: ble_rng_seed_from_uptime */
-/* Reconstructed ble_rng_seed_from_uptime @ 0x55bf8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00055bf8 @ 0x00055bf8
+ * public-name: ble_rng_seed_from_uptime
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_hci_le_rand                           <= FUN_00053e74 @ 0x00053e74
+ *   ble_rng_seed_from_uptime                 <= FUN_00055bf8 @ 0x00055bf8
+ *   tc_hmac_prng_reseed                      <= FUN_00080692 @ 0x00080692
+ * address symbols (name @ address):
+ *   rodata_88148                             @ 0x00088148
+ *   rodata_f394f                             @ 0x000f394f
+ *   g_hmac_prng_ctx                          @ 0x20006000
+ */
+/* Reconstructed FUN_00055bf8 @ 0x55bf8  (parity: 300/300 trials, PROVEN) */
 extern int bt_hci_le_rand(void*, int);
 extern long long thunk_FUN_00074f68(void);
 extern int tc_hmac_prng_reseed(unsigned, void*, int, void*, int);
@@ -15,15 +26,14 @@ int ble_rng_seed_from_uptime(void){
         uStack_4c = (unsigned)(prod >> 32);
         local_50 = ((unsigned)prod >> 0xf) | (uStack_4c << 17);
         uStack_4c = uStack_4c >> 0xf;
-        int iVar2 = tc_hmac_prng_reseed(((uintptr_t)&g_hmac_prng_ctx) /*=0x20006000*/, auStack_30, 0x20, &local_50, 8);
+        int iVar2 = tc_hmac_prng_reseed(((unsigned long)&g_hmac_prng_ctx) /*=0x20006000*/, auStack_30, 0x20, &local_50, 8);
         if (iVar2 == 0){
-            local_34 = "Failed to re-seed PRNG" /*=0xf394f*/;
+            local_34 = ((unsigned long)&rodata_f394f) /*=0xf394f*/;
             local_38 = 2;
             iVar1 = -5;
-            FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88148*/, 0x1040, &local_38, 0);
+            FUN_0004d944(((unsigned long)&rodata_88148) /*=0x88148*/, 0x1040, &local_38, 0);
         }
     }
     (void)uStack_4c; (void)local_34;
     return iVar1;
 }
-

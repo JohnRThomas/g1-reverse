@@ -27,8 +27,7 @@ void FUN_0102cbd8(int32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t
 
     int32_t iVar1 = FUN_0103b224(param_1 + 0x2c, 0, 1);
     if (iVar1 != 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "calation (see below)" /*=0x103d406*/, 0x2e);
-        FUN_01039bb0("calation (see below)" /*=0x103d406*/, 0x2e);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d406) /*=0x103d406*/, 0x2e);
+        FUN_01039bb0(((unsigned long)&rodata_103d406) /*=0x103d406*/, 0x2e);
     }
 }
-

@@ -1,8 +1,21 @@
-/* named: ui_raster_height_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000430c0 @ 0x000430c0
+ * public-name: ui_raster_height_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   ui_DashBoard_task                        <= FUN_0003af78 @ 0x0003af78
+ *   cal_panel_canvas_coord                   <= FUN_00042fb0 @ 0x00042fb0
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ * address symbols (name @ address):
+ *   rodata_aa7f2                             @ 0x000aa7f2
+ *   rodata_aa817                             @ 0x000aa817
+ *   rodata_aa83f                             @ 0x000aa83f
+ *   g_log_level                              @ 0x2000230c
+ *   g_display_canvas_y_cache                 @ 0x2000253c
+ *   g_display_canvas_x_cache                 @ 0x20002540
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed ui_raster_height_task @ 0x430c0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -62,4 +75,3 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
     }
     return 0;
 }
-

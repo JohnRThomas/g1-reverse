@@ -1,28 +1,32 @@
-/* named: mpu_region_index_lookup */
-/* Reconstructed mpu_region_index_lookup @ 0x50304  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00050304 @ 0x00050304
+ * public-name: mpu_region_index_lookup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   mpu_region_index_lookup                  <= FUN_00050304 @ 0x00050304
+ * address symbols (name @ address):
+ *   g_current_thread_ptr                     @ 0x2000b450
+ */
+/* Reconstructed FUN_00050304 @ 0x50304  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 unsigned long long mpu_region_index_lookup(int param_1, unsigned int param_2)
 {
     volatile uint32_t *g = (volatile uint32_t*)0x2000b450UL;
     uint32_t iVar5 = *g;
     if (iVar5 == (uint32_t)param_1) {
-        uint32_t ipsr;
-        __asm__ volatile ("mrs %0, ipsr" : "=r"(ipsr));
+        uint32_t ipsr = __get_IPSR();
         if (ipsr == 0) {
-            uint32_t old_basepri;
-            __asm__ volatile ("mrs %0, basepri" : "=r"(old_basepri));
-            __asm__ volatile ("msr basepri_max, %0" :: "r"(0x20) : "memory");
-            __asm__ volatile ("isb sy" ::: "memory");
+            uint32_t old_basepri = __get_BASEPRI();
+            __set_BASEPRI_MAX(0x20);
+            __ISB();
             volatile uint8_t *cbyte = (volatile uint8_t*)(uintptr_t)(iVar5 + 0xc);
             *cbyte = *cbyte & 0xfd;
-            uint32_t control;
-            __asm__ volatile ("mrs %0, control" : "=r"(control));
+            uint32_t control = __get_CONTROL();
             control &= ~4u;
-            __asm__ volatile ("msr control, %0" :: "r"(control) : "memory");
-            __asm__ volatile ("isb sy" ::: "memory");
-            __asm__ volatile ("msr basepri, %0" :: "r"(old_basepri) : "memory");
-            __asm__ volatile ("isb sy" ::: "memory");
+            __set_CONTROL(control);
+            __set_BASEPRI(old_basepri);
+            __ISB();
             return ((unsigned long long)old_basepri << 32) | 0u;
         }
     }

@@ -2,7 +2,8 @@
 /* net-core FUN_0103a2f8 @ 0x103a2f8  (parity 300 trials PROVEN) */
 /* net-core FUN_0103a2f8 @ 0x103a2f8  (parity 300 trials PROVEN) */
 
-
+typedef unsigned int uint32_t;
+typedef unsigned long uintptr_t;
 extern void FUN_0102de10(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void FUN_0103b614(uint32_t,uint32_t,uint32_t);
 extern void FUN_0102e1fc(uint32_t);
@@ -21,6 +22,3 @@ void FUN_0103a2f8(uint32_t *param_1, uint32_t param_2, uint32_t param_3, uint32_
   param_1[1] = param_2;
   FUN_0102e1fc((uint32_t)(uintptr_t)param_1);
 }
-
-
-

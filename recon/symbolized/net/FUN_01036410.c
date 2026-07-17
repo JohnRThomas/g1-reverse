@@ -1,26 +1,28 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01036410 @ 0x1036410  (parity 300 trials PROVEN) */
 #define ALWI __attribute__((always_inline)) static inline
-ALWI unsigned int readIPSR(void){unsigned c;__asm__ volatile("mrs %0, ipsr":"=r"(c));return c;}
-ALWI int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-ALWI int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-ALWI void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-ALWI void isb_(void){__asm__ volatile("isb sy":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+ALWI unsigned int readIPSR(void){return __get_IPSR();}
+ALWI int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+ALWI int getBasePriority(void){return (int)__get_BASEPRI();}
+ALWI void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+ALWI void isb_(void){__ISB();}
 
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
-extern int FUN_010375b8(unsigned int, int, void*);
+extern int FUN_010375b8(unsigned int, int, void*, int, int, int);
 extern int FUN_01037130(unsigned int, int);
 extern void FUN_01039bbe(int,int,int);
 extern void FUN_01039bb0(int,int);
 extern int FUN_0103b1c4(int,int);
 
-#define OBJ  ((uintptr_t)&g_net_mutexq_spinlock) /*=0x21004b48*/
-#define TAB  ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
-#define STRA "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define STR65 ((uintptr_t)&rodata_103eaab) /*=0x103eaab*/
-#define STR72 "***** HARD FAULT *****" /*=0x103d3b6*/
+#define OBJ  0x21004b48u
+#define TAB  0x21004b28u
+#define STRA ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define STR65 ((unsigned long)&rodata_103eaab) /*=0x103eaab*/
+#define STR72 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
 
 static void panic(int arg0, int code) __attribute__((noreturn));
 static void panic(int arg0, int code) { FUN_01039bb0(arg0, code); __builtin_unreachable(); }
@@ -88,9 +90,10 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
         if (cVar1 <= cVar5) cVar5 = cVar1;
         if (cVar5 < -0x7f) cVar5 = -0x7f;
         int iVar3b = 0;
-        if (cVar5 < cVar1) iVar3b = FUN_0103b1c4(0,0);
+        if (cVar5 < cVar1) iVar3b = FUN_0103b1c4(param_1[2], cVar5);
 
-        int iVar4 = FUN_010375b8(OBJ, saved_bp, param_1);
+        int iVar4 = FUN_010375b8(OBJ, saved_bp, param_1, cVar1,
+                                 param_3, param_4);
         if (iVar4 == 0) return 0;
 
         saved_bp = 0;
@@ -138,4 +141,3 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
     FUN_01039bbe(STRA, STR72, 0xf0);
     panic(STR72, 0xf0);
 }
-

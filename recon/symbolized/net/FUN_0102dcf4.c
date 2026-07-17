@@ -11,11 +11,11 @@ extern int FUN_0103a294(unsigned int);
 
 unsigned int FUN_0102dcf4(int param_1, int param_2)
 {
-    int *piVar5 = (int *)((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/; /* DAT_0102ddac */
-    int *piVar1 = (int *)((uintptr_t)&rodata_103c0fc) /*=0x103c0fc*/; /* DAT_0102dda8 */
+    int *piVar5 = (int *)((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/; /* DAT_0102ddac */
+    int *piVar1 = (int *)((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/; /* DAT_0102dda8 */
 
     if ((unsigned int)((int)piVar1 - (int)piVar5) < 0xa0) {
-        int iVar2 = FUN_0103a294(((uintptr_t)&g_net_cb_list_lock) /*=0x2100466c*/); /* DAT_0102ddb8 */
+        int iVar2 = FUN_0103a294(0x2100466cu); /* DAT_0102ddb8 */
         if (iVar2 != 0) {
             return 0;
         }
@@ -48,13 +48,12 @@ unsigned int FUN_0102dcf4(int param_1, int param_2)
                 uVar6 = uVar6 + 1;
             }
         }
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, " type: %u" /*=0x103d5d7*/, 0x126);
-        FUN_01039bb0(" type: %u" /*=0x103d5d7*/, 0x126);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x126);
+        FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x126);
         __builtin_unreachable();
     } else {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, " type: %u" /*=0x103d5d7*/, 0x119);
-        FUN_01039bb0(" type: %u" /*=0x103d5d7*/, 0x119);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x119);
+        FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x119);
         __builtin_unreachable();
     }
 }
-

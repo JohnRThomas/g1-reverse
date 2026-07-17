@@ -1,8 +1,21 @@
-/* named: FUN_000548b8 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
+/* readable reconstruction; identity: FUN_000548b8 @ 0x000548b8
+ * public-name: FUN_000548b8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
+ *   ver_str                                  <= FUN_00053344 @ 0x00053344
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_a8ea0                             @ 0x000a8ea0
+ *   rodata_f31a5                             @ 0x000f31a5
+ *   rodata_f31a9                             @ 0x000f31a9
+ *   rodata_f31b8                             @ 0x000f31b8
+ *   rodata_f31c9                             @ 0x000f31c9
+ *   rodata_f3207                             @ 0x000f3207
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
 /* Reconstructed FUN_000548b8 @ 0x548b8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned bt_addr_le_str(int);
@@ -43,4 +56,3 @@ void FUN_000548b8(void)
   FUN_00080ea2(0x00088138, 0x2cc0, &local_40);
   return;
 }
-

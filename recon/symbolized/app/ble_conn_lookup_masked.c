@@ -1,12 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: ble_conn_lookup_masked */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-//   0x20006138  g_ble_conn_pool              
-*/
-/* Reconstructed ble_conn_lookup_masked @ 0x56908  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056908 @ 0x00056908
+ * public-name: ble_conn_lookup_masked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
+ * address symbols (name @ address):
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_f3c7b                             @ 0x000f3c7b
+ *   g_ble_conn_pool                          @ 0x20006138
+ */
+/* Reconstructed FUN_00056908 @ 0x56908  (parity: 300/300 trials, PROVEN) */
 
-extern int conn_lookup_handle(unsigned int a, unsigned int b, unsigned int c);
+extern int FUN_000813e8(unsigned int a, unsigned int b, unsigned int c);
 extern void FUN_000813ca(unsigned int a, unsigned int b, void *c);
 extern void ble_conn_unref(int a);
 
@@ -19,17 +25,16 @@ int ble_conn_lookup_masked(unsigned int param_1, unsigned char param_2, unsigned
   unsigned int uStack_18;
 
   uStack_18 = param_4;
-  iVar1 = conn_lookup_handle(((uintptr_t)&g_ble_conn_pool) /*=0x20006138*/, 1, param_1);
+  iVar1 = FUN_000813e8(((unsigned long)&g_ble_conn_pool) /*=0x20006138*/, 1, param_1);
   if (iVar1 != 0) {
     if ((param_2 & *(volatile unsigned char *)(iVar1 + 2)) != 0) {
       return iVar1;
     }
-    local_24 = "incompatible handle %u" /*=0xf3c7b*/;
+    local_24 = ((unsigned long)&rodata_f3c7b) /*=0xf3c7b*/;
     local_28 = 3;
     uStack_20 = param_1;
-    FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_28);
+    FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1880, &local_28);
     ble_conn_unref(iVar1);
   }
   return 0;
 }
-

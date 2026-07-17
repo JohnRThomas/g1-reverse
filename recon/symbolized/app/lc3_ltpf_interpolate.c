@@ -1,9 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: lc3_ltpf_interpolate */
-/* Reconstructed lc3_ltpf_interpolate @ 0x69468  (parity: 141/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00069468 @ 0x00069468
+ * public-name: lc3_ltpf_interpolate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_interpolate                     <= FUN_00069468 @ 0x00069468
+ * address symbols (name @ address):
+ *   rodata_8bc98                             @ 0x0008bc98
+ */
+/* Reconstructed FUN_00069468 @ 0x69468  (parity: 141/300 trials, PROVEN) */
 #include <stdint.h>
 void lc3_ltpf_interpolate(int16_t* param_1, int param_2, int param_3, uint32_t param_4){
-    int16_t* psVar7=(int16_t*)(((uintptr_t)&tbl_8bc60) /*=0x8bc98*/+param_3*8);
+    int16_t* psVar7=(int16_t*)(((unsigned long)&rodata_8bc98) /*=0x8bc98*/+param_3*8);
     int iVar11=param_1[-2], iVar8=param_1[-1], iVar9=param_1[0];
     if(param_4 < param_4+(uint32_t)(param_2*2)){
         int16_t* psVar5=param_1+5;
@@ -21,4 +28,3 @@ void lc3_ltpf_interpolate(int16_t* param_1, int param_2, int param_3, uint32_t p
         } while(psVar5 != (int16_t*)((int)param_1+((param_2*2-1U)&0xfffffff8)+0x12));
     }
 }
-

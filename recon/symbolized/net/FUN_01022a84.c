@@ -30,7 +30,7 @@ extern void FUN_01025344(void);
 extern __attribute__((noreturn)) void FUN_010256dc(unsigned int, unsigned int);
 extern void FUN_0102583c(unsigned char);
 
-#define DAT_01022dbc ((volatile undefined4 *)((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/)
+#define DAT_01022dbc ((volatile undefined4 *)((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/)
 
 #define CARRY4(a, b) ((unsigned int)((a) + (b)) < (unsigned int)(a))
 

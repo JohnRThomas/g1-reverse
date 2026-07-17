@@ -7,7 +7,7 @@ void FUN_01020764(unsigned int param_1, unsigned int param_2, unsigned int param
                    unsigned int param_4)
 {
     unsigned int iVar2 = REG_41008000 /*=0x41008000*/;
-    unsigned int iVar3 = ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/;
+    unsigned int iVar3 = 0x210015f0;
     unsigned char bVar1 = *(volatile unsigned char *)(iVar3 + 0x35);
     unsigned int uVar4 = (unsigned int)bVar1;
 
@@ -30,5 +30,3 @@ void FUN_01020764(unsigned int param_1, unsigned int param_2, unsigned int param
         }
     }
 }
-
-

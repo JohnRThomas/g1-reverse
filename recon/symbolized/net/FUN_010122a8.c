@@ -9,4 +9,3 @@ int FUN_010122a8(unsigned char *param_1)
   }
   return iVar1;
 }
-

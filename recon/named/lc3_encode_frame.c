@@ -1,5 +1,18 @@
-/* named: lc3_encode_frame */
-/* Reconstructed lc3_encode_frame @ 0x69238  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00069238 @ 0x00069238
+ * public-name: lc3_encode_frame
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_correlate                       <= FUN_000682f0 @ 0x000682f0
+ *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_encode_frame                         <= FUN_00069238 @ 0x00069238
+ *   lc3_ltpf_analyse                         <= FUN_0006ab80 @ 0x0006ab80
+ *   lc3_ltpf_put_data                        <= FUN_0006b378 @ 0x0006b378
+ *   lc3_encode_pack_frame_header_bits        <= FUN_0006efdc @ 0x0006efdc
+ *   lc3_encode_pack_gain_bits                <= FUN_0006f91c @ 0x0006f91c
+ * address symbols (name @ address):
+ *   rodata_8bc88                             @ 0x0008bc88
+ */
+/* Reconstructed FUN_00069238 @ 0x69238  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -22,7 +35,7 @@ extern void lc3_encode_pack_gain_bits(void *a, uint b, uint c, void *d);
 extern void FUN_0006f9c0(void *a, uint b, uint c, unsigned d);
 extern void FUN_0006ffd8(uint a, unsigned b, int c, int d);
 extern void FUN_00070b38(void *a, void *b);
-extern void memmove(int a, int b, int c);
+extern void FUN_00086c44(int a, int b, int c);
 
 undefined4 lc3_encode_frame(byte *param_1, int param_2, undefined4 param_3, undefined4 param_4, int param_5, undefined4 param_6)
 {
@@ -42,7 +55,7 @@ undefined4 lc3_encode_frame(byte *param_1, int param_2, undefined4 param_3, unde
             local_1b4 = (uint)param_1[2];
             lc3_ltpf_correlate(uVar8, local_1b4, param_5, param_1 + 4);
             lc3_ltpf_analyse(uVar8, local_1b4, param_1 + 0x10, iVar11);
-            memmove(iVar11, iVar11, 0);
+            FUN_00086c44(iVar11, iVar11, 0);
             iVar10 = *(volatile int *)(param_1 + 0x4a4);
             FUN_0006b9b8(uVar8, local_1b4, uVar9, iVar10);
             iVar11 = FUN_00068b68(uVar8, uVar9, iVar10, auStack_128);
@@ -75,4 +88,3 @@ undefined4 lc3_encode_frame(byte *param_1, int param_2, undefined4 param_3, unde
     }
     return 0xffffffff;
 }
-

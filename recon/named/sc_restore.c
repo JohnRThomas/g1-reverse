@@ -1,8 +1,23 @@
-/* named: sc_restore */
-/* globals referenced:
-//   0x20002a20  g_bt_gatt_sc_ccc             
-*/
-/* Reconstructed sc_restore @ 0x5b554  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b554 @ 0x0005b554
+ * public-name: sc_restore
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   bt_gatt_indicate                         <= FUN_0005b378 @ 0x0005b378
+ *   sc_restore                               <= FUN_0005b554 @ 0x0005b554
+ *   bt_conn_get_security                     <= FUN_000814e2 @ 0x000814e2
+ *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
+ *   gatt_ccc_changed                         <= FUN_000825c0 @ 0x000825c0
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ * address symbols (name @ address):
+ *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
+ *   ADDR_sc_restore_rsp_THUMB                @ 0x00082bd5
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_8b3dc                             @ 0x0008b3dc
+ *   g_bt_gatt_sc_ccc                         @ 0x20002a20
+ *   sc_range                                 @ 0x2000ff14
+ */
+/* Reconstructed FUN_0005b554 @ 0x5b554  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000569a0(int,...);
 extern int find_sc_cfg_59bcc(int,...);
@@ -57,4 +72,3 @@ unsigned int sc_restore(int param_1, int param_2, int *param_3)
   }
   return 1;
 }
-

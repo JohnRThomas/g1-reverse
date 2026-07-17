@@ -1,5 +1,11 @@
-/* named: gatt_foreach_iter */
-/* Reconstructed gatt_foreach_iter @ 0x82712  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00082712 @ 0x00082712
+ * public-name: gatt_foreach_iter
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   gatt_foreach_iter                        <= FUN_00082712 @ 0x00082712
+ */
+/* Reconstructed FUN_00082712 @ 0x82712  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int (*fn8_82712)(void*, unsigned int, unsigned int);
 extern int bt_uuid_cmp(int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
@@ -24,4 +30,3 @@ unsigned int gatt_foreach_iter(unsigned int *param_1, unsigned int param_2, unsi
   }
   return 0;
 }
-

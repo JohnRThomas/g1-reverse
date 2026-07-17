@@ -1,5 +1,14 @@
-/* named: gatt_hash_settings_set */
-/* Reconstructed gatt_hash_settings_set @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a28c @ 0x0005a28c
+ * public-name: gatt_hash_settings_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_hash_settings_set                   <= FUN_0005a28c @ 0x0005a28c
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4783                             @ 0x000f4783
+ *   g_bt_gatt_db_hash                        @ 0x20006390
+ */
+/* Reconstructed FUN_0005a28c @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00082a42(unsigned int a, unsigned int b, void *c);
 typedef int (*fn_t)(unsigned int, unsigned int, unsigned int);
@@ -22,4 +31,3 @@ int gatt_hash_settings_set(unsigned int param_1, unsigned int param_2, fn_t para
         return 0;
     }
 }
-

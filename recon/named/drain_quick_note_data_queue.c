@@ -1,8 +1,13 @@
-/* named: drain_quick_note_data_queue */
-/* globals referenced:
-//   0x20003960  g_quicknote_flash_msgq       
-*/
-/* Reconstructed drain_quick_note_data_queue @ 0x243fc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000243fc @ 0x000243fc
+ * public-name: drain_quick_note_data_queue
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   drain_quick_note_data_queue              <= FUN_000243fc @ 0x000243fc
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ * address symbols (name @ address):
+ *   g_quicknote_flash_msgq                   @ 0x20003960
+ */
+/* Reconstructed FUN_000243fc @ 0x243fc  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int k_msgq_get(unsigned int, void *, unsigned int, unsigned int);
 
@@ -23,4 +28,3 @@ unsigned int drain_quick_note_data_queue(unsigned int param_1, unsigned int para
   }
   return uVar2;
 }
-

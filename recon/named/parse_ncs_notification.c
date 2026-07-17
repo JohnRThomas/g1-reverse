@@ -1,8 +1,33 @@
-/* named: parse_ncs_notification */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00034980 @ 0x00034980
+ * public-name: parse_ncs_notification
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strcmp                                   <= FUN_0000eefe @ 0x0000eefe
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   log_notification_fields_debug            <= FUN_0004a3d0 @ 0x0004a3d0
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_9b257                             @ 0x0009b257
+ *   rodata_9d759                             @ 0x0009d759
+ *   rodata_9d76c                             @ 0x0009d76c
+ *   rodata_9d775                             @ 0x0009d775
+ *   rodata_9d790                             @ 0x0009d790
+ *   rodata_9d79d                             @ 0x0009d79d
+ *   rodata_a81b7                             @ 0x000a81b7
+ *   rodata_a838d                             @ 0x000a838d
+ *   rodata_a83aa                             @ 0x000a83aa
+ *   rodata_a83ca                             @ 0x000a83ca
+ *   rodata_a83d1                             @ 0x000a83d1
+ *   rodata_a83d8                             @ 0x000a83d8
+ *   rodata_a83e9                             @ 0x000a83e9
+ *   rodata_f3fde                             @ 0x000f3fde
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed parse_ncs_notification @ 0x34980  (parity: 300/300 trials, PROVEN) */
 extern void DEBUG_PRINT(int,...);
 extern void debug_print(void);
@@ -60,4 +85,3 @@ void parse_ncs_notification(int param_1, int *param_2){
   cjson_delete(iVar1);
   log_notification_fields_debug(0x000a83d8, param_2);
 }
-

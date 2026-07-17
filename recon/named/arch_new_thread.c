@@ -1,5 +1,12 @@
-/* named: arch_new_thread */
-/* Reconstructed arch_new_thread @ 0x502c4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000502c4 @ 0x000502c4
+ * public-name: arch_new_thread
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_new_thread                          <= FUN_000502c4 @ 0x000502c4
+ * address symbols (name @ address):
+ *   rodata_fd00                              @ 0x0000fd00
+ */
+/* Reconstructed FUN_000502c4 @ 0x502c4  (parity: 300/300 trials, PROVEN) */
 
 void arch_new_thread(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6, int param_7)
 {
@@ -15,4 +22,3 @@ void arch_new_thread(int param_1, int param_2, int param_3, int param_4, int par
   *(int*)(param_1 + 0x50) = param_3 - 0x20;
   *(int*)(param_1 + 0xd4) = 0xfd00;
 }
-

@@ -1,5 +1,15 @@
-/* named: gatt_cf_write */
-/* Reconstructed gatt_cf_write @ 0x5a5bc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a5bc @ 0x0005a5bc
+ * public-name: gatt_cf_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   gatt_cf_write                            <= FUN_0005a5bc @ 0x0005a5bc
+ *   set_change_aware                         <= FUN_00082bb8 @ 0x00082bb8
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4889                             @ 0x000f4889
+ */
+/* Reconstructed FUN_0005a5bc @ 0x5a5bc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern uint8_t* find_cf_cfg(void);
@@ -43,4 +53,3 @@ int gatt_cf_write(int param_1, uint32_t param_2, uint8_t *param_3, int param_4, 
   }
   return param_4;
 }
-

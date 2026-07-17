@@ -1,7 +1,22 @@
-/* named: FUN_000727ac */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_000727ac @ 0x000727ac
+ * public-name: FUN_000727ac
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   z_queue_node_peek                        <= FUN_000864d0 @ 0x000864d0
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
 /* Reconstructed FUN_000727ac @ 0x727ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int z_spin_lock_valid(void*);
@@ -52,4 +67,3 @@ uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, uns
     assert_post_action(0x000f08c7, uVar8);
     return uVar3;
 }
-

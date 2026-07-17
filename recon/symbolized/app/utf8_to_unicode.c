@@ -1,9 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: utf8_to_unicode */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000477a0 @ 0x000477a0
+ * public-name: utf8_to_unicode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ * address symbols (name @ address):
+ *   rodata_d7499                             @ 0x000d7499
+ *   rodata_d74af                             @ 0x000d74af
+ *   rodata_d74bd                             @ 0x000d74bd
+ *   rodata_d752a                             @ 0x000d752a
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed utf8_to_unicode @ 0x477a0  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char byte;
@@ -23,11 +32,11 @@ uint utf8_to_unicode(byte *param_1, int param_2)
             uVar2 = ((param_1[1] >> 2) & 0xf) | ((uVar2 & 0xf) << 4);
             return uVar1 | (uVar2 << 8);
         }
-        if (*(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/ > 3) {
-            if (*(volatile unsigned int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT("%s(): length error!\n\n" /*=0xd7499*/, "utf8_to_unicode" /*=0xd752a*/);
+        if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 3) {
+            if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                DEBUG_PRINT(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
             } else {
-                debug_print("%s(): length error!\n\n" /*=0xd7499*/, "utf8_to_unicode" /*=0xd752a*/);
+                debug_print(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
             }
         }
     } else if ((uVar2 & 0xe0) == 0xc0) {
@@ -36,10 +45,9 @@ uint utf8_to_unicode(byte *param_1, int param_2)
             uVar2 = (uVar2 >> 2) & 7;
             return uVar1 | (uVar2 << 8);
         }
-        FUN_000778d4("length error!" /*=0xd74af*/);
+        FUN_000778d4(((unsigned long)&rodata_d74af) /*=0xd74af*/);
     } else {
-        printf("maybe [%x] not unicode ?\n" /*=0xd74bd*/);
+        printf(((unsigned long)&rodata_d74bd) /*=0xd74bd*/);
     }
     return 0;
 }
-

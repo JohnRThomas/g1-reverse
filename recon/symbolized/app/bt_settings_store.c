@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: bt_settings_store */
-/* Reconstructed bt_settings_store @ 0x52f18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00052f18 @ 0x00052f18
+ * public-name: bt_settings_store
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   settings_save_one                        <= FUN_0004e374 @ 0x0004e374
+ *   bt_settings_encode_key                   <= FUN_00052e7c @ 0x00052e7c
+ *   bt_settings_store                        <= FUN_00052f18 @ 0x00052f18
+ *   u8_to_dec                                <= FUN_0007dc4a @ 0x0007dc4a
+ *   snprintk                                 <= FUN_0007ddbe @ 0x0007ddbe
+ * address symbols (name @ address):
+ *   rodata_f2c6b                             @ 0x000f2c6b
+ */
+/* Reconstructed FUN_00052f18 @ 0x52f18  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int settings_save_one(void* a, unsigned int b, unsigned int c);
 extern void bt_settings_encode_key(void* a, unsigned int b, unsigned int c, int d, void* e);
@@ -15,7 +26,7 @@ unsigned int bt_settings_store(unsigned int param_1, unsigned char *param_2, int
   unsigned char auStack_34[36];
 
   if (param_3 == 0) {
-    iVar2 = snprintk(auStack_34, 0x24, "bt/%s" /*=0xf2c6b*/, param_1);
+    iVar2 = snprintk(auStack_34, 0x24, ((unsigned long)&rodata_f2c6b) /*=0xf2c6b*/, param_1);
     if (iVar2 < 0) {
       return 0xffffffea;
     }
@@ -29,4 +40,3 @@ unsigned int bt_settings_store(unsigned int param_1, unsigned char *param_2, int
   uVar1 = settings_save_one(auStack_34, param_4, param_5);
   return uVar1;
 }
-

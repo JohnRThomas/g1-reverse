@@ -1,9 +1,14 @@
-/* named: debounce_read_pending_flag_2 */
-/* globals referenced:
-//   0x20018da3  g_confirmed_state_flag_2     
-//   0x20018da6  g_ancs_inbox_flag_current    
-*/
-/* Reconstructed debounce_read_pending_flag_2 @ 0x2eba0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002eba0 @ 0x0002eba0
+ * public-name: debounce_read_pending_flag_2
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debounce_read_pending_flag_2             <= FUN_0002eba0 @ 0x0002eba0
+ * address symbols (name @ address):
+ *   rodata_a3ec1                             @ 0x000a3ec1
+ *   g_confirmed_state_flag_2                 @ 0x20018da3
+ *   g_ancs_inbox_flag_current                @ 0x20018da6
+ */
+/* Reconstructed FUN_0002eba0 @ 0x2eba0  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned int debounce_read_pending_flag_2(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
@@ -16,4 +21,3 @@ unsigned int debounce_read_pending_flag_2(unsigned int param_1,unsigned int para
   *(volatile unsigned char *)0x20018da3UL = bVar1;
   return uVar3;
 }
-

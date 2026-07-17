@@ -18,4 +18,3 @@ void FUN_010244cc(uint32_t param_1, int32_t *param_2, int8_t *param_3)
     *param_2 = iVar2 + 1;
     *param_3 = 0;
 }
-

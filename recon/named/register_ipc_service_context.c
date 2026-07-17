@@ -1,24 +1,32 @@
-/* named: register_ipc_service_context */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007a84  g_ipc0_endpoint              
-*/
+/* readable reconstruction; identity: FUN_00025d40 @ 0x00025d40
+ * public-name: register_ipc_service_context
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   rodata_25ae9                             @ 0x00025ae9
+ *   ADDR_global_ipc_service_send_THUMB       @ 0x00025b79
+ *   rodata_9af2e                             @ 0x0009af2e
+ *   rodata_9f6c6                             @ 0x0009f6c6
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ipc0_endpoint                          @ 0x20007a84
+ */
 /* Reconstructed register_ipc_service_context @ 0x25d40  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void debug_print(void);
+extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned int register_ipc_service_context(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     *(unsigned int*)(param_1+0x60) = 0x00025b79UL;
     *(unsigned int*)(param_1+0x64) = 0x00025ae9UL;
     *(volatile unsigned int*)0x20007a84UL = (unsigned int)param_1;
     if(*(volatile int*)0x2000230cUL > 1){
-        if(*(volatile unsigned int*)0x20007554UL==0){
-            DEBUG_PRINT(0x0009af2eUL,0x0009f6c6UL,param_3,0,param_4);
+        unsigned int sink=*(volatile unsigned int*)0x20007554UL;
+        if(sink==0){
+            DEBUG_PRINT(0x0009af2eUL,0x0009f6c6UL,param_3,sink,param_4);
         } else {
-            debug_print();
+            debug_print(0x0009af2eUL,0x0009f6c6UL,param_3,sink,param_4);
         }
     }
     return 0;
 }
-

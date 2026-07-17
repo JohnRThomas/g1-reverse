@@ -20,4 +20,3 @@ void FUN_01039846(int param_1, unsigned int param_2)
   FUN_010397ea((unsigned int)param_1, param_2, uVar2);
   return;
 }
-

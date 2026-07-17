@@ -1,8 +1,14 @@
-/* named: boot_uptime_seconds_capture */
-/* globals referenced:
-//   0x2000a0b0  g_boot_uptime_s              
-*/
-/* Reconstructed boot_uptime_seconds_capture @ 0x4a500  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a500 @ 0x0004a500
+ * public-name: boot_uptime_seconds_capture
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_ldivmod                          <= FUN_0000e1a4 @ 0x0000e1a4
+ *   boot_uptime_seconds_capture              <= FUN_0004a500 @ 0x0004a500
+ *   k_uptime_get_9                           <= FUN_0007d9a4 @ 0x0007d9a4
+ * address symbols (name @ address):
+ *   g_boot_uptime_s                          @ 0x2000a0b0
+ */
+/* Reconstructed FUN_0004a500 @ 0x4a500  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern uint64_t k_uptime_get_9(void);
@@ -17,4 +23,3 @@ void boot_uptime_seconds_capture(unsigned int param_1, unsigned int param_2, uns
     unsigned int uVar1 = __aeabi_ldivmod(lo, hi, 1000, 0, param_4);
     *(volatile uint32_t *)0x2000a0b0UL = uVar1;
 }
-

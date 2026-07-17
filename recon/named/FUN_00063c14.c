@@ -1,4 +1,10 @@
-/* named: FUN_00063c14 */
+/* readable reconstruction; identity: FUN_00063c14 @ 0x00063c14
+ * public-name: FUN_00063c14
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_caf_power_manager_timer                @ 0x200066f0
+ *   g_caf_power_manager_system_off_flag      @ 0x2001d563
+ */
 /* Reconstructed FUN_00063c14 @ 0x63c14  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00063be0(void);
@@ -17,4 +23,3 @@ void FUN_00063c14(int param_1)
   *(volatile unsigned char*)0x2001d563UL = (unsigned char)param_1;
   return;
 }
-

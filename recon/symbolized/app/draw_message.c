@@ -1,8 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: draw_message */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00035afc @ 0x00035afc
+ * public-name: draw_message
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   notification_icon_type_from_package      <= FUN_0003483c @ 0x0003483c
+ *   format_message_relative_time             <= FUN_000357dc @ 0x000357dc
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
+ *   gui_utf_draw_truncate                    <= FUN_00044818 @ 0x00044818
+ *   gui_utf_draw_middle                      <= FUN_00044bd8 @ 0x00044bd8
+ *   gui_utf_Wordwrap_draw                    <= FUN_000451e0 @ 0x000451e0
+ *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
+ * address symbols (name @ address):
+ *   rodata_35f24                             @ 0x00035f24
+ *   rodata_a8bcd                             @ 0x000a8bcd
+ *   rodata_a8be6                             @ 0x000a8be6
+ *   rodata_a8c09                             @ 0x000a8c09
+ *   rodata_a8c11                             @ 0x000a8c11
+ *   rodata_a8c34                             @ 0x000a8c34
+ *   rodata_a8c37                             @ 0x000a8c37
+ *   rodata_a8ce7                             @ 0x000a8ce7
+ *   rodata_f4ca5                             @ 0x000f4ca5
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed draw_message @ 0x35afc  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -17,13 +41,9 @@ typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
 static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
@@ -63,32 +83,32 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long debug_print();
-extern long long FUN_00034390();
-extern long long notification_icon_type_from_package();
-extern long long format_message_relative_time();
-extern long long gui_bmp_bitmap_draw();
-extern long long gui_utf_draw();
-extern long long gui_utf_draw_truncate();
-extern long long gui_utf_draw_middle();
-extern long long gui_utf_Wordwrap_draw();
-extern long long FUN_00077914();
-extern long long device_info_text_width_get();
-extern long long device_info_text_height_get_clamped();
-extern long long memset_bytes();
-extern long long vdprintf_to_fd();
-#define DAT_00035e74 ((volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00035e78 "draw_message" /*=0xa8ce7*/
-#define DAT_00035e7c "[%s-%d]curMsg is NULL !\n" /*=0xa8bcd*/
-#define DAT_00035e80 "show msgType is %d unReadCount %d\n" /*=0xa8be6*/
-#define DAT_00035e84 "%s" /*=0xa8c37*/
-#define DAT_00035e88 "%s | %s" /*=0xa8c09*/
-#define DAT_00035e8c "recvTime is %u,curMsg->message %s\n" /*=0xa8c11*/
-#define DAT_00035e90 "%u" /*=0xf4ca5*/
-#define DAT_00035f1c "%s\n%s" /*=0xa8c34*/
-#define DAT_00035f20 "%s" /*=0xa8c37*/
-#define DAT_00035f24 (*(volatile int*)((uintptr_t)&tbl_35f1c) /*=0x35f24*/)
+extern long long DEBUG_PRINT(long long format, ...);
+extern long long debug_print(void);
+extern long long FUN_00034390(void);
+extern long long notification_icon_type_from_package(void);
+extern long long format_message_relative_time(long long, long long);
+extern long long gui_bmp_bitmap_draw(long long,long long,long long,long long,long long,long long);
+extern long long gui_utf_draw(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long gui_utf_draw_truncate(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long gui_utf_draw_middle(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long gui_utf_Wordwrap_draw(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
+extern long long FUN_00077914(long long destination, long long size, long long format, ...);
+extern long long device_info_text_width_get(void);
+extern long long device_info_text_height_get_clamped(void);
+extern long long memset_bytes(long long,long long,long long);
+extern long long vdprintf_to_fd(long long,long long,long long,long long,long long);
+#define DAT_00035e74 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define DAT_00035e78 ((unsigned long)&rodata_a8ce7) /*=0xa8ce7*/
+#define DAT_00035e7c ((unsigned long)&rodata_a8bcd) /*=0xa8bcd*/
+#define DAT_00035e80 ((unsigned long)&rodata_a8be6) /*=0xa8be6*/
+#define DAT_00035e84 ((unsigned long)&rodata_a8c37) /*=0xa8c37*/
+#define DAT_00035e88 ((unsigned long)&rodata_a8c09) /*=0xa8c09*/
+#define DAT_00035e8c ((unsigned long)&rodata_a8c11) /*=0xa8c11*/
+#define DAT_00035e90 ((unsigned long)&rodata_f4ca5) /*=0xf4ca5*/
+#define DAT_00035f1c ((unsigned long)&rodata_a8c34) /*=0xa8c34*/
+#define DAT_00035f20 ((unsigned long)&rodata_a8c37) /*=0xa8c37*/
+#define DAT_00035f24 (*(volatile int*)((unsigned long)&rodata_35f24) /*=0x35f24*/)
 
 
 void draw_message(undefined4 param_1,undefined4 *param_2)
@@ -111,7 +131,7 @@ void draw_message(undefined4 param_1,undefined4 *param_2)
   undefined1 auStack_188 [68];
   uint local_144;
   undefined1 auStack_140 [288];
-  
+
   local_18c = 0;
   memset_bytes(auStack_188,0,0x44);
   local_1ac = 0;
@@ -257,5 +277,3 @@ LAB_00035de8:
   gui_utf_Wordwrap_draw(0,&local_144,0,uVar6,iVar2 + 0x36,iVar7 + 0x240,iVar3 + 0x87,3,0,0,0,0);
   return;
 }
-
-

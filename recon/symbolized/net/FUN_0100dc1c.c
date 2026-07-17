@@ -161,4 +161,3 @@ LAB_0100dd56:
     *(volatile char *)(param_1 + 0x33) = cVar2 + (char)(uVar4 << 3);
     return 0;
 }
-

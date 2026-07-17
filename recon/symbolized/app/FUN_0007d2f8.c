@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007d2f8 */
+/* readable reconstruction; identity: FUN_0007d2f8 @ 0x0007d2f8
+ * public-name: FUN_0007d2f8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ */
 /* Reconstructed FUN_0007d2f8 @ 0x7d2f8  (parity: 300/300 trials, PROVEN) */
 
 extern void* get_device_info(void);
@@ -26,4 +31,3 @@ void FUN_0007d2f8(unsigned int param_1)
     }
   }
 }
-

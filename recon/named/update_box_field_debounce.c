@@ -1,8 +1,13 @@
-/* named: update_box_field_debounce */
-/* globals referenced:
-//   0x20007a10  g_box_last_seen_uptime       
-*/
-/* Reconstructed update_box_field_debounce @ 0x25474  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00025474 @ 0x00025474
+ * public-name: update_box_field_debounce
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   is_box_field_timer_expired               <= FUN_00025458 @ 0x00025458
+ *   update_box_field_debounce                <= FUN_00025474 @ 0x00025474
+ * address symbols (name @ address):
+ *   g_box_last_seen_uptime                   @ 0x20007a10
+ */
+/* Reconstructed FUN_00025474 @ 0x25474  (parity: 300/300 trials, PROVEN) */
 
 extern int is_box_field_timer_expired(void);
 extern int thunk_FUN_00074f68(void);
@@ -25,4 +30,3 @@ unsigned int update_box_field_debounce(void)
   }
   return uVar3;
 }
-

@@ -1,5 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000732d4 */
+/* readable reconstruction; identity: FUN_000732d4 @ 0x000732d4
+ * public-name: FUN_000732d4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f820f                             @ 0x000f820f
+ *   rodata_f8230                             @ 0x000f8230
+ *   rodata_f82df                             @ 0x000f82df
+ */
 /* Reconstructed FUN_000732d4 @ 0x732d4  (parity: 300/300 trials, PROVEN) */
 
 extern void assert_post_action(void*, int);
@@ -11,7 +23,7 @@ void FUN_000732d4(int param_1, int param_2, unsigned int param_3, unsigned int p
   unsigned int uVar1;
 
   if (param_1 == 0) {
-    printk((void*)"ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,(void*)"dwork != ((void *)0)" /*=0xf82df*/,(void*)"WEST_TOPDIR/zephyr/kernel/work.c" /*=0xf820f*/,0x340);
+    printk((void*)((unsigned long)&rodata_99cbd) /*=0x99cbd*/,(void*)((unsigned long)&rodata_f82df) /*=0xf82df*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x340);
     uVar1 = 0x340;
   } else {
     if (param_2 != 0) {
@@ -20,9 +32,8 @@ void FUN_000732d4(int param_1, int param_2, unsigned int param_3, unsigned int p
       *(volatile unsigned int*)(param_1 + 0xc) = 0x100;
       return;
     }
-    printk((void*)"ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,(void*)"handler != ((void *)0)" /*=0xf8230*/,(void*)"WEST_TOPDIR/zephyr/kernel/work.c" /*=0xf820f*/,0x341);
+    printk((void*)((unsigned long)&rodata_99cbd) /*=0x99cbd*/,(void*)((unsigned long)&rodata_f8230) /*=0xf8230*/,(void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,0x341);
     uVar1 = 0x341;
   }
-  assert_post_action((void*)"WEST_TOPDIR/zephyr/kernel/work.c" /*=0xf820f*/,uVar1);
+  assert_post_action((void*)((unsigned long)&rodata_f820f) /*=0xf820f*/,uVar1);
 }
-

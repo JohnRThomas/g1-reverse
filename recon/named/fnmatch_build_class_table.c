@@ -1,5 +1,10 @@
-/* named: fnmatch_build_class_table */
-/* Reconstructed fnmatch_build_class_table @ 0x8789c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008789c @ 0x0008789c
+ * public-name: fnmatch_build_class_table
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fnmatch_build_class_table                <= FUN_0008789c @ 0x0008789c
+ */
+/* Reconstructed FUN_0008789c @ 0x8789c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 uint8_t *fnmatch_build_class_table(int param_1, uint8_t *param_2){
   uint8_t *pbVar1,*pbVar2,*pbVar4; uint8_t bVar3; int iVar5; unsigned int uVar6,uVar7,uVar8;
@@ -30,4 +35,3 @@ uint8_t *fnmatch_build_class_table(int param_1, uint8_t *param_2){
   }
   return pbVar2;
 }
-

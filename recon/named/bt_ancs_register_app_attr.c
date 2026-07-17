@@ -1,5 +1,10 @@
-/* named: bt_ancs_register_app_attr */
-/* Reconstructed bt_ancs_register_app_attr @ 0x7f79e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f79e @ 0x0007f79e
+ * public-name: bt_ancs_register_app_attr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_ancs_register_app_attr                <= FUN_0007f79e @ 0x0007f79e
+ */
+/* Reconstructed FUN_0007f79e @ 0x7f79e  (parity: 300/300 trials, PROVEN) */
 
 int bt_ancs_register_app_attr(int param_1, int param_2, int param_3, int param_4)
 {
@@ -14,4 +19,3 @@ int bt_ancs_register_app_attr(int param_1, int param_2, int param_3, int param_4
   }
   return uVar1;
 }
-

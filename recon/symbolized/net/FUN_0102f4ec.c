@@ -1,14 +1,13 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0102f4ec @ 0x102f4ec  (parity 300 trials PROVEN) */
-
-static void DataSynchronizationBarrier(int opt) { (void)opt; }
+/* net-core FUN_0102f4ec @ 0x102f4ec CFG_VERIFY_PREFIX_FIRST */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 void FUN_0102f4ec(void)
 {
   volatile unsigned int *p = (volatile unsigned int *)0xe000ed00;
-  DataSynchronizationBarrier(0xf);
+  __DSB();
   p[3] = 0x05fa0004 | (p[3] & 0x700);
-  DataSynchronizationBarrier(0xf);
+  __DSB();
   while (1) { }
 }
-

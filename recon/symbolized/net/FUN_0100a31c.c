@@ -4,7 +4,7 @@ extern unsigned int FUN_01027af2(unsigned short);
 extern unsigned int FUN_01027b0c(unsigned short);
 extern unsigned int FUN_01027b32(unsigned short);
 
-#define DAT_0100a43c ((uintptr_t)&g_net_storage_area_id) /*=0x21000bc0*/
+#define DAT_0100a43c ((unsigned long)&g_net_storage_area_id) /*=0x21000bc0*/
 
 void FUN_0100a31c(int param_1, char param_2)
 {
@@ -45,4 +45,3 @@ void FUN_0100a31c(int param_1, char param_2)
   }
   return;
 }
-

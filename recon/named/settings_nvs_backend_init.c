@@ -1,5 +1,12 @@
-/* named: settings_nvs_backend_init */
-/* Reconstructed settings_nvs_backend_init @ 0x7f344  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f344 @ 0x0007f344
+ * public-name: settings_nvs_backend_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvs_mount                                <= FUN_0004c548 @ 0x0004c548
+ *   settings_nvs_read_latest                 <= FUN_0007e9dc @ 0x0007e9dc
+ *   settings_nvs_backend_init                <= FUN_0007f344 @ 0x0007f344
+ */
+/* Reconstructed FUN_0007f344 @ 0x7f344  (parity: 300/300 trials, PROVEN) */
 
 extern int nvs_mount(void*);
 extern int settings_nvs_read_latest(void*, unsigned int, unsigned short*, unsigned int);
@@ -24,4 +31,3 @@ int settings_nvs_backend_init(char *param_1, unsigned int param_2)
   }
   return iVar1;
 }
-

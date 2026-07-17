@@ -1,5 +1,32 @@
-/* named: nvs_mount */
-/* Reconstructed nvs_mount @ 0x4c548  (parity: 150/150 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004c548 @ 0x0004c548
+ * public-name: nvs_mount
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvs_mount                                <= FUN_0004c548 @ 0x0004c548
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   nvs_sector_advance                       <= FUN_0007e55a @ 0x0007e55a
+ *   nvs_log_err                              <= FUN_0007e658 @ 0x0007e658
+ *   nvs_al_size                              <= FUN_0007e65e @ 0x0007e65e
+ *   nvs_add_gc_done_ate                      <= FUN_0007e80c @ 0x0007e80c
+ *   flash_get_page_info_by_offs              <= FUN_00083a92 @ 0x00083a92
+ *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_881b8                             @ 0x000881b8
+ *   rodata_f0af8                             @ 0x000f0af8
+ *   rodata_f0b1a                             @ 0x000f0b1a
+ *   rodata_f0b37                             @ 0x000f0b37
+ *   rodata_f0b4f                             @ 0x000f0b4f
+ *   rodata_f0b63                             @ 0x000f0b63
+ *   rodata_f0b86                             @ 0x000f0b86
+ *   rodata_f0b9d                             @ 0x000f0b9d
+ *   rodata_f0baf                             @ 0x000f0baf
+ *   rodata_f0bc0                             @ 0x000f0bc0
+ *   rodata_f0be7                             @ 0x000f0be7
+ */
+/* Reconstructed FUN_0004c548 @ 0x4c548  (parity: 300/300 trials, PROVEN) */
+
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
@@ -13,10 +40,6 @@ typedef signed char sbyte; typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 
 #define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
 #define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
@@ -47,20 +70,20 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ vola
 #define __ROL4(x,n) (((unsigned)(x)<<((n)&31))|((unsigned)(x)>>((32-(n))&31)))
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-(n))&31)))
 
-extern long long nvs_recover_last_ate();
-extern long long k_mutex_lock();
-extern long long k_mutex_unlock();
-extern long long nvs_flash_rd();
-extern long long nvs_sector_advance();
-extern long long nvs_flash_cmp_const();
-extern long long nvs_flash_erase_sector();
-extern long long nvs_log_err();
-extern long long nvs_al_size();
-extern long long nvs_ate_valid();
-extern long long nvs_add_gc_done_ate();
-extern long long nvs_gc();
-extern long long flash_get_page_info_by_offs();
-extern long long kmutex_dlist_init();
+extern long long FUN_0004c4e4(long long, long long);
+extern long long k_mutex_lock(long long, long long, long long, long long);
+extern long long k_mutex_unlock(long long);
+extern long long FUN_0007e53e(long long, long long, long long, long long);
+extern long long nvs_sector_advance(long long, long long);
+extern long long FUN_0007e5da(long long, long long, long long, long long);
+extern long long FUN_0007e624(long long, ...);
+extern long long nvs_log_err(long long, long long, long long);
+extern long long nvs_al_size(long long, long long);
+extern long long FUN_0007e672(long long, long long);
+extern long long nvs_add_gc_done_ate(long long);
+extern long long FUN_0007e83a(long long);
+extern long long flash_get_page_info_by_offs(long long, long long, long long);
+extern long long kmutex_dlist_init(long long);
 #define DAT_0004c7a0 0xf0af8UL
 #define DAT_0004c7a4 0x881b8UL
 #define DAT_0004c7a8 0xf0b1aUL
@@ -105,7 +128,7 @@ int nvs_mount(undefined4 *param_1)
   uint local_48;
   undefined4 local_30;
   undefined4 local_2c;
-  
+
   puVar9 = param_1 + 5;
   kmutex_dlist_init(puVar9);
   iVar2 = (**(code **)(*(int *)(param_1[10] + 8) + 0xc))();
@@ -132,11 +155,11 @@ LAB_0004c56a:
   uVar8 = 0;
   for (uVar10 = 0; (uVar10 & 0xffff) < (uint)*(ushort *)((int)param_1 + 0xe); uVar10 = uVar10 + 1) {
     local_60 = uVar10 * 0x10000 + ((uint)*(ushort *)(param_1 + 3) - iVar2 & 0xffff);
-    iVar4 = nvs_flash_cmp_const(param_1,local_60,cVar1,8);
+    iVar4 = FUN_0007e5da(param_1,local_60,cVar1,8);
     if (iVar4 != 0) {
       nvs_sector_advance(param_1,&local_60);
       uVar8 = uVar8 + 1 & 0xffff;
-      iVar4 = nvs_flash_cmp_const(param_1,local_60,cVar1,8);
+      iVar4 = FUN_0007e5da(param_1,local_60,cVar1,8);
       if (iVar4 == 0) break;
     }
   }
@@ -145,16 +168,16 @@ LAB_0004c56a:
     return -0x2d;
   }
   if (((uint)*(ushort *)((int)param_1 + 0xe) == (uVar10 & 0xffff)) &&
-     (iVar4 = nvs_flash_cmp_const(param_1,local_60 - iVar2,cVar1,8), iVar4 == 0)) {
+     (iVar4 = FUN_0007e5da(param_1,local_60 - iVar2,cVar1,8), iVar4 == 0)) {
     nvs_sector_advance(param_1,&local_60);
   }
-  iVar4 = nvs_recover_last_ate(param_1,&local_60);
+  iVar4 = FUN_0004c4e4(param_1,&local_60);
   if (iVar4 == 0) {
     uVar10 = local_60 & 0xffff0000;
     param_1[1] = local_60;
     param_1[2] = uVar10;
     while ((uint)param_1[2] <= (uint)param_1[1]) {
-      iVar4 = nvs_flash_rd(param_1,param_1[1],local_5c,8);
+      iVar4 = FUN_0007e53e(param_1,param_1[1],local_5c,8);
       if (iVar4 != 0) goto LAB_0004c672;
       iVar4 = 0;
       pcVar7 = local_5c;
@@ -163,7 +186,7 @@ LAB_0004c56a:
         pcVar7 = pcVar7 + 1;
         if (iVar4 == 8) goto LAB_0004c6b2;
       }
-      iVar4 = nvs_ate_valid(param_1,local_5c);
+      iVar4 = FUN_0007e672(param_1,local_5c);
       iVar5 = param_1[1];
       if (iVar4 != 0) {
         uVar8 = (uint)local_58;
@@ -180,14 +203,14 @@ LAB_0004c56a:
 LAB_0004c6b2:
     local_60 = param_1[1] & 0xffff0000;
     nvs_sector_advance(param_1,&local_60);
-    iVar4 = nvs_flash_cmp_const(param_1,local_60,cVar1,*(undefined2 *)(param_1 + 3));
+    iVar4 = FUN_0007e5da(param_1,local_60,cVar1,*(undefined2 *)(param_1 + 3));
     if (iVar4 < 0) goto LAB_0004c672;
     uVar10 = param_1[1];
     if (iVar4 == 0) {
       while( true ) {
         uVar10 = param_1[2];
         if ((uint)param_1[1] <= uVar10) break;
-        iVar4 = nvs_flash_cmp_const(param_1,uVar10,cVar1,param_1[1] - uVar10);
+        iVar4 = FUN_0007e5da(param_1,uVar10,cVar1,param_1[1] - uVar10);
         if (iVar4 < 0) goto LAB_0004c672;
         if (iVar4 == 0) break;
         param_1[2] = param_1[2] + *(int *)param_1[0xb];
@@ -195,7 +218,7 @@ LAB_0004c6b2:
       uVar10 = DAT_0004c8f4;
       if ((param_1[1] + iVar2 * 2 == (uint)*(ushort *)(param_1 + 3)) &&
          (param_1[2] != (param_1[1] & DAT_0004c8f4))) {
-        iVar4 = nvs_flash_erase_sector(param_1);
+        iVar4 = FUN_0007e624(param_1);
         if (iVar4 != 0) goto LAB_0004c672;
         param_1[2] = param_1[1] & uVar10;
         goto LAB_0004c814;
@@ -209,25 +232,25 @@ LAB_0004c6b2:
           local_2c = DAT_0004c7b8;
           local_30 = 2;
           nvs_log_err(DAT_0004c7a4,0x10c0,&local_30);
-          iVar4 = nvs_flash_erase_sector(param_1,param_1[1]);
+          iVar4 = FUN_0007e624(param_1,param_1[1]);
           uVar10 = DAT_0004c7bc;
           if (iVar4 != 0) goto LAB_0004c672;
           uVar8 = (param_1[1] & DAT_0004c7bc) + (uint)*(ushort *)(param_1 + 3) + iVar2 * -2;
           param_1[1] = uVar8;
           param_1[2] = uVar8 & uVar10;
-          iVar4 = nvs_gc(param_1);
+          iVar4 = FUN_0007e83a(param_1);
           goto LAB_0004c730;
         }
-        iVar4 = nvs_flash_rd(param_1,uVar10,local_54,8);
+        iVar4 = FUN_0007e53e(param_1,uVar10,local_54,8);
         if (iVar4 != 0) goto LAB_0004c672;
-        iVar4 = nvs_ate_valid(param_1,local_54);
+        iVar4 = FUN_0007e672(param_1,local_54);
       } while (((iVar4 == 0) || (local_54[0] != -1)) || (local_50 != 0));
       local_2c = DAT_0004c8f0;
       local_30 = 2;
       nvs_log_err(DAT_0004c8e4,0x10c0,&local_30);
       local_60 = param_1[1] & 0xffff0000;
       nvs_sector_advance(param_1,&local_60);
-      iVar4 = nvs_flash_erase_sector(param_1,local_60);
+      iVar4 = FUN_0007e624(param_1,local_60);
     }
 LAB_0004c730:
     if (iVar4 == 0) {
@@ -266,5 +289,3 @@ LAB_0004c672:
   k_mutex_unlock(puVar9);
   return iVar4;
 }
-
-

@@ -1,20 +1,35 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00085a9c */
-/* Reconstructed FUN_00085a9c @ 0x85a9c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085a9c @ 0x00085a9c
+ * public-name: FUN_00085a9c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   virtqueue_add_buffer                     <= FUN_0008567c @ 0x0008567c
+ *   virtqueue_get_buffer_length              <= FUN_000857a8 @ 0x000857a8
+ *   mutex_lock_wait_forever_dup              <= FUN_000859b6 @ 0x000859b6
+ */
+/* Reconstructed FUN_00085a9c @ 0x85a9c (exact 82-byte extent). */
 #include <stdint.h>
-extern int virtqueue_add_buffer(int,int,int,int,int);
-extern int virtqueue_get_buffer_length(int,int);
-extern int FUN_000857e0(int);
-extern int mutex_lock_wait_forever_dup(int);
-extern int thunk_FUN_00072880(int);
-int FUN_00085a9c(char *param_1, char *param_2){
-    uint32_t uVar2 = *(volatile uint32_t*)(param_2 - 8);
-    mutex_lock_wait_forever_dup((int)(param_1+0x58));
-    int uVar1 = virtqueue_get_buffer_length(*(volatile int*)(param_1+0xa4), uVar2 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/);
-    if(*(volatile int*)(*(volatile int*)(param_1+0xa0)+0x18)==0){
-        virtqueue_add_buffer(*(volatile int*)(param_1+0xa4), (int)(param_2-0x10), 0, 1, uVar1);
-    }
-    FUN_000857e0(*(volatile int*)(param_1+0xa4));
-    return thunk_FUN_00072880((int)(param_1+0x58));
-}
 
+extern void mutex_lock_wait_forever_dup(void *lock, void *record);
+extern uint32_t virtqueue_get_buffer_length(uint32_t object, uint32_t tag);
+extern void virtqueue_add_buffer(uint32_t object, uint32_t item[2], uint32_t zero,
+                         uint32_t one);
+extern uint64_t FUN_000857e0(uint32_t object);
+extern int FUN_000859b2(void *lock, uint32_t inherited_r1, uint32_t zero,
+                        uint32_t one);
+
+int FUN_00085a9c(uint8_t *context, uint8_t *record)
+{
+    uint32_t tag = *(uint32_t *)(record - 8) & 0xffffu;
+    void *lock = context + 0x58;
+    mutex_lock_wait_forever_dup(lock, record);
+
+    uint32_t object = *(uint32_t *)(context + 0xa4);
+    uint32_t result = virtqueue_get_buffer_length(object, tag);
+    uint32_t item[2] = {(uint32_t)(uintptr_t)(record - 0x10), result};
+    if (*(uint32_t *)(*(uint32_t *)(context + 0xa0) + 0x18) == 0)
+        virtqueue_add_buffer(object, item, 0, 1);
+
+    uint64_t inherited = FUN_000857e0(object);
+    return FUN_000859b2(lock, (uint32_t)(inherited >> 32), 0, 1);
+}

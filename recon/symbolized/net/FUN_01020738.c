@@ -6,9 +6,9 @@ extern void FUN_01008d00(unsigned int a, unsigned int b);
 
 void FUN_01020738(unsigned int *param_1)
 {
-  int r = FUN_01025bd4(((uintptr_t)&rodata_10208e1) /*=0x10208e1*/);
+  int r = FUN_01025bd4(((unsigned long)&rodata_10208e1) /*=0x10208e1*/);
   if (r == 0) {
-    volatile unsigned int *dst = (volatile unsigned int*)((uintptr_t)&g_net_ble_session_key_buf) /*=0x2100163c*/;
+    volatile unsigned int *dst = (volatile unsigned int*)((unsigned long)&g_net_ble_session_key_buf) /*=0x2100163c*/;
     dst[0]=param_1[0]; dst[1]=param_1[1]; dst[2]=param_1[2]; dst[3]=param_1[3];
     return;
   }
@@ -16,4 +16,3 @@ void FUN_01020738(unsigned int *param_1)
     FUN_01008d00(0x3e, 0x8c0);
   }
 }
-

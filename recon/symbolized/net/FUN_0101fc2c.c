@@ -3,8 +3,7 @@
 
 void FUN_0101fc2c(void)
 {
-    volatile unsigned char * const p = (volatile unsigned char * const)((uintptr_t)&g_net_ccm_op_status) /*=0x210014d8*/;
+    volatile unsigned char * const p = (volatile unsigned char * const)((unsigned long)&g_net_ccm_op_status) /*=0x210014d8*/;
     p[0] = 0;
     *(volatile unsigned short *)(p + 1) = 0x1000;
 }
-

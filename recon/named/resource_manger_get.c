@@ -1,8 +1,133 @@
-/* named: resource_manger_get */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0004588c @ 0x0004588c
+ * public-name: resource_manger_get
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_clock_digit_glyph_offset_large       <= FUN_00045764 @ 0x00045764
+ *   get_clock_digit_glyph_offset_small       <= FUN_000457b0 @ 0x000457b0
+ *   get_font_style3_glyph_offset             <= FUN_000457f4 @ 0x000457f4
+ *   get_default_font_glyph_offset            <= FUN_00045840 @ 0x00045840
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ff41                              @ 0x0000ff41
+ *   rodata_a1ce0                             @ 0x000a1ce0
+ *   rodata_bbfee                             @ 0x000bbfee
+ *   rodata_bc04c                             @ 0x000bc04c
+ *   rodata_bc083                             @ 0x000bc083
+ *   rodata_bc097                             @ 0x000bc097
+ *   rodata_bc181                             @ 0x000bc181
+ *   rodata_bc26b                             @ 0x000bc26b
+ *   rodata_bc355                             @ 0x000bc355
+ *   rodata_bc43f                             @ 0x000bc43f
+ *   rodata_bc529                             @ 0x000bc529
+ *   rodata_bc613                             @ 0x000bc613
+ *   rodata_bc6fd                             @ 0x000bc6fd
+ *   rodata_bc7ca                             @ 0x000bc7ca
+ *   rodata_bc7e0                             @ 0x000bc7e0
+ *   rodata_bc7f1                             @ 0x000bc7f1
+ *   rodata_bccd3                             @ 0x000bccd3
+ *   rodata_bd1b5                             @ 0x000bd1b5
+ *   rodata_bd697                             @ 0x000bd697
+ *   rodata_bdb79                             @ 0x000bdb79
+ *   rodata_be05b                             @ 0x000be05b
+ *   rodata_be53d                             @ 0x000be53d
+ *   rodata_bea1f                             @ 0x000bea1f
+ *   rodata_bef01                             @ 0x000bef01
+ *   rodata_bf3e3                             @ 0x000bf3e3
+ *   rodata_bf8c5                             @ 0x000bf8c5
+ *   rodata_bfda7                             @ 0x000bfda7
+ *   rodata_c0289                             @ 0x000c0289
+ *   rodata_c076b                             @ 0x000c076b
+ *   rodata_c0c4d                             @ 0x000c0c4d
+ *   rodata_c112f                             @ 0x000c112f
+ *   rodata_c1611                             @ 0x000c1611
+ *   rodata_c1af3                             @ 0x000c1af3
+ *   rodata_c1fd5                             @ 0x000c1fd5
+ *   rodata_c24b7                             @ 0x000c24b7
+ *   rodata_c2999                             @ 0x000c2999
+ *   rodata_c2e7b                             @ 0x000c2e7b
+ *   rodata_c335d                             @ 0x000c335d
+ *   rodata_c383f                             @ 0x000c383f
+ *   rodata_c3d21                             @ 0x000c3d21
+ *   rodata_c4203                             @ 0x000c4203
+ *   rodata_c46e5                             @ 0x000c46e5
+ *   rodata_c4bc7                             @ 0x000c4bc7
+ *   rodata_c50a9                             @ 0x000c50a9
+ *   rodata_c558b                             @ 0x000c558b
+ *   rodata_c5a6d                             @ 0x000c5a6d
+ *   rodata_c5f4f                             @ 0x000c5f4f
+ *   rodata_c6431                             @ 0x000c6431
+ *   rodata_c6913                             @ 0x000c6913
+ *   rodata_c6df5                             @ 0x000c6df5
+ *   rodata_c72d7                             @ 0x000c72d7
+ *   rodata_c7309                             @ 0x000c7309
+ *   rodata_c733b                             @ 0x000c733b
+ *   rodata_c736d                             @ 0x000c736d
+ *   rodata_c739f                             @ 0x000c739f
+ *   rodata_c73fa                             @ 0x000c73fa
+ *   rodata_c74c2                             @ 0x000c74c2
+ *   rodata_c758a                             @ 0x000c758a
+ *   rodata_c760a                             @ 0x000c760a
+ *   rodata_c768a                             @ 0x000c768a
+ *   rodata_c77c4                             @ 0x000c77c4
+ *   rodata_c7956                             @ 0x000c7956
+ *   rodata_c7a90                             @ 0x000c7a90
+ *   rodata_c7c22                             @ 0x000c7c22
+ *   rodata_c7e92                             @ 0x000c7e92
+ *   rodata_c7f5a                             @ 0x000c7f5a
+ *   rodata_c805e                             @ 0x000c805e
+ *   rodata_c8162                             @ 0x000c8162
+ *   rodata_c81a3                             @ 0x000c81a3
+ *   rodata_c82db                             @ 0x000c82db
+ *   rodata_c83a3                             @ 0x000c83a3
+ *   rodata_c846b                             @ 0x000c846b
+ *   rodata_c8533                             @ 0x000c8533
+ *   rodata_c85fb                             @ 0x000c85fb
+ *   rodata_c86c3                             @ 0x000c86c3
+ *   rodata_c87c7                             @ 0x000c87c7
+ *   rodata_c88cb                             @ 0x000c88cb
+ *   rodata_c89cf                             @ 0x000c89cf
+ *   rodata_c8a97                             @ 0x000c8a97
+ *   rodata_c8b5f                             @ 0x000c8b5f
+ *   rodata_c8c27                             @ 0x000c8c27
+ *   rodata_c8cef                             @ 0x000c8cef
+ *   rodata_c8db7                             @ 0x000c8db7
+ *   rodata_c8e7f                             @ 0x000c8e7f
+ *   rodata_c8f47                             @ 0x000c8f47
+ *   rodata_c900f                             @ 0x000c900f
+ *   rodata_c9113                             @ 0x000c9113
+ *   rodata_c9217                             @ 0x000c9217
+ *   rodata_c931b                             @ 0x000c931b
+ *   rodata_c941f                             @ 0x000c941f
+ *   rodata_c9523                             @ 0x000c9523
+ *   rodata_c9627                             @ 0x000c9627
+ *   rodata_c972b                             @ 0x000c972b
+ *   rodata_c982f                             @ 0x000c982f
+ *   rodata_c9933                             @ 0x000c9933
+ *   rodata_c9a37                             @ 0x000c9a37
+ *   rodata_c9b3b                             @ 0x000c9b3b
+ *   rodata_c9c3f                             @ 0x000c9c3f
+ *   rodata_c9d43                             @ 0x000c9d43
+ *   rodata_c9e47                             @ 0x000c9e47
+ *   rodata_c9f4b                             @ 0x000c9f4b
+ *   rodata_ca04f                             @ 0x000ca04f
+ *   rodata_ca153                             @ 0x000ca153
+ *   rodata_cb7fb                             @ 0x000cb7fb
+ *   rodata_cc863                             @ 0x000cc863
+ *   rodata_cd5ab                             @ 0x000cd5ab
+ *   rodata_ce483                             @ 0x000ce483
+ *   rodata_cff13                             @ 0x000cff13
+ *   rodata_d06cf                             @ 0x000d06cf
+ *   rodata_d0e9f                             @ 0x000d0e9f
+ *   rodata_d15a7                             @ 0x000d15a7
+ *   rodata_d215f                             @ 0x000d215f
+ *   rodata_d328f                             @ 0x000d328f
+ *   rodata_d43bf                             @ 0x000d43bf
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_glyph_bitmap_cache_buf                 @ 0x2001ce57
+ */
 /* Reconstructed resource_manger_get @ 0x4588c  (parity: 120/120 trials, PROVEN) */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
@@ -43,22 +168,14 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define get_device_info(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define debug_print(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00045764__impl(int, ...);
-#define get_clock_digit_glyph_offset_large(...) FUN_00045764__impl(0, ##__VA_ARGS__)
-extern long long FUN_000457b0__impl(int, ...);
-#define get_clock_digit_glyph_offset_small(...) FUN_000457b0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000457f4__impl(int, ...);
-#define get_font_style3_glyph_offset(...) FUN_000457f4__impl(0, ##__VA_ARGS__)
-extern long long FUN_00045840__impl(int, ...);
-#define get_default_font_glyph_offset(...) FUN_00045840__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
+extern long long DEBUG_PRINT(uintptr_t, ...);
+extern int get_device_info(void);
+extern void debug_print(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+extern int get_clock_digit_glyph_offset_large(uint16_t, uint32_t *, uint32_t *);
+extern int get_clock_digit_glyph_offset_small(uint16_t, uint32_t *, uint32_t *);
+extern int get_font_style3_glyph_offset(uint16_t, uint32_t *, uint32_t *);
+extern int get_default_font_glyph_offset(uint16_t, uint32_t *, uint32_t *);
+extern void *memset_bytes(void *, int, uint32_t);
 
 #define DAT_00045bac ((volatile int*)0x2000230cUL)
 #define DAT_00045bb0 ((volatile int*)0x20007554UL)
@@ -152,49 +269,49 @@ extern long long FUN_00086c78__impl(int, ...);
 #define DAT_0004661c (0xc5a6dUL)
 #define DAT_00046620 (0xc558bUL)
 #define DAT_00046624 (0xc50a9UL)
-#define DAT_0004689c (0x0UL) /* unknown lit */
-#define DAT_000468a0 (0x0UL) /* unknown lit */
-#define DAT_000468a4 (0x0UL) /* unknown lit */
-#define DAT_000468a8 (0x0UL) /* unknown lit */
-#define DAT_000468ac (0x0UL) /* unknown lit */
-#define DAT_000468b0 (0x0UL) /* unknown lit */
-#define DAT_000468b4 (0x0UL) /* unknown lit */
-#define DAT_000468b8 (0x0UL) /* unknown lit */
-#define DAT_000468bc (0x0UL) /* unknown lit */
-#define DAT_000468c0 (0x0UL) /* unknown lit */
-#define DAT_000468c4 (0x0UL) /* unknown lit */
-#define DAT_000468c8 (0x0UL) /* unknown lit */
-#define DAT_000468cc (0x0UL) /* unknown lit */
-#define DAT_000468d0 (0x0UL) /* unknown lit */
-#define DAT_000468d4 (0x0UL) /* unknown lit */
-#define DAT_000468d8 (0x0UL) /* unknown lit */
-#define DAT_000468dc (0x0UL) /* unknown lit */
-#define DAT_000468e0 (0x0UL) /* unknown lit */
-#define DAT_000468e4 (0x0UL) /* unknown lit */
-#define DAT_000468e8 (0x0UL) /* unknown lit */
-#define DAT_000468ec (0x0UL) /* unknown lit */
-#define DAT_000468f0 (0x0UL) /* unknown lit */
-#define DAT_000468f4 (0x0UL) /* unknown lit */
-#define DAT_000468f8 (0x0UL) /* unknown lit */
-#define DAT_000468fc (0x0UL) /* unknown lit */
-#define DAT_00046900 (0x0UL) /* unknown lit */
-#define DAT_00046904 (0x0UL) /* unknown lit */
-#define DAT_00046908 (0x0UL) /* unknown lit */
-#define DAT_0004690c (0x0UL) /* unknown lit */
-#define DAT_00046910 (0x0UL) /* unknown lit */
-#define DAT_00046914 (0x0UL) /* unknown lit */
-#define DAT_00046918 (0x0UL) /* unknown lit */
-#define DAT_0004691c (0x0UL) /* unknown lit */
-#define DAT_00046920 (0x0UL) /* unknown lit */
-#define DAT_00046924 (0x0UL) /* unknown lit */
-#define DAT_00046928 (0x0UL) /* unknown lit */
-#define DAT_0004692c (0x0UL) /* unknown lit */
-#define DAT_00046930 (0x0UL) /* unknown lit */
-#define DAT_00046934 (0x0UL) /* unknown lit */
-#define DAT_00046998 (0x0UL) /* unknown lit */
-#define DAT_0004699c (0x0UL) /* unknown lit */
-#define DAT_000469a0 (0x0UL) /* unknown lit */
-#define DAT_000469a4 (0x0UL) /* unknown lit */
+#define DAT_0004689c (0xc4bc7UL)
+#define DAT_000468a0 (0xc46e5UL)
+#define DAT_000468a4 (0xc4203UL)
+#define DAT_000468a8 (0xc3d21UL)
+#define DAT_000468ac (0xc383fUL)
+#define DAT_000468b0 (0xc335dUL)
+#define DAT_000468b4 (0xc2e7bUL)
+#define DAT_000468b8 (0xc2999UL)
+#define DAT_000468bc (0xc24b7UL)
+#define DAT_000468c0 (0xc1fd5UL)
+#define DAT_000468c4 (0xc1af3UL)
+#define DAT_000468c8 (0xc1611UL)
+#define DAT_000468cc (0xc112fUL)
+#define DAT_000468d0 (0xc0c4dUL)
+#define DAT_000468d4 (0xc076bUL)
+#define DAT_000468d8 (0xc0289UL)
+#define DAT_000468dc (0xbfda7UL)
+#define DAT_000468e0 (0xbf8c5UL)
+#define DAT_000468e4 (0xbf3e3UL)
+#define DAT_000468e8 (0xbef01UL)
+#define DAT_000468ec (0xbea1fUL)
+#define DAT_000468f0 (0xbe53dUL)
+#define DAT_000468f4 (0xbe05bUL)
+#define DAT_000468f8 (0xbdb79UL)
+#define DAT_000468fc (0xbd697UL)
+#define DAT_00046900 (0xbd1b5UL)
+#define DAT_00046904 (0xbccd3UL)
+#define DAT_00046908 (0xbc7f1UL)
+#define DAT_0004690c (0xbc7e0UL)
+#define DAT_00046910 (0xbc7caUL)
+#define DAT_00046914 (0xbc6fdUL)
+#define DAT_00046918 (0xd43bfUL)
+#define DAT_0004691c (0xd328fUL)
+#define DAT_00046920 (0xd215fUL)
+#define DAT_00046924 (0xd15a7UL)
+#define DAT_00046928 (0xd0e9fUL)
+#define DAT_0004692c (0xd06cfUL)
+#define DAT_00046930 (0xcff13UL)
+#define DAT_00046934 (0xce483UL)
+#define DAT_00046998 (0xcd5abUL)
+#define DAT_0004699c (0xcc863UL)
+#define DAT_000469a0 (0xcb7fbUL)
+#define DAT_000469a4 (0xca153UL)
 
 
 undefined4
@@ -215,7 +332,7 @@ resource_manger_get(uint param_1,uint param_2,uint *param_3,uint *param_4,int *p
   undefined8 uVar12;
   undefined4 local_28;
   undefined4 local_24;
-  
+
   uVar11 = CONCAT44(param_2,param_1);
   local_28 = param_1;
   local_24 = param_2;
@@ -243,7 +360,7 @@ resource_manger_get(uint param_1,uint param_2,uint *param_3,uint *param_4,int *p
         if (param_2 - 0x1100 < 0xfa) {
           local_28 = uVar5;
           local_24 = uVar5;
-          iVar8 = get_device_info(0,0);
+          iVar8 = get_device_info();
           pcVar10 = *(code **)(iVar8 + 0x1030);
           uVar4 = get_device_info();
           iVar9 = (*pcVar10)(uVar4,DAT_00045bc4 + iVar9,&local_24);
@@ -268,7 +385,7 @@ LAB_000459fc:
 LAB_00045cb8:
           if (0x5d < param_2 - 0xff01) {
             if (0x2e < param_2 - 0x2010) goto LAB_00045b4e;
-            uVar12 = get_device_info(0,0);
+            uVar12 = get_device_info();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = get_device_info();
@@ -279,7 +396,7 @@ LAB_00045cb8:
             }
             goto LAB_00045e48;
           }
-          uVar12 = get_device_info(0,0);
+          uVar12 = get_device_info();
           uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
           if (*(int *)((int)uVar12 + 0x1030) != 0) {
             iVar8 = get_device_info();
@@ -305,7 +422,7 @@ LAB_00045cb8:
             goto LAB_00045d4a;
           }
 LAB_00045e4e:
-          iVar8 = get_device_info((int)uVar2,(int)(uVar2 >> 0x20));
+          iVar8 = get_device_info();
           if (*(int *)(iVar8 + 0x1030) != 0) {
             iVar8 = get_device_info();
             pcVar10 = *(code **)(iVar8 + 0x1030);
@@ -327,7 +444,7 @@ LAB_00045db4:
         }
         else {
           if (param_2 - 0x302e < 2) {
-            uVar12 = get_device_info(0,0);
+            uVar12 = get_device_info();
             iVar8 = (int)((ulonglong)uVar12 >> 0x20);
             iVar6 = (int)uVar12 + 0x1000;
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
@@ -344,7 +461,7 @@ LAB_00045b4e:
               iVar8 = iVar6;
               if (0xfd < param_2 - 0x3001) goto LAB_00045caa;
             }
-            uVar12 = get_device_info(iVar6,iVar8);
+            uVar12 = get_device_info();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
             iVar8 = get_device_info();
@@ -376,7 +493,7 @@ LAB_0004597a:
             goto LAB_00045958;
           }
           if (param_2 - 0x3131 < 0x5e) {
-            uVar12 = get_device_info(0,0);
+            uVar12 = get_device_info();
             uVar11 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = get_device_info();
@@ -406,7 +523,7 @@ LAB_0004597a:
 LAB_00045caa:
             if (param_2 - 0x3231 < 0x19d) {
 LAB_00045d4a:
-              uVar12 = get_device_info((int)uVar11,(int)(uVar11 >> 0x20));
+              uVar12 = get_device_info();
               uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
               iVar8 = get_device_info();
@@ -418,7 +535,7 @@ LAB_00045d4a:
 LAB_00045c26:
               uVar2 = uVar11;
               if (0x5177 < param_2 - 0x4e00) goto LAB_00045c68;
-              uVar12 = get_device_info((int)uVar11,(int)(uVar11 >> 0x20));
+              uVar12 = get_device_info();
               uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) == 0) goto LAB_00045e48;
               iVar8 = get_device_info();
@@ -443,7 +560,7 @@ LAB_00045d74:
           }
           else {
             if (param_2 - 0x3200 < 0x80) {
-              uVar12 = get_device_info(0,0);
+              uVar12 = get_device_info();
               uVar11 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
               if (*(int *)((int)uVar12 + 0x1030) != 0) {
                 iVar8 = get_device_info();
@@ -468,7 +585,7 @@ LAB_00045a8a:
               goto LAB_00045caa;
             }
             if (0x2bab < param_2 - 0xac00) goto LAB_00045cb8;
-            uVar12 = get_device_info(0,0);
+            uVar12 = get_device_info();
             uVar2 = CONCAT44((int)((ulonglong)uVar12 >> 0x20),(int)uVar12 + 0x1000);
             if (*(int *)((int)uVar12 + 0x1030) != 0) {
               iVar8 = get_device_info();
@@ -483,7 +600,7 @@ LAB_00045a8a:
             }
 LAB_00045c68:
             if (param_2 - 0xe001 < 0xfd) {
-              iVar8 = get_device_info((int)uVar2,(int)(uVar2 >> 0x20));
+              iVar8 = get_device_info();
               if (*(int *)(iVar8 + 0x1030) != 0) {
                 iVar8 = get_device_info();
                 pcVar10 = *(code **)(iVar8 + 0x1030);
@@ -527,7 +644,7 @@ LAB_00045958:
         DEBUG_PRINT(uVar4,uVar7,param_2);
         return 0xffffffff;
       }
-      debug_print();
+      debug_print(uVar4,uVar7,param_1 == 4 ? param_2 - 0x16 : param_2,iVar8);
       return 0xffffffff;
     }
 LAB_00045902:
@@ -1065,7 +1182,7 @@ LAB_00045912:
       DEBUG_PRINT(uVar4,uVar7);
     }
     else {
-      debug_print();
+      debug_print(uVar4,uVar7,(uintptr_t)param_3,iVar8);
     }
     break;
   case 5:
@@ -1168,5 +1285,3 @@ LAB_00046850:
 switchD_0004589e_caseD_6:
   return 0xffffffff;
 }
-
-

@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01023dec @ 0x1023dec  (parity 300 trials PROVEN) */
-#define P ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define P ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 
 extern void FUN_010256dc(int, int);
 extern unsigned int FUN_01024440(unsigned int, unsigned int, int, unsigned int);
@@ -45,4 +45,3 @@ int FUN_01023dec(unsigned int param_1)
   }
   return -1;
 }
-

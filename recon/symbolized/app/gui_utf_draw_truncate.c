@@ -1,10 +1,29 @@
 #include "g1_app_symbols.h"
-/* named: gui_utf_draw_truncate */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
+/* readable reconstruction; identity: FUN_00044818 @ 0x00044818
+ * public-name: gui_utf_draw_truncate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   count_chars_in_default_font_table        <= FUN_00043e58 @ 0x00043e58
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ * address symbols (name @ address):
+ *   rodata_aaa58                             @ 0x000aaa58
+ *   rodata_aaa7f                             @ 0x000aaa7f
+ *   rodata_aab9e                             @ 0x000aab9e
+ *   rodata_aabd2                             @ 0x000aabd2
+ *   rodata_aad78                             @ 0x000aad78
+ *   g_log_level                              @ 0x2000230c
+ *   g_gui_dark_light_dither_mask             @ 0x200034f6
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
 /* Reconstructed gui_utf_draw_truncate @ 0x44818  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -58,7 +77,7 @@ u32 gui_utf_draw_truncate(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
     if (param_12 == 0) {
       iVar2 = atomic_get_3_0();
       if ((i32)(iVar2 << 30) < 0) {
-        clean_fb_data(*(volatile u32*)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/, 0, param_4, param_5, param_6, param_7);
+        clean_fb_data(*(volatile u32*)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/, 0, param_4, param_5, param_6, param_7);
       }
       uVar14 = 0;
       uVar8 = 0;
@@ -75,9 +94,9 @@ u32 gui_utf_draw_truncate(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
           iVar2 = local_2d4;
           if (iVar3 < 0) {
 LAB_000448c2:
-            if (1 < *(volatile i32*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-              if (*(volatile i32*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT("%s(): can not find 0x%x font resource\n" /*=0xaaa58*/, "gui_utf_draw_truncate" /*=0xaad78*/, uVar11, 0);
+            if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+              if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                DEBUG_PRINT(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aad78) /*=0xaad78*/, uVar11, 0);
               } else {
                 debug_print();
               }
@@ -89,7 +108,7 @@ LAB_000448c2:
             if (local_2fc < param_9) {
               pbVar7 = local_2cc;
               for (iVar5 = 0; iVar5 < iVar6; iVar5 = iVar5 + 1) {
-                *pbVar7 = *pbVar7 & *(volatile u8*)((uintptr_t)&g_gui_dark_light_dither_mask) /*=0x200034f6*/;
+                *pbVar7 = *pbVar7 & *(volatile u8*)((unsigned long)&g_gui_dark_light_dither_mask) /*=0x200034f6*/;
                 pbVar7 = pbVar7 + 1;
               }
             }
@@ -106,9 +125,9 @@ LAB_000448c2:
                   iVar2 = resource_manger_get(param_3, uVar11, &local_2d4, &local_2d0, &local_2d8, 0);
                   uVar12 = uVar12 - 1;
                   if (iVar2 < 0) {
-                    if (1 < *(volatile i32*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                      if (*(volatile i32*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        DEBUG_PRINT("%s(): truncate can not find [%d]0x%x font resource\n" /*=0xaab9e*/, "gui_utf_draw_truncate" /*=0xaad78*/, uVar12, uVar11);
+                    if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                      if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                        DEBUG_PRINT(((unsigned long)&rodata_aab9e) /*=0xaab9e*/, ((unsigned long)&rodata_aad78) /*=0xaad78*/, uVar12, uVar11);
                       } else {
                         debug_print();
                       }
@@ -116,16 +135,16 @@ LAB_000448c2:
                   } else {
                     iVar2 = count_chars_in_default_font_table(puVar13[-1], *puVar13);
                     uVar10 = (uVar10 - (u32)local_2d4) - (u32)iVar2;
-                    clean_fb_data(*(volatile u32*)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/, 0, param_4 + (i32)uVar10, uVar8 + param_5,
+                    clean_fb_data(*(volatile u32*)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/, 0, param_4 + (i32)uVar10, uVar8 + param_5,
                                  local_2d4 + param_4 + (i32)uVar10, local_2d0 + uVar8 + param_5);
                   }
                   puVar13 = puVar13 - 1;
                 }
                 uVar10 = 0;
 LAB_000449e6:
-                if (1 < *(volatile i32*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                  if (*(volatile i32*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT("%s(): end line x0=%d\n" /*=0xaabd2*/, "gui_utf_draw_truncate" /*=0xaad78*/, uVar10, 0);
+                if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                  if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                    DEBUG_PRINT(((unsigned long)&rodata_aabd2) /*=0xaabd2*/, ((unsigned long)&rodata_aad78) /*=0xaad78*/, uVar10, 0);
                   } else {
                     debug_print();
                   }
@@ -139,11 +158,11 @@ LAB_000449e6:
                 if (local_2fc < param_9) {
                   pbVar7 = local_2cc;
                   for (local_2f8 = 0; iVar3 - local_2f8 != 0 && local_2f8 <= iVar3; local_2f8 = local_2f8 + 1) {
-                    *pbVar7 = *pbVar7 & *(volatile u8*)((uintptr_t)&g_gui_dark_light_dither_mask) /*=0x200034f6*/;
+                    *pbVar7 = *pbVar7 & *(volatile u8*)((unsigned long)&g_gui_dark_light_dither_mask) /*=0x200034f6*/;
                     pbVar7 = pbVar7 + 1;
                   }
                 }
-                fb_blit_rows_copy(*(volatile u32*)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar4, iVar2, (i32)uVar10 + param_4, uVar8 + param_5);
+                fb_blit_rows_copy(*(volatile u32*)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar4, iVar2, (i32)uVar10 + param_4, uVar8 + param_5);
 LAB_00044a68:
                 iVar2 = atomic_get_3_0();
                 if (-1 < (i32)(iVar2 << 30)) {
@@ -159,12 +178,12 @@ LAB_00044a68:
               if (param_3 == 0) {
                 uVar8 = uVar8 + 1;
               }
-              fb_blit_rows_copy(*(volatile u32*)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar3, iVar4, param_4, uVar8 + param_5);
+              fb_blit_rows_copy(*(volatile u32*)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar3, iVar4, param_4, uVar8 + param_5);
               iVar2 = count_chars_in_default_font_table(*puVar1, puVar1[1]);
               uVar10 = (u32)local_2d4 + (u32)iVar2;
               local_2f0 = uVar10;
             } else {
-              fb_blit_rows_copy(*(volatile u32*)((uintptr_t)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar3, iVar4, (i32)uVar10 + param_4, uVar8 + param_5);
+              fb_blit_rows_copy(*(volatile u32*)((unsigned long)&g_gui_active_canvas) /*=0x2000a034*/, local_2cc, iVar3, iVar4, (i32)uVar10 + param_4, uVar8 + param_5);
               iVar2 = count_chars_in_default_font_table(*puVar1, puVar1[1]);
               uVar10 = uVar10 + (u32)iVar2 + (u32)local_2d4;
             }
@@ -197,9 +216,9 @@ LAB_00044a68:
   return 0;
 
 LAB_00044b96:
-  if (1 < *(volatile i32*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-    if (*(volatile i32*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT("%s(): exex process effect callback function\n" /*=0xaaa7f*/, "gui_utf_draw_truncate" /*=0xaad78*/, 0, 0);
+  if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+    if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+      DEBUG_PRINT(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aad78) /*=0xaad78*/, 0, 0);
     } else {
       debug_print();
     }
@@ -207,4 +226,3 @@ LAB_00044b96:
   uVar9 = (*param_11)(0, param_2, param_3, param_4, param_5);
   return uVar9;
 }
-

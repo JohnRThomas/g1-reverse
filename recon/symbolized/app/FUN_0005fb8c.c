@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0005fb8c */
-/* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 150/150 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005fb8c @ 0x0005fb8c
+ * public-name: FUN_0005fb8c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_pdm_stop                            <= FUN_00066300 @ 0x00066300
+ * address symbols (name @ address):
+ *   rodata_837a9                             @ 0x000837a9
+ *   rodata_881a0                             @ 0x000881a0
+ *   rodata_f5660                             @ 0x000f5660
+ *   rodata_f56ae                             @ 0x000f56ae
+ *   rodata_f56ca                             @ 0x000f56ca
+ */
+/* Reconstructed FUN_0005fb8c @ 0x5fb8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 
@@ -22,8 +33,8 @@ uint FUN_0005fb8c(int param_1, uint32_t param_2)
     case 1: case 3: {
       uint8_t b50 = *(volatile uint8_t*)(iVar3 + 0x50);
       if ((int32_t)((uint32_t)b50 << 0x1e) >= 0) {
-        struct { uint32_t a,b; } s = { 2, "Device is not configured" /*=0xf5660*/ };
-        FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/, 0x1040, &s);
+        struct { uint32_t a,b; } s = { 2, ((unsigned long)&rodata_f5660) /*=0xf5660*/ };
+        FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1040, &s);
         return 0xfffffffbUL;
       }
       if (*(volatile int8_t*)(iVar3 + 0x51) == 0) {
@@ -36,24 +47,23 @@ uint FUN_0005fb8c(int param_1, uint32_t param_2)
           return uv & (uint32_t)((int32_t)uv >> 31);
         }
         puVar4[4] = 0;
-        puVar4[2] = ((uintptr_t)&rodata_837a9) /*=0x837a9*/;
+        puVar4[2] = ((unsigned long)&rodata_837a9) /*=0x837a9*/;
         puVar4[3] = 3;
         int iStack_38 = FUN_0004b908(puVar4[0], puVar4 + 1);
         if (iStack_38 < 0) {
           *(volatile uint8_t*)((char*)puVar4 + 0x51) = 0;
-          struct { uint32_t a,b; } s = { 3, "Failed to request clock: %d" /*=0xf56ae*/ };
-          FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/, 0x1840, &s);
+          struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f56ae) /*=0xf56ae*/, (uint32_t)iStack_38 };
+          FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1840, &s);
           return 0xfffffffbUL;
         }
       }
       break;
     }
     default: {
-      struct { uint32_t a,b; } s = { 3, "Invalid command: %d" /*=0xf56ca*/ };
-      FUN_000837a2(((uintptr_t)&tbl_880d8) /*=0x881a0*/, 0x1840, &s);
+      struct { uint32_t a,b,c; } s = { 3, ((unsigned long)&rodata_f56ca) /*=0xf56ca*/, param_2 };
+      FUN_000837a2(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1840, &s);
       return 0xffffffeaUL;
     }
   }
   return 0;
 }
-

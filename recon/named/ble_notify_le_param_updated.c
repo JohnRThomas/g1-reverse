@@ -1,8 +1,21 @@
-/* named: ble_notify_le_param_updated */
-/* globals referenced:
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_notify_le_param_updated @ 0x56ae0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056ae0 @ 0x00056ae0
+ * public-name: ble_notify_le_param_updated
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_le_param_updated              <= FUN_00056ae0 @ 0x00056ae0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_00056ae0 @ 0x56ae0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint16_t u16;
 typedef void (*fp)(int,u32,u32,u32);
@@ -36,4 +49,3 @@ void ble_notify_le_param_updated(int param_1, u32 p2, u32 p3, u32 p4){
         uVar3 += 0x24;
     }
 }
-

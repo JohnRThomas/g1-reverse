@@ -1,21 +1,28 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00032b24 */
+/* readable reconstruction; identity: FUN_00032b24 @ 0x00032b24
+ * public-name: FUN_00032b24
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_8a208                             @ 0x0008a208
+ *   rodata_a74b9                             @ 0x000a74b9
+ *   g_pt_msg_encode_buf                      @ 0x20019ef5
+ */
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT();
+extern void DEBUG_PRINT(unsigned int, ...);
 extern int FUN_0007d16a(void*,void*);
 typedef int (*fp5)(void*,int,void*,void*,uint32_t);
-uint32_t FUN_00032b24(int param_1, char* param_2, int param_3, int* param_4, uint8_t* param_5, uint32_t param_6){
+uint32_t FUN_00032b24(int param_1, char* param_2, int param_3, uint32_t* param_4, uint8_t* param_5, uint32_t param_6){
     if(param_2==0 || param_3==0 || param_4==0 || param_5==0 || param_1==2){
-        DEBUG_PRINT(); return 0xffffffff;
+        DEBUG_PRINT(((unsigned long)&rodata_a74b9) /*=0xa74b9*/); return 0xffffffff;
     }
     int iVar3=0;
     uint8_t cVar1=*(volatile uint8_t*)param_2;
-    char* pcVar5=(char*)((uintptr_t)&tbl_8a208) /*=0x8a208*/;
+    char* pcVar5=(char*)(uintptr_t)((unsigned long)&rodata_8a208) /*=0x8a208*/;
     while(*(volatile uint8_t*)pcVar5 != cVar1 || *(void* volatile*)(pcVar5+4)==0){
         iVar3++; pcVar5+=8;
         if(iVar3==0x2d){
-            uint8_t* p=(uint8_t*)*(volatile int*)param_4;
+            uint8_t* p=(uint8_t*)(uintptr_t)*(volatile uint32_t*)param_4;
             *(volatile uint8_t*)(p+1)=1; *(volatile uint8_t*)(p+3)=1; *(volatile uint8_t*)(p+0)=cVar1; *(volatile uint8_t*)(p+2)=3; *(volatile uint8_t*)(p+4)=2;
             *param_5=5;
             goto L68;
@@ -23,22 +30,23 @@ uint32_t FUN_00032b24(int param_1, char* param_2, int param_3, int* param_4, uin
     }
     (*(volatile fp5*)(pcVar5+4))(param_2,param_3,param_4,param_5,param_6);
 L68:;
-    volatile uint8_t* puVar2=(volatile uint8_t*)((uintptr_t)&g_pt_msg_encode_buf) /*=0x20019ef5*/;
+    volatile uint8_t* puVar2=(volatile uint8_t*)(uintptr_t)((unsigned long)&g_pt_msg_encode_buf) /*=0x20019ef5*/;
     if(param_1!=0){
         if(param_1!=1) return 0;
-        uint32_t local_24=((uint32_t)(*(volatile uint8_t*)param_5)<<24)|0xffa55a;
-        uint8_t* puVar4=(uint8_t*)*(volatile int*)param_4;
-        volatile uint8_t* puVar6=(volatile uint8_t*)((uintptr_t)&g_pt_msg_encode_buf) /*=0x20019ef5*/;
-        for(iVar3=0; iVar3<(int)(uint32_t)*(volatile uint8_t*)param_5; iVar3++){
+        uint8_t original_length = *(volatile uint8_t*)param_5;
+        uint8_t* puVar4=(uint8_t*)(uintptr_t)*(volatile uint32_t*)param_4;
+        volatile uint8_t* puVar6=(volatile uint8_t*)(uintptr_t)((unsigned long)&g_pt_msg_encode_buf) /*=0x20019ef5*/;
+        for(iVar3=0; iVar3<(int)original_length; iVar3++){
             *puVar6=*(volatile uint8_t*)(puVar4+iVar3); puVar6++;
         }
-        puVar6=(volatile uint8_t*)(puVar4+3);
-        *(volatile uint32_t*)puVar4=local_24;
-        while((int)(puVar6+(-3-(int)puVar4))<(int)(uint32_t)*(volatile uint8_t*)param_5){
-            puVar6++; *puVar6=*puVar2; puVar2++;
+        /* The shipped STR may target an unaligned packet buffer.  A fixed
+         * four-byte memcpy preserves that store without alignment UB. */
+        uint32_t header = ((uint32_t)original_length << 24) | 0x00ffa55aU;
+        __builtin_memcpy(puVar4, &header, sizeof(header));
+        for (iVar3 = 0; iVar3 < (int)original_length; iVar3++) {
+            puVar4[4 + iVar3] = puVar2[iVar3];
         }
-        *param_5=*(volatile uint8_t*)param_5+4;
+        *param_5 = (uint8_t)(original_length + 4U);
     }
     { int r=FUN_0007d16a(param_4,param_5); if(r==0) return 0; return 0xfffffffc; }
 }
-

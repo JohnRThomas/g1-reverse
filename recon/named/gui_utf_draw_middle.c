@@ -1,10 +1,28 @@
-/* named: gui_utf_draw_middle */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
-/* Reconstructed gui_utf_draw_middle @ 0x44bd8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00044bd8 @ 0x00044bd8
+ * public-name: gui_utf_draw_middle
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   count_chars_in_default_font_table        <= FUN_00043e58 @ 0x00043e58
+ *   gui_utf_draw_middle                      <= FUN_00044bd8 @ 0x00044bd8
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   utf8_string_to_utf16                     <= FUN_000478d8 @ 0x000478d8
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ *   index_in_range32_mask                    <= FUN_0007d860 @ 0x0007d860
+ * address symbols (name @ address):
+ *   rodata_aaa58                             @ 0x000aaa58
+ *   rodata_aaa7f                             @ 0x000aaa7f
+ *   rodata_aad64                             @ 0x000aad64
+ *   g_log_level                              @ 0x2000230c
+ *   g_gui_dark_light_dither_mask             @ 0x200034f6
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
+/* Reconstructed FUN_00044bd8 @ 0x44bd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort; typedef unsigned char byte;
 extern int DEBUG_PRINT(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
@@ -28,7 +46,7 @@ undefined4 gui_utf_draw_middle(undefined4 param_1,undefined4 param_2,int param_3
 LAB_e7c:
       if (1 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa7f,0xaad64);
-        else debug_print(0);
+        else debug_print(0xaaa7f,0xaad64);
       }
       uVar9 = (*param_11)(0,param_2,param_3,param_4,param_5);
       return uVar9;
@@ -45,7 +63,7 @@ LAB_e7c:
             if (iVar3 == 0) {
               iVar3 = resource_manger_get(param_3,uVar15,(int)&local_2d4,(int)&local_2d0,(int)&local_2d8,0);
               if (iVar3 < 0) {
-                if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa58,0xaad64,uVar15); else debug_print(0); }
+                if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa58,0xaad64,uVar15); else debug_print(0xaaa58,0xaad64,uVar15); }
               } else uVar12 = local_2d4 + uVar12 & 0xffff;
             }
           }
@@ -57,7 +75,7 @@ LAB_e7c:
           iVar4 = resource_manger_get(param_3,uVar14,(int)&local_2d4,(int)&local_2d0,(int)&local_2d8,0);
           iVar1 = local_2d0; iVar3 = local_2d4;
           if (iVar4 < 0) {
-            if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa58,0xaad64,uVar14); else debug_print(0); }
+            if (1 < *(volatile int*)0x2000230c) { if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa58,0xaad64,uVar14); else debug_print(0xaaa58,0xaad64,uVar14); }
           } else {
             iVar4 = local_2d4 / 2; iVar5 = local_2d0 * iVar4;
             FUN_00086c1e((int)local_2cc,local_2d8,iVar5,0x2a4);
@@ -97,4 +115,3 @@ LAB_d36: bVar6 = 0;
   else if (param_11 != 0) goto LAB_e7c;
   return 0;
 }
-

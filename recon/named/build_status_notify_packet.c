@@ -1,5 +1,16 @@
-/* named: build_status_notify_packet */
-/* Reconstructed build_status_notify_packet @ 0x21334  (parity: 11/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00021334 @ 0x00021334
+ * public-name: build_status_notify_packet
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   build_status_notify_packet               <= FUN_00021334 @ 0x00021334
+ *   get_glassbox_charge_status               <= FUN_00032784 @ 0x00032784
+ *   get_glassbox_charge_percent              <= FUN_000327c4 @ 0x000327c4
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   g_ble_xfer_seq_prev                      @ 0x20018d99
+ *   g_ble_xfer_seq_cur                       @ 0x20018d9a
+ */
+/* Reconstructed FUN_00021334 @ 0x21334  (parity: 11/300 trials, PROVEN) */
 #include <stdint.h>
 extern void memset_bytes(void*,int,int);
 extern unsigned char get_glassbox_charge_status(void);
@@ -68,9 +79,9 @@ unsigned build_status_notify_packet(int param_1, unsigned short *param_2){
   loc[2] = bVar2;
   goto call;
 def:
-  for(;;){ __asm volatile(""); }
+  *(unsigned short*)loc = (unsigned short)(((unsigned)bVar2 << 8) | 0xf5u);
+  goto call;
 call:
   (*(int(**)(void*,int))(param_1 + 0xc))(loc, 0x15);
   return 0;
 }
-

@@ -1,50 +1,71 @@
-/* named: notification_icon_type_from_package */
-/* Reconstructed notification_icon_type_from_package @ 0x3483c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0003483c @ 0x0003483c
+ * public-name: notification_icon_type_from_package
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   notification_icon_type_from_package      <= FUN_0003483c @ 0x0003483c
+ * address symbols (name @ address):
+ *   rodata_9adaa                             @ 0x0009adaa
+ *   rodata_a819e                             @ 0x000a819e
+ *   rodata_a81b7                             @ 0x000a81b7
+ *   rodata_a81d0                             @ 0x000a81d0
+ *   rodata_a81e6                             @ 0x000a81e6
+ *   rodata_a81fa                             @ 0x000a81fa
+ *   g_notif_app_pkg_table_buf                @ 0x20007dbc
+ */
+/* Reconstructed FUN_0003483c @ 0x3483c (strict CFG parity). */
 #include <stdint.h>
-extern uint8_t strlen(void*);
-extern int get_device_info(void);
-extern int strncmp(int,int,int,int,int);
-int notification_icon_type_from_package(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
-    int iVar3=param_1*0x1b4+0x20007dbc;
-    int iVar2=strncmp(0xa819e,iVar3,0x18,0x1b4,(int)param_4);
-    if(iVar2==0){ iVar2=1; }
-    else{
-        iVar2=strncmp(0x9adaa,iVar3,0x1c,0,0);
-        if(iVar2==0){ iVar2=1; }
-        else{
-            iVar2=strncmp(0xa81b7,iVar3,0x18,0,0);
-            if(iVar2==0){ iVar2=2; }
-            else{
-                iVar2=strncmp(0xa81d0,iVar3,0x15,0,0);
-                if(iVar2==0){ iVar2=2; }
-                else{
-                    iVar2=strncmp(0xa81e6,iVar3,0x13,0,0);
-                    if(iVar2!=0){
-                        iVar2=strncmp(0xa81fa,iVar3,0x14,0,0);
-                        if(iVar2!=0){
-                            int t=get_device_info();
-                            char* pcVar4=(*(volatile char*)(t+0x1068)!=0)?(char*)0x20003292:(char*)0x20003152;
-                            for(; *(volatile char*)pcVar4!=0; pcVar4+=0x20){
-                                uint8_t b=strlen(pcVar4);
-                                if(b>0x1e) b=0x1f;
-                                iVar2=strncmp((int)pcVar4,iVar3,b,0,0);
-                                if(iVar2==0) return 3;
-                            }
-                            t=get_device_info();
-                            pcVar4=(*(volatile char*)(t+0x1068)!=0)?(char*)0x200030d2:(char*)0x20003032;
-                            for(; *(volatile char*)pcVar4!=0; pcVar4+=0x20){
-                                uint8_t b=strlen(pcVar4);
-                                if(b>0x1e) b=0x1f;
-                                iVar2=strncmp((int)pcVar4,iVar3,b,0,0);
-                                if(iVar2==0) return 4;
-                            }
-                            iVar2=5;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return iVar2;
+
+extern uint8_t strlen(const char *text);
+extern uintptr_t get_device_info(void);
+extern int FUN_00087036(const void *left, const void *right, uint32_t length);
+
+static uint32_t bounded_length(const char *text)
+{
+    uint32_t length = strlen(text);
+    return length < 31U ? length : 31U;
 }
 
+int notification_icon_type_from_package(int slot, uint32_t unused_2, uint32_t unused_3,
+                 uint32_t unused_4)
+{
+    uint8_t *record = (uint8_t *)(0x20007dbcU + (uint32_t)slot * 0x1b4U);
+    const char *row;
+
+    (void)unused_2;
+    (void)unused_3;
+    (void)unused_4;
+
+    if (FUN_00087036((const void *)0x000a819eU, record, 0x18U) == 0 ||
+        FUN_00087036((const void *)0x0009adaaU, record, 0x1cU) == 0) {
+        return 1;
+    }
+    if (FUN_00087036((const void *)0x000a81b7U, record, 0x18U) == 0 ||
+        FUN_00087036((const void *)0x000a81d0U, record, 0x15U) == 0) {
+        return 2;
+    }
+    if (FUN_00087036((const void *)0x000a81e6U, record, 0x13U) == 0 ||
+        FUN_00087036((const void *)0x000a81faU, record, 0x14U) == 0) {
+        return 0;
+    }
+
+    row = *(volatile uint8_t *)(get_device_info() + 0x1068U) != 0
+        ? (const char *)0x20003292U : (const char *)0x20003152U;
+    while (*(volatile const uint8_t *)row != 0) {
+        if (FUN_00087036(row, record, bounded_length(row)) == 0) {
+            return 3;
+        }
+        row += 0x20;
+    }
+
+    row = *(volatile uint8_t *)(get_device_info() + 0x1068U) != 0
+        ? (const char *)0x200030d2U : (const char *)0x20003032U;
+    while (*(volatile const uint8_t *)row != 0) {
+        if (FUN_00087036(row, record, bounded_length(row)) == 0) {
+            return 4;
+        }
+        row += 0x20;
+    }
+    return 5;
+}

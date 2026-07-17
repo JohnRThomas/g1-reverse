@@ -1,8 +1,13 @@
-/* named: FUN_0001793c */
-/* globals referenced:
-//   0x20006a00  g_touch_key_irq_pending      
-//   0x20007bcc  g_pt_nfc_link_ready          
-*/
+/* readable reconstruction; identity: FUN_0001793c @ 0x0001793c
+ * public-name: FUN_0001793c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ * address symbols (name @ address):
+ *   rodata_889d0                             @ 0x000889d0
+ *   g_touch_key_irq_pending                  @ 0x20006a00
+ *   g_pt_nfc_link_ready                      @ 0x20007bcc
+ */
 /* Reconstructed FUN_0001793c @ 0x1793c  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
@@ -20,4 +25,3 @@ void FUN_0001793c(int param_1, int param_2, int param_3)
   }
   FUN_00017858(0x889d0, 0x5c00000);
 }
-

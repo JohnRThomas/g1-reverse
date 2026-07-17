@@ -1,16 +1,26 @@
 #include "g1_app_symbols.h"
-/* named: nrfx_gppi_task_endpoint_clear */
-/* Reconstructed nrfx_gppi_task_endpoint_clear @ 0x64fd4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064fd4 @ 0x00064fd4
+ * public-name: nrfx_gppi_task_endpoint_clear
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_gppi_task_endpoint_clear            <= FUN_00064fd4 @ 0x00064fd4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6a09                             @ 0x000f6a09
+ *   rodata_f6a4a                             @ 0x000f6a4a
+ */
+/* Reconstructed FUN_00064fd4 @ 0x64fd4  (parity: 300/300 trials, PROVEN) */
 
-extern void assert_post_action(unsigned int,unsigned int);
-extern void printk(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern unsigned long long assert_post_action(unsigned int,unsigned int);
+extern void printk(unsigned int,unsigned int,unsigned int,unsigned int);
 void nrfx_gppi_task_endpoint_clear(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
   if (param_2 == 0) {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"tep" /*=0xf6a4a*/,"WEST_TOPDIR/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c" /*=0xf6a09*/,99,param_4);
-    assert_post_action("WEST_TOPDIR/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c" /*=0xf6a09*/,99);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6a4a) /*=0xf6a4a*/,((unsigned long)&rodata_f6a09) /*=0xf6a09*/,99);
+    param_2 = (int)(assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/,99) >> 32);
   }
   *(unsigned int *)(param_2 + 0x80) = 0;
   return;
 }
-

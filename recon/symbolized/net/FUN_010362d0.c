@@ -1,155 +1,113 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_010362d0 @ 0x10362d0  (parity 48 trials PROVEN) */
+/* net-core FUN_010362d0 @ 0x10362d0 */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-extern void FUN_0103610c(void);
-extern void FUN_01036128(void);
-extern void FUN_01036144(void);
-extern void FUN_0103705c(void);
-extern void FUN_01037130(void);
-extern void FUN_010375b8(void);
-extern void FUN_010379d4(void);
-extern void FUN_01039bb0(void);
-extern void FUN_01039bbe(void);
-extern void FUN_0103b614(void);
+extern int FUN_0103610c(void *lock);
+extern int FUN_01036128(void *lock);
+extern void FUN_01036144(void *lock);
+extern void FUN_0103705c(void *item);
+extern void FUN_01037130(void *lock, uint32_t key);
+extern int FUN_010375b8(void *lock, uint32_t key, void *queue, void *item,
+                        uint32_t low, uint32_t high);
+extern void *FUN_010379d4(void *queue);
+extern __attribute__((noreturn)) void FUN_01039bb0(uint32_t source,
+                                                   uint32_t line);
+extern void FUN_01039bbe(uint32_t module, uint32_t source, uint32_t line, ...);
+extern void FUN_0103b614(void *destination, const void *source, uint32_t size);
 
-__attribute__((naked)) int FUN_010362d0(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+typedef struct {
+    uint8_t reserved_00[0x0c];
+    uint32_t element_size;
+    uint32_t reserved_10;
+    uint8_t *buffer_begin;
+    uint8_t *buffer_end;
+    uint8_t *write_cursor;
+    uint8_t *read_cursor;
+    uint32_t queued;
+} queue_t;
+
+typedef struct {
+    uint8_t reserved_00[0x14];
+    const void *payload;
+    uint8_t reserved_18[0x78];
+    uint32_t ownership;
+} queue_item_t;
+
+static __attribute__((noreturn)) void queue_fatal(uint32_t source,
+                                                  uint32_t line)
 {
-    __asm__ volatile(
-    "push {r0,r1,r2,r4,r5,r6,r7,r8,r9,lr}\n"
-    "mov r4, r0\n"
-    "mov r8, r1\n"
-    "mov r7, r2\n"
-    "mov r5, r3\n"
-    "mrs r3, ipsr\n"
-    "cbz r3, 1f\n"
-    "orrs.w r3, r2, r5\n"
-    "beq 1f\n"
-    "ldr r1, =0x0103ea89\n"
-    "movs r2, #0xd2\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0xd2\n"
-    "ldr r0, =0x0103ea89\n"
-    "b 9f\n"
-    "1:\n"
-    "add.w r6, r4, #8\n"
-    "mov.w r3, #0x40\n"
-    "mrs r9, basepri\n"
-    "msr basepri_max, r3\n"
-    "isb sy\n"
-    "mov r0, r6\n"
-    "bl FUN_0103610c\n"
-    "cbnz r0, 2f\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0x72\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0x72\n"
-    "ldr r0, =0x0103d3b6\n"
-    "9:\n"
-    "bl FUN_01039bb0\n"
-    "2:\n"
-    "mov r0, r6\n"
-    "bl FUN_01036144\n"
-    "ldr r3, [r4, #0x24]\n"
-    "cmp r3, #0\n"
-    "beq 6f\n"
-    "ldr r2, [r4, #0xc]\n"
-    "ldr r1, [r4, #0x1c]\n"
-    "mov r0, r8\n"
-    "bl FUN_0103b614\n"
-    "ldr r3, [r4, #0x1c]\n"
-    "ldr r2, [r4, #0xc]\n"
-    "mov r0, r4\n"
-    "add r3, r2\n"
-    "ldr r2, [r4, #0x18]\n"
-    "str r3, [r4, #0x1c]\n"
-    "cmp r3, r2\n"
-    "itt eq\n"
-    "ldreq r3, [r4, #0x14]\n"
-    "streq r3, [r4, #0x1c]\n"
-    "ldr r3, [r4, #0x24]\n"
-    "subs r3, #1\n"
-    "str r3, [r4, #0x24]\n"
-    "bl FUN_010379d4\n"
-    "mov r5, r0\n"
-    "cmp r0, #0\n"
-    "beq 5f\n"
-    "ldr r0, [r4, #0x20]\n"
-    "ldr r3, [r4, #0x14]\n"
-    "cmp r0, r3\n"
-    "blo 3f\n"
-    "ldr r3, [r4, #0x18]\n"
-    "cmp r0, r3\n"
-    "blo 4f\n"
-    "3:\n"
-    "ldr r1, =0x0103ea89\n"
-    "movs r2, #0xeb\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0xeb\n"
-    "ldr r0, =0x0103ea89\n"
-    "b 9b\n"
-    "4:\n"
-    "ldr r1, [r5, #0x14]\n"
-    "ldr r2, [r4, #0xc]\n"
-    "bl FUN_0103b614\n"
-    "ldr r3, [r4, #0x20]\n"
-    "ldr r2, [r4, #0xc]\n"
-    "mov r0, r5\n"
-    "add r3, r2\n"
-    "ldr r2, [r4, #0x18]\n"
-    "str r3, [r4, #0x20]\n"
-    "cmp r3, r2\n"
-    "itt eq\n"
-    "ldreq r3, [r4, #0x14]\n"
-    "streq r3, [r4, #0x20]\n"
-    "ldr r3, [r4, #0x24]\n"
-    "adds r3, #1\n"
-    "str r3, [r4, #0x24]\n"
-    "movs r4, #0\n"
-    "str.w r4, [r5, #0x90]\n"
-    "bl FUN_0103705c\n"
-    "mov r1, r9\n"
-    "mov r0, r6\n"
-    "bl FUN_01037130\n"
-    "mov r5, r4\n"
-    "b 8f\n"
-    "6:\n"
-    "orrs.w r3, r7, r5\n"
-    "beq 7f\n"
-    "ldr r3, =0x21004b28\n"
-    "mov r2, r4\n"
-    "ldr r3, [r3, #8]\n"
-    "mov r1, r9\n"
-    "str.w r8, [r3, #0x14]\n"
-    "mov r0, r6\n"
-    "strd r7, r5, [sp]\n"
-    "bl FUN_010375b8\n"
-    "mov r5, r0\n"
-    "b 8f\n"
-    "7:\n"
-    "mvn r5, #0x22\n"
-    "5:\n"
-    "mov r0, r6\n"
-    "bl FUN_01036128\n"
-    "cbnz r0, 10f\n"
-    "ldr r1, =0x0103d3b6\n"
-    "movs r2, #0xf0\n"
-    "ldr r0, =0x0103d2a7\n"
-    "bl FUN_01039bbe\n"
-    "movs r1, #0xf0\n"
-    "ldr r0, =0x0103d3b6\n"
-    "b 9b\n"
-    "10:\n"
-    "msr basepri, r9\n"
-    "isb sy\n"
-    "b 8f\n"
-    "8:\n"
-    "mov r0, r5\n"
-    "add sp, #0xc\n"
-    "pop {r4,r5,r6,r7,r8,r9,pc}\n"
-    );
+    FUN_01039bb0(source, line);
 }
 
+int FUN_010362d0(queue_t *queue, void *destination,
+                 uint32_t timeout_low, uint32_t timeout_high)
+{
+    /* Zephyr callers enter this API from thread context.  Timed queue writes
+     * from an ISR are forbidden by the kernel contract. */
+    if ((__get_IPSR() & 0x1fu) != 0 && (timeout_low | timeout_high) != 0) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103ea89) /*=0x103ea89*/, 0xd2,
+                     timeout_low | timeout_high, queue, destination, timeout_low);
+        queue_fatal(((unsigned long)&rodata_103ea89) /*=0x103ea89*/, 0xd2);
+    }
 
+    void *lock = (uint8_t *)queue + 8;
+    uint32_t key = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40);
+    __ISB();
+
+    if (FUN_0103610c(lock) == 0) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        queue_fatal(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+    }
+
+    FUN_01036144(lock);
+    int result;
+    if (queue->queued == 0) {
+        if ((timeout_low | timeout_high) != 0) {
+            queue_item_t *item = *(queue_item_t **)(UINT32_C(0x21004b28) + 8);
+            item->payload = destination;
+            return FUN_010375b8(lock, key, queue, item,
+                                timeout_low, timeout_high);
+        }
+        result = -0x23;
+    } else {
+        FUN_0103b614(destination, queue->write_cursor, queue->element_size);
+        queue->write_cursor += queue->element_size;
+        if (queue->write_cursor == queue->buffer_end)
+            queue->write_cursor = queue->buffer_begin;
+        queue->queued--;
+
+        queue_item_t *item = FUN_010379d4(queue);
+        result = (int)(intptr_t)item;
+        if (item != 0) {
+            if (queue->read_cursor < queue->buffer_begin ||
+                queue->read_cursor >= queue->buffer_end) {
+                FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103ea89) /*=0x103ea89*/, 0xeb,
+                             queue->buffer_begin, queue->read_cursor, destination,
+                             timeout_low);
+                queue_fatal(((unsigned long)&rodata_103ea89) /*=0x103ea89*/, 0xeb);
+            }
+
+            FUN_0103b614(queue->read_cursor, item->payload,
+                         queue->element_size);
+            queue->read_cursor += queue->element_size;
+            if (queue->read_cursor == queue->buffer_end)
+                queue->read_cursor = queue->buffer_begin;
+            queue->queued++;
+            item->ownership = 0;
+            FUN_0103705c(item);
+            FUN_01037130(lock, key);
+            return 0;
+        }
+    }
+
+    result = FUN_01036128(lock) ? result : 0;
+    if (result == 0) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        queue_fatal(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+    }
+    __set_BASEPRI(key);
+    __ISB();
+    return result;
+}

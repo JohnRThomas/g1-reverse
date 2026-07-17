@@ -1,4 +1,7 @@
-/* named: FUN_00084602 */
+/* readable reconstruction; identity: FUN_00084602 @ 0x00084602
+ * public-name: FUN_00084602
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00084602 @ 0x84602  (parity: 300/300 trials, PROVEN) */
 
 unsigned FUN_00084602(int *param_1,int param_2,unsigned param_3,unsigned short *param_4){
@@ -27,4 +30,3 @@ unsigned FUN_00084602(int *param_1,int param_2,unsigned param_3,unsigned short *
     return 0xffffffea;
   }
 }
-

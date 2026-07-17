@@ -1,5 +1,17 @@
-/* named: qspi_nor_send_cinstr */
-/* Reconstructed qspi_nor_send_cinstr @ 0x60ab0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00060ab0 @ 0x00060ab0
+ * public-name: qspi_nor_send_cinstr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_send_cinstr                     <= FUN_00060ab0 @ 0x00060ab0
+ *   nrfx_qspi_erase                          <= FUN_000669f4 @ 0x000669f4
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ * address symbols (name @ address):
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5c20                             @ 0x000f5c20
+ */
+/* Reconstructed FUN_00060ab0 @ 0x60ab0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
@@ -45,4 +57,3 @@ LAB: ;
     uVar6 = qspi_get_zephyr_ret_code(uVar6);
     return uVar6;
 }
-

@@ -1,5 +1,13 @@
-/* named: img_mgmt_read_hash_and_flags */
-/* Reconstructed img_mgmt_read_hash_and_flags @ 0x52038  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00052038 @ 0x00052038
+ * public-name: img_mgmt_read_hash_and_flags
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   img_mgmt_impl_read                       <= FUN_000517d8 @ 0x000517d8
+ *   img_mgmt_impl_erased_val                 <= FUN_00051a5c @ 0x00051a5c
+ *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
+/* Reconstructed FUN_00052038 @ 0x52038  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int img_mgmt_impl_read(int, int, void*, ...);
 extern int img_mgmt_impl_erased_val(int, void*);
@@ -73,4 +81,3 @@ LAB_00052142:
     }
     return iVar1;
 }
-

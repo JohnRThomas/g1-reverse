@@ -1,9 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: lc3_ltpf_correlate */
-/* Reconstructed lc3_ltpf_correlate @ 0x682f0  (parity: 200/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000682f0 @ 0x000682f0
+ * public-name: lc3_ltpf_correlate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_correlate                       <= FUN_000682f0 @ 0x000682f0
+ * address symbols (name @ address):
+ *   rodata_884d0                             @ 0x000884d0
+ */
+/* Reconstructed FUN_000682f0 @ 0x682f0  (parity: 200/200 trials, PROVEN) */
 unsigned lc3_ltpf_correlate(int param_1, unsigned param_2, int param_3, int *param_4, int param_5)
 {
-    int *tbl = (int *)((uintptr_t)&tbl_88340) /*=0x884d0*/;
+    int *tbl = (int *)((unsigned long)&rodata_884d0) /*=0x884d0*/;
     int local_58[4];
     int local_48[8];
     int iVar3, iVar4, iVar6, iVar8, iVar9, iVar10, iVar11, iVar14;
@@ -89,4 +96,3 @@ unsigned lc3_ltpf_correlate(int param_1, unsigned param_2, int param_3, int *par
     }
     return 0;
 }
-

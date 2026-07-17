@@ -3,7 +3,6 @@
 #include <stdint.h>
 
 extern int FUN_01030dd0(unsigned int *a);
-extern unsigned int FUN_BOUNDARY_QUIRK(void);
 
 #define LIT_ef8 0xfffcf0f0u
 
@@ -46,7 +45,7 @@ unsigned int FUN_01030e28(unsigned int *param_1, int param_2, int param_3)
             }
             goto LAB_6e;
         default:
-            return FUN_BOUNDARY_QUIRK();
+            return 0xffffff7au;
         }
 
         if (do_tail && uVar4 != 0xffffffffu) {
@@ -75,4 +74,3 @@ unsigned int FUN_01030e28(unsigned int *param_1, int param_2, int param_3)
         param_1 = param_1 + 1;
     }
 }
-

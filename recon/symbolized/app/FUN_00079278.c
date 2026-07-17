@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00079278 */
+/* readable reconstruction; identity: FUN_00079278 @ 0x00079278
+ * public-name: FUN_00079278
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ */
 /* Reconstructed FUN_00079278 @ 0x79278  (parity: 200/200 trials, PROVEN) */
 
 #include <stdint.h>
@@ -10,7 +15,7 @@ unsigned FUN_00079278(int param_1,unsigned *param_2,int *param_3,unsigned **para
     if (param_2[6] == 0) { uVar2 = 1; } else { uVar2 = 0xffffffff; }
     param_2[2] = uVar2;
   }
-  iVar1 = ((uintptr_t)&rodata_f8a6b) /*=0xf8a6b*/;
+  iVar1 = ((unsigned long)&rodata_f8a6b) /*=0xf8a6b*/;
   iVar6 = 0;
   if (-1 < (int)(*param_2 << 0x1b)) {
     puVar3 = (unsigned *)*param_4;
@@ -51,4 +56,3 @@ LAB_00079306:
         iVar4 != 0)))) goto LAB_00079306;
   } while(1);
 }
-

@@ -1,4 +1,10 @@
-/* named: FUN_000709d8 */
+/* readable reconstruction; identity: FUN_000709d8 @ 0x000709d8
+ * public-name: FUN_000709d8
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_8fd50                             @ 0x0008fd50
+ *   rodata_90080                             @ 0x00090080
+ */
 /* Reconstructed FUN_000709d8 @ 0x709d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned short ushort;
@@ -50,4 +56,3 @@ int FUN_000709d8(int *param_1)
     }
     return 0;
 }
-

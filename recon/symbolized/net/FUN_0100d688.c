@@ -11,4 +11,3 @@ unsigned int FUN_0100d688(unsigned int param_1, unsigned int param_2)
   r = (unsigned long long)0x51eb851fu * (unsigned long long)param_1;
   return (unsigned int)((r >> 32) >> 5) & 0xffff;
 }
-

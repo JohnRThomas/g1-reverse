@@ -1,9 +1,30 @@
 #include "g1_app_symbols.h"
-/* named: sync_to_slave */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00026f74 @ 0x00026f74
+ * public-name: sync_to_slave
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9fede                             @ 0x0009fede
+ *   rodata_9ff05                             @ 0x0009ff05
+ *   rodata_9ff92                             @ 0x0009ff92
+ *   rodata_a0102                             @ 0x000a0102
+ *   rodata_a1ab1                             @ 0x000a1ab1
+ *   g_log_level                              @ 0x2000230c
+ *   g_esb_sync_inbound_status                @ 0x2000302b
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_esb_sync_last_result                   @ 0x2000f6e6
+ *   g_esb_sync_tx_busy_flag                  @ 0x20018d8f
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ */
 /* Reconstructed sync_to_slave @ 0x26f74  (parity: 3/300 trials, PROVEN) */
 #include <stdint.h>
 
@@ -89,26 +110,26 @@ LAB_00027396:
       }
 LAB_00027008: ;
       uVar18 = 0x1f5;
-      while ((uVar14 = (uint16_t)(*(volatile uint8_t *)((uintptr_t)&g_persist_task_status_lock) /*=0x20018d9c*/),
-              *(volatile uint8_t *)((uintptr_t)&g_persist_task_status_lock) /*=0x20018d9c*/ != 0 &&
+      while ((uVar14 = (uint16_t)(*(volatile uint8_t *)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/),
+              *(volatile uint8_t *)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/ != 0 &&
               (uVar18 = uVar18 - 1, uVar14 = uVar18, uVar18 != 0))) {
         k_msleep_ticks32768_a(1);
       }
-      while (pbVar5 = (volatile uint8_t *)((uintptr_t)&g_esb_sync_inbound_status) /*=0x2000302b*/, *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ != 0) {
+      while (pbVar5 = (volatile uint8_t *)((unsigned long)&g_esb_sync_inbound_status) /*=0x2000302b*/, *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ != 0) {
         k_msleep_ticks32768_a(1);
         uVar14 = uVar14 + 1;
       }
-      uVar16 = (uint32_t)*(volatile uint8_t *)((uintptr_t)&g_esb_sync_inbound_status) /*=0x2000302b*/;
+      uVar16 = (uint32_t)*(volatile uint8_t *)((unsigned long)&g_esb_sync_inbound_status) /*=0x2000302b*/;
       bVar3 = (uint8_t)param_2;
       if ((uVar14 == 0) || (uVar16 != param_2)) {
         if (uVar16 == 1) {
           if (param_2 == 0) {
-            if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-              iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-              uVar15 = "%s(): ESB send data after suspend cmd, ignore it.\n" /*=0x9ff05*/;
+            if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+              iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+              uVar15 = ((unsigned long)&rodata_9ff05) /*=0x9ff05*/;
 LAB_000270b8:
               if (iVar8 == 0) {
-                DEBUG_PRINT(uVar15, "sync_to_slave" /*=0xa1ab1*/);
+                DEBUG_PRINT(uVar15, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
               }
               else {
                 debug_print();
@@ -118,8 +139,8 @@ LAB_000270b8:
           else {
             if (param_1[0xd5] == '\x06') {
               if (param_2 != 1) goto LAB_00027148;
-              if (499 < *(volatile uint16_t *)((uintptr_t)&g_esb_sync_last_result) /*=0x2000f6e6*/) {
-                *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = bVar3;
+              if (499 < *(volatile uint16_t *)((unsigned long)&g_esb_sync_last_result) /*=0x2000f6e6*/) {
+                *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = bVar3;
                 goto LAB_000270da;
               }
             }
@@ -127,12 +148,12 @@ LAB_000270b8:
               bVar20 = param_2 == 1;
 LAB_000270e0:
               if (!bVar20) goto LAB_00027148;
-              if (499 < *(volatile uint16_t *)((uintptr_t)&g_esb_sync_last_result) /*=0x2000f6e6*/) goto LAB_0002709c;
+              if (499 < *(volatile uint16_t *)((unsigned long)&g_esb_sync_last_result) /*=0x2000f6e6*/) goto LAB_0002709c;
             }
 LAB_000270ec:
-            if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-              iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-              uVar15 = "%s(): ESB send same cmd, ignore it %d.\n" /*=0x9ff6a*/;
+            if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+              iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+              uVar15 = 0x9ff6a;
               goto LAB_0002707a;
             }
           }
@@ -142,14 +163,14 @@ LAB_000270ec:
             if (param_2 == 0) goto LAB_0002709c;
             if (uVar16 == param_2) {
               if ((param_2 != 7) && (4 < param_2 - 0xc)) {
-                if (*(volatile uint16_t *)((uintptr_t)&g_esb_sync_last_result) /*=0x2000f6e6*/ < 500) goto LAB_000270ec;
+                if (*(volatile uint16_t *)((unsigned long)&g_esb_sync_last_result) /*=0x2000f6e6*/ < 500) goto LAB_000270ec;
                 goto LAB_00027148;
               }
-              *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
+              *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
             }
             else {
 LAB_00027148:
-              *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
+              *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
               if ((int32_t)param_2 < 3) goto LAB_000270da;
             }
             goto LAB_00027156;
@@ -158,9 +179,9 @@ LAB_00027148:
             bVar20 = param_2 == 2;
             goto LAB_000270e0;
           }
-          if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-            iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            uVar15 = "%s(): ESB send data after resume cmd, ignore it.\n" /*=0x9ff38*/;
+          if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+            iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            uVar15 = 0x9ff38;
             goto LAB_000270b8;
           }
         }
@@ -169,12 +190,12 @@ LAB_0002708e:
       }
       else {
         if (param_2 != 0) {
-          if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-            iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            uVar15 = "%s(): ESB send same type cmd %d, exit\n" /*=0x9fede*/;
+          if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+            iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            uVar15 = ((unsigned long)&rodata_9fede) /*=0x9fede*/;
 LAB_0002707a:
             if (iVar8 == 0) {
-              DEBUG_PRINT(uVar15, "sync_to_slave" /*=0xa1ab1*/, param_2);
+              DEBUG_PRINT(uVar15, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, param_2);
             }
             else {
               debug_print();
@@ -183,7 +204,7 @@ LAB_0002707a:
           goto LAB_0002708e;
         }
 LAB_0002709c:
-        *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
+        *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 1;
 LAB_000270da:
         *pbVar5 = bVar3;
 LAB_00027156:
@@ -233,19 +254,19 @@ LAB_000271d0:
         puVar19[2] = *(uint32_t *)pcVar13;
         *(char *)(puVar19 + 3) = pcVar12[0xc];
         param_1[0x105a] = '\x01';
-        piVar6 = (volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/;
+        piVar6 = (volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/;
         bVar3 = param_1[0xec];
         if (((bVar3 == 6) || (bVar3 == 0)) || (param_2 != 0)) {
 LAB_00027372:
           ((fp774_t)(*(uint32_t *)(param_1 + 0x774)))(&buf120[0], 0x21);
           uVar16 = 0;
           while (param_1[0x105a] != '\x02') {
-            uVar16 = (uVar16 + 1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+            uVar16 = (uVar16 + 1) & 0xffff;
             if (uVar16 == uVar17) {
               uVar16 = uVar17;
               if (0 < *piVar6) {
-                if (*(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                  DEBUG_PRINT("%s(): ESB send package id is changed, ignore it.\n" /*=0xa00d0*/, "sync_to_slave" /*=0xa1ab1*/, uVar17);
+                if (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+                  DEBUG_PRINT(0xa00d0, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/, uVar17);
                 }
                 else {
                   debug_print();
@@ -270,9 +291,9 @@ LAB_00027390:
               goto LAB_000273f0;
             }
             param_1[0xda] = cVar1;
-            if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-              iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-              uVar15 = " it.\n" /*=0xa002c*/;
+            if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+              iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+              uVar15 = 0xa002c;
               goto LAB_00027298;
             }
           }
@@ -280,17 +301,17 @@ LAB_00027390:
             if (param_1[0xcc] == param_1[0xe9]) {
               if (param_1[0xce] == '\0') goto LAB_000273f0;
               param_1[0xda] = cVar1;
-              if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-                uVar15 = "%s(): ESB send up package is receiving, ignore it.\n" /*=0xa0066*/;
+              if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+                uVar15 = 0xa0066;
                 goto LAB_00027298;
               }
             }
             else {
               param_1[0xda] = cVar1;
-              if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-                uVar15 = "%s(): ESB send down package is changed, ignore it.\n" /*=0xa0032*/;
+              if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+                uVar15 = 0xa0032;
                 goto LAB_00027298;
               }
             }
@@ -301,17 +322,17 @@ LAB_00027304:
               if (param_1[0xea] == param_1[0xcd]) {
                 if (param_1[0xcf] == '\0') goto LAB_000273f0;
                 param_1[0xda] = cVar1;
-                if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                  iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-                  uVar15 = "%s(): ESB send down package is receiving, ignore it.\n" /*=0xa009a*/;
+                if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                  iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+                  uVar15 = 0xa009a;
                   goto LAB_00027298;
                 }
               }
               else {
                 param_1[0xda] = cVar1;
-                if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                  iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-                  uVar15 = "%s(): ESB send up package is changed, ignore it.\n" /*=0xa0000*/;
+                if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                  iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+                  uVar15 = 0xa0000;
                   goto LAB_00027298;
                 }
               }
@@ -321,12 +342,12 @@ LAB_000273f0:
               if (((bVar3 == (uint8_t)param_1[0xd5]) || ((uint8_t)param_1[0xd5] < 7)) || (bVar3 < 7))
                 goto LAB_00027372;
               param_1[0xda] = cVar1;
-              if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-                uVar15 = "%s(): sync to slave failed!!!!!! wait_count %d\n" /*=0xa0102*/;
+              if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+                uVar15 = ((unsigned long)&rodata_a0102) /*=0xa0102*/;
 LAB_00027298:
                 if (iVar8 == 0) {
-                  DEBUG_PRINT(uVar15, "sync_to_slave" /*=0xa1ab1*/);
+                  DEBUG_PRINT(uVar15, ((unsigned long)&rodata_a1ab1) /*=0xa1ab1*/);
                 }
                 else {
                   debug_print();
@@ -337,9 +358,9 @@ LAB_00027298:
         }
         else {
           param_1[0xda] = cVar1;
-          if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-            iVar8 = *(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-            uVar15 = "%s(): ESB send imu status is changed, ignore it.\n" /*=0x9ff92*/;
+          if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+            iVar8 = *(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+            uVar15 = ((unsigned long)&rodata_9ff92) /*=0x9ff92*/;
             goto LAB_00027298;
           }
         }
@@ -348,8 +369,7 @@ LAB_00027298:
     }
   }
 LAB_00026fa0:
-  *(volatile uint16_t *)((uintptr_t)&g_esb_sync_last_result) /*=0x2000f6e6*/ = (uint16_t)uVar16;
-  *(volatile uint8_t *)((uintptr_t)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 0;
+  *(volatile uint16_t *)((unsigned long)&g_esb_sync_last_result) /*=0x2000f6e6*/ = (uint16_t)uVar16;
+  *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ = 0;
   return uVar16;
 }
-

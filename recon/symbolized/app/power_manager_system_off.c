@@ -1,6 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: power_manager_system_off */
-/* Reconstructed power_manager_system_off @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00063c3c @ 0x00063c3c
+ * public-name: power_manager_system_off
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   power_manager_system_off                 <= FUN_00063c3c @ 0x00063c3c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88268                             @ 0x00088268
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6716                             @ 0x000f6716
+ *   rodata_f6749                             @ 0x000f6749
+ *   rodata_f6769                             @ 0x000f6769
+ *   rodata_f67a5                             @ 0x000f67a5
+ *   g_caf_power_manager_system_off_flag      @ 0x2001d563
+ */
+/* Reconstructed FUN_00063c3c @ 0x63c3c  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0004d944(unsigned,int,void*,int);
 extern int FUN_0004f770(int);
@@ -11,24 +26,23 @@ extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 void power_manager_system_off(void){
   int iVar1; unsigned local_18, local_14;
-  unsigned char r5 = *(volatile unsigned char*)((uintptr_t)&g_caf_power_manager_system_off_flag) /*=0x2001d563*/;
+  unsigned char r5 = *(volatile unsigned char*)((unsigned long)&g_caf_power_manager_system_off_flag) /*=0x2001d563*/;
   if(r5 != 0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"power_state == POWER_STATE_IDLE" /*=0xf6749*/,"WEST_TOPDIR/nrf/subsys/caf/modules/power_manager.c" /*=0xf6716*/,0xab);
-    assert_post_action("WEST_TOPDIR/nrf/subsys/caf/modules/power_manager.c" /*=0xf6716*/,0xab);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6749) /*=0xf6749*/,((unsigned long)&rodata_f6716) /*=0xf6716*/,0xab);
+    assert_post_action(((unsigned long)&rodata_f6716) /*=0xf6716*/,0xab);
   }
   L:
   iVar1 = FUN_00063ba8(r5);
   if(iVar1==0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"check_if_power_state_allowed(POWER_MANAGER_LEVEL_SUSPENDED)" /*=0xf6769*/,"WEST_TOPDIR/nrf/subsys/caf/modules/power_manager.c" /*=0xf6716*/,0xac);
-    assert_post_action("WEST_TOPDIR/nrf/subsys/caf/modules/power_manager.c" /*=0xf6716*/,0xac);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6769) /*=0xf6769*/,((unsigned long)&rodata_f6716) /*=0xf6716*/,0xac);
+    assert_post_action(((unsigned long)&rodata_f6716) /*=0xf6716*/,0xac);
     goto L;
   }
-  local_14="System power down" /*=0xf67a5*/; local_18=2;
-  FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88268*/,0x10c0,&local_18,0);
+  local_14=((unsigned long)&rodata_f67a5) /*=0xf67a5*/; local_18=2;
+  FUN_0004d944(((unsigned long)&rodata_88268) /*=0x88268*/,0x10c0,&local_18,0);
   iVar1=FUN_00063bcc();
   *(unsigned char*)(iVar1+8)=r5;
   FUN_00063c14(1);
   FUN_0004f770(iVar1);
   return;
 }
-

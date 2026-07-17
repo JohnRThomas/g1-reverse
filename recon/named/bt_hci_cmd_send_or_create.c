@@ -1,5 +1,17 @@
-/* named: bt_hci_cmd_send_or_create */
-/* Reconstructed bt_hci_cmd_send_or_create @ 0x543d8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000543d8 @ 0x000543d8
+ * public-name: bt_hci_cmd_send_or_create
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   bt_hci_cmd_send_or_create                <= FUN_000543d8 @ 0x000543d8
+ *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f3103                             @ 0x000f3103
+ *   hci_cmd_pool                             @ 0x2000214c
+ */
+/* Reconstructed FUN_000543d8 @ 0x543d8  (parity: 300/300 trials, PROVEN) */
 extern int bt_hci_cmd_create(void);
 extern int FUN_000543c8(int);
 extern void net_buf_destroy_default(unsigned,int);
@@ -25,4 +37,3 @@ int bt_hci_cmd_send_or_create(int param_1, int param_2, unsigned param_3, unsign
         return 0;
     }
 }
-

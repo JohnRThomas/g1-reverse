@@ -1,10 +1,12 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01035d18 @ 0x1035d18  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
-static inline unsigned int getCurrentExceptionNumber(void){unsigned v;__asm__ volatile("mrs %0, ipsr":"=r"(v));return v;}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+static inline unsigned int getCurrentExceptionNumber(void){return __get_IPSR();}
 
 extern unsigned long long FUN_0102c4e4(int, unsigned int, unsigned int);
 extern int FUN_0103610c(int);
@@ -16,9 +18,9 @@ extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b304(int*);
 extern void FUN_0103b34c(int*, int, int, int);
 
-#define DAT_01035e10 "***** HARD FAULT *****" /*=0x103d3b6*/
-#define DAT_01035e14 "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define DAT_01035e18 ((uintptr_t)&rodata_103e9fe) /*=0x103e9fe*/
+#define DAT_01035e10 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define DAT_01035e14 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define DAT_01035e18 ((unsigned long)&rodata_103e9fe) /*=0x103e9fe*/
 
 int FUN_01035d18(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4,
                   int param_5, int param_6)
@@ -113,4 +115,3 @@ LAB_01035d56:
   FUN_01039bb0(uVar7, uVar5);
   __builtin_unreachable();
 }
-

@@ -1,76 +1,168 @@
 #include "g1_app_symbols.h"
-/* named: k_mutex_lock */
-/* Reconstructed k_mutex_lock @ 0x723b8  (parity: 300/300 trials, PROVEN) */
-extern int  z_spin_lock_valid(int);
-extern void z_spin_lock_set_owner(int);
-extern int  z_spin_unlock_valid(int);
-extern int  z_reschedule(int,int);
-extern int  FUN_00073f6c(int,int,int);
-extern void printk(int,int,int,int,int,int);
-extern void assert_post_action(int,int);
-extern int  adjust_owner_prio_isra_0(int,int) __asm__("adjust_owner_prio.isra.0");
-#define VI(a)  (*(volatile int*)(a))
-#define VSC(a) (*(volatile signed char*)(a))
+/* readable reconstruction; identity: FUN_000723b8 @ 0x000723b8
+ * public-name: k_mutex_lock
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f813a                             @ 0x000f813a
+ *   rodata_f815c                             @ 0x000f815c
+ *   g_current_thread_ptr                     @ 0x2000b450
+ *   sched_spinlock                           @ 0x2000b470
+ */
+/* Reconstructed FUN_000723b8 @ 0x723b8 */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-int k_mutex_lock(int *param_1,int param_2,int *param_3,int param_4){
-  volatile int *p = param_1;
-  int iVar3, iVar4, cVar5, cVar1;
-  (void)param_2;
-MAIN:
-  if (z_spin_lock_valid(((uintptr_t)&sched_spinlock) /*=0x2000b470*/) == 0) {
-    printk(0,0,0,0,0,0); printk(0,0,0,0,0,0); assert_post_action(0,0);
-    goto MAIN;
-  }
-  z_spin_lock_set_owner(((uintptr_t)&sched_spinlock) /*=0x2000b470*/);
-  if (p[3] == 0) {
-    iVar4 = VSC(VI(((uintptr_t)&g_current_thread_ptr) /*=0x2000b450*/) + 0xe);
-    goto L7244e;
-  }
-  if (p[2] == VI(((uintptr_t)&g_current_thread_ptr) /*=0x2000b450*/)) {
-    iVar4 = p[4];
-    goto L7244e;
-  }
-  if ((((int)param_3) | param_4) == 0) {
-    if (z_spin_unlock_valid(((uintptr_t)&sched_spinlock) /*=0x2000b470*/) != 0) return 0xfffffff0;
-    printk(0,0,0,0,0,0); printk(0,0,0,0,0,0); assert_post_action(0,0);
-    goto MAIN;
-  }
-  cVar5 = VSC(VI(((uintptr_t)&g_current_thread_ptr) /*=0x2000b450*/) + 0xe);
-  cVar1 = VSC(p[2] + 0xe);
-  { int r1 = cVar5;
-    if (cVar5 >= cVar1) r1 = cVar1;
-    if (r1 < -0x7f) r1 = -0x7f;
-    iVar3 = 0;
-    if (cVar1 > r1) iVar3 = adjust_owner_prio_isra_0(0,0);
-  }
-  if (FUN_00073f6c(((uintptr_t)&sched_spinlock) /*=0x2000b470*/,0,(int)param_1) == 0) return 0;
-  if (z_spin_lock_valid(((uintptr_t)&sched_spinlock) /*=0x2000b470*/) == 0) {
-    printk(0,0,0,0,0,0); printk(0,0,0,0,0,0); assert_post_action(0,0);
-    goto MAIN;
-  }
-  z_spin_lock_set_owner(((uintptr_t)&sched_spinlock) /*=0x2000b470*/);
-  if (p[2] != 0) {
-    int *piVar7 = (int*)p[0];
-    iVar4 = p[4];
-    if (param_1 != piVar7 && piVar7 != 0) {
-      if (iVar4 >= (int)VSC((int)piVar7 + 0xe)) iVar4 = (int)VSC((int)piVar7 + 0xe);
-      if (iVar4 < -0x7f) iVar4 = -0x7f;
-    }
-    if (adjust_owner_prio_isra_0(p[2], iVar4) != 0) goto L72504;
-  }
-  if (iVar3 != 0) goto L72504;
-  if (z_spin_unlock_valid(((uintptr_t)&sched_spinlock) /*=0x2000b470*/) != 0) return 0xfffffff5;
-  printk(0,0,0,0,0,0); printk(0,0,0,0,0,0); assert_post_action(0,0);
-  goto MAIN;
-L72504:
-  z_reschedule(((uintptr_t)&sched_spinlock) /*=0x2000b470*/, 0);
-  return 0xfffffff5;
-L7244e:
-  p[3] = p[3] + 1;
-  p[4] = iVar4;
-  p[2] = VI(((uintptr_t)&g_current_thread_ptr) /*=0x2000b450*/);
-  if (z_spin_unlock_valid(((uintptr_t)&sched_spinlock) /*=0x2000b470*/) != 0) return 0;
-  printk(0,0,0,0,0,0); printk(0,0,0,0,0,0); assert_post_action(0,0);
-  goto MAIN;
+extern int z_spin_lock_valid(uint32_t);
+extern int z_spin_unlock_valid(uint32_t);
+extern void z_spin_lock_set_owner(uint32_t);
+extern void z_reschedule(uint32_t, uint32_t);
+extern int FUN_00073f6c(uint32_t, uint32_t, void *, uint32_t,
+                       void *, uint32_t);
+extern void printk(uint32_t, ...);
+extern void assert_post_action(uint32_t, uint32_t);
+extern int FUN_000864b2(void *, int);
+
+struct queue_entry {
+  struct queue_entry *next;
+  uint32_t reserved_04;
+  void *item;
+  uint32_t acquisitions;
+  int priority;
+};
+
+static inline int item_priority(const void *item)
+{
+  return *(const volatile int8_t *)((uintptr_t)item + 0x0e);
 }
 
+static __attribute__((always_inline)) inline void lock_failure(uint32_t lock)
+{
+  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+  printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, lock);
+  assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+}
+
+static __attribute__((always_inline)) inline void unlock_failure(uint32_t lock)
+{
+  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, lock);
+  assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+}
+
+int k_mutex_lock(struct queue_entry *entry, uint32_t reserved,
+                 void *successor, uint32_t successor_value)
+{
+  const uint32_t lock = ((unsigned long)&sched_spinlock) /*=0x2000b470*/;
+  (void)reserved;
+
+  if (__get_IPSR() != 0) {
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f801f) /*=0xf801f*/, ((unsigned long)&rodata_f813a) /*=0xf813a*/, 0x65);
+    printk(((unsigned long)&rodata_f815c) /*=0xf815c*/);
+    assert_post_action(((unsigned long)&rodata_f813a) /*=0xf813a*/, 0x65);
+  }
+
+  uint32_t previous_priority = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
+  if (z_spin_lock_valid(lock) == 0) {
+    lock_failure(lock);
+  }
+  z_spin_lock_set_owner(lock);
+
+  void *head = *(void *volatile *)((unsigned long)&g_current_thread_ptr) /*=0x2000b450*/;
+  if (entry->acquisitions == 0 || entry->item == head) {
+    int priority = entry->acquisitions == 0
+        ? item_priority(head) : entry->priority;
+    entry->acquisitions++;
+    entry->priority = priority;
+    entry->item = head;
+    if (z_spin_unlock_valid(lock) != 0) {
+      __set_BASEPRI(previous_priority);
+      __ISB();
+      return 0;
+    }
+    unlock_failure(lock);
+  }
+
+  if (successor == 0 && successor_value == 0) {
+    if (z_spin_unlock_valid(lock) != 0) {
+      __set_BASEPRI(previous_priority);
+      __ISB();
+      return -16;
+    }
+    unlock_failure(lock);
+  }
+
+  int head_priority = item_priority(head);
+  int current_priority = item_priority(entry->item);
+  int target_priority =
+      head_priority < current_priority ? head_priority : current_priority;
+  if (target_priority < -127) {
+    target_priority = -127;
+  }
+
+  int previous_update = 0;
+  if (current_priority > target_priority) {
+    previous_update = FUN_000864b2(entry->item, target_priority);
+  }
+
+  /* The fourth formal is unused by FUN_00073f6c; the two successor fields
+     are its stacked fifth and sixth arguments. */
+  if (FUN_00073f6c(lock, previous_priority, entry, 0,
+                   successor, successor_value) == 0) {
+    return 0;
+  }
+
+  uint32_t reacquire_priority = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
+  if (z_spin_lock_valid(lock) == 0) {
+    lock_failure(lock);
+  }
+  z_spin_lock_set_owner(lock);
+
+  if (entry->item != 0) {
+    int priority = entry->priority;
+    struct queue_entry *next = entry->next;
+    if (next != entry && next != 0) {
+      int next_priority = item_priority(next);
+      if (next_priority <= priority) {
+        priority = next_priority;
+      }
+      if (priority < -127) {
+        priority = -127;
+      }
+    }
+    if (FUN_000864b2(entry->item, priority) != 0) {
+      z_reschedule(lock, reacquire_priority);
+      return -11;
+    }
+  }
+
+  if (previous_update != 0) {
+    z_reschedule(lock, reacquire_priority);
+    return -11;
+  }
+  if (z_spin_unlock_valid(lock) != 0) {
+    __set_BASEPRI(reacquire_priority);
+    __ISB();
+    return -11;
+  }
+  unlock_failure(lock);
+  return -11;
+}

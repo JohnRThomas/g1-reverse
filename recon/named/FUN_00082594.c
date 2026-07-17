@@ -1,14 +1,20 @@
-/* named: FUN_00082594 */
-/* Reconstructed FUN_00082594 @ 0x82594  (parity: 300/300 trials, PROVEN) */
-
+/* readable reconstruction; identity: FUN_00082594 @ 0x00082594
+ * public-name: FUN_00082594
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
+ */
+/* Full reconstruction of FUN_00082594 @ 0x82594, exact extent 24 bytes. */
 #include <stdint.h>
-extern unsigned int bt_l2cap_le_lookup_tx_cid(int a,int b,int c,int d,int e);
-unsigned int FUN_00082594(int param_1, int param_2, int param_3, int param_4) {
-    unsigned int uVar1 = bt_l2cap_le_lookup_tx_cid(param_1, 4, param_3, param_4, param_4);
-    if (uVar1 != 0) {
-        int v = *(volatile int*)(uVar1 + 0x118);
-        uVar1 = (unsigned int)((v << 0x1a) >> 0x1f);
-    }
-    return uVar1;
-}
 
+extern uintptr_t bt_l2cap_le_lookup_tx_cid(uint32_t, uint32_t, uint32_t, uint32_t);
+
+uint32_t FUN_00082594(uint32_t arg0, uint32_t ignored, uint32_t arg2,
+                      uint32_t arg3)
+{
+    (void)ignored;
+    uintptr_t object = bt_l2cap_le_lookup_tx_cid(arg0, 4, arg2, arg3);
+    if (object == 0)
+        return 0;
+    return (__atomic_load_n((uint32_t *)(object + 0x118), __ATOMIC_ACQUIRE) >> 5) & 1;
+}

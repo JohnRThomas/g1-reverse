@@ -1,25 +1,38 @@
 #include "g1_app_symbols.h"
-/* named: log_init */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-*/
-/* Reconstructed log_init @ 0x4d678  (parity: 298/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004d678 @ 0x0004d678
+ * public-name: log_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_process                              <= FUN_0004d594 @ 0x0004d594
+ *   log_init                                 <= FUN_0004d678 @ 0x0004d678
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_882a0                             @ 0x000882a0
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0cae                             @ 0x000f0cae
+ *   rodata_f0cff                             @ 0x000f0cff
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   g_log_initialized_flag                   @ 0x2001d44c
+ */
+/* Reconstructed FUN_0004d678 @ 0x4d678  (parity: 298/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0004d334(int);
 extern int log_process(void);
 extern int assert_post_action(int,int);
 extern int printk(int,...);
 void log_init(void){
-  volatile uint8_t *pcVar1 = (volatile uint8_t*)((uintptr_t)&g_log_initialized_flag) /*=0x2001d44c*/;
+  volatile uint8_t *pcVar1 = (volatile uint8_t*)((unsigned long)&g_log_initialized_flag) /*=0x2001d44c*/;
   if(*pcVar1 == 0){
     FUN_0004d334(1);
-    uint32_t piVar4 = ((uintptr_t)&tbl_880d8) /*=0x882a0*/;
-    uint32_t piVar2 = ((uintptr_t)&__settings_handler_static_list_start) /*=0x882b0*/;
+    uint32_t piVar4 = ((unsigned long)&rodata_882a0) /*=0x882a0*/;
+    uint32_t piVar2 = ((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
     while(1){
       if(piVar4 > piVar2){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "backend <= _log_backend_list_end" /*=0xf0cff*/, "WEST_TOPDIR/zephyr/subsys/logging/log_core.c" /*=0xf0cae*/, 0x188);
-        printk("\tunexpected list end location\n" /*=0xf0d20*/);
-        assert_post_action("WEST_TOPDIR/zephyr/subsys/logging/log_core.c" /*=0xf0cae*/, 0x188);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0cff) /*=0xf0cff*/, ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
+        printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+        assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x188);
       }
       if(piVar4 == piVar2) break;
       uint32_t e = *(volatile uint32_t*)(piVar4+4);
@@ -34,4 +47,3 @@ void log_init(void){
     *pcVar1 = 1;
   }
 }
-

@@ -4,6 +4,5 @@
 typedef void (*code)(void);
 void FUN_01021920(void)
 {
-    ((code)(*(volatile unsigned int*)(*(volatile unsigned int*)((uintptr_t)&g_net_radio_ops_table_ptr) /*=0x21000530*/ + 4)))();
+    ((code)(*(volatile unsigned int*)(*(volatile unsigned int*)((unsigned long)&g_net_radio_ops_table_ptr) /*=0x21000530*/ + 4)))();
 }
-

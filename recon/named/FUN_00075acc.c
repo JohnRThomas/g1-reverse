@@ -1,44 +1,62 @@
-/* named: FUN_00075acc */
-/* globals referenced:
-//   0x200035af  g_libm_ieee_mode_flag        
-*/
-/* Reconstructed FUN_00075acc @ 0x75acc  (parity: 200/200 trials, PROVEN) */
-
+/* readable reconstruction; identity: FUN_00075acc @ 0x00075acc
+ * public-name: FUN_00075acc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __divdf3                                 <= FUN_0000db4c @ 0x0000db4c
+ *   __aeabi_dcmpeq                           <= FUN_0000ddc8 @ 0x0000ddc8
+ *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
+ *   double_is_unordered                      <= FUN_0000de2c @ 0x0000de2c
+ * address symbols (name @ address):
+ *   g_libm_ieee_mode_flag                    @ 0x200035af
+ */
+/* Full hard-float reconstruction FUN_00075acc @ 0x75acc, exact extent 334 bytes. */
 #include <stdint.h>
-extern long long __divdf3(int,int);
-extern int __aeabi_dcmpeq();
-extern int __aeabi_dcmplt();
-extern int double_is_unordered();
-extern long long FUN_000133f8(void);
-extern long long FUN_000767c8();
-extern int FUN_000869dc();
-extern void* thunk_FUN_00071678(void);
-long long FUN_00075acc(unsigned p1,unsigned p2,unsigned p3,unsigned p4){
-  long long lv = FUN_000133f8();
-  if (*(volatile int8_t*)0x200035afUL == -1) return lv;
-  if (double_is_unordered()!=0) return lv;
-  if (double_is_unordered()==0){
-    if (__aeabi_dcmpeq()==0){
-      if (FUN_000869dc()!=0 || FUN_000869dc()==0 || FUN_000869dc()==0){
-        if (__aeabi_dcmpeq()==0) return lv;
-        if (FUN_000869dc()==0) return lv;
-        if (FUN_000869dc()==0) return lv;
-        *(unsigned*)thunk_FUN_00071678()=0x22; return 0;
-      }
-      if (double_is_unordered()!=0){ *(unsigned*)thunk_FUN_00071678()=0x21; return __divdf3(0,0);}
-      *(unsigned*)thunk_FUN_00071678()=0x22;
-      if (__aeabi_dcmplt()!=0){ FUN_000767c8(); if (__aeabi_dcmpeq()==0) return (long long)((unsigned long long)*(volatile unsigned*)0x75c20UL<<32);}
-      return (long long)((unsigned long long)*(volatile unsigned*)0x75c24UL<<32);
+extern double FUN_000133f8(void);
+extern int double_is_unordered(uint32_t,uint32_t,uint32_t,uint32_t);
+extern int __aeabi_dcmpeq(uint32_t,uint32_t,uint32_t,uint32_t);
+extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);
+extern uint64_t __divdf3(uint32_t,uint32_t);
+extern int FUN_000869dc(double);
+extern double FUN_000767c8(double);
+extern uint32_t *thunk_FUN_00071678(void);
+typedef union { double d; struct { uint32_t lo,hi; }; uint64_t u; } dbits;
+static inline int eq(dbits a,dbits b){return double_is_unordered(a.lo,a.hi,b.lo,b.hi);}
+static inline int gt(dbits a,dbits b){return __aeabi_dcmpeq(a.lo,a.hi,b.lo,b.hi);}
+static inline int lt(dbits a,dbits b){return __aeabi_dcmplt(a.lo,a.hi,b.lo,b.hi);}
+double FUN_00075acc(double x, double y)
+{
+    dbits a={.d=x}, b={.d=y}, result={.d=FUN_000133f8()}, zero={.u=0};
+    if(*(volatile int8_t*)0x200035afu==-1) return result.d;
+    if(eq(b,b)!=0) return result.d;
+    if(eq(a,a)!=0) {
+        if(gt(b,zero)!=0) return 1.0;
+        return result.d;
     }
-    if (__aeabi_dcmpeq()==0){
-      if (FUN_000869dc()==0) return lv;
-      if (__aeabi_dcmplt()==0) return lv;
-      *(unsigned*)thunk_FUN_00071678()=0x21;
-      return (long long)((unsigned long long)*(volatile unsigned*)0x75c20UL<<32);
+    if(gt(a,zero)!=0) {
+        if(gt(b,zero)!=0) return 1.0;
+        if(!FUN_000869dc(b.d)) return result.d;
+        if(!lt(b,zero)) return result.d;
+        *thunk_FUN_00071678()=0x21;
+        return -1.0/0.0;
     }
-  } else {
-    if (__aeabi_dcmpeq()==0) return lv;
-  }
-  return (long long)((unsigned long long)*(volatile unsigned*)0x75c28UL<<32);
+    int all_finite=0;
+    if(FUN_000869dc(result.d)==0) {
+        if(FUN_000869dc(a.d)!=0 && FUN_000869dc(b.d)!=0)
+            all_finite=1;
+    }
+    if(!all_finite) {
+        if(!gt(result,zero)) return result.d;
+        if(!FUN_000869dc(a.d) || !FUN_000869dc(b.d)) return result.d;
+        *thunk_FUN_00071678()=0x22;
+        return 0.0;
+    }
+    if(eq(result,result)!=0) {
+        *thunk_FUN_00071678()=0x21;
+        dbits n={.u=__divdf3(0,0)};
+        return n.d;
+    }
+    *thunk_FUN_00071678()=0x22;
+    if(!lt(a,zero)) return 1.0/0.0;
+    dbits magnitude={.d=FUN_000767c8(b.d)};
+    return gt(magnitude,b)==0 ? -1.0/0.0 : 1.0/0.0;
 }
-

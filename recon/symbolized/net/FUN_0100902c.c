@@ -7,7 +7,7 @@ extern void FUN_0100a7b0(void);
 
 void FUN_0100902c(void)
 {
-  volatile unsigned char *base = (volatile unsigned char *)((uintptr_t)&g_net_layout_count_table) /*=0x21000a30*/;
+  volatile unsigned char *base = (volatile unsigned char *)((unsigned long)&g_net_layout_count_table) /*=0x21000a30*/;
   if (base[0x2c] != 0) {
     FUN_0101f850();
     FUN_0102581c(base[0x2e]);
@@ -16,4 +16,3 @@ void FUN_0100902c(void)
   base[0x2c] = 0;
   return;
 }
-

@@ -1,4 +1,7 @@
-/* named: FUN_00085d70 */
+/* readable reconstruction; identity: FUN_00085d70 @ 0x00085d70
+ * public-name: FUN_00085d70
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00085d70 @ 0x85d70  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long FUN_00085d5c(int a);
@@ -11,4 +14,3 @@ void FUN_00085d70(int param_1)
         *(int *)(iVar1 + 0xc) = (int)(uVar2 >> 32);
     }
 }
-

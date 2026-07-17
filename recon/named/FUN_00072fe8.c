@@ -1,4 +1,24 @@
-/* named: FUN_00072fe8 */
+/* readable reconstruction; identity: FUN_00072fe8 @ 0x00072fe8
+ * public-name: FUN_00072fe8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f820f                             @ 0x000f820f
+ *   rodata_f8262                             @ 0x000f8262
+ *   rodata_f82e0                             @ 0x000f82e0
+ *   timer_spinlock                           @ 0x2000b480
+ */
 /* Reconstructed FUN_00072fe8 @ 0x72fe8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -7,7 +27,7 @@ extern int z_spin_unlock_valid(uint32_t);
 extern void z_spin_lock_set_owner(uint32_t);
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,...);
-extern uint32_t cancel_async_locked(int);
+extern uint32_t FUN_00086596(int);
 
 uint32_t FUN_00072fe8(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
   uint32_t sb, uVar4;
@@ -30,7 +50,7 @@ uint32_t FUN_00072fe8(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
     assert_post_action(0xf08c7,0x72);
   }
   z_spin_lock_set_owner(0x2000b480);
-  uVar4 = cancel_async_locked(param_1);
+  uVar4 = FUN_00086596(param_1);
   iVar3 = z_spin_unlock_valid(0x2000b480);
   if (iVar3 == 0){
     printk(0x99cbd,0xf08f4,0xf08c7,0xf0,param_4);
@@ -41,4 +61,3 @@ uint32_t FUN_00072fe8(int param_1, uint32_t param_2, uint32_t param_3, uint32_t 
   __asm volatile("isb sy");
   return uVar4;
 }
-

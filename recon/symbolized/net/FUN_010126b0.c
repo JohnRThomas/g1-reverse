@@ -4,4 +4,3 @@
 unsigned short FUN_010126b0(int param_1) {
     return *(unsigned short *)(param_1 + 2) & 1;
 }
-

@@ -1,10 +1,12 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01036198 @ 0x1036198  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
-static inline unsigned int getCurrentExceptionNumber(void){unsigned v;__asm__ volatile("mrs %0, ipsr":"=r"(v));return v;}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
+static inline unsigned int getCurrentExceptionNumber(void){return __get_IPSR();}
 
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
@@ -18,10 +20,10 @@ extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int, ...);
 extern void FUN_0103b4f6(int, int);
 extern void FUN_0103b614(unsigned int, unsigned int, unsigned int);
 
-#define DAT_010362c0 ((uintptr_t)&rodata_103ea89) /*=0x103ea89*/
-#define DAT_010362c4 "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define DAT_010362c8 "***** HARD FAULT *****" /*=0x103d3b6*/
-#define DAT_010362cc ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
+#define DAT_010362c0 ((unsigned long)&rodata_103ea89) /*=0x103ea89*/
+#define DAT_010362c4 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define DAT_010362c8 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define DAT_010362cc 0x21004b28u
 
 unsigned int FUN_01036198(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -127,4 +129,3 @@ LAB_010361ea:
   FUN_01039bb0(uVar8, uVar3);
   __builtin_unreachable();
 }
-

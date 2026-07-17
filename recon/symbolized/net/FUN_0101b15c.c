@@ -2,12 +2,13 @@
 /* net-core FUN_0101b15c @ 0x101b15c  (parity 8 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01008d00(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void FUN_01008d00(unsigned int a, unsigned int b, unsigned int c,
+                         unsigned int d, unsigned int e) __attribute__((noreturn));
 extern int FUN_01019204(void);
 extern int FUN_0101a218(void);
 extern int thunk_FUN_01025034(void);
 
-#define LIT_22C ((uintptr_t)&g_net_session_state_block) /*=0x210010a0*/
+#define LIT_22C ((unsigned long)&g_net_session_state_block) /*=0x210010a0*/
 
 int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -43,9 +44,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
                     iVar3 = 0x150;
                     break;
                 default:
-                    for (;;) {
-                        FUN_01008d00(5, 0x104, uVar4 - 1, uVar4, param_4);
-                    }
+                    FUN_01008d00(5, 0x104, uVar4 - 1, uVar4, param_4);
                 case 4:
                 case 8:
                     iVar3 = 0xa0;
@@ -83,9 +82,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
         iVar3 = 0x1f8;
         break;
     default:
-        for (;;) {
-            FUN_01008d00(0x21, 0x3d9, 0, 0, 0);
-        }
+        FUN_01008d00(0x21, 0x3d9, 0, 0, 0);
     }
 
     uVar4 = (unsigned int)(iVar2 - iVar6) + (unsigned int)iVar3;
@@ -100,4 +97,3 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
     }
     return bVar5;
 }
-

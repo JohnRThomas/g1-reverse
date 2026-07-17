@@ -1,16 +1,25 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01012308 @ 0x1012308  (parity 300 trials PROVEN) */
+/* net-core record submission entry FUN_01012308 @ 0x01012308. */
+#include <stdint.h>
 
-extern void FUN_01011d14(unsigned int a, void *b);
+extern void FUN_01011d14(uint32_t value, const void *description);
 
-void FUN_01012308(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned short param_4)
+struct record_description_12308 {
+  uint8_t *payload;
+  uint16_t flags;
+  uint16_t reserved;
+  uint32_t context;
+  uint16_t type;
+};
+
+void FUN_01012308(uint8_t *record, uint32_t value, uint32_t unused, uint16_t flags)
 {
-  unsigned char buf[20];
-  *(unsigned int *)(buf + 0) = param_1 + 0x28;
-  *(unsigned short *)(buf + 4) = param_4;
-  *(unsigned int *)(buf + 8) = *(unsigned int *)(param_1 + 8);
-  *(unsigned short *)(buf + 0xc) = *(unsigned short *)(param_1 + 4);
-  FUN_01011d14(param_2, buf);
-  return;
-}
+  struct record_description_12308 description;
 
+  (void)unused;
+  description.payload = record + 0x28;
+  description.flags = flags;
+  description.context = *(uint32_t *)(record + 8);
+  description.type = *(uint16_t *)(record + 4);
+  FUN_01011d14(value, &description);
+}

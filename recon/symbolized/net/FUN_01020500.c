@@ -12,7 +12,7 @@ extern void FUN_01025cc8(void);
 extern int FUN_01025d0c(void);
 
 #define DAT_01020628 REG_41008000 /*=0x41008000*/
-#define DAT_0102062c ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/
+#define DAT_0102062c 0x210015f0u
 #define DAT_01020630 0x00023280u
 
 /* Ghidra's prototype is void, but net_recon_kit's ret-kind sniffer trips on
@@ -103,4 +103,3 @@ unsigned int FUN_01020500(void)
   }
   return pending_r0;
 }
-

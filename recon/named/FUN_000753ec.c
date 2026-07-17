@@ -1,9 +1,39 @@
-/* named: FUN_000753ec */
+/* readable reconstruction; identity: FUN_000753ec @ 0x000753ec
+ * public-name: FUN_000753ec
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   rodata_f871d                             @ 0x000f871d
+ *   rodata_f875b                             @ 0x000f875b
+ *   rodata_f8775                             @ 0x000f8775
+ *   rodata_f878a                             @ 0x000f878a
+ *   rodata_f87a6                             @ 0x000f87a6
+ *   rodata_f87b7                             @ 0x000f87b7
+ *   rodata_f87d4                             @ 0x000f87d4
+ *   rodata_f87eb                             @ 0x000f87eb
+ *   rodata_f8806                             @ 0x000f8806
+ *   rodata_f881f                             @ 0x000f881f
+ *   poll_spinlock                            @ 0x2000b4a0
+ */
 /* Reconstructed FUN_000753ec @ 0x753ec  (parity: 300/300 trials, PROVEN) */
-static inline unsigned read_basepri(void){unsigned r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void write_basepri(unsigned v){__asm__ volatile("msr basepri, %0"::"r"(v):"memory");}
-static inline void write_basepri_max(unsigned v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb_sy(void){__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned read_basepri(void){return __get_BASEPRI();}
+static inline void write_basepri(unsigned v){__set_BASEPRI(v);}
+static inline void write_basepri_max(unsigned v){__set_BASEPRI_MAX(v);}
+static inline void isb_sy(void){__ISB();}
 
 extern int z_spin_lock_valid(unsigned,...);
 extern int z_spin_unlock_valid(unsigned,...);
@@ -107,4 +137,3 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
 LAB:
   assert_post_action(uVar4, uVar5);
 }
-

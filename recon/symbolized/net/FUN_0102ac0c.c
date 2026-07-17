@@ -1,72 +1,41 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0102ac0c @ 0x102ac0c  (parity 300 trials PROVEN) */
+/* net-core FUN_0102ac0c @ 0x102ac0c */
+#include <stdint.h>
 
-extern void FUN_01039722(void*);
-extern int FUN_0102d558(void*);
-extern unsigned long long FUN_0102d5b4(void*, void*, void*);
-extern void FUN_0103689c(void*, int, int, int);
+extern void FUN_01039722(const void *message);
+extern int FUN_0102d558(const void *path);
+extern int FUN_0102d5b4(const void *path, void *destination, void *metadata);
+extern void FUN_0103689c(void *object, int ignored, int first, int second);
 
-__attribute__((naked)) unsigned int FUN_0102ac0c(void)
+int FUN_0102ac0c(void)
 {
-    __asm__ volatile(
-        "push {r4, lr}\n"
-        "ldr r4, =0x21000580\n"
-        "ldr r3, [r4]\n"
-        "cmp r3, #2\n"
-        "ble 1f\n"
-        "ldr r0, =0x0103ce92\n"
-        "bl FUN_01039722\n"
-        "1:\n"
-        "ldr r0, =0x0103bfac\n"
-        "bl FUN_0102d558\n"
-        "subs r1, r0, #0\n"
-        "ldr r3, [r4]\n"
-        "bge 2f\n"
-        "cmn.w r1, #0x78\n"
-        "beq 2f\n"
-        "cmp r3, #0\n"
-        "ble 3f\n"
-        "ldr r0, =0x0103ceac\n"
-        "bl FUN_01039722\n"
-        "3:\n"
-        "mov.w r0, #-1\n"
-        "b 7f\n"
-        "2:\n"
-        "cmp r3, #2\n"
-        "ble 4f\n"
-        "ldr r0, =0x0103cec3\n"
-        "bl FUN_01039722\n"
-        "4:\n"
-        "ldr r2, =0x21000584\n"
-        "ldr r1, =0x210045f8\n"
-        "ldr r0, =0x0103bfac\n"
-        "bl FUN_0102d5b4\n"
-        "cmp r0, #0\n"
-        "bge 5f\n"
-        "ldr r3, [r4]\n"
-        "cmp r3, #0\n"
-        "ble 3b\n"
-        "ldr r0, =0x0103ced0\n"
-        "b 6f\n"
-        "5:\n"
-        "mov.w r2, #-1\n"
-        "mov.w r3, #-1\n"
-        "ldr r0, =0x21000914\n"
-        "bl FUN_0103689c\n"
-        "movs r2, #1\n"
-        "ldr r3, =0x21004600\n"
-        "str r2, [r3]\n"
-        "ldr r3, [r4]\n"
-        "cmp r3, r2\n"
-        "bgt 8f\n"
-        "movs r0, #0\n"
-        "7:\n"
-        "pop {r4, pc}\n"
-        "8:\n"
-        "ldr r0, =0x0103cef6\n"
-        "6:\n"
-        "bl FUN_01039722\n"
-        "b 3b\n"
-    );
-}
+    volatile int *const log_level = (volatile int *)UINT32_C(0x21000580);
 
+    if (*log_level > 2)
+        FUN_01039722((const void *)UINT32_C(0x0103ce92));
+
+    int status = FUN_0102d558((const void *)UINT32_C(0x0103bfac));
+    if (status < 0 && status != -0x78) {
+        if (*log_level > 0)
+            FUN_01039722((const void *)UINT32_C(0x0103ceac));
+        return -1;
+    }
+
+    if (*log_level > 2)
+        FUN_01039722((const void *)UINT32_C(0x0103cec3));
+
+    status = FUN_0102d5b4((const void *)UINT32_C(0x0103bfac),
+                          (void *)UINT32_C(0x210045f8),
+                          (void *)UINT32_C(0x21000584));
+    if (status < 0) {
+        if (*log_level > 0)
+            FUN_01039722((const void *)UINT32_C(0x0103ced0));
+        return -1;
+    }
+
+    FUN_0103689c((void *)UINT32_C(0x21000914), 0, -1, -1);
+    *(volatile uint32_t *)UINT32_C(0x21004600) = 1;
+    if (*log_level > 1)
+        FUN_01039722((const void *)UINT32_C(0x0103cef6));
+    return 0;
+}

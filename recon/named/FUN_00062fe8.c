@@ -1,4 +1,14 @@
-/* named: FUN_00062fe8 */
+/* readable reconstruction; identity: FUN_00062fe8 @ 0x00062fe8
+ * public-name: FUN_00062fe8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   post_event_tag2_from_node                <= FUN_0008484e @ 0x0008484e
+ *   post_event_tag4_and_clear                <= FUN_00084880 @ 0x00084880
+ *   post_event_tag5                          <= FUN_000848b0 @ 0x000848b0
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
 /* Reconstructed FUN_00062fe8 @ 0x62fe8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int assert_post_action(int,int);
@@ -73,4 +83,3 @@ int FUN_00062fe8(int param_1, int param_2, unsigned int param_3, int param_4)
     }
     return 0xfffffff0;
 }
-

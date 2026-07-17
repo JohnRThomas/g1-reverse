@@ -1,5 +1,10 @@
-/* named: logf_core */
-/* Reconstructed logf_core @ 0x76538  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076538 @ 0x00076538
+ * public-name: logf_core
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   logf_core                                <= FUN_00076538 @ 0x00076538
+ */
+/* Reconstructed FUN_00076538 @ 0x76538  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 static inline float F(uint32_t b){ union{float f;uint32_t u;}x; x.u=b; return x.f; }
 static inline uint32_t B(float f){ union{float f;uint32_t u;}x; x.f=f; return x.u; }
@@ -88,4 +93,3 @@ float logf_core(float param_1)
         return __builtin_fmaf(fVar6, F(0x3f317180), -s0v);
     }
 }
-

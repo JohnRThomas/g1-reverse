@@ -1,9 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: pdm_configure_pins */
-/* globals referenced:
-//   0x50026000  NRF_PDM_BASE                 
-*/
-/* Reconstructed pdm_configure_pins @ 0x66050  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066050 @ 0x00066050
+ * public-name: pdm_configure_pins
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   pdm_configure_pins                       <= FUN_00066050 @ 0x00066050
+ * address symbols (name @ address):
+ *   NRF_PDM_BASE                             @ 0x50026000
+ */
+/* Reconstructed FUN_00066050 @ 0x66050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int arch_irq_enable(int,uint32_t,uint32_t,uint32_t,void*);
 extern int FUN_00065ff4(uint32_t*);
@@ -52,4 +57,3 @@ void pdm_configure_pins(uint8_t* param_1, uint32_t param_2){
     arch_irq_enable(0x26, uVar9, *(volatile uint32_t*)(NRF_PDM_BASE /*=0x50026000*/+0x100), *(volatile uint32_t*)(NRF_PDM_BASE /*=0x50026000*/+0x104), param_1);
     *(volatile uint32_t*)(NRF_PDM_BASE /*=0x50026000*/+0x304) = 3;
 }
-

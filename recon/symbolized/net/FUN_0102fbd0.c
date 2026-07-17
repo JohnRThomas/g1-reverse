@@ -11,19 +11,19 @@ int32_t FUN_0102fbd0(uint32_t param_1)
     int32_t iVar1;
 
     if ((param_1 < 6) && (((int32_t)((0x2aU >> (param_1 & 0xff)) << 0x1f)) < 0)) {
-        iVar1 = FUN_0103a44c(((uintptr_t)&g_net_bufpool_evtpool) /*=0x210009fc*/);
+        iVar1 = FUN_0103a44c(0x210009fc);
         if (iVar1 != 0) {
             FUN_01030014(iVar1 + 0xc, 1);
             *(volatile int8_t *)(iVar1 + 0x18) = (int8_t)param_1;
         }
     } else {
-        uint32_t local_20 = 3;
-        uint32_t local_1c = "t not fulfilled.\r\n" /*=0x103ddb9*/;
-        uint32_t uStack_18 = param_1;
-        FUN_0102e284(((uintptr_t)&rodata_103c024) /*=0x103c024*/, 0x1840, &local_20, 0);
-        (void)local_1c; (void)uStack_18;
+        struct {
+            uint32_t type;
+            uint32_t format;
+            uint32_t argument;
+        } record = {3, ((unsigned long)&rodata_103ddb9) /*=0x103ddb9*/, param_1};
+        FUN_0102e284(((unsigned long)&rodata_103c024) /*=0x103c024*/, 0x1840, &record, 0);
         iVar1 = 0;
     }
     return iVar1;
 }
-

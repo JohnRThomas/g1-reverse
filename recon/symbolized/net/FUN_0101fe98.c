@@ -5,17 +5,14 @@ extern void FUN_01008d00(unsigned int, unsigned int);
 
 void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
 {
-  volatile unsigned char * const pcVar2 = (volatile unsigned char *)((uintptr_t)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
+  volatile unsigned char * const pcVar2 = (volatile unsigned char *)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
   volatile unsigned int * const puVar3 = (volatile unsigned int *)REG_4100e000 /*=0x4100e000*/;
   volatile unsigned int * const p150 = (volatile unsigned int *)REG_41008000 /*=0x41008000*/;
-  volatile unsigned int * const p504 = (volatile unsigned int *)REG_4100f000 /*=0x4100f000*/;
+  volatile unsigned int * const p504 = (volatile unsigned int *)0x4100f000;
   unsigned char bVar1;
 
   if (pcVar2[1] == 0) {
-    FUN_01008d00(0x3c, 0x20e);
-    for (;;) {
-      FUN_01008d00(0x3c, 0xeb);
-    }
+    goto fatal_20e;
   }
 
   *(volatile unsigned int *)(puVar3 + 0x143) = param_2;
@@ -24,7 +21,7 @@ void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
 
   if (pcVar2[3] == 0) {
     if (pcVar2[0] == 0) {
-      FUN_01008d00(0x3c, 0xeb);
+      goto fatal_eb;
     }
     *(volatile unsigned int *)(puVar3 + 0x41) = 0;
     *(volatile unsigned int *)((volatile unsigned char *)p504 + 0x504) = 0x200;
@@ -41,7 +38,7 @@ void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
     return;
   } else {
     if (pcVar2[0] == 0) {
-      FUN_01008d00(0x3c, 0xfe);
+      goto fatal_fe;
     }
     bVar1 = pcVar2[4];
     *(volatile unsigned int *)(puVar3 + 0x41) = 0;
@@ -52,5 +49,15 @@ void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
     *(volatile unsigned int *)((volatile unsigned char *)puVar3 + 0x84) = 0x80000005;
     *(volatile unsigned int *)((volatile unsigned char *)p504 + 0x504) = 0x200;
   }
-}
+  return;
 
+fatal_fe:
+  FUN_01008d00(0x3c, 0xfe);
+  return;
+fatal_20e:
+  FUN_01008d00(0x3c, 0x20e);
+  return;
+fatal_eb:
+  FUN_01008d00(0x3c, 0xeb);
+  return;
+}

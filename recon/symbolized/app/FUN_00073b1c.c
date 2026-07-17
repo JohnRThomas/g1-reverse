@@ -1,9 +1,30 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00073b1c */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073b1c @ 0x00073b1c
+ * public-name: FUN_00073b1c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f801f                             @ 0x000f801f
+ *   rodata_f84f7                             @ 0x000f84f7
+ *   rodata_f8522                             @ 0x000f8522
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
 /* Reconstructed FUN_00073b1c @ 0x73b1c  (parity: 300/300 trials, PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern int z_spin_lock_valid(unsigned a);
 extern int z_spin_unlock_valid(unsigned a);
@@ -12,44 +33,43 @@ extern void assert_post_action(unsigned a, unsigned b);
 extern void printk(unsigned a, unsigned b, unsigned c, unsigned d);
 void FUN_00073b1c(void){
     unsigned r4;
-    __asm__ volatile("mrs %0, basepri" : "=r"(r4));
+    r4 = __get_BASEPRI();
     unsigned tmp = 0x20;
-    __asm__ volatile("msr basepri_max, %0" :: "r"(tmp) : "memory");
-    __asm__ volatile("isb");
-    int iVar3 = z_spin_lock_valid(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
+    __set_BASEPRI_MAX(tmp);
+    __ISB();
+    int iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
     if (iVar3 == 0){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_lock_valid(l)" /*=0xf0920*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x72);
-        printk("\tInvalid spinlock %p\n" /*=0xf0935*/,((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/,0,0);
-        assert_post_action("WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0x72);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/,0,0);
+        assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
         return;
     }
-    z_spin_lock_set_owner(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
+    z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
     unsigned ipsr;
-    __asm__ volatile("mrs %0, ipsr" : "=r"(ipsr));
+    ipsr = __get_IPSR();
     if (ipsr != 0){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"!arch_is_in_isr()" /*=0xf801f*/,"WEST_TOPDIR/zephyr/kernel/include/ksched.h" /*=0xf84f7*/,0xfd);
-        printk("\t\n" /*=0xf53ff*/,0,0,0);
-        assert_post_action("WEST_TOPDIR/zephyr/kernel/include/ksched.h" /*=0xf84f7*/,0xfd);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f801f) /*=0xf801f*/,((unsigned long)&rodata_f84f7) /*=0xf84f7*/,0xfd);
+        printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/,0,0,0);
+        assert_post_action(((unsigned long)&rodata_f84f7) /*=0xf84f7*/,0xfd);
         return;
     }
-    int r2 = *(volatile int*)(((uintptr_t)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
+    int r2 = *(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
     unsigned char cVar1 = *(volatile unsigned char*)(r2 + 0xf);
     if (cVar1 == 1){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"_kernel.cpus[0].current->base.sched_locked != 1U" /*=0xf8522*/,"WEST_TOPDIR/zephyr/kernel/include/ksched.h" /*=0xf84f7*/,0xfe);
-        printk("\t\n" /*=0xf53ff*/,0,0,0);
-        assert_post_action("WEST_TOPDIR/zephyr/kernel/include/ksched.h" /*=0xf84f7*/,0xfe);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8522) /*=0xf8522*/,((unsigned long)&rodata_f84f7) /*=0xf84f7*/,0xfe);
+        printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/,0,0,0);
+        assert_post_action(((unsigned long)&rodata_f84f7) /*=0xf84f7*/,0xfe);
         return;
     }
     *(volatile unsigned char*)(r2 + 0xf) = (unsigned char)(cVar1 - 1);
-    int iv = z_spin_unlock_valid(((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/);
+    int iv = z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
     if (iv == 0){
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"z_spin_unlock_valid(l)" /*=0xf08f4*/,"WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0xf0);
-        printk("\tNot my spinlock %p\n" /*=0xf090b*/,((uintptr_t)&sched_spinlock_b490) /*=0x2000b490*/,0,0);
-        assert_post_action("WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/,0xf0);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/,0,0);
+        assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
         return;
     }
-    __asm__ volatile("msr basepri, %0" :: "r"(r4) : "memory");
-    __asm__ volatile("isb");
+    __set_BASEPRI(r4);
+    __ISB();
     return;
 }
-

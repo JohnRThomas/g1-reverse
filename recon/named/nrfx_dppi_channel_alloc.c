@@ -1,5 +1,18 @@
-/* named: nrfx_dppi_channel_alloc */
-/* Reconstructed nrfx_dppi_channel_alloc @ 0x67e8c  (parity: 1/400 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00067e8c @ 0x00067e8c
+ * public-name: nrfx_dppi_channel_alloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrfx_dppi_channel_alloc                  <= FUN_00067e8c @ 0x00067e8c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f7052                             @ 0x000f7052
+ *   rodata_f79c8                             @ 0x000f79c8
+ *   rodata_f7a32                             @ 0x000f7a32
+ *   m_dppi_channels                          @ 0x2000b41c
+ */
+/* Reconstructed FUN_00067e8c @ 0x67e8c  (parity: 1/400 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern void assert_post_action(uint32_t,uint32_t);
@@ -25,4 +38,3 @@ uint32_t nrfx_dppi_channel_alloc(int* param_1, uint8_t* param_2){
   }
   return uVar4;
 }
-

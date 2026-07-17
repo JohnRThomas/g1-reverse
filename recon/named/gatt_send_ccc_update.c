@@ -1,8 +1,25 @@
-/* named: gatt_send_ccc_update */
-/* globals referenced:
-//   0x20002a20  g_bt_gatt_sc_ccc             
-*/
-/* Reconstructed gatt_send_ccc_update @ 0x5b890  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b890 @ 0x0005b890
+ * public-name: gatt_send_ccc_update
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   bt_conn_lookup_addr_le                   <= FUN_00056e74 @ 0x00056e74
+ *   bt_conn_lookup_state_le                  <= FUN_00056f08 @ 0x00056f08
+ *   sc_save                                  <= FUN_0005a128 @ 0x0005a128
+ *   gatt_indicate                            <= FUN_0005b270 @ 0x0005b270
+ *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
+ *   gatt_send_ccc_update                     <= FUN_0005b890 @ 0x0005b890
+ *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ * address symbols (name @ address):
+ *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f4ad5                             @ 0x000f4ad5
+ *   g_bt_gatt_sc_ccc                         @ 0x20002a20
+ *   g_bt_gatt_sc_cfg_addr_ff19               @ 0x2000ff19
+ */
+/* Reconstructed FUN_0005b890 @ 0x5b890  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ble_conn_unref(int);
 extern int bt_conn_lookup_addr_le(int,int);
@@ -101,4 +118,3 @@ LAB_0005b9a4:
     ble_conn_unref(iVar2);
     return 1;
 }
-

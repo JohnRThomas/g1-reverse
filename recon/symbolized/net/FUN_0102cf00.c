@@ -1,16 +1,18 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0102cf00 @ 0x102cf00  (parity 300 trials PROVEN) */
 
+#include <stdint.h>
 typedef unsigned int uint;
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern void FUN_01036144(int);
-extern void thunk_FUN_01036824(int);
+extern void FUN_01036824(int);
 extern void FUN_01039bb0(unsigned int,unsigned int);
 extern void FUN_01039bbe(unsigned int,unsigned int,unsigned int);
 extern unsigned int FUN_01039c20(int,int,int);
@@ -30,8 +32,8 @@ void FUN_0102cf00(int param_1, unsigned int *param_2)
     InstructionSynchronizationBarrier(0xf);
     int iVar4 = FUN_0103610c(iVar6);
     if (iVar4 == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         __builtin_unreachable();
     } else {
         FUN_01036144(iVar6);
@@ -51,12 +53,11 @@ void FUN_0102cf00(int param_1, unsigned int *param_2)
         if (iVar3b != 0) {
             if (isCurrentModePrivileged()) setBasePriority(uVar7);
             InstructionSynchronizationBarrier(0xf);
-            thunk_FUN_01036824(param_1 + 0x2c);
+            FUN_01036824(param_1 + 0x2c);
             return;
         }
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         __builtin_unreachable();
     }
 }
-

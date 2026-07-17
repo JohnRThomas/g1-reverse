@@ -1,4 +1,9 @@
-/* named: FUN_00079278 */
+/* readable reconstruction; identity: FUN_00079278 @ 0x00079278
+ * public-name: FUN_00079278
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ */
 /* Reconstructed FUN_00079278 @ 0x79278  (parity: 200/200 trials, PROVEN) */
 
 #include <stdint.h>
@@ -50,4 +55,3 @@ LAB_00079306:
         iVar4 != 0)))) goto LAB_00079306;
   } while(1);
 }
-

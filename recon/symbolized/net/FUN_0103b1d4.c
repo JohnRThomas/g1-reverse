@@ -8,4 +8,3 @@ void FUN_0103b1d4(int param_1)
     *(unsigned int *)(param_1 + 8) = 0;
     *(unsigned int *)(param_1 + 0xc) = 0;
 }
-

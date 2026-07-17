@@ -1,5 +1,10 @@
-/* named: _get_digit */
-/* Reconstructed _get_digit @ 0x7e290  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e290 @ 0x0007e290
+ * public-name: _get_digit
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _get_digit                               <= FUN_0007e290 @ 0x0007e290
+ */
+/* Reconstructed FUN_0007e290 @ 0x7e290  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 int _get_digit(uint32_t *param_1, int32_t *param_2)
@@ -18,4 +23,3 @@ int _get_digit(uint32_t *param_1, int32_t *param_2)
     }
     return iVar1;
 }
-

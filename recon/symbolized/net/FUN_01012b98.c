@@ -5,4 +5,3 @@ int FUN_01012b98(int param_1)
 {
   return param_1 * 0x35a;
 }
-

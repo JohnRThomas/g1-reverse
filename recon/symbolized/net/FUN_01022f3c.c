@@ -10,7 +10,7 @@ extern int FUN_010246d8(void);
 extern int FUN_01024ad0(void);
 extern unsigned long long FUN_01025084(int,int);
 
-#define P3 ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define P3 ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 #define B(a,off) (*(volatile unsigned char*)((a)+(off)))
 #define H(a,off) (*(volatile unsigned short*)((a)+(off)))
 #define W(a,off) (*(volatile unsigned int*)((a)+(off)))
@@ -25,7 +25,7 @@ extern unsigned long long FUN_01025084(int,int);
    per-trial RAM PRNG fill put there. To reproduce that exactly (not just some
    arbitrary compiler-chosen stack slot for a C local), address them at their
    real absolute addresses directly instead of via C automatic variables. */
-#define STACK_TOP ((uintptr_t)&g_net_stack_top_scratch) /*=0x2007f000*/
+#define STACK_TOP 0x2007F000u
 #define LOCAL40 (*(volatile unsigned long long*)(STACK_TOP-0x40))
 #define LOCAL38 (*(volatile unsigned int*)(STACK_TOP-0x38))
 #define LOCAL34 (*(volatile unsigned char*)(STACK_TOP-0x34))
@@ -156,4 +156,3 @@ unsigned char FUN_01022f3c(char *param_1)
         }
     }
 }
-

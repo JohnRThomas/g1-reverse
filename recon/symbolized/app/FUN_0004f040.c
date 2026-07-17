@@ -1,5 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0004f040 */
+/* readable reconstruction; identity: FUN_0004f040 @ 0x0004f040
+ * public-name: FUN_0004f040
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_clear_bit                         <= FUN_0007f5d8 @ 0x0007f5d8
+ *   atomic_test_and_set_bit                  <= FUN_0007f612 @ 0x0007f612
+ * address symbols (name @ address):
+ *   ADDR_FUN_0007f634_THUMB                  @ 0x0007f635
+ *   rodata_880e8                             @ 0x000880e8
+ *   rodata_f159e                             @ 0x000f159e
+ */
 /* Reconstructed FUN_0004f040 @ 0x4f040  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -16,7 +26,7 @@ int FUN_0004f040(volatile uint32_t *param_1, int param_2){
   } else {
     iVar1 = atomic_test_and_set_bit((void*)(param_1 + 1), 0);
     if (iVar1 == 0){
-      param_1[0x20a] = ((uintptr_t)&rodata_7f635) /*=0x7f635*/;
+      param_1[0x20a] = ADDR_FUN_0007f634_THUMB /*=0x7f635*/;
       *(volatile uint16_t*)(param_1 + 0x20e) = 1;
       *(volatile uint16_t*)(param_1 + 0x20d) = *(volatile uint16_t*)((char*)param_1 + 10);
       *(volatile uint16_t*)((char*)param_1 + 0x836) = *(volatile uint16_t*)(param_1 + 3);
@@ -25,10 +35,10 @@ int FUN_0004f040(volatile uint32_t *param_1, int param_2){
       iVar1 = FUN_0005c3c4(param_1[0], (void*)(param_1 + 0x20a));
       if (iVar1 != 0){
         atomic_clear_bit((void*)(param_1 + 1), 0);
-        local_24 = "Subscribe Notification Source failed (err %d)" /*=0xf159e*/;
+        local_24 = ((unsigned long)&rodata_f159e) /*=0xf159e*/;
         local_28 = 3;
         iStack_20 = iVar1;
-        FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x880e8*/, 0x1840, (void*)&local_28, 0);
+        FUN_0004d944(((unsigned long)&rodata_880e8) /*=0x880e8*/, 0x1840, (void*)&local_28, 0);
       }
     } else {
       iVar1 = -0x78;
@@ -36,4 +46,3 @@ int FUN_0004f040(volatile uint32_t *param_1, int param_2){
   }
   return iVar1;
 }
-

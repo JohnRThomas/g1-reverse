@@ -5,11 +5,10 @@ extern void FUN_0101f680(void);
 
 unsigned int FUN_01009118(void)
 {
-  volatile unsigned char *p = (volatile unsigned char *)((uintptr_t)&g_net_layout_count_table) /*=0x21000a30*/;
+  volatile unsigned char *p = (volatile unsigned char *)((unsigned long)&g_net_layout_count_table) /*=0x21000a30*/;
   if (p[0x2d] == 0 && p[0x2c] == 0) {
     FUN_0101f680();
     return 0;
   }
   return 0xffffffff;
 }
-

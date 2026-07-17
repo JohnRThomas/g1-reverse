@@ -8,11 +8,11 @@ typedef int (*call_fn_t)(void *buf, int len);
 void FUN_0102a394(void)
 {
     unsigned char buf[0x24];
-    unsigned int *pu = (unsigned int *)((uintptr_t)&g_net_ctrl_report_field2) /*=0x210045f0*/;
-    int *piVar1 = (int *)((uintptr_t)&g_sdc_hci_transport_obj) /*=0x210045f4*/;
-    unsigned int *pu2 = (unsigned int *)((uintptr_t)&g_net_ctrl_report_field1) /*=0x210045ec*/;
-    unsigned int *pu3 = (unsigned int *)((uintptr_t)&g_net_ctrl_report_field0) /*=0x210045e8*/;
-    unsigned char *pu4 = (unsigned char *)((uintptr_t)&g_net_ctrl_status_byte) /*=0x21004c9f*/;
+    unsigned int *pu = (unsigned int *)((unsigned long)&g_net_ctrl_report_field2) /*=0x210045f0*/;
+    int *piVar1 = (int *)((unsigned long)&g_sdc_hci_transport_obj) /*=0x210045f4*/;
+    unsigned int *pu2 = (unsigned int *)((unsigned long)&g_net_ctrl_report_field1) /*=0x210045ec*/;
+    unsigned int *pu3 = (unsigned int *)((unsigned long)&g_net_ctrl_report_field0) /*=0x210045e8*/;
+    unsigned char *pu4 = (unsigned char *)((unsigned long)&g_net_ctrl_status_byte) /*=0x21004c9f*/;
     char cVar3 = 10;
 
     FUN_0103b62e(buf + 4, 0, 0x1c);
@@ -37,5 +37,3 @@ void FUN_0102a394(void)
         FUN_0103961c(10);
     }
 }
-
-

@@ -1,5 +1,14 @@
-/* named: get_font_style3_glyph_offset */
-/* Reconstructed get_font_style3_glyph_offset @ 0x457f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000457f4 @ 0x000457f4
+ * public-name: get_font_style3_glyph_offset
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_font_style3_glyph_offset             <= FUN_000457f4 @ 0x000457f4
+ * address symbols (name @ address):
+ *   rodata_8ac2c                             @ 0x0008ac2c
+ *   rodata_98e3c                             @ 0x00098e3c
+ *   rodata_e17da                             @ 0x000e17da
+ */
+/* Reconstructed FUN_000457f4 @ 0x457f4  (parity: 300/300 trials, PROVEN) */
 
 int get_font_style3_glyph_offset(unsigned int param_1, int *param_2, unsigned int *param_3)
 {
@@ -22,4 +31,3 @@ int get_font_style3_glyph_offset(unsigned int param_1, int *param_2, unsigned in
   *param_3 = 0x1a;
   return 0xe17da + iVar4;
 }
-

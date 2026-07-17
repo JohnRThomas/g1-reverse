@@ -1,11 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: check_disp_onboarding */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20018d93  onboarding_pending_flag      
-//   0x2001cdce  onboarding_secondary_reset_flag 
-*/
+/* readable reconstruction; identity: FUN_00026a08 @ 0x00026a08
+ * public-name: check_disp_onboarding
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ *   onboarding_sync_data                     <= FUN_00042c8c @ 0x00042c8c
+ *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
+ *   onboarding_clear_active_flag             <= FUN_0007d39e @ 0x0007d39e
+ * address symbols (name @ address):
+ *   rodata_9fcc1                             @ 0x0009fcc1
+ *   rodata_a1aea                             @ 0x000a1aea
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   onboarding_pending_flag                  @ 0x20018d93
+ *   onboarding_secondary_reset_flag          @ 0x2001cdce
+ */
 /* Reconstructed check_disp_onboarding @ 0x26a08  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -22,10 +33,10 @@ extern void update_persist_task_status(int,int,int);
 #define VI(a) (*(volatile int*)(a))
 
 void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param_3){
-  volatile char *pg70 = (volatile char*)((uintptr_t)&onboarding_pending_flag) /*=0x20018d93*/;
-  volatile unsigned char *pg74 = (volatile unsigned char*)((uintptr_t)&onboarding_secondary_reset_flag) /*=0x2001cdce*/;
-  volatile int *pg78 = (volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-  volatile int *pg7c = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+  volatile char *pg70 = (volatile char*)((unsigned long)&onboarding_pending_flag) /*=0x20018d93*/;
+  volatile unsigned char *pg74 = (volatile unsigned char*)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/;
+  volatile int *pg78 = (volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
+  volatile int *pg7c = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   int iVar3, iVar5; unsigned long long uVar6;
   (void)param_2;(void)param_3;
   if ((param_1 != 0) || (*pg70 == 0) ||
@@ -47,7 +58,7 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   iVar3=get_device_info(); (void)VB(VI(iVar3+0x1014)+2); (void)(*pg74);
   if (onboarding_sync_data((void*)0,3) != 0) return;
   if (0 < *pg78) {
-    if (*pg7c == 0) DEBUG_PRINT("%s(): ready to show onboarding...\n" /*=0x9fcc1*/,"check_disp_onboarding" /*=0xa1aea*/);
+    if (*pg7c == 0) DEBUG_PRINT(((unsigned long)&rodata_9fcc1) /*=0x9fcc1*/,((unsigned long)&rodata_a1aea) /*=0xa1aea*/);
     else debug_print();
   }
   onboarding_retry_watchdog_update();
@@ -60,4 +71,3 @@ void check_disp_onboarding(int param_1, unsigned int param_2, unsigned int param
   iVar3=get_device_info(); iVar5=VI(iVar3+0x1014);
   iVar3=get_device_info(); VB(iVar3+0xcd)=VB(iVar5+3);
 }
-

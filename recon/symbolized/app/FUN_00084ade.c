@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00084ade */
+/* readable reconstruction; identity: FUN_00084ade @ 0x00084ade
+ * public-name: FUN_00084ade
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   is_tx_ready                              <= FUN_00084abe @ 0x00084abe
+ */
 /* Reconstructed FUN_00084ade @ 0x84ade  (parity: 300/300 trials, PROVEN) */
 
 extern long long is_tx_ready(unsigned int);
@@ -21,4 +26,3 @@ void FUN_00084ade(unsigned int param_1)
   *(unsigned int *)(field + 0xbc) = 0xffffffff;
   FUN_0008496c(param_1, *(unsigned int *)(field + 0x10), *(unsigned int *)(field + 0x14));
 }
-

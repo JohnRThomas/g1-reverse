@@ -1,8 +1,17 @@
-/* named: utf8_to_unicode */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000477a0 @ 0x000477a0
+ * public-name: utf8_to_unicode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ * address symbols (name @ address):
+ *   rodata_d7499                             @ 0x000d7499
+ *   rodata_d74af                             @ 0x000d74af
+ *   rodata_d74bd                             @ 0x000d74bd
+ *   rodata_d752a                             @ 0x000d752a
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed utf8_to_unicode @ 0x477a0  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char byte;
@@ -41,4 +50,3 @@ uint utf8_to_unicode(byte *param_1, int param_2)
     }
     return 0;
 }
-

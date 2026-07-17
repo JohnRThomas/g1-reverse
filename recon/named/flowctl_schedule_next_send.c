@@ -1,8 +1,14 @@
-/* named: flowctl_schedule_next_send */
-/* Reconstructed flowctl_schedule_next_send @ 0x84b86  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084b86 @ 0x00084b86
+ * public-name: flowctl_schedule_next_send
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   post_event_tag2_from_node                <= FUN_0008484e @ 0x0008484e
+ *   flowctl_schedule_next_send               <= FUN_00084b86 @ 0x00084b86
+ */
+/* Reconstructed FUN_00084b86 @ 0x84b86  (parity: 300/300 trials, PROVEN) */
 
 extern void post_event_tag2_from_node(int a,int b,int c,int d,unsigned e);
-extern void z_impl_k_timer_stop(int a);
+extern void FUN_0008673e(int a);
 void flowctl_schedule_next_send(int param_1, unsigned p2, unsigned p3, unsigned param_4){
     int piVar6 = *(volatile int*)(param_1 + 0x34);
     if (*(volatile signed char*)(*(volatile int*)(piVar6+0xc) + 0xce) != 0) return;
@@ -55,10 +61,9 @@ void flowctl_schedule_next_send(int param_1, unsigned p2, unsigned p3, unsigned 
       *(volatile int*)(n + 0x70) = *(volatile int*)(n + 0x70) + iVar5; }
     if (bVar8){
         int n = *(volatile int*)(piVar6+0xc);
-        z_impl_k_timer_stop(n + 0x80);
+        FUN_0008673e(n + 0x80);
     }
 LAB:
     *(volatile int*)(*(volatile int*)(*(volatile int*)(iVar7+4)) + 0x304) = 0x10;
     return;
 }
-

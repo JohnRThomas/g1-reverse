@@ -13,4 +13,3 @@ unsigned int FUN_0103a90e(unsigned int param_1, unsigned int param_2, unsigned i
   }
   return uVar1 & 1;
 }
-

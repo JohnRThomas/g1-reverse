@@ -1,62 +1,33 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01017154 @ 0x1017154  (parity 300 trials PROVEN) */
+/* Reconstructed net-core packet handler @ 0x01017154. */
+#include <stdint.h>
 
-extern void FUN_0100aa3c(void);
-extern void FUN_0100d760(void);
-extern void FUN_0101709c(void);
-extern void FUN_0101a070(void);
-extern void FUN_010295d6(void);
+extern uint32_t FUN_0100aa3c(uint8_t, uint32_t, uint8_t, void *);
+extern uint32_t FUN_0100d760(void);
+extern uint32_t FUN_0101709c(void *, uint32_t);
+extern void FUN_0101a070(const void *, void *);
+extern void FUN_010295d6(void *, uint32_t);
 
-__attribute__((naked)) void FUN_01017154(void)
+uint32_t FUN_01017154(const uint8_t *packet)
 {
-    __asm__ volatile(
-        "push {r4, lr}\n"
-        "mov r4, r0\n"
-        "sub sp, #0x28\n"
-        "bl FUN_0100d760\n"
-        "ldr r2, =0x2100001c\n"
-        "ldrb r3, [r4]\n"
-        "strb r0, [r2]\n"
-        "and r3, r3, #0xf\n"
-        "cmp r3, #7\n"
-        "beq 1f\n"
-        "2:\n"
-        "movs r0, #1\n"
-        "add sp, #0x28\n"
-        "pop {r4, pc}\n"
-        "1:\n"
-        "mov r0, r4\n"
-        "mov r1, sp\n"
-        "bl FUN_0101a070\n"
-        "movs r2, #0\n"
-        "ldrb.w r3, [sp]\n"
-        "str r2, [sp, #8]\n"
-        "cmp r3, #0\n"
-        "bne 2b\n"
-        "ldrb.w r3, [sp, #1]\n"
-        "lsls r3, r3, #0x1f\n"
-        "bpl 2b\n"
-        "ldr r4, =0x21000f90\n"
-        "ldr r1, [sp, #4]\n"
-        "ldrb.w r0, [sp, #0x11]\n"
-        "add.w r3, r4, #0x89\n"
-        "ldrb.w r2, [r4, #0x90]\n"
-        "bl FUN_0100aa3c\n"
-        "cmp r0, #0\n"
-        "beq 2b\n"
-        "movs r1, #1\n"
-        "add.w r0, r4, #0x84\n"
-        "bl FUN_010295d6\n"
-        "movs r1, #0xff\n"
-        "mov r0, sp\n"
-        "bl FUN_0101709c\n"
-        "cmp r0, #0\n"
-        "beq 2b\n"
-        "movs r0, #3\n"
-        "b 3f\n"
-        "3:\n"
-        "add sp, #0x28\n"
-        "pop {r4, pc}\n"
-    );
-}
+    uint8_t parsed[40];
+    volatile uint8_t *state = (volatile uint8_t *)0x21000f90;
 
+    *(volatile uint8_t *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/ = (uint8_t)FUN_0100d760();
+    if ((packet[0] & 0x0f) != 7)
+        return 1;
+
+    FUN_0101a070(packet, parsed);
+    *(uint32_t *)(parsed + 8) = 0;
+    if (parsed[0] != 0 || (parsed[1] & 1) == 0)
+        return 1;
+
+    if (FUN_0100aa3c(parsed[0x11], *(uint32_t *)(parsed + 4),
+                     state[0x90], (void *)(state + 0x89)) == 0)
+        return 1;
+
+    FUN_010295d6((void *)(state + 0x84), 1);
+    if (FUN_0101709c(parsed, 0xff) == 0)
+        return 1;
+    return 3;
+}

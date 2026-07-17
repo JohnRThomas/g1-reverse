@@ -1,8 +1,32 @@
-/* named: rpmsg_virtqueue_channel_init */
-/* Reconstructed rpmsg_virtqueue_channel_init @ 0x71358  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00071358 @ 0x00071358
+ * public-name: rpmsg_virtqueue_channel_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   virtio_create_virtqueues                 <= FUN_00070e28 @ 0x00070e28
+ *   rpmsg_register_endpoint                  <= FUN_00070f74 @ 0x00070f74
+ *   rpmsg_virtqueue_channel_init             <= FUN_00071358 @ 0x00071358
+ *   virtqueue_add_buffer                     <= FUN_0008567c @ 0x0008567c
+ *   rpmsg_virtio_shm_pool_get_buffer         <= FUN_00085aee @ 0x00085aee
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   ADDR_FUN_000710b4_THUMB                  @ 0x000710b5
+ *   ADDR_FUN_0007118c_THUMB                  @ 0x0007118d
+ *   ADDR_FUN_00071294_THUMB                  @ 0x00071295
+ *   rodata_859a3                             @ 0x000859a3
+ *   rodata_859b1                             @ 0x000859b1
+ *   ADDR_FUN_000859c2_THUMB                  @ 0x000859c3
+ *   ADDR_FUN_00085a04_THUMB                  @ 0x00085a05
+ *   ADDR_FUN_00085a9c_THUMB                  @ 0x00085a9d
+ *   ADDR_FUN_00085b0c_THUMB                  @ 0x00085b0d
+ *   rodata_f7c28                             @ 0x000f7c28
+ *   rodata_f7c2e                             @ 0x000f7c2e
+ *   rodata_f7c34                             @ 0x000f7c34
+ */
+/* Reconstructed FUN_00071358 @ 0x71358  (parity: 300/300 trials, PROVEN) */
 extern int virtio_create_virtqueues(int a0,int a1,int a2,void *a3,void *a4);
 extern int rpmsg_register_endpoint(int a0,int a1,int a2,int a3,int a4,int a5,int a6);
-extern void metal_io_block_set(int *a0,unsigned int a1,int a2,int a3);
+extern void FUN_0008557c(int *a0,unsigned int a1,int a2,int a3);
 extern int virtqueue_add_buffer(int a0,void *a1,int a2,int a3,int a4);
 extern void FUN_000857b2(int a0);
 extern int rpmsg_virtio_shm_pool_get_buffer(int a0,int a1);
@@ -40,9 +64,12 @@ int rpmsg_virtqueue_channel_init(int param_1,int param_2,int param_3,int *param_
         if (param_6 == (int*)0) return (int)0xfffff82d;
         uVar1 = param_6[1];
         uVar3 = param_6[2];
-        *(int*)(param_1 + 0x94) = *param_6;
-        *(int*)(param_1 + 0x98) = uVar1;
-        *(int*)(param_1 + 0x9c) = uVar3;
+        /* The firmware copies this descriptor in ascending word order with
+         * one LDM/STM pair.  Keep that observable order even on a later
+         * faulting path; ordinary stores may be freely reordered by C. */
+        *(volatile int*)(param_1 + 0x94) = *param_6;
+        *(volatile int*)(param_1 + 0x98) = uVar1;
+        *(volatile int*)(param_1 + 0x9c) = uVar3;
     }
     {
         fn1_t fp = *(fn1_t*)((*(int*)(iVar6 + 0x20)) + 0x10);
@@ -82,7 +109,7 @@ int rpmsg_virtqueue_channel_init(int param_1,int param_2,int param_3,int *param_
             uVar2 = (unsigned int)iVar6 - (unsigned int)(*param_4);
             if ((unsigned int)param_4[2] <= uVar2) uVar2 = 0xffffffff;
             local_28 = iVar6;
-            metal_io_block_set(param_4, uVar2, 0, *(int*)(param_1 + 0x98));
+            FUN_0008557c(param_4, uVar2, 0, *(int*)(param_1 + 0x98));
             iVar6 = virtqueue_add_buffer(*(int*)(param_1 + 0xa4), &local_28, 0, 1, iVar6);
             if (iVar6 != 0) return iVar6;
         }
@@ -103,4 +130,3 @@ LAB_00071498:
     }
     return 0;
 }
-

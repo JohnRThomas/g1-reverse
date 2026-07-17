@@ -7,7 +7,7 @@ extern unsigned int FUN_01024ad0(void);
 
 unsigned int FUN_0102470c(unsigned int param_1)
 {
-  unsigned int base = ((uintptr_t)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/;
+  unsigned int base = ((unsigned long)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/;
   unsigned int iVar3;
 
   if (*(volatile unsigned char *)base == 0) {
@@ -25,4 +25,3 @@ unsigned int FUN_0102470c(unsigned int param_1)
   }
   return 0;
 }
-

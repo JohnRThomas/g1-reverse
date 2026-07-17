@@ -3,7 +3,6 @@
 
 int FUN_0100a5a0(void)
 {
-    volatile int * const p = (volatile int * const)((uintptr_t)&g_net_retry_handle) /*=0x21000bc4*/;
+    volatile int * const p = (volatile int * const)((unsigned long)&g_net_retry_handle) /*=0x21000bc4*/;
     return *p;
 }
-

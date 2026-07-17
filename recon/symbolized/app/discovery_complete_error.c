@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: discovery_complete_error */
-/* Reconstructed discovery_complete_error @ 0x7f40c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f40c @ 0x0007f40c
+ * public-name: discovery_complete_error
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   svc_attr_memory_release                  <= FUN_0007f3c2 @ 0x0007f3c2
+ *   atomic_and_0                             <= FUN_0007f3f0 @ 0x0007f3f0
+ *   discovery_complete_error                 <= FUN_0007f40c @ 0x0007f40c
+ */
+/* Reconstructed FUN_0007f40c @ 0x7f40c  (parity: 300/300 trials, PROVEN) */
 
 typedef void (*fn_t)(unsigned int, unsigned int, unsigned int);
 extern void svc_attr_memory_release(void);
@@ -17,4 +24,3 @@ void discovery_complete_error(unsigned int *param_1, unsigned int param_2)
     }
     return;
 }
-

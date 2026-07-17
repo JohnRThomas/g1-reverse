@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0006aa98 */
+/* readable reconstruction; identity: FUN_0006aa98 @ 0x0006aa98
+ * public-name: FUN_0006aa98
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0006aa98 @ 0x6aa98  (parity: 196/300 trials, PROVEN) */
 #include <stdint.h>
 static inline int32_t smlad(uint32_t a, uint32_t b, int32_t acc){
@@ -8,7 +11,7 @@ static inline int32_t smlad(uint32_t a, uint32_t b, int32_t acc){
 }
 void FUN_0006aa98(int64_t* param_1, int param_2, int16_t* param_3, int param_4){
     volatile int64_t* p1 = (volatile int64_t*)param_1;
-    int iVar4 = ((uintptr_t)&tbl_8bc60) /*=0x8bcb8*/;
+    int iVar4 = 0x8bcb8;
     if(param_4 > 0){
         uint32_t uVar12=0, uVar11=0xd60000, uVar8=0;
         volatile int16_t* local_2c=param_3;
@@ -40,4 +43,3 @@ void FUN_0006aa98(int64_t* param_1, int param_2, int16_t* param_3, int param_4){
         }
     }
 }
-

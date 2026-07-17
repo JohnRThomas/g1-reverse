@@ -1,11 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0006a700 */
+/* readable reconstruction; identity: FUN_0006a700 @ 0x0006a700
+ * public-name: FUN_0006a700
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0006a700 @ 0x6a700  (parity: 213/300 trials, PROVEN) */
 #include <stdint.h>
 #define DP(a,b) ((int)(short)(a)*(int)(short)(b) + (int)(short)((unsigned)(a)>>16)*(int)(short)((unsigned)(b)>>16))
 
 void FUN_0006a700(long long *param_1, int param_2, short *param_3, int param_4){
-  int iVar4 = ((uintptr_t)&rodata_8bfb8) /*=0x8bfb8*/;
+  int iVar4 = 0x0008bfb8;
   if(param_4 > 0){
     int lim = (int)((unsigned)param_4 * 0xfu);
     unsigned uVar10 = 0, uVar11 = 0;
@@ -48,4 +51,3 @@ void FUN_0006a700(long long *param_1, int param_2, short *param_3, int param_4){
     }
   }
 }
-

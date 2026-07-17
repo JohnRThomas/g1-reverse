@@ -6,4 +6,3 @@ static volatile uint8_t * const DAT_01020050 = (volatile uint8_t *)REG_4100e000 
 void FUN_01020048(void) {
     *(volatile uint32_t *)(DAT_01020050 + 8) = 1;
 }
-

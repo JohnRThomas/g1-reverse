@@ -1,9 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: gatt_db_hash_gen */
-/* globals referenced:
-//   0x20006380  g_bt_gatt_db_hash            
-*/
-/* Reconstructed gatt_db_hash_gen @ 0x5aba8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005aba8 @ 0x0005aba8
+ * public-name: gatt_db_hash_gen
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_db_hash_gen                         <= FUN_0005aba8 @ 0x0005aba8
+ *   tc_cmac_setup                            <= FUN_0008016a @ 0x0008016a
+ *   tc_cmac_final                            <= FUN_00080294 @ 0x00080294
+ *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
+ *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
+ * address symbols (name @ address):
+ *   ADDR_gen_hash_m_THUMB                    @ 0x0008260d
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f49d4                             @ 0x000f49d4
+ *   rodata_f49ed                             @ 0x000f49ed
+ *   g_bt_gatt_db_hash                        @ 0x20006380
+ *   g_bt_gatt_flags                          @ 0x20006448
+ */
+/* Reconstructed FUN_0005aba8 @ 0x5aba8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int tc_cmac_setup(void*,void*,void*);
 extern void tc_cmac_final(void); /*unused decl replaced*/
@@ -12,16 +25,21 @@ extern void atomic_or_0(uint32_t);
 extern void FUN_00082a42(uint32_t,int,void*);
 extern void bt_gatt_foreach_attr_0(int,int,uint32_t,void*);
 void gatt_db_hash_gen(void){
-  volatile uint32_t local_140,uStack_13c,local_138,uStack_134,local_120;
-  uint8_t auStack_118[96], auStack_b8[176];
-  local_140=0;uStack_13c=0;local_138=0;uStack_134=0;
-  int iVar2=tc_cmac_setup(auStack_118,(void*)&local_140,auStack_b8);
+  struct {
+    uint32_t header[4];
+    uint8_t reserved[16];
+    struct { uint32_t level, message; } log;
+    uint8_t work[96];
+    uint8_t scratch[176];
+  } frame;
+  frame.header[0]=0; frame.header[1]=0; frame.header[2]=0; frame.header[3]=0;
+  int iVar2=tc_cmac_setup(frame.work,frame.header,frame.scratch);
   if(iVar2!=0){
-    bt_gatt_foreach_attr_0(1,((uintptr_t)&tbl_ffc8) /*=0xffff*/,((uintptr_t)&tbl_825bb) /*=0x8260d*/,auStack_118);
-    iVar2=FUN_00080294_i(((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/,auStack_118);
+    bt_gatt_foreach_attr_0(1,0xffff,ADDR_gen_hash_m_THUMB /*=0x8260d*/,frame.work);
+    iVar2=FUN_00080294_i(((unsigned long)&g_bt_gatt_db_hash) /*=0x20006380*/,frame.work);
     if(iVar2!=0){
-      volatile uint8_t* puVar3=(volatile uint8_t*)(((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/+0x10);
-      volatile uint8_t* puVar4=(volatile uint8_t*)((uintptr_t)&g_bt_gatt_db_hash) /*=0x20006380*/;
+      volatile uint8_t* puVar3=(volatile uint8_t*)(((unsigned long)&g_bt_gatt_db_hash) /*=0x20006380*/+0x10);
+      volatile uint8_t* puVar4=(volatile uint8_t*)((unsigned long)&g_bt_gatt_db_hash) /*=0x20006380*/;
       int i=0;
       do{
         uint8_t uVar1=*puVar4;
@@ -31,11 +49,11 @@ void gatt_db_hash_gen(void){
         *puVar3=uVar1;
         puVar4=puVar4+1;
       }while(i!=8);
-      atomic_or_0(((uintptr_t)&g_bt_gatt_flags) /*=0x20006448*/);
+      atomic_or_0(((unsigned long)&g_bt_gatt_flags) /*=0x20006448*/);
       return;
     }
   }
-  local_120=2;
-  FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/,0x1040,(void*)&local_120);
+  frame.log.level=2;
+  frame.log.message=(iVar2==0) ? ((unsigned long)&rodata_f49d4) /*=0xf49d4*/ : ((unsigned long)&rodata_f49ed) /*=0xf49ed*/;
+  FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/,0x1040,&frame.log);
 }
-

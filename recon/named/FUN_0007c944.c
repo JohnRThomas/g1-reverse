@@ -1,4 +1,9 @@
-/* named: FUN_0007c944 */
+/* readable reconstruction; identity: FUN_0007c944 @ 0x0007c944
+ * public-name: FUN_0007c944
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ipc_ept_op_b_locked_retry                <= FUN_000257ec @ 0x000257ec
+ */
 /* Reconstructed FUN_0007c944 @ 0x7c944  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int ipc_ept_op_b_locked_retry(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
@@ -10,4 +15,3 @@ unsigned int FUN_0007c944(unsigned int param_1, int param_2)
     }
     return 0xffffffea;
 }
-

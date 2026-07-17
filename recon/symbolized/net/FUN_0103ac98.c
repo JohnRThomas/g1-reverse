@@ -13,4 +13,3 @@ void FUN_0103ac98(int *param_1)
     *(unsigned short*)param_1[8] = *(unsigned short*)param_1[8] | 1;
   }
 }
-

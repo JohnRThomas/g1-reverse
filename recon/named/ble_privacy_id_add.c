@@ -1,9 +1,13 @@
-/* named: ble_privacy_id_add */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed ble_privacy_id_add @ 0x5505c  (parity: 300/300 trials, PROVEN) */
-extern void TAIL_54ea8(unsigned char *identity);
+/* readable reconstruction; identity: FUN_0005505c @ 0x0005505c
+ * public-name: ble_privacy_id_add
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_privacy_id_add                       <= FUN_0005505c @ 0x0005505c
+ * address symbols (name @ address):
+ *   g_ble_dev_state                          @ 0x20002000
+ */
+/* Reconstructed FUN_0005505c @ 0x5505c  true code extent: 0x34 bytes */
+extern void FUN_00054ea8(unsigned char *identity);
 void ble_privacy_id_add(unsigned char *param_1){
   if (param_1 == 0) return;
   volatile unsigned char *g = (volatile unsigned char*)0x20002000UL;
@@ -14,5 +18,5 @@ void ble_privacy_id_add(unsigned char *param_1){
     *(volatile unsigned char*)(param_1 + 8) = *(volatile unsigned char*)(param_1 + 8) | 4;
     return;
   }
-  TAIL_54ea8(param_1);
+  FUN_00054ea8(param_1);
 }

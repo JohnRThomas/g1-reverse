@@ -1,72 +1,181 @@
 #include "g1_app_symbols.h"
-/* named: qspi_nor_configure */
-/* globals referenced:
-//   0x500055b8  NRF_I2S0_CONFIG_CHANNELS     
-*/
-/* Reconstructed qspi_nor_configure @ 0x60c00  (parity: 300/300 trials, PROVEN) */
-extern int FUN_0005010c(int,...);
-extern int qspi_get_zephyr_ret_code(int,...);
-extern int qspi_nor_acquire(int,...);
-extern int FUN_00060a5c(int,...);
-extern int qspi_nor_send_cinstr(int,...);
-extern int nrfx_qspi_init(int,...);
-extern int FUN_000838d6(int,...);
-extern int pinctrl_apply_state /*compiler-clone .constprop.0*/(int,...);
-extern int audio_apply_config_cmd_0xab(int,...);
-extern int qspi_rdsr(int,...);
-extern int memcmp(int,...);
+/* readable reconstruction; identity: FUN_00060c00 @ 0x00060c00
+ * public-name: qspi_nor_configure
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_send_cinstr                     <= FUN_00060ab0 @ 0x00060ab0
+ *   qspi_nor_configure                       <= FUN_00060c00 @ 0x00060c00
+ *   nrfx_qspi_init                           <= FUN_00066994 @ 0x00066994
+ *   audio_apply_config_cmd_0xab              <= FUN_0008397e @ 0x0008397e
+ *   qspi_rdsr                                <= FUN_000839a6 @ 0x000839a6
+ * address symbols (name @ address):
+ *   rodata_838cb                             @ 0x000838cb
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5c49                             @ 0x000f5c49
+ *   rodata_f5c59                             @ 0x000f5c59
+ *   rodata_f5c6a                             @ 0x000f5c6a
+ *   NRF_I2S0_CONFIG_CHANNELS                 @ 0x500055b8
+ */
+/* Reconstructed FUN_00060c00 @ 0x00060c00 (432-byte executable extent). */
+#include <stdint.h>
 
-int qspi_nor_configure(int param_1)
+extern void FUN_0005010c(uint32_t irq, int priority, int flags);
+extern int qspi_get_zephyr_ret_code(int registration_result);
+extern int qspi_nor_acquire(void *context);
+extern void FUN_00060a5c(void *context);
+extern int qspi_nor_send_cinstr(void *context, uint8_t *command, uint8_t mode);
+extern int nrfx_qspi_init(void *device, uintptr_t callback, void *callback_context);
+extern void FUN_000838d6(uintptr_t source, uint32_t level, const void *record);
+extern int FUN_000838dc(uintptr_t transport, void *result,
+                        uintptr_t unused, void *owner);
+extern int audio_apply_config_cmd_0xab(void *context);
+extern int qspi_rdsr(void *context);
+extern int FUN_00086be4(const void *expected, const void *actual, uint32_t length);
+
+struct driver_context {
+    uint32_t reserved0;
+    uint8_t *configuration;
+    uint32_t reserved8[2];
+    void *callback_context;
+};
+
+/* The command helper receives &opcode.  Its two following words point to
+ * optional {data,length} pairs; the pairs immediately preceding the command
+ * are kept together here to preserve their real ownership and layout. */
+struct command_frame {
+    uint8_t response[4];
+    uint8_t *payload;
+    uint32_t payload_length;
+    uint32_t opcode;
+    uint8_t **cursor;
+    uint8_t **cursor_owner;
+};
+
+struct log3 {
+    uint32_t count;
+    uintptr_t format;
+    int32_t error;
+};
+
+struct transition_log {
+    uint32_t descriptor;
+    uintptr_t format;
+    uintptr_t expected;
+    int32_t error;
+    uint16_t operation;
+};
+
+struct mismatch_log {
+    uint32_t count;
+    uintptr_t format;
+    uint32_t actual[3];
+    uint32_t expected[3];
+};
+
+static __attribute__((always_inline)) inline void
+log_transition_error(int error, uint32_t expected_state)
 {
-    int iVar1, iVar4;
-    unsigned uVar5;
+    const struct transition_log record = {
+        0x01000004u,
+        ((unsigned long)&rodata_f5c59) /*=0xf5c59*/,
+        expected_state ? 0x000f3c77u : 0x000f5c43u,
+        error,
+        0x0200u,
+    };
+    FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x2440u, &record);
+}
 
-    iVar1 = pinctrl_apply_state /*compiler-clone .constprop.0*/(0);
-    if (iVar1 < 0) return iVar1;
-    FUN_0005010c(0);
-    iVar4 = *(int *)(param_1 + 4);
-    *(volatile int *)NRF_I2S0_CONFIG_CHANNELS /*=0x500055b8*/ = 0;
-    nrfx_qspi_init(0);
-    *(volatile int *)NRF_I2S0_CONFIG_CHANNELS /*=0x500055b8*/ = 2;
-    iVar1 = qspi_get_zephyr_ret_code(0);
-    if (iVar1 < 0) return iVar1;
-    iVar1 = audio_apply_config_cmd_0xab(0);
-    if (iVar1 < 0) return iVar1;
+int qspi_nor_configure(struct driver_context *context)
+{
+    uint8_t *const configuration = context->configuration;
 
-    if (((unsigned)*(unsigned char *)(iVar4 + 0x1d) - 2u) < 2u) uVar5 = 1;
-    else if (((unsigned)*(unsigned char *)(iVar4 + 0x1c) - 3u) < 2u) uVar5 = 1;
-    else uVar5 = 0;
+    /* The transport wrapper's third register is unused; the fourth carries
+     * the owning configuration object in the shipped call sequence. */
+    int result = FUN_000838dc(*(uintptr_t *)(configuration + 0x34),
+                              0, 0, configuration);
+    if (result < 0)
+        return result;
 
-    iVar1 = qspi_rdsr(0);
-    if (iVar1 < 0) { FUN_000838d6(0); return iVar1; }
+    FUN_0005010c(0x2bu, 1, 0);
+    *(volatile uint32_t *)NRF_I2S0_CONFIG_CHANNELS /*=0x500055b8*/ = 0;
+    int registration = nrfx_qspi_init(configuration, ((unsigned long)&rodata_838cb) /*=0x838cb*/,
+                                     context->callback_context);
+    *(volatile uint32_t *)NRF_I2S0_CONFIG_CHANNELS /*=0x500055b8*/ = 2;
 
-    if (uVar5 != ((unsigned)(iVar1 << 25) >> 31)) {
-        iVar1 = qspi_nor_send_cinstr(0);
-        if (iVar1 != 0) {
-            if (iVar1 >= 0) return iVar1;
-            FUN_000838d6(0);
-            return iVar1;
-        }
-        do {
-            iVar1 = qspi_rdsr(0);
-            if (iVar1 < 0) { FUN_000838d6(0); return iVar1; }
-        } while (iVar1 & 1);
+    result = qspi_get_zephyr_ret_code(registration);
+    if (result < 0)
+        return result;
+
+    result = audio_apply_config_cmd_0xab(context);
+    if (result < 0)
+        return result;
+
+    const uint32_t expected_state =
+        (((uint32_t)configuration[0x1d] - 2u) < 2u ||
+         ((uint32_t)configuration[0x1c] - 3u) < 2u);
+
+    result = qspi_rdsr(context);
+    if (result < 0) {
+        const struct log3 record = {3, ((unsigned long)&rodata_f5c49) /*=0xf5c49*/, result};
+        FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x1840u, &record);
+        return result;
     }
 
-    FUN_00060a5c(0);
-    iVar1 = qspi_nor_acquire(0);
-    if (iVar1 == 0) {
-        iVar1 = qspi_nor_send_cinstr(0);
-        FUN_00060a5c(0);
-        if (iVar1 == 0) {
-            iVar4 = *(int *)(param_1 + 4);
-            iVar1 = memcmp(0);
-            if (iVar1 == 0) return 0;
-            FUN_000838d6(0);
+    struct command_frame frame;
+    if (expected_state != (((uint32_t)result >> 6) & 1u)) {
+        frame.response[0] = (uint8_t)result ^ 0x40u;
+        frame.response[1] = 0;
+        frame.payload = frame.response;
+        frame.payload_length = 1;
+        frame.opcode = 1;
+        frame.cursor = &frame.payload;
+        frame.cursor_owner = 0;
+
+        result = qspi_nor_send_cinstr(context, (uint8_t *)&frame.opcode, 1);
+        if (result != 0) {
+            if (result >= 0)
+                return result;
+            log_transition_error(result, expected_state);
+            return result;
+        }
+
+        do {
+            result = qspi_rdsr(context);
+            if (result < 0) {
+                log_transition_error(result, expected_state);
+                return result;
+            }
+        } while ((result & 1) != 0);
+    }
+
+    FUN_00060a5c(context);
+    frame.payload = frame.response;
+    frame.payload_length = 3;
+    frame.opcode = 0x9f;
+    frame.cursor = 0;
+    frame.cursor_owner = &frame.payload;
+
+    result = qspi_nor_acquire(context);
+    if (result == 0) {
+        result = qspi_nor_send_cinstr(context, (uint8_t *)&frame.opcode, 0);
+        FUN_00060a5c(context);
+        if (result == 0) {
+            result = FUN_00086be4(configuration + 0x30, frame.response, 3);
+            if (result == 0)
+                return 0;
+
+            const struct mismatch_log record = {
+                8,
+                ((unsigned long)&rodata_f5c6a) /*=0xf5c6a*/,
+                {frame.response[0], frame.response[1], frame.response[2]},
+                {configuration[0x30], configuration[0x31], configuration[0x32]},
+            };
+            FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x4040u, &record);
         }
     } else {
-        FUN_00060a5c(0);
+        FUN_00060a5c(context);
     }
     return -0x13;
 }
-

@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00084602 */
+/* readable reconstruction; identity: FUN_00084602 @ 0x00084602
+ * public-name: FUN_00084602
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00084602 @ 0x84602  (parity: 300/300 trials, PROVEN) */
 
 unsigned FUN_00084602(int *param_1,int param_2,unsigned param_3,unsigned short *param_4){
@@ -19,7 +22,7 @@ unsigned FUN_00084602(int *param_1,int param_2,unsigned param_3,unsigned short *
   L84642: {
     unsigned r1 = (unsigned)(param_2 - r7) + (r6 - 1);
     r1 = r1 / r6;
-    unsigned r4n = ((unsigned)r4 + r1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+    unsigned r4n = ((unsigned)r4 + r1) & 0xffff;
     *param_4 = (unsigned short)r4n;
     unsigned short r3h = *(unsigned short*)((int)param_1+8);
     unsigned r4d = r4n - (unsigned)r3h;
@@ -28,4 +31,3 @@ unsigned FUN_00084602(int *param_1,int param_2,unsigned param_3,unsigned short *
     return 0xffffffea;
   }
 }
-

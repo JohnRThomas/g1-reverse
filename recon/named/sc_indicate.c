@@ -1,5 +1,14 @@
-/* named: sc_indicate */
-/* Reconstructed sc_indicate @ 0x5a570  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a570 @ 0x0005a570
+ * public-name: sc_indicate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sc_indicate                              <= FUN_0005a570 @ 0x0005a570
+ *   atomic_or_0                              <= FUN_000826e0 @ 0x000826e0
+ * address symbols (name @ address):
+ *   g_service_changed_range                  @ 0x200063f8
+ *   g_bt_gatt_flags                          @ 0x20006448
+ */
+/* Reconstructed FUN_0005a570 @ 0x5a570  (parity: 300/300 trials, PROVEN) */
 
 extern int atomic_or_0(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern long long FUN_0008270c(unsigned int a);
@@ -33,4 +42,3 @@ LAB:
   }
   FUN_0007350c(0, (int)(uVar4 >> 32), 0x148, 0);
 }
-

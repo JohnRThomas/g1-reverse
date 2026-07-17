@@ -1,5 +1,10 @@
-/* named: verify_image_checksum */
-/* Reconstructed verify_image_checksum @ 0x302cc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000302cc @ 0x000302cc
+ * public-name: verify_image_checksum
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   verify_image_checksum                    <= FUN_000302cc @ 0x000302cc
+ */
+/* Reconstructed FUN_000302cc @ 0x302cc  (parity: 300/300 trials, PROVEN) */
 
 int verify_image_checksum(void)
 {
@@ -20,4 +25,3 @@ int verify_image_checksum(void)
   }
   return iVar2;
 }
-

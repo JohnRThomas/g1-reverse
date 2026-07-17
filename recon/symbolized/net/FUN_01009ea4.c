@@ -28,7 +28,7 @@ int FUN_01009ea4(unsigned int param_1, unsigned char param_2_raw, unsigned int p
     unsigned int iVar1 = FUN_01027258(0, param_3);
     local_c = (unsigned int)param_2 * 4 + iVar1 + 0xc;
     if (cVar2 != 1) {
-      volatile unsigned int * const pp = (volatile unsigned int *)((uintptr_t)&g_net_obj_table_root_ptr) /*=0x21000bb4*/;
+      volatile unsigned int * const pp = (volatile unsigned int *)((unsigned long)&g_net_obj_table_root_ptr) /*=0x21000bb4*/;
       *pp = param_1;
       volatile unsigned char *base = (volatile unsigned char *)(*pp);
       base[8] = param_2;
@@ -43,4 +43,3 @@ int FUN_01009ea4(unsigned int param_1, unsigned char param_2_raw, unsigned int p
   }
   return local_c;
 }
-

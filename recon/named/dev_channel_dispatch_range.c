@@ -1,5 +1,10 @@
-/* named: dev_channel_dispatch_range */
-/* Reconstructed dev_channel_dispatch_range @ 0x84068  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084068 @ 0x00084068
+ * public-name: dev_channel_dispatch_range
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_channel_dispatch_range               <= FUN_00084068 @ 0x00084068
+ */
+/* Reconstructed FUN_00084068 @ 0x84068  (parity: 300/300 trials, PROVEN) */
 
 int dev_channel_dispatch_range(int *param_1, int param_2, int param_3)
 {
@@ -13,4 +18,3 @@ int dev_channel_dispatch_range(int *param_1, int param_2, int param_3)
     }
     return 0xffffffea;
 }
-

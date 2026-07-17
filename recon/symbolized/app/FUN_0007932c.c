@@ -1,5 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007932c */
+/* readable reconstruction; identity: FUN_0007932c @ 0x0007932c
+ * public-name: FUN_0007932c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   fnmatch_build_class_table                <= FUN_0008789c @ 0x0008789c
+ * address symbols (name @ address):
+ *   rodata_885b0                             @ 0x000885b0
+ */
 /* Reconstructed FUN_0007932c @ 0x7932c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
@@ -15,11 +23,11 @@ u32 FUN_0007932c(u32 param_1, u32 *param_2, int *param_3, u32 *param_4){
     fn pcVar3;
 
     iVar12 = 0;
-    local_34[0] = ((volatile u32*)((uintptr_t)&tbl_88340) /*=0x885b0*/)[0];
-    local_34[1] = ((volatile u32*)((uintptr_t)&tbl_88340) /*=0x885b0*/)[1];
-    local_34[2] = ((volatile u32*)((uintptr_t)&tbl_88340) /*=0x885b0*/)[2];
-    pcVar3 = (fn)((uintptr_t)&rodata_8712b) /*=0x8712b*/;
-    if (param_2[6] == 3) pcVar3 = (fn)((uintptr_t)&rodata_87127) /*=0x87127*/;
+    local_34[0] = ((volatile u32*)((unsigned long)&rodata_885b0) /*=0x885b0*/)[0];
+    local_34[1] = ((volatile u32*)((unsigned long)&rodata_885b0) /*=0x885b0*/)[1];
+    local_34[2] = ((volatile u32*)((unsigned long)&rodata_885b0) /*=0x885b0*/)[2];
+    pcVar3 = (fn)0x8712bUL;
+    if (param_2[6] == 3) pcVar3 = (fn)0x87127UL;
     uVar6 = param_2[2];
     uVar4 = uVar6 - 1;
     if (uVar4 < 0x15d) iVar10 = 0;
@@ -61,7 +69,7 @@ u32 FUN_0007932c(u32 param_1, u32 *param_2, int *param_3, u32 *param_4){
     } while (iVar12 != 3);
     if (param_2[1] == 0) param_2[1] = 10;
     iVar12 = 0;
-    fnmatch_build_class_table(param_2[5], ((uintptr_t)&rodata_f8d5a) /*=0xf8d5a*/ - param_2[1]);
+    fnmatch_build_class_table(param_2[5], 0xf8d5aUL - param_2[1]);
     while (1) {
         puVar8 = puVar11;
         if (param_2[2] == 0) break;
@@ -113,4 +121,3 @@ u32 FUN_0007932c(u32 param_1, u32 *param_2, int *param_3, u32 *param_4){
     param_2[4] = (u32)((int)(uintptr_t)puVar11 + param_2[4] + (iVar12 - (int)(uintptr_t)puVar9));
     return 0;
 }
-

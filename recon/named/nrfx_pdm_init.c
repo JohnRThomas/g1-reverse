@@ -1,8 +1,19 @@
-/* named: nrfx_pdm_init */
-/* globals referenced:
-//   0x2000b330  g_pdm_cb                     
-*/
-/* Reconstructed nrfx_pdm_init @ 0x6615c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006615c @ 0x0006615c
+ * public-name: nrfx_pdm_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pdm_configure_pins                       <= FUN_00066050 @ 0x00066050
+ *   nrfx_pdm_init                            <= FUN_0006615c @ 0x0006615c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6abf                             @ 0x000f6abf
+ *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_f6ceb                             @ 0x000f6ceb
+ *   g_pdm_cb                                 @ 0x2000b330
+ */
+/* Reconstructed FUN_0006615c @ 0x6615c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
@@ -36,4 +47,3 @@ L_186:
         return 0xbad0000;
     }
 }
-

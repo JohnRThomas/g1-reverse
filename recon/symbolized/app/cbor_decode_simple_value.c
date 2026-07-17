@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_simple_value */
-/* Reconstructed cbor_decode_simple_value @ 0x85fd2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085fd2 @ 0x00085fd2
+ * public-name: cbor_decode_simple_value
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_check_major_type             <= FUN_00085da2 @ 0x00085da2
+ *   cbor_decode_extract_value                <= FUN_00085e1a @ 0x00085e1a
+ *   cbor_decode_simple_value                 <= FUN_00085fd2 @ 0x00085fd2
+ */
+/* Reconstructed FUN_00085fd2 @ 0x85fd2  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_check_major_type(unsigned int *, unsigned int);
 extern int cbor_decode_extract_value(unsigned int *, unsigned int, unsigned int, unsigned int);
@@ -20,4 +27,3 @@ unsigned int cbor_decode_simple_value(unsigned int *param_1, unsigned int param_
   }
   return 0;
 }
-

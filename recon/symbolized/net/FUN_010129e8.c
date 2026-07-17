@@ -6,4 +6,3 @@ void FUN_010129e8(int param_1)
   *(unsigned char *)(param_1 + 5) = 0;
   *(unsigned short *)(param_1 + 3) = 0;
 }
-

@@ -1,4 +1,13 @@
-/* named: check_device_readiness */
+/* readable reconstruction; identity: FUN_000167b4 @ 0x000167b4
+ * public-name: check_device_readiness
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_87bf0                             @ 0x00087bf0
+ *   rodata_99726                             @ 0x00099726
+ *   rodata_a40ec                             @ 0x000a40ec
+ */
 /* Reconstructed check_device_readiness @ 0x167b4  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
@@ -18,4 +27,3 @@ unsigned int check_device_readiness(void){
     }
     return uVar3;
 }
-

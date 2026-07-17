@@ -6,7 +6,7 @@ extern int FUN_01021b7c(unsigned int *a, unsigned char b, void *c, unsigned char
 extern int FUN_010245d8(void);
 extern int FUN_010246d8(void);
 
-#define DAT_edc ((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/
+#define DAT_edc ((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/
 
 int FUN_01021df0(unsigned int param_1, unsigned int *param_2, unsigned int param_3, unsigned int param_4, unsigned char param_5)
 {
@@ -87,4 +87,3 @@ int FUN_01021df0(unsigned int param_1, unsigned int *param_2, unsigned int param
         param_2[1] = uVar6;
     }
 }
-

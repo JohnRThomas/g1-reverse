@@ -1,5 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00068b68 */
+/* readable reconstruction; identity: FUN_00068b68 @ 0x00068b68
+ * public-name: FUN_00068b68
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_8bc60                             @ 0x0008bc60
+ *   rodata_90c50                             @ 0x00090c50
+ */
 /* Reconstructed FUN_00068b68 @ 0x68b68  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int memset_bytes(void*,int,int);
@@ -14,7 +22,7 @@ float * FUN_00068b68(int param_1, int param_2, float *param_3, float *param_4)
     float fVar10, fVar11;
     float local_28[2];
 
-    iVar5 = *(volatile int *)(((uintptr_t)&tbl_8bc60) /*=0x8bc60*/ + (param_1 * 5 + param_2) * 4);
+    iVar5 = *(volatile int *)(((unsigned long)&rodata_8bc60) /*=0x8bc60*/ + (param_1 * 5 + param_2) * 4);
     local_28[0] = 0.0f;
     local_28[1] = 0.0f;
     if (iVar5 < 1) {
@@ -42,7 +50,7 @@ float * FUN_00068b68(int param_1, int param_2, float *param_3, float *param_4)
     if (0x3f < iVar6) {
         iVar6 = 0x40;
     }
-    iVar8 = param_1 * 0x514 + param_2 * 0x104 + ((uintptr_t)&tbl_90c50) /*=0x90c50*/;
+    iVar8 = param_1 * 0x514 + param_2 * 0x104 + ((unsigned long)&rodata_90c50) /*=0x90c50*/;
     pfVar2 = param_4;
     iVar4 = iVar5;
     fVar10 = 0.0f;
@@ -89,4 +97,3 @@ float * FUN_00068b68(int param_1, int param_2, float *param_3, float *param_4)
     }
     return pfVar2;
 }
-

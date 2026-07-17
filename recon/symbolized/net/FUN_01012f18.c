@@ -34,9 +34,9 @@ extern short thunk_FUN_010246cc(void);
 #define I(o)  (*(int *)(param_1 + (o)))
 #define U(o)  (*(uint *)(param_1 + (o)))
 
-#define G54B (*(volatile byte *)((uintptr_t)&g_net_radio_ack_pending_flag) /*=0x21000f54*/)
-#define G58U (*(volatile uint *)((uintptr_t)&g_21000f58) /*=0x21000f58*/)
-#define TBL(idx) (*(short *)(((uintptr_t)&rodata_103c1f8) /*=0x103c1f8*/ + (uint)(idx) * 2))
+#define G54B (*(volatile byte *)((unsigned long)&g_net_radio_ack_pending_flag) /*=0x21000f54*/)
+#define G58U (*(volatile uint *)((unsigned long)&g_21000f58) /*=0x21000f58*/)
+#define TBL(idx) (*(short *)(((unsigned long)&rodata_103c1f8) /*=0x103c1f8*/ + (uint)(idx) * 2))
 #define MAGIC 0x10624dd3u
 #define PANIC(x) do { for(;;){ FUN_01008d00(0x30,(x)); } } while(0)
 
@@ -335,7 +335,7 @@ LAB_010131f4:
     uVar18 = U(0x14);
     G58U = uVar9;
     if (uVar18 < 0x1d4c) {
-      uVar7 = FUN_0100d6e8(uVar18,iVar22,((uintptr_t)&g_21000f58) /*=0x21000f58*/,&local_38);
+      uVar7 = FUN_0100d6e8(uVar18,iVar22,((unsigned long)&g_21000f58) /*=0x21000f58*/,&local_38);
       B(0x333) = uVar7;
       uVar9 = G58U;
       uVar18 = U(0x14);
@@ -405,4 +405,3 @@ LAB_010130aa:
   PANIC(0x5cf);
   return 0;
 }
-

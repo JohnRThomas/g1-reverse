@@ -62,5 +62,3 @@ void FUN_0100cff4(i32 param_1, i32 param_2, u32 param_3, u32 param_4)
     FUN_0100d840((u32)(param_1+0xcd), (u32)(param_1+0xce), param_3, param_4);
     return;
 }
-
-

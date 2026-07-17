@@ -1,4 +1,16 @@
-/* named: printf_like */
+/* readable reconstruction; identity: FUN_000113a8 @ 0x000113a8
+ * public-name: printf_like
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   _ldiv5                                   <= FUN_0007e260 @ 0x0007e260
+ *   _get_digit                               <= FUN_0007e290 @ 0x0007e290
+ *   outs                                     <= FUN_0007e2be @ 0x0007e2be
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_f8a6a                             @ 0x000f8a6a
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ */
 /* Reconstructed printf_like @ 0x113a8  (parity: 120/120 trials, PROVEN) */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
@@ -11,7 +23,7 @@
 typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
 typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
 typedef uint32_t undefined4; typedef uint32_t uint;
-typedef long long code(int,...);
+typedef int code(int,uint32_t);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 static inline int CARRY4(uint a, uint b){return (a+b)<a;}
@@ -39,24 +51,15 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long FUN_0000ef12__impl(int, ...);
-#define strlen(...) FUN_0000ef12__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb64__impl(int, ...);
-#define FUN_0004bb64(...) FUN_0004bb64__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb90__impl(int, ...);
-#define encode_uint(...) FUN_0004bb90__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e260__impl(int, ...);
-#define _ldiv5(...) FUN_0007e260__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e290__impl(int, ...);
-#define _get_digit(...) FUN_0007e290__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e2be__impl(int, ...);
-#define outs(...) FUN_0007e2be__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long FUN_000870a6__impl(int, ...);
-#define strnlen(...) FUN_000870a6__impl(0, ##__VA_ARGS__)
-extern long long SCARRY4__impl(int, ...);
-#define SCARRY4(...) SCARRY4__impl(0, ##__VA_ARGS__)
+extern long long strlen(int, ...);
+extern long long FUN_0004bb64(int, ...);
+extern long long FUN_0004bb90(int, ...);
+extern long long _ldiv5(int, ...);
+extern long long _get_digit(int, ...);
+extern long long outs(int, ...);
+extern long long memset_bytes(int, ...);
+extern long long FUN_000870a6(int, ...);
+static inline int SCARRY4(int a, int b) { int r = (int)((uint)a + (uint)b); return ((a ^ r) & (b ^ r)) < 0; }
 
 #define DAT_00011dd0 (0x0UL)
 #define DAT_00011dd8 (0xf8a6aUL)
@@ -114,7 +117,7 @@ byte * printf_like(code *param_1,undefined4 param_2,byte *param_3,uint *param_4)
   byte *local_50;
   byte local_44 [25];
   byte abStack_2b [7];
-  
+
   pbVar28 = (byte *)0x0;
   do {
     bVar10 = *param_3;
@@ -132,6 +135,12 @@ LAB_000113cc:
       goto switchD_0001194e_caseD_59;
     }
     memset_bytes(&local_60,0,0x18);
+    local_60 = (byte *)0;
+    local_5c = 0;
+    local_58 = 0;
+    local_56 = 0;
+    local_54 = (byte *)0;
+    local_50 = (byte *)0;
     if (param_3[1] == 0x25) {
       local_88 = param_3 + 2;
       local_56 = CONCAT11(0x25,(byte)local_56);
@@ -863,7 +872,7 @@ LAB_00011dee:
         local_5c = -local_5c - (uint)bVar31;
       }
 LAB_00011aa2:
-      pbVar15 = (byte *)encode_uint(local_60,local_5c,&local_58,local_44,abStack_2b);
+      pbVar15 = (byte *)FUN_0004bb90(local_60,local_5c,&local_58,local_44,abStack_2b);
 LAB_00011ab6:
       if (-1 < (int)pbVar11) {
         local_58 = local_58 & 0xffbf;
@@ -909,7 +918,7 @@ LAB_00011b98:
         pbVar30 = DAT_00012074;
         goto LAB_000119fa;
       }
-      pbVar15 = (byte *)encode_uint(local_60,0,&local_58,local_44,abStack_2b);
+      pbVar15 = (byte *)FUN_0004bb90(local_60,0,&local_58,local_44,abStack_2b);
       local_56 = local_56 & 0xef | 0x7810;
       uVar18 = 0;
       goto LAB_00011ab6;
@@ -918,7 +927,7 @@ LAB_00011b98:
         iVar29 = strlen(local_60);
       }
       else {
-        iVar29 = strnlen(local_60,pbVar11);
+        iVar29 = FUN_000870a6(local_60,pbVar11);
         if (pbVar15 == (byte *)0x0) break;
       }
       uVar18 = 0;
@@ -1054,7 +1063,7 @@ LAB_000119fa:
             pbVar28 = (byte *)(*param_1)(0x2e,param_2);
             while( true ) {
               if ((int)pbVar28 < 0) {
-                return pbVar28;
+      return pbVar28;
               }
               pbVar21 = pbVar21 + 1;
               if ((int)pbVar15 < 1) break;
@@ -1100,5 +1109,3 @@ switchD_0001194e_caseD_59:
     param_3 = local_88;
   } while( true );
 }
-
-

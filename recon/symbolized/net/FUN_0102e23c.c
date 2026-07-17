@@ -1,8 +1,8 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0102e23c @ 0x102e23c  (parity 300 trials PROVEN) */
+/* net-core FUN_0102e23c @ 0x102e23c — true CFG extent 58 bytes (ends 0x102e276) */
 #include <stdint.h>
 
-extern void FUN_01039bb0(uint32_t a, uint32_t b);
+extern uint64_t FUN_01039bb0(uint32_t a, uint32_t b);
 extern void FUN_01039bbe(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_0102ddf4(void);
 
@@ -13,14 +13,20 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
     int32_t r4;
     int32_t r3w;
 
-    t = param_1 - ((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/;
+    t = param_1 - ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
     t = t >> 4;
     t = t + 1;
     r3 = (uint8_t)t;
 
     if (param_1 == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "t_hci_raw" /*=0x103d635*/, 0xdf);
-        FUN_01039bb0("t_hci_raw" /*=0x103d635*/, 0xdf);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d635) /*=0x103d635*/, 0xdf);
+        /* Fatal in production. If the reporter returns, its ABI r0/r1 pair
+           becomes the physical fall-through object/value arguments; r2
+           remains the previously loaded 0xdf reason code. */
+        uint64_t fatal_result = FUN_01039bb0(((unsigned long)&rodata_103d635) /*=0x103d635*/, 0xdf);
+        param_1 = (int32_t)(uint32_t)fatal_result;
+        param_2 = (uint32_t)(fatal_result >> 32);
+        param_3 = 0xdf;
     }
 
     r4 = *(volatile int32_t *)(param_1 + 4);
@@ -34,4 +40,3 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
 
     FUN_0102ddf4();
 }
-

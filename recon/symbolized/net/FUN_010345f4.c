@@ -1,46 +1,28 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_010345f4 @ 0x10345f4  (parity 300 trials PROVEN) */
+/* net-core FUN_010345f4 @ 0x10345f4 */
+#include <stdint.h>
+extern uint64_t FUN_0103a8ea(uint32_t, uint32_t *);
+extern void FUN_01039bbe(uint32_t, uint32_t, uint32_t);
+extern uint64_t FUN_01039bb0(uint32_t, uint32_t);
 
-extern int FUN_0103a8ea(unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
-
-__attribute__((naked)) unsigned int FUN_010345f4(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+uint32_t FUN_010345f4(uint32_t *configuration)
 {
-    __asm__ volatile(
-        "push {r3, lr}\n"
-        "ldr r2, [r0]\n"
-        "mov r1, r0\n"
-        "mov r0, r2\n"
-        "bl FUN_0103a8ea\n"
-        "cbnz r0, .Lafter\n"
-        "ldr r1, =0x0103df89\n"
-        "movw r2, #0x32f\n"
-        "ldr r0, =0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "movw r1, #0x32f\n"
-        ".Lloopcall:\n"
-        "ldr r0, =0x0103df89\n"
-        "bl FUN_01039bb0\n"
-        ".Lafter:\n"
-        "and r3, r2, #0x1f\n"
-        "lsrs r2, r2, #5\n"
-        "str r3, [r1]\n"
-        "beq .Lret0\n"
-        "cmp r2, #1\n"
-        "beq .Lret1\n"
-        "ldr r1, =0x0103df89\n"
-        "mov.w r2, #0x338\n"
-        "ldr r0, =0x0103d2a7\n"
-        "bl FUN_01039bbe\n"
-        "mov.w r1, #0x338\n"
-        "b .Lloopcall\n"
-        ".Lret0:\n"
-        "ldr r0, =0x418c0500\n"
-        "pop {r3, pc}\n"
-        ".Lret1:\n"
-        "ldr r0, =0x418c0800\n"
-        "b .Lret0\n"
-    );
+    uint32_t encoded = *configuration;
+    uint64_t result = FUN_0103a8ea(encoded, configuration);
+    uint32_t *destination = (uint32_t *)(uintptr_t)(uint32_t)(result >> 32);
+    if ((uint32_t)result == 0) {
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x32f);
+        result = FUN_01039bb0(((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x32f);
+        destination = (uint32_t *)(uintptr_t)(uint32_t)(result >> 32);
+        encoded = 0x32f;
+    }
+    for (;;) {
+        *destination = encoded & 0x1f;
+        if ((encoded >> 5) == 0) return 0x418c0500;
+        if ((encoded >> 5) == 1) return 0x418c0800;
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x338);
+        result = FUN_01039bb0(((unsigned long)&rodata_103df89) /*=0x103df89*/, 0x338);
+        destination = (uint32_t *)(uintptr_t)(uint32_t)(result >> 32);
+        encoded = 0x338;
+    }
 }
-

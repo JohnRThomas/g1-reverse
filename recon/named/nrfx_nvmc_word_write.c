@@ -1,8 +1,20 @@
-/* named: nrfx_nvmc_word_write */
-/* globals referenced:
-//   0x50039000  NRF_NVMC_S                   
-*/
-/* Reconstructed nrfx_nvmc_word_write @ 0x65f80  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065f80 @ 0x00065f80
+ * public-name: nrfx_nvmc_word_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvmc_readonly_mode_set                   <= FUN_00065ef0 @ 0x00065ef0
+ *   nvmc_word_write                          <= FUN_00065f04 @ 0x00065f04
+ *   nrfx_nvmc_word_write                     <= FUN_00065f80 @ 0x00065f80
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6c32                             @ 0x000f6c32
+ *   rodata_f6ca8                             @ 0x000f6ca8
+ *   rodata_f6cc2                             @ 0x000f6cc2
+ *   NRF_NVMC_S                               @ 0x50039000
+ */
+/* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
 extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 extern void nvmc_word_write(void);
@@ -24,4 +36,3 @@ L_fc6:
     nvmc_word_write();
     nvmc_readonly_mode_set();
 }
-

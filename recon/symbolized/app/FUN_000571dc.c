@@ -1,10 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000571dc */
+/* readable reconstruction; identity: FUN_000571dc @ 0x000571dc
+ * public-name: FUN_000571dc
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_bt_conn_frag_pool                      @ 0x20003b18
+ */
 /* Reconstructed FUN_000571dc @ 0x571dc  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000569ec(unsigned int, unsigned int);
 void FUN_000571dc(unsigned int param_1)
 {
-  FUN_000569ec(((uintptr_t)&g_bt_conn_frag_pool) /*=0x20003b18*/, param_1);
+  FUN_000569ec(((unsigned long)&g_bt_conn_frag_pool) /*=0x20003b18*/, param_1);
 }
-

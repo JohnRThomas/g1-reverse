@@ -1,11 +1,16 @@
-/* named: battery_soc_from_curve */
-/* globals referenced:
-//   0x20002d0c  g_batt_soc_curve_discharge_lo 
-//   0x20002d10  g_batt_soc_curve_discharge_hi 
-//   0x20002d14  g_batt_soc_curve_charge_lo   
-//   0x20002d18  g_batt_soc_curve_charge_hi   
-*/
-/* Reconstructed battery_soc_from_curve @ 0xe340  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000e340 @ 0x0000e340
+ * public-name: battery_soc_from_curve
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   battery_soc_from_curve                   <= FUN_0000e340 @ 0x0000e340
+ * address symbols (name @ address):
+ *   g_batt_soc_curve_charge_lo               @ 0x20002d14
+ *   g_batt_soc_curve_charge_hi               @ 0x20002d18
+ *   g_batt_soc_curve_interp_buf              @ 0x2000b4a4
+ *   g_batt_soc_curve_val_hi                  @ 0x2000b4ec
+ *   g_batt_soc_curve_val_lo                  @ 0x2000b4f0
+ */
+/* Reconstructed FUN_0000e340 @ 0xe340  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0000c358(void*, void*, void*, void*);
 
@@ -42,4 +47,3 @@ float battery_soc_from_curve(unsigned int *out_struct, float unused_s0, float cm
   }
   return *p_local_20;
 }
-

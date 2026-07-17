@@ -1,11 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: clz32 */
-/* Reconstructed clz32 @ 0x87510  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087510 @ 0x00087510
+ * public-name: clz32
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   clz32                                    <= FUN_00087510 @ 0x00087510
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00087510 @ 0x87510  (parity: 300/300 trials, PROVEN) */
 
 int clz32(unsigned int param_1)
 {
     int iVar1;
-    if (param_1 < ((uintptr_t)&tbl_ffc8) /*=0x10000*/) {
+    if (param_1 < ((unsigned long)&rodata_10000) /*=0x10000*/) {
         param_1 = param_1 << 0x10;
         iVar1 = 0x10;
     } else {
@@ -28,4 +35,3 @@ int clz32(unsigned int param_1)
     }
     return iVar1;
 }
-

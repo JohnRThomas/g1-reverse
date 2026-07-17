@@ -9,4 +9,3 @@ unsigned int FUN_0100ff4a(int param_1)
     *(volatile unsigned char *)(*(int *)(param_1 + 4) + 0xc6) = 0x1d;
     return 0;
 }
-

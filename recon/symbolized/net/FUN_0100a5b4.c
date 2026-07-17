@@ -3,7 +3,6 @@
 
 unsigned char FUN_0100a5b4(void)
 {
-    volatile unsigned char * const p = (volatile unsigned char * const)((uintptr_t)&g_sdc_last_cfg_param3) /*=0x21000bc9*/;
+    volatile unsigned char * const p = (volatile unsigned char * const)((unsigned long)&g_sdc_last_cfg_param3) /*=0x21000bc9*/;
     return *p;
 }
-

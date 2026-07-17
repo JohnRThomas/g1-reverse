@@ -1,5 +1,31 @@
-/* named: bt_smp_distribute_keys */
-/* Reconstructed bt_smp_distribute_keys @ 0x5e1a8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e1a8 @ 0x0005e1a8
+ * public-name: bt_smp_distribute_keys
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
+ *   bt_security_err_lookup                   <= FUN_00054250 @ 0x00054250
+ *   bt_rand                                  <= FUN_00055cb4 @ 0x00055cb4
+ *   bt_smp_send_pdu                          <= FUN_0005cb38 @ 0x0005cb38
+ *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
+ *   bt_smp_distribute_keys                   <= FUN_0005e1a8 @ 0x0005e1a8
+ *   bt_keys_add_type                         <= FUN_0005e9a0 @ 0x0005e9a0
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ *   atomic_test_and_clear_bit                <= FUN_000831be @ 0x000831be
+ *   att_chan_reset                           <= FUN_00083204 @ 0x00083204
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_5e41d                             @ 0x0005e41d
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f516d                             @ 0x000f516d
+ *   rodata_f5182                             @ 0x000f5182
+ *   rodata_f519d                             @ 0x000f519d
+ *   rodata_f51c4                             @ 0x000f51c4
+ */
+/* Reconstructed FUN_0005e1a8 @ 0x5e1a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned char undefined1;
@@ -143,4 +169,3 @@ LAB_0005e1fa:
     smp_pairing_complete(piVar9, uVar8);
     return;
 }
-

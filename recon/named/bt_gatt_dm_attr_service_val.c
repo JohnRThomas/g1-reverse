@@ -1,5 +1,11 @@
-/* named: bt_gatt_dm_attr_service_val */
-/* Reconstructed bt_gatt_dm_attr_service_val @ 0x7f460  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f460 @ 0x0007f460
+ * public-name: bt_gatt_dm_attr_service_val
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_dm_attr_service_val              <= FUN_0007f460 @ 0x0007f460
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ */
+/* Reconstructed FUN_0007f460 @ 0x7f460  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_uuid_cmp(void*, int);
 
@@ -20,4 +26,3 @@ int bt_gatt_dm_attr_service_val(int *param_1, int param_2, int param_3)
     }
     return *param_1 - 8;
 }
-

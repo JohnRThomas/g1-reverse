@@ -1,9 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: audio_codec_set_reg12_bit6 */
-/* Reconstructed audio_codec_set_reg12_bit6 @ 0x7f9f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f9f4 @ 0x0007f9f4
+ * public-name: audio_codec_set_reg12_bit6
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   audio_codec_set_reg12_bit6               <= FUN_0007f9f4 @ 0x0007f9f4
+ */
+/* Reconstructed FUN_0007f9f4 @ 0x7f9f4  (parity: 300/300 trials, PROVEN) */
 
-extern int audio_codec_bus_read_trampoline(unsigned int, unsigned int, void*, unsigned int, unsigned int);
-extern void audio_codec_bus_write_trampoline(unsigned int, unsigned int, void*, unsigned int);
+extern int FUN_0007f97c(unsigned int, unsigned int, void*, unsigned int, unsigned int);
+extern void FUN_0007f98a(unsigned int, unsigned int, void*, unsigned int);
 
 void audio_codec_set_reg12_bit6(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -12,13 +17,12 @@ void audio_codec_set_reg12_bit6(unsigned int param_1, unsigned int param_2, unsi
     unsigned int uStack_10;
     local_14 = param_2;
     uStack_10 = param_3;
-    iVar1 = audio_codec_bus_read_trampoline(param_1, 0x12, &local_14, 1, param_1);
+    iVar1 = FUN_0007f97c(param_1, 0x12, &local_14, 1, param_1);
     if (iVar1 == 0) {
         unsigned char b = (unsigned char)local_14;
         b = (b & 0xbf) | (unsigned char)((param_2 & 1) << 6);
         local_14 = (local_14 & 0xffffff00U) | b;
-        audio_codec_bus_write_trampoline(param_1, 0x12, &local_14, 1);
+        FUN_0007f98a(param_1, 0x12, &local_14, 1);
     }
     return;
 }
-

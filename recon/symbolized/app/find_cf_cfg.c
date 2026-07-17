@@ -1,9 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: find_cf_cfg */
-/* globals referenced:
-//   0x2000aed4  g_bt_gatt_cf_cfg             
-*/
-/* Reconstructed find_cf_cfg @ 0x59c04  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00059c04 @ 0x00059c04
+ * public-name: find_cf_cfg
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
+ *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
+ * address symbols (name @ address):
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   g_bt_gatt_cf_cfg                         @ 0x2000aed4
+ */
+/* Reconstructed FUN_00059c04 @ 0x59c04  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_is_peer_addr_le(int a, unsigned char b);
 extern int bt_addr_le_eq_0(void *a, unsigned int b);
@@ -15,9 +22,9 @@ unsigned char * find_cf_cfg(int param_1)
     unsigned char *puVar3;
     int iVar4;
 
-    uVar1 = ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/;
+    uVar1 = ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/;
     iVar4 = 0;
-    puVar3 = (unsigned char *)((uintptr_t)&g_bt_gatt_cf_cfg) /*=0x2000aed4*/;
+    puVar3 = (unsigned char *)((unsigned long)&g_bt_gatt_cf_cfg) /*=0x2000aed4*/;
     while (1) {
         if (param_1 == 0) {
             iVar2 = bt_addr_le_eq_0(puVar3 + 1, uVar1);
@@ -33,4 +40,3 @@ unsigned char * find_cf_cfg(int param_1)
     }
     return puVar3;
 }
-

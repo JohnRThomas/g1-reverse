@@ -6,7 +6,7 @@ extern void FUN_0102a21e(void);
 
 void FUN_0101ffd4(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-    volatile unsigned char *p38 = (volatile unsigned char*)((uintptr_t)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
+    volatile unsigned char *p38 = (volatile unsigned char*)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
     volatile unsigned char *e000 = (volatile unsigned char*)REG_4100e000 /*=0x4100e000*/;
     volatile unsigned char *ed00 = (volatile unsigned char*)0xe000ed00;
     volatile unsigned char *e100 = (volatile unsigned char*)0xe000e100;
@@ -29,4 +29,3 @@ void FUN_0101ffd4(unsigned int param_1, unsigned int param_2, unsigned int param
     }
     FUN_01008d00(0x3c, 0x280, param_3, param_4);
 }
-

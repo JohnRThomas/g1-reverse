@@ -1,5 +1,14 @@
-/* named: bt_gatt_clear_sc */
-/* Reconstructed bt_gatt_clear_sc @ 0x5a044  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a044 @ 0x0005a044
+ * public-name: bt_gatt_clear_sc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   bt_gatt_clear_sc                         <= FUN_0005a044 @ 0x0005a044
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f47a4                             @ 0x000f47a4
+ */
+/* Reconstructed FUN_0005a044 @ 0x5a044  (parity: 300/300 trials, PROVEN) */
 
 extern void* find_sc_cfg_59bcc(void);
 extern int FUN_00053024(unsigned char, void*);
@@ -21,4 +30,3 @@ unsigned int bt_gatt_clear_sc(void){
   }
   return 0;
 }
-

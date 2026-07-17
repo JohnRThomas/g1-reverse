@@ -1,6 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: smp_pairing_complete */
-/* Reconstructed smp_pairing_complete @ 0x5daf0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005daf0 @ 0x0005daf0
+ * public-name: smp_pairing_complete
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
+ *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
+ *   bt_keys_store                            <= FUN_0005ec18 @ 0x0005ec18
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   att_chan_reset                           <= FUN_00083204 @ 0x00083204
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4f89                             @ 0x000f4f89
+ *   rodata_f520f                             @ 0x000f520f
+ *   rodata_f5220                             @ 0x000f5220
+ *   g_bt_conn_auth_info_cb_list              @ 0x2000ad20
+ */
+/* Reconstructed FUN_0005daf0 @ 0x5daf0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ble_notify_remote_info_available(int,int,int);
 extern int FUN_0005d964(int);
@@ -31,7 +47,7 @@ void smp_pairing_complete(int param_1, int param_2)
             if (iVar8 != 0) {
                 bt_keys_store(*(uint32_t *)(iVar7 + 0xc0));
             }
-            puVar6 = (uint32_t *)*(void * volatile *)((uintptr_t)&g_bt_conn_auth_info_cb_list) /*=0x2000ad20*/;
+            puVar6 = (uint32_t *)*(void * volatile *)((unsigned long)&g_bt_conn_auth_info_cb_list) /*=0x2000ad20*/;
             if (puVar6 != (uint32_t *)0x0) {
                 puVar9 = (uint32_t *)*puVar6;
                 if (puVar9 != (uint32_t *)0x0) {
@@ -60,12 +76,12 @@ LAB_0005dba4:
         if (uVar3 < 0xf) goto LAB_0005db1a;
         uVar3 = 9;
     } else {
-        local_1c = "Not connected!" /*=0xf4f89*/;
+        local_1c = ((unsigned long)&rodata_f4f89) /*=0xf4f89*/;
         local_20 = 2;
-        FUN_00083074(((uintptr_t)&tbl_880d8) /*=0x88180*/, 0x1080, &local_20);
+        FUN_00083074(((unsigned long)&rodata_88180) /*=0x88180*/, 0x1080, &local_20);
         uVar3 = 7;
 LAB_0005db1a:
-        uVar3 = (unsigned int)*(volatile unsigned char *)(((uintptr_t)&rodata_f5220) /*=0xf5220*/ + uVar3);
+        uVar3 = (unsigned int)*(volatile unsigned char *)(((unsigned long)&rodata_f5220) /*=0xf5220*/ + uVar3);
     }
     if ((*(int *)(iVar7 + 0xc0) != 0) &&
         ((*(char *)(*(int *)(iVar7 + 0xc0) + 0xc) == '\0' ||
@@ -76,14 +92,14 @@ LAB_0005db1a:
     iVar1 = atomic_test_bit(iVar8, 2);
     if (iVar1 == 0) {
         if (uVar3 < 8) {
-            uVar2 = *(volatile unsigned char *)(((uintptr_t)&rodata_f520f) /*=0xf520f*/ + uVar3);
+            uVar2 = *(volatile unsigned char *)(((unsigned long)&rodata_f520f) /*=0xf520f*/ + uVar3);
         } else {
             uVar2 = 0x1f;
         }
         ble_notify_remote_info_available(iVar7, uVar2, uVar3);
     }
     iVar8 = atomic_test_bit(iVar8, 3);
-    if ((iVar8 != 0) && (piVar4 = (int *)*(void * volatile *)((uintptr_t)&g_bt_conn_auth_info_cb_list) /*=0x2000ad20*/, piVar4 != (int *)0x0)) {
+    if ((iVar8 != 0) && (piVar4 = (int *)*(void * volatile *)((unsigned long)&g_bt_conn_auth_info_cb_list) /*=0x2000ad20*/, piVar4 != (int *)0x0)) {
         iVar8 = *piVar4;
         if (iVar8 != 0) {
             iVar8 = iVar8 + -0xc;
@@ -112,4 +128,3 @@ LAB_0005dbba:
     }
     return;
 }
-

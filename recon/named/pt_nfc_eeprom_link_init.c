@@ -1,9 +1,25 @@
-/* named: pt_nfc_eeprom_link_init */
-/* globals referenced:
-//   0x20007bc0  g_pt_nfc_link_cfg            
-//   0x20019dad  g_pt_nfc_link_busy           
-*/
-/* Reconstructed pt_nfc_eeprom_link_init @ 0x30b3c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00030b3c @ 0x00030b3c
+ * public-name: pt_nfc_eeprom_link_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_set                           <= FUN_00030178 @ 0x00030178
+ *   flash_driver_reset_sequence              <= FUN_000301bc @ 0x000301bc
+ *   flash_apply_config_table                 <= FUN_00030224 @ 0x00030224
+ *   attr_store_get                           <= FUN_000302f8 @ 0x000302f8
+ *   flash_get_ready_status_bit               <= FUN_000304f0 @ 0x000304f0
+ *   commit_default_config_record             <= FUN_00030710 @ 0x00030710
+ *   flash_firmware_update_transfer           <= FUN_00030754 @ 0x00030754
+ *   pt_nfc_eeprom_link_init                  <= FUN_00030b3c @ 0x00030b3c
+ *   wait_for_attr_0x4410_set                 <= FUN_0007cf70 @ 0x0007cf70
+ * address symbols (name @ address):
+ *   rodata_ff20                              @ 0x0000ff20
+ *   g_pt_nfc_link_init_active                @ 0x20003030
+ *   g_pt_nfc_link_cfg                        @ 0x20007bc0
+ *   g_pt_nfc_link_attr_0x4414_cache          @ 0x20007bc4
+ *   g_pt_nfc_link_ready_flag                 @ 0x20007bc8
+ *   g_pt_nfc_link_busy                       @ 0x20019dad
+ */
+/* Reconstructed FUN_00030b3c @ 0x30b3c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int attr_store_set(int,int);
@@ -43,4 +59,3 @@ int pt_nfc_eeprom_link_init(int *param_1){
     }
     return -1;
 }
-

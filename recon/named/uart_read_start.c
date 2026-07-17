@@ -1,5 +1,17 @@
-/* named: uart_read_start */
-/* Reconstructed uart_read_start @ 0x336a0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000336a0 @ 0x000336a0
+ * public-name: uart_read_start
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   uart_read_start                          <= FUN_000336a0 @ 0x000336a0
+ *   k_mem_slab_alloc                         <= FUN_00071c20 @ 0x00071c20
+ * address symbols (name @ address):
+ *   ADDR_uart_callback_THUMB                 @ 0x00033385
+ *   rodata_a7b13                             @ 0x000a7b13
+ *   rodata_a7b29                             @ 0x000a7b29
+ *   rodata_a7b41                             @ 0x000a7b41
+ *   g_uart_rx_mem_slab                       @ 0x200037b8
+ */
+/* Reconstructed FUN_000336a0 @ 0x336a0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void DEBUG_PRINT(int,...);
@@ -25,4 +37,3 @@ unsigned uart_read_start(int param_1, unsigned param_2, unsigned param_3){
   }
   return 0xffffffff;
 }
-

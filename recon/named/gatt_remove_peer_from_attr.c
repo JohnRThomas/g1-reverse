@@ -1,8 +1,19 @@
-/* named: gatt_remove_peer_from_attr */
-/* globals referenced:
-//   0x20002a20  g_bt_gatt_sc_ccc             
-*/
-/* Reconstructed gatt_remove_peer_from_attr @ 0x5a3c4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a3c4 @ 0x0005a3c4
+ * public-name: gatt_remove_peer_from_attr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   bt_conn_lookup_addr_le                   <= FUN_00056e74 @ 0x00056e74
+ *   sc_clear                                 <= FUN_0005a090 @ 0x0005a090
+ *   gatt_remove_peer_from_attr               <= FUN_0005a3c4 @ 0x0005a3c4
+ *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
+ *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
+ * address symbols (name @ address):
+ *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   g_bt_gatt_sc_ccc                         @ 0x20002a20
+ */
+/* Reconstructed FUN_0005a3c4 @ 0x5a3c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 typedef void (*fp)(int);
@@ -44,4 +55,3 @@ u32 gatt_remove_peer_from_attr(int param_1, u32 param_2, int param_3){
     }
     return 1;
 }
-

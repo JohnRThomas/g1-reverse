@@ -1,11 +1,43 @@
-/* named: button_init */
-/* globals referenced:
-//   0x00087b48  g_gpio1_dev                  
-//   0x00087b60  g_gpio0_dev                  
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00017a40 @ 0x00017a40
+ * public-name: button_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_pin_set_checked                     <= FUN_00017768 @ 0x00017768
+ *   gpio_pin_get_raw_checked                 <= FUN_000177c4 @ 0x000177c4
+ *   gpio_pin_get_checked                     <= FUN_00017980 @ 0x00017980
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_board_rev_flag                       <= FUN_00025284 @ 0x00025284
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_17819                             @ 0x00017819
+ *   ADDR_FUN_0001793c_THUMB                  @ 0x0001793d
+ *   rodata_30000                             @ 0x00030000
+ *   g_gpio1_dev                              @ 0x00087b48
+ *   g_gpio0_dev                              @ 0x00087b60
+ *   rodata_88340                             @ 0x00088340
+ *   rodata_889d0                             @ 0x000889d0
+ *   rodata_889e0                             @ 0x000889e0
+ *   rodata_99f81                             @ 0x00099f81
+ *   rodata_99fd2                             @ 0x00099fd2
+ *   rodata_99fe8                             @ 0x00099fe8
+ *   rodata_9a016                             @ 0x0009a016
+ *   rodata_9a044                             @ 0x0009a044
+ *   rodata_9a072                             @ 0x0009a072
+ *   rodata_9a0a0                             @ 0x0009a0a0
+ *   rodata_9a0c6                             @ 0x0009a0c6
+ *   rodata_9a119                             @ 0x0009a119
+ *   rodata_9a126                             @ 0x0009a126
+ *   rodata_9a132                             @ 0x0009a132
+ *   g_log_level                              @ 0x2000230c
+ *   g_button_irq_cb2                         @ 0x20006a04
+ *   g_button_irq_cb2_handler                 @ 0x20006a08
+ *   g_button_irq_cb1                         @ 0x20006a10
+ *   g_button_irq_cb1_handler                 @ 0x20006a14
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
+#include <stdint.h>
 extern int DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int FUN_00017688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
@@ -25,20 +57,28 @@ unsigned char button_init(void)
     unsigned int uVar7,uVar8,uVar9,uVar10,uVar11,uVar12,uVar13;
     unsigned int uVar14 = 0, uVar18;
     void *pcVar17;
+    unsigned int gpio_specs[9][2];
+    volatile const unsigned int *spec_data =
+        (volatile const unsigned int *)0x00088340UL;
 
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x30000);
+    for (unsigned int spec = 0; spec < 9; ++spec) {
+        gpio_specs[spec][0] = spec_data[spec * 2];
+        gpio_specs[spec][1] = spec_data[spec * 2 + 1];
+    }
+
+    FUN_00017688((uintptr_t)gpio_specs[0], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[1], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[2], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[3], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[4], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x18, 1);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[5], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x13, 0);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[6], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x15, 0);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[7], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x1e, 1);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[8], 0x30000);
     gpio_pin_set_checked(0x00087b60UL, 0x17, 0);
 
     iVar16 = 0x00087b48;
@@ -189,4 +229,3 @@ LAB_c40:
     }
     return bVar4;
 }
-

@@ -3,7 +3,7 @@
 
 unsigned int FUN_0100a904(int *param_1)
 {
-  unsigned int base = ((uintptr_t)&g_net_ctrl_pending_req) /*=0x21000bf8*/;
+  unsigned int base = 0x21000bf8;
   volatile unsigned short *p34 = (volatile unsigned short*)(base + 0x34);
   volatile unsigned char  *p32 = (volatile unsigned char*)(base + 0x32);
 
@@ -17,4 +17,3 @@ unsigned int FUN_0100a904(int *param_1)
   }
   return 0;
 }
-

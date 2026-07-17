@@ -28,4 +28,3 @@ int FUN_010082b0(unsigned int *param_1, unsigned int *param_2, unsigned int *par
     vp[7]=(uVar18-uVar22)-(unsigned int)(uVar10>=uVar17 && !bVar6);
     return (uVar18<=uVar22) && ((unsigned int)(uVar10<uVar17 || bVar6) <= uVar18-uVar22);
 }
-

@@ -1,8 +1,13 @@
-/* named: watchdog_feed_retry */
-/* globals referenced:
-//   0x00087cc8  g_watchdog_device            
-*/
-/* Reconstructed watchdog_feed_retry @ 0x2ae84  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002ae84 @ 0x0002ae84
+ * public-name: watchdog_feed_retry
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   watchdog_feed_retry                      <= FUN_0002ae84 @ 0x0002ae84
+ * address symbols (name @ address):
+ *   g_watchdog_device                        @ 0x00087cc8
+ *   g_wdt_channel_id                         @ 0x20007b50
+ */
+/* Reconstructed FUN_0002ae84 @ 0x2ae84  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_00074844(unsigned int a, unsigned int b);
@@ -25,4 +30,3 @@ int watchdog_feed_retry(unsigned int param_1, unsigned int param_2, unsigned int
   }
   return iVar2;
 }
-

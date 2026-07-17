@@ -3,7 +3,7 @@
 
 char FUN_0100aa04(int param_1, unsigned int *param_2)
 {
-  volatile unsigned char *base = (volatile unsigned char*)((uintptr_t)&g_net_addr_cache_pair) /*=0x21000c34*/;
+  volatile unsigned char *base = (volatile unsigned char*)((unsigned long)&g_net_addr_cache_pair) /*=0x21000c34*/;
   char cVar2 = 0;
   if (param_1 == 0) {
     cVar2 = *(volatile char*)(base);
@@ -25,4 +25,3 @@ char FUN_0100aa04(int param_1, unsigned int *param_2)
     return cVar2;
   }
 }
-

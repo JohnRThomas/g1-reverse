@@ -1,9 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: message_table_contains_id */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-*/
-/* Reconstructed message_table_contains_id @ 0x33f24  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033f24 @ 0x00033f24
+ * public-name: message_table_contains_id
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   message_table_contains_id                <= FUN_00033f24 @ 0x00033f24
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ */
+/* Reconstructed FUN_00033f24 @ 0x33f24  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint;
 
@@ -16,7 +20,7 @@ uint message_table_contains_id(uint param_1, int param_2)
         if (param_1 <= bVar1) {
             return 0;
         }
-        iVar2 = (int)bVar1 * 0x1b4 + (g_message_pool) /*=0x20007dac*/;
+        iVar2 = (int)bVar1 * 0x1b4 + ((unsigned long)g_message_pool) /*=0x20007dac*/;
         if ((*(volatile char*)(iVar2 + 0x10) != 0) && (*(volatile int*)(iVar2 + 8) == param_2)) {
             break;
         }
@@ -24,4 +28,3 @@ uint message_table_contains_id(uint param_1, int param_2)
     }
     return 1;
 }
-

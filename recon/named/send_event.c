@@ -1,41 +1,48 @@
-/* named: send_event */
-/* Reconstructed send_event @ 0x276ec  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000276ec @ 0x000276ec
+ * public-name: send_event
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   enqueue_bt_data                          <= FUN_00017eec @ 0x00017eec
+ *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
+ *   process_sync_buffer                      <= FUN_0007cb4c @ 0x0007cb4c
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ * address symbols (name @ address):
+ *   g_send_event_pending_id                  @ 0x2000302e
+ */
+/* Reconstructed send_event @ 0x276ec. */
 
-extern int enqueue_bt_data(void*, int);
-extern int ancs_get_conn_ctx(void);
-extern void k_msleep_ticks32768_a(int);
-extern void thunk_FUN_00072880(int);
+#include <stdint.h>
 
-void send_event(int param_1, unsigned int param_2, unsigned int param_3)
+extern int enqueue_bt_data(const void *event, unsigned int length);
+extern void *ancs_get_conn_ctx(void);
+extern void process_sync_buffer(void *work);
+extern void k_msleep_ticks32768_a(int enabled);
+
+void send_event(int event_id, unsigned int unused_2, unsigned int unused_3)
 {
-  int iVar3;
-  unsigned char cVar1;
-  unsigned char *pcVar2 = (unsigned char*)0x2000302eUL;
-  unsigned char buf[8];
+    uint8_t *pending_event = (uint8_t *)0x2000302eUL;
+    uint8_t event[3];
+    uint8_t *state = ancs_get_conn_ctx();
 
-  iVar3 = ancs_get_conn_ctx();
-  if ((unsigned int)(param_1 - 0xf0) > 2 || *pcVar2 == 0xff) {
-    cVar1 = *(unsigned char*)(iVar3 + 0x248);
-    *pcVar2 = (unsigned char)param_1;
-    if (cVar1 != 0) {
-      goto build;
+    (void)unused_2;
+    (void)unused_3;
+
+    if ((unsigned int)(event_id - 0xf0) <= 2 && *pending_event != 0xff) {
+        return;
     }
-    if (*(int*)(iVar3 + 0x220) != 0) {
-      goto build;
+
+    *pending_event = (uint8_t)event_id;
+    if (state[0x248] != 0 || *(uint32_t *)(state + 0x220) != 0) {
+        event[0] = 0xf5;
+        event[1] = (uint8_t)event_id;
+        event[2] = 0xcb;
+        enqueue_bt_data(event, sizeof(event));
+        *pending_event = 0xff;
+        return;
     }
-    if (*(unsigned char*)(iVar3 + 0x248) != 0) {
-      return;
+
+    if (state[0x248] == 0) {
+        process_sync_buffer(state + 0x218);
+        k_msleep_ticks32768_a(1);
     }
-    thunk_FUN_00072880(iVar3 + 0x218);
-    k_msleep_ticks32768_a(1);
-    return;
-  build:
-    buf[0] = 0xf5;
-    buf[1] = (unsigned char)param_1;
-    buf[2] = 0xcb;
-    enqueue_bt_data(buf, 3);
-    *pcVar2 = 0xff;
-    return;
-  }
 }
-

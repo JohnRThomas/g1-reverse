@@ -1,5 +1,16 @@
-/* named: _malloc_r */
-/* Reconstructed _malloc_r @ 0x76e20  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076e20 @ 0x00076e20
+ * public-name: _malloc_r
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   _sbrk_r                                  <= FUN_000778f4 @ 0x000778f4
+ *   __malloc_lock                            <= FUN_000785bc @ 0x000785bc
+ *   __malloc_unlock                          <= FUN_000785c8 @ 0x000785c8
+ * address symbols (name @ address):
+ *   g_malloc_sbrk_start                      @ 0x2000cc1c
+ *   g_malloc_free_list                       @ 0x2000cc20
+ */
+/* Reconstructed FUN_00076e20 @ 0x76e20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern int _sbrk_r(void*,...);
@@ -58,4 +69,3 @@ uint _malloc_r(uint *param_1, uint param_2, uint param_3, uint param_4){
     __malloc_unlock(param_1);
     return 0;
 }
-

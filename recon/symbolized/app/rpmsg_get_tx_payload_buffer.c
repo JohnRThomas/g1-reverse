@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: rpmsg_get_tx_payload_buffer */
-/* Reconstructed rpmsg_get_tx_payload_buffer @ 0x858ec  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000858ec @ 0x000858ec
+ * public-name: rpmsg_get_tx_payload_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   rpmsg_get_tx_payload_buffer              <= FUN_000858ec @ 0x000858ec
+ */
+/* Reconstructed FUN_000858ec @ 0x858ec  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int (*fnptr_t)(void);
 
@@ -17,4 +22,3 @@ unsigned int rpmsg_get_tx_payload_buffer(int param_1, int param_2)
     }
     return 0;
 }
-

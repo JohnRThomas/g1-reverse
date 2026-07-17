@@ -14,15 +14,15 @@ extern void FUN_01039bbe(void *a, void *b, int c);
 extern void FUN_01039bb0(void *a, int b);
 extern int FUN_01039dd0(unsigned int *p);
 
-#define DAT_flag   (*(volatile unsigned char *)((uintptr_t)&g_net_tick_handler_enable_flag) /*=0x21004fac*/)
-#define DAT_sem    (*(volatile unsigned int  *)((uintptr_t)&g_net_tick_pending_cnt) /*=0x21004668*/)
-#define DAT_pend   (*(volatile int  *)((uintptr_t)&g_net_tick_correction_pending) /*=0x21004664*/)
-#define DAT_tick0  (*(volatile unsigned int *)((uintptr_t)&g_net_uptime_ms_lo) /*=0x21002788*/)
-#define DAT_tick1  (*(volatile unsigned int *)((uintptr_t)&g_net_uptime_ms_hi) /*=0x2100278c*/)
-#define DAT_p28    ((unsigned int *)((uintptr_t)&g_net_periodic_work_obj) /*=0x2100086c*/)
-#define DAT_465c   (*(volatile unsigned int *)((uintptr_t)&g_net_periodic_work_ptr) /*=0x2100465c*/)
-#define STR_A      ((void*)"acking error (context area might be not valid)" /*=0x103d2a7*/)
-#define STR_B      ((void*)" type: %u" /*=0x103d5d7*/)
+#define DAT_flag   (*(volatile unsigned char *)((unsigned long)&g_net_tick_handler_enable_flag) /*=0x21004fac*/)
+#define DAT_sem    (*(volatile unsigned int  *)((unsigned long)&g_net_tick_pending_cnt) /*=0x21004668*/)
+#define DAT_pend   (*(volatile int  *)((unsigned long)&g_net_tick_correction_pending) /*=0x21004664*/)
+#define DAT_tick0  (*(volatile unsigned int *)((unsigned long)&g_net_uptime_ms_lo) /*=0x21002788*/)
+#define DAT_tick1  (*(volatile unsigned int *)((unsigned long)&g_net_uptime_ms_hi) /*=0x2100278c*/)
+#define DAT_p28    ((unsigned int *)((unsigned long)&g_net_periodic_work_obj) /*=0x2100086c*/)
+#define DAT_465c   (*(volatile unsigned int *)((unsigned long)&g_net_periodic_work_ptr) /*=0x2100465c*/)
+#define STR_A      ((void*)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/)
+#define STR_B      ((void*)((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/)
 
 int FUN_0102df2c(void)
 {
@@ -47,14 +47,14 @@ int FUN_0102df2c(void)
   if (r5 != 0) {
     DAT_sem = DAT_sem - 1;
 
-    node = ((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/;
+    node = ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
     for (;;) {
-      if (node > ((uintptr_t)&rodata_103c0fc) /*=0x103c0fc*/) {
+      if (node > ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/) {
         FUN_01039bbe(STR_A, STR_B, 0x1c5);
         FUN_01039bb0(STR_B, 0x1c5);
         for(;;) {}
       }
-      if (node == ((uintptr_t)&rodata_103c0fc) /*=0x103c0fc*/) break;
+      if (node == ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/) break;
       connPtr = *(unsigned int *)(node + 4);
       if (*(unsigned char *)(connPtr + 5) != 0) {
         handlerPtr = *(unsigned int *)node;
@@ -91,4 +91,3 @@ int FUN_0102df2c(void)
 
   return FUN_01039dd0(DAT_p28);
 }
-

@@ -10,6 +10,5 @@ void FUN_01035068(int *param_1)
     *(unsigned int *)(*param_1 + 0x200) = 0;
     *(unsigned int *)(*param_1 + 0x308) = 0xffffffff;
     FUN_01035028(param_1);
-    *(unsigned char *)((unsigned int)(*((unsigned char *)param_1 + 4)) * 0xc + ((uintptr_t)&g_net_gpiote_evt_handler_table) /*=0x21004af8*/ + 8) = 0;
+    *(unsigned char *)((unsigned int)(*((unsigned char *)param_1 + 4)) * 0xc + ((unsigned long)&g_net_gpiote_evt_handler_table) /*=0x21004af8*/ + 8) = 0;
 }
-

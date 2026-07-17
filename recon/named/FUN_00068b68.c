@@ -1,4 +1,12 @@
-/* named: FUN_00068b68 */
+/* readable reconstruction; identity: FUN_00068b68 @ 0x00068b68
+ * public-name: FUN_00068b68
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_8bc60                             @ 0x0008bc60
+ *   rodata_90c50                             @ 0x00090c50
+ */
 /* Reconstructed FUN_00068b68 @ 0x68b68  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int memset_bytes(void*,int,int);
@@ -88,4 +96,3 @@ float * FUN_00068b68(int param_1, int param_2, float *param_3, float *param_4)
     }
     return pfVar2;
 }
-

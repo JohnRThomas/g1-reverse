@@ -4,7 +4,7 @@
 #include <stdint.h>
 int FUN_0100d738(int param_1)
 {
-  volatile unsigned char *p = (volatile unsigned char *)((uintptr_t)&g_net_rssi_cal_offset) /*=0x21000ea6*/;
+  volatile unsigned char *p = (volatile unsigned char *)((unsigned long)&g_net_rssi_cal_offset) /*=0x21000ea6*/;
   int b = *p;
   int8_t neg = (int8_t)(0 - b);
   int r0 = param_1 + neg;
@@ -16,4 +16,3 @@ int FUN_0100d738(int param_1)
   }
   return (int8_t)r0;
 }
-

@@ -8,4 +8,3 @@ void FUN_0103b512(int param_1)
   *(unsigned int *)(param_1 + 8) = 0;
   return;
 }
-

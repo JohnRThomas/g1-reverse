@@ -1,24 +1,37 @@
 #include "g1_app_symbols.h"
-/* named: bt_att_req_send */
-/* Reconstructed bt_att_req_send @ 0x59a90  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00059a90 @ 0x00059a90
+ * public-name: bt_att_req_send
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_get                                  <= FUN_0005858c @ 0x0005858c
+ *   bt_att_req_send                          <= FUN_00059a90 @ 0x00059a90
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3ebd                             @ 0x000f3ebd
+ *   rodata_f4388                             @ 0x000f4388
+ *   rodata_f4590                             @ 0x000f4590
+ */
+/* Reconstructed FUN_00059a90 @ 0x59a90  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 extern int att_get(void);
-extern void att_req_send_process(void);
+extern void FUN_000820ae(void);
 unsigned bt_att_req_send(int param_1, unsigned* param_2){
     unsigned r1;
     if (param_1 != 0){
         r1 = (unsigned)(uintptr_t)param_2;
     } else {
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"conn" /*=0xf3ebd*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/att.c" /*=0xf4388*/,0xf38);
-        long long r = assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/att.c" /*=0xf4388*/, 0xf38);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf38);
+        long long r = assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xf38);
         r1 = (unsigned)((unsigned long long)r >> 32);
     }
 L_aae:
     if (r1 != 0) goto L_ac4;
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"req" /*=0xf4590*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/att.c" /*=0xf4388*/,0xf39);
-    { long long r = assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/att.c" /*=0xf4388*/, 0xf39);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4590) /*=0xf4590*/,((unsigned long)&rodata_f4388) /*=0xf4388*/,0xf39);
+    { long long r = assert_post_action(((unsigned long)&rodata_f4388) /*=0xf4388*/, 0xf39);
       r1 = (unsigned)((unsigned long long)r >> 32); }
     goto L_aae;
 L_ac4:
@@ -34,8 +47,7 @@ L_ac4:
             *r3 = (unsigned)(uintptr_t)param_2;
             *(unsigned**)(iVar1 + 8) = param_2;
         }
-        att_req_send_process();
+        FUN_000820ae();
         return 0;
     }
 }
-

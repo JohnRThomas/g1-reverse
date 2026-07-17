@@ -1,10 +1,29 @@
-/* named: touch_key_thread */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a00  g_touch_key_irq_pending      
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019dac  g_touch_key_irq_line_status  
-*/
+/* readable reconstruction; identity: FUN_0002a0d8 @ 0x0002a0d8
+ * public-name: touch_key_thread
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   reset_all_usr_data                       <= FUN_0002316c @ 0x0002316c
+ *   trigger_touch_key_hw_reset               <= FUN_0002a0c0 @ 0x0002a0c0
+ *   handle_touch_key_irq                     <= FUN_00030af0 @ 0x00030af0
+ *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   read_rtc_counter_ms                      <= FUN_0007d0aa @ 0x0007d0aa
+ *   get_uptime_ms                            <= FUN_00086690 @ 0x00086690
+ * address symbols (name @ address):
+ *   rodata_a15d6                             @ 0x000a15d6
+ *   rodata_a1626                             @ 0x000a1626
+ *   rodata_a1681                             @ 0x000a1681
+ *   rodata_a172a                             @ 0x000a172a
+ *   rodata_a1a76                             @ 0x000a1a76
+ *   g_log_level                              @ 0x2000230c
+ *   g_touch_key_irq_pending                  @ 0x20006a00
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_touch_key_reset_reason                 @ 0x20007b18
+ *   g_touch_key_press_active                 @ 0x20018d89
+ *   g_touch_key_irq_line_status              @ 0x20019dac
+ */
 /* Reconstructed touch_key_thread @ 0x2a0d8  (parity: 1/1 trials, PROVEN) */
 #include <stdint.h>
 
@@ -282,4 +301,3 @@ code_r0x0002a476:
     DEBUG_PRINT(format_string);
   } while (1);
 }
-

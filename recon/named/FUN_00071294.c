@@ -1,4 +1,15 @@
-/* named: FUN_00071294 */
+/* readable reconstruction; identity: FUN_00071294 @ 0x00071294
+ * public-name: FUN_00071294
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   metal_io_block_write                     <= FUN_00085508 @ 0x00085508
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f7ba6                             @ 0x000f7ba6
+ *   rodata_f7c1a                             @ 0x000f7c1a
+ */
 /* Reconstructed FUN_00071294 @ 0x71294  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -25,4 +36,3 @@ uint32_t FUN_00071294(int param_1,uint32_t param_2,uint32_t param_3,int param_4,
   }
   return uVar4;
 }
-

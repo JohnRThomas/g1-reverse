@@ -3,7 +3,7 @@
 
 unsigned int FUN_0102ed18(unsigned int param_1, unsigned int param_2)
 {
-  volatile unsigned int *p = (volatile unsigned int*)((uintptr_t)&g_net_ipc_shm_pool_desc_ptr) /*=0x21004b30*/;
+  volatile unsigned int *p = (volatile unsigned int*)((unsigned long)&g_net_ipc_shm_pool_desc_ptr) /*=0x21004b30*/;
   unsigned int uVar1 = *p;
 
   if (uVar1 != 0) {
@@ -18,4 +18,3 @@ unsigned int FUN_0102ed18(unsigned int param_1, unsigned int param_2)
   }
   return uVar1;
 }
-

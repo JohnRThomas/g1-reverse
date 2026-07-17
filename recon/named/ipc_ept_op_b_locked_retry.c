@@ -1,9 +1,18 @@
-/* named: ipc_ept_op_b_locked_retry */
-/* Reconstructed ipc_ept_op_b_locked_retry @ 0x257ec  (parity: 300/300 trials, PROVEN) */
-extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned);
+/* readable reconstruction; identity: FUN_000257ec @ 0x000257ec
+ * public-name: ipc_ept_op_b_locked_retry
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ipc_ept_op_b_locked_retry                <= FUN_000257ec @ 0x000257ec
+ *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
+ *   json_arr_encode                          <= FUN_0007c898 @ 0x0007c898
+ * address symbols (name @ address):
+ *   rodata_9f285                             @ 0x0009f285
+ */
+/* Reconstructed FUN_000257ec @ 0x257ec  (parity: 300/300 trials, PROVEN) */
+extern void FUN_0007c872(unsigned,unsigned,unsigned,unsigned);
 extern int json_arr_encode(int,unsigned,unsigned,int);
-extern void thunk_FUN_00072558(unsigned);
-extern void sleep_fixed_33_ticks(void);
+extern void FUN_0007c876(unsigned);
+extern unsigned long long sleep_fixed_33_ticks(void);
 extern void DEBUG_PRINT(unsigned,unsigned,unsigned,int);
 int ipc_ept_op_b_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
@@ -12,19 +21,19 @@ int ipc_ept_op_b_locked_retry(int param_1, unsigned param_2, unsigned param_3, i
         int iVar3 = 0x14;
         int iVar4 = *(int*)(param_1 + 4);
         unsigned uVar5 = *(unsigned*)(param_1 + 0x10);
+        unsigned lock_arg = param_2;
         while (1){
-            thunk_FUN_000723b8(uVar5, param_2, 0xffffffff, 0xffffffff);
+            FUN_0007c872(uVar5, lock_arg, 0xffffffff, 0xffffffff);
             iVar1 = json_arr_encode(iVar4, param_2, param_3, param_4);
-            thunk_FUN_00072558(uVar5);
+            FUN_0007c876(uVar5);
             if (iVar1 == 0) break;
             iVar3 = iVar3 - 1;
             if (iVar3 == 0){
                 DEBUG_PRINT(0x9f285, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
                 return iVar1;
             }
-            sleep_fixed_33_ticks();
+            lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);
         }
     }
     return iVar1;
 }
-

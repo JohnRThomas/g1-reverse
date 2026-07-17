@@ -1,7 +1,11 @@
-/* named: FUN_00078598 */
-/* globals referenced:
-//   0x2000cc24  g_errno                      
-*/
+/* readable reconstruction; identity: FUN_00078598 @ 0x00078598
+ * public-name: FUN_00078598
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lseek                                    <= FUN_0004b17c @ 0x0004b17c
+ * address symbols (name @ address):
+ *   g_errno                                  @ 0x2000cc24
+ */
 /* Reconstructed FUN_00078598 @ 0x78598  (parity: 300/300 trials, PROVEN) */
 
 extern int lseek(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
@@ -17,4 +21,3 @@ void FUN_00078598(int *param_1,unsigned int param_2,unsigned int param_3,unsigne
   }
   return;
 }
-

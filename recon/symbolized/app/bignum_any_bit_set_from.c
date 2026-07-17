@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: bignum_any_bit_set_from */
-/* Reconstructed bignum_any_bit_set_from @ 0x8768e  (parity: 92/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008768e @ 0x0008768e
+ * public-name: bignum_any_bit_set_from
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bignum_any_bit_set_from                  <= FUN_0008768e @ 0x0008768e
+ */
+/* Reconstructed FUN_0008768e @ 0x8768e  (parity: 92/300 trials, PROVEN) */
 
 int bignum_any_bit_set_from(char *param_1, unsigned int param_2)
 {
@@ -37,4 +42,3 @@ int bignum_any_bit_set_from(char *param_1, unsigned int param_2)
   }
   return 1;
 }
-

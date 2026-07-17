@@ -1,5 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000839fe */
+/* readable reconstruction; identity: FUN_000839fe @ 0x000839fe
+ * public-name: FUN_000839fe
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   is_regular_addr_valid                    <= FUN_000839dc @ 0x000839dc
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
 /* Reconstructed FUN_000839fe @ 0x839fe  (parity: 300/300 trials, PROVEN) */
 extern int is_regular_addr_valid(int a, int b);
 extern int tail_61200(int a, int b);
@@ -14,4 +20,3 @@ unsigned FUN_000839fe(int param_1, int param_2, int param_3, int param_4){
     }
     return 0;
 }
-

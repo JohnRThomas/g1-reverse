@@ -1,7 +1,15 @@
-/* named: FUN_00055204 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_00055204 @ 0x00055204
+ * public-name: FUN_00055204
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   id_find                                  <= FUN_00054ce8 @ 0x00054ce8
+ *   bt_addr_le_eq                            <= FUN_00080fa4 @ 0x00080fa4
+ * address symbols (name @ address):
+ *   rodata_88150                             @ 0x00088150
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f3705                             @ 0x000f3705
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_00055204 @ 0x55204  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
@@ -39,4 +47,3 @@ unsigned FUN_00055204(char* param_1, int param_2){
     }
     return 0xffffffea;
 }
-

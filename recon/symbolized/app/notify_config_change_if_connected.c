@@ -1,9 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: notify_config_change_if_connected */
-/* globals referenced:
-//   0x20006a1c  g_settings_notify_mutex      
-*/
-/* Reconstructed notify_config_change_if_connected @ 0x17e84  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00017e84 @ 0x00017e84
+ * public-name: notify_config_change_if_connected
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   notify_config_change_if_connected        <= FUN_00017e84 @ 0x00017e84
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ * address symbols (name @ address):
+ *   rodata_9a155                             @ 0x0009a155
+ *   g_settings_notify_mutex                  @ 0x20006a1c
+ */
+/* Reconstructed FUN_00017e84 @ 0x17e84  (parity: 300/300 trials, PROVEN) */
 extern int FUN_00019b2c(void);
 extern long long is_battery_critical(void);
 extern int get_device_info(void);
@@ -24,14 +33,13 @@ unsigned notify_config_change_if_connected(unsigned param_1, unsigned param_2){
         if (*(int*)(t + 0x9b4) == 0) goto L_dc;
     }
 L_work:
-    k_mutex_lock(((uintptr_t)&g_settings_notify_mutex) /*=0x20006a1c*/, (unsigned)((unsigned long long)uVar3 >> 32), 0xffffffff, 0xffffffff);
+    k_mutex_lock(((unsigned long)&g_settings_notify_mutex) /*=0x20006a1c*/, (unsigned)((unsigned long long)uVar3 >> 32), 0xffffffff, 0xffffffff);
     r4 = FUN_0004f518(0, param_1, param_2);
-    k_mutex_unlock(((uintptr_t)&g_settings_notify_mutex) /*=0x20006a1c*/);
+    k_mutex_unlock(((unsigned long)&g_settings_notify_mutex) /*=0x20006a1c*/);
     if (r4 == 0) return 0;
-    DEBUG_PRINT("Failed to send data over BLE connection: ret %d len %d \n" /*=0x9a155*/, r4, param_2);
+    DEBUG_PRINT(((unsigned long)&rodata_9a155) /*=0x9a155*/, r4, param_2);
     goto L_dc;
 L_dc:
     r4 = -1;
     return (unsigned)r4;
 }
-

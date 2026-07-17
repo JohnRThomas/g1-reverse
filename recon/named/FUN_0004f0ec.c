@@ -1,4 +1,14 @@
-/* named: FUN_0004f0ec */
+/* readable reconstruction; identity: FUN_0004f0ec @ 0x0004f0ec
+ * public-name: FUN_0004f0ec
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_clear_bit                         <= FUN_0007f5d8 @ 0x0007f5d8
+ *   atomic_test_and_set_bit                  <= FUN_0007f612 @ 0x0007f612
+ * address symbols (name @ address):
+ *   rodata_7f5c5                             @ 0x0007f5c5
+ *   rodata_880e8                             @ 0x000880e8
+ *   rodata_f15cc                             @ 0x000f15cc
+ */
 /* Reconstructed FUN_0004f0ec @ 0x4f0ec  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -39,4 +49,3 @@ int FUN_0004f0ec(volatile uint32_t *param_1, int param_2, uint32_t param_3, uint
   }
   return iVar2;
 }
-

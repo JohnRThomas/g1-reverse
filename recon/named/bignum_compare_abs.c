@@ -1,5 +1,10 @@
-/* named: bignum_compare_abs */
-/* Reconstructed bignum_compare_abs @ 0x875ae  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000875ae @ 0x000875ae
+ * public-name: bignum_compare_abs
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
+ */
+/* Reconstructed FUN_000875ae @ 0x875ae  (parity: 300/300 trials, PROVEN) */
 
 int bignum_compare_abs(int param_1,int param_2)
 {
@@ -24,4 +29,3 @@ int bignum_compare_abs(int param_1,int param_2)
   }
   return iVar1;
 }
-

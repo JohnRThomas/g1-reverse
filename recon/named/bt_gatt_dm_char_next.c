@@ -1,5 +1,11 @@
-/* named: bt_gatt_dm_char_next */
-/* Reconstructed bt_gatt_dm_char_next @ 0x7f4d6  (parity: 178/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f4d6 @ 0x0007f4d6
+ * public-name: bt_gatt_dm_char_next
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_dm_char_next                     <= FUN_0007f4d6 @ 0x0007f4d6
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ */
+/* Reconstructed FUN_0007f4d6 @ 0x7f4d6  (parity: 178/300 trials, PROVEN) */
 
 extern int bt_uuid_cmp(void*, int);
 
@@ -27,4 +33,3 @@ void* bt_gatt_dm_char_next(int param_1, unsigned int *param_2, int param_3)
     }
     return puVar4;
 }
-

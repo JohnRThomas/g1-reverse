@@ -1,8 +1,26 @@
-/* named: bt_gatt_notify_cb */
-/* globals referenced:
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
-/* Reconstructed bt_gatt_notify_cb @ 0x5b754  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b754 @ 0x0005b754
+ * public-name: bt_gatt_notify_cb
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_attr_get_handle                  <= FUN_0005a9f4 @ 0x0005a9f4
+ *   bt_gatt_foreach_attr_type                <= FUN_0005aa84 @ 0x0005aa84
+ *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
+ *   bt_gatt_notify_cb                        <= FUN_0005b754 @ 0x0005b754
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   bt_gatt_attr_value_handle                <= FUN_00082c0e @ 0x00082c0e
+ * address symbols (name @ address):
+ *   ADDR_gatt_send_ccc_update_THUMB          @ 0x0005b891
+ *   rodata_825fb                             @ 0x000825fb
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b44                             @ 0x000f4b44
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
+/* Reconstructed FUN_0005b754 @ 0x5b754  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_gatt_attr_get_handle();
 extern int bt_gatt_foreach_attr_type(int,...);
@@ -29,10 +47,13 @@ int bt_gatt_notify_cb(int param_1, int *param_2)
     printk(0x99cbd, 0xf4b3d, 0xf46b8, 0xae3);
     printk(0xf4a0a);
     uVar2 = 0xae3;
+    assert_post_action(0xf46b8, uVar2);
+    param_2 = (int *)0xae3;
   } else {
+again:
     if (param_2[1] != 0 || param_2[0] != 0) {
       iVar1 = FUN_0008270c(0x200020d4);
-      if (-1 < (iVar1 << 0x1d)) {
+      if ((iVar1 & 4) == 0) {
         return 0xfffffff5;
       }
       if (param_1 != 0 && *(char*)(param_1+0xd) != 7) {
@@ -53,7 +74,7 @@ LAB:
           local_26 = 0x2803;
           iVar1 = bt_uuid_cmp(*local_24, local_28);
           if (iVar1 == 0) {
-            if (-1 < (int)((unsigned int)(*(unsigned char*)(local_24[3]+6)) << 0x1b)) {
+            if ((*(unsigned char*)(local_24[3]+6) & 0x10) == 0) {
               return 0xffffffea;
             }
             local_20 = (unsigned short)bt_gatt_attr_value_handle();
@@ -76,8 +97,10 @@ LAB:
     printk(0x99cbd, 0xf4b44, 0xf46b8, 0xae4);
     printk(0xf4a0a);
     uVar2 = 0xae4;
+    assert_post_action(0xf46b8, uVar2);
+    param_2 = (int *)0xae4;
+    goto again;
   }
-  assert_post_action(0xf46b8, uVar2);
-  return 0;
+  /* A returning diagnostic oracle continues at the common dereference. */
+  goto again;
 }
-

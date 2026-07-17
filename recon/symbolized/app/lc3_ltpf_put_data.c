@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: lc3_ltpf_put_data */
-/* Reconstructed lc3_ltpf_put_data @ 0x6b378  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006b378 @ 0x0006b378
+ * public-name: lc3_ltpf_put_data
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_ltpf_put_data                        <= FUN_0006b378 @ 0x0006b378
+ */
+/* Reconstructed FUN_0006b378 @ 0x6b378  (parity: 300/300 trials, PROVEN) */
 
 extern void lc3_bits_accu_flush(int a, unsigned int b, unsigned int c, unsigned int d);
 
@@ -33,4 +39,3 @@ void lc3_ltpf_put_data(int param_1, unsigned char *param_2, unsigned int param_3
   }
   lc3_bits_accu_flush(param_1,iVar3,9,param_4);
 }
-

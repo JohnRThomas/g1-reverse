@@ -5,7 +5,7 @@ extern void FUN_01008d00(unsigned int, unsigned int) __attribute__((noreturn));
 
 unsigned int FUN_0101fd20(void)
 {
-    volatile unsigned char *base = (volatile unsigned char*)((uintptr_t)&g_net_ccm_op_status) /*=0x210014d8*/;
+    volatile unsigned char *base = (volatile unsigned char*)((unsigned long)&g_net_ccm_op_status) /*=0x210014d8*/;
     unsigned char flagset = base[0];
     unsigned char val = base[1];
     unsigned int r0 = val;
@@ -41,4 +41,3 @@ unsigned int FUN_0101fd20(void)
         FUN_01008d00(0x3b, 0x104);
     }
 }
-

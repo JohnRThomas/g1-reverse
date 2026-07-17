@@ -1,7 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101e96c @ 0x101e96c  (parity 300 trials PROVEN) */
 
-static volatile unsigned char * const DAT_0101e97c = (volatile unsigned char *)((uintptr_t)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
+static volatile unsigned char * const DAT_0101e97c = (volatile unsigned char *)((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;
 unsigned int FUN_0101e96c(unsigned short *param_1)
 {
   unsigned short h = *(volatile unsigned short *)(DAT_0101e97c + 2);
@@ -10,4 +10,3 @@ unsigned int FUN_0101e96c(unsigned short *param_1)
   *((unsigned char *)param_1 + 2) = b;
   return 0;
 }
-

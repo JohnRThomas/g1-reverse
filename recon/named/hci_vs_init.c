@@ -1,8 +1,36 @@
-/* named: hci_vs_init */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed hci_vs_init @ 0x12080  (parity: 30/30 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00012080 @ 0x00012080
+ * public-name: hci_vs_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
+ *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   ble_rng_get_random_bytes                 <= FUN_00055c64 @ 0x00055c64
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   sys_put_le64                             <= FUN_00080eb8 @ 0x00080eb8
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ * address symbols (name @ address):
+ *   rodata_1253c                             @ 0x0001253c
+ *   rodata_12540                             @ 0x00012540
+ *   rodata_12544                             @ 0x00012544
+ *   rodata_12548                             @ 0x00012548
+ *   rodata_1254c                             @ 0x0001254c
+ *   rodata_12554                             @ 0x00012554
+ *   rodata_12558                             @ 0x00012558
+ *   rodata_1255c                             @ 0x0001255c
+ *   rodata_1256c                             @ 0x0001256c
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f325b                             @ 0x000f325b
+ *   rodata_f327f                             @ 0x000f327f
+ *   rodata_f32f7                             @ 0x000f32f7
+ *   rodata_f3324                             @ 0x000f3324
+ *   g_sram_base_word                         @ 0x20000000
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_ble_dev_acl_buf_info                   @ 0x20002078
+ *   g_ble_dev_le_features                    @ 0x200020d8
+ *   g_ble_dev_le_pkts_sem                    @ 0x20002108
+ */
+/* Reconstructed FUN_00012080 @ 0x12080  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
@@ -23,10 +51,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -69,17 +93,17 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long bt_hci_cmd_create();
-extern long long FUN_00053d70();
-extern long long FUN_000549ec();
-extern long long ble_rng_get_random_bytes();
-extern long long FUN_00057358();
-extern long long net_buf_unref();
-extern long long net_buf_simple_add();
-extern long long FUN_00080ea2();
-extern long long sys_put_le64();
-extern long long FUN_00081158();
-extern long long z_impl_k_sem_init();
+extern long long bt_hci_cmd_create(int, int);
+extern long long FUN_00053d70(int, int, ...);
+extern long long FUN_000549ec(void);
+extern long long ble_rng_get_random_bytes(void);
+extern long long FUN_00057358(void);
+extern long long net_buf_unref(int, ...);
+extern long long net_buf_simple_add(int, int);
+extern long long FUN_00080ea2(int, int, ...);
+extern long long sys_put_le64(int, int, int);
+extern long long FUN_00081158(void);
+extern long long z_impl_k_sem_init(void *, int);
 #define DAT_00012388 0x20002000UL
 #define DAT_0001238c ((volatile int*)0x20002078UL)
 #define DAT_00012390 0xf325bUL
@@ -126,7 +150,7 @@ int hci_vs_init(void)
   undefined4 *puVar12;
   undefined *puVar13;
   byte bVar14;
-  undefined4 *puVar15;
+  volatile undefined4 *puVar15;
   undefined8 uVar16;
   undefined4 local_58;
   undefined4 local_54;
@@ -140,7 +164,7 @@ int hci_vs_init(void)
   int local_30 [4];
   undefined4 local_20;
   undefined *local_1c;
-  
+
   iVar5 = DAT_00012388;
   if ((*(uint *)(*(int *)(DAT_00012388 + 0x168) + 8) & 1) == 0) {
     uVar16 = FUN_00053d70(0xc03,0,local_30);
@@ -174,7 +198,7 @@ int hci_vs_init(void)
   *(undefined1 *)(iVar5 + 0x71) = *(undefined1 *)(iVar1 + 4);
   *(undefined2 *)(iVar5 + 0x74) = *(undefined2 *)(iVar1 + 7);
   *(undefined2 *)(iVar5 + 0x76) = *(undefined2 *)(iVar1 + 5);
-  net_buf_unref();
+  net_buf_unref(local_30[0]);
   iVar1 = FUN_00053d70(0x1002,0,local_30);
   if (iVar1 != 0) {
     return iVar1;
@@ -242,7 +266,7 @@ int hci_vs_init(void)
     uVar7 = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 5);
     *(undefined4 *)(iVar5 + 0xe0) = *(undefined4 *)(*(int *)(local_30[0] + 0xc) + 1);
     *(undefined4 *)(iVar5 + 0xe4) = uVar7;
-    net_buf_unref();
+    net_buf_unref(local_30[0]);
   }
   if ((int)((uint)*(byte *)(iVar5 + 0xd8) << 0x19) < 0) {
     iVar1 = FUN_00053d70(0x202a,0,local_30);
@@ -250,7 +274,7 @@ int hci_vs_init(void)
       return iVar1;
     }
     *(undefined1 *)(iVar5 + 0x120) = *(undefined1 *)(*(int *)(local_30[0] + 0xc) + 1);
-    net_buf_unref();
+    net_buf_unref(local_30[0]);
   }
   iVar1 = bt_hci_cmd_create(0x2001,8);
   if (iVar1 == 0) {
@@ -321,7 +345,7 @@ int hci_vs_init(void)
   if (iVar5 != 0) {
     return iVar5;
   }
-  iVar5 = FUN_00053d70(0xfc01,0);
+  iVar5 = FUN_00053d70(0xfc01,0,&local_34);
   puVar13 = PTR_s_Vendor_HCI_extensions_not_availa_0001253c;
   if (iVar5 == 0) {
     iVar5 = *(int *)(local_34 + 0xc);
@@ -343,7 +367,7 @@ int hci_vs_init(void)
     local_4c = PTR_s_HW_Variant___s__0x_04x__00012558;
     ppuVar10 = &local_50;
     local_50 = DAT_00012550;
-    FUN_00080ea2(PTR_DAT_00012540,0x24c0);
+    FUN_00080ea2(PTR_DAT_00012540,0x24c0,&local_50);
     local_4c = (undefined *)(uint)*(byte *)(iVar5 + 5);
     puStack_48 = (undefined *)(uint)*(byte *)(iVar5 + 6);
     if (local_4c < 4) {
@@ -365,13 +389,13 @@ int hci_vs_init(void)
     puVar13 = DAT_00012564;
     if (iVar1 == 0) {
       *(undefined2 *)(DAT_00012568 + 0xc1) = *(undefined2 *)(*(int *)(local_34 + 0xc) + 1);
-      net_buf_unref();
+      net_buf_unref(local_34);
       if (-1 < (int)((uint)*(byte *)(iVar5 + 0xc1) << 0x1d)) goto LAB_000123fe;
       iVar1 = FUN_00053d70(0xfc03,0,&local_34);
       puVar13 = DAT_0001256c;
       if (iVar1 == 0) {
         *(undefined1 *)(iVar5 + 0xc0) = *(undefined1 *)(*(int *)(local_34 + 0xc) + 1);
-        net_buf_unref();
+        net_buf_unref(local_34);
         goto LAB_000123fe;
       }
     }
@@ -391,5 +415,3 @@ LAB_000123fe:
   }
   return iVar5;
 }
-
-

@@ -1,8 +1,14 @@
-/* named: cf_read */
-/* Reconstructed cf_read @ 0x829c0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000829c0 @ 0x000829c0
+ * public-name: cf_read
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   cf_read                                  <= FUN_000829c0 @ 0x000829c0
+ */
+/* Reconstructed FUN_000829c0 @ 0x829c0  (parity: 300/300 trials, PROVEN) */
 
 extern int find_cf_cfg(void);
-extern void bt_gatt_attr_read.constprop.0(unsigned int a, unsigned int b, unsigned short c, void *d, int e);
+extern void FUN_00082932(unsigned int a, unsigned int b, unsigned short c, void *d, int e);
 
 void cf_read(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4, unsigned short param_5)
 {
@@ -12,6 +18,5 @@ void cf_read(unsigned int param_1, unsigned int param_2, unsigned int param_3, u
     if (iVar1 != 0) {
         local_14[0] = *(volatile unsigned char*)((char*)iVar1 + 8);
     }
-    bt_gatt_attr_read.constprop.0(param_3, param_4, param_5, local_14, 1);
+    FUN_00082932(param_3, param_4, param_5, local_14, 1);
 }
-

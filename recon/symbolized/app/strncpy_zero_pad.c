@@ -1,30 +1,26 @@
 #include "g1_app_symbols.h"
-/* named: strncpy_zero_pad */
-/* Reconstructed strncpy_zero_pad @ 0x8705a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008705a @ 0x0008705a
+ * public-name: strncpy_zero_pad
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ */
+/* Reconstructed FUN_0008705a @ 0x8705a. */
+#include <stdint.h>
 
-__attribute__((naked)) void strncpy_zero_pad(char *param_1, int param_2, int param_3)
+/* Bounded string copy with zero-fill, matching strncpy semantics. */
+void strncpy_zero_pad(char *dst, const char *src, uint32_t count)
 {
-    __asm__ volatile(
-        "subs r1, #1\n"
-        "mov  r3, r0\n"
-        "push {r4, lr}\n"
-        "0:\n"
-        "cbz  r2, 1f\n"
-        "ldrb r4, [r1, #1]!\n"
-        "subs r2, #1\n"
-        "strb r4, [r3], #1\n"
-        "cmp  r4, #0\n"
-        "bne  0b\n"
-        "1:\n"
-        "add  r2, r3\n"
-        "movs r1, #0\n"
-        "2:\n"
-        "cmp  r3, r2\n"
-        "bne  3f\n"
-        "pop {r4, pc}\n"
-        "3:\n"
-        "strb r1, [r3], #1\n"
-        "b 2b\n"
-    );
-}
+    while (count != 0) {
+        char ch = *src++;
+        --count;
+        *dst++ = ch;
+        if (ch == '\0')
+            break;
+    }
 
+    while (count != 0) {
+        *dst++ = '\0';
+        --count;
+    }
+}

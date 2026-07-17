@@ -1,8 +1,7 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0100b180 @ 0x100b180  (parity 6 trials PROVEN) */
-
-#define P6  ((volatile unsigned char *)((uintptr_t)&g_net_radio_drv_ctx) /*=0x21000c48*/)
-#define P7C ((volatile unsigned char *)((uintptr_t)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/)
+/* net-core FUN_0100b180 @ 0x100b180  (parity 21 trials PROVEN) */
+#define P6  ((volatile unsigned char *)((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/)
+#define P7C ((volatile unsigned char *)((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/)
 #define PGL ((volatile unsigned char *)REG_41008000 /*=0x41008000*/)
 
 #define RB(p,o)  (*(volatile unsigned char  *)((unsigned char*)(p)+(o)))
@@ -44,7 +43,7 @@ void FUN_0100b180(unsigned int param_1, unsigned int param_2,
     unsigned char bVar5;
 
     if ((RB(P6,0x44) != 0) || (param_4 == 0 || param_3 == 0) || (param_5 == 0)) {
-        FUN_01008d00(0x27, 0x153); for(;;){}
+        FUN_01008d00(0x27, 0x153); return;
     }
 
     RW(P6,0xc0) = param_4;
@@ -84,7 +83,7 @@ void FUN_0100b180(unsigned int param_1, unsigned int param_2,
 
     if (iVar9 == 0) return;
 
-    FUN_01020738(RW((volatile unsigned char*)0x21000050u, 0));
+    FUN_01020738(RW((volatile unsigned char*)((unsigned long)&g_21000050) /*=0x21000050*/, 0));
     RW(P6,0x80) = FUN_0100a17c(RH(p16,0x0));
     RW(P6,0xc8) = FUN_0100a118(RH(p16,0x0));
     cVar12 = RB(p16,0x7b);
@@ -218,7 +217,7 @@ L2c6:
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
-            FUN_0101fdd0(uVar10, ((uintptr_t)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/, 0xfb, uVar17, 0);
+            FUN_0101fdd0(uVar10, ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/, 0xfb, uVar17, 0);
         }
         FUN_0100ac98(1);
     } else {
@@ -235,7 +234,7 @@ L2c6:
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
-            FUN_0101fdd0(1, ((uintptr_t)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/, uVar11, uVar17, 0);
+            FUN_0101fdd0(1, ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/, uVar11, uVar17, 0);
         }
         FUN_0100af3c(1);
     }
@@ -252,6 +251,5 @@ L2c6:
         RH(P6,0x0) = s_0;
         return;
     }
-    FUN_01008d00(0x27, 0x208); for(;;){}
+    FUN_01008d00(0x27, 0x208); return;
 }
-

@@ -4,7 +4,7 @@
 /* net-core FUN_01022ebc @ 0x1022ebc  (parity 300 trials PROVEN) */
 /* net-core FUN_01022ebc @ 0x1022ebc  (parity 300 trials PROVEN) */
 
-static volatile unsigned char *const P_1022f04 = (volatile unsigned char *)((uintptr_t)&g_libc_tz_calc_state) /*=0x210016f0*/;
+static volatile unsigned char *const P_1022f04 = (volatile unsigned char *)((unsigned long)&g_libc_tz_calc_state) /*=0x210016f0*/;
 unsigned char FUN_01022ebc(unsigned int param_1)
 {
   if (param_1 < 0x20) {
@@ -17,7 +17,3 @@ unsigned char FUN_01022ebc(unsigned int param_1)
   }
   return 0;
 }
-
-
-
-

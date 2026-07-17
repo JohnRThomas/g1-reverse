@@ -3,8 +3,8 @@
 
 int FUN_010202a8(void)
 {
-  unsigned int base = ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/;
-  unsigned int lit = "f_timer.h" /*=0x103c4d0*/;
+  unsigned int base = 0x210015f0u;
+  unsigned int lit = ((unsigned long)&rodata_103c4d0) /*=0x103c4d0*/;
   unsigned int idx = *(volatile unsigned char *)(base + 0x28);
   unsigned int iVar1 = lit + idx * 4;
   int r0 = *(volatile int *)(base + 0x24) - *(volatile int *)(base + 0x20);
@@ -14,4 +14,3 @@ int FUN_010202a8(void)
   unsigned int hi = (unsigned int)(prod >> 32);
   return r0 + (int)(hi >> 6);
 }
-

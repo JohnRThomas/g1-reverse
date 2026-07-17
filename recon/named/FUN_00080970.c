@@ -1,4 +1,7 @@
-/* named: FUN_00080970 */
+/* readable reconstruction; identity: FUN_00080970 @ 0x00080970
+ * public-name: FUN_00080970
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080970 @ 0x80970  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -19,4 +22,3 @@ uint32_t FUN_00080970(uint8_t *param_1, uint8_t *param_2)
   }
   return 0xffffffffUL;
 }
-

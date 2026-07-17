@@ -33,4 +33,3 @@ void FUN_0103a924(int param_1, unsigned char *param_2, unsigned char *param_3,
       v3 | v4 | v6;
   return;
 }
-

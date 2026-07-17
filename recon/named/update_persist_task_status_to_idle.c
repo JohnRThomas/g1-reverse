@@ -1,8 +1,17 @@
-/* named: update_persist_task_status_to_idle */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002c0e8 @ 0x0002c0e8
+ * public-name: update_persist_task_status_to_idle
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ * address symbols (name @ address):
+ *   rodata_a25d9                             @ 0x000a25d9
+ *   rodata_a2625                             @ 0x000a2625
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ *   g_persist_task_status                    @ 0x20018d9d
+ */
 /* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
@@ -38,4 +47,3 @@ int update_persist_task_status_to_idle(int param_1)
     *lock = 0;
     return 0;
 }
-

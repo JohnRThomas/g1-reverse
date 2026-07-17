@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: nrf53_sync_rtc_init */
-/* Reconstructed nrf53_sync_rtc_init @ 0x4c2d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004c2d4 @ 0x0004c2d4
+ * public-name: nrf53_sync_rtc_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrf53_ipc_channel_configure              <= FUN_0004c278 @ 0x0004c278
+ *   nrf53_sync_rtc_init                      <= FUN_0004c2d4 @ 0x0004c2d4
+ *   nrfx_gppi_channels_enable                <= FUN_00064f30 @ 0x00064f30
+ * address symbols (name @ address):
+ *   ADDR_FUN_0004c418_THUMB                  @ 0x0004c419
+ *   rodata_87bd8                             @ 0x00087bd8
+ *   rodata_88288                             @ 0x00088288
+ *   rodata_f0a68                             @ 0x000f0a68
+ */
+/* Reconstructed FUN_0004c2d4 @ 0x4c2d4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void nrf53_ipc_channel_configure(uint32_t,uint32_t,uint32_t,int);
@@ -18,17 +30,17 @@ int nrf53_sync_rtc_init(void){
   iVar2 = FUN_0006540c((void*)&local_1c);
   if (iVar2 == 0x0bad0000){
     iVar2 = FUN_0006385c();
-    puVar1 = (uint8_t*)((uintptr_t)&tbl_87b30) /*=0x87bd8*/;
+    puVar1 = (uint8_t*)((unsigned long)&rodata_87bd8) /*=0x87bd8*/;
     if (iVar2 < 0){
       FUN_00065418(local_1c & 0xff);
     } else {
-      iVar4 = *(int*)(((uintptr_t)&tbl_87b30) /*=0x87bd8*/+8);
+      iVar4 = *(int*)(((unsigned long)&rodata_87bd8) /*=0x87bd8*/+8);
       *(volatile uint8_t*)((volatile char*)&local_1c+1) = (uint8_t)iVar2;
       *(volatile uint16_t*)((volatile char*)&local_1c+2) = 0x807;
       int (*pcVar3)(uint32_t,int,uint32_t,uint32_t);
       pcVar3 = *(void**)(iVar4+4);
       if (pcVar3 != 0){
-        iVar2 = pcVar3(((uintptr_t)&tbl_87b30) /*=0x87bd8*/, 8, ((uintptr_t)&rodata_4c419) /*=0x4c419*/, local_1c);
+        iVar2 = pcVar3(((unsigned long)&rodata_87bd8) /*=0x87bd8*/, 8, ADDR_FUN_0004c418_THUMB /*=0x4c419*/, local_1c);
         if (iVar2 < 0) goto LAB;
         pcVar3 = *(void**)(iVar4+0x10);
         if (pcVar3 != 0){
@@ -47,10 +59,9 @@ int nrf53_sync_rtc_init(void){
     iVar2 = -0x13;
   }
 LAB:
-  local_2c = (void*)"Failed synchronized RTC setup (err: %d)" /*=0xf0a68*/;
+  local_2c = (void*)((unsigned long)&rodata_f0a68) /*=0xf0a68*/;
   local_30 = 3;
   iStack_28 = iVar2;
-  FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88288*/, 0x1840, (void*)&local_30, 0);
+  FUN_0004d944(((unsigned long)&rodata_88288) /*=0x88288*/, 0x1840, (void*)&local_30, 0);
   return iVar2;
 }
-

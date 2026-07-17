@@ -1,4 +1,13 @@
-/* named: FUN_0003271c */
+/* readable reconstruction; identity: FUN_0003271c @ 0x0003271c
+ * public-name: FUN_0003271c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_uptime_get_4                           <= FUN_0007d12e @ 0x0007d12e
+ * address symbols (name @ address):
+ *   g_periodic_check_ok_flag                 @ 0x20003031
+ *   g_periodic_check_last_uptime_ms          @ 0x20007bf0
+ *   g_periodic_check_fail_cnt                @ 0x20019ef0
+ */
 /* Reconstructed FUN_0003271c @ 0x3271c  (parity: 300/300 trials, PROVEN) */
 extern int FUN_0002ead8(void);
 extern void FUN_0002eaa8(void);
@@ -30,4 +39,3 @@ void FUN_0003271c(void){
         *(volatile unsigned char*)0x20003031UL = 1;
     }
 }
-

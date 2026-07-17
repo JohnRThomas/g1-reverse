@@ -1,13 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: audio_hw_lock_get_aux_flag */
-/* Reconstructed audio_hw_lock_get_aux_flag @ 0x7ef6e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007ef6e @ 0x0007ef6e
+ * public-name: audio_hw_lock_get_aux_flag
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   audio_hw_lock_get_aux_flag               <= FUN_0007ef6e @ 0x0007ef6e
+ */
+/* Reconstructed FUN_0007ef6e @ 0x7ef6e  (parity: 300/300 trials, PROVEN) */
 
 unsigned int audio_hw_lock_get_aux_flag(unsigned char *param_1) {
   unsigned int v = *(unsigned int*)(param_1 + 0x14);
   if (v != 0) {
-    unsigned int w = *(volatile unsigned int*)(v + 4);
+    unsigned int w = __atomic_load_n((unsigned int *)(v + 4), __ATOMIC_ACQUIRE);
     v = (w >> 6) & 1;
   }
   return v;
 }
-

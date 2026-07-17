@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_undo_and_fail */
-/* Reconstructed cbor_decode_undo_and_fail @ 0x85dc4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085dc4 @ 0x00085dc4
+ * public-name: cbor_decode_undo_and_fail
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_undo_and_fail                <= FUN_00085dc4 @ 0x00085dc4
+ */
+/* Reconstructed FUN_00085dc4 @ 0x85dc4  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00085d70(void);
 void cbor_decode_undo_and_fail(unsigned int *param_1) {
@@ -8,4 +13,3 @@ void cbor_decode_undo_and_fail(unsigned int *param_1) {
   param_1[2] = param_1[2] + 1;
   FUN_00085d70();
 }
-

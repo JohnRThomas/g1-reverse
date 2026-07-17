@@ -1,8 +1,12 @@
-/* named: message_table_contains_id */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-*/
-/* Reconstructed message_table_contains_id @ 0x33f24  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033f24 @ 0x00033f24
+ * public-name: message_table_contains_id
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   message_table_contains_id                <= FUN_00033f24 @ 0x00033f24
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ */
+/* Reconstructed FUN_00033f24 @ 0x33f24  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint;
 
@@ -23,4 +27,3 @@ uint message_table_contains_id(uint param_1, int param_2)
     }
     return 1;
 }
-

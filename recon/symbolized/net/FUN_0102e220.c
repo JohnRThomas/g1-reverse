@@ -1,8 +1,8 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0102e220 @ 0x102e220  (parity 300 trials PROVEN) */
 
-#define DAT_0102e234 ((unsigned int)((uintptr_t)&rodata_103bfec) /*=0x103bfec*/)
-#define DAT_0102e238 ((unsigned int)((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/)
+#define DAT_0102e234 ((unsigned int)((unsigned long)&rodata_103bfec) /*=0x103bfec*/)
+#define DAT_0102e238 ((unsigned int)((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/)
 
 unsigned int FUN_0102e220(unsigned int param_1, unsigned int param_2)
 {
@@ -14,4 +14,3 @@ unsigned int FUN_0102e220(unsigned int param_1, unsigned int param_2)
     }
     return uVar1;
 }
-

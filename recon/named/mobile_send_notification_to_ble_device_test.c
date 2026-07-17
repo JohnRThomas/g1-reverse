@@ -1,8 +1,29 @@
-/* named: mobile_send_notification_to_ble_device_test */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00021c04 @ 0x00021c04
+ * public-name: mobile_send_notification_to_ble_device_test
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
+ * address symbols (name @ address):
+ *   rodata_9b257                             @ 0x0009b257
+ *   rodata_9d749                             @ 0x0009d749
+ *   rodata_9d759                             @ 0x0009d759
+ *   rodata_9d768                             @ 0x0009d768
+ *   rodata_9d76c                             @ 0x0009d76c
+ *   rodata_9d775                             @ 0x0009d775
+ *   rodata_9d77d                             @ 0x0009d77d
+ *   rodata_9d789                             @ 0x0009d789
+ *   rodata_9d790                             @ 0x0009d790
+ *   rodata_9d79d                             @ 0x0009d79d
+ *   rodata_9d7ae                             @ 0x0009d7ae
+ *   rodata_9dfe8                             @ 0x0009dfe8
+ *   rodata_f3fde                             @ 0x000f3fde
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed mobile_send_notification_to_ble_device_test @ 0x21c04  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint32_t;
@@ -12,7 +33,7 @@ extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
 extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
-extern void debug_print(void);
+extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern void cjson_delete(uint32_t a);
@@ -37,7 +58,7 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
         if (*(volatile uint32_t*)0x20007554UL == 0) {
             DEBUG_PRINT(0x9d7aeUL, 0x9dfe8UL, uVar1);
         } else {
-            debug_print();
+            debug_print(0x9d7aeUL, 0x9dfe8UL, uVar1);
         }
     }
     uVar3 = strlen(uVar1);
@@ -45,4 +66,3 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     cjson_delete(uVar2);
     return 0;
 }
-

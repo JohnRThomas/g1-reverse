@@ -7,7 +7,7 @@ extern void FUN_010294c2(unsigned int);
 
 void FUN_0101f850(void)
 {
-  unsigned int base = ((uintptr_t)&g_net_sdc_resource_cfg) /*=0x21001230*/;
+  unsigned int base = 0x21001230;
 
   FUN_010294c2(*(volatile unsigned int*)(base + 0x210));
   FUN_010294c2(*(volatile unsigned int*)(base + 0x214));
@@ -15,4 +15,3 @@ void FUN_0101f850(void)
   FUN_0101f8b0(0x20);
   *(volatile unsigned char*)(base + 0x218) = 0;
 }
-

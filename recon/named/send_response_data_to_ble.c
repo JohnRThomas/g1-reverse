@@ -1,8 +1,17 @@
-/* named: send_response_data_to_ble */
-/* globals referenced:
-//   0x2000392c  g_dashboard_response_msgq    
-*/
-/* Reconstructed send_response_data_to_ble @ 0x47ba8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00047ba8 @ 0x00047ba8
+ * public-name: send_response_data_to_ble
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef736                             @ 0x000ef736
+ *   g_dashboard_response_msgq                @ 0x2000392c
+ */
+/* Reconstructed FUN_00047ba8 @ 0x47ba8  (parity: 300/300 trials, PROVEN) */
 
 extern char* get_device_info(void);
 extern void memset_bytes(void*, int, int);
@@ -28,4 +37,3 @@ unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_
   }
   return 0;
 }
-

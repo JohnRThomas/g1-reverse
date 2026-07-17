@@ -1,5 +1,16 @@
-/* named: smp_dhkey_generate */
-/* Reconstructed smp_dhkey_generate @ 0x5cc68  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005cc68 @ 0x0005cc68
+ * public-name: smp_dhkey_generate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_dhkey_generate                       <= FUN_0005cc68 @ 0x0005cc68
+ *   atomic_clear_bit_1                       <= FUN_0008304c @ 0x0008304c
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ * address symbols (name @ address):
+ *   ADDR_FUN_0008349c_THUMB                  @ 0x0008349d
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4e47                             @ 0x000f4e47
+ */
+/* Reconstructed FUN_0005cc68 @ 0x5cc68  (parity: 300/300 trials, PROVEN) */
 
 extern void atomic_set_bit(int a, int b);
 extern int FUN_00055e74(int a, int b);
@@ -23,4 +34,3 @@ int smp_dhkey_generate(int param_1)
   }
   return iVar1;
 }
-

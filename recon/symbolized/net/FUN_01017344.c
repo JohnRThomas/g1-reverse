@@ -13,18 +13,18 @@ extern void FUN_0101fca8(void);
 extern void FUN_010208b0(void);
 extern void FUN_010295d6(unsigned int, int);
 
-#define DAT_01017458 ((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/
-#define DAT_0101745c ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define DAT_01017460 ((uintptr_t)&g_sdc_ll_ctx_param) /*=0x21001019*/
-#define DAT_01017464 ((uintptr_t)&g_net_ll_event_scratch_buf) /*=0x21000fd6*/
-#define DAT_01017468 ((uintptr_t)&g_sdc_ll_ctx_struct) /*=0x21001014*/
+#define DAT_01017458 ((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/
+#define DAT_0101745c 0x21000f90u
+#define DAT_01017460 ((unsigned long)&g_sdc_ll_ctx_param) /*=0x21001019*/
+#define DAT_01017464 0x21000fd6u
+#define DAT_01017468 0x21001014u
 
 struct S1017344 {
   char local_40;
   unsigned char local_3f;
   unsigned int local_3c;
   int local_38;
-  unsigned char pad[4];
+  unsigned char pad[5];
   unsigned char local_2f;
   char local_2e;
 };
@@ -99,4 +99,3 @@ LAB_010173d0:
   }
   return 1;
 }
-

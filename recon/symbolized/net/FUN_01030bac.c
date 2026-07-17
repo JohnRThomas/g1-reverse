@@ -12,24 +12,36 @@ unsigned int FUN_01030bac(int param_1)
   volatile int *outer = (volatile int *)(*(volatile int *)(param_1 + 0x10) + 0x80);
   *outer = param_1;
 
-  FUN_01034d8c(0, ((uintptr_t)&rodata_1031555) /*=0x1031555*/);
+  FUN_01034d8c(0, ((unsigned long)&rodata_1031555) /*=0x1031555*/);
   FUN_0102eb8c(0x12, 1, 0);
 
   volatile unsigned int *puVar4 = *(volatile unsigned int **)(param_1 + 4);
 
-  int local_buf[40];
-  FUN_0103b62e(local_buf, 0, 0x84);
+  struct {
+    unsigned int radio_bits[16];
+    unsigned int controller_bits[16];
+    unsigned int reserved;
+  } local_buf;
+  FUN_0103b62e(&local_buf, 0, sizeof(local_buf));
 
   if (puVar4[1] > 0xffff) {
-    unsigned int tmp[2]; tmp[0] = 2; tmp[1] = ":  " /*=0x103e004*/;
-    FUN_0102e284(((uintptr_t)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
+    unsigned int tmp[2]; tmp[0] = 2; tmp[1] = ((unsigned long)&rodata_103e004) /*=0x103e004*/;
+    FUN_0102e284(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
   }
   if (puVar4[0] > 0xffff) {
-    unsigned int tmp[2]; tmp[0] = 2; tmp[1] = "tal: notice:    " /*=0x103e030*/;
-    FUN_0102e284(((uintptr_t)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
+    unsigned int tmp[2]; tmp[0] = 2; tmp[1] = ((unsigned long)&rodata_103e030) /*=0x103e030*/;
+    FUN_0102e284(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
   }
 
-  FUN_01034dd8(local_buf);
+  local_buf.reserved = 0;
+  for (unsigned int bit = 0; bit != 16; ++bit) {
+    unsigned int mask = 1u << bit;
+    if ((puVar4[1] & mask) != 0)
+      local_buf.radio_bits[bit] = mask;
+    if ((puVar4[0] & mask) != 0)
+      local_buf.controller_bits[bit] = mask;
+  }
+
+  FUN_01034dd8(&local_buf);
   return 0;
 }
-

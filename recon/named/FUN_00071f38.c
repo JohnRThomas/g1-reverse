@@ -1,4 +1,19 @@
-/* named: FUN_00071f38 */
+/* readable reconstruction; identity: FUN_00071f38 @ 0x00071f38
+ * public-name: FUN_00071f38
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   sched_thread_ready                       <= FUN_00073a78 @ 0x00073a78
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_86661                             @ 0x00086661
+ *   rodata_87fc8                             @ 0x00087fc8
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f7f4b                             @ 0x000f7f4b
+ *   rodata_f8056                             @ 0x000f8056
+ */
 /* Reconstructed FUN_00071f38 @ 0x71f38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef long long i64; typedef unsigned long long u64;
@@ -57,4 +72,3 @@ LAB:
     piVar6 = piVar6 + 0xb;
   } while(1);
 }
-

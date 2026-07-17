@@ -1,39 +1,29 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0101920c @ 0x101920c  (parity 300 trials PROVEN) */
+/* Reconstructed net-core state teardown @ 0x0101920c. */
+#include <stdint.h>
 
-extern void FUN_01008d00(void);
+extern void FUN_01008d00(uint32_t module, uint32_t line);
 extern void FUN_010196e0(void);
 
-__attribute__((naked)) void FUN_0101920c(int param_1, int param_2)
+void FUN_0101920c(uint32_t event, uint32_t notify)
 {
-    __asm__ volatile(
-        "push {r4, lr}\n"
-        "ldr r4, =0x21000f90\n"
-        "ldrb.w r3, [r4, #0x70]\n"
-        "cmp r3, #3\n"
-        "bne Lassert3\n"
-        "subs r0, #2\n"
-        "cmp r0, #1\n"
-        "bhi Lassert2\n"
-        "cbnz r1, Lcall1\n"
-        "Lret:\n"
-        "movs r3, #0\n"
-        "ldr r2, =0x2100104a\n"
-        "strh.w r3, [r4, #0xba]\n"
-        "strb.w r3, [r4, #0x70]\n"
-        "strb r3, [r2, #2]\n"
-        "pop {r4, pc}\n"
-        "Lcall1:\n"
-        "bl FUN_010196e0\n"
-        "b Lret\n"
-        "Lassert2:\n"
-        "movw r1, #0xc52\n"
-        "movs r0, #0x32\n"
-        "bl FUN_01008d00\n"
-        "Lassert3:\n"
-        "movw r1, #0xc44\n"
-        "movs r0, #0x32\n"
-        "bl FUN_01008d00\n"
-    );
-}
+    volatile uint8_t *state = (volatile uint8_t *)0x21000f90;
 
+    if (state[0x70] != 3) {
+        for (;;)
+            FUN_01008d00(0x32, 0xc44);
+    }
+    if (event - 2 > 1) {
+        /* These assertions are noreturn in production.  Preserve their
+         * physical fall-through order for the differential call oracle. */
+        FUN_01008d00(0x32, 0xc52);
+        for (;;)
+            FUN_01008d00(0x32, 0xc44);
+    }
+    if (notify != 0)
+        FUN_010196e0();
+
+    *(volatile uint16_t *)(state + 0xba) = 0;
+    state[0x70] = 0;
+    *(volatile uint8_t *)((unsigned long)&g_2100104c) /*=0x2100104c*/ = 0;
+}

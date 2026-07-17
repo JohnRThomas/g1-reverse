@@ -15,7 +15,6 @@ void FUN_0101f934(int param_1, unsigned char param_2)
     *(unsigned char *)(base + 0x20e) = r;
     r = FUN_01028486(*(unsigned char *)(base + 0x6f));
     *(unsigned char *)(base + 0x20f) = r;
-    FUN_0100efc8(base + 0x202, ((uintptr_t)&rodata_1029e3d) /*=0x1029e3d*/, 2);
+    FUN_0100efc8(base + 0x202, ((unsigned long)&rodata_1029e3d) /*=0x1029e3d*/, 2);
     *(unsigned char *)(base + 0x16c) = 0;
 }
-

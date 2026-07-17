@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: d2b */
-/* Reconstructed d2b @ 0x78c44  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078c44 @ 0x00078c44
+ * public-name: d2b
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   d2b                                      <= FUN_00078c44 @ 0x00078c44
+ *   clz32                                    <= FUN_00087510 @ 0x00087510
+ */
+/* Reconstructed FUN_00078c44 @ 0x78c44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
 extern uint64_t clz32(u32);
@@ -51,4 +57,3 @@ double d2b(int param_1){
     uint64_t bits = ((uint64_t)r5 << 32) | r4;
     union{uint64_t u; double d;}u; u.u=bits; return u.d;
 }
-

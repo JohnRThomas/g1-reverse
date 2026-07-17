@@ -1,7 +1,17 @@
-/* named: FUN_00073d1c */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
+/* readable reconstruction; identity: FUN_00073d1c @ 0x00073d1c
+ * public-name: FUN_00073d1c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ *   g_sched_ready_runq                       @ 0x2000b464
+ */
 /* Reconstructed FUN_00073d1c @ 0x73d1c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000737d8(int a);
@@ -44,4 +54,3 @@ void FUN_00073d1c(int *param_1){
 done:
     FUN_000737d8(*(volatile int*)(iVar1 + 8) == (int)param_1);
 }
-

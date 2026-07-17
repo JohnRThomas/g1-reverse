@@ -1,4 +1,18 @@
-/* named: FUN_0005109c */
+/* readable reconstruction; identity: FUN_0005109c @ 0x0005109c
+ * public-name: FUN_0005109c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_f23d3                             @ 0x000f23d3
+ *   rodata_f23d4                             @ 0x000f23d4
+ *   rodata_f240f                             @ 0x000f240f
+ */
 /* Reconstructed FUN_0005109c @ 0x5109c  (parity: 300/300 trials, PROVEN) */
 
 extern int malloc(int);
@@ -27,4 +41,3 @@ void FUN_0005109c(int *param_1)
   uVar2 = 0x181;
   assert_post_action((void*)0xf22d5UL, uVar2);
 }
-

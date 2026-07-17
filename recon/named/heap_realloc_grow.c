@@ -1,5 +1,14 @@
-/* named: heap_realloc_grow */
-/* Reconstructed heap_realloc_grow @ 0x876ec  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000876ec @ 0x000876ec
+ * public-name: heap_realloc_grow
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ *   heap_block_usable_size                   <= FUN_00087996 @ 0x00087996
+ */
+/* Reconstructed FUN_000876ec @ 0x876ec  (parity: 300/300 trials, PROVEN) */
 
 extern void heap_free_core(unsigned int a, int b);
 extern int _malloc_r(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
@@ -30,4 +39,3 @@ int heap_realloc_grow(unsigned int param_1,int param_2,unsigned int param_3,unsi
   }
   return 0;
 }
-

@@ -1,5 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00078d90 */
+/* readable reconstruction; identity: FUN_00078d90 @ 0x00078d90
+ * public-name: FUN_00078d90
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   iobuf_ensure_capacity_and_append         <= FUN_00087736 @ 0x00087736
+ * address symbols (name @ address):
+ *   ADDR_iobuf_ensure_capacity_and_append_THUMB @ 0x00087737
+ *   rodata_f8b6b                             @ 0x000f8b6b
+ *   rodata_f8b71                             @ 0x000f8b71
+ *   rodata_f8b75                             @ 0x000f8b75
+ */
 /* Reconstructed FUN_00078d90 @ 0x78d90  (parity: 151/300 trials, PROVEN) */
 typedef unsigned int u32;
 typedef unsigned short u16;
@@ -36,7 +49,7 @@ int FUN_00078d90(undefined4 *param_1, int *param_2, byte *param_3, uint *param_4
     }
     param_2[5] = 0x40;
   }
-  iVar1 = "#-0+ " /*=0xf8b6b*/;
+  iVar1 = ((unsigned long)&rodata_f8b6b) /*=0xf8b6b*/;
   local_74 = 0;
   local_8c = param_4;
   pbVar7 = param_3;
@@ -69,7 +82,7 @@ LAB_df0:
   pbVar7 = pbVar6 + 1;
   while (1) {
     pbVar6 = pbVar7 + 1;
-    iVar2 = mem_find_byte("#-0+ " /*=0xf8b6b*/, *pbVar7, 5);
+    iVar2 = mem_find_byte(((unsigned long)&rodata_f8b6b) /*=0xf8b6b*/, *pbVar7, 5);
     if (iVar2 == 0) break;
     local_88 = (1u << ((iVar2 - iVar1) & 0xff)) | local_88;
     pbVar7 = pbVar6;
@@ -119,18 +132,18 @@ LAB_df0:
     }
   }
 
-  iVar2 = mem_find_byte("hlL" /*=0xf8b71*/, *pbVar6, 3);
+  iVar2 = mem_find_byte(((unsigned long)&rodata_f8b71) /*=0xf8b71*/, *pbVar6, 3);
   if (iVar2 != 0) {
     pbVar6 = pbVar6 + 1;
-    local_88 = local_88 | (0x40u << ((iVar2 - 0xf8b71 /*=0xf8b71*/) & 0xff));
+    local_88 = local_88 | (0x40u << ((iVar2 - ((unsigned long)&rodata_f8b71) /*=0xf8b71*/) & 0xff));
   }
   param_3 = pbVar6 + 1;
   local_70 = *pbVar6;
-  iVar8 = mem_find_byte("efgEFG" /*=0xf8b75*/, local_70, 6);
+  iVar8 = mem_find_byte(((unsigned long)&rodata_f8b75) /*=0xf8b75*/, local_70, 6);
   if (iVar8 == 0) {
-    iVar2 = vfprintf_format_engine(param_1, &local_88, param_2, ((uintptr_t)&rodata_87737) /*=0x87737*/, &local_8c);
+    iVar2 = vfprintf_format_engine(param_1, &local_88, param_2, ADDR_iobuf_ensure_capacity_and_append_THUMB /*=0x87737*/, &local_8c);
   } else {
-    iVar2 = FUN_0007712c(param_1, &local_88, param_2, ((uintptr_t)&rodata_87737) /*=0x87737*/, &local_8c);
+    iVar2 = FUN_0007712c(param_1, &local_88, param_2, ADDR_iobuf_ensure_capacity_and_append_THUMB /*=0x87737*/, &local_8c);
   }
   if (iVar2 == -1) goto LAB_f56;
   local_74 = local_74 + iVar2;
@@ -143,4 +156,3 @@ LAB_f56:
   }
   return local_74;
 }
-

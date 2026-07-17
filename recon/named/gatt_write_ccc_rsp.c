@@ -1,5 +1,15 @@
-/* named: gatt_write_ccc_rsp */
-/* Reconstructed gatt_write_ccc_rsp @ 0x5a1b0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a1b0 @ 0x0005a1b0
+ * public-name: gatt_write_ccc_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_write_ccc_rsp                       <= FUN_0005a1b0 @ 0x0005a1b0
+ *   atomic_and_4                             <= FUN_000826f6 @ 0x000826f6
+ *   list_unlink_and_release                  <= FUN_000828e8 @ 0x000828e8
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4812                             @ 0x000f4812
+ */
+/* Reconstructed FUN_0005a1b0 @ 0x5a1b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
 typedef void (*fp)(u32,void*,int,int);
@@ -40,4 +50,3 @@ void gatt_write_ccc_rsp(u32 param_1,int param_2,u32 param_3,u32 param_4,u32* par
     }
     JUMP(param_1, param_2, param_5);
 }
-

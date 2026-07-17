@@ -1,5 +1,10 @@
-/* named: orientation_filter_update_dt */
-/* Reconstructed orientation_filter_update_dt @ 0x267ac  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000267ac @ 0x000267ac
+ * public-name: orientation_filter_update_dt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   orientation_filter_update_dt             <= FUN_000267ac @ 0x000267ac
+ */
+/* Reconstructed FUN_000267ac @ 0x267ac  (parity: 300/300 trials, PROVEN) */
 
 extern long long thunk_FUN_00074f68(void);
 
@@ -21,4 +26,3 @@ float orientation_filter_update_dt(int param_1)
   *(volatile unsigned int *)(long)(param_1 + 0x3c) = uVar1;
   return result;
 }
-

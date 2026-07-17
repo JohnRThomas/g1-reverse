@@ -1,4 +1,18 @@
-/* named: FUN_00067794 */
+/* readable reconstruction; identity: FUN_00067794 @ 0x00067794
+ * public-name: FUN_00067794
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrf_gpio_pin_reconfigure                 <= FUN_00067548 @ 0x00067548
+ *   twim_configure                           <= FUN_000675c0 @ 0x000675c0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6c00                             @ 0x000f6c00
+ *   rodata_f6fef                             @ 0x000f6fef
+ *   rodata_f702b                             @ 0x000f702b
+ *   g_nrfx_twim_cb                           @ 0x2000b3cc
+ */
 /* Reconstructed FUN_00067794 @ 0x67794  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(uint32_t,...);
@@ -52,4 +66,3 @@ uint32_t FUN_00067794(int param_1, int *param_2, uint32_t param_3, uint32_t para
     }
     return uVar4;
 }
-

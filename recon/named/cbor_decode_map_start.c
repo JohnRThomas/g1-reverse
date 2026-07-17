@@ -1,5 +1,12 @@
-/* named: cbor_decode_map_start */
-/* Reconstructed cbor_decode_map_start @ 0x85fa2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085fa2 @ 0x00085fa2
+ * public-name: cbor_decode_map_start
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_undo_and_fail                <= FUN_00085dc4 @ 0x00085dc4
+ *   cbor_decode_container_start              <= FUN_00085f06 @ 0x00085f06
+ *   cbor_decode_map_start                    <= FUN_00085fa2 @ 0x00085fa2
+ */
+/* Reconstructed FUN_00085fa2 @ 0x85fa2  (parity: 300/300 trials, PROVEN) */
 
 extern int cbor_decode_container_start(int, int);
 extern void cbor_decode_undo_and_fail(int, int);
@@ -20,4 +27,3 @@ int cbor_decode_map_start(int param_1)
     }
     return 0;
 }
-

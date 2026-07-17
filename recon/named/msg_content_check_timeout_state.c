@@ -1,8 +1,14 @@
-/* named: msg_content_check_timeout_state */
-/* globals referenced:
-//   0x20007dac  g_message_pool               
-*/
-/* Reconstructed msg_content_check_timeout_state @ 0x347cc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000347cc @ 0x000347cc
+ * public-name: msg_content_check_timeout_state
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   msg_content_check_timeout_state          <= FUN_000347cc @ 0x000347cc
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ * address symbols (name @ address):
+ *   g_message_pool                           @ 0x20007dac
+ */
+/* Reconstructed FUN_000347cc @ 0x347cc  (parity: 300/300 trials, PROVEN) */
 
 extern int get_device_info(void);
 extern unsigned int get_timestamp(void);
@@ -27,4 +33,3 @@ int msg_content_check_timeout_state(void)
   }
   return iVar2;
 }
-

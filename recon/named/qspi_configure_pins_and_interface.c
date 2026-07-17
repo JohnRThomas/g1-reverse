@@ -1,9 +1,19 @@
-/* named: qspi_configure_pins_and_interface */
-/* globals referenced:
-//   0x2000b348  g_qspi_cb                    
-//   0x5002b000  NRF_QSPI_BASE                
-*/
-/* Reconstructed qspi_configure_pins_and_interface @ 0x66850  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066850 @ 0x00066850
+ * public-name: qspi_configure_pins_and_interface
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   gpio_configure_pin_output                <= FUN_0006666c @ 0x0006666c
+ *   nrf_qspi_pins_set                        <= FUN_00066784 @ 0x00066784
+ *   qspi_workaround_apply                    <= FUN_000667e0 @ 0x000667e0
+ *   qspi_configure_pins_and_interface        <= FUN_00066850 @ 0x00066850
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_30000                             @ 0x00030000
+ *   g_qspi_cb                                @ 0x2000b348
+ *   NRF_QSPI_BASE                            @ 0x5002b000
+ */
+/* Reconstructed FUN_00066850 @ 0x66850  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int arch_irq_enable(int);
 extern int gpio_configure_pin_output(int,int);
@@ -67,4 +77,3 @@ unsigned int qspi_configure_pins_and_interface(unsigned int *param_1)
     }
     return 0x0bad0000;
 }
-

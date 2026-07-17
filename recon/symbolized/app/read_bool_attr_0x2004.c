@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: read_bool_attr_0x2004 */
-/* Reconstructed read_bool_attr_0x2004 @ 0x7ca24  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007ca24 @ 0x0007ca24
+ * public-name: read_bool_attr_0x2004
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
+ *   read_bool_attr_0x2004                    <= FUN_0007ca24 @ 0x0007ca24
+ */
+/* Reconstructed FUN_0007ca24 @ 0x7ca24  (parity: 300/300 trials, PROVEN) */
 
 extern int ipc_send_len_prefixed_packet_locked_retry(int,int,int,int,int);
 void read_bool_attr_0x2004(int param_1, unsigned char *param_2)
@@ -16,4 +22,3 @@ void read_bool_attr_0x2004(int param_1, unsigned char *param_2)
         }
     }
 }
-

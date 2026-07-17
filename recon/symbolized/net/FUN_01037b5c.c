@@ -1,5 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01037b5c @ 0x1037b5c  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char u8;
 typedef unsigned int u32;
 typedef int i32;
@@ -16,13 +18,13 @@ extern u32  FUN_01039bb0(u32,u32);
 extern void FUN_01039bbe(u32,u32,u32);
 extern u32  FUN_0103b2f8(u32,u32,u32);
 
-#define DAT_01037c48 ((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/
-#define DAT_01037c4c "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define DAT_01037c50 ((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/
-#define DAT_01037c54 "***** HARD FAULT *****" /*=0x103d3b6*/
-#define DAT_01037c58 ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
-#define DAT_01037c5c ((uintptr_t)&g_zephyr_sched_swap_tmp) /*=0x21004b5c*/
-#define DAT_01037c60 ((uintptr_t)&rodata_103bac9) /*=0x103bac9*/
+#define DAT_01037c48 ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/
+#define DAT_01037c4c ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define DAT_01037c50 0x21004b68u
+#define DAT_01037c54 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
+#define DAT_01037c58 0x21004b28u
+#define DAT_01037c5c ((unsigned long)&g_zephyr_sched_swap_tmp) /*=0x21004b5c*/
+#define DAT_01037c60 ((unsigned long)&rodata_103bac9) /*=0x103bac9*/
 
 i32 FUN_01037b5c(u32 param_1, i32 param_2)
 {
@@ -31,8 +33,7 @@ i32 FUN_01037b5c(u32 param_1, i32 param_2)
   u32 r8v;
 
   {
-    u32 ipsr;
-    __asm__ volatile ("mrs %0, ipsr" : "=r"(ipsr));
+    u32 ipsr = __get_IPSR();
     if (ipsr != 0) {
       FUN_01039bbe(DAT_01037c4c, DAT_01037c48, 0x596);
       r1v = 0x596;
@@ -56,10 +57,9 @@ i32 FUN_01037b5c(u32 param_1, i32 param_2)
 
 COMMON: ;
   {
-    u32 oldpri;
-    __asm__ volatile ("mrs %0, basepri" : "=r"(oldpri));
-    __asm__ volatile ("msr basepri_max, %0" :: "r"(0x40u) : "memory");
-    __asm__ volatile ("isb sy" ::: "memory");
+    u32 oldpri = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
     r8v = oldpri;
   }
   {
@@ -117,4 +117,3 @@ FINAL_CALL:
     }
   }
 }
-

@@ -1,16 +1,24 @@
-/* named: load_burial_point */
-/* globals referenced:
-//   0x00135000  FLASH_ADDR_SETTINGS_RECORD   
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000230e0 @ 0x000230e0
+ * public-name: load_burial_point
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
+ *   sys_rand32_get                           <= FUN_00052c40 @ 0x00052c40
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9e67c                             @ 0x0009e67c
+ *   rodata_9e777                             @ 0x0009e777
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed load_burial_point @ 0x230e0  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int sys_rand32_get(void);
 extern void memset_bytes(void*, int, int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void debug_print(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -34,11 +42,10 @@ unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int p
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0x9e67c, 0x9e777);
             } else {
-                debug_print();
+                debug_print(0x9e67c, 0x9e777);
             }
         }
         uVar3 = 0xffffffff;
     }
     return uVar3;
 }
-

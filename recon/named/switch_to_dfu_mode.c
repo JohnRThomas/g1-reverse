@@ -1,9 +1,21 @@
-/* named: switch_to_dfu_mode */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x200069fc  device_info                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000158bc @ 0x000158bc
+ * public-name: switch_to_dfu_mode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
+ *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ * address symbols (name @ address):
+ *   rodata_990cf                             @ 0x000990cf
+ *   rodata_990dc                             @ 0x000990dc
+ *   rodata_99105                             @ 0x00099105
+ *   rodata_99b2a                             @ 0x00099b2a
+ *   g_log_level                              @ 0x2000230c
+ *   device_info                              @ 0x200069fc
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_runtime_mode_flag                      @ 0x2000ff6e
+ */
 /* Reconstructed switch_to_dfu_mode @ 0x158bc  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned char u8;
@@ -60,4 +72,3 @@ print_lab:
         DEBUG_PRINT(0x99105U, 0x99b2aU, r2val);
     }
 }
-

@@ -1,5 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00076b48 */
+/* readable reconstruction; identity: FUN_00076b48 @ 0x00076b48
+ * public-name: FUN_00076b48
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_86f35                             @ 0x00086f35
+ *   ADDR_libc_stream_write_syscall_THUMB     @ 0x00086f5b
+ *   ADDR_FUN_00086f92_THUMB                  @ 0x00086f93
+ *   rodata_86fb7                             @ 0x00086fb7
+ */
 /* Reconstructed FUN_00076b48 @ 0x76b48  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(unsigned int *, unsigned int, unsigned int);
@@ -18,9 +28,8 @@ void FUN_00076b48(unsigned int *param_1, unsigned int param_2, unsigned int para
   vp[5] = 0;
   memset_bytes((unsigned int *)((char *)param_1 + 0x5c), 0, 8);
   vp[8] = (unsigned int)param_1;
-  vp[9] = ((uintptr_t)&tbl_86f35) /*=0x86f35*/;
-  vp[10] = ((uintptr_t)&tbl_86f35) /*=0x86f5b*/;
-  vp[0xb] = ((uintptr_t)&tbl_86f35) /*=0x86f93*/;
-  vp[0xc] = ((uintptr_t)&tbl_86f35) /*=0x86fb7*/;
+  vp[9] = ((unsigned long)&rodata_86f35) /*=0x86f35*/;
+  vp[10] = ADDR_libc_stream_write_syscall_THUMB /*=0x86f5b*/;
+  vp[0xb] = ADDR_FUN_00086f92_THUMB /*=0x86f93*/;
+  vp[0xc] = ((unsigned long)&rodata_86fb7) /*=0x86fb7*/;
 }
-

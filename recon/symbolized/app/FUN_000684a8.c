@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000684a8 */
+/* readable reconstruction; identity: FUN_000684a8 @ 0x000684a8
+ * public-name: FUN_000684a8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
 /* Reconstructed FUN_000684a8 @ 0x684a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void memset_bytes(unsigned char*, int, int);
@@ -71,4 +76,3 @@ void FUN_000684a8(unsigned char *param_1,int param_2,unsigned char *param_3,int 
   }
   return;
 }
-

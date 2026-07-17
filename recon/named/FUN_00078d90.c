@@ -1,4 +1,17 @@
-/* named: FUN_00078d90 */
+/* readable reconstruction; identity: FUN_00078d90 @ 0x00078d90
+ * public-name: FUN_00078d90
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   iobuf_ensure_capacity_and_append         <= FUN_00087736 @ 0x00087736
+ * address symbols (name @ address):
+ *   ADDR_iobuf_ensure_capacity_and_append_THUMB @ 0x00087737
+ *   rodata_f8b6b                             @ 0x000f8b6b
+ *   rodata_f8b71                             @ 0x000f8b71
+ *   rodata_f8b75                             @ 0x000f8b75
+ */
 /* Reconstructed FUN_00078d90 @ 0x78d90  (parity: 151/300 trials, PROVEN) */
 typedef unsigned int u32;
 typedef unsigned short u16;
@@ -142,4 +155,3 @@ LAB_f56:
   }
   return local_74;
 }
-

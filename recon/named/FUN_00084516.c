@@ -1,4 +1,10 @@
-/* named: FUN_00084516 */
+/* readable reconstruction; identity: FUN_00084516 @ 0x00084516
+ * public-name: FUN_00084516
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   us_to_ticks_scaled                       <= FUN_00012580 @ 0x00012580
+ *   us_to_ticks_scaled_v2                    <= FUN_000125c0 @ 0x000125c0
+ */
 /* Reconstructed FUN_00084516 @ 0x84516  (parity: 300/300 trials, PROVEN) */
 
 extern void us_to_ticks_scaled(int a, int b, unsigned c, unsigned d, unsigned e);
@@ -48,4 +54,3 @@ unsigned FUN_00084516(int param_1, unsigned param_2, int param_3, unsigned param
     }
     return 0;
 }
-

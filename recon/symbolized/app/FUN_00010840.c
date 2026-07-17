@@ -1,5 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00010840 */
+/* readable reconstruction; identity: FUN_00010840 @ 0x00010840
+ * public-name: FUN_00010840
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __floatsidf                              <= FUN_0000d824 @ 0x0000d824
+ *   __extendsfdf2                            <= FUN_0000d848 @ 0x0000d848
+ *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
+ *   __divdf3                                 <= FUN_0000db4c @ 0x0000db4c
+ *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
+ *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
+ *   __truncdfsf2                             <= FUN_0000dee8 @ 0x0000dee8
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ * address symbols (name @ address):
+ *   g_battery_level_bucket                   @ 0x20018da0
+ *   g_opt3007_chip_ready                     @ 0x20018da1
+ */
 /* Reconstructed FUN_00010840 @ 0x10840  (parity: 300/300 trials, PROVEN) */
 typedef unsigned char byte;
 typedef unsigned int uint;
@@ -19,8 +34,8 @@ static float BF(unsigned int h) { union { unsigned int i; float f; } u; u.i = h;
 
 byte FUN_00010840(void)
 {
-  volatile byte *DAT_a40 = (volatile byte*)((uintptr_t)&g_opt3007_chip_ready) /*=0x20018da1*/;
-  volatile byte *DAT_a44 = (volatile byte*)((uintptr_t)&g_battery_level_bucket) /*=0x20018da0*/;
+  volatile byte *DAT_a40 = (volatile byte*)((unsigned long)&g_opt3007_chip_ready) /*=0x20018da1*/;
+  volatile byte *DAT_a44 = (volatile byte*)((unsigned long)&g_battery_level_bucket) /*=0x20018da0*/;
   byte bVar5;
   int iVar2, iVar3;
   u64 uVar6, uVar7;
@@ -38,7 +53,7 @@ byte FUN_00010840(void)
   iVar3 = get_device_info();
   if ( (*(volatile int*)(long)(iVar3+0xfb0) == 0)
     || (iVar3 = get_device_info(), *(volatile int*)(long)(iVar3+0xfb0) == -1)
-    || (iVar3 = get_device_info(), *(volatile int*)(long)(iVar3+0xfb0) < ((uintptr_t)&rodata_ea61) /*=0xea61*/) ) {
+    || (iVar3 = get_device_info(), *(volatile int*)(long)(iVar3+0xfb0) < 0xea61) ) {
     if (iVar2 < 0x32) {
       bVar5 = (byte)(iVar2 / 5);
     } else if (iVar2 < 200) {
@@ -48,7 +63,7 @@ byte FUN_00010840(void)
     } else if (iVar2 < 10000) {
       bVar5 = (byte)((((uint)iVar2 - 1000u) / 1000u) + 0x29u);
     } else {
-      if (((uintptr_t)&rodata_1387f) /*=0x1387f*/ < iVar2) {
+      if (0x1387f < iVar2) {
         return 0x2a;
       }
       bVar5 = (byte)((((uint)iVar2 - 10000u) / 5000u) + 0x32u);
@@ -112,4 +127,3 @@ byte FUN_00010840(void)
   }
   return bVar5;
 }
-

@@ -18,4 +18,3 @@ void FUN_010083a8(int *param_1,int *param_2,int param_3)
     iVar5 = iVar5 - 1;
   } while (iVar5 != 0);
 }
-

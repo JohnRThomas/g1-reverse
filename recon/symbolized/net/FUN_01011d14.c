@@ -31,7 +31,7 @@ BOOL FUN_01011d14(unsigned int param_1, int *param_2)
       iVar2 = 0x690;
     }
   } else {
-    uVar4 = *(volatile unsigned short *)(((uintptr_t)&rodata_103c1bc) /*=0x103c1bc*/ + uVar6 * 2) + 999;
+    uVar4 = *(volatile unsigned short *)(((unsigned long)&rodata_103c1bc) /*=0x103c1bc*/ + uVar6 * 2) + 999;
     uVar4 = (unsigned int)(((unsigned long long)0x10624dd3ULL * (unsigned long long)uVar4) >> 32);
     if (cVar3 == 4) {
       cVar3 = 8;
@@ -49,4 +49,3 @@ BOOL FUN_01011d14(unsigned int param_1, int *param_2)
   iVar1 = FUN_010109ec(param_1, iVar2 * iVar1 + iVar5 + uVar4, cVar3, 0, (short)param_2[1]);
   return (unsigned int)(iVar1 + 0x131) <= (unsigned int)param_2[2];
 }
-

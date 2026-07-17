@@ -1,5 +1,11 @@
-/* named: max_utilization_update */
-/* Reconstructed max_utilization_update @ 0x7e4f2  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e4f2 @ 0x0007e4f2
+ * public-name: max_utilization_update
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_usage                                <= FUN_0007e33a @ 0x0007e33a
+ *   max_utilization_update                   <= FUN_0007e4f2 @ 0x0007e4f2
+ */
+/* Reconstructed FUN_0007e4f2 @ 0x7e4f2  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int get_usage(void);
 void max_utilization_update(int param_1)
@@ -17,4 +23,3 @@ void max_utilization_update(int param_1)
     }
   }
 }
-

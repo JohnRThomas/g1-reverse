@@ -34,5 +34,3 @@ unsigned long long FUN_010082f0(unsigned int *param_1, unsigned int *param_2, in
     return ((unsigned long long)(unsigned int)(unsigned long)(param_2 + 8) << 32) |
            (unsigned long long)c7;
 }
-
-

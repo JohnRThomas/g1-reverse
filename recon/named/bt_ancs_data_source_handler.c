@@ -1,15 +1,32 @@
-/* named: bt_ancs_data_source_handler */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed bt_ancs_data_source_handler @ 0x18c48  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00018c48 @ 0x00018c48
+ * public-name: bt_ancs_data_source_handler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
+ *   enqueue_ancs                             <= FUN_00018bb4 @ 0x00018bb4
+ *   bt_ancs_data_source_handler              <= FUN_00018c48 @ 0x00018c48
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_uptime_get_32                          <= FUN_0007c0c8 @ 0x0007c0c8
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9a992                             @ 0x0009a992
+ *   rodata_9a9cd                             @ 0x0009a9cd
+ *   rodata_9b20d                             @ 0x0009b20d
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_last_cmd_id                       @ 0x2000231c
+ *   g_ancs_notif_attr_id_latest              @ 0x20006aa0
+ *   g_ancs_notif_evt_id_latest               @ 0x20006aac
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ancs_attr_data_pending                 @ 0x2000ff71
+ */
+/* Reconstructed FUN_00018c48 @ 0x18c48  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int, ...);
 extern int get_device_info(void);
-extern int ancs_get_conn_ctx(void);
+extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(int);
-extern int debug_print(int);
+extern int debug_print(uintptr_t, ...);
 extern int FUN_00072880(int);
 extern int k_uptime_get_32(void);
 extern int memset_bytes(int,int,int);
@@ -25,12 +42,14 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
     int iVar6, iVar7, iVar8;
     unsigned int uVar9, uVar10;
 
-    iVar6 = ancs_get_conn_ctx();
+    iVar6 = ancs_get_conn_ctx(param_1);
     if (0 < *piVar4) {
         if (*g_d70 == 0) {
             DEBUG_PRINT(0x9a992, 0x9b20d, (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
         } else {
-            debug_print(0);
+            debug_print(0x9a992, 0x9b20d, (unsigned int)*param_2,
+                         *(volatile unsigned int*)0x20007554, param_1,
+                         (uintptr_t)param_2, param_3);
         }
     }
     if (*param_2 == 0) {
@@ -66,7 +85,10 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
                                             DEBUG_PRINT(0x9a9cd, 0x9b20d, *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         } else {
-                                            debug_print(0x9a9cd);
+                                            debug_print(0x9a9cd, 0x9b20d,
+                                                         *piVar3,
+                                                         (unsigned int)*(unsigned char *)((int)piVar3 + 4),
+                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         }
                                     }
                                     memset_bytes(iVar6 + 0x34, 0, 0x1b4);
@@ -82,4 +104,3 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
     }
     return;
 }
-

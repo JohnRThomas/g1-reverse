@@ -3,7 +3,7 @@
 
 int FUN_01009210(void)
 {
-    volatile int * const p = (volatile int * const)((uintptr_t)&g_net_addr_record) /*=0x21000a60*/;
+    volatile int * const p = (volatile int * const)((unsigned long)&g_net_addr_record) /*=0x21000a60*/;
     int iVar1 = p[1];
     if (iVar1 != 0) {
         iVar1 = p[2];
@@ -11,4 +11,3 @@ int FUN_01009210(void)
     }
     return iVar1;
 }
-

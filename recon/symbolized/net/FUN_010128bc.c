@@ -1,7 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_010128bc @ 0x10128bc  (parity 300 trials PROVEN) */
-#define C_0101295c ((uintptr_t)&rodata_1011869) /*=0x1011869*/
-#define C_01012958 ((uintptr_t)&rodata_1011add) /*=0x1011add*/
+#define C_0101295c ((unsigned long)&rodata_1011869) /*=0x1011869*/
+#define C_01012958 ((unsigned long)&rodata_1011add) /*=0x1011add*/
 
 extern void FUN_0100ef88(void *, int, int, int, unsigned int);
 extern int FUN_0101f888(void);
@@ -52,4 +52,3 @@ LAB_end:
   *(volatile unsigned char *)(param_1 + 0x79) = 1;
   return;
 }
-

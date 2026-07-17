@@ -6,4 +6,3 @@ void FUN_0103a6c6(void)
 {
   FUN_010313a8();
 }
-

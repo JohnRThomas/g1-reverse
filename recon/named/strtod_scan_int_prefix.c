@@ -1,5 +1,10 @@
-/* named: strtod_scan_int_prefix */
-/* Reconstructed strtod_scan_int_prefix @ 0xea18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000ea18 @ 0x0000ea18
+ * public-name: strtod_scan_int_prefix
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strtod_scan_int_prefix                   <= FUN_0000ea18 @ 0x0000ea18
+ */
+/* Reconstructed FUN_0000ea18 @ 0xea18  (parity: 300/300 trials, PROVEN) */
 
 void strtod_scan_int_prefix(int param_1, int param_2, unsigned int *param_3)
 {
@@ -25,4 +30,3 @@ void strtod_scan_int_prefix(int param_1, int param_2, unsigned int *param_3)
     }
     param_3[1] = iVar3;
 }
-

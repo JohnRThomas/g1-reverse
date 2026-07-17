@@ -6,4 +6,3 @@ extern void FUN_01039752(uint32_t, uint32_t, uint32_t, int32_t);
 void FUN_010397a4(uint32_t param_1, uint32_t param_2, int param_3) {
     FUN_01039752(param_1, param_2, 1, param_3 << 1);
 }
-

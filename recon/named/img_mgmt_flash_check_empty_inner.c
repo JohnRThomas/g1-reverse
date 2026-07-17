@@ -1,22 +1,37 @@
-/* named: img_mgmt_flash_check_empty_inner */
-/* Reconstructed img_mgmt_flash_check_empty_inner @ 0x516ac  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000516ac @ 0x000516ac
+ * public-name: img_mgmt_flash_check_empty_inner
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   img_mgmt_flash_check_empty_inner         <= FUN_000516ac @ 0x000516ac
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   flash_area_read                          <= FUN_0007ef80 @ 0x0007ef80
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ * address symbols (name @ address):
+ *   rodata_88208                             @ 0x00088208
+ *   rodata_f261f                             @ 0x000f261f
+ *   rodata_f2634                             @ 0x000f2634
+ *   rodata_f270e                             @ 0x000f270e
+ */
+/* Reconstructed FUN_000516ac @ 0x516ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int flash_area_open(int,...);
-extern int FUN_0005169c(int,...);
+extern int FUN_0005169c(int);
 extern int libc_fatal_error_and_abort(int,...);
 extern int nullsub_3(int,...);
 extern int flash_area_read(int,...);
 extern int FUN_0007efd4(int,...);
 extern int flash_area_erased_val(int,...);
 extern int FUN_0008096a(int,...);
-int img_mgmt_flash_check_empty_inner(void)
+int img_mgmt_flash_check_empty_inner(int param_1)
 {
   unsigned int uVar1;
   int iVar5;
   int local_6c, local_64;
   int aiStack_60[17];
   int dummy[16];
-  uVar1 = (unsigned int)FUN_0005169c(0);
+  uVar1 = (unsigned int)FUN_0005169c(param_1);
   if ((int)uVar1 < 0) {
     iVar5 = 0xe;
   } else {
@@ -59,4 +74,3 @@ int img_mgmt_flash_check_empty_inner(void)
   }
   return iVar5;
 }
-

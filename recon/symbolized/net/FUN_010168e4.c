@@ -9,8 +9,8 @@ extern int FUN_01016828(void);
 extern int FUN_01019750(int,int,int,int,int,int,int);
 extern int FUN_01020500(void);
 
-#define IVAR9 ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define P14 ((volatile signed char*)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
+#define IVAR9 0x21000f90u
+#define P14 ((volatile signed char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/)
 #define G(off) (*(volatile unsigned char*)(IVAR9+(off)))
 #define GS(off) (*(volatile signed char*)(IVAR9+(off)))
 
@@ -178,4 +178,3 @@ int FUN_010168e4(int param_1, int param_2)
     FUN_01020500();
     return 5;
 }
-

@@ -1,8 +1,21 @@
-/* named: ble_notify_disconnected */
-/* globals referenced:
-//   0x2000ad1c  g_ble_conn_cb_list_head      
-*/
-/* Reconstructed ble_notify_disconnected @ 0x56c78  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056c78 @ 0x00056c78
+ * public-name: ble_notify_disconnected
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_disconnected                  <= FUN_00056c78 @ 0x00056c78
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_le_conn_params_valid                  <= FUN_00080f14 @ 0x00080f14
+ * address symbols (name @ address):
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3a5d                             @ 0x000f3a5d
+ *   rodata_f3a8d                             @ 0x000f3a8d
+ *   g_ble_conn_cb_list_head                  @ 0x2000ad1c
+ */
+/* Reconstructed FUN_00056c78 @ 0x56c78  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_le_conn_params_valid(int);
 extern void assert_post_action(int,int);
@@ -32,4 +45,3 @@ int ble_notify_disconnected(int param_1,int param_2){
   }
   return iVar2;
 }
-

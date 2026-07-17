@@ -1,4 +1,7 @@
-/* named: FUN_00081130 */
+/* readable reconstruction; identity: FUN_00081130 @ 0x00081130
+ * public-name: FUN_00081130
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00081130 @ 0x81130  (parity: 300/300 trials, PROVEN) */
 
 int FUN_00081130(int param_1)
@@ -8,4 +11,3 @@ int FUN_00081130(int param_1)
     }
     return param_1;
 }
-

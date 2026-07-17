@@ -1,4 +1,9 @@
-/* named: FUN_0007d1d6 */
+/* readable reconstruction; identity: FUN_0007d1d6 @ 0x0007d1d6
+ * public-name: FUN_0007d1d6
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   rate_limited_elapsed_seconds_tick        <= FUN_0004a46c @ 0x0004a46c
+ */
 /* Reconstructed FUN_0007d1d6 @ 0x7d1d6  (parity: 300/300 trials, PROVEN) */
 
 extern void rate_limited_elapsed_seconds_tick(unsigned int, unsigned int);
@@ -22,4 +27,3 @@ void FUN_0007d1d6(int param_1, unsigned int param_2)
   FUN_00016574(**(unsigned int **)(base + 0xfec));
   return;
 }
-

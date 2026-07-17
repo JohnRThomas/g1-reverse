@@ -1,7 +1,13 @@
-/* named: FUN_00059c70 */
-/* globals referenced:
-//   0x2000af18  g_known_device_table         
-*/
+/* readable reconstruction; identity: FUN_00059c70 @ 0x00059c70
+ * public-name: FUN_00059c70
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_conn_is_peer_addr_le                  <= FUN_000814e6 @ 0x000814e6
+ *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
+ * address symbols (name @ address):
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   g_known_device_table                     @ 0x2000af18
+ */
 /* Reconstructed FUN_00059c70 @ 0x59c70  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_is_peer_addr_le(int a, unsigned char b);
@@ -32,4 +38,3 @@ unsigned char * FUN_00059c70(int param_1)
     }
     return puVar3;
 }
-

@@ -1,5 +1,11 @@
-/* named: flash_area_has_driver */
-/* Reconstructed flash_area_has_driver @ 0x83cb4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00083cb4 @ 0x00083cb4
+ * public-name: flash_area_has_driver
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_has_driver                    <= FUN_00083cb4 @ 0x00083cb4
+ *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ */
+/* Reconstructed FUN_00083cb4 @ 0x83cb4  (parity: 300/300 trials, PROVEN) */
 
 extern int z_device_is_ready(unsigned int);
 
@@ -16,4 +22,3 @@ unsigned int flash_area_has_driver(void *param_1)
     }
     return uVar2;
 }
-

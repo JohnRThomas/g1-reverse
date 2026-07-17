@@ -1,5 +1,12 @@
-/* named: unix_timestamp_to_datetime */
-/* Reconstructed unix_timestamp_to_datetime @ 0x4a1b8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a1b8 @ 0x0004a1b8
+ * public-name: unix_timestamp_to_datetime
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   unix_timestamp_to_datetime               <= FUN_0004a1b8 @ 0x0004a1b8
+ * address symbols (name @ address):
+ *   rodata_99014                             @ 0x00099014
+ */
+/* Reconstructed FUN_0004a1b8 @ 0x4a1b8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 uint32_t unix_timestamp_to_datetime(uint param_1, int16_t* param_2){
@@ -50,4 +57,3 @@ L26c:
     *(volatile int16_t*)(param_2+4)=sVar1;
     return 0;
 }
-

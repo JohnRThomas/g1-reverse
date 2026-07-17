@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: l2cap_accept_no_ctx */
-/* Reconstructed l2cap_accept_no_ctx @ 0x57438  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057438 @ 0x00057438
+ * public-name: l2cap_accept_no_ctx
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_accept_no_ctx                      <= FUN_00057438 @ 0x00057438
+ * address symbols (name @ address):
+ *   rodata_88160                             @ 0x00088160
+ *   rodata_f3eea                             @ 0x000f3eea
+ */
+/* Reconstructed FUN_00057438 @ 0x57438  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00081746(unsigned int a0, unsigned int a1, void *a2);
 
@@ -8,9 +16,8 @@ unsigned int l2cap_accept_no_ctx(unsigned int param_1)
 {
   unsigned int local[3];
   local[0] = 3;
-  local[1] = "No available L2CAP context for conn %p" /*=0xf3eea*/;
+  local[1] = ((unsigned long)&rodata_f3eea) /*=0xf3eea*/;
   local[2] = param_1;
-  FUN_00081746(((uintptr_t)&tbl_880d8) /*=0x88160*/, 0x1840, local);
+  FUN_00081746(((unsigned long)&rodata_88160) /*=0x88160*/, 0x1840, local);
   return 0xfffffff4;
 }
-

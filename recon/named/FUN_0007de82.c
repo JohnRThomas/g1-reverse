@@ -1,4 +1,7 @@
-/* named: FUN_0007de82 */
+/* readable reconstruction; identity: FUN_0007de82 @ 0x0007de82
+ * public-name: FUN_0007de82
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0007de82 @ 0x7de82  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0007de70(int a,int b,int c,int d,int e);
@@ -13,4 +16,3 @@ int FUN_0007de82(int param_1, int param_2, int param_3, int param_4) {
     int v = (param_2 + 1) - iVar1;
     return 0x1f - clz32((unsigned int)v);
 }
-

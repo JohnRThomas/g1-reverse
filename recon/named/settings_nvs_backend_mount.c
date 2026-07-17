@@ -1,5 +1,19 @@
-/* named: settings_nvs_backend_mount */
-/* Reconstructed settings_nvs_backend_mount @ 0x4e83c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e83c @ 0x0004e83c
+ * public-name: settings_nvs_backend_mount
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   flash_area_get_sectors                   <= FUN_0004e098 @ 0x0004e098
+ *   sys_slist_append                         <= FUN_0004e3c0 @ 0x0004e3c0
+ *   settings_backend_ptr_store               <= FUN_0004e3dc @ 0x0004e3dc
+ *   settings_nvs_backend_mount               <= FUN_0004e83c @ 0x0004e83c
+ *   settings_nvs_backend_init                <= FUN_0007f344 @ 0x0007f344
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   g_settings_nvs_backend_list_next         @ 0x200027fc
+ *   g_settings_nvs_default_backend           @ 0x2000a114
+ */
+/* Reconstructed FUN_0004e83c @ 0x4e83c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int flash_area_open(int,void*);
@@ -8,29 +22,29 @@ extern int sys_slist_append(void*);
 extern int settings_backend_ptr_store(void*);
 extern int settings_nvs_backend_init(void*);
 int settings_nvs_backend_mount(int param_1,int param_2,int param_3,unsigned int param_4){
-  int local_20[3]; unsigned int local_14;
+  unsigned int args[4];
   int iVar1, iVar3; unsigned int uVar4,uVar5; unsigned int uVar2;
-  local_20[1]=1; local_20[0]=param_1; local_20[2]=param_3; local_14=param_4;
-  iVar3=flash_area_open(9,local_20);
+  args[0]=(unsigned int)param_1; args[1]=1; args[2]=(unsigned int)param_3; args[3]=param_4;
+  iVar3=flash_area_open(9,args);
   if(iVar3==0){
-    iVar3=flash_area_get_sectors(9,local_20+1,local_20+2);
-    iVar1=*(volatile int*)0x2000a114UL;
+    iVar3=flash_area_get_sectors(9,args+1,args+2);
+    iVar1=0x2000a114UL;
     if(iVar3==0 || iVar3==-0xc){
-      if(local_14<0x10000){
+      if(args[3]<0x10000){
         uVar5=0; uVar4=0;
         do{
-          uVar4=uVar4+local_14;
-          if(*(unsigned int*)(local_20[0]+8)<uVar4){ uVar5=uVar5&0xffff; break; }
+          uVar4=uVar4+args[3];
+          if(*(unsigned int*)(args[0]+8)<uVar4){ uVar5=uVar5&0xffff; break; }
           uVar5=uVar5+1;
         }while(uVar5!=8);
-        *(volatile short*)(0x2000a114UL+0x14)=(short)local_14;
-        *(short*)(iVar1+0x16)=(short)uVar5;
-        *(int*)(iVar1+8)=*(int*)(local_20[0]+4);
-        *(int*)(iVar1+0x3c)=*(int*)(local_20[0]+0xc);
+        *(volatile short*)(0x2000a114UL+0x14)=(short)args[3];
+        *(volatile short*)(iVar1+0x16)=(short)uVar5;
+        *(int*)(iVar1+8)=*(int*)(args[0]+4);
+        *(int*)(iVar1+0x3c)=*(int*)(args[0]+0xc);
         iVar3=settings_nvs_backend_init((void*)iVar1);
-        uVar2=*(volatile unsigned int*)0x200027fcUL;
+        uVar2=0x200027fcUL;
         if(iVar3==0){
-          *(int*)(iVar1+4)=*(volatile unsigned int*)0x200027fcUL;
+          *(int*)(iVar1+4)=0x200027fcUL;
           sys_slist_append((void*)iVar1);
           *(int*)(iVar1+4)=uVar2;
           settings_backend_ptr_store((void*)iVar1);
@@ -40,4 +54,3 @@ int settings_nvs_backend_mount(int param_1,int param_2,int param_3,unsigned int 
   }
   return iVar3;
 }
-

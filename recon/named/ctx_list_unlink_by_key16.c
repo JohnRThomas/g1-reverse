@@ -1,5 +1,10 @@
-/* named: ctx_list_unlink_by_key16 */
-/* Reconstructed ctx_list_unlink_by_key16 @ 0x81660  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081660 @ 0x00081660
+ * public-name: ctx_list_unlink_by_key16
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ctx_list_unlink_by_key16                 <= FUN_00081660 @ 0x00081660
+ */
+/* Reconstructed FUN_00081660 @ 0x81660  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000815f6(int, int*, int*, unsigned int, int);
 
@@ -29,4 +34,3 @@ int * ctx_list_unlink_by_key16(int param_1, unsigned int param_2, int param_3, i
   }
   return piVar2;
 }
-

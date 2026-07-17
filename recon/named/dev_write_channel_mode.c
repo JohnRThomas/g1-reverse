@@ -1,5 +1,12 @@
-/* named: dev_write_channel_mode */
-/* Reconstructed dev_write_channel_mode @ 0x843ba  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000843ba @ 0x000843ba
+ * public-name: dev_write_channel_mode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   dev_set_mode_register                    <= FUN_000841fc @ 0x000841fc
+ *   dev_write_channel_mode                   <= FUN_000843ba @ 0x000843ba
+ */
+/* Reconstructed FUN_000843ba @ 0x843ba  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int dev_write_reg3(unsigned a, int b, int c, int d);
 extern int dev_set_mode_register(int a, int b, int c, int d, int e, void* f, int g);
@@ -26,4 +33,3 @@ unsigned dev_write_channel_mode(int param_1, int* param_2, int param_3){
         return 0xffffffed;
     }
 }
-

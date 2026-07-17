@@ -1,7 +1,20 @@
-/* named: FUN_000538f8 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_000538f8 @ 0x000538f8
+ * public-name: FUN_000538f8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_pool_get                         <= FUN_0005ee08 @ 0x0005ee08
+ *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2f59                             @ 0x000f2f59
+ *   rodata_f2f8e                             @ 0x000f2f8e
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_hci_cmd_pool                           @ 0x20003b4c
+ *   bt_hci_cmd_data                          @ 0x2000abf4
+ */
 /* Reconstructed FUN_000538f8 @ 0x538f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int net_buf_pool_get(unsigned);
@@ -56,4 +69,3 @@ void FUN_000538f8(unsigned param_1, int param_2, int param_3, unsigned param_4){
     FUN_00080ea2(0x00088138, 0x3080, st);
   }
 }
-

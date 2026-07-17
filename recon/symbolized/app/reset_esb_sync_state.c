@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: reset_esb_sync_state */
-/* Reconstructed reset_esb_sync_state @ 0x7ce60  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007ce60 @ 0x0007ce60
+ * public-name: reset_esb_sync_state
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
+/* Reconstructed FUN_0007ce60 @ 0x7ce60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int get_device_info(void);
 extern void memset_bytes(int,int,int,unsigned int);
@@ -21,4 +28,3 @@ void reset_esb_sync_state(int param_1,unsigned int param_2,unsigned int param_3,
   iVar1=get_device_info();
   memset_bytes(*(volatile int*)(iVar1+0x100c)+8,0,399,param_4);
 }
-

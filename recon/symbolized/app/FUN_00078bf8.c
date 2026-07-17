@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00078bf8 */
+/* readable reconstruction; identity: FUN_00078bf8 @ 0x00078bf8
+ * public-name: FUN_00078bf8
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00078bf8 @ 0x78bf8  (parity: 300/300 trials, PROVEN) */
 
 static unsigned int shr_arm(unsigned int val, unsigned int amt) {
@@ -30,7 +33,7 @@ double FUN_00078bf8(double d0)
       }
       hi = 0;
     } else {
-      hi = shr_arm(((uintptr_t)&rodata_80000) /*=0x80000*/, uVar1);
+      hi = shr_arm(0x80000u, uVar1);
       lo = 0;
     }
   } else {
@@ -41,4 +44,3 @@ double FUN_00078bf8(double d0)
   out.s.hi = hi;
   return out.d;
 }
-

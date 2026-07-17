@@ -3,8 +3,8 @@
 
 int FUN_0100f66c(void)
 {
-  volatile unsigned int *p0  = (volatile unsigned int*)((uintptr_t)&g_net_prng_state) /*=0x21000ef4*/;
-  volatile unsigned int *p1  = (volatile unsigned int*)((uintptr_t)&g_net_prng_state_s1) /*=0x21000ef8*/;
+  volatile unsigned int *p0  = (volatile unsigned int*)((unsigned long)&g_net_prng_state) /*=0x21000ef4*/;
+  volatile unsigned int *p1  = (volatile unsigned int*)((unsigned long)&g_net_prng_state_s1) /*=0x21000ef8*/;
   unsigned int uVar2, uVar3, uVar4;
 
   uVar3 = *p0;
@@ -14,4 +14,3 @@ int FUN_0100f66c(void)
   *p1 = (uVar4 >> 0x13) | (uVar4 << 0xd);
   return (int)(((uVar2 >> 0x1b) | (uVar2 << 5)) * 5);
 }
-

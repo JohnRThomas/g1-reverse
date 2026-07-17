@@ -1,4 +1,14 @@
-/* named: FUN_00063570 */
+/* readable reconstruction; identity: FUN_00063570 @ 0x00063570
+ * public-name: FUN_00063570
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6659                             @ 0x000f6659
+ *   rodata_f668a                             @ 0x000f668a
+ */
 /* Reconstructed FUN_00063570 @ 0x63570  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a, int b, int c, int d, int e);
@@ -12,4 +22,3 @@ unsigned int FUN_00063570(unsigned int param_1, unsigned int param_2, unsigned i
   }
   return 0x50015140UL + idx * 4;
 }
-

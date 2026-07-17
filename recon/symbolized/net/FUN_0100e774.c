@@ -4,4 +4,3 @@
 void FUN_0100e774(int param_1, unsigned int *param_2) {
     *(unsigned int *)(param_1 + 0x16) = *param_2;
 }
-

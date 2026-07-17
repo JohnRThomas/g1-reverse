@@ -1,41 +1,49 @@
 #include "g1_app_symbols.h"
-/* named: dequeue_uid */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a38  g_uid_pipe                   
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00018ff8 @ 0x00018ff8
+ * public-name: dequeue_uid
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ * address symbols (name @ address):
+ *   rodata_9aafd                             @ 0x0009aafd
+ *   rodata_9b16a                             @ 0x0009b16a
+ *   g_log_level                              @ 0x2000230c
+ *   g_uid_pipe                               @ 0x20006a38
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int a, void *b, unsigned int c, unsigned int d);
 extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void debug_print(void);
+extern void debug_print(unsigned int a, unsigned int b, ...);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {
   int iVar1;
-  unsigned int local_18;
-  unsigned int uStack_14;
-  unsigned int uStack_10;
+  struct uid_record {
+    unsigned int first;
+    unsigned int second;
+  } record;
 
-  local_18 = 0;
-  uStack_14 = 0;
-  if (*(volatile int *)(((uintptr_t)&g_uid_pipe) /*=0x20006a38*/ + 0x10) == 0) {
+  record.first = 0;
+  record.second = 0;
+  (void)param_2;
+  (void)param_3;
+  if (*(volatile int *)(((unsigned long)&g_uid_pipe) /*=0x20006a38*/ + 0x10) == 0) {
     iVar1 = 1;
   } else {
-    uStack_10 = param_3;
-    iVar1 = k_msgq_get(((uintptr_t)&g_uid_pipe) /*=0x20006a38*/, &local_18, 0, 0);
+    iVar1 = k_msgq_get(((unsigned long)&g_uid_pipe) /*=0x20006a38*/, &record, 0, 0);
     if (iVar1 == 0) {
-      *param_1 = local_18;
-      param_1[1] = uStack_14;
-    } else if (0 < *(volatile int *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-      if (*(volatile int *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT("%s(): D uid F\n" /*=0x9aafd*/, "dequeue_uid" /*=0x9b16a*/);
+      *param_1 = record.first;
+      param_1[1] = record.second;
+    } else if (0 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+      if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+        DEBUG_PRINT(((unsigned long)&rodata_9aafd) /*=0x9aafd*/, ((unsigned long)&rodata_9b16a) /*=0x9b16a*/);
       } else {
-        debug_print();
+        debug_print(((unsigned long)&rodata_9aafd) /*=0x9aafd*/, ((unsigned long)&rodata_9b16a) /*=0x9b16a*/);
       }
     }
   }
   return iVar1;
 }
-

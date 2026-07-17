@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: cbor_decode_precheck */
-/* Reconstructed cbor_decode_precheck @ 0x85d82  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085d82 @ 0x00085d82
+ * public-name: cbor_decode_precheck
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_precheck                     <= FUN_00085d82 @ 0x00085d82
+ */
+/* Reconstructed FUN_00085d82 @ 0x85d82  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_00085d5c(unsigned int);
 extern void FUN_00085d70(unsigned int*,unsigned int);
@@ -16,4 +21,3 @@ int cbor_decode_precheck(unsigned int *param_1)
   }
   return 0;
 }
-

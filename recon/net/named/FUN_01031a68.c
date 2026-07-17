@@ -1,0 +1,133 @@
+/* readable reconstruction; identity: FUN_01031a68 @ 0x01031a68
+ * public-name: FUN_01031a68
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_10320d9                           @ 0x010320d9
+ *   rodata_103bf70                           @ 0x0103bf70
+ *   rodata_103c044                           @ 0x0103c044
+ *   rodata_103c11c                           @ 0x0103c11c
+ *   rodata_103d73e                           @ 0x0103d73e
+ *   rodata_103e216                           @ 0x0103e216
+ *   rodata_103e23d                           @ 0x0103e23d
+ *   rodata_103e25d                           @ 0x0103e25d
+ */
+/* net-core FUN_01031a68 @ 0x1031a68  (parity 300 trials PROVEN) */
+#include <stdint.h>
+
+extern void FUN_01036bec(unsigned int a, unsigned int b);
+extern void FUN_01032680(void);
+extern void FUN_01009054(void *a);
+extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, void *d);
+extern int FUN_0103b0f0(unsigned int a);
+extern int FUN_010091e8(void *a);
+extern int FUN_01031804(unsigned int a, unsigned int b);
+extern int FUN_010091cc(unsigned int a);
+extern int FUN_01008fd4(unsigned int a, unsigned int b);
+extern int thunk_FUN_0101f650(void *a);
+extern void FUN_01031814(void);
+
+#define DAT_b50 0x0103af63u
+#define DAT_b54 0x21004974u
+#define DAT_b58 0x0103d73eu
+#define DAT_b5c 0x0103e216u
+#define DAT_b60 0x01000003u
+#define DAT_b64 0x01401cc0u
+#define DAT_b68 0x0103c044u
+#define DAT_b6c 0x0103bf70u
+#define DAT_b70 0x0103e23du
+#define DAT_b74 0x0103c11cu
+#define DAT_b78 0x0103e25du
+#define DAT_b7c 0x21002b90u
+#define DAT_b80 0x010320d9u
+#define DAT_b84 0x003d0900u
+
+typedef struct {
+    unsigned int code;
+    unsigned int message;
+    int status;
+    unsigned short tag;
+    unsigned short reserved;
+} diagnostic_record_t;
+
+typedef struct {
+    unsigned int timer_period;
+    unsigned char startup_context[20];
+    unsigned int credentials[3];
+    unsigned int reserved;
+    struct {
+        unsigned int code;
+        unsigned int message;
+    } missing_service;
+    unsigned int tail_reserved;
+} init_frame_t;
+
+typedef struct {
+    unsigned int transport_reserved[4];
+    diagnostic_record_t startup;
+    init_frame_t frame;
+    unsigned int alignment_reserved;
+} init_workspace_t;
+
+int FUN_01031a68(void)
+{
+    int iVar1, iVar2;
+    init_workspace_t workspace;
+
+    FUN_01036bec(DAT_b54, DAT_b50);
+    FUN_01032680();
+    FUN_01009054(workspace.frame.startup_context);
+
+    workspace.startup.code = DAT_b60;
+    workspace.startup.message = DAT_b58;
+    workspace.startup.status = (int)DAT_b5c;
+    workspace.startup.tag = 0x200;
+    FUN_0102e284(DAT_b68, DAT_b64, &workspace.startup,
+                 workspace.frame.startup_context);
+
+    iVar1 = FUN_0103b0f0(DAT_b6c);
+    if (iVar1 == 0) {
+        workspace.frame.missing_service.code = 2;
+        workspace.frame.missing_service.message = DAT_b70;
+        FUN_0102e284(DAT_b68, 0x1040,
+                     &workspace.frame.missing_service, 0);
+        return -0x13;
+    }
+
+    {
+        unsigned int *src = (unsigned int *)DAT_b74;
+        workspace.frame.credentials[0] = src[0];
+        workspace.frame.credentials[1] = src[1];
+        workspace.frame.credentials[2] = src[2];
+    }
+    iVar1 = FUN_010091e8(workspace.frame.credentials);
+    if (iVar1 != 0) {
+        workspace.startup.code = 3;
+        workspace.startup.message = DAT_b78;
+        workspace.startup.status = iVar1;
+        FUN_0102e284(DAT_b68, 0x1840, &workspace.startup, 0);
+        return -0x16;
+    }
+
+    iVar1 = FUN_01031804(0xffffffffu, 0xffffffffu);
+    if (iVar1 != 0) {
+        return iVar1;
+    }
+
+    iVar1 = FUN_010091cc(3);
+    if (iVar1 == 0) {
+        iVar1 = FUN_01008fd4(DAT_b80, DAT_b7c);
+        if (iVar1 == 0) {
+            workspace.frame.timer_period = DAT_b84;
+            iVar2 = thunk_FUN_0101f650(&workspace.frame.timer_period);
+            if (iVar2 != 0) {
+                goto LAB_b24;
+            }
+        }
+        FUN_01031814();
+    } else {
+    LAB_b24:
+        FUN_01031814();
+        iVar1 = -0x86;
+    }
+    return iVar1;
+}

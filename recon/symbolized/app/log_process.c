@@ -1,49 +1,76 @@
 #include "g1_app_symbols.h"
-/* named: log_process */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-*/
-/* Reconstructed log_process @ 0x4d594  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004d594 @ 0x0004d594
+ * public-name: log_process
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_dropped                              <= FUN_0004d4a8 @ 0x0004d4a8
+ *   mpsc_pbuf_claim                          <= FUN_0004d56c @ 0x0004d56c
+ *   mpsc_pbuf_free                           <= FUN_0004d578 @ 0x0004d578
+ *   log_process                              <= FUN_0004d594 @ 0x0004d594
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_882a0                             @ 0x000882a0
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0cae                             @ 0x000f0cae
+ *   rodata_f0cff                             @ 0x000f0cff
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   log_process_timestamp                    @ 0x200056a0
+ *   log_backend_count                        @ 0x2000a0d4
+ *   log_buffered_cnt                         @ 0x2000a0d8
+ *   log_process_active                       @ 0x2001d44b
+ */
+/* Full ABI-faithful reconstruction of FUN_0004d594 @ 0x4d594 (220 bytes). */
 #include <stdint.h>
-extern int log_dropped(uint32_t,uint32_t);
-extern int mpsc_pbuf_claim(void);
-extern int mpsc_pbuf_free(int);
-extern void assert_post_action(uint32_t,int);
-extern void printk();
-extern int64_t thunk_FUN_00074f68(void);
-extern int FUN_0004d588_tail(void);
-int log_process(void){
-    if(*(volatile char*)((uintptr_t)&log_process_active) /*=0x2001d44b*/==0) return 0;
-    int iVar3=mpsc_pbuf_claim();
-    if(iVar3!=0){
-        *(volatile int*)((uintptr_t)&log_buffered_cnt) /*=0x2000a0d8*/=*(volatile int*)((uintptr_t)&log_buffered_cnt) /*=0x2000a0d8*/-1;
-        uint32_t* puVar6=(uint32_t*)((uintptr_t)&tbl_880d8) /*=0x882a0*/;
-        uint32_t* puVar1=(uint32_t*)((uintptr_t)&__settings_handler_static_list_start) /*=0x882b0*/;
-        while(1){
-            if(puVar1<puVar6){ printk(); printk(); assert_post_action("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,0x1c5); }
-            if(puVar1<=puVar6) break;
-            if(*(volatile char*)(*(volatile int*)(puVar6+1)+5)!=0){
-                (*(void(* volatile*)(void*,int))(*(volatile int*)puVar6))(puVar6,iVar3);
-            }
-            puVar6=puVar6+4;
-        }
-        mpsc_pbuf_free(iVar3);
-    }
-    volatile uint32_t* puVar2=(volatile uint32_t*)((uintptr_t)&log_process_timestamp) /*=0x200056a0*/;
-    if(*(volatile int*)((uintptr_t)&log_backend_count) /*=0x2000a0d4*/>0){
-        int64_t lVar8=thunk_FUN_00074f68();
-        uint64_t prod=(uint64_t)lVar8*1000;
-        uint32_t hi=(uint32_t)(prod>>32);
-        uint32_t uVar5=((uint32_t)prod>>0xf)|(hi<<17);
-        uint32_t p2_0=puVar2[0];
-        uint32_t p2_1=puVar2[1];
-        uint32_t uVar4=((hi>>0xf)-p2_1)-(uint32_t)(uVar5<p2_0);
-        int bVar7=(1000<(uVar5-p2_0));
-        if(uVar4!=0 || uVar4<(uint32_t)bVar7){ log_dropped(p2_1,uVar4-!bVar7); }
-    }
-    uint32_t uVar4=puVar2[0];
-    puVar2[0]=uVar4+1000;
-    puVar2[1]=puVar2[1]+(uint32_t)(0xfffffc17u<uVar4);
-    return FUN_0004d588_tail();
-}
 
+extern uint32_t mpsc_pbuf_claim(void);
+extern void mpsc_pbuf_free(uint32_t item);
+extern void printk(uintptr_t, ...);
+extern void assert_post_action(uintptr_t, uint32_t);
+extern uint64_t thunk_FUN_00074f68(void);
+extern void log_dropped(uint32_t low, uint32_t high);
+extern int FUN_0004d588(void);
+
+struct listener_entry {
+    void (**vtable)(struct listener_entry *, uint32_t);
+    const uint8_t *state;
+    uint32_t reserved[2];
+};
+
+int log_process(void)
+{
+    if (*(volatile uint8_t *)((unsigned long)&log_process_active) /*=0x2001d44b*/ == 0)
+        return 0;
+
+    uint32_t item = mpsc_pbuf_claim();
+    if (item != 0) {
+        __atomic_sub_fetch((uint32_t *)((unsigned long)&log_buffered_cnt) /*=0x2000a0d8*/, 1, __ATOMIC_ACQ_REL);
+
+        struct listener_entry *entry = (struct listener_entry *)((unsigned long)&rodata_882a0) /*=0x882a0*/;
+        struct listener_entry *end = (struct listener_entry *)((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
+        while (entry < end) {
+            if (end < entry) {
+                printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0cff) /*=0xf0cff*/,
+                             ((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x1c5u);
+                printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
+                assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/, 0x1c5u);
+            }
+            if (entry->state[5] != 0)
+                (*entry->vtable)(entry, item);
+            ++entry;
+        }
+        mpsc_pbuf_free(item);
+    }
+
+    volatile uint64_t *deadline = (volatile uint64_t *)((unsigned long)&log_process_timestamp) /*=0x200056a0*/;
+    if (*(volatile int32_t *)((unsigned long)&log_backend_count) /*=0x2000a0d4*/ > 0) {
+        uint64_t now = (thunk_FUN_00074f68() * UINT64_C(1000)) >> 15;
+        uint64_t elapsed = now - *deadline;
+        if (elapsed >= UINT64_C(1001))
+            log_dropped((uint32_t)elapsed, (uint32_t)(elapsed >> 32));
+    }
+    *deadline += UINT64_C(1000);
+
+    return FUN_0004d588();
+}

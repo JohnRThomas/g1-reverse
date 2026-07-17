@@ -1,4 +1,7 @@
-/* named: FUN_0008493a */
+/* readable reconstruction; identity: FUN_0008493a @ 0x0008493a
+ * public-name: FUN_0008493a
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0008493a @ 0x8493a  (parity: 300/300 trials, PROVEN) */
 
 int FUN_0008493a(int param_1, unsigned char *param_2)
@@ -21,4 +24,3 @@ int FUN_0008493a(int param_1, unsigned char *param_2)
     *(volatile unsigned int*)puVar2 = 1;
     return 0;
 }
-

@@ -1,10 +1,24 @@
-/* named: esb_send_command_and_wait_ack */
-/* Reconstructed esb_send_command_and_wait_ack @ 0x27448  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00027448 @ 0x00027448
+ * public-name: esb_send_command_and_wait_ack
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   g_esb_seg_tx_frame_opcode                @ 0x20018c6f
+ *   g_esb_seg_tx_frame_payload               @ 0x20018c71
+ *   g_esb_seg_ack_echo_buf                   @ 0x20018d6b
+ *   g_esb_seg_tx_lock_flag                   @ 0x20018d8c
+ */
+/* Reconstructed FUN_00027448 @ 0x27448  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
 extern int32_t is_battery_critical(void);
 extern void k_msleep_ticks32768_a(int32_t);
-extern int32_t memcmp(void *a, void *b, uint32_t n);
+extern int32_t FUN_00086be4(void *a, void *b, uint32_t n);
 extern void memcpy(void *dst, void *src, uint32_t n);
 extern void FUN_00086c1e(void *a, void *b, uint32_t c, uint32_t d);
 extern void memset_bytes(void *dst, int32_t val, uint32_t n);
@@ -71,7 +85,7 @@ uint32_t esb_send_command_and_wait_ack(char *param_1, uint32_t param_2, uint32_t
       puVar5 = (uint32_t *)0x20018d6bUL;
       if (param_2 == 1) {
         *(volatile uint8_t *)(0x20018d6bUL + 0x15) = *(uint8_t *)(param_1 + 0x6e1);
-        iVar2 = memcmp((void *)0x20018d6bUL, puVar10, 0x16);
+        iVar2 = FUN_00086be4((void *)0x20018d6bUL, puVar10, 0x16);
         if (iVar2 == 0) goto LAB_000275de;
         puVar6 = (uint32_t *)(0x20018c6fUL + 1);
         *(volatile uint8_t *)0x20018c6fUL = 4;
@@ -128,4 +142,3 @@ LAB_000275de:
   *pcVar1 = 0;
   return uVar9;
 }
-

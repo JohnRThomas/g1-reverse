@@ -1,5 +1,10 @@
-/* named: double_is_unordered */
-/* Reconstructed double_is_unordered @ 0xde2c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000de2c @ 0x0000de2c
+ * public-name: double_is_unordered
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   double_is_unordered                      <= FUN_0000de2c @ 0x0000de2c
+ */
+/* Reconstructed FUN_0000de2c @ 0xde2c  (parity: 300/300 trials, PROVEN) */
 
 int double_is_unordered(int param_1, unsigned int param_2, int param_3, unsigned int param_4)
 {
@@ -9,4 +14,3 @@ int double_is_unordered(int param_1, unsigned int param_2, int param_3, unsigned
     }
     return 1;
 }
-

@@ -6,7 +6,7 @@ extern void FUN_01008d00(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_
 
 void FUN_01020a00(int32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4)
 {
-    const uint32_t iVar1 = ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/;
+    const uint32_t iVar1 = 0x210015f0;
     *(volatile uint8_t *)(iVar1 + 0x18) = (uint8_t)param_1;
 
     const uint32_t iVar2 = REG_41008000 /*=0x41008000*/;
@@ -32,4 +32,3 @@ void FUN_01020a00(int32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t 
     }
     *(volatile uint32_t *)(iVar2 + 0x588) = *(volatile uint32_t *)(iVar3 + 0x80);
 }
-

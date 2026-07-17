@@ -9,4 +9,3 @@ unsigned int FUN_010208cc(char *param_1)
     *param_1 = (char)(0 - uVar1);
     return 1;
 }
-

@@ -1,13 +1,11 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01039bb0 @ 0x1039bb0  (parity 300 trials PROVEN) */
+/* net-core FUN_01039bb0 @ 0x1039bb0 */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+extern void z_except_reason(unsigned int reason) __attribute__((noreturn));
 
 unsigned int FUN_01039bb0(void)
 {
-    __asm__ volatile(
-        "eors r0, r0\n\t"
-        "msr basepri, r0\n\t"
-        "mov.w r0, #4\n\t"
-        "svc #2\n\t"
-    );
+    __set_BASEPRI(0);
+    z_except_reason(4);
 }
-

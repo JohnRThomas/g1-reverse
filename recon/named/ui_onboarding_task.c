@@ -1,11 +1,26 @@
-/* named: ui_onboarding_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x200034f5  onboarding_last_step_cache   
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001cdce  onboarding_secondary_reset_flag 
-*/
-/* Reconstructed ui_onboarding_task @ 0x42d44  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00042d44 @ 0x00042d44
+ * public-name: ui_onboarding_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   onboarding_retry_watchdog_update         <= FUN_00040708 @ 0x00040708
+ *   onboarding_sync_data                     <= FUN_00042c8c @ 0x00042c8c
+ *   ui_onboarding_task                       <= FUN_00042d44 @ 0x00042d44
+ *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   send_response_data_to_ble                <= FUN_00047ba8 @ 0x00047ba8
+ *   k_uptime_get_8                           <= FUN_0007d382 @ 0x0007d382
+ *   u64_sub                                  <= FUN_0007d3c2 @ 0x0007d3c2
+ * address symbols (name @ address):
+ *   g_log_level                              @ 0x2000230c
+ *   onboarding_last_step_cache               @ 0x200034f5
+ *   g_onboarding_step_retry_cnt              @ 0x20004bf0
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   onboarding_secondary_reset_flag          @ 0x2001cdce
+ */
+/* Reconstructed FUN_00042d44 @ 0x42d44  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -133,4 +148,3 @@ undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)
     }
     return 0;
 }
-

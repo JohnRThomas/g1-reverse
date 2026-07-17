@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: gatt_ccc_write */
-/* Reconstructed gatt_ccc_write @ 0x5a464  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a464 @ 0x0005a464
+ * public-name: gatt_ccc_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_delayed_store_enqueue               <= FUN_00059d24 @ 0x00059d24
+ *   gatt_ccc_write                           <= FUN_0005a464 @ 0x0005a464
+ *   gatt_ccc_changed                         <= FUN_000825c0 @ 0x000825c0
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f486f                             @ 0x000f486f
+ */
+/* Reconstructed FUN_0005a464 @ 0x5a464  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00059c48(int,int);
 extern void gatt_delayed_store_enqueue(int,int,int);
@@ -20,8 +31,8 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
                 if (uVar4 == 0) return param_4;
                 puVar2 = (volatile uint8_t*)FUN_00059c48(0, iVar5);
                 if (puVar2 == 0){
-                    local_24 = "No space to store CCC cfg" /*=0xf486f*/; local_28 = 2;
-                    FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, &local_28);
+                    local_24 = ((unsigned long)&rodata_f486f) /*=0xf486f*/; local_28 = 2;
+                    FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, &local_28);
                     return -0x11;
                 }
                 FUN_000828da((void*)(puVar2+1), param_1+0x90);
@@ -40,7 +51,7 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
             if (*(volatile uint16_t*)(iVar5+10) != uVar4) gatt_ccc_changed(param_2, iVar5);
             if (uVar1 != uVar4) gatt_delayed_store_enqueue(*(volatile uint8_t*)(param_1+8), param_1+0x90, 0);
             if (uVar4 == 0){
-                FUN_000828da((void*)(puVar2+1), ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/);
+                FUN_000828da((void*)(puVar2+1), ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/);
                 *puVar2 = 0;
                 *(volatile uint16_t*)(puVar2+8) = 0;
             }
@@ -48,4 +59,3 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
     } else param_4 = -7;
     return param_4;
 }
-

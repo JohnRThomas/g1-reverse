@@ -1,5 +1,16 @@
-/* named: gpio_configure_pin_output */
-/* Reconstructed gpio_configure_pin_output @ 0x6666c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006666c @ 0x0006666c
+ * public-name: gpio_configure_pin_output
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_configure_pin_output                <= FUN_0006666c @ 0x0006666c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f09d1                             @ 0x000f09d1
+ *   rodata_f0a04                             @ 0x000f0a04
+ */
+/* Reconstructed FUN_0006666c @ 0x6666c  (parity: 300/300 trials, PROVEN) */
 extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern long long assert_post_action(unsigned,unsigned);
 void gpio_configure_pin_output(unsigned param_1, int param_2, unsigned param_3, unsigned param_4){
@@ -28,4 +39,3 @@ L_join:
         *addr = (*addr & 0xfffcf0f0) | (r1v << 8) | 2;
     }
 }
-

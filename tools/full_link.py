@@ -12,7 +12,11 @@ CC = SDK + "/arm-zephyr-eabi-gcc"; AS = SDK + "/arm-zephyr-eabi-as"
 LD = SDK + "/arm-zephyr-eabi-ld"; NM = SDK + "/arm-zephyr-eabi-nm"
 CORE = sys.argv[1] if len(sys.argv) > 1 else "app"
 CF = ["-c", "-Os", "-mcpu=cortex-m33", "-mthumb", "-ffreestanding", "-w",
-      "-ffunction-sections", "-fdata-sections", "-I", BASE + "/recon/symbols"]
+      "-ffunction-sections", "-fdata-sections", "-I", BASE + "/recon/symbols",
+      "-I", BASE + "/recon/app/src", "-I", BASE + "/recon/net/src",
+      "-I", "/Users/freedomcoder/ncs251/modules/lib/liblc3/include",
+      "-I", "/Users/freedomcoder/ncs251/modules/lib/liblc3/src",
+      "-I", "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include"]
 OBJD = BASE + "/build/%s_full_obj" % CORE
 
 LIBPAT = re.compile(r'^(k_|z_|sys_|bt_|net_buf|nrf|nrfx|hci|log_|logging|settings|nvs|'
@@ -23,6 +27,10 @@ LIBPAT = re.compile(r'^(k_|z_|sys_|bt_|net_buf|nrf|nrfx|hci|log_|logging|setting
 
 def compile_all():
     os.makedirs(OBJD, exist_ok=True)
+    # A renamed/generated source must not leave an old object participating in
+    # the next partial link; that previously manufactured duplicate symbols.
+    for stale in glob.glob(OBJD + "/*.o"):
+        os.unlink(stale)
     srcs = glob.glob(BASE + "/recon/symbolized/%s/*.c" % CORE)
     if CORE == "app":
         srcs += glob.glob(BASE + "/recon/data/*.c")
@@ -34,12 +42,15 @@ def compile_all():
         tool = AS if f.endswith(".S") else CC
         flags = ["-mcpu=cortex-m33", "-mthumb"] if f.endswith(".S") else CF
         r = subprocess.run([tool] + flags + [f, "-o", o], capture_output=True, text=True)
-        return f, r.returncode
+        return f, r.returncode, r.stderr
     ok = fail = 0
+    failures = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
-        for f, rc in ex.map(cc, srcs + blobs):
+        for f, rc, stderr in ex.map(cc, srcs + blobs):
             ok += rc == 0; fail += rc != 0
-    return ok, fail, len(srcs + blobs)
+            if rc != 0:
+                failures.append((f, stderr.strip()))
+    return ok, fail, len(srcs + blobs), failures
 
 def link_and_report():
     objs = sorted(glob.glob(OBJD + "/*.o"))
@@ -61,8 +72,11 @@ def link_and_report():
             "library": len(lib), "unknown": sorted(unknown)}
 
 if __name__ == "__main__":
-    ok, fail, tot = compile_all()
+    ok, fail, tot, failures = compile_all()
     print("[%s] compiled %d/%d objects (%d fail)" % (CORE, ok, tot, fail))
+    for path, error in failures[:50]:
+        print("COMPILE_FAIL", os.path.relpath(path, BASE))
+        print(error[:1200])
     rep = link_and_report()
     print("link rc=%d %s" % (rep["link_rc"], rep["link_err"]))
     print("undefined: %d total | %d pinned/aliased | %d library-external | %d UNKNOWN"

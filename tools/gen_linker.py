@@ -21,9 +21,9 @@ def main():
     for a, rec in smap.items():
         k = rec.get("kind")
         n = rec.get("name")
-        if k not in ("ram_global", "kobject", "rodata_ref") or not n:
+        if k not in ("ram_global", "kobject", "rodata_ref", "string") or not n:
             continue
-        v = int(a, 16)
+        v = int(rec.get("symbol_base", a), 16)
         if n in seen:
             # same name, different addr already caught by merge dedupe; skip extras
             if seen[n] != v:

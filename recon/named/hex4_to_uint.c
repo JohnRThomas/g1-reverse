@@ -1,5 +1,10 @@
-/* named: hex4_to_uint */
-/* Reconstructed hex4_to_uint @ 0x84e9a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084e9a @ 0x00084e9a
+ * public-name: hex4_to_uint
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   hex4_to_uint                             <= FUN_00084e9a @ 0x00084e9a
+ */
+/* Reconstructed FUN_00084e9a @ 0x84e9a  (parity: 300/300 trials, PROVEN) */
 
 int hex4_to_uint(unsigned char *param_1)
 {
@@ -23,4 +28,3 @@ int hex4_to_uint(unsigned char *param_1)
   }
   return uVar3 + iVar2;
 }
-

@@ -5,7 +5,7 @@ extern void FUN_01032908(void);
 
 unsigned int FUN_01033968(void)
 {
-    volatile unsigned char *pcVar1 = (volatile unsigned char *)((uintptr_t)&g_net_radio_busy_flag) /*=0x21006458*/;
+    volatile unsigned char *pcVar1 = (volatile unsigned char *)((unsigned long)&g_net_radio_busy_flag) /*=0x21006458*/;
     unsigned int iVar2 = REG_41008000 /*=0x41008000*/;
     unsigned int uVar3;
 
@@ -14,7 +14,7 @@ unsigned int FUN_01033968(void)
         FUN_01032908();
         *(volatile unsigned int *)(iVar2 + 0x200) = 0;
         *(volatile unsigned int *)(iVar2 + 0x308) = 0xffffffff;
-        *(volatile unsigned int *)((uintptr_t)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/ = 0;
+        *(volatile unsigned int *)((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/ = 0;
         *(volatile unsigned int *)(iVar2 + 0x110) = 0;
         *(volatile unsigned int *)(iVar2 + 0x10) = 1;
         while (*(volatile unsigned int *)(iVar2 + 0x110) == 0) {
@@ -27,5 +27,3 @@ unsigned int FUN_01033968(void)
     }
     return uVar3;
 }
-
-

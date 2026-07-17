@@ -1,9 +1,33 @@
-/* named: k_msgq_get */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed k_msgq_get @ 0x72240  (parity: 48/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00072240 @ 0x00072240
+ * public-name: k_msgq_get
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
+ *   z_ready_thread_locked                    <= FUN_000738d4 @ 0x000738d4
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f53ff                             @ 0x000f53ff
+ *   rodata_f7df6                             @ 0x000f7df6
+ *   rodata_f80cc                             @ 0x000f80cc
+ *   rodata_f80ee                             @ 0x000f80ee
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_00072240 @ 0x72240  (parity: 48/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int z_spin_lock_valid(int,...);
 extern int z_spin_unlock_valid(int,...);
 extern int z_spin_lock_set_owner(int,...);
@@ -14,10 +38,10 @@ extern int z_unpend_first_thread(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
 extern int printk(int,...);
 extern int memcpy(int,...);
-static inline int ipsr(void){int r;__asm__ volatile("mrs %0, ipsr":"=r"(r));return r;}
-static inline int rd_basepri(void){int r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void wr_basepri_max(int v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb(void){__asm__ volatile("isb 0xf":::"memory");}
+static inline int ipsr(void){return (int)__get_IPSR();}
+static inline int rd_basepri(void){return (int)__get_BASEPRI();}
+static inline void wr_basepri_max(int v){__set_BASEPRI_MAX((uint32_t)v);}
+static inline void isb(void){__ISB();}
 
 int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
 {
@@ -97,4 +121,3 @@ int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
 LAB_000722a4:
     assert_post_action(uVar7,uVar3);
 }
-

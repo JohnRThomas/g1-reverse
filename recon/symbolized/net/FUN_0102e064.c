@@ -14,7 +14,7 @@ typedef unsigned long long (*fnptr2_t)(int *, int);
 
 void FUN_0102e064(void)
 {
-  volatile int *piVar1 = (volatile int *)((uintptr_t)&rodata_103c0fc) /*=0x103c0fc*/;
+  volatile int *piVar1 = (volatile int *)((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/;
   unsigned int uVar2;
   int iVar3;
   int iVar4;
@@ -25,10 +25,10 @@ void FUN_0102e064(void)
   unsigned int uVar9;
   unsigned long long uVar10;
 
-  if (((unsigned int)((int)piVar1 - ((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/)) >> 4 == 0) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, " type: %u" /*=0x103d5d7*/, 0x35c);
+  if (((unsigned int)((int)piVar1 - ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/)) >> 4 == 0) {
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x35c);
     uVar5 = 0x35c;
-    FUN_01039bb0(" type: %u" /*=0x103d5d7*/, uVar5);
+    FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, uVar5);
   }
   iVar3 = FUN_0102dcf4(0);
   if (iVar3 == 0) {
@@ -40,11 +40,11 @@ void FUN_0102e064(void)
   }
   iVar4 = FUN_0103b650();
   iVar4 = *(volatile int *)(8 + iVar4);
-  *(volatile int *)((uintptr_t)&g_net_current_thread_field_cache) /*=0x21004660*/ = iVar4;
-  if ((iVar4 != 0) && (9 < *(volatile int *)((uintptr_t)&g_net_tick_pending_cnt) /*=0x21004668*/)) {
-    FUN_01036824(((uintptr_t)&g_net_telemetry_slot_944) /*=0x21000944*/);
+  *(volatile int *)((unsigned long)&g_net_current_thread_field_cache) /*=0x21004660*/ = iVar4;
+  if ((iVar4 != 0) && (9 < *(volatile int *)((unsigned long)&g_net_tick_pending_cnt) /*=0x21004668*/)) {
+    FUN_01036824(0x21000944);
   }
-  uVar2 = ((uintptr_t)&g_net_telemetry_slot_944) /*=0x21000944*/;
+  uVar2 = 0x21000944;
   iVar4 = 0;
   for (;;) {
     do {
@@ -57,13 +57,13 @@ void FUN_0102e064(void)
       uVar6 = (unsigned int)(uVar10 >> 32);
       iVar4 = (int)uVar10;
     } while (iVar4 != 0);
-    piVar8 = (int *)((uintptr_t)&rodata_103c0ec) /*=0x103c0ec*/;
+    piVar8 = (int *)((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
     if (iVar7 != 0) {
       for (;;) {
         if (piVar1 < (volatile int *)piVar8) {
-          FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, " type: %u" /*=0x103d5d7*/, 0x350);
+          FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x350);
           uVar5 = 0x350;
-          FUN_01039bb0(" type: %u" /*=0x103d5d7*/, uVar5);
+          FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, uVar5);
         }
         if (piVar1 <= (volatile int *)piVar8) break;
         {
@@ -80,4 +80,3 @@ void FUN_0102e064(void)
     FUN_0103689c(uVar2, uVar6, uVar5, uVar9);
   }
 }
-

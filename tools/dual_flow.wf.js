@@ -30,12 +30,13 @@ Your batch is element ${i} of ${SCR}/sym_batches.json (a list of .c basenames in
   PYTHONSAFEPATH=1 .venv/bin/python -c "import json;print('\\n'.join(json.load(open('${SCR}/sym_batches.json'))[${i}]))"
 
 Inputs you may use:
-  - ${SCR}/symbol_map.json : { "0xADDR": "real_name", ... } for renaming FUN_xxxx/sub_xxxx callees (the hex in the FUN_/sub_ name IS the address; map it).
+  - recon/catalogs/function_names_app.json: durable, reversible function address/name records. Use by_address["0x........"].name only when human=true; preserve raw_name/address in the generated back-map.
+  - ${SCR}/symbol_map.json is DATA/address symbols only ({addr,class,kind,name,...}); it is NEVER a function-name map.
   - recon/application/app/src/device_info.h : recovered global-state struct; its base RAM address is 0x200069FC (device_info_t, size 0x18E0). A referenced RAM address in [0x200069FC, 0x200082DC) is device_info_t + (addr-0x200069FC) -> name the field by matching the offset to device_info.h.
   - The NCS 2.5.1 source at /Users/freedomcoder/ncs251 (grep for struct layouts / Zephyr device APIs) and even_protocol.h for BLE service IDs.
 
 Skip any file that already exists in recon/app/src_sym/ (already done). For each remaining file recon/app/src/NAME.c produce recon/app/src_sym/NAME.c:
-  1. Rename every FUN_xxxxx / sub_xxxxx callee to its real name via symbol_map.json (leave truly-unknown ones as-is).
+  1. Rename every FUN_xxxxx / sub_xxxxx callee through function_names_app.json (leave human=false entries raw). Never infer identity from a readable name.
   2. Replace device_info_t absolute addresses with a documented reference to the field (e.g. /* device_info.current_app_id */), keeping the numeric address in a comment so parity is preserved.
   3. Recognize Zephyr driver-vtable dispatch (obj->api->method) and comment it as the equivalent Zephyr call (flash_erase/flash_read/etc.).
   4. Keep the code semantically identical (do NOT change logic) — this is renaming/annotation only. Preserve the parity header comment.

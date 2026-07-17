@@ -1,6 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: bt_conn_encrypt_change_handle_generic */
-/* Reconstructed bt_conn_encrypt_change_handle_generic @ 0x54308  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054308 @ 0x00054308
+ * public-name: bt_conn_encrypt_change_handle_generic
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_security_err_lookup                   <= FUN_00054250 @ 0x00054250
+ *   bt_conn_encrypt_change_handle_generic    <= FUN_00054308 @ 0x00054308
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   smp_alloc_pairing_keys                   <= FUN_0005e47c @ 0x0005e47c
+ *   update_sec_level                         <= FUN_00080e38 @ 0x00080e38
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_f2e3c                             @ 0x000f2e3c
+ *   rodata_f30dd                             @ 0x000f30dd
+ */
+/* Reconstructed FUN_00054308 @ 0x54308  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int bt_security_err_lookup(int);
 extern void ble_conn_unref(int);
@@ -19,8 +34,8 @@ void bt_conn_encrypt_change_handle_generic(int param_1){
     volatile int loc[8];
     int iVar2 = ble_conn_lookup_masked(uVar1, 0xf);
     if (iVar2 == 0){
-        loc[0]=3; loc[1]=0; loc[2]=uVar1; loc[3]="Unable to look up conn with handle %u" /*=0xf2e3c*/;
-        FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1840, (void*)&loc[0]);
+        loc[0]=3; loc[1]=0; loc[2]=uVar1; loc[3]=((unsigned long)&rodata_f2e3c) /*=0xf2e3c*/;
+        FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840, (void*)&loc[0]);
         return;
     }
     if (cVar5 == 0){
@@ -32,8 +47,8 @@ void bt_conn_encrypt_change_handle_generic(int param_1){
             if (iVar4 == 0){
                 uVar3 = bt_security_err_lookup(5);
                 ble_notify_remote_info_available(iVar2, 5, uVar3);
-                loc[4]=2; loc[5]="Failed to set required security level" /*=0xf30dd*/;
-                FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x1040, (void*)&loc[4]);
+                loc[4]=2; loc[5]=((unsigned long)&rodata_f30dd) /*=0xf30dd*/;
+                FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1040, (void*)&loc[4]);
                 FUN_00056a68(iVar2, 5);
                 goto LAB;
             }
@@ -47,4 +62,3 @@ void bt_conn_encrypt_change_handle_generic(int param_1){
     LAB:
     ble_conn_unref(iVar2);
 }
-

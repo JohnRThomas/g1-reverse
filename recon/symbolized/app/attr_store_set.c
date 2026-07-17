@@ -1,9 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: attr_store_set */
-/* globals referenced:
-//   0x20007bc0  g_pt_nfc_link_cfg            
-*/
-/* Reconstructed attr_store_set @ 0x30178  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00030178 @ 0x00030178
+ * public-name: attr_store_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   attr_store_retry_delay                   <= FUN_0003016c @ 0x0003016c
+ *   attr_store_set                           <= FUN_00030178 @ 0x00030178
+ * address symbols (name @ address):
+ *   g_pt_nfc_link_cfg                        @ 0x20007bc0
+ */
+/* Reconstructed FUN_00030178 @ 0x30178  (parity: 300/300 trials, PROVEN) */
 
 extern void attr_store_retry_delay(int a);
 typedef int (*fp_t)(void*,int);
@@ -21,7 +26,7 @@ unsigned int attr_store_set(unsigned int param_1, unsigned int param_2, unsigned
   *(unsigned int*)(buf+8) = param_3;
 
   do {
-    int *piVar1 = *(volatile int **)((uintptr_t)&g_pt_nfc_link_cfg) /*=0x20007bc0*/;
+    int *piVar1 = *(volatile int **)((unsigned long)&g_pt_nfc_link_cfg) /*=0x20007bc0*/;
     fp_t fn = *(volatile fp_t*)((char*)piVar1 + 4);
     iVar2 = fn(buf, 6);
     if (iVar2 == 0) return 0;
@@ -30,4 +35,3 @@ unsigned int attr_store_set(unsigned int param_1, unsigned int param_2, unsigned
   } while (cVar3 != 0);
   return 0xffffffff;
 }
-

@@ -8,8 +8,8 @@ extern int FUN_0101f888(void);
 extern void FUN_0101fca8(void);
 extern void FUN_010208b0(void);
 
-#define DAT_7f0 ((uintptr_t)&g_net_own_addr_info) /*=0x21000f20*/
-#define LIT_7f4 ((uintptr_t)&rodata_1011add) /*=0x1011add*/
+#define DAT_7f0 ((unsigned long)&g_net_own_addr_info) /*=0x21000f20*/
+#define LIT_7f4 ((unsigned long)&rodata_1011add) /*=0x1011add*/
 
 unsigned int FUN_0101272c(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -76,4 +76,3 @@ unsigned int FUN_0101272c(unsigned char *param_1, unsigned int param_2, unsigned
     FUN_0100ef88(param_1 + 0xa6, uVar2, 2);
     return 0;
 }
-

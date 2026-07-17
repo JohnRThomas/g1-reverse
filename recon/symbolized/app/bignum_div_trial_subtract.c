@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: bignum_div_trial_subtract */
-/* Reconstructed bignum_div_trial_subtract @ 0x87184  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087184 @ 0x00087184
+ * public-name: bignum_div_trial_subtract
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bignum_div_trial_subtract                <= FUN_00087184 @ 0x00087184
+ *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
+ */
+/* Reconstructed FUN_00087184 @ 0x87184  (parity: 300/300 trials, PROVEN) */
 
 extern int bignum_compare_abs(void *param_1);
 
@@ -24,13 +30,13 @@ unsigned int bignum_div_trial_subtract(void *param_1, void *param_2)
       puVar12=puVar8; puVar14=puVar6;
       do {
         puVar13 = puVar12+1;
-        uVar1 = uVar7*(*puVar12 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) + uVar10;
+        uVar1 = uVar7*(*puVar12 & 0xffff) + uVar10;
         uVar3 = uVar7*(*puVar12>>16) + (uVar1>>16);
         uVar10 = uVar3>>16;
-        uVar1 = ((*puVar14 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) - (uVar1 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)) + iVar11;
-        iVar4 = (((int)uVar1 >> 16) - (uVar3 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)) + (int)(*puVar14 >> 16);
+        uVar1 = ((*puVar14 & 0xffff) - (uVar1 & 0xffff)) + iVar11;
+        iVar4 = (((int)uVar1 >> 16) - (uVar3 & 0xffff)) + (int)(*puVar14 >> 16);
         iVar11 = iVar4>>16;
-        *puVar14 = (uVar1 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) | (iVar4<<16);
+        *puVar14 = (uVar1 & 0xffff) | (iVar4<<16);
         puVar12 = puVar13;
         puVar14 = puVar14+1;
       } while (puVar13 <= puVar9);
@@ -47,10 +53,10 @@ unsigned int bignum_div_trial_subtract(void *param_1, void *param_2)
       puVar2 = puVar6;
       do {
         puVar12 = puVar8+1;
-        uVar10 = ((*puVar2 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) - (*puVar8 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)) + iVar11;
+        uVar10 = ((*puVar2 & 0xffff) - (*puVar8 & 0xffff)) + iVar11;
         iVar4 = (((int)uVar10>>16) - (int)(*puVar8>>16)) + (int)(*puVar2>>16);
         iVar11 = iVar4>>16;
-        *puVar2 = (uVar10 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) | (iVar4<<16);
+        *puVar2 = (uVar10 & 0xffff) | (iVar4<<16);
         puVar2 = puVar2+1;
         puVar8 = puVar12;
       } while (puVar12 <= puVar9);
@@ -66,4 +72,3 @@ unsigned int bignum_div_trial_subtract(void *param_1, void *param_2)
   }
   return uVar7;
 }
-

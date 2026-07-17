@@ -1,5 +1,19 @@
-/* named: vfprintf_core */
-/* Reconstructed vfprintf_core @ 0x78f88  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078f88 @ 0x00078f88
+ * public-name: vfprintf_core
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   vfprintf_core                            <= FUN_00078f88 @ 0x00078f88
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   stdio_reset_ungetc_buffer                <= FUN_00087862 @ 0x00087862
+ *   fnmatch_build_class_table                <= FUN_0008789c @ 0x0008789c
+ * address symbols (name @ address):
+ *   rodata_79274                             @ 0x00079274
+ *   rodata_877ed                             @ 0x000877ed
+ *   ADDR_stdio_reset_ungetc_buffer_THUMB     @ 0x00087863
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ *   rodata_f8b71                             @ 0x000f8b71
+ */
+/* Reconstructed FUN_00078f88 @ 0x78f88  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte;
 typedef unsigned int uint;
@@ -20,27 +34,31 @@ int vfprintf_core(int param_1, int *param_2, byte *param_3, int *param_4)
   byte *pbVar6;
   int *local_2a8;
   unsigned char auStack_2a4[256];
-  uint local_1a4;
-  int local_1a0;
-  uint local_19c;
-  int local_198 = 0;
-  int local_194 = 0;
-  unsigned char *local_190;
-  int local_18c;
+  struct scan_conversion_state {
+    uint flags;
+    int base;
+    uint width;
+    int assignments;
+    int consumed;
+    unsigned char *scratch;
+    int kind;
+  } state;
   int local_28;
   fnptr local_24;
 
   local_28 = 0x877ed;
   local_24 = (fnptr)0x87863UL;
   local_2a8 = param_4;
-  local_190 = auStack_2a4;
+  state.assignments = 0;
+  state.consumed = 0;
+  state.scratch = auStack_2a4;
 
 LAB_00078fae:
   for (;;) {
     for (;;) {
       iVar2 = 0xf8b71L;
       uVar5 = (uint)*param_3;
-      if (uVar5 == 0) return local_198;
+      if (uVar5 == 0) return state.assignments;
       pbVar6 = param_3 + 1;
       uVar4 = (*(volatile byte*)(iVar1 + uVar5)) & 8;
       if (uVar4 == 0) break;
@@ -48,7 +66,7 @@ LAB_00078fae:
       while (1) {
         if (!(0 < (int)param_2[1] || (iVar2 = local_24(param_1, param_2), iVar2 == 0))) break;
         if (!((int)((uint)(*(volatile byte*)(iVar1 + (uint)*(byte*)*param_2)) << 0x1c) < 0)) break;
-        local_194 = local_194 + 1;
+        state.consumed = state.consumed + 1;
         *param_2 = *param_2 + 1;
         param_2[1] = param_2[1] - 1;
       }
@@ -57,27 +75,27 @@ LAB_00078fae:
   LAB_00078ff8:
     if (((int)param_2[1] < 1) && (iVar2 = local_24(param_1, param_2), iVar2 != 0))
       goto LAB_00079138;
-    if (*(byte*)*param_2 != uVar5) return local_198;
+    if (*(byte*)*param_2 != uVar5) return state.assignments;
     *param_2 = *param_2 + 1;
     param_2[1] = param_2[1] - 1;
-    local_194 = local_194 + 1;
+    state.consumed = state.consumed + 1;
     param_3 = pbVar6;
   }
-  local_1a4 = uVar4;
-  local_19c = uVar4;
+  state.flags = uVar4;
+  state.width = uVar4;
   if (param_3[1] == 0x2a) {
-    local_1a4 = 0x10;
+    state.flags = 0x10;
     pbVar6 = param_3 + 2;
   }
   for (;;) {
     uVar5 = (uint)*pbVar6;
     if (uVar5 - 0x30 > 9) break;
-    local_19c = (local_19c * 10 + uVar5) - 0x30;
+    state.width = (state.width * 10 + uVar5) - 0x30;
     pbVar6 = pbVar6 + 1;
   }
   iVar3 = mem_find_byte(0xf8b71L, uVar5, 3);
   if (iVar3 != 0) {
-    local_1a4 = (1 << ((iVar3 - iVar2) & 0xffU)) | local_1a4;
+    state.flags = (1 << ((iVar3 - iVar2) & 0xffU)) | state.flags;
     pbVar6 = pbVar6 + 1;
   }
   param_3 = pbVar6 + 1;
@@ -87,72 +105,72 @@ LAB_00078fae:
     if (0x57 < uVar5) {
       switch (uVar5) {
         case 0x58: case 0x78:
-          local_1a4 |= 0x200; local_1a0 = 0x10;
+          state.flags |= 0x200; state.base = 0x10;
           goto SET_UO;
         case 0x5b:
           param_3 = (byte*)fnmatch_build_class_table(auStack_2a4, param_3);
-          local_1a4 |= 0x40; local_18c = 1;
+          state.flags |= 0x40; state.kind = 1;
           break;
         case 0x63:
-          local_1a4 |= 0x40; local_18c = 0;
+          state.flags |= 0x40; state.kind = 0;
           break;
         case 0x64: case 0x75:
-          local_1a0 = 10;
+          state.base = 10;
         SET_UO:
-          if (uVar5 > 0x6e) { local_18c = 4; break; }
-          local_18c = 3;
+          if (uVar5 > 0x6e) { state.kind = 4; break; }
+          state.kind = 3;
           break;
         case 0x65: case 0x66: case 0x67:
-          local_18c = 5;
+          state.kind = 5;
           break;
         case 0x69:
-          local_1a0 = 0;
-          local_18c = 3;
+          state.base = 0;
+          state.kind = 3;
           break;
         case 0x6e:
-          if (-1 < (int)(local_1a4 << 0x1b)) {
-            if ((local_1a4 & 1) == 0) {
-              *(volatile int*)*local_2a8 = local_194;
+          if (-1 < (int)(state.flags << 0x1b)) {
+            if ((state.flags & 1) == 0) {
+              *(volatile int*)*local_2a8 = state.consumed;
               local_2a8 = local_2a8 + 1;
             } else {
-              *(volatile short*)*local_2a8 = (short)local_194;
+              *(volatile short*)*local_2a8 = (short)state.consumed;
               local_2a8 = local_2a8 + 1;
             }
           }
           goto LAB_00078fae;
         case 0x6f:
-          local_1a0 = 8; local_18c = 4;
+          state.base = 8; state.kind = 4;
           break;
         case 0x70:
-          local_1a4 |= 0x220; local_1a0 = 0x10; local_18c = 4;
+          state.flags |= 0x220; state.base = 0x10; state.kind = 4;
           break;
         case 0x73:
-          local_18c = 2;
+          state.kind = 2;
           break;
         default:
-          local_18c = 3; local_1a0 = 10;
+          state.kind = 3; state.base = 10;
           break;
       }
     } else {
       pbVar6 = param_3;
       if (uVar5 == 0x25) goto LAB_00078ff8;
       if (uVar5 < 0x26) {
-        if (uVar5 != 0) { local_18c = 3; local_1a0 = 10; goto LAB_00079156; }
+        if (uVar5 != 0) { state.kind = 3; state.base = 10; goto LAB_00079156; }
         goto LAB_00079140;
       }
-      if (uVar5 - 0x45 < 3) { local_18c = 5; goto LAB_00079156; }
-      local_18c = 3; local_1a0 = 10;
+      if (uVar5 - 0x45 < 3) { state.kind = 5; goto LAB_00079156; }
+      state.kind = 3; state.base = 10;
     }
   } else {
-    local_18c = 3; local_1a0 = 10;
+    state.kind = 3; state.base = 10;
   }
 
 LAB_00079156:
   if (((int)param_2[1] < 1) && (iVar2 = local_24(param_1, param_2), iVar2 != 0))
     goto LAB_00079138;
-  if (-1 < (int)(local_1a4 << 0x19)) {
+  if (-1 < (int)(state.flags << 0x19)) {
     while ((int)((uint)(*(volatile byte*)(iVar1 + (uint)*(byte*)*param_2)) << 0x1c) < 0) {
-      local_194 = local_194 + 1;
+      state.consumed = state.consumed + 1;
       iVar2 = param_2[1];
       param_2[1] = iVar2 - 1;
       if (iVar2 - 1 < 1) {
@@ -163,23 +181,22 @@ LAB_00079156:
       }
     }
   }
-  if (local_18c < 3) {
-    iVar2 = FUN_00079278(param_1, &local_1a4, param_2, &local_2a8);
-  } else if (local_18c < 5) {
-    iVar2 = FUN_0007932c(param_1, &local_1a4, param_2, &local_2a8);
+  if (state.kind < 3) {
+    iVar2 = FUN_00079278(param_1, &state, param_2, &local_2a8);
+  } else if (state.kind < 5) {
+    iVar2 = FUN_0007932c(param_1, &state, param_2, &local_2a8);
   } else {
     iVar2 = param_1;
     if (*(volatile unsigned*)0x79274UL == 0) goto LAB_00078fae;
   }
-  if (iVar2 == 1) return local_198;
+  if (iVar2 == 1) return state.assignments;
   if (iVar2 == 2) {
   LAB_00079138:
-    if ((local_198 == 0) || ((int)((uint)*(unsigned short*)(param_2 + 3) << 0x19) < 0)) {
+    if ((state.assignments == 0) || ((int)((uint)*(unsigned short*)(param_2 + 3) << 0x19) < 0)) {
     LAB_00079140:
-      local_198 = -1;
+      state.assignments = -1;
     }
-    return local_198;
+    return state.assignments;
   }
   goto LAB_00078fae;
 }
-

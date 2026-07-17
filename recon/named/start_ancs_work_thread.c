@@ -1,8 +1,19 @@
-/* named: start_ancs_work_thread */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000198cc @ 0x000198cc
+ * public-name: start_ancs_work_thread
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ * address symbols (name @ address):
+ *   ADDR_FUN_00019718_THUMB                  @ 0x00019719
+ *   rodata_9af2e                             @ 0x0009af2e
+ *   rodata_9b0f1                             @ 0x0009b0f1
+ *   g_log_level                              @ 0x2000230c
+ *   g_ancs_work_thread                       @ 0x20003c50
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ancs_work_thread_stack                 @ 0x2001d568
+ */
 /* Reconstructed start_ancs_work_thread @ 0x198cc  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(int,...);
@@ -26,4 +37,3 @@ void start_ancs_work_thread(unsigned param_1){
   }
   return;
 }
-

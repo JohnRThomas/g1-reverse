@@ -1,4 +1,7 @@
-/* named: FUN_0007ca54 */
+/* readable reconstruction; identity: FUN_0007ca54 @ 0x0007ca54
+ * public-name: FUN_0007ca54
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0007ca54 @ 0x7ca54  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int (*fnptr)(int, unsigned int, unsigned int, unsigned int);
@@ -15,4 +18,3 @@ unsigned int FUN_0007ca54(int param_1, unsigned int param_2, unsigned int param_
   }
   return 0xffffffa8;
 }
-

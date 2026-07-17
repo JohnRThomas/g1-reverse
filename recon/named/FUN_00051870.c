@@ -1,4 +1,10 @@
-/* named: FUN_00051870 */
+/* readable reconstruction; identity: FUN_00051870 @ 0x00051870
+ * public-name: FUN_00051870
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_img_mgmt_flash_area                    @ 0x2000a954
+ *   g_img_mgmt_active_slot                   @ 0x2000ab7c
+ */
 /* Reconstructed FUN_00051870 @ 0x51870  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -20,4 +26,3 @@ int FUN_00051870(int param_1, uint32_t param_2, uint32_t param_3, uint32_t param
   }
   return iVar1;
 }
-

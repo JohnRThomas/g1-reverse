@@ -18,7 +18,7 @@ It prints "<name> PASS/FAIL" per function and a final "FAILS(n): core:name core:
 
 STEP 2 — for each FAIL (format core:name), get its address from ${SCR}/reverify_agent_batches.json[${i}] (match name -> addr,core), then reconstruct CORRECTLY:
   - app core: use recon_kit ; net core: use net_recon_kit (base 0x01008000).
-  - Inspect: PYTHONSAFEPATH=1 ${BASE}/.venv/bin/python tools/<kit>.py info 0xADDR
+  - Inspect from /tmp: PYTHONSAFEPATH=1 ${BASE}/.venv/bin/python ${BASE}/tools/<kit>.py info 0xADDR. The kit emits readable aliases and their raw/address back-map; use known readable callees in bodies but retain catalog NAME as proof identity.
   - The bug is almost always in SWITCH/DISPATCH handling: find the tbb/tbh/ldr-pc jump table or the cmp-arg,#k branches. Read the jump-table bytes from the image (extract.read/read_u32 or net_extract), decode EVERY case target, and reproduce every case's logic exactly — not just the default path. Match globals (absolute-address volatile ptrs, literal values), callee order, masks, signedness.
   - Prove (the fixed harness now exercises the cases):
     PYTHONSAFEPATH=1 RECON_LEDGER=${SCR}/redo_ledger_${i}.json ${BASE}/.venv/bin/python -c '

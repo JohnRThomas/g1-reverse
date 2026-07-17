@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: opt_record_decode */
-/* Reconstructed opt_record_decode @ 0x7c4f4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c4f4 @ 0x0007c4f4
+ * public-name: opt_record_decode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_record_init                          <= FUN_0007c4b6 @ 0x0007c4b6
+ *   opt_record_decode                        <= FUN_0007c4f4 @ 0x0007c4f4
+ */
+/* Reconstructed FUN_0007c4f4 @ 0x7c4f4  (parity: 300/300 trials, PROVEN) */
 extern int opt_record_init(unsigned char*);
 unsigned opt_record_decode(int *param_1, unsigned char *param_2){
   unsigned char bVar1;
@@ -62,4 +68,3 @@ unsigned opt_record_decode(int *param_1, unsigned char *param_2){
   *(volatile unsigned*)(param_2 + 0x18) = 0;
   return 0;
 }
-

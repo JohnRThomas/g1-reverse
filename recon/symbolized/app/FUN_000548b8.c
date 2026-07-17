@@ -1,9 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000548b8 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
+/* readable reconstruction; identity: FUN_000548b8 @ 0x000548b8
+ * public-name: FUN_000548b8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
+ *   ver_str                                  <= FUN_00053344 @ 0x00053344
+ *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
+ * address symbols (name @ address):
+ *   rodata_88138                             @ 0x00088138
+ *   rodata_a8ea0                             @ 0x000a8ea0
+ *   rodata_f31a5                             @ 0x000f31a5
+ *   rodata_f31a9                             @ 0x000f31a9
+ *   rodata_f31b8                             @ 0x000f31b8
+ *   rodata_f31c9                             @ 0x000f31c9
+ *   rodata_f3207                             @ 0x000f3207
+ *   g_ble_dev_state                          @ 0x20002000
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ */
 /* Reconstructed FUN_000548b8 @ 0x548b8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned bt_addr_le_str(int);
@@ -12,16 +25,16 @@ extern void atomic_or(unsigned,int);
 extern void FUN_00080ea2(unsigned,unsigned,void*);
 void FUN_000548b8(void)
 {
-  unsigned char bVar1; int iVar2 = ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/, iVar6, iVar7;
+  unsigned char bVar1; int iVar2 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/, iVar6, iVar7;
   unsigned uVar3, uVar4, uVar5;
   unsigned local_48, local_44, local_40, local_3c, uStack_38, local_34, local_30; unsigned short local_2c;
-  atomic_or(((uintptr_t)&g_ble_dev_ncmd_sem) /*=0x200020d4*/, 4);
-  uStack_38 = ((uintptr_t)&tbl_a892b) /*=0xa8ea0*/;
-  if (1 < *(unsigned char*)(iVar2 + 7)) uStack_38 = "[0]" /*=0xf31a5*/;
+  atomic_or(((unsigned long)&g_ble_dev_ncmd_sem) /*=0x200020d4*/, 4);
+  uStack_38 = ((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/;
+  if (1 < *(unsigned char*)(iVar2 + 7)) uStack_38 = ((unsigned long)&rodata_f31a5) /*=0xf31a5*/;
   local_34 = bt_addr_le_str(iVar2);
-  local_3c = "Identity%s: %s" /*=0xf31a9*/; iVar6 = 1; local_30 = 0x03010200; local_40 = 0x02000004;
-  FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x28c0, &local_40);
-  uVar5 = 0x01000004; uVar4 = "Identity[%d]: %s" /*=0xf31b8*/; uVar3 = ((uintptr_t)&tbl_880d8) /*=0x88138*/;
+  local_3c = ((unsigned long)&rodata_f31a9) /*=0xf31a9*/; iVar6 = 1; local_30 = 0x03010200; local_40 = 0x02000004;
+  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x28c0, &local_40);
+  uVar5 = 0x01000004; uVar4 = ((unsigned long)&rodata_f31b8) /*=0xf31b8*/; uVar3 = ((unsigned long)&rodata_88138) /*=0x88138*/;
   iVar7 = iVar2;
   while (1) {
     iVar7 = iVar7 + 7;
@@ -35,13 +48,12 @@ void FUN_000548b8(void)
   local_40 = ver_str((unsigned)bVar1);
   uStack_38 = (unsigned)*(unsigned short*)(iVar2 + 0x72);
   local_34 = (unsigned)*(unsigned short*)(iVar2 + 0x76);
-  local_44 = "HCI: version %s (0x%02x) revision 0x%04x, manufacturer 0x%04x" /*=0xf31c9*/; local_30 = (local_30 & 0xffff0000) | 0x200; local_48 = 0x01000006; local_3c = bVar1;
-  FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x34c0, &local_48);
+  local_44 = ((unsigned long)&rodata_f31c9) /*=0xf31c9*/; local_30 = (local_30 & 0xffff0000) | 0x200; local_48 = 0x01000006; local_3c = bVar1;
+  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x34c0, &local_48);
   bVar1 = *(unsigned char*)(iVar2 + 0x71);
   uStack_38 = ver_str((unsigned)bVar1);
   local_30 = (unsigned)*(unsigned short*)(iVar2 + 0x74);
-  local_3c = "LMP: version %s (0x%02x) subver 0x%04x" /*=0xf3207*/; local_2c = 0x200; local_40 = 0x01000005; local_34 = bVar1;
-  FUN_00080ea2(((uintptr_t)&tbl_880d8) /*=0x88138*/, 0x2cc0, &local_40);
+  local_3c = ((unsigned long)&rodata_f3207) /*=0xf3207*/; local_2c = 0x200; local_40 = 0x01000005; local_34 = bVar1;
+  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x2cc0, &local_40);
   return;
 }
-

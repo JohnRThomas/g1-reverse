@@ -1,80 +1,114 @@
-/* named: subcontracing_send_data_pkcs7 */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed subcontracing_send_data_pkcs7 @ 0x21a40  (parity: 252/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00021a40 @ 0x00021a40
+ * public-name: subcontracing_send_data_pkcs7
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   subcontracing_send_data_pkcs7            <= FUN_00021a40 @ 0x00021a40
+ *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9d6a1                             @ 0x0009d6a1
+ *   rodata_9d6d8                             @ 0x0009d6d8
+ *   rodata_9d6ee                             @ 0x0009d6ee
+ *   rodata_9d6f3                             @ 0x0009d6f3
+ *   rodata_9d70f                             @ 0x0009d70f
+ *   rodata_9d714                             @ 0x0009d714
+ *   rodata_9d734                             @ 0x0009d734
+ *   rodata_9e014                             @ 0x0009e014
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_00021a40 @ 0x21a40. */
 #include <stdint.h>
-extern void DEBUG_PRINT(void);
-extern void debug_print(void);
-extern void debug_print_hex_dump(void);
-extern void FUN_00086c1e(void);
-extern void memset_bytes(void);
 
-unsigned subcontracing_send_data_pkcs7(int param_1, int param_2, unsigned char param_3, void *param_4)
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void debug_print(uint32_t format, ...);
+extern void debug_print_hex_dump(uint32_t format, const void *record,
+                         unsigned int record_size);
+extern void FUN_00086c1e(void *destination, const void *source,
+                         unsigned int count, unsigned int record_size);
+extern void memset_bytes(void *destination, int value, unsigned int count);
+
+uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
+                      uint8_t record_type,
+                      void (*send_record)(void *, unsigned int))
 {
-    volatile int *piVar1 = (volatile int*)0x2000230c;
-    volatile int *flag = (volatile int*)0x20007554;
-    volatile int local_3c[16];
-    int uVar9 = param_2 / 0x11;
-    int iVar8 = uVar9 + 1;
-    int iVar10 = param_2 % 0x11;
-    int iVar11, iVar13, iVar12;
-    int iVar10b;
+    volatile int *const log_level = (volatile int *)0x2000230cu;
+    volatile int *const alternate_log = (volatile int *)0x20007554u;
+    uint8_t record[20];
+    int full_records = byte_count / 17;
+    int remainder = byte_count - full_records * 17;
+    int record_count = full_records + 1;
+    int index;
+    int level;
 
-    memset_bytes();
+    *(uint32_t *)record = 0;
+    memset_bytes(record + 4, 0, 16);
+    record[0] = record_type;
+    record[1] = (uint8_t)record_count;
 
-    if (2 < *piVar1) {
-        if (*flag == 0) DEBUG_PRINT();
-        else debug_print();
+    if (*log_level > 2) {
+        if (*alternate_log == 0)
+            DEBUG_PRINT(0x0009d6a1, 0x0009e014, record_count,
+                        remainder, byte_count);
+        else
+            debug_print(0x0009d6a1, 0x0009e014, record_count,
+                         remainder, byte_count);
     }
-    iVar13 = 0;
-    while (1) {
-        iVar11 = *piVar1;
-        iVar12 = iVar13 + 1;
-        if (uVar9 <= iVar13) break;
-        {
-            volatile int *puVar6 = (volatile int*)(iVar13 * 0x11 + param_1);
-            volatile int *puVar2 = &local_3c[1];
-            volatile int *puVar7, *puVar3;
-            do {
-                puVar7 = puVar6 + 1;
-                puVar3 = puVar2 + 1;
-                *puVar2 = *puVar6;
-                puVar2 = puVar3;
-                puVar6 = puVar7;
-            } while (puVar7 != (volatile int*)(iVar13 * 0x11 + param_1) + 4);
-            *(volatile uint8_t*)puVar3 = *(volatile uint8_t*)puVar7;
-        }
-        if (2 < iVar11) {
-            if (*flag == 0) DEBUG_PRINT();
-            else debug_print();
-        }
-        debug_print_hex_dump();
-        ((void(*)(void*))(intptr_t)param_4)((void*)local_3c);
-        iVar13 = iVar12;
-    }
-    (void)iVar8; (void)iVar12;
 
-    if (iVar10 == 0) {
-        memset_bytes();
-        if (iVar11 < 3) goto LAB_b5a;
-        iVar10b = *flag;
+    for (index = 0;; ++index) {
+        level = *log_level;
+        if (index >= full_records)
+            break;
+
+        record[2] = (uint8_t)index;
+        __builtin_memcpy(record + 3, source + index * 17, 17);
+        if (level > 2) {
+            if (*alternate_log == 0)
+                DEBUG_PRINT(0x0009d6d8, 0x0009e014,
+                            index + 1, record_count);
+            else
+                debug_print(0x0009d6d8, 0x0009e014,
+                             index + 1, record_count);
+        }
+        debug_print_hex_dump(0x0009d6ee, record, sizeof(record));
+        send_record(record, sizeof(record));
+    }
+
+    index = full_records & ~(full_records >> 31);
+    record[2] = (uint8_t)index;
+    if (remainder == 0) {
+        memset_bytes(record + 3, 17, 17);
+        if (level > 2) {
+            if (*alternate_log == 0)
+                DEBUG_PRINT(0x0009d6f3, 0x0009e014,
+                            index + 1, record_count);
+            else
+                debug_print(0x0009d6f3, 0x0009e014,
+                             index + 1, record_count);
+        }
     } else {
-        memset_bytes();
-        FUN_00086c1e();
-        if (iVar11 < 3) goto LAB_b5a;
-        iVar10b = *flag;
+        memset_bytes(record + 3 + remainder, 17 - remainder,
+                     17 - remainder);
+        FUN_00086c1e(record + 3, source + full_records * 17,
+                     (unsigned int)remainder, 17);
+        if (level > 2) {
+            if (*alternate_log == 0)
+                DEBUG_PRINT(0x0009d714, 0x0009e014,
+                            index + 1, record_count);
+            else
+                debug_print(0x0009d714, 0x0009e014,
+                             index + 1, record_count);
+        }
     }
-    if (iVar10b == 0) DEBUG_PRINT();
-    else debug_print();
-LAB_b5a:
-    debug_print_hex_dump();
-    if (2 < *piVar1) {
-        if (*flag == 0) DEBUG_PRINT();
-        else debug_print();
+
+    debug_print_hex_dump(0x0009d70f, record, sizeof(record));
+    if (*log_level > 2) {
+        if (*alternate_log == 0)
+            DEBUG_PRINT(0x0009d734, 0x0009e014, byte_count);
+        else
+            debug_print(0x0009d734, 0x0009e014, byte_count);
     }
-    ((void(*)(void*))(intptr_t)param_4)((void*)local_3c);
+    send_record(record, sizeof(record));
     return 0;
 }
-

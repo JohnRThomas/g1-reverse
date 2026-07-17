@@ -8,9 +8,9 @@ void FUN_0101f8f4(void)
   unsigned int uVar1;
   unsigned char uVar2;
   int iVar3;
-  volatile unsigned short *tbl16 = (volatile unsigned short*)((uintptr_t)&rodata_103c3b0) /*=0x103c3b0*/;
-  volatile unsigned char  *tbl8  = (volatile unsigned char*) ((uintptr_t)&rodata_103c3b0) /*=0x103c3b0*/;
-  volatile unsigned char  *out   = (volatile unsigned char*) ((uintptr_t)&g_net_radio_tx_power_level) /*=0x2100144a*/;
+  volatile unsigned short *tbl16 = (volatile unsigned short*)((unsigned long)&rodata_103c3b0) /*=0x103c3b0*/;
+  volatile unsigned char  *tbl8  = (volatile unsigned char*) ((unsigned long)&rodata_103c3b0) /*=0x103c3b0*/;
+  volatile unsigned char  *out   = (volatile unsigned char*) ((unsigned long)&g_net_radio_tx_power_level) /*=0x2100144a*/;
 
   uVar1 = FUN_010246cc();
   iVar3 = 0;
@@ -25,4 +25,3 @@ void FUN_0101f8f4(void)
 LAB:
   *out = uVar2;
 }
-

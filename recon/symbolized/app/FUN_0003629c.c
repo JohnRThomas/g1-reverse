@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0003629c */
+/* readable reconstruction; identity: FUN_0003629c @ 0x0003629c
+ * public-name: FUN_0003629c
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_misc_last_uptime_ms                    @ 0x20009fc0
+ */
 /* Reconstructed FUN_0003629c @ 0x3629c  (parity: 300/300 trials, PROVEN) */
 
 extern long long thunk_FUN_00074f68(void);
@@ -13,7 +18,7 @@ void FUN_0003629c(unsigned int param_1, int *param_2)
   int bVar5;
   long long lVar6;
 
-  puVar1 = (volatile unsigned int*)((uintptr_t)&g_misc_last_uptime_ms) /*=0x20009fc0*/;
+  puVar1 = (volatile unsigned int*)((unsigned long)&g_misc_last_uptime_ms) /*=0x20009fc0*/;
   cVar4 = *(char *)((int)param_2 + 6);
   bVar5 = cVar4 == 1;
   if (bVar5) {
@@ -36,4 +41,3 @@ void FUN_0003629c(unsigned int param_1, int *param_2)
   *puVar1 = uVar2;
   return;
 }
-

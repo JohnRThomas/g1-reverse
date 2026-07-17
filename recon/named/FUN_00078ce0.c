@@ -1,13 +1,24 @@
-/* named: FUN_00078ce0 */
+/* readable reconstruction; identity: FUN_00078ce0 @ 0x00078ce0
+ * public-name: FUN_00078ce0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   clz32                                    <= FUN_00087510 @ 0x00087510
+ *   ctz32_normalize_inplace                  <= FUN_00087554 @ 0x00087554
+ * address symbols (name @ address):
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
 /* Reconstructed FUN_00078ce0 @ 0x78ce0  (parity: 300/300 trials, PROVEN) */
 
 extern int libc_fatal_error_and_abort(unsigned a, unsigned b, int c, unsigned d);
 extern int Balloc(unsigned a, int b);
 extern int clz32(unsigned a);
 extern int ctz32_normalize_inplace(void*a);
-int FUN_00078ce0(unsigned a0, unsigned a1, unsigned a2){
-    unsigned lo, hi;
-    __asm__ volatile("vmov %0, %1, d0" : "=r"(lo), "=r"(hi));
+int FUN_00078ce0(unsigned a0, unsigned a1, unsigned a2, double input){
+    union { double value; struct { unsigned lo, hi; } words; } bits = { input };
+    unsigned lo = bits.words.lo, hi = bits.words.hi;
     int iVar1 = Balloc(a0, 1);
     if (iVar1 == 0) libc_fatal_error_and_abort(0x000f8cd5, 0x30a, 0, 0x000f8c42);
     unsigned uVar6 = (hi >> 20) & 0x7ff;
@@ -50,4 +61,3 @@ int FUN_00078ce0(unsigned a0, unsigned a1, unsigned a2){
     *(volatile int*)a2 = iVar3;
     return iVar1;
 }
-

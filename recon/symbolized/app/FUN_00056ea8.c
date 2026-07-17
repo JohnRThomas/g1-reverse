@@ -1,8 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00056ea8 */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-*/
+/* readable reconstruction; identity: FUN_00056ea8 @ 0x00056ea8
+ * public-name: FUN_00056ea8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
+ *   bt_conn_lookup_addr_le                   <= FUN_00056e74 @ 0x00056e74
+ * address symbols (name @ address):
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_f3dc4                             @ 0x000f3dc4
+ */
 /* Reconstructed FUN_00056ea8 @ 0x56ea8  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_conn_lookup_addr_le(void);
@@ -21,17 +27,16 @@ int FUN_00056ea8(void)
   if (iVar1 != 0) {
     unsigned char b = *(volatile unsigned char *)(iVar1 + 0xd);
     if (b < 9) {
-      uStack_18 = *(volatile unsigned int *)(((uintptr_t)&rodata_8b220) /*=0x8b220*/ + (unsigned int)b * 4);
+      uStack_18 = *(volatile unsigned int *)(0x8b220UL + (unsigned int)b * 4);
     } else {
-      uStack_18 = "(unknown)" /*=0xf3c2d*/;
+      uStack_18 = 0xf3c2d;
     }
-    local_1c = "Found valid connection in %s state" /*=0xf3dc4*/;
+    local_1c = ((unsigned long)&rodata_f3dc4) /*=0xf3dc4*/;
     local_14 = 0x200;
     local_20 = 0x1000003;
-    FUN_000813ca(((uintptr_t)&log_module_bt_conn) /*=0x88108*/, 0x1c80, &local_20);
+    FUN_000813ca(((unsigned long)&log_module_bt_conn) /*=0x88108*/, 0x1c80, &local_20);
     ble_conn_unref(iVar1);
     iVar1 = 1;
   }
   return iVar1;
 }
-

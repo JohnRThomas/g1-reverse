@@ -1,5 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00081adc */
+/* readable reconstruction; identity: FUN_00081adc @ 0x00081adc
+ * public-name: FUN_00081adc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ */
 /* Reconstructed FUN_00081adc @ 0x81adc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern long long FUN_00057394(void);
@@ -25,4 +32,3 @@ int FUN_00081adc(int param_1, int param_2){
   }
   return iVar3;
 }
-

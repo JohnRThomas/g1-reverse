@@ -1,8 +1,15 @@
-/* named: cjson_create_string */
-/* globals referenced:
-//   0x20002bac  g_cjson_hooks                
-*/
-/* Reconstructed cjson_create_string @ 0x64c5c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064c5c @ 0x00064c5c
+ * public-name: cjson_create_string
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_strdup                             <= FUN_00064640 @ 0x00064640
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   cjson_create_string                      <= FUN_00064c5c @ 0x00064c5c
+ *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
+ * address symbols (name @ address):
+ *   g_cjson_hooks                            @ 0x20002bac
+ */
+/* Reconstructed FUN_00064c5c @ 0x64c5c  (parity: 300/300 trials, PROVEN) */
 
 extern int alloc_zeroed_node(unsigned int a);
 extern int cjson_strdup(unsigned int a);
@@ -23,4 +30,3 @@ int cjson_create_string(unsigned int param_1)
     }
     return 0;
 }
-

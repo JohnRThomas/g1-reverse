@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: ctx_list_unlink_node */
-/* Reconstructed ctx_list_unlink_node @ 0x81788  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081788 @ 0x00081788
+ * public-name: ctx_list_unlink_node
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ctx_list_unlink_node                     <= FUN_00081788 @ 0x00081788
+ */
+/* Reconstructed FUN_00081788 @ 0x81788  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_000815f6(int, int*);
 
@@ -23,4 +28,3 @@ void ctx_list_unlink_node(int param_1, int *param_2)
     } while (piVar3 != 0);
   }
 }
-

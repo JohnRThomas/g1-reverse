@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: reset_state_and_stop_timer */
-/* Reconstructed reset_state_and_stop_timer @ 0x84d36  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084d36 @ 0x00084d36
+ * public-name: reset_state_and_stop_timer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   reset_state_and_stop_timer               <= FUN_00084d36 @ 0x00084d36
+ */
+/* Reconstructed FUN_00084d36 @ 0x84d36  (parity: 300/300 trials, PROVEN) */
 
 extern char *FUN_00063bcc(void);
 extern void FUN_0004f770(void);
@@ -11,4 +16,3 @@ void reset_state_and_stop_timer(void) {
     FUN_0004f770();
     FUN_00063c14(5);
 }
-

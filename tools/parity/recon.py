@@ -51,6 +51,19 @@ def _semantic_name_map(core):
                 add(name, va)
     except (OSError, ValueError, TypeError):
         pass
+    # Durable readable aliases survive scratchpad loss and include semantic
+    # names recovered after the original Ghidra/IDA catalogs were exported.
+    manifest = os.path.join(
+        _BASE, "recon/catalogs/function_names_%s.json" % core)
+    try:
+        for address, record in json.load(open(manifest))["by_address"].items():
+            va = int(address, 16)
+            add(record.get("name"), va)
+            add(record.get("raw_name"), va)
+            for name in record.get("aliases", ()):
+                add(name, va)
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
     # Alias linker entries preserve the raw address on the left while naming
     # the readable implementation on the right.
     alias = os.path.join(_BASE, "recon/symbols/g1_%s_aliases.ld" % core)

@@ -1,8 +1,47 @@
-/* named: ui_even_ai_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0003bfe0 @ 0x0003bfe0
+ * public-name: ui_even_ai_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   draw_status_icon_by_state                <= FUN_0003be18 @ 0x0003be18
+ *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
+ *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   imu_pitch_task_reset_render_state        <= FUN_000436f8 @ 0x000436f8
+ *   gui_verticalLine_process_bar             <= FUN_0004396c @ 0x0004396c
+ *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
+ *   gui_utf_draw_middle                      <= FUN_00044bd8 @ 0x00044bd8
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a8e98                             @ 0x000a8e98
+ *   rodata_a9855                             @ 0x000a9855
+ *   rodata_a9879                             @ 0x000a9879
+ *   rodata_a989f                             @ 0x000a989f
+ *   rodata_a98ce                             @ 0x000a98ce
+ *   rodata_aae20                             @ 0x000aae20
+ *   rodata_f7b6f                             @ 0x000f7b6f
+ *   g_log_level                              @ 0x2000230c
+ *   g_even_ai_saved_page_index               @ 0x200024ec
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_ui_state_mutex                         @ 0x20007b3c
+ *   g_20009fd4                               @ 0x20009fd4
+ *   g_even_ai_frame_idx                      @ 0x20009fd8
+ *   g_even_ai_render_state                   @ 0x2000a038
+ *   g_even_ai_line_text_buf                  @ 0x2001b818
+ *   g_even_ai_active_flag                    @ 0x2001b9a8
+ *   g_even_ai_render_state_init_val          @ 0x2001cdd7
+ */
 /* Reconstructed ui_even_ai_task @ 0x3bfe0  (parity: 40/40 trials, PROVEN) */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
@@ -43,58 +82,32 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT__impl(int, ...);
-#define DEBUG_PRINT(...) DEBUG_PRINT__impl(0, ##__VA_ARGS__)
-extern long long FUN_000167a8__impl(int, ...);
-#define get_device_info(...) FUN_000167a8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00019c70__impl(int, ...);
-#define debug_print(...) FUN_00019c70__impl(0, ##__VA_ARGS__)
-extern long long FUN_00023ee0__impl(int, ...);
-#define FUN_00023ee0(...) FUN_00023ee0__impl(0, ##__VA_ARGS__)
-extern long long FUN_0003be18__impl(int, ...);
-#define draw_status_icon_by_state(...) FUN_0003be18__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431b4__impl(int, ...);
-#define gui_set_active_canvas(...) FUN_000431b4__impl(0, ##__VA_ARGS__)
-extern long long FUN_000431c0__impl(int, ...);
-#define gui_screen_clear(...) FUN_000431c0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432d0__impl(int, ...);
-#define gui_canvas_flags_set_bit1(...) FUN_000432d0__impl(0, ##__VA_ARGS__)
-extern long long FUN_000432ec__impl(int, ...);
-#define gui_canvas_flags_clear_bit1(...) FUN_000432ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043308__impl(int, ...);
-#define gui_reset_dynamic_bitmap_frame_state(...) FUN_00043308__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043484__impl(int, ...);
-#define gui_bmp_bitmap_draw(...) FUN_00043484__impl(0, ##__VA_ARGS__)
-extern long long FUN_000436f8__impl(int, ...);
-#define imu_pitch_task_reset_render_state(...) FUN_000436f8__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004382c__impl(int, ...);
-#define FUN_0004382c(...) FUN_0004382c__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004396c__impl(int, ...);
-#define gui_verticalLine_process_bar(...) FUN_0004396c__impl(0, ##__VA_ARGS__)
-extern long long FUN_00043e90__impl(int, ...);
-#define gui_utf_draw(...) FUN_00043e90__impl(0, ##__VA_ARGS__)
-extern long long FUN_000440ec__impl(int, ...);
-#define FUN_000440ec(...) FUN_000440ec__impl(0, ##__VA_ARGS__)
-extern long long FUN_00044bd8__impl(int, ...);
-#define gui_utf_draw_middle(...) FUN_00044bd8__impl(0, ##__VA_ARGS__)
-extern long long FUN_000471cc__impl(int, ...);
-#define clean_fb_data(...) FUN_000471cc__impl(0, ##__VA_ARGS__)
-extern long long FUN_00047260__impl(int, ...);
-#define reflash_fb_data_to_lcd(...) FUN_00047260__impl(0, ##__VA_ARGS__)
-extern long long FUN_000723b8__impl(int, ...);
-#define k_mutex_lock(...) FUN_000723b8__impl(0, ##__VA_ARGS__)
-extern long long FUN_00072558__impl(int, ...);
-#define k_mutex_unlock(...) FUN_00072558__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d3dc__impl(int, ...);
-#define FUN_0007d3dc(...) FUN_0007d3dc__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d3ee__impl(int, ...);
-#define device_info_text_width_get(...) FUN_0007d3ee__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007d446__impl(int, ...);
-#define device_info_text_height_get_clamped(...) FUN_0007d446__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c1e__impl(int, ...);
-#define FUN_00086c1e(...) FUN_00086c1e__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
+extern int log_message(int, int, int, int);
+extern int get_device_info(void);
+extern int debug_print(int, int, int, int);
+extern int FUN_00023ee0(void);
+extern int draw_status_icon_by_state(int, ...);
+extern int gui_set_active_canvas(int);
+extern int gui_screen_clear(void);
+extern int gui_canvas_flags_set_bit1(void);
+extern int gui_canvas_flags_clear_bit1(void);
+extern int gui_reset_dynamic_bitmap_frame_state(void);
+extern int gui_bmp_bitmap_draw(int, ...);
+extern int imu_pitch_task_reset_render_state(void);
+extern int FUN_0004382c(void);
+extern int gui_verticalLine_process_bar(int, ...);
+extern int gui_utf_draw(int, ...);
+extern int FUN_000440ec(int, ...);
+extern int gui_utf_draw_middle(int, ...);
+extern int clean_fb_data(int, ...);
+extern int reflash_fb_data_to_lcd(int, ...);
+extern int k_mutex_lock(int, ...);
+extern int k_mutex_unlock(int);
+extern int FUN_0007d3dc(void);
+extern int device_info_text_width_get(void);
+extern int device_info_text_height_get_clamped(void);
+extern int FUN_00086c1e(int, ...);
+extern long long memset_bytes(int, ...);
 
 #define DAT_0003c2dc ((volatile int*)0x200024ecUL)
 #define DAT_0003c2e0 (0x8a3a8UL)
@@ -112,23 +125,23 @@ extern long long FUN_00086c78__impl(int, ...);
 #define DAT_0003c310 (0xaae20UL)
 #define DAT_0003c314 (0xa989fUL)
 #define DAT_0003c318 ((volatile undefined4*)0xa8e98UL)
-#define DAT_0003c644 (0x0UL) /* unknown lit */
-#define DAT_0003c648 (0x0UL) /* unknown lit */
-#define DAT_0003c64c ((volatile int*)0x0UL)
-#define DAT_0003c650 (0x0UL) /* unknown lit */
-#define DAT_0003c654 ((volatile int*)0x0UL)
-#define DAT_0003c658 ((volatile undefined4*)0x0UL)
-#define DAT_0003c9a8 (0x0UL) /* unknown lit */
-#define DAT_0003c9ac (0x0UL) /* unknown lit */
-#define DAT_0003c9b0 ((volatile int*)0x0UL)
-#define DAT_0003cb2c (0x0UL) /* unknown lit */
-#define DAT_0003cb30 ((volatile int*)0x0UL)
-#define DAT_0003cb34 ((volatile int*)0x0UL)
-#define DAT_0003cb38 (0x0UL) /* unknown lit */
-#define DAT_0003cb3c ((volatile int*)0x0UL)
-#define DAT_0003cb40 ((volatile int*)0x0UL)
-#define DAT_0003cb44 (0x0UL) /* unknown lit */
-#define DAT_0003cb48 (0x0UL) /* unknown lit */
+#define DAT_0003c644 (0x2001b818UL)
+#define DAT_0003c648 (0x20007b3cUL)
+#define DAT_0003c64c ((volatile int*)0x200024ecUL)
+#define DAT_0003c650 (0xaae20UL)
+#define DAT_0003c654 ((volatile int*)0x20009fd8UL)
+#define DAT_0003c658 ((volatile undefined4*)0xa8e98UL)
+#define DAT_0003c9a8 (0xaae20UL)
+#define DAT_0003c9ac (0x2001b818UL)
+#define DAT_0003c9b0 ((volatile int*)0x20009fd8UL)
+#define DAT_0003cb2c (0xf7b6fUL)
+#define DAT_0003cb30 ((volatile int*)0x20009fd8UL)
+#define DAT_0003cb34 ((volatile int*)0x20009fd4UL)
+#define DAT_0003cb38 (0x2001b818UL)
+#define DAT_0003cb3c ((volatile int*)0x2000230cUL)
+#define DAT_0003cb40 ((volatile int*)0x20007554UL)
+#define DAT_0003cb44 (0xa98ceUL)
+#define DAT_0003cb48 (0xa989fUL)
 
 
 undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
@@ -155,11 +168,12 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
   undefined4 uVar18;
   int iVar19;
   undefined4 uVar20;
+  unsigned long long uVar21_ret;
   int iVar21;
   int iVar22;
   undefined4 local_30;
   undefined4 uStack_2c;
-  
+
   iVar14 = param_3;
   iVar5 = get_device_info();
   param_1 = param_1 + 0x24;
@@ -191,10 +205,10 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
       memset_bytes(DAT_0003c2f0,0,400);
       if (0 < *piVar16) {
         if (*DAT_0003c2f4 == 0) {
-          DEBUG_PRINT(DAT_0003c2fc,DAT_0003c2f8);
+          log_message(DAT_0003c2fc,DAT_0003c2f8,-1,0);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003c2fc,DAT_0003c2f8,-1,1);
         }
       }
       if (pcVar3[1] != '\0') {
@@ -202,10 +216,10 @@ undefined4 ui_even_ai_task(int param_1,undefined4 param_2,int param_3)
       }
       if (0 < *piVar16) {
         if (*DAT_0003c2f4 == 0) {
-          DEBUG_PRINT(DAT_0003c300,DAT_0003c2f8);
+          log_message(DAT_0003c300,DAT_0003c2f8,-1,0);
         }
         else {
-          debug_print();
+          debug_print(DAT_0003c300,DAT_0003c2f8,-1,1);
         }
       }
       FUN_0007d3dc();
@@ -313,18 +327,17 @@ LAB_0003c204:
     }
     if (2 < *DAT_0003c2ec) {
       if (*DAT_0003c2f4 == 0) {
-        DEBUG_PRINT(DAT_0003c314,DAT_0003c2f8);
+        log_message(DAT_0003c314,DAT_0003c2f8,-1,0);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003c314,DAT_0003c2f8,-1,1);
       }
     }
     gui_screen_clear();
 LAB_0003c2be:
     FUN_0007d3dc();
     puVar4 = DAT_0003c308;
-    pcVar3[0] = '\0';
-    pcVar3[1] = '\0';
+    *(volatile uint16_t *)pcVar3 = 0;
     puVar4[2] = 0;
     puVar4[3] = 0;
     puVar4[5] = 0;
@@ -339,7 +352,7 @@ LAB_0003c2be:
   iVar14 = iVar5 + 0xef;
   if (param_3 != 1) {
     if (param_3 == 0) {
-      draw_status_icon_by_state(iVar14);
+      draw_status_icon_by_state(iVar14,1,-1,iVar14);
       return 0;
     }
     if (param_3 != 2) {
@@ -347,17 +360,17 @@ LAB_0003c2be:
     }
     if (2 < *DAT_0003cb3c) {
       if (*DAT_0003cb40 == 0) {
-        DEBUG_PRINT(DAT_0003cb48,DAT_0003cb44);
+        log_message(DAT_0003cb48,DAT_0003cb44,-1,0);
       }
       else {
-        debug_print();
+        debug_print(DAT_0003cb48,DAT_0003cb44,-1,1);
       }
     }
     FUN_0004382c();
     goto LAB_0003c2be;
   }
-  memset_bytes(DAT_0003c644,0,400);
-  k_mutex_lock(DAT_0003c648,extraout_r1,0xffffffff,0xffffffff);
+  uVar21_ret = memset_bytes(DAT_0003c644,0,400);
+  k_mutex_lock(DAT_0003c648,(undefined4)(uVar21_ret >> 32),0xffffffff,0xffffffff);
   cVar1 = *(char *)(iVar5 + 0xf0);
   uVar8 = k_mutex_unlock(DAT_0003c648);
   uVar7 = (uint)*(byte *)(iVar5 + 0xef);
@@ -644,5 +657,3 @@ LAB_0003c89e:
   *DAT_0003c9b0 = 1;
   return 0;
 }
-
-

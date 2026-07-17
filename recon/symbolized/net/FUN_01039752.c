@@ -10,4 +10,3 @@ void FUN_01039752(int param_1, int param_2, int param_3, unsigned int param_4) {
     *(unsigned int *)(iVar1 + param_3 * 4) = param_4;
   }
 }
-

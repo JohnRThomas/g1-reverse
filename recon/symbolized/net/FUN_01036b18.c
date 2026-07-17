@@ -7,9 +7,9 @@ extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c, unsigne
 extern int FUN_0103b14a(void);
 extern void FUN_0103b25a(int a);
 
-#define DAT_be0 ((uintptr_t)&rodata_103eaed) /*=0x103eaed*/
-#define DAT_be4 "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define DAT_be8 ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
+#define DAT_be0 ((unsigned long)&rodata_103eaed) /*=0x103eaed*/
+#define DAT_be4 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define DAT_be8 0x21004b28u
 
 unsigned int FUN_01036b18(unsigned int *param_1, int *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -88,4 +88,3 @@ LAB_b76:
     *param_2 = 0;
     return uVar4;
 }
-

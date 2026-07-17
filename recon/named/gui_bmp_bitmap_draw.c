@@ -1,10 +1,24 @@
-/* named: gui_bmp_bitmap_draw */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
-/* Reconstructed gui_bmp_bitmap_draw @ 0x43484  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00043484 @ 0x00043484
+ * public-name: gui_bmp_bitmap_draw
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   load_icon_bitmap_expanded                <= FUN_00047a4c @ 0x00047a4c
+ *   fb_blit_rows_copy                        <= FUN_0007d53a @ 0x0007d53a
+ * address symbols (name @ address):
+ *   rodata_aa8eb                             @ 0x000aa8eb
+ *   rodata_aadd0                             @ 0x000aadd0
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
+/* Reconstructed FUN_00043484 @ 0x43484  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int, ...);
 extern int get_device_info(void);
@@ -80,4 +94,3 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
     }
     return 0;
 }
-

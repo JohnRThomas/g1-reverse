@@ -1,6 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000809b0 */
+/* readable reconstruction; identity: FUN_000809b0 @ 0x000809b0
+ * public-name: FUN_000809b0
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000809b0 @ 0x809b0  (parity: 300/300 trials, PROVEN) */
+
 extern unsigned FUN_00080a46(void);
 extern int thunk_FUN_00064134(int);
 extern void FUN_00051c38(void);
@@ -39,4 +43,3 @@ unsigned FUN_000809b0(int param_1, unsigned char *param_2)
   }
   return uVar3;
 }
-

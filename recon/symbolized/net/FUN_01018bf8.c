@@ -9,7 +9,7 @@ unsigned int FUN_01018bf8(unsigned char *param_1)
 {
   unsigned char uVar2;
   unsigned char bVar1;
-  volatile unsigned char *out = (volatile unsigned char*)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
+  volatile unsigned char *out = (volatile unsigned char*)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
 
   uVar2 = FUN_0100d760();
   bVar1 = *param_1;
@@ -20,4 +20,3 @@ unsigned int FUN_01018bf8(unsigned char *param_1)
   FUN_010196e0();
   return 1;
 }
-

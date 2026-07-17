@@ -1,7 +1,11 @@
-/* named: FUN_00025448 */
-/* globals referenced:
-//   0x20007a24  g_box_field_timer            
-*/
+/* readable reconstruction; identity: FUN_00025448 @ 0x00025448
+ * public-name: FUN_00025448
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   refresh_box_field_timer                  <= FUN_0002542c @ 0x0002542c
+ * address symbols (name @ address):
+ *   g_box_field_timer                        @ 0x20007a24
+ */
 /* Reconstructed FUN_00025448 @ 0x25448  (parity: 300/300 trials, PROVEN) */
 
 extern void refresh_box_field_timer(void);
@@ -10,4 +14,3 @@ unsigned int FUN_00025448(void)
   refresh_box_field_timer();
   return *(volatile unsigned int *)0x20007a24UL;
 }
-

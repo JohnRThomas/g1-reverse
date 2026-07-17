@@ -1,4 +1,15 @@
-/* named: FUN_00058f80 */
+/* readable reconstruction; identity: FUN_00058f80 @ 0x00058f80
+ * public-name: FUN_00058f80
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_att_create_rsp_pdu                    <= FUN_00058f34 @ 0x00058f34
+ *   net_buf_slist_get                        <= FUN_0005f148 @ 0x0005f148
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   bt_att_chan_send_rsp                     <= FUN_000821a4 @ 0x000821a4
+ *   att_send_error_rsp                       <= FUN_000821f4 @ 0x000821f4
+ * address symbols (name @ address):
+ *   att_prep_write_rsp_buf                   @ 0x200029a0
+ */
 /* Reconstructed FUN_00058f80 @ 0x58f80  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00058c34(int, ...);
@@ -7,7 +18,7 @@ extern int net_buf_slist_get(int);
 extern int net_buf_unref(int);
 extern int bt_att_chan_send_rsp(int,int);
 extern int att_send_error_rsp(int, ...);
-extern int net_buf_simple_push_mem(int, ...);
+extern int FUN_00083740(int, ...);
 
 unsigned int FUN_00058f80(int *param_1, int param_2)
 {
@@ -43,7 +54,7 @@ unsigned int FUN_00058f80(int *param_1, int param_2)
         uVar2 = *(unsigned short *)(iVar6 + 0x10);
         uVar7 = *(unsigned int *)(iVar6 + 0xc);
         *puVar5 = puVar5[2];
-        net_buf_simple_push_mem((int)puVar5, uVar7, uVar2);
+        FUN_00083740((int)puVar5, uVar7, uVar2);
         iVar8 = *param_1;
         uVar3 = *(unsigned short *)(iVar6 + 0x1a);
         puVar9 = *(uint32_t **)(iVar8 + 0x28);
@@ -66,7 +77,7 @@ LAB_000590a6:
                         uVar7 = 0xd;
                         goto LAB_000590a6;
                     }
-                    net_buf_simple_push_mem((int)puVar5, puVar9[3]);
+                    FUN_00083740((int)puVar5, puVar9[3]);
                     uVar7 = *puVar9;
                     if (puVar11 == (uint32_t *)0x0) {
                         *(uint32_t *)(iVar8 + 0x28) = uVar7;
@@ -102,4 +113,3 @@ LAB_000590a6:
         net_buf_unref(iVar6);
     } while (1);
 }
-

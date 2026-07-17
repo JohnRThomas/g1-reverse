@@ -1,8 +1,13 @@
-/* named: ble_conn_le_alloc */
-/* globals referenced:
-//   0x20006138  g_ble_conn_pool              
-*/
-/* Reconstructed ble_conn_le_alloc @ 0x56e34  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056e34 @ 0x00056e34
+ * public-name: ble_conn_le_alloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_pool_alloc                      <= FUN_000562a4 @ 0x000562a4
+ *   ble_conn_le_alloc                        <= FUN_00056e34 @ 0x00056e34
+ * address symbols (name @ address):
+ *   g_ble_conn_pool                          @ 0x20006138
+ */
+/* Reconstructed FUN_00056e34 @ 0x56e34  (parity: 300/300 trials, PROVEN) */
 
 extern int ble_conn_pool_alloc(unsigned int, int, unsigned int, unsigned int, unsigned int);
 
@@ -21,4 +26,3 @@ void ble_conn_le_alloc(unsigned char param_1, unsigned int *param_2, unsigned in
     *(unsigned int *)(iVar1 + 0xa8) = 0x00280018;
   }
 }
-

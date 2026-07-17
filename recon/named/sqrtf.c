@@ -1,8 +1,12 @@
-/* named: sqrtf */
-/* globals referenced:
-//   0x200035af  g_libm_ieee_mode_flag        
-*/
-/* Reconstructed sqrtf @ 0x75dc8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00075dc8 @ 0x00075dc8
+ * public-name: sqrtf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sqrtf                                    <= FUN_00075dc8 @ 0x00075dc8
+ * address symbols (name @ address):
+ *   g_libm_ieee_mode_flag                    @ 0x200035af
+ */
+/* Reconstructed FUN_00075dc8 @ 0x75dc8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern float FUN_000869c6(void);
@@ -19,4 +23,3 @@ float sqrtf(float param_1)
   }
   return fVar3;
 }
-

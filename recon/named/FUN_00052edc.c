@@ -1,4 +1,12 @@
-/* named: FUN_00052edc */
+/* readable reconstruction; identity: FUN_00052edc @ 0x00052edc
+ * public-name: FUN_00052edc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   settings_subsys_init                     <= FUN_0004e744 @ 0x0004e744
+ * address symbols (name @ address):
+ *   rodata_88178                             @ 0x00088178
+ *   rodata_f2c46                             @ 0x000f2c46
+ */
 /* Reconstructed FUN_00052edc @ 0x52edc  (parity: 300/300 trials, PROVEN) */
 
 extern int settings_subsys_init(void);
@@ -16,4 +24,3 @@ int FUN_00052edc(void)
     }
     return iVar1;
 }
-

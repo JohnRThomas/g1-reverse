@@ -1,6 +1,19 @@
 #include "g1_app_symbols.h"
-/* named: img_mgmt_erase_slot */
-/* Reconstructed img_mgmt_erase_slot @ 0x52604  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00052604 @ 0x00052604
+ * public-name: img_mgmt_erase_slot
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
+ *   img_mgmt_erase_slot                      <= FUN_00052604 @ 0x00052604
+ *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ * address symbols (name @ address):
+ *   rodata_88220                             @ 0x00088220
+ *   rodata_f289a                             @ 0x000f289a
+ *   rodata_f28b4                             @ 0x000f28b4
+ *   rodata_f28d4                             @ 0x000f28d4
+ */
+/* Reconstructed FUN_00052604 @ 0x52604  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_0004d944(uint32_t,int,void*,...);
@@ -16,28 +29,28 @@ uint32_t img_mgmt_erase_slot(int param_1){
   int iVar3;
   volatile int local_2c[5];
   volatile uint32_t local_18;
-  volatile void* local_14;
+  void * volatile local_14;
   iVar3 = *(int*)(param_1+8);
   iVar1 = flash_area_open(9, (void*)local_2c);
   if (iVar1 < 0){
     uVar2 = 2;
     local_18 = 2;
-    local_14 = (void*)"Failed to open flash area" /*=0xf289a*/;
-    FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88220*/, 0x1040, (void*)&local_18, 0);
+    local_14 = (void*)((unsigned long)&rodata_f289a) /*=0xf289a*/;
+    FUN_0004d944(((unsigned long)&rodata_88220) /*=0x88220*/, 0x1040, (void*)&local_18, 0);
   } else {
     iVar1 = FUN_0007f00e(local_2c[0]);
     if (iVar1 == 0){
-      local_14 = (void*)"Failed to get flash area device" /*=0xf28b4*/;
+      local_14 = (void*)((unsigned long)&rodata_f28b4) /*=0xf28b4*/;
       local_18 = 2;
-      FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88220*/, 0x1040, (void*)&local_18);
+      FUN_0004d944(((unsigned long)&rodata_88220) /*=0x88220*/, 0x1040, (void*)&local_18, 0);
       nullsub_3(local_2c[0]);
       uVar2 = 3;
     } else {
       uVar2 = (uint32_t)FUN_0007efd4(local_2c[0], 0, *(uint32_t*)(local_2c[0]+8), iVar1);
       if ((int)uVar2 < 0){
-        local_14 = (void*)"Failed to erase flash area" /*=0xf28d4*/;
+        local_14 = (void*)((unsigned long)&rodata_f28d4) /*=0xf28d4*/;
         local_18 = 2;
-        FUN_0004d944(((uintptr_t)&tbl_880d8) /*=0x88220*/, 0x1040, (void*)&local_18, 0);
+        FUN_0004d944(((unsigned long)&rodata_88220) /*=0x88220*/, 0x1040, (void*)&local_18, 0);
         nullsub_3(local_2c[0]);
         uVar2 = 4;
       } else {
@@ -46,8 +59,7 @@ uint32_t img_mgmt_erase_slot(int param_1){
       }
     }
   }
-  iVar1 = smp_add_cmd_err(iVar3+4, 0x3f, uVar2 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/);
+  iVar1 = smp_add_cmd_err(iVar3+4, 0x3f, uVar2 & 0xffff);
   if (iVar1 != 0) return 0;
   return 7;
 }
-

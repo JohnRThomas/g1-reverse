@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: dlist_unlink_node */
-/* Reconstructed dlist_unlink_node @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00073cdc @ 0x00073cdc
+ * public-name: dlist_unlink_node
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dlist_unlink_node                        <= FUN_00073cdc @ 0x00073cdc
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ */
+/* Reconstructed FUN_00073cdc @ 0x73cdc  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int a,unsigned int b,unsigned int c,unsigned int d);
 extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
@@ -8,10 +19,10 @@ extern unsigned long long assert_post_action(unsigned int a,unsigned int b);
 void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3, unsigned int param_4)
 {
     int *base;
-    if ((unsigned int)param_2 == ((uintptr_t)&g_thread_dummy) /*=0x20006720*/) {
+    if ((unsigned int)param_2 == 0x20006720UL) {
         unsigned long long r;
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "!z_is_idle_thread_object(thread)" /*=0xf84d6*/, "WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/, 0x484);
-        r = assert_post_action("WEST_TOPDIR/zephyr/kernel/sched.c" /*=0xf82f4*/, 0x484);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f84d6) /*=0xf84d6*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x484);
+        r = assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x484);
         base = (int*)(unsigned int)(r >> 32);
     } else {
         base = param_2;
@@ -25,4 +36,3 @@ void dlist_unlink_node(unsigned int param_1, int *param_2, unsigned int param_3,
         *(volatile int*)((char*)base + 4) = 0;
     }
 }
-

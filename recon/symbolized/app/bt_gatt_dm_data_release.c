@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: bt_gatt_dm_data_release */
-/* Reconstructed bt_gatt_dm_data_release @ 0x7f594  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f594 @ 0x0007f594
+ * public-name: bt_gatt_dm_data_release
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   svc_attr_memory_release                  <= FUN_0007f3c2 @ 0x0007f3c2
+ *   atomic_and_0                             <= FUN_0007f3f0 @ 0x0007f3f0
+ *   bt_gatt_dm_data_release                  <= FUN_0007f594 @ 0x0007f594
+ */
+/* Reconstructed FUN_0007f594 @ 0x7f594  (parity: 300/300 trials, PROVEN) */
 
 extern int atomic_and_0(void *a, int b, unsigned int c, unsigned int d);
 extern void svc_attr_memory_release(void *a);
@@ -18,4 +25,3 @@ unsigned int bt_gatt_dm_data_release(int param_1, unsigned int param_2, unsigned
     }
     return uVar2;
 }
-

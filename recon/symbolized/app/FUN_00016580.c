@@ -1,12 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00016580 */
-/* globals referenced:
-//   0x2007fc00  g_dashboard_startup_mode_info_defaults 
-*/
+/* readable reconstruction; identity: FUN_00016580 @ 0x00016580
+ * public-name: FUN_00016580
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_dashboard_startup_mode_info_defaults   @ 0x2007fc00
+ */
 /* Reconstructed FUN_00016580 @ 0x16580  (parity: 300/300 trials, PROVEN) */
 
 unsigned char FUN_00016580(void)
 {
-  return *(volatile unsigned char *)(((uintptr_t)&g_dashboard_startup_mode_info_defaults) /*=0x2007fc00*/ + 0x63);
+  return *(volatile unsigned char *)(((unsigned long)&g_dashboard_startup_mode_info_defaults) /*=0x2007fc00*/ + 0x63);
 }
-

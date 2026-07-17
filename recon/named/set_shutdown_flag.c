@@ -1,4 +1,13 @@
-/* named: set_shutdown_flag */
+/* readable reconstruction; identity: FUN_0007cbfe @ 0x0007cbfe
+ * public-name: set_shutdown_flag
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   update_persist_task_status_to_idle       <= FUN_0002c0e8 @ 0x0002c0e8
+ *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
+ *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
 /* Reconstructed set_shutdown_flag @ 0x7cbfe  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int check_battery_critical(void);
@@ -45,4 +54,3 @@ LAB:
   memset_bytes(param_1+0xef, 0, 0x5dc);
   return;
 }
-

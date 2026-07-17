@@ -1,5 +1,17 @@
-/* named: lock_release_or_fatal */
-/* Reconstructed lock_release_or_fatal @ 0x51134  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00051134 @ 0x00051134
+ * public-name: lock_release_or_fatal
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_f23d4                             @ 0x000f23d4
+ */
+/* Reconstructed FUN_00051134 @ 0x51134  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(int a, int b, int c, int d, int e);
 extern void assert_post_action(int a, int b);
@@ -12,4 +24,3 @@ void lock_release_or_fatal(int param_1, int param_2, int param_3, int param_4)
   }
   k_mutex_unlock();
 }
-

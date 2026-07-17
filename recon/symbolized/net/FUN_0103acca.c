@@ -1,17 +1,18 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0103acca @ 0x103acca  (parity 300 trials PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 void FUN_0103acca(int32_t *param_1)
 {
-    __asm__ volatile("dmb ish" ::: "memory");
+    __DMB();
 
     int32_t base = *(volatile int32_t *)param_1;
     uint32_t flags = *(volatile uint32_t *)(base + 0x10);
     int32_t iVar1 = *(volatile int32_t *)(base + 0x18);
     int take_ad0e = 0;
 
-    if (flags & ((uintptr_t)&g_net_20000000_probe) /*=0x20000000*/) {
+    if (flags & 0x20000000) {
         if (iVar1 == 1) {
             int32_t p7 = *(volatile int32_t *)((int8_t *)param_1 + 0x1c);
             uint16_t v1 = *(volatile uint16_t *)(p7);
@@ -42,4 +43,3 @@ void FUN_0103acca(int32_t *param_1)
     }
     *(volatile uint16_t *)((int8_t *)param_1 + 0x26) = 0;
 }
-

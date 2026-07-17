@@ -6,6 +6,7 @@ this helper only supplies catalog/disassembly metadata and the proof ledger.
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import net_extract as nx
+import function_names
 from capstone import *
 
 SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
@@ -14,6 +15,30 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    0x0102d1c0: 0x7a,  # disable path rejoins return at 0x0102d238
+    # Default return island owns the back-branch at 0x01030ef6; the literal
+    # starts at 0x01030ef8 and the next prologue at 0x01030efc.
+    0x01030e28: 0xd0,
+    # Both branch-reachable fatal tails end at 0x01012c04; a literal follows
+    # and FUN_01012c08 is the next independent entry.
+    0x01012ba4: 0x60,
+    # Reachable arithmetic continues through the return at 0x0102dfde;
+    # literals begin at 0x0102dfe0.
+    0x0102df2c: 0xb4,
+    # Switch-owned cases/default continue through 0x01026646; the next
+    # independent function begins at 0x01026648.
+    0x01026122: 0x526,
+    # Catalog stops before the terminal diagnostic BL at 0x0100b108;
+    # executable code ends immediately before literals at 0x0100b10c.
+    0x0100aff4: 0x118,
+    # Late case-one islands end at the final returns immediately before the
+    # following alignment/independent functions.
+    0x01019f34: 0x68,
+    0x0101a070: 0x78,
+    # Event dispatcher ends before the 0x0101ad34 literal and FUN_0101ad38.
+    0x0101ab20: 0x214,
+    # Final BASEPRI restore/loop backedge ends before literals at 0x01038644.
+    0x010384a8: 0x19c,
     0x0100ac98: 0x202,
     0x0100b180: 0x402,
     0x0100cb10: 0x14,
@@ -23,6 +48,9 @@ TRUE_SIZE_OVERRIDES = {
     0x0101e2cc: 0x30,
     0x0101fc14: 0x16,
     0x0102bbec: 0x3f0,  # late copy loop and aligned-error return precede literals
+    # Deferred-string callback loop and its error joins end immediately
+    # before the literal pool at 0x0102c420.
+    0x0102bfe4: 0x43c,
     0x0101ba58: 0x13c,  # renderer diagnostics end before independent helpers
     0x01021838: 30,     # wrapper ends at tail call; following code is separate
     0x0101bdd4: 0x10e,  # owned default diagnostic ends before literals
@@ -35,6 +63,7 @@ TRUE_SIZE_OVERRIDES = {
     0x01031248: 0x38,
     0x010312d0: 0x3c,
     0x010122fc: 0x30,
+    0x0102d1c0: 0x7a,
     0x0102d938: 0xdc,
     0x0103a076: 0xb6,
     0x01028464: 0x22,
@@ -93,8 +122,30 @@ def info(va):
         if i.address >= f["entry"] + size:
             break
         lines.append("  %05x  %-9s %s%s" % (i.address, i.mnemonic, i.op_str, ann))
-    return {"name": f["name"], "entry": f["entry"], "entry_hex": f["entry_hex"],
-            "size": size, "callees": f["callees"], "decompiled": f["decompiled"],
+    readable = (function_names.readable_name("net", f["entry"])
+                if function_names.available("net") else f["name"])
+    decompiled_raw = f["decompiled"]
+    decompiled = (function_names.substitute(decompiled_raw, "net")
+                  if function_names.available("net") else decompiled_raw)
+    callee_records = []
+    for callee in f["callees"]:
+        match = re.fullmatch(r"(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})", callee)
+        address = (int(match.group(1), 16) & ~1) if match else (
+            function_names.address_for_name("net", callee)
+            if function_names.available("net") else None)
+        callee_records.append({"identity": callee,
+                               "address": hex(address) if address is not None else None,
+                               "readable": (function_names.readable_name("net", address)
+                                            if address is not None and function_names.available("net")
+                                            else callee)})
+    return {"name": f["name"], "readable_name": readable,
+            "raw_name": function_names.raw_name("net", f["entry"]),
+            "entry": f["entry"], "entry_hex": f["entry_hex"],
+            "size": size,
+            "callees": [record["readable"] for record in callee_records],
+            "callee_records": callee_records,
+            "decompiled": decompiled, "decompiled_raw": decompiled_raw,
+            "function_name_map": function_names.MAP_PATH.get("net"),
             "disasm": "\n".join(lines)}
 
 def _ret_kind(va):
@@ -167,5 +218,6 @@ if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "info":
         d = info(int(sys.argv[2], 0))
-        print("###", d["name"], d["entry_hex"], "size", d["size"], "callees", d["callees"])
+        print("###", d["readable_name"], "[%s @ %s]" % (d["raw_name"], d["entry_hex"]),
+              "size", d["size"], "callees", d["callee_records"])
         print(d["decompiled"]); print(d["disasm"])

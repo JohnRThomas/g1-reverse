@@ -1,16 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: ble_conn_le_alloc */
-/* globals referenced:
-//   0x20006138  g_ble_conn_pool              
-*/
-/* Reconstructed ble_conn_le_alloc @ 0x56e34  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00056e34 @ 0x00056e34
+ * public-name: ble_conn_le_alloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_conn_pool_alloc                      <= FUN_000562a4 @ 0x000562a4
+ *   ble_conn_le_alloc                        <= FUN_00056e34 @ 0x00056e34
+ * address symbols (name @ address):
+ *   g_ble_conn_pool                          @ 0x20006138
+ */
+/* Reconstructed FUN_00056e34 @ 0x56e34  (parity: 300/300 trials, PROVEN) */
 
 extern int ble_conn_pool_alloc(unsigned int, int, unsigned int, unsigned int, unsigned int);
 
 void ble_conn_le_alloc(unsigned char param_1, unsigned int *param_2, unsigned int param_3, unsigned int param_4)
 {
   int iVar1;
-  iVar1 = ble_conn_pool_alloc(((uintptr_t)&g_ble_conn_pool) /*=0x20006138*/, 1, param_3, param_4, param_4);
+  iVar1 = ble_conn_pool_alloc(((unsigned long)&g_ble_conn_pool) /*=0x20006138*/, 1, param_3, param_4, param_4);
   if (iVar1 != 0) {
     *(unsigned char *)(iVar1 + 8) = param_1;
     *(unsigned int *)(iVar1 + 0x90) = *param_2;
@@ -22,4 +27,3 @@ void ble_conn_le_alloc(unsigned char param_1, unsigned int *param_2, unsigned in
     *(unsigned int *)(iVar1 + 0xa8) = 0x00280018;
   }
 }
-

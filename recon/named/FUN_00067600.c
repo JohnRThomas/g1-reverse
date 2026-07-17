@@ -1,63 +1,147 @@
-/* named: FUN_00067600 */
-/* Reconstructed FUN_00067600 @ 0x67600  (parity: 300/300 trials, PROVEN) */
-extern void assert_post_action(int,int);
-extern void printk(int,int,int,int);
-extern int  xfer_completeness_check(int,int);
-extern int  __nrfy_internal_twim_events_process(int,int);
-#define VI(a) (*(volatile int*)(a))
-#define VB(a) (*(volatile unsigned char*)(a))
+/* readable reconstruction; identity: FUN_00067600 @ 0x00067600
+ * public-name: FUN_00067600
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   xfer_completeness_check                  <= FUN_00085316 @ 0x00085316
+ *   __nrfy_internal_twim_events_process      <= FUN_0008539a @ 0x0008539a
+ * address symbols (name @ address):
+ *   rodata_40000                             @ 0x00040000
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6e2c                             @ 0x000f6e2c
+ *   rodata_f6fef                             @ 0x000f6fef
+ */
+/* Reconstructed FUN_00067600 @ 0x67600 */
+#include <stdint.h>
 
-void FUN_00067600(int param_1,int *param_2){
-  int p2 = (int)param_2;
-  int iVar2,iVar3; unsigned int uVar4;
-  unsigned char local_28[8]; int stk[16];
-  (void)stk;
-  if (VI(p2) == 0) { printk(0,0,0,0); assert_post_action(0,0x297); }
-  iVar2 = __nrfy_internal_twim_events_process(param_1, 2);
-  iVar3 = __nrfy_internal_twim_events_process(param_1, 0x200);
-  if (iVar3 == 0) {
-    if (iVar2 != 0) goto LAB_67670;
-    __nrfy_internal_twim_events_process(param_1, 0x40000);
-    if ((signed char)VB(p2+0x20) != 0) {
-      VI(param_1+0x200)=0x200; VI(p2+8)=0x202; VI(param_1+0x308)=0x19c0202;
-      VI(param_1+0x304)=VI(p2+8); VI(param_1+8)=1; VI(param_1+0x20)=1; return;
+extern void assert_post_action(uint32_t, uint32_t);
+extern void printk(uint32_t, ...);
+extern int xfer_completeness_check(uintptr_t, void *);
+extern int __nrfy_internal_twim_events_process(uintptr_t, uint32_t);
+
+struct callback_payload {
+  uint8_t event;
+  uint8_t reserved_01[3];
+  uint16_t status;
+  uint16_t reserved_06;
+  uint32_t value_10;
+  uint32_t value_18;
+  uint32_t value_0c;
+  uint32_t value_14;
+};
+
+struct callback_state {
+  void (*handler)(const struct callback_payload *, void *);
+  void *user_data;
+  uint32_t state;
+  uint32_t value_0c;
+  uint32_t value_10;
+  uint32_t value_14;
+  uint32_t value_18;
+  uint32_t flags;
+  uint16_t status;
+  uint8_t reserved_22;
+  uint8_t active;
+  uint8_t acknowledged;
+  uint8_t enabled;
+};
+
+static inline volatile uint32_t *register32(uintptr_t base, unsigned offset)
+{
+  return (volatile uint32_t *)(base + offset);
+}
+
+void FUN_00067600(uintptr_t peripheral, struct callback_state *callback)
+{
+  if (callback->handler == 0) {
+    printk(0x00099cbd, 0x000f6e2c, 0x000f6fef, 0x297);
+    assert_post_action(0x000f6fef, 0x297);
+  }
+
+  int has_event_2 = __nrfy_internal_twim_events_process(peripheral, 2);
+  int has_event_200 = __nrfy_internal_twim_events_process(peripheral, 0x200);
+
+  if (has_event_200 != 0 && has_event_2 == 0) {
+    *register32(peripheral, 0x308) = callback->state;
+    callback->state = 2;
+    *register32(peripheral, 0x304) = callback->state;
+    if (__nrfy_internal_twim_events_process(peripheral, 0x1000000) == 0 ||
+        (*register32(peripheral, 0x200) & 0x200) == 0) {
+      *register32(peripheral, 0x20) = 1;
+      *register32(peripheral, 0x14) = 1;
     }
-    uVar4 = VB(p2+0x25);
-    if (uVar4 == 0) goto LAB_676b2;
+    callback->active = 1;
+    return;
+  }
+
+  if (has_event_200 == 0 && has_event_2 == 0) {
+    __nrfy_internal_twim_events_process(peripheral, 0x40000);
+    if ((uint8_t)callback->status != 0) {
+      *register32(peripheral, 0x200) = 0x200;
+      callback->state = 0x202;
+      *register32(peripheral, 0x308) = 0x019c0202;
+      *register32(peripheral, 0x304) = callback->state;
+      *register32(peripheral, 8) = 1;
+      *register32(peripheral, 0x20) = 1;
+      return;
+    }
+    if (callback->enabled == 0) {
+      goto clear_state;
+    }
   } else {
-    if (iVar2 == 0) {
-      VI(param_1+0x308)=VI(p2+8); VI(p2+8)=2; VI(param_1+0x304)=VI(p2+8);
-      iVar2 = __nrfy_internal_twim_events_process(param_1, 0x1000000);
-      if (iVar2==0 || (int)(VI(param_1+0x200)<<0x16) >= 0) { VI(param_1+0x20)=1; VI(param_1+0x14)=1; }
-      VB(p2+0x23)=1; return;
+    if ((callback->flags & 0x40) == 0 && callback->active == 0) {
+      callback->active =
+          (uint8_t)(xfer_completeness_check(peripheral, callback) ^ 1);
     }
-LAB_67670:
-    if ((int)(VI(p2+0x1c)<<0x19) >= 0 && VB(p2+0x23)==0) {
-      int b = xfer_completeness_check(param_1, p2);
-      VB(p2+0x23) = (unsigned char)(b ^ 1);
+    if ((callback->flags & 4) != 0) {
+      goto publish;
     }
-    if ((VI(p2+0x1c) & 4) != 0) goto LAB_6770c;
-    VI(param_1+0x160)=0; VI(param_1+0x15c)=0;
-    if (VB(p2+0x25)==0 || VB(p2+0x23)!=0) {
-      uVar4 = 0;
-LAB_676b2:
-      VI(param_1+0x200)=(int)uVar4; VI(p2+8)=(int)uVar4; VI(param_1+0x308)=0x019c0202;
-      uVar4 = (unsigned int)(((int)(param_1<<0xc))>>0x18);
-      if ((int)uVar4 >= 0) {
-        VI(0xe000e100 + ((uVar4>>5)+0x60)*4) = 1 << (uVar4 & 0x1f);
+
+    *register32(peripheral, 0x160) = 0;
+    *register32(peripheral, 0x15c) = 0;
+    if (callback->enabled == 0 || callback->active != 0) {
+clear_state:
+      *register32(peripheral, 0x200) = 0;
+      callback->state = 0;
+      *register32(peripheral, 0x308) = 0x019c0202;
+
+      uint32_t irq_field = ((uint32_t)peripheral >> 12) & 0xffu;
+      int irq = irq_field < 0x80u
+          ? (int)irq_field : (int)irq_field - 0x100;
+      if (irq >= 0) {
+        volatile uint32_t *nvic_icpr =
+            (volatile uint32_t *)(0xe000e280u + ((unsigned)irq >> 5) * 4);
+        *nvic_icpr = 1u << ((unsigned)irq & 31);
       }
     }
   }
-LAB_6770c:
-  iVar2 = VI(param_1+0x4c4);
-  VI(param_1+0x4c4) = iVar2;
-  if ((int)(iVar2<<0x1e) < 0) local_28[0]=1;
-  else if ((int)(iVar2<<0x1d) < 0) local_28[0]=2;
-  else if ((int)(iVar2<<0x1f) < 0) local_28[0]=3;
-  else local_28[0] = (unsigned char)((VB(p2+0x23) & 0x3f) << 2);
-  if (VB(p2+0x25) == 0) VB(p2+0x24) = 0;
-  if ((int)(VI(p2+0x1c)<<0x1d) >= 0 || VB(p2+0x23) != 0) {
-    ((void(*)(void*,int))(VI(p2)))(local_28, VI(p2+4));
+
+publish:
+  struct callback_payload payload = {
+    .status = callback->status,
+    .value_10 = callback->value_10,
+    .value_18 = callback->value_18,
+    .value_0c = callback->value_0c,
+    .value_14 = callback->value_14,
+  };
+
+  uint32_t event_flags = *register32(peripheral, 0x4c4);
+  *register32(peripheral, 0x4c4) = event_flags;
+  if ((event_flags & 2) != 0) {
+    payload.event = 1;
+  } else if ((event_flags & 4) != 0) {
+    payload.event = 2;
+  } else if ((event_flags & 1) != 0) {
+    payload.event = 3;
+  } else {
+    payload.event = (uint8_t)(callback->active << 2);
+  }
+
+  if (callback->enabled == 0) {
+    callback->acknowledged = 0;
+  }
+  if ((callback->flags & 4) == 0 || callback->active != 0) {
+    callback->handler(&payload, callback->user_data);
   }
 }
-

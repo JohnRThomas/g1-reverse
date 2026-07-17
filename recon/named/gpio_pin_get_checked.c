@@ -1,8 +1,18 @@
-/* named: gpio_pin_get_checked */
-/* globals referenced:
-//   0x00087b60  g_gpio0_dev                  
-*/
-/* Reconstructed gpio_pin_get_checked @ 0x17980  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00017980 @ 0x00017980
+ * public-name: gpio_pin_get_checked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpio_pin_get_checked                     <= FUN_00017980 @ 0x00017980
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   g_gpio0_dev                              @ 0x00087b60
+ *   rodata_99c53                             @ 0x00099c53
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_99de0                             @ 0x00099de0
+ *   rodata_99e1e                             @ 0x00099e1e
+ */
+/* Reconstructed FUN_00017980 @ 0x17980  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern void assert_post_action(unsigned int a, unsigned int b);
@@ -32,4 +42,3 @@ int gpio_pin_get_checked(unsigned int param_1, unsigned int param_2, unsigned in
   }
   return iVar1;
 }
-

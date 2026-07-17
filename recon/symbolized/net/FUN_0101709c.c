@@ -11,8 +11,8 @@ extern void FUN_01020500(void);
 
 unsigned int FUN_0101709c(char *param_1, unsigned int param_2)
 {
-  volatile unsigned char * const iVar4 = (volatile unsigned char *)((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/;
-  volatile signed char * const p714c = (volatile signed char *)((uintptr_t)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
+  volatile unsigned char * const iVar4 = (volatile unsigned char *)0x21000f90;
+  volatile signed char * const p714c = (volatile signed char *)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
 
   if (iVar4[0x82] == 0) {
     return 0;
@@ -42,7 +42,7 @@ unsigned int FUN_0101709c(char *param_1, unsigned int param_2)
   unsigned char uVar2 = iVar4[0x8f];
   *p714c = 0x7f;
 
-  int iVar5 = FUN_01019aa0((void *)param_1, param_2, ((uintptr_t)&g_net_ll_event_scratch_buf) /*=0x21000fd6*/, iVar4[0xb9], uVar2, uVar7b, (int)cVar3, iVar8);
+  int iVar5 = FUN_01019aa0((void *)param_1, param_2, 0x21000fd6, iVar4[0xb9], uVar2, uVar7b, (int)cVar3, iVar8);
 
   if (iVar5 == 0) {
     if (iVar8 == 2) {
@@ -64,4 +64,3 @@ unsigned int FUN_0101709c(char *param_1, unsigned int param_2)
   FUN_010196e0();
   return 0;
 }
-

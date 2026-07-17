@@ -1,9 +1,34 @@
-/* named: verify_whitelist_json */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001a22c  g_app_whitelist_buffer       
-*/
-/* Reconstructed verify_whitelist_json @ 0x35050  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00035050 @ 0x00035050
+ * public-name: verify_whitelist_json
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   whitelist_contains_app                   <= FUN_00034ff0 @ 0x00034ff0
+ *   verify_whitelist_json                    <= FUN_00035050 @ 0x00035050
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
+ *   sllist_node_at_index                     <= FUN_00085030 @ 0x00085030
+ *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_9a1dd                             @ 0x0009a1dd
+ *   rodata_9e1b6                             @ 0x0009e1b6
+ *   rodata_9e235                             @ 0x0009e235
+ *   rodata_a862c                             @ 0x000a862c
+ *   rodata_a8638                             @ 0x000a8638
+ *   rodata_a864e                             @ 0x000a864e
+ *   rodata_a866e                             @ 0x000a866e
+ *   rodata_a869b                             @ 0x000a869b
+ *   rodata_a870b                             @ 0x000a870b
+ *   rodata_a8762                             @ 0x000a8762
+ *   rodata_a886d                             @ 0x000a886d
+ *   rodata_a8884                             @ 0x000a8884
+ *   rodata_f33e4                             @ 0x000f33e4
+ *   rodata_f3630                             @ 0x000f3630
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_app_whitelist_buffer                   @ 0x2001a22c
+ */
+/* Reconstructed FUN_00035050 @ 0x35050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -32,7 +57,7 @@ undefined4 verify_whitelist_json(void)
     iVar4 = FUN_0008500c();
     if (iVar4 == 0) {
         if (*dbgp == 0) DEBUG_PRINT(0xa8762);
-        else debug_print(0);
+        else debug_print(0xa8762);
         return 0;
     }
     iVar5 = sllist_find_by_name_ci(iVar4, 0xa862c);
@@ -41,7 +66,7 @@ undefined4 verify_whitelist_json(void)
         uVar8 = 0xa8638;
 LAB_00035088:
         if (iVar5 == 0) DEBUG_PRINT(uVar8);
-        else debug_print(0);
+        else debug_print(uVar8);
     } else {
         if ((int)((*pbVar2 & 1)) != (*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
@@ -122,7 +147,7 @@ LAB_00035088:
                     uVar8 = 0xa870b;
 LAB_000351c4:
                     if (iVar6 == 0) DEBUG_PRINT(uVar8);
-                    else debug_print(0);
+                    else debug_print(uVar8);
                 } else {
                     iVar7 = sllist_find_by_name_ci(iVar6, 0x9a1dd);
                     if (iVar7 == 0) {
@@ -147,7 +172,7 @@ LAB_000351c4:
             }
             if (uVar11 == uVar9) {
                 if (*dbgp == 0) DEBUG_PRINT(0xa886d);
-                else debug_print(0);
+                else debug_print(0xa886d);
                 uVar8 = 1;
                 goto LAB_0003523e;
             }
@@ -157,7 +182,6 @@ LAB_000351c4:
 LAB_0003523e:
     cjson_delete(iVar4);
     if (*dbgp == 0) DEBUG_PRINT(0xa8884, uVar8);
-    else debug_print(0);
+    else debug_print(0xa8884, uVar8);
     return uVar8;
 }
-

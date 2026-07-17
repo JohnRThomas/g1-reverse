@@ -1,12 +1,35 @@
-/* named: confirm_message */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007dac  g_message_pool               
-//   0x20008eb4  g_message_table_mirror       
-//   0x2001a22b  g_message_table_slot_count   
-*/
-/* Reconstructed confirm_message @ 0x34524  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00034524 @ 0x00034524
+ * public-name: confirm_message
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   check_pending_messages_flag              <= FUN_0002c1fc @ 0x0002c1fc
+ *   msg_queue_debug_dump                     <= FUN_00033b0c @ 0x00033b0c
+ *   debug_dump_message_slots_10_19           <= FUN_00033b4c @ 0x00033b4c
+ *   get_active_message_count                 <= FUN_00033cb0 @ 0x00033cb0
+ *   msg_content_used_count                   <= FUN_00033cdc @ 0x00033cdc
+ *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   clear_timeout_message                    <= FUN_00033d58 @ 0x00033d58
+ *   message_table_contains_id                <= FUN_00033f24 @ 0x00033f24
+ *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
+ *   confirm_message                          <= FUN_00034524 @ 0x00034524
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a8174                             @ 0x000a8174
+ *   rodata_a8255                             @ 0x000a8255
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_table_mirror                   @ 0x20008eb4
+ *   g_msg_queue_busy                         @ 0x20018d8e
+ *   g_esb_notify_slave_role_guard            @ 0x20018d9f
+ *   g_message_pending_state                  @ 0x2001a229
+ *   g_message_table_slot_count               @ 0x2001a22b
+ */
+/* Reconstructed FUN_00034524 @ 0x34524  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint;
 extern int DEBUG_PRINT(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
@@ -120,4 +143,3 @@ void confirm_message(int param_1)
   }
   return;
 }
-

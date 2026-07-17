@@ -1,5 +1,18 @@
-/* named: gatt_dm_attr_alloc */
-/* Reconstructed gatt_dm_attr_alloc @ 0x4e8e8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e8e8 @ 0x0004e8e8
+ * public-name: gatt_dm_attr_alloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_dm_attr_alloc                       <= FUN_0004e8e8 @ 0x0004e8e8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   k_calloc                                 <= FUN_000868ca @ 0x000868ca
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f11bc                             @ 0x000f11bc
+ *   rodata_f11e7                             @ 0x000f11e7
+ *   cur_service_val                          @ 0x2000a154
+ */
+/* Reconstructed FUN_0004e8e8 @ 0x4e8e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern void assert_post_action(uint32_t,uint32_t);
@@ -30,4 +43,3 @@ int gatt_dm_attr_alloc(int param_1,uint32_t param_2,uint32_t param_3,uint32_t pa
   *(volatile uint32_t*)(iVar1+0x158)=uVar5+iVar4;
   return (int)(uintptr_t)puVar2+iVar4+4;
 }
-

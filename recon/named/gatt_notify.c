@@ -1,5 +1,30 @@
-/* named: gatt_notify */
-/* Reconstructed gatt_notify @ 0x5b680  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005b680 @ 0x0005b680
+ * public-name: gatt_notify
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_get                                  <= FUN_0005858c @ 0x0005858c
+ *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
+ *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
+ *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   process_queue                            <= FUN_00082114 @ 0x00082114
+ *   bt_att_set_tx_meta_data                  <= FUN_000825ac @ 0x000825ac
+ *   bt_gatt_check_perm                       <= FUN_00082cba @ 0x00082cba
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4ad5                             @ 0x000f4ad5
+ *   rodata_f4aeb                             @ 0x000f4aeb
+ *   rodata_f4b3d                             @ 0x000f4b3d
+ *   rodata_f4b44                             @ 0x000f4b44
+ *   rodata_f4bde                             @ 0x000f4bde
+ */
+/* Reconstructed FUN_0005b680 @ 0x5b680  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0005833c(int,...);
 extern int att_get(int,...);
@@ -84,4 +109,3 @@ LAB_00059a5a:
     }
     return uVar3;
 }
-

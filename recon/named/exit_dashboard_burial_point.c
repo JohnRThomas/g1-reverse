@@ -1,8 +1,18 @@
-/* named: exit_dashboard_burial_point */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0004aab0 @ 0x0004aab0
+ * public-name: exit_dashboard_burial_point
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_dashboard_sum_time                   <= FUN_0004a960 @ 0x0004a960
+ *   get_current_burial_point_type            <= FUN_0007dac0 @ 0x0007dac0
+ *   accumulate_burial_point_duration         <= FUN_0007db50 @ 0x0007db50
+ * address symbols (name @ address):
+ *   rodata_f03c4                             @ 0x000f03c4
+ *   rodata_f0459                             @ 0x000f0459
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed exit_dashboard_burial_point @ 0x4aab0  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int get_device_info(void);
@@ -45,4 +55,3 @@ unsigned int exit_dashboard_burial_point(void)
     }
     return r0v;
 }
-

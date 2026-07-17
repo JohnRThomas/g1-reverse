@@ -25,4 +25,3 @@ void FUN_0103b5dc(unsigned int param_1, char *param_2, unsigned int param_3)
         param_1 = param_1 / param_3;
     } while (bVar1);
 }
-

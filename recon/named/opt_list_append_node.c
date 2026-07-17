@@ -1,5 +1,11 @@
-/* named: opt_list_append_node */
-/* Reconstructed opt_list_append_node @ 0x7c7de  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c7de @ 0x0007c7de
+ * public-name: opt_list_append_node
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_node_total_len                       <= FUN_0007c41c @ 0x0007c41c
+ *   opt_list_append_node                     <= FUN_0007c7de @ 0x0007c7de
+ */
+/* Reconstructed FUN_0007c7de @ 0x7c7de  (parity: 300/300 trials, PROVEN) */
 
 extern int opt_node_total_len(unsigned char *a);
 
@@ -36,4 +42,3 @@ unsigned int opt_list_append_node(unsigned int *param_1, unsigned char *param_2)
     }
     return uVar4;
 }
-

@@ -1,5 +1,15 @@
-/* named: init_analytics_settings */
-/* Reconstructed init_analytics_settings @ 0x7c360  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007c360 @ 0x0007c360
+ * public-name: init_analytics_settings
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   load_sys_setting                         <= FUN_00022bd0 @ 0x00022bd0
+ *   load_usr_setting                         <= FUN_00022e78 @ 0x00022e78
+ *   load_burial_point                        <= FUN_000230e0 @ 0x000230e0
+ *   init_analytics_settings                  <= FUN_0007c360 @ 0x0007c360
+ *   reset_countdown_timer_default            <= FUN_0007d1b8 @ 0x0007d1b8
+ */
+/* Reconstructed FUN_0007c360 @ 0x7c360  (parity: 300/300 trials, PROVEN) */
 
 extern int load_sys_setting(void);
 extern int load_usr_setting(int);
@@ -16,4 +26,3 @@ int init_analytics_settings(int param_1)
     }
     return 0;
 }
-

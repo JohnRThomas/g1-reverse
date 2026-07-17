@@ -1,8 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00055204 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_00055204 @ 0x00055204
+ * public-name: FUN_00055204
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   id_find                                  <= FUN_00054ce8 @ 0x00054ce8
+ *   bt_addr_le_eq                            <= FUN_00080fa4 @ 0x00080fa4
+ * address symbols (name @ address):
+ *   rodata_88150                             @ 0x00088150
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f3705                             @ 0x000f3705
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_00055204 @ 0x55204  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
@@ -14,11 +22,11 @@ extern void FUN_0008104a(u32,int,void*);
 unsigned FUN_00055204(char* param_1, int param_2){
     u32 local_18[2];
     if(param_1 != 0){
-        int fa = bt_addr_le_eq(param_1, ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/);
+        int fa = bt_addr_le_eq(param_1, ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/);
         if(fa == 0){
             if(*param_1 != 1 || (param_1[6] & 0xc0) != 0xc0){
-                local_18[0] = 2; local_18[1] = "Only static random identity address supported" /*=0xf3705*/;
-                FUN_0008104a(((uintptr_t)&tbl_880d8) /*=0x88150*/, 0x1040, local_18);
+                local_18[0] = 2; local_18[1] = ((unsigned long)&rodata_f3705) /*=0xf3705*/;
+                FUN_0008104a(((unsigned long)&rodata_88150) /*=0x88150*/, 0x1040, local_18);
                 return 0xffffffea;
             }
             int c = id_find(param_1);
@@ -26,18 +34,17 @@ unsigned FUN_00055204(char* param_1, int param_2){
         }
     }
     if(param_2 != 0) return 0xffffffea;
-    if(*(volatile char*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+7) == 1) return 0xfffffff4;
-    int iVar3 = FUN_00080fb4(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+0xd4);
-    if((int)(iVar3 << 0x1f) < 0 || (param_1 != 0 && bt_addr_le_eq(param_1, ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/) == 0)){
-        u8 bVar1 = *(volatile u8*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+7);
-        *(volatile u8*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+7) = bVar1 + 1;
+    if(*(volatile char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+7) == 1) return 0xfffffff4;
+    int iVar3 = FUN_00080fb4(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+0xd4);
+    if((int)(iVar3 << 0x1f) < 0 || (param_1 != 0 && bt_addr_le_eq(param_1, ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/) == 0)){
+        u8 bVar1 = *(volatile u8*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+7);
+        *(volatile u8*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+7) = bVar1 + 1;
         unsigned uVar4 = FUN_00054d18(bVar1, param_1);
         if(uVar4 != 0){
-            *(volatile char*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+7) = *(volatile char*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+7) - 1;
+            *(volatile char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+7) = *(volatile char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+7) - 1;
             return uVar4;
         }
         return bVar1;
     }
     return 0xffffffea;
 }
-

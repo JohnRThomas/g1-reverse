@@ -4,7 +4,7 @@
 extern void FUN_0100eec8(void *, unsigned int);
 void FUN_0101f974(int param_1) {
   unsigned char *r0 = *(unsigned char **)(param_1 + 4);
-  unsigned int r1 = ((uintptr_t)&rodata_1029e75) /*=0x1029e75*/;
+  unsigned int r1 = 0x1029e75;
   unsigned short r3 = *(unsigned short *)r0;
   *(unsigned short *)(r0 + 0x1fe) = r3;
   r3 = *(unsigned short *)(r0 + 0x66);
@@ -12,4 +12,3 @@ void FUN_0101f974(int param_1) {
   *(unsigned short *)(r0 + 0xb) = r3;
   FUN_0100eec8(r0, r1);
 }
-

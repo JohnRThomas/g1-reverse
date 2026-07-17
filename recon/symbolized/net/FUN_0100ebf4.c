@@ -3,7 +3,7 @@
 
 void FUN_0100ebf4(void)
 {
-  unsigned int base = ((uintptr_t)&g_net_pending_work_list) /*=0x21000ec8*/;
+  unsigned int base = ((unsigned long)&g_net_pending_work_list) /*=0x21000ec8*/;
 
   *(volatile unsigned int  *)(base + 4)  = 0;
   *(volatile unsigned short*)(base + 0x28) = 0;
@@ -19,4 +19,3 @@ void FUN_0100ebf4(void)
   *(volatile unsigned int  *)(base + 4) = base + 8;
   *(volatile unsigned int  *)(base + 8) = base + 8;
 }
-

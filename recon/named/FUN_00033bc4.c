@@ -1,4 +1,7 @@
-/* named: FUN_00033bc4 */
+/* readable reconstruction; identity: FUN_00033bc4 @ 0x00033bc4
+ * public-name: FUN_00033bc4
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00033bc4 @ 0x33bc4  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_00033bc4(void)
@@ -19,4 +22,3 @@ unsigned int FUN_00033bc4(void)
   }
   return uVar1;
 }
-

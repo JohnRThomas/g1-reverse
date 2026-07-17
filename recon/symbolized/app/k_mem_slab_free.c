@@ -1,6 +1,29 @@
 #include "g1_app_symbols.h"
-/* named: k_mem_slab_free */
-/* Reconstructed k_mem_slab_free @ 0x71cf4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00071cf4 @ 0x00071cf4
+ * public-name: k_mem_slab_free
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   k_mem_slab_free                          <= FUN_00071cf4 @ 0x00071cf4
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   z_ready_thread_locked                    <= FUN_000738d4 @ 0x000738d4
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   z_unpend_first_thread                    <= FUN_000744a4 @ 0x000744a4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f7e3c                             @ 0x000f7e3c
+ *   rodata_f7e7e                             @ 0x000f7e7e
+ *   rodata_f7f29                             @ 0x000f7f29
+ */
+/* Reconstructed FUN_00071cf4 @ 0x71cf4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
@@ -9,14 +32,15 @@ extern void z_ready_thread_locked(void);
 extern void z_reschedule(int,uint32_t);
 extern int z_unpend_first_thread(int);
 extern void assert_post_action(uint32_t,int);
-extern void printk();
+extern void printk(uint32_t,...);
 void k_mem_slab_free(int param_1, uint32_t* param_2){
     int iVar6=param_1+8;
     uint32_t uVar7=0;
     int iVar2=z_spin_lock_valid(iVar6);
     if(iVar2==0){
-        printk(); printk();
-        assert_post_action(uVar7,0x72);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
+        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,iVar6);
+        assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
         goto mainp;
     }
     z_spin_lock_set_owner(iVar6);
@@ -32,8 +56,9 @@ void k_mem_slab_free(int param_1, uint32_t* param_2){
             else if((uint32_t*)(uVar4*(*(volatile int*)(param_1+0xc)-1)+(int)puVar5)<param_2) fail=1;
         }
         if(fail){
-            printk(); printk();
-            assert_post_action(0,0x98);
+            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7e7e) /*=0xf7e7e*/,((unsigned long)&rodata_f7e3c) /*=0xf7e3c*/,0x98);
+            printk(((unsigned long)&rodata_f7f29) /*=0xf7f29*/);
+            assert_post_action(((unsigned long)&rodata_f7e3c) /*=0xf7e3c*/,0x98);
             goto mainp;
         }
     }
@@ -55,8 +80,8 @@ mainp:;
         *(volatile int*)(param_1+0x1c)=*(volatile int*)(param_1+0x1c)-1;
         iVar2=z_spin_unlock_valid(iVar6);
         if(iVar2!=0) return;
-        printk(); printk();
-        assert_post_action(0,0xf0);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,iVar6);
+        assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
     }
 }
-

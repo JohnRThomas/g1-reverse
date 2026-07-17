@@ -1,23 +1,34 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00032308 */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00032308 @ 0x00032308
+ * public-name: FUN_00032308
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a6711                             @ 0x000a6711
+ *   rodata_a671e                             @ 0x000a671e
+ *   rodata_a676d                             @ 0x000a676d
+ *   rodata_a7712                             @ 0x000a7712
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed FUN_00032308 @ 0x32308  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned,...);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(unsigned int, ...);
 extern void build_and_send_device_status_report(int,int);
 extern int read_sys_settting_from_flash(void*);
 extern void k_msleep_ticks32768_b(int);
 
 int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
-    unsigned char auStack[20];
-    unsigned char local_88;
-    DEBUG_PRINT("join in %s \n" /*=0xa6711*/, "set_panel_voltage" /*=0xa7712*/);
+    unsigned char status_record[21];
+    DEBUG_PRINT(((unsigned long)&rodata_a6711) /*=0xa6711*/, ((unsigned long)&rodata_a7712) /*=0xa7712*/);
     if (param_3==0 || param_4==0 || param_1==0 || param_2 < 5){
-        DEBUG_PRINT("%s para is NULL\n" /*=0xa671e*/, "set_panel_voltage" /*=0xa7712*/);
+        DEBUG_PRINT(((unsigned long)&rodata_a671e) /*=0xa671e*/, ((unsigned long)&rodata_a7712) /*=0xa7712*/);
         return 0xffffffff;
     }
     unsigned char *puVar6 = (unsigned char*)*param_3;
@@ -32,8 +43,8 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
             iVar2 = get_device_info(); build_and_send_device_status_report(iVar2, 0);
             char cVar5 = 0;
             do {
-                iVar2 = read_sys_settting_from_flash(auStack);
-                if (iVar2 == 0 && local_88 == bVar1) break;
+                iVar2 = read_sys_settting_from_flash(status_record);
+                if (iVar2 == 0 && status_record[20] == bVar1) break;
                 cVar5 = cVar5 + 1;
                 k_msleep_ticks32768_b(100);
             } while (cVar5 != 5);
@@ -42,8 +53,8 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
         }
         uVar4 = 4;
     } else {
-        if (*(int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT("[%s-%d]invalid vaule \n" /*=0xa676d*/, "set_panel_voltage" /*=0xa7712*/, 0x3c1);
-        else debug_print();
+        if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_a676d) /*=0xa676d*/, ((unsigned long)&rodata_a7712) /*=0xa7712*/, 0x3c1);
+        else debug_print(((unsigned long)&rodata_a676d) /*=0xa676d*/, ((unsigned long)&rodata_a7712) /*=0xa7712*/, 0x3c1);
         uVar4 = 3;
     }
     puVar6[4] = uVar4;
@@ -51,4 +62,3 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
     *param_4 = 5;
     return 0;
 }
-

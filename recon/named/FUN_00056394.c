@@ -1,7 +1,20 @@
-/* named: FUN_00056394 */
-/* globals referenced:
-//   0x00088108  log_module_bt_conn           
-*/
+/* readable reconstruction; identity: FUN_00056394 @ 0x00056394
+ * public-name: FUN_00056394
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   tx_notify                                <= FUN_00056020 @ 0x00056020
+ *   bt_l2cap_recv                            <= FUN_00057cc4 @ 0x00057cc4
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   bt_conn_reset_rx_state                   <= FUN_000813d6 @ 0x000813d6
+ *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ * address symbols (name @ address):
+ *   log_module_bt_conn                       @ 0x00088108
+ *   rodata_f3b12                             @ 0x000f3b12
+ *   rodata_f3b2f                             @ 0x000f3b2f
+ *   rodata_f3b4d                             @ 0x000f3b4d
+ *   rodata_f3b74                             @ 0x000f3b74
+ *   rodata_f3b92                             @ 0x000f3b92
+ */
 /* Reconstructed FUN_00056394 @ 0x56394  (parity: 300/300 trials, PROVEN) */
 
 extern int tx_notify();
@@ -10,7 +23,7 @@ extern int net_buf_unref(int);
 extern int FUN_000813ca(int,int,void*);
 extern int bt_conn_reset_rx_state(int);
 extern int net_buf_simple_tailroom(int);
-extern int net_buf_simple_push_mem(int,int,int);
+extern int FUN_00083740(int,int,int);
 
 void FUN_00056394(int param_1, int param_2, int param_3)
 {
@@ -31,7 +44,7 @@ void FUN_00056394(int param_1, int param_2, int param_3)
       if (uVar1 != 0) {
         uVar2 = net_buf_simple_tailroom(*(int*)(param_1+0x10)+0xc);
         if (uVar1 <= uVar2) {
-          net_buf_simple_push_mem(*(int*)(param_1+0x10)+0xc, *(unsigned int*)(param_2+0xc), *(unsigned short*)(param_2+0x10));
+          FUN_00083740(*(int*)(param_1+0x10)+0xc, *(unsigned int*)(param_2+0xc), *(unsigned short*)(param_2+0x10));
           net_buf_unref(param_2);
           goto LAB_563ce;
         }
@@ -86,4 +99,3 @@ LAB_56432:
   net_buf_unref(param_2);
   return;
 }
-

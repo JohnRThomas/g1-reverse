@@ -9,17 +9,16 @@ typedef unsigned int (*fnptr)(void*, unsigned int, unsigned short);
 
 unsigned int FUN_010323f8(unsigned int param_1, unsigned short param_2)
 {
-    void *iVar1 = (void*)((uintptr_t)&rodata_103bf70) /*=0x103bf70*/;
+    void *iVar1 = (void*)((unsigned long)&rodata_103bf70) /*=0x103bf70*/;
     int iVar2 = FUN_0103b0f0(iVar1);
     unsigned int target;
     fnptr f;
     if (iVar2 == 0) return 0xffffffed;
     target = *(unsigned int *)(*(unsigned int *)((char*)iVar1 + 8));
     if (target == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "s)" /*=0x103e187*/, 0x4d);
-        FUN_01039bb0("s)" /*=0x103e187*/, 0x4d);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e187) /*=0x103e187*/, 0x4d);
+        FUN_01039bb0(((unsigned long)&rodata_103e187) /*=0x103e187*/, 0x4d);
     }
     f = (fnptr)target;
     return f(iVar1, param_1, param_2);
 }
-

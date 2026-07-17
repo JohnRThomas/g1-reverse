@@ -5,11 +5,11 @@ extern unsigned int FUN_01037f00(void);
 
 unsigned int FUN_01037f14(void)
 {
-    int *piVar4 = *(int **)((uintptr_t)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/;
+    int *piVar4 = *(int **)((unsigned long)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/;
     unsigned int uVar1;
     unsigned int uVar3;
     int iVar2;
-    if (piVar4 == (int*)((uintptr_t)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/) {
+    if (piVar4 == (int*)((unsigned long)&g_net_kernel_timeout_dlist_head) /*=0x21000750*/) {
         FUN_01037f00();
         return 0x7fffffff;
     } else {
@@ -25,4 +25,3 @@ unsigned int FUN_01037f14(void)
     }
     return 0x7fffffff;
 }
-

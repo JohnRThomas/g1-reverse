@@ -1,8 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000560cc */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_000560cc @ 0x000560cc
+ * public-name: FUN_000560cc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_destroy                          <= FUN_00056080 @ 0x00056080
+ *   net_buf_simple_push                      <= FUN_0005f518 @ 0x0005f518
+ *   net_buf_simple_pull_5f558                <= FUN_0005f558 @ 0x0005f558
+ *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   sys_slist_find_and_remove                <= FUN_0008137e @ 0x0008137e
+ *   thunk_FUN_000727ac                       <= FUN_000836e8 @ 0x000836e8
+ *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ * address symbols (name @ address):
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_000560cc @ 0x560cc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000543c8(void);
@@ -16,7 +28,7 @@ extern void printk(void);
 extern void sys_slist_find_and_remove(void);
 extern void FUN_000813ca(void);
 extern int net_buf_simple_tailroom(void);
-extern void net_buf_simple_push_mem(void);
+extern void FUN_00083740(void);
 extern int thunk_FUN_000727ac(void);
 
 #define S16(a) (*(volatile int16_t*)(a))
@@ -26,7 +38,7 @@ extern int thunk_FUN_000727ac(void);
 
 unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
 {
-    int iVar2 = ((uintptr_t)&g_ble_dev_state) /*=0x20002000*/;
+    int iVar2 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/;
     int iVar4;
     unsigned uVar8;
     int puVar9;
@@ -50,7 +62,7 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
             uVar3 = U16(iVar2 + 0x104);
         }
         (void)uVar3;
-        net_buf_simple_push_mem();
+        FUN_00083740();
         net_buf_simple_pull_5f558();
     }
     puVar9 = (int)U32(param_3 + 0x18);
@@ -104,4 +116,3 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
     }
     return uVar8;
 }
-

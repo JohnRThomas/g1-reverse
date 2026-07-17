@@ -1,5 +1,14 @@
-/* named: dev_write_config_word */
-/* Reconstructed dev_write_config_word @ 0x83bf0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00083bf0 @ 0x00083bf0
+ * public-name: dev_write_config_word
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_config_word                    <= FUN_00083bf0 @ 0x00083bf0
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00083bf0 @ 0x83bf0  (parity: 300/300 trials, PROVEN) */
 extern int dev_write_reg3(int,int,unsigned,unsigned);
 extern int k_is_in_isr(void);
 int dev_write_config_word(int param_1, unsigned param_2, int param_3){
@@ -28,4 +37,3 @@ int dev_write_config_word(int param_1, unsigned param_2, int param_3){
   if (iVar1 < 0) return iVar1;
   return dev_write_reg3(*(int*)(iVar3+4), 6, (param_2+0x19)&0xff, (unsigned)(param_3>>9)&1);
 }
-

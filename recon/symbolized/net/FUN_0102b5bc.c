@@ -1,14 +1,16 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN) */
-#define P_0102b640 ((uintptr_t)&g_net_ipc_msg_data) /*=0x21004628*/
+/* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
+ * asynchronous completion flag written by hardware/ISR code. */
+#define P_0102b640 ((unsigned long)&g_net_ipc_msg_data) /*=0x21004628*/
 #define C_0102b644 0xf0000010
-#define P_0102b648 ((uintptr_t)&g_net_ipc_msg_type) /*=0x21004fa2*/
-#define C_0102b64c REG_418c0500 /*=0x418c0500*/
-#define P_0102b650 ((uintptr_t)&g_zephyr_log_level) /*=0x21000580*/
-#define P_0102b654 "bus error" /*=0x103d18c*/
-#define P_0102b658 "AGE FAULT *****" /*=0x103d19e*/
-#define P_0102b65c " by zero" /*=0x103d1b8*/
-#define P_0102b660 ((uintptr_t)&rodata_102bf59) /*=0x102bf59*/
+#define P_0102b648 ((unsigned long)&g_net_ipc_msg_type) /*=0x21004fa2*/
+#define C_0102b64c 0x418c0500
+#define P_0102b650 ((unsigned long)&g_zephyr_log_level) /*=0x21000580*/
+#define P_0102b654 ((unsigned long)&rodata_103d18c) /*=0x103d18c*/
+#define P_0102b658 ((unsigned long)&rodata_103d19e) /*=0x103d19e*/
+#define P_0102b65c ((unsigned long)&rodata_103d1b8) /*=0x103d1b8*/
+#define P_0102b660 0x0102bf59
 
 extern int FUN_0103037c(int);
 extern int FUN_0102ca80(int, void *);
@@ -67,4 +69,3 @@ int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_
   }
   return iVar3;
 }
-

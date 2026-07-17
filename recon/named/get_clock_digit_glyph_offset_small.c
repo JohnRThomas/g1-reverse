@@ -1,5 +1,14 @@
-/* named: get_clock_digit_glyph_offset_small */
-/* Reconstructed get_clock_digit_glyph_offset_small @ 0x457b0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000457b0 @ 0x000457b0
+ * public-name: get_clock_digit_glyph_offset_small
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_clock_digit_glyph_offset_small       <= FUN_000457b0 @ 0x000457b0
+ * address symbols (name @ address):
+ *   rodata_8ac30                             @ 0x0008ac30
+ *   rodata_98fbc                             @ 0x00098fbc
+ *   rodata_e4408                             @ 0x000e4408
+ */
+/* Reconstructed FUN_000457b0 @ 0x457b0  (parity: 300/300 trials, PROVEN) */
 
 int get_clock_digit_glyph_offset_small(unsigned int param_1, int *param_2, unsigned int *param_3)
 {
@@ -22,4 +31,3 @@ int get_clock_digit_glyph_offset_small(unsigned int param_1, int *param_2, unsig
   *param_3 = 0x20;
   return 0xe4408 + uVar1;
 }
-

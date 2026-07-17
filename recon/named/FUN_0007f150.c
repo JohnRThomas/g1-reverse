@@ -1,4 +1,10 @@
-/* named: FUN_0007f150 */
+/* readable reconstruction; identity: FUN_0007f150 @ 0x0007f150
+ * public-name: FUN_0007f150
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   stream_flash_init                        <= FUN_0004e2b4 @ 0x0004e2b4
+ */
 /* Reconstructed FUN_0007f150 @ 0x7f150  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_open(unsigned int, void*);
@@ -16,4 +22,3 @@ int FUN_0007f150(char *param_1, unsigned int param_2)
   }
   return iVar1;
 }
-

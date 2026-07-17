@@ -1,21 +1,22 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01038654 @ 0x1038654  (parity 300 trials PROVEN) */
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u)==0;}
+static inline int getBasePriority(void){return (int)__get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
-extern unsigned int FUN_shadow_tail(void);
 
-#define DAT_01038754 ((uintptr_t)&g_net_poll_signal_lock) /*=0x21004b78*/
-#define PTR_DAT_01038758 ((uintptr_t)&rodata_103eb7f) /*=0x103eb7f*/
-#define PTR_s_acking_error__context_area_might_0103875c "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define PTR_s_______HARD_FAULT_______01038760 "***** HARD FAULT *****" /*=0x103d3b6*/
+#define DAT_01038754 0x21004b78u
+#define PTR_DAT_01038758 ((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/
+#define PTR_s_acking_error__context_area_might_0103875c ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define PTR_s_______HARD_FAULT_______01038760 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
 
 void FUN_01038654(int param_1, int param_2, unsigned int param_3)
 {
@@ -91,7 +92,7 @@ switchD_01038680_caseD_0:
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
 LAB_010386a2:
       FUN_01039bb0(puVar4, uVar5);
-      __builtin_unreachable();
+      return;
     }
     bVar1 = isCurrentModePrivileged();
     if (bVar1) {
@@ -120,23 +121,7 @@ LAB_010386a2:
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
       goto LAB_010386a2;
     }
-    /* The real firmware's post-lock continuation (FUN_01036144 + loop
-       decrement) lies past this function's declared byte range, so under
-       the harness it is an infinite oracle re-entry ("subs r4,#1; cbnz
-       r0,<addr-at-fend>" ping-pongs forever since the oracle result is
-       essentially never zero). Model that faithfully instead of the
-       (unreachable-under-harness) real continuation. */
-    {
-      unsigned int shadow;
-      do {
-        shadow = FUN_shadow_tail();
-      } while (shadow != 0);
-    }
-    FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c,
-                 PTR_s_______HARD_FAULT_______01038760, 0x72);
-    uVar5 = 0x72;
-    puVar4 = PTR_s_______HARD_FAULT_______01038760;
-    goto LAB_010386a2;
+    FUN_01036144(uVar5);
+    iVar3 -= 0x14;
   } while (1);
 }
-

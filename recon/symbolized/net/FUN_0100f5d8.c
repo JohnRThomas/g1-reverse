@@ -6,7 +6,7 @@ extern void FUN_01009204(volatile uint32_t *a, uint32_t b, uint32_t c, uint32_t 
 
 void FUN_0100f5d8(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4)
 {
-    volatile uint32_t * const puVar2 = (uint32_t *)((uintptr_t)&g_net_prng_state) /*=0x21000ef4*/;
+    volatile uint32_t * const puVar2 = (uint32_t *)((unsigned long)&g_net_prng_state) /*=0x21000ef4*/;
     uint32_t uVar6 = param_4;
     uint32_t uVar1, uVar3, uVar4, uVar5;
 
@@ -32,4 +32,3 @@ void FUN_0100f5d8(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t
     puVar2[2] = uVar6;
     puVar2[3] = uVar1;
 }
-

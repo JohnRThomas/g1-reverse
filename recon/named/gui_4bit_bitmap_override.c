@@ -1,9 +1,21 @@
-/* named: gui_4bit_bitmap_override */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
+/* readable reconstruction; identity: FUN_00043d78 @ 0x00043d78
+ * public-name: gui_4bit_bitmap_override
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   resource_manger_get                      <= FUN_0004588c @ 0x0004588c
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   fb_blit_rows_or                          <= FUN_0007d586 @ 0x0007d586
+ * address symbols (name @ address):
+ *   rodata_aa8eb                             @ 0x000aa8eb
+ *   rodata_aaa01                             @ 0x000aaa01
+ *   rodata_aacaf                             @ 0x000aacaf
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -51,4 +63,3 @@ unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2
     }
     return 0xffffffffUL;
 }
-

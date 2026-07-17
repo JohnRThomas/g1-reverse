@@ -1,0 +1,5 @@
+#include "g1_net_symbols.h"
+/* net-core FUN_01039e52 @ 0x01039e52 */
+#include <stdint.h>
+extern uint32_t FUN_0102e284(uint32_t,uint32_t,uint32_t,uint32_t);
+uint32_t FUN_01039e52(uint32_t a,uint32_t b,uint32_t c,uint32_t d){(void)d;return FUN_0102e284(a,b,c,0);}

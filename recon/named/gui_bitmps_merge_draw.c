@@ -1,11 +1,22 @@
-/* named: gui_bitmps_merge_draw */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
+/* readable reconstruction; identity: FUN_00043bd8 @ 0x00043bd8
+ * public-name: gui_bitmps_merge_draw
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ * address symbols (name @ address):
+ *   rodata_aa96d                             @ 0x000aa96d
+ *   rodata_aacc8                             @ 0x000aacc8
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
 /* Reconstructed gui_bitmps_merge_draw @ 0x43bd8  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void log_message(unsigned int message, unsigned int function);
 extern int  get_device_info(void);
 extern void debug_print(void);
 extern unsigned long long atomic_get_3_0(void);
@@ -67,7 +78,6 @@ int gui_bitmps_merge_draw(unsigned int param_1,int param_2,int param_3,int param
     if (*lvl < 2) return -1;
     iVar4 = *g8; uVar9 = 0xaa9a3;
   }
-  if (iVar4 == 0) DEBUG_PRINT(uVar9, 0xaacc8); else debug_print();
+  if (iVar4 == 0) log_message(uVar9, 0xaacc8); else debug_print();
   return -1;
 }
-

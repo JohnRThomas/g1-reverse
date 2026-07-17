@@ -9,15 +9,15 @@ void FUN_01030014(int *param_1, int param_2, unsigned int param_3, unsigned int 
   unsigned long long rv;
   unsigned int r0v, r1v;
   if (param_1 == 0) {
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "PPI" /*=0x103de6b*/, 0x2b);
-    rv = FUN_01039bb0("PPI" /*=0x103de6b*/, 0x2b);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x2b);
+    rv = FUN_01039bb0(((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x2b);
   } else {
     if ((short)param_1[1] == 0) {
       *param_1 = param_1[2] + param_2;
       return;
     }
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "PPI" /*=0x103de6b*/, 0x2c);
-    rv = FUN_01039bb0("PPI" /*=0x103de6b*/, 0x2c);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x2c);
+    rv = FUN_01039bb0(((unsigned long)&rodata_103de6b) /*=0x103de6b*/, 0x2c);
   }
   r0v = (unsigned int)rv;
   r1v = (unsigned int)(rv >> 32);
@@ -31,4 +31,3 @@ void FUN_01030014(int *param_1, int param_2, unsigned int param_3, unsigned int 
   }
   return;
 }
-

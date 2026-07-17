@@ -1,4 +1,22 @@
-/* named: FUN_0004ba38 */
+/* readable reconstruction; identity: FUN_0004ba38 @ 0x0004ba38
+ * public-name: FUN_0004ba38
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0824                             @ 0x000f0824
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f094b                             @ 0x000f094b
+ */
 /* Reconstructed FUN_0004ba38 @ 0x4ba38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0004b4fc(int,int,unsigned,int,unsigned);
@@ -50,4 +68,3 @@ unsigned FUN_0004ba38(int param_1, unsigned param_2, unsigned param_3, unsigned 
     assert_post_action(uVar8, uVar5);
     return uVar5;
 }
-

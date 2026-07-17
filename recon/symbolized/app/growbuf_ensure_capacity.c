@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: growbuf_ensure_capacity */
-/* Reconstructed growbuf_ensure_capacity @ 0x84f58  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084f58 @ 0x00084f58
+ * public-name: growbuf_ensure_capacity
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   growbuf_ensure_capacity                  <= FUN_00084f58 @ 0x00084f58
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
+/* Reconstructed FUN_00084f58 @ 0x84f58  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(int,int,int);
 int growbuf_ensure_capacity(int *param_1,int param_2){
@@ -34,4 +40,3 @@ int growbuf_ensure_capacity(int *param_1,int param_2){
   }
   return iVar1+iVar4;
 }
-

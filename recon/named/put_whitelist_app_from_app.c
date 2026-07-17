@@ -1,7 +1,22 @@
-/* named: put_whitelist_app_from_app */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00035688 @ 0x00035688
+ * public-name: put_whitelist_app_from_app
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   parse_receiver_pack_pkcs7                <= FUN_00019cd0 @ 0x00019cd0
+ *   parse_whitelist_json                     <= FUN_00034dbc @ 0x00034dbc
+ *   verify_whitelist_json                    <= FUN_00035050 @ 0x00035050
+ *   store_whitelist                          <= FUN_00035608 @ 0x00035608
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_a7c9c                             @ 0x000a7c9c
+ *   rodata_a89c8                             @ 0x000a89c8
+ *   rodata_a8a6f                             @ 0x000a8a6f
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_whitelist_app_parse_buf                @ 0x20009fbc
+ */
 /* Reconstructed put_whitelist_app_from_app @ 0x35688  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint32_t;
@@ -69,4 +84,3 @@ LAB_cleanup:
 LAB_call:
     ((fn2_t)(*(uint32_t*)(param_1 + 0xc)))(param_5, 2);
 }
-

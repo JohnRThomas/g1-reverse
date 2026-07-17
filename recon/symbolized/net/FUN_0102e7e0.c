@@ -10,7 +10,7 @@ void FUN_0102e7e0(int param_1, unsigned short *param_2, int param_3)
     int iVar4 = *(int*)(param_2+2);
     unsigned int uVar6 = *(unsigned int*)(param_2+4);
     if (iVar4 != 0) {
-        int t = (iVar4 - ((uintptr_t)&rodata_103bfec) /*=0x103bfec*/) * 0x2000;
+        int t = (iVar4 - ((unsigned long)&rodata_103bfec) /*=0x103bfec*/) * 0x2000;
         if ((t >> 16) < 0) {
             iVar4 = 0;
         } else {
@@ -26,4 +26,3 @@ void FUN_0102e7e0(int param_1, unsigned short *param_2, int param_3)
     FUN_0102e4f4(param_1, uVar6, 0, iVar4, 0, (((unsigned int)uVar1) << 0x17) >> 0x1d,
                  puVar2, pbVar5, (((unsigned int)param_2[1]) << 0x10) >> 0x14, param_3);
 }
-

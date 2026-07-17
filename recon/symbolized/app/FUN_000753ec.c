@@ -1,10 +1,40 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000753ec */
+/* readable reconstruction; identity: FUN_000753ec @ 0x000753ec
+ * public-name: FUN_000753ec
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   rodata_f7a30                             @ 0x000f7a30
+ *   rodata_f871d                             @ 0x000f871d
+ *   rodata_f875b                             @ 0x000f875b
+ *   rodata_f8775                             @ 0x000f8775
+ *   rodata_f878a                             @ 0x000f878a
+ *   rodata_f87a6                             @ 0x000f87a6
+ *   rodata_f87b7                             @ 0x000f87b7
+ *   rodata_f87d4                             @ 0x000f87d4
+ *   rodata_f87eb                             @ 0x000f87eb
+ *   rodata_f8806                             @ 0x000f8806
+ *   rodata_f881f                             @ 0x000f881f
+ *   poll_spinlock                            @ 0x2000b4a0
+ */
 /* Reconstructed FUN_000753ec @ 0x753ec  (parity: 300/300 trials, PROVEN) */
-static inline unsigned read_basepri(void){unsigned r;__asm__ volatile("mrs %0, basepri":"=r"(r));return r;}
-static inline void write_basepri(unsigned v){__asm__ volatile("msr basepri, %0"::"r"(v):"memory");}
-static inline void write_basepri_max(unsigned v){__asm__ volatile("msr basepri_max, %0"::"r"(v));}
-static inline void isb_sy(void){__asm__ volatile("isb":::"memory");}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned read_basepri(void){return __get_BASEPRI();}
+static inline void write_basepri(unsigned v){__set_BASEPRI(v);}
+static inline void write_basepri_max(unsigned v){__set_BASEPRI_MAX(v);}
+static inline void isb_sy(void){__ISB();}
 
 extern int z_spin_lock_valid(unsigned,...);
 extern int z_spin_unlock_valid(unsigned,...);
@@ -14,7 +44,7 @@ extern int printk(int,...);
 
 void FUN_000753ec(int param_1, int param_2, unsigned param_3)
 {
-  unsigned uVar4 = ((uintptr_t)&poll_spinlock) /*=0x2000b4a0*/;
+  unsigned uVar4 = ((unsigned long)&poll_spinlock) /*=0x2000b4a0*/;
   int iVar3 = param_2 * 0x14 + param_1;
   int iVar7;
   int *piVar6;
@@ -31,39 +61,39 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
         goto switchD;
       case 1:
         if (*(volatile int*)(iVar3 - 4) == 0) {
-          printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "event->signal != ((void *)0)" /*=0xf87b7*/, "WEST_TOPDIR/zephyr/kernel/poll.c" /*=0xf871d*/, 0xbe);
-          printk("\tinvalid poll signal\n\n" /*=0xf87d4*/);
+          printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f87b7) /*=0xf87b7*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0xbe);
+          printk(((unsigned long)&rodata_f87d4) /*=0xf87d4*/);
           uVar5 = 0xbe;
           goto LAB;
         }
         break;
       case 2:
         if (*(volatile int*)(iVar3 - 4) == 0) {
-          printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "event->sem != ((void *)0)" /*=0xf875b*/, "WEST_TOPDIR/zephyr/kernel/poll.c" /*=0xf871d*/, 0xb6);
-          printk("\tinvalid semaphore\n\n" /*=0xf8775*/);
+          printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f875b) /*=0xf875b*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0xb6);
+          printk(((unsigned long)&rodata_f8775) /*=0xf8775*/);
           uVar5 = 0xb6;
           goto LAB;
         }
         break;
       case 4:
         if (*(volatile int*)(iVar3 - 4) == 0) {
-          printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "event->queue != ((void *)0)" /*=0xf878a*/, "WEST_TOPDIR/zephyr/kernel/poll.c" /*=0xf871d*/, 0xba);
-          printk("\tinvalid queue\n\n" /*=0xf87a6*/);
+          printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f878a) /*=0xf878a*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0xba);
+          printk(((unsigned long)&rodata_f87a6) /*=0xf87a6*/);
           uVar5 = 0xba;
           goto LAB;
         }
         break;
       case 8:
         if (*(volatile int*)(iVar3 - 4) == 0) {
-          printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "event->msgq != ((void *)0)" /*=0xf87eb*/, "WEST_TOPDIR/zephyr/kernel/poll.c" /*=0xf871d*/, 0xc2);
-          printk("\tinvalid message queue\n\n" /*=0xf8806*/);
+          printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f87eb) /*=0xf87eb*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0xc2);
+          printk(((unsigned long)&rodata_f8806) /*=0xf8806*/);
           uVar5 = 0xc2;
           goto LAB;
         }
         break;
       default:
-        printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, ((uintptr_t)&rodata_f7a30) /*=0xf7a30*/, "WEST_TOPDIR/zephyr/kernel/poll.c" /*=0xf871d*/, 0xcf);
-        printk("\tinvalid event type\n\n" /*=0xf881f*/);
+        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, ((unsigned long)&rodata_f871d) /*=0xf871d*/, 0xcf);
+        printk(((unsigned long)&rodata_f881f) /*=0xf881f*/);
         uVar5 = 0xcf;
         goto LAB;
     }
@@ -80,8 +110,8 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
   switchD:
     iVar7 = z_spin_unlock_valid(uVar4);
     if (iVar7 == 0) {
-      printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "z_spin_unlock_valid(l)" /*=0xf08f4*/, "WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/, 0xf0);
-      printk("\tNot my spinlock %p\n" /*=0xf090b*/, ((uintptr_t)&poll_spinlock) /*=0x2000b4a0*/);
+      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
+      printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
       uVar5 = 0xf0;
       goto LAB;
     }
@@ -96,8 +126,8 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
     iVar7 = z_spin_lock_valid(uVar4);
     param_2 = param_2 - 1;
     if (iVar7 == 0) {
-      printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/, "z_spin_lock_valid(l)" /*=0xf0920*/, "WEST_TOPDIR/zephyr/include/zephyr/spinlock.h" /*=0xf08c7*/, 0x72);
-      printk("\tInvalid spinlock %p\n" /*=0xf0935*/, ((uintptr_t)&poll_spinlock) /*=0x2000b4a0*/);
+      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
+      printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
       uVar5 = 0x72;
       goto LAB;
     }
@@ -108,4 +138,3 @@ void FUN_000753ec(int param_1, int param_2, unsigned param_3)
 LAB:
   assert_post_action(uVar4, uVar5);
 }
-

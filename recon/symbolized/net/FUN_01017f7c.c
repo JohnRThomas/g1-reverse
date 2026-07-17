@@ -16,8 +16,8 @@ extern void FUN_0101fca8(void);
 extern void FUN_010208f0(unsigned int a);
 extern unsigned int PHANTOM_RETRY(void);
 
-#define DAT_18084 ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
-#define DAT_18088 ((uintptr_t)&g_net_radio_pending_proc_flag) /*=0x2100104a*/
+#define DAT_18084 0x21000f90u
+#define DAT_18088 ((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/
 
 void FUN_01017f7c(void)
 {
@@ -26,6 +26,7 @@ void FUN_01017f7c(void)
     int iVar6;
     int iVar2;
     unsigned char bVar1;
+    volatile unsigned char *selected;
     unsigned int r5;
 
     uVar4 = FUN_0100a5a0();
@@ -39,7 +40,9 @@ void FUN_01017f7c(void)
     r5 = iVar5;
     iVar2 = DAT_18084;
     FUN_010195f8();
-    bVar1 = *(volatile unsigned char *)((unsigned int)*(volatile unsigned char *)(iVar2 + 0x98) + iVar2 + 0xbd);
+    selected = (volatile unsigned char *)(iVar2 +
+                 *(volatile unsigned char *)(iVar2 + 0x98));
+    bVar1 = selected[0xbd];
     *(volatile unsigned char *)(iVar2 + 0xb9) = bVar1;
     iVar6 = FUN_0101b15c(0);
 
@@ -108,4 +111,3 @@ LAB_tail:
     *(volatile unsigned char *)(iVar2 + 0x70) = 5;
     return;
 }
-

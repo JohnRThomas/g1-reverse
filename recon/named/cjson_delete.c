@@ -1,10 +1,13 @@
-/* named: cjson_delete */
-/* globals referenced:
-//   0x20002bac  g_cjson_hooks                
-*/
-/* Reconstructed cjson_delete @ 0x64b1c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064b1c @ 0x00064b1c
+ * public-name: cjson_delete
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ * address symbols (name @ address):
+ *   g_cjson_hooks                            @ 0x20002bac
+ */
+/* Reconstructed FUN_00064b1c @ 0x64b1c  (parity: 300/300 trials, PROVEN) */
 
-typedef void (*fp0_t)(void);
 typedef void (*fp1_t)(volatile int*);
 
 void cjson_delete(volatile int *param_1)
@@ -20,14 +23,14 @@ void cjson_delete(volatile int *param_1)
             }
             if (cond1) {
                 if (param_1[4] != 0) {
-                    fp0_t fp = (fp0_t)(*(volatile int*)((char*)base + 4));
-                    fp();
+                    fp1_t release = (fp1_t)(*(volatile int*)((char*)base + 4));
+                    release((volatile int *)param_1[4]);
                 }
             }
         }
         if ((param_1[3] << 0x16) >= 0 && param_1[8] != 0) {
-            fp0_t fp2 = (fp0_t)(*(volatile int*)((char*)base + 4));
-            fp2();
+            fp1_t release = (fp1_t)(*(volatile int*)((char*)base + 4));
+            release((volatile int *)param_1[8]);
         }
         {
             fp1_t fp3 = (fp1_t)(*(volatile int*)((char*)base + 4));
@@ -36,4 +39,3 @@ void cjson_delete(volatile int *param_1)
         param_1 = (volatile int*)iVar2;
     }
 }
-

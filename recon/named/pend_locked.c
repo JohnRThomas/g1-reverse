@@ -1,5 +1,12 @@
-/* named: pend_locked */
-/* Reconstructed pend_locked @ 0x73f3c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00073f3c @ 0x00073f3c
+ * public-name: pend_locked
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pend_locked                              <= FUN_00073f3c @ 0x00073f3c
+ * address symbols (name @ address):
+ *   rodata_86661                             @ 0x00086661
+ */
+/* Reconstructed FUN_00073f3c @ 0x73f3c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00073ec0(void);
 extern void FUN_00074bf4(int, unsigned int, int, int);
@@ -13,4 +20,3 @@ void pend_locked(int param_1, unsigned int param_2, int param_3, int param_4)
     }
     return;
 }
-

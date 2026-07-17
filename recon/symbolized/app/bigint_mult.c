@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: bigint_mult */
-/* Reconstructed bigint_mult @ 0x787e8  (parity: 3/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000787e8 @ 0x000787e8
+ * public-name: bigint_mult
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   bigint_mult                              <= FUN_000787e8 @ 0x000787e8
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_000787e8 @ 0x787e8  (parity: 3/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned short ushort;
 extern int libc_fatal_error_and_abort(int,...);
@@ -20,7 +31,7 @@ void bigint_mult(unsigned param_1, int param_2, int param_3)
     iVar8 = iVar13 + iVar11;
     if(*(int*)(param_3+8) < iVar8){ iVar1 = iVar1 + 1; }
     iVar1 = Balloc(param_1, iVar1);
-    if(iVar1 == 0){ iVar1 = libc_fatal_error_and_abort("/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c" /*=0xf8cd5*/, 0x15d, 0, "Balloc succeeded" /*=0xf8c42*/); }
+    if(iVar1 == 0){ iVar1 = libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/, 0x15d, 0, ((unsigned long)&rodata_f8c42) /*=0xf8c42*/); }
     puVar7 = (uint*)(iVar1+0x14);
     puVar10 = puVar7 + iVar8;
     for(puVar3 = puVar7; puVar3 < puVar10; puVar3 = puVar3 + 1){ *puVar3 = 0; }
@@ -37,10 +48,10 @@ void bigint_mult(unsigned param_1, int param_2, int param_3)
             puVar17 = (uint*)(param_3+0x14);
             do {
                 puVar16 = puVar17 + 1;
-                uVar6 = uVar14*(*puVar17 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) + (*puVar12 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) + uVar15;
+                uVar6 = uVar14*(*puVar17 & 0xffff) + (*puVar12 & 0xffff) + uVar15;
                 uVar9 = uVar14*(*puVar17 >> 0x10) + (*puVar12 >> 0x10) + (uVar6 >> 0x10);
                 uVar15 = uVar9 >> 0x10;
-                *puVar12 = (uVar6 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) | uVar9 * ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+                *puVar12 = (uVar6 & 0xffff) | uVar9 * ((unsigned long)&rodata_10000) /*=0x10000*/;
                 puVar12 = puVar12 + 1;
                 puVar17 = puVar16;
             } while(puVar16 < puVar3);
@@ -54,7 +65,7 @@ void bigint_mult(unsigned param_1, int param_2, int param_3)
             puVar17 = puVar7;
             do {
                 uVar6 = uVar14*(ushort)*puVar12 + (uint)*(ushort*)((int)puVar17+2) + uVar6;
-                *puVar17 = (uVar15 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) | uVar6 * ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+                *puVar17 = (uVar15 & 0xffff) | uVar6 * ((unsigned long)&rodata_10000) /*=0x10000*/;
                 puVar16 = puVar12 + 1;
                 uVar15 = uVar14*(*puVar12 >> 0x10) + (uint)(ushort)puVar17[1] + (uVar6 >> 0x10);
                 uVar6 = uVar15 >> 0x10;
@@ -70,4 +81,3 @@ void bigint_mult(unsigned param_1, int param_2, int param_3)
     *(int*)(iVar1+0x10) = iVar8;
     return;
 }
-

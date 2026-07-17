@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: safe_memmove_or_die */
-/* Reconstructed safe_memmove_or_die @ 0x55ba0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00055ba0 @ 0x00055ba0
+ * public-name: safe_memmove_or_die
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   safe_memmove_or_die                      <= FUN_00055ba0 @ 0x00055ba0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ */
+/* Reconstructed FUN_00055ba0 @ 0x55ba0  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(void);
 extern void printk(void);
 

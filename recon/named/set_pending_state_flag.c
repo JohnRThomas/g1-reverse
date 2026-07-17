@@ -1,8 +1,12 @@
-/* named: set_pending_state_flag */
-/* globals referenced:
-//   0x20018da6  g_ancs_inbox_flag_current    
-*/
-/* Reconstructed set_pending_state_flag @ 0x2eb28  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002eb28 @ 0x0002eb28
+ * public-name: set_pending_state_flag
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   set_pending_state_flag                   <= FUN_0002eb28 @ 0x0002eb28
+ * address symbols (name @ address):
+ *   g_ancs_inbox_flag_current                @ 0x20018da6
+ */
+/* Reconstructed FUN_0002eb28 @ 0x2eb28  (parity: 300/300 trials, PROVEN) */
 
 void set_pending_state_flag(unsigned int param_1,int param_2)
 {
@@ -14,4 +18,3 @@ void set_pending_state_flag(unsigned int param_1,int param_2)
     *(volatile unsigned char *)(0x20018da6UL + param_1) = 0;
   }
 }
-

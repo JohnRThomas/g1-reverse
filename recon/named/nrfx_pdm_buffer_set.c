@@ -1,9 +1,15 @@
-/* named: nrfx_pdm_buffer_set */
-/* globals referenced:
-//   0x2000b330  g_pdm_cb                     
-//   0x50026000  NRF_PDM_BASE                 
-*/
-/* Reconstructed nrfx_pdm_buffer_set @ 0x66270  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00066270 @ 0x00066270
+ * public-name: nrfx_pdm_buffer_set
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
+ *   arch_irq_disable                         <= FUN_000500c8 @ 0x000500c8
+ *   nrfx_pdm_buffer_set                      <= FUN_00066270 @ 0x00066270
+ * address symbols (name @ address):
+ *   g_pdm_cb                                 @ 0x2000b330
+ *   NRF_PDM_BASE                             @ 0x50026000
+ */
+/* Reconstructed FUN_00066270 @ 0x66270  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void arch_irq_enable(int);
 extern void arch_irq_disable(int);
@@ -39,4 +45,3 @@ unsigned int nrfx_pdm_buffer_set(int param_1,int param_2){
   }
   return uVar5;
 }
-

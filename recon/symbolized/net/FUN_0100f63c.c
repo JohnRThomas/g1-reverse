@@ -3,8 +3,8 @@
 
 int FUN_0100f63c(void)
 {
-  volatile unsigned int *p8  = (volatile unsigned int*)((uintptr_t)&g_net_esb_prng_state_hi) /*=0x21000efc*/;
-  volatile unsigned int *pc  = (volatile unsigned int*)((uintptr_t)&g_net_esb_prng_state_lo) /*=0x21000f00*/;
+  volatile unsigned int *p8  = (volatile unsigned int*)((unsigned long)&g_net_esb_prng_state_hi) /*=0x21000efc*/;
+  volatile unsigned int *pc  = (volatile unsigned int*)((unsigned long)&g_net_esb_prng_state_lo) /*=0x21000f00*/;
   unsigned int uVar2, uVar3, uVar4;
 
   uVar3 = *p8;
@@ -14,4 +14,3 @@ int FUN_0100f63c(void)
   *pc = (uVar4 >> 0x13) | (uVar4 << 0xd);
   return (int)(((uVar2 >> 0x1b) | (uVar2 << 5)) * 5);
 }
-

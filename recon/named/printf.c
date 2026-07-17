@@ -1,8 +1,14 @@
-/* named: printf */
-/* globals referenced:
-//   0x20002d20  g_libc_heap_ctrl             
-*/
-/* Reconstructed printf @ 0x777f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000777f0 @ 0x000777f0
+ * public-name: printf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   _vfprintf_r                              <= FUN_00076ed4 @ 0x00076ed4
+ *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ * address symbols (name @ address):
+ *   g_libc_heap_ctrl                         @ 0x20002d20
+ */
+/* Reconstructed FUN_000777f0 @ 0x777f0  (parity: 300/300 trials, PROVEN) */
 
 extern void stdio_streams_init(int);
 extern void _vfprintf_r(int, unsigned int, unsigned int, void*, unsigned int, void*);
@@ -19,4 +25,3 @@ void printf(unsigned int param_1, unsigned int param_2, unsigned int param_3, un
     }
     _vfprintf_r(iVar1, *(unsigned int*)(iVar1+8), param_1, &uStack_c, uVar2, &uStack_c);
 }
-

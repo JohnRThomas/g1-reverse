@@ -1,7 +1,18 @@
-/* named: FUN_000565c4 */
-/* globals referenced:
-//   0x20006138  g_ble_conn_pool              
-*/
+/* readable reconstruction; identity: FUN_000565c4 @ 0x000565c4
+ * public-name: FUN_000565c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ *   z_impl_k_poll_signal_init                <= FUN_000868aa @ 0x000868aa
+ * address symbols (name @ address):
+ *   g_bt_dev_hci_buf_ready                   @ 0x20002104
+ *   g_ble_dev_le_pkts_sem                    @ 0x20002108
+ *   g_ble_conn_ext_mode_pending              @ 0x20002110
+ *   g_ble_conn_poll_signal                   @ 0x20002990
+ *   g_ble_conn_pool                          @ 0x20006138
+ *   g_ble_conn_ext_signal_buf                @ 0x20006170
+ *   g_ble_conn_pool_enabled                  @ 0x20006208
+ */
 /* Reconstructed FUN_000565c4 @ 0x565c4  (parity: 300/300 trials, PROVEN) */
 
 extern void z_impl_k_poll_signal_init(int);
@@ -28,4 +39,3 @@ int FUN_000565c4(int param_1){
   *(volatile unsigned char*)(param_1+0x20)=1;
   return 2;
 }
-

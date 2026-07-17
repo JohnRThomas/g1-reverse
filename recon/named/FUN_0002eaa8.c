@@ -1,4 +1,11 @@
-/* named: FUN_0002eaa8 */
+/* readable reconstruction; identity: FUN_0002eaa8 @ 0x0002eaa8
+ * public-name: FUN_0002eaa8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ * address symbols (name @ address):
+ *   rodata_a3e48                             @ 0x000a3e48
+ */
 /* Reconstructed FUN_0002eaa8 @ 0x2eaa8  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int a0, unsigned int a1, unsigned int a2, unsigned int a3);
@@ -18,4 +25,3 @@ unsigned int FUN_0002eaa8(void)
   }
   return uVar2;
 }
-

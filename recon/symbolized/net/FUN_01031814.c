@@ -6,10 +6,9 @@
    that faithfully instead of inlining the shared handler's logic.) */
 extern unsigned int FUN_0103657c(unsigned int);
 
-#define DAT_0103181c ((uintptr_t)&g_net_fatal_halt_sem) /*=0x210008cc*/
+#define DAT_0103181c 0x210008ccu
 
 unsigned int FUN_01031814(void)
 {
   return FUN_0103657c(DAT_0103181c);
 }
-

@@ -1,5 +1,15 @@
-/* named: init_serial_comm */
-/* Reconstructed init_serial_comm @ 0x33340  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033340 @ 0x00033340
+ * public-name: init_serial_comm
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   process_pt_data                          <= FUN_000330ec @ 0x000330ec
+ *   init_serial_port                         <= FUN_000332dc @ 0x000332dc
+ *   init_serial_comm                         <= FUN_00033340 @ 0x00033340
+ * address symbols (name @ address):
+ *   rodata_87bc0                             @ 0x00087bc0
+ *   rodata_a7907                             @ 0x000a7907
+ */
+/* Reconstructed FUN_00033340 @ 0x33340  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int a);
 extern int FUN_00033088(unsigned int a);
@@ -29,4 +39,3 @@ int init_serial_comm(void)
     }
     return iVar1;
 }
-

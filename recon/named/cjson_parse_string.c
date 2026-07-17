@@ -1,5 +1,13 @@
-/* named: cjson_parse_string */
-/* Reconstructed cjson_parse_string @ 0x64290  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064290 @ 0x00064290
+ * public-name: cjson_parse_string
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_parse_string                       <= FUN_00064290 @ 0x00064290
+ *   hex4_to_uint                             <= FUN_00084e9a @ 0x00084e9a
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ */
+/* Reconstructed FUN_00064290 @ 0x64290  (parity: 300/300 trials, PROVEN) */
 extern unsigned int hex4_to_uint(void *a0);
 extern int FUN_0006446c(void);
 
@@ -123,4 +131,3 @@ store_common:
 LAB_end:
     return FUN_0006446c();
 }
-

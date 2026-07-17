@@ -1,41 +1,68 @@
 #include "g1_app_symbols.h"
-/* named: img_mgmt_read_info */
-/* Reconstructed img_mgmt_read_info @ 0x52180  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00052180 @ 0x00052180
+ * public-name: img_mgmt_read_info
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
+ *   img_mgmt_flash_check_empty_inner         <= FUN_000516ac @ 0x000516ac
+ *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ *   img_mgmt_read_info                       <= FUN_00052180 @ 0x00052180
+ * address symbols (name @ address):
+ *   rodata_85f8d                             @ 0x00085f8d
+ *   rodata_f272f                             @ 0x000f272f
+ */
+/* Reconstructed FUN_00052180 @ 0x52180. */
 #include <stdint.h>
-extern int FUN_00080872(int,void*,int,void*);
-extern int img_mgmt_read_hash_and_flags(int,void*,int,int);
-extern int FUN_000809f6(int);
-extern int img_mgmt_flash_check_empty_inner(int);
-extern void FUN_00051fe4(void);
-extern void smp_add_cmd_err(int,int,unsigned int);
-int img_mgmt_read_info(int param_1){
-  int iVar1; unsigned int uVar2; int uVar3; int iVar4;
-  int local_34; int uStack_30; char auStack_2c[8]; int local_24,local_20,local_1c; int* local_18; char local_14;
-  local_24 = "slot" /*=0xf272f*/;
-  iVar4 = *(int*)(param_1+8);
-  local_20 = 4;
-  local_34 = 1;
-  uStack_30 = 0;
-  local_1c = ((uintptr_t)&tbl_85f8d) /*=0x85f8d*/;
-  local_18 = &local_34;
-  local_14 = 0;
-  iVar1 = FUN_00080872(*(int*)(param_1+4)+4, &local_24, 1, &uStack_30);
-  if(iVar1==0){
-    iVar1 = img_mgmt_read_hash_and_flags(local_34, auStack_2c, 0, 0);
-    uVar3 = 0;
-    if((iVar1==0) && (iVar1=FUN_000809f6(local_34), iVar1!=0)){
-      uVar2 = 9;
-    } else {
-      uVar2 = img_mgmt_flash_check_empty_inner(local_34);
-      FUN_00051fe4();
-      if(uVar2==0){ return 0; }
-      uVar2 = uVar2 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
-    }
-    smp_add_cmd_err(iVar4+4, 1, uVar2);
-  } else {
-    uVar3 = 3;
-  }
-  (void)local_20; (void)local_1c; (void)local_18; (void)local_14;
-  return uVar3;
-}
 
+extern int FUN_00080872(int source, void *descriptor, unsigned int count,
+                        uint32_t *auxiliary);
+extern int img_mgmt_read_hash_and_flags(uint32_t handle, void *scratch,
+                        uint32_t option, uint32_t context);
+extern int FUN_000809f6(uint32_t handle);
+extern unsigned int img_mgmt_flash_check_empty_inner(uint32_t handle);
+extern void FUN_00051fe4(void);
+extern void smp_add_cmd_err(int destination, unsigned int command,
+                         unsigned int status);
+
+struct parse_result {
+    uint32_t handle;
+    uint32_t auxiliary;
+};
+
+struct request_descriptor {
+    uint32_t token;
+    uint32_t token_length;
+    uint32_t callback;
+    struct parse_result *result;
+    uint8_t flags;
+};
+
+uint32_t img_mgmt_read_info(const uint8_t *request)
+{
+    int destination = *(const int *)(request + 8);
+    struct parse_result result = {1, 0};
+    uint8_t parse_scratch[8];
+    struct request_descriptor descriptor = {
+        ((unsigned long)&rodata_f272f) /*=0xf272f*/, 4, ((unsigned long)&rodata_85f8d) /*=0x85f8d*/, &result, 0
+    };
+
+    int status = FUN_00080872(*(const int *)(request + 4) + 4,
+                              &descriptor, 1, &result.auxiliary);
+    if (status != 0)
+        return 3;
+
+    status = img_mgmt_read_hash_and_flags(result.handle, parse_scratch, 0, 0);
+    unsigned int response;
+    if (status == 0 && FUN_000809f6(result.handle) != 0) {
+        response = 9;
+    } else {
+        response = img_mgmt_flash_check_empty_inner(result.handle);
+        FUN_00051fe4();
+        if (response == 0)
+            return 0;
+        response &= 0xffffu;
+    }
+
+    smp_add_cmd_err(destination + 4, 1, response);
+    return 0;
+}

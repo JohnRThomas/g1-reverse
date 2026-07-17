@@ -30,6 +30,3 @@ void FUN_0100f1a8(int param_1, int param_2)
   p32 = (volatile unsigned int *)(param_1 + 0xc); *p32 = 0x0a900a90;
   p32 = (volatile unsigned int *)(param_1 + 0x2e); *p32 = 0x0a900a90;
 }
-
-
-

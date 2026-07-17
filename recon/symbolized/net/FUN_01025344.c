@@ -6,9 +6,9 @@
 
 void FUN_01025344(void)
 {
-    volatile uint8_t * const flag = (uint8_t *)((uintptr_t)&g_net_radio_timer_sync_state) /*=0x21001bf8*/;
-    const uint32_t base1 = REG_41011000 /*=0x41011000*/;
-    const uint32_t base2 = REG_4100c000 /*=0x4100c000*/;
+    volatile uint8_t * const flag = (uint8_t *)((unsigned long)&g_net_radio_timer_sync_state) /*=0x21001bf8*/;
+    const uint32_t base1 = 0x41011000;
+    const uint32_t base2 = 0x4100c000;
 
     if (*flag == 0) {
         W32(base1 + 0x348) = 0x30000;
@@ -29,4 +29,3 @@ void FUN_01025344(void)
     W32(base2 + 0x54c) = 0;
     W32(base2 + 0x14c) = 0;
 }
-

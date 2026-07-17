@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: atan2f */
-/* Reconstructed atan2f @ 0x76154  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076154 @ 0x00076154
+ * public-name: atan2f
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atan2f                                   <= FUN_00076154 @ 0x00076154
+ * address symbols (name @ address):
+ *   rodata_98684                             @ 0x00098684
+ *   rodata_98690                             @ 0x00098690
+ */
+/* Reconstructed FUN_00076154 @ 0x76154  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float FUN_000768e0(void);
 extern void FUN_000868ee(float);
@@ -23,8 +31,8 @@ float atan2f(float param_1, float param_2){
     }
     if(a2 != 0){
       if(a2 == 0x7f800000){
-        unsigned fbits = 0x00000000; int iVar1 = ((uintptr_t)&tbl_98684) /*=0x98684*/;
-        if(a1 == 0x7f800000){ fbits = 0x3f490fdb; iVar1 = ((uintptr_t)&tbl_98684) /*=0x98690*/; }
+        unsigned fbits = 0x00000000; int iVar1 = ((unsigned long)&rodata_98684) /*=0x98684*/;
+        if(a1 == 0x7f800000){ fbits = 0x3f490fdb; iVar1 = ((unsigned long)&rodata_98690) /*=0x98690*/; }
         if((uVar4 - 1) > 2) return fb(fbits);
         return *(float*)(iVar1 + (int)((uVar4-1)*4));
       }
@@ -46,4 +54,3 @@ float atan2f(float param_1, float param_2){
   }
   return param_1 + param_2;
 }
-

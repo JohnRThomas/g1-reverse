@@ -1,6 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: flash_write_padded_entry */
-/* Reconstructed flash_write_padded_entry @ 0x84dea  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084dea @ 0x00084dea
+ * public-name: flash_write_padded_entry
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_write                         <= FUN_0007efaa @ 0x0007efaa
+ *   flash_area_align                         <= FUN_0007f000 @ 0x0007f000
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ *   flash_write_padded_entry                 <= FUN_00084dea @ 0x00084dea
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
+/* Reconstructed FUN_00084dea @ 0x84dea  (parity: 300/300 trials, PROVEN) */
 extern int flash_area_write(unsigned,unsigned,void*,unsigned);
 extern unsigned flash_area_align(void);
 extern unsigned flash_area_erased_val(unsigned);
@@ -21,4 +30,3 @@ int flash_write_padded_entry(unsigned param_1, unsigned param_2, unsigned param_
     }
     return -1;
 }
-

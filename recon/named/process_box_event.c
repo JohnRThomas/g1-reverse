@@ -1,8 +1,13 @@
-/* named: process_box_event */
-/* globals referenced:
-//   0x20007a24  g_box_field_timer            
-*/
-/* Reconstructed process_box_event @ 0x254d8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000254d8 @ 0x000254d8
+ * public-name: process_box_event
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   process_box_event                        <= FUN_000254d8 @ 0x000254d8
+ * address symbols (name @ address):
+ *   g_box_field_timer                        @ 0x20007a24
+ */
+/* Reconstructed FUN_000254d8 @ 0x254d8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void FUN_0007c830(int);
 extern int get_device_info(void);
@@ -18,4 +23,3 @@ void process_box_event(int param_1, char* param_2){
     *(volatile uint8_t*)(param_2+2)=0;
     FUN_0002538c(param_1,param_2);
 }
-

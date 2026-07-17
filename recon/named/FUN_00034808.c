@@ -1,4 +1,13 @@
-/* named: FUN_00034808 */
+/* readable reconstruction; identity: FUN_00034808 @ 0x00034808
+ * public-name: FUN_00034808
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   msg_content_used_count                   <= FUN_00033cdc @ 0x00033cdc
+ *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
+ *   msg_content_check_timeout_state          <= FUN_000347cc @ 0x000347cc
+ * address symbols (name @ address):
+ *   g_message_pending_state                  @ 0x2001a229
+ */
 /* Reconstructed FUN_00034808 @ 0x34808  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -22,4 +31,3 @@ int FUN_00034808(void)
   }
   return 0;
 }
-

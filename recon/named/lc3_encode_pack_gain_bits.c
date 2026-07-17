@@ -1,5 +1,11 @@
-/* named: lc3_encode_pack_gain_bits */
-/* Reconstructed lc3_encode_pack_gain_bits @ 0x6f91c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006f91c @ 0x0006f91c
+ * public-name: lc3_encode_pack_gain_bits
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_encode_pack_gain_bits                <= FUN_0006f91c @ 0x0006f91c
+ */
+/* Reconstructed FUN_0006f91c @ 0x6f91c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void lc3_bits_accu_flush(...);
@@ -20,7 +26,7 @@ void lc3_encode_pack_gain_bits(int param_1, int param_2, int param_3, int *param
     *(uint32_t*)(param_1+0x1c) = *(uint32_t*)(param_1+0x1c) | ((iVar2 - 1) << (uVar5 & 0xff));
     bVar1 = *(uint8_t*)((char*)param_4 + 8);
   } else {
-    lc3_bits_accu_flush();
+    lc3_bits_accu_flush(param_1, iVar2 - 1, iVar4);
     uVar6 = *(uint32_t*)(param_1+0x20);
     bVar1 = *(uint8_t*)((char*)param_4 + 8);
   }
@@ -41,4 +47,3 @@ void lc3_encode_pack_gain_bits(int param_1, int param_2, int param_3, int *param
   }
   lc3_bits_accu_flush(param_1, iVar3, 8);
 }
-

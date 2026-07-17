@@ -1,15 +1,27 @@
-/* named: gui_verticalLine_process_bar */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x2000a034  g_gui_active_canvas          
-*/
-/* Reconstructed gui_verticalLine_process_bar @ 0x4396c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004396c @ 0x0004396c
+ * public-name: gui_verticalLine_process_bar
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   atomic_get_3_0                           <= FUN_000431a8 @ 0x000431a8
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   gui_verticalLine_process_bar             <= FUN_0004396c @ 0x0004396c
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ * address symbols (name @ address):
+ *   rodata_aa96d                             @ 0x000aa96d
+ *   rodata_aacee                             @ 0x000aacee
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_gui_active_canvas                      @ 0x2000a034
+ */
+/* Reconstructed FUN_0004396c @ 0x4396c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 extern void DEBUG_PRINT(int,int,uint,int,uint,int,uint);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(int,...);
 extern int64_t atomic_get_3_0(void);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void clean_fb_data(int,int,int,int,int,int);
@@ -38,10 +50,11 @@ uint32_t gui_verticalLine_process_bar(uint param_1,int param_2,uint param_3,int 
     } else {
         if(*(volatile int*)0x2000230c>1){
             if(*(volatile int*)0x20007554==0) DEBUG_PRINT(0xaa96d,0xaacee,param_3,0,param_1,param_2,param_3);
-            else debug_print();
+            else debug_print(0xaa96d,0xaacee,param_3,
+                              *(volatile int*)0x20007554,
+                              param_1,param_2,param_3);
         }
         uVar1=0xffffffff;
     }
     return uVar1;
 }
-

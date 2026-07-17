@@ -1,5 +1,18 @@
-/* named: multadd */
-/* Reconstructed multadd @ 0x78698  (parity: 152/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078698 @ 0x00078698
+ * public-name: multadd
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   Bfree                                    <= FUN_00078654 @ 0x00078654
+ *   multadd                                  <= FUN_00078698 @ 0x00078698
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_00078698 @ 0x78698  (parity: 152/300 trials, PROVEN) */
 
 extern int Balloc(int,int);
 extern int libc_fatal_error_and_abort(int,int,int,int);
@@ -32,4 +45,3 @@ int multadd(int param_1,int param_2,int param_3,unsigned param_4){
   }
   return iVar1r;
 }
-

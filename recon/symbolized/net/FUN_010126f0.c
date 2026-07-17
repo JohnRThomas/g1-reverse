@@ -5,4 +5,3 @@ unsigned int FUN_010126f0(char *param_1)
 {
   return *(unsigned short *)(param_1 + 2) == 9;
 }
-

@@ -1,8 +1,21 @@
-/* named: handle_box_placement_event */
-/* globals referenced:
-//   0x20007a44  g_st25dv_dev                 
-*/
-/* Reconstructed handle_box_placement_event @ 0x25528  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00025528 @ 0x00025528
+ * public-name: handle_box_placement_event
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   st25dv_mailbox_set_enabled               <= FUN_00024cc8 @ 0x00024cc8
+ *   st25dv_write_control_and_ack             <= FUN_00024f40 @ 0x00024f40
+ *   process_box_event                        <= FUN_000254d8 @ 0x000254d8
+ *   handle_box_placement_event               <= FUN_00025528 @ 0x00025528
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ * address symbols (name @ address):
+ *   rodata_50100                             @ 0x00050100
+ *   g_box_event_state_buf                    @ 0x20002380
+ *   g_box_mailbox_synced_flag                @ 0x200079fc
+ *   g_box_field_timer_cfg_buf                @ 0x20007a2c
+ *   g_st25dv_dev                             @ 0x20007a44
+ */
+/* Reconstructed FUN_00025528 @ 0x25528  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_0000fcf0(volatile void*);
@@ -67,4 +80,3 @@ uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
     }
     return 0;
 }
-

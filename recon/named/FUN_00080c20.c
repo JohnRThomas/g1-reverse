@@ -1,4 +1,7 @@
-/* named: FUN_00080c20 */
+/* readable reconstruction; identity: FUN_00080c20 @ 0x00080c20
+ * public-name: FUN_00080c20
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080c20 @ 0x80c20  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long FUN_000527dc(unsigned int a);
@@ -19,4 +22,3 @@ unsigned int FUN_00080c20(int param_1, unsigned int param_2)
   }
   return param_2;
 }
-

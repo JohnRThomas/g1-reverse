@@ -1,4 +1,9 @@
-/* named: FUN_00030c24 */
+/* readable reconstruction; identity: FUN_00030c24 @ 0x00030c24
+ * public-name: FUN_00030c24
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_misc_dev_handle_2418                   @ 0x20002418
+ */
 /* Reconstructed FUN_00030c24 @ 0x30c24  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*fnptr)(unsigned int, void *, int, int);
@@ -28,4 +33,3 @@ int FUN_00030c24(unsigned int param_1, unsigned int param_2, unsigned int param_
   if (iVar1 != 0) iVar1 = 1;
   return -iVar1;
 }
-

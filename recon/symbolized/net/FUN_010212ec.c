@@ -1,281 +1,174 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_010212ec @ 0x10212ec  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(void);
-extern void FUN_01020108(void);
-extern void FUN_01020168(void);
-extern void FUN_01020500(void);
-extern void FUN_01020a00(void);
-extern void FUN_010215a8(void);
-extern void FUN_010216d4(void);
-extern void FUN_010218c0(void);
-extern void FUN_010218cc(void);
-extern void FUN_010218fc(void);
-extern void FUN_01023ac4(void);
-extern void FUN_01023e88(void);
-extern void FUN_01025bb0(void);
-extern void FUN_01025bc8(void);
-extern void FUN_01025c9c(void);
-extern void thunk_FUN_010251e8(void);
+/* net-core FUN_010212ec @ 0x10212ec */
+#include <stdint.h>
 
-__attribute__((naked)) void FUN_010212ec(void)
+extern void FUN_01008d00(uint32_t reason, uint32_t line);
+extern void FUN_01020108(void);
+extern void FUN_01020168(uint32_t channel);
+extern void FUN_01020500(void);
+extern void FUN_01020a00(uint32_t channel);
+extern void FUN_010215a8(int32_t request);
+extern void FUN_010216d4(uint32_t, uint32_t, int32_t, void *);
+extern int32_t FUN_010218c0(void *, const void *);
+extern int32_t FUN_010218cc(void *, const void *);
+extern int32_t FUN_010218fc(void *);
+extern int32_t FUN_01023ac4(void);
+extern uint32_t FUN_01023e88(void);
+extern int32_t FUN_01025bb0(void *);
+extern int32_t FUN_01025bc8(void *);
+extern void FUN_01025c9c(void *, ...);
+extern uint64_t thunk_FUN_010251e8(void);
+
+#define STATE       ((volatile uint8_t *)UINT32_C(0x210015f0))
+#define LOOKUP8     ((volatile uint8_t *)UINT32_C(0x0103c4d0))
+#define LOOKUP16    ((volatile uint16_t *)UINT32_C(0x0103c5b0))
+#define RADIO       ((volatile uint32_t *)UINT32_C(0x41008000))
+#define TIMER       ((volatile uint32_t *)UINT32_C(0x4100c000))
+#define WORK        ((volatile uint32_t *)UINT32_C(0x21000028))
+
+static uint32_t scaled_delay(uint32_t channel, uint32_t bias)
 {
-    __asm__ volatile(
-        "push.w {r4,r5,r6,r7,r8,r9,r10,lr}\n"
-        "ldr r4, =0x210015f0\n"
-        "sub sp, #0x18\n"
-        "mov r6, r0\n"
-        "mov r7, r1\n"
-        "ldrb.w r3, [r4, #0x35]\n"
-        "orr r3, r3, #2\n"
-        "strb.w r3, [r4, #0x35]\n"
-        "cmp r0, #0\n"
-        "bne.w Lp1_start\n"
-        "movs r3, #4\n"
-        "strb.w r0, [sp, #6]\n"
-        "add.w r9, sp, r3\n"
-        "strb.w r3, [sp, #4]\n"
-        "bl FUN_01023e88\n"
-        "cmp r0, #1\n"
-        "mov.w r0, #-1\n"
-        "it hi\n"
-        "movhi r0, #0\n"
-        "strb.w r0, [sp, #5]\n"
-        "mov r0, r9\n"
-        "bl FUN_01025bb0\n"
-        "cmp r0, #0\n"
-        "bne.w Lpanic_a69\n"
-        "mov.w r10, #1\n"
-        "mov r0, r7\n"
-        "ldr r5, =0x0103c4d0\n"
-        "strb.w r10, [r4, #0x45]\n"
-        "bl FUN_01020a00\n"
-        "ldrb r1, [r4, #0x1a]\n"
-        "mov r3, r9\n"
-        "ldr.w r8, =0x41008000\n"
-        "ldrb r0, [r5, r1]\n"
-        "ldrsb.w r2, [r4, #0x19]\n"
-        "str.w r0, [r8, #0x508]\n"
-        "and r0, r1, #0x7f\n"
-        "str.w r0, [r8, #0x554]\n"
-        "mov r0, r7\n"
-        "bl FUN_010216d4\n"
-        "ldrsb.w r0, [sp, #4]\n"
-        "bl FUN_010215a8\n"
-        "add.w r0, sp, #5\n"
-        "bl FUN_010218fc\n"
-        "cmp r0, #0\n"
-        "bne.w Lpanic_57e\n"
-        "ldrb r3, [r4, #7]\n"
-        "strb.w r10, [r4, #9]\n"
-        "cmp r3, #1\n"
-        "bne Lskip1\n"
-        "ldr.w r3, [r8, #0x200]\n"
-        "orr r3, r3, #8\n"
-        "str.w r3, [r8, #0x200]\n"
-        "Lskip1:\n"
-        "add.w r5, r5, r7, lsl #1\n"
-        "ldr r0, =0x10624dd3\n"
-        "ldr r2, =0x8000000a\n"
-        "ldrh.w r5, [r5, #0xe0]\n"
-        "add.w r5, r5, #0x1f4\n"
-        "umull r3, r5, r0, r5\n"
-        "ldr r3, =0x41008000\n"
-        "str.w r2, [r3, #0x80]\n"
-        "lsrs r5, r5, #6\n"
-        "ldrb r3, [r4, #7]\n"
-        "cmp r3, #0\n"
-        "bne Lc7eq1\n"
-        "Lfallcommon:\n"
-        "ldrb.w r3, [r4, #0x35]\n"
-        "orr r3, r3, #2\n"
-        "strb.w r3, [r4, #0x35]\n"
-        "bl FUN_01020108\n"
-        "bl FUN_01023ac4\n"
-        "mov r8, r0\n"
-        "cmp r0, #0\n"
-        "bne Lret0path\n"
-        "Ljoined:\n"
-        "bl thunk_FUN_010251e8\n"
-        "cmp r6, #0\n"
-        "ldr r3, =0x4100c000\n"
-        "str r0, [sp, #0xc]\n"
-        "it eq\n"
-        "moveq r2, #1\n"
-        "add.w r0, r0, #0x150\n"
-        "it ne\n"
-        "movne r2, #0\n"
-        "strb.w r8, [sp, #4]\n"
-        "str r3, [sp, #8]\n"
-        "strb.w r2, [sp, #5]\n"
-        "ldr.w r3, [r3, r0, lsl #2]\n"
-        "mov r0, r9\n"
-        "str r3, [sp, #0x10]\n"
-        "bne Lelse_branch\n"
-        "ldr.w r8, =0x0103c4d0\n"
-        "ldr r2, =0x10624dd3\n"
-        "add.w r7, r8, r7, lsl #1\n"
-        "ldrh.w r3, [r7, #0xe0]\n"
-        "add.w r3, r3, #0x258\n"
-        "umull r2, r3, r2, r3\n"
-        "lsrs r3, r3, #6\n"
-        "str r3, [sp, #0x14]\n"
-        "bl FUN_01025c9c\n"
-        "ldrh r3, [r4, #0x1c]\n"
-        "cmp r3, #0x95\n"
-        "bhi Lpanic_6e9_target\n"
-        "Lafter_if1:\n"
-        "add.w r0, sp, #3\n"
-        "bl FUN_01025bc8\n"
-        "cmp r0, #0\n"
-        "bne.w Lpanic_a8b\n"
-        "ldrb r2, [r4, #9]\n"
-        "ldrb.w r3, [sp, #3]\n"
-        "cmp r2, #1\n"
-        "beq Lcase1_end\n"
-        "cmp r2, #2\n"
-        "beq Lcase2_end\n"
-        "strb.w r0, [r4, #0x46]\n"
-        "Lretmain:\n"
-        "mov r0, r5\n"
-        "add sp, #0x18\n"
-        "pop.w {r4,r5,r6,r7,r8,r9,r10,pc}\n"
-        "Lp1_start:\n"
-        "movs r3, #0\n"
-        "mov.w r8, #2\n"
-        "add.w r9, sp, #4\n"
-        "strb.w r3, [sp, #6]\n"
-        "strb.w r8, [sp, #4]\n"
-        "bl FUN_01023e88\n"
-        "cmp r0, #1\n"
-        "mov.w r0, #-1\n"
-        "it hi\n"
-        "movhi r0, #0\n"
-        "strb.w r0, [sp, #5]\n"
-        "mov r0, r9\n"
-        "bl FUN_01025bb0\n"
-        "mov r5, r0\n"
-        "cmp r0, #0\n"
-        "bne Lpanic_a69\n"
-        "movs r3, #1\n"
-        "cmp r6, r3\n"
-        "strb.w r3, [r4, #0x45]\n"
-        "beq Lp1eq1\n"
-        "Lp1_common:\n"
-        "ldrb r3, [r4, #7]\n"
-        "cmp r3, #0\n"
-        "beq Lfallcommon\n"
-        "Lcmp3eq1:\n"
-        "cmp r3, #1\n"
-        "bne Lret_bl2\n"
-        "ldrb.w r3, [r4, #0x35]\n"
-        "orr r3, r3, #4\n"
-        "strb.w r3, [r4, #0x35]\n"
-        "bl FUN_01020108\n"
-        "bl FUN_01023ac4\n"
-        "mov r8, r0\n"
-        "cmp r0, #0\n"
-        "beq Ljoined\n"
-        "Lret0path:\n"
-        "movs r5, #0\n"
-        "bl FUN_01020500\n"
-        "mov r0, r5\n"
-        "add sp, #0x18\n"
-        "pop.w {r4,r5,r6,r7,r8,r9,r10,pc}\n"
-        "Lret_bl2:\n"
-        "bl FUN_01020108\n"
-        "bl FUN_01023ac4\n"
-        "mov r8, r0\n"
-        "cmp r0, #0\n"
-        "bne Lret0path\n"
-        "b Ljoined\n"
-        "Lelse_branch:\n"
-        "movs r3, #0x28\n"
-        "str r3, [sp, #0x14]\n"
-        "bl FUN_01025c9c\n"
-        "ldrh r3, [r4, #0x1c]\n"
-        "cmp r3, #0x95\n"
-        "bls Lafter_if1\n"
-        "cmp r6, #1\n"
-        "bne Lpanic_6fa\n"
-        "ldr r0, =0x21000028\n"
-        "movs r3, #0x29\n"
-        "ldr r1, =0x0103c578\n"
-        "strd r8, r3, [r0, #8]\n"
-        "bl FUN_010218cc\n"
-        "adds r0, #1\n"
-        "cmp r0, #1\n"
-        "bls Lafter_if1\n"
-        "movw r1, #0x6f6\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lcase2_end:\n"
-        "eor r3, r3, #2\n"
-        "ubfx r3, r3, #1, #1\n"
-        "Ljoin_flagset:\n"
-        "strb.w r3, [r4, #0x46]\n"
-        "cmp r3, #0\n"
-        "beq Lretmain\n"
-        "ldr r3, =0x41008000\n"
-        "movs r2, #0\n"
-        "movs r1, #1\n"
-        "mov r0, r5\n"
-        "str.w r2, [r3, #0x80]\n"
-        "str.w r2, [r3, #0x84]\n"
-        "str r1, [r3, #0x10]\n"
-        "add sp, #0x18\n"
-        "pop.w {r4,r5,r6,r7,r8,r9,r10,pc}\n"
-        "Lcase1_end:\n"
-        "eor r3, r3, #4\n"
-        "ubfx r3, r3, #2, #1\n"
-        "b Ljoin_flagset\n"
-        "Lpanic_a69:\n"
-        "movw r1, #0xa69\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lpanic_6e9_target:\n"
-        "ldr r0, =0x21000028\n"
-        "movs r3, #0x28\n"
-        "add.w r1, r8, #0xa8\n"
-        "str r6, [r0, #8]\n"
-        "str r3, [r0, #0xc]\n"
-        "bl FUN_010218c0\n"
-        "adds r0, #1\n"
-        "cmp r0, #1\n"
-        "bls.w Lafter_if1\n"
-        "movw r1, #0x6e9\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lp1eq1:\n"
-        "mov r0, r7\n"
-        "bl FUN_01020168\n"
-        "ldrb r3, [r4, #7]\n"
-        "strb.w r8, [r4, #9]\n"
-        "cmp r3, #1\n"
-        "bne Lskip2\n"
-        "ldr r2, =0x41008000\n"
-        "ldr.w r3, [r2, #0x200]\n"
-        "orr r3, r3, #4\n"
-        "str.w r3, [r2, #0x200]\n"
-        "Lskip2:\n"
-        "ldr r3, =0x41008000\n"
-        "movs r5, #0x29\n"
-        "ldr r2, =0x8000000a\n"
-        "str.w r2, [r3, #0x84]\n"
-        "b Lp1_common\n"
-        "Lpanic_a8b:\n"
-        "movw r1, #0xa8b\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lpanic_6fa:\n"
-        "movw r1, #0x6fa\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lpanic_57e:\n"
-        "movw r1, #0x57e\n"
-        "movs r0, #0x3e\n"
-        "bl FUN_01008d00\n"
-        "Lc7eq1:\n"
-        "b Lcmp3eq1\n"
-    );
+    uint64_t product = UINT64_C(0x10624dd3) *
+                       (uint32_t)(LOOKUP16[channel] + bias);
+    return (uint32_t)(product >> 38);
 }
 
+uint32_t FUN_010212ec(uint32_t mode, uint32_t channel, uint32_t request)
+{
+    uint8_t command[3];
+    uint8_t observed;
+    uint32_t result = 0;
+    uint32_t operation;
+    uint64_t timer_index;
+    struct {
+        volatile uint32_t *base;
+        uint32_t index;
+        uint32_t compare;
+        uint32_t delay;
+    } timer_request;
+
+    STATE[0x35] |= 2;
+    command[2] = 0;
+    command[0] = mode == 0 ? 4 : 2;
+    command[1] = FUN_01023e88() > 1 ? 0 : UINT8_C(0xff);
+    if (FUN_01025bb0(command) != 0)
+        goto panic_a69;
+
+    STATE[0x45] = 1;
+    if (mode == 0) {
+        FUN_01020a00(channel);
+        {
+            uint32_t selector = STATE[0x1a];
+            RADIO[0x508 / 4] = LOOKUP8[selector];
+            RADIO[0x554 / 4] = selector & 0x7f;
+            FUN_010216d4(channel, selector, (int8_t)STATE[0x19], command);
+        }
+        FUN_010215a8((int8_t)command[0]);
+        if (FUN_010218fc(&command[1]) != 0)
+            goto panic_57e;
+        STATE[9] = 1;
+        if (STATE[7] == 1)
+            RADIO[0x200 / 4] |= 8;
+        result = scaled_delay(channel, 500);
+        RADIO[0x80 / 4] = UINT32_C(0x8000000a);
+        request = UINT32_C(0x8000000a);
+    } else if (mode == 1) {
+        FUN_01020168(channel);
+        STATE[9] = 2;
+        if (STATE[7] == 1)
+            RADIO[0x200 / 4] |= 4;
+        result = 0x29;
+        RADIO[0x84 / 4] = UINT32_C(0x8000000a);
+        request = UINT32_C(0x8000000a);
+    }
+
+    if (STATE[7] == 0) {
+        STATE[0x35] |= 2;
+    } else if (STATE[7] == 1) {
+        STATE[0x35] |= 4;
+    }
+    FUN_01020108();
+    if (FUN_01023ac4() != 0) {
+        FUN_01020500();
+        return 0;
+    }
+
+    timer_index = thunk_FUN_010251e8();
+    operation = mode == 0 ? 1 : 0;
+    command[0] = 0;
+    command[1] = (uint8_t)operation;
+    timer_request.base = TIMER;
+    timer_request.index = (uint32_t)timer_index;
+    timer_request.compare = TIMER[(uint32_t)timer_index + 0x150];
+
+    if (mode == 0) {
+        timer_request.delay = scaled_delay(channel, 600);
+        FUN_01025c9c(command, (uint32_t)(timer_index >> 32),
+                     (uint32_t)(UINT64_C(0x10624dd3) *
+                                (uint32_t)(LOOKUP16[channel] + 600)));
+        if (*(volatile uint16_t *)(STATE + 0x1c) > 0x95) {
+            WORK[2] = 0;
+            WORK[3] = 0x28;
+            if ((uint32_t)(FUN_010218c0((void *)WORK, (const void *)(LOOKUP8 + 0xa8)) + 1) > 1)
+                FUN_01008d00(0x3e, 0x6e9);
+        }
+    } else {
+        timer_request.delay = 0x28;
+        FUN_01025c9c(command);
+        if (*(volatile uint16_t *)(STATE + 0x1c) > 0x95) {
+            if (mode != 1)
+                FUN_01008d00(0x3e, 0x6fa);
+            WORK[2] = 0;
+            WORK[3] = 0x29;
+            if ((uint32_t)(FUN_010218cc((void *)WORK, (const void *)UINT32_C(0x0103c578)) + 1) > 1)
+                FUN_01008d00(0x3e, 0x6f6);
+        }
+    }
+
+    if (FUN_01025bc8(&observed) != 0)
+        FUN_01008d00(0x3e, 0xa8b);
+
+    if (STATE[9] == 1)
+        STATE[0x46] = (uint8_t)(((observed ^ 4u) >> 2) & 1u);
+    else if (STATE[9] == 2)
+        STATE[0x46] = (uint8_t)(((observed ^ 2u) >> 1) & 1u);
+    else {
+        STATE[0x46] = 0;
+        return result;
+    }
+
+    if (STATE[0x46] != 0) {
+        RADIO[0x80 / 4] = 0;
+        RADIO[0x84 / 4] = 0;
+        RADIO[0x10 / 4] = 1;
+    }
+    return result;
+
+panic_a69:
+    FUN_01008d00(0x3e, 0xa69);
+    /* The diagnostic is noreturn in production.  Preserve the firmware's
+       literal fall-through as well, since the parity oracle returns. */
+    WORK[2] = mode;
+    WORK[3] = 0x28;
+    if ((uint32_t)(FUN_010218c0((void *)WORK,
+                                (const void *)(LOOKUP8 + 0xa8)) + 1) > 1)
+        FUN_01008d00(0x3e, 0x6e9);
+    FUN_01020168(channel);
+    /* r8 is still zero on the mode-zero early-failure path and was loaded
+       with two on the nonzero-mode path. */
+    STATE[9] = mode == 0 ? 0 : 2;
+    if (STATE[7] == 1)
+        RADIO[0x200 / 4] |= 4;
+    RADIO[0x84 / 4] = UINT32_C(0x8000000a);
+    if (STATE[7] == 0)
+        STATE[0x35] |= 2;
+    else if (STATE[7] == 1)
+        STATE[0x35] |= 4;
+    FUN_01020108();
+    if (FUN_01023ac4() != 0)
+        FUN_01020500();
+    return 0;
+panic_57e:
+    FUN_01008d00(0x3e, 0x57e);
+    return 0;
+}

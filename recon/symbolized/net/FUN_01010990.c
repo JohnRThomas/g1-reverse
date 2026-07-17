@@ -4,7 +4,7 @@
 
 int32_t FUN_01010990(int32_t param_1, int32_t param_2)
 {
-    volatile uint16_t * const tab = (uint16_t *)((uintptr_t)&rodata_103c1bc) /*=0x103c1bc*/;
+    volatile uint16_t * const tab = (uint16_t *)((unsigned long)&rodata_103c1bc) /*=0x103c1bc*/;
     const uint64_t mul = 0x10624dd3ULL;
 
     int32_t iVar2 = (param_1 - 1) * 0x80;
@@ -24,4 +24,3 @@ int32_t FUN_01010990(int32_t param_1, int32_t param_2)
     }
     return iVar1 * param_1 + uVar3 + iVar2;
 }
-

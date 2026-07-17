@@ -22,12 +22,12 @@ extern unsigned FUN_01025bb0(void*);
 extern unsigned FUN_01025bc8(void*);
 extern void FUN_01025c9c(void*);
 
-#define IVAR3 ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/
+#define IVAR3 0x210015f0u
 #define PUVAR4 REG_41008000 /*=0x41008000*/
-#define DAT_010212dc REG_4100c000 /*=0x4100c000*/
-#define DAT_010212e0 "f_timer.h" /*=0x103c4d0*/
-#define DAT_010212e4 ((uintptr_t)&g_net_ll_sched_req_buf) /*=0x21000028*/
-#define DAT_010212e8 ((uintptr_t)&rodata_103c578) /*=0x103c578*/
+#define DAT_010212dc 0x4100c000u
+#define DAT_010212e0 ((unsigned long)&rodata_103c4d0) /*=0x103c4d0*/
+#define DAT_010212e4 0x21000028u
+#define DAT_010212e8 ((unsigned long)&rodata_103c578) /*=0x103c578*/
 
 void FUN_01021108(unsigned param_1, unsigned param_2)
 {
@@ -124,5 +124,3 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
     W8(IVAR3+0x46) = 0;
   }
 }
-
-

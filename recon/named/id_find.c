@@ -1,8 +1,13 @@
-/* named: id_find */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed id_find @ 0x54ce8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054ce8 @ 0x00054ce8
+ * public-name: id_find
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   id_find                                  <= FUN_00054ce8 @ 0x00054ce8
+ *   bt_addr_le_eq                            <= FUN_00080fa4 @ 0x00080fa4
+ * address symbols (name @ address):
+ *   g_ble_dev_state                          @ 0x20002000
+ */
+/* Reconstructed FUN_00054ce8 @ 0x54ce8  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_addr_le_eq(int,int,int,int,int);
 unsigned int id_find(int param_1, int param_2, int param_3, int param_4)
@@ -24,4 +29,3 @@ unsigned int id_find(int param_1, int param_2, int param_3, int param_4)
     } while (iVar3 == 0);
     return uVar4;
 }
-

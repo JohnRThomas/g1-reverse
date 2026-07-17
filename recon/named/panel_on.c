@@ -1,8 +1,18 @@
-/* named: panel_on */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00046dd8 @ 0x00046dd8
+ * public-name: panel_on
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   power_for_panel                          <= FUN_00015df4 @ 0x00015df4
+ *   get_ambient_light_sensor_ready_flag      <= FUN_0001655c @ 0x0001655c
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   opt3007_chip_init                        <= FUN_0002e67c @ 0x0002e67c
+ *   panel_init                               <= FUN_00047538 @ 0x00047538
+ * address symbols (name @ address):
+ *   rodata_d723a                             @ 0x000d723a
+ *   rodata_d72bb                             @ 0x000d72bb
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed panel_on @ 0x46dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(int,...);
@@ -33,4 +43,3 @@ int panel_on(int param_1){
   }
   return 0;
 }
-

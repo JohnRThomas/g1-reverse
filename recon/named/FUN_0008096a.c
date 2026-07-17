@@ -1,9 +1,11 @@
-/* named: FUN_0008096a */
+/* readable reconstruction; identity: FUN_0008096a @ 0x0008096a
+ * public-name: FUN_0008096a
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0008096a @ 0x8096a  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0004d944(void);
-void FUN_0008096a(void)
+extern void FUN_0004d944(unsigned, unsigned, unsigned, unsigned);
+void FUN_0008096a(unsigned r0, unsigned r1, unsigned r2)
 {
-    FUN_0004d944();
+    FUN_0004d944(r0, r1, r2, 0);
 }
-

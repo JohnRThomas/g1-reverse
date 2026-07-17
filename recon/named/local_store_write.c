@@ -1,41 +1,61 @@
-/* named: local_store_write */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed local_store_write @ 0x22168  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00022168 @ 0x00022168
+ * public-name: local_store_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   settings_save_one                        <= FUN_0004e374 @ 0x0004e374
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9e161                             @ 0x0009e161
+ *   rodata_9e187                             @ 0x0009e187
+ *   rodata_9e553                             @ 0x0009e553
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed local_store_write @ 0x22168 */
+
 #include <stdint.h>
-typedef uint32_t u32; typedef uint8_t u8;
-extern void DEBUG_PRINT(u32,u32,u32,u32);
-extern void debug_print(u32,u32,u32,u32);
-extern int settings_save_one(void*,u32,u32);
-extern void memset_bytes(void*,int,int);
-extern void __strcat_chk(void*,u32,int);
-u32 local_store_write(u32 param_1, u32 param_2, u32 param_3){
-    u32 local_98[8];
-    u8 auStack_7c[100];
-    u32* src = (u32*)0x0009e145;
-    u32* dst = local_98;
-    do { u32 a=src[0],b=src[1]; src+=2; dst[0]=a; dst[1]=b; dst+=2; } while(src != (u32*)0x0009e145 + 6);
-    *dst = *src;
-    memset_bytes(auStack_7c, 0, 100);
-    __strcat_chk(local_98, param_1, 0x80);
-    int iVar2 = settings_save_one(local_98, param_2, param_3);
-    u32 uVar1;
-    if(iVar2 == 0){
-        if(*(volatile int*)0x2000230cUL < 3) return 0;
-        iVar2 = *(volatile int*)0x20007554UL;
-        uVar1 = 0x0009e187;
-    } else {
-        if(*(volatile int*)0x2000230cUL < 1) return 0;
-        iVar2 = *(volatile int*)0x20007554UL;
-        uVar1 = 0x0009e161;
+
+extern void DEBUG_PRINT(uint32_t format, uint32_t function_name,
+                        const char *key_suffix, uint32_t length);
+extern void debug_print(uint32_t format, uint32_t function_name,
+                         const char *key_suffix, uint32_t length);
+extern int settings_save_one(const char *key, const void *value, uint32_t length);
+extern void memset_bytes(void *destination, int value, uint32_t length);
+extern void FUN_00086fbe(char *destination, const char *source,
+                         uint32_t capacity);
+
+uint32_t local_store_write(const char *key_suffix, const void *value,
+                           uint32_t length)
+{
+    static const char key_prefix[28] = "ar_glass_userdata_settings/";
+    char key[128];
+
+    for (uint32_t index = 0; index < sizeof(key_prefix); ++index) {
+        key[index] = key_prefix[index];
     }
-    if(iVar2 == 0){
-        DEBUG_PRINT(uVar1, 0x0009e553, param_1, param_3);
+
+    memset_bytes(key + 28, 0, 100);
+    FUN_00086fbe(key, key_suffix, sizeof(key));
+
+    int result = settings_save_one(key, value, length);
+    uint32_t format;
+    if (result == 0) {
+        if (*(volatile int32_t *)0x2000230cUL < 3) {
+            return 0;
+        }
+        format = 0x0009e187UL;
     } else {
-        debug_print(uVar1, 0x0009e553, param_1, param_3);
+        if (*(volatile int32_t *)0x2000230cUL < 1) {
+            return 0;
+        }
+        format = 0x0009e161UL;
+    }
+
+    if (*(volatile uint32_t *)0x20007554UL == 0) {
+        DEBUG_PRINT(format, 0x0009e553UL, key_suffix, length);
+    } else {
+        debug_print(format, 0x0009e553UL, key_suffix, length);
     }
     return 0;
 }
-

@@ -1,93 +1,64 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0103a076 @ 0x103a076  (parity 300 trials PROVEN) */
-extern void FUN_0102f580(void);
-extern void FUN_0103b62e(void);
-extern void FUN_01039fb6(void);
+/* net-core FUN_0103a076 @ 0x103a076 */
+#include <stdint.h>
 
-__attribute__((naked)) void FUN_0103a076(void)
+extern void FUN_0102f580(void *);
+extern void FUN_0103b62e(void *, uint32_t, uint32_t);
+extern void FUN_01039fb6(volatile uint32_t *, uint32_t);
+
+typedef int32_t (*prepare_fn)(void *, void *);
+typedef int32_t (*attach_fn)(void *, void *, uint32_t);
+typedef void (*init_fn)(void *, uint32_t);
+
+int32_t FUN_0103a076(void *object)
 {
-    __asm__ volatile(
-        "push.w {r3,r4,r5,r6,r7,r8,r9,lr}\n"
-        "mov r6, r0\n"
-        "mov.w r9, #1\n"
-        "ldr r5, [r0, #0x10]\n"
-        "ldr.w r8, [r0, #4]\n"
-        "add.w r7, r5, #0x37c\n"
-        "Lretry:\n"
-        "ldaex r3, [r7]\n"
-        "cmp r3, #2\n"
-        "bne Lchk\n"
-        "stlex r2, r9, [r7]\n"
-        "cmp r2, #0\n"
-        "bne Lretry\n"
-        "Lchk:\n"
-        "bne Lfail77\n"
-        "ldrb.w r3, [r5, #0x64]\n"
-        "cmp r3, #0\n"
-        "bne Lfailf\n"
-        "ldrb.w r3, [r5, #0xd4]\n"
-        "cmp r3, #0\n"
-        "bne Lfailf\n"
-        "mov r0, r5\n"
-        "ldr.w r1, [r5, #0x378]\n"
-        "movw r3, #0xa193\n"
-        "movt r3, #0x0103\n"
-        "blx r3\n"
-        "mov r4, r0\n"
-        "cbnz r0, LretQuick\n"
-        "ldr r1, [r6, #4]\n"
-        "ldr r6, [r6, #0x10]\n"
-        "ldr r0, [r1, #0x14]\n"
-        "ldr r3, [r0, #8]\n"
-        "ldr r3, [r3, #0x10]\n"
-        "cbz r3, Lfail57\n"
-        "mov r2, r4\n"
-        "ldr r1, [r1, #0x18]\n"
-        "blx r3\n"
-        "mov r4, r0\n"
-        "cbnz r0, LretQuick\n"
-        "add.w r6, r6, #0x2c0\n"
-        "mov r1, r9\n"
-        "mov r0, r6\n"
-        "movw r3, #0x6da5\n"
-        "movt r3, #0x0103\n"
-        "blx r3\n"
-        "mov r0, r6\n"
-        "add.w r6, r5, #0x1c8\n"
-        "bl FUN_0102f580\n"
-        "mov r0, r6\n"
-        "ldr.w r1, [r8]\n"
-        "movw r3, #0xa20d\n"
-        "movt r3, #0x0103\n"
-        "blx r3\n"
-        "mov r4, r0\n"
-        "cbnz r0, LretQuick\n"
-        "mov r1, r0\n"
-        "movs r2, #0xe8\n"
-        "mov r0, r6\n"
-        "bl FUN_0103b62e\n"
-        "mov r1, r4\n"
-        "mov.w r2, #0x1c4\n"
-        "mov r0, r5\n"
-        "bl FUN_0103b62e\n"
-        "mov r1, r4\n"
-        "Lcommon:\n"
-        "mov r0, r7\n"
-        "bl FUN_01039fb6\n"
-        "Lret:\n"
-        "mov r0, r4\n"
-        "pop.w {r3,r4,r5,r6,r7,r8,r9,pc}\n"
-        "Lfail57:\n"
-        "mvn r4, #0x57\n"
-        "LretQuick:\n"
-        "movs r1, #2\n"
-        "b Lcommon\n"
-        "Lfail77:\n"
-        "mvn r4, #0x77\n"
-        "b Lret\n"
-        "Lfailf:\n"
-        "mvn r4, #0xf\n"
-        "b Lret\n"
-    );
-}
+    uint8_t *outer = object;
+    uint8_t *state = *(uint8_t **)(outer + 0x10);
+    uint8_t *configuration = *(uint8_t **)(outer + 4);
+    volatile uint32_t *lock = (volatile uint32_t *)(state + 0x37c);
 
+    uint32_t expected = 2;
+    if (!__atomic_compare_exchange_n(lock, &expected, 1, 0,
+                                     __ATOMIC_ACQ_REL, __ATOMIC_ACQUIRE))
+        return -0x78;
+
+    int32_t result = -0x10;
+    if (state[0x64] || state[0xd4])
+        return result;
+
+    result = ((prepare_fn)(uintptr_t)0x0103a193u)
+        (state, *(void **)(state + 0x378));
+    if (result) {
+        FUN_01039fb6(lock, 2);
+        return result;
+    }
+
+    void *driver = *(void **)(configuration + 0x14);
+    attach_fn attach = *(attach_fn *)(*(uint8_t **)((uint8_t *)driver + 8) + 0x10);
+    if (!attach) {
+        result = -0x58;
+        FUN_01039fb6(lock, 2);
+        return result;
+    }
+    result = attach(driver, *(void **)(configuration + 0x18), 0);
+    if (result) {
+        FUN_01039fb6(lock, 2);
+        return result;
+    }
+
+    void *device = state + 0x2c0;
+    ((init_fn)(uintptr_t)0x01036da5u)(device, 1);
+    FUN_0102f580(device);
+
+    void *buffer = state + 0x1c8;
+    result = ((prepare_fn)(uintptr_t)0x0103a20du)
+        (buffer, *(void **)configuration);
+    if (result) {
+        FUN_01039fb6(lock, 2);
+        return result;
+    }
+    FUN_0103b62e(buffer, 0, 0xe8);
+    FUN_0103b62e(state, 0, 0x1c4);
+    FUN_01039fb6(lock, 0);
+    return 0;
+}

@@ -1,5 +1,21 @@
-/* named: smp_pairing_complete */
-/* Reconstructed smp_pairing_complete @ 0x5daf0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005daf0 @ 0x0005daf0
+ * public-name: smp_pairing_complete
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ble_notify_remote_info_available         <= FUN_00056da8 @ 0x00056da8
+ *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
+ *   bt_keys_clear                            <= FUN_0005ea18 @ 0x0005ea18
+ *   bt_keys_store                            <= FUN_0005ec18 @ 0x0005ec18
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   att_chan_reset                           <= FUN_00083204 @ 0x00083204
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4f89                             @ 0x000f4f89
+ *   rodata_f520f                             @ 0x000f520f
+ *   rodata_f5220                             @ 0x000f5220
+ *   g_bt_conn_auth_info_cb_list              @ 0x2000ad20
+ */
+/* Reconstructed FUN_0005daf0 @ 0x5daf0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ble_notify_remote_info_available(int,int,int);
 extern int FUN_0005d964(int);
@@ -111,4 +127,3 @@ LAB_0005dbba:
     }
     return;
 }
-

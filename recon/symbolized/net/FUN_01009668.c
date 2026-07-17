@@ -1,9 +1,9 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01009668 @ 0x1009668  (parity 300 trials PROVEN) */
-#define P_010096f8 ((uintptr_t)&g_net_bump_alloc_state) /*=0x21000ba8*/
-#define P_010096fc ((uintptr_t)&g_net_bump_alloc_cursor) /*=0x21000bac*/
-#define P_01009700 ((uintptr_t)&g_net_bump_alloc_offset) /*=0x21000bb0*/
-#define P_01009704 ((uintptr_t)&g_net_ctx_ptr_table) /*=0x21000b7c*/
+#define P_010096f8 ((unsigned long)&g_net_bump_alloc_state) /*=0x21000ba8*/
+#define P_010096fc ((unsigned long)&g_net_bump_alloc_cursor) /*=0x21000bac*/
+#define P_01009700 ((unsigned long)&g_net_bump_alloc_offset) /*=0x21000bb0*/
+#define P_01009704 0x21000b7c
 
 extern void FUN_01008d00(int, int);
 extern void FUN_01025a84(void *, int, int);
@@ -33,4 +33,3 @@ void FUN_01009668(unsigned int *param_1)
   }
   return;
 }
-

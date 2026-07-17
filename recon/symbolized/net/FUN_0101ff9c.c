@@ -5,7 +5,7 @@ extern void FUN_01008d00(unsigned int, unsigned int, unsigned int, unsigned int)
 
 int FUN_0101ff9c(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
-  if (*(volatile unsigned char *)((uintptr_t)&g_net_radio_pending_reset_flag) /*=0x210014dc*/ == 0) {
+  if (*(volatile unsigned char *)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/ == 0) {
     FUN_01008d00(0x3c, 0x274, param_3, param_4);
     FUN_01008d00(0x3c, 0x275, param_3, param_4);
     while (1) { FUN_01008d00(0x3c, 0x275, param_3, param_4); }
@@ -20,4 +20,3 @@ int FUN_0101ff9c(unsigned int param_1, unsigned int param_2, unsigned int param_
   FUN_01008d00(0x3c, 0x275, param_3, param_4);
   while (1) { FUN_01008d00(0x3c, 0x275, param_3, param_4); }
 }
-

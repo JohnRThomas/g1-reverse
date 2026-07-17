@@ -1,4 +1,20 @@
-/* named: FUN_0005c3c4 */
+/* readable reconstruction; identity: FUN_0005c3c4 @ 0x0005c3c4
+ * public-name: FUN_0005c3c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
+ *   gatt_write_ccc                           <= FUN_0005a540 @ 0x0005a540
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3ebd                             @ 0x000f3ebd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4d35                             @ 0x000f4d35
+ *   rodata_f4d4e                             @ 0x000f4d4e
+ *   rodata_f4d5c                             @ 0x000f4d5c
+ */
 /* Reconstructed FUN_0005c3c4 @ 0x5c3c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* FUN_00059c70(void);
@@ -64,4 +80,3 @@ LAB:
     *(int**)(puVar2 + 0xc) = param_2 + 6;
   return 0;
 }
-

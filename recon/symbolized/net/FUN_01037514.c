@@ -9,12 +9,12 @@ void FUN_01037514(int *param_1, int *param_2, unsigned int param_3, unsigned int
 {
     FUN_010374dc();
     *((volatile unsigned char*)param_1 + 0xd) |= 2;
-    int *piVar2 = (int*)((uintptr_t)&g_net_dlist_sentinel) /*=0x210043a8*/;
+    int *piVar2 = (int*)0x210043a8;
     if (param_2 != 0) {
         param_1[2] = (int)param_2;
         if (param_1 == piVar2) {
-            FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0xc1);
-            FUN_01039bb0(((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0xc1);
+            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0xc1);
+            FUN_01039bb0(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0xc1);
         }
         int *p3 = (int*)*param_2;
         if (param_2 != p3) {
@@ -40,4 +40,3 @@ void FUN_01037514(int *param_1, int *param_2, unsigned int param_3, unsigned int
         param_2[1] = (int)param_1;
     }
 }
-

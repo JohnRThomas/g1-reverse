@@ -1,10 +1,10 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01039fe6 @ 0x1039fe6  (parity 300 trials PROVEN) */
+/* net-core FUN_01039fe6 @ 0x1039fe6 — true CFG extent 112 bytes (ends 0x103a056) */
 
 extern void FUN_01036410(int, char*, unsigned int, unsigned int, int);
 extern int FUN_0102d6e0(int, char**, char*);
 extern void FUN_01039fb2(int);
-extern int FUN_010354bc(char*, int, char*, unsigned int, unsigned int);
+extern int FUN_0102d69c(int, char *, char *, unsigned int);
 extern void FUN_0103b5a4(void*, char*, unsigned int);
 
 void FUN_01039fe6(int param_1, char *param_2, unsigned int param_3)
@@ -26,7 +26,7 @@ void FUN_01039fe6(int param_1, char *param_2, unsigned int param_3)
   if (pcVar1 != 0) {
     if (iVar2 != 0) {
       FUN_01039fb2(iVar4);
-      int r = FUN_010354bc(pcVar1, iVar3 - 0xbc, param_2, 0xffffffff, param_3);
+      int r = FUN_0102d69c(iVar3 - 0x19c, pcVar1, param_2, param_3);
       (void)r;
       return;
     }
@@ -35,4 +35,3 @@ void FUN_01039fe6(int param_1, char *param_2, unsigned int param_3)
   }
   FUN_01039fb2(iVar4);
 }
-

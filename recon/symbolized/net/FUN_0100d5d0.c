@@ -11,4 +11,3 @@ unsigned int FUN_0100d5d0(unsigned int param_1)
   hi = (unsigned int)(((unsigned long long)0x10624dd3u * param_1) >> 32);
   return (unsigned short)((hi >> 6) + 0xd00);
 }
-

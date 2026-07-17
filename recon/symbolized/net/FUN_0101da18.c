@@ -15,9 +15,9 @@ extern ushort FUN_0100d5d0(uint);
 extern void FUN_0100efc8(void *, uint, uint);
 extern void FUN_0101bdd4(void *, uint);
 
-#define DAT_101dbe4 ((uintptr_t)&g_net_link_ctx_b) /*=0x21001124*/
-#define DAT_101dbe0 ((uintptr_t)&rodata_10101cd) /*=0x10101cd*/
-#define DAT_101dbdc ((uintptr_t)&rodata_10109cd) /*=0x10109cd*/
+#define DAT_101dbe4 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
+#define DAT_101dbe0 ((unsigned long)&rodata_10101cd) /*=0x10101cd*/
+#define DAT_101dbdc 0x010109cdu
 
 void FUN_0101da18(ushort *param_1, int param_2, uint param_3, uint param_4)
 {
@@ -114,6 +114,3 @@ void FUN_0101da18(ushort *param_1, int param_2, uint param_3, uint param_4)
         }
     } while (1);
 }
-
-
-

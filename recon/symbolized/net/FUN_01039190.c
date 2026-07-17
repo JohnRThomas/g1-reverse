@@ -150,7 +150,7 @@ switchD_010391f2_caseD_27:
         if ((uVar4 - 0x65 < 3) || (uVar4 == 0x61)) {
           uVar15 = 7;
           puVar8 = (uint *)(((int)param_3 + 7U & 0xfffffff8) + 8);
-          puVar11 = (undefined1 *)((uintptr_t)&rodata_103ed18) /*=0x103ed18*/;
+          puVar11 = (undefined1 *)((unsigned long)&rodata_103ed18) /*=0x103ed18*/;
           goto LAB_010392da;
         }
         uVar17 = uVar7;
@@ -226,7 +226,7 @@ LAB_010393ea:
           puVar8 = param_3 + 1;
           puVar11 = (undefined1 *)*param_3;
           if ((undefined1 *)*param_3 == (undefined1 *)0x0) {
-            puVar11 = (undefined1 *)((uintptr_t)&rodata_103ed11) /*=0x103ed11*/;
+            puVar11 = (undefined1 *)((unsigned long)&rodata_103ed11) /*=0x103ed11*/;
           }
           if ((uVar12 & 0x40) == 0) {
             uVar7 = 0xffffffff;
@@ -364,7 +364,7 @@ LAB_0103952a:
 LAB_010395ae:
             iVar1 = (*pcVar6)(uVar15,param_1);
             puVar11 = puVar10;
-            goto LAB_010395b6 /*=0x10395b6*/;
+            goto joined_r0x010395b6;
           }
           puVar10 = puVar10 + 1;
           puVar11 = puVar10;
@@ -372,7 +372,7 @@ LAB_010395ae:
         while (uVar15 = uVar14, (int)uVar14 < (int)(puVar11 + (uVar7 - (int)puVar10))) {
           puVar10 = puVar10 + 1;
           iVar1 = (*pcVar6)(0x30,param_1);
-LAB_010395b6 /*=0x10395b6*/:
+joined_r0x010395b6:
           if (iVar1 < 0) {
             return (undefined1 *)0xffffffff;
           }
@@ -407,4 +407,3 @@ LAB_010391c0:
   }
   return (undefined1 *)0xffffffff;
 }
-

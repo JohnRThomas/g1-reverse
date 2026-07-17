@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: stdio_reset_ungetc_buffer */
-/* Reconstructed stdio_reset_ungetc_buffer @ 0x87862  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00087862 @ 0x00087862
+ * public-name: stdio_reset_ungetc_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   stdio_reset_ungetc_buffer                <= FUN_00087862 @ 0x00087862
+ */
+/* Reconstructed FUN_00087862 @ 0x87862  (parity: 300/300 trials, PROVEN) */
 
 extern void heap_free_core(void);
 int stdio_reset_ungetc_buffer(int param_1, unsigned int *param_2)
@@ -21,4 +27,3 @@ int stdio_reset_ungetc_buffer(int param_1, unsigned int *param_2)
   *(unsigned short *)((char*)param_2 + 0xc) |= 0x20;
   return -1;
 }
-

@@ -8,9 +8,9 @@ extern int FUN_010209f0(unsigned char);
 extern void FUN_01022a84(void);
 extern int FUN_010231c8(unsigned char, void*);
 
-#define DAT_0101bee4 ((uintptr_t)&rodata_103c290) /*=0x103c290*/
+#define DAT_0101bee4 ((unsigned long)&rodata_103c290) /*=0x103c290*/
 #define DAT_0101bee8 0x10624dd3u
-#define DAT_0101beec ((uintptr_t)&g_net_conn_teardown_busy_flag) /*=0x2100111c*/
+#define DAT_0101beec ((unsigned long)&g_net_conn_teardown_busy_flag) /*=0x2100111c*/
 
 void FUN_0101bdd4(int param_1, unsigned int param_2)
 {
@@ -78,4 +78,3 @@ LAB_0101bdee:
     return;
   }
 }
-

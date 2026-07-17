@@ -1,5 +1,14 @@
-/* named: get_clock_digit_glyph_offset_large */
-/* Reconstructed get_clock_digit_glyph_offset_large @ 0x45764  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00045764 @ 0x00045764
+ * public-name: get_clock_digit_glyph_offset_large
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_clock_digit_glyph_offset_large       <= FUN_00045764 @ 0x00045764
+ * address symbols (name @ address):
+ *   rodata_8ac34                             @ 0x0008ac34
+ *   rodata_98fe8                             @ 0x00098fe8
+ *   rodata_e5248                             @ 0x000e5248
+ */
+/* Reconstructed FUN_00045764 @ 0x45764  (parity: 300/300 trials, PROVEN) */
 
 int get_clock_digit_glyph_offset_large(unsigned int param_1, int *param_2, unsigned int *param_3)
 {
@@ -23,4 +32,3 @@ int get_clock_digit_glyph_offset_large(unsigned int param_1, int *param_2, unsig
   *param_3 = 0x27;
   return 0xe5248 + uVar1;
 }
-

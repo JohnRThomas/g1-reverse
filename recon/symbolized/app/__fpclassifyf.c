@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: __fpclassifyf */
-/* Reconstructed __fpclassifyf @ 0x75980  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00075980 @ 0x00075980
+ * public-name: __fpclassifyf
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __fpclassifyf                            <= FUN_00075980 @ 0x00075980
+ */
+/* Reconstructed FUN_00075980 @ 0x75980  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int u32;
 
@@ -18,4 +23,3 @@ int __fpclassifyf(float param_1)
     }
     return 4;
 }
-

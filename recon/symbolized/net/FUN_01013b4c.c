@@ -22,7 +22,7 @@ extern void FUN_01025a84(void*,u32,u32);
 extern short thunk_FUN_010246cc(void);
 extern u64 thunk_FUN_01025034(void);
 
-static u32 *const DAT_01013cd4 = (u32*)((uintptr_t)&g_net_radio_ack_pending_flag) /*=0x21000f54*/;
+static u32 *const DAT_01013cd4 = (u32*)((unsigned long)&g_net_radio_ack_pending_flag) /*=0x21000f54*/;
 
 unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3)
 {
@@ -38,7 +38,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
   if (*(volatile char *)(param_1 + 0x120) != 0) {
     return 0xc;
   }
-  iVar5 = (int)FUN_01022e34(((uintptr_t)&rodata_1013485) /*=0x1013485*/, param_1);
+  iVar5 = (int)FUN_01022e34(0x01013485, param_1);
   if (iVar5 == 0x20) {
     return 0xc;
   }
@@ -114,4 +114,3 @@ LAB_01013c32:
   FUN_01008d00(0x30, 0x1ec);
   return 0;
 }
-

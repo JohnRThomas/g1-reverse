@@ -1,57 +1,133 @@
-"""WS2 final: apply the naming master + symbol map to the parity-proven sources,
-producing a readable recon/named/ tree. Renames each function and every
-FUN_xxxx/sub_xxxx callee reference, and appends a global-name legend. Purely a
-rename/annotate pass over the PROVEN code — logic is untouched (parity holds)."""
-import json, glob, os, re
-SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
-SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/verified/src"
-OUT = "/Users/freedomcoder/Projects/G1disasm2/recon/named"
+"""Generate agent-readable sources with reversible function/global names.
 
-def load_map():
-    m = {}   # addr -> name
-    sym = json.load(open(SCR + "/symbol_map.json"))      # library + IDA + auto
-    for a, n in sym.items():
-        m[int(a, 16) & ~1] = n
-    nm = json.load(open(SCR + "/naming_master.json"))    # 966 fresh semantic names
-    for a, info in nm["functions"].items():
-        addr = int(a, 16) & ~1
-        m.setdefault(addr, info["name"])                 # don't override known names
-    return m, nm["globals"]
+This is a presentation pass over canonical parity sources.  Function identity
+stays keyed by core + address in ``recon/catalogs/function_names_*.json``; every
+generated file carries a compact back-map in its header.  Absolute data/global
+addresses remain literals here and are handled later by ``symbolize.py``.
+"""
+
+import glob
+import json
+import os
+import re
+import sys
+
+sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
+import function_names
+
+
+BASE = "/Users/freedomcoder/Projects/G1disasm2"
+SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
+       "bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad")
+ADDRESS = re.compile(r"0x[0-9a-fA-F]{4,8}")
+ENTRY = re.compile(r"@\s+(0x[0-9a-fA-F]+)")
+RAW_FUNCTION = re.compile(r"\b(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\b")
+
+
+def paths(core):
+    if core == "app":
+        return (BASE + "/recon/app/src", BASE + "/recon/named",
+                SCR + "/symbol_map.json")
+    if core == "net":
+        return (BASE + "/recon/net/src", BASE + "/recon/net/named",
+                SCR + "/symbol_map_net.json")
+    raise ValueError("unknown core: %r" % core)
+
+
+def load_address_symbols(path):
+    try:
+        with open(path) as stream:
+            data = json.load(stream)
+    except (OSError, ValueError):
+        return {}
+    # Current schema is address -> record.  Explicitly reject the obsolete
+    # address -> function-name shape that caused the old apply_names.py swap.
+    return {int(address, 16): record for address, record in data.items()
+            if isinstance(record, dict) and record.get("name")}
+
+
+def function_backmap(original, core):
+    records = function_names.records_by_address(core)
+    entries = {}
+    for token in function_names.raw_references(original):
+        match = RAW_FUNCTION.fullmatch(token)
+        address = int(match.group(1), 16) & ~1
+        record = records.get(address)
+        if record and record.get("human"):
+            entries[address] = record
+    return entries
+
+
+def global_backmap(original, address_symbols):
+    entries = {}
+    for match in ADDRESS.finditer(original):
+        address = int(match.group(0), 16)
+        record = address_symbols.get(address)
+        if record and record.get("name"):
+            entries[address] = record
+    return entries
+
+
+def provenance_header(core, entry, public_name, function_entries, globals_):
+    raw = function_names.raw_name(core, entry)
+    lines = ["/* readable reconstruction; identity: %s @ 0x%08x" % (raw, entry),
+             " * public-name: %s" % public_name,
+             " * durable-map: recon/catalogs/function_names_%s.json" % core]
+    if function_entries:
+        lines.append(" * callees (readable <= raw @ address):")
+        for address, record in sorted(function_entries.items()):
+            lines.append(" *   %-40s <= %-12s @ 0x%08x" %
+                         (record["name"], record["raw_name"], address))
+    if globals_:
+        lines.append(" * address symbols (name @ address):")
+        for address, record in sorted(globals_.items()):
+            lines.append(" *   %-40s @ 0x%08x" % (record["name"], address))
+    lines.append(" */")
+    return "\n".join(lines) + "\n"
+
 
 def main():
-    os.makedirs(OUT, exist_ok=True)
-    fmap, gmap = load_map()
-    gmap_int = {int(a, 16): g for a, g in gmap.items()}
-    tok = re.compile(r"\b(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\b")
-    def repl(mt):
-        addr = int(mt.group(1), 16)
-        return fmap.get(addr & ~1, mt.group(0))
-    n_files = n_renamed = 0
-    for cf in sorted(glob.glob(SRC + "/*.c")):
-        src = open(cf).read()
-        base = os.path.basename(cf)
-        m = re.search(r"@ (0x[0-9a-fA-F]+)", src)
-        va = int(m.group(1), 16) if m else None
-        newname = fmap.get(va & ~1) if va else None
-        # rename all FUN_/sub_ callee references + the defined symbol
-        out = tok.sub(repl, src)
-        # global legend: any 0x2000xxxx / 0x0008xxxx address with a known name
-        legend = []
-        for gaddr, g in gmap_int.items():
-            if ("0x%08x" % gaddr) in out.lower() or ("0x%x" % gaddr) in out:
-                fld = g.get("field")
-                legend.append("//   0x%08x  %-28s %s" % (gaddr, g["name"],
-                              ("[" + fld + "]") if fld else ""))
-        header = "/* named: %s */\n" % (newname or base[:-2])
-        if legend:
-            header += "/* globals referenced:\n" + "\n".join(sorted(set(legend))) + "\n*/\n"
-        outname = (newname or base[:-2]) + ".c"
-        open(os.path.join(OUT, outname), "w").write(header + out)
-        n_files += 1
-        if newname:
-            n_renamed += 1
-    print("named source files written:", n_files, "| function renamed:", n_renamed)
-    print("output:", OUT)
+    core = sys.argv[1] if len(sys.argv) > 1 else "app"
+    source, output, address_map = paths(core)
+    records = function_names.records_by_address(core)
+    address_symbols = load_address_symbols(address_map)
+    os.makedirs(output, exist_ok=True)
+
+    expected = set()
+    renamed = 0
+    for path in sorted(glob.glob(source + "/*.c")):
+        with open(path) as stream:
+            original = stream.read()
+        first = original.split("\n", 1)[0]
+        match = ENTRY.search(first)
+        if not match:
+            raw_match = re.fullmatch(r"(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\.c",
+                                     os.path.basename(path))
+            if not raw_match:
+                raise RuntimeError("missing entry address in %s" % path)
+            entry = int(raw_match.group(1), 16) & ~1
+        else:
+            entry = int(match.group(1), 16) & ~1
+        record = records.get(entry)
+        public_name = record["name"] if record else function_names.raw_name(core, entry)
+        body = function_names.substitute(original, core)
+        header = provenance_header(core, entry, public_name,
+                                   function_backmap(original, core),
+                                   global_backmap(original, address_symbols))
+        outname = public_name + ".c"
+        expected.add(outname)
+        with open(os.path.join(output, outname), "w") as stream:
+            rendered = header + body
+            stream.write("\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n")
+        renamed += bool(record and record.get("human"))
+
+    # Remove only stale generated C files.  Non-C notes/assets are untouched.
+    for path in glob.glob(output + "/*.c"):
+        if os.path.basename(path) not in expected:
+            os.unlink(path)
+    print("[%s] readable sources: %d | human public names: %d -> %s" %
+          (core, len(expected), renamed, output))
+
 
 if __name__ == "__main__":
     main()

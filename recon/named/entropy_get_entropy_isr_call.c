@@ -1,8 +1,18 @@
-/* named: entropy_get_entropy_isr_call */
-/* globals referenced:
-//   0x00087b90  entropy_dev                  
-*/
-/* Reconstructed entropy_get_entropy_isr_call @ 0x52bf8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00052bf8 @ 0x00052bf8
+ * public-name: entropy_get_entropy_isr_call
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   entropy_get_entropy_isr_call             <= FUN_00052bf8 @ 0x00052bf8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   entropy_dev                              @ 0x00087b90
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f2a45                             @ 0x000f2a45
+ *   rodata_f2a79                             @ 0x000f2a79
+ *   rodata_f2a99                             @ 0x000f2a99
+ */
+/* Reconstructed FUN_00052bf8 @ 0x52bf8  (parity: 300/300 trials, PROVEN) */
 
 extern void printk(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 extern unsigned int assert_post_action(unsigned int a, unsigned int b);
@@ -28,4 +38,3 @@ void entropy_get_entropy_isr_call(unsigned int param_1, unsigned int param_2)
         fp(0x00087b90UL, arg1, arg2);
     }
 }
-

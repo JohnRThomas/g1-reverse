@@ -1,4 +1,7 @@
-/* named: FUN_0005169c */
+/* readable reconstruction; identity: FUN_0005169c @ 0x0005169c
+ * public-name: FUN_0005169c
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_0005169c @ 0x5169c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -12,4 +15,3 @@ uint8_t FUN_0005169c(unsigned int param_1)
   }
   return uVar1;
 }
-

@@ -1,66 +1,38 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01039874 @ 0x1039874  (parity 300 trials PROVEN) */
+/* net-core FUN_01039874 @ 0x1039874 */
+#include <stdint.h>
 
-extern void FUN_0103973c(void);
-extern void FUN_01039768(void);
-extern void FUN_010397d2(void);
-extern void FUN_010397ea(void);
+extern uint32_t FUN_010397d2(uint32_t);
+extern uint32_t FUN_01039768(void *, uint32_t);
+extern uint32_t FUN_0103973c(void *, uint32_t, uint32_t);
+extern void FUN_010397ea(void *, uint32_t, uint32_t);
 
-__attribute__((naked)) void FUN_01039874(void)
+uint32_t FUN_01039874(void *context, uint32_t required_size)
 {
-    __asm__ volatile(
-        "push.w {r4, r5, r6, r7, r8, sb, sl, lr}\n"
-        "mov r5, r0\n"
-        "ldr r0, [r0, #8]\n"
-        "mov r8, r1\n"
-        "bl FUN_010397d2\n"
-        "add.w sl, r5, r0, lsl #2\n"
-        "ldr.w sb, [sl, #0x10]\n"
-        "mov r6, r0\n"
-        "cmp.w sb, #0\n"
-        "beq 1f\n"
-        "movs r7, #3\n"
-        "2:\n"
-        "ldr.w r4, [sl, #0x10]\n"
-        "mov r0, r5\n"
-        "mov r1, r4\n"
-        "bl FUN_01039768\n"
-        "cmp r0, r8\n"
-        "blo 3f\n"
-        "mov r2, r6\n"
-        "mov r1, r4\n"
-        "mov r0, r5\n"
-        "bl FUN_010397ea\n"
-        "mov r0, r4\n"
-        "pop.w {r4, r5, r6, r7, r8, sb, sl, pc}\n"
-        "3:\n"
-        "movs r2, #3\n"
-        "mov r1, r4\n"
-        "mov r0, r5\n"
-        "bl FUN_0103973c\n"
-        "subs r7, #1\n"
-        "str.w r0, [sl, #0x10]\n"
-        "beq 1f\n"
-        "cmp sb, r0\n"
-        "bne 2b\n"
-        "1:\n"
-        "mov.w r4, #-1\n"
-        "ldr r3, [r5, #0xc]\n"
-        "adds r6, #1\n"
-        "lsls r4, r6\n"
-        "ands r4, r3\n"
-        "beq 4f\n"
-        "rbit r2, r4\n"
-        "clz r2, r2\n"
-        "adds r3, r2, #4\n"
-        "ldr.w r4, [r5, r3, lsl #2]\n"
-        "mov r2, r6\n"
-        "mov r1, r4\n"
-        "mov r0, r5\n"
-        "bl FUN_010397ea\n"
-        "4:\n"
-        "mov r0, r4\n"
-        "pop.w {r4, r5, r6, r7, r8, sb, sl, pc}\n"
-    );
-}
+    uint8_t *base = context;
+    uint32_t bucket = FUN_010397d2(*(uint32_t *)(base + 8));
+    uint32_t *head = (uint32_t *)(base + 0x10 + bucket * 4u);
+    uint32_t original = *head;
+    if (original) {
+        for (unsigned attempts = 0; attempts < 3; ++attempts) {
+            uint32_t item = *head;
+            if (FUN_01039768(context, item) >= required_size) {
+                FUN_010397ea(context, item, bucket);
+                return item;
+            }
+            *head = FUN_0103973c(context, item, 3);
+            if (*head == original)
+                break;
+        }
+    }
 
+    uint32_t shift = (bucket + 1u) & 255u;
+    uint32_t available = (shift < 32u ? 0xffffffffu << shift : 0u) &
+                         *(uint32_t *)(base + 0x0c);
+    if (!available)
+        return 0;
+    uint32_t next_bucket = (uint32_t)__builtin_ctz(available);
+    uint32_t item = *(uint32_t *)(base + (next_bucket + 4u) * 4u);
+    FUN_010397ea(context, item, bucket + 1u);
+    return item;
+}

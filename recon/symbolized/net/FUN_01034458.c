@@ -4,6 +4,5 @@
 #include <stdint.h>
 extern void FUN_01034328(uint32_t, uint32_t);
 void FUN_01034458(uint32_t param_1) {
-    FUN_01034328(((uintptr_t)&g_sdc_res_pool_free_bitmap) /*=0x210006a4*/, param_1);
+    FUN_01034328(((unsigned long)&g_sdc_res_pool_free_bitmap) /*=0x210006a4*/, param_1);
 }
-

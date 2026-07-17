@@ -1,14 +1,11 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_0100ebb8 @ 0x100ebb8  (parity 300 trials PROVEN) */
+/* net-core FUN_0100ebb8 @ 0x100ebb8 */
 
-extern void FUN_01008d00(void);
-__attribute__((naked)) void FUN_0100ebb8(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+extern void FUN_01008d00(unsigned int, unsigned int, unsigned int, unsigned int);
+
+void FUN_0100ebb8(unsigned int unused_1, unsigned int unused_2,
+                  unsigned int arg_3, unsigned int arg_4)
 {
-  __asm__ volatile(
-    "movw r1, #0x2bf\n"
-    "movs r0, #0x10\n"
-    "push {r3, lr}\n"
-    "bl FUN_01008d00\n"
-  );
+    for (;;)
+        FUN_01008d00(0x10, 0x2bf, arg_3, arg_4);
 }
-

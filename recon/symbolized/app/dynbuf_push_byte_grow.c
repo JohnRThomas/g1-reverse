@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: dynbuf_push_byte_grow */
-/* Reconstructed dynbuf_push_byte_grow @ 0x8790e  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008790e @ 0x0008790e
+ * public-name: dynbuf_push_byte_grow
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ *   dynbuf_push_byte_grow                    <= FUN_0008790e @ 0x0008790e
+ */
+/* Reconstructed FUN_0008790e @ 0x8790e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int _malloc_r(uint32_t,int);
 extern void memcpy(int,int,int);
@@ -31,4 +39,3 @@ uint32_t dynbuf_push_byte_grow(uint32_t param_1,volatile int* param_2){
   }
   return 0xffffffff;
 }
-

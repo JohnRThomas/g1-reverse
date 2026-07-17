@@ -1,9 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: get_dashboard_sum_time */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0004a960 @ 0x0004a960
+ * public-name: get_dashboard_sum_time
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_uptime_get_10                          <= FUN_0007daa4 @ 0x0007daa4
+ * address symbols (name @ address):
+ *   rodata_f0369                             @ 0x000f0369
+ *   rodata_f0492                             @ 0x000f0492
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed get_dashboard_sum_time @ 0x4a960  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned long long k_uptime_get_10(void);
@@ -32,15 +40,14 @@ long long get_dashboard_sum_time(void)
         field = *(volatile unsigned long long*)(iVar1 + 0x1094);
         lVar8 = (long long)(uVar7 - field);
     }
-    if (1 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
+    if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         unsigned int loP = (unsigned int)lVar8;
         unsigned int hiP = (unsigned int)((unsigned long long)lVar8 >> 32);
-        if (*(volatile unsigned int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT("%s(): get_dashboard_sum_time is %d\n" /*=0xf0369*/, "get_dashboard_sum_time" /*=0xf0492*/, loP, hiP);
+        if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            DEBUG_PRINT(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
         } else {
-            debug_print("%s(): get_dashboard_sum_time is %d\n" /*=0xf0369*/, "get_dashboard_sum_time" /*=0xf0492*/, loP, hiP);
+            debug_print(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
         }
     }
     return lVar8;
 }
-

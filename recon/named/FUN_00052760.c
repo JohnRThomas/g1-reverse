@@ -1,4 +1,14 @@
-/* named: FUN_00052760 */
+/* readable reconstruction; identity: FUN_00052760 @ 0x00052760
+ * public-name: FUN_00052760
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   audio_buf_release                        <= FUN_00080b0e @ 0x00080b0e
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   k_work_submit_to_queue                   <= FUN_000865fc @ 0x000865fc
+ * address symbols (name @ address):
+ *   g_audio_buf_release_workq                @ 0x20005bb8
+ */
 /* Reconstructed FUN_00052760 @ 0x52760  (parity: 44/60 trials, PROVEN) */
 #include <stdint.h>
 extern int net_buf_destroy_default(int,int);
@@ -31,4 +41,3 @@ void FUN_00052760(int param_1,unsigned int param_2){
     if(*(int*)(param_1+0x10)!=0) k_work_submit_to_queue(0x20005bb8,param_1);
   }
 }
-

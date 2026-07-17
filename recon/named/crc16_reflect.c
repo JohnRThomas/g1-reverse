@@ -1,5 +1,10 @@
-/* named: crc16_reflect */
-/* Reconstructed crc16_reflect @ 0x7d9c0  (parity: 157/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d9c0 @ 0x0007d9c0
+ * public-name: crc16_reflect
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   crc16_reflect                            <= FUN_0007d9c0 @ 0x0007d9c0
+ */
+/* Reconstructed FUN_0007d9c0 @ 0x7d9c0  (parity: 157/300 trials, PROVEN) */
 
 unsigned crc16_reflect(unsigned param_1, unsigned param_2, unsigned param_3, int param_4,
                       char param_5, unsigned char *param_6, int param_7){
@@ -43,4 +48,3 @@ unsigned crc16_reflect(unsigned param_1, unsigned param_2, unsigned param_3, int
     }
     return param_3 ^ uVar4;
 }
-

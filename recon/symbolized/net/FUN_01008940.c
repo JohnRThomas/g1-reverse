@@ -79,4 +79,3 @@ unsigned long long FUN_01008940(uint param_1,uint param_2,uint param_3,uint para
   unsigned int hi = uVar11 + uVar3 + CARRY4(uVar9,uVar12) + uVar7 + CARRY4(uVar9 + uVar12,uVar7);
   return ((unsigned long long)hi << 32) | (unsigned int)lo;
 }
-

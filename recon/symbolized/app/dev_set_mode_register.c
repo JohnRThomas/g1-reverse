@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: dev_set_mode_register */
-/* Reconstructed dev_set_mode_register @ 0x841fc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000841fc @ 0x000841fc
+ * public-name: dev_set_mode_register
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_reg_modify_bits                      <= FUN_00083e0e @ 0x00083e0e
+ *   dev_set_mode_register                    <= FUN_000841fc @ 0x000841fc
+ */
+/* Reconstructed FUN_000841fc @ 0x841fc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int dev_reg_modify_bits(int,int,int,int);
 uint32_t dev_set_mode_register(int param_1,int param_2,char param_3,uint32_t param_4,char param_5){
@@ -17,4 +23,3 @@ uint32_t dev_set_mode_register(int param_1,int param_2,char param_3,uint32_t par
   else uVar2 = 0xc;
   return dev_reg_modify_bits(*(volatile int*)(param_1+0x1c), 4, uVar2, param_4 & 0xff);
 }
-

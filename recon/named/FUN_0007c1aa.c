@@ -1,4 +1,10 @@
-/* named: FUN_0007c1aa */
+/* readable reconstruction; identity: FUN_0007c1aa @ 0x0007c1aa
+ * public-name: FUN_0007c1aa
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
 /* Reconstructed FUN_0007c1aa @ 0x7c1aa  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int get_device_info(void);
@@ -19,4 +25,3 @@ unsigned int FUN_0007c1aa(unsigned int param_1, unsigned int param_2, unsigned c
     *(volatile unsigned char*)(r0 + 0x200UL) = param_3;
     return 0;
 }
-

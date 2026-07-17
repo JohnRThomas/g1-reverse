@@ -1,5 +1,11 @@
-/* named: gpiote_read_and_clear_pending_events */
-/* Reconstructed gpiote_read_and_clear_pending_events @ 0x65620  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00065620 @ 0x00065620
+ * public-name: gpiote_read_and_clear_pending_events
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gpiote_in_event_reg_offset               <= FUN_000655ec @ 0x000655ec
+ *   gpiote_read_and_clear_pending_events     <= FUN_00065620 @ 0x00065620
+ */
+/* Reconstructed FUN_00065620 @ 0x65620  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int gpiote_in_event_reg_offset(unsigned int);
 unsigned int gpiote_read_and_clear_pending_events(unsigned int param_1){
@@ -24,4 +30,3 @@ unsigned int gpiote_read_and_clear_pending_events(unsigned int param_1){
   }
   return uVar4;
 }
-

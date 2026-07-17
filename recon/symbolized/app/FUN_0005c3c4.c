@@ -1,5 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0005c3c4 */
+/* readable reconstruction; identity: FUN_0005c3c4 @ 0x0005c3c4
+ * public-name: FUN_0005c3c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_sub_free                            <= FUN_00059e78 @ 0x00059e78
+ *   gatt_write_ccc                           <= FUN_0005a540 @ 0x0005a540
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f3ebd                             @ 0x000f3ebd
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f4a0a                             @ 0x000f4a0a
+ *   rodata_f4d35                             @ 0x000f4d35
+ *   rodata_f4d4e                             @ 0x000f4d4e
+ *   rodata_f4d5c                             @ 0x000f4d5c
+ */
 /* Reconstructed FUN_0005c3c4 @ 0x5c3c4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* FUN_00059c70(void);
@@ -11,24 +27,24 @@ extern void FUN_000828da(void*,int);
 
 int FUN_0005c3c4(int param_1,int *param_2){
   if(param_1 == 0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"conn" /*=0xf3ebd*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147d);
-    printk("\tinvalid parameters\n\n" /*=0xf4a0a*/);
-    assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147d);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147d);
+    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147d);
   }
   if(param_2 == 0 || *param_2 == 0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"params && params->notify" /*=0xf4d35*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147e);
-    printk("\tinvalid parameters\n\n" /*=0xf4a0a*/);
-    assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147e);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d35) /*=0xf4d35*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147e);
+    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147e);
   }
   if((short)param_2[4] == 0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"params->value" /*=0xf4d4e*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147f);
-    printk("\tinvalid parameters\n\n" /*=0xf4a0a*/);
-    assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x147f);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d4e) /*=0xf4d4e*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147f);
+    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x147f);
   }
   if(*(short*)((int)param_2 + 0xe) == 0){
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"params->ccc_handle" /*=0xf4d5c*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x1485);
-    printk("\tinvalid parameters\n\n" /*=0xf4a0a*/);
-    assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/gatt.c" /*=0xf46b8*/,0x1485);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f4d5c) /*=0xf4d5c*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x1485);
+    printk(((unsigned long)&rodata_f4a0a) /*=0xf4a0a*/);
+    assert_post_action(((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x1485);
   }
   if(*(char*)(param_1 + 0xd) != 7) return -0x80;
   unsigned char *puVar2 = (unsigned char*)FUN_00059c70();
@@ -65,4 +81,3 @@ LAB:
     *(int**)(puVar2 + 0xc) = param_2 + 6;
   return 0;
 }
-

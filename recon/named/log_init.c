@@ -1,8 +1,21 @@
-/* named: log_init */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-*/
-/* Reconstructed log_init @ 0x4d678  (parity: 298/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004d678 @ 0x0004d678
+ * public-name: log_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_process                              <= FUN_0004d594 @ 0x0004d594
+ *   log_init                                 <= FUN_0004d678 @ 0x0004d678
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_882a0                             @ 0x000882a0
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0cae                             @ 0x000f0cae
+ *   rodata_f0cff                             @ 0x000f0cff
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   g_log_initialized_flag                   @ 0x2001d44c
+ */
+/* Reconstructed FUN_0004d678 @ 0x4d678  (parity: 298/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_0004d334(int);
 extern int log_process(void);
@@ -33,4 +46,3 @@ void log_init(void){
     *pcVar1 = 1;
   }
 }
-

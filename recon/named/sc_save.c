@@ -1,14 +1,25 @@
-/* named: sc_save */
-/* Reconstructed sc_save @ 0x5a128  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a128 @ 0x0005a128
+ * public-name: sc_save
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   sc_save                                  <= FUN_0005a128 @ 0x0005a128
+ *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f47f3                             @ 0x000f47f3
+ */
+/* Reconstructed FUN_0005a128 @ 0x5a128  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* find_sc_cfg_59bcc(int,int);
 extern void FUN_000828da(void*,unsigned);
 extern void FUN_00082a42(int,int,void*);
 extern int bt_addr_le_is_bonded(int,void*);
-extern void sub_5a0e8(void*);
+extern void FUN_0005a0e8(void *entry);
 
 void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned param_4){
-    unsigned char *puVar1 = (unsigned char*)find_sc_cfg_59bcc(0,0);
+    unsigned char *puVar1 = (unsigned char*)find_sc_cfg_59bcc(param_1,param_2);
     volatile int loc[4];
     if (puVar1 == 0){
         puVar1 = (unsigned char*)find_sc_cfg_59bcc(0, 0x000f2b3a);
@@ -34,7 +45,7 @@ void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned
     {
         int iVar2 = bt_addr_le_is_bonded(*puVar1, puVar1+1);
         if (iVar2 == 0) return;
-        sub_5a0e8(puVar1);
+        FUN_0005a0e8(puVar1);
         return;
     }
   L196:
@@ -45,4 +56,3 @@ void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned
     if (param_4 <= uVar3) goto L178;
     goto L176;
 }
-

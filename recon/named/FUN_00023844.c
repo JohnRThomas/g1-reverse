@@ -1,0 +1,153 @@
+/* readable reconstruction; identity: FUN_00023844 @ 0x00023844
+ * public-name: FUN_00023844
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   update_burial_point_to_flash             <= FUN_00023014 @ 0x00023014
+ *   file_subsystem_queue_init                <= FUN_000234e8 @ 0x000234e8
+ *   crc32_table_init                         <= FUN_000235dc @ 0x000235dc
+ *   try_to_save_file                         <= FUN_00023634 @ 0x00023634
+ *   get_demo_image_source_from_flash         <= FUN_000365ec @ 0x000365ec
+ *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   rproc_virtio_negotiate_features          <= FUN_0007c34a @ 0x0007c34a
+ *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
+ * address symbols (name @ address):
+ *   rodata_28000                             @ 0x00028000
+ *   rodata_9e1de                             @ 0x0009e1de
+ *   rodata_9e201                             @ 0x0009e201
+ *   rodata_9e21f                             @ 0x0009e21f
+ *   rodata_9e230                             @ 0x0009e230
+ *   rodata_9e23c                             @ 0x0009e23c
+ *   rodata_9e249                             @ 0x0009e249
+ *   rodata_9e259                             @ 0x0009e259
+ *   rodata_9e8af                             @ 0x0009e8af
+ *   rodata_9e8cf                             @ 0x0009e8cf
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_200079c4                               @ 0x200079c4
+ *   g_font_total_size                        @ 0x200079d4
+ *   g_font_buf_len                           @ 0x200079d8
+ *   g_font_flash_write_offset                @ 0x200079dc
+ *   g_font_crc32                             @ 0x200079e0
+ */
+/* Full reconstruction brightness_level @ 0x23844, CFG-correct extent 464 bytes.
+ * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=20 */
+#include <stdint.h>
+extern void file_subsystem_queue_init(void);
+extern void crc32_table_init(void);
+extern void try_to_save_file(uintptr_t);
+extern void mutex_lock_syscall_handler(uintptr_t,uintptr_t,uint32_t,uint32_t);
+extern uintptr_t get_device_info(void);
+extern void update_burial_point_to_flash(void);
+extern void get_demo_image_source_from_flash(void);
+extern void FUN_00074844(uint32_t,uint32_t);
+extern void change_work_mode_to(uint32_t);
+extern void set_shutdown_flag(uintptr_t,uint32_t);
+extern void rproc_virtio_negotiate_features(uintptr_t,uint32_t);
+extern uint64_t thunk_FUN_00074f68(void);
+extern void DEBUG_PRINT(uintptr_t,...);
+extern void debug_print(uintptr_t,...);
+
+typedef void (*brightness_callback)(uintptr_t text, uintptr_t value,
+                                    uint32_t style);
+
+void brightness_level(uintptr_t context)
+{
+    file_subsystem_queue_init();
+    crc32_table_init();
+    uint32_t completion_flag = 0;
+    for (;;) {
+        mutex_lock_syscall_handler(context + 0x80,0,0xffffffffu,0xffffffffu);
+        uint32_t drained = 0;
+        while (*(volatile uint32_t *)0x200079c4u != 0) {
+            try_to_save_file(context);
+            drained = 1;
+        }
+        uint32_t mode = *(volatile uint32_t *)(context + 0x104c);
+        if (mode == 0x15 || drained)
+            continue;
+
+        brightness_callback callback =
+            *(brightness_callback *)(context + 0x1040);
+        uintptr_t text = 0;
+        uintptr_t value = 0;
+        uint32_t style = 0;
+        uint32_t invoke = 0;
+        switch (mode) {
+        case 1:
+            text=0x0009e21fu; value=context+0xed5; style=1; invoke=1; break;
+        case 2:
+            text=0x0009e230u; value=context+0xf60; style=1; invoke=1; break;
+        case 3:
+            text=0x0009e23cu; value=context+0xfea; style=1; invoke=1; break;
+        case 6:
+            text=0x0009e1deu; value=*(volatile uintptr_t*)(context+0xfec);
+            style=0x6a; invoke=1; break;
+        case 7:
+            text=0x0009e201u; value=*(volatile uintptr_t*)(context+0xff0);
+            style=7; invoke=1; break;
+        case 8:
+            text=0x0009e249u; value=*(volatile uintptr_t*)(context+0xff4);
+            style=0x16a; invoke=1; break;
+        case 0xb:
+            text=0x0009e259u; value=context+0xef4; style=1; invoke=1; break;
+        case 0x11:
+            FUN_00074844(0x50000,0);
+            change_work_mode_to(7);
+            break;
+        case 0x16:
+            if (*(volatile uint32_t*)0x200079d4u == 0x1c0000u) {
+                get_demo_image_source_from_flash();
+                uintptr_t owner=get_device_info();
+                uint8_t level=*(volatile uint8_t*)owner==1?0x0d:0x0c;
+                owner=get_device_info();
+                uintptr_t slot=*(volatile uintptr_t*)(owner+0x100c);
+                *(volatile uint8_t*)slot=level;
+            }
+            *(volatile uint32_t*)0x200079d4u=0;
+            *(volatile uint32_t*)0x200079d8u=0;
+            *(volatile uint32_t*)0x200079e0u=0;
+            *(volatile uint32_t*)0x200079dcu=0;
+            continue;
+        case 0x17:
+            set_shutdown_flag(context,0);
+            change_work_mode_to(1);
+            continue;
+        case 0x19:
+        case 0x1a:
+            completion_flag=1;
+            break;
+        case 0x3e:
+            get_device_info();
+            update_burial_point_to_flash();
+            goto wait_for_frame;
+        default:
+            break;
+        }
+        if (invoke) {
+            callback(text,value,style);
+        } else if (mode != 0x19 && mode != 0x1a && mode != 0x3e) {
+            if (*(volatile int*)0x2000230cu > 2) {
+                int alternate=*(volatile int*)0x20007554u;
+                if (alternate)
+                    debug_print(0x0009e8afu,0x0009e8cfu,0,(uint32_t)alternate);
+                else
+                    DEBUG_PRINT(0x0009e8afu,0x0009e8cfu,0,0);
+            }
+        }
+
+wait_for_frame:
+        do {
+            uint64_t before=thunk_FUN_00074f68();
+            mutex_lock_syscall_handler(context+0x80,0,0x28000u,0);
+            uint64_t after=thunk_FUN_00074f68();
+            before=(before*1000u)>>15;
+            after=(after*1000u)>>15;
+            if ((int64_t)(after-before)>=5000)
+                break;
+        } while (1);
+        *(volatile uint32_t*)(context+0x104c)=0;
+        rproc_virtio_negotiate_features(context,completion_flag);
+    }
+}

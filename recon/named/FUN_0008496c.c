@@ -1,4 +1,9 @@
-/* named: FUN_0008496c */
+/* readable reconstruction; identity: FUN_0008496c @ 0x0008496c
+ * public-name: FUN_0008496c
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   audio_hw_lock_get_status_byte            <= FUN_0007ef1c @ 0x0007ef1c
+ */
 /* Reconstructed FUN_0008496c @ 0x8496c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void audio_hw_lock_get_status_byte(int,void*,uint32_t,uint32_t,int);
@@ -21,4 +26,3 @@ void FUN_0008496c(int param_1,uint32_t param_2,uint32_t param_3,uint32_t param_4
     *(volatile uint32_t*)(iVar2+8)=1;
   }
 }
-

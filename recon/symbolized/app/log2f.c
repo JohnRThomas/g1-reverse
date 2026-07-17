@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: log2f */
-/* Reconstructed log2f @ 0x76718  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076718 @ 0x00076718
+ * public-name: log2f
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   logf_core                                <= FUN_00076538 @ 0x00076538
+ *   log2f                                    <= FUN_00076718 @ 0x00076718
+ */
+/* Reconstructed FUN_00076718 @ 0x76718  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern float logf_core(float);
 static inline int fbits(float f){ union{float f;int i;}u; u.f=f; return u.i; }
@@ -41,4 +47,3 @@ float log2f(float param_1){
     }
     return s14 / mkf(0x00000000);
 }
-

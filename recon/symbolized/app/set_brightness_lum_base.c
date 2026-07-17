@@ -1,10 +1,23 @@
 #include "g1_app_symbols.h"
-/* named: set_brightness_lum_base */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019ef3  g_test_mode_flag             
-*/
+/* readable reconstruction; identity: FUN_00031cbc @ 0x00031cbc
+ * public-name: set_brightness_lum_base
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   read_sys_settting_from_flash             <= FUN_000232f8 @ 0x000232f8
+ *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
+ * address symbols (name @ address):
+ *   rodata_a672f                             @ 0x000a672f
+ *   rodata_a70a0                             @ 0x000a70a0
+ *   rodata_a70c1                             @ 0x000a70c1
+ *   rodata_a70e7                             @ 0x000a70e7
+ *   rodata_a7655                             @ 0x000a7655
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_test_mode_flag                         @ 0x20019ef3
+ */
 /* Reconstructed set_brightness_lum_base @ 0x31cbc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned,...);
@@ -19,22 +32,22 @@ unsigned set_brightness_lum_base(int param_1, unsigned param_2, unsigned **param
   int iVar6; unsigned uVar7, uVar8; unsigned char *puVar10;
   unsigned char auStack_9c[116];
   unsigned short local_28, local_26, local_24;
-  DEBUG_PRINT("join in set_brightness_lum_base\n" /*=0xa70a0*/);
+  DEBUG_PRINT(((unsigned long)&rodata_a70a0) /*=0xa70a0*/);
   if ((param_3 == 0) || (param_4 == 0)) {
-    DEBUG_PRINT("set_brightness_lum_base para is NULL\n" /*=0xa70c1*/);
+    DEBUG_PRINT(((unsigned long)&rodata_a70c1) /*=0xa70c1*/);
     uVar5 = 0xffffffff;
-  } else if (*(char*)((uintptr_t)&g_test_mode_flag) /*=0x20019ef3*/ == 1) {
+  } else if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ == 1) {
     puVar10 = (unsigned char*)*param_3;
     *(volatile unsigned char*)(puVar10) = 0x36;
     *(volatile unsigned char*)(puVar10+2) = 3;
     *(volatile unsigned char*)(puVar10+3) = 2;
-    piVar4 = (int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
+    piVar4 = (int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
     *(volatile unsigned char*)(puVar10+1) = 1;
     cVar2 = *(char*)(param_1 + 4);
     uVar8 = (unsigned)*(unsigned short*)(param_1 + 5);
     if (2 < *piVar4) {
-      if (*(int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT("%s(): tmp_lum_value is:0x%x\n" /*=0xa70e7*/, "set_brightness_lum_base" /*=0xa7655*/, uVar8);
-      else debug_print("%s(): tmp_lum_value is:0x%x\n" /*=0xa70e7*/, "set_brightness_lum_base" /*=0xa7655*/, uVar8);
+      if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_a70e7) /*=0xa70e7*/, ((unsigned long)&rodata_a7655) /*=0xa7655*/, uVar8);
+      else debug_print(((unsigned long)&rodata_a70e7) /*=0xa70e7*/, ((unsigned long)&rodata_a7655) /*=0xa7655*/, uVar8);
     }
     bVar1 = 0x3f < uVar8;
     if (bVar1) uVar8 = 0x3f;
@@ -64,9 +77,8 @@ LAB_7c:
     uVar5 = 0;
     *(volatile unsigned char*)param_4 = 6;
   } else {
-    DEBUG_PRINT("warning: not test mode,disable setting\n" /*=0xa672f*/);
+    DEBUG_PRINT(((unsigned long)&rodata_a672f) /*=0xa672f*/);
     uVar5 = 0xfffffffe;
   }
   return uVar5;
 }
-

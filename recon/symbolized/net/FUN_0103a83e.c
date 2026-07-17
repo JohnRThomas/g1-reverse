@@ -7,4 +7,3 @@ void FUN_0103a83e(unsigned int param_1, unsigned int param_2, unsigned int param
   FUN_0102eb48(0x1d);
   FUN_0102eb48(0x19);
 }
-

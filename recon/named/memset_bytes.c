@@ -1,4 +1,7 @@
-/* named: memset_bytes */
+/* readable reconstruction; identity: FUN_00086c78 @ 0x00086c78
+ * public-name: memset_bytes
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed memset_bytes @ 0x86c78  (parity: 300/300 trials, PROVEN) */
 
 void memset_bytes(unsigned char *param_1, unsigned char param_2, int param_3){
@@ -8,6 +11,4 @@ void memset_bytes(unsigned char *param_1, unsigned char param_2, int param_3){
         *p = param_2;
         p = p + 1;
     }
-    __asm__ volatile("" :: "r"(param_1));
 }
-

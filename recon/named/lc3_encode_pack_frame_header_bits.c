@@ -1,5 +1,11 @@
-/* named: lc3_encode_pack_frame_header_bits */
-/* Reconstructed lc3_encode_pack_frame_header_bits @ 0x6efdc  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006efdc @ 0x0006efdc
+ * public-name: lc3_encode_pack_frame_header_bits
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_encode_pack_frame_header_bits        <= FUN_0006efdc @ 0x0006efdc
+ */
+/* Reconstructed FUN_0006efdc @ 0x6efdc  (parity: 300/300 trials, PROVEN) */
 extern void lc3_bits_accu_flush(int,int,int,...);
 #define VI(a) (*(volatile int*)(a))
 void lc3_encode_pack_frame_header_bits(int param_1,int *param_2,int param_3,int param_4){
@@ -90,4 +96,3 @@ LAB_f0ac:
   VI(param_1+0x1c) = VI(param_1+0x1c) | (iVar7 << (uVar6 & 0xff));
   VI(param_1+0x20) = iVar2;
 }
-

@@ -27,5 +27,3 @@ uint64_t FUN_010083dc(uint32_t param_1, uint32_t *param_2, uint32_t *param_3)
     }
     return ((uint64_t)r[9] << 32) | (uint64_t)r[8];
 }
-
-

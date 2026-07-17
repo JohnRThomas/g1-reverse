@@ -1,6 +1,16 @@
 #include "g1_app_symbols.h"
-/* named: gatt_write_ccc_rsp */
-/* Reconstructed gatt_write_ccc_rsp @ 0x5a1b0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a1b0 @ 0x0005a1b0
+ * public-name: gatt_write_ccc_rsp
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_write_ccc_rsp                       <= FUN_0005a1b0 @ 0x0005a1b0
+ *   atomic_and_4                             <= FUN_000826f6 @ 0x000826f6
+ *   list_unlink_and_release                  <= FUN_000828e8 @ 0x000828e8
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4812                             @ 0x000f4812
+ */
+/* Reconstructed FUN_0005a1b0 @ 0x5a1b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32;
 typedef void (*fp)(u32,void*,int,int);
@@ -34,11 +44,10 @@ void gatt_write_ccc_rsp(u32 param_1,int param_2,u32 param_3,u32 param_4,u32* par
     jp JUMP = (jp)(uintptr_t)param_5[1];
     if(JUMP == 0){
         if(param_5[2] == 0) return;
-        u32 local[2]; local[0]=2; local[1]="write callback is deprecated, use subscribe cb instead" /*=0xf4812*/;
-        FUN_00082a42(((uintptr_t)&tbl_880d8) /*=0x88128*/, 0x1080, local);
+        u32 local[2]; local[0]=2; local[1]=((unsigned long)&rodata_f4812) /*=0xf4812*/;
+        FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1080, local);
         JUMP = (jp)(uintptr_t)param_5[2];
         param_5 = 0;
     }
     JUMP(param_1, param_2, param_5);
 }
-

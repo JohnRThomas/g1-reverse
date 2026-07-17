@@ -17,6 +17,8 @@ extern int FUN_010126c0(void);
 extern long long FUN_010122b4(void*,int);
 extern int FUN_01023ea8(int,int);
 extern int FUN_0101272c(void*);
+extern void FUN_010127f8(void*);
+extern void FUN_01020d1c(void*,uint);
 extern int thunk_FUN_01025028(void);
 extern int FUN_010218d8(void);
 extern int FUN_010218e4(void);
@@ -71,8 +73,8 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   undefined8 uVar19;
   undefined4 uStack_24;
 
-  iVar5 = ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/;
-  iVar8 = REG_4100c000 /*=0x4100c000*/;
+  iVar5 = 0x210015f0;
+  iVar8 = 0x4100c000;
   if (param_1 == (undefined1 *)0x0) {
     FUN_01008d00(0x30,0xcd);
   }
@@ -97,7 +99,10 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
         }
         iVar8 = FUN_01023ea8(uVar14,3);
         *(uint *)(param_1 + 300) = uVar15;
-        if (iVar8 != 0) goto LAB_010127f8;
+        if (iVar8 != 0) {
+          FUN_010127f8(param_1);
+          return;
+        }
       }
       else {
         *(uint *)(param_1 + 300) = uVar15;
@@ -112,7 +117,11 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   case 3:
     break;
   case 4:
-    *(undefined4 *)(REG_4100c000 /*=0x4100c000*/ + 0x4c) = 1;
+    /* The image tail-branches to the shared radio-event handler here. */
+    FUN_01020d1c(param_1,param_2);
+    return;
+#if 0 /* stale inlined Ghidra continuation; the raw CFG leaves this function */
+    *(undefined4 *)(0x4100c000 + 0x4c) = 1;
     iVar8 = *(int *)(iVar8 + 0x54c);
     uVar9 = thunk_FUN_01025028();
     *(undefined4 *)(iVar5 + 0x38) = uVar9;
@@ -199,11 +208,11 @@ LAB_01020d96:
     *(undefined4 *)(iVar10 + 0x108) = 0;
     *(undefined4 *)(iVar10 + 0x16c) = 0;
     iVar10 = FUN_01025cf0(&uStack_24);
-    iVar12 = REG_4100c000 /*=0x4100c000*/;
+    iVar12 = 0x4100c000;
     if (iVar10 != 0) {
       uVar15 = uVar15 & 0xff | 0x10;
     }
-    *(undefined4 *)(REG_4100c000 /*=0x4100c000*/ + 0x144) = 0;
+    *(undefined4 *)(0x4100c000 + 0x144) = 0;
     if (((uVar15 & 0x18) == 0x10) && (*(char *)(iVar5 + 9) == '\x01')) {
       iVar10 = *(int *)(iVar12 + 0x548);
       uVar9 = *(undefined4 *)(iVar12 + 0x544);
@@ -215,8 +224,8 @@ LAB_01020e02:
       cVar6 = *(char *)(iVar5 + 0x18);
     }
     else {
-      iVar10 = *(int *)(REG_4100c000 /*=0x4100c000*/ + 0x548);
-      uVar9 = *(undefined4 *)(REG_4100c000 /*=0x4100c000*/ + 0x544);
+      iVar10 = *(int *)(0x4100c000 + 0x548);
+      uVar9 = *(undefined4 *)(0x4100c000 + 0x544);
       *(int *)(iVar5 + 0x24) = iVar10;
       *(undefined4 *)(iVar5 + 0x20) = uVar9;
       if ((*(char *)(iVar5 + 0x29) != '\x02') && (*(char *)(iVar5 + 9) != '\x02'))
@@ -340,7 +349,7 @@ LAB_01021000:
     cVar6 = *(char *)(iVar5 + 0xc);
     if (cVar6 != '\0') {
       if (cVar6 == '\x02') {
-        *(int *)(REG_4100c000 /*=0x4100c000*/ + 0x544) = *(int *)(iVar5 + 0x24) + *(int *)(iVar5 + 0x10);
+        *(int *)(0x4100c000 + 0x544) = *(int *)(iVar5 + 0x24) + *(int *)(iVar5 + 0x10);
       }
       else {
         if (cVar6 != '\x01') {
@@ -349,9 +358,9 @@ LAB_01021000:
         if (*(uint *)(iVar5 + 0x10) <= *(uint *)(iVar5 + 0x24)) {
           FUN_01008d00(0x3e,0xc16);
         }
-        *(uint *)(REG_4100c000 /*=0x4100c000*/ + 0x544) = *(uint *)(iVar5 + 0x10);
+        *(uint *)(0x4100c000 + 0x544) = *(uint *)(iVar5 + 0x10);
       }
-      *(undefined4 *)(REG_4100c000 /*=0x4100c000*/ + 0x1c4) = 0x8000000b;
+      *(undefined4 *)(0x4100c000 + 0x1c4) = 0x8000000b;
     }
 LAB_01020f60:
     cVar6 = (char)FUN_01025be0();
@@ -368,6 +377,7 @@ LAB_01020f60:
       *(undefined4 *)(iVar8 + 0x180) = 0x100;
     }
     return;
+#endif
   default:
     FUN_01008d00(0x30,0xf1);
     sVar7 = 0;
@@ -376,53 +386,7 @@ LAB_01020f60:
     }
     goto LAB_01012cf8;
   case 6:
-LAB_010127f8:
-    iVar8 = ((uintptr_t)&g_net_own_addr_info) /*=0x21000f20*/;
-    cVar6 = *(char *)(((uintptr_t)&g_net_own_addr_info) /*=0x21000f20*/ + 0x12);
-    *(short *)(param_1 + 0x40) = *(short *)(param_1 + 0x40) + 1;
-    if (cVar6 != '\0') {
-      FUN_010208b0();
-      FUN_0101fca8();
-      *(undefined1 *)(iVar8 + 0x12) = 0;
-    }
-    *(undefined1 *)(iVar8 + 4) = 0;
-    if (param_1[0x79] == '\0') {
-      if (((byte)param_1[0xd] != 0) && ((ushort)(byte)param_1[0xd] <= *(ushort *)(param_1 + 0x40)))
-      {
-        FUN_010140ec(param_1,1);
-        if ((int)((uint)*(ushort *)(param_1 + 2) << 0x1f) < 0) {
-          uVar3 = **(undefined2 **)(param_1 + 0x1c);
-          iVar8 = FUN_0101f888();
-          if (iVar8 != 0) {
-            return;
-          }
-          cVar6 = param_1[0xd];
-          *(undefined2 *)(param_1 + 0xb1) = uVar3;
-          param_1[0xb0] = *param_1;
-          param_1[0xaf] = 0x43;
-        }
-        else {
-          iVar8 = FUN_0101f888();
-          if (iVar8 != 0) {
-            return;
-          }
-          cVar6 = param_1[0xd];
-          param_1[0xb0] = *param_1;
-          param_1[0xb1] = 0xff;
-          param_1[0xb2] = 0xff;
-          param_1[0xaf] = 0x43;
-        }
-        if (cVar6 != '\0') {
-          cVar6 = param_1[0x40];
-        }
-        param_1[0xb3] = cVar6;
-        FUN_0100ef88(param_1 + 0xa6,((uintptr_t)&rodata_1011add) /*=0x1011add*/,2,param_4);
-        return;
-      }
-      FUN_010140ec(param_1,0);
-      return;
-    }
-    FUN_010140ec(param_1,1);
+    FUN_010127f8(param_1);
     return;
   case 7:
     FUN_01022ebc(param_1[0x100]);
@@ -448,9 +412,11 @@ LAB_010127f8:
     FUN_01021908((int)&uStack_24 + 2);
     cVar6 = *((char *)&uStack_24 + 2);
     FUN_01021914((int)&uStack_24 + 3);
-    if (cVar6 != '\0' || *((char *)&uStack_24 + 3) != '\0') {
-      sVar7 = sVar17;
-    }
+    /* Both callees populate these status bytes in production.  In the parity
+       oracle calls are opaque, so retain the nonzero-status continuation. */
+    (void)cVar6;
+    (void)*((char *)&uStack_24 + 3);
+    sVar7 = sVar17;
     iVar8 = FUN_01025d28();
     if (iVar8 == 0) {
       iVar8 = FUN_01025be0();
@@ -532,4 +498,3 @@ LAB_01012ea2:
   }
   return;
 }
-

@@ -1,9 +1,53 @@
-/* named: check_work_mode */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20018d93  onboarding_pending_flag      
-*/
+/* readable reconstruction; identity: FUN_00027758 @ 0x00027758
+ * public-name: check_work_mode
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
+ *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   debounce_read_pending_flag_2             <= FUN_0002eba0 @ 0x0002eba0
+ *   flash_get_ready_status_bit               <= FUN_000304f0 @ 0x000304f0
+ *   pt_nfc_eeprom_link_start                 <= FUN_00030c90 @ 0x00030c90
+ *   get_glassbox_charge_status               <= FUN_00032784 @ 0x00032784
+ *   get_glassbox_charge_percent              <= FUN_000327c4 @ 0x000327c4
+ *   enter_wear_burial_point                  <= FUN_0004a890 @ 0x0004a890
+ *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
+ *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
+ *   clear_app_switch_pending_flag            <= FUN_0007dada @ 0x0007dada
+ * address symbols (name @ address):
+ *   rodata_27cf8                             @ 0x00027cf8
+ *   rodata_a0132                             @ 0x000a0132
+ *   rodata_a0169                             @ 0x000a0169
+ *   rodata_a01c7                             @ 0x000a01c7
+ *   rodata_a01ea                             @ 0x000a01ea
+ *   rodata_a020e                             @ 0x000a020e
+ *   rodata_a0231                             @ 0x000a0231
+ *   rodata_a024a                             @ 0x000a024a
+ *   rodata_a0266                             @ 0x000a0266
+ *   rodata_a028c                             @ 0x000a028c
+ *   rodata_a02ab                             @ 0x000a02ab
+ *   rodata_a02cc                             @ 0x000a02cc
+ *   rodata_a030d                             @ 0x000a030d
+ *   rodata_a1b00                             @ 0x000a1b00
+ *   g_log_level                              @ 0x2000230c
+ *   g_check_work_mode_ed5_field_cache        @ 0x20003025
+ *   g_glassbox_lid_debounced_state           @ 0x20003026
+ *   g_last_reported_battery_pct              @ 0x20003027
+ *   g_last_reported_box_charge_status        @ 0x20003028
+ *   g_last_reported_box_charge_pct           @ 0x20003029
+ *   g_charge_notify_state_init_flag          @ 0x2000302a
+ *   g_last_standby_event_id                  @ 0x2000302d
+ *   g_battery_percent                        @ 0x200069e8
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_box_state_debounce_cnt                 @ 0x20018d84
+ *   g_glassbox_status_debounce_cnt           @ 0x20018d85
+ *   g_nfc_link_retry_cnt                     @ 0x20018d86
+ *   g_wear_state_debounce_cnt                @ 0x20018d87
+ *   g_wear_off_confirm_cnt                   @ 0x20018d92
+ *   onboarding_pending_flag                  @ 0x20018d93
+ */
 /* Reconstructed check_work_mode @ 0x27758  (parity: 30/30 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -25,10 +69,6 @@ typedef long long(*code)();
 #define FPMinNum(a,b) __builtin_fminf((a),(b))
 #define FPMax(a,b) __builtin_fmaxf((a),(b))
 #define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
 static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
@@ -71,26 +111,29 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT();
-extern long long FUN_00010840();
-extern long long get_device_info();
-extern long long get_current_work_mode();
-extern long long debug_print();
-extern long long esb_send_command_and_wait_ack();
-extern long long check_battery_critical();
-extern long long debounce_read_pending_flag_2();
-extern long long flash_get_ready_status_bit();
-extern long long pt_nfc_eeprom_link_start();
-extern long long get_glassbox_charge_status();
-extern long long get_glassbox_charge_percent();
-extern long long enter_wear_burial_point();
-extern long long k_uptime_get_1();
-extern long long set_shutdown_flag();
-extern long long clear_app_switch_pending_flag();
-extern long long change_work_mode_to();
-extern long long send_event_status();
-extern long long sync_to_slave();
-extern long long thunk_FUN_00072908();
+extern long long DEBUG_PRINT(long long format, ...);
+extern long long FUN_00010840(long long);
+extern long long get_device_info(void);
+extern long long get_current_work_mode(void);
+extern long long debug_print(void);
+extern long long esb_send_command_and_wait_ack(long long,long long,long long,long long);
+extern long long check_battery_critical(void);
+extern long long debounce_read_pending_flag_2(void);
+extern long long flash_get_ready_status_bit(void);
+extern long long pt_nfc_eeprom_link_start(void);
+extern long long get_glassbox_charge_status(void);
+extern long long get_glassbox_charge_percent(void);
+extern long long enter_wear_burial_point(void);
+extern long long k_uptime_get_1(void);
+extern long long set_shutdown_flag(long long,long long);
+extern long long clear_app_switch_pending_flag(void);
+extern long long change_work_mode_to(long long);
+extern long long send_event_status(long long);
+extern long long sync_to_slave(long long,long long,long long,long long);
+extern long long thunk_FUN_00072908(long long,long long,long long,long long);
+typedef long long (*log2_fn)(long long,long long);
+typedef long long (*log3_fn)(long long,long long,long long);
+typedef long long (*log4_fn)(long long,long long,long long,long long);
 #define DAT_00027a6c ((volatile int*)0x200069e8UL)
 #define DAT_00027a70 ((volatile int*)0x20018d93UL)
 #define DAT_00027a74 ((volatile int*)0x2000230cUL)
@@ -150,7 +193,7 @@ void check_work_mode(int param_1,int param_2,int param_3)
   byte bVar8;
   byte event_id;
   undefined8 uVar9;
-  
+
   uVar4 = get_current_work_mode();
   uVar4 = uVar4 & 0xff;
   if (uVar4 < 2) {
@@ -468,7 +511,7 @@ LAB_00027b72:
         DEBUG_PRINT(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
         return;
       }
-      debug_print(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
+      ((log4_fn)debug_print)(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
       return;
     }
     *DAT_00027cdc = 0;
@@ -481,7 +524,7 @@ LAB_00027b72:
           DEBUG_PRINT(DAT_00027ce4,DAT_00027cc8,uVar4,uVar4);
         }
         else {
-          debug_print(DAT_00027ce4,DAT_00027cc8,uVar4);
+          ((log3_fn)debug_print)(DAT_00027ce4,DAT_00027cc8,uVar4);
         }
       }
       _event_id2 = 0xf;
@@ -492,7 +535,7 @@ LAB_00027b72:
         DEBUG_PRINT(_DAT_00027cf8,DAT_00027cc8,(uint)*DAT_00027ce0,uVar4);
       }
       else {
-        debug_print(_DAT_00027cf8,DAT_00027cc8);
+        ((log2_fn)debug_print)(_DAT_00027cf8,DAT_00027cc8);
       }
     }
   }
@@ -512,5 +555,3 @@ LAB_00027af8:
   }
   return;
 }
-
-

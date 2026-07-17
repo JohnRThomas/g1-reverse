@@ -1,7 +1,18 @@
-/* named: parse_receiver_pack_pkcs7 */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00019cd0 @ 0x00019cd0
+ * public-name: parse_receiver_pack_pkcs7
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_9b371                             @ 0x0009b371
+ *   rodata_9b3b5                             @ 0x0009b3b5
+ *   rodata_9b3e0                             @ 0x0009b3e0
+ *   rodata_9e0d0                             @ 0x0009e0d0
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_pkcs7_pack_offset                      @ 0x2000d6f4
+ *   g_pkcs7_pack_cmd_id                      @ 0x20010320
+ */
 /* Reconstructed parse_receiver_pack_pkcs7 @ 0x19cd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -69,4 +80,3 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
     }
     return 0xca;
 }
-

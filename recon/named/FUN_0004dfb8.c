@@ -1,4 +1,12 @@
-/* named: FUN_0004dfb8 */
+/* readable reconstruction; identity: FUN_0004dfb8 @ 0x0004dfb8
+ * public-name: FUN_0004dfb8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   audio_hw_lock_get_aux_flag               <= FUN_0007ef6e @ 0x0007ef6e
+ * address symbols (name @ address):
+ *   rodata_f0fed                             @ 0x000f0fed
+ *   rodata_f0ff1                             @ 0x000f0ff1
+ */
 /* Reconstructed FUN_0004dfb8 @ 0x4dfb8  (parity: 300/300 trials, PROVEN) */
 
 extern long long audio_hw_lock_get_aux_flag(void);
@@ -24,4 +32,3 @@ int FUN_0004dfb8(int param_1,int param_2){
   if(param_2==2){ *(volatile unsigned*)(iVar3+4) &= 0xfffffffd; }
   return 0;
 }
-

@@ -1,4 +1,11 @@
-/* named: FUN_0004d0c4 */
+/* readable reconstruction; identity: FUN_0004d0c4 @ 0x0004d0c4
+ * public-name: FUN_0004d0c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   rpmsg_create_ept                         <= FUN_00070fb4 @ 0x00070fb4
+ * address symbols (name @ address):
+ *   rodata_7ed27                             @ 0x0007ed27
+ */
 /* Reconstructed FUN_0004d0c4 @ 0x4d0c4  (parity: 300/300 trials, PROVEN) */
 
 extern int rpmsg_create_ept(int, int, int, int, int, unsigned int, unsigned int, unsigned int);
@@ -16,4 +23,3 @@ int FUN_0004d0c4(int *param_1, int param_2, int param_3, unsigned int param_4)
   }
   return uVar1;
 }
-

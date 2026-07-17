@@ -14,7 +14,13 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
 {
     unsigned int uVar5 = *(volatile unsigned int *)(param_4 - 8);
     volatile int *piVar1 = *(volatile int **)(param_1 + 0xac);
-    unsigned int local_buf[8];
+    struct {
+        unsigned int first;
+        unsigned int second;
+        unsigned int reserved;
+        unsigned short result;
+        unsigned short padding;
+    } local_buf;
     unsigned int uVar4;
     unsigned int panic_code;
     int iVar2b;
@@ -24,17 +30,22 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
         uVar3 = 0xffffffff;
     }
 
-    int iVar2 = FUN_0103ab0e((void *)piVar1, uVar3, local_buf, 0x10);
+    local_buf.first = param_2;
+    local_buf.second = param_3;
+    local_buf.reserved = 0;
+    local_buf.result = (unsigned short)param_5;
+    local_buf.padding = 0;
+    int iVar2 = FUN_0103ab0e((void *)piVar1, uVar3, &local_buf, 0x10);
     uVar5 = uVar5 & 0xffff;
 
     if (iVar2 == 0x10) goto L_612;
 
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103e889) /*=0x103e889*/, 0x1af);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e889) /*=0x103e889*/, 0x1af);
     panic_code = 0x1af;
     goto L_term;
 
 L_term:
-    FUN_01039bb0(((uintptr_t)&rodata_103e889) /*=0x103e889*/, panic_code);
+    FUN_01039bb0(((unsigned long)&rodata_103e889) /*=0x103e889*/, panic_code);
     /* falls through to success-path code physically */
 
 L_612:
@@ -46,7 +57,7 @@ L_612:
     iVar2b = FUN_010353ec(*(volatile unsigned int *)(param_1 + 0xa8), uVar5, uVar4);
     if (iVar2b == 0) goto L_success;
 
-    FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103e889) /*=0x103e889*/, 0x1bc);
+    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e889) /*=0x103e889*/, 0x1bc);
     panic_code = 0x1bc;
     goto L_term;
 
@@ -55,4 +66,3 @@ L_success:
     FUN_0103aec2((void *)(param_1 + 0x58));
     return param_5;
 }
-

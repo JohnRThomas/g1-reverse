@@ -8,4 +8,3 @@ void FUN_0100e018(char *param_1, unsigned int *param_2)
   unsigned short h = *(unsigned short *)(param_1 + 7);
   *(unsigned short *)((char*)param_2 + 4) = h;
 }
-

@@ -1,5 +1,17 @@
-/* named: nrf53_sync_rtc_init */
-/* Reconstructed nrf53_sync_rtc_init @ 0x4c2d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004c2d4 @ 0x0004c2d4
+ * public-name: nrf53_sync_rtc_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nrf53_ipc_channel_configure              <= FUN_0004c278 @ 0x0004c278
+ *   nrf53_sync_rtc_init                      <= FUN_0004c2d4 @ 0x0004c2d4
+ *   nrfx_gppi_channels_enable                <= FUN_00064f30 @ 0x00064f30
+ * address symbols (name @ address):
+ *   ADDR_FUN_0004c418_THUMB                  @ 0x0004c419
+ *   rodata_87bd8                             @ 0x00087bd8
+ *   rodata_88288                             @ 0x00088288
+ *   rodata_f0a68                             @ 0x000f0a68
+ */
+/* Reconstructed FUN_0004c2d4 @ 0x4c2d4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void nrf53_ipc_channel_configure(uint32_t,uint32_t,uint32_t,int);
@@ -52,4 +64,3 @@ LAB:
   FUN_0004d944(0x88288, 0x1840, (void*)&local_30, 0);
   return iVar2;
 }
-

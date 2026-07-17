@@ -1,9 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: handle_box_placement_event */
-/* globals referenced:
-//   0x20007a44  g_st25dv_dev                 
-*/
-/* Reconstructed handle_box_placement_event @ 0x25528  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00025528 @ 0x00025528
+ * public-name: handle_box_placement_event
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   st25dv_mailbox_set_enabled               <= FUN_00024cc8 @ 0x00024cc8
+ *   st25dv_write_control_and_ack             <= FUN_00024f40 @ 0x00024f40
+ *   process_box_event                        <= FUN_000254d8 @ 0x000254d8
+ *   handle_box_placement_event               <= FUN_00025528 @ 0x00025528
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ * address symbols (name @ address):
+ *   rodata_50100                             @ 0x00050100
+ *   g_box_event_state_buf                    @ 0x20002380
+ *   g_box_mailbox_synced_flag                @ 0x200079fc
+ *   g_box_field_timer_cfg_buf                @ 0x20007a2c
+ *   g_st25dv_dev                             @ 0x20007a44
+ */
+/* Reconstructed FUN_00025528 @ 0x25528  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int FUN_0000fcf0(volatile void*);
@@ -17,9 +30,9 @@ extern int FUN_0007c9f2(uint32_t, void*);
 extern int FUN_0007c9fe(uint32_t);
 
 uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
-    volatile int *piVar1 = (volatile int*)((uintptr_t)&g_box_mailbox_synced_flag) /*=0x200079fc*/;
-    volatile uint32_t *g_a44 = (volatile uint32_t*)((uintptr_t)&g_st25dv_dev) /*=0x20007a44*/;
-    volatile uint8_t *b = (volatile uint8_t*)((uintptr_t)&g_box_event_state_buf) /*=0x20002380*/;
+    volatile int *piVar1 = (volatile int*)((unsigned long)&g_box_mailbox_synced_flag) /*=0x200079fc*/;
+    volatile uint32_t *g_a44 = (volatile uint32_t*)((unsigned long)&g_st25dv_dev) /*=0x20007a44*/;
+    volatile uint8_t *b = (volatile uint8_t*)((unsigned long)&g_box_event_state_buf) /*=0x20002380*/;
     uint8_t local7 = 0;
     uint32_t uVar6 = param_2;
     int iVar4;
@@ -46,7 +59,7 @@ uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
         *(volatile uint32_t*)(b+8) = 0x09010000UL;
         *(volatile uint32_t*)(b+0xc) = 0x0a031e09UL;
         *(volatile uint16_t*)(b+6) = 0;
-        *(volatile uint32_t*)(b+0x10) = ((uintptr_t)&tbl_50090) /*=0x50100*/;
+        *(volatile uint32_t*)(b+0x10) = ((unsigned long)&rodata_50100) /*=0x50100*/;
         *(volatile uint32_t*)(b+0x14) = 0;
         *(volatile uint16_t*)(b+0x1c) = 0x200;
         *(volatile uint16_t*)(b+0x2e) = 0x101;
@@ -61,11 +74,10 @@ uint32_t handle_box_placement_event(uint32_t param_1, uint32_t param_2) {
         *(volatile uint8_t*)(b+0x38) = 0;
         *(volatile uint8_t*)(b+0x3a) = 0;
     }
-    process_box_event((volatile void*)((uintptr_t)&g_box_field_timer_cfg_buf) /*=0x20007a2c*/, b, cVar5, b, param_1, uVar6);
+    process_box_event((volatile void*)((unsigned long)&g_box_field_timer_cfg_buf) /*=0x20007a2c*/, b, cVar5, b, param_1, uVar6);
     iVar4 = is_battery_critical();
     if ((iVar4 != 0) || (iVar4 = get_device_info(), 0x1d < *(volatile uint8_t*)(iVar4 + 0xfc0))) {
         FUN_0000fcf0(b);
     }
     return 0;
 }
-

@@ -1,4 +1,11 @@
-/* named: FUN_000250c4 */
+/* readable reconstruction; identity: FUN_000250c4 @ 0x000250c4
+ * public-name: FUN_000250c4
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_24ad9                             @ 0x00024ad9
+ *   rodata_25059                             @ 0x00025059
+ *   rodata_7c39d                             @ 0x0007c39d
+ */
 /* Reconstructed FUN_000250c4 @ 0x250c4  (parity: 300/300 trials, PROVEN) */
 
 unsigned int FUN_000250c4(unsigned char *param_1, unsigned int *param_2)
@@ -15,4 +22,3 @@ unsigned int FUN_000250c4(unsigned char *param_1, unsigned int *param_2)
   }
   return 7;
 }
-

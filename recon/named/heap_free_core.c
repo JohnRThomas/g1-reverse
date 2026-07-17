@@ -1,8 +1,17 @@
-/* named: heap_free_core */
-/* Reconstructed heap_free_core @ 0x76d8c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076d8c @ 0x00076d8c
+ * public-name: heap_free_core
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   __malloc_lock                            <= FUN_000785bc @ 0x000785bc
+ *   __malloc_unlock                          <= FUN_000785c8 @ 0x000785c8
+ * address symbols (name @ address):
+ *   g_malloc_free_list                       @ 0x2000cc20
+ */
+/* Reconstructed FUN_00076d8c @ 0x76d8c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int __malloc_lock(void);
+extern void __malloc_lock(void);
 extern void __malloc_unlock(void*,void*,void*,void*);
 #define U(x) ((uint32_t)(x))
 void heap_free_core(int* param_1, int param_2, int param_3, int param_4){
@@ -12,7 +21,10 @@ void heap_free_core(int* param_1, int param_2, int param_3, int param_4){
     piVar5 = (int*)(param_2 - 4);
     if(*(int*)(param_2-4) < 0)
         piVar5 = (int*)((int)piVar5 + *(int*)(param_2-4));
-    piVar1 = (int*)__malloc_lock();
+    __malloc_lock();
+    /* FUN_000785bc preserves r1; the allocator passes that value on to its
+       epilogue helper.  It is not the callee's r0 return value. */
+    piVar1 = (int*)param_2;
     piVar3 = (int*)0x2000cc20;
     piVar4 = (int*)*(volatile uint32_t*)0x2000cc20UL;
     if(piVar4 != 0){
@@ -61,4 +73,3 @@ LAB:
     __malloc_unlock(param_1, piVar1, piVar3, (void*)param_4);
     return;
 }
-

@@ -1,5 +1,11 @@
-/* named: flash_region_is_erased */
-/* Reconstructed flash_region_is_erased @ 0x84d8c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084d8c @ 0x00084d8c
+ * public-name: flash_region_is_erased
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ *   flash_region_is_erased                   <= FUN_00084d8c @ 0x00084d8c
+ */
+/* Reconstructed FUN_00084d8c @ 0x84d8c  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int flash_area_erased_val(void);
 
@@ -17,4 +23,3 @@ unsigned int flash_region_is_erased(unsigned int param_1, unsigned char *param_2
   } while (pbVar3 != param_2 + param_3);
   return 1;
 }
-

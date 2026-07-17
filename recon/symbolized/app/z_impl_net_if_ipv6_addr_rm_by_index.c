@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: z_impl_net_if_ipv6_addr_rm_by_index */
-/* Reconstructed z_impl_net_if_ipv6_addr_rm_by_index @ 0x80c8c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00080c8c @ 0x00080c8c
+ * public-name: z_impl_net_if_ipv6_addr_rm_by_index
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_impl_net_if_ipv6_addr_rm_by_index      <= FUN_00080c8c @ 0x00080c8c
+ */
+/* Reconstructed FUN_00080c8c @ 0x80c8c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern uint64_t FUN_000527dc(void);
@@ -15,4 +20,3 @@ void z_impl_net_if_ipv6_addr_rm_by_index(unsigned int param_1, unsigned int para
         FUN_00072880(lo + 0x6c, hi, param_3, param_4);
     }
 }
-

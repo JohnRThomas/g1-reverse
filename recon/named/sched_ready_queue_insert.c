@@ -1,8 +1,17 @@
-/* named: sched_ready_queue_insert */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed sched_ready_queue_insert @ 0x73840  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00073840 @ 0x00073840
+ * public-name: sched_ready_queue_insert
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sched_ready_queue_insert                 <= FUN_00073840 @ 0x00073840
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f82f4                             @ 0x000f82f4
+ *   rodata_f84d6                             @ 0x000f84d6
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_00073840 @ 0x73840  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_000737d8(int,...);
@@ -41,4 +50,3 @@ void sched_ready_queue_insert(int *param_1){
 LAB:
   FUN_000737d8(0);
 }
-

@@ -17,25 +17,24 @@ void FUN_0102b2ac(uint32_t *param_1)
     *(volatile uint8_t *)puVar3 = 0xfb;
     *(volatile uint32_t *)(puVar3 + 0x11) = *(volatile uint32_t *)(p1b + 0x1a);
     *(volatile uint16_t *)(puVar3 + 0x15) = *(volatile uint16_t *)(p1b + 0x1e);
-    *(volatile uint32_t *)p1b = ((uintptr_t)&rodata_102b9c9) /*=0x102b9c9*/;
+    *(volatile uint32_t *)p1b = ((unsigned long)&rodata_102b9c9) /*=0x102b9c9*/;
 
     uint32_t uVar1;
     uint8_t uVar2;
     if (*(volatile int32_t *)(p1b - 0xb0) == 1) {
         uVar2 = 2;
-        uVar1 = "or" /*=0x103d132*/;
+        uVar1 = 0x0103d132;
     } else {
         uVar2 = 4;
-        uVar1 = " data bus error" /*=0x103d13e*/;
+        uVar1 = ((unsigned long)&rodata_103d13e) /*=0x103d13e*/;
     }
     *(volatile uint32_t *)(p1b + 8) = uVar1;
     *(volatile uint8_t *)(p1b + 4) = uVar2;
-    *(volatile uint32_t *)(p1b + 0xc) = ((uintptr_t)&rodata_102b95d) /*=0x102b95d*/;
+    *(volatile uint32_t *)(p1b + 0xc) = ((unsigned long)&rodata_102b95d) /*=0x102b95d*/;
 
-    typedef void (*fn_t)(void *);
+    typedef void (*fn_t)(void *, uint32_t, uint32_t);
     fn_t f = (fn_t)(uintptr_t)(*(volatile uint32_t *)(p1b - 4));
-    f((void *)(p1b + 4));
+    f((void *)(p1b + 4), ((unsigned long)&rodata_103d13e) /*=0x103d13e*/, uVar2);
 
-    *(volatile uint32_t *)((uintptr_t)&g_net_fault_record_ptr) /*=0x21004610*/ = (uint32_t)(uintptr_t)param_1;
+    *(volatile uint32_t *)((unsigned long)&g_net_fault_record_ptr) /*=0x21004610*/ = (uint32_t)(uintptr_t)param_1;
 }
-

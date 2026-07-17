@@ -1,11 +1,20 @@
-/* named: log_notification_fields_debug */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed log_notification_fields_debug @ 0x4a3d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004a3d0 @ 0x0004a3d0
+ * public-name: log_notification_fields_debug
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   log_notification_fields_debug            <= FUN_0004a3d0 @ 0x0004a3d0
+ * address symbols (name @ address):
+ *   rodata_f0229                             @ 0x000f0229
+ *   rodata_f024d                             @ 0x000f024d
+ *   rodata_f028c                             @ 0x000f028c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
+ * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 
 extern void DEBUG_PRINT(int, ...);
-extern void debug_print(void);
+extern void debug_print(int, ...);
 
 void log_notification_fields_debug(int param_1, int param_2, int param_3, int param_4)
 {
@@ -13,17 +22,16 @@ void log_notification_fields_debug(int param_1, int param_2, int param_3, int pa
     if (*piVar1 == 0) {
         DEBUG_PRINT(0x000f0229, param_2 + 0x10);
     } else {
-        debug_print();
+        debug_print(0x000f0229, param_2 + 0x10, param_3, param_4);
     }
     if (*piVar1 == 0) {
         DEBUG_PRINT(0x000f024d, param_2 + 0x90);
     } else {
-        debug_print();
+        debug_print(0x000f024d, param_2 + 0x90, param_3, param_4);
     }
     if (*piVar1 != 0) {
-        debug_print();
+        debug_print(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
         return;
     }
     DEBUG_PRINT(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
 }
-

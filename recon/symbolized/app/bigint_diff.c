@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: bigint_diff */
-/* Reconstructed bigint_diff @ 0x78ac8  (parity: 1/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00078ac8 @ 0x00078ac8
+ * public-name: bigint_diff
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   bigint_diff                              <= FUN_00078ac8 @ 0x00078ac8
+ *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_f8c42                             @ 0x000f8c42
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_00078ac8 @ 0x78ac8  (parity: 1/300 trials, PROVEN) */
 #include <stdint.h>
 extern int libc_fatal_error_and_abort(unsigned a, unsigned b, int c, unsigned d);
 extern int Balloc(int a, unsigned b);
@@ -56,10 +68,10 @@ int bigint_diff(int param_1,int param_2,int param_3,int param_4)
       do {
         puVar14 = puVar8 + 1;
         puVar6 = puVar6 + 1;
-        uVar7 = ((*puVar6 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) - (*puVar8 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/)) + iVar1;
+        uVar7 = ((*puVar6 & 0xffff) - (*puVar8 & 0xffff)) + iVar1;
         iVar2 = ((*puVar6 >> 0x10) - (*puVar8 >> 0x10)) + ((int)uVar7 >> 0x10);
         iVar1 = iVar2 >> 0x10;
-        *puVar11 = uVar7 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/ | iVar2 * ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+        *puVar11 = uVar7 & 0xffff | iVar2 * ((unsigned long)&rodata_10000) /*=0x10000*/;
         puVar11 = puVar11 + 1;
         puVar8 = puVar14;
       } while (puVar14 < puVar10);
@@ -73,9 +85,9 @@ int bigint_diff(int param_1,int param_2,int param_3,int param_4)
       for (puVar6 = puVar10; puVar6 < puVar13; puVar6 = puVar6 + 1) {
         uVar7 = *puVar6;
         uVar5 = uVar7 + iVar1;
-        iVar2 = (uVar7 >> 0x10) + ((int)((uVar7 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) + iVar1) >> 0x10);
+        iVar2 = (uVar7 >> 0x10) + ((int)((uVar7 & 0xffff) + iVar1) >> 0x10);
         iVar1 = iVar2 >> 0x10;
-        *puVar11 = uVar5 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/ | iVar2 * ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+        *puVar11 = uVar5 & 0xffff | iVar2 * ((unsigned long)&rodata_10000) /*=0x10000*/;
         puVar11 = puVar11 + 1;
       }
       uVar7 = (int)puVar13 + (3 - (int)puVar10) & 0xfffffffc;
@@ -92,10 +104,9 @@ int bigint_diff(int param_1,int param_2,int param_3,int param_4)
     uVar4 = 0x240;
     iVar3 = 0;
   }
-  iVar2 = libc_fatal_error_and_abort("/__w/_temp/workspace/build/.build/HOST-x86_64-w64-mingw32/arm-zephyr-eabi/src/newlib-nano/newlib/libc/stdlib/mprec.c" /*=0xf8cd5*/,uVar4,iVar3,"Balloc succeeded" /*=0xf8c42*/);
+  iVar2 = libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/,uVar4,iVar3,((unsigned long)&rodata_f8c42) /*=0xf8c42*/);
 LAB_00078af6:
   *(int *)(iVar2 + 0x10) = 1;
   *(int *)(iVar2 + 0x14) = iVar1;
   return iVar3;
 }
-

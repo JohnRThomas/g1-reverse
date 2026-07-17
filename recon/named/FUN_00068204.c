@@ -1,4 +1,10 @@
-/* named: FUN_00068204 */
+/* readable reconstruction; identity: FUN_00068204 @ 0x00068204
+ * public-name: FUN_00068204
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   g_module_registry_node                   @ 0x20002c3c
+ *   g_metal_generic_bus                      @ 0x2000b424
+ */
 /* Reconstructed FUN_00068204 @ 0x68204  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int u32;
@@ -19,4 +25,3 @@ int FUN_00068204(u32 *param_1)
     *(volatile u32*)old_next = node_addr;
     return 0;
 }
-

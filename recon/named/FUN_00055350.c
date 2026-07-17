@@ -1,15 +1,24 @@
-/* named: FUN_00055350 */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
+/* readable reconstruction; identity: FUN_00055350 @ 0x00055350
+ * public-name: FUN_00055350
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ * address symbols (name @ address):
+ *   rodata_fc09                              @ 0x0000fc09
+ *   rodata_88150                             @ 0x00088150
+ *   rodata_f376a                             @ 0x000f376a
+ *   rodata_f3796                             @ 0x000f3796
+ *   rodata_f37b6                             @ 0x000f37b6
+ *   g_ble_dev_state                          @ 0x20002000
+ */
 /* Reconstructed FUN_00055350 @ 0x55350  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 extern int FUN_00053d70(int,int,void*);
-extern void net_buf_unref(void);
+extern void net_buf_unref(void*);
 extern void FUN_0008104a(u32,int,void*);
 unsigned FUN_00055350(int param_1, unsigned param_2){
-    u32 local_34[8];
+    u32 local_34[5];
     u32 local_20[2];
     volatile u32 local_1c;
     int iVar1;
@@ -34,7 +43,7 @@ unsigned FUN_00055350(int param_1, unsigned param_2){
             *(u16*)puVar7 = *(u16*)puVar3;
             puVar4 = (u32*)((int)puVar4 + 0x16);
         }
-        net_buf_unref();
+        net_buf_unref((void *)(uintptr_t)local_34[0]);
         if(uVar5 == 0){
             local_1c = 0x000f37b6;
             local_20[0] = 2;
@@ -47,4 +56,3 @@ unsigned FUN_00055350(int param_1, unsigned param_2){
         return 0;
     }
 }
-

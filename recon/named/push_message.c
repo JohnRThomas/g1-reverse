@@ -1,14 +1,29 @@
-/* named: push_message */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007dac  g_message_pool               
-//   0x20008eb4  g_message_table_mirror       
-//   0x2001a22b  g_message_table_slot_count   
-*/
-/* Reconstructed push_message @ 0x33f54  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00033f54 @ 0x00033f54
+ * public-name: push_message
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   message_table_contains_id                <= FUN_00033f24 @ 0x00033f24
+ *   push_message                             <= FUN_00033f54 @ 0x00033f54
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_a7dc5                             @ 0x000a7dc5
+ *   rodata_a7e3d                             @ 0x000a7e3d
+ *   rodata_a7e85                             @ 0x000a7e85
+ *   rodata_a7ec3                             @ 0x000a7ec3
+ *   rodata_a823b                             @ 0x000a823b
+ *   rodata_a8248                             @ 0x000a8248
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_table_mirror                   @ 0x20008eb4
+ *   g_message_table_mirror_ovfl_slot         @ 0x20009e08
+ *   g_message_table_slot_count               @ 0x2001a22b
+ */
+/* Reconstructed FUN_00033f54 @ 0x33f54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 extern int debug_print(int, ...);
 extern long long message_table_contains_id(int,int,int,int,int,int,int);
 extern int memcpy(int, ...);
@@ -24,6 +39,7 @@ unsigned char push_message(int param_1, int param_2, int param_3)
     unsigned int uVar6;
     int iVar7;
     unsigned int uVar8;
+    unsigned int final_r2;
     long long uVar9;
     volatile int *g88 = (volatile int*)0x20007554;
     volatile int *g94 = (volatile int*)0x2000230c;
@@ -54,9 +70,9 @@ unsigned char push_message(int param_1, int param_2, int param_3)
         }
     }
     if (iVar7 == 0) {
-        DEBUG_PRINT(format_string, uVar5, uVar6);
+        log_message(format_string, uVar5, uVar6, iVar7);
     } else {
-        debug_print(0);
+        debug_print(format_string, uVar5, uVar6, iVar7);
     }
     return 0;
 
@@ -70,21 +86,24 @@ LAB_00033fb2:
         *(unsigned char *)(param_1 + 0xe) = 0;
         *(unsigned char *)(param_1 + 0xd) = 0;
         *(unsigned char *)(param_1 + 0xc) = bVar4;
-        memcpy(iVar2, param_1);
+        memcpy(iVar2, param_1, 0x1b4);
+        final_r2 = 0x1b4;
         if (0 < iVar7) {
             if (*g88 == 0) {
-                DEBUG_PRINT(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
+                log_message(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
             } else {
-                debug_print(0x000a7e3d);
+                debug_print(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
             }
+            final_r2 = uVar8;
         }
         bVar4 = *pbVar1 + 1;
     } else {
+        final_r2 = 0;
         if (0 < iVar7) {
             if (*g88 == 0) {
-                DEBUG_PRINT(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
+                log_message(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
             } else {
-                debug_print(0x000a7e85, 0x000a823b, 0x13);
+                debug_print(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
             }
         }
         iVar2 = 10;
@@ -110,10 +129,9 @@ LAB_00033fb2:
     iVar7 = *g88;
     *pbVar1 = bVar4;
     if (iVar7 == 0) {
-        DEBUG_PRINT(uVar6);
+        log_message(uVar6, bVar4, final_r2, iVar7);
     } else {
-        debug_print(0);
+        debug_print(uVar6, bVar4, final_r2, iVar7);
     }
     return *pbVar1;
 }
-

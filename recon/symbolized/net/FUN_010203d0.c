@@ -8,11 +8,11 @@ extern void FUN_01025b5c(void);
 #define DAT_4b4 REG_41008000 /*=0x41008000*/
 #define DAT_4b8 0x01ff0000u
 #define DAT_4bc 0xfffff000u
-#define DAT_4c0 ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/
-#define DAT_4c4 REG_4100c000 /*=0x4100c000*/
+#define DAT_4c0 0x210015f0u
+#define DAT_4c4 0x4100c000u
 #define DAT_4c8 0x8000000au
 #define DAT_4cc 0x80000003u
-#define DAT_4d0 REG_4100f000 /*=0x4100f000*/
+#define DAT_4d0 0x4100f000u
 
 void FUN_010203d0(void)
 {
@@ -81,4 +81,3 @@ void FUN_010203d0(void)
     }
     return;
 }
-

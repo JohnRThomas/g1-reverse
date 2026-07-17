@@ -1,8 +1,12 @@
-/* named: sys_slist_append */
-/* globals referenced:
-//   0x2000a104  g_settings_stores            
-*/
-/* Reconstructed sys_slist_append @ 0x4e3c0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004e3c0 @ 0x0004e3c0
+ * public-name: sys_slist_append
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sys_slist_append                         <= FUN_0004e3c0 @ 0x0004e3c0
+ * address symbols (name @ address):
+ *   g_settings_stores                        @ 0x2000a104
+ */
+/* Reconstructed FUN_0004e3c0 @ 0x4e3c0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 typedef struct { void *a; void *b; } S;
@@ -20,4 +24,3 @@ void sys_slist_append(unsigned int *param_1)
     r3->a = param_1;
     r3->b = param_1;
 }
-

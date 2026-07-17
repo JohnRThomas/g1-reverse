@@ -152,5 +152,3 @@ LAB_01030f26:
   *(uint *)(iVar6 + 8) = uVar8;
   return 0;
 }
-
-

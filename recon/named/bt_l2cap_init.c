@@ -1,9 +1,16 @@
-/* named: bt_l2cap_init */
-/* globals referenced:
-//   0x20003a44  free_l2cap_tx_meta_data      
-//   0x2000ad34  l2cap_tx_meta_data_storage   
-*/
-/* Reconstructed bt_l2cap_init @ 0x579d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000579d0 @ 0x000579d0
+ * public-name: bt_l2cap_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_l2cap_init                            <= FUN_000579d0 @ 0x000579d0
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   free_l2cap_tx_meta_data                  @ 0x20003a44
+ *   l2cap_tx_meta_data_storage               @ 0x2000ad34
+ */
+/* Reconstructed FUN_000579d0 @ 0x579d0  (parity: 300/300 trials, PROVEN) */
 
 extern void z_impl_k_queue_init(int);
 extern void net_pkt_skip(int,int);
@@ -21,4 +28,3 @@ void bt_l2cap_init(void)
         iVar2 = iVar2 + 0x10;
     } while (iVar3 != 10);
 }
-

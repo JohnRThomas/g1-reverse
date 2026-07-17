@@ -1,10 +1,24 @@
-/* named: FUN_0004d334 */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-*/
+/* readable reconstruction; identity: FUN_0004d334 @ 0x0004d334
+ * public-name: FUN_0004d334
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_msg_commit                           <= FUN_0004d8f8 @ 0x0004d8f8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   atomic_inc                               <= FUN_0007ee2c @ 0x0007ee2c
+ * address symbols (name @ address):
+ *   rodata_882a0                             @ 0x000882a0
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0cae                             @ 0x000f0cae
+ *   rodata_f0cdb                             @ 0x000f0cdb
+ *   rodata_f0cff                             @ 0x000f0cff
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   z_log_process_guard                      @ 0x2000a0dc
+ */
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
 extern int atomic_inc(int);
-extern unsigned activate_foreach_backend(unsigned);
+extern unsigned FUN_0004d2d0(unsigned);
 extern void log_msg_commit(int*,unsigned,int);
 extern void FUN_00074844(int,int);
 extern void printk(int,...);
@@ -21,7 +35,7 @@ unsigned FUN_0004d334(int param_1,int param_2){
       if (piVar1 <= piVar5){
         if (param_1 != 0){
           while (uVar3 != 0){
-            uVar3 = activate_foreach_backend(uVar3);
+            uVar3 = FUN_0004d2d0(uVar3);
             if (param_2 != 0) FUN_00074844(0x148,0);
           }
           return 0;
@@ -46,4 +60,3 @@ unsigned FUN_0004d334(int param_1,int param_2){
   assert_post_action(0x000f0cae,uVar4);
   return 0;
 }
-

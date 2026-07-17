@@ -1,5 +1,10 @@
-/* named: flowctl_release_credit_and_kick */
-/* Reconstructed flowctl_release_credit_and_kick @ 0x84b32  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084b32 @ 0x00084b32
+ * public-name: flowctl_release_credit_and_kick
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flowctl_release_credit_and_kick          <= FUN_00084b32 @ 0x00084b32
+ */
+/* Reconstructed FUN_00084b32 @ 0x84b32  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00084a54(int,int,int);
 void flowctl_release_credit_and_kick(int param_1, uint32_t param_2){
@@ -16,4 +21,3 @@ void flowctl_release_credit_and_kick(int param_1, uint32_t param_2){
     *(volatile uint32_t*)(base+0x500) = 0;
   }
 }
-

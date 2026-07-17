@@ -1,5 +1,22 @@
-/* named: bt_gatt_foreach_attr_type */
-/* Reconstructed bt_gatt_foreach_attr_type @ 0x5aa84  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005aa84 @ 0x0005aa84
+ * public-name: bt_gatt_foreach_attr_type
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_foreach_attr_type                <= FUN_0005aa84 @ 0x0005aa84
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   gatt_foreach_iter                        <= FUN_00082712 @ 0x00082712
+ * address symbols (name @ address):
+ *   rodata_88058                             @ 0x00088058
+ *   rodata_88070                             @ 0x00088070
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f46b8                             @ 0x000f46b8
+ *   rodata_f49a5                             @ 0x000f49a5
+ *   g_bt_gatt_dynamic_db                     @ 0x2000af08
+ *   last_static_handle                       @ 0x2000ff3c
+ */
+/* Reconstructed FUN_0005aa84 @ 0x5aa84  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int assert_post_action(int,...);
 extern int printk(int,...);
@@ -51,4 +68,3 @@ void bt_gatt_foreach_attr_type(unsigned int param_1, int param_2, int param_3, i
     } while (puVar3 != 0);
   }
 }
-

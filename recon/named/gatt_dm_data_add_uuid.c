@@ -1,5 +1,16 @@
-/* named: gatt_dm_data_add_uuid */
-/* Reconstructed gatt_dm_data_add_uuid @ 0x4ea28  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004ea28 @ 0x0004ea28
+ * public-name: gatt_dm_data_add_uuid
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_dm_attr_alloc                       <= FUN_0004e8e8 @ 0x0004e8e8
+ *   gatt_dm_data_add_uuid                    <= FUN_0004ea28 @ 0x0004ea28
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_88130                             @ 0x00088130
+ *   rodata_f1270                             @ 0x000f1270
+ *   rodata_f1284                             @ 0x000f1284
+ */
+/* Reconstructed FUN_0004ea28 @ 0x4ea28  (parity: 300/300 trials, PROVEN) */
 
 extern void memcpy(int,void*,int);
 extern int gatt_dm_attr_alloc(void);
@@ -25,4 +36,3 @@ int gatt_dm_data_add_uuid(unsigned char *param_1)
     FUN_0007f406(0x00088130, 0x1040, &local_18);
     return 0;
 }
-

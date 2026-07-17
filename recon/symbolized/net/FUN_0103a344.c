@@ -10,4 +10,3 @@ void FUN_0103a344(unsigned int *param_1)
   FUN_0103a32a((fnptr)param_1[0], (int)param_1[2], (int)p1[0], p1[1]);
   p1[0] = 0;
 }
-

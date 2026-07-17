@@ -1,5 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0004f564 */
+/* readable reconstruction; identity: FUN_0004f564 @ 0x0004f564
+ * public-name: FUN_0004f564
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   malloc_impl                              <= FUN_000868c2 @ 0x000868c2
+ */
 /* Reconstructed FUN_0004f564 @ 0x4f564  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0004d944(void);
@@ -17,4 +24,3 @@ void FUN_0004f564(int param_1,int param_2,int param_3,int param_4)
     assert_post_action();
   }
 }
-

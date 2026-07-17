@@ -2,7 +2,7 @@
 /* net-core FUN_0100bc5c @ 0x100bc5c  (parity 300 trials PROVEN) */
 unsigned char FUN_0100bc5c(unsigned int param_1, unsigned char *param_2, unsigned char *param_3)
 {
-    volatile unsigned char *D = (volatile unsigned char *)((uintptr_t)&g_net_radio_addr_match_tbl) /*=0x21000d18*/;
+    volatile unsigned char *D = (volatile unsigned char *)((unsigned long)&g_net_radio_addr_match_tbl) /*=0x21000d18*/;
     unsigned char bVar1, bVar2, bVar3, bVar5, bVar6, bVar8;
     signed char cVar4;
     unsigned int uVar9;
@@ -141,4 +141,3 @@ unsigned char FUN_0100bc5c(unsigned int param_1, unsigned char *param_2, unsigne
     }
     return 1;
 }
-

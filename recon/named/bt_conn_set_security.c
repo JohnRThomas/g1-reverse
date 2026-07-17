@@ -1,5 +1,11 @@
-/* named: bt_conn_set_security */
-/* Reconstructed bt_conn_set_security @ 0x8149a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008149a @ 0x0008149a
+ * public-name: bt_conn_set_security
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
+ */
+/* Reconstructed FUN_0008149a @ 0x8149a  (parity: 300/300 trials, PROVEN) */
 
 extern void atomic_and_2(void*, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int FUN_0005d964(int);
@@ -26,4 +32,3 @@ int bt_conn_set_security(int param_1, unsigned char param_2, unsigned int param_
   }
   return iVar2;
 }
-

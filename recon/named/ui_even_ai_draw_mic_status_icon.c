@@ -1,5 +1,25 @@
-/* named: ui_even_ai_draw_mic_status_icon */
-/* Reconstructed ui_even_ai_draw_mic_status_icon @ 0x3cb58  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0003cb58 @ 0x0003cb58
+ * public-name: ui_even_ai_draw_mic_status_icon
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   ui_even_ai_draw_mic_status_icon          <= FUN_0003cb58 @ 0x0003cb58
+ *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
+ *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
+ *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
+ *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
+ *   k_uptime_get_5                           <= FUN_0007d2d8 @ 0x0007d2d8
+ *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   get_localized_weekday_name               <= FUN_0007d4b2 @ 0x0007d4b2
+ * address symbols (name @ address):
+ *   g_not_disturb_settings                   @ 0x2001b9aa
+ *   g_even_ai_mic_icon_visible               @ 0x2001b9ab
+ */
+/* Reconstructed FUN_0003cb58 @ 0x3cb58  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned long long undefined8;
 extern int get_device_info(int,...); extern int gui_set_active_canvas(int,...); extern int gui_screen_clear(int,...);
@@ -98,4 +118,3 @@ undefined4 ui_even_ai_draw_mic_status_icon(int param_1,undefined4 param_2,int pa
   }
   return 0;
 }
-

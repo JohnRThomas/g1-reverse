@@ -1,5 +1,20 @@
-/* named: z_arm_usage_fault */
-/* Reconstructed z_arm_usage_fault @ 0x506ac  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000506ac @ 0x000506ac
+ * public-name: z_arm_usage_fault
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_arm_usage_fault                        <= FUN_000506ac @ 0x000506ac
+ * address symbols (name @ address):
+ *   rodata_88258                             @ 0x00088258
+ *   rodata_f1e81                             @ 0x000f1e81
+ *   rodata_f1e99                             @ 0x000f1e99
+ *   rodata_f1eac                             @ 0x000f1eac
+ *   rodata_f1ec6                             @ 0x000f1ec6
+ *   rodata_f1ef0                             @ 0x000f1ef0
+ *   rodata_f1f0e                             @ 0x000f1f0e
+ *   rodata_f1f33                             @ 0x000f1f33
+ *   rodata_f1f4d                             @ 0x000f1f4d
+ */
+/* Reconstructed FUN_000506ac @ 0x506ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00080780(int,...);
 unsigned int z_arm_usage_fault(void)
@@ -19,4 +34,3 @@ unsigned int z_arm_usage_fault(void)
   *(volatile unsigned int*)0xe000ed28UL = ~((unsigned int)~(*(volatile int*)0xe000ed28UL << 0x10) >> 0x10);
   return uVar1;
 }
-

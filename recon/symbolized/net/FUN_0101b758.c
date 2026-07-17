@@ -1,6 +1,6 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101b758 @ 0x101b758  (parity 300 trials PROVEN) */
-#define P_0101b7e0 ((uintptr_t)&g_net_conn_teardown_busy_flag) /*=0x2100111c*/
+#define P_0101b7e0 ((unsigned long)&g_net_conn_teardown_busy_flag) /*=0x2100111c*/
 
 extern void FUN_01008d00(int, int);
 extern int FUN_01009dd8(void *);
@@ -14,23 +14,29 @@ void FUN_0101b758(void)
   unsigned char *puVar1;
   int iVar2;
   int iVar3;
-  short *local_28;
-  int uStack_24;
+  struct {
+    short *item;
+    unsigned int metadata;
+    /* The queue API owns a full receive slot even though this consumer only
+       interprets its two-word header. */
+    unsigned int queue_storage[4];
+  } message;
 
   puVar1 = (unsigned char *)P_0101b7e0;
   *(volatile unsigned char *)P_0101b7e0 = 1;
 
 L_loop_top:
-  local_28 = (short *)0;
-  uStack_24 = 0;
+  message.item = (short *)0;
+  message.metadata = 0;
 
 L_inner:
-  iVar3 = FUN_01009dd8(&local_28);
+  iVar3 = FUN_01009dd8(&message);
   if (iVar3 != 0) goto LAB_end;
-  if (local_28 == (short *)0 || *((unsigned char *)local_28 + 0x300) == 0) goto L_inner;
+  if (message.item == (short *)0 ||
+      *((unsigned char *)message.item + 0x300) == 0) goto L_inner;
 
-  if (*local_28 == (short)-1) goto LAB_end;
-  iVar3 = FUN_01009d18(*local_28, 0);
+  if (*message.item == (short)-1) goto LAB_end;
+  iVar3 = FUN_01009d18(*message.item, 0);
   if (iVar3 == 0) goto L_abort1;
 
   FUN_0102411c(*(unsigned char *)(iVar3 + 0x301));
@@ -45,12 +51,10 @@ L_inner:
 L_abort1:
   FUN_01008d00(0x35, 0x1d0);
 L_abort2:
-  for (;;) {
-    FUN_01008d00(0x35, 0x1bf);
-  }
+  FUN_01008d00(0x35, 0x1bf);
+  return;
 
 LAB_end:
   *puVar1 = 0;
   return;
 }
-

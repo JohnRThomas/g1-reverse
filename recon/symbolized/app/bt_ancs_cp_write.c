@@ -1,6 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: bt_ancs_cp_write */
-/* Reconstructed bt_ancs_cp_write @ 0x4f198  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0004f198 @ 0x0004f198
+ * public-name: bt_ancs_cp_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_ancs_cp_write                         <= FUN_0004f198 @ 0x0004f198
+ *   bt_gatt_read                             <= FUN_0005c22c @ 0x0005c22c
+ *   atomic_clear_bit                         <= FUN_0007f5d8 @ 0x0007f5d8
+ * address symbols (name @ address):
+ *   ADDR_bt_ancs_cp_write_callback_THUMB     @ 0x0007f5ef
+ */
+/* Reconstructed FUN_0004f198 @ 0x4f198  (parity: 300/300 trials, PROVEN) */
 
 extern int bt_gatt_read(unsigned int, void*, unsigned int, void*, unsigned int);
 extern void atomic_clear_bit(void*, int);
@@ -9,7 +18,7 @@ int bt_ancs_cp_write(unsigned int *param_1, unsigned short param_2, unsigned int
 {
     char *base = (char*)param_1;
     *(volatile unsigned short*)(base + 0x20) = param_2;
-    *(volatile unsigned int*)(base + 0x14) = ((uintptr_t)&tbl_7f5c5) /*=0x7f5ef*/;
+    *(volatile unsigned int*)(base + 0x14) = ADDR_bt_ancs_cp_write_callback_THUMB /*=0x7f5ef*/;
     unsigned short v8 = *(volatile unsigned short*)(base + 8);
     *(volatile unsigned int*)(base + 0x24) = param_3;
     *(volatile unsigned short*)(base + 0x18) = v8;
@@ -21,4 +30,3 @@ int bt_ancs_cp_write(unsigned int *param_1, unsigned short param_2, unsigned int
     }
     return iVar2;
 }
-

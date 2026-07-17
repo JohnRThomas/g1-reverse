@@ -1,7 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101bf30 @ 0x101bf30  (parity 300 trials PROVEN) */
-#define C_0101bfc0 ((uintptr_t)&g_net_link_ctx_b) /*=0x21001124*/
-#define P_0101bfc4 ((uintptr_t)&g_net_link_ctx_b_close_cb) /*=0x210004d0*/
+#define C_0101bfc0 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
+#define P_0101bfc4 ((unsigned long)&g_net_link_ctx_b_close_cb) /*=0x210004d0*/
 
 extern void FUN_0101f934(int, int);
 extern unsigned int FUN_0100f0fc(int);
@@ -62,4 +62,3 @@ int FUN_0101bf30(void)
   iVar4 = FUN_01023ea8(uVar2, uVar3);
   return iVar4 == 0;
 }
-

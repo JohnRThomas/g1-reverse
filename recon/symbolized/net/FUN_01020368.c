@@ -8,7 +8,7 @@ void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t par
 {
     const uint32_t iVar1 = REG_41008000 /*=0x41008000*/;
     *(volatile uint32_t *)(iVar1 + 0x1ac) = 0x80000006;
-    const uint32_t iVar2 = ((uintptr_t)&g_nrf802154_core_state) /*=0x210015f0*/;
+    const uint32_t iVar2 = 0x210015f0;
 
     if (*param_1 == 3) {
         uint32_t uVar4 = (*(volatile uint32_t *)(iVar1 + 0x514)) & 0xfff0ffff;
@@ -26,6 +26,5 @@ void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t par
     }
 
     FUN_01008d00(0x3e, 0x349, (uint32_t)(uint8_t)*param_1, iVar1, param_4);
-    for (;;) {}
+    return;
 }
-

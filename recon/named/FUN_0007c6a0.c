@@ -1,4 +1,11 @@
-/* named: FUN_0007c6a0 */
+/* readable reconstruction; identity: FUN_0007c6a0 @ 0x0007c6a0
+ * public-name: FUN_0007c6a0
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   opt_node_value_len                       <= FUN_0007c408 @ 0x0007c408
+ *   opt_node_total_len                       <= FUN_0007c41c @ 0x0007c41c
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ */
 /* Reconstructed FUN_0007c6a0 @ 0x7c6a0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int opt_node_value_len(int);
@@ -50,4 +57,3 @@ int FUN_0007c6a0(int param_1, int *param_2){
     param_2[1] = iVar2 + acc;
     return 0;
 }
-

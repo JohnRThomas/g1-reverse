@@ -1,5 +1,16 @@
-/* named: gatt_ccc_write */
-/* Reconstructed gatt_ccc_write @ 0x5a464  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005a464 @ 0x0005a464
+ * public-name: gatt_ccc_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_delayed_store_enqueue               <= FUN_00059d24 @ 0x00059d24
+ *   gatt_ccc_write                           <= FUN_0005a464 @ 0x0005a464
+ *   gatt_ccc_changed                         <= FUN_000825c0 @ 0x000825c0
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ *   rodata_f486f                             @ 0x000f486f
+ */
+/* Reconstructed FUN_0005a464 @ 0x5a464  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00059c48(int,int);
 extern void gatt_delayed_store_enqueue(int,int,int);
@@ -47,4 +58,3 @@ int gatt_ccc_write(int param_1, int param_2, uint16_t *param_3, int param_4, sho
     } else param_4 = -7;
     return param_4;
 }
-

@@ -1,5 +1,10 @@
-/* named: idx_inc */
-/* Reconstructed idx_inc @ 0x7e35c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007e35c @ 0x0007e35c
+ * public-name: idx_inc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   idx_inc                                  <= FUN_0007e35c @ 0x0007e35c
+ */
+/* Reconstructed FUN_0007e35c @ 0x7e35c  (parity: 300/300 trials, PROVEN) */
 
 unsigned int idx_inc(int param_1,int param_2,int param_3)
 {
@@ -12,4 +17,3 @@ unsigned int idx_inc(int param_1,int param_2,int param_3)
   }
   return uVar1;
 }
-

@@ -1,9 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: ble_conn_addr_resolve_or_create */
-/* globals referenced:
-//   0x20002000  g_ble_dev_state              
-*/
-/* Reconstructed ble_conn_addr_resolve_or_create @ 0x556b0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000556b0 @ 0x000556b0
+ * public-name: ble_conn_addr_resolve_or_create
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   adv_is_directed                          <= FUN_00055698 @ 0x00055698
+ *   ble_conn_addr_resolve_or_create          <= FUN_000556b0 @ 0x000556b0
+ *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   ble_conn_le_alloc                        <= FUN_00056e34 @ 0x00056e34
+ * address symbols (name @ address):
+ *   rodata_f2b33                             @ 0x000f2b33
+ *   g_ble_dev_state                          @ 0x20002000
+ */
+/* Reconstructed FUN_000556b0 @ 0x556b0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int adv_is_directed(void);
 extern int ble_conn_set_state(int,unsigned int);
@@ -12,10 +20,10 @@ extern int FUN_00056ea8(unsigned int,void*);
 unsigned int ble_conn_addr_resolve_or_create(unsigned char* param_1,int* param_2){
   unsigned char uVar1=*param_1;
   int iVar2; unsigned int uVar3;
-  *(volatile unsigned char*)(((uintptr_t)&g_ble_dev_state) /*=0x20002000*/+0x6f)=uVar1;
+  *(volatile unsigned char*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/+0x6f)=uVar1;
   iVar2=adv_is_directed();
   if(iVar2==0){
-    iVar2=ble_conn_le_alloc(uVar1,((uintptr_t)&rodata_f2b33) /*=0xf2b33*/);
+    iVar2=ble_conn_le_alloc(uVar1,((unsigned long)&rodata_f2b33) /*=0xf2b33*/);
     if(iVar2!=0){ uVar3=4; ble_conn_set_state(iVar2,uVar3); *param_2=iVar2; return 0; }
   } else {
     iVar2=FUN_00056ea8(uVar1,param_1+9);
@@ -25,4 +33,3 @@ unsigned int ble_conn_addr_resolve_or_create(unsigned char* param_1,int* param_2
   }
   return 0xfffffff4;
 }
-

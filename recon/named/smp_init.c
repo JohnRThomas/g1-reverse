@@ -1,5 +1,16 @@
-/* named: smp_init */
-/* Reconstructed smp_init @ 0x5cc30  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005cc30 @ 0x0005cc30
+ * public-name: smp_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_rand                                  <= FUN_00055cb4 @ 0x00055cb4
+ *   bt_pub_key_get                           <= FUN_00055e58 @ 0x00055e58
+ *   smp_init                                 <= FUN_0005cc30 @ 0x0005cc30
+ *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   g_smp_local_public_key                   @ 0x2000af48
+ */
+/* Reconstructed FUN_0005cc30 @ 0x5cc30  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *a, int b, unsigned int c, unsigned int d, unsigned int e);
 extern int bt_rand(unsigned int a, unsigned int b);
@@ -21,4 +32,3 @@ unsigned int smp_init(int param_1, unsigned int param_2, unsigned int param_3, u
     }
     return uVar2;
 }
-

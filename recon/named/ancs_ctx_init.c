@@ -1,9 +1,19 @@
-/* named: ancs_ctx_init */
-/* globals referenced:
-//   0x20006a1c  g_settings_notify_mutex      
-//   0x20006a30  g_ble_conn_ctx_ptr           
-*/
-/* Reconstructed ancs_ctx_init @ 0x18208  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00018208 @ 0x00018208
+ * public-name: ancs_ctx_init
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ancs_ctx_init                            <= FUN_00018208 @ 0x00018208
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
+ *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   ADDR_notify_config_change_if_connected_THUMB @ 0x00017e85
+ *   ADDR_init_ble_work_thread_THUMB          @ 0x0002201d
+ *   g_settings_notify_mutex                  @ 0x20006a1c
+ *   g_ble_conn_ctx_ptr                       @ 0x20006a30
+ */
+/* Reconstructed FUN_00018208 @ 0x18208  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void kmutex_dlist_init(unsigned);
@@ -29,4 +39,3 @@ void ancs_ctx_init(uint32_t *param_1,unsigned param_2,unsigned param_3,unsigned 
   memset_bytes(uVar2,0,0x15,param_4);
   return;
 }
-

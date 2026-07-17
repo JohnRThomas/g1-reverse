@@ -1,10 +1,30 @@
-/* named: init_dashboard_startup_mode_info_defaults */
-/* globals referenced:
-//   0x200069fc  device_info                  
-//   0x2001b816  g_widget0_index_raw          
-//   0x2007fc00  g_dashboard_startup_mode_info_defaults 
-*/
-/* Reconstructed init_dashboard_startup_mode_info_defaults @ 0x16658  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00016658 @ 0x00016658
+ * public-name: init_dashboard_startup_mode_info_defaults
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   init_dashboard_startup_mode_info_defaults <= FUN_00016658 @ 0x00016658
+ * address symbols (name @ address):
+ *   device_info                              @ 0x200069fc
+ *   g_widget0_index_raw                      @ 0x2001b816
+ *   g_dashboard_startup_mode_info_defaults   @ 0x2007fc00
+ *   g_all_static_info_fc04                   @ 0x2007fc04
+ *   g_dashboard_startup_mode_info_field_05   @ 0x2007fc05
+ *   g_all_static_info_fc08                   @ 0x2007fc08
+ *   g_all_static_info_fc0c                   @ 0x2007fc0c
+ *   g_all_static_info                        @ 0x2007fc10
+ *   g_dashboard_startup_mode_info_field_14   @ 0x2007fc14
+ *   g_dashboard_startup_mode_info_field_18   @ 0x2007fc18
+ *   g_dashboard_startup_mode_info_field_1c   @ 0x2007fc1c
+ *   g_all_static_info_fc35                   @ 0x2007fc35
+ *   g_dashboard_startup_mode_info_field_39   @ 0x2007fc39
+ *   g_all_static_info_fc5f                   @ 0x2007fc5f
+ *   g_all_static_info_fc60                   @ 0x2007fc60
+ *   g_dashboard_startup_mode_info_field_61   @ 0x2007fc61
+ *   g_all_static_info_fc62                   @ 0x2007fc62
+ *   g_all_static_info_fc68                   @ 0x2007fc68
+ *   g_dashboard_default_widget0_index        @ 0x2007fc69
+ */
+/* Reconstructed FUN_00016658 @ 0x16658  (parity: 300/300 trials, PROVEN) */
 void init_dashboard_startup_mode_info_defaults(void){
   int iVar7 = *(volatile int*)0x200069fcUL;
   int dst = *(volatile int*)(iVar7+0xfec);
@@ -42,4 +62,3 @@ void init_dashboard_startup_mode_info_defaults(void){
   *(volatile int*)(dst+0x57) = *(volatile int*)0x2007fc59UL;
   *(volatile unsigned short*)(dst+0x5b) = *(volatile unsigned short*)0x2007fc5dUL;
 }
-

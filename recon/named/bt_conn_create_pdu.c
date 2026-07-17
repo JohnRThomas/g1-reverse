@@ -1,5 +1,12 @@
-/* named: bt_conn_create_pdu */
-/* Reconstructed bt_conn_create_pdu @ 0x81820  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081820 @ 0x00081820
+ * public-name: bt_conn_create_pdu
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_push                      <= FUN_0005f518 @ 0x0005f518
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ */
+/* Reconstructed FUN_00081820 @ 0x81820.
+ * Complete 50-byte tail-dispatch wrapper; 0x81852 starts the next function. */
 #include <stdint.h>
 extern short* net_buf_simple_push(int,int);
 extern unsigned FUN_000564cc(int,int,int,unsigned);
@@ -11,4 +18,3 @@ unsigned bt_conn_create_pdu(int param_1, short param_2, int param_3, int param_4
   *psVar4 = (short)(sVar1 - 4);
   return FUN_000564cc(param_1, param_3, param_4, param_5);
 }
-

@@ -1,10 +1,27 @@
 #include "g1_app_symbols.h"
-/* named: uarte_nrfx_isr */
-/* Reconstructed uarte_nrfx_isr @ 0x6312c  (parity: 150/150 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0006312c @ 0x0006312c
+ * public-name: uarte_nrfx_isr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   uarte_nrfx_isr                           <= FUN_0006312c @ 0x0006312c
+ *   post_event_tag2_from_node                <= FUN_0008484e @ 0x0008484e
+ *   post_event_tag4_and_clear                <= FUN_00084880 @ 0x00084880
+ *   post_event_tag5                          <= FUN_000848b0 @ 0x000848b0
+ *   nvs_timer_arm_and_mark_dirty             <= FUN_000849da @ 0x000849da
+ *   ringbuf_flush_chunk                      <= FUN_00084a24 @ 0x00084a24
+ *   flowctl_release_credit_and_kick          <= FUN_00084b32 @ 0x00084b32
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_f4240                             @ 0x000f4240
+ */
+/* Reconstructed FUN_0006312c @ 0x6312c  (parity: 150/150 trials, PROVEN) */
 #pragma GCC diagnostic ignored "-Wint-conversion"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 typedef unsigned char undefined,undefined1,byte,uchar,uint1;
 typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
@@ -14,13 +31,13 @@ typedef long long(*code)();
 #define bool int
 #define false 0
 #define true 1
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){ return (__get_CONTROL() & 1u) == 0; }
+static inline int getBasePriority(void){ return (int)__get_BASEPRI(); }
+static inline void setBasePriority(int p){ __set_BASEPRI((uint32_t)p); }
+static inline void InstructionSynchronizationBarrier(int x){ (void)x; __ISB(); }
 static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
 static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
 static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
@@ -60,21 +77,21 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long __aeabi_uldivmod();
-extern long long z_impl_k_timer_start();
-extern long long post_event_dispatch();
-extern long long post_event_tag2_from_node();
-extern long long post_event_tag4_and_clear();
-extern long long post_event_tag5();
-extern long long nvs_timer_arm_and_mark_dirty();
-extern long long ringbuf_flush_chunk();
-extern long long FUN_00084a54();
-extern long long FUN_00084ade();
-extern long long flowctl_release_credit_and_kick();
-extern long long z_impl_k_timer_stop();
-extern long long memset_bytes();
-#define DAT_00063494 " size" /*=0xf423f*/
-#define DAT_00063498 "size" /*=0xf4240*/
+extern uint64_t __aeabi_uldivmod(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint64_t FUN_00075174(uint32_t, uint32_t, uint32_t, uint32_t, uint64_t);
+extern uint64_t FUN_00084840(uint32_t, const void *);
+extern uint64_t post_event_tag2_from_node(uint32_t);
+extern uint64_t post_event_tag4_and_clear(uint32_t, uint32_t);
+extern uint64_t post_event_tag5(uint32_t);
+extern uint64_t nvs_timer_arm_and_mark_dirty(uint32_t);
+extern int32_t ringbuf_flush_chunk(uint32_t);
+extern uint64_t FUN_00084a54(uint32_t, uint32_t, uint32_t);
+extern uint64_t FUN_00084ade(uint32_t, uint32_t);
+extern uint64_t flowctl_release_credit_and_kick(uint32_t, uint32_t);
+extern uint64_t FUN_0008673e(uint32_t);
+extern uint64_t memset_bytes(void *, uint32_t, uint32_t, ...);
+#define DAT_00063494 0xf423fUL
+#define DAT_00063498 ((unsigned long)&rodata_f4240) /*=0xf4240*/
 
 
 void uarte_nrfx_isr(int param_1)
@@ -94,7 +111,7 @@ void uarte_nrfx_isr(int param_1)
   undefined1 local_2c [4];
   undefined4 local_28;
   int iStack_24;
-  
+
   iVar6 = **(int **)(param_1 + 4);
   iVar4 = *(int *)(param_1 + 0x10);
   if (*(int *)(iVar6 + 0x108) != 0) {
@@ -122,7 +139,7 @@ void uarte_nrfx_isr(int param_1)
       bVar7 = (byte)iVar4 & 8;
     }
     local_28 = CONCAT31(((unsigned long long)(local_28)>>8 & 0xffffffULL),bVar7);
-    post_event_dispatch(param_1,local_2c);
+    FUN_00084840(param_1,local_2c);
     nvs_timer_arm_and_mark_dirty(param_1);
   }
   if ((*(int *)(iVar6 + 0x110) != 0) && (*(int *)(iVar6 + 0x304) << 0x1b < 0)) {
@@ -130,7 +147,7 @@ void uarte_nrfx_isr(int param_1)
     iVar8 = *(int *)(param_1 + 0x10);
     puVar9 = (undefined4 *)**(undefined4 **)(param_1 + 4);
     *(undefined1 *)(*(int *)(iVar8 + 0xc) + 0xce) = 1;
-    z_impl_k_timer_stop(*(int *)(iVar8 + 0xc) + 0x80);
+    FUN_0008673e(*(int *)(iVar8 + 0xc) + 0x80);
     iVar4 = puVar9[0x14f];
     bVar7 = *(byte *)(*(int *)(iVar8 + 0xc) + 0xc9);
     *(undefined1 *)(*(int *)(iVar8 + 0xc) + 0xc9) = 0;
@@ -185,7 +202,7 @@ void uarte_nrfx_isr(int param_1)
     iVar8 = *(int *)(param_1 + 0x10);
     memset_bytes(local_2c,0,0x14,*(undefined4 *)(iVar6 + 0x14c));
     local_2c[0] = 3;
-    post_event_dispatch(param_1,local_2c);
+    FUN_00084840(param_1,local_2c);
     iVar2 = *(int *)(iVar8 + 0xc);
     iVar4 = *(int *)(iVar2 + 0x74);
     if (iVar4 != -1) {
@@ -195,7 +212,7 @@ void uarte_nrfx_isr(int param_1)
       lVar1 = (longlong)(int)(uVar5 & ~((int)uVar5 >> 0x1f)) * 0x8000 + (ulonglong)DAT_00063494;
       uVar11 = __aeabi_uldivmod((int)lVar1,(int)((ulonglong)lVar1 >> 0x20),DAT_00063498,0);
       uVar3 = (undefined4)((ulonglong)uVar11 >> 0x20);
-      z_impl_k_timer_start(iVar4 + 0x80,uVar3,(int)uVar11,uVar3,uVar11);
+      FUN_00075174(iVar4 + 0x80,uVar3,(int)uVar11,uVar3,uVar11);
     }
   }
   if ((*(int *)(iVar6 + 0x144) != 0) && (*(int *)(iVar6 + 0x110) == 0)) {
@@ -285,7 +302,7 @@ void uarte_nrfx_isr(int param_1)
       if (iVar2 != 0) goto LAB_00063380;
       iStack_24 = *(int *)(*(int *)(iVar4 + 0xc) + 0x1c);
     }
-    z_impl_k_timer_stop(*(int *)(iVar4 + 0xc) + 0x20);
+    FUN_0008673e(*(int *)(iVar4 + 0xc) + 0x20);
     memset_bytes(local_2c,0,0x14);
     local_28 = *(undefined4 *)(*(int *)(iVar4 + 0xc) + 8);
     if (iStack_24 != *(int *)(*(int *)(iVar4 + 0xc) + 0xc)) {
@@ -294,7 +311,7 @@ void uarte_nrfx_isr(int param_1)
     *(undefined4 *)(iVar6 + 0x308) = 0x400000;
     *(undefined4 *)(*(int *)(iVar4 + 0xc) + 8) = 0;
     *(undefined4 *)(*(int *)(iVar4 + 0xc) + 0xc) = 0;
-    post_event_dispatch(param_1,local_2c);
+    FUN_00084840(param_1,local_2c);
   }
   else {
 LAB_00063380:
@@ -317,5 +334,3 @@ LAB_00063380:
   }
   return;
 }
-
-

@@ -1,18 +1,36 @@
-/* named: format_string_to_buffer */
-/* globals referenced:
-//   0x20002d20  g_libc_heap_ctrl             
-*/
-/* Reconstructed format_string_to_buffer @ 0x7797c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007797c @ 0x0007797c
+ * public-name: format_string_to_buffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   format_string_to_buffer                  <= FUN_0007797c @ 0x0007797c
+ * address symbols (name @ address):
+ *   g_libc_heap_ctrl                         @ 0x20002d20
+ */
+/* Reconstructed FUN_0007797c @ 0x7797c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00078d90(int, void*, int);
 
 void format_string_to_buffer(unsigned char *param_1, int param_2, int param_3, int param_4)
 {
-  int r0;
-  unsigned char *local_78[2];
-  r0 = *(volatile int*)0x20002d20UL;
-  local_78[0] = param_1;
-  FUN_00078d90(r0, local_78, param_2);
-  *(volatile unsigned char *)param_1 = 0;
+  struct writer_frame {
+    unsigned reserved[2];
+    struct {
+      unsigned char *start;
+      unsigned unused;
+      int capacity;
+      unsigned flags;
+      unsigned char *cursor;
+      int remaining;
+    } writer;
+    unsigned char tail[80];
+  } frame;
+  frame.writer.start = param_1;
+  frame.writer.capacity = 0x7fffffff;
+  frame.writer.flags = 0xffff0208u;
+  frame.writer.cursor = param_1;
+  frame.writer.remaining = 0x7fffffff;
+  (void)param_3;
+  (void)param_4;
+  FUN_00078d90(*(volatile int*)0x20002d20UL, &frame.writer, param_2);
+  *frame.writer.start = 0;
 }
-

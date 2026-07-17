@@ -1,19 +1,38 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_010087f0 @ 0x10087f0  (parity 300 trials PROVEN) */
+/* net-core FUN_010087f0 @ 0x010087f0 */
+#include <stdint.h>
 
-extern void FUN_01008670(void);
-__attribute__((naked)) void FUN_010087f0(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+static void square_u256(uint32_t product[16], const uint32_t value[8])
 {
-  __asm__ volatile(
-    "push.w {r0, r4, r5, r6, r7, r8, r9, r10, r11, lr}\n"
-    "sub sp, #0x1c\n"
-    "bl FUN_01008670\n"
-    "ldr.w r8, [sp, #0x1c]\n"
-    "add.w r8, r8, #0x20\n"
-    "stm.w r8, {r0, r1, r2, r3, r4, r5, r6, r7}\n"
-    "pop {r0, r1, r2, r3, r4, r5, r6, r7}\n"
-    "stm.w r7, {r0, r1, r2, r3, r4, r5, r6, r11}\n"
-    "pop.w {r4, r5, r6, r7, r8, r9, r10, r11, pc}\n"
-  );
+    for (unsigned i = 0; i < 16; ++i)
+        product[i] = 0;
+
+    for (unsigned i = 0; i < 8; ++i) {
+        uint64_t carry = 0;
+        for (unsigned j = 0; j < 8; ++j) {
+            uint64_t sum = (uint64_t)value[i] * value[j] +
+                           product[i + j] + carry;
+            product[i + j] = (uint32_t)sum;
+            carry = sum >> 32;
+        }
+        for (unsigned k = i + 8; carry != 0 && k < 16; ++k) {
+            uint64_t sum = (uint64_t)product[k] + carry;
+            product[k] = (uint32_t)sum;
+            carry = sum >> 32;
+        }
+    }
 }
 
+/* Convert the arithmetic worker's private 512-bit result into a limb array. */
+void FUN_010087f0(uint32_t result[16], const uint32_t value[8])
+{
+    uint32_t square[16];
+    square_u256(square, value);
+
+    /* The firmware worker returns the high half in registers first, then the
+     * adapter copies the low half from its caller-reserved stack area. */
+    for (unsigned i = 8; i < 16; ++i)
+        result[i] = square[i];
+    for (unsigned i = 0; i < 8; ++i)
+        result[i] = square[i];
+}

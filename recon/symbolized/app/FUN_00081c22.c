@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00081c22 */
+/* readable reconstruction; identity: FUN_00081c22 @ 0x00081c22
+ * public-name: FUN_00081c22
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00081c22 @ 0x81c22  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -42,4 +45,3 @@ L64:
     if(uVar3 < uVar9) uVar3 = uVar9;
     FUN_0005c76c(uVar2, uVar3, uVar4, uVar9);
 }
-

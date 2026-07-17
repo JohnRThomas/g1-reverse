@@ -1,9 +1,18 @@
-/* named: projector_fill_framebuffer */
-/* Reconstructed projector_fill_framebuffer @ 0x7d6ae  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007d6ae @ 0x0007d6ae
+ * public-name: projector_fill_framebuffer
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_projector_controller                 <= FUN_0007d4ec @ 0x0007d4ec
+ *   projector_fill_framebuffer               <= FUN_0007d6ae @ 0x0007d6ae
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_f000                              @ 0x0000f000
+ */
+/* Reconstructed FUN_0007d6ae @ 0x7d6ae  (parity: 300/300 trials, PROVEN) */
 
 extern int get_projector_controller(void);
 extern void memset_bytes(unsigned int, unsigned int, unsigned int);
-extern void projector_set_write_window(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void FUN_000476b4(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void projector_fill_framebuffer(unsigned int param_1)
 {
@@ -13,9 +22,8 @@ void projector_fill_framebuffer(unsigned int param_1)
   iVar1 = get_projector_controller();
   uVar2 = *(unsigned int*)(iVar1+0x24);
   memset_bytes(uVar2, param_1, 64000);
-  projector_set_write_window(0,0,uVar2,0xf000);
-  projector_set_write_window(0,0xc0,uVar2,0xf000);
-  projector_set_write_window(0,0x180,uVar2,0x7800);
+  FUN_000476b4(0,0,uVar2,0xf000);
+  FUN_000476b4(0,0xc0,uVar2,0xf000);
+  FUN_000476b4(0,0x180,uVar2,0x7800);
   return;
 }
-

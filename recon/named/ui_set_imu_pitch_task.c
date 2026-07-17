@@ -1,9 +1,28 @@
-/* named: ui_set_imu_pitch_task */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed ui_set_imu_pitch_task @ 0x46b80  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00046b80 @ 0x00046b80
+ * public-name: ui_set_imu_pitch_task
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   gui_set_active_canvas                    <= FUN_000431b4 @ 0x000431b4
+ *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   gui_canvas_flags_set_bit1                <= FUN_000432d0 @ 0x000432d0
+ *   gui_canvas_flags_clear_bit1              <= FUN_000432ec @ 0x000432ec
+ *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
+ *   imu_pitch_task_reset_render_state        <= FUN_000436f8 @ 0x000436f8
+ *   set_imu_pitch_reflash                    <= FUN_000469bc @ 0x000469bc
+ *   ui_set_imu_pitch_task                    <= FUN_00046b80 @ 0x00046b80
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ * address symbols (name @ address):
+ *   rodata_a8e98                             @ 0x000a8e98
+ *   rodata_aae20                             @ 0x000aae20
+ *   rodata_d71ad                             @ 0x000d71ad
+ *   rodata_d71e3                             @ 0x000d71e3
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_imu_pitch_task_state                   @ 0x2001cf8f
+ */
+/* Reconstructed FUN_00046b80 @ 0x46b80  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int get_device_info(int,...);
@@ -96,4 +115,3 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
     pcVar3[0]=0; pcVar3[1]=0; pcVar3[2]=0;
     return 0;
 }
-

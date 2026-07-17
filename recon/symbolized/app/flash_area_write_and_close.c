@@ -1,6 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: flash_area_write_and_close */
-/* Reconstructed flash_area_write_and_close @ 0x84e72  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00084e72 @ 0x00084e72
+ * public-name: flash_area_write_and_close
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   flash_area_write_and_close               <= FUN_00084e72 @ 0x00084e72
+ */
+/* Reconstructed FUN_00084e72 @ 0x84e72  (parity: 300/300 trials, PROVEN) */
 
 extern int flash_area_open(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
 extern unsigned int FUN_0006403c(unsigned int a, unsigned int b);
@@ -21,4 +28,3 @@ unsigned int flash_area_write_and_close(unsigned int param_1, unsigned int param
     }
     return uVar2;
 }
-

@@ -1,5 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0006f28c */
+/* readable reconstruction; identity: FUN_0006f28c @ 0x0006f28c
+ * public-name: FUN_0006f28c
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_8d3d0                             @ 0x0008d3d0
+ *   rodata_8ed50                             @ 0x0008ed50
+ */
 /* Reconstructed FUN_0006f28c @ 0x6f28c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -17,7 +23,7 @@ int FUN_0006f28c(int param_1, int param_2, int param_3, int param_4, int *param_
     else param_6 = param_6 << 0xb;
     iVar12 = 0;
     uVar2 = 1;
-    local_50 = ((uintptr_t)&tbl_8ed50) /*=0x8ed50*/ + (uint)(iVar5 + -0x28 < param_3) * 0x800;
+    local_50 = ((unsigned long)&rodata_8ed50) /*=0x8ed50*/ + (uint)(iVar5 + -0x28 < param_3) * 0x800;
     uVar1 = 0;
     iVar8 = 0;
     local_4c = 0;
@@ -44,7 +50,7 @@ LAB_0006f436:
                             if (2 < (int)uVar7) uVar4 = 3;
                             uVar6 = (int)uVar6 >> 1;
                             uVar7 = uVar7 + 1;
-                            iVar8 = iVar8 + (uint)*(volatile unsigned short *)(((uintptr_t)&tbl_8d3d0) /*=0x8d3d0*/ + (uint)pbVar14[uVar4] * 0x22 + 0x20);
+                            iVar8 = iVar8 + (uint)*(volatile unsigned short *)(((unsigned long)&rodata_8d3d0) /*=0x8d3d0*/ + (uint)pbVar14[uVar4] * 0x22 + 0x20);
                         } while (uVar6 != 0);
                         uVar6 = uVar7;
                         if (2 < (int)uVar7) uVar6 = 3;
@@ -54,7 +60,7 @@ LAB_0006f436:
                         else iVar3 = 2;
                         if (uVar10 == 1) iVar3 = iVar3 + 1;
                         uVar6 = (int)uVar6 >> 1;
-                        iVar8 = iVar8 + (*(volatile unsigned short *)(((uintptr_t)&tbl_8d3d0) /*=0x8d3d0*/ + (uint)*pbVar14 * 0x22 + 0x20) - 0x1000);
+                        iVar8 = iVar8 + (*(volatile unsigned short *)(((unsigned long)&rodata_8d3d0) /*=0x8d3d0*/ + (uint)*pbVar14 * 0x22 + 0x20) - 0x1000);
                         local_3c = local_3c + iVar3;
                         if (uVar6 != 0) {
                             uVar7 = 1;
@@ -70,7 +76,7 @@ LAB_0006f436:
                     uVar10 = (int)uVar10 >> (uVar7 & 0xff);
                 }
                 iVar12 = iVar12 + 2;
-                iVar8 = iVar8 + (uint)*(volatile unsigned short *)(((uintptr_t)&tbl_8d3d0) /*=0x8d3d0*/ + ((uint)*pbVar14 * 0x11 + uVar9 + uVar10 * 4) * 2);
+                iVar8 = iVar8 + (uint)*(volatile unsigned short *)(((unsigned long)&rodata_8d3d0) /*=0x8d3d0*/ + ((uint)*pbVar14 * 0x11 + uVar9 + uVar10 * 4) * 2);
                 if ((iVar11 != 0) && (iVar8 <= param_6)) {
                     local_4c = iVar8;
                     local_48 = iVar12;
@@ -102,4 +108,3 @@ LAB_0006f3ea:
     if (iVar5 < 0) iVar5 = local_4c + 0xffe;
     return iVar5 >> 0xb;
 }
-

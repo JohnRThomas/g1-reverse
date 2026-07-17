@@ -1,28 +1,42 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0004d334 */
-/* globals referenced:
-//   0x000882b0  __settings_handler_static_list_start 
-*/
+/* readable reconstruction; identity: FUN_0004d334 @ 0x0004d334
+ * public-name: FUN_0004d334
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   log_msg_commit                           <= FUN_0004d8f8 @ 0x0004d8f8
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   atomic_inc                               <= FUN_0007ee2c @ 0x0007ee2c
+ * address symbols (name @ address):
+ *   rodata_882a0                             @ 0x000882a0
+ *   __settings_handler_static_list_start     @ 0x000882b0
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0cae                             @ 0x000f0cae
+ *   rodata_f0cdb                             @ 0x000f0cdb
+ *   rodata_f0cff                             @ 0x000f0cff
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   z_log_process_guard                      @ 0x2000a0dc
+ */
 /* Reconstructed FUN_0004d334 @ 0x4d334  (parity: 300/300 trials, PROVEN) */
 extern int atomic_inc(int);
-extern unsigned activate_foreach_backend(unsigned);
+extern unsigned FUN_0004d2d0(unsigned);
 extern void log_msg_commit(int*,unsigned,int);
 extern void FUN_00074844(int,int);
 extern void printk(int,...);
 extern void assert_post_action(int,...);
 unsigned FUN_0004d334(int param_1,int param_2){
-  int *piVar1 = (int*)((uintptr_t)&__settings_handler_static_list_start) /*=0x882b0*/;
-  int *piVar5 = (int*)((uintptr_t)&tbl_880d8) /*=0x882a0*/;
+  int *piVar1 = (int*)((unsigned long)&__settings_handler_static_list_start) /*=0x882b0*/;
+  int *piVar5 = (int*)((unsigned long)&rodata_882a0) /*=0x882a0*/;
   unsigned uVar3, uVar6; int iVar2; unsigned uVar4;
   if ((unsigned)((int)piVar1 - (int)piVar5) < 0xa0){
-    iVar2 = atomic_inc(((uintptr_t)&z_log_process_guard) /*=0x2000a0dc*/);
+    iVar2 = atomic_inc(((unsigned long)&z_log_process_guard) /*=0x2000a0dc*/);
     if (iVar2 != 0) return 0;
     uVar3=0; uVar6=0;
     for (; piVar5 <= piVar1; piVar5 += 4){
       if (piVar1 <= piVar5){
         if (param_1 != 0){
           while (uVar3 != 0){
-            uVar3 = activate_foreach_backend(uVar3);
+            uVar3 = FUN_0004d2d0(uVar3);
             if (param_2 != 0) FUN_00074844(0x148,0);
           }
           return 0;
@@ -37,14 +51,13 @@ unsigned FUN_0004d334(int param_1,int param_2){
         uVar6++;
       }
     }
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"backend <= _log_backend_list_end" /*=0xf0cff*/,"WEST_TOPDIR/zephyr/subsys/logging/log_core.c" /*=0xf0cae*/,0x126);
-    printk("\tunexpected list end location\n" /*=0xf0d20*/);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0cff) /*=0xf0cff*/,((unsigned long)&rodata_f0cae) /*=0xf0cae*/,0x126);
+    printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/);
     uVar4 = 0x126;
   } else {
-    printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"log_backend_count_get() < (32 / 3U)" /*=0xf0cdb*/,"WEST_TOPDIR/zephyr/subsys/logging/log_core.c" /*=0xf0cae*/,0x119);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0cdb) /*=0xf0cdb*/,((unsigned long)&rodata_f0cae) /*=0xf0cae*/,0x119);
     uVar4 = 0x119;
   }
-  assert_post_action("WEST_TOPDIR/zephyr/subsys/logging/log_core.c" /*=0xf0cae*/,uVar4);
+  assert_post_action(((unsigned long)&rodata_f0cae) /*=0xf0cae*/,uVar4);
   return 0;
 }
-

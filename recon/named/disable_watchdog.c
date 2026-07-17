@@ -1,14 +1,22 @@
-/* named: disable_watchdog */
-/* globals referenced:
-//   0x00087cc8  g_watchdog_device            
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0002aeb4 @ 0x0002aeb4
+ * public-name: disable_watchdog
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ * address symbols (name @ address):
+ *   g_watchdog_device                        @ 0x00087cc8
+ *   rodata_a1c4e                             @ 0x000a1c4e
+ *   rodata_a1c6a                             @ 0x000a1c6a
+ *   rodata_a1c85                             @ 0x000a1c85
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_wdt_channel_id                         @ 0x20007b50
+ */
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void FUN_00074844(unsigned int, unsigned int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void debug_print(void);
+extern void debug_print(unsigned int, unsigned int, ...);
 
 typedef int (*fp_t)(unsigned int);
 
@@ -20,9 +28,9 @@ int disable_watchdog(void)
     if (*piVar1 < 0) {
         if (3 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa1c4e, 0xa1c85, *piVar1, 0, 0);
+                DEBUG_PRINT(0xa1c4e, 0xa1c85, *piVar1);
             } else {
-                debug_print();
+                debug_print(0xa1c4e, 0xa1c85, *piVar1);
             }
         }
         iVar5 = 0;
@@ -31,9 +39,11 @@ int disable_watchdog(void)
         do {
             if (3 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0xa1c6a, 0xa1c85);
+                    DEBUG_PRINT(0xa1c6a, 0xa1c85, 0,
+                                *(volatile unsigned int*)0x20007554UL);
                 } else {
-                    debug_print();
+                    debug_print(0xa1c6a, 0xa1c85, 0,
+                                 *(volatile unsigned int*)0x20007554UL);
                 }
             }
             fp_t f = *(fp_t*)(*(int*)(0x87cc8 + 8) + 4);
@@ -49,4 +59,3 @@ int disable_watchdog(void)
     }
     return iVar5;
 }
-

@@ -24,11 +24,10 @@ void FUN_010195f8(void)
     *(volatile unsigned char*)(iVar3+0x25)=0xff;
     unsigned char r1b = *(volatile unsigned char*)(iVar3+0x1c);
     r1b = (r1b & 0x9f) | 0x20;
-    iVar1 = ((uintptr_t)&g_ll_conn_default_ctx) /*=0x21001058*/;
+    iVar1 = ((unsigned long)&g_ll_conn_default_ctx) /*=0x21001058*/;
     *(volatile unsigned int*)(iVar3+0x16)=0;
     *(volatile unsigned int*)(iVar3+0x26)=0;
     *(volatile unsigned char*)(iVar3+0x1c)=r1b;
     *(volatile unsigned int*)(iVar1+0x40)=0;
     *(volatile unsigned short*)(iVar1+0x44)=0;
 }
-

@@ -1,5 +1,16 @@
-/* named: Balloc */
-/* Reconstructed Balloc @ 0x785d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000785d4 @ 0x000785d4
+ * public-name: Balloc
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
+ *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
+ *   heap_calloc                              <= FUN_000876d0 @ 0x000876d0
+ * address symbols (name @ address):
+ *   rodata_f8bb7                             @ 0x000f8bb7
+ *   rodata_f8cd5                             @ 0x000f8cd5
+ */
+/* Reconstructed FUN_000785d4 @ 0x785d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void* malloc(int);
 extern void* libc_fatal_error_and_abort(unsigned int,int,int,unsigned int);
@@ -35,4 +46,3 @@ unsigned int* Balloc(int param_1,unsigned int param_2){
   }
   return puVar1;
 }
-

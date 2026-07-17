@@ -11,4 +11,3 @@ void FUN_0102a258(char *param_1, char *param_2)
         param_1 = param_1 + 1;
     } while (cVar1 != 0);
 }
-

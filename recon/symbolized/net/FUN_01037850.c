@@ -1,5 +1,7 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01037850 @ 0x1037850  (parity 300 trials PROVEN) */
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern int FUN_0103610c(unsigned int);
 extern void FUN_01036144(unsigned int);
@@ -11,29 +13,25 @@ extern void FUN_010380d8(int);
 
 void FUN_01037850(int param_1)
 {
-    unsigned int basepri_save;
-    __asm__ volatile (
-        "mrs %0, basepri\n"
-        "movs r3, #0x40\n"
-        "msr basepri_max, r3\n"
-        "isb sy\n"
-        : "=r"(basepri_save) :: "r3","memory");
+    unsigned int basepri_save = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40);
+    __ISB();
 
-    int iVar3 = FUN_0103610c(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+    int iVar3 = FUN_0103610c(0x21004b68);
     if (iVar3 == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
     }
-    FUN_01036144(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+    FUN_01036144(0x21004b68);
     if (*(int*)(param_1 + 8) != 0) {
         FUN_01037814(param_1);
     }
-    iVar3 = FUN_01036128(((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/);
+    iVar3 = FUN_01036128(0x21004b68);
     if (iVar3 == 0) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
-        FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0xf0);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
     }
-    __asm__ volatile ("msr basepri, %0\nisb sy\n" :: "r"(basepri_save) : "memory");
+    __set_BASEPRI(basepri_save);
+    __ISB();
     FUN_010380d8(param_1 + 0x18);
 }
-

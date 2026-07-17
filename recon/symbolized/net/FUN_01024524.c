@@ -51,5 +51,3 @@ void FUN_01024524(uint param_1,uint param_2,uint *param_3,int *param_4,char *par
   }
   while (1) { FUN_010256dc(0x9b,0x96); }
 }
-
-

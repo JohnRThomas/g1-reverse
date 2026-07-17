@@ -1,6 +1,23 @@
 #include "g1_app_symbols.h"
-/* named: find_type_cb */
-/* Reconstructed find_type_cb @ 0x583d0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000583d0 @ 0x000583d0
+ * public-name: find_type_cb
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   find_type_cb                             <= FUN_000583d0 @ 0x000583d0
+ *   net_buf_pool_get                         <= FUN_0005ee08 @ 0x0005ee08
+ *   net_buf_frag_last                        <= FUN_0005f304 @ 0x0005f304
+ *   net_buf_frag_add                         <= FUN_0005f390 @ 0x0005f390
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   bt_uuid_create                           <= FUN_00080d9a @ 0x00080d9a
+ *   net_buf_frags_len_0                      <= FUN_00081bc0 @ 0x00081bc0
+ *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ * address symbols (name @ address):
+ *   rodata_88100                             @ 0x00088100
+ *   rodata_f43ca                             @ 0x000f43ca
+ *   rodata_f43e9                             @ 0x000f43e9
+ */
+/* Reconstructed FUN_000583d0 @ 0x583d0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern uint64_t net_buf_pool_get(int);
 extern int net_buf_frag_last(int);
@@ -12,7 +29,7 @@ extern uint64_t net_buf_frags_len_0(int);
 extern void FUN_00081ddc(int, int, int);
 extern int FUN_000836de(int, int, int, int);
 extern int net_buf_simple_tailroom(int);
-extern int memcmp(int, int);
+extern int FUN_00086be4(int, int);
 
 uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)
 {
@@ -72,7 +89,7 @@ uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)
     uVar2 = ((unsigned(*)(uint32_t, uint32_t*, void*, int))(uintptr_t)param_1[1])(local_64, param_1, (void*)auStack_60, 0x10);
     if ((int)uVar2 < 0) goto LAB_584fc;
     if (*(volatile uint8_t*)((int)(intptr_t)param_3 + 0x10) == uVar2) {
-        iVar6 = memcmp(param_3[3], (int)(intptr_t)auStack_60);
+        iVar6 = FUN_00086be4(param_3[3], (int)(intptr_t)auStack_60);
 LAB_58534:
         if (iVar6 == 0) {
             *(volatile uint8_t*)((int)(intptr_t)param_3 + 0x11) = 0;
@@ -87,7 +104,7 @@ LAB_58420:
     } else {
         iVar6 = bt_uuid_create((int)(intptr_t)sdesc, param_3[3], 0);
         if (iVar6 == 0) {
-            local_74 = "Unable to create UUID: size %u" /*=0xf43ca*/;
+            local_74 = ((unsigned long)&rodata_f43ca) /*=0xf43ca*/;
             local_70 = *(volatile uint8_t*)((int)(intptr_t)param_3 + 0x10);
         } else {
             iVar6 = bt_uuid_create((int)(intptr_t)auStack_50, (int)(intptr_t)auStack_60, uVar2 & 0xff);
@@ -95,14 +112,13 @@ LAB_58420:
                 iVar6 = bt_uuid_cmp((int)(intptr_t)sdesc, (int)(intptr_t)auStack_50);
                 goto LAB_58534;
             }
-            local_74 = "Unable to create UUID: size %d" /*=0xf43e9*/;
+            local_74 = ((unsigned long)&rodata_f43e9) /*=0xf43e9*/;
             local_70 = uVar2;
         }
         local_78 = 3;
-        FUN_00081ddc(((uintptr_t)&tbl_880d8) /*=0x88100*/, 0x1880, (int)(intptr_t)&local_78);
+        FUN_00081ddc(((unsigned long)&rodata_88100) /*=0x88100*/, 0x1880, (int)(intptr_t)&local_78);
     }
 LAB_584fc:
     param_3[2] = 0;
     return 1;
 }
-

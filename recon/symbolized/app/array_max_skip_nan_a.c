@@ -1,6 +1,12 @@
 #include "g1_app_symbols.h"
-/* named: array_max_skip_nan_a */
-/* Reconstructed array_max_skip_nan_a @ 0xe954  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0000e954 @ 0x0000e954
+ * public-name: array_max_skip_nan_a
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   float_is_nan                             <= FUN_0000e938 @ 0x0000e938
+ *   array_max_skip_nan_a                     <= FUN_0000e954 @ 0x0000e954
+ */
+/* Reconstructed FUN_0000e954 @ 0xe954  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int float_is_nan(float);
 float array_max_skip_nan_a(float* param_1){
@@ -28,4 +34,3 @@ float array_max_skip_nan_a(float* param_1){
     }
     return fVar3;
 }
-

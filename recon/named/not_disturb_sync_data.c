@@ -1,8 +1,17 @@
-/* named: not_disturb_sync_data */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_0003ce04 @ 0x0003ce04
+ * public-name: not_disturb_sync_data
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ * address symbols (name @ address):
+ *   rodata_a98de                             @ 0x000a98de
+ *   rodata_a9935                             @ 0x000a9935
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed not_disturb_sync_data @ 0x3ce04  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint32_t;
@@ -10,7 +19,7 @@ typedef unsigned char uint8_t;
 
 extern void DEBUG_PRINT(uint32_t a, uint32_t b);
 extern uint32_t get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(uint32_t a, uint32_t b);
 extern uint32_t esb_send_command_and_wait_ack(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
 extern void memcpy(uint32_t dst, void* src, uint32_t len);
 extern uint32_t sync_to_slave(uint32_t a, uint32_t b, void* c, uint32_t d);
@@ -71,8 +80,7 @@ uint32_t not_disturb_sync_data(uint8_t *param_1, uint32_t param_2, uint32_t para
     if (iVar3 == 0) {
         DEBUG_PRINT(uVar2, 0xa9935UL);
     } else {
-        debug_print();
+        debug_print(uVar2, 0xa9935UL);
     }
     return 0xffffffff;
 }
-

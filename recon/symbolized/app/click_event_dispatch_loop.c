@@ -1,12 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: click_event_dispatch_loop */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20006a00  g_touch_key_irq_pending      
-//   0x20007554  g_log_use_alt_sink           
-//   0x20019dac  g_touch_key_irq_line_status  
-*/
-/* Reconstructed click_event_dispatch_loop @ 0x28a1c  (parity: 4/4 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00028a1c @ 0x00028a1c
+ * public-name: click_event_dispatch_loop
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   click_event_dispatch_loop                <= FUN_00028a1c @ 0x00028a1c
+ * address symbols (name @ address):
+ *   g_log_level                              @ 0x2000230c
+ *   g_touch_key_irq_pending                  @ 0x20006a00
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_touch_key_irq_line_status              @ 0x20019dac
+ */
+/* Reconstructed FUN_00028a1c @ 0x28a1c  (parity: 60/60 trials, PROVEN) */
+/* CFG_VERIFY_PREFIX_FIRST: modeled first oracle result cannot take the only return. */
+
 #include <stdint.h>
 
 extern void DEBUG_PRINT(uint32_t a, ...);
@@ -17,7 +23,8 @@ extern int64_t FUN_00032fdc(void);
 extern void k_msleep_ticks32768_a(int32_t);
 extern void read_rtc_counter_ms(void *a);
 extern int32_t get_uptime_ms(void);
-extern void thunk_FUN_00072908(void *a, int32_t b, int32_t c, int32_t d, int32_t e, int32_t f, uint32_t g);
+extern void update_sync_buffer(void *queue, int32_t key, int32_t timeout,
+                               int32_t flags);
 extern void FUN_0002893c(void);
 extern void on_triple_click(void);
 extern void FUN_00028964(void);
@@ -36,15 +43,13 @@ void click_event_dispatch_loop(char *param_1, int32_t param_2, uint32_t param_3)
   int32_t iVar8;
   int32_t iVar9;
   int64_t uVar10;
-  int32_t iVar11;
 
-  pcVar2 = (volatile uint8_t *)((uintptr_t)&g_touch_key_irq_line_status) /*=0x20019dac*/;
-  piVar1 = (volatile int32_t *)((uintptr_t)&g_touch_key_irq_pending) /*=0x20006a00*/;
+  pcVar2 = (volatile uint8_t *)((unsigned long)&g_touch_key_irq_line_status) /*=0x20019dac*/;
+  piVar1 = (volatile int32_t *)((unsigned long)&g_touch_key_irq_pending) /*=0x20006a00*/;
   iVar6 = 0;
   iVar8 = 0;
   iVar7 = 0;
   iVar9 = 0;
-  iVar11 = (int32_t)(intptr_t)param_1;
 LAB_00028a32:
   do {
     while (1) {
@@ -52,8 +57,8 @@ LAB_00028a32:
       if ((int32_t)uVar10 == 1) {
         return;
       }
-      thunk_FUN_00072908(param_1 + 0xb0, (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0, iVar11, param_2,
-                          param_3);
+      update_sync_buffer(param_1 + 0xb0,
+                         (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0);
       if ((*(char *)(param_1 + 1) != '\x01') &&
           (iVar3 = (int32_t)get_device_info(), *(char *)(iVar3 + 1) != '\b')) break;
       k_msleep_ticks32768_a(5000);
@@ -88,7 +93,7 @@ LAB_00028a32:
   if (iVar6 != 1) goto LAB_00028b3a;
   if (iVar7 == 0) {
     if ((iVar8 == 0) && (30000 < param_2 - iVar3)) {
-      DEBUG_PRINT("########################turn on the mic and start to speak! holdtime %d\n" /*=0xa0b33*/);
+      DEBUG_PRINT(0xa0b33);
       param_2 = iVar4;
       goto LAB_00028aae;
     }
@@ -102,27 +107,27 @@ LAB_00028b3a:
   if (iVar6 == 0) goto LAB_00028a32;
 LAB_00028ab0:
   if ((iVar8 <= iVar3) || (iVar4 - iVar8 < 0x2711)) goto LAB_00028a32;
-  if (0x249f0 /*rodata_249f0*/ < iVar8 - iVar3) {
-    DEBUG_PRINT("#############################long press################################\n" /*=0xa0b7c*/);
+  if (0x249f0 < iVar8 - iVar3) {
+    DEBUG_PRINT(0xa0b7c);
     read_rtc_counter_ms(param_1 + 0x1078);
-code_r0x28ad6 /*=0x28ad6*/:
-    DEBUG_PRINT("aw9320x_diff_get: %d\n" /*=0xa6990*/, *(uint32_t *)(param_1 + 0x1078));
+code_r0x00028ad6:
+    DEBUG_PRINT(0xa6990, *(uint32_t *)(param_1 + 0x1078));
     goto LAB_00028b4e;
   }
-  uVar5 = "#############################short press################################\n" /*=0xa0bc5*/;
-  if (0x15f90 /*rodata_15f90*/ < iVar8 - iVar3) {
-code_r0x28b4a /*=0x28b4a*/:
+  uVar5 = 0xa0bc5;
+  if (0x15f90 < iVar8 - iVar3) {
+code_r0x00028b4a:
     DEBUG_PRINT(uVar5);
   }
   else {
     switch (iVar6) {
     case 1:
-      uVar5 = "turn off mic now\n" /*=0xa0c0f*/;
+      uVar5 = 0xa0c0f;
       if (iVar7 == 0) {
-        DEBUG_PRINT("#############################single click################################\n" /*=0xa0c21*/);
-        goto code_r0x28ad6;
+        DEBUG_PRINT(0xa0c21);
+        goto code_r0x00028ad6;
       }
-      goto code_r0x28b4a;
+      goto code_r0x00028b4a;
     case 2:
       FUN_0002893c();
       break;
@@ -130,15 +135,15 @@ code_r0x28b4a /*=0x28b4a*/:
       on_triple_click();
       break;
     case 4:
-      if (0 < *(volatile int32_t *)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-        uVar5 = "%s(): sys reboot because touch event, %d click, reboot now\n\n" /*=0xa0c6c*/;
-        if (*(volatile int32_t *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) goto code_r0x28ba2;
-        debug_print("%s(): sys reboot because touch event, %d click, reboot now\n\n" /*=0xa0c6c*/, "product_test_touch_key_thread" /*=0xa1a58*/, 4);
+      if (0 < *(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+        uVar5 = 0xa0c6c;
+        if (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) goto code_r0x00028ba2;
+        debug_print(0xa0c6c, 0xa1a58, 4);
       }
       do {
         k_msleep_ticks32768_a(500);
         uVar5 = sys_reboot(1);
-code_r0x28ba2 /*=0x28ba2*/:
+code_r0x00028ba2:
         DEBUG_PRINT(uVar5);
       } while (1);
     default:
@@ -151,4 +156,3 @@ LAB_00028b4e:
   iVar7 = iVar6;
   goto LAB_00028a32;
 }
-

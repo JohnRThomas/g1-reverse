@@ -19,4 +19,3 @@ void FUN_0100a718(void)
     base += 0x1000;
     *(volatile unsigned int*)(base+0x508) = 0x1ff8;
 }
-

@@ -1,8 +1,17 @@
-/* named: FUN_000767c8 */
+/* readable reconstruction; identity: FUN_000767c8 @ 0x000767c8
+ * public-name: FUN_000767c8
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dcmp_negate_rhs                          <= FUN_0000d588 @ 0x0000d588
+ *   __aeabi_dadd                             <= FUN_0000d58c @ 0x0000d58c
+ * address symbols (name @ address):
+ *   rodata_40000                             @ 0x00040000
+ *   rodata_888a8                             @ 0x000888a8
+ */
 /* Reconstructed FUN_000767c8 @ 0x767c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern long long __aeabi_dadd(int,...);
-extern long long dcmp_negate_rhs(int,...);
+extern long long __aeabi_dadd(unsigned, unsigned, unsigned, unsigned);
+extern long long dcmp_negate_rhs(unsigned, unsigned, unsigned, unsigned);
 double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned param_3)
 {
   union { double d; unsigned long long u; struct{unsigned lo,hi;} w; } in, out;
@@ -19,7 +28,10 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
       if ((in.u & 0x7fffffff00000000ULL)==0 && uVar4==0) return in.d;
       puVar3 = (volatile unsigned*)(0x888a8 + iVar1*-8);
       uVar7=puVar3[0]; uVar8=puVar3[1];
-      uVar9 = __aeabi_dadd(uVar7,uVar8);
+      unsigned mantissa = (uVar5 & 0xfffffu) | uVar4;
+      unsigned normalized_high = (uVar5 & 0xfffe0000u) |
+          ((((0u - mantissa) | mantissa) >> 12) & 0x80000u);
+      uVar9 = __aeabi_dadd(uVar7,uVar8,uVar4,normalized_high);
       uVar9 = dcmp_negate_rhs((int)uVar9,(int)((unsigned long long)uVar9>>32),uVar7,uVar8);
       out.w.lo = (unsigned)uVar9;
       out.w.hi = (uVar5 & 0x80000000) | ((unsigned)((unsigned long long)uVar9>>32) & 0x7fffffff);
@@ -35,7 +47,7 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
   } else {
     if (0x33 < (int)uVar6) {
       if (uVar6 != 0x400) return in.d;
-      uVar10 = __aeabi_dadd(0);
+      uVar10 = __aeabi_dadd(uVar4,uVar5,uVar4,uVar5);
       out.w.lo=(unsigned)uVar10; out.w.hi=(unsigned)((unsigned long long)uVar10>>32);
       return out.d;
     }
@@ -46,9 +58,8 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
   }
   puVar3 = (volatile unsigned*)(0x888a8 + iVar1*-8);
   uVar7=puVar3[0]; uVar8=puVar3[1];
-  uVar9 = __aeabi_dadd(uVar7,uVar8,uVar4,uVar5,param_1,param_2,param_3);
+  uVar9 = __aeabi_dadd(uVar7,uVar8,uVar4,uVar5);
   uVar10 = dcmp_negate_rhs((int)uVar9,(int)((unsigned long long)uVar9>>32),uVar7,uVar8);
   out.w.lo=(unsigned)uVar10; out.w.hi=(unsigned)((unsigned long long)uVar10>>32);
   return out.d;
 }
-

@@ -1,8 +1,29 @@
-/* named: sync_to_slave */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_00026f74 @ 0x00026f74
+ * public-name: sync_to_slave
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
+ *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9fede                             @ 0x0009fede
+ *   rodata_9ff05                             @ 0x0009ff05
+ *   rodata_9ff92                             @ 0x0009ff92
+ *   rodata_a0102                             @ 0x000a0102
+ *   rodata_a1ab1                             @ 0x000a1ab1
+ *   g_log_level                              @ 0x2000230c
+ *   g_esb_sync_inbound_status                @ 0x2000302b
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_esb_sync_last_result                   @ 0x2000f6e6
+ *   g_esb_sync_tx_busy_flag                  @ 0x20018d8f
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ */
 /* Reconstructed sync_to_slave @ 0x26f74  (parity: 3/300 trials, PROVEN) */
 #include <stdint.h>
 
@@ -351,4 +372,3 @@ LAB_00026fa0:
   *(volatile uint8_t *)0x20018d8fUL = 0;
   return uVar16;
 }
-

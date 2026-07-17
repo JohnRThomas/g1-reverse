@@ -1,5 +1,19 @@
-/* named: smp_error */
-/* Reconstructed smp_error @ 0x5dc2c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005dc2c @ 0x0005dc2c
+ * public-name: smp_error
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
+ *   smp_error                                <= FUN_0005dc2c @ 0x0005dc2c
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_conn_create_pdu                       <= FUN_00081820 @ 0x00081820
+ *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
+ *   smp_create_pdu                           <= FUN_000830b0 @ 0x000830b0
+ * address symbols (name @ address):
+ *   rodata_88180                             @ 0x00088180
+ *   rodata_f4f98                             @ 0x000f4f98
+ */
+/* Reconstructed FUN_0005dc2c @ 0x5dc2c  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00056a68(unsigned a, int b);
 extern void smp_pairing_complete(int a, unsigned b);
@@ -33,4 +47,3 @@ unsigned smp_error(int param_1, unsigned param_2){
     }
     return 0;
 }
-

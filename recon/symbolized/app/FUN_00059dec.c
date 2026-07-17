@@ -1,17 +1,25 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00059dec */
+/* readable reconstruction; identity: FUN_00059dec @ 0x00059dec
+ * public-name: FUN_00059dec
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ccc_find_cfg                             <= FUN_000826c2 @ 0x000826c2
+ * address symbols (name @ address):
+ *   ADDR_gatt_ccc_write_THUMB                @ 0x0005a465
+ *   rodata_f2b3a                             @ 0x000f2b3a
+ */
 /* Reconstructed FUN_00059dec @ 0x59dec  (parity: 300/300 trials, PROVEN) */
 
 extern int ccc_find_cfg(int,...);
 extern void FUN_000828da(int,int);
 int FUN_00059dec(int param_1, unsigned param_2, int *param_3){
-  if(*(int*)(param_1+8) != ((uintptr_t)&tbl_5a458) /*=0x5a465*/) return 1;
+  if(*(int*)(param_1+8) != ADDR_gatt_ccc_write_THUMB /*=0x5a465*/) return 1;
   int r6=*(int*)(param_1+0xc);
   int r5=param_3[2];
   if(r5==0){
     int p=ccc_find_cfg(r6, param_3[0], *(unsigned char*)((int)param_3+4));
     if(p==0) return 1;
-    FUN_000828da(p+1, ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/);
+    FUN_000828da(p+1, ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/);
     *(volatile unsigned char*)p = 0;
     *(volatile unsigned short*)(p+8) = 0;
     return 1;
@@ -23,7 +31,7 @@ int FUN_00059dec(int param_1, unsigned param_2, int *param_3){
     int r5b=param_3[0];
     p=ccc_find_cfg(r6, param_3[0], *(unsigned char*)((int)param_3+4));
     if(p==0){
-      p=ccc_find_cfg(r6, ((uintptr_t)&rodata_f2b3a) /*=0xf2b3a*/);
+      p=ccc_find_cfg(r6, ((unsigned long)&rodata_f2b3a) /*=0xf2b3a*/);
       if(p==0) goto L_e2a;
       FUN_000828da(p+1, r5b);
       *(volatile unsigned char*)p = *(unsigned char*)((int)param_3+4);
@@ -38,4 +46,3 @@ L_e2a:;
   *(volatile int*)((int)param_3+8)=param_3[2]+4;
   return ret;
 }
-

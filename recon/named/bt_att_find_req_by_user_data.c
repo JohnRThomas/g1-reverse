@@ -1,5 +1,11 @@
-/* named: bt_att_find_req_by_user_data */
-/* Reconstructed bt_att_find_req_by_user_data @ 0x8253a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0008253a @ 0x0008253a
+ * public-name: bt_att_find_req_by_user_data
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_get                                  <= FUN_0005858c @ 0x0005858c
+ *   bt_att_find_req_by_user_data             <= FUN_0008253a @ 0x0008253a
+ */
+/* Reconstructed FUN_0008253a @ 0x8253a  (parity: 300/300 trials, PROVEN) */
 
 extern int *att_get(void);
 
@@ -18,4 +24,3 @@ int *bt_att_find_req_by_user_data(unsigned int param_1, int param_2)
   }
   return piVar1;
 }
-

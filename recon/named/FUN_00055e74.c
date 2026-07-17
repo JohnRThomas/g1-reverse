@@ -1,7 +1,15 @@
-/* named: FUN_00055e74 */
-/* globals referenced:
-//   0x200020d4  g_bt_dev.ncmd_sem            [g_bt_dev (base 0x20002000) + 0xd4: semaphore gating outstanding HCI command credits, taken in bt_send/bt_hci_driver_close]
-*/
+/* readable reconstruction; identity: FUN_00055e74 @ 0x00055e74
+ * public-name: FUN_00055e74
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ * address symbols (name @ address):
+ *   rodata_88120                             @ 0x00088120
+ *   rodata_f39f4                             @ 0x000f39f4
+ *   g_ble_dev_ncmd_sem                       @ 0x200020d4
+ *   g_bt_dh_key_cb                           @ 0x2000ac70
+ */
 /* Reconstructed FUN_00055e74 @ 0x55e74  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -46,4 +54,3 @@ int FUN_00055e74(uint32_t *param_1, int param_2, uint32_t param_3, uint32_t para
   }
   return -0x10;
 }
-

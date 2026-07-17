@@ -1,8 +1,17 @@
-/* named: bt_foreach_bond */
-/* globals referenced:
-//   0x2000af4c  bt_keys_pool                 
-*/
-/* Reconstructed bt_foreach_bond @ 0x5e6d4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005e6d4 @ 0x0005e6d4
+ * public-name: bt_foreach_bond
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_foreach_bond                          <= FUN_0005e6d4 @ 0x0005e6d4
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5268                             @ 0x000f5268
+ *   rodata_f52c0                             @ 0x000f52c0
+ *   bt_keys_pool                             @ 0x2000af4c
+ */
+/* Reconstructed FUN_0005e6d4 @ 0x5e6d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
@@ -22,4 +31,3 @@ void bt_foreach_bond(uint32_t param_1, void* param_2, uint32_t param_3){
     ((void(*)(void*,uint32_t))param_2)((void*)&local_20,param_3);
   }
 }
-

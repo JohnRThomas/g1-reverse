@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-/* named: img_mgmt_impl_erased_val */
-/* Reconstructed img_mgmt_impl_erased_val @ 0x51a5c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00051a5c @ 0x00051a5c
+ * public-name: img_mgmt_impl_erased_val
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
+ *   img_mgmt_impl_erased_val                 <= FUN_00051a5c @ 0x00051a5c
+ *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ * address symbols (name @ address):
+ *   rodata_88208                             @ 0x00088208
+ *   rodata_f25fb                             @ 0x000f25fb
+ */
+/* Reconstructed FUN_00051a5c @ 0x51a5c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern long long FUN_0005169c(void);
 extern int flash_area_open(unsigned a, void* b);
@@ -23,11 +34,10 @@ unsigned img_mgmt_impl_erased_val(void){
             uVar2 = 0;
         } else {
             volatile struct { unsigned a, b, c, d; } s;
-            s.a = 4; s.b = "Failed to open flash area ID %u: %d" /*=0xf25fb*/; s.c = (unsigned)r5; s.d = (unsigned)local_24;
-            FUN_0008096a(((uintptr_t)&tbl_880d8) /*=0x88208*/, 0x2040, (void*)&s);
+            s.a = 4; s.b = ((unsigned long)&rodata_f25fb) /*=0xf25fb*/; s.c = (unsigned)r5; s.d = (unsigned)local_24;
+            FUN_0008096a(((unsigned long)&rodata_88208) /*=0x88208*/, 0x2040, (void*)&s);
             uVar2 = 0xa;
         }
     }
     return uVar2;
 }
-

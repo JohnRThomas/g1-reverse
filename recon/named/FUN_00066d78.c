@@ -1,4 +1,9 @@
-/* named: FUN_00066d78 */
+/* readable reconstruction; identity: FUN_00066d78 @ 0x00066d78
+ * public-name: FUN_00066d78
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_f4240                             @ 0x000f4240
+ */
 /* Reconstructed FUN_00066d78 @ 0x66d78  (parity: 300/300 trials, PROVEN) */
 int FUN_00066d78(int *param_1, int *param_2){
   unsigned r3 = (unsigned)param_2[5];
@@ -44,4 +49,3 @@ int FUN_00066d78(int *param_1, int *param_2){
   if (*(unsigned char*)((int)param_2+0x24) != 0) return 0x0bad0000;
   goto L_dca;
 }
-

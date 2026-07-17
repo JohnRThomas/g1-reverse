@@ -19,7 +19,7 @@ extern void FUN_010208b0(void);
 extern void FUN_01022a50(unsigned char,int,int);
 extern void FUN_01025c44(int);
 
-#define IVAR5 ((uintptr_t)&g_sdc_conn_ctx) /*=0x21000f90*/
+#define IVAR5 0x21000f90
 #define MAGIC_RECIP 0xaaaaaaabu
 #define MMIO REG_41008000 /*=0x41008000*/
 
@@ -59,7 +59,7 @@ unsigned int FUN_010171c8(unsigned int *param_1, unsigned int param_2)
         FUN_010203d0();
         FUN_010208b0();
         FUN_0101fca8();
-        FUN_01020738(((uintptr_t)&g_net_ble_adv_channel_ctx) /*=0x21000344*/);
+        FUN_01020738(0x21000344u);
         FUN_0102072c(0x00555555u);
         FUN_010204e0(0x8e89bed6u);
         if (V[0x6c] == 0) FUN_01025c44(1);
@@ -118,4 +118,3 @@ LAB_end:
     }
     FUN_01008d00(0x32, 0xa98);
 }
-

@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00082282 */
+/* readable reconstruction; identity: FUN_00082282 @ 0x00082282
+ * public-name: FUN_00082282
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   net_buf_simple_pull_le16                 <= FUN_00083718 @ 0x00083718
+ */
 /* Reconstructed FUN_00082282 @ 0x82282  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int net_buf_simple_pull_le16(int);
@@ -12,4 +17,3 @@ void FUN_00082282(unsigned int param_1, int param_2)
     FUN_00058c34(param_1, 0x12, 0x13, uVar1, 0, *(unsigned int*)(param_2 + 0xc), *(unsigned short*)(param_2 + 0x10));
     return;
 }
-

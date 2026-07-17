@@ -1,9 +1,15 @@
 #include "g1_app_symbols.h"
-/* named: init_nfc_comm */
-/* globals referenced:
-//   0x20007a44  g_st25dv_dev                 
-*/
-/* Reconstructed init_nfc_comm @ 0x2560c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0002560c @ 0x0002560c
+ * public-name: init_nfc_comm
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   init_nfc_comm                            <= FUN_0002560c @ 0x0002560c
+ *   process_pt_data                          <= FUN_000330ec @ 0x000330ec
+ * address symbols (name @ address):
+ *   rodata_9f196                             @ 0x0009f196
+ *   g_st25dv_dev                             @ 0x20007a44
+ */
+/* Reconstructed FUN_0002560c @ 0x2560c  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_000330a8(unsigned int a0);
 extern int process_pt_data(void);
@@ -12,14 +18,14 @@ extern void DEBUG_PRINT(unsigned int a0);
 int init_nfc_comm(void)
 {
   int iVar1;
-  iVar1 = FUN_000330a8(*(volatile unsigned int*)((uintptr_t)&g_st25dv_dev) /*=0x20007a44*/);
+  volatile unsigned int *volatile state = (volatile unsigned int *)((unsigned long)&g_st25dv_dev) /*=0x20007a44*/;
+  iVar1 = FUN_000330a8(*state);
   if (iVar1 == 0) {
     iVar1 = process_pt_data();
     if (iVar1 != 0) { iVar1 = -2; }
   } else {
-    DEBUG_PRINT("init_nfc_comm is failed\n" /*=0x9f196*/);
+    DEBUG_PRINT(((unsigned long)&rodata_9f196) /*=0x9f196*/);
     iVar1 = -1;
   }
   return iVar1;
 }
-

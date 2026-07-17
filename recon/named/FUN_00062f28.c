@@ -1,4 +1,12 @@
-/* named: FUN_00062f28 */
+/* readable reconstruction; identity: FUN_00062f28 @ 0x00062f28
+ * public-name: FUN_00062f28
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   is_tx_ready                              <= FUN_00084abe @ 0x00084abe
+ *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
+ * address symbols (name @ address):
+ *   g_tx_yield_allowed_flag                  @ 0x2001d564
+ */
 /* Reconstructed FUN_00062f28 @ 0x62f28  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_00074844(int,int);
@@ -41,4 +49,3 @@ void FUN_00062f28(int param_1, unsigned char param_2){
     *(*(unsigned char**)(iVar6+0x14)) = param_2;
     FUN_0008496c(param_1, *(int*)(iVar6+0x14), 1);
 }
-

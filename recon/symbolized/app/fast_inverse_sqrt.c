@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: fast_inverse_sqrt */
-/* Reconstructed fast_inverse_sqrt @ 0x265e8  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000265e8 @ 0x000265e8
+ * public-name: fast_inverse_sqrt
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   fast_inverse_sqrt                        <= FUN_000265e8 @ 0x000265e8
+ */
+/* Reconstructed FUN_000265e8 @ 0x265e8  (parity: 300/300 trials, PROVEN) */
 
 float fast_inverse_sqrt(float param_1)
 {
@@ -20,4 +25,3 @@ float fast_inverse_sqrt(float param_1)
   tf = t*fVar1;
   return (1.5f - tf) * fVar1;
 }
-

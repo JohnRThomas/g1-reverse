@@ -1,18 +1,22 @@
 #include "g1_app_symbols.h"
-/* named: cjson_create_object */
-/* globals referenced:
-//   0x20002bac  g_cjson_hooks                
-*/
-/* Reconstructed cjson_create_object @ 0x64ca4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00064ca4 @ 0x00064ca4
+ * public-name: cjson_create_object
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
+ *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
+ * address symbols (name @ address):
+ *   g_cjson_hooks                            @ 0x20002bac
+ */
+/* Reconstructed FUN_00064ca4 @ 0x64ca4  (parity: 300/300 trials, PROVEN) */
 
 extern unsigned int alloc_zeroed_node(unsigned int a);
 
 void cjson_create_object(void)
 {
-    unsigned int v = *(volatile unsigned int*)((uintptr_t)&g_cjson_hooks) /*=0x20002bac*/;
+    unsigned int v = *(volatile unsigned int*)((unsigned long)&g_cjson_hooks) /*=0x20002bac*/;
     unsigned int r = alloc_zeroed_node(v);
     if (r != 0) {
         *(volatile unsigned int*)(r + 0xc) = 0x40;
     }
 }
-

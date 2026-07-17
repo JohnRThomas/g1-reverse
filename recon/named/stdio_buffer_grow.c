@@ -1,10 +1,22 @@
-/* named: stdio_buffer_grow */
-/* Reconstructed stdio_buffer_grow @ 0x77e70  (parity: 159/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00077e70 @ 0x00077e70
+ * public-name: stdio_buffer_grow
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   _fflush_r                                <= FUN_00076ad0 @ 0x00076ad0
+ *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
+ *   stdio_buffer_grow                        <= FUN_00077e70 @ 0x00077e70
+ *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ */
+/* Reconstructed FUN_00077e70 @ 0x77e70  (parity: 159/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern int _fflush_r(int,...); extern int heap_free_core(int,...); extern int _malloc_r(int,...);
 extern int stdio_fclose(int,...); extern int mem_find_byte(int,...); extern int memcpy(int,...);
-extern int memmove(int,...); extern int heap_realloc_grow(int,...);
+extern int FUN_00086c44(int,...); extern int heap_realloc_grow(int,...);
 typedef uint (*codeptr)(int,...);
 #define PH(p) (*(volatile ushort*)((char*)(p)+0xc))
 
@@ -58,14 +70,14 @@ LAB_fec:
             }
 LAB_ffc:
             if (uVar4 <= uVar9) uVar9 = uVar4;
-            memmove(*param_2,iVar2);
+            FUN_00086c44(*param_2,iVar2);
             param_2[2] = param_2[2] - uVar9;
             *param_2 = *param_2 + uVar9;
             uVar9 = uVar4;
           }
           else if ((param_2[4] < uVar3) || (uVar1 = param_2[5], uVar4 < uVar1)) {
             if (uVar4 <= uVar9) uVar9 = uVar4;
-            memmove(uVar3,iVar2);
+            FUN_00086c44(uVar3,iVar2);
             uVar3 = param_2[2];
             param_2[2] = uVar3 - uVar9;
             *param_2 = *param_2 + uVar9;
@@ -97,14 +109,14 @@ LAB_0be:
           uVar1 = *param_2; uVar3 = uVar4;
           if (uVar9 <= uVar4) uVar3 = uVar9;
           if ((param_2[4] < uVar1) && (uVar6 = param_2[2] + param_2[5], (int)uVar6 < (int)uVar3)) {
-            memmove(uVar1,iVar10,uVar6);
+            FUN_00086c44(uVar1,iVar10,uVar6);
             *param_2 = *param_2 + uVar6;
             iVar2 = _fflush_r((int)param_1,(int)param_2);
             if (iVar2 != 0) goto LAB_fc4;
           }
           else if ((int)uVar3 < (int)param_2[5]) {
             uVar6 = uVar3;
-            memmove(uVar1,iVar10);
+            FUN_00086c44(uVar1,iVar10);
             param_2[2] = param_2[2] - uVar6;
             *param_2 = *param_2 + uVar6;
           }
@@ -145,4 +157,3 @@ LAB_fc4:
   }
   return 0;
 }
-

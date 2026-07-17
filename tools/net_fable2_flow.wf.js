@@ -17,7 +17,7 @@ Your batch = element ${i} of ${SCR}/net_fable2_batches.json — {addr,name,ghidr
 CRITICAL — if \`inflated:true\`, Ghidra's size INCLUDES A TRAILING DATA TABLE folded into the function: only ~\`code_hint\` bytes are reachable code, the rest is DATA. code_hint is a LOWER bound (jump tables extend real code past it into switch cases) — verify by disassembly, don't blindly truncate.
 
 Use net_recon_kit (NOT recon_kit). Net image base 0x01008000; bytes via net_extract (extract.read/read_u32).
-1. Inspect: PYTHONSAFEPATH=1 ${BASE}/.venv/bin/python tools/net_recon_kit.py info 0xADDR
+1. Inspect from /tmp: PYTHONSAFEPATH=1 ${BASE}/.venv/bin/python ${BASE}/tools/net_recon_kit.py info 0xADDR. It prints readable aliases with raw FUN_* + address back-mapping; use human=true aliases in bodies and preserve catalog NAME for proof identity.
 2. Find the TRUE code extent: trace control flow from entry, resolve every tbb/tbh/ldr-pc jump table (read table bytes from the image, decode all case targets), find where code ends and the data table begins.
 3. Write faithful C for the CODE ONLY (globals as fixed absolute-address volatile pointers using literal VALUES; callees extern in same order; reproduce every switch case; exact loop termination).
 4. Prove at the TRUE CODE SIZE:

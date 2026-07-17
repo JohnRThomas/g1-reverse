@@ -1,9 +1,12 @@
-/* named: sbrk_impl */
-/* globals referenced:
-//   0x2000a808  g_heap_brk                   
-//   0x2005314c  g_heap_base                  
-*/
-/* Reconstructed sbrk_impl @ 0x51074  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00051074 @ 0x00051074
+ * public-name: sbrk_impl
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sbrk_impl                                <= FUN_00051074 @ 0x00051074
+ * address symbols (name @ address):
+ *   g_heap_brk                               @ 0x2000a808
+ */
+/* Reconstructed FUN_00051074 @ 0x51074  (parity: 300/300 trials, PROVEN) */
 
 int sbrk_impl(int param_1)
 {
@@ -21,4 +24,3 @@ int sbrk_impl(int param_1)
   }
   return iVar1;
 }
-

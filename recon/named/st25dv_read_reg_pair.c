@@ -1,8 +1,13 @@
-/* named: st25dv_read_reg_pair */
-/* globals referenced:
-//   0x20007a44  g_st25dv_dev                 
-*/
-/* Reconstructed st25dv_read_reg_pair @ 0x24d74  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00024d74 @ 0x00024d74
+ * public-name: st25dv_read_reg_pair
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   st25dv_read_reg_pair                     <= FUN_00024d74 @ 0x00024d74
+ *   ipc_send_len_prefixed_packet_locked_retry <= FUN_00025788 @ 0x00025788
+ * address symbols (name @ address):
+ *   g_st25dv_dev                             @ 0x20007a44
+ */
+/* Reconstructed FUN_00024d74 @ 0x24d74  (parity: 300/300 trials, PROVEN) */
 
 extern int ipc_send_len_prefixed_packet_locked_retry(unsigned int, int, int, int, unsigned int);
 
@@ -16,4 +21,3 @@ int st25dv_read_reg_pair(int param_1, unsigned int param_2, unsigned int param_3
     if (iVar2 != 0) iVar2 = 1;
     return -iVar2;
 }
-

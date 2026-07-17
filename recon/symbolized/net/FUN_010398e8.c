@@ -19,4 +19,3 @@ void FUN_010398e8(uint32_t param_1, int32_t param_2, int32_t param_3)
     iVar2 = FUN_01039768(param_1, param_3);
     FUN_01039752(param_1, param_3 + iVar2, 0, iVar1);
 }
-

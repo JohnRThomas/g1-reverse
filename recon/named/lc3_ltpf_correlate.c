@@ -1,5 +1,12 @@
-/* named: lc3_ltpf_correlate */
-/* Reconstructed lc3_ltpf_correlate @ 0x682f0  (parity: 200/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000682f0 @ 0x000682f0
+ * public-name: lc3_ltpf_correlate
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_ltpf_correlate                       <= FUN_000682f0 @ 0x000682f0
+ * address symbols (name @ address):
+ *   rodata_884d0                             @ 0x000884d0
+ */
+/* Reconstructed FUN_000682f0 @ 0x682f0  (parity: 200/200 trials, PROVEN) */
 unsigned lc3_ltpf_correlate(int param_1, unsigned param_2, int param_3, int *param_4, int param_5)
 {
     int *tbl = (int *)0x000884d0UL;
@@ -88,4 +95,3 @@ unsigned lc3_ltpf_correlate(int param_1, unsigned param_2, int param_3, int *par
     }
     return 0;
 }
-

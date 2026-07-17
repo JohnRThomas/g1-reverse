@@ -1,0 +1,16 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_000858ca @ 0x000858ca
+ * public-name: FUN_000858ca
+ * durable-map: recon/catalogs/function_names_app.json
+ */
+/* Reconstructed FUN_000858ca @ 0x858ca  (parity: 300/300 trials, PROVEN) */
+
+typedef void (*fnptr)(void);
+void FUN_000858ca(int param_1,int param_2)
+{
+  fnptr f;
+  if ((param_1 != 0) && (*(int *)(param_1 + 0x20) != 0) && (param_2 != 0) &&
+      (f = *(fnptr *)(*(int *)(param_1 + 0x20) + 0x7c), f != (fnptr)0)) {
+    f();
+  }
+}

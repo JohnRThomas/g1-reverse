@@ -1,5 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00064134 */
+/* readable reconstruction; identity: FUN_00064134 @ 0x00064134
+ * public-name: FUN_00064134
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvs_ate_id_matches                       <= FUN_00084d70 @ 0x00084d70
+ *   flash_area_write_and_close               <= FUN_00084e72 @ 0x00084e72
+ * address symbols (name @ address):
+ *   rodata_8bb90                             @ 0x0008bb90
+ *   rodata_f694f                             @ 0x000f694f
+ */
 /* Reconstructed FUN_00064134 @ 0x64134  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -19,16 +28,16 @@ uint FUN_00064134(uint param_1, uint32_t param_2, uint param_3, uint32_t param_4
   *(volatile uint32_t*)(S+12) = param_4;
   iVar1 = FUN_0007ef04(param_1, (void*)S);
   if (iVar1 == 1){
-    iVar1 = flash_area_write_and_close(*(uint32_t*)(((uintptr_t)&tbl_8bb5c) /*=0x8bb90*/ + param_1*8), (void*)S);
+    iVar1 = flash_area_write_and_close(*(uint32_t*)(((unsigned long)&rodata_8bb90) /*=0x8bb90*/ + param_1*8), (void*)S);
   }
   if (iVar1 == 0){
-    iVar1 = flash_area_write_and_close(*(uint32_t*)(((uintptr_t)&tbl_8bb5c) /*=0x8bb90*/ + param_1*8 + 4), (void*)(S+8));
+    iVar1 = flash_area_write_and_close(*(uint32_t*)(((unsigned long)&rodata_8bb90) /*=0x8bb90*/ + param_1*8 + 4), (void*)(S+8));
     if (iVar1 == 1){ S[8]=3; S[0xb]=3; }
     else if (iVar1 != 0) return 0xff;
     int cnt = 0;
     uVar4 = S[0];
     uVar5 = S[8];
-    puVar3 = (uint8_t*)((uintptr_t)&rodata_f694f) /*=0xf694f*/;
+    puVar3 = (uint8_t*)((unsigned long)&rodata_f694f) /*=0xf694f*/;
     do {
       iVar2 = nvs_ate_id_matches(puVar3[0], uVar4);
       if (iVar2 != 0 && (iVar2 = nvs_ate_id_matches(puVar3[1], uVar5), iVar2 != 0)
@@ -45,4 +54,3 @@ uint FUN_00064134(uint param_1, uint32_t param_2, uint param_3, uint32_t param_4
   }
   return 0xff;
 }
-

@@ -1,149 +1,156 @@
 #include "g1_app_symbols.h"
-/* named: load_sys_setting */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20002fe3  g_product_code_buf           
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed load_sys_setting @ 0x22bd0  (parity: 300/300 trials, PROVEN) */
-typedef unsigned int u32;
-typedef unsigned short u16;
-typedef unsigned char u8;
-typedef unsigned int undefined4;
+/* readable reconstruction; identity: FUN_00022bd0 @ 0x00022bd0
+ * public-name: load_sys_setting
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
+ *   build_and_send_device_status_report      <= FUN_00022b00 @ 0x00022b00
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_1f400                             @ 0x0001f400
+ *   rodata_9e580                             @ 0x0009e580
+ *   rodata_9e5a6                             @ 0x0009e5a6
+ *   rodata_9e5c8                             @ 0x0009e5c8
+ *   rodata_9e7c9                             @ 0x0009e7c9
+ *   g_log_level                              @ 0x2000230c
+ *   g_product_code_buf                       @ 0x20002fe3
+ *   g_device_serial_buf                      @ 0x20003003
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed load_sys_setting @ 0x22bd0. */
+#include <stdint.h>
 
-extern void DEBUG_PRINT(u32 fmt, ...);
-extern void debug_print(void);
-extern int flash_settings_read(u32 a, void *b, u32 c);
-extern void build_and_send_device_status_report(int a);
-extern void memset_bytes(void *a, int b, u32 c);
+extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void debug_print(uint32_t, uint32_t);
+extern int flash_settings_read(uint32_t, void *, uint32_t);
+extern void build_and_send_device_status_report(uintptr_t);
+extern void memset_bytes(void *, int, uint32_t);
 
-undefined4 load_sys_setting(int param_1)
+struct __attribute__((packed)) persisted_system_settings {
+    uint32_t version;
+    uint32_t reserved_word;
+    uint8_t mode;
+    uint8_t reserved_09[3];
+    uint32_t interval;
+    uint32_t timeout;
+    uint8_t feature_enabled;
+    uint8_t first_table[32];
+    uint8_t second_table[32];
+    uint8_t option_a;
+    uint8_t option_b;
+    uint8_t reserved_57[9];
+    uint16_t width_a;
+    uint16_t width_b;
+    uint32_t value_fa4;
+    uint32_t value_fa0;
+    uint32_t value_fa8;
+    uint32_t value_fac;
+    uint16_t value_eda;
+    uint16_t value_edc;
+    uint16_t value_ede;
+    uint16_t reserved_7a;
+    uint32_t counter_fb0;
+    uint32_t value_fb4;
+};
+
+static __attribute__((always_inline)) inline void
+copy_unaligned_table(volatile uint32_t *destination,
+                     const uint8_t source[32])
 {
-  const unsigned long BUF = ((uintptr_t)&g_app_ram_2007ef60) /*=0x2007ef60*/;
-  volatile int  *sp4  = (volatile int*)(BUF+4);
-  volatile u8   *spC  = (volatile u8*)(BUF+0xc);
-  volatile u32  *sp10 = (volatile u32*)(BUF+0x10);
-  volatile u32  *sp14 = (volatile u32*)(BUF+0x14);
-  volatile u8   *sp18 = (volatile u8*)(BUF+0x18);
-  volatile u8   *sp19 = (volatile u8*)(BUF+0x19);
-  volatile u8   *sp39 = (volatile u8*)(BUF+0x39);
-  volatile u8   *sp59 = (volatile u8*)(BUF+0x59);
-  volatile u8   *sp5a = (volatile u8*)(BUF+0x5a);
-  volatile u16  *sp64 = (volatile u16*)(BUF+0x64);
-  volatile u16  *sp66 = (volatile u16*)(BUF+0x66);
-  volatile u32  *sp6c = (volatile u32*)(BUF+0x6c);
-  volatile u32  *sp68 = (volatile u32*)(BUF+0x68);
-  volatile u32  *sp70 = (volatile u32*)(BUF+0x70);
-  volatile u32  *sp74 = (volatile u32*)(BUF+0x74);
-  volatile u32  *sp80 = (volatile u32*)(BUF+0x80);
-  volatile u32  *sp84 = (volatile u32*)(BUF+0x84);
-  volatile u16  *sp78 = (volatile u16*)(BUF+0x78);
-  volatile u16  *sp7a = (volatile u16*)(BUF+0x7a);
-  volatile u16  *sp7c = (volatile u16*)(BUF+0x7c);
-
-  volatile int *DAT_db8 = (volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/;
-  volatile int *DAT_dbc = (volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-  volatile u32 *DAT_dcc = (volatile u32*)((uintptr_t)&g_device_serial_buf) /*=0x20003003*/;
-  volatile u32 *DAT_dd0 = (volatile u32*)((uintptr_t)&g_product_code_buf) /*=0x20002fe3*/;
-
-  int iVar2;
-  int i;
-
-  memset_bytes((void*)(BUF+4), 0, 0x84);
-  iVar2 = flash_settings_read(FLASH_OFF_130000 /*=0x130000*/, (void*)(BUF+4), 0x84u);
-
-  if (iVar2 != 0) {
-    if (1 < *DAT_db8) {
-      if (*DAT_dbc == 0) { DEBUG_PRINT("%s(): sys_flash_settings_read error!\n" /*=0x9e580*/, "load_sys_setting" /*=0x9e7c9*/); }
-      else { debug_print(); }
-    }
-    return 0xffffffffu;
-  }
-  if (1 < *DAT_db8) {
-    if (*DAT_dbc == 0) { DEBUG_PRINT("%s(): read sys settings success!\n" /*=0x9e5a6*/, "load_sys_setting" /*=0x9e7c9*/); }
-    else { debug_print(); }
-  }
-  *(u32*)(long)(param_1 + 0x1050) = (u32)*sp4;
-  *(volatile u8*)(long)(param_1 + 2) = *spC;
-  *(u32*)(long)(param_1 + 0xf64) = *sp10;
-  *(u32*)(long)(param_1 + 0xf94) = *sp14;
-  *(volatile u8*)(long)(param_1 + 0xed4) = *sp18;
-
-  if (*sp19 != 0xff) {
-    for (i = 0; i < 4; i++) {
-      *(DAT_dcc + i) = *(volatile u32*)(BUF + 0x19 + (unsigned)i*4);
-    }
-  }
-  if (*sp39 != 0xff) {
-    for (i = 0; i < 4; i++) {
-      *(DAT_dd0 + i) = *(volatile u32*)(BUF + 0x39 + (unsigned)i*4);
-    }
-  }
-
-  *(volatile u8*)(long)(param_1 + 3) = *sp59;
-  *(volatile u8*)(long)(param_1 + 4) = *sp5a;
-  *(u16*)(long)(param_1 + 0x1072) = *sp64;
-  *(u16*)(long)(param_1 + 0x1074) = *sp66;
-  *(u32*)(long)(param_1 + 4000) = *sp6c;
-  *(u32*)(long)(param_1 + 0xfa4) = *sp68;
-  *(u32*)(long)(param_1 + 0xfa8) = *sp70;
-  *(u32*)(long)(param_1 + 0xfac) = *sp74;
-  *(u32*)(long)(param_1 + 0xfb0) = *sp80;
-  *(u32*)(long)(param_1 + 0xfb4) = *sp84;
-  *(u16*)(long)(param_1 + 0xeda) = *sp78;
-  *(u16*)(long)(param_1 + 0xedc) = *sp7a;
-  *(u16*)(long)(param_1 + 0xede) = *sp7c;
-
-  if (*sp4 != 1) {
-    if (1 < *DAT_db8) {
-      if (*DAT_dbc == 0) { DEBUG_PRINT("%s(): FIRST BOOT, full default sys value!\n" /*=0x9e5c8*/, "load_sys_setting" /*=0x9e7c9*/); }
-      else { debug_print(); }
-    }
-    *(volatile u8*)(long)(param_1 + 2) = 0xff;
-    *(u32*)(long)(param_1 + 0xf94) = ((uintptr_t)&rodata_13880) /*=0x13880*/;
-    *(u32*)(long)(param_1 + 0xf64) = 0;
-    *(volatile u8*)(long)(param_1 + 0xed4) = 0;
-    *(u16*)(long)(param_1 + 0x1072) = 0x20;
-    *(u16*)(long)(param_1 + 0x1074) = 0x20;
-    *(u32*)(long)(param_1 + 0xfb0) = ((uintptr_t)&rodata_1f400) /*=0x1f400*/;
-    *(u16*)(long)(param_1 + 0xeda) = 0x3f;
-    *(u32*)(long)(param_1 + 4000) = 0;
-    *(u32*)(long)(param_1 + 0xfa4) = 0;
-    *(u32*)(long)(param_1 + 0xfa8) = 0;
-    *(u32*)(long)(param_1 + 0xfac) = 0;
-    *(u32*)(long)(param_1 + 0xfb4) = 0;
-    *(u32*)(long)(param_1 + 0xedc) = 0x3f003f;
-    build_and_send_device_status_report(param_1);
-  }
-
-  *(u32*)(long)(param_1 + 0x1050) = 1;
-  if (*(volatile u8*)(long)(param_1 + 0xed4) != 1) {
-    *(volatile u8*)(long)(param_1 + 0xed4) = 0;
-  }
-  {
-    u32 uVar9 = (u32)(*(u32*)(long)(param_1 + 0xfb0)) + 1;
-    u32 uVar10 = uVar9;
-    if (uVar9 < 2) uVar10 = ((uintptr_t)&rodata_1f400) /*=0x1f400*/;
-    if (uVar9 < 2) *(u32*)(long)(param_1 + 0xfb0) = uVar10;
-  }
-  {
-    u16 uVar4 = (u16)(*(u16*)(long)(param_1 + 0x1072) - 0x16);
-    u16 uVar5 = uVar4;
-    if (0x14 < uVar4) uVar5 = 0x20;
-    if (0x14 < uVar4) *(u16*)(long)(param_1 + 0x1072) = uVar5;
-  }
-  if (*(u16*)(long)(param_1 + 0x1074) < 0x41) {
-    if (3 < *(u16*)(long)(param_1 + 0x1074)) {
-      goto LAB_d8a;
-    }
-    *(u16*)(long)(param_1 + 0x1074) = 4;
-  } else {
-    *(u16*)(long)(param_1 + 0x1074) = 0x20;
-  }
-LAB_d8a:
-  if (0x3e < (u16)(*(u16*)(long)(param_1 + 0xede) - 1)) {
-    *(u16*)(long)(param_1 + 0xede) = 0x3f;
-  }
-  return 0;
+    for (unsigned int offset = 0; offset != 16; offset += 4)
+        *destination++ = *(const uint32_t *)(source + offset);
 }
 
+static __attribute__((always_inline)) inline void
+log_settings_event(uint32_t message)
+{
+    if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
+        if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
+            DEBUG_PRINT(message, ((unsigned long)&rodata_9e7c9) /*=0x9e7c9*/);
+        else
+            debug_print(message, ((unsigned long)&rodata_9e7c9) /*=0x9e7c9*/);
+    }
+}
+
+int load_sys_setting(uintptr_t application)
+{
+    struct persisted_system_settings settings;
+    memset_bytes(&settings, 0, sizeof(settings));
+
+    int result = flash_settings_read(0x130000, &settings, sizeof(settings));
+    if (result != 0) {
+        log_settings_event(((unsigned long)&rodata_9e580) /*=0x9e580*/);
+        return -1;
+    }
+
+    log_settings_event(((unsigned long)&rodata_9e5a6) /*=0x9e5a6*/);
+
+    *(uint32_t *)(application + 0x1050) = settings.version;
+    *(uint8_t *)(application + 2) = settings.mode;
+    *(uint32_t *)(application + 0xf64) = settings.interval;
+    *(uint32_t *)(application + 0xf94) = settings.timeout;
+    *(uint8_t *)(application + 0xed4) = settings.feature_enabled;
+
+    if (settings.first_table[0] != 0xff)
+        copy_unaligned_table((volatile uint32_t *)((unsigned long)&g_device_serial_buf) /*=0x20003003*/,
+                             settings.first_table);
+    if (settings.second_table[0] != 0xff)
+        copy_unaligned_table((volatile uint32_t *)((unsigned long)&g_product_code_buf) /*=0x20002fe3*/,
+                             settings.second_table);
+
+    *(uint8_t *)(application + 3) = settings.option_a;
+    *(uint8_t *)(application + 4) = settings.option_b;
+    *(uint16_t *)(application + 0x1072) = settings.width_a;
+    *(uint16_t *)(application + 0x1074) = settings.width_b;
+    *(uint32_t *)(application + 0xfa0) = settings.value_fa0;
+    *(uint32_t *)(application + 0xfa4) = settings.value_fa4;
+    *(uint32_t *)(application + 0xfa8) = settings.value_fa8;
+    *(uint32_t *)(application + 0xfac) = settings.value_fac;
+    *(uint32_t *)(application + 0xfb0) = settings.counter_fb0;
+    *(uint32_t *)(application + 0xfb4) = settings.value_fb4;
+    *(uint16_t *)(application + 0xeda) = settings.value_eda;
+    *(uint16_t *)(application + 0xedc) = settings.value_edc;
+    *(uint16_t *)(application + 0xede) = settings.value_ede;
+
+    if (settings.version != 1) {
+        log_settings_event(((unsigned long)&rodata_9e5c8) /*=0x9e5c8*/);
+        *(volatile uint8_t *)(application + 2) = 0xff;
+        *(volatile uint32_t *)(application + 0xf94) = 0x13880;
+        *(volatile uint32_t *)(application + 0xf64) = 0;
+        *(volatile uint8_t *)(application + 0xed4) = 0;
+        *(volatile uint16_t *)(application + 0x1072) = 0x20;
+        *(volatile uint16_t *)(application + 0x1074) = 0x20;
+        *(volatile uint32_t *)(application + 0xfb0) = ((unsigned long)&rodata_1f400) /*=0x1f400*/;
+        *(volatile uint16_t *)(application + 0xeda) = 0x3f;
+        *(volatile uint32_t *)(application + 0xfa0) = 0;
+        *(volatile uint32_t *)(application + 0xfa4) = 0;
+        *(volatile uint32_t *)(application + 0xfa8) = 0;
+        *(volatile uint32_t *)(application + 0xfac) = 0;
+        *(volatile uint32_t *)(application + 0xfb4) = 0;
+        *(volatile uint32_t *)(application + 0xedc) = 0x3f003f;
+        build_and_send_device_status_report(application);
+    }
+
+    *(uint32_t *)(application + 0x1050) = 1;
+    if (*(uint8_t *)(application + 0xed4) != 1)
+        *(uint8_t *)(application + 0xed4) = 0;
+
+    uint32_t next_counter = *(uint32_t *)(application + 0xfb0) + 1;
+    if (next_counter < 2)
+        *(uint32_t *)(application + 0xfb0) = ((unsigned long)&rodata_1f400) /*=0x1f400*/;
+
+    uint16_t width_delta = *(uint16_t *)(application + 0x1072) - 0x16;
+    if (width_delta > 0x14)
+        *(uint16_t *)(application + 0x1072) = 0x20;
+
+    uint16_t width_b = *(uint16_t *)(application + 0x1074);
+    if (width_b > 0x40)
+        *(uint16_t *)(application + 0x1074) = 0x20;
+    else if (width_b <= 3)
+        *(uint16_t *)(application + 0x1074) = 4;
+
+    if ((uint16_t)(*(uint16_t *)(application + 0xede) - 1) > 0x3e)
+        *(uint16_t *)(application + 0xede) = 0x3f;
+    return 0;
+}

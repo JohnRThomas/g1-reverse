@@ -1,6 +1,24 @@
 #include "g1_app_symbols.h"
-/* named: qspi_nor_erase */
-/* Reconstructed qspi_nor_erase @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00060dd0 @ 0x00060dd0
+ * public-name: qspi_nor_erase
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
+ *   qspi_nor_log_erase_range_error           <= FUN_000609c4 @ 0x000609c4
+ *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
+ *   qspi_nor_erase                           <= FUN_00060dd0 @ 0x00060dd0
+ *   nrfx_qspi_read                           <= FUN_00066bc4 @ 0x00066bc4
+ *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
+ *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
+ *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
+ *   qspi_nor_write_protection_set            <= FUN_00083954 @ 0x00083954
+ * address symbols (name @ address):
+ *   rodata_10000                             @ 0x00010000
+ *   rodata_88270                             @ 0x00088270
+ *   rodata_f5c9c                             @ 0x000f5c9c
+ *   rodata_f5cba                             @ 0x000f5cba
+ */
+/* Reconstructed FUN_00060dd0 @ 0x60dd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int qspi_get_zephyr_ret_code(int);
 extern int qspi_nor_log_erase_range_error(int,int);
@@ -42,10 +60,10 @@ int qspi_nor_erase(int param_1, unsigned int param_2, unsigned int param_3, int 
             audio_i2s_stop_and_reset_channels(param_1);
             do {
                 if (*(unsigned int *)(iVar3 + 0x2c) != param_3) {
-                    if (((uintptr_t)&tbl_ffc8) /*=0xffff*/ < param_3) {
-                        if ((param_2 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/) != 0) goto LAB_00060e9a;
+                    if (0xffff < param_3) {
+                        if ((param_2 & 0xffff) != 0) goto LAB_00060e9a;
                         iVar2 = nrfx_qspi_read(1, param_2);
-                        uVar4 = ((uintptr_t)&tbl_ffc8) /*=0x10000*/;
+                        uVar4 = ((unsigned long)&rodata_10000) /*=0x10000*/;
                         goto LAB_00060e40;
                     }
                     if (0xfff < param_3) {
@@ -56,19 +74,19 @@ LAB_00060e9a:
                             goto LAB_00060e40;
                         }
                     }
-                    local_34 = "unsupported at 0x%lx size %zu" /*=0xf5c9c*/;
+                    local_34 = ((unsigned long)&rodata_f5c9c) /*=0xf5c9c*/;
                     local_38 = 4;
                     uStack_30 = param_2;
                     local_2c = param_3;
-                    FUN_000838d6(((uintptr_t)&tbl_880d8) /*=0x88270*/, 0x2040, &local_38);
+                    FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x2040, &local_38);
                     FUN_000609f4(*(int *)(param_1 + 0x10), 0x0bad0004);
                     iVar2 = 0x0bad0004;
 LAB_00060eda:
-                    local_34 = "erase error at 0x%lx size %zu" /*=0xf5cba*/;
+                    local_34 = ((unsigned long)&rodata_f5cba) /*=0xf5cba*/;
                     local_38 = 4;
                     uStack_30 = param_2;
                     local_2c = param_3;
-                    FUN_000838d6(((uintptr_t)&tbl_880d8) /*=0x88270*/, 0x2040, &local_38);
+                    FUN_000838d6(((unsigned long)&rodata_88270) /*=0x88270*/, 0x2040, &local_38);
                     iVar1 = qspi_get_zephyr_ret_code(iVar2);
                     break;
                 }
@@ -91,4 +109,3 @@ LAB_00060e40:
     FUN_00060a5c(param_1);
     return iVar1;
 }
-

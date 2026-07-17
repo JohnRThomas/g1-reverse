@@ -1,6 +1,14 @@
 #include "g1_app_symbols.h"
-/* named: bt_encrypt_le */
-/* Reconstructed bt_encrypt_le @ 0x81326  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00081326 @ 0x00081326
+ * public-name: bt_encrypt_le
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   tc_aes128_set_encrypt_key                <= FUN_0004fa34 @ 0x0004fa34
+ *   safe_memmove_or_die                      <= FUN_00055ba0 @ 0x00055ba0
+ *   tc_aes_encrypt                           <= FUN_00080058 @ 0x00080058
+ *   bt_encrypt_le                            <= FUN_00081326 @ 0x00081326
+ */
+/* Reconstructed FUN_00081326 @ 0x81326  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void safe_memmove_or_die(void*, int);
 extern int tc_aes128_set_encrypt_key(void*, void*);
@@ -30,4 +38,3 @@ unsigned bt_encrypt_le(int param_1, int param_2, int param_3){
     }
     return 0xffffffea;
 }
-

@@ -24,4 +24,3 @@ unsigned long long FUN_01008670(unsigned int param_1, unsigned int *param_2)
     }
     return ((unsigned long long)r[15] << 32) | (unsigned long long)r[14];
 }
-

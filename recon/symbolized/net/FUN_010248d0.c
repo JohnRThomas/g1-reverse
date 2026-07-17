@@ -2,7 +2,7 @@
 /* net-core FUN_010248d0 @ 0x10248d0  (parity 300 trials PROVEN) */
 
 extern int FUN_01024b20(unsigned int);
-#define DAT_010248e4 ((unsigned int)((uintptr_t)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/)
+#define DAT_010248e4 ((unsigned int)((unsigned long)&g_154_critical_section_nest_cnt) /*=0x21001bd0*/)
 
 void FUN_010248d0(void)
 {
@@ -13,4 +13,3 @@ void FUN_010248d0(void)
     } while (iVar2 == 0);
     return;
 }
-

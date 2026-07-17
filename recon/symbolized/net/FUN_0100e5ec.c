@@ -4,4 +4,3 @@
 unsigned char FUN_0100e5ec(unsigned char *param_1) {
     return *param_1 & 3;
 }
-

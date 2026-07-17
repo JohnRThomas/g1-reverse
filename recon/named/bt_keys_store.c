@@ -1,5 +1,18 @@
-/* named: bt_keys_store */
-/* Reconstructed bt_keys_store @ 0x5ec18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005ec18 @ 0x0005ec18
+ * public-name: bt_keys_store
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_keys_store                            <= FUN_0005ec18 @ 0x0005ec18
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88158                             @ 0x00088158
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f5268                             @ 0x000f5268
+ *   rodata_f5298                             @ 0x000f5298
+ *   rodata_f5353                             @ 0x000f5353
+ */
+/* Reconstructed FUN_0005ec18 @ 0x5ec18  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void printk(unsigned int,unsigned int,unsigned int,int);
 extern void assert_post_action(unsigned int,int);
@@ -19,4 +32,3 @@ int bt_keys_store(unsigned char* param_1){
   }
   return iVar1;
 }
-

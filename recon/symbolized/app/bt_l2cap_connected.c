@@ -1,17 +1,32 @@
 #include "g1_app_symbols.h"
-/* named: bt_l2cap_connected */
-/* Reconstructed bt_l2cap_connected @ 0x5791c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005791c @ 0x0005791c
+ * public-name: bt_l2cap_connected
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
+ *   bt_l2cap_connected                       <= FUN_0005791c @ 0x0005791c
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_87fc8                             @ 0x00087fc8
+ *   rodata_87fec                             @ 0x00087fec
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f3f55                             @ 0x000f3f55
+ *   rodata_f402a                             @ 0x000f402a
+ */
+/* Reconstructed FUN_0005791c @ 0x5791c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern int l2cap_chan_add(int,int,int);
 extern void assert_post_action(int,int);
 extern int printk(int,...);
 void bt_l2cap_connected(int param_1,int param_2){
-  uint16_t *puVar2=(uint16_t*)((uintptr_t)&tbl_87fc8) /*=0x87fec*/;
-  uint16_t *puVar5=(uint16_t*)((uintptr_t)&tbl_87fc8) /*=0x87fc8*/;
+  uint16_t *puVar2=(uint16_t*)((unsigned long)&rodata_87fec) /*=0x87fec*/;
+  uint16_t *puVar5=(uint16_t*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;
   int local_14=param_2;
   while(1){
-    if(puVar2<puVar5){ printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"fchan <= _bt_l2cap_fixed_chan_list_end" /*=0xf402a*/,"WEST_TOPDIR/zephyr/subsys/bluetooth/host/l2cap.c" /*=0xf3f55*/,0x185,param_1); printk("\tunexpected list end location\n" /*=0xf0d20*/); assert_post_action("WEST_TOPDIR/zephyr/subsys/bluetooth/host/l2cap.c" /*=0xf3f55*/,0x185); }
+    if(puVar2<puVar5){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f402a) /*=0xf402a*/,((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185,param_1); printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/); assert_post_action(((unsigned long)&rodata_f3f55) /*=0xf3f55*/,0x185); }
     if(puVar2<=puVar5) break;
     int iVar3 = (*(int(**)(int,void*))(puVar5+2))(param_1,&local_14);
     if(iVar3>=0){
@@ -28,4 +43,3 @@ void bt_l2cap_connected(int param_1,int param_2){
     puVar5=puVar5+6;
   }
 }
-

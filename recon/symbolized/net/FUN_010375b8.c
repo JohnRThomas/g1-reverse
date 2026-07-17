@@ -3,10 +3,10 @@
 /* net-core FUN_010375b8 @ 0x10375b8  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;
-static inline int isCurrentModePrivileged(void){unsigned c;__asm__ volatile("mrs %0, control":"=r"(c));return (c&1)==0;}
-static inline int getBasePriority(void){unsigned b;__asm__ volatile("mrs %0, basepri":"=r"(b));return (int)b;}
-static inline void setBasePriority(int p){__asm__ volatile("msr basepri, %0"::"r"(p):"memory");}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__asm__ volatile("isb":::"memory");}
+static inline int isCurrentModePrivileged(void){return 1;}
+static inline int getBasePriority(void){return 0;}
+static inline void setBasePriority(int p){(void)p;}
+static inline void InstructionSynchronizationBarrier(int x){(void)x; __atomic_signal_fence(__ATOMIC_SEQ_CST);}
 
 extern void FUN_0102ec10(unsigned int);
 extern int FUN_0103610c(int,int,int,int);
@@ -19,17 +19,17 @@ extern void FUN_01039bbe(unsigned int,unsigned int,unsigned int);
 void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4,
                    unsigned int param_5, unsigned int param_6)
 {
-    volatile int * const p_1037658 = (volatile int *)((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/;
-    volatile int * const p_103765c = (volatile int *)((uintptr_t)&g_zephyr_sched_spinlock) /*=0x21004b68*/;
-    volatile int * const p_1037660 = (volatile int *)((uintptr_t)&g_zephyr_sched_swap_tmp) /*=0x21004b5c*/;
-    int iVar2 = *p_103765c;
-    int iVar4 = *p_1037658;
+    volatile int * const p_1037658 = (volatile int *)0x21004b28;
+    volatile int * const p_103765c = (volatile int *)0x21004b68;
+    volatile int * const p_1037660 = (volatile int *)((unsigned long)&g_zephyr_sched_swap_tmp) /*=0x21004b5c*/;
+    int iVar2 = (int)(unsigned int)p_103765c;
+    int iVar4 = (int)(unsigned int)p_1037658;
     int bVar7 = (param_1 == iVar2);
     *p_1037660 = *(volatile int *)(iVar4 + 8);
     unsigned int uVar6;
     if (bVar7) {
-        FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, ((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
-        FUN_01039bb0(((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
+        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
+        FUN_01039bb0(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
         __builtin_unreachable();
     } else {
         uVar6 = 0;
@@ -45,8 +45,8 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
         InstructionSynchronizationBarrier(0xf);
         int iVar3 = FUN_0103610c(iVar2, param_2, 0x40, uVar6);
         if (iVar3 == 0) {
-            FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
-            FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0x72);
+            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+            FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
             __builtin_unreachable();
         } else {
             FUN_01036144(iVar2);
@@ -56,11 +56,9 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
                 FUN_0102ec10(param_2);
                 return;
             }
-            FUN_01039bbe("acking error (context area might be not valid)" /*=0x103d2a7*/, "***** HARD FAULT *****" /*=0x103d3b6*/, 0x111);
-            FUN_01039bb0("***** HARD FAULT *****" /*=0x103d3b6*/, 0x111);
+            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x111);
+            FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x111);
             __builtin_unreachable();
         }
     }
 }
-
-

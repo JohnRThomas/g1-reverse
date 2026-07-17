@@ -1,5 +1,8 @@
 #include "g1_app_symbols.h"
-/* named: FUN_000857b2 */
+/* readable reconstruction; identity: FUN_000857b2 @ 0x000857b2
+ * public-name: FUN_000857b2
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_000857b2 @ 0x857b2  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
@@ -17,4 +20,3 @@ void FUN_000857b2(int32_t *param_1)
     *(uint16_t*)param_1[7] |= 1;
   }
 }
-

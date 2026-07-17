@@ -1,5 +1,10 @@
-/* named: bt_security_err_lookup */
-/* Reconstructed bt_security_err_lookup @ 0x54250  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00054250 @ 0x00054250
+ * public-name: bt_security_err_lookup
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_security_err_lookup                   <= FUN_00054250 @ 0x00054250
+ */
+/* Reconstructed FUN_00054250 @ 0x54250  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 uint8_t bt_security_err_lookup(unsigned int param_1)
@@ -12,4 +17,3 @@ uint8_t bt_security_err_lookup(unsigned int param_1)
   }
   return uVar1;
 }
-

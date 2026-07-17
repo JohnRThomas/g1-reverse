@@ -1,8 +1,19 @@
-/* named: z_reschedule */
-/* globals referenced:
-//   0x2000b448  g_zephyr_kernel              
-*/
-/* Reconstructed z_reschedule @ 0x739f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000739f0 @ 0x000739f0
+ * public-name: z_reschedule
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   g_zephyr_kernel                          @ 0x2000b448
+ */
+/* Reconstructed FUN_000739f0 @ 0x739f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int z_spin_unlock_valid(int);
 extern void FUN_000501d4(int);
@@ -35,4 +46,3 @@ void z_reschedule(int param_1, int param_2){
   printk(0xf090b, param_1);
   assert_post_action(0xf08c7, 0xf0);
 }
-

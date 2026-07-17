@@ -1,6 +1,11 @@
 #include "g1_app_symbols.h"
-/* named: bt_gatt_dm_attr_next */
-/* Reconstructed bt_gatt_dm_attr_next @ 0x7f51a  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0007f51a @ 0x0007f51a
+ * public-name: bt_gatt_dm_attr_next
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_gatt_dm_attr_next                     <= FUN_0007f51a @ 0x0007f51a
+ */
+/* Reconstructed FUN_0007f51a @ 0x7f51a  (parity: 300/300 trials, PROVEN) */
 
 typedef unsigned int uint;
 uint bt_gatt_dm_attr_next(char *param_1, uint param_2)
@@ -19,4 +24,3 @@ uint bt_gatt_dm_attr_next(char *param_1, uint param_2)
     }
     return uVar1;
 }
-

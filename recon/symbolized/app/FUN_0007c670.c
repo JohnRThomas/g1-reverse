@@ -1,5 +1,10 @@
 #include "g1_app_symbols.h"
-/* named: FUN_0007c670 */
+/* readable reconstruction; identity: FUN_0007c670 @ 0x0007c670
+ * public-name: FUN_0007c670
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   pthread_attr_getstack                    <= FUN_0007c65c @ 0x0007c65c
+ */
 /* Reconstructed FUN_0007c670 @ 0x7c670  (parity: 300/300 trials, PROVEN) */
 
 extern void pthread_attr_getstack(int param_1, int *param_2);
@@ -26,4 +31,3 @@ int FUN_0007c670(int param_1, int *param_2, int param_3)
     }
     return param_1;
 }
-

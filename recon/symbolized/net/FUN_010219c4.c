@@ -25,4 +25,3 @@ bool FUN_010219c4(char *param_1)
     }
     return false;
 }
-

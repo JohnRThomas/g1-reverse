@@ -1,6 +1,18 @@
 #include "g1_app_symbols.h"
-/* named: l2cap_chan_add */
-/* Reconstructed l2cap_chan_add @ 0x57874  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057874 @ 0x00057874
+ * public-name: l2cap_chan_add
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
+ *   k_work_init                              <= FUN_00072e50 @ 0x00072e50
+ *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
+ *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ * address symbols (name @ address):
+ *   rodata_57525                             @ 0x00057525
+ *   rodata_81b83                             @ 0x00081b83
+ *   rodata_88160                             @ 0x00088160
+ */
+/* Reconstructed FUN_00057874 @ 0x57874  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8; typedef uint16_t u16;
 extern uint64_t bt_l2cap_le_lookup_tx_cid(int,unsigned);
@@ -17,11 +29,11 @@ u32 l2cap_chan_add(int param_1, int param_2, int param_3){
                 *(volatile short*)(param_2+0x14) = (short)(u32)(uVar4 >> 32);
                 goto LAB;
             }
-            uVar2 = (((u32)(uVar4 >> 32)) + 1) & ((uintptr_t)&tbl_ffc8) /*=0xffff*/;
+            uVar2 = (((u32)(uVar4 >> 32)) + 1) & 0xffff;
         } while(uVar2 != 0x80);
         u32 local[2];
         local[0] = 2;
-        FUN_00081746(((uintptr_t)&tbl_880d8) /*=0x88160*/, 0x1040, local);
+        FUN_00081746(((unsigned long)&rodata_88160) /*=0x88160*/, 0x1040, local);
         return 0;
     }
 LAB: ;
@@ -38,12 +50,11 @@ LAB: ;
     }
     *(volatile int*)param_2 = param_1;
     *(volatile int*)(param_2+0xc) = param_3;
-    FUN_000732d4(param_2 + 0xc0, ((uintptr_t)&tbl_574e4) /*=0x57525*/);
+    FUN_000732d4(param_2 + 0xc0, ((unsigned long)&rodata_57525) /*=0x57525*/);
     if((u16)((u16)(*(volatile u16*)(param_2+0x14)) - 0x40) <= 0x3f){
-        k_work_init(param_2 + 0x88, ((uintptr_t)&rodata_81b83) /*=0x81b83*/);
+        k_work_init(param_2 + 0x88, ((unsigned long)&rodata_81b83) /*=0x81b83*/);
         z_impl_k_queue_init(param_2 + 0x98);
         *(volatile u8*)(param_2 + 0xb4) = 1;
     }
     return 1;
 }
-

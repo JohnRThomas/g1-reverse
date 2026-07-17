@@ -1,8 +1,19 @@
-/* named: draw_status_icon_by_state */
-/* globals referenced:
-//   0x200024f0  g_status_icon_last_state     
-*/
-/* Reconstructed draw_status_icon_by_state @ 0x3be18  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0003be18 @ 0x0003be18
+ * public-name: draw_status_icon_by_state
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   draw_status_icon_by_state                <= FUN_0003be18 @ 0x0003be18
+ *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
+ *   gui_clear_icon_box_40                    <= FUN_00043324 @ 0x00043324
+ *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ * address symbols (name @ address):
+ *   g_status_icon_last_state                 @ 0x200024f0
+ */
+/* Reconstructed FUN_0003be18 @ 0x3be18  (parity: 300/300 trials, PROVEN) */
 extern int get_device_info(void);
 extern void gui_reset_dynamic_bitmap_frame_state(void);
 extern void gui_clear_icon_box_40(int a0,int a1);
@@ -91,4 +102,3 @@ int draw_status_icon_by_state(unsigned char *param_1, int param_2, int param_3, 
     gui_bmp_dynamic_bitmap_draw(uVar4,uVar2,iVar3,0,0,0,0,param_4);
     return 0;
 }
-

@@ -6,7 +6,7 @@ extern int FUN_01027790(int a);
 unsigned int FUN_0100a118(unsigned short param_1)
 {
     unsigned int local_c = 0;
-    unsigned int **base = (unsigned int **)((uintptr_t)&g_net_obj_table_root_ptr) /*=0x21000bb4*/;
+    unsigned int **base = (unsigned int **)((unsigned long)&g_net_obj_table_root_ptr) /*=0x21000bb4*/;
 
     if (*base == 0) {
         FUN_01008d00(0x18, 0xec);
@@ -17,5 +17,3 @@ unsigned int FUN_0100a118(unsigned short param_1)
     }
     return local_c;
 }
-
-

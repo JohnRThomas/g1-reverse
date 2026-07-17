@@ -1,21 +1,38 @@
-/* named: set_brightness_to_panel_reg_in_running */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-*/
-/* Reconstructed set_brightness_to_panel_reg_in_running @ 0x47058  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00047058 @ 0x00047058
+ * public-name: set_brightness_to_panel_reg_in_running
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   panel_write_xy_reg_cached                <= FUN_00047028 @ 0x00047028
+ *   set_brightness_to_panel_reg_in_running   <= FUN_00047058 @ 0x00047058
+ *   thunk_FUN_0007d77c                       <= FUN_0007d63e @ 0x0007d63e
+ *   projector_send_cmd1                      <= FUN_0007d642 @ 0x0007d642
+ *   delay_ms                                 <= FUN_0007d772 @ 0x0007d772
+ * address symbols (name @ address):
+ *   rodata_d7251                             @ 0x000d7251
+ *   rodata_d72e9                             @ 0x000d72e9
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed FUN_00047058 @ 0x47058  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT();
+extern void DEBUG_PRINT(uint32_t, ...);
 extern int get_device_info(void);
-extern void debug_print(void);
+extern void debug_print(uint32_t, ...);
 extern void panel_write_xy_reg_cached(int,int);
 extern void projector_send_cmd1(int,int);
 extern void thunk_FUN_0007d77c(int);
 extern void delay_ms(int);
 void set_brightness_to_panel_reg_in_running(uint param_1){
     if(*(volatile int*)0x2000230c > 2){
-        if(*(volatile int*)0x20007554 == 0) DEBUG_PRINT(); else debug_print();
+        if(*(volatile int*)0x20007554 == 0)
+            DEBUG_PRINT(0x000d7251u, 0x000d72e9u, param_1,
+                        *(volatile uint32_t *)0x20007554u);
+        else
+            debug_print(0x000d7251u, 0x000d72e9u, param_1,
+                         *(volatile uint32_t *)0x20007554u);
     }
     int iVar2=get_device_info();
     if(*(volatile int*)(iVar2+0xec8)==0) return;
@@ -44,4 +61,3 @@ void set_brightness_to_panel_reg_in_running(uint param_1){
     thunk_FUN_0007d77c(0xa3); thunk_FUN_0007d77c(0x97);
     delay_ms(1);
 }
-

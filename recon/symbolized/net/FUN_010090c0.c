@@ -6,7 +6,7 @@ extern void FUN_0101f7e0(void);
 
 unsigned int FUN_010090c0(void)
 {
-  unsigned int iVar1 = ((uintptr_t)&g_net_layout_count_table) /*=0x21000a30*/;
+  unsigned int iVar1 = ((unsigned long)&g_net_layout_count_table) /*=0x21000a30*/;
   unsigned int uVar2;
 
   if ((*(volatile unsigned char *)(iVar1 + 0x2d) == 0) && (*(volatile unsigned char *)(iVar1 + 0x2c) == 0)) {
@@ -22,4 +22,3 @@ unsigned int FUN_010090c0(void)
   }
   return uVar2;
 }
-

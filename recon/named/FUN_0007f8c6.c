@@ -1,4 +1,9 @@
-/* named: FUN_0007f8c6 */
+/* readable reconstruction; identity: FUN_0007f8c6 @ 0x0007f8c6
+ * public-name: FUN_0007f8c6
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ */
 /* Reconstructed FUN_0007f8c6 @ 0x7f8c6  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -14,4 +19,3 @@ unsigned int FUN_0007f8c6(unsigned int param_1, unsigned int param_2, unsigned i
     }
     return uVar1;
 }
-

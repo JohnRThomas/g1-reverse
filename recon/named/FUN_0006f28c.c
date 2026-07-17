@@ -1,4 +1,10 @@
-/* named: FUN_0006f28c */
+/* readable reconstruction; identity: FUN_0006f28c @ 0x0006f28c
+ * public-name: FUN_0006f28c
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_8d3d0                             @ 0x0008d3d0
+ *   rodata_8ed50                             @ 0x0008ed50
+ */
 /* Reconstructed FUN_0006f28c @ 0x6f28c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
@@ -101,4 +107,3 @@ LAB_0006f3ea:
     if (iVar5 < 0) iVar5 = local_4c + 0xffe;
     return iVar5 >> 0xb;
 }
-

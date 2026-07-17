@@ -1,5 +1,10 @@
-/* named: sllist_count_nodes */
-/* Reconstructed sllist_count_nodes @ 0x85020  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085020 @ 0x00085020
+ * public-name: sllist_count_nodes
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
+ */
+/* Reconstructed FUN_00085020 @ 0x85020  (parity: 300/300 trials, PROVEN) */
 
 int sllist_count_nodes(int *param_1)
 {
@@ -16,4 +21,3 @@ int sllist_count_nodes(int *param_1)
   }
   return 0;
 }
-

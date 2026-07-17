@@ -1,5 +1,16 @@
-/* named: gatt_parse_read_by_type_rsp_128 */
-/* Reconstructed gatt_parse_read_by_type_rsp_128 @ 0x5c004  (parity: 200/200 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_0005c004 @ 0x0005c004
+ * public-name: gatt_parse_read_by_type_rsp_128
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   gatt_parse_read_by_type_rsp_128          <= FUN_0005c004 @ 0x0005c004
+ *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
+ *   gatt_discover_next                       <= FUN_00082d2e @ 0x00082d2e
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_88128                             @ 0x00088128
+ *   rodata_f4ca8                             @ 0x000f4ca8
+ */
+/* Reconstructed FUN_0005c004 @ 0x5c004  (parity: 200/200 trials, PROVEN) */
 
 #include <stdint.h>
 typedef int (*codep)(int,void*,int*);
@@ -37,4 +48,3 @@ void gatt_parse_read_by_type_rsp_128(int param_1,int param_2,unsigned *param_3,i
   }
   return;
 }
-

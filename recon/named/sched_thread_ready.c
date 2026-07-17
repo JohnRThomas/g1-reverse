@@ -1,5 +1,25 @@
-/* named: sched_thread_ready */
-/* Reconstructed sched_thread_ready @ 0x73a78  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00073a78 @ 0x00073a78
+ * public-name: sched_thread_ready
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
+ *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
+ *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   sched_ready_queue_insert                 <= FUN_00073840 @ 0x00073840
+ *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
+ *   sched_thread_ready                       <= FUN_00073a78 @ 0x00073a78
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f08c7                             @ 0x000f08c7
+ *   rodata_f08f4                             @ 0x000f08f4
+ *   rodata_f090b                             @ 0x000f090b
+ *   rodata_f0920                             @ 0x000f0920
+ *   rodata_f0935                             @ 0x000f0935
+ *   sched_spinlock_b490                      @ 0x2000b490
+ */
+/* Reconstructed FUN_00073a78 @ 0x73a78  (parity: 300/300 trials, PROVEN) */
 
 extern int z_spin_lock_valid(int);
 extern int z_spin_unlock_valid(int);
@@ -23,4 +43,3 @@ void sched_thread_ready(int param_1,int param_2,int param_3,int param_4){
   if(r!=0) return;
   printk(0x99cbd,0xf08f4,0xf08c7,0xf0,param_4); printk(0xf090b,0x2000b490); assert_post_action(0xf08c7,0xf0);
 }
-

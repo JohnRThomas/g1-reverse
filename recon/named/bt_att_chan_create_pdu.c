@@ -1,5 +1,27 @@
-/* named: bt_att_chan_create_pdu */
-/* Reconstructed bt_att_chan_create_pdu @ 0x585f0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_000585f0 @ 0x000585f0
+ * public-name: bt_att_chan_create_pdu
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   att_op_get_type                          <= FUN_000582b8 @ 0x000582b8
+ *   bt_att_chan_create_pdu                   <= FUN_000585f0 @ 0x000585f0
+ *   net_buf_reset                            <= FUN_0005ee6c @ 0x0005ee6c
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
+ *   net_buf_simple_reserve                   <= FUN_0005f4d4 @ 0x0005f4d4
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   k_current_get                            <= FUN_000748ac @ 0x000748ac
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_88100                             @ 0x00088100
+ *   rodata_f0000                             @ 0x000f0000
+ *   rodata_f3ec2                             @ 0x000f3ec2
+ *   rodata_f4475                             @ 0x000f4475
+ *   rodata_f449a                             @ 0x000f449a
+ *   rodata_f44c2                             @ 0x000f44c2
+ *   g_bt_att_pool                            @ 0x20003a28
+ */
+/* Reconstructed FUN_000585f0 @ 0x585f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int att_op_get_type(int);
 extern int net_buf_reset(void);
@@ -88,4 +110,3 @@ LAB_00058624:
     FUN_00081ddc(0x00088100, uVar4, &local_48);
     return 0;
 }
-

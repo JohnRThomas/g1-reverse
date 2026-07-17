@@ -1,5 +1,13 @@
-/* named: ipc_send_len_prefixed_packet */
-/* Reconstructed ipc_send_len_prefixed_packet @ 0x25740  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00025740 @ 0x00025740
+ * public-name: ipc_send_len_prefixed_packet
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   ipc_send_len_prefixed_packet             <= FUN_00025740 @ 0x00025740
+ *   sleep_fixed_33_ticks                     <= FUN_0007c87a @ 0x0007c87a
+ * address symbols (name @ address):
+ *   rodata_9f239                             @ 0x0009f239
+ */
+/* Reconstructed FUN_00025740 @ 0x25740  (parity: 300/300 trials, PROVEN) */
 
 extern int FUN_0007c85e(int, void*, int, int);
 extern void sleep_fixed_33_ticks(void);
@@ -22,4 +30,3 @@ int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3,
   }
   return iVar1;
 }
-

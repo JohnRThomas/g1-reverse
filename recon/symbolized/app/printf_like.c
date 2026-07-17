@@ -1,6 +1,17 @@
 #include "g1_app_symbols.h"
-#include <stdbool.h>
-/* named: printf_like */
+/* readable reconstruction; identity: FUN_000113a8 @ 0x000113a8
+ * public-name: printf_like
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   _ldiv5                                   <= FUN_0007e260 @ 0x0007e260
+ *   _get_digit                               <= FUN_0007e290 @ 0x0007e290
+ *   outs                                     <= FUN_0007e2be @ 0x0007e2be
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_f8a6a                             @ 0x000f8a6a
+ *   rodata_f8a6b                             @ 0x000f8a6b
+ */
 /* Reconstructed printf_like @ 0x113a8  (parity: 120/120 trials, PROVEN) */
 #include <stdint.h>
 #pragma GCC diagnostic warning "-Wint-conversion"
@@ -13,12 +24,12 @@
 typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
 typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
 typedef uint32_t undefined4; typedef uint32_t uint;
-typedef long long code(int,...);
+typedef int code(int,uint32_t);
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
 static inline int CARRY4(uint a, uint b){return (a+b)<a;}
 static inline int CARRY1(uint a, uint b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(uint a, uint b){return ((a&((uintptr_t)&tbl_ffc8) /*=0xffff*/)+(b&((uintptr_t)&tbl_ffc8) /*=0xffff*/))>((uintptr_t)&tbl_ffc8) /*=0xffff*/;}
+static inline int CARRY2(uint a, uint b){return ((a&0xffff)+(b&0xffff))>0xffff;}
 static inline int SBORROW4(int a,int b){int r=(int)((uint)a-(uint)b);return (((a^b)&(a^r))<0);}
 static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
 static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
@@ -41,29 +52,20 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long FUN_0000ef12__impl(int, ...);
-#define strlen(...) FUN_0000ef12__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb64__impl(int, ...);
-#define FUN_0004bb64(...) FUN_0004bb64__impl(0, ##__VA_ARGS__)
-extern long long FUN_0004bb90__impl(int, ...);
-#define encode_uint(...) FUN_0004bb90__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e260__impl(int, ...);
-#define _ldiv5(...) FUN_0007e260__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e290__impl(int, ...);
-#define _get_digit(...) FUN_0007e290__impl(0, ##__VA_ARGS__)
-extern long long FUN_0007e2be__impl(int, ...);
-#define outs(...) FUN_0007e2be__impl(0, ##__VA_ARGS__)
-extern long long FUN_00086c78__impl(int, ...);
-#define memset_bytes(...) FUN_00086c78__impl(0, ##__VA_ARGS__)
-extern long long FUN_000870a6__impl(int, ...);
-#define strnlen(...) FUN_000870a6__impl(0, ##__VA_ARGS__)
-extern long long SCARRY4__impl(int, ...);
-#define SCARRY4(...) SCARRY4__impl(0, ##__VA_ARGS__)
+extern long long strlen(int, ...);
+extern long long FUN_0004bb64(int, ...);
+extern long long FUN_0004bb90(int, ...);
+extern long long _ldiv5(int, ...);
+extern long long _get_digit(int, ...);
+extern long long outs(int, ...);
+extern long long memset_bytes(int, ...);
+extern long long FUN_000870a6(int, ...);
+static inline int SCARRY4(int a, int b) { int r = (int)((uint)a + (uint)b); return ((a ^ r) & (b ^ r)) < 0; }
 
 #define DAT_00011dd0 (0x0UL)
-#define DAT_00011dd8 (((uintptr_t)&rodata_f8a6a) /*=0xf8a6a*/)
-#define DAT_00012074 ((volatile byte*)((uintptr_t)&rodata_f0981) /*=0xf0981*/)
-#define DAT_00012078 (((uintptr_t)&rodata_f8a6b) /*=0xf8a6b*/)
+#define DAT_00011dd8 (((unsigned long)&rodata_f8a6a) /*=0xf8a6a*/)
+#define DAT_00012074 ((volatile byte*)0xf0981UL)
+#define DAT_00012078 (((unsigned long)&rodata_f8a6b) /*=0xf8a6b*/)
 
 
 byte * printf_like(code *param_1,undefined4 param_2,byte *param_3,uint *param_4)
@@ -116,7 +118,7 @@ byte * printf_like(code *param_1,undefined4 param_2,byte *param_3,uint *param_4)
   byte *local_50;
   byte local_44 [25];
   byte abStack_2b [7];
-  
+
   pbVar28 = (byte *)0x0;
   do {
     bVar10 = *param_3;
@@ -134,6 +136,12 @@ LAB_000113cc:
       goto switchD_0001194e_caseD_59;
     }
     memset_bytes(&local_60,0,0x18);
+    local_60 = (byte *)0;
+    local_5c = 0;
+    local_58 = 0;
+    local_56 = 0;
+    local_54 = (byte *)0;
+    local_50 = (byte *)0;
     if (param_3[1] == 0x25) {
       local_88 = param_3 + 2;
       local_56 = CONCAT11(0x25,(byte)local_56);
@@ -191,7 +199,7 @@ LAB_00011412:
         local_58 = local_58 | 4;
       }
       if (((byte)local_58 & 0x44) == 0x44) {
-        local_58 = local_58 & ((uintptr_t)&rodata_ffbf) /*=0xffbf*/;
+        local_58 = local_58 & 0xffbf;
       }
       local_68 = CONCAT44((*(volatile uint32_t*)((char*)&local_68 + 4)),pbVar11);
       uVar9 = (*(volatile uint8_t*)((char*)&local_58 + 1));
@@ -277,10 +285,10 @@ LAB_000114ea:
         if (uVar18 < 0x6a) {
           if (0x57 < uVar18) {
             uVar19 = 1 << (uVar18 - 0x58 & 0xff);
-            if ((uVar19 & ((uintptr_t)&rodata_e200) /*=0xe200*/) != 0) goto LAB_0001151a;
+            if ((uVar19 & 0xe200) != 0) goto LAB_0001151a;
             if ((uVar19 & 0x801) != 0) {
               uVar19 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78;
-              local_56 = local_56 & ((uintptr_t)&tbl_ffc8) /*=0xfff8*/ | 2;
+              local_56 = local_56 & 0xfff8 | 2;
               if (uVar19 == 0x40) {
                 (*(volatile uint8_t*)((char*)&local_58 + 0)) = (byte)local_58 | 1;
               }
@@ -292,7 +300,7 @@ LAB_000114ea:
               }
               goto LAB_0001155a;
             }
-            if ((uVar19 & ((uintptr_t)&rodata_21000) /*=0x21000*/) != 0) {
+            if ((uVar19 & 0x21000) != 0) {
               bVar17 = (byte)local_56 & 0xf8 | 1;
               goto LAB_000116ee;
             }
@@ -303,7 +311,7 @@ LAB_0001151a:
           uVar18 = (uint)((uVar18 & 0xdf) == 0x41) << 7;
           uVar19 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0xffffff7f;
           uVar16 = uVar19 | uVar18;
-          local_56 = local_56 & ((uintptr_t)&tbl_ffc8) /*=0xfff8*/ | 4;
+          local_56 = local_56 & 0xfff8 | 4;
           bVar10 = (byte)uVar16;
           if ((int)(uVar16 << 0x18) < 0) {
             uVar19 = 1;
@@ -337,12 +345,12 @@ LAB_000116ee:
         }
         if ((uVar18 & 0x24) == 0) {
           if (-1 < (int)(uVar18 << 0x1f)) goto LAB_000116fc;
-          local_56 = local_56 & ((uintptr_t)&tbl_ffc8) /*=0xfff8*/ | 3;
+          local_56 = local_56 & 0xfff8 | 3;
           uVar19 = (uint)(((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) == 0x40);
         }
         else {
           uVar19 = (uint)(((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) != 0);
-          local_56 = local_56 & ((uintptr_t)&tbl_ffc8) /*=0xfff8*/ | 3;
+          local_56 = local_56 & 0xfff8 | 3;
         }
       }
 LAB_00011744:
@@ -371,7 +379,7 @@ LAB_00011744:
       pbVar11 = (byte *)*puVar26;
       puVar26 = puVar25;
       if ((int)pbVar11 < 0) {
-        local_58 = local_58 & ((uintptr_t)&rodata_fdff) /*=0xfdff*/;
+        local_58 = local_58 & 0xfdff;
 LAB_000115a8:
         pbVar11 = (byte *)0xffffffff;
       }
@@ -451,7 +459,7 @@ switchD_000117ce_caseD_4:
         local_5c = 0;
         param_4 = puVar26 + 1;
         if (uVar18 == 2) {
-          local_60 = (byte *)((uint)local_60 & ((uintptr_t)&tbl_ffc8) /*=0xffff*/);
+          local_60 = (byte *)((uint)local_60 & 0xffff);
           goto LAB_0001185a;
         }
       }
@@ -513,7 +521,7 @@ switchD_0001194e_caseD_61:
         uVar18 = ((uVar19 << 0x1b) >> 0x1f) << 5;
       }
       uVar12 = (local_5c << 1) >> 0x15;
-      uVar20 = local_5c & ((uintptr_t)&rodata_fffff) /*=0xfffff*/;
+      uVar20 = local_5c & 0xfffff;
       if (uVar12 == 0) {
         if (local_60 == (byte *)0x0 && uVar20 == 0) {
           bVar31 = false;
@@ -838,7 +846,7 @@ LAB_00011dee:
             local_44[1] = 0x41;
           }
         }
-        local_58 = local_58 & ((uintptr_t)&rodata_ffbf) /*=0xffbf*/;
+        local_58 = local_58 & 0xffbf;
         pbVar30 = local_44 + 3;
       }
       pbVar15 = local_44;
@@ -865,10 +873,10 @@ LAB_00011dee:
         local_5c = -local_5c - (uint)bVar31;
       }
 LAB_00011aa2:
-      pbVar15 = (byte *)encode_uint(local_60,local_5c,&local_58,local_44,abStack_2b);
+      pbVar15 = (byte *)FUN_0004bb90(local_60,local_5c,&local_58,local_44,abStack_2b);
 LAB_00011ab6:
       if (-1 < (int)pbVar11) {
-        local_58 = local_58 & ((uintptr_t)&rodata_ffbf) /*=0xffbf*/;
+        local_58 = local_58 & 0xffbf;
         if (abStack_2b + -(int)pbVar15 < pbVar11) {
           local_54 = pbVar11 + -(int)(abStack_2b + -(int)pbVar15);
         }
@@ -911,7 +919,7 @@ LAB_00011b98:
         pbVar30 = DAT_00012074;
         goto LAB_000119fa;
       }
-      pbVar15 = (byte *)encode_uint(local_60,0,&local_58,local_44,abStack_2b);
+      pbVar15 = (byte *)FUN_0004bb90(local_60,0,&local_58,local_44,abStack_2b);
       local_56 = local_56 & 0xef | 0x7810;
       uVar18 = 0;
       goto LAB_00011ab6;
@@ -920,7 +928,7 @@ LAB_00011b98:
         iVar29 = strlen(local_60);
       }
       else {
-        iVar29 = strnlen(local_60,pbVar11);
+        iVar29 = FUN_000870a6(local_60,pbVar11);
         if (pbVar15 == (byte *)0x0) break;
       }
       uVar18 = 0;
@@ -1056,7 +1064,7 @@ LAB_000119fa:
             pbVar28 = (byte *)(*param_1)(0x2e,param_2);
             while( true ) {
               if ((int)pbVar28 < 0) {
-                return pbVar28;
+      return pbVar28;
               }
               pbVar21 = pbVar21 + 1;
               if ((int)pbVar15 < 1) break;
@@ -1102,5 +1110,3 @@ switchD_0001194e_caseD_59:
     param_3 = local_88;
   } while( true );
 }
-
-

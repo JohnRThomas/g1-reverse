@@ -1,9 +1,20 @@
-/* named: cbor_decode_tstr */
-/* Reconstructed cbor_decode_tstr @ 0x85f9c  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00085f9c @ 0x00085f9c
+ * public-name: cbor_decode_tstr
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   cbor_decode_tstr                         <= FUN_00085f9c @ 0x00085f9c
+ */
+/* Reconstructed FUN_00085f9c @ 0x85f9c (exact 6-byte tail wrapper). */
+#include <stdint.h>
 
-extern void cbor_decode_length_prefix(int*,int,unsigned int,unsigned int,unsigned int);
-void cbor_decode_tstr(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
+/* Catalogless internal entry at 0x85ef0; the verifier maps the encoded name
+ * directly to that reviewed firmware address. */
+extern void FUN_00085ef0(void *object, void *item, uint32_t mode,
+                         uint32_t inherited_r3);
+
+void cbor_decode_tstr(void *object, void *item, uint32_t ignored,
+                  uint32_t inherited_r3)
 {
-  cbor_decode_length_prefix(param_1, param_2, 3, param_4, param_4);
+    (void)ignored;
+    FUN_00085ef0(object, item, 3, inherited_r3);
 }
-

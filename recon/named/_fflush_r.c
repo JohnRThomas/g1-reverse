@@ -1,5 +1,14 @@
-/* named: _fflush_r */
-/* Reconstructed _fflush_r @ 0x76ad0  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00076ad0 @ 0x00076ad0
+ * public-name: _fflush_r
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lock_acquire_or_fatal                    <= FUN_000510fc @ 0x000510fc
+ *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
+ *   _fflush_r                                <= FUN_00076ad0 @ 0x00076ad0
+ *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   stdio_flush_write_buffer                 <= FUN_00086a0e @ 0x00086a0e
+ */
+/* Reconstructed FUN_00076ad0 @ 0x76ad0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void stdio_streams_init(void);
 extern void lock_acquire_or_fatal(uint32_t);
@@ -24,4 +33,3 @@ uint32_t _fflush_r(int param_1,int param_2){
   }
   return 0;
 }
-

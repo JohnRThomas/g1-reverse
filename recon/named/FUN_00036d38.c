@@ -1,4 +1,20 @@
-/* named: FUN_00036d38 */
+/* readable reconstruction; identity: FUN_00036d38 @ 0x00036d38
+ * public-name: FUN_00036d38
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
+ *   clean_fb_data                            <= FUN_000471cc @ 0x000471cc
+ *   reflash_fb_data_to_lcd                   <= FUN_00047260 @ 0x00047260
+ *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
+ *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ * address symbols (name @ address):
+ *   rodata_a8ea1                             @ 0x000a8ea1
+ *   rodata_a8eb5                             @ 0x000a8eb5
+ *   rodata_a8ec6                             @ 0x000a8ec6
+ *   rodata_a8edd                             @ 0x000a8edd
+ *   g_display_last_drawn_lang                @ 0x20004968
+ */
 /* Reconstructed FUN_00036d38 @ 0x36d38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern unsigned FUN_00023ee0(void);
@@ -63,4 +79,3 @@ void FUN_00036d38(void)
         gui_utf_draw(0, uVar7, 0, iVar2, iVar4 + 0x43, iVar5 + 0x236, iVar3 + 0x5e, 1, 0, 0, 0, 0);
     }
 }
-

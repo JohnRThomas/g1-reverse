@@ -1,9 +1,9 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_0101ff4c @ 0x101ff4c  (parity 300 trials PROVEN) */
 
-volatile unsigned char * const DAT_0101ff90 = (volatile unsigned char *)((uintptr_t)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
+volatile unsigned char * const DAT_0101ff90 = (volatile unsigned char *)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;
 volatile unsigned int * const DAT_0101ff94 = (volatile unsigned int *)REG_4100e000 /*=0x4100e000*/;
-volatile unsigned int * const DAT_0101ff98 = (volatile unsigned int *)REG_4100f000 /*=0x4100f000*/;
+volatile unsigned int * const DAT_0101ff98 = (volatile unsigned int *)0x4100f000;
 
 void FUN_0101ff4c(void)
 {
@@ -24,4 +24,3 @@ void FUN_0101ff4c(void)
   }
   *(volatile unsigned short *)(pcVar1 + 1) = 0;
 }
-

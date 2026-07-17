@@ -1,5 +1,20 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00071f38 */
+/* readable reconstruction; identity: FUN_00071f38 @ 0x00071f38
+ * public-name: FUN_00071f38
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
+ *   sched_thread_ready                       <= FUN_00073a78 @ 0x00073a78
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_86661                             @ 0x00086661
+ *   rodata_87fc8                             @ 0x00087fc8
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f0d20                             @ 0x000f0d20
+ *   rodata_f7f4b                             @ 0x000f7f4b
+ *   rodata_f8056                             @ 0x000f8056
+ */
 /* Reconstructed FUN_00071f38 @ 0x71f38  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef long long i64; typedef unsigned long long u64;
@@ -16,20 +31,20 @@ void FUN_00071f38(void)
   i64 lVar1; u64 uVar8;
   int *piVar2, *piVar6;
   unsigned uVar3, uVar5; int iVar4, iVar7;
-  piVar2 = (int*)((uintptr_t)&tbl_87fc8) /*=0x87fc8*/;
-  piVar6 = (int*)((uintptr_t)&tbl_87fc8) /*=0x87fc8*/;
+  piVar2 = (int*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;
+  piVar6 = (int*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/;
   do {
     if (piVar2 < piVar6) {
-      printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"thread_data <= __static_thread_data_list_end" /*=0xf8056*/,"WEST_TOPDIR/zephyr/kernel/thread.c" /*=0xf7f4b*/,0x2f3);
-      printk("\tunexpected list end location\n" /*=0xf0d20*/,0,0,0);
+      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x2f3);
+      printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/,0,0,0);
       uVar3 = 0x2f3;
 LAB:
-      assert_post_action("WEST_TOPDIR/zephyr/kernel/thread.c" /*=0xf7f4b*/,uVar3);
+      assert_post_action(((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,uVar3);
     }
     if (piVar2 <= piVar6) {
       FUN_00073b1c();
-      uVar3 = ((uintptr_t)&rodata_86661) /*=0x86661*/;
-      for (piVar6 = (int*)((uintptr_t)&tbl_87fc8) /*=0x87fc8*/; piVar6 <= piVar2; piVar6 = piVar6 + 0xb) {
+      uVar3 = ((unsigned long)&rodata_86661) /*=0x86661*/;
+      for (piVar6 = (int*)((unsigned long)&rodata_87fc8) /*=0x87fc8*/; piVar6 <= piVar2; piVar6 = piVar6 + 0xb) {
         if (piVar2 <= piVar6) {
           FUN_00073bf4();
           return;
@@ -40,7 +55,7 @@ LAB:
           lVar1 = (i64)(int)uVar5 * 0x8000 + 999;
           iVar4 = (int)((u64)lVar1 >> 0x20);
           iVar7 = *piVar6;
-          if (iVar4 == 0 && (uVar5 & ((uintptr_t)&rodata_1ffff) /*=0x1ffff*/) == 0) {
+          if (iVar4 == 0 && (uVar5 & 0x1ffff) == 0) {
             sched_thread_ready(iVar7);
           } else {
             uVar8 = __aeabi_uldivmod((int)lVar1,iVar4,1000,0);
@@ -48,8 +63,8 @@ LAB:
           }
         }
       }
-      printk("ASSERTION FAIL [%s] @ %s:%d\n" /*=0x99cbd*/,"thread_data <= __static_thread_data_list_end" /*=0xf8056*/,"WEST_TOPDIR/zephyr/kernel/thread.c" /*=0xf7f4b*/,0x312);
-      printk("\tunexpected list end location\n" /*=0xf0d20*/,0,0,0);
+      printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8056) /*=0xf8056*/,((unsigned long)&rodata_f7f4b) /*=0xf7f4b*/,0x312);
+      printk(((unsigned long)&rodata_f0d20) /*=0xf0d20*/,0,0,0);
       uVar3 = 0x312;
       goto LAB;
     }
@@ -58,4 +73,3 @@ LAB:
     piVar6 = piVar6 + 0xb;
   } while(1);
 }
-

@@ -1,5 +1,13 @@
 #include "g1_app_symbols.h"
-/* named: FUN_00063984 */
+/* readable reconstruction; identity: FUN_00063984 @ 0x00063984
+ * public-name: FUN_00063984
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dev_write_reg3                           <= FUN_00083dc8 @ 0x00083dc8
+ *   dev_set_threshold_and_arm                <= FUN_00083e70 @ 0x00083e70
+ * address symbols (name @ address):
+ *   rodata_f66c1                             @ 0x000f66c1
+ */
 /* Reconstructed FUN_00063984 @ 0x63984  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_set_threshold_and_arm(unsigned int a, int b, unsigned int c, unsigned int d, unsigned int e);
@@ -23,7 +31,7 @@ int FUN_00063984(int param_1, int *param_2, unsigned int param_3, unsigned int p
     }
     if ((*(volatile unsigned char *)((char*)param_2 + 0xc) & 3) != 3) {
       unsigned char idx = *(volatile unsigned char *)((char*)param_2 + 0xc) & 3;
-      iVar1 = dev_write_reg3(*puVar3, 7, 5, *(volatile unsigned char *)(((uintptr_t)&rodata_f66c1) /*=0xf66c1*/ + idx));
+      iVar1 = dev_write_reg3(*puVar3, 7, 5, *(volatile unsigned char *)(((unsigned long)&rodata_f66c1) /*=0xf66c1*/ + idx));
       if (iVar1 < 0) {
         return iVar1;
       }
@@ -33,4 +41,3 @@ int FUN_00063984(int param_1, int *param_2, unsigned int param_3, unsigned int p
   }
   return -0x16;
 }
-

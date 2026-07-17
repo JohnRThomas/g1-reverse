@@ -1,10 +1,35 @@
 #include "g1_app_symbols.h"
-/* named: verify_whitelist_json */
-/* globals referenced:
-//   0x20007554  g_log_use_alt_sink           
-//   0x2001a22c  g_app_whitelist_buffer       
-*/
-/* Reconstructed verify_whitelist_json @ 0x35050  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00035050 @ 0x00035050
+ * public-name: verify_whitelist_json
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   whitelist_contains_app                   <= FUN_00034ff0 @ 0x00034ff0
+ *   verify_whitelist_json                    <= FUN_00035050 @ 0x00035050
+ *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
+ *   sllist_count_nodes                       <= FUN_00085020 @ 0x00085020
+ *   sllist_node_at_index                     <= FUN_00085030 @ 0x00085030
+ *   sllist_find_by_name_ci                   <= FUN_0008503c @ 0x0008503c
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_9a1dd                             @ 0x0009a1dd
+ *   rodata_9e1b6                             @ 0x0009e1b6
+ *   rodata_9e235                             @ 0x0009e235
+ *   rodata_a862c                             @ 0x000a862c
+ *   rodata_a8638                             @ 0x000a8638
+ *   rodata_a864e                             @ 0x000a864e
+ *   rodata_a866e                             @ 0x000a866e
+ *   rodata_a869b                             @ 0x000a869b
+ *   rodata_a870b                             @ 0x000a870b
+ *   rodata_a8762                             @ 0x000a8762
+ *   rodata_a886d                             @ 0x000a886d
+ *   rodata_a8884                             @ 0x000a8884
+ *   rodata_f33e4                             @ 0x000f33e4
+ *   rodata_f3630                             @ 0x000f3630
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_app_whitelist_buffer                   @ 0x2001a22c
+ */
+/* Reconstructed FUN_00035050 @ 0x35050  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
@@ -21,8 +46,8 @@ extern void strncpy_zero_pad(void *a, unsigned b, int c);
 
 undefined4 verify_whitelist_json(void)
 {
-    volatile int *dbgp = (volatile int *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
-    volatile unsigned char *pbVar2 = (volatile unsigned char *)(g_app_whitelist_buffer) /*=0x2001a22c*/;
+    volatile int *dbgp = (volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+    volatile unsigned char *pbVar2 = (volatile unsigned char *)((unsigned long)g_app_whitelist_buffer) /*=0x2001a22c*/;
     int *piVar1;
     unsigned char bVar3;
     int iVar4, iVar5, iVar6, iVar7;
@@ -32,87 +57,87 @@ undefined4 verify_whitelist_json(void)
 
     iVar4 = FUN_0008500c();
     if (iVar4 == 0) {
-        if (*dbgp == 0) DEBUG_PRINT("error root JSON NODE !\n" /*=0xa8762*/);
-        else debug_print(0);
+        if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a8762) /*=0xa8762*/);
+        else debug_print(((unsigned long)&rodata_a8762) /*=0xa8762*/);
         return 0;
     }
-    iVar5 = sllist_find_by_name_ci(iVar4, "call_enable" /*=0xa862c*/);
+    iVar5 = sllist_find_by_name_ci(iVar4, ((unsigned long)&rodata_a862c) /*=0xa862c*/);
     if (iVar5 == 0) {
         iVar5 = *dbgp;
-        uVar8 = "callEnable is NULL !\n" /*=0xa8638*/;
+        uVar8 = ((unsigned long)&rodata_a8638) /*=0xa8638*/;
 LAB_00035088:
         if (iVar5 == 0) DEBUG_PRINT(uVar8);
-        else debug_print(0);
+        else debug_print(uVar8);
     } else {
         if ((int)((*pbVar2 & 1)) != (*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
-            uVar8 = "callEnable is not the same !\n" /*=0xa877a*/;
+            uVar8 = 0xa877a;
             goto LAB_00035088;
         }
-        iVar5 = sllist_find_by_name_ci(iVar4, "msg_enable" /*=0xa864e*/);
+        iVar5 = sllist_find_by_name_ci(iVar4, ((unsigned long)&rodata_a864e) /*=0xa864e*/);
         if (iVar5 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "msgEnable is NULL !\n" /*=0xa8659*/;
+            uVar8 = 0xa8659;
             goto LAB_00035088;
         }
         if (((uint)*pbVar2 << 0x1e) >> 0x1f != (uint)(*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
-            uVar8 = "msgEnable is not the same !\n" /*=0xa8798*/;
+            uVar8 = 0xa8798;
             goto LAB_00035088;
         }
-        iVar5 = sllist_find_by_name_ci(iVar4, "calendar_enable" /*=0xa866e*/);
+        iVar5 = sllist_find_by_name_ci(iVar4, ((unsigned long)&rodata_a866e) /*=0xa866e*/);
         if (iVar5 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "jsonCalendarEnable is NULL !\n" /*=0xa87b5*/;
+            uVar8 = 0xa87b5;
             goto LAB_00035088;
         }
         if (((uint)*pbVar2 << 0x1c) >> 0x1f != (uint)(*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
-            uVar8 = "calendarEnable is not the same !\n" /*=0xa87d3*/;
+            uVar8 = 0xa87d3;
             goto LAB_00035088;
         }
-        iVar5 = sllist_find_by_name_ci(iVar4, "ios_mail_enable" /*=0xa869b*/);
+        iVar5 = sllist_find_by_name_ci(iVar4, ((unsigned long)&rodata_a869b) /*=0xa869b*/);
         if (iVar5 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "iosMailEnableJson is NULL !\n" /*=0xa87f5*/;
+            uVar8 = 0xa87f5;
             goto LAB_00035088;
         }
         if (((uint)*pbVar2 << 0x1d) >> 0x1f != (uint)(*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
-            uVar8 = "iosMailEnable is not the same !\n" /*=0xa8812*/;
+            uVar8 = 0xa8812;
             goto LAB_00035088;
         }
-        iVar5 = sllist_find_by_name_ci(iVar4, "app" /*=0x9e1b6*/);
+        iVar5 = sllist_find_by_name_ci(iVar4, ((unsigned long)&rodata_9e1b6) /*=0x9e1b6*/);
         if (iVar5 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "appJson is NULL !\n" /*=0xa86c8*/;
+            uVar8 = 0xa86c8;
             goto LAB_00035088;
         }
-        iVar6 = sllist_find_by_name_ci(iVar5, "enable" /*=0x9e235*/);
+        iVar6 = sllist_find_by_name_ci(iVar5, ((unsigned long)&rodata_9e235) /*=0x9e235*/);
         if (iVar6 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "appEnableJson is NULL !\n" /*=0xa86db*/;
+            uVar8 = 0xa86db;
             goto LAB_00035088;
         }
         if (((uint)*pbVar2 << 0x1b) >> 0x1f != (uint)(*(volatile int *)(iVar6 + 0xc) == 2)) {
             iVar5 = *dbgp;
-            uVar8 = "appEnable is not the same !\n" /*=0xa8833*/;
+            uVar8 = 0xa8833;
             goto LAB_00035088;
         }
-        iVar5 = sllist_find_by_name_ci(iVar5, "list" /*=0xf3630*/);
+        iVar5 = sllist_find_by_name_ci(iVar5, ((unsigned long)&rodata_f3630) /*=0xf3630*/);
         if (iVar5 == 0) {
             iVar5 = *dbgp;
-            uVar8 = "appListJson is NULL !\n" /*=0xa86f4*/;
+            uVar8 = 0xa86f4;
             goto LAB_00035088;
         }
         iVar6 = FUN_000850c8();
         if (iVar6 != 0) {
             bVar3 = sllist_count_nodes(iVar5);
-            piVar1 = (int *)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/;
+            piVar1 = (int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             uVar9 = (uint)bVar3;
             if (pbVar2[1] != uVar9) {
                 iVar5 = *dbgp;
-                uVar8 = "appCounts is not the same !\n" /*=0xa8850*/;
+                uVar8 = 0xa8850;
                 goto LAB_00035088;
             }
             uVar11 = 0;
@@ -120,21 +145,21 @@ LAB_00035088:
                 iVar6 = sllist_node_at_index(iVar5, uVar10);
                 if (iVar6 == 0) {
                     iVar6 = *piVar1;
-                    uVar8 = "singleAppJson is NULL !\n" /*=0xa870b*/;
+                    uVar8 = ((unsigned long)&rodata_a870b) /*=0xa870b*/;
 LAB_000351c4:
                     if (iVar6 == 0) DEBUG_PRINT(uVar8);
-                    else debug_print(0);
+                    else debug_print(uVar8);
                 } else {
-                    iVar7 = sllist_find_by_name_ci(iVar6, "id" /*=0x9a1dd*/);
+                    iVar7 = sllist_find_by_name_ci(iVar6, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/);
                     if (iVar7 == 0) {
                         iVar6 = *piVar1;
-                        uVar8 = "appIdJson is NULL !\n" /*=0xa8724*/;
+                        uVar8 = 0xa8724;
                         goto LAB_000351c4;
                     }
-                    iVar6 = sllist_find_by_name_ci(iVar6, "name" /*=0xf33e4*/);
+                    iVar6 = sllist_find_by_name_ci(iVar6, ((unsigned long)&rodata_f33e4) /*=0xf33e4*/);
                     if (iVar6 == 0) {
                         iVar6 = *piVar1;
-                        uVar8 = "appNameJson is NULL !\n" /*=0xa8739*/;
+                        uVar8 = 0xa8739;
                         goto LAB_000351c4;
                     }
                     local_29 = 0;
@@ -147,8 +172,8 @@ LAB_000351c4:
                 }
             }
             if (uVar11 == uVar9) {
-                if (*dbgp == 0) DEBUG_PRINT("the same whitelist ! \n" /*=0xa886d*/);
-                else debug_print(0);
+                if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a886d) /*=0xa886d*/);
+                else debug_print(((unsigned long)&rodata_a886d) /*=0xa886d*/);
                 uVar8 = 1;
                 goto LAB_0003523e;
             }
@@ -157,8 +182,7 @@ LAB_000351c4:
     uVar8 = 0;
 LAB_0003523e:
     cjson_delete(iVar4);
-    if (*dbgp == 0) DEBUG_PRINT("is_the_same_whitelist_app ret is %d\n" /*=0xa8884*/, uVar8);
-    else debug_print(0);
+    if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a8884) /*=0xa8884*/, uVar8);
+    else debug_print(((unsigned long)&rodata_a8884) /*=0xa8884*/, uVar8);
     return uVar8;
 }
-

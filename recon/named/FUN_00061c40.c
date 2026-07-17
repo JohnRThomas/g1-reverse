@@ -1,7 +1,10 @@
-/* named: FUN_00061c40 */
-/* globals referenced:
-//   0x5002a000  NRF_GPIOTE1_S                
-*/
+/* readable reconstruction; identity: FUN_00061c40 @ 0x00061c40
+ * public-name: FUN_00061c40
+ * durable-map: recon/catalogs/function_names_app.json
+ * address symbols (name @ address):
+ *   rodata_881f8                             @ 0x000881f8
+ *   rodata_f60c5                             @ 0x000f60c5
+ */
 /* Reconstructed FUN_00061c40 @ 0x61c40  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0004d944(void*, int, void*, int);
@@ -9,13 +12,13 @@ extern void FUN_0004d944(void*, int, void*, int);
 unsigned int FUN_00061c40(int param_1, unsigned int param_2, int param_3)
 {
   unsigned int uVar1;
-  unsigned int local_18;
-  int local_14;
 
   if (param_3 != 0) {
-    local_14 = 0xf60c5;
-    local_18 = 2;
-    FUN_0004d944((void*)0x881f8UL, 0x1080, &local_18, 0);
+    struct {
+      unsigned int severity;
+      unsigned int message;
+    } diagnostic = {2, 0x000f60c5};
+    FUN_0004d944((void*)0x881f8UL, 0x1080, &diagnostic, 0);
   }
   if (param_2 < 0x10 && ((int)((*(unsigned int*)(*(int*)(param_1+4)+4) >> (param_2 & 0xff)) << 0x1f) < 0)) {
     uVar1 = 0;
@@ -25,4 +28,3 @@ unsigned int FUN_00061c40(int param_1, unsigned int param_2, int param_3)
   }
   return uVar1;
 }
-

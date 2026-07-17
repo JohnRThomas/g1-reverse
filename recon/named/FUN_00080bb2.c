@@ -1,4 +1,7 @@
-/* named: FUN_00080bb2 */
+/* readable reconstruction; identity: FUN_00080bb2 @ 0x00080bb2
+ * public-name: FUN_00080bb2
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed FUN_00080bb2 @ 0x80bb2  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_00052744(void *a);
@@ -20,4 +23,3 @@ unsigned int FUN_00080bb2(int param_1, int param_2)
     }
     return uVar1;
 }
-

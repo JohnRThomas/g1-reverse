@@ -1,5 +1,17 @@
-/* named: bt_l2cap_recv */
-/* Reconstructed bt_l2cap_recv @ 0x57cc4  (parity: 300/300 trials, PROVEN) */
+/* readable reconstruction; identity: FUN_00057cc4 @ 0x00057cc4
+ * public-name: bt_l2cap_recv
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   bt_l2cap_recv                            <= FUN_00057cc4 @ 0x00057cc4
+ *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
+ *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
+ *   gatt_send_service_changed_ind            <= FUN_00081b30 @ 0x00081b30
+ * address symbols (name @ address):
+ *   rodata_88160                             @ 0x00088160
+ */
+/* Reconstructed FUN_00057cc4 @ 0x57cc4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
 extern void FUN_00057b60(int);
@@ -46,4 +58,3 @@ void bt_l2cap_recv(uint32_t param_1, int param_2, int param_3){
     FUN_00081746(0x88160, 0x1080, stackbuf);
     net_buf_unref(param_2); return;
 }
-

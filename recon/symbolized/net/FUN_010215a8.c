@@ -14,4 +14,3 @@ void FUN_010215a8(unsigned int param_1)
     *b = param_1 & 0xff;
   }
 }
-

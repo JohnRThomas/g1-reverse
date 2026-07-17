@@ -19,4 +19,3 @@ unsigned long long FUN_0100d6b0(unsigned int param_1, unsigned int param_2)
     return ((unsigned long long)lo << 32) | q;
   }
 }
-

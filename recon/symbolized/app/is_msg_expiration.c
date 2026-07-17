@@ -1,11 +1,21 @@
 #include "g1_app_symbols.h"
-/* named: is_msg_expiration */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x20007554  g_log_use_alt_sink           
-//   0x20007dac  g_message_pool               
-//   0x2001a22a  g_message_pool_index         
-*/
+/* readable reconstruction; identity: FUN_0003444c @ 0x0003444c
+ * public-name: is_msg_expiration
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
+ *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
+ * address symbols (name @ address):
+ *   rodata_a80e3                             @ 0x000a80e3
+ *   rodata_a8146                             @ 0x000a8146
+ *   rodata_a820f                             @ 0x000a820f
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_message_pool                           @ 0x20007dac
+ *   g_message_pool_index                     @ 0x2001a22a
+ */
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -33,8 +43,8 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
             set_device_sync_timestamp(**(unsigned int**)(intptr_t)(iVar2 + 0xfec));
         }
     }
-    iVar2 = (g_message_pool) /*=0x20007dac*/;
-    pbVar1 = (unsigned char*)((uintptr_t)&g_message_pool_index) /*=0x2001a22a*/;
+    iVar2 = ((unsigned long)g_message_pool) /*=0x20007dac*/;
+    pbVar1 = (unsigned char*)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/;
     iVar5 = (int)(*pbVar1) * 0x1b4 + iVar2;
     uVar6 = (unsigned int)*(unsigned char*)(intptr_t)(iVar5 + 0xf);
     if ((uVar6 != 0) && ((uVar6 = *(unsigned int*)(intptr_t)(iVar5 + 4)) != 0)) {
@@ -42,13 +52,13 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
         uVar7 = (unsigned int)*pbVar1;
         iVar5 = *(int*)(intptr_t)(uVar7 * 0x1b4 + iVar2 + 4);
         if (iVar5 + 10U < uVar6) {
-            if (0 < *(volatile int*)((uintptr_t)&g_log_level) /*=0x2000230c*/) {
-                if (*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+                if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     uVar4 = get_timestamp();
-                    DEBUG_PRINT("%s(): [csh_debug_msg]the msg has expirtion,g_curShowMsgIdx is %u, startShowTime is %u, now is %d\n\n" /*=0xa80e3*/, "is_msg_expiration" /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
+                    DEBUG_PRINT(((unsigned long)&rodata_a80e3) /*=0xa80e3*/, ((unsigned long)&rodata_a820f) /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
                 } else {
                     uVar4 = get_timestamp();
-                    debug_print("%s(): [csh_debug_msg]the msg has expirtion,g_curShowMsgIdx is %u, startShowTime is %u, now is %d\n\n" /*=0xa80e3*/, "is_msg_expiration" /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
+                    debug_print(((unsigned long)&rodata_a80e3) /*=0xa80e3*/, ((unsigned long)&rodata_a820f) /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
                 }
             }
             uVar6 = 2;
@@ -59,13 +69,12 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
     uVar8 = *(unsigned int*)(intptr_t)((unsigned int)*pbVar1 * 0x1b4 + iVar2 + 4);
     uVar7 = get_timestamp();
     if (uVar7 < uVar8) {
-        if (*(volatile int*)((uintptr_t)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT("error startShowTime, greate than now time ! \n" /*=0xa8146*/);
+        if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
+            DEBUG_PRINT(((unsigned long)&rodata_a8146) /*=0xa8146*/);
         } else {
-            debug_print("error startShowTime, greate than now time ! \n" /*=0xa8146*/);
+            debug_print(((unsigned long)&rodata_a8146) /*=0xa8146*/);
         }
         uVar6 = 2;
     }
     return uVar6;
 }
-

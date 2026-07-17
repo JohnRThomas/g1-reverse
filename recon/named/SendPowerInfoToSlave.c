@@ -1,9 +1,21 @@
-/* named: SendPowerInfoToSlave */
-/* globals referenced:
-//   0x2000230c  g_log_level                  
-//   0x2000392c  g_dashboard_response_msgq    
-//   0x20007554  g_log_use_alt_sink           
-*/
+/* readable reconstruction; identity: FUN_000488bc @ 0x000488bc
+ * public-name: SendPowerInfoToSlave
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_ef058                             @ 0x000ef058
+ *   rodata_ef4fa                             @ 0x000ef4fa
+ *   rodata_ef519                             @ 0x000ef519
+ *   rodata_ef553                             @ 0x000ef553
+ *   rodata_ef6f2                             @ 0x000ef6f2
+ *   g_log_level                              @ 0x2000230c
+ *   g_dashboard_response_msgq                @ 0x2000392c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
 /* Reconstructed SendPowerInfoToSlave @ 0x488bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t, ...);
@@ -21,16 +33,13 @@ unsigned int SendPowerInfoToSlave(int param_1)
     int iVar5;
     unsigned int uVar6;
     unsigned int uVar7;
-    unsigned char local_30;
-    unsigned char uStack_2f;
-    unsigned short local_2e;
-    unsigned char local_2c;
+    unsigned char request[24];
 
-    memset_bytes(&uStack_2f, 0, 0x17);
-    local_30 = 4;
-    local_2c = (unsigned char)param_1;
-    local_2e = 1;
-    iVar5 = k_msgq_put(0x2000392cUL, &local_30, 0, 0);
+    memset_bytes(&request[1], 0, 0x17);
+    request[0] = 4;
+    request[4] = (unsigned char)param_1;
+    *(unsigned short *)&request[2] = 1;
+    iVar5 = k_msgq_put(0x2000392cUL, request, 0, 0);
     piVar4 = (volatile int*)0x20007554UL;
     piVar3 = (volatile int*)0x2000230cUL;
     if (iVar5 == 0) {
@@ -69,4 +78,3 @@ unsigned int SendPowerInfoToSlave(int param_1)
     }
     return uVar7;
 }
-

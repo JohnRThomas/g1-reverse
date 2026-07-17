@@ -24,4 +24,3 @@ int FUN_0101e398(unsigned int param_1)
     unsigned int r3 = 0x8e89bed6u ^ param_1;
     return (((r3 - 1) & r3) != 0) ? 1 : 0;
 }
-

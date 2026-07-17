@@ -1,10 +1,10 @@
 #include "g1_net_symbols.h"
 /* net-core FUN_01037398 @ 0x1037398  (parity 300 trials PROVEN) */
-#define P_01037424 ((uintptr_t)&g_zephyr_sched_thread_field) /*=0x21004b40*/
-#define P_01037428 ((uintptr_t)&g_net_dlist_sentinel) /*=0x210043a8*/
-#define P_0103742c ((uintptr_t)&rodata_103eb0e) /*=0x103eb0e*/
-#define P_01037430 "acking error (context area might be not valid)" /*=0x103d2a7*/
-#define P_01037434 ((uintptr_t)&g_zephyr_kernel_readyq) /*=0x21004b28*/
+#define P_01037424 ((unsigned long)&g_zephyr_sched_thread_field) /*=0x21004b40*/
+#define P_01037428 0x210043a8
+#define P_0103742c ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/
+#define P_01037430 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
+#define P_01037434 0x21004b28
 
 extern void FUN_01036f74(int);
 extern void FUN_0103735c(int, int *);
@@ -55,4 +55,3 @@ LAB_end:
   FUN_01036f74((*(int **)(iVar1 + 8) == param_1) ? 1 : 0);
   return;
 }
-
