@@ -6,6 +6,7 @@
   "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
   "zephyr_tag": "v3.4.99-ncs1-1",
   "openamp_repository": "/Users/freedomcoder/ncs251/modules/lib/open-amp",
+  "openamp_commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
   "toolchain": "arm-zephyr-eabi GCC 12.2.0",
   "optimization": "-Os",
   "abi": "Cortex-M33+nodsp soft-float AAPCS"
@@ -24,6 +25,7 @@
    "upstream_symbol": "rpmsg_virtio_get_buffer_size",
    "abi": "int rpmsg_virtio_get_buffer_size(struct rpmsg_device *rdev)",
    "source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
+   "source_sha256": "a35ee4d23ba8a7071bd613a9d4b5b4e0230ea9017b8bc22871f01cc4d6cfa99b",
    "object": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
    "firmware_code_size": 60,
    "reference_code_size": 60,
@@ -38,6 +40,7 @@
    "upstream_symbol": "k_work_init",
    "abi": "void k_work_init(struct k_work *work, k_work_handler_t handler)",
    "source": "zephyr/kernel/work.c",
+   "source_sha256": "025f7d868bfde6c263675fdd339755edb829a24e5b51b822517e49eed909e90b",
    "object": "zephyr/kernel/libkernel.a(work.c.obj)",
    "firmware_code_size": 54,
    "reference_code_size": 54,
