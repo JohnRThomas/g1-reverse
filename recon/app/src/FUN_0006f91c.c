@@ -19,7 +19,7 @@ void FUN_0006f91c(int param_1, int param_2, int param_3, int *param_4){
     *(uint32_t*)(param_1+0x1c) = *(uint32_t*)(param_1+0x1c) | ((iVar2 - 1) << (uVar5 & 0xff));
     bVar1 = *(uint8_t*)((char*)param_4 + 8);
   } else {
-    FUN_00068908();
+    FUN_00068908(param_1, iVar2 - 1, iVar4);
     uVar6 = *(uint32_t*)(param_1+0x20);
     bVar1 = *(uint8_t*)((char*)param_4 + 8);
   }
@@ -40,4 +40,3 @@ void FUN_0006f91c(int param_1, int param_2, int param_3, int *param_4){
   }
   FUN_00068908(param_1, iVar3, 8);
 }
-

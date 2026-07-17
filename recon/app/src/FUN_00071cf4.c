@@ -7,14 +7,15 @@ extern void FUN_000738d4(void);
 extern void FUN_000739f0(int,uint32_t);
 extern int FUN_000744a4(int);
 extern void FUN_0007e2ec(uint32_t,int);
-extern void FUN_0007e2fa();
+extern void FUN_0007e2fa(uint32_t,...);
 void FUN_00071cf4(int param_1, uint32_t* param_2){
     int iVar6=param_1+8;
     uint32_t uVar7=0;
     int iVar2=FUN_00072040(iVar6);
     if(iVar2==0){
-        FUN_0007e2fa(); FUN_0007e2fa();
-        FUN_0007e2ec(uVar7,0x72);
+        FUN_0007e2fa(0x99cbd,0xf0920,0xf08c7,0x72);
+        FUN_0007e2fa(0xf0935,iVar6);
+        FUN_0007e2ec(0xf08c7,0x72);
         goto mainp;
     }
     FUN_00072078(iVar6);
@@ -30,8 +31,9 @@ void FUN_00071cf4(int param_1, uint32_t* param_2){
             else if((uint32_t*)(uVar4*(*(volatile int*)(param_1+0xc)-1)+(int)puVar5)<param_2) fail=1;
         }
         if(fail){
-            FUN_0007e2fa(); FUN_0007e2fa();
-            FUN_0007e2ec(0,0x98);
+            FUN_0007e2fa(0x99cbd,0xf7e7e,0xf7e3c,0x98);
+            FUN_0007e2fa(0xf7f29);
+            FUN_0007e2ec(0xf7e3c,0x98);
             goto mainp;
         }
     }
@@ -53,8 +55,8 @@ mainp:;
         *(volatile int*)(param_1+0x1c)=*(volatile int*)(param_1+0x1c)-1;
         iVar2=FUN_0007205c(iVar6);
         if(iVar2!=0) return;
-        FUN_0007e2fa(); FUN_0007e2fa();
-        FUN_0007e2ec(0,0xf0);
+        FUN_0007e2fa(0x99cbd,0xf08f4,0xf08c7,0xf0);
+        FUN_0007e2fa(0xf090b,iVar6);
+        FUN_0007e2ec(0xf08c7,0xf0);
     }
 }
-
