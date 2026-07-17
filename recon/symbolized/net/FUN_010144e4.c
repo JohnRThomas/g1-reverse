@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
  * address symbols (name @ address):
  *   g_210001d4                               @ 0x210001d4
  *   g_210001e4                               @ 0x210001e4
@@ -18,7 +19,7 @@ typedef unsigned short u16;
 extern int  FUN_0100a904(void *);
 extern void sdc_assertion_fail(int, int);
 extern void FUN_01025a84(void *, int, int);
-extern void FUN_0100e5dc(void *, int);
+extern void sdc_pdu_type_bits_set(void *, int);
 extern void FUN_0100e634(void *, uint);
 extern void FUN_0100e784(void *, int);
 extern void FUN_0100e79c(void *, int);
@@ -52,7 +53,7 @@ void FUN_010144e4(uint param_1)
     __atomic_signal_fence(__ATOMIC_ACQUIRE);
     buf = *(byte * volatile *)(frame + 8);
     FUN_01025a84(buf, 0, 0x32);
-    FUN_0100e5dc(buf, 3);
+    sdc_pdu_type_bits_set(buf, 3);
     *buf = *buf & 0xef;
     FUN_0100e634(buf, param_1);
 

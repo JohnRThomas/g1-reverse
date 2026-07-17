@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
  */
 /* net-core FUN_010166c0 @ 0x10166c0  (parity 300 trials PROVEN) */
 extern void sdc_assertion_fail(unsigned int, unsigned int);
@@ -13,7 +14,7 @@ extern unsigned short FUN_0100d5d0(unsigned int);
 extern void FUN_0100e018(unsigned int, void*);
 extern unsigned int *FUN_0100e294(unsigned char*, int);
 extern void sdc_work_submit(unsigned int, unsigned int, int);
-extern void FUN_0100efc8(unsigned int, unsigned int, int);
+extern void controller_work_update_or_enqueue(unsigned int, unsigned int, int);
 
 #define DAT_010167e0 0x21000f90u
 #define DAT_010167e4 (DAT_010167e0 + 0x14u)
@@ -102,6 +103,6 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
   *(volatile unsigned short *)(iVar3 + 0x33) = **(volatile unsigned short **)(iVar3 + 0x50);
   uVar4 = DAT_010167fc;
   *(volatile unsigned char *)(iVar3 + 0x35) = uVar2;
-  FUN_0100efc8(uVar4, uVar6, 2);
+  controller_work_update_or_enqueue(uVar4, uVar6, 2);
   return;
 }

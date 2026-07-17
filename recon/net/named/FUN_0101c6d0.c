@@ -5,6 +5,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
  * address symbols (name @ address):
  *   rodata_10100a1                           @ 0x010100a1
  *   rodata_10101cd                           @ 0x010101cd
@@ -45,7 +46,7 @@ extern uint32_t FUN_0100a984(uintptr_t, ...); extern uint32_t FUN_0100b630(uintp
 extern uint32_t FUN_0100d14c(uintptr_t, ...); extern uint32_t FUN_0100d3c0(uintptr_t, ...);
 extern uint32_t FUN_0100d5d0(uintptr_t, ...); extern uint32_t FUN_0100d7bc(uintptr_t, ...);
 extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
-extern uint32_t FUN_0100efc8(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
+extern uint32_t controller_work_update_or_enqueue(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
 extern uint32_t FUN_0100f1f8(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
 extern uint32_t FUN_0100f7e0(uintptr_t, ...); extern uint32_t FUN_0100f86c(uintptr_t, ...);
 extern uint32_t FUN_0100fae4(uintptr_t, ...); extern uint32_t FUN_01016250(uintptr_t, ...);
@@ -106,7 +107,7 @@ LAB_0101c6fc:
       }
       if (uVar4 <= uVar13) {
         *(undefined4 *)(iVar7 + 0xe8) = 0;
-        FUN_0100efc8(iVar7 + 0x1c5,DAT_0101c97c,2);
+        controller_work_update_or_enqueue(iVar7 + 0x1c5,DAT_0101c97c,2);
         uVar8 = (uint)*(ushort *)(iVar2 + 10);
       }
     }
@@ -308,7 +309,7 @@ LAB_0101c79c:
       uVar5 = DAT_0101ccf4;
       puVar15[0x11a] = puVar15[0x197];
       *(undefined1 *)((int)puVar15 + 0x22d) = 0;
-      FUN_0100efc8((uintptr_t)(puVar15 + 0x112),uVar5,2);
+      controller_work_update_or_enqueue((uintptr_t)(puVar15 + 0x112),uVar5,2);
       *(undefined1 *)(puVar15 + 0x18e) = 0;
       FUN_0100d14c((uintptr_t)puVar15,2);
       FUN_0101bdd4((uintptr_t)puVar15,3);

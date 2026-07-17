@@ -3,6 +3,7 @@
  * public-name: FUN_0101132c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   sdc_controller_random_get                <= FUN_0100f63c @ 0x0100f63c
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
@@ -36,7 +37,7 @@ extern unsigned int FUN_0100c738(void);
 extern int FUN_0101124c(int,int);
 extern int FUN_0100cb4c(int);
 extern int FUN_01009dd8(int*);
-extern int FUN_0100aa3c(int,int,int,int);
+extern int sdc_ble_address_equal(int,int,int,int);
 extern unsigned int sdc_controller_random_get(void);
 
 #define PB ((volatile unsigned char*)((unsigned long)&g_net_own_addr_info) /*=0x21000f20*/)
@@ -152,7 +153,7 @@ int FUN_0101132c(int param_1)
                 if (iVar9 != 0) return 0;
                 if (iVar5c == iterator.current) continue;
                 {
-                    int r = FUN_0100aa3c((int)*(volatile unsigned char*)(iVar3+9), iVar3+10,
+                    int r = sdc_ble_address_equal((int)*(volatile unsigned char*)(iVar3+9), iVar3+10,
                                           (int)*(volatile unsigned char*)(iVar5c+9), iVar5c+10);
                     if (r != 0) break;
                 }

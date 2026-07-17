@@ -6,6 +6,7 @@
  *   sdc_conn_radio_overhead_set              <= FUN_0100f48c @ 0x0100f48c
  *   sdc_conn_timing_fault                    <= FUN_01012c08 @ 0x01012c08
  *   sdc_conn_event_timing_prepare            <= FUN_01012f18 @ 0x01012f18
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   radio_phy_airtime_tail_get               <= FUN_010209e0 @ 0x010209e0
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  *   sdc_timing_scale                         <= FUN_01024678 @ 0x01024678
@@ -18,7 +19,7 @@
 /* net-core FUN_01013e98 @ 0x1013e98 */
 #include <stdint.h>
 
-extern void FUN_01020634(void);
+extern void controller_radio_event_cleanup(void);
 extern void FUN_01022a84(void);
 extern uint32_t FUN_010202e4(void);
 extern uint32_t radio_phy_airtime_tail_get(uint32_t);
@@ -120,7 +121,7 @@ void FUN_01013e98(uint8_t *ctx, uint32_t event)
         }
     }
 
-    FUN_01020634();
+    controller_radio_event_cleanup();
     FUN_01022a84();
     w16(ctx, 0x362, 0);
     w16(ctx, 0x32e, r16(ctx, 0xbc));

@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  * address symbols (name @ address):
  *   g_net_session_state_block                @ 0x210010a0
  *   g_net_session_queue_obj                  @ 0x210010f0
@@ -25,7 +26,7 @@ extern void FUN_01019254(void);
 extern void FUN_010196e0(void);
 extern void FUN_0101dd0c(int);
 extern void FUN_0101de60(int);
-extern void FUN_01020634(void);
+extern void controller_radio_event_cleanup(void);
 extern void FUN_01022a84(void);
 extern int FUN_01022ebc(unsigned char);
 extern void FUN_010237b0(unsigned char);
@@ -63,7 +64,7 @@ unsigned int FUN_0101ad38(void)
     disableIRQinterrupts();
     if (((pcVar3[0x14] != 0) && (pcVar3[0x15] != 0)) &&
         (FUN_010190d0(), pcVar3[0x14] != 0)) {
-      FUN_01020634();
+      controller_radio_event_cleanup();
       FUN_01022a84();
       pcVar3[0x14] = 0;
       pcVar3[0x15] = 0;

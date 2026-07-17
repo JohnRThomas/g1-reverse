@@ -7,6 +7,7 @@
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
  *   radio_slot_margin_get                    <= FUN_0101a130 @ 0x0101a130
  *   controller_timing_snapshot_build         <= FUN_0101a38c @ 0x0101a38c
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   controller_radio_transition_apply        <= FUN_01020d1c @ 0x01020d1c
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  * address symbols (name @ address):
@@ -22,7 +23,7 @@ extern int FUN_01018dac(void *);
 extern void FUN_01023d38(void);
 extern int FUN_01018de8(void);
 extern void FUN_010190d0(void);
-extern void FUN_01020634(void);
+extern void controller_radio_event_cleanup(void);
 extern void FUN_01022a84(void);
 extern void FUN_0101920c(uint32_t, uint32_t);
 extern int controller_timing_snapshot_build(void *, uint32_t, uint32_t);
@@ -105,7 +106,7 @@ void FUN_0101ab20(uint32_t unused, uint32_t event)
         } else {
             FUN_010190d0();
             if (state[0x14] != 0) {
-                FUN_01020634();
+                controller_radio_event_cleanup();
                 FUN_01022a84();
                 state[0x14] = 0;
                 state[0x15] = 0;

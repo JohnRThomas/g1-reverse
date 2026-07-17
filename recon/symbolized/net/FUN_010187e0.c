@@ -3,6 +3,7 @@
  * public-name: FUN_010187e0
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   sdc_llcp_apply_rx_transition             <= FUN_0101746c @ 0x0101746c
  *   sdc_llcp_decode_control_pdu              <= FUN_0101a070 @ 0x0101a070
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
@@ -15,7 +16,7 @@
 /* net-core FUN_010187e0 @ 0x10187e0  (parity 300 trials PROVEN) */
 typedef unsigned char u8; typedef unsigned short u16; typedef unsigned int u32;
 
-extern int FUN_0100aa3c(int,...);
+extern int sdc_ble_address_equal(int,...);
 extern int FUN_010162e0(int);
 extern int FUN_01016828(void);
 extern int FUN_01016cc8(void*,int);
@@ -92,13 +93,13 @@ unsigned int FUN_010187e0(u32 param_1, u32 param_2)
         if ((uVar7 & 9)==9) {
             if (G8(0x54)==3) {
                 if (G8(0xa9)==0) {
-                    iVar6=FUN_0100aa3c((u8)G8(0x90), (u32)P_ac8+0x2d, (u8)G8(0x5b));
+                    iVar6=sdc_ble_address_equal((u8)G8(0x90), (u32)P_ac8+0x2d, (u8)G8(0x5b));
                     if ((G8(0x56)!=1) && ((G8(0x56)!=0) || ((iVar6==0) && (G8(0x78)!=G8(0x7b)))))
                         goto L_8932;
                 }
 L_8a84:
                 if ( ( (*p40==0) || (cVar2!=0) ||
-                       ( (cVar5!=0) && (iVar6=FUN_0100aa3c((u8)G8(0x45),(u32)P_ac0,*p36), iVar6!=0) ) )
+                       ( (cVar5!=0) && (iVar6=sdc_ble_address_equal((u8)G8(0x45),(u32)P_ac0,*p36), iVar6!=0) ) )
                      && (iVar6=FUN_0102961a((u32)P_acc), iVar6!=0) ) {
                     uVar8=0xe; goto L_882e;
                 }
@@ -122,7 +123,7 @@ L_8b26:
             }
         }
         else {
-            if ((local_4b==0) && (iVar6=FUN_0100aa3c((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0)) {
+            if ((local_4b==0) && (iVar6=sdc_ble_address_equal((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0)) {
 L_8980:
                 if (((u8)((u8)G8(0x55)-2) < 2) && (cVar4!=0)) {
                     uVar8=1; FUN_01016cc8(&buf[0],0xfe); goto L_882e;
@@ -143,7 +144,7 @@ L_89f0:
             if (G8(0x54)!=2) {
                 uVar7=uVar7&2;
                 if ((*p47 & 2)!=0) {
-                    if ((local_4b==0) && (iVar6=FUN_0100aa3c((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0))
+                    if ((local_4b==0) && (iVar6=sdc_ble_address_equal((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0))
                         goto L_8980;
                     iVar6=(int)*P_ac4;
                     if (iVar6==0x7f) goto L_8be8;
@@ -161,7 +162,7 @@ L_89f0:
                 }
             } else {
                 if (((int)(uVar7<<0x1e)<0) && (local_4b==0) &&
-                    ((local_49==0) || (iVar6=FUN_0100aa3c((u8)G8(0x45),(u32)P_bf0,*p36,*p40), iVar6==0)))
+                    ((local_49==0) || (iVar6=sdc_ble_address_equal((u8)G8(0x45),(u32)P_bf0,*p36,*p40), iVar6==0)))
                     goto L_8980;
                 cVar2=*P_bec;
                 if (cVar2==0x7f) goto L_8be8;
@@ -178,7 +179,7 @@ L_89f0:
         if (*p48!=0) { uVar8=1; FUN_010196e0(); goto L_882e; }
         if (G8(0x54)!=3) {
             if ((int)((u32)*p47<<0x1e)<0) {
-                if ((local_4b==0) && (iVar6=FUN_0100aa3c((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0)) {
+                if ((local_4b==0) && (iVar6=sdc_ble_address_equal((u8)G8(0x45),(u32)P_ac0,*p36,*p40), iVar6==0)) {
                     if (((u8)((u8)G8(0x55)-2) > 1) || (cVar4==0)) goto L_8932;
                     bVar9=0xfe;
                 }

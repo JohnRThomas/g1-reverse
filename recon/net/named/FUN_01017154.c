@@ -2,6 +2,7 @@
  * public-name: FUN_01017154
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
  *   sdc_llcp_decode_control_pdu              <= FUN_0101a070 @ 0x0101a070
  * address symbols (name @ address):
@@ -10,7 +11,7 @@
 /* Reconstructed net-core packet handler @ 0x01017154. */
 #include <stdint.h>
 
-extern uint32_t FUN_0100aa3c(uint8_t, uint32_t, uint8_t, void *);
+extern uint32_t sdc_ble_address_equal(uint8_t, uint32_t, uint8_t, void *);
 extern uint32_t sdc_llcp_get_active_link_index(void);
 extern uint32_t FUN_0101709c(void *, uint32_t);
 extern void sdc_llcp_decode_control_pdu(const void *, void *);
@@ -30,7 +31,7 @@ uint32_t FUN_01017154(const uint8_t *packet)
     if (parsed[0] != 0 || (parsed[1] & 1) == 0)
         return 1;
 
-    if (FUN_0100aa3c(parsed[0x11], *(uint32_t *)(parsed + 4),
+    if (sdc_ble_address_equal(parsed[0x11], *(uint32_t *)(parsed + 4),
                      state[0x90], (void *)(state + 0x89)) == 0)
         return 1;
 

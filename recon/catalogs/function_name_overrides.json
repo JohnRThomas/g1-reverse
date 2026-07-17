@@ -447,6 +447,38 @@
    "name": "controller_packet_build_next",
    "evidence": "The sole caller repeatedly consumes return classes 0/2/4/8 and passes the produced packet to controller encoders; this function dequeues typed work nodes and fills that packet. Raw identity remains FUN_0100ec88."
   },
+  "0x0100aa3c": {
+   "name": "sdc_ble_address_equal",
+   "evidence": "Compares the address-type word and all six BLE address bytes without early exit; LLCP callers use the boolean result to match peer identity records. Raw identity remains FUN_0100aa3c."
+  },
+  "0x01020634": {
+   "name": "controller_radio_event_cleanup",
+   "evidence": "Shared event-release path clears RADIO, TIMER and controller event state, validates the stopped controller mode, and disables the corresponding NVIC line before scheduler replanning. Raw identity remains FUN_01020634."
+  },
+  "0x0100efc8": {
+   "name": "controller_work_update_or_enqueue",
+   "evidence": "Updates an already-linked controller work item in place or initializes and enqueues a new one while preserving the scheduler wakeup contract. Raw identity remains FUN_0100efc8."
+  },
+  "0x0100ca68": {
+   "name": "sdc_llcp_procedure_slot_get",
+   "evidence": "Resolves the selected LLCP procedure slot from the controller connection context for the receive and transition paths. Raw identity remains FUN_0100ca68."
+  },
+  "0x0100e5dc": {
+   "name": "sdc_pdu_type_bits_set",
+   "evidence": "Replaces the controller PDU type bit field while preserving the unrelated packed header bits. Raw identity remains FUN_0100e5dc."
+  },
+  "0x01026d3e": {
+   "name": "sdc_buffer_elapsed_units_get",
+   "evidence": "Computes the elapsed controller timing units associated with a buffer descriptor and returns the bounded unit count. Raw identity remains FUN_01026d3e."
+  },
+  "0x01026f32": {
+   "name": "sdc_buffer_accumulate",
+   "evidence": "Accumulates a controller buffer span into the destination descriptor while maintaining its private cursor and length state. Raw identity remains FUN_01026f32."
+  },
+  "0x010294d2": {
+   "name": "controller_intrusive_list_append_unique",
+   "evidence": "Appends a node to the controller intrusive list only when it is not already linked, preserving the list tail invariant. Raw identity remains FUN_010294d2."
+  },
   "0x0101a38c": {
    "name": "controller_timing_snapshot_build",
    "evidence": "Both callers provide a 24-byte current-radio-state output consumed by the controller scheduler. The complete body advances interval slots, selects BLE PHY airtime for encoded PHY values 1/2/4/8, maintains the schedule-node list, applies drift correction, and emits the timing snapshot. Raw identity remains FUN_0101a38c."

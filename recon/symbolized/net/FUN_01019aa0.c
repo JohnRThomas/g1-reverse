@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_elapsed_units_get             <= FUN_01026d3e @ 0x01026d3e
+ *   sdc_buffer_accumulate                    <= FUN_01026f32 @ 0x01026f32
  *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
  *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  * address symbols (name @ address):
@@ -28,8 +30,8 @@ extern void sdc_assertion_fail(int, int);
 extern int FUN_010199f4(int, ushort *, char, int, uint, char);
 extern int FUN_0100ca98(char, int);
 extern void sdc_work_submit(int, undefined4, int);
-extern int FUN_01026d3e(void);
-extern int FUN_01026f32(undefined4, undefined2, int);
+extern int sdc_buffer_elapsed_units_get(void);
+extern int sdc_buffer_accumulate(undefined4, undefined2, int);
 /* The callee returns a full register word; this caller explicitly narrows it
  * to the controller's 16-bit scheduler token before forwarding it. */
 extern undefined4 FUN_0100a5b4(void);
@@ -95,7 +97,7 @@ LAB_01019b72:
     cVar13 = (char)*param_1;
   }
   else {
-    iVar4 = FUN_01026d3e();
+    iVar4 = sdc_buffer_elapsed_units_get();
     if (iVar4 == 1) {
       return 0;
     }
@@ -256,7 +258,7 @@ LAB_01019c9c:
     }
   }
   uVar2 = FUN_0100a5b4();
-  iVar5 = FUN_01026f32(uVar6,uVar2,1);
+  iVar5 = sdc_buffer_accumulate(uVar6,uVar2,1);
   if (iVar5 != 0) {
     sdc_buffer_descriptor_resolve(uVar6,local_2c,auStack_2e);
     iVar11 = sdc_buffer_payload_get(local_2c[0]);

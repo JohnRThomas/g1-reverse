@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01017658 @ 0x01017658
  * public-name: FUN_01017658
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  */
 /* net-core FUN_01017658 @ 0x1017658  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
 extern unsigned int FUN_0100aaac(unsigned int a, unsigned int b);
 extern unsigned int FUN_0100bc04(int a);
-extern unsigned int FUN_0100ca68(unsigned int a);
+extern unsigned int sdc_llcp_procedure_slot_get(unsigned int a);
 extern unsigned int FUN_0100cad4(unsigned int a);
 extern unsigned int FUN_0100cb10(void);
 extern int FUN_010199cc(void);
@@ -65,7 +67,7 @@ LAB_90:
     uVar7 = (unsigned char)uVar8;
     if (bVar1) {
         if (*(volatile signed char *)(iVar2 + 0x81) == 0) {
-            unsigned int uVar6 = FUN_0100ca68((unsigned char)cVar3);
+            unsigned int uVar6 = sdc_llcp_procedure_slot_get((unsigned char)cVar3);
             cVar3 = (signed char)FUN_0100aaac(uVar6, *(volatile unsigned int *)(param_1 + 8));
         } else {
             cVar3 = (signed char)thunk_FUN_0101fd20();

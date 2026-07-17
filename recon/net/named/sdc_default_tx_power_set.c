@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_010091cc @ 0x010091cc
  * public-name: sdc_default_tx_power_set
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_21000a5c                               @ 0x21000a5c
  */
 /* Reconstructed sdc_default_tx_power_set @ 0x010091cc
  * (raw identity: FUN_010091cc). */

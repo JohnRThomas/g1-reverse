@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0100d760 @ 0x0100d760
  * public-name: sdc_llcp_get_active_link_index
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_21000ea7                               @ 0x21000ea7
  */
 /* Reconstructed sdc_llcp_get_active_link_index @ 0x0100d760.
  * Back-map: FUN_0100d760.  Exact extent: 72 bytes.

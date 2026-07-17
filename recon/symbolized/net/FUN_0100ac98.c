@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
  *   g_ll_conn_empty_pdu_buf                  @ 0x21000c90
@@ -20,7 +21,7 @@ typedef signed char i8;
 extern void FUN_010202fc(u32, i8);
 extern int FUN_0100a960(u32);
 extern int FUN_0100a9b0(void);
-extern void FUN_0100e5dc(u32, int);
+extern void sdc_pdu_type_bits_set(u32, int);
 extern void FUN_0100e8f8(void *, u16);
 extern void FUN_0101fe98(u32, u32);
 extern void FUN_0101ff4c(void);
@@ -91,7 +92,7 @@ LAB_0100acca:
     if (local_13 == 0) {
       *puVar5 = 0;
       *(volatile u8 *)((u8 *)(void *)puVar5 + 2) = 0;
-      FUN_0100e5dc(*(volatile u32 *)(iVar4 + 0x7c), 1);
+      sdc_pdu_type_bits_set(*(volatile u32 *)(iVar4 + 0x7c), 1);
       puVar5 = (volatile u16 *)*(volatile u32 *)(iVar4 + 0x7c);
     }
     FUN_0100e8f8((void *)puVar5, local_12);

@@ -7,6 +7,7 @@
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
  *   schedule_phase_offset_get                <= FUN_0101de10 @ 0x0101de10
  *   schedule_node_list_is_locked             <= FUN_0101dec4 @ 0x0101dec4
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  * address symbols (name @ address):
  *   rodata_103c254                           @ 0x0103c254
@@ -35,7 +36,7 @@ extern i32  FUN_0101dd9c(u32,i32);
 extern u32  schedule_phase_offset_get(u32,i32,u32,u32,u32,i32);
 extern i32  schedule_node_list_is_locked(void);
 extern u32  FUN_010202f0(void);
-extern void FUN_01020634(void);
+extern void controller_radio_event_cleanup(void);
 extern u32  radio_phy_airtime_base_get(u32);
 extern void FUN_01022a84(void);
 
@@ -87,7 +88,7 @@ void FUN_0101b54c(u32 param_1)
     cVar2 = (i8)pcVar5[0x14];
     *(volatile u32*)(pcVar5 + 0x28) = 0;
     if (cVar2 != 0) {
-      FUN_01020634();
+      controller_radio_event_cleanup();
       FUN_01022a84();
       pcVar5[0x14] = 0;
       pcVar5[0x15] = 0;

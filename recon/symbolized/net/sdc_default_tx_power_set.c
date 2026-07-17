@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_010091cc @ 0x010091cc
  * public-name: sdc_default_tx_power_set
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_21000a5c                               @ 0x21000a5c
  */
 /* Reconstructed sdc_default_tx_power_set @ 0x010091cc
  * (raw identity: FUN_010091cc). */
@@ -11,7 +13,7 @@
  * its own leaf chain; retaining this argument is part of the public ABI. */
 extern void FUN_0101e94c(int8_t requested_power_level);
 
-#define controller_state (*(volatile uint8_t *)0x21000a5cUL)
+#define controller_state (*(volatile uint8_t *)((unsigned long)&g_21000a5c) /*=0x21000a5c*/)
 
 int32_t sdc_default_tx_power_set(int8_t requested_power_level)
 {

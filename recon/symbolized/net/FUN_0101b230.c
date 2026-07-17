@@ -7,6 +7,7 @@
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
  *   radio_transition_overhead_get            <= FUN_0101a0e8 @ 0x0101a0e8
  *   controller_timing_snapshot_build         <= FUN_0101a38c @ 0x0101a38c
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   radio_phy_airtime_tail_get               <= FUN_010209e0 @ 0x010209e0
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
@@ -27,7 +28,7 @@ extern int controller_timing_snapshot_build(void*,int,int);
 extern int FUN_0102029c(void);
 extern int FUN_010202a8(void);
 extern int FUN_010202f0(void);
-extern int FUN_01020634(void);
+extern int controller_radio_event_cleanup(void);
 extern unsigned long long radio_phy_airtime_tail_get(int,int,int);
 extern int radio_phy_airtime_base_get(int);
 extern int FUN_01022a84(void);
@@ -161,7 +162,7 @@ void FUN_0101b230(void)
         }
 LAB_final:
         if (IB(0x14) != 0) {
-            FUN_01020634();
+            controller_radio_event_cleanup();
             FUN_01022a84();
             IB(0x14) = 0;
             IB(0x15) = 0;

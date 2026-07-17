@@ -5,7 +5,11 @@
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
+ *   rodata_103aacd                           @ 0x0103aacd
+ *   rodata_103c07c                           @ 0x0103c07c
  *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d676                           @ 0x0103d676
+ *   rodata_103d6b5                           @ 0x0103d6b5
  */
 /* net-core z_impl_z_log_msg_static_create @ 0x0102e284
  * Raw/address back-map: FUN_0102e284 / 0x0102e284.

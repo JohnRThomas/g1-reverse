@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
  * address symbols (name @ address):
  *   g_210001e8                               @ 0x210001e8
  *   g_210004b0                               @ 0x210004b0
@@ -17,7 +18,7 @@
 #define EXT(name) extern intptr_t name(intptr_t, ...)
 EXT(FUN_0100a8f8); EXT(FUN_0100a904); EXT(FUN_0100a934); EXT(FUN_0100a954);
 EXT(FUN_0100b170); EXT(FUN_0100b180); EXT(FUN_0100d3c0); EXT(FUN_0100d5d0);
-EXT(FUN_0100d64c); EXT(FUN_0100d688); EXT(FUN_0100dc1c); EXT(FUN_0100e5dc);
+EXT(FUN_0100d64c); EXT(FUN_0100d688); EXT(FUN_0100dc1c); EXT(sdc_pdu_type_bits_set);
 EXT(FUN_0100e5f4); EXT(FUN_0100e608); EXT(FUN_0100e634); EXT(FUN_0100e68c);
 EXT(FUN_0100e708); EXT(FUN_0100e72c); EXT(FUN_0100e744); EXT(FUN_0100e754);
 EXT(FUN_0100e774); EXT(FUN_0100e7b0); EXT(FUN_0100e7b8); EXT(FUN_0100e7c0);
@@ -102,7 +103,7 @@ int FUN_0101d404(uint16_t *input)
         if (FUN_0100a904((intptr_t)&packet) == 0)
             fatal_loop(0x810);
         FUN_01025a84((intptr_t)packet, 0, 0x32);
-        FUN_0100e5dc((intptr_t)packet, 3);
+        sdc_pdu_type_bits_set((intptr_t)packet, 3);
         packet[0] &= 0xef;
         FUN_0100e634((intptr_t)packet, attribute);
 

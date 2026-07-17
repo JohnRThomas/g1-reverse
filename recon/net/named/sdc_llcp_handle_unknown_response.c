@@ -2,6 +2,7 @@
  * public-name: sdc_llcp_handle_unknown_response
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   sdc_llcp_handle_unknown_response         <= FUN_010183e0 @ 0x010183e0
  *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
  * address symbols (name @ address):
@@ -13,7 +14,7 @@ extern void sdc_llcp_note_unsupported_pdu(void);
 extern void FUN_01016828(void) __attribute__((noreturn));
 extern int FUN_01019aa0(void *a0, unsigned int a1, void *a2, unsigned int a3, unsigned int a4, unsigned int a5, int a6, unsigned int a7);
 extern int FUN_01017018(unsigned int a0, unsigned int a1);
-extern int FUN_0100aa3c(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
+extern int sdc_ble_address_equal(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
 extern void FUN_01017658(void *a0, void *a1, void *a2, void *a3);
 extern void FUN_01019660(void);
 
@@ -79,7 +80,7 @@ LAB_0101854a:
                 FUN_01017658(param_1, local_1a, &local_1b, local_1a + 1);
                 bVar10 = *(volatile unsigned char *)(iVar6 + 0x45);
                 if (local_1b == 0) {
-                    iVar5 = FUN_0100aa3c(bVar10, (void*)0x21000fd6, (unsigned char)param_1[0x12], *(unsigned int *)(param_1 + 8));
+                    iVar5 = sdc_ble_address_equal(bVar10, (void*)0x21000fd6, (unsigned char)param_1[0x12], *(unsigned int *)(param_1 + 8));
                     if (iVar5 == 0) {
                         if (1 < (unsigned char)(*(volatile unsigned char *)(iVar6 + 0x55) - 2)) return 5;
                         if (local_1a[0] == 0) return 5;
@@ -123,7 +124,7 @@ LAB_0101854a:
     } else if ((param_1[1] & 0x18) != 0x18) return 5;
     if (*(volatile char *)(iVar6 + 0x54) == 3) {
         if (*(unsigned int *)(param_1 + 4) != 0) {
-            iVar5 = FUN_0100aa3c(*(volatile unsigned char *)(iVar6 + 0x90), (void*)(0x21000fec + 0x2d), *(volatile unsigned char *)(iVar6 + 0x5b), 0);
+            iVar5 = sdc_ble_address_equal(*(volatile unsigned char *)(iVar6 + 0x90), (void*)(0x21000fec + 0x2d), *(volatile unsigned char *)(iVar6 + 0x5b), 0);
             if (*(volatile char *)(iVar6 + 0x56) != 1) {
                 if (*(volatile char *)(iVar6 + 0x56) != 0) return 5;
                 if ((iVar5 == 0) && (*(volatile char *)(iVar6 + 0x78) != *(volatile char *)(iVar6 + 0x7b))) return 5;

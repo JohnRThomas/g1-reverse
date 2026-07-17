@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
+ *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  *   sdc_llcp_handle_control_opcode           <= FUN_010168e4 @ 0x010168e4
  *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
  * address symbols (name @ address):
@@ -10,10 +12,10 @@
  */
 /* net-core FUN_010168e4 @ 0x10168e4  (parity 300 trials PROVEN) */
 extern int sdc_assertion_fail(int,int);
-extern int FUN_0100aa3c(int,int,int,int);
+extern int sdc_ble_address_equal(int,int,int,int);
 extern int FUN_0100aaac(int,int);
 extern int FUN_0100bc04(int);
-extern int FUN_0100ca68(int);
+extern int sdc_llcp_procedure_slot_get(int);
 extern int FUN_01016828(void);
 extern int FUN_01019750(int,int,int,int,int,int,int);
 extern int sdc_llcp_note_unsupported_pdu(void);
@@ -77,7 +79,7 @@ int sdc_llcp_handle_control_opcode(int param_1, int param_2)
             (*(volatile unsigned char*)((*(volatile int*)(param_1+8))+5) & 0xc0)==0x40) {
             bVar13 = 1;
         } else bVar13 = 0;
-        iVar8 = FUN_0100ca68(0);
+        iVar8 = sdc_llcp_procedure_slot_get(0);
         if (iVar8 == 0) {
             bVar7 = G(0x45);
             bVar12 = bVar7;
@@ -99,7 +101,7 @@ int sdc_llcp_handle_control_opcode(int param_1, int param_2)
             sdc_llcp_note_unsupported_pdu();
             if (cVar3 == 0) return 5;
             {
-                int iVar6 = FUN_0100aa3c(0,0,0,0);
+                int iVar6 = sdc_ble_address_equal(0,0,0,0);
                 if (iVar6==0 && iVar8==0) {
                     if ((unsigned char)(G(0x55)-2) > 1) return 5;
                     if (!bVar13) return 5;
@@ -132,7 +134,7 @@ int sdc_llcp_handle_control_opcode(int param_1, int param_2)
             if (G(0x78) != 8 && G(0x7b) == G(0x78)) b2 = 1;
             if (iVar8 == 0) {
                 if (uVar11 != 0) {
-                    uVar11 = (unsigned int)FUN_0100aa3c(0,0,0,0);
+                    uVar11 = (unsigned int)sdc_ble_address_equal(0,0,0,0);
                 }
             } else {
                 uVar11 = 1;

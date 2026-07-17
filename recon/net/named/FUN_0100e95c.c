@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
  * address symbols (name @ address):
  *   g_sdc_max_frag_len                       @ 0x21000eae
  */
@@ -15,7 +16,7 @@ extern int FUN_0100a17c(unsigned short);
 extern void FUN_0100ec40(void);
 extern int FUN_010269ce(int, unsigned short);
 extern void FUN_0102709e(int, int, void*);
-extern void FUN_0100e5dc(void*, unsigned int);
+extern void sdc_pdu_type_bits_set(void*, unsigned int);
 extern void FUN_01025998(void*, unsigned int, unsigned short);
 extern int FUN_01026acc(int, unsigned short);
 extern void FUN_01013da8(void);
@@ -50,7 +51,7 @@ int FUN_0100e95c(unsigned int *param_1)
         FUN_0102709e(iVar6, iVar4, &ptrA);
         *ptrA = 0;
         *((unsigned char *)ptrA + 2) = 0;
-        FUN_0100e5dc(ptrA, 2);
+        sdc_pdu_type_bits_set(ptrA, 2);
         FUN_01025998((char *)ptrA + 3, uVar8, uVar2);
         iVar6 = FUN_01026acc(iVar6, uVar2);
         if (iVar6 == 0) sdc_assertion_fail(0x2b, 0x7c);
@@ -87,7 +88,7 @@ int FUN_0100e95c(unsigned int *param_1)
         *((unsigned char *)ptrB + 2) = 0;
         if (*(volatile unsigned char *)(iVar6 + 0xcc) == 0) uVar7 = 1;
         else uVar7 = 2;
-        FUN_0100e5dc(ptrB, uVar7);
+        sdc_pdu_type_bits_set(ptrB, uVar7);
         FUN_01025998((char *)ptrB + 3, uVar8, uVar2);
         iVar6 = FUN_01026acc(iVar4, uVar2);
         if (iVar6 == 0) sdc_assertion_fail(0x2b, 0x7c);

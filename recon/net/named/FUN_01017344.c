@@ -2,6 +2,8 @@
  * public-name: FUN_01017344
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
+ *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
@@ -10,9 +12,9 @@
  *   g_sdc_ll_ctx_param                       @ 0x21001019
  */
 /* net-core FUN_01017344 @ 0x1017344  (parity 300 trials PROVEN) */
-extern int FUN_0100aa3c(unsigned char, unsigned int, unsigned char, unsigned int);
+extern int sdc_ble_address_equal(unsigned char, unsigned int, unsigned char, unsigned int);
 extern int FUN_0100aaac(int, int);
-extern int FUN_0100ca68(unsigned int);
+extern int sdc_llcp_procedure_slot_get(unsigned int);
 extern unsigned int FUN_0100cb10(void);
 extern int FUN_0100cbbc(unsigned int);
 extern unsigned char sdc_llcp_get_active_link_index(void);
@@ -69,7 +71,7 @@ unsigned char FUN_01017344(unsigned char *param_1)
       *(volatile char *)(iVar3 + 0x79) = (char)uVar6;
       bVar2 = uVar6 == uVar8;
     }
-    iVar5 = FUN_0100aa3c(L.local_2f, L.local_3c, *(volatile unsigned char *)(iVar3 + 0x90), DAT_01017460);
+    iVar5 = sdc_ble_address_equal(L.local_2f, L.local_3c, *(volatile unsigned char *)(iVar3 + 0x90), DAT_01017460);
     if ((iVar5 == 0) && (!bVar2)) {
       return 1;
     }
@@ -81,18 +83,18 @@ unsigned char FUN_01017344(unsigned char *param_1)
       iVar5 = iVar7;
     }
     if ((L.local_2e == 1) && ((*(volatile unsigned char *)(L.local_38 + 5) & 0xc0) == 0x40)) {
-      iVar5 = FUN_0100aa3c(1, L.local_38, uVar4, iVar5);
+      iVar5 = sdc_ble_address_equal(1, L.local_38, uVar4, iVar5);
       if (iVar5 != 0) goto LAB_010173d0;
       if (uVar8 == 0xff) {
         return 1;
       }
-      iVar5 = FUN_0100ca68(uVar8);
+      iVar5 = sdc_llcp_procedure_slot_get(uVar8);
       if (iVar5 == 0) {
         return 1;
       }
       iVar5 = FUN_0100aaac(iVar5, L.local_38);
     } else {
-      iVar5 = FUN_0100aa3c(L.local_2e, L.local_38, uVar4, iVar5);
+      iVar5 = sdc_ble_address_equal(L.local_2e, L.local_38, uVar4, iVar5);
     }
     if (iVar5 != 0) {
 LAB_010173d0:

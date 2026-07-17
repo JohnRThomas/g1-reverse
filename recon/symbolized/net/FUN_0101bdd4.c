@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_conn_radio_overhead_set              <= FUN_0100f48c @ 0x0100f48c
+ *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
 extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern void sdc_conn_radio_overhead_set(int, unsigned int, int);
 extern void FUN_0101b7e4(void*, int, int, int);
-extern void FUN_01020634(void);
+extern void controller_radio_event_cleanup(void);
 extern int radio_phy_airtime_base_get(unsigned char);
 extern void FUN_01022a84(void);
 extern int sdc_conn_window_admit(unsigned char, void*);
@@ -48,7 +49,7 @@ void FUN_0101bdd4(int param_1, unsigned int param_2)
   case 2:
     *(volatile unsigned char *)(param_1 + 0x300) = 4;
 LAB_0101bdee:
-    FUN_01020634();
+    controller_radio_event_cleanup();
     FUN_01022a84();
     return;
   case 1:

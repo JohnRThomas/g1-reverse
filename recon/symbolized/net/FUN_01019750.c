@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_elapsed_units_get             <= FUN_01026d3e @ 0x01026d3e
+ *   sdc_buffer_accumulate                    <= FUN_01026f32 @ 0x01026f32
  *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
  *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  */
@@ -15,8 +17,8 @@ extern uint32_t FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
 extern int FUN_0100ca98(uint8_t, void *);
 extern void sdc_work_submit(void *, const void *, uint32_t);
-extern int FUN_01026d3e(void);
-extern int FUN_01026f32(uint32_t, uint16_t, uint32_t);
+extern int sdc_buffer_elapsed_units_get(void);
+extern int sdc_buffer_accumulate(uint32_t, uint16_t, uint32_t);
 extern uint8_t *sdc_buffer_payload_get(uint32_t);
 extern void sdc_buffer_descriptor_resolve(uint32_t, uint32_t *, uint16_t *);
 
@@ -35,7 +37,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
     uint16_t unused;
     uint8_t *entry;
 
-    if (FUN_01026d3e() == 1)
+    if (sdc_buffer_elapsed_units_get() == 1)
         return;
     sdc_buffer_descriptor_resolve(token, &handle, &unused);
     entry = sdc_buffer_payload_get(handle);
@@ -80,7 +82,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
     entry[0x2c] = 0x7f;
 
     token = FUN_0100a5a0();
-    if (FUN_01026f32(token, (uint16_t)FUN_0100a5b4(), 1) == 0)
+    if (sdc_buffer_accumulate(token, (uint16_t)FUN_0100a5b4(), 1) == 0)
         sdc_assertion_fail(0x33, 0x334);
     entry[8] = 0;
     sdc_work_submit(entry, (const void *)0x01019a9d, 6);

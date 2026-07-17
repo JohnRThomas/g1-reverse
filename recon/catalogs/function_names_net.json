@@ -797,11 +797,13 @@
   "0x0100aa3c": {
    "address": "0x0100aa3c",
    "raw_name": "FUN_0100aa3c",
-   "name": "FUN_0100aa3c",
-   "display_name": "FUN_0100aa3c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_ble_address_equal",
+   "display_name": "sdc_ble_address_equal",
+   "human": true,
+   "source": "function_name_overrides.json: Compares the address-type word and all six BLE address bytes without early exit; LLCP callers use the boolean result to match peer identity records. Raw identity remains FUN_0100aa3c.",
+   "aliases": [
+    "FUN_0100aa3c"
+   ]
   },
   "0x0100aaac": {
    "address": "0x0100aaac",
@@ -1040,11 +1042,13 @@
   "0x0100ca68": {
    "address": "0x0100ca68",
    "raw_name": "FUN_0100ca68",
-   "name": "FUN_0100ca68",
-   "display_name": "FUN_0100ca68",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_llcp_procedure_slot_get",
+   "display_name": "sdc_llcp_procedure_slot_get",
+   "human": true,
+   "source": "function_name_overrides.json: Resolves the selected LLCP procedure slot from the controller connection context for the receive and transition paths. Raw identity remains FUN_0100ca68.",
+   "aliases": [
+    "FUN_0100ca68"
+   ]
   },
   "0x0100ca80": {
    "address": "0x0100ca80",
@@ -1561,11 +1565,13 @@
   "0x0100e5dc": {
    "address": "0x0100e5dc",
    "raw_name": "FUN_0100e5dc",
-   "name": "FUN_0100e5dc",
-   "display_name": "FUN_0100e5dc",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_pdu_type_bits_set",
+   "display_name": "sdc_pdu_type_bits_set",
+   "human": true,
+   "source": "function_name_overrides.json: Replaces the controller PDU type bit field while preserving the unrelated packed header bits. Raw identity remains FUN_0100e5dc.",
+   "aliases": [
+    "FUN_0100e5dc"
+   ]
   },
   "0x0100e5ec": {
    "address": "0x0100e5ec",
@@ -2098,11 +2104,13 @@
   "0x0100efc8": {
    "address": "0x0100efc8",
    "raw_name": "FUN_0100efc8",
-   "name": "FUN_0100efc8",
-   "display_name": "FUN_0100efc8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_work_update_or_enqueue",
+   "display_name": "controller_work_update_or_enqueue",
+   "human": true,
+   "source": "function_name_overrides.json: Updates an already-linked controller work item in place or initializes and enqueues a new one while preserving the scheduler wakeup contract. Raw identity remains FUN_0100efc8.",
+   "aliases": [
+    "FUN_0100efc8"
+   ]
   },
   "0x0100f004": {
    "address": "0x0100f004",
@@ -4973,11 +4981,13 @@
   "0x01020634": {
    "address": "0x01020634",
    "raw_name": "FUN_01020634",
-   "name": "FUN_01020634",
-   "display_name": "FUN_01020634",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_radio_event_cleanup",
+   "display_name": "controller_radio_event_cleanup",
+   "human": true,
+   "source": "function_name_overrides.json: Shared event-release path clears RADIO, TIMER and controller event state, validates the stopped controller mode, and disables the corresponding NVIC line before scheduler replanning. Raw identity remains FUN_01020634.",
+   "aliases": [
+    "FUN_01020634"
+   ]
   },
   "0x0102072c": {
    "address": "0x0102072c",
@@ -6545,11 +6555,13 @@
   "0x01026d3e": {
    "address": "0x01026d3e",
    "raw_name": "FUN_01026d3e",
-   "name": "FUN_01026d3e",
-   "display_name": "FUN_01026d3e",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_buffer_elapsed_units_get",
+   "display_name": "sdc_buffer_elapsed_units_get",
+   "human": true,
+   "source": "function_name_overrides.json: Computes the elapsed controller timing units associated with a buffer descriptor and returns the bounded unit count. Raw identity remains FUN_01026d3e.",
+   "aliases": [
+    "FUN_01026d3e"
+   ]
   },
   "0x01026dae": {
    "address": "0x01026dae",
@@ -6572,11 +6584,13 @@
   "0x01026f32": {
    "address": "0x01026f32",
    "raw_name": "FUN_01026f32",
-   "name": "FUN_01026f32",
-   "display_name": "FUN_01026f32",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_buffer_accumulate",
+   "display_name": "sdc_buffer_accumulate",
+   "human": true,
+   "source": "function_name_overrides.json: Accumulates a controller buffer span into the destination descriptor while maintaining its private cursor and length state. Raw identity remains FUN_01026f32.",
+   "aliases": [
+    "FUN_01026f32"
+   ]
   },
   "0x01027044": {
    "address": "0x01027044",
@@ -7539,11 +7553,13 @@
   "0x010294d2": {
    "address": "0x010294d2",
    "raw_name": "FUN_010294d2",
-   "name": "FUN_010294d2",
-   "display_name": "FUN_010294d2",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_intrusive_list_append_unique",
+   "display_name": "controller_intrusive_list_append_unique",
+   "human": true,
+   "source": "function_name_overrides.json: Appends a node to the controller intrusive list only when it is not already linked, preserving the list tail invariant. Raw identity remains FUN_010294d2.",
+   "aliases": [
+    "FUN_010294d2"
+   ]
   },
   "0x010294ee": {
    "address": "0x010294ee",
@@ -11620,7 +11636,6 @@
   "FUN_0100a9b0": "0x0100a9b0",
   "FUN_0100a9d0": "0x0100a9d0",
   "FUN_0100aa04": "0x0100aa04",
-  "FUN_0100aa3c": "0x0100aa3c",
   "FUN_0100aaac": "0x0100aaac",
   "FUN_0100ab14": "0x0100ab14",
   "FUN_0100aba4": "0x0100aba4",
@@ -11646,7 +11661,6 @@
   "FUN_0100bfb8": "0x0100bfb8",
   "FUN_0100c738": "0x0100c738",
   "FUN_0100c744": "0x0100c744",
-  "FUN_0100ca68": "0x0100ca68",
   "FUN_0100ca80": "0x0100ca80",
   "FUN_0100ca98": "0x0100ca98",
   "FUN_0100cad4": "0x0100cad4",
@@ -11698,7 +11712,6 @@
   "FUN_0100e410": "0x0100e410",
   "FUN_0100e448": "0x0100e448",
   "FUN_0100e5d8": "0x0100e5d8",
-  "FUN_0100e5dc": "0x0100e5dc",
   "FUN_0100e5ec": "0x0100e5ec",
   "FUN_0100e5f4": "0x0100e5f4",
   "FUN_0100e608": "0x0100e608",
@@ -11753,7 +11766,6 @@
   "FUN_0100ebf4": "0x0100ebf4",
   "FUN_0100ec40": "0x0100ec40",
   "FUN_0100ef48": "0x0100ef48",
-  "FUN_0100efc8": "0x0100efc8",
   "FUN_0100f004": "0x0100f004",
   "FUN_0100f0a4": "0x0100f0a4",
   "FUN_0100f100": "0x0100f100",
@@ -12032,7 +12044,6 @@
   "FUN_010204d4": "0x010204d4",
   "FUN_010204e0": "0x010204e0",
   "FUN_010204f4": "0x010204f4",
-  "FUN_01020634": "0x01020634",
   "FUN_0102072c": "0x0102072c",
   "FUN_01020738": "0x01020738",
   "FUN_01020764": "0x01020764",
@@ -12175,10 +12186,8 @@
   "FUN_01026bfe": "0x01026bfe",
   "FUN_01026c94": "0x01026c94",
   "FUN_01026d16": "0x01026d16",
-  "FUN_01026d3e": "0x01026d3e",
   "FUN_01026dae": "0x01026dae",
   "FUN_01026e48": "0x01026e48",
-  "FUN_01026f32": "0x01026f32",
   "FUN_01027044": "0x01027044",
   "FUN_0102709e": "0x0102709e",
   "FUN_010270e8": "0x010270e8",
@@ -12280,7 +12289,6 @@
   "FUN_010294ae": "0x010294ae",
   "FUN_010294b4": "0x010294b4",
   "FUN_010294c2": "0x010294c2",
-  "FUN_010294d2": "0x010294d2",
   "FUN_010294ee": "0x010294ee",
   "FUN_01029516": "0x01029516",
   "FUN_010295d6": "0x010295d6",
@@ -12701,10 +12709,12 @@
   "controller_deferred_event_raise": "0x0102583c",
   "controller_entry_links_release": "0x0101df84",
   "controller_handle_update_state_apply": "0x0101e0a4",
+  "controller_intrusive_list_append_unique": "0x010294d2",
   "controller_mode1_state_validate": "0x010218d8",
   "controller_mode2_state_validate": "0x010218e4",
   "controller_packet_build_next": "0x0100ec88",
   "controller_radio_event1_dispatch": "0x01016144",
+  "controller_radio_event_cleanup": "0x01020634",
   "controller_radio_idle_event_finish": "0x0100b594",
   "controller_radio_request_state_clear": "0x0101fdc0",
   "controller_radio_state_get": "0x01019204",
@@ -12724,6 +12734,7 @@
   "controller_typed_handle_lookup": "0x01009d18",
   "controller_work_duplicate_enqueue_assert": "0x0100ebb8",
   "controller_work_enqueue_packet_result": "0x0100eec8",
+  "controller_work_update_or_enqueue": "0x0100efc8",
   "ipc_rpmsg_init": "0x0102dac0",
   "ipc_rpmsg_static_vrings_open": "0x0102d708",
   "ipc_static_vrings_init": "0x0102db30",
@@ -12750,7 +12761,10 @@
   "schedule_node_tail_get": "0x0101dda8",
   "schedule_phase_offset_get": "0x0101de10",
   "sdc_assertion_fail": "0x01008d00",
+  "sdc_ble_address_equal": "0x0100aa3c",
+  "sdc_buffer_accumulate": "0x01026f32",
   "sdc_buffer_descriptor_resolve": "0x0102714a",
+  "sdc_buffer_elapsed_units_get": "0x01026d3e",
   "sdc_buffer_payload_get": "0x010270d2",
   "sdc_byte_lock_release": "0x0102a208",
   "sdc_byte_lock_try_acquire": "0x0102a1ea",
@@ -12775,9 +12789,11 @@
   "sdc_llcp_handle_control_opcode": "0x010168e4",
   "sdc_llcp_handle_unknown_response": "0x010183e0",
   "sdc_llcp_note_unsupported_pdu": "0x01020500",
+  "sdc_llcp_procedure_slot_get": "0x0100ca68",
   "sdc_llcp_process_rx_control_pdu": "0x01018690",
   "sdc_llcp_release_rx_context": "0x0101fca8",
   "sdc_llcp_stop_rx_timeout": "0x010208b0",
+  "sdc_pdu_type_bits_set": "0x0100e5dc",
   "sdc_phy_timing_offset_get": "0x0100d58c",
   "sdc_radio_context_fixed_time_get": "0x0100f0fc",
   "sdc_timing_compensation_enabled": "0x010247cc",

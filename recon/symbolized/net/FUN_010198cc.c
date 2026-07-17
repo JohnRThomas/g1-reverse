@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_buffer_elapsed_units_get             <= FUN_01026d3e @ 0x01026d3e
+ *   sdc_buffer_accumulate                    <= FUN_01026f32 @ 0x01026f32
  *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
  *   sdc_buffer_descriptor_resolve            <= FUN_0102714a @ 0x0102714a
  */
@@ -14,8 +16,8 @@ extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
 extern int FUN_0100ca98(unsigned int, int);
 extern void sdc_work_submit(int, unsigned int, unsigned int);
-extern int FUN_01026d3e(void);
-extern int FUN_01026f32(unsigned int, unsigned short, unsigned int);
+extern int sdc_buffer_elapsed_units_get(void);
+extern int sdc_buffer_accumulate(unsigned int, unsigned short, unsigned int);
 extern int sdc_buffer_payload_get(unsigned int);
 extern void sdc_buffer_descriptor_resolve(unsigned int, unsigned int *, unsigned char *);
 
@@ -33,7 +35,7 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   unsigned int local_24[2];
 
   uVar2 = FUN_0100a5a0();
-  iVar3 = FUN_01026d3e();
+  iVar3 = sdc_buffer_elapsed_units_get();
   if (iVar3 == 1) {
     return;
   }
@@ -70,7 +72,7 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   *(volatile unsigned short *)(long)(iVar3 + 0x1e) = 1;
   uVar2 = FUN_0100a5a0();
   uVar1 = (unsigned short)FUN_0100a5b4();
-  iVar4 = FUN_01026f32(uVar2, uVar1, 1);
+  iVar4 = sdc_buffer_accumulate(uVar2, uVar1, 1);
   uVar2 = DAT_010199c8;
   if (iVar4 != 0) {
     *(volatile unsigned char *)(long)(iVar3 + 8) = 0;

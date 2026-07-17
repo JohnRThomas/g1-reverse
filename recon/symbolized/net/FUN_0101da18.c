@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
  * address symbols (name @ address):
  *   rodata_10101cd                           @ 0x010101cd
  *   g_net_link_ctx_b                         @ 0x21001124
@@ -21,7 +22,7 @@ extern void sdc_assertion_fail(uint, uint);
 extern void FUN_0100d14c(void *, uint);
 extern int FUN_0100d3c0(void *, uint, uchar, uint, uint);
 extern ushort FUN_0100d5d0(uint);
-extern void FUN_0100efc8(void *, uint, uint);
+extern void controller_work_update_or_enqueue(void *, uint, uint);
 extern void FUN_0101bdd4(void *, uint);
 
 #define DAT_101dbe4 ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
@@ -62,7 +63,7 @@ void FUN_0101da18(ushort *param_1, int param_2, uint param_3, uint param_4)
             }
             if (uVar6 <= uVar9) {
                 *(volatile uint *)(param_1 + 0x74) = 0;
-                FUN_0100efc8((char *)param_1 + 0x1c5, uVar1, 2);
+                controller_work_update_or_enqueue((char *)param_1 + 0x1c5, uVar1, 2);
             }
         }
         if (*(volatile char *)(param_1 + 0x80) != 0) {
@@ -108,7 +109,7 @@ void FUN_0101da18(ushort *param_1, int param_2, uint param_3, uint param_4)
                 param_1[0x119] = param_1[0x196];
                 *(volatile uchar *)((int)param_1 + 0x22d) = 0;
                 param_1[0x11a] = param_1[0x197];
-                FUN_0100efc8(param_1 + 0x112, uVar2, 2);
+                controller_work_update_or_enqueue(param_1 + 0x112, uVar2, 2);
                 *(volatile uchar *)(param_1 + 0x18e) = 0;
                 FUN_0100d14c(param_1, 2);
                 FUN_0101bdd4(param_1, 3);
