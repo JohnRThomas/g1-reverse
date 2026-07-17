@@ -34,6 +34,10 @@ TRUE_SIZE_OVERRIDES = {
     0x00076a88: 0x06,  # newlib nanf; literal begins at +0x08
     0x0007c058: 0x28,  # send_touch_click_event
     0x0007c084: 0x0a,  # gpio_pin_set_dt
+    # zcbor_encode.c:str_encode is a real static entry omitted from the
+    # exported function catalog.  It starts at its full callee-saved prologue
+    # and returns at 0x8629e, where zcbor_int_encode begins independently.
+    0x00086228: 0x76,
     0x00016574: 0x06,  # fixed-word setter
     0x00016834: 0x1a,  # state-normalizing tail adapter
     0x00017a04: 0x08,  # GPIO descriptor tail adapters

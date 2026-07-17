@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "core": "app",
+  "address": "0x00086228",
+  "raw_symbol": "FUN_00086228",
+  "readable_symbol": "zcbor_str_encode",
+  "decision": "reconstruct_exact_static_upstream_owner",
+  "boundary": {
+    "start": "0x00086228",
+    "end_exclusive": "0x0008629e",
+    "size": 118,
+    "next_entry": "zcbor_int_encode"
+  },
+  "upstream": {
+    "repository": "ncs251/modules/lib/zcbor",
+    "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+    "path": "src/zcbor_encode.c",
+    "source_symbol": "str_encode",
+    "required_define": "ZCBOR_STOP_ON_ERROR"
+  },
+  "signature": {
+    "method": "mask four R_ARM_THM_CALL relocation words and compare every remaining byte",
+    "masked_offsets": [24, 60, 84, 104],
+    "matched_bytes": 118,
+    "total_bytes": 118,
+    "firmware_sha256": "494e468e93a5a65631b769c97ba3107c4380b809c8a2fba1ba6e1388f16dd4c8",
+    "normalized_sha256": "b9187bce7a17b25e92fbf0a9c244d41203f81eedb7dbc6bcedc43fe135247bee"
+  },
+  "abi": {
+    "return": "int/bool value preserved from value_encode",
+    "arguments": ["zcbor_state_t *", "const struct zcbor_string *", "zcbor_major_type_t"],
+    "direct_tail_veneers": {
+      "0x00086338": "major type 2 (byte string)",
+      "0x0008633e": "major type 3 (text string)"
+    }
+  },
+  "proof": {
+    "tool": "tools/cfg_verify.py",
+    "status": "PASS",
+    "checked_cases": 6,
+    "covered_paths": [
+      "empty payload",
+      "body length overflow",
+      "encoded header overflow",
+      "header encoder failure",
+      "copying success",
+      "in-place success"
+    ]
+  }
+}
