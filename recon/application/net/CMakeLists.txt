@@ -16,6 +16,16 @@ option(G1_INTEGRATION_PROBE_RETAIN_ALL
 if(G1_INTEGRATION_PROBE_RETAIN_ALL)
   # NCS v2.5.1 / Zephyr 3.4 exposes linker flags through this helper.
   zephyr_ld_options(-Wl,--no-gc-sections)
+
+  # subsys/bluetooth/common/bt_str.c is unconditional, but its bt_uuid_str()
+  # helper calls bt_uuid_to_str(), whose normal owner (host/uuid.c) is omitted
+  # when CONFIG_BT_HCI_RAW=y disables CONFIG_BT_HCI_HOST.  Normal section GC
+  # discards that unused helper in the shipped controller configuration.  The
+  # retain-all audit deliberately keeps it, so select the pinned Zephyr source
+  # as an audit-only dependency instead of inventing a firmware reconstruction.
+  target_sources(app PRIVATE
+    "${ZEPHYR_BASE}/subsys/bluetooth/host/uuid.c"
+  )
 endif()
 
 set(G1_RETAINED_SOURCE_MANIFEST

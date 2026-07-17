@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "core": "net",
+  "symbol": "bt_uuid_to_str",
+  "classification": "retain_all_probe_only_sdk_dependency",
+  "firmware": {
+    "function_present": false,
+    "va": null,
+    "callers": [],
+    "canonical_or_backmap_changed": false,
+    "evidence": {
+      "complete_uuid128_format_occurrences": [],
+      "uuid16_format_occurrences": [],
+      "best_opcode_sequence_score": 0.4,
+      "best_opcode_sequence_candidate": "0x0101e160",
+      "conclusion": "No CPUNET body or caller is attributable to bt_uuid_to_str; it must not acquire a firmware VA or replace a reconstruction."
+    }
+  },
+  "upstream": {
+    "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+    "source": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/uuid.c",
+    "source_sha256": "cf1f013fe8bbfeac97340a6868b81ede2717d10afdbc51c61858d47c2f171979",
+    "linkage": "public_global",
+    "abi": "void bt_uuid_to_str(const struct bt_uuid *uuid, char *str, size_t len)",
+    "selected_object": "app/libapp.a(uuid.c.obj)",
+    "compiled_body_size": 112,
+    "compiled_instruction_count": 45,
+    "compiled_normalized_sha256": "2b68dbdf14f8a90704f02b0b809a2bd666d18f25f35618adc6ebe7acd9f8fcca"
+  },
+  "configuration": {
+    "CONFIG_BT": true,
+    "CONFIG_BT_HCI_RAW": true,
+    "CONFIG_BT_HCI_HOST": false,
+    "common_source": "zephyr/subsys/bluetooth/common/bt_str.c",
+    "common_reference": "bt_uuid_str -> bt_uuid_to_str",
+    "host_cmake_gate": "if(CONFIG_BT_HCI_HOST): uuid.c",
+    "normal_gc_requires_owner": false,
+    "retain_all_probe_requires_owner": true
+  },
+  "decision": {
+    "integration": "select_pinned_upstream_source_in_retain_all_probe_only",
+    "adopt_as_firmware_function": false,
+    "exclude_reconstruction": false,
+    "weak_stub": false,
+    "blob": false,
+    "alias": false,
+    "reason": "The audit flag preserves unused bt_uuid_str from unconditional Bluetooth common code, exposing its host-only public dependency. Selecting pinned uuid.c closes the audit graph without claiming nonexistent firmware ownership."
+  },
+  "proof": {
+    "required": [
+      "pinned_source_hash",
+      "public_header_abi",
+      "HCI_RAW_configuration_gate",
+      "single_strong_owner_in_retain_all_map",
+      "bt_uuid_to_str_absent_from_retain_all_undefined_symbols"
+    ],
+    "status": "passed",
+    "retain_all_partial_link": {
+      "build_root": "/private/tmp/g1-net-residue-current-0718",
+      "map_sha256": "da960380572a54cd6dee31013705e2cb8f3c057e60fa13bb909a38bc60cfda78",
+      "link_log_sha256": "ba2ac60f487a80fbc466ca559f0ec7009e87c4884778267ab0307624d45cd8be",
+      "strong_definition_count": 1,
+      "selected_owner": "app/libapp.a(uuid.c.obj)",
+      "undefined_reference_count": 0,
+      "multiple_definition_count": 0,
+      "overall_link_result": "expected_failure_on_unrelated_remaining_residue"
+    }
+  }
+}
