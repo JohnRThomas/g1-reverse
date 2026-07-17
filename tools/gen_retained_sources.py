@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Generate deterministic CMake lists of retained reconstruction sources.
 
-The adoption manifest is the only exclusion authority.  The canonical
-reconstruction trees are used because the current symbolized app tree contains
-a stale identity collision; symbolized output is not eligible until it is
-regenerated and passes the same unique-VA validation.  Sources are indexed by
-firmware VA so renamed files remain safe, while an unmappable or duplicate VA
-fails closed instead of silently changing the link composition.
+The adoption manifest is the only exclusion authority.  Validated symbolized
+trees are the default build inputs; canonical reconstruction trees remain an
+explicit diagnostic fallback.  Sources are indexed by firmware VA so renamed
+files remain safe, while an unmappable or duplicate VA fails closed instead of
+silently changing the link composition.
 """
 
 import argparse
@@ -20,18 +19,22 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_MANIFEST = "recon/ownership/adoption_manifest.json"
 DEFAULTS = {
     "app": {
-        "source_dir": "recon/app/src",
+        "source_dir": "recon/symbolized/app",
         "names": "recon/catalogs/function_names_app.json",
         "output": "recon/generated/app_retained_sources.cmake",
+        "strict_symbolized": True,
     },
     "net": {
-        "source_dir": "recon/net/src",
+        "source_dir": "recon/symbolized/net",
         "names": "recon/catalogs/function_names_net.json",
         "output": "recon/generated/net_retained_sources.cmake",
+        "strict_symbolized": True,
     },
 }
 RAW_FILE = re.compile(r"^FUN_([0-9a-fA-F]{8})$")
 ENTRY_ADDRESS = re.compile(r"@\s*(0x[0-9a-fA-F]{4,8})")
+SYMBOLIZED_IDENTITY = re.compile(
+    r"identity:\s*FUN_([0-9a-fA-F]{8})\s*@\s*(0x[0-9a-fA-F]{8})")
 
 
 def _path(value):
@@ -54,7 +57,7 @@ def _name_map(path):
     return {name: _address(value) for name, value in data["by_name"].items()}
 
 
-def source_address(path, names):
+def source_address(path, names, strict_symbolized=False):
     """Resolve one source to a VA using durable identity, then its lead comment."""
     stem = os.path.splitext(os.path.basename(path))[0]
     raw = RAW_FILE.fullmatch(stem)
@@ -65,6 +68,21 @@ def source_address(path, names):
     # forms exist they must agree; this catches stale symbolization output.
     with open(path, encoding="utf-8", errors="replace") as stream:
         prefix = stream.read(512)
+    if strict_symbolized:
+        identity = SYMBOLIZED_IDENTITY.search(prefix)
+        if not identity:
+            raise ValueError("missing symbolized identity header for %s" % path)
+        identity_va = int(identity.group(1), 16)
+        if int(identity.group(2), 16) != identity_va:
+            raise ValueError("inconsistent symbolized identity header for %s" % path)
+        expected = raw_value if raw_value is not None else names.get(stem)
+        if expected is None:
+            raise ValueError("symbolized filename absent from name catalog: %s" % path)
+        if expected != identity_va:
+            raise ValueError(
+                "symbolized filename/header conflict for %s: 0x%08x vs 0x%08x" %
+                (path, expected, identity_va))
+        return identity_va
     match = ENTRY_ADDRESS.search(prefix)
     if raw_value is not None:
         if match and _address(match.group(1)) != raw_value:
@@ -83,7 +101,7 @@ def source_address(path, names):
     raise AssertionError("unreachable")
 
 
-def index_sources(source_dir, names_path):
+def index_sources(source_dir, names_path, strict_symbolized=False):
     names = _name_map(names_path)
     by_va = {}
     for filename in sorted(os.listdir(source_dir)):
@@ -92,7 +110,7 @@ def index_sources(source_dir, names_path):
         path = os.path.join(source_dir, filename)
         if not os.path.isfile(path):
             continue
-        va = source_address(path, names)
+        va = source_address(path, names, strict_symbolized)
         if va in by_va:
             raise ValueError("ambiguous canonical VA 0x%08x: %s and %s" %
                              (va, by_va[va], path))
@@ -159,7 +177,8 @@ def build(manifest_path, configs=None):
     for core in ("app", "net"):
         config = configs[core]
         source_dir = _path(config["source_dir"])
-        source_index = index_sources(source_dir, _path(config["names"]))
+        source_index = index_sources(source_dir, _path(config["names"]),
+                                     config.get("strict_symbolized", False))
         excluded = exclusions(manifest, core)
         matched = excluded.intersection(source_index)
         retained = [source_index[va] for va in sorted(source_index)
@@ -197,9 +216,19 @@ def main(argv=None):
     parser.add_argument("--manifest", default=DEFAULT_MANIFEST)
     parser.add_argument("--check", action="store_true",
                         help="fail if generated output differs; write nothing")
+    parser.add_argument(
+        "--source-tree", choices=("symbolized", "canonical"),
+        default="symbolized",
+        help="build input tree (canonical is an explicit diagnostic fallback)")
     args = parser.parse_args(argv)
+    configs = DEFAULTS
+    if args.source_tree == "canonical":
+        configs = {core: dict(values) for core, values in DEFAULTS.items()}
+        for core in ("app", "net"):
+            configs[core]["source_dir"] = "recon/%s/src" % core
+            configs[core]["strict_symbolized"] = False
     try:
-        changed = update(build(_path(args.manifest)), args.check)
+        changed = update(build(_path(args.manifest), configs), args.check)
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as error:
         print("error: %s" % error, file=sys.stderr)
         return 1

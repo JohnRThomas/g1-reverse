@@ -101,6 +101,33 @@ class RetainedSourcesTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "catalog/content VA conflict"):
             retained.build(self.manifest_path, self.configs)
 
+    def test_strict_symbolized_identity_and_name_validation(self):
+        self.write_manifest()
+        self.configs["app"]["strict_symbolized"] = True
+        for filename, va, public in (("FUN_00001000.c", 0x1000, "FUN_00001000"),
+                                     ("readable.c", 0x1010, "readable"),
+                                     ("legacy.c", 0x1020, "legacy")):
+            path = os.path.join(self.configs["app"]["source_dir"], filename)
+            with open(path, "w") as stream:
+                stream.write("/* readable reconstruction; identity: "
+                             "FUN_%08x @ 0x%08x\n * public-name: %s\n */\n" %
+                             (va, va, public))
+        # legacy is not in by_name, so strict symbolized mode rejects it.
+        with self.assertRaisesRegex(ValueError, "absent from name catalog"):
+            retained.build(self.manifest_path, self.configs)
+        names_path = self.configs["app"]["names"]
+        with open(names_path) as stream:
+            names = json.load(stream)
+        names["by_name"]["legacy"] = "0x1020"
+        with open(names_path, "w") as stream:
+            json.dump(names, stream)
+        retained.build(self.manifest_path, self.configs)
+        with open(os.path.join(self.configs["app"]["source_dir"], "readable.c"), "w") as stream:
+            stream.write("/* readable reconstruction; identity: "
+                         "FUN_00001020 @ 0x00001020 */\n")
+        with self.assertRaisesRegex(ValueError, "filename/header conflict"):
+            retained.build(self.manifest_path, self.configs)
+
     def test_check_mode_writes_nothing_and_detects_stale(self):
         self.write_manifest()
         outputs = retained.build(self.manifest_path, self.configs)
