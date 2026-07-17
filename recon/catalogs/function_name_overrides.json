@@ -536,6 +536,14 @@
   "0x00086698": {
    "name": "uptime_ticks_get",
    "evidence": "The four-byte tail thunk branches directly to the 64-bit uptime tick implementation at 0x00074f68. This unique name resolves the rejected generated thunk-name collision while preserving raw identity FUN_00086698."
+  },
+  "0x0007e022": {
+   "name": "free_list_add",
+   "evidence": "Pinned Zephyr 3.4.99 lib/os/heap.c free-list insertion helper. The recovered body computes the chunk bucket, links the chunk after the bucket sentinel, and updates both neighboring links. Raw identity remains FUN_0007e022 at 0x0007e022."
+  },
+  "0x00081050": {
+   "name": "addr_res_enable",
+   "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/id.c address-resolution enable helper. The recovered body allocates the LE Set Address Resolution Enable command, appends the enable byte, and sends it synchronously. Raw identity remains FUN_00081050 at 0x00081050."
   }
  },
  "net": {
