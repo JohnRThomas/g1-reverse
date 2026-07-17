@@ -2,6 +2,14 @@
   "schema": 1,
   "firmware": "app_update.bin",
   "archive": "/Users/freedomcoder/ncs251/nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/hard-float/no-interrupts/libnrf_cc312_platform_0.9.18.a",
+  "archive_sha256": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e",
+  "component_metadata": "upstream_crypto_ownership.json#components.cc312_platform",
+  "version_context": {
+    "mbedtls_manifest_tag": "v3.3.0-ncs2-1",
+    "mbedtls_dereferenced_commit": "acea48fc8a5eb227033b55e6ec012731218e257f",
+    "tfm_manifest_tag": "v1.8.0-ncs1-1",
+    "tfm_dereferenced_commit": "1ceee76478554927bbe18dd206dfac5ea40ff100"
+  },
   "reference_map": "/Users/freedomcoder/ncs251/refapp/build/zephyr/zephyr.map",
   "reference_to_firmware_address_delta": "0x0006492c",
   "method": "Match every selected .text.* input section in reference-map order against app_update.bin. Bytes covered by ELF R_ARM_THM_CALL, R_ARM_ABS32, or R_ARM_THM_JUMP24 relocations are normalized; every other byte must match exactly.",
@@ -91,5 +99,6 @@
   "remaining_firmware_glue": {
     "inside_owned_span": [],
     "first_non_cc312_address": "0x0007c00c"
-  }
+  },
+  "replacement_policy": "Exclude the complete owned span from reconstructed source selection and let the pinned NCS nRF Security integration select this exact archive. Do not substitute generic Mbed TLS or TF-M source, use --whole-archive, or retain duplicate reconstructed bodies."
 }
