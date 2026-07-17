@@ -1,30 +1,38 @@
 /* Reconstructed FUN_000818dc @ 0x818dc  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_0005f24c(void);
-extern int FUN_00073418(int,int,int,int);
-extern unsigned long long FUN_00081852(int,void*,unsigned);
-extern int thunk_FUN_000727ac(int,int,int,int,int);
-void FUN_000818dc(int param_1,int param_2,unsigned param_3){
-  int iVar1; unsigned long long uVar2; int iVar3;
-  int local_1c; unsigned uStack_18;
-  iVar3=param_1; local_1c=param_2; uStack_18=param_3;
-  do {
-    iVar1 = *(int*)(param_1-4);
-    if(iVar1==0){
-      iVar1 = thunk_FUN_000727ac(param_1-0x20, param_2, 0, 0, iVar3);
-      if(iVar1==0) return;
-    } else {
-      *(int*)(param_1-4)=0;
+#include <stdint.h>
+
+extern void FUN_0005f24c(uintptr_t);
+extern void FUN_00073418(uintptr_t, unsigned, unsigned, unsigned);
+extern uint64_t FUN_00081852(uintptr_t, int *, unsigned);
+extern int thunk_FUN_000727ac(uintptr_t, unsigned, unsigned, unsigned);
+
+void FUN_000818dc(uintptr_t owner, unsigned inherited_wait, unsigned unused)
+{
+    (void)unused;
+    int item;
+    for (;;) {
+        item = *(volatile int *)(owner - 4);
+        if (item == 0) {
+            item = thunk_FUN_000727ac(owner - 0x20, inherited_wait, 0, 0);
+            if (item == 0)
+                return;
+        } else {
+            *(volatile int *)(owner - 4) = 0;
+        }
+
+        uint64_t result_pair = FUN_00081852(
+            owner - 0x50, &item,
+            **(volatile uint16_t **)(uintptr_t)(item + 0x18));
+        int result = (int)(uint32_t)result_pair;
+        if (result >= 0)
+            continue;
+        if (result == -11) {
+            *(volatile int *)(owner - 4) = item;
+            FUN_00073418(owner, (unsigned)(result_pair >> 32), 0x8000, 0);
+            return;
+        }
+        FUN_0005f24c((uintptr_t)item);
+        return;
     }
-    local_1c=iVar1;
-    uVar2 = FUN_00081852(param_1-0x50, &local_1c, **(unsigned short**)(iVar1+0x18));
-    param_2 = (int)(uVar2 >> 0x20);
-  } while((int)uVar2 >= 0);
-  if((int)uVar2 == -0xb){
-    *(int*)(param_1-4)=local_1c;
-    FUN_00073418(param_1,param_2,0x8000,0);
-    return;
-  }
-  FUN_0005f24c();
-  return;
 }
