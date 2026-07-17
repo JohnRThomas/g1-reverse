@@ -1,6 +1,6 @@
 /* Reconstructed FUN_0004da90 @ 0x4da90  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0004da6c(unsigned int param_1, unsigned int param_2);
+extern void FUN_0004da6c(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void FUN_0004da90(unsigned int param_1, int param_2)
 {
@@ -8,10 +8,10 @@ void FUN_0004da90(unsigned int param_1, int param_2)
     if ((int)((unsigned int)param_2 << 0x1b) < 0) {
         return;
     }
-    uVar1 = 0x000f5400;
+    uVar1 = 0x000a8c94;
     if ((int)((unsigned int)param_2 << 0x1a) < 0) {
-        uVar1 = 0x000a8c94;
+        uVar1 = 0x000f5400;
     }
-    FUN_0004da6c(param_1, uVar1);
+    FUN_0004da6c(param_1, uVar1, (unsigned int)param_2 << 0x1b,
+                 (unsigned int)param_2 << 0x1a);
 }
-

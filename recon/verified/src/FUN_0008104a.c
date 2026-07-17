@@ -1,8 +1,7 @@
 /* Reconstructed FUN_0008104a @ 0x8104a  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0004d944(void);
-void FUN_0008104a(void)
+extern void FUN_0004d944(unsigned, unsigned, unsigned, unsigned);
+void FUN_0008104a(unsigned r0, unsigned r1, unsigned r2)
 {
-  FUN_0004d944();
+  FUN_0004d944(r0, r1, r2, 0);
 }
-
