@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000767c8 @ 0x767c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern long long FUN_0000d58c(int,...);
-extern long long FUN_0000d588(int,...);
+extern long long FUN_0000d58c(unsigned, unsigned, unsigned, unsigned);
+extern long long FUN_0000d588(unsigned, unsigned, unsigned, unsigned);
 double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned param_3)
 {
   union { double d; unsigned long long u; struct{unsigned lo,hi;} w; } in, out;
@@ -18,7 +18,10 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
       if ((in.u & 0x7fffffff00000000ULL)==0 && uVar4==0) return in.d;
       puVar3 = (volatile unsigned*)(0x888a8 + iVar1*-8);
       uVar7=puVar3[0]; uVar8=puVar3[1];
-      uVar9 = FUN_0000d58c(uVar7,uVar8);
+      unsigned mantissa = (uVar5 & 0xfffffu) | uVar4;
+      unsigned normalized_high = (uVar5 & 0xfffe0000u) |
+          ((((0u - mantissa) | mantissa) >> 12) & 0x80000u);
+      uVar9 = FUN_0000d58c(uVar7,uVar8,uVar4,normalized_high);
       uVar9 = FUN_0000d588((int)uVar9,(int)((unsigned long long)uVar9>>32),uVar7,uVar8);
       out.w.lo = (unsigned)uVar9;
       out.w.hi = (uVar5 & 0x80000000) | ((unsigned)((unsigned long long)uVar9>>32) & 0x7fffffff);
@@ -34,7 +37,7 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
   } else {
     if (0x33 < (int)uVar6) {
       if (uVar6 != 0x400) return in.d;
-      uVar10 = FUN_0000d58c(0);
+      uVar10 = FUN_0000d58c(uVar4,uVar5,uVar4,uVar5);
       out.w.lo=(unsigned)uVar10; out.w.hi=(unsigned)((unsigned long long)uVar10>>32);
       return out.d;
     }
@@ -45,9 +48,8 @@ double FUN_000767c8(double dd, unsigned param_1, unsigned param_2, unsigned para
   }
   puVar3 = (volatile unsigned*)(0x888a8 + iVar1*-8);
   uVar7=puVar3[0]; uVar8=puVar3[1];
-  uVar9 = FUN_0000d58c(uVar7,uVar8,uVar4,uVar5,param_1,param_2,param_3);
+  uVar9 = FUN_0000d58c(uVar7,uVar8,uVar4,uVar5);
   uVar10 = FUN_0000d588((int)uVar9,(int)((unsigned long long)uVar9>>32),uVar7,uVar8);
   out.w.lo=(unsigned)uVar10; out.w.hi=(unsigned)((unsigned long long)uVar10>>32);
   return out.d;
 }
-
