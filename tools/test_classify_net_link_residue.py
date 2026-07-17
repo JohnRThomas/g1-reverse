@@ -27,13 +27,13 @@ class NetLinkResidueTest(unittest.TestCase):
                 (ROOT / "recon/catalogs/net_link_function_residue.json").read_text()
             )
             self.assertEqual(generated, committed)
-            self.assertEqual(generated["summary"]["classified_residue"], 297)
+            total = generated["summary"]["classified_residue"]
             self.assertEqual(
-                sum(generated["summary"]["by_category"].values()), 297
+                sum(generated["summary"]["by_category"].values()), total
             )
-            self.assertEqual(len(generated["entries"]), 297)
+            self.assertEqual(len(generated["entries"]), total)
             self.assertEqual(
-                len({entry["symbol"] for entry in generated["entries"]}), 297
+                len({entry["symbol"] for entry in generated["entries"]}), total
             )
 
     def test_high_risk_policy_examples(self):
@@ -50,17 +50,17 @@ class NetLinkResidueTest(unittest.TestCase):
             "sdk_or_config_symbol",
         )
         self.assertEqual(
-            by_symbol["FUN_01008fc0"]["category"],
-            "interior_or_tail_alias",
-        )
-        self.assertEqual(
-            by_symbol["controller_assert"]["category"],
-            "naming_or_symbolization_defect",
-        )
-        self.assertEqual(
-            by_symbol["PHANTOM_RETRY"]["category"],
+            by_symbol["FUN_shadow_default"]["category"],
             "compiler_or_ghidra_pseudo",
         )
+        self.assertEqual(
+            by_symbol["g_21000ea7"]["category"],
+            "data_or_global_alias_gap",
+        )
+        # These previously reported integration residues have been resolved;
+        # the refreshed catalog must not silently reintroduce them.
+        self.assertNotIn("FUN_01008fc0", by_symbol)
+        self.assertNotIn("controller_assert", by_symbol)
 
 
 if __name__ == "__main__":

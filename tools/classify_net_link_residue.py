@@ -34,6 +34,11 @@ CATEGORIES = (
     "sdk_or_config_symbol",
     "compiler_or_ghidra_pseudo",
     "naming_or_symbolization_defect",
+    "data_or_global_alias_gap",
+)
+
+DATA_SYMBOL = re.compile(
+    r"^(?:g_[0-9a-fA-F]{8}|rodata_[0-9a-fA-F]+|(?:DAT|PTR|LAB)_[0-9a-fA-F]{8})$"
 )
 
 # These are public APIs emitted by the selected Zephyr/OpenAMP configuration.
@@ -149,6 +154,11 @@ def symbol_va(symbol: str, by_name: dict[str, str]) -> str | None:
 
 
 def classify(symbol: str, va: str | None, adoption: dict):
+    if DATA_SYMBOL.fullmatch(symbol):
+        return (
+            "data_or_global_alias_gap",
+            "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
+        )
     if symbol in NAMING_DEFECTS:
         return "naming_or_symbolization_defect", NAMING_DEFECTS[symbol]
     if symbol in PSEUDO_SYMBOLS:

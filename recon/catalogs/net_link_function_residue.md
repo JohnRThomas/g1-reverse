@@ -10,11 +10,12 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 
 | Category | Count |
 |---|---:|
-| `true_missing_reconstructed_entry` | 195 |
+| `true_missing_reconstructed_entry` | 189 |
 | `interior_or_tail_alias` | 0 |
 | `sdk_or_config_symbol` | 62 |
 | `compiler_or_ghidra_pseudo` | 1 |
 | `naming_or_symbolization_defect` | 0 |
+| `data_or_global_alias_gap` | 6 |
 
 ## Per-symbol classification
 
@@ -256,17 +257,17 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 | `controller_radio_idle_event_finish` | 0x0100b594 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
 | `controller_radio_time_mode2_to_mode2` | 0x01021634 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
 | `controller_transition_pending_check` | 0x01025cf0 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `g_21000a5c` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `g_21000ea7` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
+| `g_21000a5c` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
+| `g_21000ea7` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
 | `ipc_rpmsg_init` | 0x0102dac0 | `sdk_or_config_symbol` | 1 | NCS IPC-service RPMsg backend |
 | `ipc_static_vrings_init` | 0x0102db30 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
 | `ipc_static_vrings_shm_size` | 0x0103a056 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
 | `k_work_queue_init` | 0x01036cb8 | `sdk_or_config_symbol` | 1 | Zephyr kernel work queue API |
 | `k_work_queue_start` | 0x01036ce4 | `sdk_or_config_symbol` | 1 | Zephyr kernel work queue API |
-| `rodata_103aacd` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `rodata_103c07c` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `rodata_103d676` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `rodata_103d6b5` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
+| `rodata_103aacd` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
+| `rodata_103c07c` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
+| `rodata_103d676` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
+| `rodata_103d6b5` |  | `data_or_global_alias_gap` | 1 | address-backed data/global spelling lacks a linker pin or reviewed overlap alias |
 | `rtc_compare_event_clear` | 0x0103a6ae | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
 | `schedule_node_tail_get` | 0x0101dda8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
 | `sdc_byte_lock_release` | 0x0102a208 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |

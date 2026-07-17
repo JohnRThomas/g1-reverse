@@ -18,7 +18,7 @@
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "ca705fba8e81227e8502041d03f6a6d5a1c6fcd5c502591ef3d3559709dfd808"
+   "sha256": "baee90e8cc0ccdddcb5586936ab250e3a7e831b9bcbde9a6e7cc3265211eecfc"
   }
  ],
  "summary": {
@@ -26,16 +26,17 @@
   "already_pinned_or_aliased": 390,
   "classified_residue": 258,
   "by_category": {
-   "true_missing_reconstructed_entry": 195,
+   "true_missing_reconstructed_entry": 189,
    "interior_or_tail_alias": 0,
    "sdk_or_config_symbol": 62,
    "compiler_or_ghidra_pseudo": 1,
-   "naming_or_symbolization_defect": 0
+   "naming_or_symbolization_defect": 0,
+   "data_or_global_alias_gap": 6
   },
   "missing_by_adoption_component": {
    "net_sdk_or_glue": 50,
    "softdevice_controller": 110,
-   "unmapped": 35
+   "unmapped": 29
   }
  },
  "entries": [
@@ -3757,8 +3758,8 @@
   {
    "symbol": "g_21000a5c",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "sdc_default_tx_power_set.o"
@@ -3772,8 +3773,8 @@
   {
    "symbol": "g_21000ea7",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "sdc_llcp_get_active_link_index.o"
@@ -3862,8 +3863,8 @@
   {
    "symbol": "rodata_103aacd",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "z_impl_z_log_msg_static_create.o"
@@ -3877,8 +3878,8 @@
   {
    "symbol": "rodata_103c07c",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "z_impl_z_log_msg_static_create.o"
@@ -3892,8 +3893,8 @@
   {
    "symbol": "rodata_103d676",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "z_impl_z_log_msg_static_create.o"
@@ -3907,8 +3908,8 @@
   {
    "symbol": "rodata_103d6b5",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "data_or_global_alias_gap",
+   "reason": "address-backed data/global spelling lacks a linker pin or reviewed overlap alias",
    "reference_count": 1,
    "reference_objects": [
     "z_impl_z_log_msg_static_create.o"
