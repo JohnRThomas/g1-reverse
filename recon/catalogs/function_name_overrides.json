@@ -509,6 +509,22 @@
    "name": "__nrfy_internal_twim_event_handle",
    "evidence": "Pinned nrfx nrfy_twim.h helper used by the adjacent outlined TWIM event processor. The previous PWM label was a cross-peripheral same-shape guess; event offsets and all callers prove TWIM ownership. Raw identity remains FUN_00085378 at 0x00085378."
   },
+  "0x0004d2d0": {
+   "name": "activate_foreach_backend",
+   "evidence": "NCS 2.5.1 subsys/logging/log_core.c static helper with 0.971 signature ownership. It walks the requested backend mask, removes non-ready autostart backends, and enables each ready backend at the configured maximum level. Raw identity remains FUN_0004d2d0@0x0004d2d0."
+  },
+  "0x000820ae": {
+   "name": "att_req_send_process",
+   "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/att.c static helper. It walks idle ATT channels, selects the next compatible request, sends it, and prepends a failed request for retry. Raw identity remains FUN_000820ae@0x000820ae."
+  },
+  "0x00082f3a": {
+   "name": "gatt_store_ccc_cf",
+   "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/gatt.c static helper. It persists delayed bonded-peer CCC/CF state and frees the delayed-store record once both pending bits clear. Raw identity remains FUN_00082f3a@0x00082f3a."
+  },
+  "0x00086596": {
+   "name": "cancel_async_locked",
+   "evidence": "Pinned Zephyr 3.4.99 kernel/work.c static helper. It dequeues queued work, sets the canceling flag when activity remains, and returns the resulting busy-state mask. Raw identity remains FUN_00086596@0x00086596."
+  },
   "0x00057038": {
    "name": "send_conn_le_param_update",
    "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/conn.c static helper. The recovered body validates parameters, selects LL or L2CAP update from the configured feature/role/flag state, and preserves fallback parameters after a successful LL update. Raw identity remains FUN_00057038@0x00057038."

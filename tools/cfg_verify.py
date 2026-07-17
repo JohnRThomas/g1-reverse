@@ -2371,6 +2371,13 @@ REVIEWED_PAIRED_STACK_OBJECTS = {
     ("net", 0x0102fbd0): [
         ("diagnostic-record", -32, -28, 12),
     ],
+    # Device initialization emits one compiler-local logging record.  The
+    # shipped frame places it at entry-SP-24; readable GCC uses entry-SP-28.
+    # The exact logger target consumes the same initialized 8/12-byte tuple.
+    ("net", 0x0102fcec): [
+        ("device-init-diagnostic", -24, -20, 12, None, None,
+         (0x0102e284,)),
+    ],
     ("net", 0x010359b8): [
         ("primary-log-record", -80, -48, 24),
         ("queued-log-record", -40, -72, 8, ((0, 8),), (2,),
@@ -21493,6 +21500,22 @@ def self_test():
         verdict = verify("net", function_name, trials_random=0,
                          source_override=source.replace(correct, wrong, 1))
         assert verdict["status"] == "FAIL", (function_name, verdict)
+
+    # The device-init logger's compiler-local record is normalized only by
+    # identity/address.  Its initialized payload remains exact: changing the
+    # missing-device message byte must be rejected by an executed comparison.
+    device_init_source = open(
+        BASE + "/recon/net/src/FUN_0102fcec.c").read()
+    device_init_correct = "(const void *)0x0103dde1u, 0"
+    device_init_wrong = "(const void *)0x0103dde2u, 0"
+    assert device_init_correct in device_init_source
+    device_init_verdict = verify(
+        "net", "FUN_0102fcec", trials_random=1,
+        source_override=device_init_source.replace(
+            device_init_correct, device_init_wrong, 1))
+    assert device_init_verdict["status"] == "FAIL", device_init_verdict
+    assert (type(device_init_verdict.get("checked")) is int and
+            device_init_verdict["checked"] > 0), device_init_verdict
 
     # The net serializer fixture must genuinely consume the one-byte local
     # index object passed at 0x0102c3dc.  Corrupting only that byte changes the
