@@ -23,6 +23,9 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # Live calibration loop and final delay/return continue through 0x1080e;
+    # the catalog stops at the loop's first VFP load at 0x10764.
+    0x0000fe88: 0x988,
     0x00033384: 0x188,  # shared switch epilogue through 0x3350a
     # Response-kind 3 continues at 0x42c3e and returns at 0x42c4a; the
     # catalog stops at that live tail's entry.

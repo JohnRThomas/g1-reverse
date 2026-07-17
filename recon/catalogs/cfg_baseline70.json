@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "description": "Durable recovery of the 70 historical CFG other/timeout entries after scratch-ledger loss.",
+  "source": "reverify_{app,net}_L0..L3.json",
+  "app_other": [
+    "FUN_000417f8", "FUN_0005a0e8", "printf_like", "ui_QuickNote_task",
+    "FUN_0004bfc8", "FUN_00077820", "spec_ble_command_hook", "ui_even_ai_task",
+    "FUN_0004d588", "FUN_00058a54", "main"
+  ],
+  "app_timeout": [
+    "FUN_00021334", "cal_panel_canvas_coord", "draw_message", "gui_utf_draw_truncate",
+    "is_ext_flash_burned", "slave_display_thread", "FUN_0007d70a", "FUN_0007da70",
+    "ancs_main", "process_for_new_task", "FUN_00018334", "FUN_0002316c",
+    "FUN_0006f9c0", "FUN_000751d0", "display_thread_handler", "flash_ops_thread",
+    "gui_utf_Wordwrap_draw", "key_event_thread", "proxy_thread_handler", "sync_to_slave",
+    "update_persist_task_status", "FUN_00033f24", "FUN_00035f28", "FUN_00052760",
+    "FUN_0006ffd8", "FUN_000753ec", "FUN_00076a94", "FUN_000809b0",
+    "FUN_00080ab4", "display_dispatch_thread", "gui_utf_draw_align_right",
+    "local_esbs_ipc_service_recv", "touch_key_thread"
+  ],
+  "net_other": [
+    "FUN_01020d1c", "FUN_0102946c", "FUN_01034328", "FUN_0101e0a4",
+    "FUN_0101fd8c", "FUN_01016144", "FUN_0101e15c", "FUN_0101fdc0",
+    "FUN_010333e4", "FUN_0100eec8", "FUN_010127f8", "FUN_010217cc"
+  ],
+  "net_timeout": [
+    "FUN_01008d00", "FUN_0100a7e8", "FUN_0100f5d8", "FUN_01012f18",
+    "FUN_0101b7e4", "FUN_0102e000", "FUN_0100ec88", "FUN_0102e064",
+    "FUN_010315f0", "FUN_01031820", "FUN_01016430", "FUN_01018690",
+    "FUN_0101a38c", "FUN_0102d708"
+  ],
+  "direct_recheck": {
+    "pass": ["app:FUN_0002316c"],
+    "fail": ["app:FUN_00058a54"],
+    "timeouts": [
+      "app:FUN_00018334", "app:FUN_00033f24", "app:FUN_00035f28",
+      "app:FUN_00052760", "app:FUN_00076a94", "app:FUN_00080ab4",
+      "app:draw_message", "app:is_ext_flash_burned", "app:process_for_new_task"
+    ],
+    "note": "Other shard attempts were stopped or invalidated by memory pressure and concurrent true-size drift; they are not semantic verdicts. Re-run serially."
+  },
+  "ownership_exceptions": {
+    "net:FUN_010333e4": "interior loop owned by FUN_010333b4; verify owner through true extent 0x22c"
+  }
+}

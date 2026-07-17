@@ -136,7 +136,7 @@ class Runner:
             terminal_targets=None, terminal_ordinal=None,
             detect_repeated_terminal=False, oracle_overrides=None,
             call_arities=None, call_arity_by_target=None,
-            call_arity_by_format=None,
+            call_arity_by_format=None, call_argument_indices_by_target=None,
             call_float_arities=None, call_float_arity_by_target=None,
             call_return_kinds=None, call_return_kind_by_target=None,
             call_stack_arity_by_target=None, call_stack_arity_by_format=None,
@@ -144,7 +144,8 @@ class Runner:
             oracle_target_map=None,
             normalized_stack_pointer_calls=None,
             stack_objects=None,
-            fp_arg_overrides=None, initial_xpsr=0):
+            fp_arg_overrides=None, initial_xpsr=0,
+            initial_exclusive_monitor=None):
         """Run one trial. Returns dict(state) or {'error':...}.
         stop_events>0: stop after that many side-effect events (for non-returning
         supervisor loops — we compare the ordered event-trace prefix instead of a
@@ -261,6 +262,10 @@ class Runner:
                  "call_return_kinds_used": [],
                  "next_call_indirect": False,
                  "matched_stack_objects": set()}
+        if initial_exclusive_monitor is not None:
+            address, width = initial_exclusive_monitor
+            state["exclusive_monitor"] = (int(address) & 0xffffffff,
+                                            int(width))
         if read_transitions:
             def _reviewed_read_transition(uc, access, address, size, value, ud):
                 for transition in read_transitions:
@@ -472,6 +477,16 @@ class Runner:
                     argument_values=argument_values)
                 if identity is not None:
                     stack_values[stack_index] = identity
+            # A few recovered ABIs deliberately leave a register hole before
+            # a later live argument (for example r0 + r2 with r1 scratch).
+            # Preserve the live word using a reviewed target-scoped index set.
+            if (call_argument_indices_by_target is not None and
+                    semantic_target in call_argument_indices_by_target):
+                argument_indices = call_argument_indices_by_target[semantic_target]
+                if any(type(ai) is not int or ai < 0 or ai >= len(values)
+                       for ai in argument_indices):
+                    raise ValueError("call argument index outside reviewed arity")
+                values = [values[ai] for ai in argument_indices]
             return ("C", index, *values, "S", *stack_values, "F", *float_values,
                     "T", indirect_target)
         def _mw(uc, access, address, size, value, ud):
@@ -566,36 +581,52 @@ class Runner:
                             state["alignment_fault"] = True
                             state["fault_pc"] = pc
                             uc.emu_stop(); return
-                        # Unicorn lacks reliable ARMv8-M LDAEX/STLEX support.
-                        # Emulate the architectural word forms symmetrically,
+                        # Unicorn lacks reliable M-profile exclusive support.
+                        # Emulate byte, halfword, and word forms symmetrically,
                         # including the local exclusive monitor.
-                        if ins.mnemonic in ("ldaex", "ldrex"):
+                        load_exclusive = re.fullmatch(
+                            r'(?:ldaex|ldrex)([bh]?)', ins.mnemonic)
+                        store_exclusive = re.fullmatch(
+                            r'(?:stlex|strex)([bh]?)', ins.mnemonic)
+                        if load_exclusive:
                             rd = _gpr_index(ins.op_str.split(",")[0])
                             if rd is None:
                                 return
-                            uc.reg_write(REG[rd], int.from_bytes(uc.mem_read(addr, 4), "little"))
-                            state["exclusive_addr"] = addr
+                            width = (1 if load_exclusive.group(1) == "b" else
+                                     2 if load_exclusive.group(1) == "h" else 4)
+                            uc.reg_write(REG[rd], int.from_bytes(
+                                uc.mem_read(addr, width), "little"))
+                            state["exclusive_monitor"] = (addr, width)
                             state["_resume"] = (pc + size) | 1
                             uc.emu_stop(); return
-                        if ins.mnemonic in ("stlex", "strex"):
+                        if store_exclusive:
                             parts = [x.strip() for x in ins.op_str.split(",")]
                             rd, rs = _gpr_index(parts[0]), _gpr_index(parts[1])
                             if rd is None or rs is None:
                                 return
-                            ok = state.get("exclusive_addr") == addr
+                            width = (1 if store_exclusive.group(1) == "b" else
+                                     2 if store_exclusive.group(1) == "h" else 4)
+                            monitor = state.get("exclusive_monitor")
+                            # Accept the legacy word-monitor key only for a
+                            # word store so resumed comparisons remain stable.
+                            ok = (monitor == (addr, width) or
+                                  (width == 4 and
+                                   state.get("exclusive_addr") == addr))
                             if ok:
-                                value = int(uc.reg_read(REG[rs])) & 0xffffffff
-                                uc.mem_write(addr, value.to_bytes(4, "little"))
+                                mask = (1 << (width * 8)) - 1
+                                value = int(uc.reg_read(REG[rs])) & mask
+                                uc.mem_write(addr, value.to_bytes(width, "little"))
                                 # Writes performed by Unicorn API calls from a
                                 # code hook do not trigger UC_HOOK_MEM_WRITE.
                                 # Emit the architectural store explicitly so
                                 # exclusive RMW side effects remain observable.
                                 if not (stack_lo <= addr < stack_hi):
                                     state["events"].append(("W", addr & 0xffffffff,
-                                                            4, value))
+                                                            width, value))
                                     if stop_events and len(state["events"]) >= stop_events:
                                         state["capped_events"] = True
                             uc.reg_write(REG[rd], 0 if ok else 1)
+                            state.pop("exclusive_monitor", None)
                             state.pop("exclusive_addr", None)
                             state["_resume"] = (pc + size) | 1
                             uc.emu_stop(); return
@@ -865,6 +896,7 @@ def compare(orig_bytes, orig_va, orig_size,
             pointer_read_transitions=None,
             terminal_targets=None, oracle_overrides=None, call_arities=None,
             call_arity_by_target=None, call_arity_by_format=None,
+            call_argument_indices_by_target=None,
             call_float_arities=None,
             call_float_arity_by_target=None, oracle_memory_writes=None,
             call_return_kinds=None, call_return_kind_by_target=None,
@@ -875,7 +907,7 @@ def compare(orig_bytes, orig_va, orig_size,
             paired_stack_objects=None,
             initial_xpsr_overrides=None, orig_internal_code_regions=None,
             candidate_internal_code_regions=None, max_insns=200000,
-            max_resumes=5000):
+            max_resumes=5000, initial_exclusive_monitors=None):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
     first len(arg_overrides) trials pin those argument registers to the specified
     values (control-flow-derived, to guarantee every branch/switch-case is
@@ -938,6 +970,10 @@ def compare(orig_bytes, orig_va, orig_size,
         trial_xpsr = (initial_xpsr_overrides[t]
                       if initial_xpsr_overrides and t < len(initial_xpsr_overrides)
                       else 0)
+        trial_exclusive_monitor = (
+            initial_exclusive_monitors[t]
+            if initial_exclusive_monitors and t < len(initial_exclusive_monitors)
+            else None)
         trial_oracle_writes = (oracle_memory_writes[t]
                                if isinstance(oracle_memory_writes, (list, tuple)) and t < len(oracle_memory_writes)
                                else oracle_memory_writes)
@@ -977,6 +1013,7 @@ def compare(orig_bytes, orig_va, orig_size,
                    call_arities=call_arities,
                    call_arity_by_target=call_arity_by_target,
                    call_arity_by_format=call_arity_by_format,
+                   call_argument_indices_by_target=call_argument_indices_by_target,
                    call_float_arities=call_float_arities,
                    call_float_arity_by_target=call_float_arity_by_target,
                    call_return_kinds=call_return_kinds,
@@ -986,7 +1023,8 @@ def compare(orig_bytes, orig_va, orig_size,
                    oracle_memory_writes=trial_oracle_writes,
                    oracle_memory_copies=oracle_memory_copies,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
-                   fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr)
+                   fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
+                   initial_exclusive_monitor=trial_exclusive_monitor)
         # candidate emulated at its own VA but identical inputs/scratch
         b = rc.run(t, args, t, max_insns=run_cap, max_resumes=max_resumes,
                    stop_events=se, memory_overrides=mov,
@@ -998,6 +1036,7 @@ def compare(orig_bytes, orig_va, orig_size,
                                      if a.get("terminal") else None),
                    detect_repeated_terminal=False, oracle_overrides=trial_oracles,
                    call_arities=a.get("call_arities_used_full", call_arities),
+                   call_argument_indices_by_target=call_argument_indices_by_target,
                    call_float_arities=a.get("call_float_arities_used_full", call_float_arities),
                    call_return_kinds=a.get("call_return_kinds_used_full", call_return_kinds),
                    call_stack_arity_by_target=call_stack_arity_by_target,
@@ -1006,7 +1045,8 @@ def compare(orig_bytes, orig_va, orig_size,
                    oracle_memory_copies=oracle_memory_copies,
                    oracle_target_map=candidate_direct_target_map,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
-                   fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr)
+                   fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
+                   initial_exclusive_monitor=trial_exclusive_monitor)
         matched_orig_stack_objects.update(a.get("matched_stack_objects", ()))
         matched_cand_stack_objects.update(b.get("matched_stack_objects", ()))
         # Generated direct-call stubs move with candidate code layout.  When
