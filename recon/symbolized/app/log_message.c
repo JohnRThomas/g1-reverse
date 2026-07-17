@@ -1,3 +1,8 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_0007dda4 @ 0x0007dda4
+ * public-name: log_message
+ * durable-map: recon/catalogs/function_names_app.json
+ */
 /* Reconstructed log_message @ 0x7dda4  (CFG-directed candidate) */
 #include <stdarg.h>
 extern int vprintf(const char *restrict format, va_list ap);

@@ -23,6 +23,8 @@ EXPECTED = (
         "config": ["CONFIG_NEWLIB_LIBC=y", "CONFIG_NEWLIB_LIBC_NANO=y"],
         "abi": "void log_message(const char *format, ...); AAPCS va_list begins at saved r1",
         "reference_count": 281,
+        "same_entry_alias": "DEBUG_PRINT",
+        "same_entry_alias_reference_count": 61,
     },
     {
         "va": 0x000431A8, "size": 8, "symbol": "atomic_get_3_0",
@@ -102,6 +104,7 @@ def build(classified_path=CLASSIFIED, image_path=IMAGE):
             "single_owner": "retained reconstructed entry",
             "no_weak_stub_blob_or_assembly": True,
             "forbidden_alias": "log_message/DEBUG_PRINT@0x0007dda4 -> debug_print@0x00019c70",
+            "permitted_same_entry_alias": "DEBUG_PRINT -> log_message@0x0007dda4",
         },
         "pinned_environment": {
             "ncs": "2.5.1", "zephyr": "3.4.99", "gcc": "12.2.0",
@@ -109,7 +112,9 @@ def build(classified_path=CLASSIFIED, image_path=IMAGE):
         },
         "summary": {
             "functions": len(rows),
-            "resolved_reference_count": sum(row["reference_count"] for row in rows),
+            "resolved_reference_count": (
+                sum(row["reference_count"] for row in rows) +
+                sum(row.get("same_entry_alias_reference_count", 0) for row in rows)),
         },
         "functions": rows,
     }
@@ -129,7 +134,7 @@ def main():
     else:
         with open(args.output, "w", encoding="utf-8") as stream:
             stream.write(rendered)
-    print("CPUAPP high-fan-in ownership PASS: 4 functions, 377 references")
+    print("CPUAPP high-fan-in ownership PASS: 4 functions, 438 classified references")
 
 
 if __name__ == "__main__":

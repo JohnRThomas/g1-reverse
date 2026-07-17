@@ -5,7 +5,8 @@
   "fail_closed": true,
   "single_owner": "retained reconstructed entry",
   "no_weak_stub_blob_or_assembly": true,
-  "forbidden_alias": "log_message/DEBUG_PRINT@0x0007dda4 -> debug_print@0x00019c70"
+  "forbidden_alias": "log_message/DEBUG_PRINT@0x0007dda4 -> debug_print@0x00019c70",
+  "permitted_same_entry_alias": "DEBUG_PRINT -> log_message@0x0007dda4"
  },
  "pinned_environment": {
   "ncs": "2.5.1",
@@ -17,7 +18,7 @@
  },
  "summary": {
   "functions": 4,
-  "resolved_reference_count": 377
+  "resolved_reference_count": 438
  },
  "functions": [
   {
@@ -33,9 +34,11 @@
    ],
    "abi": "void log_message(const char *format, ...); AAPCS va_list begins at saved r1",
    "reference_count": 281,
+   "same_entry_alias": "DEBUG_PRINT",
+   "same_entry_alias_reference_count": 61,
    "raw_identity": "FUN_0007dda4",
    "firmware_span_sha256": "b94bfaadc71ed582a469121d0805990cce31ce071f27ed4f7c8437fe1da6e941",
-   "source_sha256": "3f2bc29b2f6a0f5259f4265781130576e82a412ddd8e5f40bfa5c166aac09830",
+   "source_sha256": "471ef2a6d673807b09b325f7d8f54180c53d2296cec54e33b7ed2cf9826c5410",
    "verification": "tools/cfg_verify.py app log_message: PASS",
    "retain_reconstruction": true,
    "exclude_reconstruction": false
