@@ -7,13 +7,21 @@ extern void FUN_0007cef6(int, int, void*);
 
 int FUN_0002ea28(int param_1)
 {
-    int local_20 = 0, uStack_1c = 0, local_18 = 0;
-    unsigned char auStack_28[8];
+    struct {
+        unsigned char event[8];
+        int first;
+        int second;
+        int third;
+    } frame;
     int iVar1;
-    iVar1 = FUN_0002e988(param_1, &local_20, &uStack_1c, &local_18);
+
+    frame.first = 0;
+    frame.second = 0;
+    frame.third = 0;
+    iVar1 = FUN_0002e988(param_1, &frame.first, &frame.second, &frame.third);
     if (iVar1 >= 0) {
-        FUN_0007cef6(param_1, 0x39, auStack_28);
-        iVar1 = FUN_0000e2b4(&local_20, 0);
+        FUN_0007cef6(param_1, 0x39, frame.event);
+        iVar1 = FUN_0000e2b4(&frame.first, 0);
         if (iVar1 >= 0) {
             unsigned long long uVar2 = FUN_0007ceda();
             *(volatile unsigned long long*)0x20004790UL = uVar2;
@@ -22,4 +30,3 @@ int FUN_0002ea28(int param_1)
     }
     return iVar1;
 }
-
