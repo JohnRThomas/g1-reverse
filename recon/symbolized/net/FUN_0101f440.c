@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
+ *   controller_state_mode_is_invalid         <= FUN_01029b24 @ 0x01029b24
  * address symbols (name @ address):
  *   g_net_ble_conn_setup_err_cb              @ 0x210004d8
  *   g_net_ble_conn_setup_ok_cb               @ 0x210004dc
@@ -33,7 +34,7 @@ extern void FUN_01012714(uint, void *);
 extern int FUN_01013b4c(uint, void *, uint);
 extern int FUN_010141d4(uint);
 extern int FUN_0101e8a0(void *, uint);
-extern int FUN_01029b24(int);
+extern int controller_state_mode_is_invalid(int);
 extern int FUN_01029b38(int);
 
 int FUN_0101f440(uint param_1, unsigned char *param_2)
@@ -91,7 +92,7 @@ LAB_0101f4d4:
   if (*piVar3 != 0) {
     iVar4 = iVar4 + 0x40;
     iVar5 = FUN_01029b38(iVar4);
-    if ((iVar5 != 0) && (iVar5 = FUN_01029b24(iVar4), iVar5 == 0)) {
+    if ((iVar5 != 0) && (iVar5 = controller_state_mode_is_invalid(iVar4), iVar5 == 0)) {
       if (cVar8 == '\0') {
         int (*fp)(int, int, int) = (int (*)(int, int, int)) *(volatile int *)((unsigned long)&g_net_ble_conn_setup_ok_cb) /*=0x210004dc*/;
         int p2 = *(volatile int *)(((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/ + 0xc);

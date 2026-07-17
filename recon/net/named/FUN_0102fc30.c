@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   net_buf_simple_tailroom                  <= FUN_0103a468 @ 0x0103a468
  * address symbols (name @ address):
  *   rodata_103c024                           @ 0x0103c024
  *   rodata_103ddcd                           @ 0x0103ddcd
@@ -15,7 +16,7 @@
 
 extern int FUN_0103a44c(int);
 extern void FUN_01030014(int, int);
-extern unsigned int FUN_0103a468(int);
+extern unsigned int net_buf_simple_tailroom(int);
 extern void FUN_0103a478(int, int, unsigned int);
 extern void FUN_0102ff94(int);
 extern void z_impl_z_log_msg_static_create(int, int, void *, int);
@@ -48,7 +49,7 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
       if (param_6 == 0) {
         return iVar1;
       }
-      uVar3 = FUN_0103a468(iVar4);
+      uVar3 = net_buf_simple_tailroom(iVar4);
       if (param_6 <= uVar3) {
         FUN_0103a478(iVar4, param_5, param_6);
         return iVar1;

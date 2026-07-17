@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01008a58 @ 0x01008a58
  * public-name: FUN_01008a58
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_block_chain_layout_init              <= FUN_010279e6 @ 0x010279e6
  * address symbols (name @ address):
  *   g_net_sdc_optfeat_fp_a                   @ 0x21000044
  *   g_net_sdc_optfeat_fp_c                   @ 0x21000048
@@ -22,7 +24,7 @@ extern void FUN_01021820(uint32_t);
 extern void FUN_0102182c(uint8_t, uint32_t);
 extern void FUN_0102185c(uint32_t, uint32_t);
 extern int FUN_01027846(uint8_t, uint8_t, uint8_t, uint8_t);
-extern int FUN_010279e6(uint32_t, uint8_t, uint32_t);
+extern int sdc_block_chain_layout_init(uint32_t, uint8_t, uint32_t);
 
 typedef int (*encoder3_t)(uint32_t, uint8_t, uint8_t);
 typedef int (*encoder1_t)(uint32_t);
@@ -113,13 +115,13 @@ int FUN_01008a58(uint32_t start, int sizing_only)
     uint32_t first_pos = 0;
     if (S[25] != 0) {
         first_pos = ALIGN8(cursor);
-        n = FUN_010279e6(sizing_only == 0 ? first_pos : 0, S[25], 0x10e);
+        n = sdc_block_chain_layout_init(sizing_only == 0 ? first_pos : 0, S[25], 0x10e);
         cursor = first_pos + (uint32_t)n;
     }
     uint32_t second_pos = 0;
     if (S[26] != 0) {
         second_pos = ALIGN8(cursor);
-        n = FUN_010279e6(sizing_only == 0 ? second_pos : 0, S[26], 0xfb);
+        n = sdc_block_chain_layout_init(sizing_only == 0 ? second_pos : 0, S[26], 0xfb);
         cursor = second_pos + (uint32_t)n;
     }
     if (sizing_only == 0)
@@ -130,7 +132,7 @@ int FUN_01008a58(uint32_t start, int sizing_only)
             FUN_01021820(0);
     } else {
         call_pos = ALIGN8(cursor);
-        n = FUN_010279e6(sizing_only == 0 ? call_pos : 0, S[27], 0x104);
+        n = sdc_block_chain_layout_init(sizing_only == 0 ? call_pos : 0, S[27], 0x104);
         uint32_t payload = ((call_pos + (uint32_t)n + 3u) & ~7u) | 4u;
         n = FUN_0100a664(S[28], (uint8_t)(S[22] + S[24]), payload, sizing_only);
         cursor = payload + (uint32_t)n;
@@ -147,7 +149,7 @@ int FUN_01008a58(uint32_t start, int sizing_only)
     }
     if (S[29] != 0) {
         call_pos = ALIGN8(cursor);
-        n = FUN_010279e6(sizing_only == 0 ? call_pos : 0, S[29], 10000);
+        n = sdc_block_chain_layout_init(sizing_only == 0 ? call_pos : 0, S[29], 10000);
         cursor = call_pos + (uint32_t)n;
         if (sizing_only == 0)
             FUN_0102185c(call_pos, 10000);

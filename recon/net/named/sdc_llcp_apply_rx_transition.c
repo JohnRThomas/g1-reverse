@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_llcp_apply_rx_transition             <= FUN_0101746c @ 0x0101746c
+ *   controller_state_mode_is_invalid         <= FUN_01029b24 @ 0x01029b24
  * address symbols (name @ address):
  *   g_net_conn_event_cb                      @ 0x21000214
  *   g_net_ctrlblk_chan_field                 @ 0x21001008
@@ -26,7 +27,7 @@ extern u32 FUN_0100cb10(void);
 extern void FUN_0100cb28(void);
 extern i8 FUN_01010890(u8, u32);
 extern int FUN_010199cc(void);
-extern int FUN_01029b24(int);
+extern int controller_state_mode_is_invalid(int);
 
 #define DAT_01017648 0x21000f90u
 #define DAT_0101764c 0x21000214u
@@ -53,7 +54,7 @@ void sdc_llcp_apply_rx_transition(int param_1, u32 param_2, int param_3)
       if (*(volatile u8 *)(DAT_01017648 + 0xab) == 0) {
         return;
       }
-      iVar5 = FUN_01029b24(*(volatile int *)(iVar2 + 0xac) + 0x50);
+      iVar5 = controller_state_mode_is_invalid(*(volatile int *)(iVar2 + 0xac) + 0x50);
       if (iVar5 != 0) {
         return;
       }

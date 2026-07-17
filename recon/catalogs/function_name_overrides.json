@@ -867,6 +867,70 @@
    "name": "atomic_set",
    "evidence": "Body is Zephyr's atomic exchange loop and the matched backend open uses it for READY/INITED state publication. Raw identity remains FUN_01039fb6."
   },
+  "0x010122b4": {
+   "name": "controller_packet_duration_calculate",
+   "evidence": "Both controller paths derive and return a packet duration from descriptor dimensions, flags, octet counts, mode, and timing fields. Raw identity remains FUN_010122b4 at 0x010122b4."
+  },
+  "0x0102741e": {
+   "name": "controller_handle_slot_find_from",
+   "evidence": "Circularly scans the handle table beginning at the caller-selected slot and returns the matching slot or 0xff. Raw identity remains FUN_0102741e at 0x0102741e."
+  },
+  "0x01027af2": {
+   "name": "controller_timing_quarter_get",
+   "evidence": "Narrows the input to the firmware uint16 ABI and returns its timing representation divided by four. Raw identity remains FUN_01027af2 at 0x01027af2."
+  },
+  "0x01027b32": {
+   "name": "controller_timing_delta_clamp",
+   "evidence": "Subtracts the transformed timing base from the narrow input and caps the result at 0x672. Raw identity remains FUN_01027b32 at 0x01027b32."
+  },
+  "0x010294c2": {
+   "name": "callback_list_invoke_all",
+   "evidence": "Invokes the callback in every node of the supplied singly linked list, following each next pointer to termination. Raw identity remains FUN_010294c2 at 0x010294c2."
+  },
+  "0x01029b24": {
+   "name": "controller_state_mode_is_invalid",
+   "evidence": "Returns false for controller modes 0, 1, and 7 and true for every other byte value. Raw identity remains FUN_01029b24 at 0x01029b24."
+  },
+  "0x01029bda": {
+   "name": "controller_packet_type29_init",
+   "evidence": "Initializes the packet discriminator to decimal type 29 and stores the current three-bit controller value. Raw identity remains FUN_01029bda at 0x01029bda."
+  },
+  "0x01029bea": {
+   "name": "controller_packet_type30_init",
+   "evidence": "Initializes the packet discriminator to decimal type 30 and stores the current three-bit controller value. Raw identity remains FUN_01029bea at 0x01029bea."
+  },
+  "0x010279e6": {
+   "name": "sdc_block_chain_layout_init",
+   "evidence": "Validates eight-byte alignment, writes the private block header, aligns the payload stride, and invokes the SDC chain-layout helper; a null header supports sizing-only use. Raw identity remains FUN_010279e6 at 0x010279e6."
+  },
+  "0x0102d5b4": {
+   "name": "ipc_service_register_endpoint",
+   "evidence": "Recovered body matches the pinned Zephyr ipc_service endpoint-registration semantics and ABI, including argument validation, backend open dispatch, and endpoint context publication. Raw identity remains FUN_0102d5b4 at 0x0102d5b4."
+  },
+  "0x0103547c": {
+   "name": "rpmsg_register_endpoint",
+   "evidence": "Exact adoption-manifest upstream match to the pinned RPMsg endpoint registration owner, including name copy, callback fields, and endpoint-list linkage. Raw identity remains FUN_0103547c at 0x0103547c."
+  },
+  "0x01039f4c": {
+   "name": "get_ept_slot_with_name",
+   "evidence": "Exact NCS net-reference object-index match for endpoint-name lookup across the two endpoint slot regions. Raw identity remains FUN_01039f4c at 0x01039f4c."
+  },
+  "0x0103a468": {
+   "name": "net_buf_simple_tailroom",
+   "evidence": "Exact pinned archive match and ABI for net_buf_simple_tailroom: available data span minus current reserved/data span. Raw identity remains FUN_0103a468 at 0x0103a468."
+  },
+  "0x0103b0f0": {
+   "name": "z_device_is_ready",
+   "evidence": "Exact archive match to Zephyr device.c readiness semantics, including null rejection, initialized-state flag, and zero init-result requirement. Raw identity remains FUN_0103b0f0 at 0x0103b0f0."
+  },
+  "0x0103b224": {
+   "name": "z_impl_k_sem_init",
+   "evidence": "Exact adoption-manifest archive match for Zephyr semaphore initialization, including limit validation, count/limit setup, wait queue initialization, and zero return. Raw identity remains FUN_0103b224 at 0x0103b224."
+  },
+  "0x0103b5a4": {
+   "name": "strncpy",
+   "evidence": "Exact pinned picolibc archive match for strncpy, including zero padding of the unused destination capacity and destination return ABI. Raw identity remains FUN_0103b5a4 at 0x0103b5a4."
+  },
   "0x0103a056": {
    "name": "ipc_static_vrings_shm_size",
    "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."

@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_duration_calculate     <= FUN_010122b4 @ 0x010122b4
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  *   sdc_timing_scale                         <= FUN_01024678 @ 0x01024678
  * address symbols (name @ address):
@@ -17,7 +18,7 @@ typedef unsigned long long u64;
 
 extern void sdc_assertion_fail(u32,u32);
 extern u32 FUN_0100f66c(void);
-extern u32 FUN_010122b4(void*,u32);
+extern u32 controller_packet_duration_calculate(void*,u32);
 extern u32 FUN_010126c0(void*);
 extern u32 FUN_010126f0(void*);
 extern void FUN_01012960(void*,u32);
@@ -73,7 +74,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
   uVar6 = (u32)(u16)(sVar4 + 0xe7 + uVar1);
   iVar5 = (int)FUN_010126c0(param_1);
   if (iVar5 == 0) {
-    int iVar7 = (int)FUN_010122b4(param_1, 0);
+    int iVar7 = (int)controller_packet_duration_calculate(param_1, 0);
     u8 *iVar5p = (u8*)DAT_01013cd4;
     *(volatile int *)(param_1 + 300) = iVar7 + 0x152;
     uVar8 = (u32)*(volatile u16 *)(iVar5p + 0x12);
@@ -106,7 +107,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
       *(volatile u32 *)(param_1 + 0x10c) = (param_3 - 0x152) - iVar5;
     }
     else {
-      iVar5 = (int)FUN_010122b4(param_1, 1);
+      iVar5 = (int)controller_packet_duration_calculate(param_1, 1);
       *(volatile u32 *)(param_1 + 0x10c) = (param_3 - 0x54e) - iVar5;
     }
   }

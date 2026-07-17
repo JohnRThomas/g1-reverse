@@ -2,13 +2,14 @@
  * public-name: controller_handle_slot_find
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_handle_slot_find_from         <= FUN_0102741e @ 0x0102741e
  *   controller_handle_slot_find              <= FUN_01027470 @ 0x01027470
  */
 /* net-core controller_handle_slot_find @ 0x01027470.
  * Raw backmap: FUN_01027470@0x01027470. */
 #include <stdint.h>
 
-extern uint32_t FUN_0102741e(uint32_t, uint32_t, uint32_t);
+extern uint32_t controller_handle_slot_find_from(uint32_t, uint32_t, uint32_t);
 
 uint32_t controller_handle_slot_find(uint32_t object, uint16_t value)
 {
@@ -24,7 +25,7 @@ uint32_t controller_handle_slot_find(uint32_t object, uint16_t value)
         return slot;
     }
     if (base[3] == 0) {
-        return FUN_0102741e(object, value, slot);
+        return controller_handle_slot_find_from(object, value, slot);
     }
     return 0xff;
 }

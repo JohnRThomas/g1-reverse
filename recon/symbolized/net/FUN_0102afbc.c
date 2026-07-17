@@ -3,6 +3,7 @@
  * public-name: FUN_0102afbc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   ipc_service_register_endpoint            <= FUN_0102d5b4 @ 0x0102d5b4
  *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_102b4f5                           @ 0x0102b4f5
@@ -19,7 +20,7 @@ extern void FUN_0102fcec(int);
 extern void FUN_01035fa0(int, int, int, int, int, int, int, int, int);
 extern void FUN_0103b156(int, int);
 extern int FUN_0102d558(int);
-extern int FUN_0102d5b4(int, int, int);
+extern int ipc_service_register_endpoint(int, int, int);
 extern void printk(int, ...);
 
 #define C_0102b058 0x2100095c
@@ -51,7 +52,7 @@ int FUN_0102afbc(void)
   if (iVar1 < 0 && iVar1 != -0x78 && 0 < *(volatile int *)P_0102b080) {
     printk(C_0102b084, 0);
   }
-  iVar1 = FUN_0102d5b4(C_0102b07c, C_0102b088, C_0102b08c);
+  iVar1 = ipc_service_register_endpoint(C_0102b07c, C_0102b088, C_0102b08c);
   if (iVar1 != 0 && 0 < *(volatile int *)P_0102b080) {
     printk(C_0102b090, iVar1);
   }

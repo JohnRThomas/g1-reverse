@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01039fe6 @ 0x01039fe6
  * public-name: FUN_01039fe6
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   strncpy                                  <= FUN_0103b5a4 @ 0x0103b5a4
  */
 /* net-core FUN_01039fe6 @ 0x1039fe6 — true CFG extent 112 bytes (ends 0x103a056) */
 
@@ -8,7 +10,7 @@ extern void FUN_01036410(int, char*, unsigned int, unsigned int, int);
 extern int FUN_0102d6e0(int, char**, char*);
 extern void FUN_01039fb2(int);
 extern int FUN_0102d69c(int, char *, char *, unsigned int);
-extern void FUN_0103b5a4(void*, char*, unsigned int);
+extern void strncpy(void*, char*, unsigned int);
 
 void FUN_01039fe6(int param_1, char *param_2, unsigned int param_3)
 {
@@ -33,7 +35,7 @@ void FUN_01039fe6(int param_1, char *param_2, unsigned int param_3)
       (void)r;
       return;
     }
-    FUN_0103b5a4((void *)(pcVar1 + 0x40), param_2, 0x20);
+    strncpy((void *)(pcVar1 + 0x40), param_2, 0x20);
     *(volatile unsigned int *)(pcVar1 + 0x60) = param_3;
   }
   FUN_01039fb2(iVar4);

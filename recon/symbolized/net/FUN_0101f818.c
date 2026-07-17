@@ -2,13 +2,15 @@
 /* readable reconstruction; identity: FUN_0101f818 @ 0x0101f818
  * public-name: FUN_0101f818
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   callback_list_invoke_all                 <= FUN_010294c2 @ 0x010294c2
  */
 /* net-core FUN_0101f818 @ 0x101f818  (parity 300 trials PROVEN) */
 
 extern void FUN_0100ebc4(void);
 extern void FUN_0100f5d8(void);
 extern void FUN_0101e888(void);
-extern void FUN_010294c2(unsigned int);
+extern void callback_list_invoke_all(unsigned int);
 
 void FUN_0101f818(unsigned int param_1, unsigned int param_2)
 {
@@ -16,7 +18,7 @@ void FUN_0101f818(unsigned int param_1, unsigned int param_2)
 
   FUN_0100ebc4();
   *(volatile unsigned int*)(base + 0x104) = param_2;
-  FUN_010294c2(*(volatile unsigned int*)(base + 0x20c));
+  callback_list_invoke_all(*(volatile unsigned int*)(base + 0x20c));
   FUN_0101e888();
   FUN_0100f5d8();
   *(volatile unsigned char*)(base + 0x218) = 1;

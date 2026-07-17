@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_controller_random_get                <= FUN_0100f63c @ 0x0100f63c
+ *   controller_packet_duration_calculate     <= FUN_010122b4 @ 0x010122b4
  *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  */
@@ -13,7 +14,7 @@
 
 extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern uint32_t sdc_controller_random_get(void);
-extern uint64_t FUN_010122b4(volatile uint8_t *, uint32_t);
+extern uint64_t controller_packet_duration_calculate(volatile uint8_t *, uint32_t);
 extern uint32_t FUN_0101232c(volatile uint8_t *);
 extern void FUN_010128bc(volatile uint8_t *, uint32_t, uint32_t, uint32_t);
 extern uint16_t FUN_01012c14(volatile uint8_t *);
@@ -62,7 +63,7 @@ void sdc_ext_adv_reschedule(volatile uint8_t *adv, uint32_t mode)
         uint32_t deadline_low = *(volatile uint32_t *)(adv + 0x140);
         uint32_t deadline_high = *(volatile uint32_t *)(adv + 0x144);
         if (deadline_high != 0x7fffffffu || deadline_low != 0xffffffffu) {
-            uint64_t duration = FUN_010122b4(adv, 0);
+            uint64_t duration = controller_packet_duration_calculate(adv, 0);
             uint64_t current = ((uint64_t)high << 32) | low;
             uint64_t deadline =
                 ((uint64_t)deadline_high << 32) | deadline_low;

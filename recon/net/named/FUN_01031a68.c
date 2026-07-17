@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  *   k_work_init                              <= FUN_01036bec @ 0x01036bec
+ *   z_device_is_ready                        <= FUN_0103b0f0 @ 0x0103b0f0
  * address symbols (name @ address):
  *   rodata_10320d9                           @ 0x010320d9
  *   rodata_103bf70                           @ 0x0103bf70
@@ -21,7 +22,7 @@ extern void k_work_init(unsigned int a, unsigned int b);
 extern void FUN_01032680(void);
 extern void FUN_01009054(void *a);
 extern void z_impl_z_log_msg_static_create(unsigned int a, unsigned int b, void *c, void *d);
-extern int FUN_0103b0f0(unsigned int a);
+extern int z_device_is_ready(unsigned int a);
 extern int FUN_010091e8(void *a);
 extern int FUN_01031804(unsigned int a, unsigned int b);
 extern int32_t sdc_default_tx_power_set(int8_t requested_power_level); /* FUN_010091cc */
@@ -87,7 +88,7 @@ int FUN_01031a68(void)
     z_impl_z_log_msg_static_create(DAT_b68, DAT_b64, &workspace.startup,
                  workspace.frame.startup_context);
 
-    iVar1 = FUN_0103b0f0(DAT_b6c);
+    iVar1 = z_device_is_ready(DAT_b6c);
     if (iVar1 == 0) {
         workspace.frame.missing_service.code = 2;
         workspace.frame.missing_service.message = DAT_b70;

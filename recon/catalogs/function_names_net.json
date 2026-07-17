@@ -2741,11 +2741,13 @@
   "0x010122b4": {
    "address": "0x010122b4",
    "raw_name": "FUN_010122b4",
-   "name": "FUN_010122b4",
-   "display_name": "FUN_010122b4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_duration_calculate",
+   "display_name": "controller_packet_duration_calculate",
+   "human": true,
+   "source": "function_name_overrides.json: Both controller paths derive and return a packet duration from descriptor dimensions, flags, octet counts, mode, and timing fields. Raw identity remains FUN_010122b4 at 0x010122b4.",
+   "aliases": [
+    "FUN_010122b4"
+   ]
   },
   "0x010122fc": {
    "address": "0x010122fc",
@@ -6619,7 +6621,7 @@
    "name": "FUN_0102709e",
    "display_name": "FUN_0102709e",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102709e.c",
    "aliases": []
   },
   "0x010270d2": {
@@ -6704,7 +6706,7 @@
    "name": "FUN_01027258",
    "display_name": "FUN_01027258",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027258.c",
    "aliases": []
   },
   "0x010272c2": {
@@ -6746,11 +6748,13 @@
   "0x0102741e": {
    "address": "0x0102741e",
    "raw_name": "FUN_0102741e",
-   "name": "FUN_0102741e",
-   "display_name": "FUN_0102741e",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_handle_slot_find_from",
+   "display_name": "controller_handle_slot_find_from",
+   "human": true,
+   "source": "function_name_overrides.json: Circularly scans the handle table beginning at the caller-selected slot and returns the matching slot or 0xff. Raw identity remains FUN_0102741e at 0x0102741e.",
+   "aliases": [
+    "FUN_0102741e"
+   ]
   },
   "0x01027470": {
    "address": "0x01027470",
@@ -6993,11 +6997,13 @@
   "0x010279e6": {
    "address": "0x010279e6",
    "raw_name": "FUN_010279e6",
-   "name": "FUN_010279e6",
-   "display_name": "FUN_010279e6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_block_chain_layout_init",
+   "display_name": "sdc_block_chain_layout_init",
+   "human": true,
+   "source": "function_name_overrides.json: Validates eight-byte alignment, writes the private block header, aligns the payload stride, and invokes the SDC chain-layout helper; a null header supports sizing-only use. Raw identity remains FUN_010279e6 at 0x010279e6.",
+   "aliases": [
+    "FUN_010279e6"
+   ]
   },
   "0x01027a4a": {
    "address": "0x01027a4a",
@@ -7029,11 +7035,13 @@
   "0x01027af2": {
    "address": "0x01027af2",
    "raw_name": "FUN_01027af2",
-   "name": "FUN_01027af2",
-   "display_name": "FUN_01027af2",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_timing_quarter_get",
+   "display_name": "controller_timing_quarter_get",
+   "human": true,
+   "source": "function_name_overrides.json: Narrows the input to the firmware uint16 ABI and returns its timing representation divided by four. Raw identity remains FUN_01027af2 at 0x01027af2.",
+   "aliases": [
+    "FUN_01027af2"
+   ]
   },
   "0x01027b0c": {
    "address": "0x01027b0c",
@@ -7047,11 +7055,13 @@
   "0x01027b32": {
    "address": "0x01027b32",
    "raw_name": "FUN_01027b32",
-   "name": "FUN_01027b32",
-   "display_name": "FUN_01027b32",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_timing_delta_clamp",
+   "display_name": "controller_timing_delta_clamp",
+   "human": true,
+   "source": "function_name_overrides.json: Subtracts the transformed timing base from the narrow input and caps the result at 0x672. Raw identity remains FUN_01027b32 at 0x01027b32.",
+   "aliases": [
+    "FUN_01027b32"
+   ]
   },
   "0x01027b84": {
    "address": "0x01027b84",
@@ -7560,11 +7570,13 @@
   "0x010294c2": {
    "address": "0x010294c2",
    "raw_name": "FUN_010294c2",
-   "name": "FUN_010294c2",
-   "display_name": "FUN_010294c2",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "callback_list_invoke_all",
+   "display_name": "callback_list_invoke_all",
+   "human": true,
+   "source": "function_name_overrides.json: Invokes the callback in every node of the supplied singly linked list, following each next pointer to termination. Raw identity remains FUN_010294c2 at 0x010294c2.",
+   "aliases": [
+    "FUN_010294c2"
+   ]
   },
   "0x010294d2": {
    "address": "0x010294d2",
@@ -7744,11 +7756,13 @@
   "0x01029b24": {
    "address": "0x01029b24",
    "raw_name": "FUN_01029b24",
-   "name": "FUN_01029b24",
-   "display_name": "FUN_01029b24",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_state_mode_is_invalid",
+   "display_name": "controller_state_mode_is_invalid",
+   "human": true,
+   "source": "function_name_overrides.json: Returns false for controller modes 0, 1, and 7 and true for every other byte value. Raw identity remains FUN_01029b24 at 0x01029b24.",
+   "aliases": [
+    "FUN_01029b24"
+   ]
   },
   "0x01029b38": {
    "address": "0x01029b38",
@@ -7780,20 +7794,24 @@
   "0x01029bda": {
    "address": "0x01029bda",
    "raw_name": "FUN_01029bda",
-   "name": "FUN_01029bda",
-   "display_name": "FUN_01029bda",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_type29_init",
+   "display_name": "controller_packet_type29_init",
+   "human": true,
+   "source": "function_name_overrides.json: Initializes the packet discriminator to decimal type 29 and stores the current three-bit controller value. Raw identity remains FUN_01029bda at 0x01029bda.",
+   "aliases": [
+    "FUN_01029bda"
+   ]
   },
   "0x01029bea": {
    "address": "0x01029bea",
    "raw_name": "FUN_01029bea",
-   "name": "FUN_01029bea",
-   "display_name": "FUN_01029bea",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_type30_init",
+   "display_name": "controller_packet_type30_init",
+   "human": true,
+   "source": "function_name_overrides.json: Initializes the packet discriminator to decimal type 30 and stores the current three-bit controller value. Raw identity remains FUN_01029bea at 0x01029bea.",
+   "aliases": [
+    "FUN_01029bea"
+   ]
   },
   "0x01029bfa": {
    "address": "0x01029bfa",
@@ -8308,11 +8326,13 @@
   "0x0102d5b4": {
    "address": "0x0102d5b4",
    "raw_name": "FUN_0102d5b4",
-   "name": "FUN_0102d5b4",
-   "display_name": "FUN_0102d5b4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "ipc_service_register_endpoint",
+   "display_name": "ipc_service_register_endpoint",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body matches the pinned Zephyr ipc_service endpoint-registration semantics and ABI, including argument validation, backend open dispatch, and endpoint context publication. Raw identity remains FUN_0102d5b4 at 0x0102d5b4.",
+   "aliases": [
+    "FUN_0102d5b4"
+   ]
   },
   "0x0102d618": {
    "address": "0x0102d618",
@@ -9621,11 +9641,13 @@
   "0x0103547c": {
    "address": "0x0103547c",
    "raw_name": "FUN_0103547c",
-   "name": "FUN_0103547c",
-   "display_name": "FUN_0103547c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_register_endpoint",
+   "display_name": "rpmsg_register_endpoint",
+   "human": true,
+   "source": "function_name_overrides.json: Exact adoption-manifest upstream match to the pinned RPMsg endpoint registration owner, including name copy, callback fields, and endpoint-list linkage. Raw identity remains FUN_0103547c at 0x0103547c.",
+   "aliases": [
+    "FUN_0103547c"
+   ]
   },
   "0x010354bc": {
    "address": "0x010354bc",
@@ -10720,11 +10742,13 @@
   "0x01039f4c": {
    "address": "0x01039f4c",
    "raw_name": "FUN_01039f4c",
-   "name": "FUN_01039f4c",
-   "display_name": "FUN_01039f4c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "get_ept_slot_with_name",
+   "display_name": "get_ept_slot_with_name",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS net-reference object-index match for endpoint-name lookup across the two endpoint slot regions. Raw identity remains FUN_01039f4c at 0x01039f4c.",
+   "aliases": [
+    "FUN_01039f4c"
+   ]
   },
   "0x01039fb2": {
    "address": "0x01039fb2",
@@ -10893,11 +10917,13 @@
   "0x0103a468": {
    "address": "0x0103a468",
    "raw_name": "FUN_0103a468",
-   "name": "FUN_0103a468",
-   "display_name": "FUN_0103a468",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "net_buf_simple_tailroom",
+   "display_name": "net_buf_simple_tailroom",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned archive match and ABI for net_buf_simple_tailroom: available data span minus current reserved/data span. Raw identity remains FUN_0103a468 at 0x0103a468.",
+   "aliases": [
+    "FUN_0103a468"
+   ]
   },
   "0x0103a478": {
    "address": "0x0103a478",
@@ -11246,11 +11272,13 @@
   "0x0103b0f0": {
    "address": "0x0103b0f0",
    "raw_name": "FUN_0103b0f0",
-   "name": "FUN_0103b0f0",
-   "display_name": "FUN_0103b0f0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_device_is_ready",
+   "display_name": "z_device_is_ready",
+   "human": true,
+   "source": "function_name_overrides.json: Exact archive match to Zephyr device.c readiness semantics, including null rejection, initialized-state flag, and zero init-result requirement. Raw identity remains FUN_0103b0f0 at 0x0103b0f0.",
+   "aliases": [
+    "FUN_0103b0f0"
+   ]
   },
   "0x0103b14a": {
    "address": "0x0103b14a",
@@ -11336,11 +11364,13 @@
   "0x0103b224": {
    "address": "0x0103b224",
    "raw_name": "FUN_0103b224",
-   "name": "FUN_0103b224",
-   "display_name": "FUN_0103b224",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_impl_k_sem_init",
+   "display_name": "z_impl_k_sem_init",
+   "human": true,
+   "source": "function_name_overrides.json: Exact adoption-manifest archive match for Zephyr semaphore initialization, including limit validation, count/limit setup, wait queue initialization, and zero return. Raw identity remains FUN_0103b224 at 0x0103b224.",
+   "aliases": [
+    "FUN_0103b224"
+   ]
   },
   "0x0103b244": {
    "address": "0x0103b244",
@@ -11534,11 +11564,13 @@
   "0x0103b5a4": {
    "address": "0x0103b5a4",
    "raw_name": "FUN_0103b5a4",
-   "name": "FUN_0103b5a4",
-   "display_name": "FUN_0103b5a4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "strncpy",
+   "display_name": "strncpy",
+   "human": true,
+   "source": "function_name_overrides.json: Exact pinned picolibc archive match for strncpy, including zero padding of the unused destination capacity and destination return ABI. Raw identity remains FUN_0103b5a4 at 0x0103b5a4.",
+   "aliases": [
+    "FUN_0103b5a4"
+   ]
   },
   "0x0103b5c4": {
    "address": "0x0103b5c4",
@@ -11861,7 +11893,6 @@
   "FUN_01012178": "0x01012178",
   "FUN_010121e4": "0x010121e4",
   "FUN_010122a8": "0x010122a8",
-  "FUN_010122b4": "0x010122b4",
   "FUN_010122fc": "0x010122fc",
   "FUN_01012308": "0x01012308",
   "FUN_0101232c": "0x0101232c",
@@ -12229,7 +12260,6 @@
   "FUN_01027302": "0x01027302",
   "FUN_010273c6": "0x010273c6",
   "FUN_010273f8": "0x010273f8",
-  "FUN_0102741e": "0x0102741e",
   "FUN_010274d0": "0x010274d0",
   "FUN_0102751a": "0x0102751a",
   "FUN_0102754c": "0x0102754c",
@@ -12254,13 +12284,10 @@
   "FUN_010278bc": "0x010278bc",
   "FUN_010278e4": "0x010278e4",
   "FUN_01027974": "0x01027974",
-  "FUN_010279e6": "0x010279e6",
   "FUN_01027a4a": "0x01027a4a",
   "FUN_01027a94": "0x01027a94",
   "FUN_01027ad2": "0x01027ad2",
-  "FUN_01027af2": "0x01027af2",
   "FUN_01027b0c": "0x01027b0c",
-  "FUN_01027b32": "0x01027b32",
   "FUN_01027b84": "0x01027b84",
   "FUN_01027c98": "0x01027c98",
   "FUN_01027d80": "0x01027d80",
@@ -12314,7 +12341,6 @@
   "FUN_010294a2": "0x010294a2",
   "FUN_010294ae": "0x010294ae",
   "FUN_010294b4": "0x010294b4",
-  "FUN_010294c2": "0x010294c2",
   "FUN_010294ee": "0x010294ee",
   "FUN_01029516": "0x01029516",
   "FUN_010295d6": "0x010295d6",
@@ -12332,12 +12358,9 @@
   "FUN_010299be": "0x010299be",
   "FUN_01029aea": "0x01029aea",
   "FUN_01029b12": "0x01029b12",
-  "FUN_01029b24": "0x01029b24",
   "FUN_01029b38": "0x01029b38",
   "FUN_01029b4e": "0x01029b4e",
   "FUN_01029b88": "0x01029b88",
-  "FUN_01029bda": "0x01029bda",
-  "FUN_01029bea": "0x01029bea",
   "FUN_01029bfa": "0x01029bfa",
   "FUN_01029c22": "0x01029c22",
   "FUN_01029c3a": "0x01029c3a",
@@ -12391,7 +12414,6 @@
   "FUN_0102d1c0": "0x0102d1c0",
   "FUN_0102d548": "0x0102d548",
   "FUN_0102d558": "0x0102d558",
-  "FUN_0102d5b4": "0x0102d5b4",
   "FUN_0102d618": "0x0102d618",
   "FUN_0102d69c": "0x0102d69c",
   "FUN_0102d6e0": "0x0102d6e0",
@@ -12530,7 +12552,6 @@
   "FUN_010353b4": "0x010353b4",
   "FUN_010353ec": "0x010353ec",
   "FUN_01035424": "0x01035424",
-  "FUN_0103547c": "0x0103547c",
   "FUN_010354bc": "0x010354bc",
   "FUN_010355bc": "0x010355bc",
   "FUN_0103566c": "0x0103566c",
@@ -12641,7 +12662,6 @@
   "FUN_01039db6": "0x01039db6",
   "FUN_01039dec": "0x01039dec",
   "FUN_01039e52": "0x01039e52",
-  "FUN_01039f4c": "0x01039f4c",
   "FUN_01039fb2": "0x01039fb2",
   "FUN_01039fc4": "0x01039fc4",
   "FUN_01039fe6": "0x01039fe6",
@@ -12658,7 +12678,6 @@
   "FUN_0103a3d6": "0x0103a3d6",
   "FUN_0103a444": "0x0103a444",
   "FUN_0103a44c": "0x0103a44c",
-  "FUN_0103a468": "0x0103a468",
   "FUN_0103a478": "0x0103a478",
   "FUN_0103a490": "0x0103a490",
   "FUN_0103a4b6": "0x0103a4b6",
@@ -12694,7 +12713,6 @@
   "FUN_0103aff2": "0x0103aff2",
   "FUN_0103b0cc": "0x0103b0cc",
   "FUN_0103b0e8": "0x0103b0e8",
-  "FUN_0103b0f0": "0x0103b0f0",
   "FUN_0103b14a": "0x0103b14a",
   "FUN_0103b156": "0x0103b156",
   "FUN_0103b15c": "0x0103b15c",
@@ -12704,7 +12722,6 @@
   "FUN_0103b1d4": "0x0103b1d4",
   "FUN_0103b1e2": "0x0103b1e2",
   "FUN_0103b210": "0x0103b210",
-  "FUN_0103b224": "0x0103b224",
   "FUN_0103b244": "0x0103b244",
   "FUN_0103b25a": "0x0103b25a",
   "FUN_0103b268": "0x0103b268",
@@ -12725,7 +12742,6 @@
   "FUN_0103b530": "0x0103b530",
   "FUN_0103b53a": "0x0103b53a",
   "FUN_0103b580": "0x0103b580",
-  "FUN_0103b5a4": "0x0103b5a4",
   "FUN_0103b5c4": "0x0103b5c4",
   "FUN_0103b5dc": "0x0103b5dc",
   "FUN_0103b614": "0x0103b614",
@@ -12733,10 +12749,12 @@
   "FUN_0103b650": "0x0103b650",
   "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
+  "callback_list_invoke_all": "0x010294c2",
   "controller_deferred_event_raise": "0x0102583c",
   "controller_descriptor_octet_product": "0x01012b24",
   "controller_entry_links_release": "0x0101df84",
   "controller_handle_slot_find": "0x01027470",
+  "controller_handle_slot_find_from": "0x0102741e",
   "controller_handle_slot_value_ptr": "0x010274ea",
   "controller_handle_update_state_apply": "0x0101e0a4",
   "controller_indexed_state_byte_get": "0x0100bc04",
@@ -12745,7 +12763,10 @@
   "controller_mode2_state_validate": "0x010218e4",
   "controller_packet_build_next": "0x0100ec88",
   "controller_packet_config_apply_if_active": "0x0100cb4c",
+  "controller_packet_duration_calculate": "0x010122b4",
   "controller_packet_payload_reserve": "0x01026e48",
+  "controller_packet_type29_init": "0x01029bda",
+  "controller_packet_type30_init": "0x01029bea",
   "controller_radio_event1_dispatch": "0x01016144",
   "controller_radio_event_cleanup": "0x01020634",
   "controller_radio_idle_event_finish": "0x0100b594",
@@ -12761,7 +12782,10 @@
   "controller_radio_transition_schedule": "0x01020a6c",
   "controller_radio_work_pending": "0x01025be0",
   "controller_resolved_address_matches": "0x0100aaac",
+  "controller_state_mode_is_invalid": "0x01029b24",
   "controller_time_now": "0x01022f08",
+  "controller_timing_delta_clamp": "0x01027b32",
+  "controller_timing_quarter_get": "0x01027af2",
   "controller_timing_request_schedule": "0x0100d4d0",
   "controller_timing_request_submit": "0x01022f3c",
   "controller_timing_snapshot_build": "0x0101a38c",
@@ -12770,8 +12794,10 @@
   "controller_work_duplicate_enqueue_assert": "0x0100ebb8",
   "controller_work_enqueue_packet_result": "0x0100eec8",
   "controller_work_update_or_enqueue": "0x0100efc8",
+  "get_ept_slot_with_name": "0x01039f4c",
   "ipc_rpmsg_init": "0x0102dac0",
   "ipc_rpmsg_static_vrings_open": "0x0102d708",
+  "ipc_service_register_endpoint": "0x0102d5b4",
   "ipc_static_vrings_init": "0x0102db30",
   "ipc_static_vrings_shm_size": "0x0103a056",
   "k_work_init": "0x01036bec",
@@ -12779,11 +12805,13 @@
   "k_work_queue_start": "0x01036ce4",
   "mpsl_timeslot_distance_get": "0x010243c0",
   "mpsl_timeslot_window_get": "0x010209c8",
+  "net_buf_simple_tailroom": "0x0103a468",
   "printk": "0x01039722",
   "radio_phy_airtime_base_get": "0x010209f0",
   "radio_phy_airtime_tail_get": "0x010209e0",
   "radio_slot_margin_get": "0x0101a130",
   "radio_transition_overhead_get": "0x0101a0e8",
+  "rpmsg_register_endpoint": "0x0103547c",
   "rpmsg_virtio_get_buffer_size": "0x010357ec",
   "rtc_compare_event_clear": "0x0103a6ae",
   "rtc_nrf_isr": "0x010315f0",
@@ -12797,6 +12825,7 @@
   "schedule_phase_offset_get": "0x0101de10",
   "sdc_assertion_fail": "0x01008d00",
   "sdc_ble_address_equal": "0x0100aa3c",
+  "sdc_block_chain_layout_init": "0x010279e6",
   "sdc_buffer_accumulate": "0x01026f32",
   "sdc_buffer_descriptor_resolve": "0x0102714a",
   "sdc_buffer_elapsed_units_get": "0x01026d3e",
@@ -12836,6 +12865,7 @@
   "sdc_timing_scale": "0x01024678",
   "sdc_work_submit": "0x0100ef88",
   "signed_drift_clamp": "0x0100f69c",
+  "strncpy": "0x0103b5a4",
   "thunk_FUN_0101621c": "0x010294be",
   "thunk_FUN_0101dc1c": "0x010294ba",
   "thunk_FUN_0101e96c": "0x0102679e",
@@ -12850,7 +12880,9 @@
   "thunk_FUN_01038fa4": "0x01038d9c",
   "thunk_FUN_0103a2a6": "0x0103971e",
   "thunk_FUN_0103b0e8": "0x0103a8cc",
+  "z_device_is_ready": "0x0103b0f0",
   "z_impl_k_mutex_unlock": "0x0103657c",
+  "z_impl_k_sem_init": "0x0103b224",
   "z_impl_z_log_msg_static_create": "0x0102e284",
   "z_nrf_rtc_timer_read": "0x010313a8"
  },

@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_packet_type29_init            <= FUN_01029bda @ 0x01029bda
+ *   controller_packet_type30_init            <= FUN_01029bea @ 0x01029bea
  * address symbols (name @ address):
  *   g_210001e8                               @ 0x210001e8
  *   g_210004b0                               @ 0x210004b0
@@ -25,7 +27,7 @@ EXT(FUN_0100e774); EXT(FUN_0100e7b0); EXT(FUN_0100e7b8); EXT(FUN_0100e7c0);
 EXT(FUN_0100e7c8); EXT(FUN_0100e808); EXT(FUN_0100e83c); EXT(FUN_0100e8ac);
 EXT(FUN_0100e8b4); EXT(FUN_0100e8bc); EXT(FUN_0100e8e8); EXT(FUN_0100e8f0);
 EXT(FUN_010100f4); EXT(FUN_01010110); EXT(FUN_0101bf30); EXT(FUN_0101c6d0);
-EXT(FUN_01025a84); EXT(FUN_010298a8); EXT(FUN_01029bda); EXT(FUN_01029bea);
+EXT(FUN_01025a84); EXT(FUN_010298a8); EXT(controller_packet_type29_init); EXT(controller_packet_type30_init);
 extern void sdc_assertion_fail(uint32_t module, uint32_t line);
 static __attribute__((noreturn)) void fatal_loop(uint32_t line)
 { for (;;) sdc_assertion_fail(0x36, line); }
@@ -155,8 +157,8 @@ int FUN_0101d404(uint16_t *input)
             FUN_0100e608((intptr_t)packet,(intptr_t)&flags); break;
         }
         case 28: FUN_0100e808((intptr_t)packet,(intptr_t)(connection+0x179)); break;
-        case 29: FUN_01029bda((intptr_t)packet); break;
-        case 30: FUN_01029bea((intptr_t)packet); break;
+        case 29: controller_packet_type29_init((intptr_t)packet); break;
+        case 30: controller_packet_type30_init((intptr_t)packet); break;
         case 31: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210004b4); if(cb) cb(packet,connection); break; }
         case 33: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210004b0); if(cb) cb(packet,connection); break; }
         case 34: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210001e8); if(cb) cb(packet,connection+0x160); break; }

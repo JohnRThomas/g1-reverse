@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_packet_type29_init            <= FUN_01029bda @ 0x01029bda
+ *   controller_packet_type30_init            <= FUN_01029bea @ 0x01029bea
  * address symbols (name @ address):
  *   g_210001d4                               @ 0x210001d4
  *   g_210001e4                               @ 0x210001e4
@@ -34,8 +36,8 @@ extern void FUN_0100e65c(void *, unsigned, int);
 extern void FUN_0100e5f4(void *, int);
 extern void FUN_0100e608(void *, void *);
 extern void FUN_0100e808(void *, int);
-extern void FUN_01029bda(void *);
-extern void FUN_01029bea(void *);
+extern void controller_packet_type29_init(void *);
+extern void controller_packet_type30_init(void *);
 extern void FUN_0100e83c(void *, int, int);
 extern int  FUN_0100a934(void);
 
@@ -115,7 +117,7 @@ L_05c8:
     goto L_058a;
 
 L_05fc:
-    FUN_01029bda(buf);
+    controller_packet_type29_init(buf);
     goto L_058a;
 
 L_0604:
@@ -146,7 +148,7 @@ L_0638:
     goto L_058a;
 
 L_0648:
-    FUN_01029bea(buf);
+    controller_packet_type30_init(buf);
     goto L_058a;
 
 L_0650:

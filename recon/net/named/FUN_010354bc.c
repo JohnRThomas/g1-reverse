@@ -1,9 +1,11 @@
 /* readable reconstruction; identity: FUN_010354bc @ 0x010354bc
  * public-name: FUN_010354bc
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   rpmsg_register_endpoint                  <= FUN_0103547c @ 0x0103547c
  */
 /* net-core FUN_010354bc @ 0x10354bc  (parity 300 trials PROVEN) */
-extern void FUN_0103547c(int, unsigned char *, unsigned int, unsigned int, unsigned int, int, unsigned int, unsigned int);
+extern void rpmsg_register_endpoint(int, unsigned char *, unsigned int, unsigned int, unsigned int, int, unsigned int, unsigned int);
 extern void FUN_01036824(int);
 extern void FUN_0103ad4a(int);
 extern void FUN_0103ad56(unsigned char *);
@@ -65,7 +67,7 @@ LAB_0103559e:
     return uVar5;
   }
 LAB_01035524:
-  FUN_0103547c(param_2, param_1, param_3, param_4, param_5, param_6, param_7, uVar3);
+  rpmsg_register_endpoint(param_2, param_1, param_3, param_4, param_5, param_6, param_7, uVar3);
   FUN_01036824(iVar6);
   uVar3 = (unsigned int)*param_1;
   if ((uVar3 != 0) && (uVar3 = (unsigned int)*(unsigned char *)(long)(param_2 + 0x90), uVar3 != 0)) {

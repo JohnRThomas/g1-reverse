@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   z_impl_k_sem_init                        <= FUN_0103b224 @ 0x0103b224
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d406                           @ 0x0103d406
@@ -11,7 +12,7 @@
 #include <stdint.h>
 
 extern void FUN_0103b62e(void *dst, uint32_t val, uint32_t len, uint32_t d1, uint32_t d2);
-extern int32_t FUN_0103b224(int32_t a, uint32_t b, uint32_t c);
+extern int32_t z_impl_k_sem_init(int32_t a, uint32_t b, uint32_t c);
 extern void assert_print(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_01039bb0(uint32_t a, uint32_t b);
 
@@ -33,7 +34,7 @@ void FUN_0102cbd8(int32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t
     }
     *(volatile uint32_t *)(param_1 + 0x10) = uVar2;
 
-    int32_t iVar1 = FUN_0103b224(param_1 + 0x2c, 0, 1);
+    int32_t iVar1 = z_impl_k_sem_init(param_1 + 0x2c, 0, 1);
     if (iVar1 != 0) {
         assert_print(0x0103d2a7, 0x0103d406, 0x2e);
         FUN_01039bb0(0x0103d406, 0x2e);

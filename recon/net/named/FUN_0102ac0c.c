@@ -2,6 +2,7 @@
  * public-name: FUN_0102ac0c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   ipc_service_register_endpoint            <= FUN_0102d5b4 @ 0x0102d5b4
  *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103bfac                           @ 0x0103bfac
@@ -18,7 +19,7 @@
 
 extern void printk(const void *message);
 extern int FUN_0102d558(const void *path);
-extern int FUN_0102d5b4(const void *path, void *destination, void *metadata);
+extern int ipc_service_register_endpoint(const void *path, void *destination, void *metadata);
 extern void FUN_0103689c(void *object, int ignored, int first, int second);
 
 int FUN_0102ac0c(void)
@@ -38,7 +39,7 @@ int FUN_0102ac0c(void)
     if (*log_level > 2)
         printk((const void *)UINT32_C(0x0103cec3));
 
-    status = FUN_0102d5b4((const void *)UINT32_C(0x0103bfac),
+    status = ipc_service_register_endpoint((const void *)UINT32_C(0x0103bfac),
                           (void *)UINT32_C(0x210045f8),
                           (void *)UINT32_C(0x21000584));
     if (status < 0) {

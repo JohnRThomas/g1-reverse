@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   z_device_is_ready                        <= FUN_0103b0f0 @ 0x0103b0f0
  * address symbols (name @ address):
  *   rodata_103bf70                           @ 0x0103bf70
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -10,7 +11,7 @@
  */
 /* net-core FUN_010323f8 @ 0x10323f8  (parity 300 trials PROVEN) */
 
-extern int FUN_0103b0f0(void *a);
+extern int z_device_is_ready(void *a);
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c);
 extern void FUN_01039bb0(unsigned int a, unsigned int b);
 
@@ -19,7 +20,7 @@ typedef unsigned int (*fnptr)(void*, unsigned int, unsigned short);
 unsigned int FUN_010323f8(unsigned int param_1, unsigned short param_2)
 {
     void *iVar1 = (void*)0x0103bf70;
-    int iVar2 = FUN_0103b0f0(iVar1);
+    int iVar2 = z_device_is_ready(iVar1);
     unsigned int target;
     fnptr f;
     if (iVar2 == 0) return 0xffffffed;

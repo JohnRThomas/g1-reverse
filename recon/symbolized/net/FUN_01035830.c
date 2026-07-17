@@ -2,6 +2,9 @@
 /* readable reconstruction; identity: FUN_01035830 @ 0x01035830
  * public-name: FUN_01035830
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   rpmsg_register_endpoint                  <= FUN_0103547c @ 0x0103547c
+ *   z_impl_k_sem_init                        <= FUN_0103b224 @ 0x0103b224
  * address symbols (name @ address):
  *   rodata_1035f6d                           @ 0x01035f6d
  *   rodata_103b6b3                           @ 0x0103b6b3
@@ -14,9 +17,9 @@
  */
 /* net-core FUN_01035830 @ 0x1035830  (parity 300 trials PROVEN) */
 extern int FUN_0103533c(unsigned int, int, int, void*, void*);
-extern void FUN_0103547c(int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void rpmsg_register_endpoint(int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void FUN_0103ac98(unsigned int);
-extern void FUN_0103b224(int, int);
+extern void z_impl_k_sem_init(int, int);
 extern void FUN_0103b62e(int, int, int);
 
 #define DAT_01035950 ((unsigned long)&rodata_1035f6d) /*=0x1035f6d*/
@@ -45,7 +48,7 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
   iVar3 = 0xfffff82d;
   if (((param_1 != 0) && (param_2 != 0)) && (param_4 != 0)) {
     FUN_0103b62e(param_1, 0, 0x94);
-    FUN_0103b224(param_1 + 0x58, 1);
+    z_impl_k_sem_init(param_1 + 0x58, 1);
     uVar1 = DAT_01035950;
     *(volatile int *)(param_1 + 0xa0) = param_2;
     *(volatile unsigned int *)(param_1 + 0x70) = param_3;
@@ -96,7 +99,7 @@ int FUN_01035830(int param_1, int param_2, unsigned int param_3, int param_4)
       *(volatile int *)param_1 = param_1;
       *(volatile int *)(param_1 + 4) = param_1;
       if (*(volatile char *)(param_1 + 0x90) != 0) {
-        FUN_0103547c(param_1, param_1 + 8, DAT_0103597c, 0x35, 0x35, DAT_01035978, 0);
+        rpmsg_register_endpoint(param_1, param_1 + 8, DAT_0103597c, 0x35, 0x35, DAT_01035978, 0);
       }
     }
   }

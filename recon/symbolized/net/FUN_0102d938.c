@@ -2,6 +2,9 @@
 /* readable reconstruction; identity: FUN_0102d938 @ 0x0102d938
  * public-name: FUN_0102d938
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   get_ept_slot_with_name                   <= FUN_01039f4c @ 0x01039f4c
+ *   strncpy                                  <= FUN_0103b5a4 @ 0x0103b5a4
  * address symbols (name @ address):
  *   rodata_103cf0a                           @ 0x0103cf0a
  */
@@ -10,8 +13,8 @@
 extern void FUN_01036410(void *, int32_t, int32_t);
 extern void FUN_01039fb2(void *);
 extern int FUN_0102d6e0(void *, void **, const void *);
-extern void *FUN_01039f4c(void *, uint32_t);
-extern void FUN_0103b5a4(void *, const void *, uint32_t);
+extern void *get_ept_slot_with_name(void *, uint32_t);
+extern void strncpy(void *, const void *, uint32_t);
 extern void FUN_0102d69c(void *, void *, const void *, uint32_t);
 extern int FUN_0102da84(void *, uint32_t, void *);
 
@@ -46,17 +49,17 @@ int FUN_0102d938(uint8_t *owner, void **output, struct request_2d938 *request)
             FUN_0102d69c(state, record, request->data,
                           *(uint32_t *)((uint8_t *)record + 0x60));
         } else {
-            FUN_0103b5a4((uint8_t *)record + 0x40, request->data, 0x20);
+            strncpy((uint8_t *)record + 0x40, request->data, 0x20);
             FUN_01039fb2(guard);
         }
     } else {
-        record = FUN_01039f4c(state, ((unsigned long)&rodata_103cf0a) /*=0x103cf0a*/);
+        record = get_ept_slot_with_name(state, ((unsigned long)&rodata_103cf0a) /*=0x103cf0a*/);
         if (record == 0) return -22;
         *(void **)((uint8_t *)record + 0x68) = request->callback_record;
         *(void **)((uint8_t *)record + 0x6c) = request->callback_argument;
         *(void **)((uint8_t *)record + 0x3c) = record;
         *((uint8_t *)record + 0x64) = 0;
-        FUN_0103b5a4((uint8_t *)record + 0x40, request->data, 0x20);
+        strncpy((uint8_t *)record + 0x40, request->data, 0x20);
         if (FUN_0102da84(state, 1, record) != 0) return -22;
     }
     *output = record;

@@ -6,6 +6,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_timing_request_schedule       <= FUN_0100d4d0 @ 0x0100d4d0
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   controller_packet_duration_calculate     <= FUN_010122b4 @ 0x010122b4
  *   sdc_ext_adv_event_complete               <= FUN_010127f8 @ 0x010127f8
  *   sdc_ext_adv_reschedule                   <= FUN_010140ec @ 0x010140ec
  *   sdc_hci_event_suppressed                 <= FUN_0101f888 @ 0x0101f888
@@ -41,7 +42,7 @@ extern int sdc_assertion_fail(int,int);
 extern int FUN_01012704(void);
 extern int FUN_01023d38(int);
 extern int FUN_010126c0(void);
-extern long long FUN_010122b4(void*,int);
+extern long long controller_packet_duration_calculate(void*,int);
 extern int FUN_01023ea8(int,int);
 extern int FUN_0101272c(void*);
 extern void sdc_ext_adv_event_complete(void*);
@@ -116,7 +117,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   case 1:
     iVar8 = FUN_010126c0();
     if (iVar8 == 0) {
-      iVar8 = (int)FUN_010122b4(param_1,0);
+      iVar8 = (int)controller_packet_duration_calculate(param_1,0);
       param_4 = *(uint *)(param_1 + 300);
       uVar15 = iVar8 + 0x152;
       if (param_4 < uVar15) {
@@ -491,7 +492,7 @@ LAB_01012d26:
     if (*(int *)(param_1 + 0x144) != 0x7fffffff || *(int *)(param_1 + 0x140) != -1) {
       uVar16 = *(uint *)(param_1 + 0x138);
       iVar8 = *(int *)(param_1 + 0x13c);
-      uVar19 = FUN_010122b4(param_1,0);
+      uVar19 = controller_packet_duration_calculate(param_1,0);
       uVar15 = (int)uVar19 + 0x152;
       uVar14 = *(uint *)(param_1 + 0x140) - uVar16;
       iVar8 = ((*(int *)(param_1 + 0x144) - iVar8) - (uint)(*(uint *)(param_1 + 0x140) < uVar16)) -
