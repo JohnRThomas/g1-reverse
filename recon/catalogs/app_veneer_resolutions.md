@@ -5,27 +5,27 @@ exact same-entry historical spellings are materialized.
 
 - Residue symbols: 119 (117 unique VAs)
 - Materialized: 20 symbols (20 unique VAs)
-- Already resolved by strong owners: 6 symbols
-- Blocked: 93 symbols
+- Already resolved by strong owners: 15 symbols
+- Blocked: 84 symbols
 
 | VA | Symbol | Decision | Target | Evidence/reason |
 |---|---|---|---|---|
-| `0x00016574` | `FUN_00016574` | `blocked` | `` | ldr r3, [pc, #4]; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00016834` | `FUN_00016834` | `blocked` | `` | cmp r0, #1; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
+| `0x00016574` | `FUN_00016574` | `already_resolved_by_strong_owner` | `FUN_00016574` | ldr r3, [pc, #4]; exact standalone entry reconstructed and CFG-side-effect verified |
+| `0x00016834` | `FUN_00016834` | `already_resolved_by_strong_owner` | `FUN_00016834` | cmp r0, #1; exact standalone entry reconstructed and CFG-side-effect verified |
 | `0x000179f8` | `FUN_000179f8` | `blocked` | `` | movs r1, #1; interior instruction or split entry has no exact alias/ABI proof |
-| `0x00017a04` | `FUN_00017a04` | `blocked` | `` | movs r1, #0; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00017a10` | `FUN_00017a10` | `blocked` | `` | movs r1, #1; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00017a1c` | `FUN_00017a1c` | `blocked` | `` | movs r1, #0; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00017a28` | `touch_pmic_reset_assert` | `blocked` | `` | movs r1, #1; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00017a34` | `touch_pmic_reset_deassert` | `blocked` | `` | movs r1, #0; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
+| `0x00017a04` | `FUN_00017a04` | `already_resolved_by_strong_owner` | `FUN_00017a04` | movs r1, #0; exact standalone entry reconstructed and CFG-side-effect verified |
+| `0x00017a10` | `FUN_00017a10` | `already_resolved_by_strong_owner` | `FUN_00017a10` | movs r1, #1; exact standalone entry reconstructed and CFG-side-effect verified |
+| `0x00017a1c` | `FUN_00017a1c` | `already_resolved_by_strong_owner` | `FUN_00017a1c` | movs r1, #0; exact standalone entry reconstructed and CFG-side-effect verified |
+| `0x00017a28` | `touch_pmic_reset_assert` | `already_resolved_by_strong_owner` | `touch_pmic_reset_assert` | movs r1, #1; exact standalone entry reconstructed and CFG-side-effect verified |
+| `0x00017a34` | `touch_pmic_reset_deassert` | `already_resolved_by_strong_owner` | `touch_pmic_reset_deassert` | movs r1, #0; exact standalone entry reconstructed and CFG-side-effect verified |
 | `0x00024e60` | `FUN_00024e60` | `blocked` | `` | movs r3, #0xfe; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x0002538c` | `FUN_0002538c` | `blocked` | `` | push {r3, r4, r5, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x000258b4` | `FUN_000258b4` | `blocked` | `` | push {r0, r1, r4, r5, r6, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x00025950` | `FUN_00025950` | `blocked` | `` | push {r0, r1, r4, r5, r6, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x0002893c` | `FUN_0002893c` | `blocked` | `` | push {r3, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
+| `0x0002893c` | `FUN_0002893c` | `already_resolved_by_strong_owner` | `FUN_0002893c` | push {r3, lr}; exact standalone entry reconstructed and CFG-side-effect verified |
 | `0x00028964` | `FUN_00028964` | `blocked` | `` | push {r3, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x0002bdf0` | `FUN_0002bdf0` | `blocked` | `` | push {r3, r4, r5, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
-| `0x00032fdc` | `FUN_00032fdc` | `blocked` | `` | ldr r3, [pc, #4]; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
+| `0x00032fdc` | `FUN_00032fdc` | `already_resolved_by_strong_owner` | `FUN_00032fdc` | ldr r3, [pc, #4]; exact standalone entry reconstructed and CFG-side-effect verified |
 | `0x00033554` | `FUN_00033554` | `blocked` | `` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x0003364c` | `FUN_0003364c` | `blocked` | `` | push {r4, r5, r6, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x00033730` | `FUN_00033730` | `blocked` | `` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |

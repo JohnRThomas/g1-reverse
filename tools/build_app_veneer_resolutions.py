@@ -66,6 +66,22 @@ REVIEWED_BLOCKED_TARGETS = {
     "thunk_FUN_0007f7d2": 0x0007f7d2,
 }
 
+# Catalog-missing entries independently recovered from their exact shipped
+# Thumb boundaries and accepted by cfg_verify's side-effect comparison.  They
+# are strong owners, not aliases: retain the raw address identity and omit a
+# veneer PROVIDE once the canonical source exists.
+REVIEWED_RECONSTRUCTED_ENTRIES = {
+    "FUN_00016574": (0x00016574, "FUN_00016574.c"),
+    "FUN_00016834": (0x00016834, "FUN_00016834.c"),
+    "FUN_00017a04": (0x00017a04, "FUN_00017a04.c"),
+    "FUN_00017a10": (0x00017a10, "FUN_00017a10.c"),
+    "FUN_00017a1c": (0x00017a1c, "FUN_00017a1c.c"),
+    "touch_pmic_reset_assert": (0x00017a28, "FUN_00017a28.c"),
+    "touch_pmic_reset_deassert": (0x00017a34, "FUN_00017a34.c"),
+    "FUN_0002893c": (0x0002893c, "FUN_0002893c.c"),
+    "FUN_00032fdc": (0x00032fdc, "FUN_00032fdc.c"),
+}
+
 # Identity regeneration completed while this residue snapshot remained
 # durable.  These exact veneers now have strong reconstructed owners, so the
 # linker fragment must remain non-owning and omit redundant PROVIDEs.
@@ -206,6 +222,21 @@ def build():
                 "target_va": "0x%08x" % REVIEWED_BLOCKED_TARGETS[symbol],
                 "reason": "exact tail target has no retained or adopted owner",
             })
+        elif symbol in REVIEWED_RECONSTRUCTED_ENTRIES:
+            expected_va, filename = REVIEWED_RECONSTRUCTED_ENTRIES[symbol]
+            source_path = os.path.join(ROOT, "recon/app/src", filename)
+            if va != expected_va or not os.path.isfile(source_path):
+                raise RuntimeError("reconstructed owner changed at %s" % symbol)
+            # The raw/human residue spelling itself is already a durable
+            # address back-map.  Name-manifest regeneration may intentionally
+            # lag this canonical-source commit, so use it only as enrichment.
+            target = names.get("0x%08x" % va, {}).get("name") or symbol
+            row.update({
+                "decision": "already_resolved_by_strong_owner",
+                "target_va": "0x%08x" % va,
+                "target_symbol": target,
+                "reason": "exact standalone entry reconstructed and CFG-side-effect verified",
+            })
         elif symbol == "k_sem_take":
             row.update({
                 "decision": "blocked",
@@ -228,7 +259,9 @@ def build():
             })
         rows.append(row)
 
-    expected = set(REVIEWED_TAILS) | set(REVIEWED_SAME_ENTRY) | set(REVIEWED_BLOCKED_TARGETS)
+    expected = (set(REVIEWED_TAILS) | set(REVIEWED_SAME_ENTRY) |
+                set(REVIEWED_BLOCKED_TARGETS) |
+                set(REVIEWED_RECONSTRUCTED_ENTRIES))
     actual = {item["symbol"] for item in source_rows}
     if not expected <= actual:
         raise RuntimeError("review table contains stale symbols: %s" % sorted(expected - actual))

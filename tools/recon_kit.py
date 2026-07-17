@@ -23,6 +23,15 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    0x00016574: 0x06,  # fixed-word setter
+    0x00016834: 0x1a,  # state-normalizing tail adapter
+    0x00017a04: 0x08,  # GPIO descriptor tail adapters
+    0x00017a10: 0x08,
+    0x00017a1c: 0x08,
+    0x00017a28: 0x08,
+    0x00017a34: 0x08,
+    0x0002893c: 0x1e,  # click-event notification helper
+    0x00032fdc: 0x06,  # fixed-byte getter
     # lc3_tns_analyze continues through the final quantizer/order backedge at
     # 0x709c4; its trailing threshold literals begin at 0x709c8.
     0x0006ffd8: 0x9ee,

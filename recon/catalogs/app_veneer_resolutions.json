@@ -14,12 +14,12 @@
   "summary": {
     "residue_symbols": 119,
     "unique_vas": 117,
-    "resolved_symbols": 26,
-    "resolved_unique_vas": 24,
+    "resolved_symbols": 35,
+    "resolved_unique_vas": 33,
     "materialized_symbols": 20,
     "materialized_unique_vas": 20,
-    "already_strong_symbols": 6,
-    "blocked_symbols": 93
+    "already_strong_symbols": 15,
+    "blocked_symbols": 84
   },
   "entries": [
     {
@@ -37,8 +37,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00016574",
+      "target_symbol": "FUN_00016574",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00016834",
@@ -55,8 +57,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00016834",
+      "target_symbol": "FUN_00016834",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x000179f8",
@@ -91,8 +95,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00017a04",
+      "target_symbol": "FUN_00017a04",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00017a10",
@@ -109,8 +115,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00017a10",
+      "target_symbol": "FUN_00017a10",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00017a1c",
@@ -127,8 +135,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00017a1c",
+      "target_symbol": "FUN_00017a1c",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00017a28",
@@ -145,8 +155,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00017a28",
+      "target_symbol": "touch_pmic_reset_assert",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00017a34",
@@ -163,8 +175,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00017a34",
+      "target_symbol": "touch_pmic_reset_deassert",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00024e60",
@@ -253,8 +267,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x0002893c",
+      "target_symbol": "FUN_0002893c",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00028964",
@@ -308,8 +324,10 @@
         "containing_owner_name": null,
         "sequential_owner_boundary": false
       },
-      "decision": "blocked",
-      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00032fdc",
+      "target_symbol": "FUN_00032fdc",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00033554",

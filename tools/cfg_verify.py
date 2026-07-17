@@ -369,6 +369,19 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Link-residue recovery: these addresses were omitted from the exported
+    # Ghidra catalog, but each is an independently referenced entry with an
+    # exact return/tail-call boundary.  The extents deliberately exclude the
+    # following literal pools and alignment halfwords.
+    ("app", 0x00016574): 0x06,
+    ("app", 0x00016834): 0x1a,
+    ("app", 0x00017a04): 0x08,
+    ("app", 0x00017a10): 0x08,
+    ("app", 0x00017a1c): 0x08,
+    ("app", 0x00017a28): 0x08,
+    ("app", 0x00017a34): 0x08,
+    ("app", 0x0002893c): 0x1e,
+    ("app", 0x00032fdc): 0x06,
     # lc3_tns_analyze owns the complete floating-point analysis/filter body
     # through 0x709c6; trailing threshold literals begin at 0x709c8.
     ("app", 0x0006ffd8): 0x9ee,
