@@ -39,10 +39,28 @@ endif()
 target_sources(app PRIVATE
   src/main.c
   ${G1_RETAINED_SOURCES}
+  # Byte-exact literal/data pools split from CFG-inflated net functions.
+  # These are reviewed reconstruction artifacts, not synthesized link stubs.
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x100ef04.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x101fdb8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x101fdcc.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x10217fc.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x10237a4.c"
 )
 
 # Symbolized reconstruction inputs include the generated reversible VA/name
 # declarations from this directory.
 target_include_directories(app PRIVATE
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols"
+)
+
+# Symbolized sources name original-image RAM and read-only objects rather than
+# embedding raw addresses.  Resolve those names with the generated, reversible
+# VA pins used by the parity/full-link pipeline.  The small aliases fragment is
+# separately reviewed and contains only known interior/shared-tail addresses.
+# PROVIDE keeps real SDK definitions authoritative when one exists.
+zephyr_linker_sources(SECTIONS
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_globals.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_aliases.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_function_aliases.ld"
 )
