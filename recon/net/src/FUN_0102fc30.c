@@ -17,9 +17,11 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
   int iVar1;
   unsigned int uVar3;
   int iVar4;
-  int local_30;
-  int local_2c;
-  int iStack_28;
+  struct {
+    int kind;
+    int descriptor;
+    int value;
+  } diagnostic;
   unsigned int uStack_20;
   unsigned int uVar2;
 
@@ -45,11 +47,10 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
       FUN_0102ff94(iVar1);
     }
   } else {
-    local_2c = C_0102fcb4;
-    local_30 = 3;
-    iStack_28 = param_1;
-    FUN_0102e284(C_0102fcb8, 0x1840, &local_30, 0);
+    diagnostic.kind = 3;
+    diagnostic.descriptor = C_0102fcb4;
+    diagnostic.value = param_1;
+    FUN_0102e284(C_0102fcb8, 0x1840, &diagnostic, 0);
   }
   return 0;
 }
-

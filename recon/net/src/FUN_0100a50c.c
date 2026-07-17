@@ -1,17 +1,20 @@
-/* net-core FUN_0100a50c @ 0x100a50c  (parity 300 trials PROVEN) */
-extern unsigned int FUN_01027662(unsigned char a, int b, unsigned char c);
-extern void FUN_010275d2(int a, unsigned short b, unsigned char c, int d, unsigned char e);
+/* net-core FUN_0100a50c @ 0x100a50c */
+#include <stdint.h>
 
-unsigned int FUN_0100a50c(int param_1, unsigned char param_2, unsigned char param_3)
+extern uint32_t FUN_01027662(uint32_t, uint32_t, uint32_t);
+extern void FUN_010275d2(void *, uint16_t, uint32_t, uint32_t, uint32_t);
+
+uint32_t FUN_0100a50c(void *raw_object, uint32_t raw_kind, uint32_t raw_bank)
 {
-    unsigned short uVar1 = (unsigned short)FUN_01027662(param_3, 0x2e, param_2);
-    if (param_1 != 0) {
-        FUN_010275d2(param_1, uVar1, param_3, 0x2e, param_2);
-        *(volatile int *)0x21000bc4 = param_1;
-        *(volatile unsigned char *)0x21000bc8 = param_2;
-        *(volatile unsigned char *)0x21000bc9 = param_3;
+    uint32_t kind = (uint32_t)raw_kind & 0xffu;
+    uint32_t bank = (uint32_t)raw_bank & 0xffu;
+    uint16_t handle = (uint16_t)FUN_01027662(bank, 0x2eu, kind);
+
+    if (raw_object != 0) {
+        FUN_010275d2(raw_object, handle, bank, 0x2eu, kind);
+        *(void *volatile *)0x21000bc4u = raw_object;
+        *(volatile uint8_t *)0x21000bc8u = (uint8_t)kind;
+        *(volatile uint8_t *)0x21000bc9u = (uint8_t)bank;
     }
-    return (unsigned int)uVar1 & 0xffffu;
+    return handle;
 }
-
-

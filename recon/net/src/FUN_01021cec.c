@@ -1,7 +1,7 @@
 /* net-core FUN_01021cec @ 0x1021cec  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern unsigned int PHANTOM_BOUNDARY(void);
+extern void FUN_010256dc(unsigned int subsystem, unsigned int reason);
 
 typedef void (*fnptr5)(unsigned int, unsigned int, unsigned char, void *, unsigned int);
 
@@ -32,7 +32,7 @@ void FUN_01021cec(void)
             uVar12 = 3;
             break;
         default:
-            PHANTOM_BOUNDARY();
+            FUN_010256dc(0x70, 0x8d0);
             return;
         }
 
@@ -73,4 +73,3 @@ void FUN_01021cec(void)
     }
     return;
 }
-

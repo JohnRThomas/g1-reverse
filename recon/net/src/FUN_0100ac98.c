@@ -136,7 +136,7 @@ joined_r0x0100adce:
 LAB_0100ad76:
   *pbVar7 = bVar8;
   if ((*(volatile i8 *)(iVar11 + 0xca) == 0) || (pbVar7[1] == 0)) {
-    FUN_01020764(0);
+    FUN_01020764((u32)(unsigned long)pbVar7);
     FUN_0101ff4c();
   } else {
     FUN_01020764(*(volatile u32 *)(iVar4 + 0x84));
@@ -155,12 +155,10 @@ LAB_0100ad76:
   {
     volatile u16 *pp = (volatile u16 *)*(volatile u32 *)(iVar4 + 0x7c);
     uVar3 = *pp;
-    uVar1 = *((volatile u8 *)pp + 1);
+    uVar1 = *((volatile u8 *)pp + 2);
   }
   *(volatile u8 *)(iVar4 + 0xb0) = 1;
   *(volatile u16 *)(iVar4 + 0xb4) = uVar3;
   *(volatile u8 *)(iVar4 + 0x44) = 1;
   *(volatile u8 *)(iVar11 + 2) = uVar1;
 }
-
-

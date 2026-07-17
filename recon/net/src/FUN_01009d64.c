@@ -1,26 +1,27 @@
-/* net-core FUN_01009d64 @ 0x1009d64  (parity 300 trials PROVEN) */
+/* net-core FUN_01009d64 @ 0x1009d64 */
+#include <stdint.h>
 
-extern unsigned char FUN_01027470(int, unsigned short);
-extern unsigned int FUN_010274ea(int, unsigned char);
+extern uint32_t FUN_01027470(void *, uint16_t);
+extern uint32_t FUN_010274ea(void *, uint8_t);
+typedef void (*slot_callback_fn)(uint16_t, uint32_t);
 
-unsigned int FUN_01009d64(unsigned short param_1, unsigned char param_2)
+uint32_t FUN_01009d64(uint32_t raw_id, uint32_t raw_bank)
 {
-    int *arr = (int*)0x21000b7c;
-    int iVar4 = arr[param_2];
-    unsigned char bVar3 = FUN_01027470(iVar4, param_1);
-    unsigned int uVar5;
-    if (bVar3 == 0xff) {
-        uVar5 = 3;
-    } else {
-        unsigned short uVar1 = *(unsigned short*)(iVar4 + 6);
-        unsigned short uVar2 = *(unsigned short*)(iVar4 + 8);
-        uVar5 = FUN_010274ea(iVar4, bVar3);
-        unsigned int fnval = ((unsigned int)uVar1 << 16) | uVar2;
-        void (*fn)(unsigned short, unsigned int) = (void(*)(unsigned short,unsigned int))fnval;
-        fn(param_1, uVar5);
-        *(unsigned short*)(iVar4 + 2 + (bVar3 + 4) * 2) = 0xfff0;
-        uVar5 = 0;
-    }
-    return uVar5;
-}
+    uint16_t id = (uint16_t)((uint32_t)raw_id & 0xffffu);
+    uint8_t bank = (uint8_t)((uint32_t)raw_bank & 0xffu);
+    void *object = ((void *volatile *)0x21000b7cu)[bank];
+    uint8_t slot = (uint8_t)FUN_01027470(object, id);
 
+    if (slot == 0xffu) {
+        return 3;
+    }
+
+    uint8_t *bytes = (uint8_t *)object;
+    uintptr_t callback_address =
+        ((uintptr_t)*(uint16_t *)(bytes + 6) << 16) |
+        (uintptr_t)*(uint16_t *)(bytes + 8);
+    uint32_t value = FUN_010274ea(object, slot);
+    ((slot_callback_fn)callback_address)(id, value);
+    *(uint16_t *)(bytes + 10u + (uint32_t)slot * 2u) = 0xfff0u;
+    return 0;
+}

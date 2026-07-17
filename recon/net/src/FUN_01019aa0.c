@@ -18,7 +18,9 @@ extern int FUN_0100ca98(char, int);
 extern void FUN_0100ef88(int, undefined4, int);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(undefined4, undefined2, int);
-extern undefined2 FUN_0100a5b4(void);
+/* The callee returns a full register word; this caller explicitly narrows it
+ * to the controller's 16-bit scheduler token before forwarding it. */
+extern undefined4 FUN_0100a5b4(void);
 
 int FUN_01019aa0(ushort *param_1,int param_2,undefined4 *param_3,uint param_4,undefined1 param_5,
                 char param_6,undefined1 param_7,char param_8)
@@ -263,4 +265,3 @@ LAB_01019c9c:
   FUN_01008d00(0x33,0x212); while(1){}
   return iVar5;
 }
-

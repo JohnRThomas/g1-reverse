@@ -31,10 +31,9 @@ void FUN_0102b2ac(uint32_t *param_1)
     *(volatile uint8_t *)(p1b + 4) = uVar2;
     *(volatile uint32_t *)(p1b + 0xc) = 0x0102b95d;
 
-    typedef void (*fn_t)(void *);
+    typedef void (*fn_t)(void *, uint32_t, uint32_t);
     fn_t f = (fn_t)(uintptr_t)(*(volatile uint32_t *)(p1b - 4));
-    f((void *)(p1b + 4));
+    f((void *)(p1b + 4), 0x0103d13eu, uVar2);
 
     *(volatile uint32_t *)0x21004610 = (uint32_t)(uintptr_t)param_1;
 }
-
