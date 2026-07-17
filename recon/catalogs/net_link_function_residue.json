@@ -1,0 +1,4892 @@
+{
+ "schema": 1,
+ "core": "net",
+ "scope": "all non-pinned undefined symbols in build/net_full.elf",
+ "policy": {
+  "sdc_report_only_is_not_an_owner": true,
+  "default_without_retained_body_or_adopted_owner": "true_missing_reconstructed_entry",
+  "canonical_function_semantics_mutated": false
+ },
+ "inputs": [
+  {
+   "path": "build/net_full.elf",
+   "sha256": "829f5238e910f06888c3129a70dd1583066cb7eb7d86423b8043cc4ce3e9544a"
+  },
+  {
+   "path": "recon/catalogs/function_names_net.json",
+   "sha256": "e5e4650fa97ebfb573e82d8fb39383f028b2159b8cb98f9cb2fe3b39a4b98d7c"
+  },
+  {
+   "path": "recon/ownership/adoption_manifest.json",
+   "sha256": "f4ae0af7eac230774995d3f4737cc61282549aa3b29cc6adad3b0c76a168e05f"
+  }
+ ],
+ "summary": {
+  "undefined_total": 686,
+  "already_pinned_or_aliased": 389,
+  "classified_residue": 297,
+  "by_category": {
+   "true_missing_reconstructed_entry": 220,
+   "interior_or_tail_alias": 3,
+   "sdk_or_config_symbol": 62,
+   "compiler_or_ghidra_pseudo": 6,
+   "naming_or_symbolization_defect": 6
+  },
+  "missing_by_adoption_component": {
+   "net_sdk_or_glue": 58,
+   "softdevice_controller": 132,
+   "unmapped": 30
+  }
+ },
+ "entries": [
+  {
+   "symbol": "FUN_01008fc0",
+   "va": "0x01008fc0",
+   "category": "interior_or_tail_alias",
+   "reason": "shared error return inside the 0x01008e74 controller body",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008e74.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01008fc6",
+   "va": "0x01008fc6",
+   "category": "interior_or_tail_alias",
+   "reason": "shared error return inside the 0x01008e74 controller body",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008e74.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0100938c",
+   "va": "0x0100938c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01026122.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100938c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100938c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010095c0",
+   "va": "0x010095c0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01009874.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010095c0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010095c0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01009dd8",
+   "va": "0x01009dd8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101132c.o",
+    "FUN_0101b758.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01009dd8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01009dd8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01009f58",
+   "va": "0x01009f58",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101e6ac.o",
+    "FUN_0101e8a0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01009f58.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01009f58",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100a5c8",
+   "va": "0x0100a5c8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008a58.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100a5c8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100a5c8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100a7cc",
+   "va": "0x0100a7cc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a790.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100a7cc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100a7cc",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100a934",
+   "va": "0x0100a934",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100a934.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100a934",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100a960",
+   "va": "0x0100a960",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100ac98.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100a960.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100a960",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100aa3c",
+   "va": "0x0100aa3c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_0101132c.o",
+    "FUN_01017154.o",
+    "FUN_01017344.o",
+    "FUN_010187e0.o",
+    "sdc_llcp_handle_control_opcode.o",
+    "sdc_llcp_handle_unknown_response.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100aa3c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100aa3c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100aaac",
+   "va": "0x0100aaac",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01017344.o",
+    "FUN_01017658.o",
+    "sdc_llcp_handle_control_opcode.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100aaac.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100aaac",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100ab14",
+   "va": "0x0100ab14",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100cb70.o",
+    "FUN_0101124c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100ab14.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100ab14",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100aba4",
+   "va": "0x0100aba4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100b6b4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100aba4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100aba4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100aeac",
+   "va": "0x0100aeac",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100aff4.o",
+    "FUN_0100b6b4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100aeac.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100aeac",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100af3c",
+   "va": "0x0100af3c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100aff4.o",
+    "FUN_0100b180.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100af3c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100af3c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100b5f8",
+   "va": "0x0100b5f8",
+   "category": "interior_or_tail_alias",
+   "reason": "single b.w tail veneer to 0x0100ac34",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01013650.o",
+    "FUN_0101ba58.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0100b630",
+   "va": "0x0100b630",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100b6b4.o",
+    "FUN_0101c6d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100b630.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100b630",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100bbec",
+   "va": "0x0100bbec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101124c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100bbec.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100bbec",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100bc04",
+   "va": "0x0100bc04",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0101124c.o",
+    "FUN_01017658.o",
+    "sdc_llcp_handle_control_opcode.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100bc04.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100bc04",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100bc1c",
+   "va": "0x0100bc1c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e828.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100bc1c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100bc1c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100ca68",
+   "va": "0x0100ca68",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_0101124c.o",
+    "FUN_01017344.o",
+    "FUN_01017658.o",
+    "sdc_llcp_handle_control_opcode.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100ca68.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100ca68",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100ca80",
+   "va": "0x0100ca80",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101124c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100ca80.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100ca80",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100cad4",
+   "va": "0x0100cad4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01017658.o",
+    "sdc_llcp_apply_rx_transition.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100cad4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100cad4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100cb4c",
+   "va": "0x0100cb4c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0101132c.o",
+    "FUN_01016e6c.o",
+    "FUN_01017f7c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100cb4c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100cb4c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100cbe4",
+   "va": "0x0100cbe4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101124c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100cbe4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100cbe4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100cfc0",
+   "va": "0x0100cfc0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100e95c.o",
+    "FUN_01010470.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100cfc0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100cfc0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d2c8",
+   "va": "0x0100d2c8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100cc20.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d2c8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d2c8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d538",
+   "va": "0x0100d538",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100b180.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d538.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d538",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d600",
+   "va": "0x0100d600",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e6ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d600.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d600",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d624",
+   "va": "0x0100d624",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101b54c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d624.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d624",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d808",
+   "va": "0x0100d808",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e828.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d808.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d808",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100d840",
+   "va": "0x0100d840",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100cff4.o",
+    "FUN_0100d14c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100d840.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100d840",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e038",
+   "va": "0x0100e038",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010119ac.o",
+    "FUN_010162e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e038.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e038",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e06c",
+   "va": "0x0100e06c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010119ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e06c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e06c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e294",
+   "va": "0x0100e294",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010166c0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e294.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e294",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e5dc",
+   "va": "0x0100e5dc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_0100ac98.o",
+    "FUN_0100e95c.o",
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e5dc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e5dc",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e5f4",
+   "va": "0x0100e5f4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e5f4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e5f4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e610",
+   "va": "0x0100e610",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101c6d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e610.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e610",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e634",
+   "va": "0x0100e634",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e634.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e634",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e65c",
+   "va": "0x0100e65c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010144e4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e65c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e65c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e7e0",
+   "va": "0x0100e7e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01014a50.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e7e0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e7e0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e808",
+   "va": "0x0100e808",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e808.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e808",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e83c",
+   "va": "0x0100e83c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e83c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e83c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e8c8",
+   "va": "0x0100e8c8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e8c8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e8c8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100e8f8",
+   "va": "0x0100e8f8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100ac98.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100e8f8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100e8f8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100ef48",
+   "va": "0x0100ef48",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01010578.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100ef48.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100ef48",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100efc8",
+   "va": "0x0100efc8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 5,
+   "reference_objects": [
+    "FUN_0100ac34.o",
+    "FUN_010166c0.o",
+    "FUN_0101c6d0.o",
+    "FUN_0101da18.o",
+    "FUN_0101f934.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100efc8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100efc8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f198",
+   "va": "0x0100f198",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01014a50.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f198.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f198",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f1f8",
+   "va": "0x0100f1f8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01014748.o",
+    "FUN_0101bf30.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f1f8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f1f8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f2d0",
+   "va": "0x0100f2d0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01014a50.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f2d0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f2d0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f300",
+   "va": "0x0100f300",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01014748.o",
+    "FUN_0101bf30.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f300.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f300",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f368",
+   "va": "0x0100f368",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01013650.o",
+    "FUN_0101ba58.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f368.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f368",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f70c",
+   "va": "0x0100f70c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e398.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f70c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f70c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f748",
+   "va": "0x0100f748",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e398.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f748.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f748",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f784",
+   "va": "0x0100f784",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101c6d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f784.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f784",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f798",
+   "va": "0x0100f798",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01014a50.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f798.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f798",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f7b0",
+   "va": "0x0100f7b0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100ff4a.o",
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f7b0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f7b0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f834",
+   "va": "0x0100f834",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01014a50.o",
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f834.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f834",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0100f86c",
+   "va": "0x0100f86c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101c6d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f86c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f86c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010100f4",
+   "va": "0x010100f4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010100f4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010100f4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01010110",
+   "va": "0x01010110",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01010110.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01010110",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101077c_after",
+   "va": "0x0101077c",
+   "category": "naming_or_symbolization_defect",
+   "reason": "self-local nonreturn label was emitted as an extern",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101077c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101077c.c",
+   "expected_source_exists": true,
+   "identity_name": "FUN_0101077c",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01010890",
+   "va": "0x01010890",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_llcp_apply_rx_transition.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01010890.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01010890",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010109ec",
+   "va": "0x010109ec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01011d14.o",
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010109ec.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010109ec",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01011664",
+   "va": "0x01011664",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010119ac.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01012150",
+   "va": "0x01012150",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012150.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012150",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010122b4",
+   "va": "0x010122b4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01012c84.o",
+    "FUN_01013b4c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010122b4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010122b4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101233c",
+   "va": "0x0101233c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101233c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101233c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012694",
+   "va": "0x01012694",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012694.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012694",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010126c8",
+   "va": "0x010126c8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010126c8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010126c8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012714",
+   "va": "0x01012714",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012714.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012714",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010129b8",
+   "va": "0x010129b8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010129b8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010129b8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010129f4",
+   "va": "0x010129f4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101132c.o",
+    "FUN_010119ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010129f4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010129f4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012ad4",
+   "va": "0x01012ad4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010119ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012ad4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012ad4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012b24",
+   "va": "0x01012b24",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_010119ac.o",
+    "FUN_01011d14.o",
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012b24.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012b24",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012b50",
+   "va": "0x01012b50",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012b50.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012b50",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01012c14",
+   "va": "0x01012c14",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01013b4c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01012c14.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01012c14",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01013da8",
+   "va": "0x01013da8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100e95c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01013da8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01013da8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01016170",
+   "va": "0x01016170",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01013650.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01016170.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01016170",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01018df8",
+   "va": "0x01018df8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101ab20.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_010199cc",
+   "va": "0x010199cc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01017658.o",
+    "sdc_llcp_apply_rx_transition.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010199cc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010199cc",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010199f4",
+   "va": "0x010199f4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01019aa0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010199f4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010199f4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01019eb4",
+   "va": "0x01019eb4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010187e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01019eb4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01019eb4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01019ef8",
+   "va": "0x01019ef8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010187e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01019ef8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01019ef8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01019f9c",
+   "va": "0x01019f9c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01017344.o",
+    "sdc_llcp_decode_control_pdu.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01019f9c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01019f9c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101a184",
+   "va": "0x0101a184",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101b230.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101a184.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101a184",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101a218",
+   "va": "0x0101a218",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101ab20.o",
+    "FUN_0101b15c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101a218.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101a218",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101d890",
+   "va": "0x0101d890",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101ba58.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0101dc50",
+   "va": "0x0101dc50",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101b7e4.o",
+    "FUN_0101bc3c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101dc50.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101dc50",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101de60",
+   "va": "0x0101de60",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101a2e0.o",
+    "FUN_0101ad38.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101de60.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101de60",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101ded0",
+   "va": "0x0101ded0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e6ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101ded0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101ded0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101e090",
+   "va": "0x0101e090",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102946c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101e090.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101e090",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101e1e4",
+   "va": "0x0101e1e4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100d5c8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101e1e4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101e1e4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101e274",
+   "va": "0x0101e274",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101e6ac.o",
+    "FUN_0101e8a0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101e274.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101e274",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101e2fc",
+   "va": "0x0101e2fc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01010470.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101e2fc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101e2fc",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101f624",
+   "va": "0x0101f624",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008d7c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101f624.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101f624",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0101fdd0",
+   "va": "0x0101fdd0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0100aff4.o",
+    "FUN_0100b180.o",
+    "FUN_0100b6b4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101fdd0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101fdd0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010202e4",
+   "va": "0x010202e4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01013e98.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01020634",
+   "va": "0x01020634",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01013e98.o",
+    "FUN_0101ab20.o",
+    "FUN_0101ad38.o",
+    "FUN_0101b230.o",
+    "FUN_0101b54c.o",
+    "FUN_0101bdd4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01020634.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01020634",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01021800",
+   "va": "0x01021800",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01021838.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01021800.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01021800",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01021940",
+   "va": "0x01021940",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010216d4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01021940.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01021940",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01021ac0",
+   "va": "0x01021ac0",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01021a38.o",
+    "FUN_0102a122.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01021ac0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01021ac0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01021b04",
+   "va": "0x01021b04",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01023ad8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01021b04.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01021b04",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01021b7c",
+   "va": "0x01021b7c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01021df0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01021b7c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01021b7c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01022a30",
+   "va": "0x01022a30",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01013650.o",
+    "FUN_0101ba58.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01022a30.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01022a30",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01022a50",
+   "va": "0x01022a50",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0100b180.o",
+    "FUN_010171c8.o",
+    "FUN_010190d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01022a50.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01022a50",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01022e34",
+   "va": "0x01022e34",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01013b4c.o",
+    "FUN_0101aee0.o",
+    "FUN_0101b088.o",
+    "FUN_01021a38.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01022e34.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01022e34",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01022ea8",
+   "va": "0x01022ea8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01012c84.o",
+    "FUN_01013650.o",
+    "FUN_01013b4c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01022ea8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01022ea8",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01022f0c",
+   "va": "0x01022f0c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101ab20.o",
+    "FUN_01029e64.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01022f0c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01022f0c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01023ac4",
+   "va": "0x01023ac4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01020108.o",
+    "FUN_01020764.o",
+    "FUN_010212ec.o",
+    "FUN_01029e64.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01023ac4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01023ac4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01023d38",
+   "va": "0x01023d38",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01012c84.o",
+    "FUN_01013650.o",
+    "FUN_0101ab20.o",
+    "FUN_0101b230.o",
+    "FUN_0101ba58.o",
+    "FUN_01029d68.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01023d38.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01023d38",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01023e88",
+   "va": "0x01023e88",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01014748.o",
+    "FUN_0101b230.o",
+    "FUN_0101bf30.o",
+    "FUN_01021108.o",
+    "FUN_010212ec.o",
+    "controller_radio_transition_schedule.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01023e88.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01023e88",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01024440",
+   "va": "0x01024440",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01021ee0.o",
+    "FUN_01022a84.o",
+    "FUN_010237b0.o",
+    "FUN_01023dec.o",
+    "FUN_01025034.o",
+    "mpsl_timeslot_distance_get.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01024440.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01024440",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102445c",
+   "va": "0x0102445c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010225ac.o",
+    "controller_timing_request_submit.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102445c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102445c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_010245d8",
+   "va": "0x010245d8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01021df0.o",
+    "FUN_010225ac.o",
+    "FUN_01022a84.o",
+    "controller_timing_request_submit.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010245d8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010245d8",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01024c6c",
+   "va": "0x01024c6c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01021ee0.o",
+    "FUN_01022a84.o",
+    "FUN_01024ef0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01024c6c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01024c6c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102524c",
+   "va": "0x0102524c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01021ee0.o",
+    "FUN_0102286c.o",
+    "FUN_01022a84.o",
+    "FUN_01023ea8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102524c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102524c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_010256dc",
+   "va": "0x010256dc",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 22,
+   "reference_objects": [
+    "FUN_01021cec.o",
+    "FUN_01021ee0.o",
+    "FUN_01022a84.o",
+    "FUN_010237b0.o",
+    "FUN_01023ad8.o",
+    "FUN_01023dec.o",
+    "FUN_01023ea8.o",
+    "FUN_0102411c.o",
+    "FUN_01024524.o",
+    "FUN_01024778.o",
+    "FUN_01024e1c.o",
+    "FUN_01024ef0.o",
+    "FUN_010250d0.o",
+    "FUN_010251ec.o",
+    "FUN_0102521c.o",
+    "FUN_0102581c.o",
+    "FUN_01029d34.o",
+    "FUN_01029d76.o",
+    "FUN_01029e64.o",
+    "FUN_0102a122.o",
+    "mpsl_timeslot_distance_get.o",
+    "sdc_timing_scale.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010256dc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010256dc",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_010257e4",
+   "va": "0x010257e4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008fd4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010257e4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010257e4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102590c",
+   "va": "0x0102590c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01010834.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102590c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102590c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025998",
+   "va": "0x01025998",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0100e95c.o",
+    "FUN_0100eaf0.o",
+    "FUN_01026122.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025998.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025998",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025a84",
+   "va": "0x01025a84",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 10,
+   "reference_objects": [
+    "FUN_01008ddc.o",
+    "FUN_01009668.o",
+    "FUN_01009ea4.o",
+    "FUN_0100cc20.o",
+    "FUN_0100cff4.o",
+    "FUN_0100d14c.o",
+    "FUN_01013b4c.o",
+    "FUN_010144e4.o",
+    "FUN_0101d404.o",
+    "FUN_0102023c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025a84.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025a84",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025c44",
+   "va": "0x01025c44",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0100b180.o",
+    "FUN_0101132c.o",
+    "FUN_010171c8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025c44.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025c44",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025c9c",
+   "va": "0x01025c9c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_010208f0.o",
+    "FUN_01021108.o",
+    "FUN_010212ec.o",
+    "controller_radio_transition_schedule.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025c9c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025c9c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025cc8",
+   "va": "0x01025cc8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_llcp_note_unsupported_pdu.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025cc8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025cc8",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025d0c",
+   "va": "0x01025d0c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_llcp_note_unsupported_pdu.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025d0c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025d0c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01025d38",
+   "va": "0x01025d38",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100823c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01025d38.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01025d38",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102665c",
+   "va": "0x0102665c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010323cc.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_010269ce",
+   "va": "0x010269ce",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100e95c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010269ce.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010269ce",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026acc",
+   "va": "0x01026acc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100e95c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026acc.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026acc",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026b58",
+   "va": "0x01026b58",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100ac98.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026b58.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026b58",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026bfe",
+   "va": "0x01026bfe",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100b6b4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026bfe.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026bfe",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026c94",
+   "va": "0x01026c94",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100eaf0.o",
+    "controller_packet_build_next.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026c94.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026c94",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026d16",
+   "va": "0x01026d16",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01015ecc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026d16.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026d16",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026d3e",
+   "va": "0x01026d3e",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01019660.o",
+    "FUN_01019750.o",
+    "FUN_010198cc.o",
+    "FUN_01019aa0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026d3e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026d3e",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026dae",
+   "va": "0x01026dae",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100ac98.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026dae.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026dae",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026e48",
+   "va": "0x01026e48",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0100b6b4.o",
+    "FUN_01017f7c.o",
+    "FUN_01018dac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026e48.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026e48",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01026f32",
+   "va": "0x01026f32",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01019660.o",
+    "FUN_01019750.o",
+    "FUN_010198cc.o",
+    "FUN_01019aa0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01026f32.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01026f32",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027044",
+   "va": "0x01027044",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100eaf0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027044.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027044",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102709e",
+   "va": "0x0102709e",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100e95c.o",
+    "FUN_0100eaf0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102709e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102709e",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010270d2",
+   "va": "0x010270d2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 8,
+   "reference_objects": [
+    "FUN_0100b6b4.o",
+    "FUN_01019588.o",
+    "FUN_010195f8.o",
+    "FUN_01019660.o",
+    "FUN_010196e0.o",
+    "FUN_01019750.o",
+    "FUN_010198cc.o",
+    "FUN_01019aa0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010270d2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010270d2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010270e8",
+   "va": "0x010270e8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100eaf0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010270e8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010270e8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102714a",
+   "va": "0x0102714a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 7,
+   "reference_objects": [
+    "FUN_01019588.o",
+    "FUN_010195f8.o",
+    "FUN_01019660.o",
+    "FUN_010196e0.o",
+    "FUN_01019750.o",
+    "FUN_010198cc.o",
+    "FUN_01019aa0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102714a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102714a",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027258",
+   "va": "0x01027258",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01009ea4.o",
+    "FUN_0100a664.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027258.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027258",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010273c6",
+   "va": "0x010273c6",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a6f0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010273c6.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010273c6",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102741e",
+   "va": "0x0102741e",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01009bc4.o",
+    "FUN_01009c68.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102741e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102741e",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027470",
+   "va": "0x01027470",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01009c68.o",
+    "FUN_01009d64.o",
+    "controller_typed_handle_lookup.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027470.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027470",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010274d0",
+   "va": "0x010274d0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01009708.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010274d0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010274d0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010274ea",
+   "va": "0x010274ea",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01009c68.o",
+    "FUN_01009d64.o",
+    "controller_typed_handle_lookup.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010274ea.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010274ea",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102751a",
+   "va": "0x0102751a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01009bc4.o",
+    "FUN_01009c68.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102751a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102751a",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010275d2",
+   "va": "0x010275d2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a50c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010275d2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010275d2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027662",
+   "va": "0x01027662",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a50c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027662.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027662",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027790",
+   "va": "0x01027790",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a118.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027790.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027790",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010277a6",
+   "va": "0x010277a6",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a17c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010277a6.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010277a6",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027846",
+   "va": "0x01027846",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008a58.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027846.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027846",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010279e6",
+   "va": "0x010279e6",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01008a58.o",
+    "FUN_0100a664.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010279e6.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010279e6",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027a4a",
+   "va": "0x01027a4a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102185c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027a4a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027a4a",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027af2",
+   "va": "0x01027af2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100a31c.o",
+    "FUN_0100a4d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027af2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027af2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027b0c",
+   "va": "0x01027b0c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100a31c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027b0c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027b0c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027b32",
+   "va": "0x01027b32",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0100a31c.o",
+    "FUN_0100a4d0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027b32.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027b32",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027ed4",
+   "va": "0x01027ed4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101132c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027ed4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027ed4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01027ef2",
+   "va": "0x01027ef2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101132c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027ef2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027ef2",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010280be",
+   "va": "0x010280be",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010280be.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010280be",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010280d8",
+   "va": "0x010280d8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01012438.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010280d8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010280d8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010280f2",
+   "va": "0x010280f2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e398.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010280f2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010280f2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01028256",
+   "va": "0x01028256",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e6ac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01028256.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01028256",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010283fe",
+   "va": "0x010283fe",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101e94c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010283fe.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010283fe",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01028656",
+   "va": "0x01028656",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "thunk_FUN_01028656.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01028656.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01028656",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102894a",
+   "va": "0x0102894a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "thunk_FUN_0102894a.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102894a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102894a",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010292ec",
+   "va": "0x010292ec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010267fe.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102941c",
+   "va": "0x0102941c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008d7c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102941c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102941c",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010294c2",
+   "va": "0x010294c2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101f818.o",
+    "FUN_0101f850.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010294c2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010294c2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010294d2",
+   "va": "0x010294d2",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_0101f73c.o",
+    "FUN_0101f764.o",
+    "FUN_0101f7a8.o",
+    "FUN_0101f7e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010294d2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010294d2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010295d6",
+   "va": "0x010295d6",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01017154.o",
+    "FUN_01017344.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010295d6.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010295d6",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102961a",
+   "va": "0x0102961a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010187e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102961a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102961a",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102971e",
+   "va": "0x0102971e",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102971e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102971e",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010297b4",
+   "va": "0x010297b4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010297b4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010297b4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01029882",
+   "va": "0x01029882",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f994.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01029882.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01029882",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010298a8",
+   "va": "0x010298a8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010298a8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010298a8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01029b24",
+   "va": "0x01029b24",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101f440.o",
+    "sdc_llcp_apply_rx_transition.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01029b24.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01029b24",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01029b38",
+   "va": "0x01029b38",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0101f440.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01029b38.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01029b38",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01029bda",
+   "va": "0x01029bda",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01029bda.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01029bda",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01029bea",
+   "va": "0x01029bea",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010144e4.o",
+    "FUN_0101d404.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01029bea.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01029bea",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102a1e0",
+   "va": "0x0102a1e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01013e98.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102cc34",
+   "va": "0x0102cc34",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102def4.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102ce14",
+   "va": "0x0102ce14",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102df04.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102d25c",
+   "va": "0x0102d25c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103b0e8.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102d5b4",
+   "va": "0x0102d5b4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102ac0c.o",
+    "FUN_0102afbc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102d5b4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102d5b4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102d69c",
+   "va": "0x0102d69c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102d938.o",
+    "FUN_01039fe6.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102d6e0",
+   "va": "0x0102d6e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102d938.o",
+    "FUN_01039fe6.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102d6e0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102d6e0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102da84",
+   "va": "0x0102da84",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102d938.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102ddf4",
+   "va": "0x0102ddf4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102e23c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102de10",
+   "va": "0x0102de10",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103a2f8.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102e1fc",
+   "va": "0x0102e1fc",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103a2f8.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102e284",
+   "va": "0x0102e284",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 13,
+   "reference_objects": [
+    "FUN_0102bfe4.o",
+    "FUN_0102ea40.o",
+    "FUN_0102fbd0.o",
+    "FUN_0102fc30.o",
+    "FUN_01030bac.o",
+    "FUN_01031820.o",
+    "FUN_01031928.o",
+    "FUN_01031a68.o",
+    "FUN_010333b4.o",
+    "FUN_01033df0.o",
+    "FUN_010359b8.o",
+    "FUN_01039e52.o",
+    "FUN_0103a3d6.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102e284.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102e284",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102e3a8",
+   "va": "0x0102e3a8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103a2a6.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102e3a8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102e3a8",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102e460",
+   "va": "0x0102e460",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102e484.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102e460.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102e460",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102e4f4",
+   "va": "0x0102e4f4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102e7e0.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102e4f4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102e4f4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102ea00",
+   "va": "0x0102ea00",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103038c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0102eb2c",
+   "va": "0x0102eb2c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01032c28.o",
+    "FUN_010333b4.o",
+    "FUN_01033888.o",
+    "FUN_0103499c.o",
+    "FUN_01034d8c.o",
+    "FUN_01034f24.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102eb2c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102eb2c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102fa84",
+   "va": "0x0102fa84",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103b53a.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102fa84.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102fa84",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102fbac",
+   "va": "0x0102fbac",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01031928.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102fbac.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102fbac",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102fcec",
+   "va": "0x0102fcec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102afbc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102fcec.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102fcec",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102ff54",
+   "va": "0x0102ff54",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102fcc4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102ff54.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102ff54",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0102ff94",
+   "va": "0x0102ff94",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102fc30.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102ff94.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102ff94",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103175c",
+   "va": "0x0103175c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01037f8c.o",
+    "FUN_0103814c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103175c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103175c",
+   "adoption_component": "zephyr_nrf_rtc_timer",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_010317c0",
+   "va": "0x010317c0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01037f00.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01032680",
+   "va": "0x01032680",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01031a68.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01032680.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01032680",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_010343e0",
+   "va": "0x010343e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103a8d0.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_010353ec",
+   "va": "0x010353ec",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_010355bc.o",
+    "FUN_0103566c.o",
+    "FUN_0103afac.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010353ec.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010353ec",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103547c",
+   "va": "0x0103547c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010354bc.o",
+    "FUN_01035830.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103547c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103547c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_01035e1c",
+   "va": "0x01035e1c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103b522.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0103657c",
+   "va": "0x0103657c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01031814.o",
+    "FUN_01039fb2.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_010372b4",
+   "va": "0x010372b4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103601c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01037438",
+   "va": "0x01037438",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103814c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01037588",
+   "va": "0x01037588",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010375b8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01037588.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01037588",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01037670",
+   "va": "0x01037670",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103b1c4.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01038958",
+   "va": "0x01038958",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010389f8.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_010389a0",
+   "va": "0x010389a0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103b530.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01038fa4",
+   "va": "0x01038fa4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "thunk_FUN_01038fa4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01038fa4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01038fa4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_010396d0",
+   "va": "0x010396d0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102bfe4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010396d0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010396d0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039722",
+   "va": "0x01039722",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 11,
+   "reference_objects": [
+    "FUN_0102a620.o",
+    "FUN_0102a698.o",
+    "FUN_0102ac0c.o",
+    "FUN_0102acb4.o",
+    "FUN_0102afbc.o",
+    "FUN_0102b094.o",
+    "FUN_0102b15c.o",
+    "FUN_0102b31c.o",
+    "FUN_0102b5bc.o",
+    "FUN_0102b900.o",
+    "FUN_0102cfbc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039722.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039722",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039a7a",
+   "va": "0x01039a7a",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102c4e4.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01039ade",
+   "va": "0x01039ade",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102c6f8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039ade.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039ade",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039b16",
+   "va": "0x01039b16",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102ca80.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039b16.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039b16",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039b36",
+   "va": "0x01039b36",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102c6f8.o",
+    "FUN_0102ca80.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039b36.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039b36",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039bbe",
+   "va": "0x01039bbe",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 85,
+   "reference_objects": [
+    "FUN_0102bbec.o",
+    "FUN_0102bfe4.o",
+    "FUN_0102c470.o",
+    "FUN_0102c4e4.o",
+    "FUN_0102c5ec.o",
+    "FUN_0102c6f8.o",
+    "FUN_0102ca80.o",
+    "FUN_0102cb84.o",
+    "FUN_0102cbd8.o",
+    "FUN_0102cd8c.o",
+    "FUN_0102cf00.o",
+    "FUN_0102dcf4.o",
+    "FUN_0102de50.o",
+    "FUN_0102df2c.o",
+    "FUN_0102e23c.o",
+    "FUN_0102e974.o",
+    "FUN_0102eb8c.o",
+    "FUN_0102f080.o",
+    "FUN_01030014.o",
+    "FUN_01030084.o",
+    "FUN_0103038c.o",
+    "FUN_01030a50.o",
+    "FUN_01030dd0.o",
+    "FUN_010323f8.o",
+    "FUN_01032ad8.o",
+    "FUN_01032c28.o",
+    "FUN_01033888.o",
+    "FUN_01033b18.o",
+    "FUN_01033f38.o",
+    "FUN_010343b8.o",
+    "FUN_01034578.o",
+    "FUN_010345f4.o",
+    "FUN_01034650.o",
+    "FUN_0103494c.o",
+    "FUN_01034d8c.o",
+    "FUN_01034dd8.o",
+    "FUN_01034fa8.o",
+    "FUN_01035028.o",
+    "FUN_010355bc.o",
+    "FUN_0103566c.o",
+    "FUN_0103576c.o",
+    "FUN_010359b8.o",
+    "FUN_01035d18.o",
+    "FUN_01035edc.o",
+    "FUN_01035fa0.o",
+    "FUN_0103601c.o",
+    "FUN_01036198.o",
+    "FUN_010362d0.o",
+    "FUN_01036410.o",
+    "FUN_01036660.o",
+    "FUN_01036774.o",
+    "FUN_01036824.o",
+    "FUN_0103689c.o",
+    "FUN_0103695c.o",
+    "FUN_01036b18.o",
+    "FUN_01036c2c.o",
+    "FUN_01036f74.o",
+    "FUN_01036fcc.o",
+    "FUN_0103705c.o",
+    "FUN_01037130.o",
+    "FUN_0103719c.o",
+    "FUN_0103721c.o",
+    "FUN_0103735c.o",
+    "FUN_01037398.o",
+    "FUN_01037514.o",
+    "FUN_010375b8.o",
+    "FUN_01037768.o",
+    "FUN_01037814.o",
+    "FUN_01037850.o",
+    "FUN_010378c4.o",
+    "FUN_01037960.o",
+    "FUN_010379d4.o",
+    "FUN_01037a60.o",
+    "FUN_01037b5c.o",
+    "FUN_01037c64.o",
+    "FUN_01037e10.o",
+    "FUN_01037f8c.o",
+    "FUN_010380d8.o",
+    "FUN_0103814c.o",
+    "FUN_01038284.o",
+    "FUN_010384a8.o",
+    "FUN_01038654.o",
+    "FUN_01038764.o",
+    "FUN_010388c8.o",
+    "k_work_init.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039bbe.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039bbe",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039dd0",
+   "va": "0x01039dd0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102df2c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_01039dec",
+   "va": "0x01039dec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102d0c4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039dec.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039dec",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_01039f4c",
+   "va": "0x01039f4c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102d938.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01039f4c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01039f4c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103a44c",
+   "va": "0x0103a44c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102fbd0.o",
+    "FUN_0102fc30.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103a44c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103a44c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103a468",
+   "va": "0x0103a468",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102fc30.o",
+    "FUN_01030084.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103a468.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103a468",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103a478",
+   "va": "0x0103a478",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102fc30.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103a478.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103a478",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103a9be",
+   "va": "0x0103a9be",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01034b18.o",
+    "FUN_01034be4.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103a9be.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103a9be",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ab0e",
+   "va": "0x0103ab0e",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010355bc.o",
+    "FUN_0103576c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ab0e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ab0e",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ac50",
+   "va": "0x0103ac50",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0103566c.o",
+    "FUN_0103aff2.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ac50.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ac50",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ad1a",
+   "va": "0x0103ad1a",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "rpmsg_virtio_get_buffer_size.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ad1a.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ad1a",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ad56",
+   "va": "0x0103ad56",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010354bc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ad56.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ad56",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ada8",
+   "va": "0x0103ada8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010354bc.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ada8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ada8",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103ae10",
+   "va": "0x0103ae10",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103566c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103ae10.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103ae10",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b0f0",
+   "va": "0x0103b0f0",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01031a68.o",
+    "FUN_010323f8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b0f0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b0f0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b1e2",
+   "va": "0x0103b1e2",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01036774.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b1e2.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b1e2",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b224",
+   "va": "0x0103b224",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102cbd8.o",
+    "FUN_01035830.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b224.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b224",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b244",
+   "va": "0x0103b244",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103695c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b244.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b244",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b268",
+   "va": "0x0103b268",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010318d8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b268.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b268",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b2b4",
+   "va": "0x0103b2b4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01037768.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "FUN_0103b304",
+   "va": "0x0103b304",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01035d18.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b304.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b304",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b34c",
+   "va": "0x0103b34c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01035d18.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b34c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b34c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b3e0",
+   "va": "0x0103b3e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010384a8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b3e0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b3e0",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b442",
+   "va": "0x0103b442",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010388c8.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b442.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b442",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b4f6",
+   "va": "0x0103b4f6",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01036198.o",
+    "FUN_01036660.o",
+    "FUN_01036824.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b4f6.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b4f6",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b5a4",
+   "va": "0x0103b5a4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102d938.o",
+    "FUN_01039fe6.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b5a4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b5a4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b5c4",
+   "va": "0x0103b5c4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01039190.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b5c4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b5c4",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b614",
+   "va": "0x0103b614",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 13,
+   "reference_objects": [
+    "FUN_0102a698.o",
+    "FUN_0102a6e0.o",
+    "FUN_0102bbec.o",
+    "FUN_0102bfe4.o",
+    "FUN_0102edac.o",
+    "FUN_010323cc.o",
+    "FUN_01033660.o",
+    "FUN_01033a60.o",
+    "FUN_01036198.o",
+    "FUN_010362d0.o",
+    "FUN_0103a2cc.o",
+    "FUN_0103a2f8.o",
+    "FUN_0103b53a.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b614.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b614",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_0103b62e",
+   "va": "0x0103b62e",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 16,
+   "reference_objects": [
+    "FUN_0102a394.o",
+    "FUN_0102b15c.o",
+    "FUN_0102b2ac.o",
+    "FUN_0102c5ec.o",
+    "FUN_0102cbd8.o",
+    "FUN_0102edac.o",
+    "FUN_0102fa4c.o",
+    "FUN_01030bac.o",
+    "FUN_01033354.o",
+    "FUN_010333b4.o",
+    "FUN_0103499c.o",
+    "FUN_01035830.o",
+    "FUN_01039138.o",
+    "FUN_0103963c.o",
+    "FUN_0103a076.o",
+    "k_work_init.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0103b62e.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0103b62e",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "FUN_shadow_default",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "synthetic decompiler default-path oracle",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100d3c0.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "PHANTOM_BOUNDARY",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "synthetic decompiler boundary oracle",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01029d76.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "PHANTOM_RETRY",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "synthetic decompiler retry oracle",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01017f7c.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "controller_assert",
+   "va": null,
+   "category": "naming_or_symbolization_defect",
+   "reason": "callers use a stale alias for sdc_assertion_fail",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_llcp_process_rx_control_pdu.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "controller_deferred_event_raise",
+   "va": "0x0102583c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_0100ec40.o",
+    "FUN_01022a84.o",
+    "FUN_01023ea8.o",
+    "controller_work_enqueue_packet_result.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_deferred_event_raise.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_deferred_event_raise",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "controller_entry_links_release",
+   "va": "0x0101df84",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_handle_update_state_apply.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_entry_links_release.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_entry_links_release",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "controller_radio_idle_event_finish",
+   "va": "0x0100b594",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_radio_event1_dispatch.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_radio_idle_event_finish.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_radio_idle_event_finish",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "controller_radio_time_mode2_to_mode2",
+   "va": "0x01021634",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_radio_transition_apply.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_radio_time_mode2_to_mode2.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_radio_time_mode2_to_mode2",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "controller_radio_timer_capture_get",
+   "va": "0x01023de8",
+   "category": "naming_or_symbolization_defect",
+   "reason": "readable filename exports thunk_FUN_01025028 instead of its public name",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_radio_transition_apply.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_radio_timer_capture_get.c",
+   "expected_source_exists": true,
+   "identity_name": "controller_radio_timer_capture_get",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "controller_time_now",
+   "va": "0x01022f08",
+   "category": "naming_or_symbolization_defect",
+   "reason": "readable filename exports thunk_FUN_01025034 instead of its public name",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01013650.o",
+    "FUN_01016628.o",
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_time_now.c",
+   "expected_source_exists": true,
+   "identity_name": "controller_time_now",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "controller_timing_request_schedule",
+   "va": "0x0100d4d0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_01012c84.o",
+    "FUN_0101b7e4.o",
+    "controller_timing_snapshot_build.o",
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_timing_request_schedule.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_timing_request_schedule",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "controller_transition_pending_check",
+   "va": "0x01025cf0",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_radio_transition_apply.o"
+   ],
+   "expected_source": "recon/symbolized/net/controller_transition_pending_check.c",
+   "expected_source_exists": false,
+   "identity_name": "controller_transition_pending_check",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "g1_arch_runtime_exception",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "architecture macro placeholder (ARCH_EXCEPT)",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102b900.o",
+    "FUN_01031928.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "g1_irq_lock",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "architecture intrinsic placeholder",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008ddc.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "g1_irq_unlock",
+   "va": null,
+   "category": "compiler_or_ghidra_pseudo",
+   "reason": "architecture intrinsic placeholder",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01008ddc.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "ipc_rpmsg_init",
+   "va": "0x0102dac0",
+   "category": "sdk_or_config_symbol",
+   "reason": "NCS IPC-service RPMsg backend",
+   "reference_count": 1,
+   "reference_objects": [
+    "ipc_rpmsg_static_vrings_open.o"
+   ],
+   "expected_source": "recon/symbolized/net/ipc_rpmsg_init.c",
+   "expected_source_exists": false,
+   "identity_name": "ipc_rpmsg_init",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "ipc_static_vrings_init",
+   "va": "0x0102db30",
+   "category": "sdk_or_config_symbol",
+   "reason": "NCS IPC-service static-vrings backend",
+   "reference_count": 1,
+   "reference_objects": [
+    "ipc_rpmsg_static_vrings_open.o"
+   ],
+   "expected_source": "recon/symbolized/net/ipc_static_vrings_init.c",
+   "expected_source_exists": false,
+   "identity_name": "ipc_static_vrings_init",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "ipc_static_vrings_shm_size",
+   "va": "0x0103a056",
+   "category": "sdk_or_config_symbol",
+   "reason": "NCS IPC-service static-vrings backend",
+   "reference_count": 1,
+   "reference_objects": [
+    "ipc_rpmsg_static_vrings_open.o"
+   ],
+   "expected_source": "recon/symbolized/net/ipc_static_vrings_shm_size.c",
+   "expected_source_exists": false,
+   "identity_name": "ipc_static_vrings_shm_size",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "k_work_queue_init",
+   "va": "0x01036cb8",
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr kernel work queue API",
+   "reference_count": 1,
+   "reference_objects": [
+    "ipc_rpmsg_static_vrings_open.o"
+   ],
+   "expected_source": "recon/symbolized/net/k_work_queue_init.c",
+   "expected_source_exists": false,
+   "identity_name": "k_work_queue_init",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "k_work_queue_start",
+   "va": "0x01036ce4",
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr kernel work queue API",
+   "reference_count": 1,
+   "reference_objects": [
+    "ipc_rpmsg_static_vrings_open.o"
+   ],
+   "expected_source": "recon/symbolized/net/k_work_queue_start.c",
+   "expected_source_exists": false,
+   "identity_name": "k_work_queue_start",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "radio_slot_margin_get",
+   "va": "0x0101a130",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 5,
+   "reference_objects": [
+    "FUN_0101ab20.o",
+    "FUN_0101aee0.o",
+    "FUN_0101b088.o",
+    "FUN_0101ba58.o",
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/radio_slot_margin_get.c",
+   "expected_source_exists": false,
+   "identity_name": "radio_slot_margin_get",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "radio_transition_overhead_get",
+   "va": "0x0101a0e8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 4,
+   "reference_objects": [
+    "FUN_0101b230.o",
+    "FUN_0101b7e4.o",
+    "FUN_0101bc3c.o",
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/radio_transition_overhead_get.c",
+   "expected_source_exists": false,
+   "identity_name": "radio_transition_overhead_get",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "rtc_compare_event_clear",
+   "va": "0x0103a6ae",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010313ec.o",
+    "rtc_nrf_isr.o"
+   ],
+   "expected_source": "recon/symbolized/net/rtc_compare_event_clear.c",
+   "expected_source_exists": false,
+   "identity_name": "rtc_compare_event_clear",
+   "adoption_component": "zephyr_nrf_rtc_timer",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "rtc_pretick_rtc1_isr_hook",
+   "va": "0x01039e4e",
+   "category": "naming_or_symbolization_defect",
+   "reason": "readable filename exports thunk_FUN_0102cfec instead of its public name",
+   "reference_count": 1,
+   "reference_objects": [
+    "rtc_nrf_isr.o"
+   ],
+   "expected_source": "recon/symbolized/net/rtc_pretick_rtc1_isr_hook.c",
+   "expected_source_exists": true,
+   "identity_name": "rtc_pretick_rtc1_isr_hook",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "schedule_node_tail_get",
+   "va": "0x0101dda8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/schedule_node_tail_get.c",
+   "expected_source_exists": false,
+   "identity_name": "schedule_node_tail_get",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "schedule_phase_offset_get",
+   "va": "0x0101de10",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101b54c.o",
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/schedule_phase_offset_get.c",
+   "expected_source_exists": false,
+   "identity_name": "schedule_phase_offset_get",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_byte_lock_release",
+   "va": "0x0102a208",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_ecb_run_blocking.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_byte_lock_release.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_byte_lock_release",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "sdc_byte_lock_try_acquire",
+   "va": "0x0102a1ea",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_ecb_run_blocking.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_byte_lock_try_acquire.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_byte_lock_try_acquire",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "sdc_conn_event_process",
+   "va": "0x01014b18",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01015ecc.o",
+    "controller_radio_event1_dispatch.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_conn_event_process.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_conn_event_process",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "sdc_conn_radio_overhead_set",
+   "va": "0x0100f48c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 5,
+   "reference_objects": [
+    "FUN_01013e98.o",
+    "FUN_0101b7e4.o",
+    "FUN_0101bc3c.o",
+    "FUN_0101bdd4.o",
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_conn_radio_overhead_set.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_conn_radio_overhead_set",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_conn_recovery_state_restore",
+   "va": "0x0101618c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_conn_recovery_state_restore.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_conn_recovery_state_restore",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_conn_recovery_window_update",
+   "va": "0x0100d6e8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_conn_recovery_window_update.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_conn_recovery_window_update",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_conn_window_admit",
+   "va": "0x010231c8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 13,
+   "reference_objects": [
+    "FUN_01012c84.o",
+    "FUN_01013b4c.o",
+    "FUN_0101ab20.o",
+    "FUN_0101aee0.o",
+    "FUN_0101b088.o",
+    "FUN_0101b230.o",
+    "FUN_0101ba58.o",
+    "FUN_0101bc3c.o",
+    "FUN_0101bdd4.o",
+    "FUN_01029d76.o",
+    "FUN_01029e64.o",
+    "FUN_0102a122.o",
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_conn_window_admit.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_conn_window_admit",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+  },
+  {
+   "symbol": "sdc_ext_adv_reschedule",
+   "va": "0x010140ec",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0101272c.o",
+    "sdc_ext_adv_event_complete.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_ext_adv_reschedule.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_ext_adv_reschedule",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_llcp_get_active_link_index",
+   "va": "0x0100d760",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01010578.o",
+    "FUN_01017154.o",
+    "FUN_01017344.o",
+    "FUN_01018bf8.o",
+    "FUN_01018c28.o",
+    "sdc_llcp_process_rx_control_pdu.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_llcp_get_active_link_index.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_llcp_get_active_link_index",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sdc_timing_compensation_get",
+   "va": "0x01029638",
+   "category": "naming_or_symbolization_defect",
+   "reason": "readable filename exports thunk_FUN_010246cc instead of its public name",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01013e98.o",
+    "FUN_0101b230.o",
+    "sdc_conn_event_timing_prepare.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_timing_compensation_get.c",
+   "expected_source_exists": true,
+   "identity_name": "sdc_timing_compensation_get",
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "sdc_work_submit",
+   "va": "0x0100ef88",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 16,
+   "reference_objects": [
+    "FUN_0100b6b4.o",
+    "FUN_01010578.o",
+    "FUN_01010ff0.o",
+    "FUN_0101272c.o",
+    "FUN_010128bc.o",
+    "FUN_01013650.o",
+    "FUN_010166c0.o",
+    "FUN_01019128.o",
+    "FUN_01019660.o",
+    "FUN_010196e0.o",
+    "FUN_01019750.o",
+    "FUN_010198cc.o",
+    "FUN_01019aa0.o",
+    "FUN_0101c6d0.o",
+    "FUN_0101f994.o",
+    "sdc_ext_adv_event_complete.o"
+   ],
+   "expected_source": "recon/symbolized/net/sdc_work_submit.c",
+   "expected_source_exists": false,
+   "identity_name": "sdc_work_submit",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "signed_drift_clamp",
+   "va": "0x0100f69c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_0101b7e4.o",
+    "FUN_0101bc3c.o",
+    "controller_timing_snapshot_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/signed_drift_clamp.c",
+   "expected_source_exists": false,
+   "identity_name": "signed_drift_clamp",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction"
+  },
+  {
+   "symbol": "sys_rand_get",
+   "va": null,
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr random API",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0100f5d8.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "z_except_reason",
+   "va": null,
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr architecture exception API",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01039bb0.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  },
+  {
+   "symbol": "z_impl_k_thread_abort",
+   "va": null,
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr kernel thread API",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0102f580.o"
+   ],
+   "expected_source": null,
+   "expected_source_exists": false,
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null
+  }
+ ]
+}
