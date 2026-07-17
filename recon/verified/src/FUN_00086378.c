@@ -1,10 +1,9 @@
-/* Reconstructed FUN_00086378 @ 0x86378  (parity: 200/200 trials, PROVEN) */
+/* Reconstructed FUN_00086378 @ 0x86378 */
+#include <stdint.h>
 
-extern void FUN_00086208(int a, int b, void *c, int d, int e, unsigned int f);
-void FUN_00086378(int param_1, char param_2)
+extern void FUN_00086360(void *, uint8_t);
+
+void FUN_00086378(void *destination, uint8_t value)
 {
-  char local;
-  unsigned char v = (unsigned char)(param_2 + 0x14);
-  FUN_00086208(param_1, 7, &local, 1, param_1, v);
+  FUN_00086360(destination, (uint8_t)(value + 0x14));
 }
-
