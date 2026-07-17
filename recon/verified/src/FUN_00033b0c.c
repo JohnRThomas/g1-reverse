@@ -1,7 +1,7 @@
 /* Reconstructed FUN_00033b0c @ 0x33b0c  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
-extern void FUN_00019c70(unsigned int);
+extern void FUN_00019c70(unsigned int, ...);
 
 void FUN_00033b0c(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -10,13 +10,17 @@ void FUN_00033b0c(unsigned int param_1, unsigned int param_2, unsigned int param
     volatile unsigned int *puVar3 = (volatile unsigned int*)0x20007dacUL;
     int iVar2 = 0;
     do {
-        if (*piVar1 == 0) {
-            DEBUG_PRINT(format_string, iVar2, puVar3[2], puVar3[1], puVar3[0], param_2, param_3);
+        unsigned int value0 = puVar3[0];
+        unsigned int buffered = *piVar1;
+        unsigned int value1 = puVar3[1];
+        unsigned int value2 = puVar3[2];
+        if (buffered == 0) {
+            DEBUG_PRINT(format_string, iVar2, value2, value1, value0, param_2, param_3);
         } else {
-            FUN_00019c70(format_string);
+            FUN_00019c70(format_string, iVar2, value2, value1,
+                         value0, param_2, param_3);
         }
         iVar2 = iVar2 + 1;
         puVar3 = puVar3 + 0x6d;
     } while (iVar2 != 10);
 }
-

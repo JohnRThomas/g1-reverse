@@ -2,14 +2,13 @@
 #include <stdint.h>
 extern void DEBUG_PRINT(unsigned,...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int, ...);
 extern void FUN_00022b00(int,int);
 extern int FUN_000232f8(void*);
 extern void FUN_0007d14a(int);
 
 int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
-    unsigned char auStack[20];
-    unsigned char local_88;
+    unsigned char status_record[21];
     DEBUG_PRINT(0x000a6711, 0x000a7712);
     if (param_3==0 || param_4==0 || param_1==0 || param_2 < 5){
         DEBUG_PRINT(0x000a671e, 0x000a7712);
@@ -27,8 +26,8 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
             iVar2 = FUN_000167a8(); FUN_00022b00(iVar2, 0);
             char cVar5 = 0;
             do {
-                iVar2 = FUN_000232f8(auStack);
-                if (iVar2 == 0 && local_88 == bVar1) break;
+                iVar2 = FUN_000232f8(status_record);
+                if (iVar2 == 0 && status_record[20] == bVar1) break;
                 cVar5 = cVar5 + 1;
                 FUN_0007d14a(100);
             } while (cVar5 != 5);
@@ -38,7 +37,7 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
         uVar4 = 4;
     } else {
         if (*(int*)0x20007554 == 0) DEBUG_PRINT(0x000a676d, 0x000a7712, 0x3c1);
-        else FUN_00019c70();
+        else FUN_00019c70(0x000a676d, 0x000a7712, 0x3c1);
         uVar4 = 3;
     }
     puVar6[4] = uVar4;
@@ -46,4 +45,3 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
     *param_4 = 5;
     return 0;
 }
-
