@@ -1,7 +1,7 @@
 /* Reconstructed convert_app_whitelist_to_json @ 0x352e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern void DEBUG_PRINT(int,...);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(int,...);
 extern int  FUN_0000ef12(int);
 extern int  FUN_00064b1c(int);
 extern int  FUN_00064c8c(void);
@@ -12,7 +12,7 @@ extern void FUN_00085046(int,int,int);
 extern void FUN_0008504c(int,int,int);
 extern void FUN_0008509e(int,int,void*);
 extern void FUN_00086fee(int,int);
-extern void thunk_FUN_00084f2e(int,int);
+extern void thunk_FUN_00084f2e(int,int,const void *,unsigned int);
 
 int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
   volatile int *g50 = (volatile int*)0x20007554UL;
@@ -38,7 +38,7 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
       FUN_00085046(iVar3,0x000f3630,iVar4);
       FUN_00085046(iVar9,0x0009e1b6,iVar3);
       uVar6 = FUN_0008501a(iVar9);
-      if (*g50==0) DEBUG_PRINT(0x000a892b,uVar6); else FUN_00019c70();
+      if (*g50==0) DEBUG_PRINT(0x000a892b,uVar6); else FUN_00019c70(0x000a892b,uVar6);
       FUN_00086fee(param_1,uVar6);
       uVar2 = FUN_0000ef12(uVar6);
       FUN_00076d7c(uVar6);
@@ -50,15 +50,15 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
     if (iVar5 == 0) break;
     FUN_0008509e(iVar5,0x0009a1dd,(void*)(pbVar1 + uVar8*0x38 + 2));
     FUN_0008509e(iVar5,0x000f33e4,(void*)(pbVar1 + uVar8*0x38 + 0x2a));
-    thunk_FUN_00084f2e(iVar4,iVar5);
+    thunk_FUN_00084f2e(iVar4,iVar5,
+                       (const void *)(pbVar1 + uVar8*0x38 + 0x2a),uVar10);
   }
   uVar7=0x219; iVar3=*g50; uVar6=0x000a8912;
 inner:
-  if (iVar3 == 0) DEBUG_PRINT(uVar6,0x000a8a51,uVar7); else FUN_00019c70();
+  if (iVar3 == 0) DEBUG_PRINT(uVar6,0x000a8a51,uVar7); else FUN_00019c70(uVar6,0x000a8a51,uVar7);
   FUN_00064b1c(iVar9);
   return 0;
 final:
-  if (iVar9 == 0) DEBUG_PRINT(uVar7,0x000a8a51,uVar6,0,iVar3,param_2,param_3); else FUN_00019c70();
+  if (iVar9 == 0) DEBUG_PRINT(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3); else FUN_00019c70(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3);
   return 0;
 }
-

@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
-extern void FUN_00019c70(uint32_t,uint32_t);
+extern void FUN_00019c70(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void cleanNewsIndex(void)
 {
@@ -12,9 +12,8 @@ void cleanNewsIndex(void)
     return;
   }
   if (*(volatile int32_t*)0x20007554UL != 0) {
-    FUN_00019c70(0xa8ff3UL, 0xa958fUL);
+    FUN_00019c70(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
     return;
   }
   DEBUG_PRINT(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
 }
-

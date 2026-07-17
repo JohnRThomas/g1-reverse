@@ -12,7 +12,8 @@ int FUN_00083cfc(int param_1, int param_2, unsigned int param_3, unsigned int pa
     iVar2 = *(int *)(param_1 + 4);
     if (param_2 != 0) {
         if (param_2 == 1) {
-            iVar1 = FUN_00083cde(*(unsigned int *)(iVar2 + 0x20), 0, 0, 0);
+            iVar1 = FUN_00083cde(*(unsigned int *)(iVar2 + 0x20), 0,
+                                 param_3, param_4);
             if (-1 < iVar1) {
                 FUN_00067884(iVar2);
             }
@@ -25,4 +26,3 @@ int FUN_00083cfc(int param_1, int param_2, unsigned int param_3, unsigned int pa
     iVar2 = FUN_00083cde(*(unsigned int *)(iVar2 + 0x20), 1, param_3, param_4);
     return iVar2;
 }
-

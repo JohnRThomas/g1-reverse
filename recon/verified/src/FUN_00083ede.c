@@ -1,70 +1,149 @@
-/* Reconstructed FUN_00083ede @ 0x83ede  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00083ede @ 0x83ede. */
 #include <stdint.h>
-extern int FUN_00061f64(void*);
-#define VU(a) (*(volatile unsigned int*)(a))
-#define VItt(a) (*(volatile int*)(a))
-unsigned int FUN_00083ede(unsigned int *param_1, int param_2, int param_3){
-  unsigned int uVar2,uVar4,uVar5,uVar7,uVar3;
-  int iVar1;
-  unsigned int *puVar6 = param_1 + param_2;
-  unsigned int local_2c[2];
-  do {
-    if (puVar6 == param_1) return 0;
-    uVar2 = *param_1;
-    uVar4 = uVar2 & 0x7f;
-    uVar5 = (uVar2 << 0x13) >> 0x1c;
-    if (uVar4 == 0x7f) uVar4 = 0xffffffff;
-    local_2c[0] = uVar4;
-    switch(uVar2 >> 0x10) {
-      case 0: VU(param_3+0x50c)=uVar4; goto L46;
-      case 1: VU(param_3+0x514)=uVar4; goto L54;
-      case 2: VU(param_3+0x508)=uVar4; goto L46;
-      case 3: VU(param_3+0x510)=uVar4; goto L54;
-      default: return FUN_00061f64(local_2c);
-      case 0xb: VU(param_3+0x508)=uVar4; goto L6e;
-      case 0xc: VU(param_3+0x50c)=uVar4;
-      L6e: if (uVar5!=0) goto L54;
-           if (uVar4!=0xffffffff){ uVar5=6; uVar7=0; uVar2=0; goto Lff4; }
-           goto L4a;
-      case 0x14: VU(param_3+0x540)=uVar4;
-           if (uVar4!=0xffffffff) goto L8e; goto L4a;
-      case 0x15: VU(param_3+0x544)=uVar4;
-      L54: if (uVar4!=0xffffffff){ uVar7=0; uVar2=uVar7; goto Lff4; } goto L4a;
-      case 0x16: VU(param_3+0x560)=uVar4; goto Lb0;
-      case 0x17: VU(param_3+0x564)=uVar4; goto Lb0;
-      case 0x18: VU(param_3+0x568)=uVar4; goto Lb0;
-      case 0x19: VU(param_3+0x56c)=uVar4;
-      Lb0: if (uVar4!=0xffffffff){
-             if ((int)(*param_1 << 0x11) < 0){
-      Lc0:     iVar1=FUN_00061f64(local_2c); VItt(iVar1+8)=1<<(local_2c[0]&0xff);
-             } else {
-      L8e:     iVar1=FUN_00061f64(local_2c); VItt(iVar1+0xc)=1<<(local_2c[0]&0xff);
-             }
-             uVar7=1; uVar2=uVar7; goto Lff4;
-           }
-           goto L4a;
-      case 0x1d: VU(param_3+0x524)=uVar4; break;
-      case 0x1e: VU(param_3+0x528)=uVar4;
-      L46: if (uVar4!=0xffffffff) goto Lc0; goto L4a;
-      case 0x1f: VU(param_3+0x530)=uVar4; break;
-      case 0x20: VU(param_3+0x534)=uVar4; break;
-      case 0x21: VU(param_3+0x538)=uVar4; break;
-      case 0x22: VU(param_3+0x53c)=uVar4; break;
-    }
-    if (uVar4 != 0xffffffff){
-      uVar7=0; uVar2=1;
-    Lff4:
-      uVar3 = *param_1;
-      if ((uVar3 & 0x2000)!=0){ uVar2=1; uVar7=0; }
-      local_2c[0]=uVar4;
-      iVar1=FUN_00061f64(local_2c);
-      iVar1 = iVar1 + local_2c[0]*4;
-      VU(iVar1+0x200) =
-         uVar5<<8 | ((uVar3<<0x17)>>0x1e)<<2 | uVar7 |
-         (VU(iVar1+0x200) & 0xfffcf0f0) | uVar2<<1;
-    }
-    L4a:
-    param_1 = param_1 + 1;
-  } while(1);
+
+extern uintptr_t FUN_00061f64(uint32_t *channel_index);
+
+static void write_channel_mask(uint32_t *channel_index, unsigned offset)
+{
+    uintptr_t channel_state = FUN_00061f64(channel_index);
+    *(volatile uint32_t *)(channel_state + offset) =
+        1u << (channel_index[0] & 0xffu);
 }
 
+int FUN_00083ede(const uint32_t *records, unsigned record_count,
+                 uintptr_t device)
+{
+    uint32_t channel_index[2];
+
+    for (unsigned index = 0; index < record_count; ++index) {
+        uint32_t encoded = records[index];
+        uint32_t channel = encoded & 0x7fu;
+        unsigned kind = encoded >> 16;
+        unsigned submode = (encoded >> 9) & 0x0fu;
+        unsigned option_bit = 0;
+        unsigned enabled_bit = 0;
+        int mask_offset = -1;
+
+        if (channel == 0x7fu) {
+            channel = UINT32_MAX;
+        }
+        channel_index[0] = channel;
+
+        switch (kind) {
+        case 0x00:
+            *(volatile uint32_t *)(device + 0x50c) = channel;
+            mask_offset = 8;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x01:
+            *(volatile uint32_t *)(device + 0x514) = channel;
+            break;
+        case 0x02:
+            *(volatile uint32_t *)(device + 0x508) = channel;
+            mask_offset = 8;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x03:
+            *(volatile uint32_t *)(device + 0x510) = channel;
+            break;
+        case 0x0b:
+            *(volatile uint32_t *)(device + 0x508) = channel;
+            if (submode == 0) {
+                submode = 6;
+            }
+            break;
+        case 0x0c:
+            *(volatile uint32_t *)(device + 0x50c) = channel;
+            if (submode == 0) {
+                submode = 6;
+            }
+            break;
+        case 0x14:
+            *(volatile uint32_t *)(device + 0x540) = channel;
+            mask_offset = 12;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x15:
+            *(volatile uint32_t *)(device + 0x544) = channel;
+            break;
+        case 0x16:
+            *(volatile uint32_t *)(device + 0x560) = channel;
+            mask_offset = (encoded & 0x4000u) ? 8 : 12;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x17:
+            *(volatile uint32_t *)(device + 0x564) = channel;
+            mask_offset = (encoded & 0x4000u) ? 8 : 12;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x18:
+            *(volatile uint32_t *)(device + 0x568) = channel;
+            mask_offset = (encoded & 0x4000u) ? 8 : 12;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x19:
+            *(volatile uint32_t *)(device + 0x56c) = channel;
+            mask_offset = (encoded & 0x4000u) ? 8 : 12;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x1d:
+            *(volatile uint32_t *)(device + 0x524) = channel;
+            enabled_bit = 1;
+            break;
+        case 0x1e:
+            *(volatile uint32_t *)(device + 0x528) = channel;
+            mask_offset = 8;
+            option_bit = 1;
+            enabled_bit = 1;
+            break;
+        case 0x1f:
+            *(volatile uint32_t *)(device + 0x530) = channel;
+            enabled_bit = 1;
+            break;
+        case 0x20:
+            *(volatile uint32_t *)(device + 0x534) = channel;
+            enabled_bit = 1;
+            break;
+        case 0x21:
+            *(volatile uint32_t *)(device + 0x538) = channel;
+            enabled_bit = 1;
+            break;
+        case 0x22:
+            *(volatile uint32_t *)(device + 0x53c) = channel;
+            enabled_bit = 1;
+            break;
+        default:
+            return -0x86;
+        }
+
+        if (channel == UINT32_MAX) {
+            continue;
+        }
+        if (mask_offset >= 0) {
+            write_channel_mask(channel_index, (unsigned)mask_offset);
+        }
+
+        encoded = records[index];
+        if ((encoded & 0x2000u) != 0) {
+            option_bit = 0;
+            enabled_bit = 1;
+        }
+        channel_index[0] = channel;
+        uintptr_t channel_state = FUN_00061f64(channel_index) +
+                                  channel_index[0] * sizeof(uint32_t);
+        volatile uint32_t *configuration =
+            (volatile uint32_t *)(channel_state + 0x200);
+        uint32_t preserved = *configuration & 0xfffcf0f0u;
+        *configuration = preserved | (submode << 8) |
+                         (((encoded >> 7) & 3u) << 2) |
+                         option_bit | (enabled_bit << 1);
+    }
+    return 0;
+}
