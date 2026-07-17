@@ -1,24 +1,23 @@
-/* Reconstructed burial_point_record_info_init @ 0x4ab3c  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed burial_point_record_info_init @ 0x4ab3c */
+#include <stdint.h>
 
-extern void DEBUG_PRINT(void);
-extern void FUN_00019c70(void);
-extern int FUN_000167a8(void);
-extern void FUN_00086c78(void);
+extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void FUN_00019c70(uint32_t, uint32_t);
+extern uint8_t *FUN_000167a8(void);
+extern void *FUN_00086c78(void *, int, uint32_t);
 
 void burial_point_record_info_init(void)
 {
-    if (*(volatile int*)0x2000230cUL > 2) {
-        if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT();
-        } else {
-            FUN_00019c70();
-        }
+  if (*(volatile int32_t *)0x2000230c > 2) {
+    if (*(volatile uint32_t *)0x20007554 == 0) {
+      DEBUG_PRINT(0x000f0416, 0x000f043b);
+    } else {
+      FUN_00019c70(0x000f0416, 0x000f043b);
     }
-    int iVar1 = FUN_000167a8();
-    (void)iVar1;
-    FUN_00086c78();
-    iVar1 = FUN_000167a8();
-    (void)iVar1;
-    FUN_00086c78();
-}
+  }
 
+  uint8_t *runtime = FUN_000167a8();
+  FUN_00086c78(runtime + 0x1092, 0, 0x1a);
+  runtime = FUN_000167a8();
+  FUN_00086c78(runtime + 0x10ac, 0, 0x1a);
+}

@@ -1,25 +1,38 @@
-/* Reconstructed FUN_00086f00 @ 0x86f00  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00086f00 @ 0x86f00 */
+#include <stdarg.h>
 #include <stdint.h>
-extern long long FUN_00051164(void);
-extern int FUN_00077c30(int,int,int,int);
-extern int FUN_00077c78(int,int,int);
-extern int FUN_00079528(int,int);
-void FUN_00086f00(int param_1, int param_2, int param_3, int param_4){
-  if(param_3 < 0){
-    FUN_00077c78(param_1, param_4, 0);
+
+extern uint64_t FUN_00051164(void);
+extern int FUN_00077c30(void *, int32_t, uint32_t, va_list);
+extern void FUN_00077c78(void *, uint32_t, va_list);
+extern int FUN_00079528(uint32_t, int);
+
+void FUN_00086f00(void *context, uint32_t reserved, int32_t count, ...)
+{
+  (void)reserved;
+  va_list arguments;
+  va_start(arguments, count);
+  uint32_t first = va_arg(arguments, uint32_t);
+
+  if (count < 0) {
+    FUN_00077c78(context, first, arguments);
+    va_end(arguments);
     return;
   }
-  int uVar1 = FUN_00077c30(param_1, param_3, param_4, 0);
-  if(uVar1 < 0) return;
-  if((uint32_t)uVar1 < (uint32_t)param_3) return;
-  long long v = FUN_00051164();
-  int high = (int)(uint32_t)((unsigned long long)v >> 32);
-  int lo = (int)(uint32_t)v;
-  int iVar2 = FUN_00079528(lo, *(volatile int16_t*)(high+0xe));
-  if(iVar2 >= 0){
-    *(volatile uint32_t*)(high+0x54) = *(volatile uint32_t*)(high+0x54) + iVar2;
+
+  int consumed = FUN_00077c30(context, count, first, arguments);
+  va_end(arguments);
+  if (consumed < 0 || (uint32_t)consumed < (uint32_t)count) {
+    return;
+  }
+
+  uint64_t state_pair = FUN_00051164();
+  uint32_t value = (uint32_t)state_pair;
+  uint8_t *state = (uint8_t *)(uintptr_t)(uint32_t)(state_pair >> 32);
+  int adjustment = FUN_00079528(value, *(int16_t *)(state + 0x0e));
+  if (adjustment >= 0) {
+    *(uint32_t *)(state + 0x54) += (uint32_t)adjustment;
   } else {
-    *(volatile uint16_t*)(high+0xc) = *(volatile uint16_t*)(high+0xc) & ~0x1000;
+    *(uint16_t *)(state + 0x0c) &= (uint16_t)~0x1000u;
   }
 }
-
