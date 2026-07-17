@@ -807,13 +807,21 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x1021838): 30,
     # ipc_rpmsg_static_vrings.c:open; literal pool begins at 0x0102d8a0.
     ("net", 0x0102d708): 0x198,
+    # Catalog-missing rpmsg endpoint delivery adapter; executable code ends
+    # before the aligned callback literal at 0x0102d6dc.
+    ("net", 0x0102d69c): 0x3e,
     ("net", 0x102e23c): 58,
     # Catalog entries stop after their first instruction(s); each reviewed
     # body continues to the next symbol boundary shown here.
     ("net", 0x0102de38): 0x14,  # atomic exchange; literal follows at +0x14
+    # Catalog-missing kernel ownership-release body; literals start at 664c.
+    ("net", 0x0103657c): 0xce,
     ("net", 0x01039fb6): 0x0e,  # atomic exchange retry loop
     ("net", 0x0103a294): 0x12,  # atomic fetch-add retry loop
     ("net", 0x0103a3ce): 0x08,  # load saved PSPLIM and restore it
+    # Ten-byte nested-limit adapter ending before FUN_0103a456.  Ghidra
+    # followed its tail branch and incorrectly assigned the callee body here.
+    ("net", 0x0103a44c): 0x0a,
     ("net", 0x10323cc): 38,
     ("net", 0x103a8d0): 22,
     # Parser wrapper ends before arithmetic helper at 0x103a056 / a076.

@@ -66,6 +66,9 @@ TRUE_SIZE_OVERRIDES = {
     # Scheduler division/round-up helper ends before its 217fc literal.
     0x010217cc: 0x30,
     0x0102d1c0: 0x7a,  # disable path rejoins return at 0x0102d238
+    # Catalog-missing rpmsg endpoint delivery adapter.  Its final ordinary
+    # return ends at 0x0102d6da; the aligned callback literal follows.
+    0x0102d69c: 0x3e,
     # Default return island owns the back-branch at 0x01030ef6; the literal
     # starts at 0x01030ef8 and the next prologue at 0x01030efc.
     0x01030e28: 0xd0,
@@ -134,12 +137,18 @@ TRUE_SIZE_OVERRIDES = {
     0x010323cc: 0x26,
     0x01034368: 0x30,
     0x0103601c: 0xda,
+    # Catalog-missing kernel ownership-release body.  Its final error return
+    # ends at 0x0103664a; aligned logging/kernel-object literals follow.
+    0x0103657c: 0xce,
     0x01037f00: 0x0e,
     0x01038654: 0x100,
     0x01039fb6: 0x0e,
     0x01039fe6: 0x70,
     0x0103a294: 0x12,
     0x0103a3ce: 0x08,
+    # Ten-byte nested-limit adapter; the catalog incorrectly follows its
+    # 0x0102fdd0 tail target and attributes that callee's body to this entry.
+    0x0103a44c: 0x0a,
     0x0103a8d0: 0x16,
     0x0103b0e8: 0x08,
     0x0103b1c4: 0x10,
