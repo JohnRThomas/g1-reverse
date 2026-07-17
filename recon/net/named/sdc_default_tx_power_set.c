@@ -1,3 +1,7 @@
+/* readable reconstruction; identity: FUN_010091cc @ 0x010091cc
+ * public-name: sdc_default_tx_power_set
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* Reconstructed sdc_default_tx_power_set @ 0x010091cc
  * (raw identity: FUN_010091cc). */
 #include <stdint.h>

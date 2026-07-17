@@ -8,7 +8,7 @@ extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, void *d);
 extern int FUN_0103b0f0(unsigned int a);
 extern int FUN_010091e8(void *a);
 extern int FUN_01031804(unsigned int a, unsigned int b);
-extern int FUN_010091cc(unsigned int a);
+extern int32_t sdc_default_tx_power_set(int8_t requested_power_level); /* FUN_010091cc */
 extern int FUN_01008fd4(unsigned int a, unsigned int b);
 extern int thunk_FUN_0101f650(void *a);
 extern void FUN_01031814(void);
@@ -100,7 +100,7 @@ int FUN_01031a68(void)
         return iVar1;
     }
 
-    iVar1 = FUN_010091cc(3);
+    iVar1 = sdc_default_tx_power_set(3);
     if (iVar1 == 0) {
         iVar1 = FUN_01008fd4(DAT_b80, DAT_b7c);
         if (iVar1 == 0) {

@@ -18,6 +18,12 @@ net application glue.
   archive/member/ELF-section/symbol tuples; the section index is required
   because this obfuscated member repeats some local symbol names and bodies.
 
+The obfuscated internal symbols do not publish C prototypes.  Their opcode
+ownership must not be used to invent an ABI: any later source/archive swap must
+retain the firmware call-site register/stack contract.  Public `sdc_*` symbols
+use the declarations in this exact revision's `include/sdc.h`; this distinction
+is what exposes the concrete defect below.
+
 The benchmark indexed 1,609 member functions having at least 16 bytes and six
 decoded Thumb operations.  Firmware functions were compared by ordered,
 normalized Thumb mnemonic sequence, with the same length window (+/-2
@@ -75,7 +81,7 @@ ownership without a separate source/call-graph audit.
   - `0x0100ec88` -> same member:
     `sym_XOOTGCSEAKA3PUKZW3QYB4DCVC2FKUP2TS5AZ5Q`, ratio 0.988, unique.
 
-## ABI defect exposed by the upstream identity
+## ABI defect exposed and repaired
 
 NCS 2.5.1 declares:
 
@@ -85,11 +91,13 @@ int32_t sdc_default_tx_power_set(int8_t requested_power_level);
 
 Firmware caller `FUN_01031a68` loads `r0 = 3` before calling `0x010091cc`, and
 the original/archive implementation preserves and forwards that `r0` to its
-internal setter.  The current reconstruction instead defines
-`unsigned int FUN_010091cc(void)` and calls `FUN_0101e94c()` without an
-argument.  It passes the present parity harness only because the compiled
-no-argument wrapper happens to leave incoming `r0` live until the nested call.
-This is accidental register retention, not the recovered ABI.  The canonical
-function was not changed by this benchmark; it should be repaired separately
-to an `int32_t (int8_t)` wrapper and verified with a call-argument-sensitive
-negative control.
+internal setter.  The old reconstruction instead defined
+`unsigned int FUN_010091cc(void)` and called `FUN_0101e94c()` without an
+argument.  It passed parity only because the compiled no-argument wrapper
+happened to leave incoming `r0` live until the nested call.
+
+The canonical function now defines the public `int32_t (int8_t)` API and
+explicitly forwards `requested_power_level`.  `cfg_verify` covers five valid
+signed-byte values and the enabled-controller rejection path, compares the
+internal setter's exact `r0`, and rejects a mutation that replaces the
+forwarded value with zero.
