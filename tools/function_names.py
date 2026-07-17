@@ -23,6 +23,7 @@ _SKIP = re.compile(
     re.DOTALL)
 _CACHE = {}
 _ADDRESS_CACHE = {}
+_ALIAS_CACHE = {}
 
 
 def raw_name(core, address):
@@ -52,6 +53,29 @@ def records_by_address(core):
     return _ADDRESS_CACHE[core]
 
 
+def records_by_alias(core):
+    """Return only bijective historical identifier -> address records.
+
+    Some canonical files predate the address-keyed readable map and export a
+    Ghidra thunk spelling (for example ``thunk_FUN_01025034``) rather than the
+    raw entry spelling.  Those spellings live in each record's reversible
+    ``aliases`` array.  They must be treated exactly like raw FUN names during
+    presentation generation, but only when the mapping is one-to-one.  An
+    ambiguous spelling is deliberately omitted, so it stays visible in the
+    generated source for an explicit identity repair instead of being guessed.
+    """
+    if core not in _ALIAS_CACHE:
+        candidates = {}
+        for record in records_by_address(core).values():
+            for alias in record.get("aliases", []):
+                candidates.setdefault(alias, []).append(record)
+        _ALIAS_CACHE[core] = {
+            alias: records[0] for alias, records in candidates.items()
+            if len({record["address"] for record in records}) == 1
+        }
+    return _ALIAS_CACHE[core]
+
+
 def readable_name(core, address):
     address = int(address) & ~1
     record = records_by_address(core).get(address)
@@ -71,6 +95,10 @@ def substitute(text, core, provenance=False):
     to reconstruction agents; its caller can provide the map separately.
     """
     records = records_by_address(core)
+    aliases = records_by_alias(core)
+    alias_pattern = (re.compile(r"\b(?:%s)\b" % "|".join(
+        re.escape(alias) for alias in sorted(aliases, key=len, reverse=True)))
+        if aliases else None)
 
     def replace(match):
         address = int(match.group(1), 16) & ~1
@@ -82,14 +110,62 @@ def substitute(text, core, provenance=False):
             return "%s /*=%s@0x%08x*/" % (name, match.group(0), address)
         return name
 
+    def replace_alias(match):
+        record = aliases[match.group(0)]
+        if not record.get("human"):
+            return match.group(0)
+        name = record["name"]
+        if provenance:
+            return "%s /*=%s@%s*/" % (name, match.group(0),
+                                       record["address"])
+        return name
+
+    def replace_segment(segment):
+        segment = _RAW_TOKEN.sub(replace, segment)
+        return alias_pattern.sub(replace_alias, segment) if alias_pattern else segment
+
     output = []
     position = 0
     for match in _SKIP.finditer(text):
-        output.append(_RAW_TOKEN.sub(replace, text[position:match.start()]))
+        output.append(replace_segment(text[position:match.start()]))
         output.append(match.group(0))
         position = match.end()
-    output.append(_RAW_TOKEN.sub(replace, text[position:]))
+    output.append(replace_segment(text[position:]))
     return "".join(output)
+
+
+def repair_internal_control_flow_labels(text, core, entry):
+    """Materialize verified interior labels locally in presentation sources.
+
+    The parity source for the controller setter models two branches beyond its
+    catalogued CFG extent as external oracles.  Original Thumb decoding proves
+    that both targets are instruction boundaries inside the same owner and set
+    fixed return codes before the owner's epilogue.  A cohesive C build must
+    not expose those labels as global functions.  Keep the parity source
+    unchanged and close them locally in the generated readable tree.
+
+    This is intentionally fail-closed: source drift must stop regeneration
+    instead of silently leaving either pseudo-function unresolved.
+    """
+    if core != "net" or int(entry) != 0x01008E74:
+        return text
+    declarations = (
+        "extern int FUN_01008fc0(void);\n"
+        "extern int FUN_01008fc6(void);"
+    )
+    if text.count(declarations) != 1:
+        raise ValueError("FUN_01008e74 interior-label declarations drifted")
+    definitions = (
+        "/* Original interior labels: 0x01008fc0 => -45, "
+        "0x01008fc6 => -12. */\n"
+        "static int FUN_01008fc0(void) { return -45; }\n"
+        "static int FUN_01008fc6(void) { return -12; }"
+    )
+    repaired = text.replace(declarations, definitions)
+    for symbol in ("FUN_01008fc0", "FUN_01008fc6"):
+        if repaired.count("extern int %s" % symbol):
+            raise ValueError("interior label remained external: %s" % symbol)
+    return repaired
 
 
 def raw_references(text):
