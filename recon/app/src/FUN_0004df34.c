@@ -1,8 +1,8 @@
-/* Reconstructed FUN_0004df34 @ 0x4df34  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0004df34 @ 0x4df34  owned extent: 0x8 bytes */
 
-extern void FUN_0004de68(void);
-void FUN_0004df34(int param_1, unsigned int param_2)
+extern void FUN_0004de68(void *stream);
+
+void FUN_0004df34(void)
 {
-    FUN_0004de68();
+    FUN_0004de68((void *)0x0008ad08u);
 }
-

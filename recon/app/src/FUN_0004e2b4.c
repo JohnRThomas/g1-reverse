@@ -1,37 +1,85 @@
-/* Reconstructed FUN_0004e2b4 @ 0x4e2b4  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0004e2b4 @ 0x4e2b4  owned extent: 0xae bytes */
 
 #include <stdint.h>
-extern unsigned FUN_0007f064(int);
-extern void FUN_00083ac2(int,int,void*);
-extern void FUN_0004d944(int,int,void*,int);
-unsigned FUN_0004e2b4(int *param_1,int param_2,int param_3,unsigned param_4,unsigned param_5,int param_6,int param_7){
-  unsigned uVar1; unsigned local_40; unsigned local_3c; int local_28; int local_24;
-  if (((param_1 != 0) && (param_2 != 0)) && (param_3 != 0)) {
-    local_3c = 0;
-    local_40 = param_4;
-    uVar1 = FUN_0007f064(param_2);
-    if (param_4 == (param_4 / uVar1) * uVar1) {
-      FUN_00083ac2(param_2,0x7f071,&local_40);
-      if (local_3c == 0) { return 0xfffffff2; }
-      if (((unsigned)(param_5 + param_6) <= local_3c) &&
-         (uVar1 = FUN_0007f064(param_2), param_5 == (param_5 / uVar1) * uVar1)) {
-        *param_1 = param_3;
-        param_1[1] = param_4;
-        param_1[3] = param_2;
-        param_1[4] = 0;
-        param_1[2] = 0;
-        param_1[5] = param_5;
-        if (param_6 == 0) { param_6 = local_3c - param_5; }
-        param_1[7] = param_7;
-        param_1[6] = param_6;
-        param_1[8] = -1;
-        return 0;
-      }
-      local_24 = 0x000f1105;
-    } else { local_24 = 0x000f10ce; }
-    local_28 = 2;
-    FUN_0004d944(0x000880d8,0x1040,&local_28,0);
-  }
-  return 0xfffffff2;
-}
 
+struct buffered_writer {
+    uint8_t *buffer;
+    uint32_t capacity;
+    uint32_t count;
+    void *device;
+    uint32_t committed;
+    uint32_t base;
+    uint32_t limit;
+    int (*transform)(uint8_t *buffer, uint32_t count, uint32_t offset);
+    int32_t state;
+};
+
+struct device_geometry {
+    uint32_t requested;
+    uint32_t available;
+};
+
+struct diagnostic_record {
+    uint32_t severity;
+    uintptr_t message;
+};
+
+extern uint32_t FUN_0007f064(void *device);
+extern void FUN_00083ac2(void *device, uintptr_t query,
+                         struct device_geometry *geometry);
+extern void FUN_0004d944(uintptr_t source, uint32_t event,
+                         const struct diagnostic_record *record,
+                         uint32_t reserved);
+
+int FUN_0004e2b4(struct buffered_writer *writer, void *device,
+                 uint8_t *buffer, uint32_t capacity, uint32_t base,
+                 uint32_t limit,
+                 int (*transform)(uint8_t *, uint32_t, uint32_t))
+{
+    struct device_geometry geometry = {
+        .requested = capacity,
+        .available = 0,
+    };
+    uintptr_t message;
+    uint32_t unit;
+
+    if (writer == 0 || device == 0 || buffer == 0)
+        return -14;
+
+    unit = FUN_0007f064(device);
+    if (capacity % unit != 0) {
+        message = 0x000f10ceu;
+        goto invalid;
+    }
+
+    FUN_00083ac2(device, 0x0007f071u, &geometry);
+    if (geometry.available == 0)
+        return -14;
+
+    if (geometry.available < base + limit ||
+        (unit = FUN_0007f064(device), base % unit != 0)) {
+        message = 0x000f1105u;
+        goto invalid;
+    }
+
+    writer->buffer = buffer;
+    writer->capacity = capacity;
+    writer->device = device;
+    writer->committed = 0;
+    writer->count = 0;
+    writer->base = base;
+    writer->transform = transform;
+    writer->limit = limit != 0 ? limit : geometry.available - base;
+    writer->state = -1;
+    return 0;
+
+invalid:
+    {
+        struct diagnostic_record diagnostic = {
+            .severity = 2,
+            .message = message,
+        };
+        FUN_0004d944(0x000880d8u, 0x1040u, &diagnostic, 0);
+    }
+    return -14;
+}

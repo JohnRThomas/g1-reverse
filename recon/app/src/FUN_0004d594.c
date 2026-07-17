@@ -7,7 +7,7 @@ extern void FUN_0007e2fa(uintptr_t, ...);
 extern void FUN_0007e2ec(uintptr_t, uint32_t);
 extern uint64_t thunk_FUN_00074f68(void);
 extern void FUN_0004d4a8(uint32_t low, uint32_t high);
-extern int FUN_0007e50c(void *object);
+extern int FUN_0004d588(void);
 
 struct listener_entry {
     void (**vtable)(struct listener_entry *, uint32_t);
@@ -49,5 +49,5 @@ int FUN_0004d594(void)
     }
     *deadline += UINT64_C(1000);
 
-    return FUN_0007e50c((void *)0x20003648u);
+    return FUN_0004d588();
 }

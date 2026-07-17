@@ -6,11 +6,15 @@ extern void FUN_0004c8f8(int,int,void*,int);
 extern int FUN_0004e604(void*,int,unsigned,void*,unsigned);
 
 int FUN_0004e780(int param_1, unsigned param_2){
-    unsigned uVar1 = 0x0007f211;
     int iVar7 = param_1 + 8;
-    unsigned char auStack_6c[76];
-    unsigned char uStack_75;
-    int local_74; short local_70;
+    struct {
+        unsigned char reserved[11];
+        unsigned char marker;
+        int owner;
+        short key;
+        unsigned char alignment[2];
+        unsigned char data[76];
+    } frame;
     unsigned short r4v = (unsigned short)(*(unsigned short*)(param_1+0x38) + 1);
     int iVar2, iVar3;
     unsigned short sVar4, sVar6, sVar5;
@@ -18,9 +22,9 @@ int FUN_0004e780(int param_1, unsigned param_2){
     sVar4 = r4v;
     sVar6 = (unsigned short)(sVar4 - 1);
     if (sVar6 == 0x8000) return 0;
-    iVar2 = FUN_0007e9dc(iVar7, sVar6, auStack_6c, 0x4a);
+    iVar2 = FUN_0007e9dc(iVar7, sVar6, frame.data, 0x4a);
     sVar5 = (unsigned short)(sVar4 + 0x3fff);
-    iVar3 = FUN_0007e9dc(iVar7, sVar5, &uStack_75, 1);
+    iVar3 = FUN_0007e9dc(iVar7, sVar5, &frame.marker, 1);
     if (iVar2 > 0){
         if (iVar3 > 0) goto L806;
         goto L7d8;
@@ -38,12 +42,12 @@ int FUN_0004e780(int param_1, unsigned param_2){
     r4v = sVar6;
     goto LOOP;
   L806:
-    auStack_6c[iVar2] = 0;
-    local_74 = iVar7;
-    local_70 = (short)sVar5;
-    iVar2 = FUN_0004e604(auStack_6c, iVar3, uVar1, &local_74, param_2);
+    frame.data[iVar2] = 0;
+    frame.owner = iVar7;
+    frame.key = (short)sVar5;
+    iVar2 = FUN_0004e604(frame.data, iVar3, 0x0007f211,
+                         &frame.owner, param_2);
     if (iVar2 != 0) return iVar2;
     r4v = sVar6;
     goto LOOP;
 }
-

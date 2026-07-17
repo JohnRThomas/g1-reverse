@@ -1,39 +1,55 @@
-/* Reconstructed FUN_00052180 @ 0x52180  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00052180 @ 0x52180. */
 #include <stdint.h>
-extern int FUN_00080872(int,void*,int,void*);
-extern int FUN_00052038(int,void*,int,int);
-extern int FUN_000809f6(int);
-extern int FUN_000516ac(int);
-extern void FUN_00051fe4(void);
-extern void FUN_0005160c(int,int,unsigned int);
-int FUN_00052180(int param_1){
-  int iVar1; unsigned int uVar2; int uVar3; int iVar4;
-  int local_34; int uStack_30; char auStack_2c[8]; int local_24,local_20,local_1c; int* local_18; char local_14;
-  local_24 = 0x000f272f;
-  iVar4 = *(int*)(param_1+8);
-  local_20 = 4;
-  local_34 = 1;
-  uStack_30 = 0;
-  local_1c = 0x00085f8d;
-  local_18 = &local_34;
-  local_14 = 0;
-  iVar1 = FUN_00080872(*(int*)(param_1+4)+4, &local_24, 1, &uStack_30);
-  if(iVar1==0){
-    iVar1 = FUN_00052038(local_34, auStack_2c, 0, 0);
-    uVar3 = 0;
-    if((iVar1==0) && (iVar1=FUN_000809f6(local_34), iVar1!=0)){
-      uVar2 = 9;
-    } else {
-      uVar2 = FUN_000516ac(local_34);
-      FUN_00051fe4();
-      if(uVar2==0){ return 0; }
-      uVar2 = uVar2 & 0xffff;
-    }
-    FUN_0005160c(iVar4+4, 1, uVar2);
-  } else {
-    uVar3 = 3;
-  }
-  (void)local_20; (void)local_1c; (void)local_18; (void)local_14;
-  return uVar3;
-}
 
+extern int FUN_00080872(int source, void *descriptor, unsigned int count,
+                        uint32_t *auxiliary);
+extern int FUN_00052038(uint32_t handle, void *scratch,
+                        uint32_t option, uint32_t context);
+extern int FUN_000809f6(uint32_t handle);
+extern unsigned int FUN_000516ac(uint32_t handle);
+extern void FUN_00051fe4(void);
+extern void FUN_0005160c(int destination, unsigned int command,
+                         unsigned int status);
+
+struct parse_result {
+    uint32_t handle;
+    uint32_t auxiliary;
+};
+
+struct request_descriptor {
+    uint32_t token;
+    uint32_t token_length;
+    uint32_t callback;
+    struct parse_result *result;
+    uint8_t flags;
+};
+
+uint32_t FUN_00052180(const uint8_t *request)
+{
+    int destination = *(const int *)(request + 8);
+    struct parse_result result = {1, 0};
+    uint8_t parse_scratch[8];
+    struct request_descriptor descriptor = {
+        0x000f272f, 4, 0x00085f8d, &result, 0
+    };
+
+    int status = FUN_00080872(*(const int *)(request + 4) + 4,
+                              &descriptor, 1, &result.auxiliary);
+    if (status != 0)
+        return 3;
+
+    status = FUN_00052038(result.handle, parse_scratch, 0, 0);
+    unsigned int response;
+    if (status == 0 && FUN_000809f6(result.handle) != 0) {
+        response = 9;
+    } else {
+        response = FUN_000516ac(result.handle);
+        FUN_00051fe4();
+        if (response == 0)
+            return 0;
+        response &= 0xffffu;
+    }
+
+    FUN_0005160c(destination + 4, 1, response);
+    return 0;
+}

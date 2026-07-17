@@ -6,9 +6,8 @@ extern void FUN_0004e474(void);
 
 void FUN_0004e484(void)
 {
-    volatile S *p1 = (volatile S *)0x2000a10cUL;
+    volatile S * volatile p1 = (volatile S *)0x2000a10cUL;
     p1->a = 0;
     p1->b = 0;
     FUN_0004e474();
 }
-

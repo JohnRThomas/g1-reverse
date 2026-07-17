@@ -14,7 +14,7 @@ uint32_t FUN_00052604(int param_1){
   int iVar3;
   volatile int local_2c[5];
   volatile uint32_t local_18;
-  volatile void* local_14;
+  void * volatile local_14;
   iVar3 = *(int*)(param_1+8);
   iVar1 = FUN_0004e048(9, (void*)local_2c);
   if (iVar1 < 0){
@@ -27,7 +27,7 @@ uint32_t FUN_00052604(int param_1){
     if (iVar1 == 0){
       local_14 = (void*)0xf28b4;
       local_18 = 2;
-      FUN_0004d944(0x88220, 0x1040, (void*)&local_18);
+      FUN_0004d944(0x88220, 0x1040, (void*)&local_18, 0);
       FUN_0007ef7e(local_2c[0]);
       uVar2 = 3;
     } else {
@@ -48,4 +48,3 @@ uint32_t FUN_00052604(int param_1){
   if (iVar1 != 0) return 0;
   return 7;
 }
-
