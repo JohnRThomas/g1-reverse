@@ -72,9 +72,51 @@ class OwnershipAuditTest(unittest.TestCase):
         self.assertFalse(report["evidence_complete"])
 
     def test_map_parser_retains_archive_member(self):
-        text = """ .text.cc_init  0x00001000 0x10 /sdk/lib.a(right.o)\n+                0x00001000 cc_init\n+"""
+        text = """ .text.cc_init  0x00001000 0x10 /sdk/lib.a(right.o)
+                0x00001000 cc_init
+"""
         defs = ownership.parse_map(text, {}, "fixture.map")
         self.assertTrue(any(item.symbol == "cc_init" and "right.o" in item.origin for item in defs))
+
+    def test_nm_ignores_section_file_and_local_pseudo_symbols(self):
+        text = """/b/recon.o:00000000 n .ARM.attributes
+/b/recon.o:00000000 N .debug_info
+/b/recon.o:00000000 a source.c
+/b/recon.o:00000000 t local_helper
+/b/recon.o:00000010 00000008 T public_function
+"""
+        defs, _ = ownership.parse_nm(text, {}, "fixture")
+        self.assertEqual([item.symbol for item in defs], ["public_function"])
+
+    def test_wrapped_map_section_does_not_inherit_previous_owner(self):
+        text = """ .text.idle 0x00001000 0x18 zephyr/lib.a(idle.c.obj)
+                0x00001000 idle
+ .text.a_very_long_function_name_that_wraps
+                0x00001018 0x20 app/libapp.a(real.c.obj)
+                0x00001018 real_function
+ .ARM.attributes
+                0x00000000 0x34 app/libapp.a(real.c.obj)
+"""
+        defs = ownership.parse_map(text, {}, "fixture.map")
+        owners = {item.symbol: item.origin for item in defs}
+        self.assertIn("idle.c.obj", owners["idle"])
+        self.assertIn("real.c.obj", owners["real_function"])
+        self.assertNotIn(".ARM.attributes", owners)
+
+    def test_concise_report_is_bounded(self):
+        report = ownership.audit(self.manifest, "app", [], set(), False)
+        text = ownership.concise_report(report)
+        self.assertIn("ownership audit app: UNAVAILABLE", text)
+        self.assertNotIn('"excluded_owners_missing"', text)
+
+    def test_composite_archive_unit_matches_member_object(self):
+        row = entry("0x40", "FUN_00000040", "helper", "helper",
+                    "zephyr/libfoo.a(source.c.obj)", "static_helper")
+        units = ownership._expected_units(row)
+        definition = ownership.Definition("some_global", "/build/source.c.obj",
+                                          "upstream", "/sdk/source.c", "fixture")
+        self.assertIn("source.c.obj", units)
+        self.assertTrue(ownership._definition_matches_unit(definition, units))
 
     def test_merged_elf_owner_is_inconclusive(self):
         defs, undef = ownership.parse_nm(

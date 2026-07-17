@@ -31,6 +31,11 @@ automatically. A partial object set can expose collisions, but does not authoriz
 "owner missing" findings. A merged ELF without a map reports owner provenance as
 inconclusive rather than guessing an object.
 
+Standard output is a concise, bounded summary. `--output report.json` writes the
+complete machine-readable report; use `--json` only when the full report is
+explicitly wanted on standard output. The internal object scan uses global nm
+symbols only, excluding local, section, debug, and file pseudo-symbols.
+
 Run the standard-library fixture tests with:
 
 ```sh
