@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "core": "net",
+  "image": "netcore_image.bin",
+  "image_base": "0x01008000",
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "policy": {
+    "preserve_absolute_address_backmap": true,
+    "never_duplicate_overlapping_storage": true,
+    "standalone_storage_requires_exact_image_bytes": true,
+    "interior_addresses_allocate_no_storage": true
+  },
+  "resolutions": [
+    {
+      "symbol": "rodata_103a749",
+      "address": "0x0103a749",
+      "classification": "thumb_valued_code_pointer_not_rodata",
+      "resolution": "reviewed_absolute_no_storage_symbol",
+      "linker_expression": "PROVIDE(rodata_103a749 = 0x0103a749);",
+      "storage_span": 0,
+      "thumb_target_address": "0x0103a748",
+      "containing_instruction": "0x0103a746: 32-bit BL spanning [0x0103a746,0x0103a74a)",
+      "reference": {
+        "function": "FUN_0102d69c",
+        "literal_address": "0x0102d6dc",
+        "argument": 7,
+        "consumer": "FUN_010354bc/rpmsg_create_ept-compatible ns_unbind callback slot"
+      },
+      "evidence": "The literal is odd and FUN_0102d69c stores it at [sp,#8] before its seven-argument call. Clearing Thumb bit points into the second halfword of a decoded 32-bit BL in executable code, not a data object or independently cataloged C entry. The historical rodata spelling is retained only as a reversible linker backmap."
+    },
+    {
+      "symbol": "rodata_103c190",
+      "address": "0x0103c190",
+      "classification": "missing_standalone_lookup_table",
+      "resolution": "byte_exact_definition",
+      "source": "recon/net/data/rodata_0x103c190.c",
+      "accessed_span": 43,
+      "storage_span": 43,
+      "alignment": 4,
+      "sha256": "c43496758ce1d40016a902522f1b39558d12867ab33146ffe6295a300836c27e",
+      "range": "[0x0103c190,0x0103c1bb)",
+      "next_independent_object": "rodata_103c1bc@0x0103c1bc",
+      "unowned_gap_after": "[0x0103c1bb,0x0103c1bc)",
+      "references": [
+        "FUN_0100e610: compare index <= 42 then ldrb [table,index]",
+        "FUN_0100e634: compare index <= 42 then ldrb [table,index]"
+      ],
+      "evidence": "Both original functions load the same literal base. Their maximum reachable index is 42, proving exactly 43 accessed bytes. The next independently referenced table begins at 0x0103c1bc; the definition intentionally does not claim its preceding byte."
+    },
+    {
+      "symbol": "rodata_103c4cc",
+      "address": "0x0103c4cc",
+      "classification": "interior_alias_into_existing_string",
+      "resolution": "reviewed_interior_no_storage_alias",
+      "base_symbol": "rodata_103c4d0",
+      "base_address": "0x0103c4d0",
+      "offset": -4,
+      "linker_expression": "PROVIDE(rodata_103c4cc = rodata_103c4d0 - 4);",
+      "storage_span": 0,
+      "accessed_span": 3,
+      "accessed_bytes_hex": "6c2f6e",
+      "containing_string_range": "[0x0103c468,0x0103c4da)",
+      "containing_string": "/jenkins_workspace/workspace/ub_test-fw-nrfconnect-ble_master/dragoon/build_nrf53/build_mpsl/nrfx/hal/nrf_timer.h",
+      "reference": "FUN_0101fdd0/controller_radio_request_configure bounds the index to 0..2 before ldrb [0x0103c4cc,index]",
+      "evidence": "Backward/forward NUL-boundary scan of the immutable image proves 0x0103c4cc and the already pinned 0x0103c4d0 are offsets 100 and 104 in the same string. The alias preserves that overlap and allocates no duplicate bytes."
+    }
+  ]
+}

@@ -406,6 +406,9 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00076a88): 0x06,  # newlib nanf; literal begins at +0x08
     ("app", 0x0007c058): 0x28,  # send_touch_click_event
     ("app", 0x0007c084): 0x0a,  # gpio_pin_set_dt
+    # Pinned zcbor_encode.c:str_encode.  Both direct references are typed
+    # tail veneers (bstr/tstr), and the next independent entry is 0x8629e.
+    ("app", 0x00086228): 0x76,
     # lc3_tns_analyze owns the complete floating-point analysis/filter body
     # through 0x709c6; trailing threshold literals begin at 0x709c8.
     ("app", 0x0006ffd8): 0x9ee,
@@ -8584,7 +8587,42 @@ def _lc3_tns_analysis_case(dt, bandwidth, near_nyquist, frame_bytes,
         {})
 
 
+def _zcbor_str_encode_case(payload_offset, payload_end_offset, value_offset,
+                           length, major_type, oracle_results=()):
+    """Concrete zcbor state/string pair for the omitted static str encoder."""
+    state = emu.SCRATCH + 0x1000
+    string = emu.SCRATCH + 0x1100
+    payload_base = emu.SCRATCH + 0x2000
+    payload = payload_base + payload_offset
+    payload_end = payload_base + payload_end_offset
+    value = 0 if value_offset is None else payload_base + value_offset
+    state_image = bytearray(16)
+    state_image[0:4] = payload.to_bytes(4, "little")
+    state_image[12:16] = payload_end.to_bytes(4, "little")
+    string_image = value.to_bytes(4, "little") + int(length).to_bytes(4, "little")
+    return (
+        {0: state, 1: string, 2: int(major_type)},
+        [(state, bytes(state_image)), (string, string_image),
+         (payload_base, bytes(range(64)))],
+        {ordinal: {0: int(result)}
+         for ordinal, result in enumerate(oracle_results)},
+    )
+
+
 REVIEWED_ORACLE_CASES = {
+    # Pinned zcbor_encode.c:str_encode.  These production-shaped state/string
+    # pairs cover the initial empty-buffer guard, body-length capacity guard,
+    # encoded-header capacity guard, header failure, copying success, and
+    # in-place success.  The successful header oracle deliberately returns a
+    # non-boolean value because the shipped body preserves its exact r0.
+    ("app", 0x00086228): [
+        _zcbor_str_encode_case(16, 16, 0, 0, 2),
+        _zcbor_str_encode_case(12, 16, 0, 5, 3),
+        _zcbor_str_encode_case(12, 16, 0, 3, 2, (1,)),
+        _zcbor_str_encode_case(0, 16, 8, 3, 3, (1, 0)),
+        _zcbor_str_encode_case(0, 16, 8, 3, 2, (1, 0x1234, 0)),
+        _zcbor_str_encode_case(8, 24, 8, 3, 3, (1, 0x5678)),
+    ],
     # Frame writer: capacity rejection, reservation failure, each of the three
     # ordered write failures, short/extended headers, and complete success.
     # The cursor and write statuses are callee results, so random scalar

@@ -57,6 +57,7 @@ target_sources(app PRIVATE
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x101fdcc.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x10217fc.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x10237a4.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x103c190.c"
 )
 
 # Symbolized reconstruction inputs include the generated reversible VA/name
