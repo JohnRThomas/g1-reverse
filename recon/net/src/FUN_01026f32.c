@@ -1,7 +1,8 @@
 /* net-core FUN_01026f32 @ 0x1026f32  (CFG-directed candidate) */
 #include <stdint.h>
 
-extern void FUN_01008d00(uint32_t reason, uint32_t location);
+extern void sdc_assertion_fail(uint32_t reason, uint32_t location);
+/* Back-map: sdc_assertion_fail <= FUN_01008d00 @ 0x01008d00. */
 extern void FUN_0100951c(void *state, void *descriptor);
 extern void FUN_01025998(void *destination, const void *source, uint32_t length);
 extern uint32_t FUN_01026856(uint8_t mode);
@@ -39,7 +40,7 @@ uint32_t FUN_01026f32(uint8_t *state, uint32_t amount_argument,
         cursor[1] = 0;
     } else {
         if (read_u16(cursor) != accumulated) {
-            FUN_01008d00(0x14u, 0x204u);
+            sdc_assertion_fail(0x14u, 0x204u);
         }
         uint32_t trailer_offset = FUN_01026856(state[0x13]);
         const uint8_t *source = payload + payload_offset + accumulated +
