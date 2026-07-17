@@ -1,5 +1,7 @@
 /* Reconstructed FUN_000720d0 @ 0x720d0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include <stdbool.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_00072040(int,...);
 extern int FUN_0007205c(int,...);
 extern int FUN_00072078(int,...);
@@ -13,23 +15,28 @@ extern int FUN_0008688e(int,...);
 extern int FUN_00086c04(int,...);
 
 /* This firmware entry is invoked in thread mode by its recovered callers. */
-static inline int ipsr(void){return 0;}
-static inline int rd_basepri(void){return 0;}
-static inline void wr_basepri_max(int v){(void)v;}
-static inline void isb(void){__atomic_signal_fence(__ATOMIC_SEQ_CST);}
+static inline __attribute__((always_inline)) unsigned ipsr(void){return __get_IPSR();}
+static inline __attribute__((always_inline)) bool privileged(void)
+{
+    return ipsr() != 0 || (__get_CONTROL() & 1u) == 0;
+}
+static inline __attribute__((always_inline)) unsigned rd_basepri(void){return __get_BASEPRI();}
+static inline __attribute__((always_inline)) void wr_basepri_max(unsigned v){__set_BASEPRI_MAX(v);}
+static inline __attribute__((always_inline)) void wr_basepri(unsigned v){__set_BASEPRI(v);}
+static inline __attribute__((always_inline)) void isb(void){__ISB();}
 
 unsigned FUN_000720d0(int param_1, unsigned param_2, int param_3, int param_4)
 {
     int iVar1; unsigned uVar2; unsigned uVar3; int iVar4; unsigned uVar5; int iVar6; unsigned uVar7; int bVar8; int iVar9;
     uVar3 = 0;
-    bVar8 = ipsr();
+    bVar8 = privileged();
     if(bVar8){ uVar3 = ipsr(); uVar3 = uVar3 & 0x1f; }
     if(uVar3==0 || (param_3==0 && param_4==0)){
         iVar6 = param_1 + 8;
         uVar7 = 0;
-        bVar8 = ipsr();
+        bVar8 = privileged();
         if(bVar8){ uVar7 = rd_basepri(); }
-        bVar8 = ipsr();
+        bVar8 = privileged();
         if(bVar8 && (uVar3 = rd_basepri(), uVar3==0 || 0x20 < uVar3)){
             wr_basepri_max(0x20);
         }
@@ -77,8 +84,8 @@ unsigned FUN_000720d0(int param_1, unsigned param_2, int param_3, int param_4)
             }
             iVar1 = FUN_0007205c(iVar6);
             if(iVar1 != 0){
-                bVar8 = ipsr();
-                if(bVar8){ wr_basepri_max(uVar7); }
+            bVar8 = privileged();
+            if(bVar8){ wr_basepri(uVar7); }
                 isb();
                 return uVar5;
             }

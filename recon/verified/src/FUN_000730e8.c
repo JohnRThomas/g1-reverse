@@ -3,7 +3,7 @@ extern void FUN_0007e2fa(int,...);
 extern void FUN_0007e2ec(int,...);
 extern void FUN_00071eac(int,int,unsigned,int,int,int,int,unsigned,int);
 extern void FUN_00086412(int);
-extern void FUN_00073a78(int);
+extern void FUN_0008641c(int);
 void FUN_000730e8(int param_1,int param_2,unsigned param_3,unsigned param_4,int *param_5){
   unsigned uVar1;
   if(param_1==0){
@@ -28,7 +28,6 @@ void FUN_000730e8(int param_1,int param_2,unsigned param_3,unsigned param_4,int 
     *(volatile unsigned*)(param_1+0xf0)=uVar1;
     FUN_00071eac(param_1,param_2,param_3,0x00072ab1,param_1,0,0,param_4,0);
     if(param_5!=0 && *param_5!=0) FUN_00086412(param_1);
-    FUN_00073a78(param_1); return;
+    FUN_0008641c(param_1); return;
   }
 }
-

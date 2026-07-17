@@ -4,7 +4,7 @@ typedef unsigned int uint;
 
 extern void FUN_000500ac(int);
 extern void FUN_00066e70(uint32_t,int,int,uint32_t,int);
-extern void FUN_0007e2ec(uint32_t,uint32_t);
+extern void FUN_0007e2ec(uint32_t,uint32_t) __attribute__((noreturn));
 extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void FUN_00066ec0(int *param_1, uint32_t *param_2)
@@ -44,12 +44,9 @@ void FUN_00066ec0(int *param_1, uint32_t *param_2)
   }
   goto SWITCH_DONE;
 FAIL:
-  for (;;) {
-    FUN_0007e2fa(0x000f7a30UL,0x00099cbdUL,0x000f6df0UL,0x15c);
-    FUN_0007e2ec(0x000f6df0UL,0x15c);
-    if (uVar9 == 0x000f4240UL) break;
-  }
-  uVar13 = 0x10000000UL;
+  FUN_0007e2fa(0x00099cbdUL,0x000f7a30UL,0x000f6df0UL,0x15c);
+  FUN_0007e2ec(0x000f6df0UL,0x15c);
+  __builtin_unreachable();
 SWITCH_DONE:;
 
   int iVar10 = uVar14 * 0x24 + iVar7;
@@ -128,4 +125,3 @@ SWITCH_DONE:;
   if (*(volatile int32_t*)(iVar7 + (uint32_t)*(volatile uint8_t*)(p1 + 4) * 0x24) == 0) return;
   FUN_000500ac((*(volatile int32_t*)p1 << 0xc) >> 0x18);
 }
-

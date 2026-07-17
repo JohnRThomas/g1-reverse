@@ -8,7 +8,7 @@ extern void FUN_00073cdc(void*,void*);
 extern void FUN_00074d74(void*);
 extern void FUN_0007e2ec(unsigned,unsigned);
 extern void FUN_0007e2fa(unsigned,...);
-extern void FUN_00086634(unsigned);
+extern void FUN_0008664c(void);
 
 void FUN_000741a4(uint8_t *param_1){
     unsigned uVar6=0;
@@ -32,7 +32,7 @@ void FUN_000741a4(uint8_t *param_1){
     iVar5 = FUN_0007205c((void*)0x2000b490);
     if (iVar5 != 0){
         if (*(int*)(0x2000b448+8) != (int)(intptr_t)param_1) return;
-        FUN_00086634(uVar6);
+        FUN_0008664c();
         return;
     }
     FUN_0007e2fa(0x00099cbd,0x000f08f4,0x000f08c7,0xf0);
@@ -40,4 +40,3 @@ void FUN_000741a4(uint8_t *param_1){
     uVar6=0xf0;
     FUN_0007e2ec(0x000f08c7,uVar6);
 }
-

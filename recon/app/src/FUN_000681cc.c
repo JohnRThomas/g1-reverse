@@ -14,7 +14,6 @@ void FUN_000681cc(int param_1)
         }
         return;
     }
-    FUN_0007e2fa(0x000f7ad6, 0x00099cbd, 0x000f7a9f, 0x51);
+    FUN_0007e2fa(0x00099cbd, 0x000f7ad6, 0x000f7a9f, 0x51);
     FUN_0007e2ec(0x000f7a9f, 0x51);
 }
-

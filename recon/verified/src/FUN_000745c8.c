@@ -1,5 +1,6 @@
 /* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int FUN_000501d4(int,...);
 extern int FUN_00072040(int,...);
 extern int FUN_0007205c(int,...);
@@ -10,6 +11,15 @@ extern int FUN_0007e2ec(int,...);
 extern int FUN_0007e2fa(int,...);
 void FUN_000745c8(void)
 {
+  if (__get_IPSR() != 0) {
+    FUN_0007e2fa(0x99cbd,0xf801f,0xf82f4,0x57a);
+    FUN_0007e2fa(0xf53ff);
+    FUN_0007e2ec(0xf82f4,0x57a);
+    return;
+  }
+  unsigned key = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
   int iVar2 = FUN_00072040(0x2000b490);
   int iVar3 = 0x2000b448;
   if (iVar2 == 0) {
@@ -45,9 +55,8 @@ void FUN_000745c8(void)
 L:
   FUN_000737d8(1);
   int r = FUN_0007205c(0x2000b490);
-  if (r != 0) { FUN_000501d4(0); return; }
+  if (r != 0) { FUN_000501d4(key); return; }
   FUN_0007e2fa(0x99cbd,0xf08f4,0xf08c7,0x111);
   FUN_0007e2fa(0xf090b,0x2000b490);
   FUN_0007e2ec(0xf08c7,0x111);
 }
-

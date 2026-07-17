@@ -15,7 +15,7 @@ int FUN_0006567c(uint param_1, uint param_2, byte *param_3, int *param_4)
     uVar6 = param_1;
     pbVar13 = param_3;
     uStack_1c = (unsigned)param_4;
-    uVar12 = FUN_00065434(0);
+    uVar12 = FUN_00065434(param_1);
     iVar9 = (int)((u64)uVar12 >> 0x20);
     iVar5 = (int)uVar12;
     if(iVar9 != 0){
@@ -40,13 +40,16 @@ int FUN_0006567c(uint param_1, uint param_2, byte *param_3, int *param_4)
                 if(3 < uVar10) return 0x0bad0004;
                 bVar2 = **(byte**)(param_3+4);
                 iVar9 = (uint)bVar2 * 4;
+                volatile uint *channel_reg =
+                    (volatile uint *)(uintptr_t)(iVar9 + 0x5000d510);
                 if(uVar10 == 0){
-                    *(unsigned*)(iVar9 + 0x5000d510) = 0;
-                    *(unsigned*)(iVar9 + 0x5000d510) = 0;
+                    *channel_reg = 0;
+                    *channel_reg = 0;
                 } else {
-                    *(uint*)(iVar9+0x5000d510) = *(uint*)(iVar9+0x5000d510) & 0xfffffffc;
-                    *(uint*)(iVar9+0x5000d510) = *(uint*)(iVar9+0x5000d510) & 0xfffcc0ff;
-                    *(uint*)(iVar9+0x5000d510) = ((param_1 & 0x3f) << 8) | *(uint*)(iVar9+0x5000d510) | (uVar10 << 0x10);
+                    *channel_reg = *channel_reg & 0xfffffffc;
+                    *channel_reg = *channel_reg & 0xfffcc0ff;
+                    *channel_reg = ((param_1 & 0x3f) << 8) |
+                                   *channel_reg | (uVar10 << 0x10);
                     *(volatile ushort*)(0x20002bc0 + iVar11*2) = uVar8 | ((ushort)bVar2 << 0xd) | 0x20;
                 }
             }
@@ -75,4 +78,3 @@ int FUN_0006567c(uint param_1, uint param_2, byte *param_3, int *param_4)
     }
     return 0x0bad0000;
 }
-

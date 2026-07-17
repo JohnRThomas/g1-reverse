@@ -13,9 +13,10 @@ static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
 static inline void wr_basepri(u32 v){__set_BASEPRI(v);}
 static inline void isb_(void){__ISB();}
 u32 FUN_00072f28(u32 param_1, int param_2, u32 param_3){
-    u32 local_14 = param_1;
-    u32 uStack_10 = param_3;
-    (void)uStack_10;
+    struct lookup_key {
+        u32 value;
+        u32 qualifier;
+    } key = { param_1, param_3 };
     u32 uVar4, uVar5;
     if(param_2==0){
         FUN_0007e2fa(0x00099cbd, 0x000f82e0, 0x000f820f, 0x174, param_1);
@@ -35,7 +36,7 @@ retry:
             goto retry;
         }
         FUN_00072078(0x2000b480);
-        uVar4 = FUN_00072cd4(param_2, &local_14);
+        uVar4 = FUN_00072cd4(param_2, &key);
         iVar3 = FUN_0007205c(0x2000b480);
         if(iVar3!=0){
             wr_basepri(uVar5);
