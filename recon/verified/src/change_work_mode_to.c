@@ -9,33 +9,59 @@ extern int FUN_00025b78(int,...);
 extern int FUN_0007c038(int,...);
 extern int FUN_00086c78(int,...);
 
-void change_work_mode_to(uint param_1){
-  volatile char *pcVar1 = (volatile char*)0x2000ff4b;
-  int *piVar2; int iVar4 = 3000; uint uVar3; int i;
-  while ((piVar2 = (int*)0x200069fc, *pcVar1 != 0 && (iVar4 = iVar4 - 1, iVar4 != 0))) {
+void change_work_mode_to(uint mode)
+{
+  static const unsigned char values[10][10] = {
+    {1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,1,0,0,0,0,1,1},
+    {1,1,2,1,1,0,1,1,1,1},
+    {0,0,1,1,1,0,1,1,1,1},
+    {0,0,0,1,1,0,0,0,1,1},
+    {0,0,0,1,1,0,0,0,1,1},
+    {0,0,0,1,1,0,0,0,1,1},
+    {0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,1},
+    {0,1,1,0,0,1,1,1,1,1},
+  };
+  static const unsigned short masks[10] = {
+    0x10,0x100,0x20,0x80,0x40,8,2,1,0x400,0x800
+  };
+  volatile unsigned char *busy = (volatile unsigned char *)0x2000ff4b;
+  volatile int *state_slot = (volatile int *)0x200069fc;
+  int retries = 3000;
+
+  while (*busy != 0 && --retries != 0)
     FUN_0007c038(1);
-  }
-  *pcVar1 = 1;
-  iVar4 = *piVar2;
-  if ((uint)*(volatile byte*)(iVar4 + 1) != param_1) {
-    *(volatile char*)(iVar4 + 1) = (char)param_1;
+
+  *busy = 1;
+  int state = *state_slot;
+  if ((uint)*(volatile byte *)(state + 1) != mode) {
+    *(volatile byte *)(state + 1) = (byte)mode;
     if (0 < *(volatile int*)0x2000230c) {
-      if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x9976b,0x99bb7,param_1 & 0xff);
+      if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x9976b,0x99bb7,mode & 0xff);
       else FUN_00019c70(0);
     }
-    uVar3 = *(volatile byte*)(*piVar2 + 1);
-    if (uVar3 < 10) {
-      switch (uVar3) {
-        case 1: for(i=0;i<12;i++) FUN_00016854(0,0); break;
-        case 2: for(i=0;i<11;i++) FUN_00016854(0,0); break;
-        case 7: case 9: for(;;) FUN_00016854(0,0);
-        default: for(i=0;i<10;i++) FUN_00016854(0,0); break;
+    unsigned selected = *(volatile byte *)(*state_slot + 1);
+    if (selected < 10) {
+      if (selected == 7) {
+        FUN_000167f4(1);
+      } else {
+        for (unsigned i = 0; i < 10; ++i) {
+          unsigned mask = masks[i];
+          if ((selected == 3 || selected == 8 || selected == 9) && i < 2)
+            mask = masks[1 - i];
+          FUN_00016854(values[selected][i], mask);
+        }
+        if (selected == 1) {
+          unsigned char message[64];
+          FUN_00086c78((int)(message + 4), 0, 60);
+          *(unsigned short *)message = 0x801;
+          FUN_00025b78((int)message, 4);
+        } else if (selected == 2) {
+          FUN_00086c78(*state_slot + 0xef, 0, 1500);
+        }
       }
-      *pcVar1 = 0;
-      return;
     }
   }
-  *pcVar1 = 0;
-  return;
+  *busy = 0;
 }
-

@@ -1,4 +1,5 @@
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
+#include <stdint.h>
 extern int DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int FUN_00017688(unsigned int, unsigned int);
 extern void FUN_00017768(unsigned int, unsigned int, unsigned int);
@@ -18,20 +19,28 @@ unsigned char button_init(void)
     unsigned int uVar7,uVar8,uVar9,uVar10,uVar11,uVar12,uVar13;
     unsigned int uVar14 = 0, uVar18;
     void *pcVar17;
+    unsigned int gpio_specs[9][2];
+    volatile const unsigned int *spec_data =
+        (volatile const unsigned int *)0x00088340UL;
 
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x10000);
-    FUN_00017688(0, 0x30000);
+    for (unsigned int spec = 0; spec < 9; ++spec) {
+        gpio_specs[spec][0] = spec_data[spec * 2];
+        gpio_specs[spec][1] = spec_data[spec * 2 + 1];
+    }
+
+    FUN_00017688((uintptr_t)gpio_specs[0], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[1], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[2], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[3], 0x10000);
+    FUN_00017688((uintptr_t)gpio_specs[4], 0x30000);
     FUN_00017768(0x00087b60UL, 0x18, 1);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[5], 0x30000);
     FUN_00017768(0x00087b60UL, 0x13, 0);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[6], 0x30000);
     FUN_00017768(0x00087b60UL, 0x15, 0);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[7], 0x30000);
     FUN_00017768(0x00087b60UL, 0x1e, 1);
-    FUN_00017688(0, 0x30000);
+    FUN_00017688((uintptr_t)gpio_specs[8], 0x30000);
     FUN_00017768(0x00087b60UL, 0x17, 0);
 
     iVar16 = 0x00087b48;
@@ -182,4 +191,3 @@ LAB_c40:
     }
     return bVar4;
 }
-

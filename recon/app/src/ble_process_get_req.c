@@ -192,11 +192,11 @@ void ble_process_get_req(uint8_t *context, const uint8_t *packet,
     case 0x3e: {
         LOG_AT(0);
         uintptr_t source = (uintptr_t)FUN_000167a8();
-        FUN_00086c04(data, source + 0x10c6, 0xc0);
-        response[0] = command;
-        response[1] = 0xc9;
-        FUN_00086c04(response + 2, (uintptr_t)data, 0xc0);
-        (*(send_response_fn *)(context + 0x0c))(response, 0xc2);
+        FUN_00086c04(response + 0x18, source + 0x10c6, 0xc0);
+        data[0] = command;
+        data[1] = 0xc9;
+        FUN_00086c04(data + 2, (uintptr_t)(response + 0x18), 0xc0);
+        (*(send_response_fn *)(context + 0x0c))(data, 0xc2);
         return;
     }
     default:

@@ -1,6 +1,6 @@
 /* Reconstructed cleanAppLanguageInfo @ 0x23b78  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(int, int);
 extern int FUN_000720d0(void*, void*, int, int);
 extern void FUN_00072880(void*);
 extern int DEBUG_PRINT(int, ...);
@@ -20,7 +20,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
       if (*(int*)0x20007554UL == 0) {
         DEBUG_PRINT(0x9e968, 0x9ed8f);
       } else {
-        FUN_00019c70();
+        FUN_00019c70(0x9e968, 0x9ed8f);
       }
     }
     FUN_00072880((void*)0x200079e4UL);
@@ -30,11 +30,10 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
       if (*(int*)0x20007554UL == 0) {
         DEBUG_PRINT(0x9e903, 0x9ed8f);
       } else {
-        FUN_00019c70();
+        FUN_00019c70(0x9e903, 0x9ed8f);
       }
     }
     uVar2 = -1;
   }
   return uVar2;
 }
-
