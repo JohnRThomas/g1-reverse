@@ -369,6 +369,16 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # lc3_tns_analyze owns the complete floating-point analysis/filter body
+    # through 0x709c6; trailing threshold literals begin at 0x709c8.
+    ("app", 0x0006ffd8): 0x9ee,
+    # touch_key_thread owns all switch cases and the late PMIC-reset island;
+    # its trailing literal pool begins at 0x2a4a0.
+    ("app", 0x0002a0d8): 0x3c8,
+    # gui_utf_draw_truncate's catalog stops inside the callback/logger tail.
+    # Executable ownership continues through the branch at 0x44bc0; its
+    # literal pool starts at 0x44bc4 and the next prologue is at 0x44bd8.
+    ("app", 0x00044818): 0x3ac,
     # gui_utf_draw_align_right's catalog ends immediately after the logger BL
     # at 0x451b4, truncating the callback invocation and fallback logger tail.
     # Live code ends with the branch at 0x451cc; alignment/literals follow and
@@ -870,6 +880,12 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # LC3 TNS analysis mutates side data and spectrum in place; VFP residue at
+    # return is caller scratch, not a floating result.
+    ("app", 0x0006ffd8): "void",
+    # ANCS notification animation mutates framebuffer rows and has no result;
+    # its final tail call otherwise leaves helper scratch in r0.
+    ("app", 0x00035f28): "void",
     # libLC3 spectral encoding mutates the bitstream and has no ABI result;
     # r0 at return is merely loop/callee scratch.
     ("app", 0x0006f9c0): "void",
@@ -883,6 +899,8 @@ RETURN_KIND_OVERRIDES = {
     ("net", 0x0101fdc0): "void",
     # Pure tail dispatcher; both selected handlers are void procedures.
     ("net", 0x01016144): "void",
+    # Missing catalog entry returns controller status in r0.
+    ("net", 0x0101e0a4): "i32",
     ("app", 0x00086cda): "i32",  # digit-buffer pointer in r0
     # Signed double-to-integer conversion returns the complete r1:r0 pair.
     # Its catalog signature loses the high word, which previously let callers
@@ -2684,6 +2702,12 @@ REVIEWED_CALL_ARITIES = {
 # where callee reconstruction proves an ABI hole; later live registers remain
 # compared exactly rather than reducing the call to a shorter prefix.
 REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET = {
+    # k_timer_start(object, duration, period) aligns duration in r2:r3;
+    # r1 is the AAPCS hole and period occupies two caller-stack words.
+    ("app", 0x00016eb8): {0x00075174: (0, 2, 3)},
+    # net_buf_get's 64-bit k_timeout_t is AAPCS-aligned in r2:r3; r1 is an
+    # intentional register hole, not a semantic argument.
+    ("app", 0x00052760): {0x000836e8: (0, 2, 3)},
     # The erase callback consumes owner/address/length only.  r3 retains the
     # prior 0x800 read length in the shipped mode-two path and is not ABI.
     ("app", 0x00024684): {0x00080008: (0, 1, 2)},
@@ -2716,6 +2740,26 @@ REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0002c99c)] = [
 # reviewed caller path.  The source still spells all production arguments;
 # differential call traces compare only the callee-consumed semantic prefix.
 REVIEWED_TARGET_CALL_ARITIES = {
+    # Exact mcumgr smp_rx_remove_invalid call contracts, including its
+    # two-argument query_valid_check callback at the external Thumb fixture.
+    ("app", 0x00052760): {
+        0x00072e9c: 1, 0x00072fe8: 1, 0x000864e8: 1,
+        0x0005f200: 2, 0x00080b0e: 2, 0x000865fc: 2,
+        0x00080000: 2,
+    },
+    # main's dispatcher consumes only the global context in r0.  The shipped
+    # caller clears r3 as a side effect of its instruction schedule, whereas
+    # the readable C legitimately retains a startup-field offset there.
+    ("app", 0x00016eb8): {
+        0x00023230: 1,  # device-info persistence registration
+        0x0002a65c: 1,
+        0x00075174: 4,
+    },
+    # Exact Zephyr z_log_msg_pending single-buffer wrapper.  The tail target
+    # consumes only the fixed mpsc_pbuf_buffer pointer in r0.
+    ("app", 0x0004d588): {
+        0x0007e50c: 1,
+    },
     ("app", 0x0002bef4): {
         0x0007cdf8: 0,  # bounded lock-wait delay
         0x00049858: 1,  # active screen/task selector
@@ -3169,6 +3213,12 @@ REVIEWED_TARGET_CALL_ARITIES = {
     # FUN_01020764 stores only param_1; r1-r3 at its raw call sites are stale
     # caller scratch (confirmed by its complete decompile/disassembly).
     ("net", 0x0100ac98): {0x01020764: 1},
+    ("net", 0x010091cc): {
+        # Public NCS ABI: sdc_default_tx_power_set(int8_t).  The internal
+        # setter consumes the sign-extended requested level in r0; treating
+        # this as a zero-argument call recreates the old accidental proof.
+        0x0101e94c: 1,
+    },
     ("net", 0x010333b4): {
         # Reviewed external callback installed in the production fixture.
         # Only r0 (the saved channel byte) is consumed.
@@ -3267,6 +3317,7 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00046e3c)] = {
 # Additional AAPCS words consumed from the callee-entry stack. Register call
 # arity remains independently reviewed above.
 REVIEWED_TARGET_CALL_STACK_ARITIES = {
+    ("app", 0x00016eb8): {0x00075174: 2},
     # Newlib __assert_func passes line, optional-function prefix, and optional
     # function name after the four register arguments to fiprintf.
     ("app", 0x00076a94): {0x00076cc8: 3},
@@ -3696,6 +3747,33 @@ REVIEWED_CALL_STACK_ARITIES_BY_FORMAT = {
     ("app", 0x000342e0): {
         (0x0007dda4, 0x000a804b): 1,
     },
+}
+
+# main's logger is variadic; each literal format has a fixed recovered payload
+# width.  Recording that contract prevents unrelated startup temporaries in
+# unused r2/r3 from becoming false semantic arguments.
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00016eb8)] = {
+    (0x0007dda4, 0x00099835): 3,
+    (0x00019c70, 0x00099835): 3,
+    (0x0007dda4, 0x0009985c): 4,
+    (0x00019c70, 0x0009985c): 4,
+    **{(target, fmt): arity
+       for target in (0x0007dda4, 0x00019c70)
+       for fmt, arity in (
+           (0x000998b5, 2), (0x00099919, 2), (0x0009992e, 2),
+           (0x00099942, 2), (0x0009995c, 2), (0x00099969, 2),
+           (0x00099976, 3), (0x0009999c, 3),
+           (0x000999c2, 3), (0x000999e4, 1), (0x000999ff, 2),
+           (0x00099a23, 1), (0x00099a3e, 1), (0x00099a60, 1),
+           (0x00099a7f, 1), (0x00099a94, 1), (0x00099aa4, 1),
+           (0x00099acf, 3), (0x00099af4, 3), (0x00099b1e, 2),
+       )},
+}
+REVIEWED_CALL_STACK_ARITIES_BY_FORMAT[("app", 0x00016eb8)] = {
+    # Build version date, time and semantic version occupy the three AAPCS
+    # stack words after format/module/kind/component in r0-r3.
+    (target, 0x0009985c): 3
+    for target in (0x0007dda4, 0x00019c70)
 }
 
 def _dashboard_directed_states():
@@ -5319,6 +5397,62 @@ REVIEWED_STATE_CASES = {
           (0x20030028, (0).to_bytes(4, "little"))]),
     ],
 }
+
+
+def _cbprintf_complete_case(fmt, argv=b"", *, flags=0,
+                            text=b"precision-string\0"):
+    """Complete z_cbvprintf_impl ABI with bounded va-list storage."""
+    assert len(argv) <= 0x80
+    return (
+        {0: 0x00080001, 1: 0x13579bdf,
+         2: emu.SCRATCH + 0x0200, 3: emu.SCRATCH + 0x0300},
+        [(emu.SCRATCH + 0x0200, bytes(fmt)),
+         (emu.SCRATCH + 0x0300, bytes(argv) + bytes(0x80 - len(argv))),
+         (emu.SCRATCH + 0x0400, bytes(text)),
+         (emu.SCRATCH + 0x0500, bytes(0x20)),
+         # Fifth ABI argument: z_cbvprintf processing flags.
+         (emu.STACK_TOP, int(flags).to_bytes(4, "little"))],
+    )
+
+
+REVIEWED_STATE_CASES[("app", 0x000113a8)] += [
+    # Negative dynamic width forces left justification; negative dynamic
+    # precision is treated as if precision were absent.
+    _cbprintf_complete_case(
+        b"%*.*d\0",
+        (-9 & 0xffffffff).to_bytes(4, "little") +
+        (-1 & 0xffffffff).to_bytes(4, "little") +
+        (-123 & 0xffffffff).to_bytes(4, "little")),
+    _cbprintf_complete_case(b"%#08x\0", (0x2a).to_bytes(4, "little")),
+    # Every full-integral width family, including aligned 64-bit intmax_t.
+    _cbprintf_complete_case(
+        b"%zu %td %jd\0",
+        (0x76543210).to_bytes(4, "little") +
+        (-17 & 0xffffffff).to_bytes(4, "little") +
+        (0x89abcdef).to_bytes(4, "little") +
+        (0x01234567).to_bytes(4, "little")),
+    # Two distinct non-null pointer representations through the hexadecimal
+    # encoder.  The null spelling is an internal rodata literal whose address
+    # is compiler-link-layout-specific, not a semantic output difference.
+    _cbprintf_complete_case(
+        b"%p %p\0", (emu.SCRATCH + 0x0400).to_bytes(4, "little") +
+        (emu.SCRATCH + 0x0404).to_bytes(4, "little")),
+    _cbprintf_complete_case(
+        b"%.4s\0", (emu.SCRATCH + 0x0400).to_bytes(4, "little")),
+    # Infinity, NaN, negative infinity, and the smallest subnormal exercise
+    # all exceptional/normalization float paths without unbounded precision.
+    _cbprintf_complete_case(b"%f\0", bytes.fromhex("000000000000f07f")),
+    _cbprintf_complete_case(b"%F\0", bytes.fromhex("000000000000f87f")),
+    _cbprintf_complete_case(b"%e\0", bytes.fromhex("000000000000f0ff")),
+    _cbprintf_complete_case(b"%.3g\0", bytes.fromhex("0100000000000000")),
+    # %a is recognized but emitted literally when FP_A support is disabled;
+    # a lone percent is likewise an invalid specification at end of input.
+    _cbprintf_complete_case(b"%a\0", bytes.fromhex("000000000000f03f")),
+    _cbprintf_complete_case(b"%\0"),
+    # Tagged processing is compiled out in this image, but pin the real fifth
+    # argument nonzero to prove the complete ABI does not consume fake tags.
+    _cbprintf_complete_case(b"%u\0", (7).to_bytes(4, "little"), flags=1),
+]
 
 # libLC3 SNS analysis: seven-argument hard-float ABI.  The final three pointers
 # are stack-passed.  Map the separately-owned LC3 constant tables and exercise
@@ -8270,7 +8404,165 @@ def _hci_vs_init_case(stop):
     return ({}, memory, oracles, writes)
 
 
+def _main_boot_case(button_mode=0, fuel_stage="absent", product_supported=0,
+                    pending=0, runtime_mode=0, allocate_aux=False,
+                    log_level=0, alternate_logger=0):
+    """One bounded, production-shaped boot followed by the main event loop.
+
+    main has no entry arguments: allocator results create its owned context.
+    Ordinals through button_init are invariant while all optional allocations
+    remain null.  The fuel-gauge ordinals below are for normal button mode 0,
+    whose complete application-subsystem initialization is the deepest path.
+    """
+    log_record = emu.SCRATCH + 0x1000
+    context = emu.SCRATCH + 0x2000
+    image = bytearray(0x1188)
+    # Four IPC registrations and the four subsystem startup hooks.  Keeping a
+    # single external callback identity mirrors the installed production API;
+    # its object argument distinguishes every ownership boundary in the trace.
+    for offset in (0x778, 0x77c, 0xf70, 0xf80, 0xb10, 0xb6c):
+        image[offset:offset + 4] = (0x00080001).to_bytes(4, "little")
+    memory = [
+        (log_record, bytes(0x20)),
+        (context, bytes(image)),
+        (0x2000230c, int(log_level).to_bytes(4, "little")),
+        (0x20007554, int(bool(alternate_logger)).to_bytes(4, "little")),
+        (0x2000ff6e, bytes((runtime_mode & 0xff,))),
+    ]
+    oracles = {i: {0: 0} for i in range(128)}
+    oracles[1] = {0: log_record}
+    early_log_calls = 0 if log_level <= 0 else (1 if log_level == 1 else 3)
+    context_ordinal = 5 + early_log_calls
+    oracles[context_ordinal] = {0: context}
+
+    allocation_memsets = 0
+    if allocate_aux:
+        assert log_level == 0 and fuel_stage == "absent" and not pending
+        allocations = (
+            (17, 0x4000, 0x06a), (20, 0x4100, 0x007),
+            (21, 0x4200, 0x005), (22, 0x4300, 0x217),
+            (24, 0x4600, 0x0f5), (25, 0x4800, 0x198),
+            (26, 0x4a00, 0x198), (27, 0x4c00, 0x199),
+            (28, 0x4e00, 0x50f), (30, 0x5400, 0x201),
+            (32, 0x5700, 0x201), (34, 0x5a00, 0x16a),
+            (35, 0x5c00, 0x0af), (36, 0x5d00, 0x00b),
+            (37, 0x5e00, 0x021), (39, 0x5f00, 0x001),
+            (40, 0x6000, 0x002),
+        )
+        for ordinal, offset, size in allocations:
+            address = emu.SCRATCH + offset
+            oracles[ordinal] = {0: address}
+            memory.append((address, bytes(size)))
+        allocation_memsets = 5
+
+    oracles[42 + early_log_calls + allocation_memsets] = {
+        0: button_mode & 0xffffffff}
+    writes = {}
+
+    if fuel_stage != "absent":
+        assert button_mode == 0
+        oracles[67] = {0: 1}       # fuel-gauge device ready
+        if fuel_stage != "config-absent":
+            oracles[69] = {0: 1}   # fuel-gauge configuration ready
+            if fuel_stage == "sample-fail":
+                oracles[70] = {0: 0xffffffff}
+            elif fuel_stage == "configure-fail":
+                oracles[70] = {0: 0}
+                oracles[71] = {0: 0xffffffff}
+            elif fuel_stage == "full":
+                oracles[70] = {0: 0}
+                oracles[71] = {0: 0}
+                oracles[75] = {0: int(bool(product_supported))}
+            else:
+                raise AssertionError(fuel_stage)
+
+    if pending:
+        # The absent-fuel path reaches run_main_dispatch_thread at ordinal 69.
+        # Model the dispatcher's production publication of pending event bits
+        # after main has cleared/initialized the context itself.
+        assert button_mode == 0 and fuel_stage == "absent"
+        writes[69] = [(0, 0x1059, bytes((pending & 0xff,)), 0x0002a65c)]
+    return ({}, memory, oracles, writes)
+
+
+def _lc3_tns_analysis_case(dt, bandwidth, near_nyquist, frame_bytes,
+                           zero_spectrum=False):
+    """Complete LC3 TNS side-data and spectrum ownership for one frame."""
+    side_data = emu.SCRATCH + 0x1000
+    spectrum = emu.SCRATCH + 0x2000
+    if zero_spectrum:
+        values = [0.0] * 400
+    else:
+        # Deterministic correlated, non-periodic coefficients produce useful
+        # LPC gains without singular all-constant autocorrelation matrices.
+        values = [((i * 17 + (i // 7) * 5) % 43 - 21) / 23.0
+                  for i in range(400)]
+    spectrum_image = struct.pack("<400f", *values)
+    return (
+        {0: int(dt), 1: int(bandwidth), 2: int(bool(near_nyquist)),
+         3: int(frame_bytes)},
+        [(side_data, bytes(80)), (spectrum, spectrum_image),
+         (emu.STACK_TOP, side_data.to_bytes(4, "little") +
+          spectrum.to_bytes(4, "little")),
+         # Shipped absolute pointer/quantizer/subdivision tables. Runner maps
+         # only the owned function bytes, so fixtures must materialize these
+         # immutable firmware data ranges explicitly for both implementations.
+         (0x0008853c, ax.read(0x0008853c, 40)),
+         (0x00098540, ax.read(0x00098540, 0x120))],
+        {})
+
+
 REVIEWED_ORACLE_CASES = {
+    # Public SoftDevice Controller default-power API.  Exercise several valid
+    # sign-extended int8_t values while the controller is disabled, plus the
+    # enabled rejection path.  The nested setter's exact r0 is compared by the
+    # target-scoped call arity above.
+    ("net", 0x010091cc): [
+        ({0: requested_level}, [(0x21000a30, bytes(0x40))], {0: {0: 0}})
+        for requested_level in (0, 3, 0x7f, 0xffffff80, 0xffffffff)
+    ] + [
+        ({0: 3},
+         [(0x21000a30, bytes(0x2c) + b"\x01" + bytes(0x13))], {})
+    ],
+    # Bounded production families: absent validation hook; idle and busy
+    # empty queues; invalid/retained buffers; and final work resubmission.
+    # Absolute images are applied after generic callback setup so the first
+    # case can authoritatively cover the early null-hook return.
+    ("app", 0x00052760): [
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000, bytes(0x40))], {}),
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000, bytes(0x3c) +
+           (0x00080001).to_bytes(4, "little"))],
+         {0: {0: 0}, 2: {0: 0}, 3: {0: 0}}),
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000, bytes(0x3c) +
+           (0x00080001).to_bytes(4, "little"))],
+         {0: {0: 5}, 2: {0: 0}, 3: {0: 0}, 4: {0: 0}}),
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000, bytes(0x3c) +
+           (0x00080001).to_bytes(4, "little"))],
+         {0: {0: 0}, 2: {0: emu.SCRATCH + 0x1800},
+          3: {0: 0}, 5: {0: 0}, 6: {0: 0}}),
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000, bytes(0x3c) +
+           (0x00080001).to_bytes(4, "little"))],
+         {0: {0: 0}, 2: {0: emu.SCRATCH + 0x1800},
+          3: {0: 1}, 5: {0: 0}, 6: {0: emu.SCRATCH + 0x1800},
+          8: {0: 0}}),
+        ({0: emu.SCRATCH + 0x1000},
+         [(emu.SCRATCH + 0x1000,
+           bytes(0x10) + (1).to_bytes(4, "little") + bytes(0x28) +
+           (0x00080001).to_bytes(4, "little"))],
+         {0: {0: 0}, 2: {0: 0}, 3: {0: 0}, 4: {0: 0}}),
+    ],
+    # The wrapper has no input-controlled branches.  Bound the proof to both
+    # boolean outcomes of mpsc_pbuf_is_pending and verify exact return
+    # forwarding as well as its fixed log-buffer call argument.
+    ("app", 0x0004d588): [
+        ({}, [], {0: {0: 0}}),
+        ({}, [], {0: {0: 1}}),
+    ],
     ("app", 0x00012080): [
         _hci_vs_init_case("features"),
         _hci_vs_init_case("version"),
@@ -8279,6 +8571,17 @@ REVIEWED_ORACLE_CASES = {
         _hci_vs_init_case("le_features"),
         _hci_vs_init_case("le_states"),
         _hci_vs_init_case("allocate"),
+    ],
+    # LC3 duration/bandwidth boundaries, one/two-filter layouts, disabled TNS,
+    # low/high bitrate weighting, zero-energy LPC, and active quantization.
+    ("app", 0x0006ffd8): [
+        _lc3_tns_analysis_case(0, 0, 1, 44, zero_spectrum=True),
+        _lc3_tns_analysis_case(0, 2, 1, 45),
+        _lc3_tns_analysis_case(0, 3, 1, 60),
+        _lc3_tns_analysis_case(1, 4, 1, 60),
+        _lc3_tns_analysis_case(0, 2, 0, 44),
+        _lc3_tns_analysis_case(1, 1, 0, 80),
+        _lc3_tns_analysis_case(1, 4, 0, 40),
     ],
     # Bounded production families: idle short/long/max/reject handling plus
     # active forwarding and its special 0x18 acknowledgement callback.
@@ -10243,22 +10546,26 @@ REVIEWED_ORACLE_CASES = {
          ({0: {0: emu.SCRATCH + 0x3000}, 3: {0: 0}}))
         for level, sink in ((0, 0), (3, 0), (3, 1))
     ],
-    # Boot starts with a one-time allocator.  Keep ordinary status-returning
-    # initializers successful (zero), while giving the allocation call owned
-    # writable storage.  Additional pointer-producing getters are overridden
-    # below as their production contracts are reached.
+    # Boot-mode selection, every fuel-gauge failure boundary, the complete
+    # supported-product path, and all four event-loop bits.  The prefix proof
+    # observes startup plus multiple steady-state loop iterations.
     ("app", 0x00016eb8): [
-        ({}, [(emu.SCRATCH + 0x1000, bytes(0x7000)),
-              (emu.SCRATCH + 0x2778, (0x00080001).to_bytes(4, "little")),
-              (emu.SCRATCH + 0x277c, (0x00080001).to_bytes(4, "little")),
-              (emu.SCRATCH + 0x2f70, (0x00080001).to_bytes(4, "little")),
-              (emu.SCRATCH + 0x2f80, (0x00080001).to_bytes(4, "little")),
-              (emu.SCRATCH + 0x2b10, (0x00080001).to_bytes(4, "little")),
-              (emu.SCRATCH + 0x2b6c, (0x00080001).to_bytes(4, "little")),
-              (0x2000230c, bytes(4)), (0x20007554, bytes(4))],
-         ({i: {0: 0} for i in range(128)} |
-          {1: {0: emu.SCRATCH + 0x1000},
-           5: {0: emu.SCRATCH + 0x2000}})),
+        _main_boot_case(button_mode=0),
+        _main_boot_case(button_mode=1),
+        _main_boot_case(button_mode=2),
+        _main_boot_case(fuel_stage="config-absent"),
+        _main_boot_case(fuel_stage="sample-fail"),
+        _main_boot_case(fuel_stage="configure-fail"),
+        _main_boot_case(fuel_stage="full", product_supported=0),
+        _main_boot_case(fuel_stage="full", product_supported=1),
+        _main_boot_case(pending=0x0f, runtime_mode=1),
+        # Every optional allocation owns a distinct writable object, exposing
+        # all conditional clears and small-record initializers.
+        _main_boot_case(allocate_aux=True),
+        # Both logger implementations, including the seven-word build-info
+        # format and the post-button mode diagnostic.
+        _main_boot_case(log_level=2, alternate_logger=0),
+        _main_boot_case(log_level=2, alternate_logger=1),
     ],
     # Even-AI is selected by an argument phase, an absolute active state, and
     # several fields in the global UI object returned by its first accessor.
@@ -15296,6 +15603,64 @@ REVIEWED_INITIAL_PRIMASK_CASES[("net", 0x0100ec88)] = [
 ]
 
 
+_CTRL_ENQUEUE_NODE = emu.SCRATCH + 0x3500
+_CTRL_ENQUEUE_HEAD = emu.SCRATCH + 0x3540
+_CTRL_PACKET_RESULT_CALLBACK = 0x01029e75
+
+
+def _controller_work_enqueue_case(node_state=0, *, head_kind="sentinel",
+                                  channel=2):
+    """One bounded packet-result work-node insertion transaction."""
+    queue_address = 0x21000ec8
+    sentinel = queue_address + 8
+    queue = bytearray(0x2c)
+    queue[0] = channel
+    queue[0x10] = 1
+    node = bytearray(0x20)
+    node[8] = node_state
+    regions = [(queue_address, bytes(queue)),
+               (_CTRL_ENQUEUE_NODE, bytes(node))]
+
+    if head_kind == "sentinel":
+        queue[4:8] = sentinel.to_bytes(4, "little")
+        queue[8:12] = sentinel.to_bytes(4, "little")
+    elif head_kind == "empty":
+        queue[4:8] = (queue_address + 8).to_bytes(4, "little")
+    elif head_kind == "queued":
+        queued = bytearray(0x20)
+        queued[0:4] = sentinel.to_bytes(4, "little")
+        queued[8] = 3
+        queue[4:8] = _CTRL_ENQUEUE_HEAD.to_bytes(4, "little")
+        queue[8:12] = _CTRL_ENQUEUE_HEAD.to_bytes(4, "little")
+        regions.append((_CTRL_ENQUEUE_HEAD, bytes(queued)))
+    else:
+        raise ValueError(head_kind)
+
+    # Re-store after selecting the queue topology above.
+    regions[0] = (queue_address, bytes(queue))
+    return (
+        {0: _CTRL_ENQUEUE_NODE, 1: _CTRL_PACKET_RESULT_CALLBACK},
+        regions,
+        {},
+    )
+
+
+_CONTROLLER_WORK_ENQUEUE_CASES = [
+    # Duplicate enqueue assertion, empty-list append, insertion before the
+    # embedded sentinel, and append through the existing tail link.
+    _controller_work_enqueue_case(node_state=3),
+    _controller_work_enqueue_case(head_kind="empty", channel=0),
+    _controller_work_enqueue_case(head_kind="sentinel", channel=4),
+    _controller_work_enqueue_case(head_kind="queued", channel=1),
+]
+REVIEWED_ORACLE_CASES[("net", 0x0100eec8)] = _CONTROLLER_WORK_ENQUEUE_CASES
+REVIEWED_INITIAL_PRIMASK_CASES[("net", 0x0100eec8)] = [0, 0, 1, 0]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0100eec8)] = {
+    0x0100ebb8: 0,
+    0x0102583c: 1,
+}
+
+
 _RTC1_CALLBACK = 0x00080001
 _RTC_INVALID_TIME = (1 << 64) - 1
 
@@ -15769,6 +16134,151 @@ REVIEWED_TARGET_CALL_ARITIES[("net", 0x01016144)] = {
     0x01014b18: 2,
 }
 
+
+def _controller_handle_update_state_case(*, state=0x2a, value=0,
+                                         entry_present=False,
+                                         lookup_success=True,
+                                         signed_guard=0,
+                                         null_context=False):
+    """Complete fixed-offset context/entry records for one update outcome."""
+    context = emu.SCRATCH + 0x7800
+    entry = emu.SCRATCH + 0x7a00
+    target = emu.SCRATCH + 0x7c00
+    context_image = bytearray(0x150)
+    context_image[0xc6] = state
+    context_image[0x104] = signed_guard & 0xff
+    entry_image = bytearray(0x190)
+    entry_image[0x17e:0x180] = (0x3456).to_bytes(2, "little")
+    args = {
+        0: 0 if null_context else context,
+        1: entry if entry_present else 0,
+        2: value,
+    }
+    memory = [(context, bytes(context_image)),
+              (entry, bytes(entry_image)),
+              (target, bytes(0x20))]
+    oracles = {}
+    if (not null_context and state == 0x2a and value and entry_present):
+        oracles[0] = {0: target if lookup_success else 0}
+    return args, memory, oracles
+
+
+REVIEWED_ORACLE_CASES[("net", 0x0101e0a4)] = [
+    _controller_handle_update_state_case(null_context=True),
+    _controller_handle_update_state_case(state=0x29),
+    _controller_handle_update_state_case(value=0),
+    _controller_handle_update_state_case(value=0, signed_guard=-1),
+    _controller_handle_update_state_case(value=7),
+    _controller_handle_update_state_case(value=9, entry_present=True),
+    _controller_handle_update_state_case(value=11, entry_present=True,
+                                         lookup_success=False),
+    _controller_handle_update_state_case(value=13, entry_present=True,
+                                         signed_guard=-1),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101e0a4)] = {
+    0x01008d00: 2,
+    0x01009d18: 2,
+    0x0101df84: 2,
+}
+
+
+def _puts_r_case(*, initialized=True, state=0, flags=0,
+                 stream_selector="direct", write_result=0,
+                 null_reent=False, sinit_publishes=True,
+                 post_state=None, post_flags=None):
+    """Production-shaped reent/FILE/uio state for one _puts_r outcome."""
+    reent = emu.SCRATCH + 0x8200
+    text_ptr = emu.SCRATCH + 0x8400
+    stream = emu.SCRATCH + 0x8600
+    reent_image = bytearray(0x60)
+    stream_image = bytearray(0x70)
+    stream_image[0x0c:0x0e] = flags.to_bytes(2, "little")
+    # Unconsumed shadow fields retain the pre-call lock inputs.  Focused
+    # same-shape negative controls redirect only the post-call loads here,
+    # avoiding a compiler frame-size change that would trip stack pairing
+    # before the semantic transition is observed.
+    stream_image[0x0e:0x10] = flags.to_bytes(2, "little")
+    stream_image[0x58:0x5c] = (0x12345678).to_bytes(4, "little")
+    stream_image[0x60:0x64] = state.to_bytes(4, "little")
+    stream_image[0x64:0x68] = state.to_bytes(4, "little")
+    reent_image[0x18:0x1c] = (1 if initialized else 0).to_bytes(4, "little")
+
+    if stream_selector == "direct":
+        reent_image[8:12] = stream.to_bytes(4, "little")
+    elif stream_selector == "stdin":
+        reent_image[4:8] = stream.to_bytes(4, "little")
+        reent_image[8:12] = (0x0009871c).to_bytes(4, "little")
+    elif stream_selector == "stderr":
+        reent_image[8:12] = (0x000986dc).to_bytes(4, "little")
+        reent_image[12:16] = stream.to_bytes(4, "little")
+    elif stream_selector == "stdout":
+        stream = 0x000986fc
+        reent_image[8:12] = stream.to_bytes(4, "little")
+    else:
+        raise AssertionError(stream_selector)
+
+    memory = [(reent, bytes(reent_image)),
+              (text_ptr, b"hello\0"),
+              (stream, bytes(stream_image))]
+    args = {0: 0 if null_reent else reent, 1: text_ptr}
+    oracles = {0: {0: 5}}
+    writes = {}
+    if not null_reent:
+        initialization_calls = 0
+        if not initialized:
+            initialization_calls = 1
+        if not initialized and sinit_publishes:
+            # __sinit publishes the initialized word before _puts_r rereads it.
+            writes[1] = [(0, 0x18, (1).to_bytes(4, "little"), 0x00076bcc)]
+        elif not initialized:
+            # The first __sinit leaves __sdidinit clear, authoritatively
+            # selecting the firmware's second __sinit call at 0x778a6.
+            initialization_calls = 2
+        takes_lock = (state & 1) == 0 and (flags & 0x200) == 0
+        sfvwrite_ordinal = 1 + initialization_calls + int(takes_lock)
+        oracles[sfvwrite_ordinal] = {0: write_result}
+        transition = []
+        if post_state is not None:
+            transition.append((1, 0x64,
+                               int(post_state).to_bytes(4, "little"),
+                               0x00077e70))
+        if post_flags is not None:
+            transition.append((1, 0x0c,
+                               int(post_flags).to_bytes(2, "little"),
+                               0x00077e70))
+        if transition:
+            writes[sfvwrite_ordinal] = transition
+    return args, memory, oracles, writes
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00077820)] = [
+    _puts_r_case(null_reent=True),
+    _puts_r_case(),
+    _puts_r_case(write_result=-1),
+    _puts_r_case(state=1, write_result=-1),
+    _puts_r_case(flags=0x200),
+    _puts_r_case(stream_selector="stdin"),
+    _puts_r_case(stream_selector="stderr"),
+    _puts_r_case(stream_selector="stdout"),
+    _puts_r_case(initialized=False),
+    _puts_r_case(initialized=False, sinit_publishes=False),
+    # Lock is acquired from the initial clear state/flags.  Independent
+    # __sfvwrite_r transitions make both post-call loads observable: either
+    # updated field must suppress the release call.
+    _puts_r_case(post_state=1),
+    _puts_r_case(post_flags=0x200),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00077820)] = {
+    0x0000ef12: 1,
+    0x000510fc: 1,
+    0x00051134: 1,
+    0x00076bcc: 1,
+    0x00077e70: 3,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00077820)] = [
+    ("puts-uio", -44, -44, 28, None, None, (0x00077e70,), (0,)),
+]
+
 _CHANNEL_OPTION_BYTES = (
     emu.SCRATCH + 0x1600,
     emu.SCRATCH + 0x1604,
@@ -16092,6 +16602,10 @@ REVIEWED_INTERNAL_CODE_REGIONS = {
 # modes first can manufacture matching fault parity before their private
 # multi-register workers execute, so require the production pointer count.
 REVIEWED_NPTR_COUNTS = {
+    # main has no semantic entry arguments.  One synthetic pointer mode is the
+    # verifier's minimum because an address literal is conservatively reported
+    # as an r0-derived data slot; real ownership comes from reviewed allocators.
+    ("app", 0x00016eb8): 1,
     # Work handler has exactly one transport pointer; queue results are fully
     # bounded by the reviewed oracle sequences above.
     ("app", 0x00080ab4): 1,
@@ -17139,6 +17653,32 @@ def _net_handle_update_case(controller_state, handle=0x1234, value=0x5a,
             if context:
                 oracles[3] = {0: int(transition_result) & 0xffffffff}
     return ({0: int(handle) & 0xffff, 1: int(value) & 0xff}, [], oracles)
+
+
+def _net_context_transition_thunk_case(value, transition_result):
+    context = emu.SCRATCH + 0x1000
+    entry = emu.SCRATCH + 0x2000
+    return (
+        {0: context, 1: entry, 2: int(value) & 0xff},
+        [(context, bytes(0x20)), (entry, bytes(0x20))],
+        {0: {0: int(transition_result) & 0xffffffff}},
+    )
+
+
+# The four-byte veneer owns no state itself: prove exact forwarding of both
+# object identities, the active byte across boundary values, and the callee's
+# full 32-bit result.  These are semantic call/ABI cases, not byte matching.
+REVIEWED_NPTR_COUNTS[("net", 0x0101e15c)] = 2
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101e15c)] = {
+    0x0101e0a4: 3,
+}
+REVIEWED_ORACLE_CASES[("net", 0x0101e15c)] = [
+    _net_context_transition_thunk_case(0x00, 0),
+    _net_context_transition_thunk_case(0x01, 12),
+    _net_context_transition_thunk_case(0x5a, 0x12345678),
+    _net_context_transition_thunk_case(0xfe, 0x80000000),
+    _net_context_transition_thunk_case(0xff, 0xffffffff),
+]
 
 
 # Bit 29 is the exact readiness gate.  The remaining cases stop at each real
@@ -18368,6 +18908,188 @@ REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x000451e0)] = [
 ]
 
 
+def _truncate_ellipsis_case(display_state=0):
+    """First glyph overflows a one-line box and is replaced by U+2026."""
+    text = emu.SCRATCH + 0x6600
+    device = emu.SCRATCH + 0x6800
+    glyph = emu.SCRATCH + 0x7800
+    glyph_bytes = bytes((0xa5, 0x5a, 0x3c, 0xc3)) + bytes(60)
+    memory = [
+        (text, b"A\0\0\0"),
+        (device, bytes(0x1000)),
+        (glyph, glyph_bytes),
+        (0x2000230c, bytes(4)),
+        (0x20007554, bytes(4)),
+        (0x200034f6, b"\xf0"),
+        (0x2000a034, (emu.SCRATCH + 0x8800).to_bytes(4, "little")),
+    ]
+    # decoder, display state, classifier, glyph lookup/copy/spacing,
+    # ellipsis lookup/copy/draw, and final display state.
+    oracles = {
+        0: {0: text}, 1: {0: int(display_state)}, 2: {0: 0},
+        3: {0: 0}, 4: {0: 0}, 5: {0: 1},
+        6: {0: 0}, 7: {0: 0}, 8: {0: 0},
+        9: {0: int(display_state)},
+    }
+    writes = {
+        0: [(1, 0, (1).to_bytes(2, "little"), 0x000478d8)],
+        3: [
+            (2, 0, (8).to_bytes(4, "little"), 0x0004588c),
+            (3, 0, (4).to_bytes(4, "little"), 0x0004588c),
+            (4, 0, glyph.to_bytes(4, "little"), 0x0004588c),
+        ],
+        4: [(0, 0, glyph_bytes[:16], 0x00086c1e)],
+        6: [
+            (2, 0, (8).to_bytes(4, "little"), 0x0004588c),
+            (3, 0, (4).to_bytes(4, "little"), 0x0004588c),
+            (4, 0, glyph.to_bytes(4, "little"), 0x0004588c),
+        ],
+        7: [(0, 0, glyph_bytes[:16], 0x00086c1e)],
+    }
+    return ({0: 0, 1: emu.SCRATCH + 0x6500, 2: 0, 3: 10},
+            memory, oracles, writes)
+
+
+_TRUNCATE_CASE_SPECS = [
+    # callback_mode, callback, and skip-render gates after UTF decoding.
+    ((), None, None, 0, 0, 0, 0),
+    ((), None, None, 1, 0, 0, 0),
+    ((), None, None, 1, 0x00080001, 0, 0),
+    ((), None, None, 0, 0, 1, 0),
+    # Empty no-refresh/refresh, ignored character, both newline spellings,
+    # resource failure, normal draw, refresh, masked draw, and width wrap.
+    ((), None, None, 0, 0, 0, 0),
+    ((), None, None, 0, 0, 0, 2),
+    ((0x41,), 1, None, 0, 0, 0, 0),
+    ((0x0a,), -1, None, 0, 0, 0, 0),
+    ((0x0d,), -1, None, 0, 0, 0, 0),
+    ((0x41,), 0, -1, 0, 0, 0, 0),
+    ((0x41,), 0, 0, 0, 0, 0, 0),
+    ((0x41,), 0, 0, 0, 0, 0, 2),
+    ((0x41,), 0, 0, 0, 0, 0, 0),
+    ((0x41,), 0, 0, 0, 0, 0, 0),
+]
+REVIEWED_ORACLE_CASES[("app", 0x00044818)] = [
+    _wordwrap_text_case(chars, classification, resource_status,
+                        display_state=display_state,
+                        param10=callback_mode, callback=callback,
+                        param12=skip_render)
+    for (chars, classification, resource_status, callback_mode, callback,
+         skip_render, display_state) in _TRUNCATE_CASE_SPECS
+] + [_truncate_ellipsis_case()]
+REVIEWED_PAIRED_STACK_INITIAL_WORDS[("app", 0x00044818)] = [
+    (0, 0, tuple([20] * 15)),                              # top
+    (4, 4, tuple([110] * 13 + [15, 15])),                 # right
+    (8, 8, tuple([200] * 15)),                            # bottom
+    (12, 12, tuple([3] * 14 + [1])),                      # max lines
+    (16, 16, tuple([0] * 12 + [1, 0, 0])),                # mask count
+    (20, 20, tuple([spec[3] for spec in _TRUNCATE_CASE_SPECS] + [0])),
+    (24, 24, tuple([spec[4] for spec in _TRUNCATE_CASE_SPECS] + [0])),
+    (28, 28, tuple([spec[5] for spec in _TRUNCATE_CASE_SPECS] + [0])),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00044818)] = {
+    0x000167a8: 0,
+    0x00019c70: 0,
+    0x000431a8: 0,
+    0x00043e58: 2,
+    0x0004588c: 6,
+    0x000471cc: 6,
+    0x00047260: 6,
+    0x000478d8: 2,
+    0x0007d53a: 6,
+    0x0007d860: 1,
+    0x00086c1e: 4,
+    0x00080000: 5,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00044818)] = {
+    (0x0007dda4, 0x000aaa58): 3,
+    (0x0007dda4, 0x000aab9e): 4,
+    (0x0007dda4, 0x000aabd2): 3,
+    (0x0007dda4, 0x000aaa7f): 2,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00044818)] = [
+    ("truncate-decoded-length", -0x2da, -0x2de, 2, (), None,
+     (0x000478d8,)),
+    ("truncate-glyph-width", -0x2d4, -0x2d8, 4, (), None,
+     (0x0004588c,)),
+    ("truncate-glyph-height", -0x2d0, -0x2d4, 4, (), None,
+     (0x0004588c,)),
+    ("truncate-glyph-bitmap", -0x2d8, -0x2dc, 4, (), None,
+     (0x0004588c,)),
+    ("truncate-glyph-canvas-output", -0x2cc, -0x2d0, 680, (), None,
+     (0x00086c1e,)),
+    ("truncate-glyph-canvas", -0x2cc, -0x2d0, 680, None, None,
+     (0x0007d53a,)),
+]
+
+
+def _ancs_notification_animation_case(enabled, rows_present, sink,
+                                      active_byte=None):
+    rows = emu.SCRATCH + 0x5000
+    pixels = 0x20020000
+    device = emu.SCRATCH + 0x5800
+    # Each of the 199 framebuffer rows owns an independent bounded 320-byte
+    # region.  Only row zero/column two is active in the sparse case.
+    framebuffer = bytearray(199 * 320)
+    if active_byte is not None:
+        framebuffer[2] = int(active_byte) & 0xff
+    row_table = b"".join(
+        (pixels + row * 320).to_bytes(4, "little") for row in range(199))
+    device_image = bytearray(0x1000)
+    device_image[0xeb4:0xeb8] = (0x11223344).to_bytes(4, "little")
+    device_image[0xeb8:0xebc] = (0x55667788).to_bytes(4, "little")
+    memory = [
+        (rows, row_table),
+        (pixels, bytes(framebuffer)),
+        (device, bytes(device_image)),
+        (0x20007554, int(sink).to_bytes(4, "little")),
+        # Self-contained eight-frame selector family.  Each selected mask byte
+        # is distinct and its adjacent byte is zero, so a +1 base mutation is
+        # independently observable in every frame rather than only frame one.
+        (0x000a8c57, bytes(range(8))),
+    ]
+    for selector, mask_byte in enumerate(
+            (0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f)):
+        memory.append((0x000aae20 + selector * 0x140 + 2,
+                       bytes((mask_byte, 0))))
+    oracles = {}
+    if enabled and rows_present:
+        # Exact complete trace: flag clear; eight draw/pacing/get/get/publish
+        # frames; final flag set.  Getter results own the reviewed device.
+        oracles[0] = {0: 0}
+        for frame in range(8):
+            base = 1 + frame * 5
+            oracles[base] = {0: 0}
+            oracles[base + 1] = {0: 0}
+            oracles[base + 2] = {0: device}
+            oracles[base + 3] = {0: device}
+            oracles[base + 4] = {0: 0}
+        oracles[41] = {0: 0}
+    return ({0: rows if rows_present else 0,
+             1: 0x2468ace0, 2: int(enabled)}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00035f28)] = [
+    _ancs_notification_animation_case(0, True, 0),
+    _ancs_notification_animation_case(0, True, 1),
+    _ancs_notification_animation_case(1, False, 0),
+    _ancs_notification_animation_case(1, False, 1),
+    _ancs_notification_animation_case(1, True, 0),
+    _ancs_notification_animation_case(1, True, 0, active_byte=0xff),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00035f28)] = {
+    0x000167a8: 0,
+    0x00019c70: 3,
+    0x00035afc: 2,
+    0x000432d0: 0,
+    0x000432ec: 0,
+    0x00047260: 6,
+    0x00074844: 2,
+    0x0007dda4: 3,
+}
+REVIEWED_NPTR_COUNTS[("app", 0x00035f28)] = 1
+
+
 def _projector_pixel_transfer_case(byte_count, first_row=0x120,
                                    x=0x2345):
     """Bound one exact chunk family without weakening the signed ABI.
@@ -18821,6 +19543,57 @@ REVIEWED_TARGET_CALL_ARITIES[("net", 0x01012f18)] = {
     0x0100f63c: 0,
     0x010231c8: 2,
 }
+
+
+def _sdc_ext_adv_complete_case(max_events, completed, terminated=0,
+                               connectable=False, cleanup=False,
+                               suppress_event=False):
+    """Complete extended-advertising set plus optional connection handle."""
+    adv = emu.SCRATCH + 0x6000
+    tx_pdu = emu.SCRATCH + 0x6200
+    state = bytearray(0xc0)
+    state[0] = 7                         # advertising handle
+    state[2:4] = int(connectable).to_bytes(2, "little")
+    state[0x0d] = max_events
+    state[0x1c:0x20] = tx_pdu.to_bytes(4, "little")
+    state[0x40:0x42] = completed.to_bytes(2, "little")
+    state[0x79] = terminated
+    radio = bytearray(0x20)
+    radio[4] = 1
+    radio[0x12] = int(cleanup)
+
+    # The suppression gate follows reschedule in paths that publish an HCI
+    # event.  Cleanup contributes two earlier calls in the terminated case.
+    oracles = {}
+    if max_events != 0 and completed + 1 >= max_events and not terminated:
+        oracles[1] = {0: int(suppress_event)}
+    return ({0: adv},
+            [(adv, bytes(state)),
+             (tx_pdu, (0x0bad).to_bytes(2, "little")),
+             (0x21000f20, bytes(radio))],
+            oracles)
+
+
+REVIEWED_ORACLE_CASES[("net", 0x010127f8)] = [
+    # Existing termination and pending-radio cleanup tail.
+    _sdc_ext_adv_complete_case(4, 1, terminated=1, cleanup=True),
+    # Unlimited and below-limit advertising reschedule paths.
+    _sdc_ext_adv_complete_case(0, 0),
+    _sdc_ext_adv_complete_case(4, 1),
+    # Limit reached: suppressed event, ordinary no-connection event, and a
+    # connectable event carrying the recovered connection handle.
+    _sdc_ext_adv_complete_case(2, 1, suppress_event=True),
+    _sdc_ext_adv_complete_case(2, 1),
+    _sdc_ext_adv_complete_case(2, 1, connectable=True),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x010127f8)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x010127f8)] = {
+    0x010208b0: 0,
+    0x0101fca8: 0,
+    0x010140ec: 2,
+    0x0101f888: 0,
+    0x0100ef88: 3,
+}
 REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x01018690)] = [
     ("decoded-ll-control-pdu", -56, -60, 0x2c, None, (1, 2, 3),
      (0x0101a070, 0x0101746c, 0x010168e4)),
@@ -19010,6 +19783,48 @@ REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101b7e4)] = {
 REVIEWED_NPTR_COUNTS[("net", 0x0101b7e4)] = 2
 
 
+def _net_radio_owner_case(mode=0, initialized=False,
+                          timer_result=0x0bad0000,
+                          backend_result=0, device_state=1):
+    """One complete owner-level initialization/error family."""
+    configuration = bytearray(20)
+    configuration[0] = 2  # external callback, never the interior loop PC
+    configuration[4:8] = (0x12345678).to_bytes(4, "little")
+    configuration[9] = int(mode) & 0xff
+    configuration[17] = 0x11
+    configuration[19] = 0x5a
+    shift = 1 if initialized else 0
+    oracles = {
+        shift + 3: {0: emu.SCRATCH + 0x3000},
+        shift + 5: {0: int(timer_result) & 0xffffffff},
+    }
+    if timer_result == 0x0bad0000:
+        oracles[shift + 6] = {0: int(backend_result) & 0xffffffff}
+        if backend_result == 0:
+            oracles[shift + 7] = {0: int(device_state) & 0xffffffff}
+    return (
+        {0: emu.SCRATCH + 0x1000},
+        [(emu.SCRATCH + 0x1000, bytes(configuration)),
+         (0x2100499c, (0x00080001).to_bytes(4, "little")),
+         (0x21006458, bytes((0, int(initialized)))),
+         (0x21004a90, bytes(0x30))],
+        oracles,
+    )
+
+
+# Extend the three successful mask modes with owner-level entry/error gates.
+# Kinds 0/1 contain shipped firmware addresses, including interior 0x10333e5;
+# they are ownership evidence, not independent callable candidate ABIs.
+REVIEWED_ORACLE_CASES[("net", 0x010333b4)] += [
+    ({0: 0}, [], {}),
+    _net_radio_owner_case(mode=3),
+    _net_radio_owner_case(mode=1, initialized=True),
+    _net_radio_owner_case(mode=2, timer_result=0xffffffff),
+    _net_radio_owner_case(mode=0, backend_result=0xfffffffb),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x010333b4)] = 1
+
+
 _DISPLAY_DISPATCH_CONTEXT = emu.SCRATCH + 0xc000
 
 
@@ -19133,9 +19948,238 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00028bec)] = {
 REVIEWED_NPTR_COUNTS[("app", 0x00028bec)] = 1
 
 
+_MPSC_FREE_BUFFER = emu.SCRATCH + 0xc000
+_MPSC_FREE_STORAGE = emu.SCRATCH + 0xd000
+
+
+def _mpsc_free_case(*, flags, rd_idx, tmp_rd_idx, item_index,
+                    item_header, words, lock_valid=1, unlock_valid=1):
+    """Concrete NCS mpsc_pbuf_free buffer/item ownership state."""
+    buffer = bytearray(0x60)
+    struct.pack_into("<I", buffer, 0x08, int(tmp_rd_idx) & 0xffffffff)
+    struct.pack_into("<I", buffer, 0x0c, int(rd_idx) & 0xffffffff)
+    struct.pack_into("<I", buffer, 0x10, int(flags) & 0xffffffff)
+    struct.pack_into("<I", buffer, 0x1c, 0x00080001)  # get_wlen callback
+    struct.pack_into("<I", buffer, 0x20, _MPSC_FREE_STORAGE)
+    struct.pack_into("<I", buffer, 0x24, 0x100)
+    item = _MPSC_FREE_STORAGE + int(item_index) * 4
+    storage = bytearray(0x400)
+    struct.pack_into("<I", storage, int(item_index) * 4,
+                     int(item_header) & 0xffffffff)
+    memory = [(_MPSC_FREE_BUFFER, bytes(buffer)),
+              (_MPSC_FREE_STORAGE, bytes(storage))]
+    oracles = {
+        0: {0: int(words) & 0xffffffff},
+        1: {0: int(lock_valid) & 0xffffffff},
+    }
+    if not lock_valid:
+        # Three fatal diagnostics follow the rejected spin-lock ownership.
+        return ({0: _MPSC_FREE_BUFFER, 1: item}, memory, oracles)
+
+    normal_release = not (int(flags) & 2) or int(item_index) == int(rd_idx)
+    unlock_ordinal = 3
+    if normal_release:
+        if int(rd_idx) == int(tmp_rd_idx):
+            oracles[3] = {0: (int(tmp_rd_idx) + int(words)) & 0xffffffff}
+            unlock_ordinal = 5            # idx_inc, rd_idx_inc, unlock
+        else:
+            unlock_ordinal = 4            # rd_idx_inc, unlock
+    oracles[unlock_ordinal] = {0: int(unlock_valid) & 0xffffffff}
+    return ({0: _MPSC_FREE_BUFFER, 1: item}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0004bfc8)] = [
+    # Ordinary release with matching cursors advances both temporary and
+    # committed read positions; cover all input header flag combinations.
+    _mpsc_free_case(flags=0, rd_idx=3, tmp_rd_idx=3, item_index=3,
+                    item_header=header, words=5)
+    for header in range(4)
+] + [
+    # Nonmatching cursor advances only rd_idx.
+    _mpsc_free_case(flags=0, rd_idx=3, tmp_rd_idx=9, item_index=3,
+                    item_header=0x1234567b, words=1),
+    # Overwrite mode still performs an ordinary release at the current head.
+    _mpsc_free_case(flags=2, rd_idx=4, tmp_rd_idx=4, item_index=4,
+                    item_header=0x89abcdef, words=7),
+    # A displaced overwrite-mode item becomes a skip record; zero and the
+    # largest representable word count exercise both shift boundaries.
+    _mpsc_free_case(flags=2, rd_idx=4, tmp_rd_idx=4, item_index=7,
+                    item_header=0x76543213, words=0),
+    _mpsc_free_case(flags=2, rd_idx=4, tmp_rd_idx=4, item_index=7,
+                    item_header=0x76543212, words=0x3fffffff),
+    # Both checked-spinlock fatal boundaries are explicit terminal cases.
+    _mpsc_free_case(flags=0, rd_idx=2, tmp_rd_idx=2, item_index=2,
+                    item_header=3, words=2, lock_valid=0),
+    _mpsc_free_case(flags=0, rd_idx=2, tmp_rd_idx=5, item_index=2,
+                    item_header=3, words=2, unlock_valid=0),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0004bfc8)] = {
+    0x00072040: 1,
+    0x0007205c: 1,
+    0x00072078: 1,
+    0x00072880: 1,
+    0x0007e2ec: 2,
+    0x0007e2fa: 4,
+    0x0007e35c: 3,
+    0x0007e378: 2,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x0004bfc8)] = {
+    (0x0007e2fa, 0x00099cbd): 4,
+    (0x0007e2fa, 0x000f0935): 2,
+    (0x0007e2fa, 0x000f090b): 2,
+}
+REVIEWED_NPTR_COUNTS[("app", 0x0004bfc8)] = 2
+
+
+_TOUCH_THREAD_CONTEXT = emu.SCRATCH + 0xe000
+_TOUCH_THREAD_DEVICE = emu.SCRATCH + 0xf800
+
+
+def _touch_key_thread_case(clicks=1, *, held_ms=1000, irq_pending=0):
+    """One bounded press/release family followed by quiescent polls."""
+    context = bytearray(0x1100)
+    context[1] = 0
+    struct.pack_into("<H", context, 0x105c, 1)
+    struct.pack_into("<i", context, 0x1078, 30000)
+    device = bytearray(0x20)
+    device[1] = 0
+
+    statuses = []
+    event_times = []
+    for index in range(clicks):
+        press = 1000 + index * 3000
+        release = press + held_ms
+        statuses.extend((1, 2))
+        event_times.extend((press, release))
+
+    oracles = {}
+    ordinal = 0
+    for index, (status, event_time) in enumerate(zip(statuses, event_times)):
+        oracles[ordinal] = {0: 0}                   # k_sem_take
+        oracles[ordinal + 1] = {0: _TOUCH_THREAD_DEVICE}
+        ordinal += 2
+        if status == 1:
+            oracles[ordinal] = {0: event_time}      # press timestamp
+            oracles[ordinal + 1] = {0: 0}           # RTC sample helper
+            ordinal += 2
+        else:
+            oracles[ordinal] = {0: event_time}      # release timestamp
+            ordinal += 1
+        final_event = index == len(statuses) - 1
+        now = event_time + (11001 if final_event and status == 2 else 0)
+        if final_event and status == 1 and held_ms > 15000:
+            now = event_time + held_ms
+        oracles[ordinal] = {0: now}
+        oracles[ordinal + 1] = {0: now}
+        ordinal += 2
+
+    # The selected click action contributes one direct call before returning
+    # to the ordinary four-call quiescent loop.  Keep every later device
+    # accessor mapped until the reviewed event prefix is complete.
+    action_calls = 1
+    ordinal += action_calls
+    for _ in range(100):
+        oracles[ordinal] = {0: 0}
+        oracles[ordinal + 1] = {0: _TOUCH_THREAD_DEVICE}
+        oracles[ordinal + 2] = {0: event_times[-1] + 12000}
+        oracles[ordinal + 3] = {0: event_times[-1] + 12000}
+        ordinal += 4
+
+    memory = [
+        (_TOUCH_THREAD_CONTEXT, bytes(context)),
+        (_TOUCH_THREAD_DEVICE, bytes(device)),
+        (0x2000230c, bytes(4)),
+        (0x20007554, bytes(4)),
+        (0x20006a00, int(irq_pending).to_bytes(4, "little")),
+        (0x20007b18, bytes(8)),
+        (0x20018d89, b"\x01\x01"),
+        (0x20019dac, bytes((statuses[0],))),
+    ]
+    transitions = [
+        (0x20019dac, read_ordinal, status)
+        # Unicorn's read hook publishes the new hardware-owned status after
+        # the current load has captured its value, so ordinal N prepares the
+        # status observed by load N+1.
+        for read_ordinal, status in enumerate(statuses[1:], 1)
+    ]
+    return ({0: _TOUCH_THREAD_CONTEXT}, memory, oracles), transitions
+
+
+_TOUCH_KEY_THREAD_WITH_TRANSITIONS = [
+    _touch_key_thread_case(clicks=1),
+    _touch_key_thread_case(clicks=2),
+    _touch_key_thread_case(clicks=3),
+    _touch_key_thread_case(clicks=5),
+    _touch_key_thread_case(clicks=10),
+    _touch_key_thread_case(clicks=15),
+    _touch_key_thread_case(clicks=1, held_ms=16001),
+    _touch_key_thread_case(clicks=1, held_ms=73001, irq_pending=1),
+]
+REVIEWED_ORACLE_CASES[("app", 0x0002a0d8)] = [
+    case for case, _transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
+]
+ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
+    transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
+]
+REVIEWED_PREFIX_PROOFS[("app", 0x0002a0d8)] = 240
+REVIEWED_NPTR_COUNTS[("app", 0x0002a0d8)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0002a0d8)] = {
+    0x000167a8: 0,
+    0x00017a28: 0,
+    0x00017a34: 0,
+    0x00019c70: 0,
+    0x0002316c: 2,
+    0x0002a0c0: 0,
+    0x00030af0: 0,
+    0x0004c0a8: 1,
+    0x00072908: 4,
+    0x0007c058: 1,
+    0x0007cb8e: 1,
+    0x0007d0aa: 1,
+    0x0007dda4: 0,
+    0x00086690: 0,
+}
+
+
+def _resolve_source_path(core, name, srcdir):
+    """Resolve readable/raw/legacy identities to one canonical source file."""
+    direct = os.path.join(srcdir, name + ".c")
+    if os.path.exists(direct):
+        return direct
+    try:
+        manifest_path = os.path.join(
+            BASE, "recon", "catalogs", "function_names_%s.json" % core)
+        manifest = json.load(open(manifest_path))
+        address = manifest.get("by_name", {}).get(name)
+        if address is None:
+            # Older manifests may omit aliases from by_name.  The durable
+            # address record remains authoritative, so recover through its
+            # name/raw-name/alias set without special-casing any function.
+            for candidate_address, candidate_record in manifest.get(
+                    "by_address", {}).items():
+                identities = [candidate_record.get("name"),
+                              candidate_record.get("raw_name")]
+                identities.extend(candidate_record.get("aliases") or ())
+                if name in identities:
+                    address = candidate_address
+                    break
+        record = manifest.get("by_address", {}).get(address, {})
+        identities = [record.get("raw_name"), record.get("name")]
+        identities.extend(record.get("aliases") or ())
+        for identity in identities:
+            if not identity:
+                continue
+            candidate = os.path.join(srcdir, identity + ".c")
+            if os.path.exists(candidate):
+                return candidate
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    return direct
+
+
 def verify(core, name, trials_random=40, source_override=None):
     ctx = core_ctx(core)
-    p = ctx["srcdir"] + "/" + name + ".c"
+    p = _resolve_source_path(core, name, ctx["srcdir"])
     if source_override is None and not os.path.exists(p):
         return {"status": "missing"}
     txt = source_override if source_override is not None else open(p).read()
@@ -19190,6 +20234,11 @@ def verify(core, name, trials_random=40, source_override=None):
     extra_cflags = []
     if "CFG_VERIFY_NO_IF_CONVERSION" in txt[:400]:
         extra_cflags += ["-fno-if-conversion", "-fno-if-conversion2"]
+    if (core, va) == ("app", 0x0006ffd8):
+        # NCS's pinned liblc3 module builds its hot codec kernels with these
+        # library-specific flags; the firmware body at this address reflects
+        # that contract rather than the application's generic -Os profile.
+        extra_cflags += ["-O3", "-ffast-math"]
     extra_cflags = extra_cflags or None
     am = re.search(r'CFG_VERIFY_CALL_ARITIES=([0-4](?:,[0-4])*)', txt[:1000])
     call_arities = ([int(x) for x in am.group(1).split(',')] if am else
@@ -19472,6 +20521,10 @@ def verify(core, name, trials_random=40, source_override=None):
         # ordinary oracle drops execution back into ANCS's deliberate fatal
         # retry loop and turns each initializer-error fixture into a timeout.
         terminal_targets = set(terminal_targets) | {0x0004c0a8}
+    if (core, va) == ("app", 0x0002a0d8):
+        # The five-click recovery path intentionally enters a PMIC reset loop;
+        # sys_reboot is the production noreturn boundary of that transaction.
+        terminal_targets = set(terminal_targets) | {0x0004c0a8}
     target_call_arities = dict(ctx["call_arity_by_target"])
     target_call_arities.update(REVIEWED_TARGET_CALL_ARITIES.get((core, va), {}))
     target_call_argument_indices = REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET.get(
@@ -19487,11 +20540,21 @@ def verify(core, name, trials_random=40, source_override=None):
     ]
     compare_max_insns = 1000000 if orig_internal_code_regions else 200000
     compare_max_resumes = 20000 if orig_internal_code_regions else 5000
+    if (core, va) == ("app", 0x0006ffd8):
+        # The maximum two-filter LC3 TNS frame performs six correlation bands,
+        # two Levinson recursions, quantization, and up to 400 forward-filter
+        # bins.  Both readable and shipped bodies must reach their real return.
+        compare_max_insns = 2000000
     if (core, va) == ("app", 0x0003b824):
         # A complete recording render owns four 199x320 pixel-mask passes.
         # The generic cap stopped during frame one and allowed the remaining
         # frames, final LCD publications, and DMIC transition to go unproved.
         compare_max_insns = 3000000
+    if (core, va) == ("app", 0x00035f28):
+        # Two reviewed cases complete all eight 199x320 reveal-mask passes.
+        # The ordinary 200k cap stops in frame one and cannot prove the final
+        # publications or canvas-flag restoration.
+        compare_max_insns = 8000000
     if (core, va) == ("app", 0x0003bfe0):
         # Both initialization and page-change rendering own eight complete
         # 199x320 mask traversals; the old 200k cap stopped during frame one.
@@ -19573,6 +20636,16 @@ def verify(core, name, trials_random=40, source_override=None):
 
 def self_test():
     """Regression gates for pointee setup and the recovered TBH selector."""
+    # Durable semantic, raw, and retained legacy aliases must all resolve to
+    # the same canonical file even when that file keeps its historical name.
+    formatter_source = os.path.join(BASE, "recon", "app", "src",
+                                    "printf_like.c")
+    for formatter_identity in ("z_cbvprintf_impl", "FUN_000113a8",
+                               "printf_like"):
+        assert _resolve_source_path(
+            "app", formatter_identity,
+            os.path.join(BASE, "recon", "app", "src")) == formatter_source
+
     # Candidate comments must not grant prefix-only proof authority or choose
     # its comparison length. Conversely, removing all legacy marker text from
     # a reviewed loop must not revoke its table-owned policy.
@@ -19626,6 +20699,16 @@ def self_test():
         "ui_QuickNote_task": (
             "frame != 4; ++frame",
             "frame != 3; ++frame"),
+        # The all-distinct allocation graph must execute, not merely record,
+        # every optional small-object initializer.
+        "main": (
+            "B8(allocation, 4) = 0;",
+            "B8(allocation, 4) = 1;"),
+        # Active TNS fixtures consume the shipped reflection-coefficient
+        # threshold table; shifting it by one float must change quantization.
+        "lc3_tns_analyze": (
+            "0x00098564UL",
+            "0x00098568UL"),
         # The reviewed command-prefix cases bind controller response objects
         # to the exact Read Local Supported Features opcode.
         "FUN_00012080": (
@@ -19987,6 +21070,12 @@ def self_test():
     # argument five, event-name modes, six stacked descriptor fields, ordered
     # multi-node insertion, and the already-linked flag transition.
     net_negative_sources = {
+        # The public int8_t ABI must forward requested power to the internal
+        # setter.  Passing a constant used to survive through stale incoming
+        # r0 when both declarations incorrectly used (void).
+        "FUN_010091cc": (
+            "FUN_0101e94c(requested_power_level);",
+            "FUN_0101e94c(0);"),
         # An ECB hardware error retries the transaction; treating completion
         # as the retry condition silently returns after an aborted block.
         "FUN_0100a7e8": (

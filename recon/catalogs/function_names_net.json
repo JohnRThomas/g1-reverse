@@ -296,11 +296,13 @@
   "0x010091cc": {
    "address": "0x010091cc",
    "raw_name": "FUN_010091cc",
-   "name": "FUN_010091cc",
-   "display_name": "FUN_010091cc",
-   "human": false,
-   "source": "recon/net/src/FUN_010091cc.c",
-   "aliases": []
+   "name": "sdc_default_tx_power_set",
+   "display_name": "sdc_default_tx_power_set",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 public SoftDevice Controller API and ABI: int32_t sdc_default_tx_power_set(int8_t requested_power_level). The firmware wrapper rejects enabled controller state, otherwise forwards the sign-extended requested level to its internal setter. Raw identity remains FUN_010091cc.",
+   "aliases": [
+    "FUN_010091cc"
+   ]
   },
   "0x010091e8": {
    "address": "0x010091e8",
@@ -449,11 +451,13 @@
   "0x01009d18": {
    "address": "0x01009d18",
    "raw_name": "FUN_01009d18",
-   "name": "FUN_01009d18",
-   "display_name": "FUN_01009d18",
-   "human": false,
-   "source": "recon/net/src/FUN_01009d18.c",
-   "aliases": []
+   "name": "controller_typed_handle_lookup",
+   "display_name": "controller_typed_handle_lookup",
+   "human": true,
+   "source": "function_name_overrides.json: Indexes the controller object table by type, finds the supplied 16-bit handle, and returns the corresponding entry pointer or null. Raw identity remains FUN_01009d18.",
+   "aliases": [
+    "FUN_01009d18"
+   ]
   },
   "0x01009d64": {
    "address": "0x01009d64",
@@ -2016,11 +2020,13 @@
   "0x0100ebb8": {
    "address": "0x0100ebb8",
    "raw_name": "FUN_0100ebb8",
-   "name": "FUN_0100ebb8",
-   "display_name": "FUN_0100ebb8",
-   "human": false,
-   "source": "recon/net/src/FUN_0100ebb8.c",
-   "aliases": []
+   "name": "controller_work_duplicate_enqueue_assert",
+   "display_name": "controller_work_duplicate_enqueue_assert",
+   "human": true,
+   "source": "function_name_overrides.json: The controller-work enqueue path calls this noreturn wrapper only when node state is not AVAILABLE; it forwards controller assertion module 0x10 and line 0x2bf. Raw identity remains FUN_0100ebb8.",
+   "aliases": [
+    "FUN_0100ebb8"
+   ]
   },
   "0x0100ebc4": {
    "address": "0x0100ebc4",
@@ -2060,6 +2066,15 @@
     "FUN_0100ec88"
    ]
   },
+  "0x0100eec8": {
+   "address": "0x0100eec8",
+   "raw_name": "FUN_0100eec8",
+   "name": "controller_work_enqueue_packet_result",
+   "display_name": "controller_work_enqueue_packet_result",
+   "human": true,
+   "source": "function_name_overrides.json: Writes the callback field and controller node state 3, which controller_packet_build_next dispatches as node_packet_result_callback; then inserts the node into g_net_pending_work_list under PRIMASK and raises its deferred-event channel. Raw identity remains FUN_0100eec8.",
+   "aliases": []
+  },
   "0x0100ef48": {
    "address": "0x0100ef48",
    "raw_name": "FUN_0100ef48",
@@ -2072,11 +2087,13 @@
   "0x0100ef88": {
    "address": "0x0100ef88",
    "raw_name": "FUN_0100ef88",
-   "name": "FUN_0100ef88",
-   "display_name": "FUN_0100ef88",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_work_submit",
+   "display_name": "sdc_work_submit",
+   "human": true,
+   "source": "function_name_overrides.json: Initializes or updates an intrusive controller work item with callback and priority, appends it under IRQ lock, then wakes the controller worker. Raw identity remains FUN_0100ef88.",
+   "aliases": [
+    "FUN_0100ef88"
+   ]
   },
   "0x0100efc8": {
    "address": "0x0100efc8",
@@ -2899,11 +2916,13 @@
   "0x010127f8": {
    "address": "0x010127f8",
    "raw_name": "FUN_010127f8",
-   "name": "FUN_010127f8",
-   "display_name": "FUN_010127f8",
-   "human": false,
-   "source": "recon/net/src/FUN_010127f8.c",
-   "aliases": []
+   "name": "sdc_ext_adv_event_complete",
+   "display_name": "sdc_ext_adv_event_complete",
+   "human": true,
+   "source": "function_name_overrides.json: Forced extended-advertising completion path: increments completed-event count, reschedules below the configured maximum, otherwise builds LE Advertising Set Terminated status 0x43 (Limit Reached), handle, connection handle and completed count. NCS 2.5.1 SDC variants sym_2K3JTQJLCTROZQI43ERT7GF5BTQ3SMAJXYMCVJI and sym_2CUDUPKI7JF4DCST2EA4IQU5SWO2YDS37ASKGPY match at 0.964 over 67 normalized operations. Raw identity remains FUN_010127f8.",
+   "aliases": [
+    "FUN_010127f8"
+   ]
   },
   "0x010128bc": {
    "address": "0x010128bc",
@@ -3191,11 +3210,13 @@
   "0x010140ec": {
    "address": "0x010140ec",
    "raw_name": "FUN_010140ec",
-   "name": "FUN_010140ec",
-   "display_name": "FUN_010140ec",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sdc_ext_adv_reschedule",
+   "display_name": "sdc_ext_adv_reschedule",
+   "human": true,
+   "source": "function_name_overrides.json: Mode zero computes the next extended-advertising anchor including the configured random delay and admits the new scheduler request; mode one terminates/releases the event. Raw identity remains FUN_010140ec.",
+   "aliases": [
+    "FUN_010140ec"
+   ]
   },
   "0x010141d4": {
    "address": "0x010141d4",
@@ -3294,9 +3315,7 @@
    "display_name": "controller_radio_event1_dispatch",
    "human": true,
    "source": "function_name_overrides.json: First-class tail target of FUN_01013650 event case one. It reads the active-link byte at owner+0x2ee, forwards context/event to the idle-radio completion path when clear, or dispatches the connection-event processor with (0,0) when set. Raw identity remains FUN_01016144.",
-   "aliases": [
-    "FUN_01016144"
-   ]
+   "aliases": []
   },
   "0x01016160": {
    "address": "0x01016160",
@@ -4237,11 +4256,13 @@
   "0x0101df84": {
    "address": "0x0101df84",
    "raw_name": "FUN_0101df84",
-   "name": "FUN_0101df84",
-   "display_name": "FUN_0101df84",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_entry_links_release",
+   "display_name": "controller_entry_links_release",
+   "human": true,
+   "source": "function_name_overrides.json: Releases and validates the typed handle links associated with an entry record, clearing its link/timestamp fields when active. Raw identity remains FUN_0101df84.",
+   "aliases": [
+    "FUN_0101df84"
+   ]
   },
   "0x0101e078": {
    "address": "0x0101e078",
@@ -4259,6 +4280,15 @@
    "display_name": "FUN_0101e090",
    "human": false,
    "source": "committed durable map",
+   "aliases": []
+  },
+  "0x0101e0a4": {
+   "address": "0x0101e0a4",
+   "raw_name": "FUN_0101e0a4",
+   "name": "controller_handle_update_state_apply",
+   "display_name": "controller_handle_update_state_apply",
+   "human": true,
+   "source": "function_name_overrides.json: State-transition body reached through the 0x0101e15c tail veneer after typed-handle/context resolution. It accepts only state 0x2a, publishes either no-value state 0x2b or value/kind/applied state 0x30, releases an optional type-seven entry link, and returns controller status 0/0x0c. Raw identity remains FUN_0101e0a4.",
    "aliases": []
   },
   "0x0101e160": {
@@ -4525,11 +4555,13 @@
   "0x0101f888": {
    "address": "0x0101f888",
    "raw_name": "FUN_0101f888",
-   "name": "FUN_0101f888",
-   "display_name": "FUN_0101f888",
-   "human": false,
-   "source": "recon/net/src/FUN_0101f888.c",
-   "aliases": []
+   "name": "sdc_hci_event_suppressed",
+   "display_name": "sdc_hci_event_suppressed",
+   "human": true,
+   "source": "function_name_overrides.json: One-byte controller/HCI state gate checked before advertising termination records are populated and submitted; nonzero suppresses that event publication. Raw identity remains FUN_0101f888.",
+   "aliases": [
+    "FUN_0101f888"
+   ]
   },
   "0x0101f894": {
    "address": "0x0101f894",
@@ -5110,9 +5142,7 @@
    "display_name": "controller_radio_transition_apply",
    "human": true,
    "source": "function_name_overrides.json: Complete fixed-state radio transition owner: captures controller time, resets RADIO event state, derives transition flags from current/pending modes, updates the fixed radio-state record, invokes mode callbacks, publishes RADIO timing registers, and completes pending work. Raw identity remains FUN_01020d1c.",
-   "aliases": [
-    "FUN_01020d1c"
-   ]
+   "aliases": []
   },
   "0x01021108": {
    "address": "0x01021108",
@@ -6088,11 +6118,13 @@
   "0x0102583c": {
    "address": "0x0102583c",
    "raw_name": "FUN_0102583c",
-   "name": "FUN_0102583c",
-   "display_name": "FUN_0102583c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_deferred_event_raise",
+   "display_name": "controller_deferred_event_raise",
+   "human": true,
+   "source": "function_name_overrides.json: Validates deferred-event channel 0..4, increments its bounded pending count, then tail-calls the shared NVIC pending helper. Controller work queues pass their configured channel byte here after enqueue. Raw identity remains FUN_0102583c.",
+   "aliases": [
+    "FUN_0102583c"
+   ]
   },
   "0x010258cc": {
    "address": "0x010258cc",
@@ -9007,7 +9039,7 @@
    "name": "FUN_010333b4",
    "display_name": "FUN_010333b4",
    "human": false,
-   "source": "recon/net/src/FUN_010333b4.c",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010333e4": {
@@ -11510,7 +11542,6 @@
   "FUN_01009160": "0x01009160",
   "FUN_01009184": "0x01009184",
   "FUN_010091a8": "0x010091a8",
-  "FUN_010091cc": "0x010091cc",
   "FUN_010091e8": "0x010091e8",
   "FUN_010091f8": "0x010091f8",
   "FUN_01009204": "0x01009204",
@@ -11527,7 +11558,6 @@
   "FUN_010098d8": "0x010098d8",
   "FUN_01009bc4": "0x01009bc4",
   "FUN_01009c68": "0x01009c68",
-  "FUN_01009d18": "0x01009d18",
   "FUN_01009d64": "0x01009d64",
   "FUN_01009dd8": "0x01009dd8",
   "FUN_01009e5c": "0x01009e5c",
@@ -11693,12 +11723,10 @@
   "FUN_0100e948": "0x0100e948",
   "FUN_0100e95c": "0x0100e95c",
   "FUN_0100eaf0": "0x0100eaf0",
-  "FUN_0100ebb8": "0x0100ebb8",
   "FUN_0100ebc4": "0x0100ebc4",
   "FUN_0100ebf4": "0x0100ebf4",
   "FUN_0100ec40": "0x0100ec40",
   "FUN_0100ef48": "0x0100ef48",
-  "FUN_0100ef88": "0x0100ef88",
   "FUN_0100efc8": "0x0100efc8",
   "FUN_0100f004": "0x0100f004",
   "FUN_0100f0a4": "0x0100f0a4",
@@ -11785,7 +11813,6 @@
   "FUN_01012704": "0x01012704",
   "FUN_01012714": "0x01012714",
   "FUN_0101272c": "0x0101272c",
-  "FUN_010127f8": "0x010127f8",
   "FUN_010128bc": "0x010128bc",
   "FUN_01012960": "0x01012960",
   "FUN_01012968": "0x01012968",
@@ -11815,7 +11842,6 @@
   "FUN_01013d90": "0x01013d90",
   "FUN_01013da8": "0x01013da8",
   "FUN_01013e98": "0x01013e98",
-  "FUN_010140ec": "0x010140ec",
   "FUN_010141d4": "0x010141d4",
   "FUN_010141dc": "0x010141dc",
   "FUN_010144e4": "0x010144e4",
@@ -11907,7 +11933,6 @@
   "FUN_0101dd9c": "0x0101dd9c",
   "FUN_0101de60": "0x0101de60",
   "FUN_0101ded0": "0x0101ded0",
-  "FUN_0101df84": "0x0101df84",
   "FUN_0101e078": "0x0101e078",
   "FUN_0101e090": "0x0101e090",
   "FUN_0101e160": "0x0101e160",
@@ -11939,7 +11964,6 @@
   "FUN_0101f818": "0x0101f818",
   "FUN_0101f850": "0x0101f850",
   "FUN_0101f87c": "0x0101f87c",
-  "FUN_0101f888": "0x0101f888",
   "FUN_0101f894": "0x0101f894",
   "FUN_0101f8b0": "0x0101f8b0",
   "FUN_0101f8cc": "0x0101f8cc",
@@ -12085,7 +12109,6 @@
   "FUN_0102575c": "0x0102575c",
   "FUN_010257e4": "0x010257e4",
   "FUN_0102581c": "0x0102581c",
-  "FUN_0102583c": "0x0102583c",
   "FUN_010258cc": "0x010258cc",
   "FUN_0102590c": "0x0102590c",
   "FUN_01025998": "0x01025998",
@@ -12651,6 +12674,9 @@
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
   "atomic_set": "0x01039fb6",
+  "controller_deferred_event_raise": "0x0102583c",
+  "controller_entry_links_release": "0x0101df84",
+  "controller_handle_update_state_apply": "0x0101e0a4",
   "controller_mode1_state_validate": "0x010218d8",
   "controller_mode2_state_validate": "0x010218e4",
   "controller_packet_build_next": "0x0100ec88",
@@ -12671,6 +12697,9 @@
   "controller_timing_request_submit": "0x01022f3c",
   "controller_timing_snapshot_build": "0x0101a38c",
   "controller_transition_pending_check": "0x01025cf0",
+  "controller_typed_handle_lookup": "0x01009d18",
+  "controller_work_duplicate_enqueue_assert": "0x0100ebb8",
+  "controller_work_enqueue_packet_result": "0x0100eec8",
   "ipc_rpmsg_init": "0x0102dac0",
   "ipc_rpmsg_static_vrings_open": "0x0102d708",
   "ipc_static_vrings_init": "0x0102db30",
@@ -12708,7 +12737,11 @@
   "sdc_conn_window_admit": "0x010231c8",
   "sdc_controller_random_get": "0x0100f63c",
   "sdc_cpu_relax": "0x0102a21e",
+  "sdc_default_tx_power_set": "0x010091cc",
   "sdc_ecb_run_blocking": "0x0100a7e8",
+  "sdc_ext_adv_event_complete": "0x010127f8",
+  "sdc_ext_adv_reschedule": "0x010140ec",
+  "sdc_hci_event_suppressed": "0x0101f888",
   "sdc_llcp_apply_rx_transition": "0x0101746c",
   "sdc_llcp_decode_control_pdu": "0x0101a070",
   "sdc_llcp_get_active_link_index": "0x0100d760",
@@ -12723,6 +12756,7 @@
   "sdc_timing_compensation_enabled": "0x010247cc",
   "sdc_timing_compensation_get": "0x01029638",
   "sdc_timing_scale": "0x01024678",
+  "sdc_work_submit": "0x0100ef88",
   "signed_drift_clamp": "0x0100f69c",
   "thunk_FUN_0101621c": "0x010294be",
   "thunk_FUN_0101dc1c": "0x010294ba",

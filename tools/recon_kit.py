@@ -23,6 +23,17 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # lc3_tns_analyze continues through the final quantizer/order backedge at
+    # 0x709c4; its trailing threshold literals begin at 0x709c8.
+    0x0006ffd8: 0x9ee,
+    # touch_key_thread's catalog ends at 0x2a332 inside its computed-switch
+    # cases.  Owned cases resume after the 0x2a3a8 literal island and finish
+    # at 0x2a4a0, where the trailing literal pool begins.
+    0x0002a0d8: 0x3c8,
+    # gui_utf_draw_truncate's catalog stops at 0x44ba2 inside its live
+    # callback/logger tail.  The final branch ends at 0x44bc0; literals begin
+    # at 0x44bc4 and the next independent prologue is at 0x44bd8.
+    0x00044818: 0x3ac,
     # gui_utf_draw_align_right continues through its callback/logger tail;
     # live code ends at 0x451ce before alignment and the literal pool.
     0x00044ec4: 0x30a,

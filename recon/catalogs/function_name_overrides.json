@@ -1,6 +1,110 @@
 {
  "schema": 1,
  "app": {
+  "0x0007cb48": {
+   "name": "k_sem_take",
+   "evidence": "Four-byte Zephyr public tail veneer to z_impl_k_sem_take at 0x00072908. touch_key_thread passes its semaphore plus the aligned 64-bit timeout 0x2000. The previous update_sync_buffer label was incompatible with the body and ABI. Raw identity remains FUN_0007cb48."
+  },
+  "0x00072908": {
+   "name": "z_impl_k_sem_take",
+   "evidence": "Complete Zephyr semaphore-take implementation: locks the kernel spinlock, consumes a positive count or pends the current thread with the supplied k_timeout_t, then reschedules. Raw identity remains FUN_00072908."
+  },
+  "0x0007cb8e": {
+   "name": "k_msleep",
+   "evidence": "Public millisecond sleep wrapper converting its signed millisecond argument to a Zephyr timeout before the scheduler sleep path. touch_key_thread uses 5000 ms and 500 ms delays. Raw identity remains FUN_0007cb8e."
+  },
+  "0x0007c058": {
+   "name": "send_touch_click_event",
+   "evidence": "Builds the fixed 60-byte IPC command with type byte 1 and the supplied touch-click code, then calls global_ipc_service_send. touch_key_thread sends code 10 for the fifteen-click action. Raw identity remains FUN_0007c058."
+  },
+  "0x00017a28": {
+   "name": "touch_pmic_reset_assert",
+   "evidence": "Tail helper writes one through the fixed GPIO descriptor at 0x000889d8; touch_key_thread immediately logs reset_pmic_on. Raw identity remains FUN_00017a28."
+  },
+  "0x00017a34": {
+   "name": "touch_pmic_reset_deassert",
+   "evidence": "Tail helper writes zero through the same fixed GPIO descriptor; touch_key_thread immediately logs reset_pmic_off. Raw identity remains FUN_00017a34."
+  },
+  "0x00077820": {
+   "name": "_puts_r",
+   "evidence": "Exact newlib reentrant puts implementation: builds a two-iovec __suio for text plus the newline literal, initializes reent stdio, resolves fake stdin/stdout/stderr FILE pointers, recursively locks the FILE, calls __sfvwrite_r, unlocks, and returns newline or EOF. Raw identity remains FUN_00077820."
+  },
+  "0x000778d4": {
+   "name": "puts",
+   "evidence": "Standard newlib puts wrapper: loads the global reent pointer at 0x20002d20 and tail-calls _puts_r with the caller's text. Raw identity remains FUN_000778d4."
+  },
+  "0x000510fc": {
+   "name": "__retarget_lock_acquire_recursive",
+   "evidence": "Newlib retargetable recursive-lock acquire boundary; validates the lock then waits on its Zephyr mutex. Raw identity remains FUN_000510fc."
+  },
+  "0x00051134": {
+   "name": "__retarget_lock_release_recursive",
+   "evidence": "Newlib retargetable recursive-lock release boundary; validates the lock then unlocks its Zephyr mutex. Raw identity remains FUN_00051134."
+  },
+  "0x00076bcc": {
+   "name": "__sinit",
+   "evidence": "Newlib stdio initializer for struct _reent: allocates/configures stdin, stdout and stderr and sets __sdidinit under the environment lock. Raw identity remains FUN_00076bcc."
+  },
+  "0x00077e70": {
+   "name": "__sfvwrite_r",
+   "evidence": "Newlib scatter/gather FILE writer consuming struct _reent, FILE and __suio; handles line/unbuffered/buffered paths and advances iovec residuals. Raw identity remains FUN_00077e70."
+  },
+  "0x000113a8": {
+   "name": "z_cbvprintf_impl",
+   "evidence": "Exact NCS 2.5.1 Zephyr lib/os/cbprintf_complete.c implementation and five-argument ABI (out, ctx, format, va_list, flags). The legacy printf_like label was descriptive only. Raw identity remains FUN_000113a8."
+  },
+  "0x0004bb64": {
+   "name": "extract_decimal",
+   "evidence": "Static cbprintf_complete.c helper: consumes decimal digits through a char-pointer cursor and returns the decoded size. Raw identity remains FUN_0004bb64."
+  },
+  "0x0004bb90": {
+   "name": "encode_uint",
+   "evidence": "Static cbprintf_complete.c integer encoder: writes a converted integer backward in the selected radix and records octal/hex alternate-form flags. Raw identity remains FUN_0004bb90."
+  },
+  "0x000870a6": {
+   "name": "strnlen",
+   "evidence": "Bounded string-length leaf used by z_cbvprintf_impl for precision-limited percent-s conversion. Raw identity remains FUN_000870a6."
+  },
+  "0x00052760": {
+   "name": "smp_rx_remove_invalid",
+   "evidence": "Exact NCS 2.5.1 Zephyr subsys/mgmt/mcumgr/transport/src/smp.c implementation and ABI: cancels active transport work, filters its request FIFO through query_valid_check using a temporary FIFO, restores retained buffers, and resubmits nonempty work. Raw identity remains FUN_00052760."
+  },
+  "0x0005f200": {
+   "name": "net_buf_put",
+   "evidence": "Exact Zephyr net_buf FIFO wrapper: validates fifo and buffer then appends the buffer to the underlying k_queue. smp_rx_remove_invalid uses it for both the temporary and transport FIFOs. The stale net_buf_destroy_default assignment was incompatible with the two-argument FIFO ABI. Raw identity remains FUN_0005f200."
+  },
+  "0x00080b0e": {
+   "name": "smp_free_buf",
+   "evidence": "Exact NCS 2.5.1 mcumgr transport helper: optionally invokes smpt->functions.ud_free on net_buf_user_data(buf), then calls smp_packet_free/net_buf_unref. Raw identity remains FUN_00080b0e."
+  },
+  "0x00072e9c": {
+   "name": "k_work_busy_get",
+   "evidence": "Exact Zephyr work busy-state accessor used by smp_rx_remove_invalid before cancellation. Raw identity remains FUN_00072e9c."
+  },
+  "0x00072fe8": {
+   "name": "k_work_cancel",
+   "evidence": "Exact Zephyr work cancellation API and ABI used by smp_rx_remove_invalid. Raw identity remains FUN_00072fe8."
+  },
+  "0x0004d588": {
+   "name": "z_log_msg_pending",
+   "evidence": "Exact NCS 2.5.1 Zephyr subsys/logging/log_core.c wrapper for the single CONFIG_MPSC_PBUF log_buffer: the six-byte body loads the fixed log buffer at 0x20003648 and tail-branches to mpsc_pbuf_is_pending at 0x0007e50c. Raw identity remains FUN_0004d588."
+  },
+  "0x0007e50c": {
+   "name": "mpsc_pbuf_is_pending",
+   "evidence": "Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation: computes available words from flags/read/write indices and normalizes the result to bool. It is the tail target of z_log_msg_pending at 0x0004d588. Raw identity remains FUN_0007e50c."
+  },
+  "0x0004bfc8": {
+   "name": "mpsc_pbuf_free",
+   "evidence": "Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation and ABI: clears valid, either clears busy and advances read indices or publishes a skip record in overwrite mode, unlocks, then gives the buffer semaphore. Raw identity remains FUN_0004bfc8."
+  },
+  "0x0004d578": {
+   "name": "z_log_msg_free",
+   "evidence": "Exact NCS 2.5.1 logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls mpsc_pbuf_free(buffer, msg). The former mpsc_pbuf_free assignment belongs to 0x0004bfc8. Raw identity remains FUN_0004d578."
+  },
+  "0x00072880": {
+   "name": "k_sem_give",
+   "evidence": "Exact Zephyr kernel semaphore-give implementation and ABI, including spinlock ownership, pending waiter wakeup, count saturation and poll notification. mpsc_pbuf_free tail-calls it with buffer->sem. Raw identity remains FUN_00072880."
+  },
   "0x0002bed0": {
    "name": "display_panel_is_secondary",
    "evidence": "The function waits for the display-state update guard at 0x20018d9c, then returns whether byte +0xd5 of its sole display-context argument is greater than one. All callers, including display_dispatch_thread, pass that display context. The legacy check_battery_critical label is incompatible with both the ABI and complete body. Raw identity remains FUN_0002bed0."
@@ -8,6 +112,170 @@
   "0x00068908": {
    "name": "lc3_put_bits_generic",
    "evidence": "The complete body matches NCS 2.5.1 liblc3 bits.c lc3_put_bits_generic: it fills bits->accu to 32 bits, flushes up to the available reverse-buffer bytes, then stores v >> n1 and n - n1. Encoder callers pass the same (bits, value, count) ABI. The legacy lc3_bits_accu_flush label described only the internal middle operation. Raw identity remains FUN_00068908."
+  },
+  "0x000682f0": {
+   "name": "lc3_attdet_run",
+   "evidence": "NCS 2.5.1 liblc3 src/attdet.c lc3_attdet_run: identical five-argument attack-detector state machine and threshold table; firmware extent 436 bytes versus 440 bytes under the pinned -O3/-ffast-math build. Displaces the incorrect lc3_ltpf_correlate label, retained by the generated manifest as an alias. Raw identity remains FUN_000682f0."
+  },
+  "0x000684a8": {
+   "name": "lc3_setup_bits",
+   "evidence": "NCS 2.5.1 liblc3 src/bits.c lc3_setup_bits: identical four-argument bitstream initialization/read prefetch body and exact 232-byte compiled extent. Raw identity remains FUN_000684a8."
+  },
+  "0x00068590": {
+   "name": "lc3_get_bits_left",
+   "evidence": "NCS 2.5.1 liblc3 src/bits.c lc3_get_bits_left; exact 100-byte compiled extent and matching nonnegative clamp semantics. Raw identity remains FUN_00068590."
+  },
+  "0x000685f4": {
+   "name": "lc3_flush_bits",
+   "evidence": "NCS 2.5.1 liblc3 src/bits.c lc3_flush_bits; exact 788-byte compiled extent and matching arithmetic-coder termination/accumulator flush state. Raw identity remains FUN_000685f4."
+  },
+  "0x0006897c": {
+   "name": "lc3_ac_write_renorm",
+   "evidence": "NCS 2.5.1 liblc3 src/bits.c lc3_ac_write_renorm; exact 148-byte compiled extent and matching range-renormalization state updates. Raw identity remains FUN_0006897c."
+  },
+  "0x00068a10": {
+   "name": "lc3_bwdet_run",
+   "evidence": "NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_run: identical bandwidth-region accumulation, threshold/hold stage, and fixed tables. Raw identity remains FUN_00068a10."
+  },
+  "0x00068b14": {
+   "name": "lc3_bwdet_get_nbits",
+   "evidence": "NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_get_nbits; exact 24-byte compiled extent and identical three-comparison result. Raw identity remains FUN_00068b14."
+  },
+  "0x00068b2c": {
+   "name": "lc3_bwdet_put_bw",
+   "evidence": "NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_put_bw; exact 60-byte compiled extent and matching call to lc3_put_bits. Raw identity remains FUN_00068b2c."
+  },
+  "0x00068b68": {
+   "name": "lc3_energy_compute",
+   "evidence": "NCS 2.5.1 liblc3 src/energy.c lc3_energy_compute: identical per-band energy loop, lc3_band_lim accesses, zero fill, and near-Nyquist flag. Raw identity remains FUN_00068b68."
+  },
+  "0x00068d2c": {
+   "name": "lc3_load_s24_3le",
+   "evidence": "Qualified form of static src/lc3.c load_s24_3le; exact 98-byte compiled extent and identical packed 24-bit PCM conversion. Raw identity remains FUN_00068d2c."
+  },
+  "0x00068d90": {
+   "name": "lc3_load_s24",
+   "evidence": "Qualified form of static src/lc3.c load_s24; exact 88-byte compiled extent and identical strided signed-24 PCM conversion. Raw identity remains FUN_00068d90."
+  },
+  "0x00068de8": {
+   "name": "lc3_load_float",
+   "evidence": "Qualified form of static src/lc3.c load_float; exact 86-byte compiled extent and identical strided floating PCM load. Raw identity remains FUN_00068de8."
+  },
+  "0x00068e40": {
+   "name": "lc3_frame_samples",
+   "evidence": "NCS 2.5.1 liblc3 public lc3_frame_samples; exact 140-byte compiled extent and identical 7.5/10 ms sample-rate dispatch. Displaces descriptive lc3_ns, retained as an alias. Raw identity remains FUN_00068e40."
+  },
+  "0x00068ecc": {
+   "name": "lc3_encoder_size",
+   "evidence": "NCS 2.5.1 liblc3 public lc3_encoder_size; identical duration/sample-rate validation and encoder workspace size calculation. Displaces lc3_frame_param_compute, retained as an alias. Raw identity remains FUN_00068ecc."
+  },
+  "0x00068f94": {
+   "name": "lc3_setup_encoder",
+   "evidence": "NCS 2.5.1 liblc3 public lc3_setup_encoder; identical four-argument setup ABI, format/rate resolution, 0x4b0-byte state initialization, and workspace layout. Displaces lc3_ltpf_select_resampler_params, retained as an alias. Raw identity remains FUN_00068f94."
+  },
+  "0x00069238": {
+   "name": "lc3_encode",
+   "evidence": "NCS 2.5.1 liblc3 public lc3_encode; exact 560-byte compiled extent and matching encoder pipeline/callee order. Displaces descriptive lc3_encode_frame, retained as an alias. Raw identity remains FUN_00069238."
+  },
+  "0x00069468": {
+   "name": "lc3_ltpf_interpolate",
+   "evidence": "Qualified form of static src/ltpf.c interpolate; exact 228-byte compiled extent and matching four-argument sample interpolation. Raw identity remains FUN_00069468."
+  },
+  "0x0006954c": {
+   "name": "lc3_ltpf_arm_correlate",
+   "evidence": "Qualified form of static src/ltpf_arm.h arm_correlate; exact 898-byte compiled extent and matching SIMD32 correlation kernel. Displaces incorrect lc3_ltpf_resample, retained as an alias. Raw identity remains FUN_0006954c."
+  },
+  "0x000698d0": {
+   "name": "lc3_ltpf_detect_pitch",
+   "evidence": "Qualified form of static src/ltpf.c detect_pitch; matching full/predicted-lag correlation searches, normalized correlation, 0.85 selection and 0.6 threshold. Raw identity remains FUN_000698d0."
+  },
+  "0x0006a700": {
+   "name": "lc3_ltpf_arm_resample_24k_12k8",
+   "evidence": "Qualified form of static src/ltpf_arm.h arm_resample_24k_12k8; matching 15-phase SIMD resampling kernel and shipped coefficient table. Raw identity remains FUN_0006a700."
+  },
+  "0x0006aa98": {
+   "name": "lc3_ltpf_arm_resample_48k_12k8",
+   "evidence": "Qualified form of static src/ltpf_arm.h arm_resample_48k_12k8; matching SIMD resampling/high-pass state kernel and shipped coefficient table. Raw identity remains FUN_0006aa98."
+  },
+  "0x0006ab80": {
+   "name": "lc3_ltpf_analyse",
+   "evidence": "NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_analyse; matching encoder LTPF analysis state, pitch detection/refinement, and output data. Existing spelling is retained. Raw identity remains FUN_0006ab80."
+  },
+  "0x0006b364": {
+   "name": "lc3_ltpf_disable",
+   "evidence": "NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_disable; exact six-byte compiled extent. Raw identity remains FUN_0006b364."
+  },
+  "0x0006b36c": {
+   "name": "lc3_ltpf_get_nbits",
+   "evidence": "NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_get_nbits; exact ten-byte compiled extent. Raw identity remains FUN_0006b36c."
+  },
+  "0x0006b378": {
+   "name": "lc3_ltpf_put_data",
+   "evidence": "NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_put_data; exact 78-byte compiled extent and matching pitch/active bit packing. Raw identity remains FUN_0006b378."
+  },
+  "0x0006b3c8": {
+   "name": "lc3_mdct_fft",
+   "evidence": "Qualified form of static src/mdct.c fft; the 0x5f0-byte firmware allocation to lc3_mdct_forward is exactly the pinned build symbol size. Raw identity remains FUN_0006b3c8."
+  },
+  "0x0006b9b8": {
+   "name": "lc3_mdct_forward",
+   "evidence": "NCS 2.5.1 liblc3 src/mdct.c lc3_mdct_forward; the 0x3bc-byte firmware allocation to the next entry exactly matches the pinned build symbol size. Raw identity remains FUN_0006b9b8."
+  },
+  "0x0006bd74": {
+   "name": "lc3_sns_unquantize",
+   "evidence": "Qualified form of static src/sns.c unquantize; identical lfcb/hfcb/code-vector/shape/gain ABI, DCT matrix use, and 16-factor reconstruction. Raw identity remains FUN_0006bd74."
+  },
+  "0x0006bfc8": {
+   "name": "lc3_sns_compute_scale_factors",
+   "evidence": "Qualified form of static src/sns.c compute_scale_factors; identical duration/rate energy interpolation, pre-emphasis table, attack smoothing and 16-factor normalization. Raw identity remains FUN_0006bfc8."
+  },
+  "0x0006c778": {
+   "name": "lc3_sns_analyze",
+   "evidence": "NCS 2.5.1 liblc3 src/sns.c lc3_sns_analyze; matching analysis pipeline and fixed SNS codebooks/tables. Large optimized body contains inlined static stages, so its catalog size is not treated as standalone proof. Raw identity remains FUN_0006c778."
+  },
+  "0x0006efd8": {
+   "name": "lc3_sns_get_nbits",
+   "evidence": "NCS 2.5.1 liblc3 src/sns.c lc3_sns_get_nbits; exact four-byte compiled extent returning 38. Raw identity remains FUN_0006efd8."
+  },
+  "0x0006efdc": {
+   "name": "lc3_sns_put_data",
+   "evidence": "NCS 2.5.1 liblc3 src/sns.c lc3_sns_put_data; matching SNS codebook, shape/gain and MVPQ index bit packing. Displaces lc3_encode_pack_frame_header_bits, retained as an alias. Raw identity remains FUN_0006efdc."
+  },
+  "0x0006f164": {
+   "name": "lc3_spec_quantize",
+   "evidence": "Qualified form of static src/spec.c quantize; identical global-gain spectrum quantization and signed magnitude encoding. Raw identity remains FUN_0006f164."
+  },
+  "0x0006f28c": {
+   "name": "lc3_spec_compute_nbits",
+   "evidence": "Qualified form of static src/spec.c compute_nbits; identical arithmetic model/lookup tables, coefficient budget and LSB-mode selection. Raw identity remains FUN_0006f28c."
+  },
+  "0x0006f4a0": {
+   "name": "lc3_spec_analyze",
+   "evidence": "NCS 2.5.1 liblc3 src/spec.c lc3_spec_analyze; matching bit-budget, gain estimate/adjust, quantization and side-data pipeline. Raw identity remains FUN_0006f4a0."
+  },
+  "0x0006f91c": {
+   "name": "lc3_spec_put_side",
+   "evidence": "NCS 2.5.1 liblc3 src/spec.c lc3_spec_put_side; exact 164-byte compiled extent and matching nq/lsb_mode/g_idx fields. Displaces lc3_encode_pack_gain_bits, retained as an alias. Raw identity remains FUN_0006f91c."
+  },
+  "0x0006f9c0": {
+   "name": "lc3_spec_encode",
+   "evidence": "NCS 2.5.1 liblc3 src/spec.c lc3_spec_encode; exact 0x618-byte firmware allocation and matching noise/arithmetic/residual packing pipeline. Raw identity remains FUN_0006f9c0."
+  },
+  "0x0006ffd8": {
+   "name": "lc3_tns_analyze",
+   "evidence": "Exact NCS 2.5.1 liblc3 tns.c TNS analysis implementation and six-argument ABI: computes normalized LPC coefficients, optional low-bitrate weighting, reflection/quantization data, and forward-filters the spectrum. Fixed subdivision and quantizer tables match 0x0008853c, 0x00098564, and 0x00098540. Raw identity remains FUN_0006ffd8."
+  },
+  "0x000709d8": {
+   "name": "lc3_tns_get_nbits",
+   "evidence": "NCS 2.5.1 liblc3 src/tns.c lc3_tns_get_nbits; matching order/coefficient bit-cost table walks across one or two filters. Raw identity remains FUN_000709d8."
+  },
+  "0x00070b38": {
+   "name": "lc3_tns_put_data",
+   "evidence": "NCS 2.5.1 liblc3 src/tns.c lc3_tns_put_data; matching per-filter presence bit and arithmetic-model encoding of order/reflection coefficients. Raw identity remains FUN_00070b38."
+  },
+  "0x00075174": {
+   "name": "k_timer_start",
+   "evidence": "Exact Zephyr k_timer_start ABI: timer pointer in r0, AAPCS-aligned 64-bit duration in r2:r3, and 64-bit period in the first two caller-stack words. main invokes it for the 0x667 and 0x1e0000 periodic timers. Raw identity remains FUN_00075174."
   },
   "0x0004e434": {
    "name": "settings_load_subtree_direct",
@@ -20,6 +288,10 @@
   "0x00018334": {
    "name": "format_bt_addr_str",
    "evidence": "The input is Zephyr's packed bt_addr_le_t wire layout: type byte followed by six address bytes. The body selects the four standard LE type labels or formats an unknown type, then emits BT_ADDR_LE_STR in reverse byte order. Raw identity remains FUN_00018334."
+  },
+  "0x00035f28": {
+   "name": "render_ancs_notification_animation",
+   "evidence": "The adjacent durable string is ui_ancs_notification_; the function redraws the current message for eight reveal-mask selectors, applies each selector to the 199x320 framebuffer rows, publishes every frame, and brackets animation with the GUI canvas flag. Raw identity remains FUN_00035f28."
   },
   "0x000751d0": {
    "name": "register_events",
@@ -63,6 +335,34 @@
   }
  },
  "net": {
+  "0x010091cc": {
+   "name": "sdc_default_tx_power_set",
+   "evidence": "Exact NCS 2.5.1 public SoftDevice Controller API and ABI: int32_t sdc_default_tx_power_set(int8_t requested_power_level). The firmware wrapper rejects enabled controller state, otherwise forwards the sign-extended requested level to its internal setter. Raw identity remains FUN_010091cc."
+  },
+  "0x0100eec8": {
+   "name": "controller_work_enqueue_packet_result",
+   "evidence": "Writes the callback field and controller node state 3, which controller_packet_build_next dispatches as node_packet_result_callback; then inserts the node into g_net_pending_work_list under PRIMASK and raises its deferred-event channel. Raw identity remains FUN_0100eec8."
+  },
+  "0x0100ebb8": {
+   "name": "controller_work_duplicate_enqueue_assert",
+   "evidence": "The controller-work enqueue path calls this noreturn wrapper only when node state is not AVAILABLE; it forwards controller assertion module 0x10 and line 0x2bf. Raw identity remains FUN_0100ebb8."
+  },
+  "0x0102583c": {
+   "name": "controller_deferred_event_raise",
+   "evidence": "Validates deferred-event channel 0..4, increments its bounded pending count, then tail-calls the shared NVIC pending helper. Controller work queues pass their configured channel byte here after enqueue. Raw identity remains FUN_0102583c."
+  },
+  "0x0101e0a4": {
+   "name": "controller_handle_update_state_apply",
+   "evidence": "State-transition body reached through the 0x0101e15c tail veneer after typed-handle/context resolution. It accepts only state 0x2a, publishes either no-value state 0x2b or value/kind/applied state 0x30, releases an optional type-seven entry link, and returns controller status 0/0x0c. Raw identity remains FUN_0101e0a4."
+  },
+  "0x01009d18": {
+   "name": "controller_typed_handle_lookup",
+   "evidence": "Indexes the controller object table by type, finds the supplied 16-bit handle, and returns the corresponding entry pointer or null. Raw identity remains FUN_01009d18."
+  },
+  "0x0101df84": {
+   "name": "controller_entry_links_release",
+   "evidence": "Releases and validates the typed handle links associated with an entry record, clearing its link/timestamp fields when active. Raw identity remains FUN_0101df84."
+  },
   "0x01016144": {
    "name": "controller_radio_event1_dispatch",
    "evidence": "First-class tail target of FUN_01013650 event case one. It reads the active-link byte at owner+0x2ee, forwards context/event to the idle-radio completion path when clear, or dispatches the connection-event processor with (0,0) when set. Raw identity remains FUN_01016144."
@@ -266,6 +566,22 @@
   "0x0101fca8": {
    "name": "sdc_llcp_release_rx_context",
    "evidence": "Second operation in the cleanup_pending tail shared by LLCP receive handlers, followed by clearing the pending byte. Raw identity remains FUN_0101fca8."
+  },
+  "0x0100ef88": {
+   "name": "sdc_work_submit",
+   "evidence": "Initializes or updates an intrusive controller work item with callback and priority, appends it under IRQ lock, then wakes the controller worker. Raw identity remains FUN_0100ef88."
+  },
+  "0x010127f8": {
+   "name": "sdc_ext_adv_event_complete",
+   "evidence": "Forced extended-advertising completion path: increments completed-event count, reschedules below the configured maximum, otherwise builds LE Advertising Set Terminated status 0x43 (Limit Reached), handle, connection handle and completed count. NCS 2.5.1 SDC variants sym_2K3JTQJLCTROZQI43ERT7GF5BTQ3SMAJXYMCVJI and sym_2CUDUPKI7JF4DCST2EA4IQU5SWO2YDS37ASKGPY match at 0.964 over 67 normalized operations. Raw identity remains FUN_010127f8."
+  },
+  "0x010140ec": {
+   "name": "sdc_ext_adv_reschedule",
+   "evidence": "Mode zero computes the next extended-advertising anchor including the configured random delay and admits the new scheduler request; mode one terminates/releases the event. Raw identity remains FUN_010140ec."
+  },
+  "0x0101f888": {
+   "name": "sdc_hci_event_suppressed",
+   "evidence": "One-byte controller/HCI state gate checked before advertising termination records are populated and submitted; nonzero suppresses that event publication. Raw identity remains FUN_0101f888."
   },
   "0x0100d58c": {
    "name": "sdc_phy_timing_offset_get",

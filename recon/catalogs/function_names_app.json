@@ -9,8 +9,9 @@
    "name": "FUN_00000004",
    "display_name": "FUN_00000004",
    "human": false,
-   "source": "recon/named/FUN_0004ee68.c",
+   "source": "committed durable map",
    "aliases": [
+    "FUN_0004ee68",
     "FUN_00052bf8"
    ]
   },
@@ -20,7 +21,18 @@
    "name": "FUN_00000006",
    "display_name": "FUN_00000006",
    "human": false,
-   "source": "recon/named/FUN_00067600.c",
+   "source": "committed durable map",
+   "aliases": [
+    "FUN_00067600"
+   ]
+  },
+  "0x0000005e": {
+   "address": "0x0000005e",
+   "raw_name": "FUN_0000005e",
+   "name": "FUN_0000005e",
+   "display_name": "FUN_0000005e",
+   "human": false,
+   "source": "recon/named/net_buf_put.c",
    "aliases": []
   },
   "0x00000072": {
@@ -29,8 +41,10 @@
    "name": "FUN_00000072",
    "display_name": "FUN_00000072",
    "human": false,
-   "source": "recon/named/k_work_init.c",
-   "aliases": []
+   "source": "committed durable map",
+   "aliases": [
+    "FUN_00072e50"
+   ]
   },
   "0x0000c358": {
    "address": "0x0000c358",
@@ -552,12 +566,13 @@
   "0x000113a8": {
    "address": "0x000113a8",
    "raw_name": "FUN_000113a8",
-   "name": "printf_like",
-   "display_name": "printf_like",
+   "name": "z_cbvprintf_impl",
+   "display_name": "z_cbvprintf_impl",
    "human": true,
-   "source": "recon/app/src/printf_like.c",
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr lib/os/cbprintf_complete.c implementation and five-argument ABI (out, ctx, format, va_list, flags). The legacy printf_like label was descriptive only. Raw identity remains FUN_000113a8.",
    "aliases": [
-    "FUN_000113a8"
+    "FUN_000113a8",
+    "printf_like"
    ]
   },
   "0x00012080": {
@@ -1021,6 +1036,24 @@
    "aliases": [
     "FUN_000179ec"
    ]
+  },
+  "0x00017a28": {
+   "address": "0x00017a28",
+   "raw_name": "FUN_00017a28",
+   "name": "touch_pmic_reset_assert",
+   "display_name": "touch_pmic_reset_assert",
+   "human": true,
+   "source": "function_name_overrides.json: Tail helper writes one through the fixed GPIO descriptor at 0x000889d8; touch_key_thread immediately logs reset_pmic_on. Raw identity remains FUN_00017a28.",
+   "aliases": []
+  },
+  "0x00017a34": {
+   "address": "0x00017a34",
+   "raw_name": "FUN_00017a34",
+   "name": "touch_pmic_reset_deassert",
+   "display_name": "touch_pmic_reset_deassert",
+   "human": true,
+   "source": "function_name_overrides.json: Tail helper writes zero through the same fixed GPIO descriptor; touch_key_thread immediately logs reset_pmic_off. Raw identity remains FUN_00017a34.",
+   "aliases": []
   },
   "0x00017a40": {
    "address": "0x00017a40",
@@ -4833,11 +4866,13 @@
   "0x00035f28": {
    "address": "0x00035f28",
    "raw_name": "FUN_00035f28",
-   "name": "FUN_00035f28",
-   "display_name": "FUN_00035f28",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "render_ancs_notification_animation",
+   "display_name": "render_ancs_notification_animation",
+   "human": true,
+   "source": "function_name_overrides.json: The adjacent durable string is ui_ancs_notification_; the function redraws the current message for eight reveal-mask selectors, applies each selector to the 199x320 framebuffer rows, publishes every frame, and brackets animation with the GUI canvas flag. Raw identity remains FUN_00035f28.",
+   "aliases": [
+    "FUN_00035f28"
+   ]
   },
   "0x00036024": {
    "address": "0x00036024",
@@ -5688,7 +5723,7 @@
    "name": "gui_utf_draw_truncate",
    "display_name": "gui_utf_draw_truncate",
    "human": true,
-   "source": "recon/app/src/gui_utf_draw_truncate.c",
+   "source": "committed durable map",
    "aliases": [
     "FUN_00044818"
    ]
@@ -6788,20 +6823,24 @@
   "0x0004bb64": {
    "address": "0x0004bb64",
    "raw_name": "FUN_0004bb64",
-   "name": "FUN_0004bb64",
-   "display_name": "FUN_0004bb64",
-   "human": false,
-   "source": "recon/app/src/FUN_0004bb64.c",
-   "aliases": []
+   "name": "extract_decimal",
+   "display_name": "extract_decimal",
+   "human": true,
+   "source": "function_name_overrides.json: Static cbprintf_complete.c helper: consumes decimal digits through a char-pointer cursor and returns the decoded size. Raw identity remains FUN_0004bb64.",
+   "aliases": [
+    "FUN_0004bb64"
+   ]
   },
   "0x0004bb90": {
    "address": "0x0004bb90",
    "raw_name": "FUN_0004bb90",
-   "name": "FUN_0004bb90",
-   "display_name": "FUN_0004bb90",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "encode_uint",
+   "display_name": "encode_uint",
+   "human": true,
+   "source": "function_name_overrides.json: Static cbprintf_complete.c integer encoder: writes a converted integer backward in the selected radix and records octal/hex alternate-form flags. Raw identity remains FUN_0004bb90.",
+   "aliases": [
+    "FUN_0004bb90"
+   ]
   },
   "0x0004bc28": {
    "address": "0x0004bc28",
@@ -6846,11 +6885,13 @@
   "0x0004bfc8": {
    "address": "0x0004bfc8",
    "raw_name": "FUN_0004bfc8",
-   "name": "FUN_0004bfc8",
-   "display_name": "FUN_0004bfc8",
-   "human": false,
-   "source": "recon/app/src/FUN_0004bfc8.c",
-   "aliases": []
+   "name": "mpsc_pbuf_free",
+   "display_name": "mpsc_pbuf_free",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation and ABI: clears valid, either clears busy and advances read indices or publishes a skip record in overwrite mode, unlocks, then gives the buffer semaphore. Raw identity remains FUN_0004bfc8.",
+   "aliases": [
+    "FUN_0004bfc8"
+   ]
   },
   "0x0004c0a8": {
    "address": "0x0004c0a8",
@@ -7155,13 +7196,23 @@
   "0x0004d578": {
    "address": "0x0004d578",
    "raw_name": "FUN_0004d578",
-   "name": "mpsc_pbuf_free",
-   "display_name": "mpsc_pbuf_free",
+   "name": "z_log_msg_free",
+   "display_name": "z_log_msg_free",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls mpsc_pbuf_free(buffer, msg). The former mpsc_pbuf_free assignment belongs to 0x0004bfc8. Raw identity remains FUN_0004d578.",
    "aliases": [
-    "FUN_0004d578"
+    "FUN_0004d578",
+    "mpsc_pbuf_free"
    ]
+  },
+  "0x0004d588": {
+   "address": "0x0004d588",
+   "raw_name": "FUN_0004d588",
+   "name": "z_log_msg_pending",
+   "display_name": "z_log_msg_pending",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr subsys/logging/log_core.c wrapper for the single CONFIG_MPSC_PBUF log_buffer: the six-byte body loads the fixed log buffer at 0x20003648 and tail-branches to mpsc_pbuf_is_pending at 0x0007e50c. Raw identity remains FUN_0004d588.",
+   "aliases": []
   },
   "0x0004d594": {
    "address": "0x0004d594",
@@ -8001,23 +8052,25 @@
   "0x000510fc": {
    "address": "0x000510fc",
    "raw_name": "FUN_000510fc",
-   "name": "lock_acquire_or_fatal",
-   "display_name": "lock_acquire_or_fatal",
+   "name": "__retarget_lock_acquire_recursive",
+   "display_name": "__retarget_lock_acquire_recursive",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Newlib retargetable recursive-lock acquire boundary; validates the lock then waits on its Zephyr mutex. Raw identity remains FUN_000510fc.",
    "aliases": [
-    "FUN_000510fc"
+    "FUN_000510fc",
+    "lock_acquire_or_fatal"
    ]
   },
   "0x00051134": {
    "address": "0x00051134",
    "raw_name": "FUN_00051134",
-   "name": "lock_release_or_fatal",
-   "display_name": "lock_release_or_fatal",
+   "name": "__retarget_lock_release_recursive",
+   "display_name": "__retarget_lock_release_recursive",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Newlib retargetable recursive-lock release boundary; validates the lock then unlocks its Zephyr mutex. Raw identity remains FUN_00051134.",
    "aliases": [
-    "FUN_00051134"
+    "FUN_00051134",
+    "lock_release_or_fatal"
    ]
   },
   "0x00051164": {
@@ -8313,11 +8366,13 @@
   "0x00052760": {
    "address": "0x00052760",
    "raw_name": "FUN_00052760",
-   "name": "FUN_00052760",
-   "display_name": "FUN_00052760",
-   "human": false,
-   "source": "recon/app/src/FUN_00052760.c",
-   "aliases": []
+   "name": "smp_rx_remove_invalid",
+   "display_name": "smp_rx_remove_invalid",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr subsys/mgmt/mcumgr/transport/src/smp.c implementation and ABI: cancels active transport work, filters its request FIFO through query_valid_check using a temporary FIFO, restores retained buffers, and resubmits nonempty work. Raw identity remains FUN_00052760.",
+   "aliases": [
+    "FUN_00052760"
+   ]
   },
   "0x000527dc": {
    "address": "0x000527dc",
@@ -11059,12 +11114,13 @@
   "0x0005f200": {
    "address": "0x0005f200",
    "raw_name": "FUN_0005f200",
-   "name": "net_buf_destroy_default",
-   "display_name": "net_buf_destroy_default",
+   "name": "net_buf_put",
+   "display_name": "net_buf_put",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact Zephyr net_buf FIFO wrapper: validates fifo and buffer then appends the buffer to the underlying k_queue. smp_rx_remove_invalid uses it for both the temporary and transport FIFOs. The stale net_buf_destroy_default assignment was incompatible with the two-argument FIFO ABI. Raw identity remains FUN_0005f200.",
    "aliases": [
-    "FUN_0005f200"
+    "FUN_0005f200",
+    "net_buf_destroy_default"
    ]
   },
   "0x0005f24c": {
@@ -12998,40 +13054,47 @@
   "0x000682f0": {
    "address": "0x000682f0",
    "raw_name": "FUN_000682f0",
-   "name": "lc3_ltpf_correlate",
-   "display_name": "lc3_ltpf_correlate",
+   "name": "lc3_attdet_run",
+   "display_name": "lc3_attdet_run",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/attdet.c lc3_attdet_run: identical five-argument attack-detector state machine and threshold table; firmware extent 436 bytes versus 440 bytes under the pinned -O3/-ffast-math build. Displaces the incorrect lc3_ltpf_correlate label, retained by the generated manifest as an alias. Raw identity remains FUN_000682f0.",
    "aliases": [
-    "FUN_000682f0"
+    "FUN_000682f0",
+    "lc3_ltpf_correlate"
    ]
   },
   "0x000684a8": {
    "address": "0x000684a8",
    "raw_name": "FUN_000684a8",
-   "name": "FUN_000684a8",
-   "display_name": "FUN_000684a8",
-   "human": false,
-   "source": "recon/app/src/FUN_000684a8.c",
-   "aliases": []
+   "name": "lc3_setup_bits",
+   "display_name": "lc3_setup_bits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bits.c lc3_setup_bits: identical four-argument bitstream initialization/read prefetch body and exact 232-byte compiled extent. Raw identity remains FUN_000684a8.",
+   "aliases": [
+    "FUN_000684a8"
+   ]
   },
   "0x00068590": {
    "address": "0x00068590",
    "raw_name": "FUN_00068590",
-   "name": "FUN_00068590",
-   "display_name": "FUN_00068590",
-   "human": false,
-   "source": "recon/app/src/FUN_00068590.c",
-   "aliases": []
+   "name": "lc3_get_bits_left",
+   "display_name": "lc3_get_bits_left",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bits.c lc3_get_bits_left; exact 100-byte compiled extent and matching nonnegative clamp semantics. Raw identity remains FUN_00068590.",
+   "aliases": [
+    "FUN_00068590"
+   ]
   },
   "0x000685f4": {
    "address": "0x000685f4",
    "raw_name": "FUN_000685f4",
-   "name": "FUN_000685f4",
-   "display_name": "FUN_000685f4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_flush_bits",
+   "display_name": "lc3_flush_bits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bits.c lc3_flush_bits; exact 788-byte compiled extent and matching arithmetic-coder termination/accumulator flush state. Raw identity remains FUN_000685f4.",
+   "aliases": [
+    "FUN_000685f4"
+   ]
   },
   "0x00068908": {
    "address": "0x00068908",
@@ -13041,124 +13104,143 @@
    "human": true,
    "source": "function_name_overrides.json: The complete body matches NCS 2.5.1 liblc3 bits.c lc3_put_bits_generic: it fills bits->accu to 32 bits, flushes up to the available reverse-buffer bytes, then stores v >> n1 and n - n1. Encoder callers pass the same (bits, value, count) ABI. The legacy lc3_bits_accu_flush label described only the internal middle operation. Raw identity remains FUN_00068908.",
    "aliases": [
-    "FUN_00068908",
-    "lc3_bits_accu_flush"
+    "FUN_00068908"
    ]
   },
   "0x0006897c": {
    "address": "0x0006897c",
    "raw_name": "FUN_0006897c",
-   "name": "FUN_0006897c",
-   "display_name": "FUN_0006897c",
-   "human": false,
-   "source": "recon/app/src/FUN_0006897c.c",
-   "aliases": []
+   "name": "lc3_ac_write_renorm",
+   "display_name": "lc3_ac_write_renorm",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bits.c lc3_ac_write_renorm; exact 148-byte compiled extent and matching range-renormalization state updates. Raw identity remains FUN_0006897c.",
+   "aliases": [
+    "FUN_0006897c"
+   ]
   },
   "0x00068a10": {
    "address": "0x00068a10",
    "raw_name": "FUN_00068a10",
-   "name": "FUN_00068a10",
-   "display_name": "FUN_00068a10",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_bwdet_run",
+   "display_name": "lc3_bwdet_run",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_run: identical bandwidth-region accumulation, threshold/hold stage, and fixed tables. Raw identity remains FUN_00068a10.",
+   "aliases": [
+    "FUN_00068a10"
+   ]
   },
   "0x00068b14": {
    "address": "0x00068b14",
    "raw_name": "FUN_00068b14",
-   "name": "FUN_00068b14",
-   "display_name": "FUN_00068b14",
-   "human": false,
-   "source": "recon/app/src/FUN_00068b14.c",
-   "aliases": []
+   "name": "lc3_bwdet_get_nbits",
+   "display_name": "lc3_bwdet_get_nbits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_get_nbits; exact 24-byte compiled extent and identical three-comparison result. Raw identity remains FUN_00068b14.",
+   "aliases": [
+    "FUN_00068b14"
+   ]
   },
   "0x00068b2c": {
    "address": "0x00068b2c",
    "raw_name": "FUN_00068b2c",
-   "name": "FUN_00068b2c",
-   "display_name": "FUN_00068b2c",
-   "human": false,
-   "source": "recon/app/src/FUN_00068b2c.c",
-   "aliases": []
+   "name": "lc3_bwdet_put_bw",
+   "display_name": "lc3_bwdet_put_bw",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/bwdet.c lc3_bwdet_put_bw; exact 60-byte compiled extent and matching call to lc3_put_bits. Raw identity remains FUN_00068b2c.",
+   "aliases": [
+    "FUN_00068b2c"
+   ]
   },
   "0x00068b68": {
    "address": "0x00068b68",
    "raw_name": "FUN_00068b68",
-   "name": "FUN_00068b68",
-   "display_name": "FUN_00068b68",
-   "human": false,
-   "source": "recon/app/src/FUN_00068b68.c",
-   "aliases": []
+   "name": "lc3_energy_compute",
+   "display_name": "lc3_energy_compute",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/energy.c lc3_energy_compute: identical per-band energy loop, lc3_band_lim accesses, zero fill, and near-Nyquist flag. Raw identity remains FUN_00068b68.",
+   "aliases": [
+    "FUN_00068b68"
+   ]
   },
   "0x00068d2c": {
    "address": "0x00068d2c",
    "raw_name": "FUN_00068d2c",
-   "name": "FUN_00068d2c",
-   "display_name": "FUN_00068d2c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_load_s24_3le",
+   "display_name": "lc3_load_s24_3le",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/lc3.c load_s24_3le; exact 98-byte compiled extent and identical packed 24-bit PCM conversion. Raw identity remains FUN_00068d2c.",
+   "aliases": [
+    "FUN_00068d2c"
+   ]
   },
   "0x00068d90": {
    "address": "0x00068d90",
    "raw_name": "FUN_00068d90",
-   "name": "FUN_00068d90",
-   "display_name": "FUN_00068d90",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_load_s24",
+   "display_name": "lc3_load_s24",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/lc3.c load_s24; exact 88-byte compiled extent and identical strided signed-24 PCM conversion. Raw identity remains FUN_00068d90.",
+   "aliases": [
+    "FUN_00068d90"
+   ]
   },
   "0x00068de8": {
    "address": "0x00068de8",
    "raw_name": "FUN_00068de8",
-   "name": "FUN_00068de8",
-   "display_name": "FUN_00068de8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_load_float",
+   "display_name": "lc3_load_float",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/lc3.c load_float; exact 86-byte compiled extent and identical strided floating PCM load. Raw identity remains FUN_00068de8.",
+   "aliases": [
+    "FUN_00068de8"
+   ]
   },
   "0x00068e40": {
    "address": "0x00068e40",
    "raw_name": "FUN_00068e40",
-   "name": "lc3_ns",
-   "display_name": "lc3_ns",
+   "name": "lc3_frame_samples",
+   "display_name": "lc3_frame_samples",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_frame_samples; exact 140-byte compiled extent and identical 7.5/10 ms sample-rate dispatch. Displaces descriptive lc3_ns, retained as an alias. Raw identity remains FUN_00068e40.",
    "aliases": [
-    "FUN_00068e40"
+    "FUN_00068e40",
+    "lc3_ns"
    ]
   },
   "0x00068ecc": {
    "address": "0x00068ecc",
    "raw_name": "FUN_00068ecc",
-   "name": "lc3_frame_param_compute",
-   "display_name": "lc3_frame_param_compute",
+   "name": "lc3_encoder_size",
+   "display_name": "lc3_encoder_size",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_encoder_size; identical duration/sample-rate validation and encoder workspace size calculation. Displaces lc3_frame_param_compute, retained as an alias. Raw identity remains FUN_00068ecc.",
    "aliases": [
-    "FUN_00068ecc"
+    "FUN_00068ecc",
+    "lc3_frame_param_compute"
    ]
   },
   "0x00068f94": {
    "address": "0x00068f94",
    "raw_name": "FUN_00068f94",
-   "name": "lc3_ltpf_select_resampler_params",
-   "display_name": "lc3_ltpf_select_resampler_params",
+   "name": "lc3_setup_encoder",
+   "display_name": "lc3_setup_encoder",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_setup_encoder; identical four-argument setup ABI, format/rate resolution, 0x4b0-byte state initialization, and workspace layout. Displaces lc3_ltpf_select_resampler_params, retained as an alias. Raw identity remains FUN_00068f94.",
    "aliases": [
-    "FUN_00068f94"
+    "FUN_00068f94",
+    "lc3_ltpf_select_resampler_params"
    ]
   },
   "0x00069238": {
    "address": "0x00069238",
    "raw_name": "FUN_00069238",
-   "name": "lc3_encode_frame",
-   "display_name": "lc3_encode_frame",
+   "name": "lc3_encode",
+   "display_name": "lc3_encode",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_encode; exact 560-byte compiled extent and matching encoder pipeline/callee order. Displaces descriptive lc3_encode_frame, retained as an alias. Raw identity remains FUN_00069238.",
    "aliases": [
-    "FUN_00069238"
+    "FUN_00069238",
+    "lc3_encode_frame"
    ]
   },
   "0x00069468": {
@@ -13167,7 +13249,7 @@
    "name": "lc3_ltpf_interpolate",
    "display_name": "lc3_ltpf_interpolate",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Qualified form of static src/ltpf.c interpolate; exact 228-byte compiled extent and matching four-argument sample interpolation. Raw identity remains FUN_00069468.",
    "aliases": [
     "FUN_00069468"
    ]
@@ -13175,40 +13257,47 @@
   "0x0006954c": {
    "address": "0x0006954c",
    "raw_name": "FUN_0006954c",
-   "name": "lc3_ltpf_resample",
-   "display_name": "lc3_ltpf_resample",
+   "name": "lc3_ltpf_arm_correlate",
+   "display_name": "lc3_ltpf_arm_correlate",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Qualified form of static src/ltpf_arm.h arm_correlate; exact 898-byte compiled extent and matching SIMD32 correlation kernel. Displaces incorrect lc3_ltpf_resample, retained as an alias. Raw identity remains FUN_0006954c.",
    "aliases": [
-    "FUN_0006954c"
+    "FUN_0006954c",
+    "lc3_ltpf_resample"
    ]
   },
   "0x000698d0": {
    "address": "0x000698d0",
    "raw_name": "FUN_000698d0",
-   "name": "FUN_000698d0",
-   "display_name": "FUN_000698d0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_ltpf_detect_pitch",
+   "display_name": "lc3_ltpf_detect_pitch",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/ltpf.c detect_pitch; matching full/predicted-lag correlation searches, normalized correlation, 0.85 selection and 0.6 threshold. Raw identity remains FUN_000698d0.",
+   "aliases": [
+    "FUN_000698d0"
+   ]
   },
   "0x0006a700": {
    "address": "0x0006a700",
    "raw_name": "FUN_0006a700",
-   "name": "FUN_0006a700",
-   "display_name": "FUN_0006a700",
-   "human": false,
-   "source": "recon/app/src/FUN_0006a700.c",
-   "aliases": []
+   "name": "lc3_ltpf_arm_resample_24k_12k8",
+   "display_name": "lc3_ltpf_arm_resample_24k_12k8",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/ltpf_arm.h arm_resample_24k_12k8; matching 15-phase SIMD resampling kernel and shipped coefficient table. Raw identity remains FUN_0006a700.",
+   "aliases": [
+    "FUN_0006a700"
+   ]
   },
   "0x0006aa98": {
    "address": "0x0006aa98",
    "raw_name": "FUN_0006aa98",
-   "name": "FUN_0006aa98",
-   "display_name": "FUN_0006aa98",
-   "human": false,
-   "source": "recon/app/src/FUN_0006aa98.c",
-   "aliases": []
+   "name": "lc3_ltpf_arm_resample_48k_12k8",
+   "display_name": "lc3_ltpf_arm_resample_48k_12k8",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/ltpf_arm.h arm_resample_48k_12k8; matching SIMD resampling/high-pass state kernel and shipped coefficient table. Raw identity remains FUN_0006aa98.",
+   "aliases": [
+    "FUN_0006aa98"
+   ]
   },
   "0x0006ab80": {
    "address": "0x0006ab80",
@@ -13216,7 +13305,7 @@
    "name": "lc3_ltpf_analyse",
    "display_name": "lc3_ltpf_analyse",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_analyse; matching encoder LTPF analysis state, pitch detection/refinement, and output data. Existing spelling is retained. Raw identity remains FUN_0006ab80.",
    "aliases": [
     "FUN_0006ab80"
    ]
@@ -13224,20 +13313,24 @@
   "0x0006b364": {
    "address": "0x0006b364",
    "raw_name": "FUN_0006b364",
-   "name": "FUN_0006b364",
-   "display_name": "FUN_0006b364",
-   "human": false,
-   "source": "recon/app/src/FUN_0006b364.c",
-   "aliases": []
+   "name": "lc3_ltpf_disable",
+   "display_name": "lc3_ltpf_disable",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_disable; exact six-byte compiled extent. Raw identity remains FUN_0006b364.",
+   "aliases": [
+    "FUN_0006b364"
+   ]
   },
   "0x0006b36c": {
    "address": "0x0006b36c",
    "raw_name": "FUN_0006b36c",
-   "name": "FUN_0006b36c",
-   "display_name": "FUN_0006b36c",
-   "human": false,
-   "source": "recon/app/src/FUN_0006b36c.c",
-   "aliases": []
+   "name": "lc3_ltpf_get_nbits",
+   "display_name": "lc3_ltpf_get_nbits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_get_nbits; exact ten-byte compiled extent. Raw identity remains FUN_0006b36c.",
+   "aliases": [
+    "FUN_0006b36c"
+   ]
   },
   "0x0006b378": {
    "address": "0x0006b378",
@@ -13245,7 +13338,7 @@
    "name": "lc3_ltpf_put_data",
    "display_name": "lc3_ltpf_put_data",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/ltpf.c lc3_ltpf_put_data; exact 78-byte compiled extent and matching pitch/active bit packing. Raw identity remains FUN_0006b378.",
    "aliases": [
     "FUN_0006b378"
    ]
@@ -13253,141 +13346,169 @@
   "0x0006b3c8": {
    "address": "0x0006b3c8",
    "raw_name": "FUN_0006b3c8",
-   "name": "FUN_0006b3c8",
-   "display_name": "FUN_0006b3c8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_mdct_fft",
+   "display_name": "lc3_mdct_fft",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/mdct.c fft; the 0x5f0-byte firmware allocation to lc3_mdct_forward is exactly the pinned build symbol size. Raw identity remains FUN_0006b3c8.",
+   "aliases": [
+    "FUN_0006b3c8"
+   ]
   },
   "0x0006b9b8": {
    "address": "0x0006b9b8",
    "raw_name": "FUN_0006b9b8",
-   "name": "FUN_0006b9b8",
-   "display_name": "FUN_0006b9b8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_mdct_forward",
+   "display_name": "lc3_mdct_forward",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/mdct.c lc3_mdct_forward; the 0x3bc-byte firmware allocation to the next entry exactly matches the pinned build symbol size. Raw identity remains FUN_0006b9b8.",
+   "aliases": [
+    "FUN_0006b9b8"
+   ]
   },
   "0x0006bd74": {
    "address": "0x0006bd74",
    "raw_name": "FUN_0006bd74",
-   "name": "FUN_0006bd74",
-   "display_name": "FUN_0006bd74",
-   "human": false,
-   "source": "recon/app/src/FUN_0006bd74.c",
-   "aliases": []
+   "name": "lc3_sns_unquantize",
+   "display_name": "lc3_sns_unquantize",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/sns.c unquantize; identical lfcb/hfcb/code-vector/shape/gain ABI, DCT matrix use, and 16-factor reconstruction. Raw identity remains FUN_0006bd74.",
+   "aliases": [
+    "FUN_0006bd74"
+   ]
   },
   "0x0006bfc8": {
    "address": "0x0006bfc8",
    "raw_name": "FUN_0006bfc8",
-   "name": "FUN_0006bfc8",
-   "display_name": "FUN_0006bfc8",
-   "human": false,
-   "source": "recon/app/src/FUN_0006bfc8.c",
-   "aliases": []
+   "name": "lc3_sns_compute_scale_factors",
+   "display_name": "lc3_sns_compute_scale_factors",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/sns.c compute_scale_factors; identical duration/rate energy interpolation, pre-emphasis table, attack smoothing and 16-factor normalization. Raw identity remains FUN_0006bfc8.",
+   "aliases": [
+    "FUN_0006bfc8"
+   ]
   },
   "0x0006c778": {
    "address": "0x0006c778",
    "raw_name": "FUN_0006c778",
-   "name": "FUN_0006c778",
-   "display_name": "FUN_0006c778",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_sns_analyze",
+   "display_name": "lc3_sns_analyze",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/sns.c lc3_sns_analyze; matching analysis pipeline and fixed SNS codebooks/tables. Large optimized body contains inlined static stages, so its catalog size is not treated as standalone proof. Raw identity remains FUN_0006c778.",
+   "aliases": [
+    "FUN_0006c778"
+   ]
   },
   "0x0006efd8": {
    "address": "0x0006efd8",
    "raw_name": "FUN_0006efd8",
-   "name": "FUN_0006efd8",
-   "display_name": "FUN_0006efd8",
-   "human": false,
-   "source": "recon/app/src/FUN_0006efd8.c",
-   "aliases": []
+   "name": "lc3_sns_get_nbits",
+   "display_name": "lc3_sns_get_nbits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/sns.c lc3_sns_get_nbits; exact four-byte compiled extent returning 38. Raw identity remains FUN_0006efd8.",
+   "aliases": [
+    "FUN_0006efd8"
+   ]
   },
   "0x0006efdc": {
    "address": "0x0006efdc",
    "raw_name": "FUN_0006efdc",
-   "name": "lc3_encode_pack_frame_header_bits",
-   "display_name": "lc3_encode_pack_frame_header_bits",
+   "name": "lc3_sns_put_data",
+   "display_name": "lc3_sns_put_data",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/sns.c lc3_sns_put_data; matching SNS codebook, shape/gain and MVPQ index bit packing. Displaces lc3_encode_pack_frame_header_bits, retained as an alias. Raw identity remains FUN_0006efdc.",
    "aliases": [
-    "FUN_0006efdc"
+    "FUN_0006efdc",
+    "lc3_encode_pack_frame_header_bits"
    ]
   },
   "0x0006f164": {
    "address": "0x0006f164",
    "raw_name": "FUN_0006f164",
-   "name": "FUN_0006f164",
-   "display_name": "FUN_0006f164",
-   "human": false,
-   "source": "recon/app/src/FUN_0006f164.c",
-   "aliases": []
+   "name": "lc3_spec_quantize",
+   "display_name": "lc3_spec_quantize",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/spec.c quantize; identical global-gain spectrum quantization and signed magnitude encoding. Raw identity remains FUN_0006f164.",
+   "aliases": [
+    "FUN_0006f164"
+   ]
   },
   "0x0006f28c": {
    "address": "0x0006f28c",
    "raw_name": "FUN_0006f28c",
-   "name": "FUN_0006f28c",
-   "display_name": "FUN_0006f28c",
-   "human": false,
-   "source": "recon/app/src/FUN_0006f28c.c",
-   "aliases": []
+   "name": "lc3_spec_compute_nbits",
+   "display_name": "lc3_spec_compute_nbits",
+   "human": true,
+   "source": "function_name_overrides.json: Qualified form of static src/spec.c compute_nbits; identical arithmetic model/lookup tables, coefficient budget and LSB-mode selection. Raw identity remains FUN_0006f28c.",
+   "aliases": [
+    "FUN_0006f28c"
+   ]
   },
   "0x0006f4a0": {
    "address": "0x0006f4a0",
    "raw_name": "FUN_0006f4a0",
-   "name": "FUN_0006f4a0",
-   "display_name": "FUN_0006f4a0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_spec_analyze",
+   "display_name": "lc3_spec_analyze",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/spec.c lc3_spec_analyze; matching bit-budget, gain estimate/adjust, quantization and side-data pipeline. Raw identity remains FUN_0006f4a0.",
+   "aliases": [
+    "FUN_0006f4a0"
+   ]
   },
   "0x0006f91c": {
    "address": "0x0006f91c",
    "raw_name": "FUN_0006f91c",
-   "name": "lc3_encode_pack_gain_bits",
-   "display_name": "lc3_encode_pack_gain_bits",
+   "name": "lc3_spec_put_side",
+   "display_name": "lc3_spec_put_side",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/spec.c lc3_spec_put_side; exact 164-byte compiled extent and matching nq/lsb_mode/g_idx fields. Displaces lc3_encode_pack_gain_bits, retained as an alias. Raw identity remains FUN_0006f91c.",
    "aliases": [
-    "FUN_0006f91c"
+    "FUN_0006f91c",
+    "lc3_encode_pack_gain_bits"
    ]
   },
   "0x0006f9c0": {
    "address": "0x0006f9c0",
    "raw_name": "FUN_0006f9c0",
-   "name": "FUN_0006f9c0",
-   "display_name": "FUN_0006f9c0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "lc3_spec_encode",
+   "display_name": "lc3_spec_encode",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/spec.c lc3_spec_encode; exact 0x618-byte firmware allocation and matching noise/arithmetic/residual packing pipeline. Raw identity remains FUN_0006f9c0.",
+   "aliases": [
+    "FUN_0006f9c0"
+   ]
   },
   "0x0006ffd8": {
    "address": "0x0006ffd8",
    "raw_name": "FUN_0006ffd8",
-   "name": "FUN_0006ffd8",
-   "display_name": "FUN_0006ffd8",
-   "human": false,
-   "source": "recon/app/src/FUN_0006ffd8.c",
-   "aliases": []
+   "name": "lc3_tns_analyze",
+   "display_name": "lc3_tns_analyze",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 liblc3 tns.c TNS analysis implementation and six-argument ABI: computes normalized LPC coefficients, optional low-bitrate weighting, reflection/quantization data, and forward-filters the spectrum. Fixed subdivision and quantizer tables match 0x0008853c, 0x00098564, and 0x00098540. Raw identity remains FUN_0006ffd8.",
+   "aliases": [
+    "FUN_0006ffd8"
+   ]
   },
   "0x000709d8": {
    "address": "0x000709d8",
    "raw_name": "FUN_000709d8",
-   "name": "FUN_000709d8",
-   "display_name": "FUN_000709d8",
-   "human": false,
-   "source": "recon/app/src/FUN_000709d8.c",
-   "aliases": []
+   "name": "lc3_tns_get_nbits",
+   "display_name": "lc3_tns_get_nbits",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/tns.c lc3_tns_get_nbits; matching order/coefficient bit-cost table walks across one or two filters. Raw identity remains FUN_000709d8.",
+   "aliases": [
+    "FUN_000709d8"
+   ]
   },
   "0x00070b38": {
    "address": "0x00070b38",
    "raw_name": "FUN_00070b38",
-   "name": "FUN_00070b38",
-   "display_name": "FUN_00070b38",
-   "human": false,
-   "source": "recon/app/src/FUN_00070b38.c",
-   "aliases": []
+   "name": "lc3_tns_put_data",
+   "display_name": "lc3_tns_put_data",
+   "human": true,
+   "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/tns.c lc3_tns_put_data; matching per-filter presence bit and arithmetic-model encoding of order/reflection coefficients. Raw identity remains FUN_00070b38.",
+   "aliases": [
+    "FUN_00070b38"
+   ]
   },
   "0x00070e28": {
    "address": "0x00070e28",
@@ -13685,21 +13806,24 @@
   "0x00072880": {
    "address": "0x00072880",
    "raw_name": "FUN_00072880",
-   "name": "FUN_00072880",
-   "display_name": "FUN_00072880",
-   "human": false,
-   "source": "recon/app/src/FUN_00072880.c",
-   "aliases": []
+   "name": "k_sem_give",
+   "display_name": "k_sem_give",
+   "human": true,
+   "source": "function_name_overrides.json: Exact Zephyr kernel semaphore-give implementation and ABI, including spinlock ownership, pending waiter wakeup, count saturation and poll notification. mpsc_pbuf_free tail-calls it with buffer->sem. Raw identity remains FUN_00072880.",
+   "aliases": [
+    "FUN_00072880"
+   ]
   },
   "0x00072908": {
    "address": "0x00072908",
    "raw_name": "FUN_00072908",
-   "name": "mutex_lock_syscall_handler",
-   "display_name": "mutex_lock_syscall_handler",
+   "name": "z_impl_k_sem_take",
+   "display_name": "z_impl_k_sem_take",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Complete Zephyr semaphore-take implementation: locks the kernel spinlock, consumes a positive count or pends the current thread with the supplied k_timeout_t, then reschedules. Raw identity remains FUN_00072908.",
    "aliases": [
-    "FUN_00072908"
+    "FUN_00072908",
+    "mutex_lock_syscall_handler"
    ]
   },
   "0x000729fc": {
@@ -13745,11 +13869,13 @@
   "0x00072e9c": {
    "address": "0x00072e9c",
    "raw_name": "FUN_00072e9c",
-   "name": "FUN_00072e9c",
-   "display_name": "FUN_00072e9c",
-   "human": false,
-   "source": "recon/app/src/FUN_00072e9c.c",
-   "aliases": []
+   "name": "k_work_busy_get",
+   "display_name": "k_work_busy_get",
+   "human": true,
+   "source": "function_name_overrides.json: Exact Zephyr work busy-state accessor used by smp_rx_remove_invalid before cancellation. Raw identity remains FUN_00072e9c.",
+   "aliases": [
+    "FUN_00072e9c"
+   ]
   },
   "0x00072f28": {
    "address": "0x00072f28",
@@ -13772,11 +13898,13 @@
   "0x00072fe8": {
    "address": "0x00072fe8",
    "raw_name": "FUN_00072fe8",
-   "name": "FUN_00072fe8",
-   "display_name": "FUN_00072fe8",
-   "human": false,
-   "source": "recon/app/src/FUN_00072fe8.c",
-   "aliases": []
+   "name": "k_work_cancel",
+   "display_name": "k_work_cancel",
+   "human": true,
+   "source": "function_name_overrides.json: Exact Zephyr work cancellation API and ABI used by smp_rx_remove_invalid. Raw identity remains FUN_00072fe8.",
+   "aliases": [
+    "FUN_00072fe8"
+   ]
   },
   "0x000730b4": {
    "address": "0x000730b4",
@@ -14204,11 +14332,13 @@
   "0x00075174": {
    "address": "0x00075174",
    "raw_name": "FUN_00075174",
-   "name": "FUN_00075174",
-   "display_name": "FUN_00075174",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "k_timer_start",
+   "display_name": "k_timer_start",
+   "human": true,
+   "source": "function_name_overrides.json: Exact Zephyr k_timer_start ABI: timer pointer in r0, AAPCS-aligned 64-bit duration in r2:r3, and 64-bit period in the first two caller-stack words. main invokes it for the 0x667 and 0x1e0000 periodic timers. Raw identity remains FUN_00075174.",
+   "aliases": [
+    "FUN_00075174"
+   ]
   },
   "0x000751d0": {
    "address": "0x000751d0",
@@ -14431,8 +14561,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact newlib/newlib-nano assertion sink ABI and format: (file, line, function, expression), fiprintf(stderr, assertion format, ...), then noreturn abort. The optional function prefix and empty-string fallback match newlib assert.c. Raw identity remains FUN_00076a94.",
    "aliases": [
-    "FUN_00076a94",
-    "libc_fatal_error_and_abort"
+    "FUN_00076a94"
    ]
   },
   "0x00076ad0": {
@@ -14491,12 +14620,13 @@
   "0x00076bcc": {
    "address": "0x00076bcc",
    "raw_name": "FUN_00076bcc",
-   "name": "stdio_streams_init",
-   "display_name": "stdio_streams_init",
+   "name": "__sinit",
+   "display_name": "__sinit",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Newlib stdio initializer for struct _reent: allocates/configures stdin, stdout and stderr and sets __sdidinit under the environment lock. Raw identity remains FUN_00076bcc.",
    "aliases": [
-    "FUN_00076bcc"
+    "FUN_00076bcc",
+    "stdio_streams_init"
    ]
   },
   "0x00076c3c": {
@@ -14616,14 +14746,25 @@
     "FUN_000777f0"
    ]
   },
+  "0x00077820": {
+   "address": "0x00077820",
+   "raw_name": "FUN_00077820",
+   "name": "_puts_r",
+   "display_name": "_puts_r",
+   "human": true,
+   "source": "function_name_overrides.json: Exact newlib reentrant puts implementation: builds a two-iovec __suio for text plus the newline literal, initializes reent stdio, resolves fake stdin/stdout/stderr FILE pointers, recursively locks the FILE, calls __sfvwrite_r, unlocks, and returns newline or EOF. Raw identity remains FUN_00077820.",
+   "aliases": []
+  },
   "0x000778d4": {
    "address": "0x000778d4",
    "raw_name": "FUN_000778d4",
-   "name": "FUN_000778d4",
-   "display_name": "FUN_000778d4",
-   "human": false,
-   "source": "recon/app/src/FUN_000778d4.c",
-   "aliases": []
+   "name": "puts",
+   "display_name": "puts",
+   "human": true,
+   "source": "function_name_overrides.json: Standard newlib puts wrapper: loads the global reent pointer at 0x20002d20 and tail-calls _puts_r with the caller's text. Raw identity remains FUN_000778d4.",
+   "aliases": [
+    "FUN_000778d4"
+   ]
   },
   "0x000778f4": {
    "address": "0x000778f4",
@@ -14734,12 +14875,13 @@
   "0x00077e70": {
    "address": "0x00077e70",
    "raw_name": "FUN_00077e70",
-   "name": "stdio_buffer_grow",
-   "display_name": "stdio_buffer_grow",
+   "name": "__sfvwrite_r",
+   "display_name": "__sfvwrite_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Newlib scatter/gather FILE writer consuming struct _reent, FILE and __suio; handles line/unbuffered/buffered paths and advances iovec residuals. Raw identity remains FUN_00077e70.",
    "aliases": [
-    "FUN_00077e70"
+    "FUN_00077e70",
+    "stdio_buffer_grow"
    ]
   },
   "0x00078110": {
@@ -15875,6 +16017,15 @@
     "FUN_0007c038"
    ]
   },
+  "0x0007c058": {
+   "address": "0x0007c058",
+   "raw_name": "FUN_0007c058",
+   "name": "send_touch_click_event",
+   "display_name": "send_touch_click_event",
+   "human": true,
+   "source": "function_name_overrides.json: Builds the fixed 60-byte IPC command with type byte 1 and the supplied touch-click code, then calls global_ipc_service_send. touch_key_thread sends code 10 for the fifteen-click action. Raw identity remains FUN_0007c058.",
+   "aliases": []
+  },
   "0x0007c080": {
    "address": "0x0007c080",
    "raw_name": "FUN_0007c080",
@@ -16092,10 +16243,8 @@
    "name": "thunk_FUN_00074f68",
    "display_name": "thunk_FUN_00074f68",
    "human": true,
-   "source": "classified.json:name",
-   "aliases": [
-    "FUN_0007c398"
-   ]
+   "source": "committed durable map",
+   "aliases": []
   },
   "0x0007c3c2": {
    "address": "0x0007c3c2",
@@ -16570,12 +16719,13 @@
   "0x0007cb48": {
    "address": "0x0007cb48",
    "raw_name": "FUN_0007cb48",
-   "name": "update_sync_buffer",
-   "display_name": "update_sync_buffer",
+   "name": "k_sem_take",
+   "display_name": "k_sem_take",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Four-byte Zephyr public tail veneer to z_impl_k_sem_take at 0x00072908. touch_key_thread passes its semaphore plus the aligned 64-bit timeout 0x2000. The previous update_sync_buffer label was incompatible with the body and ABI. Raw identity remains FUN_0007cb48.",
    "aliases": [
-    "thunk_FUN_00072908"
+    "thunk_FUN_00072908",
+    "update_sync_buffer"
    ]
   },
   "0x0007cb4c": {
@@ -16632,12 +16782,13 @@
   "0x0007cb8e": {
    "address": "0x0007cb8e",
    "raw_name": "FUN_0007cb8e",
-   "name": "k_msleep_ticks32768_a",
-   "display_name": "k_msleep_ticks32768_a",
+   "name": "k_msleep",
+   "display_name": "k_msleep",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Public millisecond sleep wrapper converting its signed millisecond argument to a Zephyr timeout before the scheduler sleep path. touch_key_thread uses 5000 ms and 500 ms delays. Raw identity remains FUN_0007cb8e.",
    "aliases": [
-    "FUN_0007cb8e"
+    "FUN_0007cb8e",
+    "k_msleep_ticks32768_a"
    ]
   },
   "0x0007cbae": {
@@ -18000,6 +18151,15 @@
    "aliases": [
     "FUN_0007e4f2"
    ]
+  },
+  "0x0007e50c": {
+   "address": "0x0007e50c",
+   "raw_name": "FUN_0007e50c",
+   "name": "mpsc_pbuf_is_pending",
+   "display_name": "mpsc_pbuf_is_pending",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation: computes available words from flags/read/write indices and normalizes the result to bool. It is the tail target of z_log_msg_pending at 0x0004d588. Raw identity remains FUN_0007e50c.",
+   "aliases": []
   },
   "0x0007e526": {
    "address": "0x0007e526",
@@ -19669,12 +19829,13 @@
   "0x00080b0e": {
    "address": "0x00080b0e",
    "raw_name": "FUN_00080b0e",
-   "name": "audio_buf_release",
-   "display_name": "audio_buf_release",
+   "name": "smp_free_buf",
+   "display_name": "smp_free_buf",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr transport helper: optionally invokes smpt->functions.ud_free on net_buf_user_data(buf), then calls smp_packet_free/net_buf_unref. Raw identity remains FUN_00080b0e.",
    "aliases": [
-    "FUN_00080b0e"
+    "FUN_00080b0e",
+    "audio_buf_release"
    ]
   },
   "0x00080b28": {
@@ -24139,7 +24300,6 @@
    "human": true,
    "source": "function_name_overrides.json: The four-byte tail thunk branches directly to the 64-bit uptime tick implementation at 0x00074f68. This unique name resolves the rejected generated thunk-name collision while preserving raw identity FUN_00086698.",
    "aliases": [
-    "FUN_00086698",
     "thunk_FUN_00074f68"
    ]
   },
@@ -24608,11 +24768,13 @@
   "0x000870a6": {
    "address": "0x000870a6",
    "raw_name": "FUN_000870a6",
-   "name": "FUN_000870a6",
-   "display_name": "FUN_000870a6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "strnlen",
+   "display_name": "strnlen",
+   "human": true,
+   "source": "function_name_overrides.json: Bounded string-length leaf used by z_cbvprintf_impl for precision-limited percent-s conversion. Raw identity remains FUN_000870a6.",
+   "aliases": [
+    "FUN_000870a6"
+   ]
   },
   "0x000870be": {
    "address": "0x000870be",
@@ -24873,6 +25035,7 @@
   "DashBoard_Reflash": "0x0003727c",
   "FUN_00000004": "0x00000004",
   "FUN_00000006": "0x00000006",
+  "FUN_0000005e": "0x0000005e",
   "FUN_00000072": "0x00000072",
   "FUN_0000c358": "0x0000c358",
   "FUN_0000dad4": "0x0000dad4",
@@ -24956,7 +25119,6 @@
   "FUN_00034410": "0x00034410",
   "FUN_0003443c": "0x0003443c",
   "FUN_00034808": "0x00034808",
-  "FUN_00035f28": "0x00035f28",
   "FUN_000361d8": "0x000361d8",
   "FUN_0003629c": "0x0003629c",
   "FUN_000362e8": "0x000362e8",
@@ -24985,11 +25147,8 @@
   "FUN_0004b908": "0x0004b908",
   "FUN_0004ba38": "0x0004ba38",
   "FUN_0004bb0c": "0x0004bb0c",
-  "FUN_0004bb64": "0x0004bb64",
-  "FUN_0004bb90": "0x0004bb90",
   "FUN_0004bc8c": "0x0004bc8c",
   "FUN_0004beb8": "0x0004beb8",
-  "FUN_0004bfc8": "0x0004bfc8",
   "FUN_0004c418": "0x0004c418",
   "FUN_0004c4d0": "0x0004c4d0",
   "FUN_0004c4e4": "0x0004c4e4",
@@ -25042,7 +25201,6 @@
   "FUN_00052000": "0x00052000",
   "FUN_000526e4": "0x000526e4",
   "FUN_00052744": "0x00052744",
-  "FUN_00052760": "0x00052760",
   "FUN_000527dc": "0x000527dc",
   "FUN_00052854": "0x00052854",
   "FUN_00052880": "0x00052880",
@@ -25223,35 +25381,6 @@
   "FUN_00068240": "0x00068240",
   "FUN_00068280": "0x00068280",
   "FUN_000682a8": "0x000682a8",
-  "FUN_000684a8": "0x000684a8",
-  "FUN_00068590": "0x00068590",
-  "FUN_000685f4": "0x000685f4",
-  "FUN_0006897c": "0x0006897c",
-  "FUN_00068a10": "0x00068a10",
-  "FUN_00068b14": "0x00068b14",
-  "FUN_00068b2c": "0x00068b2c",
-  "FUN_00068b68": "0x00068b68",
-  "FUN_00068d2c": "0x00068d2c",
-  "FUN_00068d90": "0x00068d90",
-  "FUN_00068de8": "0x00068de8",
-  "FUN_000698d0": "0x000698d0",
-  "FUN_0006a700": "0x0006a700",
-  "FUN_0006aa98": "0x0006aa98",
-  "FUN_0006b364": "0x0006b364",
-  "FUN_0006b36c": "0x0006b36c",
-  "FUN_0006b3c8": "0x0006b3c8",
-  "FUN_0006b9b8": "0x0006b9b8",
-  "FUN_0006bd74": "0x0006bd74",
-  "FUN_0006bfc8": "0x0006bfc8",
-  "FUN_0006c778": "0x0006c778",
-  "FUN_0006efd8": "0x0006efd8",
-  "FUN_0006f164": "0x0006f164",
-  "FUN_0006f28c": "0x0006f28c",
-  "FUN_0006f4a0": "0x0006f4a0",
-  "FUN_0006f9c0": "0x0006f9c0",
-  "FUN_0006ffd8": "0x0006ffd8",
-  "FUN_000709d8": "0x000709d8",
-  "FUN_00070b38": "0x00070b38",
   "FUN_00070f1c": "0x00070f1c",
   "FUN_00070f48": "0x00070f48",
   "FUN_000710b4": "0x000710b4",
@@ -25265,13 +25394,10 @@
   "FUN_00071f38": "0x00071f38",
   "FUN_00072674": "0x00072674",
   "FUN_000727ac": "0x000727ac",
-  "FUN_00072880": "0x00072880",
   "FUN_000729fc": "0x000729fc",
   "FUN_00072cd4": "0x00072cd4",
-  "FUN_00072e9c": "0x00072e9c",
   "FUN_00072f28": "0x00072f28",
   "FUN_00072fdc": "0x00072fdc",
-  "FUN_00072fe8": "0x00072fe8",
   "FUN_000731b8": "0x000731b8",
   "FUN_000732d4": "0x000732d4",
   "FUN_00073418": "0x00073418",
@@ -25297,7 +25423,6 @@
   "FUN_00074a54": "0x00074a54",
   "FUN_00074bf4": "0x00074bf4",
   "FUN_00074d74": "0x00074d74",
-  "FUN_00075174": "0x00075174",
   "FUN_00075574": "0x00075574",
   "FUN_000755f8": "0x000755f8",
   "FUN_000757b0": "0x000757b0",
@@ -25310,7 +25435,6 @@
   "FUN_00076b48": "0x00076b48",
   "FUN_00076c3c": "0x00076c3c",
   "FUN_0007712c": "0x0007712c",
-  "FUN_000778d4": "0x000778d4",
   "FUN_00077914": "0x00077914",
   "FUN_00077a10": "0x00077a10",
   "FUN_00078590": "0x00078590",
@@ -25631,7 +25755,6 @@
   "FUN_00086ffe": "0x00086ffe",
   "FUN_00087036": "0x00087036",
   "FUN_00087080": "0x00087080",
-  "FUN_000870a6": "0x000870a6",
   "FUN_000870be": "0x000870be",
   "FUN_0008712e": "0x0008712e",
   "FinishAesDrv": "0x0007b9cc",
@@ -25689,6 +25812,10 @@
   "__nrfy_internal_spim_event_handle": "0x00085214",
   "__nrfy_internal_spim_events_process": "0x0008523e",
   "__nrfy_internal_twim_events_process": "0x0008539a",
+  "__retarget_lock_acquire_recursive": "0x000510fc",
+  "__retarget_lock_release_recursive": "0x00051134",
+  "__sfvwrite_r": "0x00077e70",
+  "__sinit": "0x00076bcc",
   "__truncdfsf2": "0x0000dee8",
   "__udivmoddi4": "0x0000ec62",
   "_copy": "0x0007feaa",
@@ -25701,6 +25828,7 @@
   "_isatty_r": "0x00078570",
   "_ldiv5": "0x0007e260",
   "_malloc_r": "0x00076e20",
+  "_puts_r": "0x00077820",
   "_sbrk_r": "0x000778f4",
   "_vfprintf_r": "0x00076ed4",
   "abort": "0x00051180",
@@ -25795,7 +25923,6 @@
   "attr_store_set": "0x00030178",
   "audioStreamFileManagerHandler": "0x0002f94c",
   "audio_apply_config_cmd_0xab": "0x0008397e",
-  "audio_buf_release": "0x00080b0e",
   "audio_codec_get_reg14_bit2": "0x0007fe72",
   "audio_codec_read_gain_step_mode": "0x0007fc2c",
   "audio_codec_read_reg0x0f": "0x0007fb3e",
@@ -26194,6 +26321,7 @@
   "dump_template_gyro_info": "0x00036164",
   "dynbuf_push_byte_grow": "0x0008790e",
   "enable_ship_mode": "0x000167f4",
+  "encode_uint": "0x0004bb90",
   "enqueue_ancs": "0x00018bb4",
   "enqueue_bt_data": "0x00017eec",
   "enqueue_debug": "0x00019bfc",
@@ -26218,6 +26346,7 @@
   "ext_flash_api_init": "0x0002e4e8",
   "ext_flash_read": "0x0002e398",
   "ext_flash_write": "0x0002e440",
+  "extract_decimal": "0x0004bb64",
   "fast_inverse_sqrt": "0x000265e8",
   "fb_blit_rows_copy": "0x0007d53a",
   "fb_blit_rows_halved": "0x0007d5f2",
@@ -26523,14 +26652,17 @@
   "k_msgq_get": "0x00072240",
   "k_msgq_init": "0x00086420",
   "k_msgq_put": "0x000720d0",
-  "k_msleep_ticks32768_a": "0x0007cb8e",
+  "k_msleep": "0x0007cb8e",
   "k_msleep_ticks32768_b": "0x0007d14a",
   "k_msleep_ticks32768_c": "0x0007d194",
   "k_mutex_lock": "0x000723b8",
   "k_mutex_unlock": "0x00072558",
   "k_queue_insert_with_timeout": "0x0005eeb4",
   "k_queue_prepend": "0x00086518",
+  "k_sem_give": "0x00072880",
+  "k_sem_take": "0x0007cb48",
   "k_timer_init": "0x00086726",
+  "k_timer_start": "0x00075174",
   "k_uptime_get": "0x0007c014",
   "k_uptime_get_0": "0x0007c18e",
   "k_uptime_get_1": "0x0007cb2c",
@@ -26545,6 +26677,8 @@
   "k_uptime_get_8": "0x0007d382",
   "k_uptime_get_9": "0x0007d9a4",
   "k_uptime_ticks_impl": "0x00074f68",
+  "k_work_busy_get": "0x00072e9c",
+  "k_work_cancel": "0x00072fe8",
   "k_work_init": "0x00072e50",
   "k_work_queue_init": "0x000730b4",
   "k_work_queue_start": "0x000730e8",
@@ -26564,18 +26698,47 @@
   "l2cap_chan_tx_init": "0x000574ec",
   "l2cap_reassemble_frag": "0x00082e04",
   "l2cap_recv": "0x00057db0",
-  "lc3_encode_frame": "0x00069238",
-  "lc3_encode_pack_frame_header_bits": "0x0006efdc",
-  "lc3_encode_pack_gain_bits": "0x0006f91c",
-  "lc3_frame_param_compute": "0x00068ecc",
+  "lc3_ac_write_renorm": "0x0006897c",
+  "lc3_attdet_run": "0x000682f0",
+  "lc3_bwdet_get_nbits": "0x00068b14",
+  "lc3_bwdet_put_bw": "0x00068b2c",
+  "lc3_bwdet_run": "0x00068a10",
+  "lc3_encode": "0x00069238",
+  "lc3_encoder_size": "0x00068ecc",
+  "lc3_energy_compute": "0x00068b68",
+  "lc3_flush_bits": "0x000685f4",
+  "lc3_frame_samples": "0x00068e40",
+  "lc3_get_bits_left": "0x00068590",
+  "lc3_load_float": "0x00068de8",
+  "lc3_load_s24": "0x00068d90",
+  "lc3_load_s24_3le": "0x00068d2c",
   "lc3_ltpf_analyse": "0x0006ab80",
-  "lc3_ltpf_correlate": "0x000682f0",
+  "lc3_ltpf_arm_correlate": "0x0006954c",
+  "lc3_ltpf_arm_resample_24k_12k8": "0x0006a700",
+  "lc3_ltpf_arm_resample_48k_12k8": "0x0006aa98",
+  "lc3_ltpf_detect_pitch": "0x000698d0",
+  "lc3_ltpf_disable": "0x0006b364",
+  "lc3_ltpf_get_nbits": "0x0006b36c",
   "lc3_ltpf_interpolate": "0x00069468",
   "lc3_ltpf_put_data": "0x0006b378",
-  "lc3_ltpf_resample": "0x0006954c",
-  "lc3_ltpf_select_resampler_params": "0x00068f94",
-  "lc3_ns": "0x00068e40",
+  "lc3_mdct_fft": "0x0006b3c8",
+  "lc3_mdct_forward": "0x0006b9b8",
   "lc3_put_bits_generic": "0x00068908",
+  "lc3_setup_bits": "0x000684a8",
+  "lc3_setup_encoder": "0x00068f94",
+  "lc3_sns_analyze": "0x0006c778",
+  "lc3_sns_compute_scale_factors": "0x0006bfc8",
+  "lc3_sns_get_nbits": "0x0006efd8",
+  "lc3_sns_put_data": "0x0006efdc",
+  "lc3_sns_unquantize": "0x0006bd74",
+  "lc3_spec_analyze": "0x0006f4a0",
+  "lc3_spec_compute_nbits": "0x0006f28c",
+  "lc3_spec_encode": "0x0006f9c0",
+  "lc3_spec_put_side": "0x0006f91c",
+  "lc3_spec_quantize": "0x0006f164",
+  "lc3_tns_analyze": "0x0006ffd8",
+  "lc3_tns_get_nbits": "0x000709d8",
+  "lc3_tns_put_data": "0x00070b38",
   "ldexpf": "0x00086976",
   "le_adv_update": "0x000811ce",
   "le_conn_param_neg_reply": "0x00080f56",
@@ -26590,9 +26753,7 @@
   "load_whitelist": "0x00034b34",
   "local_esbs_ipc_service_recv": "0x00015960",
   "local_store_write": "0x00022168",
-  "lock_acquire_or_fatal": "0x000510fc",
   "lock_device_mutex": "0x0007c8b0",
-  "lock_release_or_fatal": "0x00051134",
   "log2f": "0x00076718",
   "log_dropped": "0x0004d4a8",
   "log_gatt_sc_store_failure": "0x0005a0e8",
@@ -26646,8 +26807,9 @@
   "mobile_send_notification_to_ble_device_test": "0x00021c04",
   "mpsc_pbuf_claim": "0x0004d56c",
   "mpsc_pbuf_commit": "0x0004be0c",
-  "mpsc_pbuf_free": "0x0004d578",
+  "mpsc_pbuf_free": "0x0004bfc8",
   "mpsc_pbuf_init": "0x0004bc28",
+  "mpsc_pbuf_is_pending": "0x0007e50c",
   "mpu_configure_region": "0x00080798",
   "mpu_partition_sanity_check_assert": "0x00050e64",
   "mpu_region_alloc_fail_log": "0x00050c24",
@@ -26664,7 +26826,6 @@
   "mutex_free": "0x000796ac",
   "mutex_init": "0x00079760",
   "mutex_init_platform": "0x0004fe34",
-  "mutex_lock_syscall_handler": "0x00072908",
   "mutex_lock_wait_forever": "0x0008583a",
   "mutex_lock_wait_forever_dup": "0x000859b6",
   "mutex_unlock_syscall_handler": "0x000745c8",
@@ -26675,7 +26836,6 @@
   "net_buf_add_u8": "0x0008370a",
   "net_buf_append_bytes": "0x0005f450",
   "net_buf_destroy": "0x00056080",
-  "net_buf_destroy_default": "0x0005f200",
   "net_buf_frag_add": "0x0005f390",
   "net_buf_frag_insert": "0x0005f338",
   "net_buf_frag_last": "0x0005f304",
@@ -26686,6 +26846,7 @@
   "net_buf_pool_get": "0x0005ee08",
   "net_buf_push_le16": "0x00083766",
   "net_buf_push_u8": "0x00083758",
+  "net_buf_put": "0x0005f200",
   "net_buf_ref": "0x0005f2d4",
   "net_buf_reset": "0x0005ee6c",
   "net_buf_simple_add": "0x0005f5d0",
@@ -26829,7 +26990,6 @@
   "prepare_system_suspend_state": "0x000289b0",
   "print_formatted": "0x0004da6c",
   "printf": "0x000777f0",
-  "printf_like": "0x000113a8",
   "printk": "0x0007e2fa",
   "process": "0x0004df40",
   "process_box_event": "0x000254d8",
@@ -26865,6 +27025,7 @@
   "push_message": "0x00033f54",
   "push_message_3439c": "0x0003439c",
   "put_whitelist_app_from_app": "0x00035688",
+  "puts": "0x000778d4",
   "qspi_activate": "0x000664f0",
   "qspi_configure_pins_and_interface": "0x00066850",
   "qspi_deactivate": "0x00066478",
@@ -26905,6 +27066,7 @@
   "regulator_set_voltage_dispatch": "0x00084348",
   "regulator_set_voltage_range": "0x00084300",
   "remove_timeout": "0x00074bbc",
+  "render_ancs_notification_animation": "0x00035f28",
   "requestAudioInfoToApp": "0x00048840",
   "request_ancs_attr_ext": "0x000191e4",
   "reset_all_static_info": "0x00016738",
@@ -26953,6 +27115,7 @@
   "send_pairing_rsp": "0x000830ee",
   "send_response_data_to_ble": "0x00047ba8",
   "send_response_data_to_msgqueue": "0x00047b1c",
+  "send_touch_click_event": "0x0007c058",
   "send_whitelist_json_chunked": "0x00035498",
   "sensor_channel_get_trampoline": "0x0007cef6",
   "serialization_init": "0x00025c54",
@@ -27021,12 +27184,14 @@
   "smp_dhkey_generate": "0x0005cc68",
   "smp_dhkey_ready_no_context": "0x0005cbe0",
   "smp_error": "0x0005dc2c",
+  "smp_free_buf": "0x00080b0e",
   "smp_handle_reqs": "0x00080ab4",
   "smp_ident_addr_info": "0x0005de70",
   "smp_init": "0x0005cc30",
   "smp_keypress_notif": "0x000830a4",
   "smp_pairing_complete": "0x0005daf0",
   "smp_process_request_packet": "0x000513e8",
+  "smp_rx_remove_invalid": "0x00052760",
   "smp_timeout": "0x0005e3e0",
   "smp_transport_init": "0x000526f4",
   "smp_update_bond_flag": "0x0005e5b8",
@@ -27058,11 +27223,9 @@
   "startAudioStreamRecord": "0x0002f764",
   "startTrngHW": "0x0007a50c",
   "start_ancs_work_thread": "0x000198cc",
-  "stdio_buffer_grow": "0x00077e70",
   "stdio_fclose": "0x00077d54",
   "stdio_flush_write_buffer": "0x00086a0e",
   "stdio_reset_ungetc_buffer": "0x00087862",
-  "stdio_streams_init": "0x00076bcc",
   "stopAudioStreamRecord": "0x0002f80c",
   "stop_some_timer": "0x00048ff4",
   "storage_read_with_word_cache": "0x00061070",
@@ -27073,6 +27236,7 @@
   "stream_flash_init": "0x0004e2b4",
   "strlen": "0x0000ef12",
   "strncpy_zero_pad": "0x0008705a",
+  "strnlen": "0x000870a6",
   "strtod_has_more_digits": "0x0000ea4c",
   "strtod_match_token": "0x0008738e",
   "strtod_scan_int_prefix": "0x0000ea18",
@@ -27136,6 +27300,8 @@
   "thunk_FUN_000868b4": "0x0007f978",
   "thunk_FUN_00086c44": "0x0007a3cc",
   "touch_key_thread": "0x0002a0d8",
+  "touch_pmic_reset_assert": "0x00017a28",
+  "touch_pmic_reset_deassert": "0x00017a34",
   "trigger_screen_state_change": "0x0002bc2c",
   "trigger_touch_key_hw_reset": "0x0002a0c0",
   "try_enter_low_power_mode": "0x00026c8c",
@@ -27178,7 +27344,6 @@
   "update_persist_task_status_to_idle": "0x0002c0e8",
   "update_persist_task_status_to_wait_blow_head": "0x0002c180",
   "update_sec_level": "0x00080e38",
-  "update_sync_buffer": "0x0007cb48",
   "update_temp_task_status": "0x0002bffc",
   "update_touch_key_flag": "0x0002c324",
   "upgradeAppLanguageInfoToFlash": "0x00023af0",
@@ -27229,6 +27394,7 @@
   "z_arm_mpu_fault": "0x000503d8",
   "z_arm_usage_fault": "0x000506ac",
   "z_cbprintf_cpy": "0x0007ee48",
+  "z_cbvprintf_impl": "0x000113a8",
   "z_device_is_ready": "0x0008638c",
   "z_fatal_error": "0x00071684",
   "z_fdtable_call_ioctl": "0x0007dcb8",
@@ -27238,9 +27404,12 @@
   "z_impl_k_poll_signal_init": "0x000868aa",
   "z_impl_k_queue_init": "0x000864e8",
   "z_impl_k_sem_init": "0x00086534",
+  "z_impl_k_sem_take": "0x00072908",
   "z_impl_net_if_ipv6_addr_rm_by_index": "0x00080c8c",
   "z_log_dropped_read_and_clear": "0x0002f928",
   "z_log_dropped_read_and_clear_0": "0x0004d490",
+  "z_log_msg_free": "0x0004d578",
+  "z_log_msg_pending": "0x0004d588",
   "z_queue_node_peek": "0x000864d0",
   "z_ready_thread_locked": "0x000738d4",
   "z_reschedule": "0x000739f0",
