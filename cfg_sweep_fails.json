@@ -53,7 +53,8 @@
    "FUN_010359b8"
   ]
  },
- "_status": "PARTIAL \u2014 CFG sweep did not finish (only ~409/919 app + ~266/540 net suspects checked). Re-run to completion for the full false-proof list: for i in 0..7: reverify.py sweeplist app|net i 8",
+ "_status": "HISTORICAL_PARTIAL_DISCOVERY_SNAPSHOT",
+ "_status_note": "These counters and fail lists record the interrupted original discovery sweep; they are not a current source-resolution ledger. The separate 70-entry historical other/timeout backlog is closed fail-closed in recon/catalogs/cfg_baseline70.json (69 authoritative CFG PASS plus one CFG-PASS owner for an interior identity, zero unresolved). Do not infer current reconstruction status from the pass/fail counters here.",
  "coverage": {
   "app_checked": 409,
   "app_todo": 919,

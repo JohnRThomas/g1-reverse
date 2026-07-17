@@ -1,6 +1,6 @@
 {
-  "schema": 1,
-  "description": "Durable recovery of the 70 historical CFG other/timeout entries after scratch-ledger loss.",
+  "schema": 2,
+  "description": "Fail-closed resolution ledger for all 70 historical CFG other/timeout entries after scratch-ledger loss.",
   "source": "reverify_{app,net}_L0..L3.json",
   "app_other": [
     "FUN_000417f8", "FUN_0005a0e8", "printf_like", "ui_QuickNote_task",
@@ -29,7 +29,7 @@
     "FUN_010315f0", "FUN_01031820", "FUN_01016430", "FUN_01018690",
     "FUN_0101a38c", "FUN_0102d708"
   ],
-  "completed_recovery": [
+  "authoritative_cfg_pass_6fd0218": [
     "app:FUN_00018334", "app:FUN_00021334", "app:FUN_0002316c",
     "app:FUN_00033f24", "app:FUN_000417f8", "app:FUN_00058a54",
     "app:FUN_0005a0e8", "app:FUN_0006f9c0", "app:FUN_000751d0",
@@ -51,17 +51,52 @@
     "net:FUN_0102d708", "net:FUN_0102e000", "net:FUN_0102e064",
     "net:FUN_010315f0", "net:FUN_01031820", "net:FUN_01034328"
   ],
-  "direct_recheck": {
-    "pass": ["app:FUN_0002316c", "app:FUN_00058a54", "app:spec_ble_command_hook"],
-    "fail": [],
-    "timeouts": [
-      "app:FUN_00018334", "app:FUN_00033f24", "app:FUN_00035f28",
-      "app:FUN_00052760", "app:FUN_00076a94", "app:FUN_00080ab4",
-      "app:draw_message", "app:is_ext_flash_burned", "app:process_for_new_task"
-    ],
-    "note": "Other shard attempts were stopped or invalidated by memory pressure and concurrent true-size drift; they are not semantic verdicts. Re-run serially."
+  "authoritative_cfg_pass_de85940": [
+    "app:FUN_0006ffd8"
+  ],
+  "authoritative_cfg_pass_0157de4": [
+    "app:FUN_00035f28", "app:FUN_0004bfc8", "app:FUN_0004d588",
+    "app:FUN_00052760", "app:FUN_00077820", "app:gui_utf_draw_truncate",
+    "app:main", "app:printf_like", "app:touch_key_thread",
+    "net:FUN_0100eec8", "net:FUN_010127f8", "net:FUN_0101e0a4",
+    "net:FUN_0101e15c"
+  ],
+  "verification_receipts": {
+    "de85940": {
+      "app:FUN_0006ffd8": {"status": "PASS", "cover_cases": 7}
+    },
+    "0157de4": {
+      "app:FUN_00035f28": {"status": "PASS", "cover_cases": 6},
+      "app:FUN_0004bfc8": {"status": "PASS", "cover_cases": 10},
+      "app:FUN_0004d588": {"status": "PASS", "cover_cases": 2},
+      "app:FUN_00052760": {"status": "PASS", "cover_cases": 6},
+      "app:FUN_00077820": {"status": "PASS", "cover_cases": 12},
+      "app:FUN_000778d4": {"status": "PASS", "random_trials": 40, "baseline70": false},
+      "app:gui_utf_draw_truncate": {"status": "PASS", "cover_cases": 15},
+      "app:main": {"status": "PASS", "cover_cases": 12},
+      "app:printf_like": {"status": "PASS", "cover_cases": 30},
+      "app:touch_key_thread": {"status": "PASS", "cover_cases": 8},
+      "net:FUN_0100eec8": {"status": "PASS", "cover_cases": 4},
+      "net:FUN_010127f8": {"status": "PASS", "cover_cases": 6},
+      "net:FUN_0101e0a4": {"status": "PASS", "cover_cases": 8},
+      "net:FUN_0101e15c": {"status": "PASS", "cover_cases": 5},
+      "net:FUN_010333b4": {"status": "PASS", "cover_cases": 8, "owns_baseline_entry": "net:FUN_010333e4"}
+    }
   },
   "ownership_exceptions": {
-    "net:FUN_010333e4": "interior loop owned by FUN_010333b4; verify owner through true extent 0x22c"
+    "net:FUN_010333e4": {
+      "status": "OWNED_INTERIOR",
+      "owner": "net:FUN_010333b4",
+      "owner_extent": "0x22c",
+      "owner_cfg_status": "PASS",
+      "evidence_commit": "0157de4"
+    }
+  },
+  "resolution_summary": {
+    "historical_entries": 70,
+    "authoritative_cfg_pass": 69,
+    "owned_interior": 1,
+    "unresolved": 0,
+    "note": "The old direct_recheck timeout list described interrupted attempts before the committed recovery waves; it was not a semantic verdict and is superseded by this partition."
   }
 }
