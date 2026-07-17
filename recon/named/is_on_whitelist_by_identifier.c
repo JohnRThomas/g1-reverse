@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
+ *   strstr                                   <= FUN_000870be @ 0x000870be
  * address symbols (name @ address):
  *   rodata_9adaa                             @ 0x0009adaa
  *   rodata_9d7b8                             @ 0x0009d7b8
@@ -30,8 +32,8 @@
 extern void log_message(uint32_t,...);
 extern unsigned int strlen(const void *);
 extern void debug_print(uint32_t,...);
-extern int FUN_00087036(const void *,int,unsigned int);
-extern int FUN_000870be(const void *,int);
+extern int strncmp(const void *,int,unsigned int);
+extern int strstr(const void *,int);
 
 int is_on_whitelist_by_identifier(int param_1){
     volatile int *g = (volatile int*)0x20007554UL;
@@ -47,30 +49,30 @@ int is_on_whitelist_by_identifier(int param_1){
         if(uVar4 < 0x28){
             if(iVar6==0){ log_message(0x000a8491,param_1); }
             else { debug_print(0x000a8491,param_1); }
-            chk = FUN_00087036((const void *)0x000a81d0,param_1,0x15);
+            chk = strncmp((const void *)0x000a81d0,param_1,0x15);
             int iVar7 = *g;
             int sh;
             if( (chk==0) ||
-                ((chk=FUN_00087036((const void *)0x0009adaa,param_1,0x1c))==0) ||
-                ((chk=FUN_00087036((const void *)0x000a81b7,param_1,0x18))==0) ||
-                ((chk=FUN_00087036((const void *)0x000a819e,param_1,0x18))==0) ){
+                ((chk=strncmp((const void *)0x0009adaa,param_1,0x1c))==0) ||
+                ((chk=strncmp((const void *)0x000a81b7,param_1,0x18))==0) ||
+                ((chk=strncmp((const void *)0x000a819e,param_1,0x18))==0) ){
                 sh = (int)((unsigned int)*pb << 0x1f);
                 uVar3 = 0x000a84a2;
                 uVar5 = 0x000a84c4;
             } else {
-                if( ((chk=FUN_00087036((const void *)0x000a81e6,param_1,0x13))==0) ||
-                    ((chk=FUN_00087036((const void *)0x000a81fa,param_1,0x14))==0) ){
+                if( ((chk=strncmp((const void *)0x000a81e6,param_1,0x13))==0) ||
+                    ((chk=strncmp((const void *)0x000a81fa,param_1,0x14))==0) ){
                     sh = (int)((unsigned int)*pb << 0x1e);
                     uVar3 = 0x000a84e7;
                     uVar5 = 0x000a850c;
                 } else {
-                    if( ((chk=FUN_00087036((const void *)0x0009d7b8,param_1,0x13))==0) ||
-                        ((chk=FUN_00087036((const void *)0x000a8373,param_1,0x19))==0) ){
+                    if( ((chk=strncmp((const void *)0x0009d7b8,param_1,0x13))==0) ||
+                        ((chk=strncmp((const void *)0x000a8373,param_1,0x19))==0) ){
                         sh = (int)((unsigned int)*pb << 0x1c);
                         uVar3 = 0x000a8532;
                         uVar5 = 0x000a8558;
                     } else {
-                        chk = FUN_00087036((const void *)0x000a835e,param_1,0x14);
+                        chk = strncmp((const void *)0x000a835e,param_1,0x14);
                         if(chk != 0){
                             if(iVar7==0){ log_message(0x000a85c4,pb[1]); }
                             else { debug_print(0x000a85c4,pb[1]); }
@@ -82,12 +84,12 @@ int is_on_whitelist_by_identifier(int param_1){
                                     if(*g==0){ log_message(0x000a85d6,(unsigned int)bVar9,entry); }
                                     else { debug_print(0x000a85d6,(unsigned int)bVar9,entry); }
                                     uVar4 = strlen(entry);
-                                    chk = FUN_00087036(entry,param_1,uVar4);
+                                    chk = strncmp(entry,param_1,uVar4);
                                     bVar9 = bVar9 + 1;
                                     if(chk==0){ return 2; }
                                 }
                             }
-                            chk = FUN_000870be((const void *)0x0009d7b8,param_1);
+                            chk = strstr((const void *)0x0009d7b8,param_1);
                             if(chk==0){ return 1; }
                             return 3;
                         }

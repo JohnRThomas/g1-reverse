@@ -21,6 +21,7 @@
  *   lc3_spec_encode                          <= FUN_0006f9c0 @ 0x0006f9c0
  *   lc3_tns_analyze                          <= FUN_0006ffd8 @ 0x0006ffd8
  *   lc3_tns_put_data                         <= FUN_00070b38 @ 0x00070b38
+ *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  * address symbols (name @ address):
  *   rodata_8bc88                             @ 0x0008bc88
  */
@@ -47,7 +48,7 @@ extern void lc3_spec_put_side(void *a, uint b, uint c, void *d);
 extern void lc3_spec_encode(void *a, uint b, uint c, unsigned d);
 extern void lc3_tns_analyze(uint a, unsigned b, int c, int d);
 extern void lc3_tns_put_data(void *a, void *b);
-extern void FUN_00086c44(int a, int b, int c);
+extern void memmove(int a, int b, int c);
 
 undefined4 lc3_encode(byte *param_1, int param_2, undefined4 param_3, undefined4 param_4, int param_5, undefined4 param_6)
 {
@@ -67,7 +68,7 @@ undefined4 lc3_encode(byte *param_1, int param_2, undefined4 param_3, undefined4
             local_1b4 = (uint)param_1[2];
             lc3_attdet_run(uVar8, local_1b4, param_5, param_1 + 4);
             lc3_ltpf_analyse(uVar8, local_1b4, param_1 + 0x10, iVar11);
-            FUN_00086c44(iVar11, iVar11, 0);
+            memmove(iVar11, iVar11, 0);
             iVar10 = *(volatile int *)(param_1 + 0x4a4);
             lc3_mdct_forward(uVar8, local_1b4, uVar9, iVar10);
             iVar11 = lc3_energy_compute(uVar8, uVar9, iVar10, auStack_128);

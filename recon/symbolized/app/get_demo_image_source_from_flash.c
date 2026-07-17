@@ -11,6 +11,7 @@
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_a8d69                             @ 0x000a8d69
  *   rodata_a8d7f                             @ 0x000a8d7f
@@ -32,7 +33,7 @@ extern void printf(int);
 extern int  FUN_0007d1c8(void*);
 extern void memcpy(int,int,int);
 extern void memset_bytes(void*,int,int);
-extern int  FUN_00087036(void*,int,int);
+extern int  strncmp(void*,int,int);
 #define VI(a) (*(volatile int*)(a))
 #define VB(a) (*(volatile unsigned char*)(a))
 typedef int (*fp_t)(int,int,void*,int);
@@ -52,7 +53,7 @@ void get_demo_image_source_from_flash(void){
   if (iVar3 != 0) { log_message(((unsigned long)&rodata_a8d7f) /*=0xa8d7f*/,((unsigned long)&rodata_a8e27) /*=0xa8e27*/,0x5a); goto END; }
   local_60[0]=VI(puVar2); local_60[1]=VI(puVar2+4); local_60[2]=VI(puVar2+8);
   local_54v=(short)VI(puVar2+0xc);
-  iVar3 = FUN_00087036(local_60,((unsigned long)&rodata_a8da5) /*=0xa8da5*/,2);
+  iVar3 = strncmp(local_60,((unsigned long)&rodata_a8da5) /*=0xa8da5*/,2);
   if (iVar3 != 0) { log_message(((unsigned long)&rodata_a8da8) /*=0xa8da8*/); goto END; }
   { int s=puVar2+0xe; int d=0;
     do { local_50[d]=VI(s); local_50[d+1]=VI(s+4); s+=8; d+=2; } while (s != puVar2+0x36); }

@@ -7,6 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_88208                             @ 0x00088208
@@ -31,7 +32,7 @@ extern int FUN_00080970(void *, void *);
 extern unsigned FUN_000809f6(unsigned);
 extern unsigned FUN_00080a46(int);
 extern int FUN_00080a82(void *);
-extern int FUN_00086be4(void *, int);
+extern int memcmp(void *, int);
 extern void memset_bytes(void *, int, unsigned);
 
 #define P1(k) (*(volatile int*)((char*)param_1 + (k)))
@@ -75,7 +76,7 @@ unsigned img_mgmt_impl_write_image_data(int *param_1, unsigned *param_2)
     uVar4 = P1(0x18);
     if (0x20 < uVar4) return 0x18;
     if (uVar4 != 0 && *puVar1 != 0xffffffff && uVar4 == (unsigned)*(volatile uint8_t*)0x2000ab88) {
-        iVar2 = FUN_00086be4((uint8_t *)puVar1 + 0xd, P1(0x14));
+        iVar2 = memcmp((uint8_t *)puVar1 + 0xd, P1(0x14));
         if (iVar2 == 0) return 0;
     }
     iVar2 = P1(0);

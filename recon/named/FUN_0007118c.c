@@ -6,6 +6,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   virtqueue_add_buffer                     <= FUN_0008567c @ 0x0008567c
  *   virtqueue_get_buffer                     <= FUN_00085734 @ 0x00085734
+ *   rpmsg_get_endpoint                       <= FUN_00085900 @ 0x00085900
  *   mutex_lock_wait_forever_dup              <= FUN_000859b6 @ 0x000859b6
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
@@ -15,7 +16,7 @@
 /* Reconstructed FUN_0007118c @ 0x7118c */
 #include <stdint.h>
 extern void mutex_lock_wait_forever_dup(void *); extern void FUN_000859b2(void *);
-extern void *virtqueue_get_buffer(void *,uint32_t *,uint16_t *); extern void *FUN_00085900(void *,int,uint32_t,uint32_t);
+extern void *virtqueue_get_buffer(void *,uint32_t *,uint16_t *); extern void *rpmsg_get_endpoint(void *,int,uint32_t,uint32_t);
 extern int virtqueue_add_buffer(void *,const void *,int,int,void *); extern void FUN_000857e0(void *);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
 typedef int (*send_fn)(void *,void *,uint16_t,uint32_t,uint32_t);
@@ -27,7 +28,7 @@ void FUN_0007118c(uint8_t **arg)
     uint32_t *msg=virtqueue_get_buffer(*(void **)(ctx+0xa4),&aux,&n); FUN_000859b2(lock);
     while (msg) {
         msg[2]=n; mutex_lock_wait_forever_dup(lock);
-        uint8_t *dst=FUN_00085900(ctx,0,msg[1],UINT32_MAX); FUN_000859b2(lock);
+        uint8_t *dst=rpmsg_get_endpoint(ctx,0,msg[1],UINT32_MAX); FUN_000859b2(lock);
         if (dst) {
             uint32_t seq=*(uint32_t *)(dst+0x28)+1;
             if (!seq) *(uint32_t *)(dst+0x28)=msg[0];

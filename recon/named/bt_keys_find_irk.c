@@ -6,6 +6,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_smp_ah                                <= FUN_00080ca0 @ 0x00080ca0
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f5268                             @ 0x000f5268
@@ -21,7 +22,7 @@ typedef unsigned int uint;
 extern void assert_post_action(uint,int);
 extern void printk(uint,uint,uint,uint);
 extern int bt_smp_ah(uint,void*);
-extern int FUN_00086be4(void*,uint,int);
+extern int memcmp(void*,uint,int);
 uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint param_4){
     volatile uint8_t* r4=(volatile uint8_t*)0x2000af4c;
     int r3int; uint8_t* r7;
@@ -34,7 +35,7 @@ uint8_t* bt_keys_find_irk(uint param_1, uint8_t* param_2, uint param_3, uint par
     if(((uint)*(volatile uint16_t*)(r4+0xe)<<0x1e)&0x80000000u) goto L894;
     if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) return 0;
     if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L8aa;
-    if(FUN_00086be4(param_2+1,0x2000af4c+0x96,6)!=0) goto L8a2;
+    if(memcmp(param_2+1,0x2000af4c+0x96,6)!=0) goto L8a2;
     goto L8fe;
 L894:
     if((uint)*(volatile uint8_t*)r4 == param_1) goto L8d4;
@@ -56,11 +57,11 @@ L8c2:
         return ret;
     }
 L8d4:
-    if(FUN_00086be4(param_2+1,0x2000af4c+0x3a,6)==0) return (uint8_t*)((int)r4+0);
+    if(memcmp(param_2+1,0x2000af4c+0x3a,6)==0) return (uint8_t*)((int)r4+0);
     if(!(((uint)*(volatile uint16_t*)(r4+0x6a)<<0x1e)&0x80000000u)) goto L904;
 L8ea:
     if((uint)*(volatile uint8_t*)(r4+0x5c) != param_1) goto L904;
-    if(FUN_00086be4(param_2+1,0x2000afe2,6)!=0) goto L904;
+    if(memcmp(param_2+1,0x2000afe2,6)!=0) goto L904;
 L8fe:
     return (uint8_t*)((int)r4+0x5c);
 L904:

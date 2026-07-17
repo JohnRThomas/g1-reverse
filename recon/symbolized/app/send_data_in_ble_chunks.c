@@ -7,6 +7,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   send_data_in_ble_chunks                  <= FUN_0003384c @ 0x0003384c
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_883c8                             @ 0x000883c8
  *   rodata_a7bf5                             @ 0x000a7bf5
@@ -22,7 +23,7 @@ extern uintptr_t get_device_info(void);
 extern uint32_t debug_print(uintptr_t format, ...);
 extern uint32_t FUN_00033730(void *transport, const void *name,
                              const void *payload, uint32_t reserved);
-extern int FUN_00087036(uint32_t command, const void *name, uint32_t value);
+extern int strncmp(uint32_t command, const void *name, uint32_t value);
 
 uint32_t send_data_in_ble_chunks(const uint8_t *request)
 {
@@ -38,7 +39,7 @@ uint32_t send_data_in_ble_chunks(const uint8_t *request)
 
     for (i = 0; i < 9; ++i) {
         uint32_t value = strlen(command_copy[i]);
-        if (FUN_00087036(command_copy[i], request + 0x10, value) == 0) {
+        if (strncmp(command_copy[i], request + 0x10, value) == 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
                 return log_message(((unsigned long)&rodata_a7bf5) /*=0xa7bf5*/, ((unsigned long)&rodata_a833e) /*=0xa833e*/,
                                    0x137, request + 0x10);

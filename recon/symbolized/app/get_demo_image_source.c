@@ -11,6 +11,7 @@
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_a8d69                             @ 0x000a8d69
  *   rodata_a8d7f                             @ 0x000a8d7f
@@ -35,7 +36,7 @@ extern void printf(uint32_t message);
 extern int FUN_0007d1c8(const void *field);
 extern void memcpy(uintptr_t destination, int source, unsigned int size);
 extern void memset_bytes(void *destination, int value, unsigned int size);
-extern int FUN_00087036(const void *header, uint32_t descriptor, unsigned int count);
+extern int strncmp(const void *header, uint32_t descriptor, unsigned int count);
 
 typedef int (*read_callback_t)(uintptr_t context, uint32_t address,
                                void *destination, unsigned int size);
@@ -77,7 +78,7 @@ void get_demo_image_source(unsigned int mode)
     for (unsigned int i = 0; i < sizeof(header); ++i)
         header[i] = buffer[i];
 
-    if (FUN_00087036(header, ((unsigned long)&rodata_a8da5) /*=0xa8da5*/, 2u) != 0) {
+    if (strncmp(header, ((unsigned long)&rodata_a8da5) /*=0xa8da5*/, 2u) != 0) {
         log_message(((unsigned long)&rodata_a8da8) /*=0xa8da8*/);
         heap_free(buffer);
         return;

@@ -14,11 +14,31 @@
  "required_config": {
   "CONFIG_ASSERT": true,
   "CONFIG_ASSERT_NO_COND_INFO": true,
+  "CONFIG_USERSPACE": false,
+  "CONFIG_LOG": true,
+  "CONFIG_LOG_MODE_DEFERRED": true,
+  "CONFIG_LOG_FRONTEND": false,
+  "CONFIG_LOG_PRINTK": true,
   "CONFIG_OPENAMP_MASTER": false,
   "CONFIG_OPENAMP_SLAVE": true,
   "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
  },
  "functions": [
+  {
+   "va": "0x0102e284",
+   "raw_symbol": "FUN_0102e284",
+   "upstream_symbol": "z_impl_z_log_msg_static_create",
+   "abi": "void z_impl_z_log_msg_static_create(const void *source, struct log_msg_desc desc, uint8_t *package, const void *data)",
+   "source": "zephyr/subsys/logging/log_msg.c",
+   "source_sha256": "005f93043e1deddc85449b8fe8ad218d4be8957b9ef6db9098a250849976375f",
+   "object": "zephyr/libzephyr.a(log_msg.c.obj)",
+   "firmware_code_size": 266,
+   "reference_code_size": 266,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "The complete NCS 2.5.1 log_msg.c body matches: package/data descriptor extraction, cbprintf_package_convert flags 10 and four string lengths, 0x7ff oversize warning, aligned allocator size, copy callback, assertion tail, and z_log_msg_finalize. The committed canonical reconstruction independently passes all six CFG-directed descriptor/allocation/conversion cases."
+  },
   {
    "va": "0x010357ec",
    "raw_symbol": "FUN_010357ec",
@@ -48,6 +68,36 @@
    "match_score": 1.0,
    "exclude_reconstruction": true,
    "evidence": "CONFIG_ASSERT=y with CONFIG_ASSERT_NO_COND_INFO=y retains the two three-argument __ASSERT_NO_MSG branches seen in firmware, followed by the identical 16-byte k_work initialization and handler store. The normal Zephyr kernel archive exports this public symbol."
+  },
+  {
+   "va": "0x01039722",
+   "raw_symbol": "FUN_01039722",
+   "upstream_symbol": "printk",
+   "abi": "void printk(const char *fmt, ...)",
+   "source": "zephyr/lib/os/printk.c",
+   "source_sha256": "464e0c6e59999f66afdf9d403ed5e9ba19888b33647d8011d2e1f096e7365eab",
+   "object": "zephyr/libzephyr.a(printk.c.obj)",
+   "firmware_code_size": 26,
+   "reference_code_size": 26,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "Exact 26-byte one-fixed-argument varargs wrapper. The direct call to the local vprintk implementation distinguishes printk.c ownership; thirteen call sites use ordinary formatted output. The committed canonical wrapper passes authoritative CFG verification."
+  },
+  {
+   "va": "0x01039bbe",
+   "raw_symbol": "FUN_01039bbe",
+   "upstream_symbol": "assert_print",
+   "abi": "void assert_print(const char *fmt, ...)",
+   "source": "zephyr/lib/os/assert.c",
+   "source_sha256": "2d09c628330678daa5c15090fe2711d6fde08d3bda839e17d373ab2ef05508b4",
+   "object": "zephyr/libzephyr.a(assert.c.obj)",
+   "firmware_code_size": 26,
+   "reference_code_size": 26,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "Exact 26-byte assert.c varargs wrapper calling the separately linked vprintk thunk. Its 85-plus file/line assertion call sites and call target disambiguate it from printk. The committed canonical wrapper passes authoritative CFG verification."
   }
  ]
 }

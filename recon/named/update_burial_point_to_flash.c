@@ -5,6 +5,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
  *   flash_settings_write_and_verify          <= FUN_00022658 @ 0x00022658
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_9e655                             @ 0x0009e655
@@ -19,7 +20,7 @@ extern void log_message(unsigned int a, unsigned int b);
 extern void debug_print(unsigned int,unsigned int);
 extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
-extern int FUN_00086be4(void *a, void *b, unsigned int n);
+extern int memcmp(void *a, void *b, unsigned int n);
 extern void memset_bytes(void *dst, int val, int n);
 
 unsigned int update_burial_point_to_flash(char *param_1)
@@ -39,7 +40,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
     iVar2 = flash_settings_read(0x135000U, buf, 0xc0);
     if (iVar2 == 0) {
         char *p = param_1 + 0x10c6;
-        iVar2 = FUN_00086be4(buf, p, 0xc0);
+        iVar2 = memcmp(buf, p, 0xc0);
         if (iVar2 == 0) {
             return 0;
         }

@@ -19,6 +19,7 @@ import sys, os, re, json, glob, collections
 
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import generated_identity
+import function_names
 
 SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
@@ -35,6 +36,8 @@ else:
     NAMED = BASE + "/recon/net/named"; MAP = SCR + "/symbol_map_net.json"
 OUTSRC = BASE + "/recon/symbolized/" + CORE
 HDR = BASE + "/recon/symbols"
+SUPPORT_SOURCE = (BASE + "/recon/app/src" if CORE == "app" else
+                  BASE + "/recon/net/src")
 
 smap = json.load(open(MAP))
 
@@ -255,6 +258,29 @@ def main():
         for path in glob.glob(OUTSRC + "/*.c"):
             if os.path.basename(path) not in planned:
                 os.unlink(path)
+        # Recovered C files can include reviewed split-body fragments and
+        # helper headers from the canonical tree.  Copy a symbolized view next
+        # to the generated C so quoted includes resolve to readable public SDK
+        # names too; the canonical/parity inputs remain untouched.  This is
+        # intentionally limited to support sources actually included by the
+        # generated tree.
+        support = set()
+        include_re = re.compile(r'^\s*#\s*include\s+"([^"/]+\.(?:h|inc))"',
+                                re.MULTILINE)
+        for item in planned.values():
+            support.update(include_re.findall(item["rendered"]))
+        for filename in sorted(support):
+            source = os.path.join(SUPPORT_SOURCE, filename)
+            if not os.path.isfile(source):
+                continue
+            support_text = function_names.substitute(
+                open(source).read(), CORE)
+            support_text, used = substitute(support_text)
+            total.update(used)
+            support_text = "\n".join(
+                line.rstrip() for line in support_text.splitlines()).rstrip() + "\n"
+            generated_identity.atomic_write(
+                os.path.join(OUTSRC, filename), support_text)
     path, ng, npart, nreg, nrod, nfunc = gen_headers()
     print("[%s] files: %d  | substitutions by kind:" % (CORE, len(planned)))
     for k, n in total.most_common():

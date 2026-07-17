@@ -4,11 +4,12 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  */
 /* Reconstructed FUN_00080a4e @ 0x80a4e  (parity: 300/300 trials, PROVEN) */
 
 extern int img_mgmt_read_hash_and_flags(int, unsigned int, void *, int);
-extern int FUN_00086be4(void *, unsigned int, int);
+extern int memcmp(void *, unsigned int, int);
 
 int FUN_00080a4e(unsigned int param_1, unsigned int param_2)
 {
@@ -19,7 +20,7 @@ int FUN_00080a4e(unsigned int param_1, unsigned int param_2)
   while (1) {
     iVar1 = img_mgmt_read_hash_and_flags(iVar2, param_2, auStack_30, 0);
     if (iVar1 == 0) {
-      iVar1 = FUN_00086be4(auStack_30, param_1, 0x20);
+      iVar1 = memcmp(auStack_30, param_1, 0x20);
     }
     if (iVar1 == 0) break;
     iVar2 = iVar2 + 1;

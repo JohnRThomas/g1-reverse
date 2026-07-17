@@ -9,6 +9,7 @@
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   k_uptime_get_32                          <= FUN_0007c0c8 @ 0x0007c0c8
  *   bt_conn_le_param_update                  <= FUN_0008157a @ 0x0008157a
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_9a5ae                             @ 0x0009a5ae
  *   rodata_9a5d8                             @ 0x0009a5d8
@@ -31,7 +32,7 @@ extern void FUN_00056a68(int,int);
 extern unsigned k_uptime_get_32(void);
 extern int FUN_00081526(int);
 extern void bt_conn_le_param_update(int,unsigned);
-extern int FUN_00086be4(int,unsigned,int);
+extern int memcmp(int,unsigned,int);
 void ancs_connected(int param_1, int param_2)
 {
   unsigned char bVar1, bVar2;
@@ -48,7 +49,7 @@ void ancs_connected(int param_1, int param_2)
     iVar5 = is_battery_critical();
     if ((iVar5 == 0) && (iVar5 = get_device_info(), *(char*)(iVar5+0x1071) == 0)) {
       iVar5 = get_device_info();
-      iVar5 = FUN_00086be4(iVar5+0x1069, uVar4, 7);
+      iVar5 = memcmp(iVar5+0x1069, uVar4, 7);
       if (iVar5 != 0) {
         if (0 < *(int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
           if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)

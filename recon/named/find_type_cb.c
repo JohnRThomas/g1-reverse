@@ -11,6 +11,7 @@
  *   bt_uuid_create                           <= FUN_00080d9a @ 0x00080d9a
  *   net_buf_frags_len_0                      <= FUN_00081bc0 @ 0x00081bc0
  *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
  *   rodata_f43ca                             @ 0x000f43ca
@@ -28,7 +29,7 @@ extern uint64_t net_buf_frags_len_0(int);
 extern void FUN_00081ddc(int, int, int);
 extern int FUN_000836de(int, int, int, int);
 extern int net_buf_simple_tailroom(int);
-extern int FUN_00086be4(int, int);
+extern int memcmp(int, int);
 
 uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)
 {
@@ -88,7 +89,7 @@ uint32_t find_type_cb(uint32_t *param_1, unsigned param_2, int *param_3)
     uVar2 = ((unsigned(*)(uint32_t, uint32_t*, void*, int))(uintptr_t)param_1[1])(local_64, param_1, (void*)auStack_60, 0x10);
     if ((int)uVar2 < 0) goto LAB_584fc;
     if (*(volatile uint8_t*)((int)(intptr_t)param_3 + 0x10) == uVar2) {
-        iVar6 = FUN_00086be4(param_3[3], (int)(intptr_t)auStack_60);
+        iVar6 = memcmp(param_3[3], (int)(intptr_t)auStack_60);
 LAB_58534:
         if (iVar6 == 0) {
             *(volatile uint8_t*)((int)(intptr_t)param_3 + 0x11) = 0;

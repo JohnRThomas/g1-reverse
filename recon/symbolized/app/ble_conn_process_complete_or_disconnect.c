@@ -9,6 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   atomic_and_2                             <= FUN_000813b4 @ 0x000813b4
+ *   bt_l2cap_disconnected                    <= FUN_000817ea @ 0x000817ea
  * address symbols (name @ address):
  *   rodata_87fec                             @ 0x00087fec
  *   rodata_88058                             @ 0x00088058
@@ -30,14 +31,14 @@ extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 extern int atomic_and_2(volatile unsigned*,unsigned);
 extern void FUN_000813ca(unsigned,unsigned,void*);
-extern void FUN_000817ea(int);
+extern void bt_l2cap_disconnected(int);
 
 void ble_conn_process_complete_or_disconnect(int param_1){
   int iVar5 = param_1 - 0x60;
   unsigned uVar1, uVar3;
   int iVar2;
   if(*(volatile char*)(param_1-0x53) == 0){
-    FUN_000817ea(iVar5);
+    bt_l2cap_disconnected(iVar5);
     for(iVar2 = *(volatile int*)((unsigned long)&g_ble_conn_cb_list_head) /*=0x2000ad1c*/;
         uVar1 = ((unsigned long)&rodata_88058) /*=0x88058*/, uVar3 = ((unsigned long)&rodata_87fec) /*=0x87fec*/, iVar2 != 0;
         iVar2 = *(volatile int*)(iVar2+0x20)){

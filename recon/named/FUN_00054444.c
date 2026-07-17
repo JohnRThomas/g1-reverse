@@ -7,6 +7,7 @@
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
+ *   bt_smp_request_ltk                       <= FUN_00083370 @ 0x00083370
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_f2db7                             @ 0x000f2db7
@@ -16,7 +17,7 @@
 #include <stdint.h>
 
 extern void *ble_conn_lookup_masked(uint32_t, uint32_t);
-extern int FUN_00083370(void *, uint32_t, uint32_t, uint32_t, uint32_t, void *);
+extern int bt_smp_request_ltk(void *, uint32_t, uint32_t, uint32_t, uint32_t, void *);
 extern void *bt_hci_cmd_create(uint32_t, uint32_t);
 extern void *net_buf_simple_add(void *, uint32_t);
 extern void bt_hci_cmd_send_or_create(uint32_t, void *);
@@ -36,7 +37,7 @@ void FUN_00054444(const void *event)
         FUN_00080ea2(0x00088138u, 0x1840u, &r);
         return;
     }
-    int enhanced = FUN_00083370(connection, *(const uint16_t *)(p + 10),
+    int enhanced = bt_smp_request_ltk(connection, *(const uint16_t *)(p + 10),
                                  *(const uint32_t *)(p + 2), *(const uint32_t *)(p + 6),
                                  (uint32_t)(uintptr_t)parameters, parameters);
     void *command;

@@ -9,6 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   sys_slist_find_and_remove_0              <= FUN_00082ab8 @ 0x00082ab8
+ *   bt_gatt_cancel                           <= FUN_00082e24 @ 0x00082e24
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f3ebd                             @ 0x000f3ebd
@@ -25,7 +26,7 @@ extern int gatt_sub_free(int);
 extern int gatt_write_ccc(int,int*);
 extern int FUN_0008270c(int*);
 extern void sys_slist_find_and_remove_0(int,int*);
-extern void FUN_00082e24(int,int*);
+extern void bt_gatt_cancel(int,int*);
 typedef int (*codef)(int,int*,int);
 int bt_gatt_subscribe(int param_1, int *param_2, unsigned param_3, unsigned param_4)
 {
@@ -51,7 +52,7 @@ int bt_gatt_subscribe(int param_1, int *param_2, unsigned param_3, unsigned para
     } while (piVar5 != 0);
     if (bVar4) {
       iVar2 = FUN_0008270c(param_2 + 5);
-      if (iVar2 << 0x1d < 0) FUN_00082e24(param_1, param_2);
+      if (iVar2 << 0x1d < 0) bt_gatt_cancel(param_1, param_2);
       if (bVar6) {
         sys_slist_find_and_remove_0(iVar1+8, param_2+6);
         if (*(int*)(iVar1+8) == 0) gatt_sub_free(iVar1);

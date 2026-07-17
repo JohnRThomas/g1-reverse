@@ -7,6 +7,7 @@
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_f6999                             @ 0x000f6999
  *   g_cjson_hooks                            @ 0x20002bac
@@ -18,7 +19,7 @@
 typedef struct { const uint8_t *start; uint32_t length, used, reserved; uint8_t work[12]; } parse_state_t;
 extern void memset_bytes(void*,int,size_t);
 extern uintptr_t alloc_zeroed_node(void);
-extern int FUN_00087036(const void*,uintptr_t,size_t);
+extern int strncmp(const void*,uintptr_t,size_t);
 extern uintptr_t FUN_00084ed8(void*);
 extern int cjson_parse_value(uintptr_t,uintptr_t);
 extern void cjson_delete(uintptr_t);
@@ -32,7 +33,7 @@ int FUN_00064b64(const uint8_t *input,uint32_t length,const uint8_t **end,int re
   s.start=input;s.length=length;uintptr_t object=alloc_zeroed_node();
   if(object){
    void *cursor=(void*)s.start;
-   if(s.start){if(s.used==0){if(s.length>4&&FUN_00087036(s.start,((unsigned long)&rodata_f6999) /*=0xf6999*/,3)==0)s.used=3;cursor=&s.start;}else cursor=0;}
+   if(s.start){if(s.used==0){if(s.length>4&&strncmp(s.start,((unsigned long)&rodata_f6999) /*=0xf6999*/,3)==0)s.used=3;cursor=&s.start;}else cursor=0;}
    int valid=cjson_parse_value(object,FUN_00084ed8(cursor));
    if(valid&&(require_end==0||(FUN_00084ed8(&s),s.used<s.length&&s.start[s.used]==0))){if(!end)return (int)object;*end=s.start+s.used;return (int)object;}
    cjson_delete(object);

@@ -9,6 +9,7 @@
  *   nrfx_qspi_init                           <= FUN_00066994 @ 0x00066994
  *   audio_apply_config_cmd_0xab              <= FUN_0008397e @ 0x0008397e
  *   qspi_rdsr                                <= FUN_000839a6 @ 0x000839a6
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_838cb                             @ 0x000838cb
  *   rodata_88270                             @ 0x00088270
@@ -31,7 +32,7 @@ extern int FUN_000838dc(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
 extern int audio_apply_config_cmd_0xab(void *context);
 extern int qspi_rdsr(void *context);
-extern int FUN_00086be4(const void *expected, const void *actual, uint32_t length);
+extern int memcmp(const void *expected, const void *actual, uint32_t length);
 
 struct driver_context {
     uint32_t reserved0;
@@ -161,7 +162,7 @@ int qspi_nor_configure(struct driver_context *context)
         result = qspi_nor_send_cinstr(context, (uint8_t *)&frame.opcode, 0);
         FUN_00060a5c(context);
         if (result == 0) {
-            result = FUN_00086be4(configuration + 0x30, frame.response, 3);
+            result = memcmp(configuration + 0x30, frame.response, 3);
             if (result == 0)
                 return 0;
 

@@ -6,6 +6,7 @@
  *   virtio_create_virtqueues                 <= FUN_00070e28 @ 0x00070e28
  *   rpmsg_register_endpoint                  <= FUN_00070f74 @ 0x00070f74
  *   rpmsg_virtqueue_channel_init             <= FUN_00071358 @ 0x00071358
+ *   metal_io_block_set                       <= FUN_0008557c @ 0x0008557c
  *   virtqueue_add_buffer                     <= FUN_0008567c @ 0x0008567c
  *   rpmsg_virtio_shm_pool_get_buffer         <= FUN_00085aee @ 0x00085aee
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
@@ -27,7 +28,7 @@
 /* Reconstructed FUN_00071358 @ 0x71358  (parity: 300/300 trials, PROVEN) */
 extern int virtio_create_virtqueues(int a0,int a1,int a2,void *a3,void *a4);
 extern int rpmsg_register_endpoint(int a0,int a1,int a2,int a3,int a4,int a5,int a6);
-extern void FUN_0008557c(int *a0,unsigned int a1,int a2,int a3);
+extern void metal_io_block_set(int *a0,unsigned int a1,int a2,int a3);
 extern int virtqueue_add_buffer(int a0,void *a1,int a2,int a3,int a4);
 extern void FUN_000857b2(int a0);
 extern int rpmsg_virtio_shm_pool_get_buffer(int a0,int a1);
@@ -110,7 +111,7 @@ int rpmsg_virtqueue_channel_init(int param_1,int param_2,int param_3,int *param_
             uVar2 = (unsigned int)iVar6 - (unsigned int)(*param_4);
             if ((unsigned int)param_4[2] <= uVar2) uVar2 = 0xffffffff;
             local_28 = iVar6;
-            FUN_0008557c(param_4, uVar2, 0, *(int*)(param_1 + 0x98));
+            metal_io_block_set(param_4, uVar2, 0, *(int*)(param_1 + 0x98));
             iVar6 = virtqueue_add_buffer(*(int*)(param_1 + 0xa4), &local_28, 0, 1, iVar6);
             if (iVar6 != 0) return iVar6;
         }

@@ -6,6 +6,7 @@
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   bt_ancs_request_attrs                    <= FUN_0007f6b6 @ 0x0007f6b6
  *   thunk_FUN_0007f7d2                       <= FUN_0007f7c4 @ 0x0007f7c4
  * address symbols (name @ address):
  *   rodata_1827d                             @ 0x0001827d
@@ -26,14 +27,14 @@ extern void log_message(unsigned,...);
 extern unsigned strlen(unsigned);
 extern int ancs_get_conn_ctx(void);
 extern void debug_print(unsigned,...);
-extern int FUN_0007f6b6(unsigned,unsigned,unsigned);
+extern int bt_ancs_request_attrs(unsigned,unsigned,unsigned);
 extern void FUN_0007c0a4(int,int);
 extern int thunk_FUN_0007f7d2(unsigned,unsigned,unsigned,unsigned);
 int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
 {
   unsigned uVar1, uVar2; unsigned short *puVar3; int iVar4, iVar5; unsigned uVar6;
   iVar4 = ancs_get_conn_ctx();
-  iVar5 = FUN_0007f6b6(((unsigned long)&g_ancs_client) /*=0x20006ae8*/, ((unsigned long)&g_ancs_notif_evt_id_latest) /*=0x20006aac*/, ((unsigned long)&rodata_1827d) /*=0x1827d*/);
+  iVar5 = bt_ancs_request_attrs(((unsigned long)&g_ancs_client) /*=0x20006ae8*/, ((unsigned long)&g_ancs_notif_evt_id_latest) /*=0x20006aac*/, ((unsigned long)&rodata_1827d) /*=0x1827d*/);
   puVar3 = (unsigned short*)((unsigned long)&g_ancs_notif_attr_id_latest) /*=0x20006aa0*/;
   uVar6 = 0;
   do {

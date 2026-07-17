@@ -9,20 +9,21 @@ link target; these rows explicitly require whole-source-unit ownership.
 | Action | Symbols |
 |---|---:|
 | `adopt_complete_source_unit` | 91 |
-| `enable_or_adopt_public_owner` | 20 |
-| `identity_collision_review` | 1 |
+| `enable_or_adopt_public_owner` | 19 |
+| `identity_collision_review` | 2 |
 | `link_compiler_runtime_public_symbol` | 8 |
+| `manual_owner_review` | 1 |
 | `reclassify_application_owner` | 7 |
 | `reconcile_inline_at_callsite` | 46 |
 
-Public safe candidates: **28**. Source-unit/inline cases: **137**.
+Public safe candidates: **27**. Source-unit/inline cases: **137**.
 
-## Public link/adoption candidates (28)
+## Public link/adoption candidates (27)
 
 These have public archive exports. Exact signature hits can be adopted
 directly; approximate hits retain an explicit ABI-check gate.
 
-`FUN_0000de58`, `FUN_0000ec34`, `FUN_0004cc50`, `FUN_000638dc`, `FUN_00070f1c`, `FUN_0007e212`, `FUN_0007f570`, `FUN_0007f6b6`, `FUN_00080ed8`, `FUN_000813e8`, `FUN_000817ea`, `FUN_000823fa`, `FUN_00082e24`, `FUN_00082ec8`, `FUN_00083370`, `FUN_00083634`, `FUN_0008557c`, `FUN_00085900`, `FUN_00085bf6`, `FUN_0008673e`, `FUN_00086be4`, `FUN_00086c44`, `FUN_00086fbe`, `FUN_00086ffe`, `FUN_00087036`, `FUN_000870be`, `k_timer_start`, `z_log_dropped_read_and_clear_0`
+`FUN_0000de58`, `FUN_0000ec34`, `FUN_0004cc50`, `FUN_000638dc`, `FUN_00070f1c`, `FUN_0007e212`, `FUN_0007f570`, `FUN_0007f6b6`, `FUN_00080ed8`, `FUN_000813e8`, `FUN_000817ea`, `FUN_000823fa`, `FUN_00082e24`, `FUN_00082ec8`, `FUN_00083370`, `FUN_00083634`, `FUN_0008557c`, `FUN_00085900`, `FUN_00085bf6`, `FUN_0008673e`, `FUN_00086be4`, `FUN_00086c44`, `FUN_00086fbe`, `FUN_00086ffe`, `FUN_00087036`, `FUN_000870be`, `k_timer_start`
 
 ## Deliberate exclusions
 
@@ -36,6 +37,7 @@ the same-named local CC312 archive function already adopted at
 
 | Symbol | Owner | Kind | Source/archive | Action |
 |---|---|---|---|---|
+| `DEBUG_PRINT` | `DEBUG_PRINT` | `unresolved` | `unresolved` | `manual_owner_review` |
 | `FUN_0000de58` | `__fixdfsi` | `archive_public` | `/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a` | `link_compiler_runtime_public_symbol` |
 | `FUN_0000ec34` | `__fixdfdi` | `archive_public` | `/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a` | `link_compiler_runtime_public_symbol` |
 | `FUN_0004c4e4` | `nvs_recover_last_ate` | `archive_local` | `zephyr/subsys/fs/nvs/nvs.c` | `adopt_complete_source_unit` |
@@ -45,7 +47,7 @@ the same-named local CC312 archive function already adopted at
 | `FUN_00057038` | `send_conn_le_param_update` | `archive_local` | `zephyr/subsys/bluetooth/host/conn.c` | `adopt_complete_source_unit` |
 | `FUN_000638dc` | `sys_clock_set_timeout` | `archive_public` | `zephyr/drivers/timer/nrf_rtc_timer.c` | `enable_or_adopt_public_owner` |
 | `FUN_00066e70` | `pin_init` | `archive_local` | `modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c` | `adopt_complete_source_unit` |
-| `FUN_00070f1c` | `rpmsg_send_offchannel_nocopy` | `archive_public` | `modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c` | `enable_or_adopt_public_owner` |
+| `FUN_00070f1c` | `rpmsg_send_offchannel_raw` | `archive_public` | `modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c` | `enable_or_adopt_public_owner` |
 | `FUN_0007c18e` | `k_uptime_get` | `header_inline` | `zephyr/include/zephyr/kernel.h` | `reconcile_inline_at_callsite` |
 | `FUN_0007df24` | `alloc_chunk` | `archive_local` | `zephyr/lib/os/heap.c` | `adopt_complete_source_unit` |
 | `FUN_0007e022` | `free_list_add` | `archive_local` | `zephyr/lib/os/heap.c` | `adopt_complete_source_unit` |
@@ -208,4 +210,4 @@ the same-named local CC312 archive function already adopted at
 | `ver_str` | `ver_str` | `archive_local` | `zephyr/subsys/bluetooth/host/hci_core.c` | `adopt_complete_source_unit` |
 | `xfer_completeness_check` | `xfer_completeness_check` | `archive_local` | `modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c` | `adopt_complete_source_unit` |
 | `z_fdtable_call_ioctl` | `z_fdtable_call_ioctl` | `header_inline` | `zephyr/include/zephyr/sys/fdtable.h` | `reconcile_inline_at_callsite` |
-| `z_log_dropped_read_and_clear_0` | `z_log_dropped_read_and_clear` | `archive_public` | `zephyr/subsys/logging/log_core.c` | `enable_or_adopt_public_owner` |
+| `z_log_dropped_read_and_clear_0` | `z_log_dropped_read_and_clear` | `archive_public` | `zephyr/subsys/logging/log_core.c` | `identity_collision_review` |

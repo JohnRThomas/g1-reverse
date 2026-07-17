@@ -6,6 +6,7 @@
  *   lc3_ltpf_arm_correlate                   <= FUN_0006954c @ 0x0006954c
  *   lc3_ltpf_detect_pitch                    <= FUN_000698d0 @ 0x000698d0
  *   lc3_ltpf_analyse                         <= FUN_0006ab80 @ 0x0006ab80
+ *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  * address symbols (name @ address):
  *   rodata_8c938                             @ 0x0008c938
  */
@@ -40,7 +41,7 @@ struct lc3_ltpf_data {
 typedef void (*resample_12k8_fn)(struct lc3_ltpf_hp50_state *,
     const int16_t *, int16_t *, int);
 
-extern void *FUN_00086c44(void *, const void *, uint32_t);
+extern void *memmove(void *, const void *, uint32_t);
 extern bool lc3_ltpf_detect_pitch(struct lc3_ltpf_analysis *, const int16_t *, int, int *);
 extern void lc3_ltpf_arm_correlate(const int16_t *, const int16_t *, int, float *);
 extern void lc3_ltpf_interpolate(const int16_t *, int, int, int16_t *);
@@ -125,7 +126,7 @@ bool lc3_ltpf_analyse(int dt, int sr, struct lc3_ltpf_analysis *ltpf,
     const int z_12k8 = 384;
     const int n_12k8 = dt == 0 ? 96 : 128;
 
-    FUN_00086c44(ltpf->x_12k8, ltpf->x_12k8 + n_12k8,
+    memmove(ltpf->x_12k8, ltpf->x_12k8 + n_12k8,
         (uint32_t)((z_12k8 - n_12k8) * sizeof(*ltpf->x_12k8)));
     int16_t *x_12k8 = ltpf->x_12k8 + z_12k8 - n_12k8;
     RESAMPLE_12K8[sr](&ltpf->hp50, x, x_12k8, n_12k8);
@@ -133,7 +134,7 @@ bool lc3_ltpf_analyse(int dt, int sr, struct lc3_ltpf_analysis *ltpf,
 
     const int z_6k4 = 178;
     const int n_6k4 = n_12k8 >> 1;
-    FUN_00086c44(ltpf->x_6k4, ltpf->x_6k4 + n_6k4,
+    memmove(ltpf->x_6k4, ltpf->x_6k4 + n_6k4,
         (uint32_t)((z_6k4 - n_6k4) * sizeof(*ltpf->x_6k4)));
     int16_t *x_6k4 = ltpf->x_6k4 + z_6k4 - n_6k4;
 

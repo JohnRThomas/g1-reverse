@@ -5,6 +5,7 @@
  *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   send_event                               <= FUN_000276ec @ 0x000276ec
  *   prepare_system_suspend_state             <= FUN_000289b0 @ 0x000289b0
  *   display_panel_is_secondary               <= FUN_0002bed0 @ 0x0002bed0
@@ -18,11 +19,15 @@
  *   wait_for_event                           <= FUN_0007cb8a @ 0x0007cb8a
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   projector_reflash_and_release            <= FUN_0007d874 @ 0x0007d874
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
+ *   rodata_99969                             @ 0x00099969
  *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
  *   g_20007af4                               @ 0x20007af4
  *   g_20007af8                               @ 0x20007af8
  *   g_20007afc                               @ 0x20007afc
@@ -61,6 +66,8 @@
  *   change_work_mode_to               <= FUN_0001694c @ 0x0001694c
  *   sync_to_slave                     <= FUN_00026f74 @ 0x00026f74
  *   send_event                        <= FUN_000276ec @ 0x000276ec
+ *   debug_print                       <= FUN_00019c70 @ 0x00019c70
+ *   log_message                       <= FUN_0007dda4 @ 0x0007dda4
  *
  * Exact executable ownership is [0x00028bec, 0x00029502).  The halfword at
  * 0x29502 is alignment; literals occupy 0x29504..0x2953b and FUN_0002953c is
@@ -90,14 +97,17 @@ typedef long long s64;
 #define k_uptime_get                   k_uptime_get_1
 #define k_msleep                       k_msleep
 #define notify_display_mode            projector_reflash_and_release
-#define memory_compare_bytes           FUN_00086be4
+#define memory_compare_bytes           memcmp
 #define memory_copy_bytes              memcpy
 #define memset_bytes                   memset_bytes
 #define unsigned_divide_64             __aeabi_uldivmod
 #define send_event                     send_event
+#define debug_print                    debug_print
+#define log_message                    log_message
 
 /* globals as fixed absolute-address volatile pointers */
 #define g_log_level   (*(volatile s32*)0x2000230c)   /* DAT_00028f10 debug level */
+#define g_log_use_alt_sink   (*(volatile u32*)0x20007554)
 #define g_display_refresh_latch   (*(volatile u8 *)0x20018d96)   /* DAT_00028f00 */
 #define g_display_device_marker   ((volatile s8 *)0x20018c6e)    /* DAT_00029260 pcVar10 */
 #define g_display_last_mode   (*(volatile s32*)0x2000a098)   /* DAT_00029270 */
@@ -107,7 +117,8 @@ typedef long long s64;
 #define g_ble_dispatch_pending_marker   (*(volatile u8 *)0x20018d9b)   /* DAT_0002951c */
 
 /* callee oracles (keyed on call order by the harness) */
-extern void display_debug_log_boundary(void);
+extern void debug_print(u32 format, u32 module, ...);
+extern void log_message(u32 format, u32 module, ...);
 extern s32  get_device_info(void);
 extern s32  get_current_work_mode(void);
 extern void change_work_mode_to(int);
@@ -143,6 +154,26 @@ extern s64  unsigned_divide_64(int,int,int,int);
 #define W(o)  (*(volatile s32*)(display+(o)))
 #define PTR(o) ((u32)(*(volatile u32*)(display+(o))))
 
+#define DISPLAY_LOG_MODULE 0x000a1a13u
+#define DISPLAY_LOG_2(format) do {                                      \
+  if (g_log_use_alt_sink == 0)                                          \
+    log_message((format), DISPLAY_LOG_MODULE);                          \
+  else                                                                  \
+    debug_print((format), DISPLAY_LOG_MODULE);                          \
+} while (0)
+#define DISPLAY_LOG_3(format, value) do {                               \
+  if (g_log_use_alt_sink == 0)                                          \
+    log_message((format), DISPLAY_LOG_MODULE, (value));                 \
+  else                                                                  \
+    debug_print((format), DISPLAY_LOG_MODULE, (value));                 \
+} while (0)
+#define DISPLAY_LOG_4(format, value0, value1) do {                       \
+  if (g_log_use_alt_sink == 0)                                          \
+    log_message((format), DISPLAY_LOG_MODULE, (value0), (value1));      \
+  else                                                                  \
+    debug_print((format), DISPLAY_LOG_MODULE, (value0), (value1));      \
+} while (0)
+
 void display_dispatch_thread(char *display)
 {
   s32 iVar5, iVar6, iVar11;
@@ -154,10 +185,11 @@ void display_dispatch_thread(char *display)
   u8 *pbVar14, *pbVar15;
   int iStack_34; u32 uStack_30;
 
-  if (1 < g_log_level) display_debug_log_boundary();
+  if (1 < g_log_level) DISPLAY_LOG_2(0x00099969u);
   *(volatile s32*)(display+0xecc) = 0x12;   /* str.w */
   B(0xfe8) = 0;
-  if (0 < g_log_level) display_debug_log_boundary();
+  if (0 < g_log_level)
+    DISPLAY_LOG_4(0x000a0ca9u, B(0xec0), B(0xec1));
   *(volatile s32*)(display+0xeb4) = 0;      /* str.w */
   iVar5 = get_device_info();
   iVar6 = get_device_info();
@@ -183,7 +215,7 @@ void display_dispatch_thread(char *display)
       wait_for_event(0x28000, 0);
     }
     if (B(0xfe8) == 0 && display_panel_is_secondary(display) == 0) {
-      if (1 < g_log_level) display_debug_log_boundary();
+      if (1 < g_log_level) DISPLAY_LOG_2(0x000a0cdfu);
       B(0xcb) = B(0xed5);
       uVar17 = get_current_work_mode();
       if ((s32)uVar17 != 3) {
@@ -197,7 +229,7 @@ void display_dispatch_thread(char *display)
       if (B(0xfe8) == 0) {
         uVar17 = display_panel_is_secondary(display);
         if ((s32)uVar17 != 0) goto LAB_28d42;
-        if (1 < g_log_level) display_debug_log_boundary();
+        if (1 < g_log_level) DISPLAY_LOG_2(0x000a0d03u);
         g_display_refresh_latch = 0;
         k_sem_take(display+0x50, 0, -1, -1);
         if (B(0) == 2) {
@@ -209,8 +241,8 @@ void display_dispatch_thread(char *display)
         while (W(0x58) != 0) k_sem_take(display+0x50, 0, -1, -1);
       }
       if (1 < g_log_level) {
-        display_debug_log_boundary();
-        if (1 < g_log_level) display_debug_log_boundary();
+        DISPLAY_LOG_2(0x000a0d1du);
+        if (1 < g_log_level) DISPLAY_LOG_2(0x000a0d34u);
       }
       B(0xcb) = B(0xed5);
       change_work_mode_to(2);
@@ -246,7 +278,7 @@ void display_dispatch_thread(char *display)
       if (B(0xfea) == 0x0c && B(0xd5) != 7) goto LAB_290ca;
       uVar17 = display_panel_is_secondary(display);
       if ((s32)uVar17 == 0) {
-        if (0 < g_log_level) display_debug_log_boundary();
+        if (0 < g_log_level) DISPLAY_LOG_2(0x000a0d50u);
         goto LAB_290ca;
       }
       display_mutex_lock(0x20007b3c, (s32)(uVar17>>32), -1, -1);
@@ -301,7 +333,7 @@ void display_dispatch_thread(char *display)
         pbVar15 = (u8*)PTR(0xfec);
         break;
       case 6:
-        if (2 < g_log_level) display_debug_log_boundary();
+        if (2 < g_log_level) DISPLAY_LOG_2(0x000a0d77u);
         /* fallthrough */
       case 15:
         pbVar15 = (u8*)PTR(0xfec);
@@ -437,7 +469,7 @@ void display_dispatch_thread(char *display)
           iVar6 = sync_to_slave(display, 0, 0);
           cVar16 = 1;
           if (4999 < iVar6) {
-            if (0 < g_log_level) display_debug_log_boundary();
+            if (0 < g_log_level) DISPLAY_LOG_3(0x000a0d92u, iVar6);
             goto LAB_290ca;
           }
           if (iVar6 < 3000) {
@@ -445,16 +477,19 @@ void display_dispatch_thread(char *display)
               uVar7 = (u32)(u8)B(0xec);
               if (uVar7 == (u8)B(0xd5) || (u8)B(0xd5) < 7 || uVar7 < 7)
                 goto LAB_293fc;
-              if (0 < g_log_level) display_debug_log_boundary();
+              if (0 < g_log_level)
+                DISPLAY_LOG_4(0x000a0e3du, uVar7, B(0xd5));
               iVar6 = 0x46;
-            } else if (0 < g_log_level) display_debug_log_boundary();
-          } else if (0 < g_log_level) display_debug_log_boundary();
+            } else if (0 < g_log_level)
+              DISPLAY_LOG_3(0x000a0e04u, iVar6);
+          } else if (0 < g_log_level)
+            DISPLAY_LOG_3(0x000a0dcbu, iVar6);
         } else {
           iVar6 = 0;
          LAB_293fc:
           iVar11 = display_panel_is_secondary(display);
           if (iVar11 == 0) {
-            if (0 < g_log_level) display_debug_log_boundary();
+            if (0 < g_log_level) DISPLAY_LOG_2(0x000a0e91u);
           } else if (B(0xd5) == cVar1) {
             if (B(0xfe8) != 0) {
               uVar12 = (u32)(u8)B(0xee4);
@@ -465,19 +500,20 @@ void display_dispatch_thread(char *display)
                   uVar7 = uVar12;
                   if (cVar13 != 1) {
                     uVar7 = uStack_30;
-                    if (1 < g_log_level) display_debug_log_boundary();
+                    if (1 < g_log_level) DISPLAY_LOG_2(0x000a0ee6u);
                   }
                 }
               }
               uStack_30 = uVar7;
               notify_display_mode(B(0xd5));
-              if (0 < g_log_level) display_debug_log_boundary();
+              if (0 < g_log_level)
+                DISPLAY_LOG_3(0x000a0f08u, B(0xd5));
               cVar16 = B(0xec);
               if (cVar16 != 6 && cVar16 == 0) goto LAB_2933e;
               goto LAB_29102;
             }
-            if (0 < g_log_level) display_debug_log_boundary();
-          } else if (0 < g_log_level) display_debug_log_boundary();
+            if (0 < g_log_level) DISPLAY_LOG_2(0x000a0ec3u);
+          } else if (0 < g_log_level) DISPLAY_LOG_2(0x000a0eabu);
           cVar16 = 1;
         }
       } else {

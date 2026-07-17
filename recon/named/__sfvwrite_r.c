@@ -9,6 +9,7 @@
  *   __sfvwrite_r                             <= FUN_00077e70 @ 0x00077e70
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
  */
 /* Reconstructed FUN_00077e70 @ 0x77e70  (parity: 159/300 trials, PROVEN) */
@@ -16,7 +17,7 @@
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
 extern int _fflush_r(int,...); extern int heap_free_core(int,...); extern int _malloc_r(int,...);
 extern int stdio_fclose(int,...); extern int mem_find_byte(int,...); extern int memcpy(int,...);
-extern int FUN_00086c44(int,...); extern int heap_realloc_grow(int,...);
+extern int memmove(int,...); extern int heap_realloc_grow(int,...);
 typedef uint (*codeptr)(int,...);
 #define PH(p) (*(volatile ushort*)((char*)(p)+0xc))
 
@@ -70,14 +71,14 @@ LAB_fec:
             }
 LAB_ffc:
             if (uVar4 <= uVar9) uVar9 = uVar4;
-            FUN_00086c44(*param_2,iVar2);
+            memmove(*param_2,iVar2);
             param_2[2] = param_2[2] - uVar9;
             *param_2 = *param_2 + uVar9;
             uVar9 = uVar4;
           }
           else if ((param_2[4] < uVar3) || (uVar1 = param_2[5], uVar4 < uVar1)) {
             if (uVar4 <= uVar9) uVar9 = uVar4;
-            FUN_00086c44(uVar3,iVar2);
+            memmove(uVar3,iVar2);
             uVar3 = param_2[2];
             param_2[2] = uVar3 - uVar9;
             *param_2 = *param_2 + uVar9;
@@ -109,14 +110,14 @@ LAB_0be:
           uVar1 = *param_2; uVar3 = uVar4;
           if (uVar9 <= uVar4) uVar3 = uVar9;
           if ((param_2[4] < uVar1) && (uVar6 = param_2[2] + param_2[5], (int)uVar6 < (int)uVar3)) {
-            FUN_00086c44(uVar1,iVar10,uVar6);
+            memmove(uVar1,iVar10,uVar6);
             *param_2 = *param_2 + uVar6;
             iVar2 = _fflush_r((int)param_1,(int)param_2);
             if (iVar2 != 0) goto LAB_fc4;
           }
           else if ((int)uVar3 < (int)param_2[5]) {
             uVar6 = uVar3;
-            FUN_00086c44(uVar1,iVar10);
+            memmove(uVar1,iVar10);
             param_2[2] = param_2[2] - uVar6;
             *param_2 = *param_2 + uVar6;
           }

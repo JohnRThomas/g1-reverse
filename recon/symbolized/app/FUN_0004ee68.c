@@ -6,6 +6,7 @@
  *   bt_gatt_dm_attr_service_val              <= FUN_0007f460 @ 0x0007f460
  *   bt_gatt_dm_conn_get                      <= FUN_0007f4c8 @ 0x0007f4c8
  *   bt_gatt_dm_service_get                   <= FUN_0007f4d2 @ 0x0007f4d2
+ *   bt_gatt_dm_desc_by_uuid                  <= FUN_0007f570 @ 0x0007f570
  *   bt_uuid_cmp                              <= FUN_00080d3e @ 0x00080d3e
  * address symbols (name @ address):
  *   rodata_887b7                             @ 0x000887b7
@@ -19,7 +20,7 @@ extern int FUN_0004ed3c(int a0, void *a1);
 extern int bt_gatt_dm_attr_service_val(void);
 extern int bt_gatt_dm_conn_get(int a0);
 extern int bt_gatt_dm_service_get(void);
-extern int FUN_0007f570(int a0, int a1, void *a2);
+extern int bt_gatt_dm_desc_by_uuid(int a0, int a1, void *a2);
 extern int bt_uuid_cmp(int a0, void *a1);
 
 static __attribute__((always_inline)) inline
@@ -62,7 +63,7 @@ int FUN_0004ee68(int param_1, int *param_2)
     handle = FUN_0004ed3c(param_1, work.query_a);
     if (handle == 0) return -0x16;
     copy17(work.lookup_a, ((unsigned long)&rodata_887c8) /*=0x887c8*/);
-    result = FUN_0007f570(param_1, handle, work.lookup_a);
+    result = bt_gatt_dm_desc_by_uuid(param_1, handle, work.lookup_a);
     if (result == 0) return -0x16;
     *(unsigned short *)((unsigned char *)param_2 + 8) =
         *(unsigned short *)(result + 4);
@@ -71,14 +72,14 @@ int FUN_0004ee68(int param_1, int *param_2)
     handle = FUN_0004ed3c(param_1, work.query_b);
     if (handle == 0) return -0x16;
     copy17(work.lookup_b, ((unsigned long)&rodata_887d9) /*=0x887d9*/);
-    result = FUN_0007f570(param_1, handle, work.lookup_b);
+    result = bt_gatt_dm_desc_by_uuid(param_1, handle, work.lookup_b);
     if (result == 0) return -0x16;
     *(unsigned short *)((unsigned char *)param_2 + 10) =
         *(unsigned short *)(result + 4);
 
     work.selector_a[0] = 0;
     *(unsigned short *)(work.selector_a + 2) = 0x2902;
-    result = FUN_0007f570(param_1, handle, work.selector_a);
+    result = bt_gatt_dm_desc_by_uuid(param_1, handle, work.selector_a);
     if (result == 0) return -0x16;
     *(unsigned short *)((unsigned char *)param_2 + 12) =
         *(unsigned short *)(result + 4);
@@ -87,14 +88,14 @@ int FUN_0004ee68(int param_1, int *param_2)
     handle = FUN_0004ed3c(param_1, work.query_c);
     if (handle == 0) return -0x16;
     copy17(work.common + 4, ((unsigned long)&rodata_887ea) /*=0x887ea*/);
-    result = FUN_0007f570(param_1, handle, work.common + 4);
+    result = bt_gatt_dm_desc_by_uuid(param_1, handle, work.common + 4);
     if (result == 0) return -0x16;
     *(unsigned short *)((unsigned char *)param_2 + 14) =
         *(unsigned short *)(result + 4);
 
     work.selector_b[0] = 0;
     *(unsigned short *)(work.selector_b + 2) = 0x2902;
-    result = FUN_0007f570(param_1, handle, work.selector_b);
+    result = bt_gatt_dm_desc_by_uuid(param_1, handle, work.selector_b);
     if (result == 0) return -0x16;
     *(unsigned short *)((unsigned char *)param_2 + 16) =
         *(unsigned short *)(result + 4);

@@ -6,6 +6,7 @@
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -19,7 +20,7 @@
 
 extern int32_t is_battery_critical(void);
 extern void k_msleep(int32_t);
-extern int32_t FUN_00086be4(void *a, void *b, uint32_t n);
+extern int32_t memcmp(void *a, void *b, uint32_t n);
 extern void memcpy(void *dst, void *src, uint32_t n);
 extern void FUN_00086c1e(void *a, void *b, uint32_t c, uint32_t d);
 extern void memset_bytes(void *dst, int32_t val, uint32_t n);
@@ -86,7 +87,7 @@ uint32_t esb_send_command_and_wait_ack(char *param_1, uint32_t param_2, uint32_t
       puVar5 = (uint32_t *)((unsigned long)&g_esb_seg_ack_echo_buf) /*=0x20018d6b*/;
       if (param_2 == 1) {
         *(volatile uint8_t *)(((unsigned long)&g_esb_seg_ack_echo_buf) /*=0x20018d6b*/ + 0x15) = *(uint8_t *)(param_1 + 0x6e1);
-        iVar2 = FUN_00086be4((void *)((unsigned long)&g_esb_seg_ack_echo_buf) /*=0x20018d6b*/, puVar10, 0x16);
+        iVar2 = memcmp((void *)((unsigned long)&g_esb_seg_ack_echo_buf) /*=0x20018d6b*/, puVar10, 0x16);
         if (iVar2 == 0) goto LAB_000275de;
         puVar6 = (uint32_t *)(((unsigned long)&g_esb_seg_tx_frame_opcode) /*=0x20018c6f*/ + 1);
         *(volatile uint8_t *)((unsigned long)&g_esb_seg_tx_frame_opcode) /*=0x20018c6f*/ = 4;

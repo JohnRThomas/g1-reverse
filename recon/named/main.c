@@ -64,7 +64,7 @@ extern uintptr_t FUN_0004f564(unsigned, ...);                    /* @ 0x4f564 */
 extern uintptr_t FUN_0004f770(void *, ...);                      /* @ 0x4f770 */
 extern uintptr_t log_message(uintptr_t, ...);                    /* DEBUG_PRINT/FUN_0007dda4 */
 extern uintptr_t debug_print(uintptr_t, ...);                    /* FUN_00019c70 @ 0x19c70 */
-extern uintptr_t k_timer_start(void *, uint64_t, uint64_t);      /* FUN_00075174 @ 0x75174 */
+extern uintptr_t z_impl_k_timer_start(void *, uint64_t, uint64_t);      /* FUN_00075174 @ 0x75174 */
 extern uintptr_t serialization_init(void);                       /* FUN_00025c54 @ 0x25c54 */
 extern void *malloc(unsigned);                                   /* FUN_00076d6c @ 0x76d6c */
 extern uintptr_t memset_bytes(void *, int, unsigned);            /* FUN_00086c78 @ 0x86c78 */
@@ -163,7 +163,7 @@ void main(void)
             debug_print(0x00099835, 0x00099bb2, 0x00099830);
     }
 
-    k_timer_start((void *)0x20003700UL, 0x667ULL, 0x667ULL);
+    z_impl_k_timer_start((void *)0x20003700UL, 0x667ULL, 0x667ULL);
     serialization_init();
     if (g_log_level > 1) {
         if (g_log_use_alt_sink == 0)
@@ -323,7 +323,7 @@ void main(void)
         power_for_panel();
         if (B8(context, 0) == 1) {
             burial_point_record_info_init();
-            k_timer_start((void *)0x200036c8UL, 0x1e0000ULL,
+            z_impl_k_timer_start((void *)0x200036c8UL, 0x1e0000ULL,
                           0x1e0000ULL);
             power_for_imu_and_mic();
             W32(context, 0xf00) = 0x00087d58;

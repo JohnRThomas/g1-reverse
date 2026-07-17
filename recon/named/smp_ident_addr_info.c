@@ -16,6 +16,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   atomic_test_bit                          <= FUN_00082ff6 @ 0x00082ff6
  *   atomic_set_bit                           <= FUN_00083090 @ 0x00083090
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   ADDR_convert_to_id_on_match_THUMB        @ 0x000831e3
  *   rodata_88180                             @ 0x00088180
@@ -46,7 +47,7 @@ extern int FUN_00083002(int a, int b);
 extern void FUN_00083062(int a, void *b);
 extern void FUN_00083074(u32 a, u32 b, void *c);
 extern void atomic_set_bit(int a, int b);
-extern int FUN_00086be4(int a, void *b, int c);
+extern int memcmp(int a, void *b, int c);
 
 undefined4 smp_ident_addr_info(int param_1, int param_2)
 {
@@ -68,7 +69,7 @@ undefined4 smp_ident_addr_info(int param_1, int param_2)
     return 10;
   }
 
-  iVar1 = FUN_00086be4(iVar7, pcVar6, 7);
+  iVar1 = memcmp(iVar7, pcVar6, 7);
   if (iVar1 == 0 || (iVar1 = bt_keys_find_addr(*(u8*)(long)(iVar5+8), pcVar6), iVar1 == 0)) {
 LAB_df2c:
     iVar1 = atomic_test_bit((void*)(long)(param_1+4), 0xd);

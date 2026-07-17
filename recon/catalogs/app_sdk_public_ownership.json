@@ -1,0 +1,676 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "default_on_ambiguity": "retain_reconstruction",
+  "public_export_required": true,
+  "retain_all_selected_owner_required": true,
+  "approximate_signature_requires_abi_review": true,
+  "canonical_sources_mutated": false
+ },
+ "inputs": {
+  "residue": "recon/catalogs/app_sdk_residue_ownership.json",
+  "residue_sha256": "a8a2772f41259c013b827202d33bb4df78ad3ce4a868f90f44cd94eb8dc1c778",
+  "names": "recon/catalogs/function_names_app.json",
+  "names_sha256": "d69857b52da5e76ee359d2868f9a9569eacd5c609c3f7f7e46323a5f5406871a",
+  "retain_all_map": "/private/tmp/g1_cpuapp_sdk_public_0717b/zephyr/zephyr_pre0.map",
+  "retain_all_map_sha256": "1c00b08eb2de617d7684709fb91a71170a1f95f3274fc7e8b18de538019f5285",
+  "pinned_environment": {
+   "ncs": "v2.5.1 / Zephyr 3.4.99",
+   "compiler": "arm-zephyr-eabi GCC 12.2.0",
+   "abi": "cortex-m33 hard-float",
+   "libc": "newlib-nano",
+   "shell_build": "/private/tmp/g1_cpuapp_shell_build_0717j",
+   "shell_config_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "revisions": {
+    "zephyr": "83980fe1679441be9b0e1db556a353f6118fe14f",
+    "nrf": "87355af5914e498f449b7a68bb5641031a7b8885",
+    "nrfxlib": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7"
+   }
+  }
+ },
+ "summary": {
+  "candidates": 28,
+  "adopted": 27,
+  "retained_fail_closed": 1,
+  "resolved_reference_count": 137
+ },
+ "functions": [
+  {
+   "core": "app",
+   "va": "0x0000de58",
+   "raw_symbol": "FUN_0000de58",
+   "upstream_symbol": "__fixdfsi",
+   "upstream_member": "_arm_fixdfsi.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_arm_fixdfsi.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "GCC 12.2.0 cortex-m33 hard-float multilib"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 8
+  },
+  {
+   "core": "app",
+   "va": "0x0000ec34",
+   "raw_symbol": "FUN_0000ec34",
+   "upstream_symbol": "__fixdfdi",
+   "upstream_member": "_fixdfdi.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_fixdfdi.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "GCC 12.2.0 cortex-m33 hard-float multilib"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 2
+  },
+  {
+   "core": "app",
+   "va": "0x0004cc50",
+   "raw_symbol": "FUN_0004cc50",
+   "upstream_symbol": "ipc_service_send",
+   "upstream_member": "ipc_service.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/libzephyr.a",
+   "selected_link_owner": "zephyr/libzephyr.a(ipc_service.c.obj)",
+   "signature_ratio": 0.98,
+   "signature_gate": "approximate_signature_requires_abi_check",
+   "abi": {
+    "prototype": "int(struct ipc_ept *, const void *, size_t)",
+    "gate": "three AAPCS words; caller passes endpoint, data, length"
+   },
+   "required_config": [
+    "CONFIG_IPC_SERVICE=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x0004d490",
+   "raw_symbol": "z_log_dropped_read_and_clear_0",
+   "upstream_symbol": "z_log_dropped_read_and_clear",
+   "upstream_member": "log_core.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/libzephyr.a",
+   "selected_link_owner": "zephyr/libzephyr.a(log_core.c.obj)",
+   "signature_ratio": null,
+   "signature_gate": "not_a_public_link_candidate",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_LOG=y"
+   ],
+   "competing_firmware_va": "0x0002f928",
+   "exclude_reconstruction": false,
+   "safe_to_adopt": false,
+   "blockers": [
+    "source_catalog_not_public_safe",
+    "approximate_signature_without_abi_gate",
+    "reversible_name_not_owned_by_firmware_va",
+    "public_name_owned_by_distinct_firmware_va"
+   ],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x000638dc",
+   "raw_symbol": "FUN_000638dc",
+   "upstream_symbol": "sys_clock_set_timeout",
+   "upstream_member": "nrf_rtc_timer.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/drivers/timer/libdrivers__timer.a",
+   "selected_link_owner": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "compiled in actual CPUAPP shell; no independent Kconfig gate identified"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00070f1c",
+   "raw_symbol": "FUN_00070f1c",
+   "upstream_symbol": "rpmsg_send_offchannel_raw",
+   "upstream_member": "rpmsg.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/libopen_amp.a",
+   "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_OPENAMP=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00075174",
+   "raw_symbol": "k_timer_start",
+   "upstream_symbol": "z_impl_k_timer_start",
+   "upstream_member": "timer.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/libkernel.a",
+   "selected_link_owner": "zephyr/kernel/libkernel.a(timer.c.obj)",
+   "signature_ratio": 0.97,
+   "signature_gate": "approximate_signature_requires_abi_check",
+   "abi": {
+    "prototype": "void(struct k_timer *, k_timeout_t, k_timeout_t)",
+    "gate": "timer in r0; duration aligned in r2:r3; period in the first two stack words, matching firmware callers"
+   },
+   "required_config": [
+    "CONFIG_MULTITHREADING=y",
+    "CONFIG_SYS_CLOCK_EXISTS=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 5
+  },
+  {
+   "core": "app",
+   "va": "0x0007e212",
+   "raw_symbol": "FUN_0007e212",
+   "upstream_symbol": "onoff_manager_init",
+   "upstream_member": "onoff.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/libzephyr.a",
+   "selected_link_owner": "zephyr/libzephyr.a(onoff.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "Zephyr core utility unit (no independent Kconfig gate)"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x0007f570",
+   "raw_symbol": "FUN_0007f570",
+   "upstream_symbol": "bt_gatt_dm_desc_by_uuid",
+   "upstream_member": "gatt_dm.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/libzephyr.a",
+   "selected_link_owner": "zephyr/libzephyr.a(gatt_dm.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y",
+    "CONFIG_BT_GATT_DM=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 7
+  },
+  {
+   "core": "app",
+   "va": "0x0007f6b6",
+   "raw_symbol": "FUN_0007f6b6",
+   "upstream_symbol": "bt_ancs_request_attrs",
+   "upstream_member": "ancs_client.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/libzephyr.a",
+   "selected_link_owner": "zephyr/libzephyr.a(ancs_client.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y",
+    "CONFIG_BT_ANCS_CLIENT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00080ed8",
+   "raw_symbol": "FUN_00080ed8",
+   "upstream_symbol": "bt_hci_disconnect",
+   "upstream_member": "hci_core.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x000813e8",
+   "raw_symbol": "FUN_000813e8",
+   "upstream_symbol": "conn_lookup_handle",
+   "upstream_member": "conn.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(conn.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x000817ea",
+   "raw_symbol": "FUN_000817ea",
+   "upstream_symbol": "bt_l2cap_disconnected",
+   "upstream_member": "l2cap.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x000823fa",
+   "raw_symbol": "FUN_000823fa",
+   "upstream_symbol": "bt_att_get_mtu",
+   "upstream_member": "att.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(att.c.obj)",
+   "signature_ratio": 0.93,
+   "signature_gate": "approximate_signature_requires_abi_check",
+   "abi": {
+    "prototype": "uint16_t(struct bt_conn *)",
+    "gate": "one pointer argument; uint16_t result is consumed narrowed"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 3
+  },
+  {
+   "core": "app",
+   "va": "0x00082e24",
+   "raw_symbol": "FUN_00082e24",
+   "upstream_symbol": "bt_gatt_cancel",
+   "upstream_member": "gatt.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00082ec8",
+   "raw_symbol": "FUN_00082ec8",
+   "upstream_symbol": "bt_gatt_change_aware",
+   "upstream_member": "gatt.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 2
+  },
+  {
+   "core": "app",
+   "va": "0x00083370",
+   "raw_symbol": "FUN_00083370",
+   "upstream_symbol": "bt_smp_request_ltk",
+   "upstream_member": "smp.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(smp.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y",
+    "CONFIG_BT_SMP=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00083634",
+   "raw_symbol": "FUN_00083634",
+   "upstream_symbol": "bt_crypto_f6",
+   "upstream_member": "bt_crypto.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/crypto/libsubsys__bluetooth__crypto.a",
+   "selected_link_owner": "zephyr/subsys/bluetooth/crypto/libsubsys__bluetooth__crypto.a(bt_crypto.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_BT=y",
+    "CONFIG_BT_HOST_CRYPTO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 2
+  },
+  {
+   "core": "app",
+   "va": "0x0008557c",
+   "raw_symbol": "FUN_0008557c",
+   "upstream_symbol": "metal_io_block_set",
+   "upstream_member": "io.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/libmetal/libmetal/lib/libmetal.a",
+   "selected_link_owner": "modules/libmetal/libmetal/lib/libmetal.a(io.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_LIBMETAL=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00085900",
+   "raw_symbol": "FUN_00085900",
+   "upstream_symbol": "rpmsg_get_endpoint",
+   "upstream_member": "rpmsg.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/libopen_amp.a",
+   "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_OPENAMP=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00085bf6",
+   "raw_symbol": "FUN_00085bf6",
+   "upstream_symbol": "rpmsg_deinit_vdev",
+   "upstream_member": "rpmsg_virtio.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/libopen_amp.a",
+   "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_OPENAMP=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x0008673e",
+   "raw_symbol": "FUN_0008673e",
+   "upstream_symbol": "z_impl_k_timer_stop",
+   "upstream_member": "timer.c.obj",
+   "upstream_archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/libkernel.a",
+   "selected_link_owner": "zephyr/kernel/libkernel.a(timer.c.obj)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_MULTITHREADING=y",
+    "CONFIG_SYS_CLOCK_EXISTS=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 6
+  },
+  {
+   "core": "app",
+   "va": "0x00086be4",
+   "raw_symbol": "FUN_00086be4",
+   "upstream_symbol": "memcmp",
+   "upstream_member": "lib_a-memcmp.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memcmp.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 35
+  },
+  {
+   "core": "app",
+   "va": "0x00086c44",
+   "raw_symbol": "FUN_00086c44",
+   "upstream_symbol": "memmove",
+   "upstream_member": "lib_a-memmove.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memmove.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 6
+  },
+  {
+   "core": "app",
+   "va": "0x00086fbe",
+   "raw_symbol": "FUN_00086fbe",
+   "upstream_symbol": "__strcat_chk",
+   "upstream_member": "lib_a-strcat_chk.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcat_chk.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 1
+  },
+  {
+   "core": "app",
+   "va": "0x00086ffe",
+   "raw_symbol": "FUN_00086ffe",
+   "upstream_symbol": "__strcpy_chk",
+   "upstream_member": "lib_a-strcpy_chk.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcpy_chk.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 2
+  },
+  {
+   "core": "app",
+   "va": "0x00087036",
+   "raw_symbol": "FUN_00087036",
+   "upstream_symbol": "strncmp",
+   "upstream_member": "lib_a-strncmp.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strncmp.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 38
+  },
+  {
+   "core": "app",
+   "va": "0x000870be",
+   "raw_symbol": "FUN_000870be",
+   "upstream_symbol": "strstr",
+   "upstream_member": "lib_a-strstr.o",
+   "upstream_archive": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+   "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strstr.o)",
+   "signature_ratio": 1.0,
+   "signature_gate": "exact_signature",
+   "abi": {
+    "gate": "exact/direct public identity"
+   },
+   "required_config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "competing_firmware_va": null,
+   "exclude_reconstruction": true,
+   "safe_to_adopt": true,
+   "blockers": [],
+   "reference_count": 7
+  }
+ ]
+}

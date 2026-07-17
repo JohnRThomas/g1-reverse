@@ -11,6 +11,7 @@
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
  *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
  *   bt_conn_get_security                     <= FUN_000814e2 @ 0x000814e2
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_9a52b                             @ 0x0009a52b
  *   rodata_9a53f                             @ 0x0009a53f
@@ -36,7 +37,7 @@ extern void FUN_0007c0a8(uint32_t milliseconds);
 extern void bt_conn_set_security(uint32_t connection, uint32_t state);
 extern uint32_t bt_conn_get_security(uint32_t connection);
 extern uintptr_t FUN_00081526(uint32_t connection);
-extern int32_t FUN_00086be4(void *destination, uintptr_t source, uint32_t length);
+extern int32_t memcmp(void *destination, uintptr_t source, uint32_t length);
 
 void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 {
@@ -59,7 +60,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
                 uintptr_t device = get_device_info();
                 if (*(volatile uint8_t *)(device + 0x1070u) == 1u) {
                     device = get_device_info();
-                    if (FUN_00086be4((void *)(device + 0x1069u),
+                    if (memcmp((void *)(device + 0x1069u),
                                      active_connection, 7u) == 0)
                         ancs_discover_start(connection);
                 }

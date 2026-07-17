@@ -6,6 +6,7 @@
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   notification_icon_type_from_package      <= FUN_0003483c @ 0x0003483c
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_9adaa                             @ 0x0009adaa
  *   rodata_a819e                             @ 0x000a819e
@@ -20,7 +21,7 @@
 
 extern uint8_t strlen(const char *text);
 extern uintptr_t get_device_info(void);
-extern int FUN_00087036(const void *left, const void *right, uint32_t length);
+extern int strncmp(const void *left, const void *right, uint32_t length);
 
 static uint32_t bounded_length(const char *text)
 {
@@ -38,23 +39,23 @@ int notification_icon_type_from_package(int slot, uint32_t unused_2, uint32_t un
     (void)unused_3;
     (void)unused_4;
 
-    if (FUN_00087036((const void *)((unsigned long)&rodata_a819e) /*=0xa819e*/, record, 0x18U) == 0 ||
-        FUN_00087036((const void *)((unsigned long)&rodata_9adaa) /*=0x9adaa*/, record, 0x1cU) == 0) {
+    if (strncmp((const void *)((unsigned long)&rodata_a819e) /*=0xa819e*/, record, 0x18U) == 0 ||
+        strncmp((const void *)((unsigned long)&rodata_9adaa) /*=0x9adaa*/, record, 0x1cU) == 0) {
         return 1;
     }
-    if (FUN_00087036((const void *)((unsigned long)&rodata_a81b7) /*=0xa81b7*/, record, 0x18U) == 0 ||
-        FUN_00087036((const void *)((unsigned long)&rodata_a81d0) /*=0xa81d0*/, record, 0x15U) == 0) {
+    if (strncmp((const void *)((unsigned long)&rodata_a81b7) /*=0xa81b7*/, record, 0x18U) == 0 ||
+        strncmp((const void *)((unsigned long)&rodata_a81d0) /*=0xa81d0*/, record, 0x15U) == 0) {
         return 2;
     }
-    if (FUN_00087036((const void *)((unsigned long)&rodata_a81e6) /*=0xa81e6*/, record, 0x13U) == 0 ||
-        FUN_00087036((const void *)((unsigned long)&rodata_a81fa) /*=0xa81fa*/, record, 0x14U) == 0) {
+    if (strncmp((const void *)((unsigned long)&rodata_a81e6) /*=0xa81e6*/, record, 0x13U) == 0 ||
+        strncmp((const void *)((unsigned long)&rodata_a81fa) /*=0xa81fa*/, record, 0x14U) == 0) {
         return 0;
     }
 
     row = *(volatile uint8_t *)(get_device_info() + 0x1068U) != 0
         ? (const char *)0x20003292U : (const char *)0x20003152U;
     while (*(volatile const uint8_t *)row != 0) {
-        if (FUN_00087036(row, record, bounded_length(row)) == 0) {
+        if (strncmp(row, record, bounded_length(row)) == 0) {
             return 3;
         }
         row += 0x20;
@@ -63,7 +64,7 @@ int notification_icon_type_from_package(int slot, uint32_t unused_2, uint32_t un
     row = *(volatile uint8_t *)(get_device_info() + 0x1068U) != 0
         ? (const char *)0x200030d2U : (const char *)0x20003032U;
     while (*(volatile const uint8_t *)row != 0) {
-        if (FUN_00087036(row, record, bounded_length(row)) == 0) {
+        if (strncmp(row, record, bounded_length(row)) == 0) {
             return 4;
         }
         row += 0x20;

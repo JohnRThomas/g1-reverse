@@ -3,10 +3,11 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   driver_stop_active_timer                 <= FUN_00084c2c @ 0x00084c2c
+ *   z_impl_k_timer_stop                      <= FUN_0008673e @ 0x0008673e
  */
 /* Reconstructed FUN_00084c2c @ 0x84c2c  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0008673e(int);
+extern void z_impl_k_timer_stop(int);
 int driver_stop_active_timer(int param_1)
 {
     int iVar3 = *(int*)(param_1 + 0x10);
@@ -16,7 +17,7 @@ int driver_stop_active_timer(int param_1)
         return 0xfffffff2;
     }
     *(char*)(iVar2 + 0xcd) = 0;
-    FUN_0008673e(*(int*)(iVar3 + 0xc) + 0x20);
+    z_impl_k_timer_stop(*(int*)(iVar3 + 0xc) + 0x20);
     *(int*)(iVar4 + 0xc) = 1;
     return 0;
 }

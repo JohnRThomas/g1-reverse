@@ -3,11 +3,12 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   lc3_sns_compute_scale_factors            <= FUN_0006bfc8 @ 0x0006bfc8
+ *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  * address symbols (name @ address):
  *   lc3_band_lim                             @ 0x00090c50
  */
 /* Reconstructed FUN_0006bfc8 @ 0x6bfc8  (parity: 300/300 trials, PROVEN void, nptr=3) */
-extern void *FUN_00086c44(void *dst, void *src, int n);
+extern void *memmove(void *dst, void *src, int n);
 
 #define local_124 buf[5]
 #define local_120 buf[6]
@@ -299,7 +300,7 @@ void lc3_sns_compute_scale_factors(int param_1, int param_2, float *param_3, int
             *pfVar4 = (fVar10 + *pfVar1) * 0.5f;
             pfVar4 = pfVar4 + 1;
         } while (pfVar3 != pfVar7 + iVar2 * 2);
-        FUN_00086c44(pfVar7 + iVar2, pfVar7 + iVar2 * 2, (iVar6 - iVar2) * 4);
+        memmove(pfVar7 + iVar2, pfVar7 + iVar2 * 2, (iVar6 - iVar2) * 4);
     }
     fVar14 = 0x1.62e42ep-5f;
     fVar13 = 0x1.ebfaacp-11f;

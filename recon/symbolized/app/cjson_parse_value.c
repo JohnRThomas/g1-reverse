@@ -5,10 +5,12 @@
  * callees (readable <= raw @ address):
  *   __aeabi_dcmple                           <= FUN_0000ddf0 @ 0x0000ddf0
  *   __aeabi_dcmpge                           <= FUN_0000de04 @ 0x0000de04
+ *   __fixdfsi                                <= FUN_0000de58 @ 0x0000de58
  *   cjson_parse_value                        <= FUN_00012910 @ 0x00012910
  *   cjson_parse_string                       <= FUN_00064290 @ 0x00064290
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_f6977                             @ 0x000f6977
  *   rodata_f698e                             @ 0x000f698e
@@ -17,9 +19,9 @@
 /* Reconstructed FUN_00012910 @ 0x12910  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte; typedef unsigned long long undefined8;
-extern int __aeabi_dcmple(int,...); extern int __aeabi_dcmpge(int,...); extern int FUN_0000de58(int,...);
+extern int __aeabi_dcmple(int,...); extern int __aeabi_dcmpge(int,...); extern int __fixdfsi(int,...);
 extern int cjson_parse_string(int,...); extern int cjson_delete(int,...); extern unsigned long long FUN_00077a10(int,...);
-extern int FUN_00084ed8(int,...); extern int alloc_zeroed_node(int,...); extern int FUN_00087036(int,...);
+extern int FUN_00084ed8(int,...); extern int alloc_zeroed_node(int,...); extern int strncmp(int,...);
 
 undefined4 cjson_parse_value(int param_1,int *param_2)
 {
@@ -33,7 +35,7 @@ undefined4 cjson_parse_value(int param_1,int *param_2)
   if (uVar13 < uVar8 + 4) {
     if (uVar8 + 5 <= uVar13) {
 LAB_74:
-      iVar3 = FUN_00087036(iVar10 + uVar8,((unsigned long)&rodata_f698e) /*=0xf698e*/,5);
+      iVar3 = strncmp(iVar10 + uVar8,((unsigned long)&rodata_f698e) /*=0xf698e*/,5);
       if (iVar3 == 0) { *(undefined4 *)(param_1 + 0xc) = 1; pbVar6 = (byte *)(param_2[2] + 5); goto LAB_88; }
       if (uVar8 + 4 <= uVar13) goto LAB_92;
     }
@@ -121,12 +123,12 @@ LAB_ea:
     *(undefined4 *)(param_1 + 0xc) = uVar4;
     pbVar6 = (byte *)(param_2[2] + 1);
   } else {
-    iVar3 = FUN_00087036(iVar10 + uVar8,((unsigned long)&rodata_f6977) /*=0xf6977*/,4);
+    iVar3 = strncmp(iVar10 + uVar8,((unsigned long)&rodata_f6977) /*=0xf6977*/,4);
     if (iVar3 == 0) { *(undefined4 *)(param_1 + 0xc) = 4; }
     else {
       if (uVar8 + 5 <= uVar13) goto LAB_74;
 LAB_92:
-      iVar3 = FUN_00087036(iVar10 + uVar8,((unsigned long)&rodata_f6994) /*=0xf6994*/,4);
+      iVar3 = strncmp(iVar10 + uVar8,((unsigned long)&rodata_f6994) /*=0xf6994*/,4);
       if (iVar3 != 0) goto LAB_52;
       *(undefined4 *)(param_1 + 0xc) = 2; *(undefined4 *)(param_1 + 0x14) = 1;
     }
@@ -144,7 +146,7 @@ LAB_fa:
   iVar10 = __aeabi_dcmpge(uVar4,uVar17,0,0);
   if (iVar10 == 0) {
     iVar10 = __aeabi_dcmple(uVar4,uVar17,0,0xc1e00000);
-    if (iVar10 == 0) uVar4 = FUN_0000de58(uVar4,uVar17);
+    if (iVar10 == 0) uVar4 = __fixdfsi(uVar4,uVar17);
     else uVar4 = 0x80000000;
   } else uVar4 = 0x7fffffff;
   *(undefined8 *)(param_1 + 0x18) = uVar16;

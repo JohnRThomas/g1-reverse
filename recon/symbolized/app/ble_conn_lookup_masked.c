@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
+ *   conn_lookup_handle                       <= FUN_000813e8 @ 0x000813e8
  * address symbols (name @ address):
  *   log_module_bt_conn                       @ 0x00088108
  *   rodata_f3c7b                             @ 0x000f3c7b
@@ -12,7 +13,7 @@
  */
 /* Reconstructed FUN_00056908 @ 0x56908  (parity: 300/300 trials, PROVEN) */
 
-extern int FUN_000813e8(unsigned int a, unsigned int b, unsigned int c);
+extern int conn_lookup_handle(unsigned int a, unsigned int b, unsigned int c);
 extern void FUN_000813ca(unsigned int a, unsigned int b, void *c);
 extern void ble_conn_unref(int a);
 
@@ -25,7 +26,7 @@ int ble_conn_lookup_masked(unsigned int param_1, unsigned char param_2, unsigned
   unsigned int uStack_18;
 
   uStack_18 = param_4;
-  iVar1 = FUN_000813e8(((unsigned long)&g_ble_conn_pool) /*=0x20006138*/, 1, param_1);
+  iVar1 = conn_lookup_handle(((unsigned long)&g_ble_conn_pool) /*=0x20006138*/, 1, param_1);
   if (iVar1 != 0) {
     if ((param_2 & *(volatile unsigned char *)(iVar1 + 2)) != 0) {
       return iVar1;

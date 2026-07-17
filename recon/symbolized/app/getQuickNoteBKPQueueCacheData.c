@@ -9,6 +9,7 @@
  *   reset_touch_selection_state              <= FUN_00037098 @ 0x00037098
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -38,7 +39,7 @@ extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern int z_device_is_ready(const void *object);
 extern void memset_bytes(void *destination, int value, uint32_t length);
-extern int FUN_00086be4(const void *left, const void *right, uint32_t length);
+extern int memcmp(const void *left, const void *right, uint32_t length);
 extern void memcpy(void *destination, const void *source, uint32_t length);
 extern uint8_t *get_device_info(void);
 extern void reset_touch_selection_state(void);
@@ -200,14 +201,14 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
             memcpy(record + 0x2a, default_record(slot_number) + 0x2d,
                          0x119);
         } else {
-            if (FUN_00086be4(record + 1, default_record(slot_number) + 4,
+            if (memcmp(record + 1, default_record(slot_number) + 4,
                              0x29) != 0) {
                 memset_bytes(record + 1, 0, 0x29);
                 copy_default_header(record + 1,
                                     default_record(slot_number) + 4);
                 header_changed = 1;
             }
-            if (FUN_00086be4(record + 0x2a,
+            if (memcmp(record + 0x2a,
                              default_record(slot_number) + 0x2d,
                              0x119) != 0) {
                 memset_bytes(record + 0x2a, 0, 0x119);

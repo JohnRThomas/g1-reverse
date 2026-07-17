@@ -5,6 +5,7 @@
  *   bt_gatt_read                             <= FUN_0005c22c @ 0x0005c22c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   bt_att_get_mtu                           <= FUN_000823fa @ 0x000823fa
  *   gatt_req_send                            <= FUN_00082aee @ 0x00082aee
  * address symbols (name @ address):
  *   rodata_82603                             @ 0x00082603
@@ -21,7 +22,7 @@
 /* Reconstructed FUN_0005c22c @ 0x5c22c  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,...);
 extern void printk(int,...);
-extern int FUN_000823fa(int);
+extern int bt_att_get_mtu(int);
 extern int gatt_req_send(int,int,int*,int,int,unsigned);
 int bt_gatt_read(int param_1, int *param_2){
   short sVar1; int iVar2; int uVar3; unsigned short uVar4; unsigned uVar5; int uVar6; int uVar7;
@@ -44,13 +45,13 @@ int bt_gatt_read(int param_1, int *param_2){
   if (*(char*)(param_1+0xd)!=7) return 0xffffff80;
   uVar4 = *(unsigned short*)((char*)param_2+0xc);
   if (*(short*)((char*)param_2+6)==0){
-    iVar2 = FUN_000823fa(param_1);
+    iVar2 = bt_att_get_mtu(param_1);
     uVar5 = (unsigned short)(uVar4+2);
     if (uVar5 <= (unsigned)(iVar2-1U)){
       uVar7=0x12; uVar3=0x00082603; uVar6=0x0008281b; goto LAB;
     }
   }
-  sVar1 = FUN_000823fa(param_1);
+  sVar1 = bt_att_get_mtu(param_1);
   uVar4 = *(unsigned short*)((char*)param_2+0xc);
   if ((unsigned short)(sVar1-5U) <= *(unsigned short*)((char*)param_2+0xc)) uVar4 = sVar1-5U;
   uVar5 = (unsigned)(unsigned short)(uVar4+4);

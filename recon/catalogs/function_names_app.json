@@ -11,8 +11,8 @@
    "human": false,
    "source": "committed durable map",
    "aliases": [
-    "FUN_0004ee68",
-    "FUN_00052bf8"
+    "FUN_00052bf8",
+    "FUN_00056a68"
    ]
   },
   "0x00000006": {
@@ -265,11 +265,13 @@
   "0x0000de58": {
    "address": "0x0000de58",
    "raw_name": "FUN_0000de58",
-   "name": "FUN_0000de58",
-   "display_name": "FUN_0000de58",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "__fixdfsi",
+   "display_name": "__fixdfsi",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000de58.",
+   "aliases": [
+    "FUN_0000de58"
+   ]
   },
   "0x0000dea8": {
    "address": "0x0000dea8",
@@ -457,11 +459,13 @@
   "0x0000ec34": {
    "address": "0x0000ec34",
    "raw_name": "FUN_0000ec34",
-   "name": "FUN_0000ec34",
-   "display_name": "FUN_0000ec34",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "__fixdfdi",
+   "display_name": "__fixdfdi",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000ec34.",
+   "aliases": [
+    "FUN_0000ec34"
+   ]
   },
   "0x0000ec62": {
    "address": "0x0000ec62",
@@ -7020,11 +7024,13 @@
   "0x0004cc50": {
    "address": "0x0004cc50",
    "raw_name": "FUN_0004cc50",
-   "name": "FUN_0004cc50",
-   "display_name": "FUN_0004cc50",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "ipc_service_send",
+   "display_name": "ipc_service_send",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned Zephyr 3.4.99 public IPC service export. The three-register ABI (struct ipc_ept *, const void *, size_t) was independently checked for this approximate signature. Raw identity remains FUN_0004cc50.",
+   "aliases": [
+    "FUN_0004cc50"
+   ]
   },
   "0x0004cce0": {
    "address": "0x0004cce0",
@@ -11778,11 +11784,13 @@
   "0x000638dc": {
    "address": "0x000638dc",
    "raw_name": "FUN_000638dc",
-   "name": "FUN_000638dc",
-   "display_name": "FUN_000638dc",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "sys_clock_set_timeout",
+   "display_name": "sys_clock_set_timeout",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr nrf_rtc_timer.c object. Raw identity remains FUN_000638dc.",
+   "aliases": [
+    "FUN_000638dc"
+   ]
   },
   "0x00063954": {
    "address": "0x00063954",
@@ -13523,11 +13531,13 @@
   "0x00070f1c": {
    "address": "0x00070f1c",
    "raw_name": "FUN_00070f1c",
-   "name": "FUN_00070f1c",
-   "display_name": "FUN_00070f1c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_send_offchannel_raw",
+   "display_name": "rpmsg_send_offchannel_raw",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact pinned OpenAMP public export: the firmware and rpmsg.c object share the six-argument ABI and the send_offchannel_raw operation at rdev->ops + 0x78. The nearby five-argument nocopy routine was an approximate-signature false label. Raw identity remains FUN_00070f1c.",
+   "aliases": [
+    "FUN_00070f1c"
+   ]
   },
   "0x00070f48": {
    "address": "0x00070f48",
@@ -14319,12 +14329,13 @@
   "0x00075174": {
    "address": "0x00075174",
    "raw_name": "FUN_00075174",
-   "name": "k_timer_start",
-   "display_name": "k_timer_start",
+   "name": "z_impl_k_timer_start",
+   "display_name": "z_impl_k_timer_start",
    "human": true,
-   "source": "function_name_overrides.json: Exact Zephyr k_timer_start ABI: timer pointer in r0, AAPCS-aligned 64-bit duration in r2:r3, and 64-bit period in the first two caller-stack words. main invokes it for the 0x667 and 0x1e0000 periodic timers. Raw identity remains FUN_00075174.",
+   "source": "function_name_overrides.json: Pinned Zephyr kernel timer implementation. The timer pointer plus two k_timeout_t arguments has the same public k_timer_start ABI; the AAPCS-aligned 64-bit register/stack placement was independently checked for this approximate signature. Raw identity remains FUN_00075174.",
    "aliases": [
-    "FUN_00075174"
+    "FUN_00075174",
+    "k_timer_start"
    ]
   },
   "0x000751d0": {
@@ -17982,11 +17993,13 @@
   "0x0007e212": {
    "address": "0x0007e212",
    "raw_name": "FUN_0007e212",
-   "name": "FUN_0007e212",
-   "display_name": "FUN_0007e212",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "onoff_manager_init",
+   "display_name": "onoff_manager_init",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned Zephyr lib/os/onoff.c. Raw identity remains FUN_0007e212.",
+   "aliases": [
+    "FUN_0007e212"
+   ]
   },
   "0x0007e238": {
    "address": "0x0007e238",
@@ -18940,11 +18953,13 @@
   "0x0007f570": {
    "address": "0x0007f570",
    "raw_name": "FUN_0007f570",
-   "name": "FUN_0007f570",
-   "display_name": "FUN_0007f570",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_gatt_dm_desc_by_uuid",
+   "display_name": "bt_gatt_dm_desc_by_uuid",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned NCS gatt_dm.c selected by CONFIG_BT_GATT_DM. Raw identity remains FUN_0007f570.",
+   "aliases": [
+    "FUN_0007f570"
+   ]
   },
   "0x0007f594": {
    "address": "0x0007f594",
@@ -19011,11 +19026,13 @@
   "0x0007f6b6": {
    "address": "0x0007f6b6",
    "raw_name": "FUN_0007f6b6",
-   "name": "FUN_0007f6b6",
-   "display_name": "FUN_0007f6b6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_ancs_request_attrs",
+   "display_name": "bt_ancs_request_attrs",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned NCS ancs_client.c selected by CONFIG_BT_ANCS_CLIENT. Raw identity remains FUN_0007f6b6.",
+   "aliases": [
+    "FUN_0007f6b6"
+   ]
   },
   "0x0007f772": {
    "address": "0x0007f772",
@@ -20057,11 +20074,13 @@
   "0x00080ed8": {
    "address": "0x00080ed8",
    "raw_name": "FUN_00080ed8",
-   "name": "FUN_00080ed8",
-   "display_name": "FUN_00080ed8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_hci_disconnect",
+   "display_name": "bt_hci_disconnect",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00080ed8.",
+   "aliases": [
+    "FUN_00080ed8"
+   ]
   },
   "0x00080f14": {
    "address": "0x00080f14",
@@ -20379,11 +20398,13 @@
   "0x000813e8": {
    "address": "0x000813e8",
    "raw_name": "FUN_000813e8",
-   "name": "FUN_000813e8",
-   "display_name": "FUN_000813e8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "conn_lookup_handle",
+   "display_name": "conn_lookup_handle",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_000813e8.",
+   "aliases": [
+    "FUN_000813e8"
+   ]
   },
   "0x0008142c": {
    "address": "0x0008142c",
@@ -20596,11 +20617,13 @@
   "0x000817ea": {
    "address": "0x000817ea",
    "raw_name": "FUN_000817ea",
-   "name": "FUN_000817ea",
-   "display_name": "FUN_000817ea",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_l2cap_disconnected",
+   "display_name": "bt_l2cap_disconnected",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_000817ea.",
+   "aliases": [
+    "FUN_000817ea"
+   ]
   },
   "0x0008181a": {
    "address": "0x0008181a",
@@ -21062,11 +21085,13 @@
   "0x000823fa": {
    "address": "0x000823fa",
    "raw_name": "FUN_000823fa",
-   "name": "FUN_000823fa",
-   "display_name": "FUN_000823fa",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_att_get_mtu",
+   "display_name": "bt_att_get_mtu",
+   "human": true,
+   "source": "function_name_overrides.json: Pinned Zephyr Bluetooth host public export. Its one-pointer argument and uint16_t return ABI were independently checked for this approximate signature. Raw identity remains FUN_000823fa.",
+   "aliases": [
+    "FUN_000823fa"
+   ]
   },
   "0x0008253a": {
    "address": "0x0008253a",
@@ -21557,11 +21582,13 @@
   "0x00082e24": {
    "address": "0x00082e24",
    "raw_name": "FUN_00082e24",
-   "name": "FUN_00082e24",
-   "display_name": "FUN_00082e24",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_gatt_cancel",
+   "display_name": "bt_gatt_cancel",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00082e24.",
+   "aliases": [
+    "FUN_00082e24"
+   ]
   },
   "0x00082e62": {
    "address": "0x00082e62",
@@ -21575,11 +21602,13 @@
   "0x00082ec8": {
    "address": "0x00082ec8",
    "raw_name": "FUN_00082ec8",
-   "name": "FUN_00082ec8",
-   "display_name": "FUN_00082ec8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_gatt_change_aware",
+   "display_name": "bt_gatt_change_aware",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00082ec8.",
+   "aliases": [
+    "FUN_00082ec8"
+   ]
   },
   "0x00082f3a": {
    "address": "0x00082f3a",
@@ -21766,11 +21795,13 @@
   "0x00083370": {
    "address": "0x00083370",
    "raw_name": "FUN_00083370",
-   "name": "FUN_00083370",
-   "display_name": "FUN_00083370",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_smp_request_ltk",
+   "display_name": "bt_smp_request_ltk",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth SMP host. Raw identity remains FUN_00083370.",
+   "aliases": [
+    "FUN_00083370"
+   ]
   },
   "0x00083496": {
    "address": "0x00083496",
@@ -21835,11 +21866,13 @@
   "0x00083634": {
    "address": "0x00083634",
    "raw_name": "FUN_00083634",
-   "name": "FUN_00083634",
-   "display_name": "FUN_00083634",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "bt_crypto_f6",
+   "display_name": "bt_crypto_f6",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr Bluetooth host crypto unit. Raw identity remains FUN_00083634.",
+   "aliases": [
+    "FUN_00083634"
+   ]
   },
   "0x000836d4": {
    "address": "0x000836d4",
@@ -23301,11 +23334,13 @@
   "0x0008557c": {
    "address": "0x0008557c",
    "raw_name": "FUN_0008557c",
-   "name": "FUN_0008557c",
-   "display_name": "FUN_0008557c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "metal_io_block_set",
+   "display_name": "metal_io_block_set",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned libmetal io.c. Raw identity remains FUN_0008557c.",
+   "aliases": [
+    "FUN_0008557c"
+   ]
   },
   "0x000855e6": {
    "address": "0x000855e6",
@@ -23443,11 +23478,13 @@
   "0x00085900": {
    "address": "0x00085900",
    "raw_name": "FUN_00085900",
-   "name": "FUN_00085900",
-   "display_name": "FUN_00085900",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_get_endpoint",
+   "display_name": "rpmsg_get_endpoint",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned OpenAMP rpmsg.c. Raw identity remains FUN_00085900.",
+   "aliases": [
+    "FUN_00085900"
+   ]
   },
   "0x00085974": {
    "address": "0x00085974",
@@ -23542,11 +23579,13 @@
   "0x00085bf6": {
    "address": "0x00085bf6",
    "raw_name": "FUN_00085bf6",
-   "name": "FUN_00085bf6",
-   "display_name": "FUN_00085bf6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "rpmsg_deinit_vdev",
+   "display_name": "rpmsg_deinit_vdev",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned OpenAMP rpmsg_virtio.c. Raw identity remains FUN_00085bf6.",
+   "aliases": [
+    "FUN_00085bf6"
+   ]
   },
   "0x00085c12": {
    "address": "0x00085c12",
@@ -24324,11 +24363,13 @@
   "0x0008673e": {
    "address": "0x0008673e",
    "raw_name": "FUN_0008673e",
-   "name": "FUN_0008673e",
-   "display_name": "FUN_0008673e",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_impl_k_timer_stop",
+   "display_name": "z_impl_k_timer_stop",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in the configured Zephyr kernel timer object. Raw identity remains FUN_0008673e.",
+   "aliases": [
+    "FUN_0008673e"
+   ]
   },
   "0x00086778": {
    "address": "0x00086778",
@@ -24562,11 +24603,13 @@
   "0x00086be4": {
    "address": "0x00086be4",
    "raw_name": "FUN_00086be4",
-   "name": "FUN_00086be4",
-   "display_name": "FUN_00086be4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "memcmp",
+   "display_name": "memcmp",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086be4.",
+   "aliases": [
+    "FUN_00086be4"
+   ]
   },
   "0x00086c04": {
    "address": "0x00086c04",
@@ -24591,11 +24634,13 @@
   "0x00086c44": {
    "address": "0x00086c44",
    "raw_name": "FUN_00086c44",
-   "name": "FUN_00086c44",
-   "display_name": "FUN_00086c44",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "memmove",
+   "display_name": "memmove",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086c44.",
+   "aliases": [
+    "FUN_00086c44"
+   ]
   },
   "0x00086c78": {
    "address": "0x00086c78",
@@ -24695,11 +24740,13 @@
   "0x00086fbe": {
    "address": "0x00086fbe",
    "raw_name": "FUN_00086fbe",
-   "name": "FUN_00086fbe",
-   "display_name": "FUN_00086fbe",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "__strcat_chk",
+   "display_name": "__strcat_chk",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086fbe.",
+   "aliases": [
+    "FUN_00086fbe"
+   ]
   },
   "0x00086fee": {
    "address": "0x00086fee",
@@ -24715,20 +24762,24 @@
   "0x00086ffe": {
    "address": "0x00086ffe",
    "raw_name": "FUN_00086ffe",
-   "name": "FUN_00086ffe",
-   "display_name": "FUN_00086ffe",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "__strcpy_chk",
+   "display_name": "__strcpy_chk",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086ffe.",
+   "aliases": [
+    "FUN_00086ffe"
+   ]
   },
   "0x00087036": {
    "address": "0x00087036",
    "raw_name": "FUN_00087036",
-   "name": "FUN_00087036",
-   "display_name": "FUN_00087036",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "strncmp",
+   "display_name": "strncmp",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00087036.",
+   "aliases": [
+    "FUN_00087036"
+   ]
   },
   "0x0008705a": {
    "address": "0x0008705a",
@@ -24764,11 +24815,13 @@
   "0x000870be": {
    "address": "0x000870be",
    "raw_name": "FUN_000870be",
-   "name": "FUN_000870be",
-   "display_name": "FUN_000870be",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "strstr",
+   "display_name": "strstr",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_000870be.",
+   "aliases": [
+    "FUN_000870be"
+   ]
   },
   "0x000870ea": {
    "address": "0x000870ea",
@@ -25025,10 +25078,8 @@
   "FUN_0000c358": "0x0000c358",
   "FUN_0000dad4": "0x0000dad4",
   "FUN_0000dcba": "0x0000dcba",
-  "FUN_0000de58": "0x0000de58",
   "FUN_0000e2b4": "0x0000e2b4",
   "FUN_0000e53c": "0x0000e53c",
-  "FUN_0000ec34": "0x0000ec34",
   "FUN_0000fcf0": "0x0000fcf0",
   "FUN_00010840": "0x00010840",
   "FUN_00012c80": "0x00012c80",
@@ -25138,7 +25189,6 @@
   "FUN_0004c4d0": "0x0004c4d0",
   "FUN_0004c4e4": "0x0004c4e4",
   "FUN_0004cbec": "0x0004cbec",
-  "FUN_0004cc50": "0x0004cc50",
   "FUN_0004cce0": "0x0004cce0",
   "FUN_0004cd4c": "0x0004cd4c",
   "FUN_0004cf78": "0x0004cf78",
@@ -25320,7 +25370,6 @@
   "FUN_00063778": "0x00063778",
   "FUN_0006385c": "0x0006385c",
   "FUN_00063898": "0x00063898",
-  "FUN_000638dc": "0x000638dc",
   "FUN_00063984": "0x00063984",
   "FUN_000639d4": "0x000639d4",
   "FUN_00063b7c": "0x00063b7c",
@@ -25366,7 +25415,6 @@
   "FUN_00068240": "0x00068240",
   "FUN_00068280": "0x00068280",
   "FUN_000682a8": "0x000682a8",
-  "FUN_00070f1c": "0x00070f1c",
   "FUN_00070f48": "0x00070f48",
   "FUN_000710b4": "0x000710b4",
   "FUN_0007118c": "0x0007118c",
@@ -25509,7 +25557,6 @@
   "FUN_0007df24": "0x0007df24",
   "FUN_0007e022": "0x0007e022",
   "FUN_0007e18e": "0x0007e18e",
-  "FUN_0007e212": "0x0007e212",
   "FUN_0007e390": "0x0007e390",
   "FUN_0007e3ce": "0x0007e3ce",
   "FUN_0007e526": "0x0007e526",
@@ -25542,10 +25589,8 @@
   "FUN_0007f150": "0x0007f150",
   "FUN_0007f228": "0x0007f228",
   "FUN_0007f406": "0x0007f406",
-  "FUN_0007f570": "0x0007f570",
   "FUN_0007f634": "0x0007f634",
   "FUN_0007f69e": "0x0007f69e",
-  "FUN_0007f6b6": "0x0007f6b6",
   "FUN_0007f7c8": "0x0007f7c8",
   "FUN_0007f7d2": "0x0007f7d2",
   "FUN_0007f894": "0x0007f894",
@@ -25579,7 +25624,6 @@
   "FUN_00080d3a": "0x00080d3a",
   "FUN_00080e94": "0x00080e94",
   "FUN_00080ea2": "0x00080ea2",
-  "FUN_00080ed8": "0x00080ed8",
   "FUN_00080f8c": "0x00080f8c",
   "FUN_00080fb4": "0x00080fb4",
   "FUN_00080fba": "0x00080fba",
@@ -25594,14 +25638,12 @@
   "FUN_000811a4": "0x000811a4",
   "FUN_00081320": "0x00081320",
   "FUN_000813ca": "0x000813ca",
-  "FUN_000813e8": "0x000813e8",
   "FUN_0008142c": "0x0008142c",
   "FUN_00081526": "0x00081526",
   "FUN_000815f6": "0x000815f6",
   "FUN_00081626": "0x00081626",
   "FUN_000816a2": "0x000816a2",
   "FUN_00081746": "0x00081746",
-  "FUN_000817ea": "0x000817ea",
   "FUN_0008181a": "0x0008181a",
   "FUN_00081852": "0x00081852",
   "FUN_000819ea": "0x000819ea",
@@ -25621,7 +25663,6 @@
   "FUN_000822bc": "0x000822bc",
   "FUN_00082326": "0x00082326",
   "FUN_00082396": "0x00082396",
-  "FUN_000823fa": "0x000823fa",
   "FUN_0008256e": "0x0008256e",
   "FUN_00082594": "0x00082594",
   "FUN_0008270c": "0x0008270c",
@@ -25631,9 +25672,7 @@
   "FUN_00082a42": "0x00082a42",
   "FUN_00082c48": "0x00082c48",
   "FUN_00082d6a": "0x00082d6a",
-  "FUN_00082e24": "0x00082e24",
   "FUN_00082e62": "0x00082e62",
-  "FUN_00082ec8": "0x00082ec8",
   "FUN_00082f3a": "0x00082f3a",
   "FUN_00082fa6": "0x00082fa6",
   "FUN_00083002": "0x00083002",
@@ -25642,11 +25681,9 @@
   "FUN_0008307a": "0x0008307a",
   "FUN_0008323a": "0x0008323a",
   "FUN_000832f0": "0x000832f0",
-  "FUN_00083370": "0x00083370",
   "FUN_00083496": "0x00083496",
   "FUN_0008349c": "0x0008349c",
   "FUN_0008352c": "0x0008352c",
-  "FUN_00083634": "0x00083634",
   "FUN_000836d8": "0x000836d8",
   "FUN_000836de": "0x000836de",
   "FUN_00083740": "0x00083740",
@@ -25691,20 +25728,17 @@
   "FUN_000851fa": "0x000851fa",
   "FUN_0008520c": "0x0008520c",
   "FUN_000852e6": "0x000852e6",
-  "FUN_0008557c": "0x0008557c",
   "FUN_000855e6": "0x000855e6",
   "FUN_000857b2": "0x000857b2",
   "FUN_000857e0": "0x000857e0",
   "FUN_00085846": "0x00085846",
   "FUN_000858ca": "0x000858ca",
-  "FUN_00085900": "0x00085900",
   "FUN_00085974": "0x00085974",
   "FUN_000859b2": "0x000859b2",
   "FUN_000859c2": "0x000859c2",
   "FUN_00085a04": "0x00085a04",
   "FUN_00085a9c": "0x00085a9c",
   "FUN_00085b0c": "0x00085b0c",
-  "FUN_00085bf6": "0x00085bf6",
   "FUN_00085c12": "0x00085c12",
   "FUN_00085c26": "0x00085c26",
   "FUN_00085c38": "0x00085c38",
@@ -25719,7 +25753,6 @@
   "FUN_000864b2": "0x000864b2",
   "FUN_00086588": "0x00086588",
   "FUN_00086596": "0x00086596",
-  "FUN_0008673e": "0x0008673e",
   "FUN_00086778": "0x00086778",
   "FUN_000867da": "0x000867da",
   "FUN_000868b4": "0x000868b4",
@@ -25731,16 +25764,10 @@
   "FUN_00086b14": "0x00086b14",
   "FUN_00086b40": "0x00086b40",
   "FUN_00086b7e": "0x00086b7e",
-  "FUN_00086be4": "0x00086be4",
   "FUN_00086c1e": "0x00086c1e",
-  "FUN_00086c44": "0x00086c44",
   "FUN_00086e1c": "0x00086e1c",
   "FUN_00086f92": "0x00086f92",
-  "FUN_00086fbe": "0x00086fbe",
-  "FUN_00086ffe": "0x00086ffe",
-  "FUN_00087036": "0x00087036",
   "FUN_00087080": "0x00087080",
-  "FUN_000870be": "0x000870be",
   "FUN_0008712e": "0x0008712e",
   "FinishAesDrv": "0x0007b9cc",
   "FinishHashDrv": "0x0007b3f4",
@@ -25781,6 +25808,8 @@
   "__divdf3": "0x0000db4c",
   "__errno_location": "0x00071678",
   "__extendsfdf2": "0x0000d848",
+  "__fixdfdi": "0x0000ec34",
+  "__fixdfsi": "0x0000de58",
   "__fixunsdfdi": "0x0000e274",
   "__fixunsdfsi": "0x0000dea8",
   "__floatdidf": "0x0000d89c",
@@ -25801,6 +25830,8 @@
   "__retarget_lock_release_recursive": "0x00051134",
   "__sfvwrite_r": "0x00077e70",
   "__sinit": "0x00076bcc",
+  "__strcat_chk": "0x00086fbe",
+  "__strcpy_chk": "0x00086ffe",
   "__truncdfsf2": "0x0000dee8",
   "__udivmoddi4": "0x0000ec62",
   "_copy": "0x0007feaa",
@@ -25989,6 +26020,7 @@
   "bt_ancs_data_source_handler": "0x00018c48",
   "bt_ancs_register_app_attr": "0x0007f79e",
   "bt_ancs_register_attr": "0x0007f772",
+  "bt_ancs_request_attrs": "0x0007f6b6",
   "bt_att_accept": "0x00058930",
   "bt_att_chan_create_pdu": "0x000585f0",
   "bt_att_chan_send_rsp": "0x000821a4",
@@ -25996,6 +26028,7 @@
   "bt_att_create_pdu": "0x00058eb0",
   "bt_att_create_rsp_pdu": "0x00058f34",
   "bt_att_find_req_by_user_data": "0x0008253a",
+  "bt_att_get_mtu": "0x000823fa",
   "bt_att_recv": "0x00058cfc",
   "bt_att_req_alloc": "0x000596c0",
   "bt_att_req_free": "0x00059708",
@@ -26021,6 +26054,7 @@
   "bt_crypto_aes_cmac": "0x000835ae",
   "bt_crypto_f4": "0x000835ea",
   "bt_crypto_f5": "0x0005ecdc",
+  "bt_crypto_f6": "0x00083634",
   "bt_dev_get": "0x00054ce0",
   "bt_encrypt_le": "0x00081326",
   "bt_foreach_bond": "0x0005e6d4",
@@ -26029,7 +26063,9 @@
   "bt_gatt_attr_read_ccc": "0x0008295a",
   "bt_gatt_attr_read_service": "0x00082988",
   "bt_gatt_attr_value_handle": "0x00082c0e",
+  "bt_gatt_cancel": "0x00082e24",
   "bt_gatt_cb_register": "0x0005a9d8",
+  "bt_gatt_change_aware": "0x00082ec8",
   "bt_gatt_check_perm": "0x00082cba",
   "bt_gatt_clear_sc": "0x0005a044",
   "bt_gatt_discover": "0x0005b9cc",
@@ -26040,6 +26076,7 @@
   "bt_gatt_dm_char_next": "0x0007f4d6",
   "bt_gatt_dm_conn_get": "0x0007f4c8",
   "bt_gatt_dm_data_release": "0x0007f594",
+  "bt_gatt_dm_desc_by_uuid": "0x0007f570",
   "bt_gatt_dm_desc_next": "0x0007f542",
   "bt_gatt_dm_service_get": "0x0007f4d2",
   "bt_gatt_foreach_attr": "0x00081cee",
@@ -26060,6 +26097,7 @@
   "bt_hci_cmd_state_set_init": "0x00053cb0",
   "bt_hci_core_recv_dispatch": "0x00054828",
   "bt_hci_core_recv_event": "0x000536b8",
+  "bt_hci_disconnect": "0x00080ed8",
   "bt_hci_driver_close": "0x00054b70",
   "bt_hci_evt_get_flags": "0x00080e14",
   "bt_hci_le_rand": "0x00053e74",
@@ -26078,6 +26116,7 @@
   "bt_keys_pool_find_or_alloc": "0x0005e614",
   "bt_keys_store": "0x0005ec18",
   "bt_l2cap_connected": "0x0005791c",
+  "bt_l2cap_disconnected": "0x000817ea",
   "bt_l2cap_init": "0x000579d0",
   "bt_l2cap_le_lookup_tx_cid": "0x00081aca",
   "bt_l2cap_recv": "0x00057cc4",
@@ -26102,6 +26141,7 @@
   "bt_smp_ah": "0x00080ca0",
   "bt_smp_distribute_keys": "0x0005e1a8",
   "bt_smp_recv": "0x0005dce0",
+  "bt_smp_request_ltk": "0x00083370",
   "bt_smp_send_pairing_confirm": "0x0005cdc4",
   "bt_smp_send_pdu": "0x0005cb38",
   "bt_start": "0x00019308",
@@ -26207,6 +26247,7 @@
   "compute_day_of_week": "0x0007d280",
   "confirm_message": "0x00034524",
   "conn_ctx_cleanup_if_pending": "0x00081720",
+  "conn_lookup_handle": "0x000813e8",
   "consume_pending_event_and_refresh_flag": "0x0003b800",
   "context_release_and_notify": "0x000817b6",
   "convert_app_whitelist_to_json": "0x000352e8",
@@ -26605,6 +26646,7 @@
   "ipc_send_len_prefixed_packet": "0x00025740",
   "ipc_send_len_prefixed_packet_locked_retry": "0x00025788",
   "ipc_service_open_instance": "0x0004cb90",
+  "ipc_service_send": "0x0004cc50",
   "ipc_service_send_with_retry": "0x0002563c",
   "ipc_static_vrings_deinit": "0x0007eda4",
   "ipc_static_vrings_init": "0x0004d170",
@@ -26647,7 +26689,6 @@
   "k_sem_give": "0x00072880",
   "k_sem_take": "0x0007cb48",
   "k_timer_init": "0x00086726",
-  "k_timer_start": "0x00075174",
   "k_uptime_get": "0x0007c014",
   "k_uptime_get_0": "0x0007c18e",
   "k_uptime_get_1": "0x0007cb2c",
@@ -26778,13 +26819,16 @@
   "md5_init": "0x00049aa0",
   "mem_find_byte": "0x00086bc8",
   "mem_to_chunkid": "0x0007de5c",
+  "memcmp": "0x00086be4",
   "memcpy": "0x00086c04",
+  "memmove": "0x00086c44",
   "memset_bytes": "0x00086c78",
   "merge_chunks": "0x0007dfe6",
   "message_table_contains_id": "0x00033f24",
   "metal_bus_find": "0x00068134",
   "metal_device_open": "0x00085406",
   "metal_io_block_read": "0x00085496",
+  "metal_io_block_set": "0x0008557c",
   "metal_io_block_write": "0x00085508",
   "metal_io_init": "0x00085442",
   "mgmt_find_group": "0x0005139c",
@@ -26918,6 +26962,7 @@
   "onboarding_clear_active_flag": "0x0007d39e",
   "onboarding_retry_watchdog_update": "0x00040708",
   "onboarding_sync_data": "0x00042c8c",
+  "onoff_manager_init": "0x0007e212",
   "opt3001_reg_read": "0x0002e594",
   "opt3007_chip_deinit": "0x0002e8b4",
   "opt3007_chip_init": "0x0002e67c",
@@ -27065,10 +27110,13 @@
   "revalidate_whitelist_json": "0x000355b4",
   "ringbuf_flush_chunk": "0x00084a24",
   "rpmsg_create_ept": "0x00070fb4",
+  "rpmsg_deinit_vdev": "0x00085bf6",
+  "rpmsg_get_endpoint": "0x00085900",
   "rpmsg_get_tx_payload_buffer": "0x000858ec",
   "rpmsg_register_endpoint": "0x00070f74",
   "rpmsg_release_rx_buffer": "0x000858da",
   "rpmsg_send_ns_message": "0x00085898",
+  "rpmsg_send_offchannel_raw": "0x00070f1c",
   "rpmsg_virtio_init_shm_pool": "0x00085be8",
   "rpmsg_virtio_shm_pool_get_buffer": "0x00085aee",
   "rpmsg_virtqueue_channel_init": "0x00071358",
@@ -27220,8 +27268,10 @@
   "stream_flash_flush_buffer": "0x0004e1ac",
   "stream_flash_init": "0x0004e2b4",
   "strlen": "0x0000ef12",
+  "strncmp": "0x00087036",
   "strncpy_zero_pad": "0x0008705a",
   "strnlen": "0x000870a6",
+  "strstr": "0x000870be",
   "strtod_has_more_digits": "0x0000ea4c",
   "strtod_match_token": "0x0008738e",
   "strtod_scan_int_prefix": "0x0000ea18",
@@ -27235,6 +27285,7 @@
   "sync_to_slave": "0x00026f74",
   "sys_clock_cycle_get_32": "0x00084c76",
   "sys_clock_disable": "0x00063954",
+  "sys_clock_set_timeout": "0x000638dc",
   "sys_dlist_init": "0x00086688",
   "sys_heap_init": "0x000863aa",
   "sys_mem_swap": "0x00083592",
@@ -27390,6 +27441,8 @@
   "z_impl_k_queue_init": "0x000864e8",
   "z_impl_k_sem_init": "0x00086534",
   "z_impl_k_sem_take": "0x00072908",
+  "z_impl_k_timer_start": "0x00075174",
+  "z_impl_k_timer_stop": "0x0008673e",
   "z_impl_net_if_ipv6_addr_rm_by_index": "0x00080c8c",
   "z_log_dropped_read_and_clear": "0x0002f928",
   "z_log_dropped_read_and_clear_0": "0x0004d490",

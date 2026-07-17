@@ -3,10 +3,11 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   nvs_timer_arm_and_mark_dirty             <= FUN_000849da @ 0x000849da
+ *   z_impl_k_timer_stop                      <= FUN_0008673e @ 0x0008673e
  */
 /* Reconstructed FUN_000849da @ 0x849da  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_0008673e(int a, unsigned int b, int c, int d, unsigned int e);
+extern void z_impl_k_timer_stop(int a, unsigned int b, int c, int d, unsigned int e);
 unsigned int nvs_timer_arm_and_mark_dirty(int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4)
 {
   unsigned int uVar1;
@@ -27,7 +28,7 @@ unsigned int nvs_timer_arm_and_mark_dirty(int param_1,unsigned int param_2,unsig
       *(unsigned int *)(iVar4 + 0x14c) = 0;
       iVar3 = *(int *)(iVar4 + 0x14c);
     }
-    FUN_0008673e(*(int *)(iVar5 + 0xc) + 0x80,param_2,iVar2,iVar3,param_4);
+    z_impl_k_timer_stop(*(int *)(iVar5 + 0xc) + 0x80,param_2,iVar2,iVar3,param_4);
     uVar1 = 0;
     *(unsigned char *)(*(int *)(iVar5 + 0xc) + 0xca) = 0;
     *(unsigned char *)(*(int *)(iVar5 + 0xc) + 0xcb) = 1;

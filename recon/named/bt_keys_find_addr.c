@@ -5,6 +5,7 @@
  *   bt_keys_find_addr                        <= FUN_0005e938 @ 0x0005e938
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f5268                             @ 0x000f5268
@@ -16,7 +17,7 @@
 #include <stdint.h>
 extern int assert_post_action(int,int);
 extern int printk(int,int,int,int);
-extern int FUN_00086be4(int,int,int);
+extern int memcmp(int,int,int);
 unsigned char *bt_keys_find_addr(uint32_t param_1, int param_2){
   unsigned char *pbVar1 = (unsigned char*)0x2000af4cUL;
   int iVar2;
@@ -26,9 +27,9 @@ unsigned char *bt_keys_find_addr(uint32_t param_1, int param_2){
     return (unsigned char *)0x5c;
   }
   if((uint32_t)*(volatile uint8_t*)pbVar1 != param_1 ||
-     FUN_00086be4((int)(pbVar1+1), param_2, 7) != 0){
+     memcmp((int)(pbVar1+1), param_2, 7) != 0){
     if((uint32_t)*(volatile uint8_t*)(pbVar1+0x5c) != param_1 ||
-       FUN_00086be4(0x2000afa9, param_2, 7) != 0){
+       memcmp(0x2000afa9, param_2, 7) != 0){
       return (unsigned char*)0;
     }
     iVar2 = 1;

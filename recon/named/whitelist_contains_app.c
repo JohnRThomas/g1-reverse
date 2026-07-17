@@ -5,6 +5,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   whitelist_contains_app                   <= FUN_00034ff0 @ 0x00034ff0
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_a8750                             @ 0x000a8750
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -16,7 +17,7 @@
 
 extern void debug_print(uintptr_t format);
 extern void log_message(uintptr_t format);
-extern int FUN_00087036(const void *left, const void *right, uint32_t length);
+extern int strncmp(const void *left, const void *right, uint32_t length);
 
 uint32_t whitelist_contains_app(const void *name, const void *identifier)
 {
@@ -35,8 +36,8 @@ uint32_t whitelist_contains_app(const void *name, const void *identifier)
     row = (uint8_t *)0x2001a22cU;
     end = row + (uint32_t)*(volatile uint8_t *)0x2001a22dU * 0x38U;
     while (row != end) {
-        if (FUN_00087036(row + 2, name, 0x28U) == 0 &&
-            FUN_00087036(row + 0x2a, identifier, 0x10U) == 0) {
+        if (strncmp(row + 2, name, 0x28U) == 0 &&
+            strncmp(row + 0x2a, identifier, 0x10U) == 0) {
             return 1;
         }
         row += 0x38;

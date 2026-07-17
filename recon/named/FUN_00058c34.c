@@ -8,6 +8,7 @@
  *   bt_att_chan_send_rsp                     <= FUN_000821a4 @ 0x000821a4
  *   att_send_error_rsp                       <= FUN_000821f4 @ 0x000821f4
  *   atomic_test_and_set_bit_0                <= FUN_00082236 @ 0x00082236
+ *   bt_gatt_change_aware                     <= FUN_00082ec8 @ 0x00082ec8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   ADDR_FUN_00081c8c_THUMB                  @ 0x00081c8d
@@ -20,11 +21,11 @@ extern void bt_gatt_foreach_attr(int,int,int,void*);
 extern void bt_att_chan_send_rsp(void*);
 extern void att_send_error_rsp(void*,int,int,int);
 extern int atomic_test_and_set_bit_0(void*,int);
-extern int FUN_00082ec8(int,int);
+extern int bt_gatt_change_aware(int,int);
 extern void memset_bytes(void*,int,int);
 char FUN_00058c34(int *param_1,int param_2,int param_3,int param_4,short param_5,int param_6,short param_7){
   int iVar1 = param_2 ? 1 : 0;
-  iVar1 = FUN_00082ec8(*(int*)*param_1, iVar1);
+  iVar1 = bt_gatt_change_aware(*(int*)*param_1, iVar1);
   if (iVar1 == 0){
     if (atomic_test_and_set_bit_0((char*)param_1 + 0x120, 5) == 0) return 0x12;
     return 0;

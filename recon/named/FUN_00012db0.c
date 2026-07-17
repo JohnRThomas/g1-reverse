@@ -9,6 +9,7 @@
  *   __divdf3                                 <= FUN_0000db4c @ 0x0000db4c
  *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
  *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
+ *   __fixdfsi                                <= FUN_0000de58 @ 0x0000de58
  * address symbols (name @ address):
  *   rodata_88848                             @ 0x00088848
  *   rodata_88858                             @ 0x00088858
@@ -24,7 +25,7 @@ extern u8 __muldf3(u4,u4,u4,u4);
 extern u8 __divdf3(u4,u4,u4,u4);
 extern u8 __aeabi_dcmplt(u4,u4,u4,u4);
 extern u8 __aeabi_dcmpgt(u4,u4,u4,u4);
-extern u8 FUN_0000de58(void);
+extern u8 __fixdfsi(void);
 
 double FUN_00012db0(double xd, u4 param_1, u4 param_2, u4 param_3, u4 param_4){
     u8 in_d0; __builtin_memcpy(&in_d0,&xd,8);
@@ -61,7 +62,7 @@ LAB_12f2e:
                 uVar14 = __muldf3((u4)in_d0,uVar9,
                                       0x652b82feu,0x3ff71547u);
                 __aeabi_dadd((u4)uVar14,(u4)(uVar14>>32),puVar11[0],puVar11[1]);
-                iVar2 = (i4)(u4)FUN_0000de58();
+                iVar2 = (i4)(u4)__fixdfsi();
                 uVar15 = __floatsidf();
                 uVar3 = (u4)(uVar15>>32);
                 uVar12 = __muldf3((u4)uVar15,uVar3,

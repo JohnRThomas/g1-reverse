@@ -24,7 +24,7 @@ class OwnershipCatalogTest(unittest.TestCase):
         expected = {row["symbol"] for row in self.residue["entries"]
                     if row["category"] == "sdk_or_config_symbol"}
         actual = [row["symbol"] for row in self.entries]
-        self.assertEqual(173, len(actual))
+        self.assertEqual(len(expected), len(actual))
         self.assertEqual(len(actual), len(set(actual)))
         self.assertEqual(expected, set(actual))
 
@@ -33,7 +33,8 @@ class OwnershipCatalogTest(unittest.TestCase):
             self.assertTrue(row["semantic_owner"], row["symbol"])
             self.assertTrue(row["owner_kind"], row["symbol"])
             self.assertTrue(row["action"], row["symbol"])
-            self.assertTrue(row["source_or_archive"], row["symbol"])
+            if row["action"] != "manual_owner_review":
+                self.assertTrue(row["source_or_archive"], row["symbol"])
             self.assertTrue(row["owning_config"], row["symbol"])
 
     def test_no_local_symbol_is_safe_public_link(self):
@@ -45,6 +46,13 @@ class OwnershipCatalogTest(unittest.TestCase):
     def test_known_runtime_and_static_owners(self):
         by_symbol = {row["symbol"]: row for row in self.entries}
         self.assertEqual("__fixdfsi", by_symbol["FUN_0000de58"]["semantic_owner"])
+        self.assertEqual("rpmsg_send_offchannel_raw",
+                         by_symbol["FUN_00070f1c"]["semantic_owner"])
+        self.assertEqual(1.0, by_symbol["FUN_00070f1c"]["signature_ratio"])
+        self.assertFalse(by_symbol["z_log_dropped_read_and_clear_0"]
+                         ["safe_automatic_link_owner"])
+        self.assertEqual("identity_collision_review",
+                         by_symbol["z_log_dropped_read_and_clear_0"]["action"])
         self.assertEqual("archive_public", by_symbol["FUN_0000de58"]["owner_kind"])
         self.assertEqual("archive_local", by_symbol["FUN_0004c4e4"]["owner_kind"])
         self.assertEqual("reconcile_inline_at_callsite",
@@ -59,7 +67,7 @@ class OwnershipCatalogTest(unittest.TestCase):
     def test_safe_candidates_are_exactly_public_exports(self):
         candidates = [row for row in self.entries
                       if row["safe_automatic_link_owner"]]
-        self.assertEqual(28, len(candidates))
+        self.assertEqual(27, len(candidates))
         self.assertTrue(all(row["owner_kind"] == "archive_public"
                             for row in candidates))
 

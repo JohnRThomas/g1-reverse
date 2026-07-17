@@ -12,6 +12,7 @@
  *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
  *   __aeabi_dcmpge                           <= FUN_0000de04 @ 0x0000de04
  *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
+ *   __fixdfsi                                <= FUN_0000de58 @ 0x0000de58
  *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
@@ -59,7 +60,7 @@ extern u64 __aeabi_dcmpeq();
 extern u64 __aeabi_dcmplt();
 extern u64 __aeabi_dcmpge();
 extern u64 __aeabi_dcmpgt();
-extern u64 FUN_0000de58();
+extern u64 __fixdfsi();
 extern u64 __assert_func();
 extern u64 malloc();
 extern u64 Balloc();
@@ -200,7 +201,7 @@ LAB_b9c:
     uVar30 = __muldf3(LO(uVar30), HI(uVar30), 0x509f79fb, 0x3fd34413);
     uVar29 = __aeabi_dadd(LO(uVar29), HI(uVar29), LO(uVar30), HI(uVar30));
     uVar9 = HI(uVar29);
-    puVar4 = (u32)FUN_0000de58();
+    puVar4 = (u32)__fixdfsi();
     iVar10 = (int)__aeabi_dcmplt(LO(uVar29), uVar9, 0, 0);
     if (iVar10 != 0) {
         uVar30 = __floatsidf(puVar4);
@@ -359,7 +360,7 @@ LAB_dc8:
                 pcVar24 = pcVar18;
                 while (1) {
                     local_48 = uVar29;
-                    cVar23 = (int)FUN_0000de58(LO(local_80), HI(local_80));
+                    cVar23 = (int)__fixdfsi(LO(local_80), HI(local_80));
                     uVar29 = __floatsidf();
                     uVar29 = dcmp_negate_rhs(LO(local_80), HI(local_80), LO(uVar29), HI(uVar29));
                     uVar8 = HI(uVar29);
@@ -383,7 +384,7 @@ LAB_dc8:
             uVar9 = HI(uVar29);
             pcVar25 = pcVar18;
             while (1) {
-                cVar23 = (int)FUN_0000de58(LO(local_80), HI(local_80));
+                cVar23 = (int)__fixdfsi(LO(local_80), HI(local_80));
                 uVar30 = __floatsidf();
                 uVar30 = dcmp_negate_rhs(LO(local_80), HI(local_80), LO(uVar30), HI(uVar30));
                 uVar11 = HI(uVar30);
@@ -683,7 +684,7 @@ LAB_15190:
     LAB_15338:
         uVar9 = HI(uVar32);
         __divdf3(LO(uVar32), uVar9, LO(local_70), HI(local_70));
-        iVar10 = (int)FUN_0000de58();
+        iVar10 = (int)__fixdfsi();
         uVar29 = __floatsidf();
         uVar29 = __muldf3(LO(uVar29), HI(uVar29), LO(local_70), HI(local_70));
         uVar29 = dcmp_negate_rhs(LO(uVar32), uVar9, LO(uVar29), HI(uVar29));

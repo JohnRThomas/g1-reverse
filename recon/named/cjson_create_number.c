@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   __aeabi_dcmple                           <= FUN_0000ddf0 @ 0x0000ddf0
  *   __aeabi_dcmpge                           <= FUN_0000de04 @ 0x0000de04
+ *   __fixdfsi                                <= FUN_0000de58 @ 0x0000de58
  *   cjson_create_number                      <= FUN_00012c18 @ 0x00012c18
  *   alloc_zeroed_node                        <= FUN_00084fd4 @ 0x00084fd4
  * address symbols (name @ address):
@@ -13,7 +14,7 @@
 #include <stdint.h>
 extern int __aeabi_dcmple(int,int,int,int);
 extern int __aeabi_dcmpge(int,int,int,int);
-extern int FUN_0000de58(int,int);
+extern int __fixdfsi(int,int);
 extern int alloc_zeroed_node(int);
 int cjson_create_number(double darg){
   union { double d; uint32_t w[2]; } u; u.d = darg;
@@ -28,7 +29,7 @@ int cjson_create_number(double darg){
     if(iVar2==0){
       iVar2 = __aeabi_dcmple(param_1,param_2,0,0);
       if(iVar2==0){
-        int uVar3 = FUN_0000de58(param_1,param_2);
+        int uVar3 = __fixdfsi(param_1,param_2);
         *(volatile uint32_t*)(iVar1+0x14) = uVar3;
         return iVar1;
       }

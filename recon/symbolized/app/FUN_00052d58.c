@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  * address symbols (name @ address):
  *   rodata_88178                             @ 0x00088178
  *   rodata_9a1dd                             @ 0x0009a1dd
@@ -18,7 +19,7 @@
 #include <stdint.h>
 extern int FUN_0004d944(int,...);
 extern int settings_name_next(int,...);
-extern int FUN_00087036(int,...);
+extern int strncmp(int,...);
 typedef int (*codeptr)(int, uintptr_t, unsigned int);
 struct unaligned_u32 { unsigned int value; } __attribute__((packed));
 _Static_assert(sizeof(struct unaligned_u32) == 4, "packed word layout");
@@ -35,7 +36,7 @@ unsigned int FUN_00052d58(int param_1, int param_2, codeptr param_3, int param_4
       return 0xfffffffe;
     }
     uVar2 = settings_name_next(param_1, scratch);
-    iVar3 = FUN_00087036(param_1, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/, uVar2);
+    iVar3 = strncmp(param_1, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/, uVar2);
     if (iVar3 == 0) {
       int t = *g;
       unsigned uVar5 = (unsigned)t << 0x1c;
@@ -58,7 +59,7 @@ unsigned int FUN_00052d58(int param_1, int param_2, codeptr param_3, int param_4
         }
       }
     } else {
-      iVar3 = FUN_00087036(param_1, ((unsigned long)&rodata_f33e4) /*=0xf33e4*/, uVar2, iVar3);
+      iVar3 = strncmp(param_1, ((unsigned long)&rodata_f33e4) /*=0xf33e4*/, uVar2, iVar3);
       if (iVar3 != 0) return 0xfffffffe;
       int iStack_48 = param_3(param_4, g_addr + UINT32_C(0x98), 0x1c);
       if (iStack_48 < 0) {

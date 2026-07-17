@@ -20,19 +20,38 @@
   }
  },
  "summary": {
-  "symbols": 173,
+  "symbols": 174,
   "by_action": {
    "adopt_complete_source_unit": 91,
-   "enable_or_adopt_public_owner": 20,
-   "identity_collision_review": 1,
+   "enable_or_adopt_public_owner": 19,
+   "identity_collision_review": 2,
    "link_compiler_runtime_public_symbol": 8,
+   "manual_owner_review": 1,
    "reclassify_application_owner": 7,
    "reconcile_inline_at_callsite": 46
   },
-  "public_safe_candidates": 28,
+  "public_safe_candidates": 27,
   "source_unit_or_inline": 137
  },
  "entries": [
+  {
+   "symbol": "DEBUG_PRINT",
+   "semantic_owner": "DEBUG_PRINT",
+   "signature_ratio": null,
+   "firmware_identities": [
+    "0x0007dda4"
+   ],
+   "owner_kind": "unresolved",
+   "source_or_archive": null,
+   "archive_evidence": null,
+   "owning_config": [
+    "compiled in actual CPUAPP shell; no independent Kconfig gate identified"
+   ],
+   "action": "manual_owner_review",
+   "safe_automatic_link_owner": false,
+   "adoption_evidence_gate": "not_a_public_link_candidate",
+   "reference_count": 425
+  },
   {
    "symbol": "FUN_0000de58",
    "semantic_owner": "__fixdfsi",
@@ -242,8 +261,8 @@
   },
   {
    "symbol": "FUN_00070f1c",
-   "semantic_owner": "rpmsg_send_offchannel_nocopy",
-   "signature_ratio": 0.974,
+   "semantic_owner": "rpmsg_send_offchannel_raw",
+   "signature_ratio": 1.0,
    "firmware_identities": [
     "0x00070f1c"
    ],
@@ -260,7 +279,7 @@
    ],
    "action": "enable_or_adopt_public_owner",
    "safe_automatic_link_owner": true,
-   "adoption_evidence_gate": "approximate_signature_requires_abi_check",
+   "adoption_evidence_gate": "exact_signature",
    "reference_count": 1
   },
   {
@@ -3897,9 +3916,9 @@
    "owning_config": [
     "CONFIG_LOG=y"
    ],
-   "action": "enable_or_adopt_public_owner",
-   "safe_automatic_link_owner": true,
-   "adoption_evidence_gate": "direct_symbol_and_archive_export",
+   "action": "identity_collision_review",
+   "safe_automatic_link_owner": false,
+   "adoption_evidence_gate": "not_a_public_link_candidate",
    "reference_count": 1
   }
  ]

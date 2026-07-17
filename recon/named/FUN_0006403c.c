@@ -7,6 +7,7 @@
  *   flash_region_is_erased                   <= FUN_00084d8c @ 0x00084d8c
  *   flash_write_byte_and_verify              <= FUN_00084db2 @ 0x00084db2
  *   flash_verify_write_at_current_offset     <= FUN_00084e66 @ 0x00084e66
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  * address symbols (name @ address):
  *   rodata_9907c                             @ 0x0009907c
  */
@@ -15,7 +16,7 @@
 #include <stdint.h>
 extern int flash_area_read(int, int, void*, ...);
 extern int flash_region_is_erased(int, void*, int);
-extern int FUN_00086be4(void*, uint32_t, int);
+extern int memcmp(void*, uint32_t, int);
 extern uint32_t flash_calc_prev_ate_offset(int);
 extern int flash_write_byte_and_verify(int, void*, int);
 extern uint32_t flash_verify_write_at_current_offset(int, void*);
@@ -31,7 +32,7 @@ uint32_t FUN_0006403c(int param_1, uint8_t *param_2){
   if (iVar1 >= 0){
     iVar1 = flash_region_is_erased(param_1, auStack_20, 0x10);
     if (iVar1 == 0){
-      iVar1 = FUN_00086be4(auStack_20, 0x9907c, 0x10);
+      iVar1 = memcmp(auStack_20, 0x9907c, 0x10);
       uVar3 = (iVar1 == 0) ? 1 : 2;
     } else {
       uVar3 = 3;

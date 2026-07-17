@@ -9,6 +9,7 @@
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
  *   lshift                                   <= FUN_000789f0 @ 0x000789f0
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   strncmp                                  <= FUN_00087036 @ 0x00087036
  *   bignum_shift_right_bits                  <= FUN_0008729e @ 0x0008729e
  *   hex_nibble_from_ascii                    <= FUN_00087340 @ 0x00087340
  *   clz32                                    <= FUN_00087510 @ 0x00087510
@@ -29,7 +30,7 @@ extern int Balloc(int,...);
 extern int Bfree(int,...);
 extern int lshift(int,...);
 extern int memcpy(int,...);
-extern int FUN_00087036(void*,int,int);
+extern int strncmp(void*,int,int);
 extern int bignum_shift_right_bits(int,int);
 extern int hex_nibble_from_ascii(int,...);
 extern int clz32(unsigned);
@@ -62,7 +63,7 @@ byte *dtoa(int param_1, int *param_2, int *param_3, int *param_4, int *param_5, 
                                  ((uintptr_t)(uint32_t)*param_2 + 2u));
   iVar7 = hex_nibble_from_ascii(*pbVar19);
   if (iVar7 == 0) {
-    iVar7 = FUN_00087036(pbVar19, iVar13, iVar6);
+    iVar7 = strncmp(pbVar19, iVar13, iVar6);
     pbVar18 = pbVar19;
     if (iVar7 == 0) {
       fraction_start = pbVar19 + iVar6;
@@ -93,7 +94,7 @@ LAB_00078192:
       pbVar12 = pbVar18 + 1;
       iVar7 = hex_nibble_from_ascii(*pbVar18);
     } while (iVar7 != 0);
-    iVar7 = FUN_00087036(pbVar18, iVar13, iVar6);
+    iVar7 = strncmp(pbVar18, iVar13, iVar6);
     if (iVar7 == 0) {
       if (fraction_start == 0) {
         fraction_start = pbVar18 + iVar6;
@@ -161,7 +162,7 @@ LAB_00078258:
   local_40 = puVar20;
   while (pbVar21 = pbVar18, pbVar19 < pbVar21) {
     if (((pbVar21[-1] != bVar2) || (pbVar18 = pbVar21 + -1 + (1 - iVar6), pbVar18 < pbVar19)) ||
-        (iVar8 = FUN_00087036(pbVar18, iVar13, iVar6), iVar8 != 0)) {
+        (iVar8 = strncmp(pbVar18, iVar13, iVar6), iVar8 != 0)) {
       if (uVar23 == 0x20) {
         *local_40 = uVar22;
         uVar22 = 0;

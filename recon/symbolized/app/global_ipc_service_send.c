@@ -6,6 +6,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
+ *   ipc_service_send                         <= FUN_0004cc50 @ 0x0004cc50
  * address symbols (name @ address):
  *   rodata_9f576                             @ 0x0009f576
  *   rodata_9f5a9                             @ 0x0009f5a9
@@ -23,7 +24,7 @@ extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int sys_reboot(int);
-extern int FUN_0004cc50(uint32_t, uint32_t, uint32_t);
+extern int ipc_service_send(uint32_t, uint32_t, uint32_t);
 extern void FUN_00074844(int, int);
 
 int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
@@ -38,7 +39,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
         if (r0[1] != 8) {
             r0 = (char*)get_device_info();
             if (r0[1] != 9) {
-                iVar3 = FUN_0004cc50(((unsigned long)&g_serialization_ipc_ept) /*=0x20007a78*/, param_1, param_2);
+                iVar3 = ipc_service_send(((unsigned long)&g_serialization_ipc_ept) /*=0x20007a78*/, param_1, param_2);
                 piVar2 = (volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
                 piVar1 = (volatile int*)((unsigned long)&g_ipc_send_fail_cnt) /*=0x20007a74*/;
                 if (iVar3 < 0) {

@@ -5,6 +5,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   write_font_to_flash_with_verify          <= FUN_00022834 @ 0x00022834
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
@@ -22,7 +23,7 @@ extern int log_message(int,...);
 extern int get_device_info(void);
 extern int FUN_00074844(int,int);
 extern int z_device_is_ready(int);
-extern int FUN_00086be4(int,int,int);
+extern int memcmp(int,int,int);
 extern int memset_bytes(void*,int,int);
 
 int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
@@ -52,7 +53,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
       uVar4 = get_device_info();
       iVar3 = (*pcVar5)(uVar4, param_1, &local_1028, 0x1000);
       if (iVar3 == 0) {
-        iVar3 = FUN_00086be4(param_2, (int)&local_1028, param_3);
+        iVar3 = memcmp(param_2, (int)&local_1028, param_3);
         if (iVar3 == 0) {
           log_message(0x9e403);
           return 0;
@@ -75,7 +76,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
             iVar3 = (*pcVar5)(uVar4, param_1, &local_1028, 0x1000);
             uVar4 = 0x9e3e7;
             if (iVar3 == 0) {
-              iVar3 = FUN_00086be4(param_2, (int)&local_1028, param_3);
+              iVar3 = memcmp(param_2, (int)&local_1028, param_3);
               if (iVar3 == 0) {
                 return 0;
               }

@@ -1,6 +1,110 @@
 {
  "schema": 1,
  "app": {
+  "0x0000de58": {
+   "name": "__fixdfsi",
+   "evidence": "Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000de58."
+  },
+  "0x0000ec34": {
+   "name": "__fixdfdi",
+   "evidence": "Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000ec34."
+  },
+  "0x0004cc50": {
+   "name": "ipc_service_send",
+   "evidence": "Pinned Zephyr 3.4.99 public IPC service export. The three-register ABI (struct ipc_ept *, const void *, size_t) was independently checked for this approximate signature. Raw identity remains FUN_0004cc50."
+  },
+  "0x000638dc": {
+   "name": "sys_clock_set_timeout",
+   "evidence": "Instruction-exact public owner in the configured Zephyr nrf_rtc_timer.c object. Raw identity remains FUN_000638dc."
+  },
+  "0x00070f1c": {
+   "name": "rpmsg_send_offchannel_raw",
+   "evidence": "Instruction-exact pinned OpenAMP public export: the firmware and rpmsg.c object share the six-argument ABI and the send_offchannel_raw operation at rdev->ops + 0x78. The nearby five-argument nocopy routine was an approximate-signature false label. Raw identity remains FUN_00070f1c."
+  },
+  "0x0007e212": {
+   "name": "onoff_manager_init",
+   "evidence": "Instruction-exact public owner in pinned Zephyr lib/os/onoff.c. Raw identity remains FUN_0007e212."
+  },
+  "0x0007f570": {
+   "name": "bt_gatt_dm_desc_by_uuid",
+   "evidence": "Instruction-exact public owner in pinned NCS gatt_dm.c selected by CONFIG_BT_GATT_DM. Raw identity remains FUN_0007f570."
+  },
+  "0x0007f6b6": {
+   "name": "bt_ancs_request_attrs",
+   "evidence": "Instruction-exact public owner in pinned NCS ancs_client.c selected by CONFIG_BT_ANCS_CLIENT. Raw identity remains FUN_0007f6b6."
+  },
+  "0x00080ed8": {
+   "name": "bt_hci_disconnect",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00080ed8."
+  },
+  "0x000813e8": {
+   "name": "conn_lookup_handle",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_000813e8."
+  },
+  "0x000817ea": {
+   "name": "bt_l2cap_disconnected",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_000817ea."
+  },
+  "0x000823fa": {
+   "name": "bt_att_get_mtu",
+   "evidence": "Pinned Zephyr Bluetooth host public export. Its one-pointer argument and uint16_t return ABI were independently checked for this approximate signature. Raw identity remains FUN_000823fa."
+  },
+  "0x00082e24": {
+   "name": "bt_gatt_cancel",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00082e24."
+  },
+  "0x00082ec8": {
+   "name": "bt_gatt_change_aware",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_00082ec8."
+  },
+  "0x00083370": {
+   "name": "bt_smp_request_ltk",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth SMP host. Raw identity remains FUN_00083370."
+  },
+  "0x00083634": {
+   "name": "bt_crypto_f6",
+   "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host crypto unit. Raw identity remains FUN_00083634."
+  },
+  "0x0008557c": {
+   "name": "metal_io_block_set",
+   "evidence": "Instruction-exact public owner in pinned libmetal io.c. Raw identity remains FUN_0008557c."
+  },
+  "0x00085900": {
+   "name": "rpmsg_get_endpoint",
+   "evidence": "Instruction-exact public owner in pinned OpenAMP rpmsg.c. Raw identity remains FUN_00085900."
+  },
+  "0x00085bf6": {
+   "name": "rpmsg_deinit_vdev",
+   "evidence": "Instruction-exact public owner in pinned OpenAMP rpmsg_virtio.c. Raw identity remains FUN_00085bf6."
+  },
+  "0x0008673e": {
+   "name": "z_impl_k_timer_stop",
+   "evidence": "Instruction-exact public owner in the configured Zephyr kernel timer object. Raw identity remains FUN_0008673e."
+  },
+  "0x00086be4": {
+   "name": "memcmp",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086be4."
+  },
+  "0x00086c44": {
+   "name": "memmove",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086c44."
+  },
+  "0x00086fbe": {
+   "name": "__strcat_chk",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086fbe."
+  },
+  "0x00086ffe": {
+   "name": "__strcpy_chk",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00086ffe."
+  },
+  "0x00087036": {
+   "name": "strncmp",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_00087036."
+  },
+  "0x000870be": {
+   "name": "strstr",
+   "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_000870be."
+  },
   "0x0007cb48": {
    "name": "k_sem_take",
    "evidence": "Four-byte Zephyr public tail veneer to z_impl_k_sem_take at 0x00072908. touch_key_thread passes its semaphore plus the aligned 64-bit timeout 0x2000. The previous update_sync_buffer label was incompatible with the body and ABI. Raw identity remains FUN_0007cb48."
@@ -274,8 +378,8 @@
    "evidence": "NCS 2.5.1 liblc3 src/tns.c lc3_tns_put_data; matching per-filter presence bit and arithmetic-model encoding of order/reflection coefficients. Raw identity remains FUN_00070b38."
   },
   "0x00075174": {
-   "name": "k_timer_start",
-   "evidence": "Exact Zephyr k_timer_start ABI: timer pointer in r0, AAPCS-aligned 64-bit duration in r2:r3, and 64-bit period in the first two caller-stack words. main invokes it for the 0x667 and 0x1e0000 periodic timers. Raw identity remains FUN_00075174."
+   "name": "z_impl_k_timer_start",
+   "evidence": "Pinned Zephyr kernel timer implementation. The timer pointer plus two k_timeout_t arguments has the same public k_timer_start ABI; the AAPCS-aligned 64-bit register/stack placement was independently checked for this approximate signature. Raw identity remains FUN_00075174."
   },
   "0x0004e434": {
    "name": "settings_load_subtree_direct",

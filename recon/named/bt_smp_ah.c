@@ -4,13 +4,14 @@
  * callees (readable <= raw @ address):
  *   bt_smp_ah                                <= FUN_00080ca0 @ 0x00080ca0
  *   bt_encrypt_le                            <= FUN_00081326 @ 0x00081326
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  */
 /* Reconstructed FUN_00080ca0 @ 0x80ca0  (parity: 300/300 trials, PROVEN) */
 
 extern void memset_bytes(void *a, int b, int c);
 extern int bt_encrypt_le(int a, void *b);
-extern int FUN_00086be4(int a, void *b, int c);
+extern int memcmp(int a, void *b, int c);
 
 int bt_smp_ah(int param_1, int param_2)
 {
@@ -27,7 +28,7 @@ int bt_smp_ah(int param_1, int param_2)
         key[0] = decoded[0];
         key[1] = decoded[1];
         key[2] = decoded[2];
-        iVar2 = FUN_00086be4(param_2, key, 3);
+        iVar2 = memcmp(param_2, key, 3);
         return iVar2 == 0;
     }
     return 0;

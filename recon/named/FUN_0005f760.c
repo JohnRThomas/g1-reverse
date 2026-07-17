@@ -6,7 +6,7 @@
  *   adc_context_start_sampling               <= FUN_0005f638 @ 0x0005f638
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
- *   k_timer_start                            <= FUN_00075174 @ 0x00075174
+ *   z_impl_k_timer_start                     <= FUN_00075174 @ 0x00075174
  * address symbols (name @ address):
  *   rodata_880e0                             @ 0x000880e0
  *   rodata_f4240                             @ 0x000f4240
@@ -34,7 +34,7 @@ extern void FUN_0004d944(u32 a, u32 b, void *c, u32 d);
 extern u64 adc_context_start_sampling(u32 a);
 extern int k_sem_give(u32 a);
 extern int z_impl_k_sem_take(u32 a, void *b, u32 c, u32 d);
-extern u64 k_timer_start(void *a, int b, u32 c, u32 d);
+extern u64 z_impl_k_timer_start(void *a, int b, u32 c, u32 d);
 
 undefined4 FUN_0005f760(undefined4 param_1, int *param_2)
 {
@@ -144,7 +144,7 @@ LAB_f948:
         {
           long long lVar2 = (long long)(u32)puVar3i[0x22] * 0x8000LL + (long long)0x000f423fL;
           r = __aeabi_uldivmod((int)lVar2, (int)(lVar2>>32), 0x000f4240u, 0);
-          r = k_timer_start((void*)(puVar3i + 2), (int)(r>>32), 0, 0);
+          r = z_impl_k_timer_start((void*)(puVar3i + 2), (int)(r>>32), 0, 0);
           uVar9 = (u32)(r>>32);
         }
       }

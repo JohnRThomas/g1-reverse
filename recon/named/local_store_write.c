@@ -5,6 +5,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   settings_save_one                        <= FUN_0004e374 @ 0x0004e374
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   __strcat_chk                             <= FUN_00086fbe @ 0x00086fbe
  * address symbols (name @ address):
  *   rodata_9e161                             @ 0x0009e161
  *   rodata_9e187                             @ 0x0009e187
@@ -22,7 +23,7 @@ extern void debug_print(uint32_t format, uint32_t function_name,
                          const char *key_suffix, uint32_t length);
 extern int settings_save_one(const char *key, const void *value, uint32_t length);
 extern void memset_bytes(void *destination, int value, uint32_t length);
-extern void FUN_00086fbe(char *destination, const char *source,
+extern void __strcat_chk(char *destination, const char *source,
                          uint32_t capacity);
 
 uint32_t local_store_write(const char *key_suffix, const void *value,
@@ -36,7 +37,7 @@ uint32_t local_store_write(const char *key_suffix, const void *value,
     }
 
     memset_bytes(key + 28, 0, 100);
-    FUN_00086fbe(key, key_suffix, sizeof(key));
+    __strcat_chk(key, key_suffix, sizeof(key));
 
     int result = settings_save_one(key, value, length);
     uint32_t format;

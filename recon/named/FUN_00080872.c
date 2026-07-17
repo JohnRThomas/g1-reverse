@@ -6,6 +6,7 @@
  *   cbor_decode_map_start                    <= FUN_00085fa2 @ 0x00085fa2
  *   thunk_FUN_00085df6                       <= FUN_00085fce @ 0x00085fce
  *   cbor_decode_skip_value                   <= FUN_00086064 @ 0x00086064
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  */
 /* Full reconstruction of FUN_00080872 @ 0x00080872 (174 bytes). */
 #include <stdint.h>
@@ -25,7 +26,7 @@ extern int cbor_decode_map_start(void);
 extern int cbor_decode_tstr(void *input, uint32_t item[2]);
 extern int thunk_FUN_00085df6(void *input);
 extern int cbor_decode_skip_value(void *input, int argument);
-extern int FUN_00086be4(uint32_t identifier, uint32_t expected);
+extern int memcmp(uint32_t identifier, uint32_t expected);
 
 int FUN_00080872(void *input, struct field_decoder *fields,
                  uint32_t field_count, uint32_t *decoded_count)
@@ -48,7 +49,7 @@ int FUN_00080872(void *input, struct field_decoder *fields,
                     field = fields;
 
                 if (item[1] == field->kind &&
-                    FUN_00086be4(item[0], field->identifier) == 0) {
+                    memcmp(item[0], field->identifier) == 0) {
                     if (field->decoded != 0)
                         return -112;
                     if (field->decode(input, field->destination) == 0)

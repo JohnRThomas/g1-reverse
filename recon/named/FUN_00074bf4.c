@@ -2,6 +2,7 @@
  * public-name: FUN_00074bf4
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   sys_clock_set_timeout                    <= FUN_000638dc @ 0x000638dc
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
@@ -32,7 +33,7 @@ extern void z_spin_lock_set_owner(uintptr_t);
 extern int z_spin_unlock_valid(uintptr_t);
 extern uint32_t rtc_get_elapsed_cycles_since_baseline(void);
 extern uint32_t next_timeout(void);
-extern void FUN_000638dc(uint32_t, uint32_t);
+extern void sys_clock_set_timeout(uint32_t, uint32_t);
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uintptr_t);
 
@@ -96,7 +97,7 @@ void FUN_00074bf4(uint32_t *timer, uintptr_t source, uint32_t lo, int32_t hi)
     head[1] = (uint32_t)(uintptr_t)timer;
 inserted:
     if (head[0] != (uint32_t)(uintptr_t)head && timer == (uint32_t *)(uintptr_t)head[0])
-        FUN_000638dc(next_timeout(), 0);
+        sys_clock_set_timeout(next_timeout(), 0);
     if (z_spin_unlock_valid(0x2000b498) != 0) {
         __set_BASEPRI(key);
         __ISB();

@@ -4,13 +4,14 @@
  * callees (readable <= raw @ address):
  *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
  *   uarte_nrfx_isr                           <= FUN_0006312c @ 0x0006312c
- *   k_timer_start                            <= FUN_00075174 @ 0x00075174
+ *   z_impl_k_timer_start                     <= FUN_00075174 @ 0x00075174
  *   post_event_tag2_from_node                <= FUN_0008484e @ 0x0008484e
  *   post_event_tag4_and_clear                <= FUN_00084880 @ 0x00084880
  *   post_event_tag5                          <= FUN_000848b0 @ 0x000848b0
  *   nvs_timer_arm_and_mark_dirty             <= FUN_000849da @ 0x000849da
  *   ringbuf_flush_chunk                      <= FUN_00084a24 @ 0x00084a24
  *   flowctl_release_credit_and_kick          <= FUN_00084b32 @ 0x00084b32
+ *   z_impl_k_timer_stop                      <= FUN_0008673e @ 0x0008673e
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_f4240                             @ 0x000f4240
@@ -78,7 +79,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
 extern uint64_t __aeabi_uldivmod(uint32_t, uint32_t, uint32_t, uint32_t);
-extern uint64_t k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t, uint64_t);
+extern uint64_t z_impl_k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t, uint64_t);
 extern uint64_t FUN_00084840(uint32_t, const void *);
 extern uint64_t post_event_tag2_from_node(uint32_t);
 extern uint64_t post_event_tag4_and_clear(uint32_t, uint32_t);
@@ -88,7 +89,7 @@ extern int32_t ringbuf_flush_chunk(uint32_t);
 extern uint64_t FUN_00084a54(uint32_t, uint32_t, uint32_t);
 extern uint64_t FUN_00084ade(uint32_t, uint32_t);
 extern uint64_t flowctl_release_credit_and_kick(uint32_t, uint32_t);
-extern uint64_t FUN_0008673e(uint32_t);
+extern uint64_t z_impl_k_timer_stop(uint32_t);
 extern uint64_t memset_bytes(void *, uint32_t, uint32_t, ...);
 #define DAT_00063494 0xf423fUL
 #define DAT_00063498 0xf4240UL
@@ -147,7 +148,7 @@ void uarte_nrfx_isr(int param_1)
     iVar8 = *(int *)(param_1 + 0x10);
     puVar9 = (undefined4 *)**(undefined4 **)(param_1 + 4);
     *(undefined1 *)(*(int *)(iVar8 + 0xc) + 0xce) = 1;
-    FUN_0008673e(*(int *)(iVar8 + 0xc) + 0x80);
+    z_impl_k_timer_stop(*(int *)(iVar8 + 0xc) + 0x80);
     iVar4 = puVar9[0x14f];
     bVar7 = *(byte *)(*(int *)(iVar8 + 0xc) + 0xc9);
     *(undefined1 *)(*(int *)(iVar8 + 0xc) + 0xc9) = 0;
@@ -212,7 +213,7 @@ void uarte_nrfx_isr(int param_1)
       lVar1 = (longlong)(int)(uVar5 & ~((int)uVar5 >> 0x1f)) * 0x8000 + (ulonglong)DAT_00063494;
       uVar11 = __aeabi_uldivmod((int)lVar1,(int)((ulonglong)lVar1 >> 0x20),DAT_00063498,0);
       uVar3 = (undefined4)((ulonglong)uVar11 >> 0x20);
-      k_timer_start(iVar4 + 0x80,uVar3,(int)uVar11,uVar3,uVar11);
+      z_impl_k_timer_start(iVar4 + 0x80,uVar3,(int)uVar11,uVar3,uVar11);
     }
   }
   if ((*(int *)(iVar6 + 0x144) != 0) && (*(int *)(iVar6 + 0x110) == 0)) {
@@ -302,7 +303,7 @@ void uarte_nrfx_isr(int param_1)
       if (iVar2 != 0) goto LAB_00063380;
       iStack_24 = *(int *)(*(int *)(iVar4 + 0xc) + 0x1c);
     }
-    FUN_0008673e(*(int *)(iVar4 + 0xc) + 0x20);
+    z_impl_k_timer_stop(*(int *)(iVar4 + 0xc) + 0x20);
     memset_bytes(local_2c,0,0x14);
     local_28 = *(undefined4 *)(*(int *)(iVar4 + 0xc) + 8);
     if (iStack_24 != *(int *)(*(int *)(iVar4 + 0xc) + 0xc)) {

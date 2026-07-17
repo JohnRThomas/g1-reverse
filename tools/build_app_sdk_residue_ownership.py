@@ -36,6 +36,11 @@ CUSTOM_APPLICATION = {
 }
 
 EXPLICIT_OWNERS = {
+    "z_log_dropped_read_and_clear_0": {
+        "owner": "z_log_dropped_read_and_clear",
+        "source": "zephyr/subsys/logging/log_core.c",
+        "kind": "archive_public", "action": "identity_collision_review",
+        "config": ["CONFIG_LOG=y"]},
     "__nrfy_internal_twim_events_process": {
         "source": "modules/hal/nordic/nrfx/drivers/src/nrfx_twim.c",
         "kind": "source_local", "action": "adopt_complete_source_unit",
@@ -109,6 +114,11 @@ def relative(path):
 
 
 def semantic_owner(row):
+    # The signature ranker selected the adjacent five-argument nocopy routine,
+    # but this firmware body is instruction-exact to the six-argument public
+    # raw sender (including the rdev->ops +0x78 dispatch and stacked wait word).
+    if row["symbol"] == "FUN_00070f1c":
+        return "rpmsg_send_offchannel_raw", 1.0
     for identity in row.get("identities", []):
         signature = identity.get("library_signature")
         if signature:
@@ -415,7 +425,8 @@ def markdown(catalog):
     lines += ["", "Public safe candidates: **%d**. Source-unit/inline cases: **%d**."
               % (catalog["summary"]["public_safe_candidates"],
                  catalog["summary"]["source_unit_or_inline"]), "",
-              "## Public link/adoption candidates (28)", "",
+              "## Public link/adoption candidates (%d)" %
+              catalog["summary"]["public_safe_candidates"], "",
               "These have public archive exports. Exact signature hits can be adopted",
               "directly; approximate hits retain an explicit ABI-check gate.", "",
               ", ".join("`%s`" % item["symbol"] for item in catalog["entries"]
