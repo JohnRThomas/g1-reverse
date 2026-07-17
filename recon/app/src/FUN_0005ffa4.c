@@ -1,90 +1,118 @@
-/* Reconstructed FUN_0005ffa4 @ 0x5ffa4  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0005ffa4 @ 0x0005ffa4 (316-byte executable extent). */
 #include <stdint.h>
-extern int FUN_0004ba38(int);
-extern int FUN_00066270(int,int);
-extern int FUN_00066300(void);
-extern int FUN_00071c20(int,void*,int,int);
-extern int FUN_00071cf4(int, ...);
-extern int FUN_000720d0(int,int,int,int);
-extern int FUN_000837a2(int,int,void*);
-#define PW(off) (*(volatile uint32_t *)(0x2000b008 + (off)))
-#define CB(off) (*(volatile char *)(0x2000b008 + (off)))
-#define WB(off) (*(volatile unsigned char *)(0x2000b008 + (off)))
 
-void FUN_0005ffa4(char *param_1)
+extern void FUN_0004ba38(uint32_t handle);
+extern int FUN_00066270(uint32_t decoded, uint32_t selector);
+extern void FUN_00066300(void);
+extern int FUN_00071c20(uint32_t handle, void *decoded, uint32_t zero, uint32_t zero2);
+extern void FUN_00071cf4(uint32_t handle, ...);
+extern int FUN_000720d0(uintptr_t queue, void *payload, uint32_t zero, uint32_t zero2);
+extern void FUN_000837a2(uintptr_t source, uint32_t level, const void *record);
+
+struct notification {
+    uint8_t response_ready;
+    uint8_t reserved[3];
+    uint32_t payload;
+};
+
+struct decoded_status {
+    uint32_t words[4];
+};
+
+struct log2 {
+    uint32_t count;
+    uintptr_t format;
+};
+
+struct log3 {
+    uint32_t count;
+    uintptr_t format;
+    int32_t value;
+};
+
+#define STATE_WORD(off) (*(volatile uint32_t *)(0x2000b008u + (off)))
+#define STATE_BYTE(off) (*(volatile uint8_t *)(0x2000b008u + (off)))
+
+static __attribute__((always_inline)) inline void clear_pending_activity(void)
 {
-    int iVar2;
-    unsigned int uVar3;
-    char cVar4;
-    int local_40, local_3c, iStack_38;
-    uint32_t local_30[4];
-    int local_20, local_1c;
-
-    cVar4 = *param_1;
-    if (cVar4 == '\0') {
-        iVar2 = *(int *)(param_1 + 4);
-        if (CB(0x52) != '\0') {
-            if (iVar2 == 0) {
-LAB_00060032:
-                if (CB(0x51) == '\0') return;
-                WB(0x51) = 0;
-                if (-1 < (int)((unsigned int)WB(0x50) << 0x1f)) return;
-                FUN_0004ba38(PW(0));
-                return;
-            }
-            goto LAB_00060086;
-        }
-LAB_0005ffbe:
-        if (iVar2 == 0) return;
-        cVar4 = '\0';
-LAB_000600b0:
-        iVar2 = FUN_000720d0(0x2000b024, (int)(param_1 + 4), 0, 0);
-        if (iVar2 < 0) {
-            local_1c = 0x000f585d;
-            local_20 = 2;
-            FUN_000837a2(0x000881a0, 0x1040, &local_20);
-            FUN_00071cf4(PW(0x14), *(int *)(param_1 + 4));
-            goto LAB_00060008;
-        }
-    } else {
-        iVar2 = FUN_00071c20(PW(0x14), local_30, 0, 0);
-        uVar3 = 0x000f5822;
-        if ((iVar2 < 0) ||
-            (iVar2 = FUN_00066270(local_30[0], (unsigned int)(PW(0x18) << 0xf) >> 0x10), uVar3 = 0x000f5840,
-             iVar2 != 0x0bad0000)) {
-            local_40 = 3;
-            local_3c = uVar3;
-            iStack_38 = iVar2;
-            FUN_000837a2(0x000881a0, 0x1840, &local_40);
-            if (CB(0x52) == '\0') {
-                if (*(int *)(param_1 + 4) == 0) goto LAB_00060008;
-                goto LAB_000600b0;
-            }
-            cVar4 = CB(0x52);
-            if (*(int *)(param_1 + 4) == 0) {
-                if ((CB(0x51) != '\0') &&
-                    (WB(0x51) = 0, (int)((unsigned int)WB(0x50) << 0x1f) < 0)) {
-                    FUN_0004ba38(PW(0));
-                }
-                goto LAB_00060008;
-            }
-        } else {
-            iVar2 = *(int *)(param_1 + 4);
-            if (CB(0x52) == '\0') goto LAB_0005ffbe;
-            if (iVar2 == 0) goto LAB_00060032;
-            cVar4 = '\0';
-        }
-LAB_00060086:
-        FUN_00071cf4(PW(0x14));
-        if ((CB(0x51) != '\0') &&
-            (WB(0x51) = 0, (int)((unsigned int)WB(0x50) << 0x1f) < 0)) {
-            FUN_0004ba38(PW(0));
-        }
+    if (STATE_BYTE(0x51) != 0) {
+        STATE_BYTE(0x51) = 0;
+        if ((STATE_BYTE(0x50) & 1u) != 0)
+            FUN_0004ba38(STATE_WORD(0));
     }
-    if (cVar4 == '\0') return;
-LAB_00060008:
-    WB(0x52) = 1;
-    FUN_00066300();
-    return;
 }
 
+void FUN_0005ffa4(struct notification *notification)
+{
+    uint8_t wake_recovery = notification->response_ready;
+
+    if (notification->response_ready != 0) {
+        struct decoded_status decoded;
+        int status = FUN_00071c20(STATE_WORD(0x14), &decoded, 0, 0);
+        uintptr_t diagnostic = 0x000f5822u;
+
+        if (status >= 0) {
+            status = FUN_00066270(decoded.words[0],
+                                  (STATE_WORD(0x18) >> 1) & 0xffffu);
+            diagnostic = 0x000f5840u;
+        }
+
+        if (status < 0 || status != 0x0bad0000) {
+            const struct log3 record = {3, diagnostic, status};
+            FUN_000837a2(0x000881a0u, 0x1840u, &record);
+
+            if (STATE_BYTE(0x52) == 0) {
+                if (notification->payload == 0)
+                    goto recover;
+                goto transfer;
+            }
+
+            wake_recovery = STATE_BYTE(0x52);
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                goto recover;
+            }
+        } else {
+            if (STATE_BYTE(0x52) == 0) {
+                if (notification->payload == 0)
+                    return;
+                wake_recovery = 0;
+                goto transfer;
+            }
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                return;
+            }
+            wake_recovery = 0;
+        }
+
+        FUN_00071cf4(STATE_WORD(0x14));
+        clear_pending_activity();
+    } else {
+        if (STATE_BYTE(0x52) != 0) {
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                return;
+            }
+            FUN_00071cf4(STATE_WORD(0x14));
+            clear_pending_activity();
+            return;
+        }
+        if (notification->payload == 0)
+            return;
+        wake_recovery = 0;
+transfer:
+        if (FUN_000720d0(0x2000b024u, &notification->payload, 0, 0) < 0) {
+            const struct log2 record = {2, 0x000f585du};
+            FUN_000837a2(0x000881a0u, 0x1040u, &record);
+            FUN_00071cf4(STATE_WORD(0x14), notification->payload);
+            goto recover;
+        }
+    }
+
+    if (wake_recovery == 0)
+        return;
+recover:
+    STATE_BYTE(0x52) = 1;
+    FUN_00066300();
+}
