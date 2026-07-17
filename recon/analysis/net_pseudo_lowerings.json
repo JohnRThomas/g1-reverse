@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "core": "net",
+  "source_catalog": "recon/catalogs/net_link_function_residue.json",
+  "policy": {
+    "weak_stubs": false,
+    "binary_blobs": false,
+    "evidence": "original CPUNET Thumb instructions",
+    "canonical_gate": "tools/cfg_verify.py net <function>"
+  },
+  "summary": {
+    "input_symbols": 6,
+    "resolved_symbols": 6,
+    "explicit_blockers": 0
+  },
+  "retain_all_probe": {
+    "build_directory": "/private/tmp/g1-net-shell-symbolized-retain-all",
+    "compiled_reconstructed_sources": 805,
+    "boundary_owner_symbol": "00000000 T FUN_shadow_default",
+    "unresolved_input_symbols": 0,
+    "final_link": "expected failure on unrelated remaining function/data residues"
+  },
+  "entries": [
+    {
+      "symbol": "FUN_shadow_default",
+      "classification": "ghidra_cfg_boundary_artifact",
+      "owner_function": "FUN_0100d3c0",
+      "evidence": [
+        "0x0100d3c2 bhi.w 0x0100d4cc",
+        "0x0100d4cc movs r0, #0",
+        "0x0100d4ce bx lr"
+      ],
+      "resolution": "strong retained C owner returns zero; this preserves cfg_verify's out-of-body call model while lowering to the original semantics",
+      "implementation": "recon/application/net/src/cfg_boundary_lowerings.c",
+      "cfg_verify": "PASS cases=20"
+    },
+    {
+      "symbol": "PHANTOM_BOUNDARY",
+      "classification": "interior_control_flow_continuation",
+      "owner_function": "FUN_01029d76",
+      "evidence": [
+        "0x01029e5a cmp r0, #0",
+        "0x01029e5c bne 0x01029e00",
+        "0x01029e5e mov.w r1, #0x17e",
+        "0x01029e62 b 0x01029e14",
+        "0x01029e14 movs r0, #0x6a",
+        "0x01029e16 bl 0x010256dc",
+        "0x01029e1a continuation"
+      ],
+      "resolution": "call FUN_010256dc(0x6a, 0x17e), then continue the owning function",
+      "implementation": "recon/net/src/FUN_01029d76.c",
+      "cfg_verify": "PASS cases=6"
+    },
+    {
+      "symbol": "PHANTOM_RETRY",
+      "classification": "ghidra_artifact_conflating_two_real_paths",
+      "owner_function": "FUN_01017f7c",
+      "evidence": [
+        "0x01017f96 beq 0x01018078",
+        "0x01018078 movw r1, #0x509",
+        "0x0101807c movs r0, #0x32",
+        "0x0101807e bl 0x01008d00",
+        "0x01017fe8 beq 0x0101806e",
+        "0x0101806e movs r1, #0",
+        "0x01018070 mov r0, r1",
+        "0x01018072 bl 0x010208f0",
+        "0x01018076 b 0x01017fea"
+      ],
+      "resolution": "lower the fatal island to FUN_01008d00(0x32,0x509), and the rare continuation to FUN_010208f0(0,0,1)",
+      "implementation": "recon/net/src/FUN_01017f7c.c",
+      "cfg_verify": "PASS cases=0"
+    },
+    {
+      "symbol": "g1_arch_runtime_exception",
+      "classification": "arm_zephyr_architecture_macro",
+      "owner_functions": [
+        "FUN_0102b900",
+        "FUN_01031928"
+      ],
+      "evidence": [
+        "0x0102b926 eors r0, r0; 0x0102b928 msr basepri, r0; 0x0102b92c mov.w r0, #3; 0x0102b930 svc #2",
+        "0x01031a3e eors r0, r0; 0x01031a40 msr basepri, r0; 0x01031a44 mov.w r0, #4; 0x01031a48 svc #2",
+        "NCS v2.5.1 Zephyr include/zephyr/arch/arm/aarch32/error.h ARCH_EXCEPT for ARMv8-M Mainline emits the same sequence"
+      ],
+      "resolution": "inline the exact ARCH_EXCEPT sequence at both call sites",
+      "implementations": [
+        "recon/net/src/FUN_0102b900.c",
+        "recon/net/src/FUN_01031928.c"
+      ],
+      "cfg_verify": "PASS for both owners"
+    },
+    {
+      "symbol": "g1_irq_lock",
+      "classification": "arm_primask_architecture_intrinsic",
+      "owner_function": "FUN_01008ddc",
+      "evidence": [
+        "0x01008e4e mrs r4, primask",
+        "0x01008e52 cpsid i"
+      ],
+      "resolution": "inline PRIMASK read followed by cpsid i (deliberately not Zephyr's BASEPRI arch_irq_lock)",
+      "implementation": "recon/net/src/FUN_01008ddc.c",
+      "cfg_verify": "PASS cases=2"
+    },
+    {
+      "symbol": "g1_irq_unlock",
+      "classification": "arm_primask_architecture_intrinsic",
+      "owner_function": "FUN_01008ddc",
+      "evidence": [
+        "0x01008e58 cbnz r4, 0x01008e66",
+        "0x01008e5a cpsie i"
+      ],
+      "resolution": "conditionally execute cpsie i only when the saved PRIMASK key is zero",
+      "implementation": "recon/net/src/FUN_01008ddc.c",
+      "cfg_verify": "PASS cases=2"
+    }
+  ]
+}

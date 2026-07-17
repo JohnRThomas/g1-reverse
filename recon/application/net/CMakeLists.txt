@@ -38,6 +38,7 @@ endif()
 # crypto objects remain under their normal NCS module CMake integration.
 target_sources(app PRIVATE
   src/main.c
+  src/cfg_boundary_lowerings.c
   ${G1_RETAINED_SOURCES}
   # Byte-exact literal/data pools split from CFG-inflated net functions.
   # These are reviewed reconstruction artifacts, not synthesized link stubs.

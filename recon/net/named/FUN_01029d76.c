@@ -13,7 +13,6 @@ extern int sdc_conn_window_admit(unsigned char a, void *b);
 extern int FUN_01023ea8(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern void FUN_010256dc(unsigned int a, unsigned int b);
 extern void FUN_01029d68(unsigned char *a, unsigned int b);
-extern unsigned int PHANTOM_BOUNDARY(void);
 
 unsigned char FUN_01029d76(unsigned char *param_1, unsigned char *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -105,7 +104,9 @@ unsigned char FUN_01029d76(unsigned char *param_1, unsigned char *param_2, unsig
                     param_1[0x26] = 4;
                     iVar1 = sdc_conn_window_admit(param_1[0x27], param_1);
                     if (iVar1 == 0) {
-                        return (unsigned char)PHANTOM_BOUNDARY();
+                        /* 0x01029e5e branches back into the preceding error
+                         * path at 0x01029e14, then resumes at 0x01029e1a. */
+                        FUN_010256dc(0x6a, 0x17e);
                     }
                 }
             }

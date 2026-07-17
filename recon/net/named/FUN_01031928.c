@@ -7,9 +7,13 @@
  *   rodata_103e1f4                           @ 0x0103e1f4
  */
 /* net-core FUN_01031928 @ 0x1031928  (parity 300 trials PROVEN) */
-/* Platform boundary: implemented by the Zephyr ARM ARCH_EXCEPT(4) primitive.
- * It clears BASEPRI and raises runtime-exception SVC 2 with reason 4. */
-extern __attribute__((noreturn)) void g1_arch_runtime_exception(unsigned int reason);
+#define G1_ARCH_RUNTIME_EXCEPTION(reason) do { \
+    __asm__ volatile("eors.n r0, r0\n\t" \
+                     "msr basepri, r0\n\t" \
+                     "mov r0, %0\n\t" \
+                     "svc 2" \
+                     : : "I"(reason) : "r0", "memory"); \
+} while (0)
 
 extern void FUN_01008ddc(unsigned int);
 extern int FUN_01008e74(int, int, void*);
@@ -79,7 +83,8 @@ int FUN_01031928(void)
                     uStack_20 = 0x16c3;
                     local_28 = 4;
                     FUN_0102e284(DAT_01031a64, 0x2040, &local_28, 0);
-                    g1_arch_runtime_exception(4);
+                    G1_ARCH_RUNTIME_EXCEPTION(4);
+                    local_1c = -12;
                   }
                 }
               }

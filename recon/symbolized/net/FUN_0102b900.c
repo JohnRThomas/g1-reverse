@@ -12,16 +12,20 @@
 extern int FUN_01036198(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
 extern void FUN_01039722(const void *message, int status);
-/* Zephyr wiring (one out-of-line platform boundary shared with FUN_01031928):
- *   void g1_arch_runtime_exception(unsigned reason) { ARCH_EXCEPT(reason); }
- * ARCH_EXCEPT clears BASEPRI, places reason in r0, and raises runtime-exception
- * SVC 2. The function is noreturn; no ordinary C fallback is valid here. */
-extern __attribute__((noreturn)) void g1_arch_runtime_exception(unsigned reason);
+
+#define G1_ARCH_RUNTIME_EXCEPTION(reason) do { \
+    __asm__ volatile("eors.n r0, r0\n\t" \
+                     "msr basepri, r0\n\t" \
+                     "mov r0, %0\n\t" \
+                     "svc 2" \
+                     : : "I"(reason) : "r0", "memory"); \
+} while (0)
 
 int FUN_0102b900(uint32_t value)
 {
     uint8_t byte = (uint8_t)value;
     int status = FUN_01036198((void *)0x210008e0u, &byte, 0, 0);
+    register unsigned int exception_r1 __asm__("r1");
 
     if (status == 0)
         return 0;
@@ -29,5 +33,8 @@ int FUN_0102b900(uint32_t value)
     if (*(volatile int *)((unsigned long)&g_zephyr_log_level) /*=0x21000580*/ > 0)
         FUN_01039722((const void *)((unsigned long)&rodata_103d23b) /*=0x103d23b*/, status);
 
-    g1_arch_runtime_exception(3);
+    exception_r1 = (unsigned int)status;
+    __asm__ volatile("" : : "r"(exception_r1));
+    G1_ARCH_RUNTIME_EXCEPTION(3);
+    return status;
 }

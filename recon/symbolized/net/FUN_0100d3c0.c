@@ -76,6 +76,9 @@ unsigned int FUN_0100d3c0(int param_1, unsigned int param_2, unsigned int param_
   case 0xd:
     return (unsigned int)(param_3 - 0x2a < 5);
   default:
+    /* The harness treats 0x0100d4cc as an out-of-CFG boundary.  The retained
+     * owner lowers that boundary to the two original instructions:
+     * movs r0, #0; bx lr. */
     return FUN_shadow_default();
   }
   return 1;

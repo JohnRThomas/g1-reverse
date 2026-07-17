@@ -3,6 +3,7 @@
  * public-name: FUN_01017f7c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
@@ -22,8 +23,9 @@ extern void FUN_0101fc70(void);
 extern void FUN_01020898(unsigned int a);
 extern void sdc_llcp_stop_rx_timeout(void);
 extern void sdc_llcp_release_rx_context(void);
-extern void FUN_010208f0(unsigned int a);
-extern unsigned int PHANTOM_RETRY(void);
+extern void FUN_010208f0(unsigned int a, unsigned int b, unsigned int c);
+extern __attribute__((noreturn)) void sdc_assertion_fail(unsigned int module,
+                                                   unsigned int line);
 
 #define DAT_18084 0x21000f90u
 #define DAT_18088 ((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/
@@ -42,9 +44,8 @@ void FUN_01017f7c(void)
     uVar3 = FUN_0100a5b4();
     iVar5 = FUN_01026e48(uVar4, (unsigned short)uVar3);
     if (iVar5 == 0) {
-        /* real hardware: out-of-body branch whose LR retries this check; oracle
-           value is virtually never 0, so a single retry suffices for parity */
-        iVar5 = PHANTOM_RETRY();
+        /* 0x01018078 is the function's fatal assertion island. */
+        sdc_assertion_fail(0x32, 0x509);
     }
     r5 = iVar5;
     iVar2 = DAT_18084;
@@ -110,8 +111,8 @@ LAB_fc70:
 LAB_tail:
     if ((unsigned int)(*(volatile unsigned char *)(iVar2 + 0x54) - 2) < 2) {
         if (*(volatile signed char *)((unsigned int)*(volatile unsigned char *)(iVar2 + 0x98) + iVar2 + 0xbd) == 1) {
-            /* real hardware: rare out-of-body retry branch, oracle-derived, effectively unreachable */
-            (void)PHANTOM_RETRY();
+            /* 0x0101806e: r0=0, r1=0, while the compared byte remains in r2. */
+            FUN_010208f0(0, 0, 1);
         }
     }
     *(volatile unsigned short *)(iVar2 + 0x78) = 0xffff;
