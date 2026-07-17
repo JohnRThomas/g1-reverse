@@ -286,6 +286,7 @@ CALL_ARITY_OVERRIDES = {
     ("net", 0x01039c54): 2,
     ("net", 0x01039c92): 4,
     ("net", 0x01039d80): 3,
+    ("net", 0x01036c2c): 2,  # z_work_submit_to_queue(queue, work)
     # The conversion wrapper consumes the low/high words of one 64-bit value.
     # r2/r3 are caller scratch left by the preceding division helper.
     ("net", 0x01037c64): 2,
@@ -918,6 +919,9 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x01037670): 0xe0,  # return ends 7750; literals start there
     ("net", 0x01038958): 0x40,  # return ends 8998; literals follow
     ("net", 0x010389a0): 0x3e,  # tail ends 89de; literals start 89e0
+    ("net", 0x0102fdd0): 0x170,  # net_buf_alloc_len; literals at 0x0102ff40
+    ("net", 0x01039dd0): 0x1a,  # capacity predicate; separate veneer follows
+    ("net", 0x0103b2b4): 0x14,  # z_reschedule_unlocked tail
     # The outer switch default handler continues through the terminal BL at
     # 0x101b226; the catalog stops inside the preceding case body.
     ("net", 0x101b15c): 0xce,
@@ -20706,6 +20710,114 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00019308)] = {
     0x0007dda4: 4,
     0x00019c70: 0,
 }
+
+
+def _net_buf_alloc_len_case(*, uninit_count=0, buf_count=2,
+                            free_result=None, size=0, allocated_size=None,
+                            data_result=None, validate_result=1,
+                            release_result=1):
+    """Configured Zephyr net_buf pool, allocator and timed-LIFO contracts."""
+    pool = 0x21000994
+    buf = emu.SCRATCH + 0x5000
+    buffers = emu.SCRATCH + 0x6000
+    allocator = emu.SCRATCH + 0x7000
+    callbacks = emu.SCRATCH + 0x7100
+    callback = 0x01040001
+    pool_image = bytearray(0x34)
+    pool_image[0x20:0x22] = int(buf_count).to_bytes(2, "little")
+    pool_image[0x22:0x24] = int(uninit_count).to_bytes(2, "little")
+    pool_image[0x24] = 8
+    pool_image[0x2c:0x30] = allocator.to_bytes(4, "little")
+    pool_image[0x30:0x34] = buffers.to_bytes(4, "little")
+    allocator_image = bytearray(4)
+    allocator_image[:] = callbacks.to_bytes(4, "little")
+    callback_image = bytearray(4)
+    callback_image[:] = callback.to_bytes(4, "little")
+    memory = [(pool, bytes(pool_image)), (buf, bytes(0x40)),
+              (buffers, bytes(0x100)), (allocator, bytes(allocator_image)),
+              (callbacks, bytes(callback_image))]
+    args = {0: pool, 1: int(size), 2: 0x11223344, 3: 0x55667788}
+    oracles = {0: {0: 0}, 1: {0: int(validate_result)}, 2: {0: 0}}
+    writes = {0: [(0, 0, (0x123456789abcdef0).to_bytes(8, "little"),
+                   0x0103b304)]}
+
+    if not validate_result:
+        return (args, memory, oracles, writes)
+
+    ordinal = 3
+    if uninit_count:
+        if uninit_count < buf_count:
+            oracles[ordinal] = {0: int(free_result or 0)}
+            ordinal += 1
+            if free_result:
+                chosen_buf = int(free_result)
+            else:
+                chosen_buf = buffers + (buf_count - uninit_count) * 0x20
+        else:
+            chosen_buf = buffers + (buf_count - uninit_count) * 0x20
+        oracles[ordinal] = {0: int(release_result)}
+        ordinal += 1
+    else:
+        oracles[ordinal] = {0: int(release_result)}
+        ordinal += 1
+        if not release_result:
+            return (args, memory, oracles, writes)
+        oracles[ordinal] = {0: int(free_result or 0)}
+        ordinal += 1
+        if not free_result:
+            return (args, memory, oracles, writes)
+        chosen_buf = int(free_result)
+
+    if not release_result:
+        return (args, memory, oracles, writes)
+    if size:
+        oracles[ordinal] = {0: 0}
+        writes[ordinal] = [(0, 0, (0x0102030405060708).to_bytes(8, "little"),
+                            0x0103b34c)]
+        ordinal += 1
+        result_size = int(size if allocated_size is None else allocated_size)
+        oracles[ordinal] = {0: int(data_result or 0)}
+        writes[ordinal] = [(1, 0, result_size.to_bytes(4, "little"),
+                            0x01040000)]
+        ordinal += 1
+        if not data_result:
+            oracles[ordinal] = {0: 0}
+    return (args, memory, oracles, writes)
+
+
+# The real pool owns two buffers and an eight-byte user-data tail.  These
+# cases cover first-use materialization, opportunistic reuse, timed exhaustion,
+# allocator success/failure, the size assertion, and both spinlock assertions.
+REVIEWED_NPTR_COUNTS[("net", 0x0102fdd0)] = 1
+REVIEWED_STACK_POINTER_CALLS[("net", 0x0102fdd0)] = {
+    0: {0}, 5: {0}, 6: {1},
+}
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102fdd0)] = {
+    0x0103b304: 1, 0x0103b34c: 4, 0x0103610c: 1,
+    0x01036144: 1, 0x01036128: 1, 0x01036774: 4,
+    0x0103b210: 2, 0x01039bbe: 3, 0x01039bb0: 2,
+    0x01040000: 4,
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102fdd0)] = [
+    ({0: 0, 1: 0, 2: 0, 3: 0}, [], {0: {0: 0}}),
+    _net_buf_alloc_len_case(uninit_count=2, size=0),
+    _net_buf_alloc_len_case(uninit_count=1, free_result=emu.SCRATCH + 0x5000,
+                            size=0),
+    _net_buf_alloc_len_case(uninit_count=1, free_result=0, size=0),
+    _net_buf_alloc_len_case(uninit_count=0, free_result=0, size=0),
+    _net_buf_alloc_len_case(uninit_count=0, free_result=emu.SCRATCH + 0x5000,
+                            size=0),
+    _net_buf_alloc_len_case(uninit_count=0, free_result=emu.SCRATCH + 0x5000,
+                            size=16, allocated_size=20,
+                            data_result=emu.SCRATCH + 0x8000),
+    _net_buf_alloc_len_case(uninit_count=0, free_result=emu.SCRATCH + 0x5000,
+                            size=16, allocated_size=16, data_result=0),
+    _net_buf_alloc_len_case(uninit_count=0, free_result=emu.SCRATCH + 0x5000,
+                            size=16, allocated_size=8,
+                            data_result=emu.SCRATCH + 0x8000),
+    _net_buf_alloc_len_case(uninit_count=2, validate_result=0),
+    _net_buf_alloc_len_case(uninit_count=2, release_result=0),
+]
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
     transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]

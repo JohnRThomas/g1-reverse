@@ -202,6 +202,10 @@ TRUE_SIZE_OVERRIDES = {
     0x0102de10: 0x01e,
     0x0102e1fc: 0x01c,
     0x0102ea00: 0x03e,
+    # Referenced public/kernel entry points omitted by the Ghidra catalog.
+    0x0102fdd0: 0x170,  # net_buf_alloc_len ends before literals at 0x0102ff40
+    0x01039dd0: 0x1a,   # capacity predicate; 0x01039dea is a separate veneer
+    0x0103b2b4: 0x14,   # z_reschedule_unlocked tail ends at 0x0103b2c8
 }
 def _load():
     global _fw
