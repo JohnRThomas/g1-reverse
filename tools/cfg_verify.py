@@ -889,6 +889,16 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x1039fe6): 112,
     # Atomic bit-test/set owns code through 0x1034398; following words are literals.
     ("net", 0x1034368): 48,
+    # Catalog-missing NCS/Zephyr entries.  Bounds terminate on the final
+    # return/tail and deliberately exclude the following literal/data island.
+    ("net", 0x010317c0): 0x0e,  # return 17cc; literal starts 17d0
+    ("net", 0x010343e0): 0x20,  # return 43fe; literals start 4400
+    ("net", 0x01035e1c): 0x78,  # return 5e92; literals start 5e94
+    ("net", 0x010372b4): 0x94,  # tail ends 7348; literals start there
+    ("net", 0x01037438): 0x8a,  # return 74c2; alignment/literals follow
+    ("net", 0x01037670): 0xe0,  # return ends 7750; literals start there
+    ("net", 0x01038958): 0x40,  # return ends 8998; literals follow
+    ("net", 0x010389a0): 0x3e,  # tail ends 89de; literals start 89e0
     # The outer switch default handler continues through the terminal BL at
     # 0x101b226; the catalog stops inside the preceding case body.
     ("net", 0x101b15c): 0xce,
