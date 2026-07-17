@@ -6,6 +6,7 @@
  *   global_system_resume                     <= FUN_00016854 @ 0x00016854
  *   bt_start                                 <= FUN_00019308 @ 0x00019308
  *   global_system_suspend                    <= FUN_0002bd7c @ 0x0002bd7c
+ *   active_mode_shutdown                     <= FUN_0002bdf0 @ 0x0002bdf0
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
  *   send_touch_click_event                   <= FUN_0007c058 @ 0x0007c058
@@ -20,7 +21,7 @@ extern int is_battery_critical(int,...);
 extern int app_msleep_thunk_a(int,...);
 extern int FUN_0007c108(int,...);
 extern int enable_ship_mode(int,...);
-extern int FUN_0002bdf0(int,...);
+extern int active_mode_shutdown(int,...);
 extern int FUN_00016834(int,...);
 extern int FUN_00017a10(int,...);
 extern int FUN_00017a1c(int,...);
@@ -47,7 +48,7 @@ unsigned int global_system_resume(unsigned int param_1, int param_2)
     if (param_2 == 0x100) {
       if (is_battery_critical(0) != 0) return param_1;
       if (param_1 == 0) return global_system_suspend(0);
-      return FUN_0002bdf0(0);
+      return active_mode_shutdown(0);
     }
     return param_1;
   }

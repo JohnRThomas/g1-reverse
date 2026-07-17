@@ -6,6 +6,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   change_work_mode_to                      <= FUN_0001694c @ 0x0001694c
  *   enter_active_click_mode                  <= FUN_00028964 @ 0x00028964
+ *   active_mode_shutdown                     <= FUN_0002bdf0 @ 0x0002bdf0
  *   projector_reflash_and_release            <= FUN_0007d874 @ 0x0007d874
  * address symbols (name @ address):
  *   g_suspend_pending_flag                   @ 0x20018d8b
@@ -21,7 +22,7 @@
 
 extern void change_work_mode_to(uint32_t mode);
 extern uint8_t *get_device_info(void);
-extern void FUN_0002bdf0(void);
+extern void active_mode_shutdown(void);
 extern void projector_reflash_and_release(uint32_t mode);
 
 void enter_active_click_mode(void)
@@ -38,7 +39,7 @@ void enter_active_click_mode(void)
 
     change_work_mode_to(2U);
     (void)get_device_info();
-    FUN_0002bdf0();
+    active_mode_shutdown();
 
     device_state = get_device_info();
     device_state[0xee4] = 2U;

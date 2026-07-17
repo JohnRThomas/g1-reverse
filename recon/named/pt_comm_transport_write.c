@@ -2,7 +2,9 @@
  * public-name: pt_comm_transport_write
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   transport_parameters_write               <= FUN_00025950 @ 0x00025950
  *   pt_comm_transport_write                  <= FUN_00030cd0 @ 0x00030cd0
+ *   packet_transport_send_byte               <= FUN_0003364c @ 0x0003364c
  * address symbols (name @ address):
  *   rodata_a6589                             @ 0x000a6589
  */
@@ -10,8 +12,8 @@
 #include <stdint.h>
 
 extern int log_message(uint32_t, ...);
-extern uint32_t FUN_00025950(int, uint8_t *, int, int);
-extern uint32_t FUN_0003364c(int, uint8_t *, int, int);
+extern uint32_t transport_parameters_write(int, uint8_t *, int, int);
+extern uint32_t packet_transport_send_byte(int, uint8_t *, int, int);
 
 uint32_t pt_comm_transport_write(int operation, int context, uint8_t *buffer, int length)
 {
@@ -21,8 +23,8 @@ uint32_t pt_comm_transport_write(int operation, int context, uint8_t *buffer, in
     }
 
     if (operation == 0)
-        return FUN_00025950(context, buffer, length, length);
+        return transport_parameters_write(context, buffer, length, length);
     if (operation == 1)
-        return FUN_0003364c(context, buffer, length, length);
+        return packet_transport_send_byte(context, buffer, length, length);
     return 0;
 }

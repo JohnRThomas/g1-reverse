@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   msg_content_decrement_timer              <= FUN_0003441c @ 0x0003441c
  *   notification_system_init                 <= FUN_00034944 @ 0x00034944
+ *   dump_whitelist_init                      <= FUN_00035744 @ 0x00035744
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   g_message_pool                           @ 0x20007dac
@@ -16,7 +17,7 @@
 
 extern int msg_content_decrement_timer(void);
 extern void memset_bytes(int a, int b, int c);
-extern void FUN_00035744(void);
+extern void dump_whitelist_init(void);
 
 void notification_system_init(void)
 {
@@ -25,5 +26,5 @@ void notification_system_init(void)
     *(volatile unsigned char *)((unsigned long)&g_message_pending_state) /*=0x2001a229*/ = 0;
     int uVar1 = msg_content_decrement_timer();
     memset_bytes(((unsigned long)g_message_pool) /*=0x20007dac*/, uVar1, 0x2210);
-    FUN_00035744();
+    dump_whitelist_init();
 }

@@ -433,6 +433,38 @@
    "name": "decode_rle_byte_pairs",
    "evidence": "Both navigation renderers pass a count/value byte-pair stream and output canvas; each pair expands through memset and the function returns the total decoded byte count. Raw identity remains FUN_0007da70."
   },
+  "0x0002538c": {
+   "name": "transport_state_update",
+   "evidence": "Recovered transport helper advances the context phase, updates active state/timestamp bookkeeping, and preserves its raw identity FUN_0002538c at 0x0002538c."
+  },
+  "0x000258b4": {
+   "name": "transport_parameters_read",
+   "evidence": "Recovered body validates the transport/output arguments, checks key 0x2006 state, and reads the parameter value through the transport ABI. Raw identity remains FUN_000258b4 at 0x000258b4."
+  },
+  "0x00025950": {
+   "name": "transport_parameters_write",
+   "evidence": "Recovered body validates the transport/value arguments, checks key 0x2006 state, and writes the parameter value through the transport ABI. Raw identity remains FUN_00025950 at 0x00025950."
+  },
+  "0x0002bdf0": {
+   "name": "active_mode_shutdown",
+   "evidence": "Recovered device-state helper transitions an active phase to shutdown state and emits the configured diagnostic path. Raw identity remains FUN_0002bdf0 at 0x0002bdf0."
+  },
+  "0x0003364c": {
+   "name": "packet_transport_send_byte",
+   "evidence": "Recovered transport-vtable helper validates its arguments, waits for readiness, sends one byte, and reports failures through the firmware logging path. Raw identity remains FUN_0003364c at 0x0003364c."
+  },
+  "0x00033a5c": {
+   "name": "get_notification_counts_cmd_response",
+   "evidence": "Recovered command-response helper validates the notification/count pointers, extracts the unread count, and follows the firmware diagnostic path. Raw identity remains FUN_00033a5c at 0x00033a5c."
+  },
+  "0x00035744": {
+   "name": "dump_whitelist_init",
+   "evidence": "Recovered whitelist initializer clears the complete persistent buffer, logs its capacity, loads the saved list, and revalidates its JSON on success. Raw identity remains FUN_00035744 at 0x00035744."
+  },
+  "0x0003cebc": {
+   "name": "not_disturb_disable_pending",
+   "evidence": "Recovered do-not-disturb state helper publishes the pending disable value, synchronizes settings, and updates the persistent task status. Raw identity remains ext3cebc at 0x0003cebc."
+  },
   "0x00028964": {
    "name": "enter_active_click_mode",
    "evidence": "Recovered display-state helper clears the pending-reset flag, selects work mode 2, refreshes the device state, activates click mode, and publishes display mode 4. Raw identity remains FUN_00028964 at 0x00028964."

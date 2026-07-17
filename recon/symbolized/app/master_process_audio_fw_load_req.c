@@ -7,6 +7,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   imu_set_enabled                          <= FUN_0002bd4c @ 0x0002bd4c
  *   get_low_battery_flag_if_master           <= FUN_0002efa8 @ 0x0002efa8
+ *   get_notification_counts_cmd_response     <= FUN_00033a5c @ 0x00033a5c
  *   post_notification_cmd_response           <= FUN_000340c4 @ 0x000340c4
  *   debug_print_hex_dump                     <= FUN_0004a424 @ 0x0004a424
  *   rate_limited_elapsed_seconds_tick        <= FUN_0004a46c @ 0x0004a46c
@@ -97,7 +98,7 @@ extern int memcpy(int, byte*, int);
 extern int memset_bytes(void*, int, int);
 extern int process_sync_buffer(void*);
 extern int update_persist_task_status(char*, int, int);
-extern int FUN_00033a5c(char*, byte*);
+extern int get_notification_counts_cmd_response(char*, byte*);
 
 #define DAT_0002b208 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
 #define DAT_0002b20c ((const char*)((unsigned long)&rodata_a243a) /*=0xa243a*/)
@@ -572,7 +573,7 @@ LAB_0002b9d8:
       log_message(DAT_0002bac4,DAT_0002baa8);
       return 1;
     case 0xd:
-      return FUN_00033a5c(param_1, param_3);
+      return get_notification_counts_cmd_response(param_1, param_3);
     case 0xe:
       uVar28 = get_boot_seconds();
       uint32_to_little_endian(param_3,uVar28);

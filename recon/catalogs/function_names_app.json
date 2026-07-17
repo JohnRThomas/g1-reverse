@@ -2540,6 +2540,17 @@
     "FUN_00025364"
    ]
   },
+  "0x0002538c": {
+   "address": "0x0002538c",
+   "raw_name": "FUN_0002538c",
+   "name": "transport_state_update",
+   "display_name": "transport_state_update",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered transport helper advances the context phase, updates active state/timestamp bookkeeping, and preserves its raw identity FUN_0002538c at 0x0002538c.",
+   "aliases": [
+    "FUN_0002538c"
+   ]
+  },
   "0x0002542c": {
    "address": "0x0002542c",
    "raw_name": "FUN_0002542c",
@@ -2699,6 +2710,28 @@
    "source": "committed durable map",
    "aliases": [
     "FUN_00025850"
+   ]
+  },
+  "0x000258b4": {
+   "address": "0x000258b4",
+   "raw_name": "FUN_000258b4",
+   "name": "transport_parameters_read",
+   "display_name": "transport_parameters_read",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body validates the transport/output arguments, checks key 0x2006 state, and reads the parameter value through the transport ABI. Raw identity remains FUN_000258b4 at 0x000258b4.",
+   "aliases": [
+    "FUN_000258b4"
+   ]
+  },
+  "0x00025950": {
+   "address": "0x00025950",
+   "raw_name": "FUN_00025950",
+   "name": "transport_parameters_write",
+   "display_name": "transport_parameters_write",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body validates the transport/value arguments, checks key 0x2006 state, and writes the parameter value through the transport ABI. Raw identity remains FUN_00025950 at 0x00025950.",
+   "aliases": [
+    "FUN_00025950"
    ]
   },
   "0x000259d4": {
@@ -3290,6 +3323,17 @@
    "source": "recon/app/src/global_system_suspend.c",
    "aliases": [
     "FUN_0002bd7c"
+   ]
+  },
+  "0x0002bdf0": {
+   "address": "0x0002bdf0",
+   "raw_name": "FUN_0002bdf0",
+   "name": "active_mode_shutdown",
+   "display_name": "active_mode_shutdown",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered device-state helper transitions an active phase to shutdown state and emits the configured diagnostic path. Raw identity remains FUN_0002bdf0 at 0x0002bdf0.",
+   "aliases": [
+    "FUN_0002bdf0"
    ]
   },
   "0x0002be64": {
@@ -4442,6 +4486,17 @@
     "FUN_00033384"
    ]
   },
+  "0x0003364c": {
+   "address": "0x0003364c",
+   "raw_name": "FUN_0003364c",
+   "name": "packet_transport_send_byte",
+   "display_name": "packet_transport_send_byte",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered transport-vtable helper validates its arguments, waits for readiness, sends one byte, and reports failures through the firmware logging path. Raw identity remains FUN_0003364c at 0x0003364c.",
+   "aliases": [
+    "FUN_0003364c"
+   ]
+  },
   "0x000336a0": {
    "address": "0x000336a0",
    "raw_name": "FUN_000336a0",
@@ -4473,6 +4528,17 @@
    "source": "committed durable map",
    "aliases": [
     "FUN_000338ec"
+   ]
+  },
+  "0x00033a5c": {
+   "address": "0x00033a5c",
+   "raw_name": "FUN_00033a5c",
+   "name": "get_notification_counts_cmd_response",
+   "display_name": "get_notification_counts_cmd_response",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered command-response helper validates the notification/count pointers, extracts the unread count, and follows the firmware diagnostic path. Raw identity remains FUN_00033a5c at 0x00033a5c.",
+   "aliases": [
+    "FUN_00033a5c"
    ]
   },
   "0x00033abc": {
@@ -4925,6 +4991,17 @@
     "FUN_00035688"
    ]
   },
+  "0x00035744": {
+   "address": "0x00035744",
+   "raw_name": "FUN_00035744",
+   "name": "dump_whitelist_init",
+   "display_name": "dump_whitelist_init",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered whitelist initializer clears the complete persistent buffer, logs its capacity, loads the saved list, and revalidates its JSON on success. Raw identity remains FUN_00035744 at 0x00035744.",
+   "aliases": [
+    "FUN_00035744"
+   ]
+  },
   "0x000357dc": {
    "address": "0x000357dc",
    "raw_name": "FUN_000357dc",
@@ -5353,6 +5430,17 @@
    "source": "recon/app/src/not_disturb_sync_data.c",
    "aliases": [
     "FUN_0003ce04"
+   ]
+  },
+  "0x0003cebc": {
+   "address": "0x0003cebc",
+   "raw_name": "FUN_0003cebc",
+   "name": "not_disturb_disable_pending",
+   "display_name": "not_disturb_disable_pending",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered do-not-disturb state helper publishes the pending disable value, synchronizes settings, and updates the persistent task status. Raw identity remains ext3cebc at 0x0003cebc.",
+   "aliases": [
+    "ext3cebc"
    ]
   },
   "0x0003cf34": {
@@ -26000,6 +26088,7 @@
   "abort": "0x00051180",
   "accumulate_app_usage_time": "0x0007db02",
   "accumulate_burial_point_duration": "0x0007db50",
+  "active_mode_shutdown": "0x0002bdf0",
   "adc_context_start_sampling": "0x0005f638",
   "adc_gain_invert": "0x0005f60c",
   "adc_nfc_init": "0x00024b98",
@@ -26496,6 +26585,7 @@
   "dtoa_format_cvt": "0x00086cda",
   "dtoa_get_bias_const": "0x00013e50",
   "dump_template_gyro_info": "0x00036164",
+  "dump_whitelist_init": "0x00035744",
   "dynbuf_push_byte_grow": "0x0008790e",
   "enable_ship_mode": "0x000167f4",
   "encode_uint": "0x0004bb90",
@@ -26680,6 +26770,7 @@
   "get_message_entry": "0x00033c4c",
   "get_message_type_param": "0x0002c30c",
   "get_notification_counts_cmd_process": "0x00033abc",
+  "get_notification_counts_cmd_response": "0x00033a5c",
   "get_pin_idx": "0x00065434",
   "get_projector_controller": "0x0007d4ec",
   "get_sectors_cb": "0x0007f020",
@@ -27052,6 +27143,7 @@
   "next_timeout": "0x00074b7c",
   "nfc_eeprom_comm_lock": "0x00030cb8",
   "nfc_eeprom_comm_unlock": "0x00030cc4",
+  "not_disturb_disable_pending": "0x0003cebc",
   "not_disturb_sync_data": "0x0003ce04",
   "notification_icon_type_from_package": "0x0003483c",
   "notification_system_init": "0x00034944",
@@ -27138,6 +27230,7 @@
   "orientation_get_yaw_deg": "0x000267e8",
   "out": "0x0007dd7e",
   "outs": "0x0007e2be",
+  "packet_transport_send_byte": "0x0003364c",
   "pairing_complete": "0x00018730",
   "pairing_failed": "0x00018444",
   "panel_init": "0x00047538",
@@ -27495,6 +27588,9 @@
   "touch_key_thread": "0x0002a0d8",
   "touch_pmic_reset_assert": "0x00017a28",
   "touch_pmic_reset_deassert": "0x00017a34",
+  "transport_parameters_read": "0x000258b4",
+  "transport_parameters_write": "0x00025950",
+  "transport_state_update": "0x0002538c",
   "trigger_screen_state_change": "0x0002bc2c",
   "trigger_touch_key_hw_reset": "0x0002a0c0",
   "try_enter_low_power_mode": "0x00026c8c",
