@@ -3,6 +3,10 @@
     "eligible_functions": 1609,
     "public_header_declarations": 197
   },
+  "build_extraction_input": {
+    "path": "recon/ownership/net_sdc_build_extraction.json",
+    "sha256": "71ca05f0a594498a9e161e02da47552bd5123b4878ba305ac7993d639e7c4bc4"
+  },
   "component": "softdevice_controller",
   "core": "net",
   "functions": [
@@ -27,6 +31,30 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": {
+        "archive_definition": "libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf):.text+0x0",
+        "firmware_cfg_verification": {
+          "caller_result": "PASS",
+          "cases": 6,
+          "evidence": [
+            "tools/cfg_verify.py",
+            "recon/ownership/net_sdc_archive_benchmark.md"
+          ],
+          "negative_mutation": "zero-forward mutation rejected with 4 mismatches",
+          "result": "PASS"
+        },
+        "link_diagnostic": "multiple definition of `sdc_default_tx_power_set'; app/libapp.a(FUN_010091cc.c.obj):recon/net/src/FUN_010091cc.c:12: first defined here",
+        "nm_archive": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf:00000000 T sdc_default_tx_power_set",
+        "nm_reconstruction": "FUN_010091cc.c.obj:00000000 T sdc_default_tx_power_set",
+        "public_declaration": "int32_t sdc_default_tx_power_set(int8_t requested_power_level);",
+        "public_header": "nrfxlib/softdevice_controller/include/sdc.h:501",
+        "scope": "Only this public symbol is authorized; no private SDC identity is promoted.",
+        "source_definition": "recon/net/src/FUN_010091cc.c:12",
+        "source_object": "app/libapp.a(FUN_010091cc.c.obj)",
+        "status": "verified_public_archive_extraction",
+        "symbol": "sdc_default_tx_power_set"
+      },
+      "build_extraction_verified": true,
       "call_graph": {
         "callees": [
           "0x101e94c"
@@ -37,9 +65,7 @@
       },
       "catalog_name": "sdc_default_tx_power_set",
       "catalog_size": 24,
-      "exclusion_blockers": [
-        "approximate_opcode_match"
-      ],
+      "exclusion_blockers": [],
       "extent_source": "net_funcs catalog",
       "firmware_instruction_count": 9,
       "firmware_signature": "undefined FUN_010091cc()",
@@ -76,7 +102,7 @@
       },
       "runner_up_gap": 0.233333,
       "runner_up_score": 0.666667,
-      "safe_to_exclude": false,
+      "safe_to_exclude": true,
       "score": 0.9,
       "tied_best_identities": [
         "libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf):section[64]:.text:sdc_default_tx_power_set#5286"
@@ -104,6 +130,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -191,6 +219,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -270,6 +300,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026856"
@@ -355,6 +387,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -435,6 +469,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10274ea"
@@ -521,6 +557,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -599,6 +637,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -689,6 +729,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -773,6 +815,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a048"
@@ -853,6 +897,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -935,6 +981,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1008,6 +1056,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -1089,6 +1139,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1168,6 +1220,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1247,6 +1301,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1331,6 +1387,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a7e8"
@@ -1412,6 +1470,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10091f8",
@@ -1494,6 +1554,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1572,6 +1634,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1651,6 +1715,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101fe98",
@@ -1737,6 +1803,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -1823,6 +1891,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1904,6 +1974,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -1987,6 +2059,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1025a84"
@@ -2067,6 +2141,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -2135,6 +2211,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2218,6 +2296,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2299,6 +2379,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101fc40",
@@ -2383,6 +2465,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101fc40"
@@ -2465,6 +2549,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2543,6 +2629,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2620,6 +2708,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18"
@@ -2706,6 +2796,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2784,6 +2876,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -2862,6 +2956,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -2945,6 +3041,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3023,6 +3121,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3102,6 +3202,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3181,6 +3283,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3259,6 +3363,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3336,6 +3442,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10208cc"
@@ -3421,6 +3529,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f6e8"
@@ -3502,6 +3612,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3584,6 +3696,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -3664,6 +3778,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -3742,6 +3858,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": []
@@ -3817,6 +3935,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -3895,6 +4015,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -3972,6 +4094,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1025998"
@@ -4049,6 +4173,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": []
@@ -4124,6 +4250,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4204,6 +4332,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4286,6 +4416,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4365,6 +4497,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -4446,6 +4580,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -4526,6 +4662,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4603,6 +4741,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4682,6 +4822,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4760,6 +4902,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4838,6 +4982,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4918,6 +5064,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -4995,6 +5143,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -5074,6 +5224,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -5152,6 +5304,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102583c"
@@ -5234,6 +5388,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100ebb8",
@@ -5333,6 +5489,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102583c"
@@ -5420,6 +5578,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -5500,6 +5660,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100e948"
@@ -5577,6 +5739,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -5655,6 +5819,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -5734,6 +5900,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -5815,6 +5983,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100ebb8",
@@ -5897,6 +6067,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -5978,6 +6150,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -6059,6 +6233,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -6142,6 +6318,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6220,6 +6398,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6299,6 +6479,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6376,6 +6558,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6453,6 +6637,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6530,6 +6716,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6607,6 +6795,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6685,6 +6875,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6764,6 +6956,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -6845,6 +7039,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -6923,6 +7119,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -7000,6 +7198,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -7081,6 +7281,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0"
@@ -7162,6 +7364,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -7243,6 +7447,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -7330,6 +7536,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -7410,6 +7618,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f300"
@@ -7490,6 +7700,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -7577,6 +7789,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -7662,6 +7876,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10108b8"
@@ -7739,6 +7955,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100e790",
@@ -7817,6 +8035,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f8cc"
@@ -7898,6 +8118,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f8cc"
@@ -7979,6 +8201,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -8059,6 +8283,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0"
@@ -8136,6 +8362,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -8214,6 +8442,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -8292,6 +8522,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -8373,6 +8605,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10106dc"
@@ -8453,6 +8687,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a7e8",
@@ -8534,6 +8770,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -8601,6 +8839,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d5c8",
@@ -8683,6 +8923,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -8763,6 +9005,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -8849,6 +9093,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f888"
@@ -8928,6 +9174,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101fca8",
@@ -9010,6 +9258,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -9096,6 +9346,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1010990",
@@ -9180,6 +9432,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100aa04",
@@ -9264,6 +9518,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -9341,6 +9597,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a4d0"
@@ -9420,6 +9678,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a4d0"
@@ -9499,6 +9759,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -9576,6 +9838,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1028010"
@@ -9655,6 +9919,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -9732,6 +9998,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -9811,6 +10079,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -9891,6 +10161,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -9968,6 +10240,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -10048,6 +10322,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -10129,6 +10405,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10126b0",
@@ -10215,6 +10493,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -10296,6 +10576,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -10382,6 +10664,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -10465,6 +10749,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10128bc"
@@ -10542,6 +10828,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f5b4"
@@ -10621,6 +10909,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -10704,6 +10994,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -10793,6 +11085,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -10873,6 +11167,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -10953,6 +11249,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1013e98"
@@ -11032,6 +11330,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cff4",
@@ -11114,6 +11414,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -11195,6 +11497,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -11273,6 +11577,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a5a0",
@@ -11354,6 +11660,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a5a0",
@@ -11438,6 +11746,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a5a0",
@@ -11519,6 +11829,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a5a0",
@@ -11600,6 +11912,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a5a0",
@@ -11681,6 +11995,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100e04c",
@@ -11763,6 +12079,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021908",
@@ -11847,6 +12165,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021908",
@@ -11936,6 +12256,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10190c4"
@@ -12015,6 +12337,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1022f08",
@@ -12099,6 +12423,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -12181,6 +12507,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -12262,6 +12590,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -12341,6 +12671,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f5b4",
@@ -12421,6 +12753,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -12501,6 +12835,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -12583,6 +12919,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0"
@@ -12663,6 +13001,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -12741,6 +13081,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -12819,6 +13161,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -12899,6 +13243,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -12980,6 +13326,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -13060,6 +13408,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -13142,6 +13492,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1029bfa",
@@ -13220,6 +13572,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18"
@@ -13299,6 +13653,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -13381,6 +13737,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f8cc",
@@ -13462,6 +13820,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101e1e4"
@@ -13542,6 +13902,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f8cc"
@@ -13621,6 +13983,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -13699,6 +14063,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -13785,6 +14151,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -13863,6 +14231,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -13946,6 +14316,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -14036,6 +14408,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00"
@@ -14116,6 +14490,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021654",
@@ -14197,6 +14573,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10209f0"
@@ -14277,6 +14655,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027a94"
@@ -14357,6 +14737,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027a94",
@@ -14439,6 +14821,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100930c",
@@ -14519,6 +14903,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100e95c",
@@ -14597,6 +14983,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -14674,6 +15062,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1025998"
@@ -14753,6 +15143,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1025998"
@@ -14832,6 +15224,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -14914,6 +15308,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026856"
@@ -14994,6 +15390,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026872"
@@ -15074,6 +15472,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -15152,6 +15552,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -15234,6 +15636,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -15320,6 +15724,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -15401,6 +15807,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102689c"
@@ -15485,6 +15893,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -15565,6 +15975,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026912"
@@ -15644,6 +16056,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -15724,6 +16138,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100951c",
@@ -15806,6 +16222,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026912"
@@ -15886,6 +16304,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026872"
@@ -15968,6 +16388,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100951c",
@@ -16048,6 +16470,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026856",
@@ -16130,6 +16554,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -16216,6 +16642,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026912"
@@ -16295,6 +16723,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026856"
@@ -16375,6 +16805,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -16467,6 +16899,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100951c",
@@ -16547,6 +16981,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -16636,6 +17072,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -16715,6 +17153,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -16794,6 +17234,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -16871,6 +17313,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027196",
@@ -16952,6 +17396,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -17029,6 +17475,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -17110,6 +17558,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10271f6"
@@ -17189,6 +17639,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -17272,6 +17724,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027196",
@@ -17353,6 +17807,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -17430,6 +17886,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -17509,6 +17967,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102741e"
@@ -17590,6 +18050,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -17668,6 +18130,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10274d0"
@@ -17751,6 +18215,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10274ea"
@@ -17831,6 +18297,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -17914,6 +18382,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102693a"
@@ -17998,6 +18468,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102693a"
@@ -18082,6 +18554,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102693a"
@@ -18164,6 +18638,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026a7e"
@@ -18248,6 +18724,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026a7e"
@@ -18332,6 +18810,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026a7e"
@@ -18414,6 +18894,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102693a"
@@ -18498,6 +18980,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102693a"
@@ -18582,6 +19066,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026a7e"
@@ -18666,6 +19152,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1026a7e"
@@ -18750,6 +19238,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -18827,6 +19317,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -18907,6 +19399,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -18985,6 +19479,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102771a"
@@ -19067,6 +19563,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x102763a"
@@ -19149,6 +19647,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19227,6 +19727,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x10277c2",
@@ -19308,6 +19810,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19387,6 +19891,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19466,6 +19972,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027894",
@@ -19546,6 +20054,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19623,6 +20133,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -19704,6 +20216,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19781,6 +20295,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19860,6 +20376,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -19943,6 +20461,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -20021,6 +20541,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -20099,6 +20621,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027b0c"
@@ -20179,6 +20703,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a31c",
@@ -20261,6 +20787,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1025998",
@@ -20342,6 +20870,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -20424,6 +20954,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027ad2"
@@ -20504,6 +21036,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027e1c"
@@ -20585,6 +21119,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027e1c"
@@ -20666,6 +21202,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027ad2"
@@ -20746,6 +21284,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027f10"
@@ -20829,6 +21369,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027f10"
@@ -20912,6 +21454,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027ad2"
@@ -20992,6 +21536,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027fa6"
@@ -21073,6 +21619,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027fa6"
@@ -21154,6 +21702,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027ad2"
@@ -21234,6 +21784,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1028034"
@@ -21315,6 +21867,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1028034"
@@ -21396,6 +21950,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -21473,6 +22029,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f6b0"
@@ -21552,6 +22110,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009dd8",
@@ -21632,6 +22192,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -21715,6 +22277,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d538",
@@ -21797,6 +22361,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101b74c"
@@ -21876,6 +22442,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009dd8",
@@ -21959,6 +22527,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021920"
@@ -22038,6 +22608,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009dd8",
@@ -22117,6 +22689,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f8d8"
@@ -22194,6 +22768,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a4d0",
@@ -22277,6 +22853,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -22362,6 +22940,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cfc0",
@@ -22444,6 +23024,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cfc0",
@@ -22527,6 +23109,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100bc44",
@@ -22607,6 +23191,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1028656"
@@ -22684,6 +23270,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cfc0",
@@ -22765,6 +23353,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -22856,6 +23446,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -22944,6 +23536,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101e62c",
@@ -23022,6 +23616,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -23105,6 +23701,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101e62c",
@@ -23183,6 +23781,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100aa04",
@@ -23265,6 +23865,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cfc0",
@@ -23343,6 +23945,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100cfa4",
@@ -23423,6 +24027,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -23501,6 +24107,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -23579,6 +24187,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1013d28",
@@ -23659,6 +24269,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18",
@@ -23739,6 +24351,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -23817,6 +24431,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -23897,6 +24513,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -23977,6 +24595,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -24058,6 +24678,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100f63c"
@@ -24138,6 +24760,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -24215,6 +24839,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -24292,6 +24918,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -24372,6 +25000,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -24450,6 +25080,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -24528,6 +25160,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1029652"
@@ -24607,6 +25241,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100e8b0",
@@ -24691,6 +25327,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -24770,6 +25408,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -24847,6 +25487,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1029738"
@@ -24926,6 +25568,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a960",
@@ -25009,6 +25653,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100d3c0",
@@ -25090,6 +25736,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1009d18"
@@ -25169,6 +25817,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -25248,6 +25898,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -25327,6 +25979,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1029b24"
@@ -25408,6 +26062,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101dd0c",
@@ -25491,6 +26147,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1008d00",
@@ -25573,6 +26231,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f924"
@@ -25655,6 +26315,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x101f924"
@@ -25737,6 +26399,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021790"
@@ -25817,6 +26481,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [],
         "callers": [
@@ -25895,6 +26561,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1027a94",
@@ -25975,6 +26643,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1021800"
@@ -26054,6 +26724,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x100a6f0",
@@ -26137,6 +26809,8 @@
         "symbol_value": 1,
         "symbol_visibility": "STV_DEFAULT"
       },
+      "build_extraction_evidence": null,
+      "build_extraction_verified": false,
       "call_graph": {
         "callees": [
           "0x1030084",
@@ -26220,10 +26894,10 @@
     "integration_warning": "safe_to_exclude is catalog authority only; the build must still prove member extraction and collision freedom",
     "ownership_threshold": 0.9,
     "safe_exclusion_requires": [
-      "exact normalized opcode sequence",
       "unique archive section/symbol identity",
       "global default-visible symbol declared in pinned public headers",
-      "firmware catalog name aligned to public symbol"
+      "firmware catalog name aligned to public symbol",
+      "exact normalized opcode sequence OR verified exact build extraction"
     ],
     "unique_runner_up_gap": 0.03
   },
@@ -26237,6 +26911,7 @@
     "exact_ambiguous": 37,
     "exact_unique": 218,
     "public_api": 1,
+    "safe_to_exclude": 1,
     "total": 325
   }
 }

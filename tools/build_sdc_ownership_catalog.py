@@ -40,6 +40,7 @@ MEMBER = "libsoftdevice_controller_s140_debug_soft__obfuscated.elf"
 HEADERS = os.path.join(NCS, "nrfxlib/softdevice_controller/include")
 OUTPUT = os.path.join(BASE, "recon/ownership/net_sdc_archive_ownership.json")
 REPORT = os.path.join(BASE, "recon/ownership/net_sdc_archive_ownership.md")
+EXTRACTION = os.path.join(BASE, "recon/ownership/net_sdc_build_extraction.json")
 AR = ("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
       "arm-zephyr-eabi-ar")
 THRESHOLD = 0.90
@@ -210,10 +211,13 @@ def _candidate_json(candidate):
     return {key: value for key, value in candidate.items() if key != "opcodes"}
 
 
-def build_rows(functions, candidates, declarations, legacy=None, graph=None):
+def build_rows(functions, candidates, declarations, legacy=None, graph=None,
+               extraction=None, archive_sha256=None):
     names = firmware_names()
     legacy = legacy or {}
     graph = graph or {}
+    extraction = extraction or {}
+    promotions = extraction.get("promotions", {})
     rows = []
     for function in functions:
         va = int(function["entry"]) & ~1
@@ -239,10 +243,18 @@ def build_rows(functions, candidates, declarations, legacy=None, graph=None):
         legacy_row = legacy.get("0x%08x" % va) or legacy.get("0x%x" % va)
         graph_row = graph.get("0x%x" % va, {})
         public_name_aligned = catalog_name == best["symbol"]
-        safe = bool(result["exact_opcode_sequence"] and
-                    result["unique_identity"] and public and public_name_aligned)
+        promotion = promotions.get("0x%08x" % va)
+        build_extraction_verified = bool(
+            promotion and
+            promotion.get("status") == "verified_public_archive_extraction" and
+            promotion.get("symbol") == best["symbol"] and
+            extraction.get("archive", {}).get("sha256") == archive_sha256 and
+            extraction.get("archive", {}).get("member") == best["archive_member"] and
+            extraction.get("archive", {}).get("selected_by_link") is True)
+        safe = bool(result["unique_identity"] and public and public_name_aligned and
+                    (result["exact_opcode_sequence"] or build_extraction_verified))
         reasons = []
-        if not result["exact_opcode_sequence"]:
+        if not result["exact_opcode_sequence"] and not build_extraction_verified:
             reasons.append("approximate_opcode_match")
         if not result["unique_identity"]:
             reasons.append("duplicate_or_low_gap_identity")
@@ -273,6 +285,8 @@ def build_rows(functions, candidates, declarations, legacy=None, graph=None):
             "public_api": public,
             "public_declaration": declaration,
             "public_name_aligned": public_name_aligned,
+            "build_extraction_verified": build_extraction_verified,
+            "build_extraction_evidence": promotion,
             "abi_status": ("published_header_declaration" if public else
                            "private_unpublished"),
             "call_graph": {
@@ -340,8 +354,9 @@ def render_report(catalog):
         "| Public API matches | %d |" % summary.get("public_api", 0),
         "| Safe exclusion candidates | %d |" % summary.get("safe_to_exclude", 0),
         "",
-        "Private and ambiguous identities fail closed. `safe_to_exclude` additionally",
-        "requires an exact unique match and alignment with a public header symbol.",
+        "Private and ambiguous identities fail closed. `safe_to_exclude` requires a",
+        "unique public-header identity plus either an exact opcode match or exact",
+        "build-extraction evidence for that public symbol.",
         "Link integration must still validate that the archive member is selected and",
         "that no duplicate definitions remain before applying exclusions.",
         "",
@@ -394,6 +409,7 @@ def main():
     parser.add_argument("--headers", default=HEADERS)
     parser.add_argument("--output", default=OUTPUT)
     parser.add_argument("--report", default=REPORT)
+    parser.add_argument("--extraction-evidence", default=EXTRACTION)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -407,7 +423,11 @@ def main():
         BASE, "recon/ownership/net_function_ownership.json")))
     legacy = legacy_catalog.get("entries", {})
     graph = load_catalog("refgraph_net").get("functions", {})
-    rows = build_rows(functions, candidates, declarations, legacy, graph)
+    extraction = (json.load(open(args.extraction_evidence))
+                  if os.path.exists(args.extraction_evidence) else {})
+    archive_sha256 = sha256_file(args.archive)
+    rows = build_rows(functions, candidates, declarations, legacy, graph,
+                      extraction, archive_sha256)
     link_map = "/Users/freedomcoder/ncs251/netref_build/zephyr/zephyr.map"
     member_token = os.path.basename(args.archive) + "(" + args.member + ")"
     map_text = open(link_map, errors="replace").read()
@@ -420,7 +440,7 @@ def main():
             "ncs_version": "v2.5.1",
             "nrfxlib_commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
             "archive": os.path.relpath(args.archive, NCS),
-            "archive_sha256": sha256_file(args.archive),
+            "archive_sha256": archive_sha256,
             "archive_member": args.member,
             "abi": "ARM EABI v5, Cortex-M33+nodsp, soft-float",
             "headers": os.path.relpath(args.headers, NCS),
@@ -434,10 +454,10 @@ def main():
             "ownership_threshold": THRESHOLD,
             "unique_runner_up_gap": UNIQUE_GAP,
             "safe_exclusion_requires": [
-                "exact normalized opcode sequence",
                 "unique archive section/symbol identity",
                 "global default-visible symbol declared in pinned public headers",
                 "firmware catalog name aligned to public symbol",
+                "exact normalized opcode sequence OR verified exact build extraction",
             ],
             "integration_warning": ("safe_to_exclude is catalog authority only; the build "
                                     "must still prove member extraction and collision freedom"),
@@ -445,6 +465,11 @@ def main():
         "archive_index": {
             "eligible_functions": len(candidates),
             "public_header_declarations": len(declarations),
+        },
+        "build_extraction_input": {
+            "path": os.path.relpath(args.extraction_evidence, BASE),
+            "sha256": (sha256_file(args.extraction_evidence)
+                       if os.path.exists(args.extraction_evidence) else None),
         },
         "summary": summarize(rows),
         "functions": rows,

@@ -11,10 +11,11 @@ The generator does not edit sources or the adoption manifest.
 | Approximate, ambiguous identity | 6 |
 | **Archive-owned total** | **325** |
 | Public API matches | 1 |
-| Safe exclusion candidates | 0 |
+| Safe exclusion candidates | 1 |
 
-Private and ambiguous identities fail closed. `safe_to_exclude` additionally
-requires an exact unique match and alignment with a public header symbol.
+Private and ambiguous identities fail closed. `safe_to_exclude` requires a
+unique public-header identity plus either an exact opcode match or exact
+build-extraction evidence for that public symbol.
 Link integration must still validate that the archive member is selected and
 that no duplicate definitions remain before applying exclusions.
 
@@ -22,6 +23,7 @@ that no duplicate definitions remain before applying exclusions.
 
 | Firmware VA | Symbol | Score | Header |
 |---|---|---:|---|
+| `0x010091cc` | `sdc_default_tx_power_set` | 0.900 | `nrfxlib/softdevice_controller/include/sdc.h:501` |
 
 ## Ambiguous identities
 

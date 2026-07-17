@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "core": "net",
+  "component": "softdevice_controller",
+  "generated_date": "2026-07-17",
+  "build": {
+    "shell": "recon/application/net",
+    "artifact_directory": "/tmp/g1-net-shell-build",
+    "command": "ninja -C /tmp/g1-net-shell-build -v",
+    "expected_result": "link_failure_from_deliberately_retained_owner_collisions",
+    "configuration": {
+      "CONFIG_BT_LL_SOFTDEVICE": "y",
+      "CONFIG_BT_LL_SOFTDEVICE_BUILD_TYPE_LIB": "y",
+      "CONFIG_BT_LL_SOFTDEVICE_MULTIROLE": "y",
+      "CONFIG_BT_CTLR": "y",
+      "target_abi": "Cortex-M33+nodsp, soft-float"
+    },
+    "artifacts": {
+      "zephyr/.config": {
+        "sha256": "d0daed19268cbfb87a7e457e158e813fd0f8b32c61b1f5a0d757b06d85f91c54",
+        "size": 62192
+      },
+      "build.ninja": {
+        "sha256": "b3926742ed0e5572973add5c0fec12b9eb84a9cb47b4471b5d14ff4d64611b23",
+        "size": 4554841
+      },
+      "compile_commands.json": {
+        "sha256": "1450763f1b7573c6c5d66a9e52b8bdc37a4b394747d3c4dc77b75912f3ffebb8",
+        "size": 3198339
+      },
+      "app/libapp.a": {
+        "sha256": "02b4ad50c57944cc22d9dc8eaf61746b283ba37a84c89f6b2aab74aab3cd14da",
+        "size": 3878484
+      },
+      "zephyr/zephyr_pre0.map": {
+        "sha256": "f9386528fe933635ebd88d4dca633f3482192735cd831b7a44f4cd548fca715c",
+        "size": 2145572
+      },
+      "sdc_link_probe.log": {
+        "sha256": "cfd4884083473f3425235effdfd2daa446227968a41c50c74ab1d1a25adf5a58",
+        "size": 8902
+      }
+    }
+  },
+  "archive": {
+    "path": "nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a",
+    "sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+    "member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "selected_by_link": true,
+    "selection_evidence": "The prelink map lists the exact archive member, and ld diagnoses its strong definition of sdc_default_tx_power_set against the retained reconstruction."
+  },
+  "post_exclusion_validation": {
+    "result": "PASS",
+    "build_completed": true,
+    "build_steps": 1001,
+    "reconstruction_object_absent_from_build_ninja": true,
+    "reconstruction_object_absent_from_compile_commands": true,
+    "exact_archive_member_present_in_final_map": true,
+    "public_symbol_in_final_elf": false,
+    "public_symbol_note": "The minimal shell does not retain the firmware startup caller, so --gc-sections removes the unreferenced public section after resolving the archive. The earlier strong-symbol collision proves the selected member contains the implementation; successful relink proves the reconstruction can be omitted without a collision workaround.",
+    "artifacts": {
+      "zephyr/zephyr_final.map": {
+        "sha256": "8dc284e11daf1aa3976adf3b55af6b4c93951f1de832094e8acb970ef819426d",
+        "size": 2141911
+      },
+      "zephyr/zephyr.elf": {
+        "sha256": "8a4cc64b3d3822a6cad0710a530904cb4c575fa82ad45a86ce87718986d71fae",
+        "size": 1726920
+      },
+      "app/libapp.a": {
+        "sha256": "d36f39c75a28aa53a4b9f2a4b7362d7603c8a87805cef3967d0743df87bf7d82",
+        "size": 3866296
+      }
+    }
+  },
+  "promotions": {
+    "0x010091cc": {
+      "symbol": "sdc_default_tx_power_set",
+      "status": "verified_public_archive_extraction",
+      "source_object": "app/libapp.a(FUN_010091cc.c.obj)",
+      "source_definition": "recon/net/src/FUN_010091cc.c:12",
+      "archive_definition": "libsoftdevice_controller_multirole.a(libsoftdevice_controller_s140_debug_soft__obfuscated.elf):.text+0x0",
+      "link_diagnostic": "multiple definition of `sdc_default_tx_power_set'; app/libapp.a(FUN_010091cc.c.obj):recon/net/src/FUN_010091cc.c:12: first defined here",
+      "nm_reconstruction": "FUN_010091cc.c.obj:00000000 T sdc_default_tx_power_set",
+      "nm_archive": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf:00000000 T sdc_default_tx_power_set",
+      "public_header": "nrfxlib/softdevice_controller/include/sdc.h:501",
+      "public_declaration": "int32_t sdc_default_tx_power_set(int8_t requested_power_level);",
+      "firmware_cfg_verification": {
+        "result": "PASS",
+        "cases": 6,
+        "negative_mutation": "zero-forward mutation rejected with 4 mismatches",
+        "caller_result": "PASS",
+        "evidence": [
+          "tools/cfg_verify.py",
+          "recon/ownership/net_sdc_archive_benchmark.md"
+        ]
+      },
+      "scope": "Only this public symbol is authorized; no private SDC identity is promoted."
+    }
+  }
+}
