@@ -1,0 +1,101 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "fail_closed": true,
+  "single_owner": "retained reconstructed entry",
+  "no_weak_stub_blob_or_assembly": true,
+  "forbidden_alias": "log_message/DEBUG_PRINT@0x0007dda4 -> debug_print@0x00019c70"
+ },
+ "pinned_environment": {
+  "ncs": "2.5.1",
+  "zephyr": "3.4.99",
+  "gcc": "12.2.0",
+  "libc": "newlib-nano",
+  "optimization": "-Os",
+  "float_abi": "hard"
+ },
+ "summary": {
+  "functions": 4,
+  "resolved_reference_count": 377
+ },
+ "functions": [
+  {
+   "va": "0x0007dda4",
+   "size": 26,
+   "symbol": "log_message",
+   "semantic_owner": "application variadic vprintf wrapper",
+   "source": "recon/app/src/log_message.c",
+   "upstream_provenance": "newlib-nano vprintf public API",
+   "config": [
+    "CONFIG_NEWLIB_LIBC=y",
+    "CONFIG_NEWLIB_LIBC_NANO=y"
+   ],
+   "abi": "void log_message(const char *format, ...); AAPCS va_list begins at saved r1",
+   "reference_count": 281,
+   "raw_identity": "FUN_0007dda4",
+   "firmware_span_sha256": "b94bfaadc71ed582a469121d0805990cce31ce071f27ed4f7c8437fe1da6e941",
+   "source_sha256": "3f2bc29b2f6a0f5259f4265781130576e82a412ddd8e5f40bfa5c166aac09830",
+   "verification": "tools/cfg_verify.py app log_message: PASS",
+   "retain_reconstruction": true,
+   "exclude_reconstruction": false
+  },
+  {
+   "va": "0x000431a8",
+   "size": 8,
+   "symbol": "atomic_get_3_0",
+   "semantic_owner": "display atomic-state accessor",
+   "source": "recon/app/src/atomic_get_3_0.c",
+   "upstream_provenance": "Zephyr atomic_get semantics; application object at 0x2000a030",
+   "config": [
+    "CONFIG_ATOMIC_OPERATIONS_BUILTIN=y"
+   ],
+   "abi": "uint32_t atomic_get_3_0(void); fixed atomic object at 0x2000a030",
+   "reference_count": 30,
+   "raw_identity": "FUN_000431a8",
+   "firmware_span_sha256": "ce0221097b9b632d94821372023dea294f8b580c4b71db1e9f692202d67b72a8",
+   "source_sha256": "acd0ea1e8862b44ecc54849b783c8c7d090ae772f6ec2cf23ba6c9d58e2fc177",
+   "verification": "tools/cfg_verify.py app atomic_get_3_0: PASS",
+   "retain_reconstruction": true,
+   "exclude_reconstruction": false
+  },
+  {
+   "va": "0x00082ff6",
+   "size": 12,
+   "symbol": "atomic_test_bit",
+   "semantic_owner": "Zephyr atomic_test_bit header-inline instance",
+   "source": "recon/app/src/atomic_test_bit.c",
+   "upstream_provenance": "zephyr/include/zephyr/sys/atomic.h",
+   "config": [
+    "CONFIG_ATOMIC_OPERATIONS_BUILTIN=y"
+   ],
+   "abi": "bool atomic_test_bit(const atomic_t *target, int bit); atomic_t is 32-bit long",
+   "reference_count": 37,
+   "raw_identity": "FUN_00082ff6",
+   "firmware_span_sha256": "09d74831bfc50b0b31d0b338e573587a6c6c9672bba0a666a0a9e29f31c20e39",
+   "source_sha256": "155d284023c8c28f481b9d695726e7bf1b226b4813ddce0c85086f6805072e3e",
+   "verification": "tools/cfg_verify.py app atomic_test_bit: PASS",
+   "retain_reconstruction": true,
+   "exclude_reconstruction": false
+  },
+  {
+   "va": "0x00083090",
+   "size": 20,
+   "symbol": "atomic_set_bit",
+   "semantic_owner": "Zephyr atomic_set_bit header-inline instance",
+   "source": "recon/app/src/atomic_set_bit.c",
+   "upstream_provenance": "zephyr/include/zephyr/sys/atomic.h",
+   "config": [
+    "CONFIG_ATOMIC_OPERATIONS_BUILTIN=y"
+   ],
+   "abi": "void atomic_set_bit(atomic_t *target, int bit); atomic_t is 32-bit long",
+   "reference_count": 29,
+   "raw_identity": "FUN_00083090",
+   "firmware_span_sha256": "9cf8d3da7fe0c474b778e682ff1410cd54df0d97e796ca3ce0a32be93268f90f",
+   "source_sha256": "0887f9899963d75384de25400966c4a83dee7c90f42eb098b4ffd6b12c61d1d4",
+   "verification": "tools/cfg_verify.py app atomic_set_bit: PASS",
+   "retain_reconstruction": true,
+   "exclude_reconstruction": false
+  }
+ ]
+}
