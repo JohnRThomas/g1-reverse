@@ -382,6 +382,14 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00017a34): 0x08,
     ("app", 0x0002893c): 0x1e,
     ("app", 0x00032fdc): 0x06,
+    ("app", 0x0002538c): 0x98,  # transport state update
+    ("app", 0x000258b4): 0x90,  # transport parameter reader
+    ("app", 0x00025950): 0x78,  # transport parameter writer
+    ("app", 0x0002bdf0): 0x60,  # active-mode shutdown
+    ("app", 0x0003364c): 0x50,  # one-byte transport send
+    ("app", 0x00033a5c): 0x4c,  # notification-count response
+    ("app", 0x00035744): 0x28,  # whitelist dump/init wrapper
+    ("app", 0x0003cebc): 0x72,  # do-not-disturb state setter
     # Independently callable SDK/application entries missed by the Ghidra
     # function catalog.  Extents were reviewed directly from the shipped
     # Thumb CFG and stop before literal pools / following entry points.
@@ -916,6 +924,9 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # Whitelist initialization is a void procedure; the tail-called
+    # revalidation helper's r0 is not part of this entry's ABI.
+    ("app", 0x00035744): "void",
     # LC3 TNS analysis mutates side data and spectrum in place; VFP residue at
     # return is caller scratch, not a floating result.
     ("app", 0x0006ffd8): "void",
@@ -1288,6 +1299,8 @@ REVIEWED_ORACLE_MEMORY_COPIES = {
     },
 }
 REVIEWED_STACK_POINTER_CALLS = {
+    # Do-not-disturb synchronization consumes the address of one local byte.
+    ("app", 0x0003cebc): {1: {0}},
     ("app", 0x00023400): {0: {0}, 1: {1}},
     # Panel suspend owns a one-byte command and settings load owns its complete
     # 132-byte persistence record.  Their compiler-dependent addresses are

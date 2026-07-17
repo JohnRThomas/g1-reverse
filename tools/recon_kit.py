@@ -43,6 +43,14 @@ TRUE_SIZE_OVERRIDES = {
     0x00017a34: 0x08,
     0x0002893c: 0x1e,  # click-event notification helper
     0x00032fdc: 0x06,  # fixed-byte getter
+    0x0002538c: 0x98,  # transport state update; literals at 0x25424
+    0x000258b4: 0x90,  # transport parameter reader; literals at 0x25944
+    0x00025950: 0x78,  # transport parameter writer; literals at 0x259c8
+    0x0002bdf0: 0x60,  # active-mode shutdown; literals at 0x2be50
+    0x0003364c: 0x50,  # one-byte transport send; literal at 0x3369c
+    0x00033a5c: 0x4c,  # notification-count response; literals at 0x33aa8
+    0x00035744: 0x28,  # whitelist dump/init wrapper; literals at 0x3576c
+    0x0003cebc: 0x72,  # do-not-disturb state setter; alignment at 0x3cf2e
     # lc3_tns_analyze continues through the final quantizer/order backedge at
     # 0x709c4; its trailing threshold literals begin at 0x709c8.
     0x0006ffd8: 0x9ee,
