@@ -83,8 +83,11 @@ def link_and_report():
     # tail branch to a different function entry.  Unlike readable/raw identity
     # aliases, reversing one would change ownership and is never valid.
     reviewed_veneers = BASE + "/recon/symbols/g1_%s_veneer_aliases.ld" % CORE
-    if os.path.exists(reviewed_veneers):
-        for line in open(reviewed_veneers):
+    public_sdk_aliases = BASE + "/recon/symbols/g1_%s_public_sdk_aliases.ld" % CORE
+    for directional_fragment in (reviewed_veneers, public_sdk_aliases):
+        if not os.path.exists(directional_fragment):
+            continue
+        for line in open(directional_fragment):
             match = re.search(r'PROVIDE\(([^\s=]+)\s*=\s*([^\s;)]+)', line)
             if not match:
                 continue
@@ -97,7 +100,8 @@ def link_and_report():
     provided = set()
     for frag in ("g1_%s_globals.ld" % CORE, "g1_%s_aliases.ld" % CORE,
                  "g1_%s_function_aliases.ld" % CORE,
-                 "g1_%s_veneer_aliases.ld" % CORE):
+                 "g1_%s_veneer_aliases.ld" % CORE,
+                 "g1_%s_public_sdk_aliases.ld" % CORE):
         p = BASE + "/recon/symbols/" + frag
         if os.path.exists(p):
             for l in open(p):

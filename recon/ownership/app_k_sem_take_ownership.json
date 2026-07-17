@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "core": "app",
+  "symbol": "k_sem_take",
+  "decision": "materialize_directional_alias",
+  "alias": "k_sem_take",
+  "owner": "z_impl_k_sem_take",
+  "wrapper_va": "0x0007cb48",
+  "owner_va": "0x00072908",
+  "firmware": {
+    "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+    "bytes": "f5f7debe",
+    "decode": "b.w #0x72908",
+    "relationship": "exact four-byte unconditional Thumb tail branch"
+  },
+  "abi": {
+    "return": "int in r0",
+    "parameter_0": "struct k_sem * in r0",
+    "parameter_1": "k_timeout_t (int64_t) aligned in r2:r3",
+    "r1": "AAPCS32 alignment padding; not a semantic parameter",
+    "tail_safe": true
+  },
+  "upstream": {
+    "version": "NCS v2.5.1 / Zephyr 3.4.99",
+    "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+    "config": "CONFIG_USERSPACE=n",
+    "declaration": "zephyr/include/zephyr/kernel.h:3137",
+    "generated_wrapper": "refapp/build/zephyr/include/generated/syscalls/kernel.h:1093",
+    "implementation": "zephyr/kernel/sem.c:124",
+    "files": {
+      "kernel_h_sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
+      "generated_kernel_h_sha256": "9149c1bdadb7fc06e7f8e462f3e9a491ed745e9f067a20de7633e7c9bffc09d4",
+      "sem_c_sha256": "c57257d4cafe4a76e4191805f827ce83e813563a9f8e8f65eae70189aafd75ce",
+      "config_sha256": "528b2f1dbb53cd93e7912f2092d659a19cc3dc0ab2f05edf382447582834dff6"
+    }
+  },
+  "ownership": {
+    "kind": "retained reconstruction",
+    "source": "recon/symbolized/app/z_impl_k_sem_take.c",
+    "one_strong_owner_required": true,
+    "sdk_z_impl_adopted": false,
+    "sdk_symbol_displacement": "z_impl_k_sem_take=g1_displaced_sdk_z_impl_k_sem_take",
+    "reason": "pinned SDK z_impl code shape does not match the shipped configured body"
+  },
+  "references": {
+    "count": 6,
+    "sites": [
+      "FUN_0002a4f4.c:87",
+      "check_work_mode.c:363",
+      "click_event_dispatch_loop.c:61",
+      "key_event_thread.c:94",
+      "slave_display_thread.c:216",
+      "touch_key_thread.c:79"
+    ]
+  },
+  "policy": {
+    "weak_stub": false,
+    "absolute_address_alias": false,
+    "raw_address_backmap_preserved": true,
+    "semantic_guess": false
+  }
+}

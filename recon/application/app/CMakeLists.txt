@@ -12,6 +12,18 @@ set(CONF_FILE
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(g1_cpuapp_reconstruction)
 
+# The shipped configured z_impl_k_sem_take body is retained because the pinned
+# Zephyr sem.c body fails the instruction/shape ownership gates.  sem.c also
+# owns unrelated semaphore APIs, so the unit cannot be removed.  Rename only
+# its non-selected implementation at compile time; all external references and
+# the exact public veneer then bind to the single retained strong owner.
+set_source_files_properties(
+  "${ZEPHYR_BASE}/kernel/sem.c"
+  DIRECTORY "${ZEPHYR_BASE}/kernel"
+  PROPERTIES COMPILE_DEFINITIONS
+    "z_impl_k_sem_take=g1_displaced_sdk_z_impl_k_sem_take"
+)
+
 # This shell is currently an ownership/link integration probe, not a runnable
 # application entry-point build.  Its temporary Zephyr main does not reference
 # every recovered function, so normal --gc-sections would silently discard the
@@ -82,4 +94,5 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_function_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
 )
