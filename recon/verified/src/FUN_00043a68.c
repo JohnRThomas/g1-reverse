@@ -4,7 +4,7 @@ typedef unsigned uint; typedef unsigned char byte; typedef unsigned long long ul
 extern int DEBUG_PRINT(int,...);
 extern int FUN_000167a8(int,...);
 extern int FUN_00019c70(int,...);
-extern long long FUN_000431a8(int,...);
+extern unsigned FUN_000431a8(void);
 extern int FUN_000471cc(int,...);
 extern int FUN_00047260(int,...);
 
@@ -21,10 +21,10 @@ unsigned FUN_00043a68(uint param_1,int param_2,int param_3,int param_4,int param
     } else {
         if((param_1 & 1) == 0){
             iVar7 = param_3;
-            uVar14 = (ulonglong)FUN_000431a8(0);
+            uVar14 = (ulonglong)FUN_000431a8();
             piVar3 = (int*)0x2000a034;
             if((uVar14 & 2) != 0){
-                FUN_000471cc(*(volatile int*)0x2000a034, 0, param_1 - 2, (int)(uVar14 >> 0x20), iVar7 + 2, param_4);
+                FUN_000471cc(*(volatile int*)0x2000a034, 0, param_1 - 2, param_2, iVar7 + 2, param_4);
             }
             uVar1 = (uint)((int)(param_3 - param_1) >> 3);
             iVar7 = *piVar3;
@@ -38,7 +38,7 @@ unsigned FUN_00043a68(uint param_1,int param_2,int param_3,int param_4,int param
                     uVar6 = 0;
                     do {
                         if((((int)(uint)bVar2 >> (uVar6 & 0xff)) & 1U) != 0){
-                            if((int)(uVar6 << 0x1f) < 0){ uVar4 = uVar4 | uVar9; }
+                            if((uVar6 & 1U) != 0){ uVar4 = uVar4 | uVar9; }
                             else { uVar4 = uVar4 | ((uVar9 & 0xf) << 4); }
                         }
                         uVar12 = uVar6 + 1;
@@ -53,8 +53,8 @@ unsigned FUN_00043a68(uint param_1,int param_2,int param_3,int param_4,int param
                 }
                 iVar13 = iVar13 + (uVar1 & ~((int)(param_3 - param_1) >> 0x1f));
             }
-            iVar7 = (int)FUN_000431a8(0);
-            if(iVar7 << 0x1e < 0){
+            iVar7 = (int)FUN_000431a8();
+            if(((uint32_t)iVar7 & 2U) != 0){
                 iVar7 = FUN_000167a8(0);
                 uVar10 = *(unsigned*)(iVar7 + 0xeb4);
                 iVar7 = FUN_000167a8(0);
@@ -68,7 +68,6 @@ unsigned FUN_00043a68(uint param_1,int param_2,int param_3,int param_4,int param
         uVar10 = 0x000aa9a3;
     }
     if(iVar7 == 0){ DEBUG_PRINT(uVar10, 0x000aacde); }
-    else { FUN_00019c70(0); }
+    else { FUN_00019c70(uVar10, 0x000aacde); }
     return 0xffffffff;
 }
-
