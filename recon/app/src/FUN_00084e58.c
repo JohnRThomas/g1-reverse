@@ -1,13 +1,11 @@
-/* Reconstructed FUN_00084e58 @ 0x84e58  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00084e58 @ 0x84e58 */
+#include <stdint.h>
 
-extern void FUN_00084dea(int a, unsigned int b, void *c, int d, int e);
-void FUN_00084e58(int param_1)
+extern void FUN_00084e44(uintptr_t, uint32_t, uint32_t);
+
+void FUN_00084e58(uintptr_t peripheral)
 {
-  unsigned int uVar1;
-  unsigned char local_c[8];
-  uVar1 = (*(volatile int *)(param_1 + 8) - 0x18) & 0xfffffff8;
-  *(unsigned int *)local_c = (((uVar1 >> 8) & 0xffffffU) << 8) | 1;
-  *(unsigned int *)(local_c + 4) = 1;
-  FUN_00084dea(param_1, uVar1, local_c, 1, param_1);
+  uint32_t buffer =
+      (*(volatile uint32_t *)(peripheral + 8) - 0x18u) & ~7u;
+  FUN_00084e44(peripheral, buffer, 1);
 }
-

@@ -2,12 +2,14 @@
 
 extern void FUN_0008633e(unsigned int a, void *b);
 
-void FUN_0008099e(unsigned int param_1, unsigned int param_2, unsigned int param_3)
-{
-    unsigned int local[3];
-    local[0] = param_2;
-    local[1] = param_3;
-    local[2] = param_3;
-    FUN_0008633e(param_1, local);
-}
+struct work_item {
+    unsigned int value;
+    unsigned int context;
+};
 
+void FUN_0008099e(unsigned int queue, unsigned int value,
+                  unsigned int context)
+{
+    struct work_item item = { value, context };
+    FUN_0008633e(queue, &item);
+}
