@@ -848,6 +848,9 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x4e98c): 0x10,
     # TBH case handlers and three fatal tails continue past catalog end 0x101d810.
     ("net", 0x101d404): 0x478,
+    # Catalog-missing controller timestamp getter ends at BX LR; the aligned
+    # word at 0x010202ec is its global-state literal, not executable code.
+    ("net", 0x010202e4): 0x06,
     # LLCP receive dispatcher ends immediately before FUN_010187e0.
     ("net", 0x01018690): 0x150,
     # Ghidra folded nine following utility symbols into this wrapper.
@@ -17911,6 +17914,82 @@ REVIEWED_NPTR_COUNTS[("net", 0x01027974)] = 1
 REVIEWED_NPTR_COUNTS[("net", 0x010280f2)] = 0
 REVIEWED_NPTR_COUNTS[("net", 0x010283fe)] = 0
 REVIEWED_NPTR_COUNTS[("net", 0x01028656)] = 1
+
+# Controller timing selectors/getters and the bank-advance handler have no
+# entry pointers.  Queue draining consumes exactly its leading context pointer.
+REVIEWED_NPTR_COUNTS[("net", 0x0101a184)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010202e4)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01021800)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x01021b04)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01021b7c)] = 1
+
+
+def _net_queue_drain_case(with_node):
+    context = emu.SCRATCH + 0x1000
+    node = emu.SCRATCH + 0x1800
+    returns = {0: {0: node if with_node else 0}}
+    if with_node:
+        # pop(node), prepend(node), pop(NULL)
+        returns[1] = {0: 0}
+        returns[2] = {0: 0}
+    return ({0: context}, [(context, bytes(0x60)), (node, bytes(8))], returns)
+
+
+# The queue popper's return controls loop termination.  Random call oracles can
+# make this bounded drain nonterminating, so cover both empty and one-node
+# production shapes with an explicit terminating result sequence.
+REVIEWED_ORACLE_CASES[("net", 0x01021800)] = [
+    _net_queue_drain_case(False),
+    _net_queue_drain_case(True),
+]
+
+
+def _net_record_window_case(initial=0x20, request_start=50,
+                            request_span=20, request_flag=0,
+                            request_rank=10, record_start=100,
+                            record_flag=0, record_rank=5,
+                            next_record=0x20, timing_code=None):
+    request = emu.SCRATCH + 0x1200
+    previous_out = emu.SCRATCH + 0x1300
+    current_out = emu.SCRATCH + 0x1304
+    req = bytearray(0x20)
+    req[0:8] = int(request_start).to_bytes(8, "little")
+    req[8:12] = int(request_span).to_bytes(4, "little")
+    req[0x0e:0x10] = int(request_flag).to_bytes(2, "little")
+    req[0x10] = int(request_rank) & 0xff
+    state = bytearray(0x600)
+    state[0x30] = int(initial) & 0xff
+    if initial != 0x20:
+        record = int(initial) * 0x20
+        state[record + 0xd8:record + 0xdc] = (
+            int(record_start) & 0xffffffff).to_bytes(4, "little")
+        state[record + 0xdc:record + 0xe0] = (
+            int(record_start) >> 32).to_bytes(4, "little")
+        state[record + 0xe6:record + 0xe8] = (
+            int(record_flag) & 0xffff).to_bytes(2, "little")
+        state[record + 0xe8] = int(record_rank) & 0xff
+        state[0x51 + int(initial) * 2] = int(next_record) & 0xff
+    oracles = {} if timing_code is None else {0: {0: int(timing_code)}}
+    return (
+        {0: request, 1: 0, 2: previous_out, 3: current_out},
+        [(request, bytes(req)), (previous_out, bytes(8)),
+         (0x210016f0, bytes(state))],
+        oracles,
+    )
+
+
+# The record search has noncontiguous pointer arguments (r0/r2/r3) and a
+# scalar bank in r1.  Production-shaped fixtures cover the empty list, normal
+# advance, overlap selection, separated-window rejection, and PHY-spacing
+# threshold path without manufacturing pointer-valued bank indices.
+REVIEWED_ORACLE_CASES[("net", 0x01021b7c)] = [
+    _net_record_window_case(),
+    _net_record_window_case(initial=1, request_start=200),
+    _net_record_window_case(initial=1, request_start=50, request_span=100),
+    _net_record_window_case(initial=1, request_start=50, request_span=20),
+    _net_record_window_case(initial=1, request_start=110, request_flag=1,
+                            timing_code=0x356),
+]
 
 
 def _net_buffer_flag_case(flag):
