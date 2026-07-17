@@ -4,7 +4,7 @@ typedef unsigned char byte;
 typedef unsigned int uint;
 
 extern int FUN_0000ef12(int);
-extern int FUN_00076a94(int,...);
+extern void FUN_00076a94(int,...) __attribute__((noreturn));
 extern int FUN_000785d4(int,...);
 extern int FUN_00078654(int,...);
 extern int FUN_000789f0(int,...);
@@ -20,12 +20,15 @@ byte *FUN_00078110(int param_1, int *param_2, int *param_3, int *param_4, int *p
   byte bVar2;
   int iVar6, iVar7, iVar8, iVar13, iVar17;
   uint uVar3, uVar9, uVar22, uVar23;
-  int extraout_r1 = 0;
-  byte *pbVar10, *pbVar12, *pbVar16, *pbVar18, *pbVar19, *pbVar21;
+  byte *pbVar10, *pbVar12, *pbVar18, *pbVar19, *pbVar21;
+  byte *fraction_start;
   uint *puVar20, *local_40;
   int *piVar14, *piVar15;
   int bVar4, bVar5;
   int uVar11;
+  uint32_t scale = 0;
+  int32_t precision;
+  uint32_t status_base;
 
   iVar13 = *(volatile int*)0x98768UL;
   iVar6 = FUN_0000ef12(iVar13);
@@ -35,16 +38,17 @@ byte *FUN_00078110(int param_1, int *param_2, int *param_3, int *param_4, int *p
     pbVar19 = pbVar21;
     pbVar21 = pbVar19 + 1;
   } while (*pbVar19 == 0x30);
-  pbVar21 = pbVar19 + (-2 - *param_2);
-  iVar7 = FUN_00087340(0);
+  int leading_zero_count = (int)((uintptr_t)pbVar19 -
+                                 ((uintptr_t)(uint32_t)*param_2 + 2u));
+  iVar7 = FUN_00087340(*pbVar19);
   if (iVar7 == 0) {
     iVar7 = FUN_00087036(pbVar19, iVar13, iVar6);
     pbVar18 = pbVar19;
     if (iVar7 == 0) {
-      pbVar16 = pbVar19 + iVar6;
+      fraction_start = pbVar19 + iVar6;
       iVar7 = FUN_00087340(pbVar19[iVar6]);
-      pbVar12 = pbVar16;
-      pbVar18 = pbVar16;
+      pbVar12 = fraction_start;
+      pbVar18 = fraction_start;
       if (iVar7 != 0) {
         do {
           pbVar19 = pbVar12;
@@ -57,11 +61,11 @@ byte *FUN_00078110(int param_1, int *param_2, int *param_3, int *param_4, int *p
         goto LAB_00078192;
       }
     }
-    pbVar16 = 0;
+    fraction_start = 0;
     bVar4 = 1;
   } else {
     bVar4 = 0;
-    pbVar16 = 0;
+    fraction_start = 0;
     pbVar12 = pbVar19;
 LAB_00078192:
     do {
@@ -71,17 +75,17 @@ LAB_00078192:
     } while (iVar7 != 0);
     iVar7 = FUN_00087036(pbVar18, iVar13, iVar6);
     if (iVar7 == 0) {
-      if (pbVar16 == 0) {
-        pbVar16 = pbVar18 + iVar6;
-        pbVar12 = pbVar16;
+      if (fraction_start == 0) {
+        fraction_start = pbVar18 + iVar6;
+        pbVar12 = fraction_start;
         do {
           pbVar18 = pbVar12;
           pbVar12 = pbVar18 + 1;
           iVar7 = FUN_00087340(*pbVar18);
         } while (iVar7 != 0);
       }
-    } else if (pbVar16 == 0) goto LAB_000781d2;
-    pbVar16 = (byte*)(((int)pbVar16 - (int)pbVar18) * 4);
+    } else if (fraction_start == 0) goto LAB_000781d2;
+    scale = (uint32_t)((uintptr_t)fraction_start - (uintptr_t)pbVar18) * 4u;
   }
 LAB_000781d2:
   pbVar12 = pbVar18;
@@ -96,44 +100,40 @@ LAB_000781d2:
       pbVar10 = pbVar18 + 1;
       bVar5 = 0;
     }
-    uint32_t rlo; int rhi;
+    uint32_t rlo;
     rlo = FUN_00087340(*pbVar10);
-    rhi = 0;
     if (((rlo - 1U) & 0xff) < 0x19) {
       byte *pp = pbVar10;
+      uint32_t exponent_value = rlo - 0x10u;
       for (;;) {
-        iVar7 = (int)rlo - 0x10;
-        pp = pp + 1 + rhi;
+        pp++;
         rlo = FUN_00087340(*pp);
-        rhi = 0;
         pbVar12 = pp;
         if (0x18 < ((rlo - 1U) & 0xff)) break;
-        rlo = iVar7 * 10 + (int)rlo;
+        exponent_value = exponent_value * 10u + (rlo - 0x10u);
       }
-      if (bVar5) iVar7 = -iVar7;
-      pbVar16 = pbVar16 + iVar7;
+      uint32_t exponent_delta = bVar5 ? 0u - exponent_value : exponent_value;
+      scale += exponent_delta;
     }
   }
-  *param_2 = (int)(long)pbVar12;
+  *param_2 = (int32_t)(uintptr_t)pbVar12;
   if (bVar4) {
-    if (pbVar21 != 0) return (byte*)0x0;
+    if (leading_zero_count != 0) return (byte*)0x0;
     return (byte*)0x6;
   }
-  pbVar21 = pbVar18 + (-1 - (int)(long)pbVar19);
+  int32_t digit_count_minus_one =
+      (int32_t)((uintptr_t)pbVar18 - (uintptr_t)pbVar19) - 1;
   iVar7 = 0;
 LAB_00078258:
-  if (7 < (int)(long)pbVar21) {
+  if (7 < digit_count_minus_one) {
     iVar7 = iVar7 + 1;
-    pbVar21 = (byte*)((int)(long)pbVar21 >> 1);
+    digit_count_minus_one >>= 1;
     goto LAB_00078258;
   }
   iVar7 = FUN_000785d4(param_1, iVar7);
   if (iVar7 == 0) {
     uVar11 = 0xde;
     FUN_00076a94(0xf8c53, uVar11, 0);
-    iVar7 = extraout_r1;
-    iVar7 = iVar7 + 1;
-    goto LAB_00078258;
   }
   uVar23 = 0;
   puVar20 = (uint*)(iVar7 + 0x14);
@@ -156,18 +156,18 @@ LAB_00078258:
     }
   }
   *local_40 = uVar22;
-  iVar17 = ((int)(long)local_40 + (4 - (int)(long)puVar20)) >> 2;
+  iVar17 = (int)(local_40 - puVar20) + 1;
   *(volatile int*)(iVar7 + 0x10) = iVar17;
   iVar8 = FUN_00087510(uVar22);
-  pbVar19 = (byte*)*param_3;
+  precision = *param_3;
   iVar8 = iVar17 * 0x20 - iVar8;
-  if ((int)(long)pbVar19 < iVar8) {
-    iVar8 = iVar8 - (int)(long)pbVar19;
+  if (precision < iVar8) {
+    iVar8 = iVar8 - precision;
     uVar22 = FUN_0008768e(iVar7, iVar8);
     if (uVar22 != 0) {
       uVar23 = iVar8 - 1;
       uVar22 = 1;
-      if ((1 << (uVar23 & 0x1f) & puVar20[(int)uVar23 >> 5]) != 0) {
+      if ((1u << (uVar23 & 0x1f) & puVar20[(int)uVar23 >> 5]) != 0) {
         if (((int)uVar23 < 2) || (iVar17 = FUN_0008768e(iVar7, iVar8 - 2), iVar17 == 0)) {
           uVar22 = 2;
         } else {
@@ -175,29 +175,29 @@ LAB_00078258:
         }
       }
     }
-    pbVar16 = pbVar16 + iVar8;
+    scale += (uint32_t)iVar8;
     FUN_0008729e(iVar7, iVar8);
   } else {
-    if (iVar8 < (int)(long)pbVar19) {
-      pbVar16 = pbVar16 - ((int)(long)pbVar19 - iVar8);
-      iVar7 = FUN_000789f0(param_1, iVar7, (int)(long)pbVar19 - iVar8);
+    if (iVar8 < precision) {
+      scale -= (uint32_t)(precision - iVar8);
+      iVar7 = FUN_000789f0(param_1, iVar7, precision - iVar8);
       puVar20 = (uint*)(iVar7 + 0x14);
     }
     uVar22 = 0;
   }
   iVar8 = iVar7;
-  if (param_3[2] < (int)(long)pbVar16) goto LAB_000782f2;
-  if ((int)(long)pbVar16 < param_3[1]) {
-    pbVar16 = (byte*)(long)(param_3[1] - (int)(long)pbVar16);
-    if ((int)(long)pbVar19 <= (int)(long)pbVar16) {
+  if (param_3[2] < (int32_t)scale) goto LAB_000782f2;
+  if ((int32_t)scale < param_3[1]) {
+    int32_t distance = param_3[1] - (int32_t)scale;
+    if (precision <= distance) {
       iVar6 = param_3[3];
       if (iVar6 == 2) {
         if (param_6 != 0) goto LAB_000783e8;
       } else {
         if (iVar6 != 3) {
-          if ((iVar6 != 1) || (pbVar19 != pbVar16)) goto LAB_000783e8;
-          if (pbVar19 == (byte*)0x1) goto LAB_000783b6;
-          param_6 = FUN_0008768e(iVar7, (int)(long)(pbVar19 - 1));
+          if ((iVar6 != 1) || (precision != distance)) goto LAB_000783e8;
+          if (precision == 1) goto LAB_000783b6;
+          param_6 = FUN_0008768e(iVar7, precision - 1);
         }
         if (param_6 == 0) {
 LAB_000783e8:
@@ -213,21 +213,22 @@ LAB_000783b6:
       *param_5 = iVar7;
       return (byte*)0x62;
     }
-    pbVar21 = pbVar16 - 1;
+    int32_t shift_index = distance - 1;
     if (uVar22 == 0) {
-      if (pbVar21 != 0) uVar22 = FUN_0008768e(iVar7, (int)(long)pbVar21);
+      if (shift_index != 0) uVar22 = FUN_0008768e(iVar7, shift_index);
     } else {
       uVar22 = 1;
     }
-    pbVar19 = pbVar19 - (int)(long)pbVar16;
-    pbVar18 = (byte*)0x2;
-    if ((1 << ((uint)(long)pbVar21 & 0x1f) & puVar20[(int)(long)pbVar21 >> 5]) != 0) {
+    precision -= distance;
+    status_base = 2;
+    if ((1u << ((uint32_t)shift_index & 0x1f) &
+         puVar20[(uint32_t)shift_index >> 5]) != 0) {
       uVar22 = uVar22 | 2;
     }
-    FUN_0008729e(iVar7, (int)(long)pbVar16);
-    pbVar16 = (byte*)(long)param_3[1];
+    FUN_0008729e(iVar7, distance);
+    scale = param_3[1];
   } else {
-    pbVar18 = (byte*)0x1;
+    status_base = 1;
   }
   if (uVar22 == 0) goto LAB_000784da;
   iVar17 = param_3[3];
@@ -239,7 +240,7 @@ LAB_000783b6:
       goto joined_r0x0007846c;
     }
 LAB_0007846e:
-    pbVar18 = (byte*)((uintptr_t)pbVar18 | 0x10);
+    status_base |= 0x10;
     goto LAB_000784da;
   }
   param_6 = 1 - param_6;
@@ -262,7 +263,6 @@ joined_r0x0007846c:
     if (iVar8 == 0) {
       uVar11 = 0x84;
       FUN_00076a94(0xf8c42, uVar11, 0);
-      goto LAB_00078258;
     }
     FUN_00086c04(iVar8 + 0xc, iVar7 + 0xc, (*(volatile int*)(iVar7 + 0x10) + 2) * 4);
     FUN_00078654(param_1, iVar7);
@@ -271,18 +271,19 @@ joined_r0x0007846c:
   *(volatile int*)(iVar8 + 0x10) = iVar6 + 1;
   *(volatile int*)(iVar8 + iVar6 * 4 + 0x14) = 1;
 LAB_000784b0:
-  if (pbVar18 == (byte*)0x2) {
+  if (status_base == 2) {
     uVar22 = 2;
-    if (((byte*)(long)(*param_3 - 1) != pbVar19) ||
-        ((1 << ((uint)(long)pbVar19 & 0x1f) & *(volatile uint*)(iVar8 + 0x14 + ((int)(long)pbVar19 >> 5) * 4)) == 0))
+    if (((*param_3 - 1) != precision) ||
+        ((1u << ((uint32_t)precision & 0x1f) &
+          *(volatile uint*)(iVar8 + 0x14 + ((uint32_t)precision >> 5) * 4)) == 0))
       goto LAB_000784d6;
   } else if ((iVar17 < *(volatile int*)(iVar8 + 0x10)) ||
-             ((((uint)(long)pbVar19 & 0x1f) != 0 &&
+             ((((uint32_t)precision & 0x1f) != 0 &&
                (iVar6 = FUN_00087510(*(volatile int*)(iVar8 + 0x14 + iVar17 * 4 - 4)),
-                iVar6 < (int)(0x20 - ((uint)(long)pbVar19 & 0x1f)))))) {
+                iVar6 < (int)(0x20 - ((uint32_t)precision & 0x1f)))))) {
     FUN_0008729e(iVar8, 1);
-    pbVar16 = pbVar16 + 1;
-    if (param_3[2] < (int)(long)pbVar16) {
+    scale += 1u;
+    if (param_3[2] < (int32_t)scale) {
 LAB_000782f2:
       FUN_00078654(param_1, iVar8);
       *param_5 = 0;
@@ -291,10 +292,9 @@ LAB_000782f2:
   }
   uVar22 = 1;
 LAB_000784d6:
-  pbVar18 = (byte*)(uintptr_t)(uVar22 | 0x20);
+  status_base = uVar22 | 0x20;
 LAB_000784da:
   *param_5 = iVar8;
-  *param_4 = (int)(long)pbVar16;
-  return pbVar18;
+  *param_4 = (int32_t)scale;
+  return (byte*)(uintptr_t)status_base;
 }
-
