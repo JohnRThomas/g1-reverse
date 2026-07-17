@@ -7,7 +7,7 @@ typedef unsigned long uintptr_t;
 extern int FUN_0000ef12(void *);
 extern int FUN_0004d944(uint,uint,void*,int);
 extern long long FUN_0007dc00(uint,uint);
-extern void FUN_0007e2ec(uint,uint);
+extern void FUN_0007e2ec(uint,uint) __attribute__((noreturn));
 extern void FUN_0007e2fa(uint,uint,uint,uint);
 extern void FUN_00086c04(void*,void*,uint);
 
@@ -15,7 +15,7 @@ int FUN_0004abc0(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),
                  uint param_4,uint param_5,int param_6,uint param_7)
 {
   byte bVar1, bVar2, bVar8;
-  short sVar3;
+  ushort sVar3;
   volatile byte *v1 = param_1;
   byte *pbVar4, *pbVar12, *pbVar13;
   int iVar5, iVar6, iVar15;
@@ -30,7 +30,13 @@ int FUN_0004abc0(byte *param_1,int param_2,int (*param_3)(byte*,int,uint),
   byte local_49;
   byte abStack_48[16];
   byte abStack_38[20];
-  uint dbuf[16];
+  struct {
+    uint type;
+    uint label;
+    uint context;
+    uint value;
+    ushort flags;
+  } descriptor;
 
   local_60 = param_4;
   local_54 = param_3;
@@ -113,7 +119,7 @@ LAB_0004ac9c:
         iVar15 = 1;
       }
       iVar6 = local_64 * 2;
-      local_54 = (int (*)(byte*,int,uint))(uintptr_t)(param_5 & 2);
+      bVar16 = (param_5 & 2) != 0;
       pbVar13 = pbVar4;
 LAB_0004acba:
       while(1) {
@@ -129,7 +135,7 @@ LAB_0004acba:
           if ((int)uVar17 != 0) goto LAB_0004ace6;
         }
         pbVar13 = pbVar12;
-        if (local_54 != 0) {
+        if (bVar16) {
 LAB_0004ad68:
           iVar5 = FUN_0000ef12((void*)(uintptr_t)uVar14);
           if ((param_6 != 0) && (uVar10 < param_7)) {
@@ -145,8 +151,12 @@ LAB_0004ad68:
         uVar9 = (uint)((unsigned long long)uVar17 >> 0x20);
         if ((int)uVar17 != 0) {
 LAB_0004ace6:
-          dbuf[0] = uVar9;
-          FUN_0004d944(0x88188,0x2480,dbuf,0);
+          descriptor.type = 0x01000004;
+          descriptor.label = 0x000f059f;
+          descriptor.context = local_5c;
+          descriptor.value = uVar9;
+          descriptor.flags = 0x0200;
+          FUN_0004d944(0x88188,0x2480,&descriptor,0);
           param_2 = param_2 + -2;
           pbVar13 = pbVar12;
           goto LAB_0004acba;
@@ -221,13 +231,12 @@ LAB_0004adbe:
             sVar3 = 0;
           }
           else {
-            sVar3 = *(short *)(uintptr_t)(param_6 + (int)(uVar14 * 2));
+            sVar3 = *(ushort *)(uintptr_t)(param_6 + (int)(uVar14 * 2));
           }
           iVar15 = (*local_54)((byte*)&local_49,1,local_60);
           if (iVar15 < 0) break;
           if (sVar3 == 0) {
-            sVar3 = (short)FUN_0000ef12(pv);
-            sVar3 = sVar3 + 1;
+            sVar3 = (ushort)(FUN_0000ef12(pv) + 1);
           }
           iVar6 = (*local_54)((byte*)pv,sVar3,local_60);
           if (iVar6 < 0) {
@@ -280,4 +289,3 @@ LAB_0004af48:
   }
   goto LAB_0004adbe;
 }
-
