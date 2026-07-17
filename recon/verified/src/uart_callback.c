@@ -1,11 +1,10 @@
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
 extern void DEBUG_PRINT(int,...);
-extern void EPILOGUE(void);
 extern void FUN_00019c70(void);
 extern int  FUN_00071c20(int,void*,int,int);
 extern void FUN_00071cf4(int,int);
 extern void FUN_0007e2ec(int,int);
-extern void FUN_0007e2fa(int,int,int,int);
+extern void FUN_0007e2fa(int,...);
 extern void FUN_00086c04(int,...);
 extern void FUN_00086c78(void*,int,int);
 #define VI(a) (*(volatile int*)(a))
@@ -21,7 +20,7 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
       DEBUG_PRINT(0xa7993, VB(VI((int)param_2+4)+uVar5));
     break;
   case 1:
-    if (*lvl < 1) { EPILOGUE(); return; }
+    if (*lvl < 1) return;
     if (*g8 != 0) { FUN_00019c70(); return; }
     DEBUG_PRINT(0xa7999,0xa7b56); return;
   case 2:
@@ -36,7 +35,7 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
           for (iVar6=0; iVar6 < (int)(param_3-1); iVar6++) cVar1 = (char)(cVar1 + VB(iVar2+uVar7+iVar6));
           if ((char)VB(iVar2+param_3+uVar7-1) == cVar1) {
             *(volatile unsigned char*)0x2001a128 = (unsigned char)param_3;
-            FUN_00086c04(0x2001a129);
+            FUN_00086c04(0x2001a129, iVar2 + uVar7, param_3);
             FUN_00086c78((void*)VI((int)param_2+4),0,0x100);
             return;
           }
@@ -50,19 +49,23 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
   case 3:
     DEBUG_PRINT(0xa79bf);
     iVar2 = FUN_00071c20(0x200037b8, &local_1c, 0, 0);
-    if (iVar2 != 0) { FUN_0007e2fa(0,0,0,0); FUN_0007e2fa(0,0,0,0); FUN_0007e2ec(0,0x51); }
-    for (;;) {
+    if (iVar2 == 0) {
       iVar2 = ((int(*)(int,int,int))(VI(VI((int)param_3+8)+0x10)))((int)param_3,(int)local_1c,0x100);
       if (iVar2 == 0) return;
-      FUN_0007e2fa(0,0,0,0); FUN_0007e2fa(0,0,0,0); FUN_0007e2ec(0,0x54);
+      FUN_0007e2fa(0x99cbd,0xa7a10,0xa79eb,0x54);
+      FUN_0007e2fa(0xa7a33);
+      FUN_0007e2ec(0xa79eb,0x54);
+    } else {
+      FUN_0007e2fa(0x99cbd,0xa7a10,0xa79eb,0x51);
+      FUN_0007e2fa(0xa7a19);
+      FUN_0007e2ec(0xa79eb,0x51);
     }
   case 4:
     DEBUG_PRINT(0xa7a52);
     FUN_00071cf4(0x200037b8, VI((int)param_2+4));
     return;
   default:
-    EPILOGUE(); return;
+    return;
   }
   DEBUG_PRINT(0xf5400);
 }
-

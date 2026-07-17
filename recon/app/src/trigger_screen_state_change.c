@@ -2,7 +2,7 @@
 
 extern void FUN_00072880(unsigned int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(unsigned int, unsigned int, unsigned int);
+extern void FUN_00019c70(unsigned int, ...);
 
 unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -11,7 +11,8 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa2470, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
-                FUN_00019c70(0xa2470, 0xa254a, param_1);
+                FUN_00019c70(0xa2470, 0xa254a, param_1,
+                             *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             }
         }
         param_3 = 0xffffffff;
@@ -26,10 +27,10 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa2486, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
-                FUN_00019c70(0xa2486, 0xa254a, param_1);
+                FUN_00019c70(0xa2486, 0xa254a, param_1,
+                             *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             }
         }
     }
     return param_3;
 }
-
