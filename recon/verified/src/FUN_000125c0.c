@@ -2,21 +2,21 @@
 
 #include <stdint.h>
 extern uint64_t FUN_0000d89c(int32_t, int32_t);
-extern void FUN_0000d8f8(int32_t, int32_t, uint32_t, uint32_t);
-extern void FUN_0000ec34(void);
-extern uint32_t FUN_0000e1a4(void);
+extern uint64_t FUN_0000d8f8(uint32_t, uint32_t, uint32_t, uint32_t);
+extern int64_t FUN_0000ec34(uint32_t, uint32_t);
 
 void FUN_000125c0(uint32_t *param_1, uint32_t param_2, uint32_t param_3)
 {
-  uint64_t prod = (uint64_t)param_2 * (uint64_t)param_3;
-  int32_t arg0 = (int32_t)prod;
-  int32_t arg1 = (int32_t)param_3 * ((int32_t)param_2 >> 31) + (int32_t)(prod >> 32);
-  uint64_t uVar3 = FUN_0000d89c(arg0, arg1);
-  FUN_0000d8f8((int32_t)uVar3, (int32_t)(uVar3 >> 32), 0x63f11168UL, 0x3f91df46UL);
-  FUN_0000ec34();
-  uint32_t uVar2 = 0xf4240UL;
-  uint32_t uVar1 = FUN_0000e1a4();
-  param_1[0] = uVar1;
-  param_1[1] = uVar2;
+  uint64_t product = (uint64_t)param_2 * (uint64_t)param_3;
+  uint32_t product_high = (uint32_t)(product >> 32) +
+      param_3 * (0u - (param_2 >> 31));
+  uint64_t as_double = FUN_0000d89c((int32_t)(uint32_t)product,
+                                     (int32_t)product_high);
+  uint64_t multiplied = FUN_0000d8f8((uint32_t)as_double,
+                                      (uint32_t)(as_double >> 32),
+                                      0x63f11168UL, 0x3f91df46UL);
+  int64_t scaled = FUN_0000ec34((uint32_t)multiplied,
+                                (uint32_t)((uint64_t)multiplied >> 32));
+  param_1[0] = (uint32_t)(scaled / 1000000);
+  param_1[1] = (uint32_t)(scaled % 1000000);
 }
-
