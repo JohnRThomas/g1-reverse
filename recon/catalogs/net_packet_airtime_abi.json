@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "core": "net",
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "address": "0x010109ec",
+  "extent": "0x540",
+  "raw_name": "FUN_010109ec",
+  "readable_name": "controller_packet_airtime_compute",
+  "backmap": {
+    "controller_packet_airtime_compute": "FUN_010109ec"
+  },
+  "catalog_artifact": "Ghidra reports undefined8 because r1 remains live at return sites",
+  "established_abi": "uint32_t controller_packet_airtime_compute(uint32_t timing, uint32_t base, uint32_t octets, int32_t coded_phy, uint16_t flags)",
+  "return_kind": "i32",
+  "reason": "All three direct callers consume only r0. Two discard r1 until return; the third overwrites r1 before its first post-call use. Therefore original r1 is caller-clobbered arithmetic residue, not a second result word.",
+  "callers": [
+    {
+      "caller": "FUN_01011d14",
+      "caller_address": "0x01011d14",
+      "callsite": "0x01011d70",
+      "post_call": "0x01011d74 loads r3, adds 0x131 to r0, compares r0, and returns without reading r1"
+    },
+    {
+      "caller": "FUN_010122b4",
+      "caller_address": "0x010122b4",
+      "callsite": "0x010122e4",
+      "post_call": "0x010122e8 restores the frame and returns without reading r0 or r1"
+    },
+    {
+      "caller": "FUN_01012438",
+      "caller_address": "0x01012438",
+      "callsite": "0x0101262c",
+      "post_call": "branch to 0x010125cc consumes r0; 0x010125d2 overwrites r1 before any read"
+    }
+  ],
+  "proof_guard": "tools/test_net_packet_airtime_abi.py scans the immutable image, requires exactly these callsites, and fails if any path reads r1 before killing it or returning"
+}
