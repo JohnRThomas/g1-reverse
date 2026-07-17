@@ -4,13 +4,14 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   controller_timing_quarter_get            <= FUN_01027af2 @ 0x01027af2
+ *   controller_interval_half_saturating      <= FUN_01027b0c @ 0x01027b0c
  *   controller_timing_delta_clamp            <= FUN_01027b32 @ 0x01027b32
  * address symbols (name @ address):
  *   g_net_storage_area_id                    @ 0x21000bc0
  */
 /* net-core FUN_0100a31c @ 0x100a31c  (parity 300 trials PROVEN) */
 extern unsigned int controller_timing_quarter_get(unsigned short);
-extern unsigned int FUN_01027b0c(unsigned short);
+extern unsigned int controller_interval_half_saturating(unsigned short);
 extern unsigned int controller_timing_delta_clamp(unsigned short);
 
 #define DAT_0100a43c ((unsigned long)&g_net_storage_area_id) /*=0x21000bc0*/
@@ -32,7 +33,7 @@ void FUN_0100a31c(int param_1, char param_2)
       *(volatile unsigned int *)(local_10 * 4 + param_1 + 4) = 0;
       *(volatile unsigned char *)(local_10 + param_1 + 0x14) = 0;
     }
-    uVar2 = (unsigned short)(FUN_01027b0c(*(volatile unsigned short *)DAT_0100a43c) & 0xffffu);
+    uVar2 = (unsigned short)(controller_interval_half_saturating(*(volatile unsigned short *)DAT_0100a43c) & 0xffffu);
     uVar1 = (unsigned short)(controller_timing_delta_clamp(*(volatile unsigned short *)DAT_0100a43c) & 0xffffu);
     *(volatile int *)(param_1 + 4) = iVar3;
     *(volatile unsigned short *)(param_1 + 0x20) = uVar1;

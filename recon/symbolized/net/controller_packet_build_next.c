@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_packet_build_next             <= FUN_0100ec88 @ 0x0100ec88
+ *   controller_packet_payload_extract        <= FUN_01026c94 @ 0x01026c94
  * address symbols (name @ address):
  *   g_21000054                               @ 0x21000054
  *   g_21000058                               @ 0x21000058
@@ -25,7 +26,7 @@ extern int FUN_01009d64(uint16_t handle, uint8_t pool);
 extern uintptr_t FUN_0100a17c(uint16_t handle);
 extern int FUN_01018c58(void);
 extern int FUN_0101b74c(void);
-extern void FUN_01026c94(uintptr_t owner, uintptr_t replacement);
+extern void controller_packet_payload_extract(uintptr_t owner, uintptr_t replacement);
 
 struct controller_work_node {
     struct controller_work_node *next;             /* +0x00 */
@@ -215,7 +216,7 @@ dispatch:
         *(volatile uint8_t *)(packet + 6) = 0;
         *(volatile uint8_t *)(packet + 5) = 1;
         *(volatile uint8_t *)(packet + 2) = 1;
-        FUN_01026c94(owner, 0);
+        controller_packet_payload_extract(owner, 0);
         queue->current = 0;
         return PACKET_BUILD_PACKET;
     }

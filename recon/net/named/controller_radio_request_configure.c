@@ -5,6 +5,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  * address symbols (name @ address):
+ *   rodata_103c4cc                           @ 0x0103c4cc
  *   g_net_radio_pending_reset_flag           @ 0x210014dc
  *   REG_41008000                             @ 0x41008000
  *   REG_4100e000                             @ 0x4100e000

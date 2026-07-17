@@ -6,6 +6,7 @@
  *   controller_handle_slot_find_from         <= FUN_0102741e @ 0x0102741e
  *   controller_handle_slot_find              <= FUN_01027470 @ 0x01027470
  *   controller_handle_slot_value_ptr         <= FUN_010274ea @ 0x010274ea
+ *   controller_handle_slot_value_set         <= FUN_0102751a @ 0x0102751a
  */
 /* net-core FUN_01009c68 @ 0x1009c68  (parity 300 trials PROVEN) */
 
@@ -13,7 +14,7 @@ extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern signed char controller_handle_slot_find_from(void *, unsigned int, signed char);
 extern signed char controller_handle_slot_find(void *, unsigned short);
 extern unsigned int controller_handle_slot_value_ptr(void *, signed char);
-extern unsigned int FUN_0102751a(void *, unsigned short, signed char);
+extern unsigned int controller_handle_slot_value_set(void *, unsigned short, signed char);
 
 unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
 {
@@ -38,5 +39,5 @@ unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
   if (cVar2 != cVar1b) {
     *(volatile unsigned char *)(iVar3 + 3) = 0;
   }
-  return FUN_0102751a((void *)iVar3, param_1, cVar2);
+  return controller_handle_slot_value_set((void *)iVar3, param_1, cVar2);
 }

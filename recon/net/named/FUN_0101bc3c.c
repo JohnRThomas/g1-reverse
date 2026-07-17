@@ -7,6 +7,7 @@
  *   sdc_conn_radio_overhead_set              <= FUN_0100f48c @ 0x0100f48c
  *   signed_drift_clamp                       <= FUN_0100f69c @ 0x0100f69c
  *   radio_transition_overhead_get            <= FUN_0101a0e8 @ 0x0101a0e8
+ *   controller_packet_space_limit            <= FUN_0101dc50 @ 0x0101dc50
  *   schedule_node_list_is_locked             <= FUN_0101dec4 @ 0x0101dec4
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
@@ -28,7 +29,7 @@ extern unsigned radio_phy_airtime_base_get(unsigned);
 extern void sdc_conn_radio_overhead_set(unsigned, unsigned);
 extern unsigned schedule_node_list_is_locked(void);
 extern unsigned signed_drift_clamp(int, unsigned);
-extern unsigned FUN_0101dc50(unsigned, unsigned, unsigned, unsigned);
+extern unsigned controller_packet_space_limit(unsigned, unsigned, unsigned, unsigned);
 extern unsigned sdc_radio_context_fixed_time_get(unsigned);
 extern unsigned sdc_conn_window_admit(unsigned, void*);
 
@@ -103,10 +104,10 @@ void FUN_0101bc3c(unsigned param_1)
     u8 fieldc5 = W8(param_1+0xc5);
     u8 local_26;
     if (((fieldc5 & 0xfd) == 0xc) || (fieldc5 == 0x26)) {
-      FUN_0101dc50(param_1, 0, 0, fieldc5 & 0xfd);
+      controller_packet_space_limit(param_1, 0, 0, fieldc5 & 0xfd);
       local_26 = 0;
     } else {
-      u32 iVar4c = FUN_0101dc50(param_1, 0, 0, fieldc5 & 0xfd);
+      u32 iVar4c = controller_packet_space_limit(param_1, 0, 0, fieldc5 & 0xfd);
       if (iVar4c != 0) {
         local_26 = (W8(param_1+0x300) == 1) ? 1 : 2;
       } else {

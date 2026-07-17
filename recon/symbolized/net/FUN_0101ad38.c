@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
+ *   schedule_node_split_insert               <= FUN_0101de60 @ 0x0101de60
  *   controller_radio_event_cleanup           <= FUN_01020634 @ 0x01020634
  * address symbols (name @ address):
  *   g_net_session_state_block                @ 0x210010a0
@@ -25,7 +26,7 @@ extern void FUN_0101920c(int, int);
 extern void FUN_01019254(void);
 extern void FUN_010196e0(void);
 extern void FUN_0101dd0c(int);
-extern void FUN_0101de60(int);
+extern void schedule_node_split_insert(int);
 extern void controller_radio_event_cleanup(void);
 extern void FUN_01022a84(void);
 extern int FUN_01022ebc(unsigned char);
@@ -84,7 +85,7 @@ unsigned int FUN_0101ad38(void)
       __builtin_unreachable();
     }
     if (*(volatile int *)(pcVar3 + 0x70) != 0) {
-      FUN_0101de60(DAT_0101ae4c);
+      schedule_node_split_insert(DAT_0101ae4c);
       goto LAB_0101ad88;
     }
   }

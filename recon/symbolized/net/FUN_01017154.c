@@ -6,6 +6,7 @@
  *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
  *   sdc_llcp_decode_control_pdu              <= FUN_0101a070 @ 0x0101a070
+ *   controller_random_window_step            <= FUN_010295d6 @ 0x010295d6
  * address symbols (name @ address):
  *   g_net_ble_pending_channel_idx            @ 0x2100001c
  */
@@ -16,7 +17,7 @@ extern uint32_t sdc_ble_address_equal(uint8_t, uint32_t, uint8_t, void *);
 extern uint32_t sdc_llcp_get_active_link_index(void);
 extern uint32_t FUN_0101709c(void *, uint32_t);
 extern void sdc_llcp_decode_control_pdu(const void *, void *);
-extern void FUN_010295d6(void *, uint32_t);
+extern void controller_random_window_step(void *, uint32_t);
 
 uint32_t FUN_01017154(const uint8_t *packet)
 {
@@ -36,7 +37,7 @@ uint32_t FUN_01017154(const uint8_t *packet)
                      state[0x90], (void *)(state + 0x89)) == 0)
         return 1;
 
-    FUN_010295d6((void *)(state + 0x84), 1);
+    controller_random_window_step((void *)(state + 0x84), 1);
     if (FUN_0101709c(parsed, 0xff) == 0)
         return 1;
     return 3;

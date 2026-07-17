@@ -119,7 +119,7 @@ extern volatile unsigned int g_ll_conn_tx_ctx_addr; /* @0x21000cc4 */
 extern volatile unsigned int g_ll_conn_trace_ctx_addr; /* @0x21000cd0 */
 extern volatile unsigned int g_ll_conn_pdu_hdr_ptr; /* @0x21000cfc */
 extern volatile unsigned int g_net_radio_addr_match_tbl; /* @0x21000d18 */
-extern volatile unsigned char g_net_rssi_cal_offset; /* two-byte object base @0x21000ea6 */
+extern volatile unsigned char g_net_rssi_cal_offset; /* @0x21000ea6 */
 extern volatile unsigned char g_21000ea7; /* @0x21000ea7 */
 extern volatile unsigned int g_net_esb_own_addr_valid; /* @0x21000ea8 */
 extern volatile unsigned int g_net_ble_conn_create_ctx; /* @0x21000eac */
@@ -264,7 +264,7 @@ extern volatile unsigned char g_net_radio_trx_ppi_ch_e; /* @0x2100645e */
 extern volatile unsigned char g_esb_ppi_ch_id_5; /* @0x2100645f */
 extern volatile unsigned char g_esb_ppi_ch_id_6; /* @0x21006460 */
 
-/* ---- rodata table externs (194) ---- */
+/* ---- rodata table externs (200) ---- */
 extern const unsigned char rodata_10100a1[]; /* @0x10100a1 */
 extern const unsigned char rodata_10101cd[]; /* @0x10101cd */
 extern const unsigned char rodata_10102c1[]; /* @0x10102c1 */
@@ -312,6 +312,7 @@ extern const unsigned char rodata_103704c[]; /* @0x103704c */
 extern const unsigned char rodata_1037050[]; /* @0x1037050 */
 extern const unsigned char rodata_1037054[]; /* @0x1037054 */
 extern const unsigned char rodata_1037058[]; /* @0x1037058 */
+extern const unsigned char rodata_103a749[]; /* @0x103a749 */
 extern const unsigned char rodata_103aacd[]; /* @0x103aacd */
 extern const unsigned char rodata_103b6b3[]; /* @0x103b6b3 */
 extern const unsigned char rodata_103b6c1[]; /* @0x103b6c1 */
@@ -329,12 +330,14 @@ extern const unsigned char rodata_103c044[]; /* @0x103c044 */
 extern const unsigned char rodata_103c04c[]; /* @0x103c04c */
 extern const unsigned char rodata_103c05c[]; /* @0x103c05c */
 extern const unsigned char rodata_103c064[]; /* @0x103c064 */
+extern const unsigned char rodata_103c074[]; /* @0x103c074 */
 extern const unsigned char rodata_103c07c[]; /* @0x103c07c */
 extern const unsigned char rodata_103c094[]; /* @0x103c094 */
 extern const unsigned char rodata_103c0c4[]; /* @0x103c0c4 */
 extern const unsigned char rodata_103c0ec[]; /* @0x103c0ec */
 extern const unsigned char rodata_103c0fc[]; /* @0x103c0fc */
 extern const unsigned char rodata_103c11c[]; /* @0x103c11c */
+extern const unsigned char rodata_103c190[]; /* @0x103c190 */
 extern const unsigned char rodata_103c1bc[]; /* @0x103c1bc */
 extern const unsigned char rodata_103c1d4[]; /* @0x103c1d4 */
 extern const unsigned char rodata_103c1f8[]; /* @0x103c1f8 */
@@ -342,6 +345,7 @@ extern const unsigned char rodata_103c24c[]; /* @0x103c24c */
 extern const unsigned char rodata_103c254[]; /* @0x103c254 */
 extern const unsigned char rodata_103c290[]; /* @0x103c290 */
 extern const unsigned char rodata_103c3b0[]; /* @0x103c3b0 */
+extern const unsigned char rodata_103c4cc[]; /* @0x103c4cc */
 extern const unsigned char rodata_103c4d0[]; /* @0x103c4d0 */
 extern const unsigned char rodata_103c578[]; /* @0x103c578 */
 extern const unsigned char rodata_103c5b0[]; /* @0x103c5b0 */
@@ -383,6 +387,8 @@ extern const unsigned char rodata_103d3b6[]; /* @0x103d3b6 */
 extern const unsigned char rodata_103d3e3[]; /* @0x103d3e3 */
 extern const unsigned char rodata_103d406[]; /* @0x103d406 */
 extern const unsigned char rodata_103d42c[]; /* @0x103d42c */
+extern const unsigned char rodata_103d53d[]; /* @0x103d53d */
+extern const unsigned char rodata_103d55b[]; /* @0x103d55b */
 extern const unsigned char rodata_103d5d7[]; /* @0x103d5d7 */
 extern const unsigned char rodata_103d635[]; /* @0x103d635 */
 extern const unsigned char rodata_103d676[]; /* @0x103d676 */

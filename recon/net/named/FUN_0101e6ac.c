@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_timing_state_reset            <= FUN_0101e274 @ 0x0101e274
  * address symbols (name @ address):
  *   rodata_103ec0a                           @ 0x0103ec0a
  *   g_net_ble_conn_create_ctx                @ 0x21000eac
@@ -21,7 +22,7 @@ extern u32 FUN_0100d600(u16);
 extern u32 FUN_0100f66c(void);
 extern void FUN_0101bbc0(void*);
 extern u32 FUN_0101ded0(u32,u32,int);
-extern void FUN_0101e274(void*);
+extern void controller_timing_state_reset(void*);
 extern u32 FUN_0101e660(void*);
 extern unsigned long long FUN_0101f8cc(void);
 extern u32 FUN_01028256(void);
@@ -66,7 +67,7 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
             u32 mode;
             unsigned short *owner;
         } descriptor = {0, param_1};
-        FUN_0101e274(&descriptor);
+        controller_timing_state_reset(&descriptor);
     }
 
     int iVarS = TBL3;

@@ -6,6 +6,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  * address symbols (name @ address):
+ *   rodata_103c4cc                           @ 0x0103c4cc
  *   g_net_radio_pending_reset_flag           @ 0x210014dc
  *   REG_41008000                             @ 0x41008000
  *   REG_4100e000                             @ 0x4100e000
@@ -44,7 +45,7 @@ void controller_radio_request_configure(uint32_t mode, uint32_t context, uint32_
     }
 
     radio[0x148] =
-        ((volatile const uint8_t *)0x0103c4ccu)[power_index];
+        ((volatile const uint8_t *)((unsigned long)&rodata_103c4cc) /*=0x103c4cc*/)[power_index];
     if (mode == 1u) {
         ((volatile uint32_t *)REG_41008000 /*=0x41008000*/)[0x74] = 0x80000009u;
         radio[0x23] = 0x80000009u;

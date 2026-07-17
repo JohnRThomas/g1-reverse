@@ -9,6 +9,7 @@
  *   sdc_conn_radio_overhead_set              <= FUN_0100f48c @ 0x0100f48c
  *   signed_drift_clamp                       <= FUN_0100f69c @ 0x0100f69c
  *   radio_transition_overhead_get            <= FUN_0101a0e8 @ 0x0101a0e8
+ *   controller_packet_space_limit            <= FUN_0101dc50 @ 0x0101dc50
  *   schedule_node_list_is_locked             <= FUN_0101dec4 @ 0x0101dec4
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  * address symbols (name @ address):
@@ -31,7 +32,7 @@ extern void sdc_conn_radio_overhead_set(void *context, uint32_t delay);
 extern uint32_t signed_drift_clamp(int32_t budget, uint32_t requested);
 extern uint16_t radio_transition_overhead_get(void);
 extern void FUN_0101da18(void *context, uint32_t count);
-extern uint32_t FUN_0101dc50(void *context);
+extern uint32_t controller_packet_space_limit(void *context);
 extern int32_t schedule_node_list_is_locked(void);
 extern int32_t radio_phy_airtime_base_get(uint8_t channel_flags);
 
@@ -42,7 +43,7 @@ extern int32_t radio_phy_airtime_base_get(uint8_t channel_flags);
 #define consume_timing_budget      signed_drift_clamp
 #define read_controller_timestamp  radio_transition_overhead_get
 #define publish_record_count       FUN_0101da18
-#define read_controller_capacity   FUN_0101dc50
+#define read_controller_capacity   controller_packet_space_limit
 #define timing_budget_is_blocked   schedule_node_list_is_locked
 #define channel_timing_offset      radio_phy_airtime_base_get
 

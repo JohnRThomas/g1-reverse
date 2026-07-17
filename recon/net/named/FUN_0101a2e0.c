@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
+ *   schedule_node_split_insert               <= FUN_0101de60 @ 0x0101de60
  * address symbols (name @ address):
  *   g_net_session_state_block                @ 0x210010a0
  *   g_net_session_queue_obj                  @ 0x210010f0
@@ -16,7 +17,7 @@ extern void *controller_radio_state_get(void);
 extern void FUN_01019254(void);
 extern void FUN_010196e0(void);
 extern void FUN_0101dd0c(unsigned int);
-extern void FUN_0101de60(void *);
+extern void schedule_node_split_insert(void *);
 extern int FUN_01022ebc(unsigned int);
 
 void FUN_0101a2e0(void)
@@ -47,7 +48,7 @@ L_332:
   if (*(volatile unsigned int *)(pcVar2 + 0x70) == 0) {
     goto L_2f6;
   }
-  FUN_0101de60((void *)(pcVar2 + 0x50));
+  schedule_node_split_insert((void *)(pcVar2 + 0x50));
   goto L_2fc;
 
 L_34e:

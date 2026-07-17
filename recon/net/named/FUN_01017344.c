@@ -8,6 +8,7 @@
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ *   controller_random_window_step            <= FUN_010295d6 @ 0x010295d6
  * address symbols (name @ address):
  *   g_net_ble_pending_channel_idx            @ 0x2100001c
  *   g_sdc_ll_ctx_param                       @ 0x21001019
@@ -24,7 +25,7 @@ extern void FUN_01019f9c(unsigned char*, void*);
 extern void FUN_0101b54c(int);
 extern void sdc_llcp_release_rx_context(void);
 extern void sdc_llcp_stop_rx_timeout(void);
-extern void FUN_010295d6(unsigned int, int);
+extern void controller_random_window_step(unsigned int, int);
 
 #define DAT_01017458 0x2100001cu
 #define DAT_0101745c 0x21000f90u
@@ -99,7 +100,7 @@ unsigned char FUN_01017344(unsigned char *param_1)
     }
     if (iVar5 != 0) {
 LAB_010173d0:
-      FUN_010295d6(DAT_01017468, 1);
+      controller_random_window_step(DAT_01017468, 1);
       if (*(volatile char *)(iVar3 + 0x7c) != 0) {
         sdc_llcp_stop_rx_timeout();
         sdc_llcp_release_rx_context();

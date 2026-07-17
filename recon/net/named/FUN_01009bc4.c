@@ -3,12 +3,13 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   controller_handle_slot_find_from         <= FUN_0102741e @ 0x0102741e
+ *   controller_handle_slot_value_set         <= FUN_0102751a @ 0x0102751a
  */
 /* net-core FUN_01009bc4 @ 0x1009bc4  (parity 300 trials PROVEN) */
 #define P_01009c64 0x21000b7c
 
 extern unsigned char controller_handle_slot_find_from(int, int, unsigned char);
-extern unsigned int FUN_0102751a(int, short, unsigned char);
+extern unsigned int controller_handle_slot_value_set(int, short, unsigned char);
 
 unsigned int FUN_01009bc4(short *param_1, unsigned char param_2)
 {
@@ -33,7 +34,7 @@ unsigned int FUN_01009bc4(short *param_1, unsigned char param_2)
       uVar6 = (unsigned int)bVar3 + ((unsigned int)bVar1 - (unsigned int)bVar2);
       *param_1 = (short)((unsigned short)((short)uVar6 - (unsigned short)bVar1 * (short)(uVar6 / bVar1)) +
                           (unsigned short)*(unsigned char *)(iVar4 + 4));
-      uVar5 = FUN_0102751a(iVar4, *param_1, bVar3);
+      uVar5 = controller_handle_slot_value_set(iVar4, *param_1, bVar3);
     }
   }
   return uVar5;

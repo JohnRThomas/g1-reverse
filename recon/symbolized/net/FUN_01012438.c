@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_airtime_compute        <= FUN_010109ec @ 0x010109ec
  *   controller_descriptor_octet_product      <= FUN_01012b24 @ 0x01012b24
  * address symbols (name @ address):
  *   rodata_103c1bc                           @ 0x0103c1bc
@@ -20,7 +21,7 @@ typedef int i32;
 extern void sdc_assertion_fail(u32, u32);
 extern u32 FUN_0100a4d0(void);
 extern u32 FUN_01010990(u32, i8);
-extern i32 FUN_010109ec(u32, u32, i8, int, u32);
+extern i32 controller_packet_airtime_compute(u32, u32, i8, int, u32);
 extern int FUN_01011d14(u32, void *);
 extern void FUN_010129a4(void *);
 extern void FUN_010129b4(void *, u8);
@@ -102,7 +103,7 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
       } else {
         uVar8 = FUN_0100a4d0();
         uVar14 = FUN_01010990(uVar14, cVar13);
-        iVar7 = FUN_010109ec(uVar8, uVar14, cVar12, 1, uVar11);
+        iVar7 = controller_packet_airtime_compute(uVar8, uVar14, cVar12, 1, uVar11);
       }
       uVar6 = (u32)((DAT_01012640 * (u64)(u32)(iVar7 + 0x2f1)) >> 0x29) * 0x271u;
       uVar10 = read_u24((volatile u8 *)(param_2 + 3)) * 0x271u;

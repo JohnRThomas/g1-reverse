@@ -67,7 +67,13 @@ def source_headers(core, candidates):
     for root, priority in roots:
         for path in sorted(glob.glob(root + "/*.c")):
             with open(path, errors="ignore") as stream:
-                prefix = stream.read(800)
+                # Generated provenance blocks grow as more callees/globals get
+                # readable names.  A fixed prefix can end in the middle of the
+                # canonical entry address; the address regex would then accept
+                # that truncated hexadecimal prefix as a distinct function.
+                # Read the complete small source file so a later canonical
+                # header is never parsed at an artificial buffer boundary.
+                prefix = stream.read()
             match = HEADER.search(prefix)
             if match:
                 add(candidates, int(match.group(2), 16), match.group(1),

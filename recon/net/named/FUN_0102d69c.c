@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102d69c @ 0x0102d69c
  * public-name: FUN_0102d69c
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103a749                           @ 0x0103a749
  */
 /* net-core FUN_0102d69c @ 0x0102d69c */
 #include <stdint.h>

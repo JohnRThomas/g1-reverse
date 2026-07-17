@@ -3,6 +3,7 @@
  * public-name: sdc_buffer_accumulate
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_packet_overhead_span_get      <= FUN_01026856 @ 0x01026856
  *   sdc_buffer_accumulate                    <= FUN_01026f32 @ 0x01026f32
  */
 /* net-core FUN_01026f32 @ 0x1026f32  (CFG-directed candidate) */
@@ -12,7 +13,7 @@ extern void sdc_assertion_fail(uint32_t reason, uint32_t location);
 /* Back-map: sdc_assertion_fail <= FUN_01008d00 @ 0x01008d00. */
 extern void FUN_0100951c(void *state, void *descriptor);
 extern void FUN_01025998(void *destination, const void *source, uint32_t length);
-extern uint32_t FUN_01026856(uint8_t mode);
+extern uint32_t controller_packet_overhead_span_get(uint8_t mode);
 
 static inline uint16_t read_u16(const uint8_t *address)
 {
@@ -49,7 +50,7 @@ uint32_t sdc_buffer_accumulate(uint8_t *state, uint32_t amount_argument,
         if (read_u16(cursor) != accumulated) {
             sdc_assertion_fail(0x14u, 0x204u);
         }
-        uint32_t trailer_offset = FUN_01026856(state[0x13]);
+        uint32_t trailer_offset = controller_packet_overhead_span_get(state[0x13]);
         const uint8_t *source = payload + payload_offset + accumulated +
                                 trailer_offset - 3u;
         FUN_01025998(source, state + 0x14, 3u);
@@ -63,7 +64,7 @@ uint32_t sdc_buffer_accumulate(uint8_t *state, uint32_t amount_argument,
         FUN_0100951c(state, state + 6);
         write_u16(state + 0x0c, 0);
     } else {
-        uint32_t trailer_offset = FUN_01026856(state[0x13]);
+        uint32_t trailer_offset = controller_packet_overhead_span_get(state[0x13]);
         const uint8_t *source = payload + payload_offset + accumulated +
                                 trailer_offset - 3u;
         FUN_01025998(state + 0x14, source, 3u);

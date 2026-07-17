@@ -971,6 +971,46 @@
    "name": "strncpy",
    "evidence": "Exact pinned picolibc archive match for strncpy, including zero padding of the unused destination capacity and destination return ABI. Raw identity remains FUN_0103b5a4 at 0x0103b5a4."
   },
+  "0x010109ec": {
+   "name": "controller_packet_airtime_compute",
+   "evidence": "The recovered 0x540-byte controller packet-airtime calculation has a proven scalar uint32_t r0 ABI; whole-image liveness analysis shows r1 is dead arithmetic residue at all three callsites. Raw identity remains FUN_010109ec at 0x010109ec; durable ABI evidence is in recon/catalogs/net_packet_airtime_abi.json."
+  },
+  "0x0101dc50": {
+   "name": "controller_packet_space_limit",
+   "evidence": "Recovered controller helper derives the nonnegative narrow packet-space limit and forwards the complete call context. Raw identity remains FUN_0101dc50 at 0x0101dc50."
+  },
+  "0x0101de60": {
+   "name": "schedule_node_split_insert",
+   "evidence": "Recovered scheduling helper validates split ordering and inserts the split node into the surrounding linked schedule structure. Raw identity remains FUN_0101de60 at 0x0101de60."
+  },
+  "0x0101e274": {
+   "name": "controller_timing_state_reset",
+   "evidence": "Recovered helper clears the controller timing-state fields and reapplies the signed timing defaults. Raw identity remains FUN_0101e274 at 0x0101e274."
+  },
+  "0x01026c94": {
+   "name": "controller_packet_payload_extract",
+   "evidence": "Recovered helper decodes the packet header, resolves its payload offset, copies the payload into the destination, and returns the narrow payload length. Raw identity remains FUN_01026c94 at 0x01026c94."
+  },
+  "0x01026856": {
+   "name": "controller_packet_overhead_span_get",
+   "evidence": "The helper truncates the encoded packet mode to the firmware uint8 ABI and returns its header/trailer overhead span as mode plus five. Raw identity remains FUN_01026856 at 0x01026856."
+  },
+  "0x010274d0": {
+   "name": "controller_handle_slot_byte_offset",
+   "evidence": "Narrows the caller slot to uint8 and returns the exact two-byte handle-table offset for that slot. Raw identity remains FUN_010274d0 at 0x010274d0."
+  },
+  "0x0102751a": {
+   "name": "controller_handle_slot_value_set",
+   "evidence": "Narrows and stores the handle value in the selected descriptor slot, then returns that slot's value pointer. Raw identity remains FUN_0102751a at 0x0102751a."
+  },
+  "0x01027b0c": {
+   "name": "controller_interval_half_saturating",
+   "evidence": "Narrows the interval to uint16, halves values below 0x1fe, and saturates larger values to 0xff. Raw identity remains FUN_01027b0c at 0x01027b0c."
+  },
+  "0x010295d6": {
+   "name": "controller_random_window_step",
+   "evidence": "Recovered helper updates the controller window using the random source, shrink flag, and bounded 16-bit state. Raw identity remains FUN_010295d6 at 0x010295d6."
+  },
   "0x0103a056": {
    "name": "ipc_static_vrings_shm_size",
    "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."

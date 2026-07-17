@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_payload_extract        <= FUN_01026c94 @ 0x01026c94
  * address symbols (name @ address):
  *   g_net_ble_conn_create_ctx                @ 0x21000eac
  */
@@ -13,7 +14,7 @@ extern void sdc_assertion_fail(unsigned int a, unsigned int b) __attribute__((no
 extern unsigned int FUN_0100a118(void);
 extern int FUN_0100e5ec(int a);
 extern void FUN_01025998(int a, int b, unsigned short c);
-extern int FUN_01026c94(unsigned int a, int b);
+extern int controller_packet_payload_extract(unsigned int a, int b);
 extern int FUN_01027044(void);
 extern unsigned int FUN_0102709e(unsigned int a, int b, void *c);
 extern int FUN_010270e8(unsigned int a);
@@ -59,7 +60,7 @@ void FUN_0100eaf0(unsigned short param_1, int *param_2)
     FUN_01025998(*param_2, radio_result[0] + 3, *(volatile unsigned short *)(p2 + 6));
     iVar2 = FUN_010270e8(uVar1);
     if (iVar2 != 0) {
-        iVar2 = FUN_01026c94(uVar1, 0);
+        iVar2 = controller_packet_payload_extract(uVar1, 0);
         if (iVar2 != 0) {
             if (*(volatile char *)(DAT_ebb4 + 0x17) != 0) {
                 *(volatile short *)(DAT_ebb4 + 0x18) = *(volatile short *)(DAT_ebb4 + 0x18) - 1;

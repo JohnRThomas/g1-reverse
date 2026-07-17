@@ -3,6 +3,10 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   ipc_service_register_endpoint            <= FUN_0102d5b4 @ 0x0102d5b4
+ * address symbols (name @ address):
+ *   rodata_103c074                           @ 0x0103c074
+ *   rodata_103d53d                           @ 0x0103d53d
+ *   rodata_103d55b                           @ 0x0103d55b
  */
 /* net-core FUN_0102d5b4 @ 0x0102d5b4 */
 #include <stdint.h>

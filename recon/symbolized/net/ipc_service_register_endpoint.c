@@ -4,6 +4,10 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   ipc_service_register_endpoint            <= FUN_0102d5b4 @ 0x0102d5b4
+ * address symbols (name @ address):
+ *   rodata_103c074                           @ 0x0103c074
+ *   rodata_103d53d                           @ 0x0103d53d
+ *   rodata_103d55b                           @ 0x0103d55b
  */
 /* net-core FUN_0102d5b4 @ 0x0102d5b4 */
 #include <stdint.h>
@@ -20,8 +24,8 @@ int32_t ipc_service_register_endpoint(uint32_t instance, uint32_t *result, uint3
 
     if (instance == 0u || result == 0 || endpoint == 0u) {
         log_args[0] = 2u;
-        log_args[1] = 0x0103d55bu;
-        FUN_01039e52(0x0103c074u, 0x1040u, log_args);
+        log_args[1] = ((unsigned long)&rodata_103d55b) /*=0x103d55b*/;
+        FUN_01039e52(((unsigned long)&rodata_103c074) /*=0x103c074*/, 0x1040u, log_args);
         return -22;
     }
 
@@ -29,8 +33,8 @@ int32_t ipc_service_register_endpoint(uint32_t instance, uint32_t *result, uint3
     if (transport == 0u ||
         (open_fn = *(transport_open_fn *)(uintptr_t)(transport + 0xcu)) == 0) {
         log_args[0] = 2u;
-        log_args[1] = 0x0103d53du;
-        FUN_01039e52(0x0103c074u, 0x1040u, log_args);
+        log_args[1] = ((unsigned long)&rodata_103d53d) /*=0x103d53d*/;
+        FUN_01039e52(((unsigned long)&rodata_103c074) /*=0x103c074*/, 0x1040u, log_args);
         return -5;
     }
 

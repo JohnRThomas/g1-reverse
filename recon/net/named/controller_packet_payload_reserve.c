@@ -2,6 +2,7 @@
  * public-name: controller_packet_payload_reserve
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_packet_overhead_span_get      <= FUN_01026856 @ 0x01026856
  *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
  */
 /* net-core controller_packet_payload_reserve @ 0x01026e48.
@@ -9,7 +10,7 @@
 #include <stdint.h>
 
 extern int32_t FUN_010268ce(uint32_t, uint32_t);
-extern uint32_t FUN_01026856(uint32_t);
+extern uint32_t controller_packet_overhead_span_get(uint32_t);
 
 uint32_t controller_packet_payload_reserve(uint16_t *packet, uint16_t requested)
 {
@@ -28,7 +29,7 @@ uint32_t controller_packet_payload_reserve(uint16_t *packet, uint16_t requested)
     }
     if (lower_offset < upper_offset) {
         uint32_t bounded = upper_offset - lower_offset -
-            FUN_01026856(*((uint8_t *)packet + 0x13));
+            controller_packet_overhead_span_get(*((uint8_t *)packet + 0x13));
         if ((int32_t)bounded <= (int32_t)available) {
             available = bounded;
         }
@@ -43,7 +44,7 @@ uint32_t controller_packet_payload_reserve(uint16_t *packet, uint16_t requested)
 
     uint32_t payload = (uint32_t)(uintptr_t)(
         (uint8_t *)packet + 0x18u + lower_offset +
-        FUN_01026856(*((uint8_t *)packet + 0x13)) + packet[6] - 3u);
+        controller_packet_overhead_span_get(*((uint8_t *)packet + 0x13)) + packet[6] - 3u);
     packet[8] = requested;
     return payload;
 }
