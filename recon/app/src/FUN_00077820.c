@@ -1,68 +1,105 @@
-/* Reconstructed internal function FUN_00077820 @ 0x77820.
- * Reachable code is [0x77820,0x778c4), 164 bytes.  Its four-word literal
- * pool is separately preserved at [0x778c4,0x778d4). */
+/* app-core _puts_r @ 0x00077820.
+ * Exact reachable code is [0x00077820,0x000778c2), 162 bytes. The NOP at
+ * 0x000778c2 is alignment; literals occupy [0x000778c4,0x000778d4), and
+ * puts starts at 0x000778d4. Raw backmap: FUN_00077820@0x00077820. */
 #include <stdint.h>
 
-extern int FUN_0000ef12(int value);
-extern void FUN_000510fc(uint32_t lock);
-extern void FUN_00051134(uint32_t lock);
-extern void FUN_00076bcc(int context);
-extern int FUN_00077e70(int context, int stream, void *iov_descriptor);
+extern uint32_t strlen(const char *text); /* FUN_0000ef12@0x0000ef12 */
+extern void __retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */
+extern void __retarget_lock_release_recursive(uint32_t lock); /* FUN_00051134@0x00051134 */
+extern void __sinit(void *reent); /* FUN_00076bcc@0x00076bcc */
+extern int __sfvwrite_r(void *reent, void *stream, void *uio); /* FUN_00077e70@0x00077e70 */
 
-struct local_iov {
-    uint32_t *items;
-    uint32_t count;
-    uint32_t remaining;
-    uint32_t item[4];
+struct __siov_local {
+    const void *base;
+    uint32_t length;
 };
 
-int FUN_00077820(int context, int value)
+struct __suio_local {
+    struct __siov_local *iov;
+    uint32_t iov_count;
+    uint32_t residual;
+};
+
+struct puts_uio {
+    struct __suio_local uio;
+    struct __siov_local iov[2];
+};
+
+enum {
+    REENT_STDIN_OFFSET = 4,
+    REENT_STDOUT_OFFSET = 8,
+    REENT_STDERR_OFFSET = 12,
+    REENT_STDIO_INITIALIZED_OFFSET = 0x18,
+    FILE_FLAGS_OFFSET = 0x0c,
+    FILE_LOCK_OFFSET = 0x58,
+    FILE_STATE_OFFSET = 0x64,
+};
+
+#define NEWLINE_TEXT_ADDR       0x000f5400u
+#define NEWLIB_FAKE_STDIN_ADDR  0x0009871cu
+#define NEWLIB_FAKE_STDOUT_ADDR 0x000986fcu
+#define NEWLIB_FAKE_STDERR_ADDR 0x000986dcu
+
+static uint32_t word_at(const void *object, uint32_t offset)
 {
-    struct local_iov iov;
-    int measured = FUN_0000ef12(value);
-    int stream;
+    return *(const uint32_t *)((const uint8_t *)object + offset);
+}
 
-    iov.item[0] = (uint32_t)value;
-    iov.item[1] = (uint32_t)measured;
-    iov.item[2] = 0x000f5400u;
-    iov.item[3] = 1;
-    iov.items = iov.item;
-    iov.count = 2;
-    iov.remaining = (uint32_t)(measured + 1);
+static uint16_t halfword_at(const void *object, uint32_t offset)
+{
+    return *(const uint16_t *)((const uint8_t *)object + offset);
+}
 
-    if (context == 0) {
+int _puts_r(void *reent, const char *text)
+{
+    struct puts_uio call;
+    uint32_t measured = strlen(text);
+    uintptr_t stream;
+
+    call.iov[0].base = text;
+    call.iov[0].length = measured;
+    call.iov[1].base = (const void *)NEWLINE_TEXT_ADDR;
+    call.iov[1].length = 1;
+    call.uio.iov = call.iov;
+    call.uio.iov_count = 2;
+    call.uio.residual = measured + 1;
+
+    if (reent == 0) {
         /* The original performs a null load followed by UDF #0xff. */
         (void)*(volatile uint32_t *)(uintptr_t)8;
         __builtin_trap();
     }
 
-    if (*(int *)(context + 0x18) == 0) {
-        FUN_00076bcc(context);
-        stream = *(int *)(context + 8);
-        if (*(int *)(context + 0x18) == 0)
-            FUN_00076bcc(context);
+    if (word_at(reent, REENT_STDIO_INITIALIZED_OFFSET) == 0) {
+        __sinit(reent);
+        stream = word_at(reent, REENT_STDOUT_OFFSET);
+        if (word_at(reent, REENT_STDIO_INITIALIZED_OFFSET) == 0)
+            __sinit(reent);
     } else {
-        stream = *(int *)(context + 8);
+        stream = word_at(reent, REENT_STDOUT_OFFSET);
     }
 
-    if (stream == 0x0009871c)
-        stream = *(int *)(context + 4);
-    else if (stream == 0x000986fc)
-        stream = *(int *)(context + 8);
-    else if (stream == 0x000986dc)
-        stream = *(int *)(context + 0xc);
+    if (stream == NEWLIB_FAKE_STDIN_ADDR)
+        stream = word_at(reent, REENT_STDIN_OFFSET);
+    else if (stream == NEWLIB_FAKE_STDOUT_ADDR)
+        stream = word_at(reent, REENT_STDOUT_OFFSET);
+    else if (stream == NEWLIB_FAKE_STDERR_ADDR)
+        stream = word_at(reent, REENT_STDERR_OFFSET);
 
-    uint32_t state = *(uint32_t *)(stream + 0x64);
-    uint16_t flags = *(uint16_t *)(stream + 0xc);
+    uint32_t state = word_at((void *)stream, FILE_STATE_OFFSET);
+    uint16_t flags = halfword_at((void *)stream, FILE_FLAGS_OFFSET);
     if ((state & 1u) == 0 && (flags & 0x0200u) == 0)
-        FUN_000510fc(*(uint32_t *)(stream + 0x58));
+        __retarget_lock_acquire_recursive(
+            word_at((void *)stream, FILE_LOCK_OFFSET));
 
-    int result = FUN_00077e70(context, stream, &iov.items) == 0 ? 10 : -1;
+    int result = __sfvwrite_r(reent, (void *)stream, &call.uio) == 0 ? 10 : -1;
 
-    state = *(uint32_t *)(stream + 0x64);
-    flags = *(uint16_t *)(stream + 0xc);
+    state = word_at((void *)stream, FILE_STATE_OFFSET);
+    flags = halfword_at((void *)stream, FILE_FLAGS_OFFSET);
     if ((state & 1u) == 0 && (flags & 0x0200u) == 0)
-        FUN_00051134(*(uint32_t *)(stream + 0x58));
+        __retarget_lock_release_recursive(
+            word_at((void *)stream, FILE_LOCK_OFFSET));
 
     return result;
 }

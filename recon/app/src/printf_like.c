@@ -1,1098 +1,1682 @@
-/* Reconstructed printf_like @ 0x113a8  (parity: 120/120 trials, PROVEN) */
+/* Reconstructed z_cbvprintf_impl @ 0x000113a8.
+ *
+ * Exact NCS 2.5.1 Zephyr lib/os/cbprintf_complete.c implementation.
+ * Readable names retain reversible raw provenance:
+ *   z_cbvprintf_impl <= FUN_000113a8 @ 0x000113a8
+ *   strlen           <= FUN_0000ef12 @ 0x0000ef12
+ *   extract_decimal  <= FUN_0004bb64 @ 0x0004bb64
+ *   encode_uint      <= FUN_0004bb90 @ 0x0004bb90
+ *   _ldiv5           <= FUN_0007e260 @ 0x0007e260
+ *   _get_digit       <= FUN_0007e290 @ 0x0007e290
+ *   outs             <= FUN_0007e2be @ 0x0007e2be
+ *   memset_bytes     <= FUN_00086c78 @ 0x00086c78
+ *   strnlen          <= FUN_000870a6 @ 0x000870a6
+ *
+ * Executable ownership is [0x000113a8, 0x00012274), size 0xecc.  Literal
+ * words begin at 0x12274; the late float/integer blocks through 0x12272 are
+ * branch-reachable parts of this function, not independent callees.
+ */
+#include <ctype.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
-#pragma GCC diagnostic warning "-Wint-conversion"
-#pragma GCC diagnostic warning "-Wimplicit-int"
-#pragma GCC diagnostic warning "-Wimplicit-function-declaration"
-#pragma GCC diagnostic warning "-Wint-to-pointer-cast"
-#pragma GCC diagnostic warning "-Wpointer-to-int-cast"
-#pragma GCC diagnostic warning "-Wincompatible-pointer-types"
-#pragma GCC diagnostic warning "-Wdiscarded-qualifiers"
-typedef uint8_t undefined1; typedef uint8_t byte; typedef uint8_t undefined; typedef uint8_t uchar;
-typedef uint16_t undefined2; typedef uint16_t ushort; typedef uint16_t wchar_t;
-typedef uint32_t undefined4; typedef uint32_t uint;
-typedef int code(int,uint32_t);
-typedef uint64_t undefined8; typedef uint64_t ulonglong;
-typedef int64_t longlong; typedef int32_t int32; typedef unsigned int uint3;
-static inline int CARRY4(uint a, uint b){return (a+b)<a;}
-static inline int CARRY1(uint a, uint b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(uint a, uint b){return ((a&0xffff)+(b&0xffff))>0xffff;}
-static inline int SBORROW4(int a,int b){int r=(int)((uint)a-(uint)b);return (((a^b)&(a^r))<0);}
-static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
-static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
-#define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
-#define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-#define CONCAT44(a,b) ((ulonglong)(((ulonglong)(uint)(a)<<32)|(uint)(b)))
-#define CONCAT13(a,b) ((uint)(((uint)(uint8_t)(a)<<24)|((uint)(b)&0xffffff)))
-#define CONCAT31(a,b) ((uint)(((uint)(a)<<8)|(uint8_t)(b)))
-#define CONCAT12(a,b) ((uint)(((uint)(uint8_t)(a)<<16)|(ushort)(b)))
-#define CONCAT21(a,b) ((uint)(((uint)(ushort)(a)<<8)|(uint8_t)(b)))
-#define CONCAT111(a,b,c) ((uint)(((uint)(uint8_t)(a)<<16)|((uint)(uint8_t)(b)<<8)|(uint8_t)(c)))
-#define CONCAT411(a,b,c) ((ulonglong)(((ulonglong)(uint)(a)<<16)|((uint)(uint8_t)(b)<<8)|(uint8_t)(c)))
-#define SUB84(x,o) ((uint)((ulonglong)(x)>>((o)*8)))
-#define SUB82(x,o) ((ushort)((ulonglong)(x)>>((o)*8)))
-#define SUB81(x,o) ((uint8_t)((ulonglong)(x)>>((o)*8)))
-#define SUB41(x,o) ((uint8_t)((uint)(x)>>((o)*8)))
-#define SUB42(x,o) ((ushort)((uint)(x)>>((o)*8)))
-#define SUB21(x,o) ((uint8_t)((ushort)(x)>>((o)*8)))
-#define SUBF(v,o,s) ((ulonglong)((ulonglong)(v)>>((o)*8)) & ((s)>=8?~0ULL:((1ULL<<((s)*8))-1)))
-#define NAN (__builtin_nanf(""))
-#define INFINITY (__builtin_inff())
+#include <sys/types.h>
 
-extern long long FUN_0000ef12(int, ...);
-extern long long FUN_0004bb64(int, ...);
-extern long long FUN_0004bb90(int, ...);
-extern long long FUN_0007e260(int, ...);
-extern long long FUN_0007e290(int, ...);
-extern long long FUN_0007e2be(int, ...);
-extern long long FUN_00086c78(int, ...);
-extern long long FUN_000870a6(int, ...);
-static inline int SCARRY4(int a, int b) { int r = (int)((uint)a + (uint)b); return ((a ^ r) & (b ^ r)) < 0; }
+#define CONFIG_CBPRINTF_FULL_INTEGRAL 1
+#define CONFIG_CBPRINTF_FP_SUPPORT 1
+#define CONFIG_CBPRINTF_N_SPECIFIER 1
+#define CONFIG_CBPRINTF_FP_A_SUPPORT 0
+#define CONFIG_CBPRINTF_FP_ALWAYS_A 0
+#define CONFIG_CBPRINTF_PACKAGE_SUPPORT_TAGGED_ARGUMENTS 0
+#define Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS 1u
+#define IS_ENABLED(config_macro) (config_macro)
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define DIV_ROUND_UP(n, d) (((n) + (d) - 1) / (d))
+#define BIT(n) (1UL << (n))
+#define BIT64(n) (1ULL << (n))
+#define BIT_MASK(n) (BIT(n) - 1UL)
+#define BIT64_MASK(n) (BIT64(n) - 1ULL)
+#define __fallthrough __attribute__((fallthrough))
 
-#define DAT_00011dd0 (0x0UL)
-#define DAT_00011dd8 (0xf8a6aUL)
-#define DAT_00012074 ((volatile byte*)0xf0981UL)
-#define DAT_00012078 (0xf8a6bUL)
+typedef int (*cbprintf_cb)(int c, void *ctx);
+
+#define strlen          FUN_0000ef12
+#define extract_decimal FUN_0004bb64
+#define encode_uint     FUN_0004bb90
+#define _ldiv5          FUN_0007e260
+#define _get_digit      FUN_0007e290
+#define outs            FUN_0007e2be
+#define memset_bytes    FUN_00086c78
+#define strnlen         FUN_000870a6
+
+/* Provide typedefs used for signed and unsigned integral types
+ * capable of holding all convertible integral values.
+ */
+#ifdef CONFIG_CBPRINTF_FULL_INTEGRAL
+typedef intmax_t sint_value_type;
+typedef uintmax_t uint_value_type;
+#else
+typedef int32_t sint_value_type;
+typedef uint32_t uint_value_type;
+#endif
+
+/* The maximum buffer size required is for octal formatting: one character for
+ * every 3 bits.  Neither EOS nor alternate forms are required.
+ */
+#define CONVERTED_INT_BUFLEN ((CHAR_BIT * sizeof(uint_value_type) + 2) / 3)
+
+/* The float code may extract up to 16 digits, plus a prefix, a
+ * leading 0, a dot, and an exponent in the form e+xxx for a total of
+ * 24. Add a trailing NULL so the buffer length required is 25.
+ */
+#define CONVERTED_FP_BUFLEN 25U
+
+#ifdef CONFIG_CBPRINTF_FP_SUPPORT
+#define CONVERTED_BUFLEN MAX(CONVERTED_INT_BUFLEN, CONVERTED_FP_BUFLEN)
+#else
+#define CONVERTED_BUFLEN CONVERTED_INT_BUFLEN
+#endif
+
+/* The allowed types of length modifier. */
+enum length_mod_enum {
+	LENGTH_NONE,		/* int */
+	LENGTH_HH,		/* char */
+	LENGTH_H,		/* short */
+	LENGTH_L,		/* long */
+	LENGTH_LL,		/* long long */
+	LENGTH_J,		/* intmax */
+	LENGTH_Z,		/* size_t */
+	LENGTH_T,		/* ptrdiff_t */
+	LENGTH_UPPER_L,		/* long double */
+};
+
+/* Categories of conversion specifiers. */
+enum specifier_cat_enum {
+	/* unrecognized */
+	SPECIFIER_INVALID,
+	/* d, i */
+	SPECIFIER_SINT,
+	/* c, o, u, x, X */
+	SPECIFIER_UINT,
+	/* n, p, s */
+	SPECIFIER_PTR,
+	/* a, A, e, E, f, F, g, G */
+	SPECIFIER_FP,
+};
+
+#define CHAR_IS_SIGNED (CHAR_MIN != 0)
+#if CHAR_IS_SIGNED
+#define CASE_SINT_CHAR case 'c':
+#define CASE_UINT_CHAR
+#else
+#define CASE_SINT_CHAR
+#define CASE_UINT_CHAR case 'c':
+#endif
+
+/* We need two pieces of information about wchar_t:
+ * * WCHAR_IS_SIGNED: whether it's signed or unsigned;
+ * * WINT_TYPE: the type to use when extracting it from va_args
+ *
+ * The former can be determined from the value of WCHAR_MIN if it's defined.
+ * It's not for minimal libc, so treat it as whatever char is.
+ *
+ * The latter should be wint_t, but minimal libc doesn't provide it.  We can
+ * substitute wchar_t as long as that type does not undergo default integral
+ * promotion as an argument.  But it does for at least one toolchain (xtensa),
+ * and where it does we need to use the promoted type in va_arg() to avoid
+ * build errors, otherwise we can use the base type.  We can tell that
+ * integral promotion occurs if WCHAR_MAX is strictly less than INT_MAX.
+ */
+#ifndef WCHAR_MIN
+#define WCHAR_IS_SIGNED CHAR_IS_SIGNED
+#if WCHAR_IS_SIGNED
+#define WINT_TYPE int
+#else /* wchar signed */
+#define WINT_TYPE unsigned int
+#endif /* wchar signed */
+#else /* WCHAR_MIN defined */
+#define WCHAR_IS_SIGNED ((WCHAR_MIN - 0) != 0)
+#if WCHAR_MAX < INT_MAX
+/* Signed or unsigned, it'll be int */
+#define WINT_TYPE int
+#else /* wchar rank vs int */
+#define WINT_TYPE wchar_t
+#endif /* wchar rank vs int */
+#endif /* WCHAR_MIN defined */
+
+/* Case label to identify conversions for signed integral values.  The
+ * corresponding argument_value tag is sint and category is
+ * SPECIFIER_SINT.
+ */
+#define SINT_CONV_CASES				\
+	'd':					\
+	CASE_SINT_CHAR				\
+	case 'i'
+
+/* Case label to identify conversions for signed integral arguments.
+ * The corresponding argument_value tag is uint and category is
+ * SPECIFIER_UINT.
+ */
+#define UINT_CONV_CASES				\
+	'o':					\
+	CASE_UINT_CHAR				\
+	case 'u':				\
+	case 'x':				\
+	case 'X'
+
+/* Case label to identify conversions for floating point arguments.
+ * The corresponding argument_value tag is either dbl or ldbl,
+ * depending on length modifier, and the category is SPECIFIER_FP.
+ */
+#define FP_CONV_CASES				\
+	'a':					\
+	case 'A':				\
+	case 'e':				\
+	case 'E':				\
+	case 'f':				\
+	case 'F':				\
+	case 'g':				\
+	case 'G'
+
+/* Case label to identify conversions for pointer arguments.  The
+ * corresponding argument_value tag is ptr and the category is
+ * SPECIFIER_PTR.
+ */
+#define PTR_CONV_CASES				\
+	'n':					\
+	case 'p':				\
+	case 's'
+
+/* Storage for an argument value. */
+union argument_value {
+	/* For SINT conversions */
+	sint_value_type sint;
+
+	/* For UINT conversions */
+	uint_value_type uint;
+
+	/* For FP conversions without L length */
+	double dbl;
+
+	/* For FP conversions with L length */
+	long double ldbl;
+
+	/* For PTR conversions */
+	void *ptr;
+};
+
+/* Structure capturing all attributes of a conversion
+ * specification.
+ *
+ * Initial values come from the specification, but are updated during
+ * the conversion.
+ */
+struct conversion {
+	/** Indicates flags are inconsistent */
+	bool invalid: 1;
+
+	/** Indicates flags are valid but not supported */
+	bool unsupported: 1;
+
+	/** Left-justify value in width */
+	bool flag_dash: 1;
+
+	/** Explicit sign */
+	bool flag_plus: 1;
+
+	/** Space for non-negative sign */
+	bool flag_space: 1;
+
+	/** Alternative form */
+	bool flag_hash: 1;
+
+	/** Pad with leading zeroes */
+	bool flag_zero: 1;
+
+	/** Width field present */
+	bool width_present: 1;
+
+	/** Width value from int argument
+	 *
+	 * width_value is set to the absolute value of the argument.
+	 * If the argument is negative flag_dash is also set.
+	 */
+	bool width_star: 1;
+
+	/** Precision field present */
+	bool prec_present: 1;
+
+	/** Precision from int argument
+	 *
+	 * prec_value is set to the value of a non-negative argument.
+	 * If the argument is negative prec_present is cleared.
+	 */
+	bool prec_star: 1;
+
+	/** Length modifier (value from length_mod_enum) */
+	unsigned int length_mod: 4;
+
+	/** Indicates an a or A conversion specifier.
+	 *
+	 * This affects how precision is handled.
+	 */
+	bool specifier_a: 1;
+
+	/** Conversion specifier category (value from specifier_cat_enum) */
+	unsigned int specifier_cat: 3;
+
+	/** If set alternate form requires 0 before octal. */
+	bool altform_0: 1;
+
+	/** If set alternate form requires 0x before hex. */
+	bool altform_0c: 1;
+
+	/** Set when pad0_value zeroes are to be to be inserted after
+	 * the decimal point in a floating point conversion.
+	 */
+	bool pad_postdp: 1;
+
+	/** Set for floating point values that have a non-zero
+	 * pad0_prefix or pad0_pre_exp.
+	 */
+	bool pad_fp: 1;
+
+	/** Conversion specifier character */
+	unsigned char specifier;
+
+	union {
+		/** Width value from specification.
+		 *
+		 * Valid until conversion begins.
+		 */
+		int width_value;
+
+		/** Number of extra zeroes to be inserted around a
+		 * formatted value:
+		 *
+		 * * before a formatted integer value due to precision
+		 *   and flag_zero; or
+		 * * before a floating point mantissa decimal point
+		 *   due to precision; or
+		 * * after a floating point mantissa decimal point due
+		 *   to precision.
+		 *
+		 * For example for zero-padded hexadecimal integers
+		 * this would insert where the angle brackets are in:
+		 * 0x<>hhhh.
+		 *
+		 * For floating point numbers this would insert at
+		 * either <1> or <2> depending on #pad_postdp:
+		 * VVV<1>.<2>FFFFeEEE
+		 *
+		 * Valid after conversion begins.
+		 */
+		int pad0_value;
+	};
+
+	union {
+		/** Precision from specification.
+		 *
+		 * Valid until conversion begins.
+		 */
+		int prec_value;
+
+		/** Number of extra zeros to be inserted after a decimal
+		 * point due to precision.
+		 *
+		 * Inserts at <> in: VVVV.FFFF<>eEE
+		 *
+		 * Valid after conversion begins.
+		 */
+		int pad0_pre_exp;
+	};
+};
 
 
-byte * printf_like(code *param_1,undefined4 param_2,byte *param_3,uint *param_4)
+extern size_t strlen(const char *s);
+extern size_t extract_decimal(const char **text);
+extern char *encode_uint(uint_value_type value, struct conversion *conv,
+                         char *begin, const char *end);
+extern void _ldiv5(uint64_t *value);
+extern char _get_digit(uint64_t *fraction, int *digit_count);
+extern int outs(cbprintf_cb out, void *ctx,
+                const char *start, const char *end);
+extern void *memset_bytes(void *dst, int value, size_t length);
+extern size_t strnlen(const char *s, size_t maximum);
 
+static inline void _ldiv10(uint64_t *value)
 {
-  ulonglong uVar1;
-  bool bVar2;
-  bool bVar3;
-  bool bVar4;
-  bool bVar5;
-  char cVar6;
-  ushort uVar7;
-  ushort uVar8;
-  undefined1 uVar9;
-  byte bVar10;
-  byte *pbVar11;
-  uint uVar12;
-  byte *pbVar13;
-  uint uVar14;
-  byte *pbVar15;
-  uint uVar16;
-  byte bVar17;
-  uint uVar18;
-  uint uVar19;
-  uint uVar20;
-  byte *pbVar21;
-  undefined4 uVar22;
-  int iVar23;
-  byte *pbVar24;
-  uint *puVar25;
-  uint *puVar26;
-  undefined4 *puVar27;
-  byte *pbVar28;
-  int iVar29;
-  byte *pbVar30;
-  bool bVar31;
-  undefined8 uVar32;
-  byte *local_90;
-  byte *local_8c;
-  byte *local_88;
-  uint local_74;
-  uint local_70;
-  uint local_6c;
-  undefined8 local_68;
-  byte *local_60;
-  uint local_5c;
-  undefined2 local_58;
-  undefined2 local_56;
-  byte *local_54;
-  byte *local_50;
-  byte local_44 [25];
-  byte abStack_2b [7];
-  
-  pbVar28 = (byte *)0x0;
-  do {
-    bVar10 = *param_3;
-    if (bVar10 == 0) {
-      return pbVar28;
-    }
-    local_88 = param_3 + 1;
-    if (bVar10 != 0x25) {
-LAB_000113cc:
-      pbVar11 = (byte *)(*param_1)(bVar10,param_2);
-      if ((int)pbVar11 < 0) {
-        return pbVar11;
-      }
-      pbVar28 = pbVar28 + 1;
-      goto switchD_0001194e_caseD_59;
-    }
-    FUN_00086c78(&local_60,0,0x18);
-    local_60 = (byte *)0;
-    local_5c = 0;
-    local_58 = 0;
-    local_56 = 0;
-    local_54 = (byte *)0;
-    local_50 = (byte *)0;
-    if (param_3[1] == 0x25) {
-      local_88 = param_3 + 2;
-      local_56 = CONCAT11(0x25,(byte)local_56);
-    }
-    else {
-      bVar31 = false;
-      bVar2 = false;
-      bVar3 = false;
-      bVar4 = false;
-      bVar5 = false;
-      pbVar11 = param_3 + 1;
-      while( true ) {
-        while( true ) {
-          while( true ) {
-            while( true ) {
-              pbVar15 = pbVar11 + 1;
-              bVar10 = *pbVar11;
-              if (bVar10 != 0x2b) break;
-              bVar4 = true;
-              pbVar11 = pbVar15;
-            }
-            if (0x2b < bVar10) break;
-            if (bVar10 == 0x20) {
-              bVar3 = true;
-              pbVar11 = pbVar15;
-            }
-            else {
-              if (bVar10 != 0x23) goto LAB_00011412;
-              bVar2 = true;
-              pbVar11 = pbVar15;
-            }
-          }
-          if (bVar10 != 0x2d) break;
-          bVar5 = true;
-          pbVar11 = pbVar15;
-        }
-        if (bVar10 != 0x30) break;
-        bVar31 = true;
-        pbVar11 = pbVar15;
-      }
-LAB_00011412:
-      if (bVar31) {
-        local_58 = local_58 | 0x40;
-      }
-      if (bVar2) {
-        local_58 = local_58 | 0x20;
-      }
-      if (bVar3) {
-        local_58 = local_58 | 0x10;
-      }
-      if (bVar4) {
-        local_58 = local_58 | 8;
-      }
-      if (bVar5) {
-        local_58 = local_58 | 4;
-      }
-      if (((byte)local_58 & 0x44) == 0x44) {
-        local_58 = local_58 & 0xffbf;
-      }
-      local_68 = CONCAT44((*(volatile uint32_t*)((char*)&local_68 + 4)),pbVar11);
-      uVar9 = (*(volatile uint8_t*)((char*)&local_58 + 1));
-      local_58 = local_58 | 0x80;
-      if (bVar10 == 0x2a) {
-        local_58 = CONCAT11(uVar9,(byte)local_58) | 0x100;
-        pbVar15 = pbVar11 + 1;
-      }
-      else {
-        pbVar30 = (byte *)FUN_0004bb64(&local_68);
-        pbVar15 = (byte *)local_68;
-        if ((byte *)local_68 != pbVar11) {
-          local_58 = CONCAT11((*(volatile uint8_t*)((char*)&local_58 + 1)),
-                              (byte)local_58 & 0xfd | (byte)(((uint)pbVar30 >> 0x1f) << 1));
-          local_54 = pbVar30;
-        }
-      }
-      bVar10 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0xfd | (*pbVar15 == 0x2e) << 1;
-      (*(volatile uint8_t*)((char*)&local_58 + 1)) = bVar10;
-      if (*pbVar15 == 0x2e) {
-        local_68 = CONCAT44((*(volatile uint32_t*)((char*)&local_68 + 4)),pbVar15 + 1);
-        if (pbVar15[1] == 0x2a) {
-          (*(volatile uint8_t*)((char*)&local_58 + 1)) = bVar10 | 4;
-          pbVar15 = pbVar15 + 2;
-        }
-        else {
-          local_50 = (byte *)FUN_0004bb64(&local_68);
-          (*(volatile uint8_t*)((char*)&local_58 + 0)) =
-               (byte)local_58 & 0xfd |
-               (byte)((((uint)(byte)local_58 << 0x1e | (uint)local_50) >> 0x1f) << 1);
-          pbVar15 = (byte *)local_68;
-        }
-      }
-      bVar10 = *pbVar15;
-      if (bVar10 == 0x6c) {
-        if (pbVar15[1] != 0x6c) {
-          iVar29 = 3;
-          goto LAB_0001163e;
-        }
-        iVar29 = 4;
-LAB_00011630:
-        (*(volatile uint8_t*)((char*)&local_58 + 1)) = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x87 | (byte)(iVar29 << 3);
-        pbVar15 = pbVar15 + 2;
-      }
-      else {
-        if (bVar10 < 0x6d) {
-          if (bVar10 == 0x68) {
-            if (pbVar15[1] == 0x68) {
-              iVar29 = 1;
-              goto LAB_00011630;
-            }
-            iVar29 = 2;
-            goto LAB_0001163e;
-          }
-          if (bVar10 == 0x6a) {
-            iVar29 = 5;
-            goto LAB_0001163e;
-          }
-          if (bVar10 != 0x4c) goto LAB_000114ea;
-          (*(volatile uint8_t*)((char*)&local_58 + 0)) = (byte)local_58 & 0xfd | 2;
-          (*(volatile uint8_t*)((char*)&local_58 + 1)) = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x87 | 0x40;
-        }
-        else {
-          if (bVar10 == 0x74) {
-            iVar29 = 7;
-          }
-          else {
-            if (bVar10 != 0x7a) goto LAB_000114ea;
-            iVar29 = 6;
-          }
-LAB_0001163e:
-          (*(volatile uint8_t*)((char*)&local_58 + 1)) = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x87 | (byte)(iVar29 << 3);
-        }
-        pbVar15 = pbVar15 + 1;
-      }
-LAB_000114ea:
-      local_88 = pbVar15 + 1;
-      bVar10 = *pbVar15;
-      uVar18 = (uint)bVar10;
-      local_56 = CONCAT11(bVar10,(byte)local_56);
-      if (0x78 < uVar18) goto LAB_000116fc;
-      if (uVar18 < 0x6e) {
-        if (uVar18 < 0x6a) {
-          if (0x57 < uVar18) {
-            uVar19 = 1 << (uVar18 - 0x58 & 0xff);
-            if ((uVar19 & 0xe200) != 0) goto LAB_0001151a;
-            if ((uVar19 & 0x801) != 0) {
-              uVar19 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78;
-              local_56 = local_56 & 0xfff8 | 2;
-              if (uVar19 == 0x40) {
-                (*(volatile uint8_t*)((char*)&local_58 + 0)) = (byte)local_58 | 1;
-              }
-              if (uVar18 == 99) {
-                if (((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) != 0) {
-                  uVar19 = 1;
-                }
-                goto LAB_00011744;
-              }
-              goto LAB_0001155a;
-            }
-            if ((uVar19 & 0x21000) != 0) {
-              bVar17 = (byte)local_56 & 0xf8 | 1;
-              goto LAB_000116ee;
-            }
-            goto LAB_000116fc;
-          }
-          if ((uVar18 != 0x41) && (2 < uVar18 - 0x45)) goto LAB_000116fc;
-LAB_0001151a:
-          uVar18 = (uint)((uVar18 & 0xdf) == 0x41) << 7;
-          uVar19 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0xffffff7f;
-          uVar16 = uVar19 | uVar18;
-          local_56 = local_56 & 0xfff8 | 4;
-          bVar10 = (byte)uVar16;
-          if ((int)(uVar16 << 0x18) < 0) {
-            uVar19 = 1;
-            (*(volatile uint8_t*)((char*)&local_58 + 1)) = bVar10;
-            goto LAB_00011744;
-          }
-          if (((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) == 0x18) {
-            (*(volatile uint8_t*)((char*)&local_58 + 1)) = (byte)uVar19 & 0x87 | (byte)uVar18;
-          }
-          else {
-            bVar17 = (*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x38;
-            (*(volatile uint8_t*)((char*)&local_58 + 1)) = bVar10;
-            if (bVar17 != 0) goto LAB_000116fc;
-          }
-        }
-        else {
-LAB_000116fc:
-          (*(volatile uint8_t*)((char*)&local_58 + 0)) = (byte)local_58 | 1;
-        }
-LAB_0001155a:
-        uVar19 = 0;
-      }
-      else {
-        uVar18 = 1 << (uVar18 - 0x6e & 0xff);
-        if ((uVar18 & 0x482) != 0) {
-          bVar17 = (byte)local_56 & 0xf8 | 2;
-LAB_000116ee:
-          local_56 = CONCAT11(bVar10,bVar17);
-          if (((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) == 0x40) goto LAB_000116fc;
-          goto LAB_0001155a;
-        }
-        if ((uVar18 & 0x24) == 0) {
-          if (-1 < (int)(uVar18 << 0x1f)) goto LAB_000116fc;
-          local_56 = local_56 & 0xfff8 | 3;
-          uVar19 = (uint)(((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) == 0x40);
-        }
-        else {
-          uVar19 = (uint)(((*(volatile uint8_t*)((char*)&local_58 + 1)) & 0x78) != 0);
-          local_56 = local_56 & 0xfff8 | 3;
-        }
-      }
-LAB_00011744:
-      local_58 = CONCAT11((*(volatile uint8_t*)((char*)&local_58 + 1)),
-                          (byte)local_58 & 0xfd |
-                          (byte)((uVar19 & 1 | ((uint)(byte)local_58 << 0x1e) >> 0x1f) << 1));
-    }
-    uVar18 = (uint)(*(volatile uint8_t*)((char*)&local_58 + 1));
-    if ((int)(uVar18 << 0x1f) < 0) {
-      local_90 = (byte *)*param_4;
-      puVar26 = param_4 + 1;
-      if ((int)local_90 < 0) {
-        local_58 = local_58 | 4;
-        local_90 = (byte *)-(int)local_90;
-      }
-    }
-    else {
-      puVar26 = param_4;
-      local_90 = local_54;
-      if (-1 < (char)(byte)local_58) {
-        local_90 = (byte *)0xffffffff;
-      }
-    }
-    if ((int)(uVar18 << 0x1d) < 0) {
-      puVar25 = puVar26 + 1;
-      pbVar11 = (byte *)*puVar26;
-      puVar26 = puVar25;
-      if ((int)pbVar11 < 0) {
-        local_58 = local_58 & 0xfdff;
-LAB_000115a8:
-        pbVar11 = (byte *)0xffffffff;
-      }
-    }
-    else {
-      pbVar11 = local_50;
-      if (-1 < (int)(uVar18 << 0x1e)) goto LAB_000115a8;
-    }
-    uVar8 = local_58;
-    local_54 = (byte *)0x0;
-    local_50 = (byte *)0x0;
-    if ((((byte)local_56 & 7) == 4) && (-1 < (int)((uint)(*(volatile uint8_t*)((char*)&local_58 + 1)) << 0x1e))) {
-      if ((short)local_58 < 0) {
-        pbVar11 = (byte *)0xd;
-      }
-      else {
-        pbVar11 = (byte *)0x6;
-      }
-    }
-    bVar10 = (byte)local_56 & 7;
-    uVar18 = ((uint)(*(volatile uint8_t*)((char*)&local_58 + 1)) << 0x19) >> 0x1c;
-    if (bVar10 == 1) {
-      switch(uVar18) {
-      case 3:
-      case 6:
-      case 7:
-        local_60 = (byte *)*puVar26;
-        local_5c = (int)local_60 >> 0x1f;
-LAB_0001181a:
-        param_4 = puVar26 + 1;
-        break;
-      case 4:
-      case 5:
-switchD_000117ce_caseD_4:
-        puVar27 = (undefined4 *)((int)puVar26 + 7U & 0xfffffff8);
-        param_4 = puVar27 + 2;
-        local_60 = (byte *)*puVar27;
-        local_5c = puVar27[1];
-        break;
-      default:
-        pbVar15 = (byte *)*puVar26;
-        local_5c = (int)pbVar15 >> 0x1f;
-        if (uVar18 == 1) {
-          (*(volatile uint8_t*)((char*)&local_60 + 0)) = (char)pbVar15;
-          local_5c = (int)(char)local_60 >> 0x1f;
-          local_60 = (byte *)(int)(char)local_60;
-        }
-        else {
-          local_60 = pbVar15;
-          if (uVar18 == 2) {
-            local_60 = (byte *)(int)(short)pbVar15;
-            local_5c = ((int)pbVar15 << 0x10) >> 0x1f;
-          }
-        }
-        param_4 = puVar26 + 1;
-      }
-    }
-    else if (bVar10 == 2) {
-      switch(uVar18) {
-      case 3:
-      case 6:
-      case 7:
-        param_4 = puVar26 + 1;
-        local_60 = (byte *)*puVar26;
-        local_5c = 0;
-        break;
-      case 4:
-      case 5:
-        goto switchD_000117ce_caseD_4;
-      default:
-        local_5c = 0;
-        local_60 = (byte *)*puVar26;
-        if (uVar18 == 1) {
-          local_60 = (byte *)((uint)local_60 & 0xff);
-          goto LAB_0001181a;
-        }
-        local_5c = 0;
-        param_4 = puVar26 + 1;
-        if (uVar18 == 2) {
-          local_60 = (byte *)((uint)local_60 & 0xffff);
-          goto LAB_0001185a;
-        }
-      }
-    }
-    else if (bVar10 == 4) {
-      puVar27 = (undefined4 *)((int)puVar26 + 7U & 0xfffffff8);
-      local_60 = (byte *)*puVar27;
-      local_5c = puVar27[1];
-      param_4 = puVar27 + 2;
-    }
-    else {
-      param_4 = puVar26;
-      if (bVar10 == 3) {
-        local_60 = (byte *)*puVar26;
-LAB_0001185a:
-        param_4 = puVar26 + 1;
-      }
-    }
-    pbVar15 = local_60;
-    uVar19 = (uint)(byte)local_58;
-    if ((local_58 & 3) != 0) {
-      pbVar11 = (byte *)FUN_0007e2be(param_1,param_2,param_3,local_88);
-      if ((int)pbVar11 < 0) {
-        return pbVar11;
-      }
-      pbVar28 = pbVar28 + (int)pbVar11;
-      goto switchD_0001194e_caseD_59;
-    }
-    uVar16 = (uint)(*(volatile uint8_t*)((char*)&local_56 + 1));
-    if (0x78 < uVar16) goto switchD_0001194e_caseD_59;
-    if (uVar16 < 0x58) {
-      if (uVar16 == 0x25) {
-        bVar10 = 0x25;
-        goto LAB_000113cc;
-      }
-      if ((0x24 < uVar16) && ((uVar16 == 0x41 || (uVar16 - 0x45 < 3))))
-      goto switchD_0001194e_caseD_61;
-      goto switchD_0001194e_caseD_59;
-    }
-    switch(uVar16) {
-    case 0x58:
-    case 0x6f:
-    case 0x75:
-    case 0x78:
-      uVar18 = 0;
-      goto LAB_00011aa2;
-    case 0x61:
-    case 0x65:
-    case 0x66:
-    case 0x67:
-switchD_0001194e_caseD_61:
-      if ((int)local_5c < 0) {
-        uVar18 = 0x2d;
-      }
-      else if ((int)(uVar19 << 0x1c) < 0) {
-        uVar18 = 0x2b;
-      }
-      else {
-        uVar18 = ((uVar19 << 0x1b) >> 0x1f) << 5;
-      }
-      uVar12 = (local_5c << 1) >> 0x15;
-      uVar20 = local_5c & 0xfffff;
-      if (uVar12 == 0) {
-        if (local_60 == (byte *)0x0 && uVar20 == 0) {
-          bVar31 = false;
-        }
-        else {
-          bVar31 = true;
-        }
-LAB_000118fc:
-        local_6c = uVar20 << 0xb | (uint)local_60 >> 0x15;
-        local_70 = (int)local_60 << 0xb;
-        if (uVar16 == 0x46) {
-          uVar16 = 0x66;
-        }
-        if ((uVar12 == 0 && local_70 == 0) && (local_6c == 0 && -1 < (int)uVar12)) {
-          iVar29 = 0;
-        }
-        else {
-          if (bVar31) {
-            while( true ) {
-              bVar31 = CARRY4(local_70,local_70);
-              local_70 = local_70 * 2;
-              local_6c = local_6c * 2 + (uint)bVar31;
-              if ((int)local_6c < 0) break;
-              uVar12 = uVar12 - 1;
-            }
-          }
-          iVar29 = uVar12 - 0x3fe;
-          local_6c = local_6c | 0x80000000;
-        }
-        bVar31 = false;
-        pbVar15 = (byte *)0x0;
-        uVar12 = local_70;
-        uVar20 = local_6c;
-        while (iVar29 + 2 < 0 != SCARRY4(iVar29,2)) {
-          do {
-            iVar23 = iVar29;
-            uVar12 = uVar12 >> 1 | uVar20 << 0x1f;
-            uVar20 = uVar20 >> 1;
-            iVar29 = iVar23 + 1;
-          } while (0x33333332 < uVar20);
-          bVar31 = true;
-          uVar1 = (ulonglong)uVar12;
-          uVar12 = (uint)(uVar1 * 5);
-          pbVar15 = pbVar15 + -1;
-          uVar20 = (int)(uVar1 * 5 >> 0x20) + uVar20 * 5;
-          iVar29 = iVar23 + 2;
-        }
-        if (bVar31) {
-          local_70 = uVar12;
-          local_6c = uVar20;
-        }
-        while (0 < iVar29) {
-          bVar31 = 0xfffffffd < local_70;
-          local_70 = local_70 + 2;
-          local_6c = local_6c + bVar31;
-          iVar29 = iVar29 + -1;
-          pbVar15 = pbVar15 + 1;
-          FUN_0007e260(&local_70);
-          do {
-            bVar31 = CARRY4(local_70,local_70);
-            local_70 = local_70 * 2;
-            local_6c = local_6c * 2 + (uint)bVar31;
-            iVar29 = iVar29 + -1;
-          } while (-1 < (int)local_6c);
-        }
-        uVar12 = -iVar29 + 4;
-        uVar20 = local_6c >> (uVar12 & 0xff);
-        uVar12 = local_70 >> (uVar12 & 0xff) | local_6c << (iVar29 + 0x1cU & 0xff) |
-                 local_6c >> (-iVar29 - 0x1cU & 0xff);
-        if ((uVar16 & 0xdf) == 0x47) {
-          if (((int)(pbVar15 + 3) < 0 == SCARRY4((int)pbVar15,3)) && ((int)pbVar15 <= (int)pbVar11))
-          {
-            pbVar11 = pbVar11 + -(int)pbVar15;
-            if ((int)((uint)(byte)local_58 << 0x1a) < 0) {
-              local_8c = (byte *)0x0;
-            }
-            else {
-              local_8c = pbVar11;
-              if (pbVar11 != (byte *)0x0) {
-                local_8c = (byte *)0x1;
-              }
-            }
-            goto LAB_00011caa;
-          }
-          uVar16 = uVar16 - 2 & 0xff;
-          if (((int)pbVar11 < 1) ||
-             (pbVar11 = pbVar11 + -1, (int)((uint)(byte)local_58 << 0x1a) < 0)) {
-            local_8c = (byte *)0x0;
-          }
-          else {
-            local_8c = pbVar11;
-            if (pbVar11 != (byte *)0x0) {
-              local_8c = (byte *)0x1;
-            }
-          }
-LAB_00011c54:
-          pbVar30 = pbVar11 + 1;
-LAB_00011cb4:
-          if (0xf < (int)pbVar30) {
-            pbVar30 = (byte *)0x10;
-          }
-        }
-        else {
-          local_8c = (byte *)0x0;
-          if (uVar16 != 0x66) goto LAB_00011c54;
-LAB_00011caa:
-          pbVar30 = pbVar11 + (int)pbVar15;
-          uVar16 = 0x66;
-          if (-1 < (int)pbVar30) goto LAB_00011cb4;
-          pbVar30 = (byte *)0x0;
-        }
-        local_68 = DAT_00011dd0;
-        local_74 = 0x10;
-        while( true ) {
-          if (pbVar30 == (byte *)0x0) break;
-          local_68 = CONCAT44((*(volatile uint32_t*)((char*)&local_68 + 4)) >> 1,
-                              (uint)(byte *)local_68 >> 1 | (*(volatile uint32_t*)((char*)&local_68 + 4)) << 0x1f);
-          pbVar30 = pbVar30 + -1;
-          FUN_0007e260(&local_68);
-        }
-        uVar14 = (int)(byte *)local_68 + uVar12;
-        local_6c = (*(volatile uint32_t*)((char*)&local_68 + 4)) + uVar20 + CARRY4((uint)(byte *)local_68,uVar12);
-        local_70 = uVar14;
-        if (0xfffffff < local_6c) {
-          local_70 = uVar14 >> 1 | local_6c * -0x80000000;
-          local_6c = local_6c >> 1;
-          uVar14 = FUN_0007e260(&local_70);
-          pbVar15 = pbVar15 + 1;
-        }
-        bVar10 = (byte)uVar14;
-        pbVar24 = (byte *)(uVar19 & 0x20);
-        if (uVar16 == 0x66) {
-          if ((int)pbVar15 < 1) {
-            uVar19 = 0x30;
-            uVar32 = CONCAT44(0x30,uVar14);
-            local_44[0] = 0x30;
-            pbVar24 = pbVar15;
-            if ((uVar8 & 0x20) == 0) {
-              if ((int)pbVar11 < 1) goto LAB_0001206e;
-              local_44[1] = 0x2e;
-              uVar32 = CONCAT44(0x30,uVar14);
-              if (pbVar15 != (byte *)0x0) goto LAB_00011d0e;
-            }
-            else {
-              local_44[1] = 0x2e;
-              uVar32 = CONCAT44(0x30,uVar14);
-              if (pbVar15 != (byte *)0x0) {
-                if ((int)pbVar11 < 1) {
-                  pbVar30 = local_44 + 2;
-                  goto LAB_00011dee;
-                }
-LAB_00011d0e:
-                local_54 = (byte *)-(int)pbVar15;
-                if ((int)pbVar11 <= -(int)pbVar15) {
-                  local_54 = pbVar11;
-                }
-                pbVar11 = pbVar11 + -(int)local_54;
-                uVar19 = (byte)local_56 & 0xffffffdf | (uint)(0 < (int)local_54) << 5;
-                local_56 = CONCAT11((*(volatile uint8_t*)((char*)&local_56 + 1)),(char)uVar19);
-                uVar32 = CONCAT44(uVar19,uVar14);
-              }
-            }
-LAB_00011d30:
-            local_44[1] = 0x2e;
-            pbVar30 = local_44 + 2;
-          }
-          else {
-            pbVar21 = local_44;
-            do {
-              uVar32 = CONCAT44(local_74,uVar14);
-              pbVar30 = pbVar21;
-              if ((int)local_74 < 1) break;
-              uVar32 = FUN_0007e290(&local_70,&local_74);
-              uVar14 = (uint)uVar32;
-              pbVar15 = pbVar15 + -1;
-              pbVar30 = pbVar21 + 1;
-              *pbVar21 = (byte)uVar32;
-              pbVar21 = pbVar30;
-            } while (pbVar15 != (byte *)0x0);
-            uVar19 = (uint)((ulonglong)uVar32 >> 0x20);
-            bVar10 = (byte)uVar32;
-            local_54 = pbVar15;
-            if ((uVar8 & 0x20) == 0) {
-              if ((int)pbVar11 < 1) goto LAB_00011dee;
-              uVar19 = 0x2e;
-              *pbVar30 = 0x2e;
-            }
-            else {
-              *pbVar30 = 0x2e;
-            }
-            uVar32 = CONCAT44(uVar19,(int)uVar32);
-            pbVar30 = pbVar30 + 1;
-            pbVar24 = (byte *)0x0;
-          }
-          while( true ) {
-            uVar19 = (uint)((ulonglong)uVar32 >> 0x20);
-            bVar10 = (byte)uVar32;
-            if (((int)pbVar11 < 1) || ((int)local_74 < 1)) break;
-            uVar32 = FUN_0007e290(&local_70,&local_74);
-            pbVar11 = pbVar11 + -1;
-            *pbVar30 = (byte)uVar32;
-            pbVar30 = pbVar30 + 1;
-          }
-        }
-        else {
-          uVar32 = FUN_0007e290(&local_70,&local_74);
-          local_44[0] = (byte)uVar32;
-          if ((int)uVar32 != 0x30) {
-            pbVar15 = pbVar15 + -1;
-          }
-          if (((uVar8 & 0x20) != 0) || (0 < (int)pbVar11)) {
-            local_44[1] = 0x2e;
-            pbVar24 = pbVar15;
-            goto LAB_00011d30;
-          }
-LAB_0001206e:
-          uVar19 = (uint)((ulonglong)uVar32 >> 0x20);
-          bVar10 = (byte)uVar32;
-          pbVar30 = local_44 + 1;
-          pbVar24 = pbVar15;
-        }
-LAB_00011dee:
-        if (local_8c != (byte *)0x0) {
-          do {
-            pbVar15 = pbVar30;
-            pbVar30 = pbVar15 + -1;
-          } while (pbVar15[-1] == 0x30);
-          pbVar30 = pbVar15;
-          pbVar11 = local_50;
-          if (pbVar15[-1] == 0x2e) {
-            pbVar30 = pbVar15 + -1;
-          }
-        }
-        local_50 = pbVar11;
-        if ((uVar16 & 0xdf) == 0x45) {
-          if ((int)pbVar24 < 0) {
-            pbVar24 = (byte *)-(int)pbVar24;
-            bVar17 = 0x2d;
-          }
-          else {
-            bVar17 = 0x2b;
-          }
-          if (99 < (int)pbVar24) {
-            uVar19 = 100;
-          }
-          pbVar30[1] = bVar17;
-          pbVar11 = pbVar24;
-          if (99 < (int)pbVar24) {
-            pbVar11 = pbVar24 + -(uVar19 * ((uint)pbVar24 / uVar19));
-            bVar10 = (char)((uint)pbVar24 / uVar19) + 0x30;
-          }
-          if ((int)pbVar24 < 100) {
-            pbVar15 = pbVar30 + 2;
-          }
-          else {
-            pbVar15 = pbVar30 + 3;
-          }
-          if (99 < (int)pbVar24) {
-            pbVar30[2] = bVar10;
-          }
-          *pbVar30 = (byte)uVar16;
-          cVar6 = (char)((uint)pbVar11 / 10);
-          pbVar30 = pbVar15 + 2;
-          *pbVar15 = cVar6 + 0x30;
-          pbVar15[1] = (char)pbVar11 + cVar6 * -10 + 0x30;
-        }
-        if ((int)local_54 < 1) {
-          if ((int)local_50 < 1) {
-            iVar29 = 0;
-          }
-          else {
-            iVar29 = 1;
-          }
-        }
-        else {
-          iVar29 = 1;
-        }
-        local_56 = CONCAT11((*(volatile uint8_t*)((char*)&local_56 + 1)),(byte)local_56 & 0xbf | (byte)(iVar29 << 6));
-        *pbVar30 = 0;
-      }
-      else {
-        if (uVar12 != 0x7ff) {
-          bVar31 = false;
-          goto LAB_000118fc;
-        }
-        uVar20 = uVar20 | (uint)local_60;
-        bVar10 = *(byte *)(DAT_00011dd8 + (uVar16 + 1 & 0xff)) & 3;
-        if (uVar20 == 0) {
-          if (bVar10 == 1) {
-            local_44[0] = 0x49;
-            pbVar11 = (byte *)0x4e;
-          }
-          else {
-            local_44[0] = 0x69;
-            pbVar11 = local_60;
-          }
-          local_44[1] = (byte)pbVar11;
-          if (bVar10 == 1) {
-            local_44[2] = 0x46;
-          }
-          else {
-            local_44[1] = 0x6e;
-            local_44[2] = 0x66;
-          }
-        }
-        else {
-          bVar31 = bVar10 != 1;
-          if (bVar31) {
-            uVar20 = 0x6e;
-          }
-          local_44[0] = (byte)uVar20;
-          if (bVar31) {
-            pbVar11 = (byte *)0x61;
-          }
-          else {
-            local_44[0] = 0x4e;
-            pbVar11 = local_60;
-          }
-          local_44[1] = (byte)pbVar11;
-          local_44[2] = local_44[0];
-          if (!bVar31) {
-            local_44[1] = 0x41;
-          }
-        }
-        local_58 = local_58 & 0xffbf;
-        pbVar30 = local_44 + 3;
-      }
-      pbVar15 = local_44;
-      goto LAB_00011b98;
-    case 99:
-      uVar18 = 0;
-      local_44[0] = (byte)local_60;
-      pbVar30 = local_44 + 1;
-      iVar23 = 1;
-      pbVar15 = local_44;
-      goto LAB_000119fa;
-    case 100:
-    case 0x69:
-      if ((int)(uVar19 << 0x1c) < 0) {
-        uVar18 = 0x2b;
-      }
-      else {
-        uVar18 = ((uVar19 << 0x1b) >> 0x1f) << 5;
-      }
-      if ((int)local_5c < 0) {
-        uVar18 = 0x2d;
-        bVar31 = local_60 != (byte *)0x0;
-        local_60 = (byte *)-(int)local_60;
-        local_5c = -local_5c - (uint)bVar31;
-      }
-LAB_00011aa2:
-      pbVar15 = (byte *)FUN_0004bb90(local_60,local_5c,&local_58,local_44,abStack_2b);
-LAB_00011ab6:
-      if (-1 < (int)pbVar11) {
-        local_58 = local_58 & 0xffbf;
-        if (abStack_2b + -(int)pbVar15 < pbVar11) {
-          local_54 = pbVar11 + -(int)(abStack_2b + -(int)pbVar15);
-        }
-      }
-      if (pbVar15 != (byte *)0x0) {
-        pbVar30 = abStack_2b;
-LAB_00011b98:
-        iVar23 = (int)pbVar30 - (int)pbVar15;
-        if (uVar18 != 0) {
-          iVar23 = iVar23 + 1;
-        }
-        goto LAB_000119fa;
-      }
-      break;
-    case 0x6e:
-      switch(uVar18) {
-      case 0:
-      case 3:
-      case 6:
-      case 7:
-        *(byte **)local_60 = pbVar28;
-        break;
-      case 1:
-        *local_60 = (byte)pbVar28;
-        break;
-      case 2:
-        *(short *)local_60 = (short)pbVar28;
-        break;
-      case 4:
-      case 5:
-        *(byte **)local_60 = pbVar28;
-        *(int *)(local_60 + 4) = (int)pbVar28 >> 0x1f;
-      }
-      break;
-    case 0x70:
-      if (local_60 == (byte *)0x0) {
-        iVar23 = 5;
-        pbVar15 = DAT_00012074 + -5;
-        uVar18 = 0;
-        pbVar30 = DAT_00012074;
-        goto LAB_000119fa;
-      }
-      pbVar15 = (byte *)FUN_0004bb90(local_60,0,&local_58,local_44,abStack_2b);
-      local_56 = local_56 & 0xef | 0x7810;
-      uVar18 = 0;
-      goto LAB_00011ab6;
-    case 0x73:
-      if ((int)pbVar11 < 0) {
-        iVar29 = FUN_0000ef12(local_60);
-      }
-      else {
-        iVar29 = FUN_000870a6(local_60,pbVar11);
-        if (pbVar15 == (byte *)0x0) break;
-      }
-      uVar18 = 0;
-      iVar23 = (int)(pbVar15 + iVar29) - (int)pbVar15;
-      pbVar30 = pbVar15 + iVar29;
-LAB_000119fa:
-      pbVar11 = local_54;
-      uVar8 = local_56 & 0x10;
-      if ((local_56 & 0x10) == 0) {
-        if ((int)((uint)(byte)local_56 << 0x1c) < 0) {
-          iVar23 = iVar23 + 1;
-        }
-      }
-      else {
-        iVar23 = iVar23 + 2;
-      }
-      uVar7 = local_56 & 0x40;
-      bVar31 = (local_56 & 0x40) != 0;
-      pbVar24 = (byte *)((byte)local_56 & 0x40);
-      if (bVar31) {
-        pbVar24 = local_50;
-      }
-      pbVar21 = local_54 + iVar23;
-      if (bVar31) {
-        pbVar21 = pbVar21 + (int)pbVar24;
-      }
-      if (0 < (int)local_90) {
-        pbVar24 = local_90 + -(int)pbVar21;
-        uVar19 = (uint)(byte)local_58;
-        local_90 = pbVar24;
-        if (-1 < (int)(uVar19 << 0x1d)) {
-          pbVar21 = pbVar24;
-          if ((int)(uVar19 << 0x19) < 0) {
-            if (uVar18 != 0) {
-              pbVar13 = (byte *)(*param_1)(uVar18,param_2);
-              if ((int)pbVar13 < 0) {
-                return pbVar13;
-              }
-              pbVar28 = pbVar28 + 1;
-              uVar18 = (uVar19 << 0x1d) >> 0x1f;
-            }
-            uVar22 = 0x30;
-          }
-          else {
-            uVar22 = 0x20;
-          }
-          while (local_90 = pbVar21 + -1, 0 < (int)pbVar21) {
-            pbVar13 = (byte *)(*param_1)(uVar22,param_2);
-            pbVar21 = local_90;
-            if ((int)pbVar13 < 0) {
-              return pbVar13;
-            }
-          }
-          pbVar28 = pbVar24 + ((int)pbVar28 - (int)pbVar21);
-        }
-      }
-      if (uVar18 != 0) {
-        pbVar24 = (byte *)(*param_1)(uVar18,param_2);
-        if ((int)pbVar24 < 0) {
-          return pbVar24;
-        }
-        pbVar28 = pbVar28 + 1;
-      }
-      iVar29 = DAT_00012078;
-      if (uVar7 == 0) {
-        if (((int)((uint)(byte)local_56 << 0x1b) < 0) || ((int)((uint)(byte)local_56 << 0x1c) < 0))
-        {
-          pbVar24 = (byte *)(*param_1)(0x30,param_2);
-          if ((int)pbVar24 < 0) {
-            return pbVar24;
-          }
-          pbVar28 = pbVar28 + 1;
-        }
-        pbVar24 = pbVar28;
-        if (uVar8 != 0) {
-          pbVar24 = (byte *)(*param_1)((*(volatile uint8_t*)((char*)&local_56 + 1)),param_2);
-          if ((int)pbVar24 < 0) {
-            return pbVar24;
-          }
-          pbVar28 = pbVar28 + 1;
-          pbVar24 = pbVar28;
-        }
-        for (; 0 < (int)(pbVar11 + ((int)pbVar24 - (int)pbVar28)); pbVar28 = pbVar28 + 1) {
-          pbVar21 = (byte *)(*param_1)(0x30,param_2);
-          if ((int)pbVar21 < 0) {
-            return pbVar21;
-          }
-        }
-        pbVar11 = (byte *)FUN_0007e2be(param_1,param_2,pbVar15,pbVar30);
-        if ((int)pbVar11 < 0) {
-          return pbVar11;
-        }
-        pbVar28 = pbVar11 + (int)pbVar28;
-        pbVar11 = pbVar28;
-      }
-      else {
-        pbVar24 = pbVar15;
-        if ((short)local_58 < 0) {
-          while( true ) {
-            if (*pbVar24 == 0x70) break;
-            pbVar11 = (byte *)(*param_1)(*pbVar24,param_2);
-            pbVar24 = pbVar24 + 1;
-            if ((int)pbVar11 < 0) {
-              return pbVar11;
-            }
-          }
-          iVar29 = (int)pbVar28 - (int)pbVar15;
-        }
-        else {
-          while( true ) {
-            if (-1 < (int)((uint)*(byte *)(iVar29 + (uint)*pbVar24) << 0x1d)) break;
-            pbVar21 = (byte *)(*param_1)((uint)*pbVar24,param_2);
-            pbVar24 = pbVar24 + 1;
-            if ((int)pbVar21 < 0) {
-              return pbVar21;
-            }
-          }
-          pbVar21 = pbVar24 + ((int)pbVar28 - (int)pbVar15);
-          pbVar28 = pbVar11;
-          pbVar15 = pbVar11;
-          if (-1 < (int)((uint)(byte)local_56 << 0x1a)) {
-            while (pbVar15 = pbVar28 + -1, 0 < (int)pbVar28) {
-              pbVar13 = (byte *)(*param_1)(0x30,param_2);
-              pbVar28 = pbVar15;
-              if ((int)pbVar13 < 0) {
-                return pbVar13;
-              }
-            }
-            pbVar21 = pbVar21 + ((int)pbVar11 - (int)pbVar28);
-          }
-          pbVar28 = pbVar24;
-          if (*pbVar24 == 0x2e) {
-            pbVar28 = (byte *)(*param_1)(0x2e,param_2);
-            while( true ) {
-              if ((int)pbVar28 < 0) {
-      return pbVar28;
-              }
-              pbVar21 = pbVar21 + 1;
-              if ((int)pbVar15 < 1) break;
-              pbVar28 = (byte *)(*param_1)(0x30,param_2);
-              pbVar15 = pbVar15 + -1;
-            }
-            pbVar24 = pbVar24 + 1;
-            pbVar28 = pbVar24;
-          }
-          while( true ) {
-            if (-1 < (int)((uint)*(byte *)(iVar29 + (uint)*pbVar24) << 0x1d)) break;
-            pbVar11 = (byte *)(*param_1)((uint)*pbVar24,param_2);
-            pbVar24 = pbVar24 + 1;
-            if ((int)pbVar11 < 0) {
-              return pbVar11;
-            }
-          }
-          iVar29 = (int)pbVar21 - (int)pbVar28;
-        }
-        pbVar28 = local_50;
-        for (pbVar11 = pbVar24 + iVar29; 0 < (int)(pbVar24 + iVar29 + ((int)pbVar28 - (int)pbVar11))
-            ; pbVar11 = pbVar11 + 1) {
-          pbVar15 = (byte *)(*param_1)(0x30,param_2);
-          if ((int)pbVar15 < 0) {
-            return pbVar15;
-          }
-        }
-        pbVar28 = (byte *)FUN_0007e2be(param_1,param_2,pbVar24,pbVar30);
-        if ((int)pbVar28 < 0) {
-          return pbVar28;
-        }
-        pbVar28 = pbVar28 + (int)pbVar11;
-        pbVar11 = pbVar28;
-      }
-      for (; 0 < (int)(local_90 + ((int)pbVar11 - (int)pbVar28)); pbVar28 = pbVar28 + 1) {
-        pbVar15 = (byte *)(*param_1)(0x20,param_2);
-        if ((int)pbVar15 < 0) {
-          return pbVar15;
-        }
-      }
-    }
-switchD_0001194e_caseD_59:
-    param_3 = local_88;
-  } while( true );
+	*value >>= 1;
+	_ldiv5(value);
+}
+
+static inline const char *extract_flags(struct conversion *conv,
+					const char *sp)
+{
+	bool loop = true;
+
+	do {
+		switch (*sp) {
+		case '-':
+			conv->flag_dash = true;
+			break;
+		case '+':
+			conv->flag_plus = true;
+			break;
+		case ' ':
+			conv->flag_space = true;
+			break;
+		case '#':
+			conv->flag_hash = true;
+			break;
+		case '0':
+			conv->flag_zero = true;
+			break;
+		default:
+			loop = false;
+		}
+		if (loop) {
+			++sp;
+		}
+	} while (loop);
+
+	/* zero && dash => !zero */
+	if (conv->flag_zero && conv->flag_dash) {
+		conv->flag_zero = false;
+	}
+
+	/* space && plus => !plus, handled in emitter code */
+
+	return sp;
+}
+
+/** Extract a C99 conversion specification width.
+ *
+ * @param conv pointer to the conversion being defined.
+ *
+ * @param sp pointer to the first character after the flags element of a
+ * conversion specification.
+ *
+ * @return a pointer the first character that follows the width.
+ */
+static inline const char *extract_width(struct conversion *conv,
+					const char *sp)
+{
+	conv->width_present = true;
+
+	if (*sp == '*') {
+		conv->width_star = true;
+		return ++sp;
+	}
+
+	const char *wp = sp;
+	size_t width = extract_decimal(&sp);
+
+	if (sp != wp) {
+		conv->width_present = true;
+		conv->width_value = width;
+		conv->unsupported |= ((conv->width_value < 0)
+				      || (width != (size_t)conv->width_value));
+	}
+
+	return sp;
+}
+
+/** Extract a C99 conversion specification precision.
+ *
+ * @param conv pointer to the conversion being defined.
+ *
+ * @param sp pointer to the first character after the width element of a
+ * conversion specification.
+ *
+ * @return a pointer the first character that follows the precision.
+ */
+static inline const char *extract_prec(struct conversion *conv,
+				       const char *sp)
+{
+	conv->prec_present = (*sp == '.');
+
+	if (!conv->prec_present) {
+		return sp;
+	}
+	++sp;
+
+	if (*sp == '*') {
+		conv->prec_star = true;
+		return ++sp;
+	}
+
+	size_t prec = extract_decimal(&sp);
+
+	conv->prec_value = prec;
+	conv->unsupported |= ((conv->prec_value < 0)
+			      || (prec != (size_t)conv->prec_value));
+
+	return sp;
+}
+
+/** Extract a C99 conversion specification length.
+ *
+ * @param conv pointer to the conversion being defined.
+ *
+ * @param sp pointer to the first character after the precision element of a
+ * conversion specification.
+ *
+ * @return a pointer the first character that follows the precision.
+ */
+static inline const char *extract_length(struct conversion *conv,
+					 const char *sp)
+{
+	switch (*sp) {
+	case 'h':
+		if (*++sp == 'h') {
+			conv->length_mod = LENGTH_HH;
+			++sp;
+		} else {
+			conv->length_mod = LENGTH_H;
+		}
+		break;
+	case 'l':
+		if (*++sp == 'l') {
+			conv->length_mod = LENGTH_LL;
+			++sp;
+		} else {
+			conv->length_mod = LENGTH_L;
+		}
+		break;
+	case 'j':
+		conv->length_mod = LENGTH_J;
+		++sp;
+		break;
+	case 'z':
+		conv->length_mod = LENGTH_Z;
+		++sp;
+		break;
+	case 't':
+		conv->length_mod = LENGTH_T;
+		++sp;
+		break;
+	case 'L':
+		conv->length_mod = LENGTH_UPPER_L;
+		++sp;
+
+		/* We recognize and consume these, but can't format
+		 * them.
+		 */
+		conv->unsupported = true;
+		break;
+	default:
+		conv->length_mod = LENGTH_NONE;
+		break;
+	}
+	return sp;
+}
+
+/* Extract a C99 conversion specifier.
+ *
+ * This is the character that identifies the representation of the converted
+ * value.
+ *
+ * @param conv pointer to the conversion being defined.
+ *
+ * @param sp pointer to the first character after the length element of a
+ * conversion specification.
+ *
+ * @return a pointer the first character that follows the specifier.
+ */
+static inline const char *extract_specifier(struct conversion *conv,
+					    const char *sp)
+{
+	bool unsupported = false;
+
+	conv->specifier = *sp++;
+
+	switch (conv->specifier) {
+	case SINT_CONV_CASES:
+		conv->specifier_cat = SPECIFIER_SINT;
+		goto int_conv;
+	case UINT_CONV_CASES:
+		conv->specifier_cat = SPECIFIER_UINT;
+int_conv:
+		/* L length specifier not acceptable */
+		if (conv->length_mod == LENGTH_UPPER_L) {
+			conv->invalid = true;
+		}
+
+		/* For c LENGTH_NONE and LENGTH_L would be ok,
+		 * but we don't support formatting wide characters.
+		 */
+		if (conv->specifier == 'c') {
+			unsupported = (conv->length_mod != LENGTH_NONE);
+		} else if (!IS_ENABLED(CONFIG_CBPRINTF_FULL_INTEGRAL)) {
+			/* Disable conversion that might produce truncated
+			 * results with buffers sized for 32 bits.
+			 */
+			switch (conv->length_mod) {
+			case LENGTH_L:
+				unsupported = sizeof(long) > 4;
+				break;
+			case LENGTH_LL:
+				unsupported = sizeof(long long) > 4;
+				break;
+			case LENGTH_J:
+				unsupported = sizeof(uintmax_t) > 4;
+				break;
+			case LENGTH_Z:
+				unsupported = sizeof(size_t) > 4;
+				break;
+			case LENGTH_T:
+				unsupported = sizeof(ptrdiff_t) > 4;
+				break;
+			default:
+				/* Add an empty default with break, this is a defensive
+				 * programming. Static analysis tool won't raise a violation
+				 * if default is empty, but has that comment.
+				 */
+				break;
+			}
+		} else {
+			;
+		}
+		break;
+
+	case FP_CONV_CASES:
+		conv->specifier_cat = SPECIFIER_FP;
+
+		/* Don't support if disabled */
+		if (!IS_ENABLED(CONFIG_CBPRINTF_FP_SUPPORT)) {
+			unsupported = true;
+			break;
+		}
+
+		/* When FP enabled %a support is still conditional. */
+		conv->specifier_a = (conv->specifier == 'a')
+			|| (conv->specifier == 'A');
+		if (conv->specifier_a
+		    && !IS_ENABLED(CONFIG_CBPRINTF_FP_A_SUPPORT)) {
+			unsupported = true;
+			break;
+		}
+
+		/* The l specifier has no effect.  Otherwise length
+		 * modifiers other than L are invalid.
+		 */
+		if (conv->length_mod == LENGTH_L) {
+			conv->length_mod = LENGTH_NONE;
+		} else if ((conv->length_mod != LENGTH_NONE)
+			   && (conv->length_mod != LENGTH_UPPER_L)) {
+			conv->invalid = true;
+		} else {
+			;
+		}
+
+		break;
+
+		/* PTR cases are distinct */
+	case 'n':
+		conv->specifier_cat = SPECIFIER_PTR;
+		/* Anything except L */
+		if (conv->length_mod == LENGTH_UPPER_L) {
+			unsupported = true;
+		}
+		break;
+
+	case 's':
+	case 'p':
+		conv->specifier_cat = SPECIFIER_PTR;
+
+		/* p: only LENGTH_NONE
+		 *
+		 * s: LENGTH_NONE or LENGTH_L but wide
+		 * characters not supported.
+		 */
+		if (conv->length_mod != LENGTH_NONE) {
+			unsupported = true;
+		}
+		break;
+
+	default:
+		conv->invalid = true;
+		break;
+	}
+
+	conv->unsupported |= unsupported;
+
+	return sp;
+}
+
+/* Extract the complete C99 conversion specification.
+ *
+ * @param conv pointer to the conversion being defined.
+ *
+ * @param sp pointer to the % that introduces a conversion specification.
+ *
+ * @return pointer to the first character that follows the specification.
+ */
+static inline const char *extract_conversion(struct conversion *conv,
+					     const char *sp)
+{
+	*conv = (struct conversion) {
+	   .invalid = false,
+	};
+
+	/* Skip over the opening %.  If the conversion specifier is %,
+	 * that's the only thing that should be there, so
+	 * fast-exit.
+	 */
+	++sp;
+	if (*sp == '%') {
+		conv->specifier = *sp++;
+		return sp;
+	}
+
+	sp = extract_flags(conv, sp);
+	sp = extract_width(conv, sp);
+	sp = extract_prec(conv, sp);
+	sp = extract_length(conv, sp);
+	sp = extract_specifier(conv, sp);
+
+	return sp;
+}
+
+#define FRACTION_BITS 52
+
+/* Number of hex "digits" in the fractional part of an IEEE 754-2008
+ * double precision float.
+ */
+#define FRACTION_HEX DIV_ROUND_UP(FRACTION_BITS, 4)
+
+/* Number of bits in the exponent of an IEEE 754-2008 double precision
+ * float.
+ */
+#define EXPONENT_BITS 11
+
+/* Mask for the sign (negative) bit of an IEEE 754-2008 double precision
+ * float.
+ */
+#define SIGN_MASK BIT64(63)
+
+/* Mask for the high-bit of a uint64_t representation of a fractional
+ * value.
+ */
+#define BIT_63 BIT64(63)
+
+/* Convert the IEEE 754-2008 double to text format.
+ *
+ * @param value the 64-bit floating point value.
+ *
+ * @param conv details about how the conversion is to proceed.  Some fields
+ * are adjusted based on the value being converted.
+ *
+ * @param precision the precision for the conversion (generally digits past
+ * the decimal point).
+ *
+ * @param bps pointer to the first character in a buffer that will hold the
+ * converted value.
+ *
+ * @param bpe On entry this points to the end of the buffer reserved to hold
+ * the converted value.  On exit it is updated to point just past the
+ * converted value.
+ *
+ * return a pointer to the start of the converted value.  This may not be @p
+ * bps but will be consistent with the exit value of *bpe.
+ */
+static char *encode_float(double value,
+			  struct conversion *conv,
+			  int precision,
+			  char *sign,
+			  char *bps,
+			  const char **bpe)
+{
+	union {
+		uint64_t u64;
+		double dbl;
+	} u = {
+		.dbl = value,
+	};
+	bool prune_zero = false;
+	char *buf = bps;
+
+	/* Prepend the sign: '-' if negative, flags control
+	 * non-negative behavior.
+	 */
+	if ((u.u64 & SIGN_MASK) != 0U) {
+		*sign = '-';
+	} else if (conv->flag_plus) {
+		*sign = '+';
+	} else if (conv->flag_space) {
+		*sign = ' ';
+	} else {
+		;
+	}
+
+	/* Extract the non-negative offset exponent and fraction.  Record
+	 * whether the value is subnormal.
+	 */
+	char c = conv->specifier;
+	int expo = (u.u64 >> FRACTION_BITS) & BIT_MASK(EXPONENT_BITS);
+	uint64_t fract = u.u64 & BIT64_MASK(FRACTION_BITS);
+	bool is_subnormal = (expo == 0) && (fract != 0);
+
+	/* Exponent of all-ones signals infinity or NaN, which are
+	 * text constants regardless of specifier.
+	 */
+	if (expo == BIT_MASK(EXPONENT_BITS)) {
+		if (fract == 0) {
+			if (isupper((unsigned char)c) != 0) {
+				*buf++ = 'I';
+				*buf++ = 'N';
+				*buf++ = 'F';
+			} else {
+				*buf++ = 'i';
+				*buf++ = 'n';
+				*buf++ = 'f';
+			}
+		} else {
+			if (isupper((unsigned char)c) != 0) {
+				*buf++ = 'N';
+				*buf++ = 'A';
+				*buf++ = 'N';
+			} else {
+				*buf++ = 'n';
+				*buf++ = 'a';
+				*buf++ = 'n';
+			}
+		}
+
+		/* No zero-padding with text values */
+		conv->flag_zero = false;
+
+		*bpe = buf;
+		return bps;
+	}
+
+	/* The case of an F specifier is no longer relevant. */
+	if (c == 'F') {
+		c = 'f';
+	}
+
+	/* Handle converting to the hex representation. */
+	if (IS_ENABLED(CONFIG_CBPRINTF_FP_A_SUPPORT)
+	    && (IS_ENABLED(CONFIG_CBPRINTF_FP_ALWAYS_A)
+		|| conv->specifier_a)) {
+		*buf++ = '0';
+		*buf++ = 'x';
+
+		/* Remove the offset from the exponent, and store the
+		 * non-fractional value.  Subnormals require increasing the
+		 * exponent as first bit isn't the implicit bit.
+		 */
+		expo -= 1023;
+		if (is_subnormal) {
+			*buf++ = '0';
+			++expo;
+		} else {
+			*buf++ = '1';
+		}
+
+		/* If we didn't get precision from a %a specification then we
+		 * treat it as from a %a specification with no precision: full
+		 * range, zero-pruning enabled.
+		 *
+		 * Otherwise we have to cap the precision of the generated
+		 * fraction, or possibly round it.
+		 */
+		if (!(conv->specifier_a && conv->prec_present)) {
+			precision = FRACTION_HEX;
+			prune_zero = true;
+		} else if (precision > FRACTION_HEX) {
+			conv->pad0_pre_exp = precision - FRACTION_HEX;
+			conv->pad_fp = true;
+			precision = FRACTION_HEX;
+		} else if ((fract != 0)
+			   && (precision < FRACTION_HEX)) {
+			size_t pos = 4 * (FRACTION_HEX - precision) - 1;
+			uint64_t mask = BIT64(pos);
+
+			/* Round only if the bit that would round is
+			 * set.
+			 */
+			if (fract & mask) {
+				fract += mask;
+			}
+		}
+
+		/* Record whether we must retain the decimal point even if we
+		 * can prune zeros.
+		 */
+		bool require_dp = ((fract != 0) || conv->flag_hash);
+
+		if (require_dp || (precision != 0)) {
+			*buf++ = '.';
+		}
+
+		/* Get the fractional value as a hexadecimal string, using x
+		 * for a and X for A.
+		 */
+		struct conversion aconv = {
+			.specifier = isupper((unsigned char)c) != 0 ? 'X' : 'x',
+		};
+		const char *spe = *bpe;
+		char *sp = bps + (spe - bps);
+
+		if (fract != 0) {
+			sp = encode_uint(fract, &aconv, buf, spe);
+		}
+
+		/* Pad out to full range since this is below the decimal
+		 * point.
+		 */
+		while ((spe - sp) < FRACTION_HEX) {
+			*--sp = '0';
+		}
+
+		/* Append the leading significant "digits". */
+		while ((sp < spe) && (precision > 0)) {
+			*buf++ = *sp++;
+			--precision;
+		}
+
+		if (prune_zero) {
+			while (*--buf == '0') {
+				;
+			}
+			if ((*buf != '.') || require_dp) {
+				++buf;
+			}
+		}
+
+		*buf++ = 'p';
+		if (expo >= 0) {
+			*buf++ = '+';
+		} else {
+			*buf++ = '-';
+			expo = -expo;
+		}
+
+		aconv.specifier = 'i';
+		sp = encode_uint(expo, &aconv, buf, spe);
+
+		while (sp < spe) {
+			*buf++ = *sp++;
+		}
+
+		*bpe = buf;
+		return bps;
+	}
+
+	/* Remainder of code operates on a 64-bit fraction, so shift up (and
+	 * discard garbage from the exponent where the implicit 1 would be
+	 * stored).
+	 */
+	fract <<= EXPONENT_BITS;
+	fract &= ~SIGN_MASK;
+
+	/* Non-zero values need normalization. */
+	if ((expo | fract) != 0) {
+		if (is_subnormal) {
+			/* Fraction is subnormal.  Normalize it and correct
+			 * the exponent.
+			 */
+			while (((fract <<= 1) & BIT_63) == 0) {
+				expo--;
+			}
+		}
+		/* Adjust the offset exponent to be signed rather than offset,
+		 * and set the implicit 1 bit in the (shifted) 53-bit
+		 * fraction.
+		 */
+		expo -= (1023 - 1);	/* +1 since .1 vs 1. */
+		fract |= BIT_63;
+	}
+
+	/*
+	 * Let's consider:
+	 *
+	 *	value = fract * 2^expo * 10^decexp
+	 *
+	 * Initially decexp = 0. The goal is to bring exp between
+	 * 0 and -2 as the magnitude of a fractional decimal digit is 3 bits.
+	 */
+	int decexp = 0;
+
+	while (expo < -2) {
+		/*
+		 * Make room to allow a multiplication by 5 without overflow.
+		 * We test only the top part for faster code.
+		 */
+		do {
+			fract >>= 1;
+			expo++;
+		} while ((uint32_t)(fract >> 32) >= (UINT32_MAX / 5U));
+
+		/* Perform fract * 5 * 2 / 10 */
+		fract *= 5U;
+		expo++;
+		decexp--;
+	}
+
+	while (expo > 0) {
+		/*
+		 * Perform fract / 5 / 2 * 10.
+		 * The +2 is there to do round the result of the division
+		 * by 5 not to lose too much precision in extreme cases.
+		 */
+		fract += 2;
+		_ldiv5(&fract);
+		expo--;
+		decexp++;
+
+		/* Bring back our fractional number to full scale */
+		do {
+			fract <<= 1;
+			expo--;
+		} while (!(fract & BIT_63));
+	}
+
+	/*
+	 * The binary fractional point is located somewhere above bit 63.
+	 * Move it between bits 59 and 60 to give 4 bits of room to the
+	 * integer part.
+	 */
+	fract >>= (4 - expo);
+
+	if ((c == 'g') || (c == 'G')) {
+		/* Use the specified precision and exponent to select the
+		 * representation and correct the precision and zero-pruning
+		 * in accordance with the ISO C rule.
+		 */
+		if (decexp < (-4 + 1) || decexp > precision) {
+			c += 'e' - 'g';  /* e or E */
+			if (precision > 0) {
+				precision--;
+			}
+		} else {
+			c = 'f';
+			precision -= decexp;
+		}
+		if (!conv->flag_hash && (precision > 0)) {
+			prune_zero = true;
+		}
+	}
+
+	int decimals;
+	if (c == 'f') {
+		decimals = precision + decexp;
+		if (decimals < 0) {
+			decimals = 0;
+		}
+	} else {
+		decimals = precision + 1;
+	}
+
+	int digit_count = 16;
+
+	if (decimals > 16) {
+		decimals = 16;
+	}
+
+	/* Round the value to the last digit being printed. */
+	uint64_t round = BIT64(59); /* 0.5 */
+	while (decimals--) {
+		_ldiv10(&round);
+	}
+	fract += round;
+	/* Make sure rounding didn't make fract >= 1.0 */
+	if (fract >= BIT64(60)) {
+		_ldiv10(&fract);
+		decexp++;
+	}
+
+	if (c == 'f') {
+		if (decexp > 0) {
+			/* Emit the digits above the decimal point. */
+			while (decexp > 0 && digit_count > 0) {
+				*buf++ = _get_digit(&fract, &digit_count);
+				decexp--;
+			}
+
+			conv->pad0_value = decexp;
+
+			decexp = 0;
+		} else {
+			*buf++ = '0';
+		}
+
+		/* Emit the decimal point only if required by the alternative
+		 * format, or if more digits are to follow.
+		 */
+		if (conv->flag_hash || (precision > 0)) {
+			*buf++ = '.';
+		}
+
+		if (decexp < 0 && precision > 0) {
+			conv->pad0_value = -decexp;
+			if (conv->pad0_value > precision) {
+				conv->pad0_value = precision;
+			}
+
+			precision -= conv->pad0_value;
+			conv->pad_postdp = (conv->pad0_value > 0);
+		}
+	} else { /* e or E */
+		/* Emit the one digit before the decimal.  If it's not zero,
+		 * this is significant so reduce the base-10 exponent.
+		 */
+		*buf = _get_digit(&fract, &digit_count);
+		if (*buf++ != '0') {
+			decexp--;
+		}
+
+		/* Emit the decimal point only if required by the alternative
+		 * format, or if more digits are to follow.
+		 */
+		if (conv->flag_hash || (precision > 0)) {
+			*buf++ = '.';
+		}
+	}
+
+	while (precision > 0 && digit_count > 0) {
+		*buf++ = _get_digit(&fract, &digit_count);
+		precision--;
+	}
+
+	conv->pad0_pre_exp = precision;
+
+	if (prune_zero) {
+		conv->pad0_pre_exp = 0;
+		while (*--buf == '0') {
+			;
+		}
+		if (*buf != '.') {
+			buf++;
+		}
+	}
+
+	/* Emit the explicit exponent, if format requires it. */
+	if ((c == 'e') || (c == 'E')) {
+		*buf++ = c;
+		if (decexp < 0) {
+			decexp = -decexp;
+			*buf++ = '-';
+		} else {
+			*buf++ = '+';
+		}
+
+		/* At most 3 digits to the decimal.  Spit them out. */
+		if (decexp >= 100) {
+			*buf++ = (decexp / 100) + '0';
+			decexp %= 100;
+		}
+
+		*buf++ = (decexp / 10) + '0';
+		*buf++ = (decexp % 10) + '0';
+	}
+
+	/* Cache whether there's padding required */
+	conv->pad_fp = (conv->pad0_value > 0)
+		|| (conv->pad0_pre_exp > 0);
+
+	/* Set the end of the encoded sequence, and return its start.  Also
+	 * store EOS as a non-digit/non-decimal value so we don't have to
+	 * check against bpe when iterating in multiple places.
+	 */
+	*bpe = buf;
+	*buf = 0;
+	return bps;
+}
+
+/* Store a count into the pointer provided in a %n specifier.
+ *
+ * @param conv the specifier that indicates the size of the value into which
+ * the count will be stored.
+ *
+ * @param dp where the count should be stored.
+ *
+ * @param count the count to be stored.
+ */
+static inline void store_count(const struct conversion *conv,
+			       void *dp,
+			       int count)
+{
+	switch ((enum length_mod_enum)conv->length_mod) {
+	case LENGTH_NONE:
+		*(int *)dp = count;
+		break;
+	case LENGTH_HH:
+		*(signed char *)dp = (signed char)count;
+		break;
+	case LENGTH_H:
+		*(short *)dp = (short)count;
+		break;
+	case LENGTH_L:
+		*(long *)dp = (long)count;
+		break;
+	case LENGTH_LL:
+		*(long long *)dp = (long long)count;
+		break;
+	case LENGTH_J:
+		*(intmax_t *)dp = (intmax_t)count;
+		break;
+	case LENGTH_Z:
+		*(size_t *)dp = (size_t)count;
+		break;
+	case LENGTH_T:
+		*(ptrdiff_t *)dp = (ptrdiff_t)count;
+		break;
+	default:
+		/* Add an empty default with break, this is a defensive programming.
+		 * Static analysis tool won't raise a violation if default is empty,
+		 * but has that comment.
+		 */
+		break;
+	}
+}
+
+int z_cbvprintf_impl(cbprintf_cb out, void *ctx, const char *fp,
+		     va_list ap, uint32_t flags)
+{
+	char buf[CONVERTED_BUFLEN];
+	size_t count = 0;
+	sint_value_type sint;
+
+	const bool tagged_ap = (flags & Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS)
+			       == Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS;
+
+/* Output character, returning EOF if output failed, otherwise
+ * updating count.
+ *
+ * NB: c is evaluated exactly once: side-effects are OK
+ */
+#define OUTC(c) do { \
+	int rc = (*out)((int)(c), ctx); \
+	\
+	if (rc < 0) { \
+		return rc; \
+	} \
+	++count; \
+} while (false)
+
+/* Output sequence of characters, returning a negative error if output
+ * failed.
+ */
+
+#define OUTS(_sp, _ep) do { \
+	int rc = outs(out, ctx, _sp, _ep); \
+	\
+	if (rc < 0) {	    \
+		return rc; \
+	} \
+	count += rc; \
+} while (false)
+
+	while (*fp != 0) {
+		if (*fp != '%') {
+			OUTC(*fp++);
+			continue;
+		}
+
+		if (IS_ENABLED(CONFIG_CBPRINTF_PACKAGE_SUPPORT_TAGGED_ARGUMENTS)
+		    && tagged_ap) {
+			/* Skip over the argument tag as it is not being
+			 * used here.
+			 */
+			(void)va_arg(ap, int);
+		}
+
+		/* Force union into RAM with conversion state to
+		 * mitigate LLVM code generation bug.
+		 */
+		struct {
+			union argument_value value;
+			struct conversion conv;
+		} state;
+		memset_bytes(&state, 0, sizeof(state));
+		struct conversion *const conv = &state.conv;
+		union argument_value *const value = &state.value;
+		const char *sp = fp;
+		int width = -1;
+		int precision = -1;
+		const char *bps = NULL;
+		const char *bpe = buf + sizeof(buf);
+		char sign = 0;
+
+		fp = extract_conversion(conv, sp);
+
+		/* If dynamic width is specified, process it,
+		 * otherwise set width if present.
+		 */
+		if (conv->width_star) {
+			width = va_arg(ap, int);
+
+			if (width < 0) {
+				conv->flag_dash = true;
+				width = -width;
+			}
+		} else if (conv->width_present) {
+			width = conv->width_value;
+		} else {
+			;
+		}
+
+		/* If dynamic precision is specified, process it, otherwise
+		 * set precision if present.  For floating point where
+		 * precision is not present use 6.
+		 */
+		if (conv->prec_star) {
+			int arg = va_arg(ap, int);
+
+			if (arg < 0) {
+				conv->prec_present = false;
+			} else {
+				precision = arg;
+			}
+		} else if (conv->prec_present) {
+			precision = conv->prec_value;
+		} else {
+			;
+		}
+
+		/* Reuse width and precision memory in conv for value
+		 * padding counts.
+		 */
+		conv->pad0_value = 0;
+		conv->pad0_pre_exp = 0;
+
+		/* FP conversion requires knowing the precision. */
+		if (IS_ENABLED(CONFIG_CBPRINTF_FP_SUPPORT)
+		    && (conv->specifier_cat == SPECIFIER_FP)
+		    && !conv->prec_present) {
+			if (conv->specifier_a) {
+				precision = FRACTION_HEX;
+			} else {
+				precision = 6;
+			}
+		}
+
+		/* Get the value to be converted from the args.
+		 *
+		 * This can't be extracted to a helper function because
+		 * passing a pointer to va_list doesn't work on x86_64.  See
+		 * https://stackoverflow.com/a/8048892.
+		 */
+		enum specifier_cat_enum specifier_cat
+			= (enum specifier_cat_enum)conv->specifier_cat;
+		enum length_mod_enum length_mod
+			= (enum length_mod_enum)conv->length_mod;
+
+		/* Extract the value based on the argument category and length.
+		 *
+		 * Note that the length modifier doesn't affect the value of a
+		 * pointer argument.
+		 */
+		if (specifier_cat == SPECIFIER_SINT) {
+			switch (length_mod) {
+			default:
+			case LENGTH_NONE:
+			case LENGTH_HH:
+			case LENGTH_H:
+				value->sint = va_arg(ap, int);
+				break;
+			case LENGTH_L:
+				if (WCHAR_IS_SIGNED
+				    && (conv->specifier == 'c')) {
+					value->sint = (wchar_t)va_arg(ap,
+							      WINT_TYPE);
+				} else {
+					value->sint = va_arg(ap, long);
+				}
+				break;
+			case LENGTH_LL:
+				value->sint =
+					(sint_value_type)va_arg(ap, long long);
+				break;
+			case LENGTH_J:
+				value->sint =
+					(sint_value_type)va_arg(ap, intmax_t);
+				break;
+			case LENGTH_Z:		/* size_t */
+			case LENGTH_T:		/* ptrdiff_t */
+				/* Though ssize_t is the signed equivalent of
+				 * size_t for POSIX, there is no uptrdiff_t.
+				 * Assume that size_t and ptrdiff_t are the
+				 * unsigned and signed equivalents of each
+				 * other.  This can be checked in a platform
+				 * test.
+				 */
+				value->sint =
+					(sint_value_type)va_arg(ap, ptrdiff_t);
+				break;
+			}
+			if (length_mod == LENGTH_HH) {
+				value->sint = (signed char)value->sint;
+			} else if (length_mod == LENGTH_H) {
+				value->sint = (short)value->sint;
+			}
+		} else if (specifier_cat == SPECIFIER_UINT) {
+			switch (length_mod) {
+			default:
+			case LENGTH_NONE:
+			case LENGTH_HH:
+			case LENGTH_H:
+				value->uint = va_arg(ap, unsigned int);
+				break;
+			case LENGTH_L:
+				if ((!WCHAR_IS_SIGNED)
+				    && (conv->specifier == 'c')) {
+					value->uint = (wchar_t)va_arg(ap,
+							      WINT_TYPE);
+				} else {
+					value->uint = va_arg(ap, unsigned long);
+				}
+				break;
+			case LENGTH_LL:
+				value->uint =
+					(uint_value_type)va_arg(ap,
+						unsigned long long);
+				break;
+			case LENGTH_J:
+				value->uint =
+					(uint_value_type)va_arg(ap,
+								uintmax_t);
+				break;
+			case LENGTH_Z:		/* size_t */
+			case LENGTH_T:		/* ptrdiff_t */
+				value->uint =
+					(uint_value_type)va_arg(ap, size_t);
+				break;
+			}
+			if (length_mod == LENGTH_HH) {
+				value->uint = (unsigned char)value->uint;
+			} else if (length_mod == LENGTH_H) {
+				value->uint = (unsigned short)value->uint;
+			}
+		} else if (specifier_cat == SPECIFIER_FP) {
+			if (length_mod == LENGTH_UPPER_L) {
+				value->ldbl = va_arg(ap, long double);
+			} else {
+				value->dbl = va_arg(ap, double);
+			}
+		} else if (specifier_cat == SPECIFIER_PTR) {
+			value->ptr = va_arg(ap, void *);
+		}
+
+		/* We've now consumed all arguments related to this
+		 * specification.  If the conversion is invalid, or is
+		 * something we don't support, then output the original
+		 * specification and move on.
+		 */
+		if (conv->invalid || conv->unsupported) {
+			OUTS(sp, fp);
+			continue;
+		}
+
+		/* Do formatting, either into the buffer or
+		 * referencing external data.
+		 */
+		switch (conv->specifier) {
+		case '%':
+			OUTC('%');
+			break;
+		case 's': {
+			bps = (const char *)value->ptr;
+
+			size_t len;
+
+			if (precision >= 0) {
+				len = strnlen(bps, precision);
+			} else {
+				len = strlen(bps);
+			}
+
+			bpe = bps + len;
+			precision = -1;
+
+			break;
+		}
+		case 'c':
+			bps = buf;
+			buf[0] = CHAR_IS_SIGNED ? value->sint : value->uint;
+			bpe = buf + 1;
+			break;
+		case 'd':
+		case 'i':
+			if (conv->flag_plus) {
+				sign = '+';
+			} else if (conv->flag_space) {
+				sign = ' ';
+			}
+
+			/* sint/uint overlay in the union, and so
+			 * can't appear in read and write operations
+			 * in the same statement.
+			 */
+			sint = value->sint;
+			if (sint < 0) {
+				sign = '-';
+				value->uint = (uint_value_type)-sint;
+			} else {
+				value->uint = (uint_value_type)sint;
+			}
+
+			__fallthrough;
+		case 'o':
+		case 'u':
+		case 'x':
+		case 'X':
+			bps = encode_uint(value->uint, conv, buf, bpe);
+
+		prec_int_pad0:
+			/* Update pad0 values based on precision and converted
+			 * length.  Note that a non-empty sign is not in the
+			 * converted sequence, but it does not affect the
+			 * padding size.
+			 */
+			if (precision >= 0) {
+				size_t len = bpe - bps;
+
+				/* Zero-padding flag is ignored for integer
+				 * conversions with precision.
+				 */
+				conv->flag_zero = false;
+
+				/* Set pad0_value to satisfy precision */
+				if (len < (size_t)precision) {
+					conv->pad0_value = precision - (int)len;
+				}
+			}
+
+			break;
+		case 'p':
+			/* Implementation-defined: null is "(nil)", non-null
+			 * has 0x prefix followed by significant address hex
+			 * digits, no leading zeros.
+			 */
+			if (value->ptr != NULL) {
+				bps = encode_uint((uintptr_t)value->ptr, conv,
+						  buf, bpe);
+
+				/* Use 0x prefix */
+				conv->altform_0c = true;
+				conv->specifier = 'x';
+
+				goto prec_int_pad0;
+			}
+
+			bps = "(nil)";
+			bpe = bps + 5;
+
+			break;
+		case 'n':
+			if (IS_ENABLED(CONFIG_CBPRINTF_N_SPECIFIER)) {
+				store_count(conv, value->ptr, count);
+			}
+
+			break;
+
+		case FP_CONV_CASES:
+			if (IS_ENABLED(CONFIG_CBPRINTF_FP_SUPPORT)) {
+				bps = encode_float(value->dbl, conv, precision,
+						   &sign, buf, &bpe);
+			}
+			break;
+		default:
+			/* Add an empty default with break, this is a defensive
+			 * programming. Static analysis tool won't raise a violation
+			 * if default is empty, but has that comment.
+			 */
+			break;
+		}
+
+		/* If we don't have a converted value to emit, move
+		 * on.
+		 */
+		if (bps == NULL) {
+			continue;
+		}
+
+		/* The converted value is now stored in [bps, bpe), excluding
+		 * any required zero padding.
+		 *
+		 * The unjustified output will be:
+		 *
+		 * * any sign character (sint-only)
+		 * * any altform prefix
+		 * * for FP:
+		 *   * any pre-decimal content from the converted value
+		 *   * any pad0_value padding (!postdp)
+		 *   * any decimal point in the converted value
+		 *   * any pad0_value padding (postdp)
+		 *   * any pre-exponent content from the converted value
+		 *   * any pad0_pre_exp padding
+		 *   * any exponent content from the converted value
+		 * * for non-FP:
+		 *   * any pad0_prefix
+		 *   * the converted value
+		 */
+		size_t nj_len = (bpe - bps);
+		int pad_len = 0;
+
+		if (sign != 0) {
+			nj_len += 1U;
+		}
+
+		if (conv->altform_0c) {
+			nj_len += 2U;
+		} else if (conv->altform_0) {
+			nj_len += 1U;
+		}
+
+		nj_len += conv->pad0_value;
+		if (conv->pad_fp) {
+			nj_len += conv->pad0_pre_exp;
+		}
+
+		/* If we have a width update width to hold the padding we need
+		 * for justification.  The result may be negative, which will
+		 * result in no padding.
+		 *
+		 * If a non-negative padding width is present and we're doing
+		 * right-justification, emit the padding now.
+		 */
+		if (width > 0) {
+			width -= (int)nj_len;
+
+			if (!conv->flag_dash) {
+				char pad = ' ';
+
+				/* If we're zero-padding we have to emit the
+				 * sign first.
+				 */
+				if (conv->flag_zero) {
+					if (sign != 0) {
+						OUTC(sign);
+						sign = 0;
+					}
+					pad = '0';
+				}
+
+				while (width-- > 0) {
+					OUTC(pad);
+				}
+			}
+		}
+
+		/* If we have a sign that hasn't been emitted, now's the
+		 * time....
+		 */
+		if (sign != 0) {
+			OUTC(sign);
+		}
+
+		if (IS_ENABLED(CONFIG_CBPRINTF_FP_SUPPORT) && conv->pad_fp) {
+			const char *cp = bps;
+
+			if (conv->specifier_a) {
+				/* Only padding is pre_exp */
+				while (*cp != 'p') {
+					OUTC(*cp++);
+				}
+			} else {
+				while (isdigit((unsigned char)*cp) != 0) {
+					OUTC(*cp++);
+				}
+
+				pad_len = conv->pad0_value;
+				if (!conv->pad_postdp) {
+					while (pad_len-- > 0) {
+						OUTC('0');
+					}
+				}
+
+				if (*cp == '.') {
+					OUTC(*cp++);
+					/* Remaining padding is
+					 * post-dp.
+					 */
+					while (pad_len-- > 0) {
+						OUTC('0');
+					}
+				}
+				while (isdigit((unsigned char)*cp) != 0) {
+					OUTC(*cp++);
+				}
+			}
+
+			pad_len = conv->pad0_pre_exp;
+			while (pad_len-- > 0) {
+				OUTC('0');
+			}
+
+			OUTS(cp, bpe);
+		} else {
+			if (conv->altform_0c | conv->altform_0) {
+				OUTC('0');
+			}
+
+			if (conv->altform_0c) {
+				OUTC(conv->specifier);
+			}
+
+			pad_len = conv->pad0_value;
+			while (pad_len-- > 0) {
+				OUTC('0');
+			}
+
+			OUTS(bps, bpe);
+		}
+
+		/* Finish left justification */
+		while (width > 0) {
+			OUTC(' ');
+			--width;
+		}
+	}
+
+	return count;
+#undef OUTS
+#undef OUTC
 }

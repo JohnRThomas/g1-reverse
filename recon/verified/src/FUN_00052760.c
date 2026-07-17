@@ -1,33 +1,80 @@
-/* Reconstructed FUN_00052760 @ 0x52760  (parity: 44/60 trials, PROVEN) */
+/* Reconstructed smp_rx_remove_invalid @ 0x00052760 (0x76 bytes).
+ * Raw identity/back-map: FUN_00052760.
+ * Exact NCS 2.5.1 source correspondence: Zephyr mcumgr transport/src/smp.c.
+ */
+#include <stdbool.h>
 #include <stdint.h>
-extern int FUN_0005f200(int,int);
-extern unsigned int FUN_00072e9c(void);
-extern void FUN_00072fe8(int);
-extern void FUN_00080b0e(int,int);
-extern void FUN_000864e8(void*);
-extern void FUN_000865fc(unsigned int,int);
-extern unsigned long long thunk_FUN_000727ac(int,unsigned int,int,int);
-void FUN_00052760(int param_1,unsigned int param_2){
-  unsigned int uVar1; int iVar2,iVar3; unsigned long long uVar5;
-  unsigned char auStack_34[32];
-  if(*(int*)(param_1+0x3c)!=0){
-    uVar1=FUN_00072e9c();
-    if((uVar1&5)!=0) FUN_00072fe8(param_1);
-    FUN_000864e8(auStack_34);
-    while(1){
-      uVar5=thunk_FUN_000727ac(param_1+0x10,0,0,0);
-      iVar2=(int)uVar5;
-      if(iVar2==0) break;
-      iVar3=(*(int(**)(int,unsigned int))(param_1+0x3c))(iVar2,param_2);
-      if(iVar3==0) FUN_00080b0e(iVar2,param_1);
-      else FUN_0005f200((int)auStack_34,iVar2);
-    }
-    while(1){
-      iVar2=(int)thunk_FUN_000727ac((int)auStack_34,0,0,0);
-      if(iVar2==0) break;
-      FUN_0005f200(param_1+0x10,iVar2);
-    }
-    if(*(int*)(param_1+0x10)!=0) FUN_000865fc(0x20005bb8,param_1);
-  }
+
+struct net_buf;
+struct k_work { uint8_t opaque[0x10]; };
+struct k_fifo { uint8_t opaque[0x1c]; };
+struct k_work_q;
+
+typedef bool (*smp_transport_query_valid_check_fn)(struct net_buf *nb,
+                                                    void *arg);
+
+struct smp_transport_api {
+    void *output;
+    void *get_mtu;
+    void *ud_copy;
+    void *ud_free;
+    smp_transport_query_valid_check_fn query_valid_check;
+};
+
+struct smp_transport {
+    struct k_work work;
+    struct k_fifo fifo;
+    struct smp_transport_api functions;
+};
+
+typedef struct { int64_t ticks; } k_timeout_t;
+#define K_NO_WAIT ((k_timeout_t){ 0 })
+
+extern unsigned int k_work_busy_get(const struct k_work *work); /* FUN_00072e9c */
+extern int k_work_cancel(struct k_work *work); /* FUN_00072fe8 */
+extern void k_fifo_init(struct k_fifo *fifo); /* FUN_000864e8 */
+extern struct net_buf *net_buf_get(struct k_fifo *fifo,
+                                   k_timeout_t timeout); /* FUN_000836e8 */
+extern void net_buf_put(struct k_fifo *fifo, struct net_buf *buf); /* FUN_0005f200 */
+extern void smp_free_buf(void *buf, void *arg); /* FUN_00080b0e */
+extern int k_work_submit_to_queue(struct k_work_q *queue,
+                                  struct k_work *work); /* FUN_000865fc */
+
+#define smp_work_queue (*(struct k_work_q *)0x20005bb8u) /* address back-map */
+
+static bool k_fifo_is_empty(const struct k_fifo *fifo)
+{
+    return *(void *const *)fifo == 0;
 }
 
+void smp_rx_remove_invalid(struct smp_transport *transport, void *arg)
+{
+    struct net_buf *buffer;
+    struct k_fifo retained;
+
+    if (transport->functions.query_valid_check == 0) {
+        return;
+    }
+
+    if (k_work_busy_get(&transport->work) & 5u) {
+        k_work_cancel(&transport->work);
+    }
+
+    k_fifo_init(&retained);
+
+    while ((buffer = net_buf_get(&transport->fifo, K_NO_WAIT)) != 0) {
+        if (!transport->functions.query_valid_check(buffer, arg)) {
+            smp_free_buf(buffer, transport);
+        } else {
+            net_buf_put(&retained, buffer);
+        }
+    }
+
+    while ((buffer = net_buf_get(&retained, K_NO_WAIT)) != 0) {
+        net_buf_put(&transport->fifo, buffer);
+    }
+
+    if (!k_fifo_is_empty(&transport->fifo)) {
+        k_work_submit_to_queue(&smp_work_queue, &transport->work);
+    }
+}

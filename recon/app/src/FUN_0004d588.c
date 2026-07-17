@@ -1,7 +1,16 @@
-/* Recovered swallowed wrapper FUN_0004d588 @ 0x4d588  extent: 0xc bytes */
-#include <stdint.h>
-extern void FUN_0007e50c(void *object);
-void FUN_0004d588(void)
+/* Reconstructed z_log_msg_pending @ 0x0004d588 (6 executable bytes).
+ * Raw identity/back-map: FUN_0004d588.
+ * The literal at 0x0004d590 and alignment NOP at 0x0004d58e are not code.
+ */
+#include <stdbool.h>
+
+struct mpsc_pbuf_buffer;
+
+extern bool mpsc_pbuf_is_pending(struct mpsc_pbuf_buffer *buffer); /* FUN_0007e50c */
+#define g_log_msg_mpsc_buffer \
+    (*(struct mpsc_pbuf_buffer *)0x20003648u) /* address back-map */
+
+bool z_log_msg_pending(void)
 {
-    FUN_0007e50c((void *)UINT32_C(0x20003648));
+    return mpsc_pbuf_is_pending(&g_log_msg_mpsc_buffer);
 }
