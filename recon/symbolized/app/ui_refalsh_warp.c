@@ -30,7 +30,7 @@
 
 extern int is_battery_critical(void);
 extern int update_demo_image_display(int,int,int);
-extern int DEBUG_PRINT(int,int,int,int);
+extern int log_message(int,int,int,int);
 extern int debug_print(int,int,int,int);
 extern int FUN_0003603c(int,int,int);
 extern int FUN_00036b3c(int,int,int);
@@ -47,12 +47,12 @@ extern int ui_set_imu_pitch_task(int,int,int);
 
 #define DBG1(ID) do { \
     int sink = *p_7554; \
-    if (sink == 0) DEBUG_PRINT(((unsigned long)&rodata_ef784) /*=0xef784*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
+    if (sink == 0) log_message(((unsigned long)&rodata_ef784) /*=0xef784*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
     else debug_print(((unsigned long)&rodata_ef784) /*=0xef784*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
 } while (0)
 #define DBG2(ID) do { \
     int sink = *p_7554; \
-    if (sink == 0) DEBUG_PRINT(((unsigned long)&rodata_ef7a0) /*=0xef7a0*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
+    if (sink == 0) log_message(((unsigned long)&rodata_ef7a0) /*=0xef7a0*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
     else debug_print(((unsigned long)&rodata_ef7a0) /*=0xef7a0*/, ((unsigned long)&rodata_f01eb) /*=0xf01eb*/, (ID), sink); \
 } while (0)
 #define NORMAL(H,ID) do{ \

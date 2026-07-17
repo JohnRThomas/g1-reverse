@@ -18,7 +18,7 @@
 
 extern void *memset_bytes(void *, int, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 
 int SlaveDoubleClickEventInject(void)
@@ -28,12 +28,12 @@ int SlaveDoubleClickEventInject(void)
   event[0] = 7;
 
   if (k_msgq_put(0x2000392c, event, 0, 0) != 0) {
-    DEBUG_PRINT(0x000ef058, 0x000ef694);
+    log_message(0x000ef058, 0x000ef694);
     return -1;
   }
   if (*(volatile int32_t *)0x2000230c > 2) {
     if (*(volatile uint32_t *)0x20007554 == 0) {
-      DEBUG_PRINT(0x000ef644, 0x000ef694);
+      log_message(0x000ef644, 0x000ef694);
     } else {
       debug_print(0x000ef644, 0x000ef694);
     }

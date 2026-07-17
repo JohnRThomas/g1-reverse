@@ -24,7 +24,7 @@
 #include <stdint.h>
 
 /* Semantic aliases retain exact raw linker identities. */
-#define log_message DEBUG_PRINT
+#define log_message log_message
 #define debug_print debug_print
 #define gui_canvas_flags_clear_bit1 gui_canvas_flags_clear_bit1
 #define gui_canvas_flags_set_bit1 gui_canvas_flags_set_bit1

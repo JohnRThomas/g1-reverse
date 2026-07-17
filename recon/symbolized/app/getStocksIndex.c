@@ -14,7 +14,7 @@
  */
 /* Reconstructed getStocksIndex @ 0x370bc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned char getStocksIndex(void)
@@ -25,7 +25,7 @@ unsigned char getStocksIndex(void)
     base[3] = b;
     if (iVar2 > 2) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, b);
+            log_message(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, b);
         } else {
             debug_print(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, ((unsigned long)&rodata_a95d8) /*=0xa95d8*/, b);
         }

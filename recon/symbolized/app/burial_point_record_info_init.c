@@ -15,7 +15,7 @@
 /* Reconstructed burial_point_record_info_init @ 0x4ab3c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern uint8_t *get_device_info(void);
 extern void *memset_bytes(void *, int, uint32_t);
@@ -24,7 +24,7 @@ void burial_point_record_info_init(void)
 {
   if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
     if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT(((unsigned long)&rodata_f0416) /*=0xf0416*/, ((unsigned long)&rodata_f043b) /*=0xf043b*/);
+      log_message(((unsigned long)&rodata_f0416) /*=0xf0416*/, ((unsigned long)&rodata_f043b) /*=0xf043b*/);
     } else {
       debug_print(((unsigned long)&rodata_f0416) /*=0xf0416*/, ((unsigned long)&rodata_f043b) /*=0xf043b*/);
     }

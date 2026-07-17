@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_0004a2a4 @ 0x4a2a4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int unix_timestamp_to_datetime(int,void*);
 extern int compute_day_of_week(int,int,int);
 extern int get_localized_weekday_name(int);
@@ -22,7 +22,7 @@ void debug_print_burial_point_date(int param_1){
   uint32_t uVar3 = calendar[0];
   uint32_t uVar1 = calendar[1];
   uint32_t uVar4 = calendar[2];
-  DEBUG_PRINT(((unsigned long)&rodata_9bbbf) /*=0x9bbbf*/, param_1, uVar3, uVar1, uVar4,
+  log_message(((unsigned long)&rodata_9bbbf) /*=0x9bbbf*/, param_1, uVar3, uVar1, uVar4,
               calendar[3], calendar[4], calendar[5]);
   int cVar2 = compute_day_of_week(uVar3, uVar1, uVar4);
   get_localized_weekday_name((int)(uint8_t)(cVar2 + 0x3b));

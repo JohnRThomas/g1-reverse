@@ -21,7 +21,7 @@
 extern void memset_bytes(void *destination, int value, uint32_t length);
 extern int k_msgq_put(uint32_t queue, const void *record,
                        uint32_t wait, uint32_t flags);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
+extern void log_message(uint32_t format, uint32_t argument);
 extern void debug_print(uint32_t format, uint32_t argument, ...);
 
 uint32_t display_inputEvent(uint8_t input, uint8_t state)
@@ -35,13 +35,13 @@ uint32_t display_inputEvent(uint8_t input, uint8_t state)
     command[5] = state;
 
     if (k_msgq_put(((unsigned long)&g_display_msgq) /*=0x200038c4*/, command, 0, 0) != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0151) /*=0xf0151*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0151) /*=0xf0151*/);
         return UINT32_MAX;
     }
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_f00bb) /*=0xf00bb*/, ((unsigned long)&rodata_f0151) /*=0xf0151*/);
+            log_message(((unsigned long)&rodata_f00bb) /*=0xf00bb*/, ((unsigned long)&rodata_f0151) /*=0xf0151*/);
         } else {
             debug_print(((unsigned long)&rodata_f00bb) /*=0xf00bb*/, ((unsigned long)&rodata_f0151) /*=0xf0151*/);
         }

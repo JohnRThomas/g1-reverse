@@ -21,7 +21,7 @@ extern int is_battery_critical(void);
 extern int FUN_00086be4(int,void*,int);
 extern void FUN_0005420c(int,int);
 extern void k_sem_give(int);
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
     unsigned char auStack_38[32];
@@ -51,7 +51,7 @@ void pairing_complete(unsigned param_1, unsigned param_2){
     *(int*)(iVar2+0x1069) = *(int*)puVar1;
     *(short*)(iVar2+0x106d) = *(short*)((char*)puVar1+4);
     *(unsigned char*)(iVar2+0x106f) = *(unsigned char*)((char*)puVar1+6);
-    DEBUG_PRINT(0x0009a638, auStack_38, param_2, iVar2 + 0x1069);
+    log_message(0x0009a638, auStack_38, param_2, iVar2 + 0x1069);
     *(int*)0x20007514 += 1;
     *(unsigned char*)(*(int*)0x20006ab8 + 0x367) = 0;
 }

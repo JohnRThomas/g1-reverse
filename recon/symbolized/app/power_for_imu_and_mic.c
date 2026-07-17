@@ -14,7 +14,7 @@
 /* Reconstructed power_for_imu_and_mic @ 0x15f80  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,...);
+extern void log_message(unsigned int,...);
 extern void debug_print(unsigned int,...);
 
 unsigned int power_for_imu_and_mic(void)
@@ -27,7 +27,7 @@ unsigned int power_for_imu_and_mic(void)
     }
     int flag = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
     if (flag == 0) {
-        DEBUG_PRINT(iVar1 < 0 ? ((unsigned long)&rodata_9945a) /*=0x9945a*/ : 0x00099476, ((unsigned long)&rodata_99c28) /*=0x99c28*/);
+        log_message(iVar1 < 0 ? ((unsigned long)&rodata_9945a) /*=0x9945a*/ : 0x00099476, ((unsigned long)&rodata_99c28) /*=0x99c28*/);
     } else {
         debug_print(iVar1 < 0 ? ((unsigned long)&rodata_9945a) /*=0x9945a*/ : 0x00099476, ((unsigned long)&rodata_99c28) /*=0x99c28*/);
     }

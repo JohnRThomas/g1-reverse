@@ -29,7 +29,7 @@ extern void reflash_fb_data_to_lcd(uint32_t, uint32_t, uint32_t, uint32_t, uint3
 extern int resource_manger_get(uint32_t, uint32_t, int32_t *, int32_t *, uint32_t *, uint32_t);
 extern void fb_blit_rows_copy(uint32_t, uint32_t, int32_t, int32_t, int32_t, uint32_t);
 extern int count_chars_in_default_font_table(uint32_t, uint32_t);
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 
 int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
@@ -47,7 +47,7 @@ int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
         if (*p < 0x20u) {
             if (*(volatile int32_t *)0x2000230cu > 0) {
                 if (*(volatile uint32_t *)0x20007554u == 0)
-                    DEBUG_PRINT(0x000aac83u, 0x000aac9fu);
+                    log_message(0x000aac83u, 0x000aac9fu);
                 else
                     debug_print(0x000aac83u, 0x000aac9fu);
             }
@@ -57,7 +57,7 @@ int gui_string_draw(uint32_t font, const uint8_t *text, int32_t x, uint32_t y,
         if (resource_manger_get(font, *p, &glyph_width, &glyph_height, &bitmap, 0) != 0 || bitmap == 0) {
             if (*(volatile int32_t *)0x2000230cu > 1) {
                 if (*(volatile uint32_t *)0x20007554u == 0)
-                    DEBUG_PRINT(0x000aac62u, 0x000aac9fu);
+                    log_message(0x000aac62u, 0x000aac9fu);
                 else
                     debug_print(0x000aac62u, 0x000aac9fu);
             }

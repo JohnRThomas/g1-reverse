@@ -21,7 +21,7 @@ extern void *get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern void memcpy(void*, void*, unsigned int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
@@ -46,11 +46,11 @@ unsigned int send_response_data_to_msgqueue(void *param_1, unsigned int param_2)
         if (iVar3 == 0) {
             return 0;
         }
-        DEBUG_PRINT(0xef058, 0xef750);
+        log_message(0xef058, 0xef750);
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xef01c, 0xef750, 0x14);
+                log_message(0xef01c, 0xef750, 0x14);
             } else {
                 debug_print(0xef01c, 0xef750, 0x14);
             }

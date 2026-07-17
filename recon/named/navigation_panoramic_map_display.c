@@ -53,7 +53,7 @@ typedef uint32_t undefined4; typedef uint32_t uint;
 typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 
-extern long long DEBUG_PRINT(int, ...);
+extern long long log_message(int, ...);
 extern long long debug_print(int, ...);
 extern long long get_device_info(int, ...);
 extern long long reflash_fb_data_to_lcd(int, ...);
@@ -146,7 +146,7 @@ void navigation_panoramic_map_display(undefined4 param_1,int param_2)
   if (*(char *)(DAT_0003e8b0 + 4) == '\0') {
     if (2 < *DAT_0003e8b4) {
       if (*DAT_0003e8b8 == 0) {
-        DEBUG_PRINT(DAT_0003e8c0,DAT_0003e8bc);
+        log_message(DAT_0003e8c0,DAT_0003e8bc);
       }
       else {
         ((long long (*)(void))debug_print)();
@@ -199,7 +199,7 @@ void navigation_panoramic_map_display(undefined4 param_1,int param_2)
         }
         else if (0 < *DAT_0003ef60) {
           if (*DAT_0003ef68 == 0) {
-            DEBUG_PRINT(DAT_0003ef80,DAT_0003ef6c);
+            log_message(DAT_0003ef80,DAT_0003ef6c);
           }
           else {
             ((long long (*)(void))debug_print)();
@@ -339,7 +339,7 @@ void navigation_panoramic_map_display(undefined4 param_1,int param_2)
       }
       else if (0 < *DAT_0003f288) {
         if (*DAT_0003f28c == 0) {
-          DEBUG_PRINT(DAT_0003f294,DAT_0003f290);
+          log_message(DAT_0003f294,DAT_0003f290);
         }
         else {
           ((long long (*)(void))debug_print)();
@@ -457,7 +457,7 @@ LAB_0003ed90:
     if (*(int *)(param_2 + 0xb1) == 0x1210) {
       if (2 < *DAT_0003ef60) {
         if (*DAT_0003ef68 == 0) {
-          DEBUG_PRINT(DAT_0003ef70,DAT_0003ef6c);
+          log_message(DAT_0003ef70,DAT_0003ef6c);
         }
         else {
           debug_print(DAT_0003ef70,DAT_0003ef6c);
@@ -470,7 +470,7 @@ LAB_0003ed90:
     else {
       if (2 < *DAT_0003ef60) {
         if (*DAT_0003f28c == 0) {
-          DEBUG_PRINT(DAT_0003f298,DAT_0003f290);
+          log_message(DAT_0003f298,DAT_0003f290);
         }
         else {
           ((long long (*)(void))debug_print)();

@@ -10,12 +10,12 @@
  */
 /* Reconstructed FUN_00018300 @ 0x18300  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int);
+extern void log_message(int);
 extern void k_sem_give(int);
 extern void change_work_mode_to(int);
 void FUN_00018300(int param_1, unsigned int param_2)
 {
-    DEBUG_PRINT(((unsigned long)&rodata_9a436) /*=0x9a436*/);
+    log_message(((unsigned long)&rodata_9a436) /*=0x9a436*/);
     if (99 < param_2) {
         k_sem_give(*(volatile int*)((unsigned long)&g_ancs_active_conn) /*=0x20006ab8*/ + 0x230);
         if (param_2 == 0x1f2) {

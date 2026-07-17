@@ -98,7 +98,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern int DEBUG_PRINT(uint32_t, ...);
+extern int log_message(uint32_t, ...);
 extern int set_dashboard_startup_default_language(void);
 extern uintptr_t get_device_info(void);
 extern int debug_print(...);
@@ -125,9 +125,9 @@ extern uint32_t FUN_0007d1d0(uintptr_t);
 extern uint32_t get_timestamp(void);
 extern uint32_t check_dashboard_device_status_range(void);
 extern void *memset_bytes(void *, int, uint32_t);
-extern int send_event_status(uint32_t);
+extern int send_event(uint32_t);
 extern int sync_to_slave(uintptr_t, uint32_t, const void *, uint32_t);
-extern uint64_t thunk_FUN_00074f68(void);
+extern uint64_t uptime_ticks_get(void);
 
 #define DAT_0003b254 ((volatile char*)0x20004950UL)
 #define DAT_0003b258 ((volatile int*)0x2000230cUL)
@@ -220,7 +220,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
   if (*pcVar4 == '\0') {
     if (2 < *DAT_0003b258) {
       if (*DAT_0003b25c == 0) {
-        DEBUG_PRINT(DAT_0003b264,DAT_0003b260);
+        log_message(DAT_0003b264,DAT_0003b260);
       }
       else {
         debug_print(DAT_0003b264,DAT_0003b260);
@@ -230,7 +230,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
     if (param_3 == 2) {
       if (2 < *piVar5) {
         if (*DAT_0003b25c == 0) {
-          DEBUG_PRINT(DAT_0003b268,DAT_0003b260);
+          log_message(DAT_0003b268,DAT_0003b260);
         }
         else {
           debug_print(DAT_0003b268,DAT_0003b260);
@@ -244,13 +244,13 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
     if ((param_3 != 1) || (pcVar4[9] != '\0')) goto LAB_0003b198;
     if (2 < *piVar5) {
       if (*DAT_0003b25c == 0) {
-        DEBUG_PRINT(DAT_0003b270,DAT_0003b260);
+        log_message(DAT_0003b270,DAT_0003b260);
       }
       else {
         debug_print(DAT_0003b270,DAT_0003b260);
       }
     }
-    send_event_status(0x1e);
+    send_event(0x1e);
     memset_bytes(DAT_0003b254,0,0x28);
     gui_screen_clear();
     pbVar7 = DAT_0003b274;
@@ -269,28 +269,28 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
     piVar6 = DAT_0003b25c;
     if (2 < iVar14) {
       if (*DAT_0003b25c == 0) {
-        DEBUG_PRINT(DAT_0003b280,DAT_0003b260,(uint)bVar11,(uint)bVar1,uVar13);
+        log_message(DAT_0003b280,DAT_0003b260,(uint)bVar11,(uint)bVar1,uVar13);
       }
       else {
         debug_print(DAT_0003b280,DAT_0003b260,(uint)bVar11,(uint)bVar1,uVar13);
       }
       if (2 < *piVar5) {
         if (*piVar6 == 0) {
-          DEBUG_PRINT(DAT_0003b284,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x155),0,uVar13);
+          log_message(DAT_0003b284,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x155),0,uVar13);
         }
         else {
           debug_print(DAT_0003b284,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x155),0,uVar13);
         }
         if (2 < *piVar5) {
           if (*piVar6 == 0) {
-            DEBUG_PRINT(DAT_0003b288,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x157),0,uVar13);
+            log_message(DAT_0003b288,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x157),0,uVar13);
           }
           else {
             debug_print(DAT_0003b288,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x157),0,uVar13);
           }
           if (2 < *piVar5) {
             if (*piVar6 == 0) {
-              DEBUG_PRINT(DAT_0003b28c,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x158));
+              log_message(DAT_0003b28c,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x158));
             }
             else {
               debug_print(DAT_0003b28c,DAT_0003b260,(uint)*(byte *)(iVar12 + 0x158));
@@ -313,7 +313,7 @@ undefined4 ui_DashBoard_task(int param_1,undefined4 param_2,int param_3)
           uVar17 = DAT_0003b260;
 LAB_0003b116:
           if (iVar14 == 0) {
-            DEBUG_PRINT(uVar16,uVar17);
+            log_message(uVar16,uVar17);
           }
           else {
             debug_print(uVar16,uVar17);
@@ -350,7 +350,7 @@ LAB_0003b116:
         if (2 < *piVar5) {
           if (*DAT_0003b584 == 0) {
             uVar16 = get_timestamp();
-            DEBUG_PRINT(DAT_0003b590,DAT_0003b588,iVar14,uVar16);
+            log_message(DAT_0003b590,DAT_0003b588,iVar14,uVar16);
           }
           else {
             uVar16 = get_timestamp();
@@ -360,7 +360,7 @@ LAB_0003b116:
       }
       else if (1 < *piVar5) {
         if (*DAT_0003b25c == 0) {
-          DEBUG_PRINT(DAT_0003b294,DAT_0003b260);
+          log_message(DAT_0003b294,DAT_0003b260);
         }
         else {
           debug_print(DAT_0003b294,DAT_0003b260);
@@ -399,7 +399,7 @@ LAB_0003b116:
       reflash_fb_data_to_lcd(uVar16,*(undefined4 *)(iVar14 + 0xeb8),0,0,0x280,199);
     }
     gui_canvas_flags_set_bit1();
-    lVar23 = thunk_FUN_00074f68();
+    lVar23 = uptime_ticks_get();
     uVar13 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
     *(uint *)(pcVar4 + 0x10) = (uint)(lVar23 * 1000) >> 0xf | uVar13 * 0x20000;
     *(uint *)(pcVar4 + 0x14) = uVar13 >> 0xf;
@@ -419,7 +419,7 @@ LAB_0003b198:
     local_2c = CONCAT22((*(volatile uint16_t*)((char*)&local_2c + 2)),0x201);
     if (2 < *DAT_0003b258) {
       if (*DAT_0003b25c == 0) {
-        DEBUG_PRINT(DAT_0003b2a4,DAT_0003b260,2);
+        log_message(DAT_0003b2a4,DAT_0003b260,2);
       }
       else {
         debug_print(DAT_0003b2a4,DAT_0003b260,2);
@@ -440,7 +440,7 @@ LAB_0003b198:
     local_2c = CONCAT22((*(volatile uint16_t*)((char*)&local_2c + 2)),0x201);
     if (2 < *piVar5) {
       if (*DAT_0003b584 == 0) {
-        DEBUG_PRINT(DAT_0003b5a4,DAT_0003b588,2);
+        log_message(DAT_0003b5a4,DAT_0003b588,2);
       }
       else {
         debug_print(DAT_0003b5a4,DAT_0003b588,2);
@@ -457,7 +457,7 @@ LAB_0003b198:
     pcVar4[0x23] = bVar11;
     if (2 < iVar14) {
       if (*DAT_0003b584 == 0) {
-        DEBUG_PRINT(DAT_0003b5a8,DAT_0003b588,(uint)bVar11);
+        log_message(DAT_0003b5a8,DAT_0003b588,(uint)bVar11);
       }
       else {
         debug_print(DAT_0003b5a8,DAT_0003b588,(uint)bVar11);
@@ -472,7 +472,7 @@ LAB_0003b198:
   }
   else {
     if (*DAT_0003b584 == 0) {
-      DEBUG_PRINT(DAT_0003b5ac,DAT_0003b588);
+      log_message(DAT_0003b5ac,DAT_0003b588);
     }
     else {
       debug_print(DAT_0003b5ac,DAT_0003b588);
@@ -487,7 +487,7 @@ LAB_0003b742:
       if (param_3 == 0) {
         if (2 < *piVar5) {
           if (*DAT_0003b584 == 0) {
-            DEBUG_PRINT(DAT_0003b5bc,DAT_0003b588,(uint)*(byte *)(iVar12 + 0x153));
+            log_message(DAT_0003b5bc,DAT_0003b588,(uint)*(byte *)(iVar12 + 0x153));
           }
           else {
             debug_print(DAT_0003b5bc,DAT_0003b588,(uint)*(byte *)(iVar12 + 0x153));
@@ -501,7 +501,7 @@ LAB_0003b742:
         if (param_3 == 6) {
           if (2 < *piVar5) {
             if (*DAT_0003b760 == 0) {
-              DEBUG_PRINT(DAT_0003b784,DAT_0003b764);
+              log_message(DAT_0003b784,DAT_0003b764);
             }
             else {
               debug_print(DAT_0003b784,DAT_0003b764);
@@ -515,7 +515,7 @@ LAB_0003b742:
           if (param_3 != 7) goto LAB_0003b512;
           if (2 < *piVar5) {
             if (*DAT_0003b760 == 0) {
-              DEBUG_PRINT(DAT_0003b788,DAT_0003b764);
+              log_message(DAT_0003b788,DAT_0003b764);
             }
             else {
               debug_print(DAT_0003b788,DAT_0003b764);
@@ -531,7 +531,7 @@ LAB_0003b742:
       }
       if (2 < *piVar5) {
         if (*DAT_0003b760 == 0) {
-          DEBUG_PRINT(DAT_0003b768,DAT_0003b764,(uint)(byte)pcVar4[0x19]);
+          log_message(DAT_0003b768,DAT_0003b764,(uint)(byte)pcVar4[0x19]);
         }
         else {
           debug_print(DAT_0003b768,DAT_0003b764,(uint)(byte)pcVar4[0x19]);
@@ -567,7 +567,7 @@ LAB_0003b742:
             uVar16 = DAT_0003b778;
 LAB_0003b614:
             if (iVar14 == 0) {
-              DEBUG_PRINT(uVar16,DAT_0003b764,uVar13);
+              log_message(uVar16,DAT_0003b764,uVar13);
             }
             else {
               debug_print(uVar16,DAT_0003b764,uVar13);
@@ -599,7 +599,7 @@ LAB_0003b512:
         return 0;
       }
       iVar12 = check_dashboard_device_status_range();
-      lVar23 = thunk_FUN_00074f68();
+      lVar23 = uptime_ticks_get();
       uVar20 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
       uVar13 = (uint)(lVar23 * 1000) >> 0xf | uVar20 * 0x20000;
       uVar20 = uVar20 >> 0xf;
@@ -635,14 +635,14 @@ LAB_0003b512:
     }
     if (2 < *piVar5) {
       if (*piVar6 == 0) {
-        DEBUG_PRINT(DAT_0003b5b0,DAT_0003b588);
+        log_message(DAT_0003b5b0,DAT_0003b588);
       }
       else {
         debug_print(DAT_0003b5b0,DAT_0003b588);
       }
     }
   }
-  send_event_status(0x1f);
+  send_event(0x1f);
   FUN_0004382c();
   memset_bytes(DAT_0003b5b4,0,0x28);
   *DAT_0003b5b8 = *DAT_0003b5b8 & 0xfffffffd;

@@ -19,7 +19,7 @@
  */
 /* Reconstructed global_ipc_service_send @ 0x25b78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int sys_reboot(int);
@@ -51,7 +51,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                     while (iVar4 = *piVar1 + 1, *piVar1 = iVar4, 2 < iVar4) {
                         if (0 < *piVar2) {
                             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                DEBUG_PRINT(((unsigned long)&rodata_9f5a9) /*=0x9f5a9*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+                                log_message(((unsigned long)&rodata_9f5a9) /*=0x9f5a9*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
                             } else {
                                 debug_print(((unsigned long)&rodata_9f5a9) /*=0x9f5a9*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
                             }
@@ -59,7 +59,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                         FUN_00074844(0x4000, 0);
                         sys_reboot(1);
 lab_debug_1:
-                        DEBUG_PRINT(((unsigned long)&rodata_9f576) /*=0x9f576*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/, iVar3);
+                        log_message(((unsigned long)&rodata_9f576) /*=0x9f576*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/, iVar3);
                     }
                     return iVar3;
                 }
@@ -70,7 +70,7 @@ lab_debug_1:
     }
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9f5ce) /*=0x9f5ce*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
+            log_message(((unsigned long)&rodata_9f5ce) /*=0x9f5ce*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
         } else {
             debug_print(((unsigned long)&rodata_9f5ce) /*=0x9f5ce*/, ((unsigned long)&rodata_9f704) /*=0x9f704*/);
         }

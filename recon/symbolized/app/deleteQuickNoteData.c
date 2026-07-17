@@ -17,7 +17,7 @@
  */
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
@@ -35,7 +35,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     if (iVar1 == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9ee23) /*=0x9ee23*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/, param_1);
+                log_message(((unsigned long)&rodata_9ee23) /*=0x9ee23*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/, param_1);
             else
                 debug_print(((unsigned long)&rodata_9ee23) /*=0x9ee23*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/, param_1);
         }
@@ -44,7 +44,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/);
+                log_message(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/);
             else
                 debug_print(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f080) /*=0x9f080*/);
         }

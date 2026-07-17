@@ -18,7 +18,7 @@
  */
 /* Reconstructed global_ipc_service_send @ 0x25b78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int sys_reboot(int);
@@ -50,7 +50,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                     while (iVar4 = *piVar1 + 1, *piVar1 = iVar4, 2 < iVar4) {
                         if (0 < *piVar2) {
                             if (*(volatile int*)0x20007554UL == 0) {
-                                DEBUG_PRINT(0x0009f5a9UL, 0x0009f704UL);
+                                log_message(0x0009f5a9UL, 0x0009f704UL);
                             } else {
                                 debug_print(0x0009f5a9UL, 0x0009f704UL);
                             }
@@ -58,7 +58,7 @@ int global_ipc_service_send(unsigned int param_1, unsigned int param_2)
                         FUN_00074844(0x4000, 0);
                         sys_reboot(1);
 lab_debug_1:
-                        DEBUG_PRINT(0x0009f576UL, 0x0009f704UL, iVar3);
+                        log_message(0x0009f576UL, 0x0009f704UL, iVar3);
                     }
                     return iVar3;
                 }
@@ -69,7 +69,7 @@ lab_debug_1:
     }
     if (0 < *(volatile int*)0x2000230cUL) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009f5ceUL, 0x0009f704UL);
+            log_message(0x0009f5ceUL, 0x0009f704UL);
         } else {
             debug_print(0x0009f5ceUL, 0x0009f704UL);
         }

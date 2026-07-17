@@ -19,7 +19,7 @@
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern int spi_read_id(void);
-extern void DEBUG_PRINT(unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
@@ -36,7 +36,7 @@ unsigned int jdb_panel_init(unsigned char *param_1)
     } else {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_d728d) /*=0xd728d*/,((unsigned long)&rodata_d72ac) /*=0xd72ac*/);
+                log_message(((unsigned long)&rodata_d728d) /*=0xd728d*/,((unsigned long)&rodata_d72ac) /*=0xd72ac*/);
             } else {
                 debug_print(((unsigned long)&rodata_d728d) /*=0xd728d*/,((unsigned long)&rodata_d72ac) /*=0xd72ac*/);
             }

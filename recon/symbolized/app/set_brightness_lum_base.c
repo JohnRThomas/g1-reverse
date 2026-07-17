@@ -20,7 +20,7 @@
  */
 /* Reconstructed set_brightness_lum_base @ 0x31cbc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern int get_device_info(void);
 extern void debug_print(unsigned,...);
 extern void build_and_send_device_status_report(unsigned,int);
@@ -32,9 +32,9 @@ unsigned set_brightness_lum_base(int param_1, unsigned param_2, unsigned **param
   int iVar6; unsigned uVar7, uVar8; unsigned char *puVar10;
   unsigned char auStack_9c[116];
   unsigned short local_28, local_26, local_24;
-  DEBUG_PRINT(((unsigned long)&rodata_a70a0) /*=0xa70a0*/);
+  log_message(((unsigned long)&rodata_a70a0) /*=0xa70a0*/);
   if ((param_3 == 0) || (param_4 == 0)) {
-    DEBUG_PRINT(((unsigned long)&rodata_a70c1) /*=0xa70c1*/);
+    log_message(((unsigned long)&rodata_a70c1) /*=0xa70c1*/);
     uVar5 = 0xffffffff;
   } else if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ == 1) {
     puVar10 = (unsigned char*)*param_3;
@@ -46,7 +46,7 @@ unsigned set_brightness_lum_base(int param_1, unsigned param_2, unsigned **param
     cVar2 = *(char*)(param_1 + 4);
     uVar8 = (unsigned)*(unsigned short*)(param_1 + 5);
     if (2 < *piVar4) {
-      if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_a70e7) /*=0xa70e7*/, ((unsigned long)&rodata_a7655) /*=0xa7655*/, uVar8);
+      if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_a70e7) /*=0xa70e7*/, ((unsigned long)&rodata_a7655) /*=0xa7655*/, uVar8);
       else debug_print(((unsigned long)&rodata_a70e7) /*=0xa70e7*/, ((unsigned long)&rodata_a7655) /*=0xa7655*/, uVar8);
     }
     bVar1 = 0x3f < uVar8;
@@ -77,7 +77,7 @@ LAB_7c:
     uVar5 = 0;
     *(volatile unsigned char*)param_4 = 6;
   } else {
-    DEBUG_PRINT(((unsigned long)&rodata_a672f) /*=0xa672f*/);
+    log_message(((unsigned long)&rodata_a672f) /*=0xa672f*/);
     uVar5 = 0xfffffffe;
   }
   return uVar5;

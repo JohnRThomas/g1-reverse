@@ -11,7 +11,7 @@
 /* Reconstructed now_has_persist_task @ 0x2be64  (parity: 300/300 trials, PROVEN) */
 
 extern void FUN_0007cdf8(void);
-extern void DEBUG_PRINT(void);
+extern void log_message(void);
 extern void debug_print(void);
 
 unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
@@ -26,7 +26,7 @@ unsigned char now_has_persist_task(unsigned char *param_1, unsigned int param_2)
     if (uVar3 > 1) {
         if (*(volatile int*)0x2000230cUL > 3) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT();
+                log_message();
             } else {
                 debug_print();
             }

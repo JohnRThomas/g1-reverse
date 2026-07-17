@@ -21,7 +21,7 @@ extern int get_device_info(void);
 extern int is_battery_critical(void);
 extern int atomic_and(u32,u32);
 extern int gatt_dm_start(u32,void*,u32,u32);
-extern void DEBUG_PRINT(u32,int);
+extern void log_message(u32,int);
 void gatt_discover(u32 param_1, int param_2){
     volatile u32* puVar1 = (volatile u32*)0x20006ab4UL;
     char* pcVar2 = (char*)(uintptr_t)get_device_info();
@@ -49,7 +49,7 @@ void gatt_discover(u32 param_1, int param_2){
                 *(u8*)&local_2c[4] = *(u8*)(src+4);
                 iVar3 = gatt_dm_start(param_1, local_2c, 0x00088a0c, 0x20006ae8);
                 if(iVar3 != 0){
-                    DEBUG_PRINT(0x0009a65b, iVar3);
+                    log_message(0x0009a65b, iVar3);
                     atomic_and(0x20006ab4, 0xfffffffe);
                 }
             }

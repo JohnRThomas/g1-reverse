@@ -13,7 +13,7 @@ extern void thunk_FUN_000723b8(unsigned,unsigned,unsigned,unsigned,int,unsigned)
 extern int ipc_send_len_prefixed_packet(int,unsigned,unsigned,unsigned,int);
 extern void thunk_FUN_00072558(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void DEBUG_PRINT(unsigned,unsigned,unsigned,int);
+extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }
@@ -29,7 +29,7 @@ int ipc_send_len_prefixed_packet_locked_retry(int param_1, unsigned param_2, uns
             if (iVar1 == 0) break;
             iVar4 = iVar4 - 1;
             if (iVar4 == 0){
-                DEBUG_PRINT(0x9f250, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
+                log_message(0x9f250, *(unsigned short*)(iVar3 + 8), param_2, iVar1);
                 return iVar1;
             }
             lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);

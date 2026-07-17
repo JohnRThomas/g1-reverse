@@ -46,7 +46,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void log_message(unsigned a, unsigned b);
 extern int  get_device_info(void);
 extern void debug_print(void);
 extern void reflash_fb_data_to_lcd(unsigned a, unsigned b, int c, int d, int e, int f);
@@ -81,7 +81,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)(((unsigned long)g_ipc_or_evt_ctx) /*=0x20004bb8*/ + 5) == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a9ebd) /*=0xa9ebd*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                log_message(((unsigned long)&rodata_a9ebd) /*=0xa9ebd*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
             else
                 debug_print();
         }
@@ -116,7 +116,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                        log_message(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
                     else
                         debug_print();
                 }
@@ -126,7 +126,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                        log_message(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
                     else
                         debug_print();
                 }
@@ -243,14 +243,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
         if (*(volatile unsigned char*)((unsigned long)&g_20010326) /*=0x20010326*/ == 1) {
             if (2 < *piVar2) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    DEBUG_PRINT(((unsigned long)&rodata_a9f30) /*=0xa9f30*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                    log_message(((unsigned long)&rodata_a9f30) /*=0xa9f30*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
                 else
                     debug_print();
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                        log_message(((unsigned long)&rodata_a9ee1) /*=0xa9ee1*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
                     else
                         debug_print();
                 }
@@ -260,7 +260,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                        log_message(((unsigned long)&rodata_a9eff) /*=0xa9eff*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
                     else
                         debug_print();
                 }
@@ -288,7 +288,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)((unsigned long)&g_20010324) /*=0x20010324*/ == 1) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a9f51) /*=0xa9f51*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
+                log_message(((unsigned long)&rodata_a9f51) /*=0xa9f51*/, ((unsigned long)&rodata_aa446) /*=0xaa446*/);
             else
                 debug_print();
         }

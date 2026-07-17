@@ -15,7 +15,7 @@
 /* Reconstructed FUN_000336a0 @ 0x336a0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int k_mem_slab_alloc(unsigned,void*,int,int,int);
 typedef int (*fp1)(int,unsigned,int);
 typedef int (*fp2)(int,unsigned,int,int);
@@ -30,11 +30,11 @@ unsigned uart_read_start(int param_1, unsigned param_2, unsigned param_3){
         void **p2 = *(void***)(param_1+8);
         iVar1=((fp2)p2[3])(param_1,local_14,0x100,10000);
         if(iVar1==0) return 0;
-        DEBUG_PRINT(((unsigned long)&rodata_a7b41) /*=0xa7b41*/); return 0xfffffffd;
+        log_message(((unsigned long)&rodata_a7b41) /*=0xa7b41*/); return 0xfffffffd;
       }
-      DEBUG_PRINT(((unsigned long)&rodata_a7b29) /*=0xa7b29*/); return 0xfffffffe;
+      log_message(((unsigned long)&rodata_a7b29) /*=0xa7b29*/); return 0xfffffffe;
     }
-    DEBUG_PRINT(((unsigned long)&rodata_a7b13) /*=0xa7b13*/);
+    log_message(((unsigned long)&rodata_a7b13) /*=0xa7b13*/);
   }
   return 0xffffffff;
 }

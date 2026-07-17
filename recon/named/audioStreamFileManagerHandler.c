@@ -111,7 +111,7 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define DAT_00030160 0x000a47d7u
 #define DAT_00030164 0x000a4840u
 #define DAT_00030168 ((volatile int *)0x20007bb8u)
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern uint32_t log_message(uintptr_t,...);
 extern uint32_t get_device_info(uintptr_t,...);
 extern uint32_t debug_print(uintptr_t,...);
 extern uint32_t crc32_update(uintptr_t,...);
@@ -177,7 +177,7 @@ undefined4 audioStreamFileManagerHandler(void)
     }
     if (2 < *DAT_0002fbd0) {
       if (*DAT_0002fbd4 == 0) {
-        DEBUG_PRINT(DAT_0002fbe0,DAT_0002fbd8);
+        log_message(DAT_0002fbe0,DAT_0002fbd8);
       }
       else {
         debug_print(0);
@@ -214,7 +214,7 @@ LAB_0002fac2:
           if (piVar3[uVar14 * 5 + 2] == 0) {
             if (2 < *piVar17) {
               if (*DAT_0002fbd4 == 0) {
-                DEBUG_PRINT(DAT_0002fc0c,DAT_0002fbd8,uVar14);
+                log_message(DAT_0002fc0c,DAT_0002fbd8,uVar14);
               }
               else {
                 debug_print(0);
@@ -225,7 +225,7 @@ LAB_0002fac2:
           }
           if (2 < *piVar17) {
             if (*piVar15 == 0) {
-              DEBUG_PRINT(DAT_0002fc10,DAT_0002fbd8,piVar3[uVar14 * 5 + 5],iVar8);
+              log_message(DAT_0002fc10,DAT_0002fbd8,piVar3[uVar14 * 5 + 5],iVar8);
             }
             else {
               debug_print(DAT_0002fc10,DAT_0002fbd8,piVar3[uVar14 * 5 + 5],iVar8);
@@ -242,7 +242,7 @@ LAB_0002fac2:
         } while (uVar14 != 4);
         if (2 < *piVar17) {
           if (*DAT_0002fbd4 == 0) {
-            DEBUG_PRINT(DAT_0002fc14,DAT_0002fbd8,uVar13);
+            log_message(DAT_0002fc14,DAT_0002fbd8,uVar13);
           }
           else {
             debug_print(0);
@@ -252,7 +252,7 @@ LAB_0002fb54:
         *DAT_0002fc18 = (char)uVar13;
         if (2 < *piVar17) {
           if (*DAT_0002fbd4 == 0) {
-            DEBUG_PRINT(DAT_0002fc1c,DAT_0002fbd8,uVar13);
+            log_message(DAT_0002fc1c,DAT_0002fbd8,uVar13);
           }
           else {
             debug_print(0);
@@ -268,7 +268,7 @@ LAB_0002fb54:
       }
       if (2 < iVar12) {
         if (*DAT_0002fbd4 == 0) {
-          DEBUG_PRINT(DAT_0002fbf4,DAT_0002fbd8);
+          log_message(DAT_0002fbf4,DAT_0002fbd8);
         }
         else {
           debug_print(0);
@@ -290,7 +290,7 @@ LAB_0002fb54:
         if (iVar8 == 0) {
           if (2 < iVar12) {
             if (*DAT_0002fbd4 == 0) {
-              DEBUG_PRINT(DAT_0002fc08,DAT_0002fbd8,0);
+              log_message(DAT_0002fc08,DAT_0002fbd8,0);
             }
             else {
               debug_print(0);
@@ -343,7 +343,7 @@ LAB_0002f986:
         debug_print(0);
         return 0;
       }
-      DEBUG_PRINT(uVar9,uVar10);
+      log_message(uVar9,uVar10);
       return 0;
     }
     if (local_f4[0] == '\x01') {
@@ -374,7 +374,7 @@ LAB_0002f986:
       memcpy(DAT_0002feac + iVar12,local_f0,0x1000 - iVar12);
       if (2 < iVar18) {
         if (*DAT_0002fe7c == 0) {
-          DEBUG_PRINT(DAT_0002fe90,DAT_0002fe80);
+          log_message(DAT_0002fe90,DAT_0002fe80);
         }
         else {
           debug_print(0);
@@ -389,14 +389,14 @@ LAB_0002f986:
         if ((int)((uint)*DAT_0002fe98 * 0x20000 + 0x431000) < iVar12) {
           if (0 < *piVar17) {
             if (*DAT_0002fe7c == 0) {
-              DEBUG_PRINT(DAT_0002fe9c,DAT_0002fe80);
+              log_message(DAT_0002fe9c,DAT_0002fe80);
             }
             else {
               debug_print(0);
             }
             if (0 < *piVar17) {
               if (*piVar11 == 0) {
-                DEBUG_PRINT(DAT_0002fea0,DAT_0002fe80);
+                log_message(DAT_0002fea0,DAT_0002fe80);
               }
               else {
                 debug_print(0);
@@ -411,7 +411,7 @@ LAB_0002f986:
         }
         if (2 < *piVar17) {
           if (*DAT_0002fe7c == 0) {
-            DEBUG_PRINT(DAT_0002fea8,DAT_0002fe80,iVar12);
+            log_message(DAT_0002fea8,DAT_0002fe80,iVar12);
           }
           else {
             debug_print(0);
@@ -435,7 +435,7 @@ LAB_0002f986:
             *piVar6 = iVar8 + 1;
             if (2 < *piVar17) {
               if (*DAT_00030140 == 0) {
-                DEBUG_PRINT(DAT_00030148,DAT_00030144,iVar12);
+                log_message(DAT_00030148,DAT_00030144,iVar12);
               }
               else {
                 debug_print(0);
@@ -448,7 +448,7 @@ LAB_0002f986:
             iVar8 = -iVar12 + 0x1000;
             if (2 < *piVar17) {
               if (*DAT_00030140 == 0) {
-                DEBUG_PRINT(DAT_0003014c,DAT_00030144,local_f2 - iVar8);
+                log_message(DAT_0003014c,DAT_00030144,local_f2 - iVar8);
               }
               else {
                 debug_print(0);
@@ -471,7 +471,7 @@ LAB_0002f986:
         if (local_f4[0] == '\x04') {
           if (1 < *DAT_00030150) {
             if (*DAT_00030140 == 0) {
-              DEBUG_PRINT(DAT_00030154,DAT_00030144,(uint)local_f0[0]);
+              log_message(DAT_00030154,DAT_00030144,(uint)local_f0[0]);
             }
             else {
               debug_print(0);
@@ -488,14 +488,14 @@ LAB_0002fd4a:
       piVar17 = (int *)(uintptr_t)DAT_0002fe78;
       if (2 < *DAT_0002fe78) {
         if (*DAT_0002fe7c == 0) {
-          DEBUG_PRINT(DAT_0002fea4,DAT_0002fe80);
+          log_message(DAT_0002fea4,DAT_0002fe80);
         }
         else {
           debug_print(0);
         }
         if (2 < *piVar17) {
           if (*piVar15 == 0) {
-            DEBUG_PRINT(DAT_0002fe90,DAT_0002fe80);
+            log_message(DAT_0002fe90,DAT_0002fe80);
           }
           else {
             debug_print(0);
@@ -510,7 +510,7 @@ LAB_0002fd4a:
         iVar12 = (uint)*DAT_0002fe98 * 0x20000 + 0x421000 + *DAT_0002feb0 * 0x1000;
         if (2 < *piVar17) {
           if (*DAT_0002fe7c == 0) {
-            DEBUG_PRINT(DAT_0002fea8,DAT_0002fe80,iVar12);
+            log_message(DAT_0002fea8,DAT_0002fe80,iVar12);
           }
           else {
             debug_print(0);
@@ -579,7 +579,7 @@ LAB_0002fd4a:
             *(undefined4 *)(puVar5 + (uint)bVar1 * 0x14 + 0x18) = *puVar7;
             if (2 < iVar8) {
               if (*DAT_00030140 == 0) {
-                DEBUG_PRINT(DAT_00030158,DAT_00030144);
+                log_message(DAT_00030158,DAT_00030144);
               }
               else {
                 debug_print(0);
@@ -591,7 +591,7 @@ LAB_0002fd4a:
             if (*(int *)(iVar12 + 0xc) == *(int *)(iVar12 + 0x10)) {
               if (2 < *piVar17) {
                 if (*DAT_00030140 == 0) {
-                  DEBUG_PRINT(DAT_0003015c,DAT_00030144);
+                  log_message(DAT_0003015c,DAT_00030144);
                 }
                 else {
                   debug_print(0);
@@ -655,7 +655,7 @@ LAB_0002fe48:
   uVar10 = DAT_0002fbd8;
 LAB_0002fc9e:
   if (iVar12 == 0) {
-    DEBUG_PRINT(uVar9,uVar10,iVar8);
+    log_message(uVar9,uVar10,iVar8);
   }
   else {
     debug_print(0);

@@ -17,7 +17,7 @@
 /* Reconstructed FUN_00034274 @ 0x34274  (parity: 300/300 trials, PROVEN) */
 extern int get_device_info(void);
 extern void clear_timeout_message(int);
-extern void DEBUG_PRINT(unsigned,int);
+extern void log_message(unsigned,int);
 extern void debug_print(void);
 extern unsigned char msg_content_recalc_unread(void);
 unsigned char msg_count_dec(void){
@@ -33,7 +33,7 @@ unsigned char msg_count_dec(void){
             else cVar4 = (unsigned char)(bVar1 - 2);
             *(volatile unsigned char*)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/ = cVar4;
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-                DEBUG_PRINT(((unsigned long)&rodata_a8017) /*=0xa8017*/, r5);
+                log_message(((unsigned long)&rodata_a8017) /*=0xa8017*/, r5);
             } else {
                 debug_print();
             }

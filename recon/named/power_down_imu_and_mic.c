@@ -13,7 +13,7 @@
 /* Reconstructed power_down_imu_and_mic @ 0x160b4  (parity: 300/300 trials, PROVEN) */
 
 extern int dev_write_reg3(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,...);
+extern void log_message(unsigned int,...);
 extern void debug_print(unsigned int,...);
 
 unsigned int power_down_imu_and_mic(void)
@@ -26,7 +26,7 @@ unsigned int power_down_imu_and_mic(void)
     }
     int flag = *(volatile int*)0x20007554UL;
     if (flag == 0) {
-        DEBUG_PRINT(iVar1 < 0 ? 0x0009945a : 0x000994f7, 0x00099c00);
+        log_message(iVar1 < 0 ? 0x0009945a : 0x000994f7, 0x00099c00);
     } else {
         debug_print(iVar1 < 0 ? 0x0009945a : 0x000994f7, 0x00099c00);
     }

@@ -18,7 +18,7 @@
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 extern void k_sem_give(unsigned int);
 
@@ -35,7 +35,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     if (iVar1 == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9edf3) /*=0x9edf3*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/, param_1);
+                log_message(((unsigned long)&rodata_9edf3) /*=0x9edf3*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/, param_1);
             } else {
                 debug_print(((unsigned long)&rodata_9edf3) /*=0x9edf3*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/, param_1);
             }
@@ -45,7 +45,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/);
+                log_message(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/);
             } else {
                 debug_print(((unsigned long)&rodata_9edc2) /*=0x9edc2*/, ((unsigned long)&rodata_9f094) /*=0x9f094*/);
             }

@@ -168,7 +168,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define NAN (__builtin_nanf(""))
 #define INFINITY (__builtin_inff())
 
-extern long long DEBUG_PRINT(uintptr_t, ...);
+extern long long log_message(uintptr_t, ...);
 extern int get_device_info(void);
 extern void debug_print(uintptr_t, uintptr_t, uintptr_t, uintptr_t);
 extern int get_clock_digit_glyph_offset_large(uint16_t, uint32_t *, uint32_t *);
@@ -641,7 +641,7 @@ LAB_00045958:
         uVar7 = DAT_00045bb4;
       }
       if (iVar8 == 0) {
-        DEBUG_PRINT(uVar4,uVar7,param_2);
+        log_message(uVar4,uVar7,param_2);
         return 0xffffffff;
       }
       debug_print(uVar4,uVar7,param_1 == 4 ? param_2 - 0x16 : param_2,iVar8);
@@ -1179,7 +1179,7 @@ LAB_00045902:
     uVar7 = DAT_00046284;
 LAB_00045912:
     if (iVar8 == 0) {
-      DEBUG_PRINT(uVar4,uVar7);
+      log_message(uVar4,uVar7);
     }
     else {
       debug_print(uVar4,uVar7,(uintptr_t)param_3,iVar8);

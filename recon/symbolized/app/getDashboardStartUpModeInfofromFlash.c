@@ -19,7 +19,7 @@
  */
 /* Reconstructed getDashboardStartUpModeInfofromFlash @ 0x23df4  (parity: 100/100 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int z_device_is_ready(uint32_t);
@@ -39,7 +39,7 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
 
     if (2 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, param_3,
+            log_message(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, param_3,
                         *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
         } else {
             debug_print(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, param_3,
@@ -51,7 +51,7 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
     if (iVar4 == 0) {
         if (0 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, *puVar2,
+                log_message(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, *puVar2,
                             *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
             } else {
                 debug_print(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, *puVar2,
@@ -77,7 +77,7 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
             }
             if (0 < iVar7) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_9ea58) /*=0x9ea58*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
+                    log_message(((unsigned long)&rodata_9ea58) /*=0x9ea58*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
                                 *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 } else {
                     debug_print(((unsigned long)&rodata_9ea58) /*=0x9ea58*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, (unsigned int)*(unsigned char*)(intptr_t)(iVar4 + 2),
@@ -88,7 +88,7 @@ unsigned char getDashboardStartUpModeInfofromFlash(unsigned int param_1, unsigne
         } else {
             if (0 < iVar7) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, 0x13e000UL,
+                    log_message(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, 0x13e000UL,
                                 *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 } else {
                     debug_print(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed09) /*=0x9ed09*/, 0x13e000UL,

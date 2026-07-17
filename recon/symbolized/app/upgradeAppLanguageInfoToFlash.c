@@ -17,7 +17,7 @@
  */
 /* Reconstructed upgradeAppLanguageInfoToFlash @ 0x23af0  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int,...);
 extern void k_sem_give(unsigned int a0);
 
@@ -36,7 +36,7 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             if (sink == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
+                log_message(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
             else
                 debug_print(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
         }
@@ -46,7 +46,7 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             if (sink == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, 0UL, sink);
+                log_message(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, 0UL, sink);
             else
                 debug_print(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, 0UL, sink);
         }

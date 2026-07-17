@@ -13,14 +13,14 @@
  */
 /* Reconstructed get_glassbox_charge_status @ 0x32784  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 unsigned char get_glassbox_charge_status(void){
     volatile unsigned char *pbVar1 = (volatile unsigned char*)((unsigned long)&g_glassbox_charge_status_byte) /*=0x20019ef4*/;
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
         unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if(sink == 0){
-            DEBUG_PRINT(((unsigned long)&rodata_a7411) /*=0xa7411*/, ((unsigned long)&rodata_a7751) /*=0xa7751*/,
+            log_message(((unsigned long)&rodata_a7411) /*=0xa7411*/, ((unsigned long)&rodata_a7751) /*=0xa7751*/,
                         (unsigned int)(*pbVar1 >> 7),sink);
         } else {
             debug_print(((unsigned long)&rodata_a7411) /*=0xa7411*/, ((unsigned long)&rodata_a7751) /*=0xa7751*/,

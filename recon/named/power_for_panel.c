@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_00015df4 @ 0x15df4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int gpio_dt_spec_activate(int,...);
 extern void debug_print(int, int);
 extern int app_msleep_thunk_a(int,...);
@@ -40,7 +40,7 @@ unsigned power_for_panel(unsigned param_1, unsigned param_2)
         goto LAB_00015e1a;
     }
     if(0 < *(volatile int*)0x2000230c){
-        if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x00099345, 0x00099c3e); }
+        if(*(volatile int*)0x20007554 == 0){ log_message(0x00099345, 0x00099c3e); }
         else { debug_print(0x00099345, 0x00099c3e); }
     }
     app_msleep_thunk_a(1);
@@ -57,7 +57,7 @@ unsigned power_for_panel(unsigned param_1, unsigned param_2)
             iVar4 = *(volatile int*)0x20007554;
             puVar3 = (unsigned char*)0x0009938c;
 LAB_00015e82:
-            if(iVar4 == 0){ DEBUG_PRINT((int)puVar3, 0x00099c3e); }
+            if(iVar4 == 0){ log_message((int)puVar3, 0x00099c3e); }
             else { debug_print((int)puVar3, 0x00099c3e); }
         }
     } else {
@@ -87,7 +87,7 @@ LAB_00015e82:
             puVar3 = (unsigned char*)0x0009940b;
         } else {
             if(0 < *piVar1){
-                if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x00099427, 0x00099c3e); }
+                if(*(volatile int*)0x20007554 == 0){ log_message(0x00099427, 0x00099c3e); }
                 else { debug_print(0x00099427, 0x00099c3e); }
             }
             app_msleep_thunk_a(1);
@@ -99,7 +99,7 @@ LAB_00015e82:
         }
     }
 LAB_00015e1a:
-    if(iVar2 == 0){ DEBUG_PRINT((int)puVar3, 0x00099c3e); }
+    if(iVar2 == 0){ log_message((int)puVar3, 0x00099c3e); }
     else { debug_print((int)puVar3, 0x00099c3e); }
     return 0;
 }

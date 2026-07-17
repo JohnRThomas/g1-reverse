@@ -23,7 +23,7 @@
 /* Reconstructed post_notification_cmd_response @ 0x340c4. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void send_data_in_ble_chunks(void *notification);
 extern void push_message(void *notification);
@@ -63,7 +63,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
         payload == 0 || output == 0) {
         if (*log_level > 1) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(0x000a7ef6u, 0x000a831fu, payload,
+                log_message(0x000a7ef6u, 0x000a831fu, payload,
                             *deferred_logger,
                             context, notification, response);
             else
@@ -76,7 +76,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
     if (*log_level > 2) {
         if (*deferred_logger == 0)
-            DEBUG_PRINT(0x000a7f12u, 0x000a831fu, command->opcode,
+            log_message(0x000a7f12u, 0x000a831fu, command->opcode,
                         *deferred_logger,
                         context, notification, response);
         else
@@ -99,7 +99,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(0x000a7f41u, 0x000a831fu, state + 8, state + 0x19,
+                log_message(0x000a7f41u, 0x000a831fu, state + 8, state + 0x19,
                             *(uint32_t *)state, notification + 0x194);
             else
                 debug_print(0x000a7f41u, 0x000a831fu, state + 8,
@@ -115,7 +115,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
                               0x158u, command->length, notification, response);
                 return 0;
             }
-            DEBUG_PRINT(0x000a7f79u, 0x000a831fu, 0x000a8300u, 0x158u,
+            log_message(0x000a7f79u, 0x000a831fu, 0x000a8300u, 0x158u,
                         command->length, notification, response);
             return 0;
         }
@@ -136,13 +136,13 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
     if (response->opcode == 4) {
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(0x000a7faeu, 0x000a831fu);
+                log_message(0x000a7faeu, 0x000a831fu);
             else
                 debug_print(0x000a7faeu, 0x000a831fu);
         }
     } else if (response->opcode == 6 && *log_level > 2) {
         if (*deferred_logger == 0)
-            DEBUG_PRINT(0x000a7fe3u, 0x000a831fu);
+            log_message(0x000a7fe3u, 0x000a831fu);
         else
             debug_print(0x000a7fe3u, 0x000a831fu);
     }

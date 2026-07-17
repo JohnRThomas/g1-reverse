@@ -19,7 +19,7 @@
 extern void gatt_discover(uint32_t connection, uint32_t enabled);
 extern void debug_print(uintptr_t format, ...);
 extern void FUN_00056a68(uint32_t connection, uint32_t reason);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
                     int32_t error)
@@ -41,7 +41,7 @@ void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
     *(volatile uint8_t *)((unsigned long)&g_ble_indicate_sc_retry_count) /*=0x2000ff70*/ = 0;
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a8f9) /*=0x9a8f9*/, ((unsigned long)&rodata_9b1da) /*=0x9b1da*/);
+            log_message(((unsigned long)&rodata_9a8f9) /*=0x9a8f9*/, ((unsigned long)&rodata_9b1da) /*=0x9b1da*/);
         else
             debug_print(((unsigned long)&rodata_9a8f9) /*=0x9a8f9*/, ((unsigned long)&rodata_9b1da) /*=0x9b1da*/);
     }

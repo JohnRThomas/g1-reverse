@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_00031dd8 @ 0x31dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern uint64_t DEBUG_PRINT(unsigned, unsigned, unsigned, unsigned);
+extern uint64_t log_message(unsigned, unsigned, unsigned, unsigned);
 extern int get_device_info(void);
 extern void build_and_send_device_status_report(unsigned,int);
 extern int read_sys_settting_from_flash(void*);
@@ -32,15 +32,15 @@ unsigned FUN_00031dd8(unsigned param_1, unsigned param_2, unsigned **param_3, un
 {
   int *piVar1; int iVar2, iVar4; unsigned uVar3; unsigned char *puVar5; unsigned char uVar6; char cVar7;
   unsigned local_b0; unsigned char auStack_ac[16]; unsigned char auStack_9c[12]; int local_90;
-  uint64_t debug_result = DEBUG_PRINT(((unsigned long)&rodata_a715d) /*=0xa715d*/, param_2, (unsigned)param_3,
+  uint64_t debug_result = log_message(((unsigned long)&rodata_a715d) /*=0xa715d*/, param_2, (unsigned)param_3,
                                       (unsigned)param_4);
   if ((param_3 == 0) || (param_4 == 0)) {
-    DEBUG_PRINT(((unsigned long)&rodata_a7173) /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
+    log_message(((unsigned long)&rodata_a7173) /*=0xa7173*/, (unsigned)(debug_result >> 32), (unsigned)param_3,
                 (unsigned)param_4);
     return 0xffffffff;
   }
   if (*(char*)((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/ != 1) {
-    DEBUG_PRINT(((unsigned long)&rodata_a672f) /*=0xa672f*/, (unsigned)(debug_result >> 32),
+    log_message(((unsigned long)&rodata_a672f) /*=0xa672f*/, (unsigned)(debug_result >> 32),
                 (unsigned)param_3, ((unsigned long)&g_test_mode_flag) /*=0x20019ef3*/);
     return 0xfffffffe;
   }

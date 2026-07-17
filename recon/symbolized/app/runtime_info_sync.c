@@ -23,7 +23,7 @@ struct __attribute__((packed)) runtime_sync_packet {
 };
 
 extern uint32_t global_ipc_service_send(const void *packet, uint32_t length);
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name, ...);
+extern void log_message(uint32_t format, uint32_t function_name, ...);
 extern void debug_print(uint32_t format, uint32_t function_name, ...);
 
 uint32_t runtime_info_sync(const uint8_t *runtime)
@@ -39,7 +39,7 @@ uint32_t runtime_info_sync(const uint8_t *runtime)
         *(volatile uint8_t *)((unsigned long)&g_esb_bringup_log_pending_flag) /*=0x20002fe0*/ = 0;
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9957c) /*=0x9957c*/, ((unsigned long)&rodata_99bee) /*=0x99bee*/,
+                log_message(((unsigned long)&rodata_9957c) /*=0x9957c*/, ((unsigned long)&rodata_99bee) /*=0x99bee*/,
                             runtime[0], runtime[1], runtime[2], result,
                             runtime[3], runtime[4]);
             } else {

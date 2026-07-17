@@ -18,7 +18,7 @@
  */
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int atomic_get_3_0(void);
@@ -49,14 +49,14 @@ unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2
         }
         if (1 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000aa8ebUL, 0x000aacafUL);
+                log_message(0x000aa8ebUL, 0x000aacafUL);
             } else {
                 debug_print(0x000aa8ebUL, 0x000aacafUL);
             }
         }
     } else if (0 < *(volatile int*)0x2000230cUL) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000aaa01UL, 0x000aacafUL, param_2, param_3);
+            log_message(0x000aaa01UL, 0x000aacafUL, param_2, param_3);
         } else {
             debug_print(0x000aaa01UL, 0x000aacafUL, param_2, param_3);
         }

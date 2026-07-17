@@ -17,7 +17,7 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
 extern void puts(unsigned int);
@@ -34,7 +34,7 @@ uint utf8_to_unicode(byte *param_1, int param_2)
         }
         if (*(volatile int*)0x2000230cUL > 3) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xd7499U, 0xd752aU);
+                log_message(0xd7499U, 0xd752aU);
             } else {
                 debug_print(0xd7499U, 0xd752aU);
             }

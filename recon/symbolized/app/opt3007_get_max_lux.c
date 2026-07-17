@@ -16,7 +16,7 @@
  */
 /* Reconstructed opt3007_get_max_lux @ 0x10a68  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
+extern void log_message(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e, unsigned int f, unsigned int g);
 extern unsigned long long __floatdidf(unsigned int lo, unsigned int hi);
 extern unsigned long long __divdf3(unsigned int lo, unsigned int hi, unsigned int c1, unsigned int c2, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4);
 extern int FUN_0000de58(unsigned int lo, unsigned int hi);
@@ -41,7 +41,7 @@ int opt3007_get_max_lux(unsigned int param_1, unsigned int param_2, unsigned int
             if (2 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     iVar3 = get_device_info();
-                    DEBUG_PRINT(((unsigned long)&rodata_a3c82) /*=0xa3c82*/, ((unsigned long)&rodata_a3d12) /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0),
+                    log_message(((unsigned long)&rodata_a3c82) /*=0xa3c82*/, ((unsigned long)&rodata_a3d12) /*=0xa3d12*/, (unsigned int)iVar2, *(volatile unsigned int *)(iVar3 + 0xfb0),
                                 (unsigned int)uVar5, (unsigned int)(uVar5 >> 32), *(volatile unsigned int *)(iVar3 + 0xfb0));
                 } else {
                     iVar3 = get_device_info();

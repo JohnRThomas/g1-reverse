@@ -13,7 +13,7 @@ extern int display_panel_is_secondary(void);
 extern void mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
 extern void memset_bytes(void*, int, int);
-extern void send_event_status(int);
+extern void send_event(int);
 
 void update_display_status(int param_1, int param_2)
 {
@@ -71,7 +71,7 @@ void update_display_status(int param_1, int param_2)
     *pcVar2 = 0;
 LAB_0007cd8a:
     if (param_2 != 0) {
-        send_event_status(0);
+        send_event(0);
     }
     memset_bytes((void*)(intptr_t)(param_1 + 0xef), 0, 0x5dc);
     return;

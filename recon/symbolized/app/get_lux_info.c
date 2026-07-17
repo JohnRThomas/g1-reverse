@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00010fc8 @ 0x10fc8 */
 #include <stdint.h>
 
-extern uint64_t DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint64_t log_message(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t __floatunsidf(uint32_t);
 extern uint64_t __extendsfdf2(uint32_t);
 extern void __muldf3(uint32_t, uint32_t, uint32_t, uint32_t);
@@ -31,11 +31,11 @@ extern uint32_t FUN_0002e648(uint32_t);
 uint32_t get_lux_info(uint32_t request, uint32_t context,
                       uint32_t *buffer_slot, uint8_t *encoded_size)
 {
-    uint64_t debug_state = DEBUG_PRINT(0x000a6a28u, context,
+    uint64_t debug_state = log_message(0x000a6a28u, context,
                                       (uint32_t)(uintptr_t)buffer_slot,
                                       (uint32_t)(uintptr_t)encoded_size);
     if (buffer_slot == 0 || encoded_size == 0) {
-        DEBUG_PRINT(0x000a6a61u, (uint32_t)(debug_state >> 32),
+        log_message(0x000a6a61u, (uint32_t)(debug_state >> 32),
                     (uint32_t)(uintptr_t)buffer_slot,
                     (uint32_t)(uintptr_t)encoded_size);
         return UINT32_MAX;
@@ -69,7 +69,7 @@ uint32_t get_lux_info(uint32_t request, uint32_t context,
     *(uint32_t *)(out + 32) = value;
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(0x000a6a7cu, 0x000a76beu, value, 0);
+            log_message(0x000a6a7cu, 0x000a76beu, value, 0);
         else
             debug_print(0x000a6a7cu, 0x000a76beu, value,
                          *(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);

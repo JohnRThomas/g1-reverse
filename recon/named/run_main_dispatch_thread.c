@@ -46,7 +46,7 @@
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern void spawn_flash_ops_and_brightness_threads(void *);
 extern void init_watchdog(void);
@@ -70,7 +70,7 @@ void run_main_dispatch_thread(char *dispatch_mode)
 
     if (*(volatile int *)0x2000230cUL > 2) {
         if (*(volatile uint32_t *)0x20007554UL == 0)
-            DEBUG_PRINT(0x000a18bfUL, 0x000a1a98UL);
+            log_message(0x000a18bfUL, 0x000a1a98UL);
         else
             debug_print(0x000a18bfUL, 0x000a1a98UL);
     }

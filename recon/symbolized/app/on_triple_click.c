@@ -11,12 +11,12 @@
  */
 /* Reconstructed on_triple_click @ 0x289e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
+extern void log_message(uint32_t);
 extern void debug_print(uint32_t);
 extern void FUN_00028964(void);
 extern void prepare_system_suspend_state(void);
 void on_triple_click(void){
-  if(*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) DEBUG_PRINT(0xa0ae5);
+  if(*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(0xa0ae5);
   else debug_print(0xa0ae5);
   if(*(volatile uint8_t*)((unsigned long)&g_suspend_pending_flag) /*=0x20018d8b*/==0) FUN_00028964();
   else prepare_system_suspend_state();

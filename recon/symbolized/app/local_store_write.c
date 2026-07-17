@@ -17,7 +17,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name,
+extern void log_message(uint32_t format, uint32_t function_name,
                         const char *key_suffix, uint32_t length);
 extern void debug_print(uint32_t format, uint32_t function_name,
                          const char *key_suffix, uint32_t length);
@@ -54,7 +54,7 @@ uint32_t local_store_write(const char *key_suffix, const void *value,
     }
 
     if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT(format, ((unsigned long)&rodata_9e553) /*=0x9e553*/, key_suffix, length);
+        log_message(format, ((unsigned long)&rodata_9e553) /*=0x9e553*/, key_suffix, length);
     } else {
         debug_print(format, ((unsigned long)&rodata_9e553) /*=0x9e553*/, key_suffix, length);
     }

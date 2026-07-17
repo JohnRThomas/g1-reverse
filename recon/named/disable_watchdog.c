@@ -15,7 +15,7 @@
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void FUN_00074844(unsigned int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 typedef int (*fp_t)(unsigned int);
@@ -28,7 +28,7 @@ int disable_watchdog(void)
     if (*piVar1 < 0) {
         if (3 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa1c4e, 0xa1c85, *piVar1);
+                log_message(0xa1c4e, 0xa1c85, *piVar1);
             } else {
                 debug_print(0xa1c4e, 0xa1c85, *piVar1);
             }
@@ -39,7 +39,7 @@ int disable_watchdog(void)
         do {
             if (3 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0xa1c6a, 0xa1c85, 0,
+                    log_message(0xa1c6a, 0xa1c85, 0,
                                 *(volatile unsigned int*)0x20007554UL);
                 } else {
                     debug_print(0xa1c6a, 0xa1c85, 0,

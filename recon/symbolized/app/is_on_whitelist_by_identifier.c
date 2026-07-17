@@ -28,7 +28,7 @@
 /* Reconstructed is_on_whitelist_by_identifier @ 0x34bd4  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,...);
+extern void log_message(uint32_t,...);
 extern unsigned int strlen(const void *);
 extern void debug_print(uint32_t,...);
 extern int FUN_00087036(const void *,int,unsigned int);
@@ -46,7 +46,7 @@ int is_on_whitelist_by_identifier(int param_1){
     if(param_1 != 0){
         uVar4 = strlen((const void *)param_1);
         if(uVar4 < 0x28){
-            if(iVar6==0){ DEBUG_PRINT(((unsigned long)&rodata_a8491) /*=0xa8491*/,param_1); }
+            if(iVar6==0){ log_message(((unsigned long)&rodata_a8491) /*=0xa8491*/,param_1); }
             else { debug_print(((unsigned long)&rodata_a8491) /*=0xa8491*/,param_1); }
             chk = FUN_00087036((const void *)((unsigned long)&rodata_a81d0) /*=0xa81d0*/,param_1,0x15);
             int iVar7 = *g;
@@ -73,14 +73,14 @@ int is_on_whitelist_by_identifier(int param_1){
                     } else {
                         chk = FUN_00087036((const void *)((unsigned long)&rodata_a835e) /*=0xa835e*/,param_1,0x14);
                         if(chk != 0){
-                            if(iVar7==0){ DEBUG_PRINT(((unsigned long)&rodata_a85c4) /*=0xa85c4*/,pb[1]); }
+                            if(iVar7==0){ log_message(((unsigned long)&rodata_a85c4) /*=0xa85c4*/,pb[1]); }
                             else { debug_print(((unsigned long)&rodata_a85c4) /*=0xa85c4*/,pb[1]); }
                             if( ((int)((unsigned int)*pb << 0x1b) < 0) && (pb[1] != 0) ){
                                 unsigned char bVar9 = 0;
                                 while( (unsigned int)bVar9 < pb[1] ){
                                     unsigned char *entry = (unsigned char *)pb +
                                                            (unsigned int)bVar9 * 0x38 + 2;
-                                    if(*g==0){ DEBUG_PRINT(((unsigned long)&rodata_a85d6) /*=0xa85d6*/,(unsigned int)bVar9,entry); }
+                                    if(*g==0){ log_message(((unsigned long)&rodata_a85d6) /*=0xa85d6*/,(unsigned int)bVar9,entry); }
                                     else { debug_print(((unsigned long)&rodata_a85d6) /*=0xa85d6*/,(unsigned int)bVar9,entry); }
                                     uVar4 = strlen(entry);
                                     chk = FUN_00087036(entry,param_1,uVar4);
@@ -99,10 +99,10 @@ int is_on_whitelist_by_identifier(int param_1){
                 }
             }
             if(sh < 0){
-                if(iVar7==0){ DEBUG_PRINT(uVar3); } else { debug_print(uVar3); }
+                if(iVar7==0){ log_message(uVar3); } else { debug_print(uVar3); }
                 return 2;
             }
-            if(iVar7==0){ DEBUG_PRINT(uVar5); } else { debug_print(uVar5); }
+            if(iVar7==0){ log_message(uVar5); } else { debug_print(uVar5); }
             return 1;
         }
         uVar3 = 0x000a846a;
@@ -111,7 +111,7 @@ int is_on_whitelist_by_identifier(int param_1){
         uVar3 = ((unsigned long)&rodata_a844e) /*=0xa844e*/;
         uVar5 = 0x46;
     }
-    if(iVar6==0){ DEBUG_PRINT(uVar3,((unsigned long)&rodata_a8a8a) /*=0xa8a8a*/,uVar5); }
+    if(iVar6==0){ log_message(uVar3,((unsigned long)&rodata_a8a8a) /*=0xa8a8a*/,uVar5); }
     else { debug_print(uVar3,((unsigned long)&rodata_a8a8a) /*=0xa8a8a*/,uVar5); }
     return 0;
 }

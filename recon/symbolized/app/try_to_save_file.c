@@ -25,7 +25,7 @@
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern int get_device_info(void);
 extern void debug_print(void);
 extern void write_font_to_flash_with_verify(uint32_t address, uint32_t buffer, ...);
@@ -69,7 +69,7 @@ void try_to_save_file(int context)
                 debug_print();
                 return;
             }
-            DEBUG_PRINT(((unsigned long)&rodata_9e88b) /*=0x9e88b*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
+            log_message(((unsigned long)&rodata_9e88b) /*=0x9e88b*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
             return;
         }
         goto save_block;
@@ -117,7 +117,7 @@ save_block:
     FILE_CHECKSUM = checksum;
     if (LOG_LEVEL > 0) {
         if (LOG_SINK == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9e873) /*=0x9e873*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
+            log_message(((unsigned long)&rodata_9e873) /*=0x9e873*/, ((unsigned long)&rodata_9e8e5) /*=0x9e8e5*/, checksum);
         else
             debug_print();
     }

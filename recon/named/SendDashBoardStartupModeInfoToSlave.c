@@ -18,7 +18,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
@@ -40,13 +40,13 @@ unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
                 uVar2 = 0xef5df;
             }
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xef603, 0xef6b0, uVar2, 0xef5df);
+                log_message(0xef603, 0xef6b0, uVar2, 0xef5df);
             } else {
                 debug_print(0xef603, 0xef6b0, uVar2, 0xef5df);
             }
         }
     } else {
-        DEBUG_PRINT(0xef058, 0xef6b0);
+        log_message(0xef058, 0xef6b0);
         uVar3 = 0xffffffff;
     }
     return uVar3;

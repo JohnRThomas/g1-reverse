@@ -18,7 +18,7 @@
 extern int flash_settings_read(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int sys_rand32_get(void);
 extern void memset_bytes(void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -41,7 +41,7 @@ unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int p
     } else {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9e67c) /*=0x9e67c*/, ((unsigned long)&rodata_9e777) /*=0x9e777*/);
+                log_message(((unsigned long)&rodata_9e67c) /*=0x9e67c*/, ((unsigned long)&rodata_9e777) /*=0x9e777*/);
             } else {
                 debug_print(((unsigned long)&rodata_9e67c) /*=0x9e67c*/, ((unsigned long)&rodata_9e777) /*=0x9e777*/);
             }

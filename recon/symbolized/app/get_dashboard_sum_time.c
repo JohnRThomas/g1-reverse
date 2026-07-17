@@ -16,7 +16,7 @@
 
 extern unsigned long long k_uptime_get_10(void);
 extern unsigned int get_device_info(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 long long get_dashboard_sum_time(void)
@@ -44,7 +44,7 @@ long long get_dashboard_sum_time(void)
         unsigned int loP = (unsigned int)lVar8;
         unsigned int hiP = (unsigned int)((unsigned long long)lVar8 >> 32);
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
+            log_message(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
         } else {
             debug_print(((unsigned long)&rodata_f0369) /*=0xf0369*/, ((unsigned long)&rodata_f0492) /*=0xf0492*/, loP, hiP);
         }

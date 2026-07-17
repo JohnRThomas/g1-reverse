@@ -16,7 +16,7 @@
 /* Reconstructed read_usr_settting_from_flash @ 0x23400  (parity: 300/300 trials, PROVEN) */
 extern void memset_bytes(void *a0, unsigned int a1, unsigned int a2);
 extern int flash_settings_read(unsigned int a0, void *a1, unsigned int a2);
-extern void DEBUG_PRINT(unsigned int a0, unsigned int a1);
+extern void log_message(unsigned int a0, unsigned int a1);
 extern void debug_print(unsigned int, unsigned int);
 
 unsigned int read_usr_settting_from_flash(unsigned char *param_1)
@@ -29,7 +29,7 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
     if (iVar1 == 0) {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e708) /*=0x9e708*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                log_message(((unsigned long)&rodata_9e708) /*=0x9e708*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
             else
                 debug_print(((unsigned long)&rodata_9e708) /*=0x9e708*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
         }
@@ -39,7 +39,7 @@ unsigned int read_usr_settting_from_flash(unsigned char *param_1)
     } else {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
+                log_message(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
             else
                 debug_print(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e72a) /*=0x9e72a*/);
         }

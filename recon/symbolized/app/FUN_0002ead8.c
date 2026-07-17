@@ -9,7 +9,7 @@
  */
 /* Reconstructed FUN_0002ead8 @ 0x2ead8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int);
+extern void log_message(int);
 extern int dev_ctrl_read1(int,int,int,void*,int);
 
 unsigned int FUN_0002ead8(int param_1, unsigned int param_2)
@@ -20,7 +20,7 @@ unsigned int FUN_0002ead8(int param_1, unsigned int param_2)
     int iVar1 = dev_ctrl_read1(arg0, 3, 0x34, &byte7, param_1);
     unsigned int uVar2;
     if (iVar1 < 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_a3e62) /*=0xa3e62*/);
+        log_message(((unsigned long)&rodata_a3e62) /*=0xa3e62*/);
         uVar2 = 0xffffffff;
     } else {
         unsigned int combined = (byte7 >> 3) | (byte7 >> 2);

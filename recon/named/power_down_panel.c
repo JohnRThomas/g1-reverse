@@ -17,7 +17,7 @@
  */
 /* Reconstructed power_down_panel @ 0x15fdc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void panel_pwr_gpio_deassert(void);
 extern void debug_print(uint32_t, ...);
 extern int app_msleep_thunk_a(int);
@@ -33,7 +33,7 @@ unsigned int power_down_panel(void)
     panel_pwr_gpio_deassert();
     if (0 < *piVar1) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009949aUL, 0x00099c17UL);
+            log_message(0x0009949aUL, 0x00099c17UL);
         } else {
             debug_print(0x0009949aUL, 0x00099c17UL);
         }
@@ -49,7 +49,7 @@ unsigned int power_down_panel(void)
     } else {
         if (0 < *piVar1) {
             if (*(volatile int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000994b9UL, 0x00099c17UL);
+                log_message(0x000994b9UL, 0x00099c17UL);
             } else {
                 debug_print(0x000994b9UL, 0x00099c17UL);
             }
@@ -71,7 +71,7 @@ unsigned int power_down_panel(void)
         }
     }
     if (iVar2 == 0) {
-        DEBUG_PRINT(format_string, 0x00099c17UL);
+        log_message(format_string, 0x00099c17UL);
     } else {
         debug_print(format_string, 0x00099c17UL);
     }

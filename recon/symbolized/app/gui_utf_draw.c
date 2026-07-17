@@ -40,7 +40,7 @@ extern void fb_blit_rows_copy(uintptr_t display, const void *bitmap, int half_wi
 extern uintptr_t get_device_info(void);
 extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern void reflash_fb_data_to_lcd(uintptr_t, uintptr_t, int, int, int, int);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 
 unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
@@ -64,7 +64,7 @@ unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
 invoke_callback:
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/);
+                log_message(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/);
             else
                 debug_print(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/);
         }
@@ -86,7 +86,7 @@ invoke_callback:
             if (rc < 0) {
                 if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/, ch);
+                        log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/, ch);
                     else
                         debug_print(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aadac) /*=0xaadac*/, ch);
                 }

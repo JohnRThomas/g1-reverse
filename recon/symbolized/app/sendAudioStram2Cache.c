@@ -30,7 +30,7 @@ struct audio_cache_record {
     uint8_t payload[200];
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t module);
+extern void log_message(uint32_t format, uint32_t module);
 extern void debug_print(uint32_t format, uint32_t module);
 extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
 extern void k_sem_give(void *event);
@@ -55,7 +55,7 @@ uint32_t sendAudioStram2Cache(const void *audio_stream)
     if (*(volatile int *)((uint8_t *)AUDIO_CACHE_QUEUE + 0x24) == 0x12) {
         if (LOG_LEVEL > 0) {
             if (DEFERRED_LOGGER_ENABLED == 0) {
-                DEBUG_PRINT(LOG_CACHE_FULL, LOG_MODULE_AUDIO_CACHE);
+                log_message(LOG_CACHE_FULL, LOG_MODULE_AUDIO_CACHE);
             } else {
                 debug_print(LOG_CACHE_FULL, LOG_MODULE_AUDIO_CACHE);
             }
@@ -74,7 +74,7 @@ uint32_t sendAudioStram2Cache(const void *audio_stream)
 
     if (LOG_LEVEL > 0) {
         if (DEFERRED_LOGGER_ENABLED == 0) {
-            DEBUG_PRINT(LOG_CACHE_SEND_FAILED, LOG_MODULE_AUDIO_CACHE);
+            log_message(LOG_CACHE_SEND_FAILED, LOG_MODULE_AUDIO_CACHE);
         } else {
             debug_print(LOG_CACHE_SEND_FAILED, LOG_MODULE_AUDIO_CACHE);
         }

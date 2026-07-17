@@ -96,7 +96,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern void DEBUG_PRINT(unsigned int format, ...);
+extern void log_message(unsigned int format, ...);
 extern unsigned int get_device_info(void);
 extern void debug_print(unsigned int format, ...);
 extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);
@@ -155,7 +155,7 @@ uint SettingStoreHandler(void)
   if (iVar4 == 0) {
     if (2 < *DAT_00024190) {
       if (*DAT_00024194 == 0) {
-        DEBUG_PRINT(DAT_000241a8,DAT_000241a0);
+        log_message(DAT_000241a8,DAT_000241a0);
       }
       else {
         debug_print(DAT_000241a8,DAT_000241a0);
@@ -169,7 +169,7 @@ uint SettingStoreHandler(void)
       uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_00024194 == 0) {
-          DEBUG_PRINT(DAT_000241ac,DAT_000241a0,uVar8);
+          log_message(DAT_000241ac,DAT_000241a0,uVar8);
         }
         else {
           debug_print(DAT_000241ac,DAT_000241a0,uVar8);
@@ -270,7 +270,7 @@ LAB_000240c6:
               debug_print(uVar6,uVar5,uVar8);
               return uVar9;
             }
-            DEBUG_PRINT(uVar6,uVar5,uVar8);
+            log_message(uVar6,uVar5,uVar8);
             return uVar9;
           }
           iVar4 = get_device_info();
@@ -298,7 +298,7 @@ LAB_00024074:
           if (iVar4 == 0) {
             if (2 < iVar7) {
               if (*DAT_000243dc == 0) {
-                DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
+                log_message(DAT_000243e4,DAT_000243e0);
               }
               else {
                 debug_print(DAT_000243e4,DAT_000243e0);
@@ -324,7 +324,7 @@ LAB_000240dc:
       uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_000243dc == 0) {
-          DEBUG_PRINT(DAT_000243ec,DAT_000243e0,uVar8);
+          log_message(DAT_000243ec,DAT_000243e0,uVar8);
         }
         else {
           debug_print(DAT_000243ec,DAT_000243e0,uVar8);
@@ -429,7 +429,7 @@ LAB_00023fc4:
       if (iVar4 == 0) {
         if (2 < iVar7) {
           if (*DAT_000243dc == 0) {
-            DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
+            log_message(DAT_000243e4,DAT_000243e0);
           }
           else {
             debug_print(DAT_000243e4,DAT_000243e0);
@@ -445,7 +445,7 @@ LAB_00024178:
         uVar5 = DAT_000241d0;
 LAB_00023fea:
         if (iVar4 == 0) {
-          DEBUG_PRINT(uVar5,DAT_000241a0,uVar6);
+          log_message(uVar5,DAT_000241a0,uVar6);
         }
         else {
           debug_print(uVar5,DAT_000241a0,uVar6);
@@ -458,7 +458,7 @@ LAB_00023fea:
   }
   else if (0 < *DAT_00024190) {
     if (*DAT_00024194 == 0) {
-      DEBUG_PRINT(DAT_0002419c,DAT_00024198);
+      log_message(DAT_0002419c,DAT_00024198);
     }
     else {
       debug_print(DAT_0002419c,DAT_00024198);
@@ -469,7 +469,7 @@ LAB_00023fea:
       uVar5 = DAT_000241a0;
 LAB_00023f56:
       if (iVar4 == 0) {
-        DEBUG_PRINT(uVar6,uVar5);
+        log_message(uVar6,uVar5);
       }
       else {
         debug_print(uVar6,uVar5);

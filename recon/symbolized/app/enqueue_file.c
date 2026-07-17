@@ -19,7 +19,7 @@
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void FUN_00086c1e(void*, unsigned int, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
@@ -31,7 +31,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
         k_msgq_get(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9e824) /*=0x9e824*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+                log_message(((unsigned long)&rodata_9e824) /*=0x9e824*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
             } else {
                 debug_print(((unsigned long)&rodata_9e824) /*=0x9e824*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
             }
@@ -42,7 +42,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
     iVar1 = k_msgq_put(((unsigned long)&g_file_msg_pipe) /*=0x200079a0*/, buf, 0, 0);
     if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e840) /*=0x9e840*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
+            log_message(((unsigned long)&rodata_9e840) /*=0x9e840*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
         } else {
             debug_print(((unsigned long)&rodata_9e840) /*=0x9e840*/, ((unsigned long)&rodata_9e8f6) /*=0x9e8f6*/);
         }

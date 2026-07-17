@@ -29,7 +29,7 @@
 typedef int (*flash_read_fn)(int context, int address, void *destination,
                              int count);
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern int get_device_info(void);
 extern void debug_print(uint32_t format, ...);
 extern void watchdog_feed_retry(void);
@@ -49,7 +49,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
 
     if (*log_level >= 3) {
         if (*alternate_log == 0)
-            DEBUG_PRINT(0x0009e484, 0x0009e4f9);
+            log_message(0x0009e484, 0x0009e4f9);
         else
             debug_print(0x0009e484, 0x0009e4f9);
     }
@@ -57,7 +57,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
     if (crc == 0 || byte_count == 0) {
         if (*log_level >= 3) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(0x0009e4a3, 0x0009e4f9);
+                log_message(0x0009e4a3, 0x0009e4f9);
             else
                 debug_print(0x0009e4a3, 0x0009e4f9);
         }
@@ -71,7 +71,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
     *(uint32_t *)buffer = 0xff;
     memset_bytes(buffer + 4, 0, 0x3fc);
     if (z_device_is_ready((const void *)0x00087bf0) == 0) {
-        DEBUG_PRINT(0x000a40ec, *(volatile uint32_t *)0x00087bf0);
+        log_message(0x000a40ec, *(volatile uint32_t *)0x00087bf0);
         return UINT32_MAX;
     }
 
@@ -93,7 +93,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
         context = get_device_info();
         status = read(context, cursor, buffer, chunk_size);
         if (status != 0) {
-            DEBUG_PRINT(0x0009e4c7, cursor, status);
+            log_message(0x0009e4c7, cursor, status);
             return UINT32_MAX;
         }
 
@@ -104,7 +104,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
                 break;
             if (level > 2) {
                 if (*alternate_log == 0)
-                    DEBUG_PRINT(0x0009e4e3, 0x0009e4f9,
+                    log_message(0x0009e4e3, 0x0009e4f9,
                                 buffer[(uint8_t)dump_index]);
                 else
                     debug_print(0x0009e4e3, 0x0009e4f9);
@@ -114,7 +114,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
 
         if (level > 2) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(0x0009e4f0, 0x0009e4f9);
+                log_message(0x0009e4f0, 0x0009e4f9);
             else
                 debug_print(0x0009e4f0, 0x0009e4f9);
         }

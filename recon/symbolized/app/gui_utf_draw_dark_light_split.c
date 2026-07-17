@@ -29,7 +29,7 @@
 /* Reconstructed FUN_00044544 @ 0x44544  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort; typedef unsigned char byte;
-extern int DEBUG_PRINT(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
+extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
 extern int atomic_get_3_0(int,...); extern int count_chars_in_default_font_table(int,...); extern int resource_manger_get(int,...);
 extern int clean_fb_data(int,...); extern int reflash_fb_data_to_lcd(int,...); extern int utf8_string_to_utf16(int,...);
 extern int fb_blit_rows_copy(int,...); extern int index_in_range32_mask(int,...); extern int FUN_00086c1e(int,...);
@@ -48,7 +48,7 @@ undefined4 gui_utf_draw_dark_light_split(undefined4 param_1,undefined4 param_2,i
     if (param_11 != 0) {
 LAB_a2:
       if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
-        if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
+        if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
         else debug_print(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
       }
       uVar9 = (*param_11)(0,param_2,param_3,param_4,param_5);
@@ -67,7 +67,7 @@ LAB_a2:
             if (*(volatile char*)((unsigned long)&g_gui_dark_light_flag) /*=0x2001cdd4*/ == 0) {
               *(volatile char*)((unsigned long)&g_gui_dark_light_flag) /*=0x2001cdd4*/ = 1;
               if (1 < iVar3) { iVar3 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/; uVar9 = ((unsigned long)&rodata_aab3b) /*=0xaab3b*/;
-LAB_2c: if (iVar3 == 0) DEBUG_PRINT(uVar9,((unsigned long)&rodata_aad8e) /*=0xaad8e*/,uVar13); else debug_print(uVar9,((unsigned long)&rodata_aad8e) /*=0xaad8e*/,uVar13); }
+LAB_2c: if (iVar3 == 0) log_message(uVar9,((unsigned long)&rodata_aad8e) /*=0xaad8e*/,uVar13); else debug_print(uVar9,((unsigned long)&rodata_aad8e) /*=0xaad8e*/,uVar13); }
             } else {
               *(volatile char*)((unsigned long)&g_gui_dark_light_flag) /*=0x2001cdd4*/ = 0;
               if (1 < iVar3) { iVar3 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/; uVar9 = 0xaab60; goto LAB_2c; }
@@ -120,7 +120,7 @@ LAB_2c: if (iVar3 == 0) DEBUG_PRINT(uVar9,((unsigned long)&rodata_aad8e) /*=0xaa
   else if (param_11 != 0) goto LAB_a2;
   *(volatile char*)((unsigned long)&g_gui_dark_light_flag) /*=0x2001cdd4*/ = 0;
   if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
-    if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_aab85) /*=0xaab85*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
+    if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_aab85) /*=0xaab85*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
     else debug_print(((unsigned long)&rodata_aab85) /*=0xaab85*/,((unsigned long)&rodata_aad8e) /*=0xaad8e*/);
   }
   return 0;

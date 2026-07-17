@@ -27,7 +27,7 @@
 /* Reconstructed opt3007_chip_init @ 0x2e67c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t u32; typedef unsigned char byte;
-extern void DEBUG_PRINT(u32 a,...);
+extern void log_message(u32 a,...);
 extern int get_device_info(void);
 extern void debug_print(u32 format,...);
 extern int opt3001_reg_read(int a, void* b);
@@ -60,14 +60,14 @@ u32 opt3007_chip_init(int param_1){
     iVar5 = *piVar1;
     *piVar2 = param_1;
     if (2 < iVar5) {
-        if (FLAG == 0) DEBUG_PRINT(0xa3b3f, 0xa3d00);
+        if (FLAG == 0) log_message(0xa3b3f, 0xa3d00);
         else debug_print(0xa3b3f, 0xa3d00);
     }
     iVar5 = opt3001_reg_read(0x7e, &frame.chip_id);
     if (iVar5 == 0) {
         uVar6 = frame.chip_id;
         if (1 < *piVar1) {
-            if (FLAG == 0) DEBUG_PRINT(0xa3b7a, 0xa3d00, uVar6);
+            if (FLAG == 0) log_message(0xa3b7a, 0xa3d00, uVar6);
             else debug_print(0xa3b7a, 0xa3d00, uVar6);
         }
         if (uVar6 == 0x5449) {
@@ -78,7 +78,7 @@ u32 opt3007_chip_init(int param_1){
             }
             uVar6 = frame.chip_id;
             if (1 < *piVar1) {
-                if (FLAG == 0) DEBUG_PRINT(0xa3bd6, 0xa3d00, uVar6);
+                if (FLAG == 0) log_message(0xa3bd6, 0xa3d00, uVar6);
                 else debug_print(0xa3bd6, 0xa3d00, uVar6);
             }
             if (uVar6 == 0x3001) {
@@ -92,7 +92,7 @@ u32 opt3007_chip_init(int param_1){
                     iVar5 = z_device_is_ready((u32)*piVar3);
                     if (iVar5 == 0) {
                         if (*piVar1 < 1) return 0xfffffffbUL;
-                        if (FLAG == 0) DEBUG_PRINT(0xa3af8, 0xa3cee);
+                        if (FLAG == 0) log_message(0xa3af8, 0xa3cee);
                         else debug_print(0xa3af8, 0xa3cee);
                     } else {
                         int obj, vt; int (*f)(int,void*,int,int);
@@ -106,20 +106,20 @@ u32 opt3007_chip_init(int param_1){
                         if (-1 < iVar5) {
                             if (*piVar2 != 0) *(volatile u32*)(uintptr_t)(*piVar2 + 0x10) = 1;
                             if (2 < *piVar1) {
-                                if (FLAG == 0) DEBUG_PRINT(0xa3c68, 0xa3d00);
+                                if (FLAG == 0) log_message(0xa3c68, 0xa3d00);
                                 else debug_print(0xa3c68, 0xa3d00);
                             }
                             *(volatile byte*)0x20018da1UL = 1;
                             return 0;
                         }
                         if (*piVar1 < 1) return 0xfffffffbUL;
-                        if (FLAG == 0) DEBUG_PRINT(0xa3c0c, 0xa3cee);
+                        if (FLAG == 0) log_message(0xa3c0c, 0xa3cee);
                         else debug_print(0xa3c0c, 0xa3cee);
                     }
                 }
                 if (*piVar1 < 1) return 0xfffffffbUL;
                 if (FLAG != 0) { debug_print(0xa3c2d, 0xa3d00); return 0xfffffffbUL; }
-                DEBUG_PRINT(0xa3c2d, 0xa3d00);
+                log_message(0xa3c2d, 0xa3d00);
                 return 0xfffffffbUL;
             }
             if (*piVar1 < 1) return 0xffffff7aUL;
@@ -128,14 +128,14 @@ u32 opt3007_chip_init(int param_1){
             if (*piVar1 < 1) return 0xffffff7aUL;
             iVar5 = FLAG; uVar4 = 0xa3b8e;
         }
-        if (iVar5 == 0) DEBUG_PRINT(uVar4, 0xa3d00, uVar6);
+        if (iVar5 == 0) log_message(uVar4, 0xa3d00, uVar6);
         else debug_print(uVar4, 0xa3d00, uVar6);
         return 0xffffff7aUL;
     }
     if (*piVar1 < 1) return 0xfffffffbUL;
     iVar5 = FLAG; uVar4 = 0xa3b5a;
 LAB_0002e6c8:
-    if (iVar5 == 0) DEBUG_PRINT(uVar4, 0xa3d00, (u32)frame.chip_id);
+    if (iVar5 == 0) log_message(uVar4, 0xa3d00, (u32)frame.chip_id);
     else debug_print(uVar4, 0xa3d00, (u32)frame.chip_id);
     return 0xfffffffbUL;
 }

@@ -39,7 +39,7 @@ extern void fb_blit_rows_copy(uintptr_t display, const void *bitmap, int half_wi
 extern uintptr_t get_device_info(void);
 extern void clean_fb_data(uintptr_t, int, int, int, int, int);
 extern void reflash_fb_data_to_lcd(uintptr_t, uintptr_t, int, int, int, int);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 
 unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
@@ -63,7 +63,7 @@ unsigned gui_utf_draw(unsigned unused, uintptr_t text, int font,
 invoke_callback:
         if (*(volatile int *)0x2000230cu > 1) {
             if (*(volatile int *)0x20007554u == 0)
-                DEBUG_PRINT(0x000aaa7fu, 0x000aadacu);
+                log_message(0x000aaa7fu, 0x000aadacu);
             else
                 debug_print(0x000aaa7fu, 0x000aadacu);
         }
@@ -85,7 +85,7 @@ invoke_callback:
             if (rc < 0) {
                 if (*(volatile int *)0x2000230cu > 1) {
                     if (*(volatile int *)0x20007554u == 0)
-                        DEBUG_PRINT(0x000aaa58u, 0x000aadacu, ch);
+                        log_message(0x000aaa58u, 0x000aadacu, ch);
                     else
                         debug_print(0x000aaa58u, 0x000aadacu, ch);
                 }

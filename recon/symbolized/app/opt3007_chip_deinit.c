@@ -14,7 +14,7 @@
  */
 /* Reconstructed opt3007_chip_deinit @ 0x2e8b4  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,...);
 void opt3007_chip_deinit(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     unsigned int v = *(volatile unsigned int*)((unsigned long)&g_opt3007_dev) /*=0x20007b6c*/;
@@ -24,7 +24,7 @@ void opt3007_chip_deinit(unsigned int param_1,unsigned int param_2,unsigned int 
     }
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
         if(*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0){
-            DEBUG_PRINT(((unsigned long)&rodata_a3cb9) /*=0xa3cb9*/,((unsigned long)&rodata_a3cda) /*=0xa3cda*/,param_3,0,param_4);
+            log_message(((unsigned long)&rodata_a3cb9) /*=0xa3cb9*/,((unsigned long)&rodata_a3cda) /*=0xa3cda*/,param_3,0,param_4);
         } else {
             debug_print(((unsigned long)&rodata_a3cb9) /*=0xa3cb9*/,((unsigned long)&rodata_a3cda) /*=0xa3cda*/,param_3,0,param_4);
         }

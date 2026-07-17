@@ -15,7 +15,7 @@
  */
 /* Reconstructed parse_receiver_pack_pkcs7 @ 0x19cd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern void memcpy(int, ...);
 
@@ -41,7 +41,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
                     debug_print(0x0009b3b5UL, 0x0009e0d0UL, 0xbbUL, param_3);
                     return 0xca;
                 }
-                DEBUG_PRINT(0x0009b3b5UL, 0x0009e0d0UL, 0xbbUL, param_3);
+                log_message(0x0009b3b5UL, 0x0009e0d0UL, 0xbbUL, param_3);
                 return 0xca;
             }
             bVar1 = param_2[2];
@@ -56,7 +56,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
                     debug_print(0x0009b3e0UL, 0x0009e0d0UL);
                     return 0xca;
                 }
-                DEBUG_PRINT(0x0009b3e0UL, 0x0009e0d0UL, 0xd0UL, uVar9, (unsigned int)*pbVar4);
+                log_message(0x0009b3e0UL, 0x0009e0d0UL, 0xd0UL, uVar9, (unsigned int)*pbVar4);
                 return 0xca;
             }
             uVar3 = *puVar5;
@@ -74,7 +74,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
         uVar6 = 0x0009b38fUL;
     }
     if (iVar8 == 0) {
-        DEBUG_PRINT(uVar6, 0x0009e0d0UL, uVar7);
+        log_message(uVar6, 0x0009e0d0UL, uVar7);
     } else {
         debug_print(uVar6, 0x0009e0d0UL, uVar7);
     }

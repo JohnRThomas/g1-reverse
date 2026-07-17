@@ -24,7 +24,7 @@
 /* Full reconstruction FUN_0002685c @ 0x2685c, exact extent 176 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=150 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern void handle_box_placement_event(void);
 extern void watchdog_feed_retry(void);
@@ -34,7 +34,7 @@ extern void FUN_00032fd0(uint32_t);
 extern uintptr_t sys_reboot(uint32_t);
 extern void k_msleep(uint32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
-extern void thunk_FUN_00074844(uint32_t, uint32_t);
+extern void wait_for_event(uint32_t, uint32_t);
 
 void FUN_0002685c(uintptr_t context)
 {
@@ -43,7 +43,7 @@ void FUN_0002685c(uintptr_t context)
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
             debug_print(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
         else
-            DEBUG_PRINT(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+            log_message(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
     }
 
     *(volatile uint16_t *)(context + 0xfc0) = 0;
@@ -59,16 +59,16 @@ void FUN_0002685c(uintptr_t context)
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
                         debug_print(((unsigned long)&rodata_9fc99) /*=0x9fc99*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
                     else
-                        DEBUG_PRINT(((unsigned long)&rodata_9fc99) /*=0x9fc99*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
+                        log_message(((unsigned long)&rodata_9fc99) /*=0x9fc99*/, ((unsigned long)&rodata_a19e5) /*=0xa19e5*/);
                 }
                 for (;;) {
                     k_msleep(500);
                     uintptr_t result = sys_reboot(1);
-                    DEBUG_PRINT(result);
+                    log_message(result);
                 }
             }
             ++count;
-            thunk_FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
+            wait_for_event(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
         } else {
             handle_box_placement_event();
             if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_active_flag) /*=0x2000302c*/ == 0)
@@ -76,7 +76,7 @@ void FUN_0002685c(uintptr_t context)
             else if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0)
                 watchdog_feed_retry();
             fuel_gauge_update(((unsigned long)&rodata_87d70) /*=0x87d70*/, 0);
-            thunk_FUN_00074844(0x8000, 0);
+            wait_for_event(0x8000, 0);
         }
     }
 }

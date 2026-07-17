@@ -14,7 +14,7 @@ extern void FUN_0007c872(unsigned,unsigned,unsigned,unsigned);
 extern int set_uart_line_ctrl_dtr(int,unsigned,unsigned,int);
 extern void FUN_0007c876(unsigned);
 extern unsigned long long sleep_fixed_33_ticks(void);
-extern void DEBUG_PRINT(unsigned,unsigned,unsigned,int);
+extern void log_message(unsigned,unsigned,unsigned,int);
 int ipc_ept_op_c_locked_retry(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
     if (param_4 == 0){ iVar1 = 0; }
@@ -30,7 +30,7 @@ int ipc_ept_op_c_locked_retry(int param_1, unsigned param_2, unsigned param_3, i
             if (iVar1 == 0) break;
             iVar3 = iVar3 - 1;
             if (iVar3 == 0){
-                DEBUG_PRINT(((unsigned long)&rodata_9f2be) /*=0x9f2be*/, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
+                log_message(((unsigned long)&rodata_9f2be) /*=0x9f2be*/, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
                 return iVar1;
             }
             lock_arg = (unsigned)(sleep_fixed_33_ticks() >> 32);

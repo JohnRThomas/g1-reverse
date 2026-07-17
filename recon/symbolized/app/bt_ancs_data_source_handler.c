@@ -24,7 +24,7 @@
  */
 /* Reconstructed FUN_00018c48 @ 0x18c48  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 extern int get_device_info(void);
 extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(int);
@@ -47,7 +47,7 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
     iVar6 = ancs_get_conn_ctx(param_1);
     if (0 < *piVar4) {
         if (*g_d70 == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9a992) /*=0x9a992*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/, (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
+            log_message(((unsigned long)&rodata_9a992) /*=0x9a992*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/, (unsigned int)*param_2, 0, param_1, (int)param_2, param_3);
         } else {
             debug_print(((unsigned long)&rodata_9a992) /*=0x9a992*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/, (unsigned int)*param_2,
                          *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/, param_1,
@@ -84,7 +84,7 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
                                     enqueue_ancs(iVar6 + 0x34);
                                     if (0 < *piVar4) {
                                         if (*g_d70 == 0) {
-                                            DEBUG_PRINT(((unsigned long)&rodata_9a9cd) /*=0x9a9cd*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/, *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
+                                            log_message(((unsigned long)&rodata_9a9cd) /*=0x9a9cd*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/, *piVar3, (unsigned int)*(unsigned char *)((int)piVar3 + 4),
                                                         *(uint32_t *)(iVar6 + 0x1e4));
                                         } else {
                                             debug_print(((unsigned long)&rodata_9a9cd) /*=0x9a9cd*/, ((unsigned long)&rodata_9b20d) /*=0x9b20d*/,

@@ -15,7 +15,7 @@
  */
 /* Reconstructed register_imu_funsion_context @ 0x26250  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -27,7 +27,7 @@ unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int p
     if (*(volatile int*)0x2000230cUL > 1) {
         unsigned int sink = *(volatile unsigned int*)0x20007554UL;
         if (sink == 0) {
-            DEBUG_PRINT(0x0009af2e,0x0009fb15,param_3,sink,param_4);
+            log_message(0x0009af2e,0x0009fb15,param_3,sink,param_4);
         } else {
             debug_print(0x0009af2e,0x0009fb15,param_3,sink,param_4);
         }

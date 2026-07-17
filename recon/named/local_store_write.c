@@ -16,7 +16,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name,
+extern void log_message(uint32_t format, uint32_t function_name,
                         const char *key_suffix, uint32_t length);
 extern void debug_print(uint32_t format, uint32_t function_name,
                          const char *key_suffix, uint32_t length);
@@ -53,7 +53,7 @@ uint32_t local_store_write(const char *key_suffix, const void *value,
     }
 
     if (*(volatile uint32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(format, 0x0009e553UL, key_suffix, length);
+        log_message(format, 0x0009e553UL, key_suffix, length);
     } else {
         debug_print(format, 0x0009e553UL, key_suffix, length);
     }

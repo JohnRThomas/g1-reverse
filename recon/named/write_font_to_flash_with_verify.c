@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00022834 @ 0x22834  (parity: 300/300 trials, PROVEN) */
 
 typedef int (*codeptr)(int,...);
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int get_device_info(void);
 extern int FUN_00074844(int,int);
 extern int z_device_is_ready(int);
@@ -44,7 +44,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
   do {
     iVar3 = z_device_is_ready(0x87bf0);
     if (iVar3 == 0) {
-      DEBUG_PRINT(0xa40ec, *(volatile unsigned int*)puVar1);
+      log_message(0xa40ec, *(volatile unsigned int*)puVar1);
       iVar3 = -1;
     } else {
       iVar3 = get_device_info();
@@ -54,7 +54,7 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
       if (iVar3 == 0) {
         iVar3 = FUN_00086be4(param_2, (int)&local_1028, param_3);
         if (iVar3 == 0) {
-          DEBUG_PRINT(0x9e403);
+          log_message(0x9e403);
           return 0;
         }
         iVar3 = get_device_info();
@@ -79,15 +79,15 @@ int write_font_to_flash_with_verify(int param_1, int param_2, int param_3)
               if (iVar3 == 0) {
                 return 0;
               }
-              DEBUG_PRINT(0x9e46a);
+              log_message(0x9e46a);
               iVar3 = 1;
               goto LAB_874;
             }
           }
         }
-        DEBUG_PRINT(uVar4, iVar3);
+        log_message(uVar4, iVar3);
       } else {
-        DEBUG_PRINT(0x9e3e7, iVar3);
+        log_message(0x9e3e7, iVar3);
       }
     }
 LAB_874:

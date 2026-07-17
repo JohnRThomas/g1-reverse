@@ -31,7 +31,7 @@
 typedef unsigned int uint;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned, ...);
 extern void trigger_screen_state_change(unsigned a, byte *b, uint c);
@@ -71,7 +71,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         if (((param_1[1] == 1) || (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 1) == '\b')) ||
             (iVar6 = get_device_info(), *(volatile char *)(iVar6 + 0xfea) == '\f')) {
             if (2 < *piVar1) {
-                if (*piVar2 == 0) DEBUG_PRINT(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+                if (*piVar2 == 0) log_message(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
                 else debug_print(0x000a2768u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             }
             update_persist_task_status_to_idle(param_1);
@@ -91,13 +91,13 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
         if (*(volatile char *)(param_2 + 1) != '\x05') {
             if (*piVar1 < 1) return 0xb;
             if (*piVar2 != 0) { debug_print(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2); return 0xb; }
-            DEBUG_PRINT(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
+            log_message(0x000a27b1u, 0x000a39efu, (uint)*(volatile byte *)(param_2 + 1), *piVar2);
             return 0xb;
         }
         if ((*param_3 == '\x02') || (param_1[0xfea] == 0xb)) {
-            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else debug_print(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0); }
             set_new_message_pending_flag();
-            if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0); else debug_print(0); }
+            if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0); else debug_print(0); }
             if (param_1[0xb0d] == 1) {
                 update_temp_task_status(param_1, 8, 2);
                 FUN_0003443c(4);
@@ -112,13 +112,13 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
                 trigger_screen_state_change(0xa0a7b, param_1, uVar8);
                 if (*piVar1 < 1) return 0xb;
                 if (*piVar2 != 0) { debug_print(0); return 0xb; }
-                DEBUG_PRINT(0, 0);
+                log_message(0, 0);
                 return 0xb;
             }
         }
         uVar9 = uVar9 + 1;
         if (((uVar9 & 0xf) == 0) && (2 < *piVar1)) {
-            if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 7));
+            if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 7));
             else debug_print(0);
         }
         FUN_0007ce5c(0x667, 0);
@@ -135,7 +135,7 @@ undefined1 process_for_new_message_come_on(byte *param_1, int param_2, char *par
     param_1[0xb0d] = 0;
     uVar3 = 0;
     if (*(volatile char *)(param_2 + 7) == '\0') {
-        if (2 < *piVar1) { if (*piVar2 == 0) DEBUG_PRINT(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else debug_print(0); }
+        if (2 < *piVar1) { if (*piVar2 == 0) log_message(0, 0, (uint)*(volatile byte *)(param_2 + 1)); else debug_print(0); }
         *param_4 = 0xa28d4;
         sync_to_slave(param_1, 8, 0);
         if (*param_3 == '\x02') update_persist_task_status_to_wait_blow_head();

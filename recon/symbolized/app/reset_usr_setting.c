@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
+extern void log_message(uint32_t format, uint32_t function_name);
 extern void debug_print(uint32_t format, uint32_t function_name, ...);
 extern void set_test_mode(uint32_t mode);
 extern void FUN_0007c28e(void *settings, uint32_t value);
@@ -24,7 +24,7 @@ uint32_t reset_usr_setting(uint8_t *settings)
 {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e5f3) /*=0x9e5f3*/, ((unsigned long)&rodata_9e7b7) /*=0x9e7b7*/);
+            log_message(((unsigned long)&rodata_9e5f3) /*=0x9e5f3*/, ((unsigned long)&rodata_9e7b7) /*=0x9e7b7*/);
         } else {
             debug_print(((unsigned long)&rodata_9e5f3) /*=0x9e5f3*/, ((unsigned long)&rodata_9e7b7) /*=0x9e7b7*/);
         }

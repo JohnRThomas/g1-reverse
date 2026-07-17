@@ -16,7 +16,7 @@
  */
 /* Reconstructed upgradeDashboardStartupModeInfoToFlash @ 0x23bfc  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
@@ -32,7 +32,7 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     if (iVar1 == 0) {
         if (2 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                DEBUG_PRINT(0x9e98cUL, 0x9ed68UL, param_1);
+                log_message(0x9e98cUL, 0x9ed68UL, param_1);
             else
                 debug_print(0x9e98cUL, 0x9ed68UL, param_1);
         }
@@ -41,7 +41,7 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                DEBUG_PRINT(0x9e903UL, 0x9ed68UL);
+                log_message(0x9e903UL, 0x9ed68UL);
             else
                 debug_print(0x9e903UL, 0x9ed68UL);
         }

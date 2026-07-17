@@ -21,7 +21,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int  get_device_info(void);
 extern void debug_print(int,int,...);
 extern void gui_set_active_canvas(int);
@@ -54,7 +54,7 @@ int draw_template_translate_screen(int param_1){
     iVar6 = device_info_text_height_get_clamped();
     gui_utf_draw(0,(int)local_24,3,uVar2,iVar4+0x6e,iVar5+0x50,iVar6+0x89,1,0,0,0,0);
   } else if (0 < *lvl) {
-    if (*g8==0) DEBUG_PRINT(((unsigned long)&rodata_aa487) /*=0xaa487*/,((unsigned long)&rodata_aa5ab) /*=0xaa5ab*/,uVar8,*(volatile unsigned char*)(iVar1+0xef));
+    if (*g8==0) log_message(((unsigned long)&rodata_aa487) /*=0xaa487*/,((unsigned long)&rodata_aa5ab) /*=0xaa5ab*/,uVar8,*(volatile unsigned char*)(iVar1+0xef));
     else debug_print(((unsigned long)&rodata_aa487) /*=0xaa487*/,((unsigned long)&rodata_aa5ab) /*=0xaa5ab*/,uVar8,
                       *(volatile unsigned char*)(iVar1+0xef));
   }

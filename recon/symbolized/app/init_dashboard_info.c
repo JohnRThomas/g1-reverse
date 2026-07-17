@@ -27,7 +27,7 @@ extern int get_device_info(void);
 extern void debug_print(int, int, ...);
 extern int getQuickNoteDataFromFlash(int,int,int,int,int);
 extern void record_dashboard_startup_snapshot(int,int);
-extern void DEBUG_PRINT(int,int,int);
+extern void log_message(int,int,int);
 #define VB(a) (*(volatile unsigned char*)(a))
 #define VI(a) (*(volatile int*)(a))
 
@@ -38,13 +38,13 @@ void init_dashboard_info(void){
   iVar3 = uarte_nrfx_irq_rx_ready();
   if (iVar3 == 0) {
     if (2 < *p40) {
-      if (*p44 == 0) { DEBUG_PRINT(((unsigned long)&rodata_a8eee) /*=0xa8eee*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
+      if (*p44 == 0) { log_message(((unsigned long)&rodata_a8eee) /*=0xa8eee*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
       else { debug_print(((unsigned long)&rodata_a8eee) /*=0xa8eee*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/); }
     }
     init_dashboard_startup_mode_info_defaults();
   } else {
     if (2 < *p40) {
-      if (*p44 == 0) { DEBUG_PRINT(((unsigned long)&rodata_a8f19) /*=0xa8f19*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
+      if (*p44 == 0) { log_message(((unsigned long)&rodata_a8f19) /*=0xa8f19*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0); }
       else { debug_print(((unsigned long)&rodata_a8f19) /*=0xa8f19*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/); }
     }
     iVar3 = get_device_info();
@@ -68,18 +68,18 @@ void init_dashboard_info(void){
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 0;
       if (2 < *p40) {
-        if (*p44 == 0) DEBUG_PRINT(((unsigned long)&rodata_a8f46) /*=0xa8f46*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
+        if (*p44 == 0) log_message(((unsigned long)&rodata_a8f46) /*=0xa8f46*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
         else debug_print(((unsigned long)&rodata_a8f46) /*=0xa8f46*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
       }
     } else if (iVar4 == 0) {
       iVar4 = get_device_info();
       VB(iVar3*0x143 + VI(iVar4+0x1020) + 3) = 1;
       if (2 < *p40) {
-        if (*p44 == 0) DEBUG_PRINT(0x000a8f72, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
+        if (*p44 == 0) log_message(0x000a8f72, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
         else debug_print(0x000a8f72, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, iVar3);
       }
     } else if (0 < *p40) {
-      if (*p44 == 0) DEBUG_PRINT(((unsigned long)&rodata_a8fb7) /*=0xa8fb7*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0);
+      if (*p44 == 0) log_message(((unsigned long)&rodata_a8fb7) /*=0xa8fb7*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/, 0);
       else debug_print(((unsigned long)&rodata_a8fb7) /*=0xa8fb7*/, ((unsigned long)&rodata_a95f9) /*=0xa95f9*/);
     }
     iVar3++;

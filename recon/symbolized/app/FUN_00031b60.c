@@ -14,7 +14,7 @@
  */
 /* Reconstructed FUN_00031b60 @ 0x31b60  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
+extern void log_message(uint32_t);
 extern int strlen(void*);
 extern int FUN_000232b0(void);
 extern void memcpy(void*,void*,int);
@@ -28,9 +28,9 @@ uint32_t FUN_00031b60(int param_1,uint32_t param_2,uint32_t *param_3,char *param
   } workspace;
   workspace.payload = 0;
   memset_bytes(workspace.scratch,0,0x1c);
-  DEBUG_PRINT(((unsigned long)&rodata_a701c) /*=0xa701c*/);
+  log_message(((unsigned long)&rodata_a701c) /*=0xa701c*/);
   if(param_3==0 || param_4==0){
-    DEBUG_PRINT(((unsigned long)&rodata_a7031) /*=0xa7031*/);
+    log_message(((unsigned long)&rodata_a7031) /*=0xa7031*/);
     uVar2=0xffffffff;
   } else {
     volatile uint8_t *puVar3=(volatile uint8_t*)(uintptr_t)*param_3;

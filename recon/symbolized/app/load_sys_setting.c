@@ -21,7 +21,7 @@
 /* Reconstructed load_sys_setting @ 0x22bd0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern int flash_settings_read(uint32_t, void *, uint32_t);
 extern void build_and_send_device_status_report(uintptr_t);
@@ -67,7 +67,7 @@ log_settings_event(uint32_t message)
 {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(message, ((unsigned long)&rodata_9e7c9) /*=0x9e7c9*/);
+            log_message(message, ((unsigned long)&rodata_9e7c9) /*=0x9e7c9*/);
         else
             debug_print(message, ((unsigned long)&rodata_9e7c9) /*=0x9e7c9*/);
     }

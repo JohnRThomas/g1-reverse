@@ -30,7 +30,7 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  */
 /* Reconstructed parse_ncs_notification @ 0x34980  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern void debug_print(void);
 extern int  strcmp(int,int);
 extern int  log_notification_fields_debug(int,int*);
@@ -51,13 +51,13 @@ void parse_ncs_notification(int param_1, int *param_2){
   if (iVar1 == 0) {
     if (0 < *lvl) {
       if (*g8 != 0) { debug_print(); return; }
-      DEBUG_PRINT(((unsigned long)&rodata_a838d) /*=0xa838d*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); return;
+      log_message(((unsigned long)&rodata_a838d) /*=0xa838d*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); return;
     }
     return;
   }
   iVar2 = sllist_find_by_name_ci(iVar1, ((unsigned long)&rodata_9d79d) /*=0x9d79d*/);
   if (iVar2 == 0) {
-    if (0 < *lvl) { if (*g8==0) DEBUG_PRINT(((unsigned long)&rodata_a83aa) /*=0xa83aa*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); else debug_print(); }
+    if (0 < *lvl) { if (*g8==0) log_message(((unsigned long)&rodata_a83aa) /*=0xa83aa*/,((unsigned long)&rodata_a83e9) /*=0xa83e9*/); else debug_print(); }
     cjson_delete(iVar1);
     return;
   }

@@ -31,7 +31,7 @@
  *   g_uart_rx_frame_buf                      @ 0x2001a129
  */
 /* Reconstructed uart_callback @ 0x33384  (parity: 295/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern void debug_print(void);
 extern int  k_mem_slab_alloc(int,void*,int,int);
 extern void k_mem_slab_free(int,int);
@@ -47,14 +47,14 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
   int iVar2; unsigned int uVar5,uVar7; char cVar1; int iVar6; void *local_1c=param_2;
   switch (*param_2) {
   case 0:
-    if (2 < *lvl) { if(*g8==0) DEBUG_PRINT(((unsigned long)&rodata_a797b) /*=0xa797b*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(); }
+    if (2 < *lvl) { if(*g8==0) log_message(((unsigned long)&rodata_a797b) /*=0xa797b*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/,VI((int)param_2+8),0,param_1); else debug_print(); }
     for (uVar5=0; uVar5 < (unsigned int)VI((int)param_2+8); uVar5++)
-      DEBUG_PRINT(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5));
+      log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5));
     break;
   case 1:
     if (*lvl < 1) return;
     if (*g8 != 0) { debug_print(); return; }
-    DEBUG_PRINT(((unsigned long)&rodata_a7999) /*=0xa7999*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/); return;
+    log_message(((unsigned long)&rodata_a7999) /*=0xa7999*/,((unsigned long)&rodata_a7b56) /*=0xa7b56*/); return;
   case 2:
     uVar5 = VI((int)param_2+8);
     for (uVar7 = uVar5 & 0xffff; (uVar7 & 0xffff) < 0xf8; uVar7++) {
@@ -74,12 +74,12 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
         }
       }
     }
-    DEBUG_PRINT(((unsigned long)&rodata_a79ab) /*=0xa79ab*/, VI((int)param_2+0xc), param_3, uVar7 & 0xffff, param_1);
+    log_message(((unsigned long)&rodata_a79ab) /*=0xa79ab*/, VI((int)param_2+0xc), param_3, uVar7 & 0xffff, param_1);
     for (uVar7=0; uVar7 < (unsigned int)VI((int)param_2+0xc); uVar7++)
-      DEBUG_PRINT(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5+uVar7));
+      log_message(((unsigned long)&rodata_a7993) /*=0xa7993*/, VB(VI((int)param_2+4)+uVar5+uVar7));
     break;
   case 3:
-    DEBUG_PRINT(((unsigned long)&rodata_a79bf) /*=0xa79bf*/);
+    log_message(((unsigned long)&rodata_a79bf) /*=0xa79bf*/);
     iVar2 = k_mem_slab_alloc(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, &local_1c, 0, 0);
     if (iVar2 == 0) {
       iVar2 = ((int(*)(int,int,int))(VI(VI((int)param_3+8)+0x10)))((int)param_3,(int)local_1c,0x100);
@@ -93,11 +93,11 @@ void uart_callback(int param_1,unsigned char *param_2,unsigned int param_3){
       assert_post_action(((unsigned long)&rodata_a79eb) /*=0xa79eb*/,0x51);
     }
   case 4:
-    DEBUG_PRINT(((unsigned long)&rodata_a7a52) /*=0xa7a52*/);
+    log_message(((unsigned long)&rodata_a7a52) /*=0xa7a52*/);
     k_mem_slab_free(((unsigned long)&g_uart_rx_mem_slab) /*=0x200037b8*/, VI((int)param_2+4));
     return;
   default:
     return;
   }
-  DEBUG_PRINT(((unsigned long)&rodata_f5400) /*=0xf5400*/);
+  log_message(((unsigned long)&rodata_f5400) /*=0xf5400*/);
 }

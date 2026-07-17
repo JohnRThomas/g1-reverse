@@ -19,7 +19,7 @@
 /* Reconstructed FUN_00043a68 @ 0x43a68  (parity: 299/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned uint; typedef unsigned char byte; typedef unsigned long long ulonglong;
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int get_device_info(int,...);
 extern int debug_print(int,...);
 extern unsigned atomic_get_3_0(void);
@@ -85,7 +85,7 @@ unsigned gui_bitmap_draw(uint param_1,int param_2,int param_3,int param_4,int pa
         iVar7 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         uVar10 = 0x000aa9a3;
     }
-    if(iVar7 == 0){ DEBUG_PRINT(uVar10, ((unsigned long)&rodata_aacde) /*=0xaacde*/); }
+    if(iVar7 == 0){ log_message(uVar10, ((unsigned long)&rodata_aacde) /*=0xaacde*/); }
     else { debug_print(uVar10, ((unsigned long)&rodata_aacde) /*=0xaacde*/); }
     return 0xffffffff;
 }

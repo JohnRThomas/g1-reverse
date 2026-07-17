@@ -21,7 +21,7 @@
  */
 /* Reconstructed request_ancs_attr_ext @ 0x191e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern unsigned strlen(unsigned);
 extern int ancs_get_conn_ctx(void);
 extern void debug_print(unsigned,...);
@@ -46,7 +46,7 @@ int request_ancs_attr_ext(unsigned param_1, unsigned param_2, unsigned param_3)
     param_2 = (unsigned)*(unsigned char*)(iVar4+0x44);
     unsigned sink = *(int*)0x20007554;
     if (sink == 0)
-      DEBUG_PRINT(0x0009ab1e, 0x0009b148, *(unsigned*)(puVar3+2), (unsigned)*puVar3, param_1, param_2);
+      log_message(0x0009ab1e, 0x0009b148, *(unsigned*)(puVar3+2), (unsigned)*puVar3, param_1, param_2);
     else
       debug_print(0x0009ab1e, 0x0009b148,
                    *(unsigned*)(puVar3+2), (unsigned)*puVar3,
@@ -57,7 +57,7 @@ LAB_5a:
     if ((*puVar3 != 0) && (**(char**)(puVar3+4) != 0)) {
       unsigned sink = *(int*)0x20007554;
       if (sink == 0) {
-        DEBUG_PRINT(0x0009abbd, *(char**)(puVar3+4), uVar6, sink, param_1, param_2, param_3);
+        log_message(0x0009abbd, *(char**)(puVar3+4), uVar6, sink, param_1, param_2, param_3);
         uVar1 = 0x20006ae8; uVar2 = 0x0001827d;
       } else {
         debug_print(0x0009abbd, *(char**)(puVar3+4), uVar6,
@@ -69,12 +69,12 @@ LAB_5a:
         if (iVar5 == 0) goto LAB_86;
         FUN_0007c0a4(0xa4, 0);
       }
-      if (iVar5 != 0) DEBUG_PRINT(0x0009abdc, iVar5);
+      if (iVar5 != 0) log_message(0x0009abdc, iVar5);
     }
   }
 LAB_86:
   if (*(int*)0x20007554 == 0)
-    DEBUG_PRINT(0x0009ac14, *(unsigned*)(puVar3+2), (unsigned)*puVar3, uVar6, param_1, param_2);
+    log_message(0x0009ac14, *(unsigned*)(puVar3+2), (unsigned)*puVar3, uVar6, param_1, param_2);
   else
     debug_print(0x0009ac14, *(unsigned*)(puVar3+2),
                  (unsigned)*puVar3, uVar6, param_1, param_2, param_3);

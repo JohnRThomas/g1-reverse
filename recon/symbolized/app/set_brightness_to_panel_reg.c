@@ -18,7 +18,7 @@
  */
 /* Reconstructed set_brightness_to_panel_reg @ 0x46e3c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern void projector_send_cmd1(int, int);
@@ -37,7 +37,7 @@ void set_brightness_to_panel_reg(unsigned int param_1)
 
     if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d7310) /*=0xd7310*/, param_1);
+            log_message(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d7310) /*=0xd7310*/, param_1);
         } else {
             debug_print(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d7310) /*=0xd7310*/, param_1);
         }

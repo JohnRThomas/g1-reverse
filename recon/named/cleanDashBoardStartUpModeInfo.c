@@ -17,7 +17,7 @@
 /* Reconstructed cleanDashBoardStartUpModeInfo @ 0x23c88 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
 extern void k_sem_give(uint32_t);
@@ -33,7 +33,7 @@ int cleanDashBoardStartUpModeInfo(void)
   if (k_msgq_put(0x20003994, &request, 0, 0) != 0) {
     if (*(volatile int32_t *)0x2000230c > 0) {
       if (*(volatile uint32_t *)0x20007554 == 0) {
-        DEBUG_PRINT(0x0009e903, 0x0009ed4a);
+        log_message(0x0009e903, 0x0009ed4a);
       } else {
         debug_print(0x0009e903, 0x0009ed4a);
       }
@@ -43,7 +43,7 @@ int cleanDashBoardStartUpModeInfo(void)
 
   if (*(volatile int32_t *)0x2000230c > 2) {
     if (*(volatile uint32_t *)0x20007554 == 0) {
-      DEBUG_PRINT(0x0009e968, 0x0009ed4a);
+      log_message(0x0009e968, 0x0009ed4a);
     } else {
       debug_print(0x0009e968, 0x0009ed4a);
     }

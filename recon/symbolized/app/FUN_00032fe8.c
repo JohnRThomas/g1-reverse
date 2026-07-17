@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00032fe8 @ 0x32fe8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void*, void*, unsigned int);
+extern void log_message(void*, void*, unsigned int);
 extern int FUN_00071eac(void*, void*, unsigned int, void*, int, int, int, unsigned int, int);
 
 void FUN_00032fe8(void)
@@ -21,7 +21,7 @@ void FUN_00032fe8(void)
   int iVar2;
 
   if (*pcVar1 != 0) {
-    DEBUG_PRINT((void*)((unsigned long)&rodata_a757f) /*=0xa757f*/, (void*)((unsigned long)&rodata_a75c2) /*=0xa75c2*/, 0xab8);
+    log_message((void*)((unsigned long)&rodata_a757f) /*=0xa757f*/, (void*)((unsigned long)&rodata_a75c2) /*=0xa75c2*/, 0xab8);
     return;
   }
   iVar2 = FUN_00071eac((void*)((unsigned long)&g_aging_mode_thread) /*=0x20004870*/, (void*)((unsigned long)&g_aging_mode_thread_stack) /*=0x20027a68*/, 0xc00, (void*)((unsigned long)&rodata_32421) /*=0x32421*/, 0,0,0,0xfffffff4,0);

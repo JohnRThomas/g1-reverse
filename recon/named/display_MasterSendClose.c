@@ -18,7 +18,7 @@
 extern void memset_bytes(void *destination, int value, unsigned int length);
 extern int k_msgq_put(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
-extern void DEBUG_PRINT(unsigned int format, unsigned int context);
+extern void log_message(unsigned int format, unsigned int context);
 extern void debug_print(unsigned int format, unsigned int context, ...);
 
 unsigned int display_MasterSendClose(void)
@@ -33,13 +33,13 @@ unsigned int display_MasterSendClose(void)
         uVar2 = 0;
         if (*(volatile int*)0x2000230cUL > 2) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000f008cUL, 0x000f0139UL);
+                log_message(0x000f008cUL, 0x000f0139UL);
             } else {
                 debug_print(0x000f008cUL, 0x000f0139UL);
             }
         }
     } else {
-        DEBUG_PRINT(0x000ef058UL, 0x000f0139UL);
+        log_message(0x000ef058UL, 0x000f0139UL);
         uVar2 = 0xffffffffUL;
     }
     return uVar2;

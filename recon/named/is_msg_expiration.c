@@ -17,7 +17,7 @@
  */
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern unsigned int get_timestamp(void);
@@ -54,7 +54,7 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
             if (0 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile int*)0x20007554UL == 0) {
                     uVar4 = get_timestamp();
-                    DEBUG_PRINT(0x000a80e3UL, 0x000a820fUL, uVar7, iVar5, uVar4, param_2, param_3);
+                    log_message(0x000a80e3UL, 0x000a820fUL, uVar7, iVar5, uVar4, param_2, param_3);
                 } else {
                     uVar4 = get_timestamp();
                     debug_print(0x000a80e3UL, 0x000a820fUL, uVar7, iVar5, uVar4, param_2, param_3);
@@ -69,7 +69,7 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
     uVar7 = get_timestamp();
     if (uVar7 < uVar8) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000a8146UL);
+            log_message(0x000a8146UL);
         } else {
             debug_print(0x000a8146UL);
         }

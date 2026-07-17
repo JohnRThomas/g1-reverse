@@ -24,7 +24,7 @@
 /* Reconstructed post_notification_cmd_response @ 0x340c4. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void send_data_in_ble_chunks(void *notification);
 extern void push_message(void *notification);
@@ -64,7 +64,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
         payload == 0 || output == 0) {
         if (*log_level > 1) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
+                log_message(((unsigned long)&rodata_a7ef6) /*=0xa7ef6*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, payload,
                             *deferred_logger,
                             context, notification, response);
             else
@@ -77,7 +77,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
     if (*log_level > 2) {
         if (*deferred_logger == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
+            log_message(((unsigned long)&rodata_a7f12) /*=0xa7f12*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, command->opcode,
                         *deferred_logger,
                         context, notification, response);
         else
@@ -100,7 +100,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
 
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8, state + 0x19,
+                log_message(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8, state + 0x19,
                             *(uint32_t *)state, notification + 0x194);
             else
                 debug_print(((unsigned long)&rodata_a7f41) /*=0xa7f41*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, state + 8,
@@ -116,7 +116,7 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
                               0x158u, command->length, notification, response);
                 return 0;
             }
-            DEBUG_PRINT(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/, 0x158u,
+            log_message(((unsigned long)&rodata_a7f79) /*=0xa7f79*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/, ((unsigned long)&rodata_a8300) /*=0xa8300*/, 0x158u,
                         command->length, notification, response);
             return 0;
         }
@@ -137,13 +137,13 @@ int post_notification_cmd_response(uint8_t *context, uint8_t *notification,
     if (response->opcode == 4) {
         if (*log_level > 2) {
             if (*deferred_logger == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+                log_message(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
             else
                 debug_print(((unsigned long)&rodata_a7fae) /*=0xa7fae*/, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
         }
     } else if (response->opcode == 6 && *log_level > 2) {
         if (*deferred_logger == 0)
-            DEBUG_PRINT(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
+            log_message(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
         else
             debug_print(0x000a7fe3u, ((unsigned long)&rodata_a831f) /*=0xa831f*/);
     }

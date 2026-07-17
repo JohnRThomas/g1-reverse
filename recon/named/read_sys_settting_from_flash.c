@@ -14,7 +14,7 @@
  */
 /* Reconstructed read_sys_settting_from_flash @ 0x232f8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern void debug_print(unsigned,...);
 extern int flash_settings_read(int,void*,int);
 extern void memset_bytes(void*,int,int);
@@ -30,7 +30,7 @@ unsigned read_sys_settting_from_flash(unsigned *param_1)
   iVar1 = flash_settings_read(0x130000, record, sizeof(record));
   if (iVar1 == 0) {
     if (1 < *(int*)0x2000230c) {
-      if (*(int*)0x20007554 == 0) DEBUG_PRINT(0x0009e5a6, 0x0009e747);
+      if (*(int*)0x20007554 == 0) log_message(0x0009e5a6, 0x0009e747);
       else debug_print(0x0009e5a6, 0x0009e747);
     }
     *(unsigned *)(output + 0x00) = *(unsigned *)(record + 0x00);
@@ -60,7 +60,7 @@ unsigned read_sys_settting_from_flash(unsigned *param_1)
     uVar5 = 0;
   } else {
     if (1 < *(int*)0x2000230c) {
-      if (*(int*)0x20007554 == 0) DEBUG_PRINT(0x0009e580, 0x0009e747);
+      if (*(int*)0x20007554 == 0) log_message(0x0009e580, 0x0009e747);
       else debug_print(0x0009e580, 0x0009e747);
     }
     uVar5 = 0xffffffff;

@@ -13,7 +13,7 @@
  */
 /* Reconstructed FUN_00032254 @ 0x32254  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a);
+extern void log_message(unsigned a);
 extern int get_device_info(void);
 extern int read_usr_settting_from_flash(void*a);
 extern void FUN_0002eaa8(void);
@@ -21,9 +21,9 @@ extern void FUN_0007c28e(int a, int b);
 extern void k_msleep_ticks32768_b(int a);
 unsigned set_display_brightness(int param_1, unsigned param_2, unsigned *param_3, unsigned char *param_4){
     unsigned char stk[0x18];
-    DEBUG_PRINT(((unsigned long)&rodata_a731c) /*=0xa731c*/);
+    log_message(((unsigned long)&rodata_a731c) /*=0xa731c*/);
     if (param_3 == 0 || param_4 == 0){
-        DEBUG_PRINT(((unsigned long)&rodata_a7336) /*=0xa7336*/);
+        log_message(((unsigned long)&rodata_a7336) /*=0xa7336*/);
         return 0xffffffffu;
     }
     volatile unsigned char *puVar5 = (volatile unsigned char*)*param_3;

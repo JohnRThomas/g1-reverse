@@ -14,13 +14,13 @@
 /* Reconstructed clean_dmic_msgq @ 0x2ec1c  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_cleanup(unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int);
 int clean_dmic_msgq(void){
     int iVar1 = k_msgq_cleanup(0x20007b7cUL);
     if(iVar1!=0 && *(volatile int*)0x2000230cUL > 0){
         if(*(volatile unsigned int*)0x20007554UL==0){
-            DEBUG_PRINT(0x000a3efcUL,0x000a41efUL);
+            log_message(0x000a3efcUL,0x000a41efUL);
         } else {
             debug_print(0x000a3efcUL,0x000a41efUL);
         }

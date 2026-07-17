@@ -15,7 +15,7 @@
  */
 /* Reconstructed update_temp_task_status @ 0x2bffc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern void display_close_screen(unsigned char);
 extern void FUN_0007cdf8(void);
@@ -48,7 +48,7 @@ LAB_0002c052:
             format_string = 0x000a2597UL;
 LAB_0002c0ac:
             if (iVar4 == 0) {
-                DEBUG_PRINT(format_string, 0x000a2648UL, param_2);
+                log_message(format_string, 0x000a2648UL, param_2);
             } else {
                 debug_print(format_string, 0x000a2648UL, param_2);
             }

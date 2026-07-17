@@ -18,7 +18,7 @@
 /* Full ABI-faithful reconstruction ancs_disconnected @ 0x18adc. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern uint64_t get_device_info(void);
 extern void format_bt_addr_str(const void *connection, char *description);
 extern void ancs_cancel_timers(void);
@@ -39,7 +39,7 @@ void ancs_disconnected(uint32_t connection, uint32_t reason)
     format_bt_addr_str((const void *)active_connection, description);
     if (*(volatile int32_t *)0x2000230cu > 0) {
         if (*(volatile uint32_t *)0x20007554u == 0)
-            DEBUG_PRINT(0x0009a92au, 0x0009b1c8u, description, reason);
+            log_message(0x0009a92au, 0x0009b1c8u, description, reason);
         else
             debug_print(0x0009a92au, 0x0009b1c8u, description, reason);
     }

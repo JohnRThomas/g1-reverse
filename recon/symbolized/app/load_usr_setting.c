@@ -43,7 +43,7 @@ struct __attribute__((packed)) user_settings_record {
     uint32_t counter;
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
+extern void log_message(uint32_t format, uint32_t function_name);
 extern void debug_print(uint32_t format, uint32_t function_name, ...);
 extern int flash_settings_read(uint32_t address, void *destination, uint32_t length);
 extern void reset_usr_setting(void *settings);
@@ -60,7 +60,7 @@ int load_usr_setting(uint8_t *settings)
     if (flash_settings_read(0x00134000UL, &record, sizeof(record)) != 0) {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+                log_message(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
             } else {
                 debug_print(((unsigned long)&rodata_9e60c) /*=0x9e60c*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
             }
@@ -70,7 +70,7 @@ int load_usr_setting(uint8_t *settings)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e632) /*=0x9e632*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
+            log_message(((unsigned long)&rodata_9e632) /*=0x9e632*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
         } else {
             debug_print(((unsigned long)&rodata_9e632) /*=0x9e632*/, ((unsigned long)&rodata_9e7a6) /*=0x9e7a6*/);
         }

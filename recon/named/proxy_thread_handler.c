@@ -124,7 +124,7 @@ typedef struct {
 #define clear_bytes memset_bytes
 
 /* K&R prototypes are retained only at variadic/decompiler boundaries. */
-extern int DEBUG_PRINT();
+extern int log_message();
 extern int get_device_info();
 extern int debug_print();
 extern int upgrade_language_setting();
@@ -182,7 +182,7 @@ void proxy_thread_handler(int param_1)
     uVar13 = 0xef76f;
 LAB_00047c6a:
     if (iVar16 == 0) {
-        DEBUG_PRINT(uVar9, uVar13);
+        log_message(uVar9, uVar13);
     } else {
         debug_print();
     }
@@ -201,7 +201,7 @@ LAB_00047c76:
                 case 0:
                     if (2 < *piVar1) {
                         if (*(int *)0x20007554 == 0) {
-                            DEBUG_PRINT(0xef0a1, 0xef76f);
+                            log_message(0xef0a1, 0xef76f);
                         } else {
                             debug_print();
                         }
@@ -218,7 +218,7 @@ LAB_00047c76:
                 case 1:
                     if (2 < *piVar1) {
                         if (*(int *)0x20007554 == 0) {
-                            DEBUG_PRINT(0xef0c9, 0xef76f);
+                            log_message(0xef0c9, 0xef76f);
                         } else {
                             debug_print();
                         }
@@ -229,7 +229,7 @@ LAB_00047c76:
                         iVar16 = (*(int (**)())(param_1 + 0x788))((void *)0x2001d432, *(ushort *)0x2000ff04);
                         if ((iVar16 < 0) && (1 < *piVar1)) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xef0fb, 0xef76f);
+                                log_message(0xef0fb, 0xef76f);
                             } else {
                                 debug_print();
                             }
@@ -238,7 +238,7 @@ LAB_00047c76:
                         get_proxy_timestamp(transfer_packet.bytes);
                         if (2 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xef135, 0xef76f,
+                                log_message(0xef135, 0xef76f,
                                             transfer_packet.word.low,
                                             transfer_packet.word.high);
                             } else {
@@ -252,7 +252,7 @@ LAB_00047c76:
                 case 2:
                     if (2 < *piVar1) {
                         if (*(int *)0x20007554 == 0) {
-                            DEBUG_PRINT(0xef16d, 0xef76f);
+                            log_message(0xef16d, 0xef76f);
                         } else {
                             debug_print();
                         }
@@ -284,7 +284,7 @@ LAB_00047c76:
                             }
                             if (2 < *piVar1) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0xef1a8, 0xef76f);
+                                    log_message(0xef1a8, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -339,7 +339,7 @@ LAB_00047c76:
                                 while (iVar15 = (*(int (**)())(param_1 + 0x788))(puVar22, puVar10[1]), iVar15 < 0) {
                                     if (1 < *piVar1) {
                                         if (*piVar19 == 0) {
-                                            DEBUG_PRINT(0xef1ea, 0xef76f);
+                                            log_message(0xef1ea, 0xef76f);
                                         } else {
                                             debug_print();
                                         }
@@ -354,7 +354,7 @@ LAB_00047c76:
                                     }
                                     if (1 < *piVar1) {
                                         if (*piVar19 == 0) {
-                                            DEBUG_PRINT(0xef214, 0xef76f);
+                                            log_message(0xef214, 0xef76f);
                                         } else {
                                             debug_print();
                                         }
@@ -380,7 +380,7 @@ LAB_00047e22:
                     if (*(char *)0x2001d262 == '\0') {
                         if (2 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xef260, 0xef76f);
+                                log_message(0xef260, 0xef76f);
                             } else {
                                 debug_print();
                             }
@@ -422,7 +422,7 @@ LAB_00048082:
                         if (iVar12 != 0) {
                             if (0 < *piVar1) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0x9ea0a, 0xef76f, 0x400000);
+                                    log_message(0x9ea0a, 0xef76f, 0x400000);
                                 } else {
                                     debug_print();
                                 }
@@ -437,7 +437,7 @@ LAB_0004820e:
                         while (iVar15 = (*(int (**)())(param_1 + 0x788))(puVar10, puVar10[1]), iVar15 < 0) {
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    DEBUG_PRINT(0xef2df, 0xef76f);
+                                    log_message(0xef2df, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -446,7 +446,7 @@ LAB_0004820e:
                             if (iVar12 == 0) {
                                 if (1 < *piVar1) {
                                     if (*(int *)0x20007554 == 0) {
-                                        DEBUG_PRINT(0xef214, 0xef76f);
+                                        log_message(0xef214, 0xef76f);
                                     } else {
                                         debug_print();
                                     }
@@ -455,7 +455,7 @@ LAB_0004820e:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    DEBUG_PRINT(0xef2df, 0xef76f);
+                                    log_message(0xef2df, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -464,7 +464,7 @@ LAB_0004820e:
                         *piVar4 = *piVar4 + iVar16;
                         if (2 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xef2fc, 0xef76f, iVar16, *piVar4);
+                                log_message(0xef2fc, 0xef76f, iVar16, *piVar4);
                             } else {
                                 debug_print(0xef2fc, 0xef76f, iVar16, *piVar4);
                             }
@@ -499,7 +499,7 @@ LAB_00048054:
                 case 3:
                     if (2 < *piVar1) {
                         if (*(int *)0x20007554 == 0) {
-                            DEBUG_PRINT(0xef338, 0xef76f);
+                            log_message(0xef338, 0xef76f);
                         } else {
                             debug_print();
                         }
@@ -546,7 +546,7 @@ LAB_00047de2:
                                     if (*(int *)(iVar15 + 8) != 2) {
                                         uVar9 = 0xef07c;
                                     }
-                                    DEBUG_PRINT(0xef377, 0xef76f, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
+                                    log_message(0xef377, 0xef76f, iVar21, uVar9, *(undefined4 *)(iVar15 + 0x14),
                                                 *(undefined4 *)(iVar15 + 0x18), iVar17, *(int *)(iVar15 + 0x10),
                                                 *(int *)(iVar15 + 0x10) - iVar17);
                                 } else {
@@ -588,7 +588,7 @@ LAB_00047de2:
                         for (iVar16 = 0; iVar16 < (int)(uint32_t)*(byte *)(iVar15 + 1); iVar16 = iVar16 + 1) {
                             if (3 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    DEBUG_PRINT(uVar13, uVar9, iVar16, (uint32_t)*(byte *)(iVar15 + iVar16));
+                                    log_message(uVar13, uVar9, iVar16, (uint32_t)*(byte *)(iVar15 + iVar16));
                                 } else {
                                     debug_print(uVar13, uVar9, iVar16, *(undefined1 *)(iVar15 + iVar16));
                                 }
@@ -603,7 +603,7 @@ LAB_00047de2:
 LAB_00047e36:
                     if (iVar12 == 0) {
 LAB_000480f4:
-                        DEBUG_PRINT(uVar9, uVar13, iVar16);
+                        log_message(uVar9, uVar13, iVar16);
                         goto LAB_00047c76;
                     }
                     break;
@@ -618,7 +618,7 @@ LAB_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0xef40d, 0xef76f);
+                                    log_message(0xef40d, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -629,7 +629,7 @@ LAB_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xa125e, 0xef76f, iVar16);
+                                log_message(0xa125e, 0xef76f, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -648,7 +648,7 @@ LAB_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0xef437, 0xef76f);
+                                    log_message(0xef437, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -658,7 +658,7 @@ LAB_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xa125e, 0xef76f, iVar16);
+                                log_message(0xa125e, 0xef76f, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -676,7 +676,7 @@ LAB_000480f4:
                         if (iVar12 < 5000) {
                             if (2 < *piVar1) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0xef472, 0xef76f);
+                                    log_message(0xef472, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -691,7 +691,7 @@ LAB_000480f4:
                                 transfer_packet.bytes, 6);
                             if ((iVar16 < 0) && (1 < *piVar1)) {
                                 if (*(int *)0x20007554 == 0) {
-                                    DEBUG_PRINT(0xef0fb, 0xef76f);
+                                    log_message(0xef0fb, 0xef76f);
                                 } else {
                                     debug_print();
                                 }
@@ -701,7 +701,7 @@ LAB_000480f4:
                         }
                         if (1 < *piVar1) {
                             if (*(int *)0x20007554 == 0) {
-                                DEBUG_PRINT(0xa125e, 0xef76f, iVar16);
+                                log_message(0xa125e, 0xef76f, iVar16);
                             } else {
                                 debug_print();
                             }
@@ -731,7 +731,7 @@ LAB_000480f4:
                             if (iVar12 < 5000) {
                                 if (2 < *piVar1) {
                                     if (*(int *)0x20007554 == 0) {
-                                        DEBUG_PRINT(0xa116d, 0xef76f);
+                                        log_message(0xa116d, 0xef76f);
                                     } else {
                                         debug_print();
                                     }
@@ -741,7 +741,7 @@ LAB_000480f4:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    DEBUG_PRINT(0xa1027, 0xef76f, iVar16);
+                                    log_message(0xa1027, 0xef76f, iVar16);
                                 } else {
                                     debug_print();
                                 }
@@ -763,7 +763,7 @@ LAB_000480f4:
                             if (iVar12 < 5000) {
                                 if (2 < *piVar1) {
                                     if (*(int *)0x20007554 == 0) {
-                                        DEBUG_PRINT(0xa116d, 0xef76f);
+                                        log_message(0xa116d, 0xef76f);
                                     } else {
                                         debug_print();
                                     }
@@ -773,7 +773,7 @@ LAB_000480f4:
                             }
                             if (1 < *piVar1) {
                                 if (*piVar19 == 0) {
-                                    DEBUG_PRINT(0xa1027, 0xef76f, iVar16);
+                                    log_message(0xa1027, 0xef76f, iVar16);
                                 } else {
                                     debug_print();
                                 }

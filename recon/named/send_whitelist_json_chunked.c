@@ -17,7 +17,7 @@
  */
 /* Full reconstruction FUN_00035498 @ 0x35498 (268-byte extent; CFG PASS). */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int debug_print(int,...);
 extern int convert_app_whitelist_to_json(int,...);
 extern int malloc(int,...);
@@ -31,7 +31,7 @@ void send_whitelist_json_chunked(int param_1,int param_2)
   int iVar1 = malloc(0x15e3);
   if (iVar1 == 0) {
     if (*E != 0) { debug_print(0xa893c,0xa8a33,0x237); return; }
-    DEBUG_PRINT(0xa893c,0xa8a33,0x237); return;
+    log_message(0xa893c,0xa8a33,0x237); return;
   }
   *(volatile unsigned char*)(param_2+1) = 0x6a;
   memset_bytes(iVar1,0,0x15e3,0x6a,param_1);
@@ -72,5 +72,5 @@ void send_whitelist_json_chunked(int param_1,int param_2)
     return;
   }
   if (*E != 0) { debug_print(0xa8952,0xa8a33,0x23f,0); return; }
-  DEBUG_PRINT(0xa8952,0xa8a33,0x23f);
+  log_message(0xa8952,0xa8a33,0x23f);
 }

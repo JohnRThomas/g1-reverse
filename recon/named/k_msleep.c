@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 extern uint64_t __aeabi_uldivmod(int,int,int,int);
-extern void thunk_FUN_00074844(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void wait_for_event(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void k_msleep(int param_1, uint32_t unused_1, uint32_t unused_2,
                   uint32_t forwarded_3)
@@ -19,6 +19,6 @@ void k_msleep(int param_1, uint32_t unused_1, uint32_t unused_2,
                                  param_1 >> 0x11, 1000, 0);
   (void)unused_1;
   (void)unused_2;
-  thunk_FUN_00074844((uint32_t)result, (uint32_t)(result >> 32),
+  wait_for_event((uint32_t)result, (uint32_t)(result >> 32),
                      1000, forwarded_3);
 }

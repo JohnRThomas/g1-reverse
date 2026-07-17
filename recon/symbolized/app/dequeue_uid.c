@@ -15,7 +15,7 @@
 /* Reconstructed dequeue_uid @ 0x18ff8  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int a, void *b, unsigned int c, unsigned int d);
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
+extern void log_message(unsigned int a, unsigned int b);
 extern void debug_print(unsigned int a, unsigned int b, ...);
 
 int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
@@ -39,7 +39,7 @@ int dequeue_uid(unsigned int *param_1, unsigned int param_2, unsigned int param_
       param_1[1] = record.second;
     } else if (0 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
       if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_9aafd) /*=0x9aafd*/, ((unsigned long)&rodata_9b16a) /*=0x9b16a*/);
+        log_message(((unsigned long)&rodata_9aafd) /*=0x9aafd*/, ((unsigned long)&rodata_9b16a) /*=0x9b16a*/);
       } else {
         debug_print(((unsigned long)&rodata_9aafd) /*=0x9aafd*/, ((unsigned long)&rodata_9b16a) /*=0x9b16a*/);
       }

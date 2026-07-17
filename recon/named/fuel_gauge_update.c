@@ -70,7 +70,7 @@ typedef uint8_t byte; typedef int64_t longlong; typedef uint64_t ulonglong; type
 #define DAT_00010f9c 0x0001d4bfu
 #define DAT_00010fa0 ((uint8_t *)0x20018d90u)
 #define DAT_00010fa4 0.0f
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern uint32_t log_message(uintptr_t,...);
 extern uint64_t __aeabi_dadd(uint32_t,...); extern uint64_t __extendsfdf2(float);
 extern uint64_t __muldf3(uint32_t,...); extern uint8_t __fixunsdfsi(uint32_t,...);
 extern float __floatdisf(void); extern float battery_soc_from_curve(float,float,float,float,uint32_t);
@@ -80,7 +80,7 @@ extern int fuel_gauge_read_voltage_current_temp(uint32_t,float*,float*,float*); 
 extern void fuel_gauge_lock(void); extern void fuel_gauge_unlock(void);
 extern uint32_t FUN_00074844(uintptr_t,...); extern uint32_t set_shutdown_flag(uintptr_t,...);
 extern int64_t k_uptime_get_3(void); extern uint32_t product_code_is_supported_egp_family(void);
-extern uint32_t send_event_status(uintptr_t,...); extern uint32_t sync_to_slave(uintptr_t,...);
+extern uint32_t send_event(uintptr_t,...); extern uint32_t sync_to_slave(uintptr_t,...);
 
 int fuel_gauge_update(undefined4 param_1)
 
@@ -117,7 +117,7 @@ int fuel_gauge_update(undefined4 param_1)
     iVar8 = fuel_gauge_read_voltage_current_temp(param_1,&local_44,&local_40,local_3c);
     fuel_gauge_unlock();
     if (iVar8 < 0) {
-      DEBUG_PRINT(DAT_00010bf0);
+      log_message(DAT_00010bf0);
       return iVar8;
     }
     lVar16 = k_uptime_get_3();
@@ -148,7 +148,7 @@ LAB_00010c00:
     uVar18 = __extendsfdf2(local_40);
     uVar19 = __extendsfdf2(local_3c[0]);
     if (*DAT_00010f4c == 0) {
-      DEBUG_PRINT(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
+      log_message(DAT_00010f54,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
                   (int)((ulonglong)uVar18 >> 0x20),(int)uVar19,(int)((ulonglong)uVar19 >> 0x20));
     }
     else {
@@ -178,7 +178,7 @@ LAB_00010c00:
     uVar18 = __extendsfdf2(fVar14);
     if (*DAT_00010f4c == 0) {
       uVar9 = FUN_000232b8();
-      DEBUG_PRINT(DAT_00010f64,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
+      log_message(DAT_00010f64,DAT_00010f50,(int)uVar17,uVar11,(int)uVar18,
                   (int)((ulonglong)uVar18 >> 0x20),uVar9);
     }
     else {
@@ -248,7 +248,7 @@ LAB_00010dca:
        ((int)((uint)(local_3c[0] < DAT_00010f90) << 0x1f) < 0)) ||
       ((local_3c[0] < DAT_00010f94 == (NAN(local_3c[0]) || NAN(DAT_00010f94)) &&
        (local_3c[0] <= -20.0)))) && (iVar13 = get_device_info(), *(char *)(iVar13 + 0xfea) != '\f')) {
-    send_event_status(4);
+    send_event(4);
     pcVar10 = (char *)get_device_info();
     if (*pcVar10 == '\x01') {
       uVar11 = get_device_info();
@@ -266,7 +266,7 @@ LAB_00010dca:
     set_shutdown_flag(uVar11,1);
     if (0 < *piVar5) {
       if (*DAT_00010f4c == 0) {
-        DEBUG_PRINT(DAT_00010f98,DAT_00010f50);
+        log_message(DAT_00010f98,DAT_00010f50);
       }
       else {
         debug_print(0);

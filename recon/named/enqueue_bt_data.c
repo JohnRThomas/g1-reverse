@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00017eec @ 0x17eec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t);
+extern void log_message(uint32_t);
 extern void debug_print(uint32_t diagnostic);
 extern void k_msgq_put(void);
 extern int FUN_000720d0_i(uint32_t,void*,int,int);
@@ -28,14 +28,14 @@ int enqueue_bt_data(uint32_t param_1, uint8_t param_2){
   memset_bytes(local_114,0,0x101);
   if(*(volatile int*)(0x200038f8UL+0x24)==0x30){
     k_msgq_get(0x200038f8,local_114,0,0);
-    if(*(volatile int*)0x20007554UL==0) DEBUG_PRINT(0x9a18e);
+    if(*(volatile int*)0x20007554UL==0) log_message(0x9a18e);
     else debug_print(0x9a18e);
   }
   local_114[0]=param_2;
   memcpy(local_114+1,param_1,0x100);
   int iVar1=FUN_000720d0_i(0x200038f8,local_114,0,0);
   if(iVar1!=0){
-    if(*(volatile int*)0x20007554UL==0) DEBUG_PRINT(0x9a1ae);
+    if(*(volatile int*)0x20007554UL==0) log_message(0x9a1ae);
     else debug_print(0x9a1ae);
   }
   return iVar1;

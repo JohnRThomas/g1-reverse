@@ -14,7 +14,7 @@
  */
 /* Reconstructed reset_all_static_info @ 0x16738  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void memset_bytes(void *dst, int val, unsigned int len);
 
@@ -23,7 +23,7 @@ void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         unsigned int sink = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (sink == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_99707) /*=0x99707*/, ((unsigned long)&rodata_99bd8) /*=0x99bd8*/, param_3, sink, param_4);
+            log_message(((unsigned long)&rodata_99707) /*=0x99707*/, ((unsigned long)&rodata_99bd8) /*=0x99bd8*/, param_3, sink, param_4);
         } else {
             debug_print(((unsigned long)&rodata_99707) /*=0x99707*/, ((unsigned long)&rodata_99bd8) /*=0x99bd8*/, param_3, sink, param_4);
         }

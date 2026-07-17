@@ -21,7 +21,7 @@
  */
 /* Reconstructed FUN_00043484 @ 0x43484  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 extern int get_device_info(void);
 extern int debug_print(int, ...);
 extern long long atomic_get_3_0(void);
@@ -52,7 +52,7 @@ int gui_bmp_bitmap_draw(unsigned int param_1, int param_2, int param_3, int para
             if (iVar2 < 0) {
                 if (1 < *g5c0) {
                     if (*g5c4 == 0) {
-                        DEBUG_PRINT(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aadd0) /*=0xaadd0*/);
+                        log_message(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aadd0) /*=0xaadd0*/);
                     } else {
                         debug_print(0);
                     }

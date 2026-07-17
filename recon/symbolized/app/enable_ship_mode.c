@@ -16,7 +16,7 @@ extern void power_down_imu_and_mic(void);
 extern void app_msleep_thunk_a(unsigned int a);
 extern int dev_write_reg3(unsigned int a, unsigned int b,
                         unsigned int c, unsigned int d);
-extern void DEBUG_PRINT(unsigned int, ...);
+extern void log_message(unsigned int, ...);
 
 unsigned int enable_ship_mode(void)
 {
@@ -32,6 +32,6 @@ unsigned int enable_ship_mode(void)
     } else {
         format_string = 0x00099756UL;
     }
-    DEBUG_PRINT(format_string);
+    log_message(format_string);
     return 0;
 }

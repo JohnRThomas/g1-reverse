@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_000355b4 @ 0x355b4  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(const char *msg, const char *file, unsigned int line);
+extern void log_message(const char *msg, const char *file, unsigned int line);
 extern int debug_print(void);
 extern int convert_app_whitelist_to_json(int);
 extern int malloc(int);
@@ -38,6 +38,6 @@ void revalidate_whitelist_json(void)
     debug_print();
     return;
   }
-  DEBUG_PRINT((const char*)((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/,(const char*)((unsigned long)&rodata_a8a24) /*=0xa8a24*/,0x277);
+  log_message((const char*)((unsigned long)&rodata_a7c9c) /*=0xa7c9c*/,(const char*)((unsigned long)&rodata_a8a24) /*=0xa8a24*/,0x277);
   return;
 }

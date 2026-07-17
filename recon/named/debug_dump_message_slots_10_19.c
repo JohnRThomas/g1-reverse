@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00033b4c @ 0x33b4c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void log_message(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void debug_dump_message_slots_10_19(void)
@@ -23,7 +23,7 @@ void debug_dump_message_slots_10_19(void)
   volatile uint32_t *puVar3 = (volatile uint32_t*)0x20008eb4UL;
   do {
     if (*piVar1 == 0) {
-      DEBUG_PRINT(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
+      log_message(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     } else {
       debug_print(format_string, (uint32_t)iVar2, puVar3[2], puVar3[0]);
     }

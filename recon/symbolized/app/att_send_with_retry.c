@@ -13,7 +13,7 @@
 extern void net_buf_unref(uintptr_t);
 extern void FUN_00073418(uintptr_t, unsigned, unsigned, unsigned);
 extern uint64_t FUN_00081852(uintptr_t, int *, unsigned);
-extern int thunk_FUN_000727ac(uintptr_t, unsigned, unsigned, unsigned);
+extern int net_buf_get(uintptr_t, unsigned, unsigned, unsigned);
 
 void att_send_with_retry(uintptr_t owner, unsigned inherited_wait, unsigned unused)
 {
@@ -22,7 +22,7 @@ void att_send_with_retry(uintptr_t owner, unsigned inherited_wait, unsigned unus
     for (;;) {
         item = *(volatile int *)(owner - 4);
         if (item == 0) {
-            item = thunk_FUN_000727ac(owner - 0x20, inherited_wait, 0, 0);
+            item = net_buf_get(owner - 0x20, inherited_wait, 0, 0);
             if (item == 0)
                 return;
         } else {

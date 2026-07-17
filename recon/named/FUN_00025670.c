@@ -12,7 +12,7 @@
 extern void memcpy(uint8_t *, const uint8_t *, uint32_t);
 extern int FUN_0007c85e(uint32_t, void *, uint32_t, uint32_t);
 extern void sleep_fixed_33_ticks(void);
-extern void DEBUG_PRINT(uint32_t, int);
+extern void log_message(uint32_t, int);
 struct part { uint8_t *data; uint32_t length; uint8_t type; };
 int FUN_00025670(uint32_t *dev, uint32_t op, uint32_t command,
                  uint32_t value, uint32_t n)
@@ -23,6 +23,6 @@ int FUN_00025670(uint32_t *dev, uint32_t op, uint32_t command,
     struct part p = {bytes, n + 2, 2};
     int r = FUN_0007c85e(*dev, &p, 1, op);
     sleep_fixed_33_ticks();
-    if (r < 0) DEBUG_PRINT(0x9f1eb, r);
+    if (r < 0) log_message(0x9f1eb, r);
     return r;
 }

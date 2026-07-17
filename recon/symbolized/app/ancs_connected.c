@@ -22,7 +22,7 @@
  */
 /* Reconstructed ancs_connected @ 0x1861c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern int get_device_info(void);
 extern void format_bt_addr_str(unsigned, void*);
 extern void debug_print(uintptr_t,...);
@@ -43,7 +43,7 @@ void ancs_connected(int param_1, int param_2)
   bVar2 = *(unsigned char*)(param_1+3);
   iVar5 = get_device_info();
   uVar6 = (unsigned)*(unsigned char*)(iVar5+0x1071);
-  DEBUG_PRINT(((unsigned long)&rodata_9a5ae) /*=0x9a5ae*/, auStack_38, (unsigned)bVar1, (unsigned)bVar2, uVar6);
+  log_message(((unsigned long)&rodata_9a5ae) /*=0x9a5ae*/, auStack_38, (unsigned)bVar1, (unsigned)bVar2, uVar6);
   if (param_2 == 0) {
     iVar5 = is_battery_critical();
     if ((iVar5 == 0) && (iVar5 = get_device_info(), *(char*)(iVar5+0x1071) == 0)) {
@@ -52,7 +52,7 @@ void ancs_connected(int param_1, int param_2)
       if (iVar5 != 0) {
         if (0 < *(int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
           if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a5f4) /*=0x9a5f4*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, auStack_38,
+            log_message(((unsigned long)&rodata_9a5f4) /*=0x9a5f4*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, auStack_38,
                         (unsigned)*(unsigned char*)(param_1+2), (unsigned)*(unsigned char*)(param_1+3));
           else
             debug_print(((unsigned long)&rodata_9a5f4) /*=0x9a5f4*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, auStack_38,
@@ -78,7 +78,7 @@ void ancs_connected(int param_1, int param_2)
   }
   else if (0 < *(int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-      DEBUG_PRINT(((unsigned long)&rodata_9a5d8) /*=0x9a5d8*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, param_2, 0, uVar6);
+      log_message(((unsigned long)&rodata_9a5d8) /*=0x9a5d8*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, param_2, 0, uVar6);
     else
       debug_print(((unsigned long)&rodata_9a5d8) /*=0x9a5d8*/, ((unsigned long)&rodata_9b1b9) /*=0x9b1b9*/, param_2,
                    *(volatile unsigned*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/, uVar6);

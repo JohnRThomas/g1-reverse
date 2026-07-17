@@ -15,7 +15,7 @@
 extern unsigned long long k_uptime_get_2(void);
 extern unsigned int get_device_info(void);
 extern unsigned int sync_to_slave(unsigned int, int, void*, int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, ...);
+extern void log_message(unsigned int, ...);
 extern void debug_print(void);
 
 unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -39,14 +39,14 @@ unsigned int sync_message_signal_to_slave(unsigned int param_1, unsigned int par
         uVar4 = 0xa269c;
     }
     if (*(volatile unsigned int*)0x20007554UL == 0) {
-        DEBUG_PRINT(uVar4, 0xa3a24);
+        log_message(uVar4, 0xa3a24);
     } else {
         debug_print();
     }
     uVar8 = k_uptime_get_2();
     if ((long long)(lVar7 + 3000) < (long long)uVar8) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0xa26ae);
+            log_message(0xa26ae);
         } else {
             debug_print();
         }

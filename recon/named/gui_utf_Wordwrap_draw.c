@@ -47,7 +47,7 @@ typedef int i32;
 #define classify_text_character index_in_range32_mask
 #define copy_glyph_bitmap FUN_00086c1e
 
-extern void DEBUG_PRINT();
+extern void log_message();
 extern u32 get_device_info(void);
 extern void debug_print(void);
 extern u32 get_display_atomic_state(void);
@@ -118,7 +118,7 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
           if (iVar3 < 0) {
             if (1 < *(volatile i32*)0x2000230cUL) {
               if (*(volatile i32*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000aaa58UL, 0x000aad35UL, uVar16);
+                log_message(0x000aaa58UL, 0x000aad35UL, uVar16);
               } else {
                 debug_print();
               }
@@ -173,7 +173,7 @@ LAB_00045422:
                     uVar13 = 0x000aac1eUL;
 LAB_00045458:
                     if (iVar3 == 0) {
-                      DEBUG_PRINT(uVar13, 0x000aad35UL);
+                      log_message(uVar13, 0x000aad35UL);
                     } else {
                       debug_print();
                     }
@@ -273,7 +273,7 @@ LAB_0004537c:
 LAB_0004558c:
   if (1 < *(volatile i32*)0x2000230cUL) {
     if (*(volatile i32*)0x20007554UL == 0) {
-      DEBUG_PRINT(0x000aaa7fUL, 0x000aad35UL);
+      log_message(0x000aaa7fUL, 0x000aad35UL);
     } else {
       debug_print();
     }

@@ -33,7 +33,7 @@ extern uintptr_t get_localized_weekday_name(unsigned id);
 extern void gui_bmp_bitmap_draw(int, int, int, int, int, int);
 extern unsigned gui_utf_draw(unsigned, uintptr_t, unsigned, int, int, int, int,
                             unsigned, unsigned, int, void *, int);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 
 static __attribute__((always_inline)) inline void draw_pair(uintptr_t text, int x, unsigned second_id)
@@ -64,7 +64,7 @@ unsigned set_imu_pitch_reflash(void)
     if (mode >= 2) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_d7173) /*=0xd7173*/, ((unsigned long)&rodata_d71f9) /*=0xd71f9*/);
+                log_message(((unsigned long)&rodata_d7173) /*=0xd7173*/, ((unsigned long)&rodata_d71f9) /*=0xd71f9*/);
             else
                 debug_print(((unsigned long)&rodata_d7173) /*=0xd7173*/, ((unsigned long)&rodata_d71f9) /*=0xd71f9*/);
         }

@@ -52,17 +52,17 @@
  */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
 extern uintptr_t get_device_info(void);         /* get_device_info @ 0x167a8 */
 extern int is_battery_critical(void);            /* is_battery_critical @ 0x32ee4 */
 extern void change_work_mode_to(uint32_t mode);
-extern int update_sync_buffer(void *object, uint64_t timeout); /* 0x7cb48 */
+extern int k_sem_take(void *object, uint64_t timeout); /* 0x7cb48 */
 extern void process_sync_buffer(void *object);                  /* 0x7cb4c */
 extern void process_touch_event(void);                          /* 0x7cb50 */
 extern void wait_for_event(uint32_t timeout, uint32_t flags);   /* 0x7cb8a */
 extern void set_brightness_to_panel_reg_in_running(uint32_t level);
-extern int check_battery_critical(void *context);
+extern int display_panel_is_secondary(void *context);
 extern void set_shutdown_flag(void *context, uint32_t publish);
 extern void trigger_screen_state_change(uintptr_t reason, void *context,
                                         uint32_t enabled);
@@ -178,7 +178,7 @@ static volatile uint8_t *const g_do_not_disturb_value =
 #define LOG_IF(level_, format_, ...) do { \
     if (*log_level_reg > (level_)) { \
         if (*g_log_backend == 0) \
-            DEBUG_PRINT((format_), DISPLAY_LOG_TAG, ##__VA_ARGS__); \
+            log_message((format_), DISPLAY_LOG_TAG, ##__VA_ARGS__); \
         else \
             debug_print((format_), DISPLAY_LOG_TAG, ##__VA_ARGS__); \
     } \
@@ -187,7 +187,7 @@ static volatile uint8_t *const g_do_not_disturb_value =
     if (*log_level_reg > 2) { \
         uint32_t stamp_ = get_timestamp(); \
         if (*g_log_backend == 0) \
-            DEBUG_PRINT((format_), DISPLAY_LOG_TAG, stamp_, (side_)); \
+            log_message((format_), DISPLAY_LOG_TAG, stamp_, (side_)); \
         else \
             debug_print((format_), DISPLAY_LOG_TAG, stamp_, (side_)); \
     } \
@@ -212,7 +212,7 @@ top:
     wait_for_event(0x8000, 0);
     goto while_cond;
   }
-  update_sync_buffer((uint8_t *)context + 0x20, UINT64_MAX);
+  k_sem_take((uint8_t *)context + 0x20, UINT64_MAX);
   goto while_cond;
 while_body:
   wait_for_event(0x28000, 0);
@@ -236,7 +236,7 @@ while_cond:
 
   case 0:
     if ((int8_t)context->slave_ready != 1) goto Ldefault;
-    if ((int8_t)context->work_mode != 6 && check_battery_critical(context) == 0) {
+    if ((int8_t)context->work_mode != 6 && display_panel_is_secondary(context) == 0) {
       LOG_IF(0, 0x000a0354);
       goto top;
     }

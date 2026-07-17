@@ -30,14 +30,14 @@ struct dmic_message {
 
 typedef int (*dmic_send_fn)(const void *message, unsigned int length);
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
+extern void log_message(uint32_t format, uint32_t name, ...);
 extern void debug_print(uint32_t format, uint32_t name, ...);
 extern void *get_device_info(void);
 extern int get_dmic_msgq_count(void);
 extern int dequeue_dmic(void *payload);
 extern void set_shutdown_flag(void *state, int enabled);
 extern void memset_bytes(void *destination, int value, unsigned int length);
-extern unsigned long long thunk_FUN_00074f68(void);
+extern unsigned long long uptime_ticks_get(void);
 
 int send_dmic_msg(uint8_t *transport)
 {
@@ -67,7 +67,7 @@ int send_dmic_msg(uint8_t *transport)
             set_shutdown_flag(get_device_info(), 1);
             if (*(volatile int *)0x2000230cUL > 0) {
                 if (*(volatile int *)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x0009b45eUL, 0x0009e0a4UL,
+                    log_message(0x0009b45eUL, 0x0009e0a4UL,
                                 *failure_count);
                 } else {
                     debug_print(0x0009b45eUL, 0x0009e0a4UL,
@@ -86,13 +86,13 @@ int send_dmic_msg(uint8_t *transport)
             int report_count;
 
             *(volatile int *)0x2000755cUL = 0;
-            timestamp = thunk_FUN_00074f68();
+            timestamp = uptime_ticks_get();
             report_count = *(volatile int *)0x20007560UL;
             *(volatile int *)0x20007560UL = report_count + 1;
             if (*(volatile int *)0x2000230cUL > 0) {
                 scaled_timestamp = (timestamp * 1000ULL + 0x7fffULL) >> 15;
                 if (*(volatile int *)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x0009b482UL, 0x0009e0a4UL,
+                    log_message(0x0009b482UL, 0x0009e0a4UL,
                                 (report_count + 1) * 100, *failure_count,
                                 (uint32_t)scaled_timestamp,
                                 (uint32_t)(scaled_timestamp >> 32));

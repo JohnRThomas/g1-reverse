@@ -21,7 +21,7 @@
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void k_sem_give(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
@@ -32,7 +32,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
 
     if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a420e) /*=0xa420e*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
+            log_message(((unsigned long)&rodata_a420e) /*=0xa420e*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
         } else {
             debug_print(((unsigned long)&rodata_a420e) /*=0xa420e*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
         }
@@ -48,7 +48,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a3f45) /*=0xa3f45*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
+                log_message(((unsigned long)&rodata_a3f45) /*=0xa3f45*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
             } else {
                 debug_print(((unsigned long)&rodata_a3f45) /*=0xa3f45*/, ((unsigned long)&rodata_a4944) /*=0xa4944*/);
             }

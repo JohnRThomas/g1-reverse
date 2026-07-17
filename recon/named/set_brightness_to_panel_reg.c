@@ -17,7 +17,7 @@
  */
 /* Reconstructed set_brightness_to_panel_reg @ 0x46e3c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern void projector_send_cmd1(int, int);
@@ -36,7 +36,7 @@ void set_brightness_to_panel_reg(unsigned int param_1)
 
     if (2 < *(volatile int*)0x2000230cUL) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000d7251UL, 0x000d7310UL, param_1);
+            log_message(0x000d7251UL, 0x000d7310UL, param_1);
         } else {
             debug_print(0x000d7251UL, 0x000d7310UL, param_1);
         }

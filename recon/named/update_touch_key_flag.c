@@ -19,7 +19,7 @@
  */
 /* Reconstructed FUN_0002c324 @ 0x2c324  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void log_message(unsigned a, unsigned b);
 extern int get_device_info(void);
 extern void debug_print(unsigned a, unsigned b);
 extern void trigger_screen_state_change(unsigned a, int b, int c);
@@ -34,7 +34,7 @@ void update_touch_key_flag(void){
     k_uptime_get_2();
     if (*(volatile int*)0x20007554 == 0){
         unsigned u = FUN_00034410();
-        DEBUG_PRINT(0x000a26f7, u);
+        log_message(0x000a26f7, u);
     } else {
         unsigned u = FUN_00034410();
         debug_print(0x000a26f7, u);

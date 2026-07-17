@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 typedef void (*panel_callback_t)(void *panel);
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern int get_ambient_light_sensor_ready_flag(void);
 extern void opt3007_chip_deinit(void);
@@ -31,7 +31,7 @@ uint32_t panel_off(uint8_t *context)
         *(uint32_t *)(context + 0x35c) = 0;
         if (*(volatile int *)0x2000230cUL > 2) {
             if (*(volatile int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000d721eu, 0x000d72d1u);
+                log_message(0x000d721eu, 0x000d72d1u);
             } else {
                 debug_print(0x000d721eu, 0x000d72d1u);
             }

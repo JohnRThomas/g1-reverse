@@ -12,7 +12,7 @@
 /* Reconstructed FUN_00019bd0 @ 0x19bd0  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(void *, int, int);
-extern void DEBUG_PRINT(unsigned int);
+extern void log_message(unsigned int);
 
 int debug_log_queue_init(void)
 {
@@ -20,9 +20,9 @@ int debug_log_queue_init(void)
 
   iVar1 = z_impl_k_msgq_alloc_init((void*)0x2000751cUL, 200, 0x14);
   if (iVar1 != 0) {
-    DEBUG_PRINT(0x0009b331UL);
+    log_message(0x0009b331UL);
     return iVar1;
   }
-  DEBUG_PRINT(0x0009b345UL);
+  log_message(0x0009b345UL);
   return iVar1;
 }

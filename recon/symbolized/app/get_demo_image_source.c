@@ -26,7 +26,7 @@
 /* Reconstructed FUN_00036820 @ 0x36820. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
@@ -54,13 +54,13 @@ void get_demo_image_source(unsigned int mode)
 {
     uint8_t *buffer = (uint8_t *)malloc(0x50u);
     if (buffer == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_a8d69) /*=0xa8d69*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0xd3u);
+        log_message(((unsigned long)&rodata_a8d69) /*=0xa8d69*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0xd3u);
         return;
     }
 
     memset_bytes(buffer, 0, 0x50u);
     if (mode > 4u) {
-        DEBUG_PRINT(((unsigned long)&rodata_a8dde) /*=0xa8dde*/, mode);
+        log_message(((unsigned long)&rodata_a8dde) /*=0xa8dde*/, mode);
         mode = 0;
     }
 
@@ -68,7 +68,7 @@ void get_demo_image_source(unsigned int mode)
     uintptr_t context = get_read_context();
     uint32_t address = mode * 0x3ebeu + 0x00180000u;
     if (read(context, address, buffer, 0x50u) != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_a8d7f) /*=0xa8d7f*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0xdfu);
+        log_message(((unsigned long)&rodata_a8d7f) /*=0xa8d7f*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0xdfu);
         heap_free(buffer);
         return;
     }
@@ -78,7 +78,7 @@ void get_demo_image_source(unsigned int mode)
         header[i] = buffer[i];
 
     if (FUN_00087036(header, ((unsigned long)&rodata_a8da5) /*=0xa8da5*/, 2u) != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_a8da8) /*=0xa8da8*/);
+        log_message(((unsigned long)&rodata_a8da8) /*=0xa8da8*/);
         heap_free(buffer);
         return;
     }
@@ -120,7 +120,7 @@ void get_demo_image_source(unsigned int mode)
         read = get_read_callback();
         context = get_read_context();
         if (read(context, address, buffer, (unsigned int)row_bytes) != 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a8d7f) /*=0xa8d7f*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0x103u);
+            log_message(((unsigned long)&rodata_a8d7f) /*=0xa8d7f*/, ((unsigned long)&rodata_a8e02) /*=0xa8e02*/, 0x103u);
             heap_free(buffer);
             return;
         }

@@ -13,7 +13,7 @@
 /* Reconstructed FUN_000182c8 @ 0x182c8  (parity: 300/300 trials, PROVEN) */
 
 extern int gatt_dm_start(unsigned int a, void *b, unsigned int c, unsigned int d, unsigned int e);
-extern void DEBUG_PRINT(unsigned int a, int b);
+extern void log_message(unsigned int a, int b);
 
 void ancs_discover_start(unsigned int param_1, unsigned short param_2, unsigned int param_3)
 {
@@ -23,6 +23,6 @@ void ancs_discover_start(unsigned int param_1, unsigned short param_2, unsigned 
     request = 0x18010000U | (param_2 & 0xff00U);
     iVar1 = gatt_dm_start(param_1, &request, ((unsigned long)&rodata_88a00) /*=0x88a00*/, ((unsigned long)&g_ancs_discover_params) /*=0x20006abc*/, param_1);
     if (iVar1 != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_9a401) /*=0x9a401*/, iVar1);
+        log_message(((unsigned long)&rodata_9a401) /*=0x9a401*/, iVar1);
     }
 }

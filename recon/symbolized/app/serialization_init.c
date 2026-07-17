@@ -22,7 +22,7 @@
  */
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern int ipc_service_open_instance(uint32_t);
 extern unsigned long long FUN_0004cbec(uint32_t, uint32_t, uint32_t);
@@ -37,7 +37,7 @@ unsigned int serialization_init(void)
 
     if (2 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9f5ec) /*=0x9f5ec*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+            log_message(((unsigned long)&rodata_9f5ec) /*=0x9f5ec*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
         } else {
             debug_print(((unsigned long)&rodata_9f5ec) /*=0x9f5ec*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
         }
@@ -52,7 +52,7 @@ unsigned int serialization_init(void)
     } else {
         if (2 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9f63c) /*=0x9f63c*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                log_message(((unsigned long)&rodata_9f63c) /*=0x9f63c*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
             } else {
                 debug_print(((unsigned long)&rodata_9f63c) /*=0x9f63c*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
             }
@@ -63,7 +63,7 @@ unsigned int serialization_init(void)
             *(volatile int*)((unsigned long)&g_serialization_ipc_ready) /*=0x20007a80*/ = 1;
             if (1 < *piVar1) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_9f67e) /*=0x9f67e*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+                    log_message(((unsigned long)&rodata_9f67e) /*=0x9f67e*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
                 } else {
                     debug_print(((unsigned long)&rodata_9f67e) /*=0x9f67e*/, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
                 }
@@ -77,7 +77,7 @@ unsigned int serialization_init(void)
         format_string = 0x0009f64fUL;
     }
     if (iVar2 == 0) {
-        DEBUG_PRINT(format_string, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
+        log_message(format_string, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
     } else {
         debug_print(format_string, ((unsigned long)&rodata_9f6f1) /*=0x9f6f1*/);
     }

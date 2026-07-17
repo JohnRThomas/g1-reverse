@@ -18,7 +18,7 @@
  *   g_msg_queue_busy                         @ 0x20018d8e
  */
 /* Reconstructed FUN_00033d58 @ 0x33d58  (parity: 300/300 trials, PROVEN) */
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int get_device_info(int,...);
 extern int debug_print(int,...);
 extern int msg_content_recalc_unread(int,...);
@@ -121,7 +121,7 @@ LAB_00033e98:
     memset_bytes(iVar5, 0, 0x1b4);
     if (0 < *(volatile int *)0x2000230cUL) {
         if (*(volatile int *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000a7d87, 0x000a8265, iVar7, iVar9);
+            log_message(0x000a7d87, 0x000a8265, iVar7, iVar9);
         } else {
             debug_print(0x000a7d87, 0x000a8265, iVar7, iVar9);
         }

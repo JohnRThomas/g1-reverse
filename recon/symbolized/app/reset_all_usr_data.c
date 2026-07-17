@@ -37,7 +37,7 @@ extern void reset_all_static_info(void);
 extern void FUN_0005420c(uint32_t, uint32_t);
 extern void enable_ship_mode(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, uint32_t);
 
 #define LOG_LEVEL (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
@@ -74,12 +74,12 @@ void reset_all_usr_data(uint8_t *user_data, int reset_radio)
     app_msleep_thunk_b(1000);
     if (LOG_LEVEL > 0) {
         if (LOG_BACKEND == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9e6d7) /*=0x9e6d7*/);
+            log_message(((unsigned long)&rodata_9e6d7) /*=0x9e6d7*/);
         else
             debug_print(((unsigned long)&rodata_9e6d7) /*=0x9e6d7*/, ((unsigned long)&rodata_9e764) /*=0x9e764*/);
     }
     for (;;) {
         app_msleep_thunk_b(500);
-        DEBUG_PRINT(sys_reboot(1));
+        log_message(sys_reboot(1));
     }
 }

@@ -23,7 +23,7 @@
 /* Reconstructed FUN_0002c714 @ 0x2c714  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef unsigned char undefined1; typedef uint32_t undefined4; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(int,...);
 extern int update_temp_task_status(int,...);
@@ -34,7 +34,7 @@ extern int FUN_00034410(void);
 extern int FUN_0003443c(int,...);
 extern int is_msg_expiration(void);
 extern int sync_to_slave(void*,...);
-extern int thunk_FUN_00074844(int,...);
+extern int wait_for_event(int,...);
 
 static inline __attribute__((always_inline)) uint32_t load_u32_le(const void *address)
 {
@@ -56,7 +56,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
     iVar4 = FUN_00033c04(*(byte *)(iVar4 + 0xdd) - 1);
     if (iVar4 == 4) break;
     sVar8 = sVar8 + -1;
-    thunk_FUN_00074844(0x21,0);
+    wait_for_event(0x21,0);
   } while (sVar8 != 0);
   uVar9 = 0;
   *(undefined1 *)(param_2 + 8) = 0;
@@ -74,7 +74,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
          (iVar4 = get_device_info(), *(char *)(iVar4 + 0xfea) == '\f')) {
         if (2 < *(volatile int*)0x2000230c) {
           if (*(volatile int*)0x20007554 == 0) {
-            DEBUG_PRINT(0xa294a,0xa39d6,(uint)*(byte *)(param_2 + 1));
+            log_message(0xa294a,0xa39d6,(uint)*(byte *)(param_2 + 1));
           } else { debug_print(0xa294a,0xa39d6,(uint)*(byte *)(param_2 + 1)); }
         }
         update_persist_task_status_to_idle(param_1);
@@ -85,7 +85,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
       if (*(char *)(param_2 + 1) != '\x04') {
         if (2 < *(volatile int*)0x2000230c) {
           if (*(volatile int*)0x20007554 == 0) {
-            DEBUG_PRINT(0xa2977,0xa39d6,(uint)*(byte *)(param_2 + 1));
+            log_message(0xa2977,0xa39d6,(uint)*(byte *)(param_2 + 1));
           } else { debug_print(0xa2977,0xa39d6,(uint)*(byte *)(param_2 + 1)); }
         }
         if (*(char *)(param_2 + 1) != '\0') { return 0xb; }
@@ -94,7 +94,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
       uVar9 = uVar9 + 1;
       if (((uVar9 & 0xf) == 0) && (2 < *piVar2)) {
         if (*(volatile int*)0x20007554 == 0) {
-          DEBUG_PRINT(0xa29be,0xa39d6,uVar9,
+          log_message(0xa29be,0xa39d6,uVar9,
                       load_u32_le((const void *)(uintptr_t)load_u32_le(param_1 + 0xff0)),
                       (uint)*param_3,(uint)*(byte *)(param_2 + 9),(uint)*(byte *)(param_2 + 0xf),
                       load_u32_le((const void *)(uintptr_t)(param_2 + 0xb)),
@@ -115,7 +115,7 @@ undefined4 process_for_message_show(char *param_1,int param_2,byte *param_3,unde
         if (bVar1 < 0x14) { *(byte *)(param_2 + 7) = bVar7; }
       }
 LAB_0002c894:
-      thunk_FUN_00074844(0x667,0);
+      wait_for_event(0x667,0);
     }
     if ((*(char *)(param_2 + 1) == '\x06') ||
        ((*(char *)(param_2 + 1) != '\x06' && (*param_3 == 2)))) {
@@ -132,7 +132,7 @@ LAB_0002c894:
       update_temp_task_status(uVar6,6,2);
       if (2 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) {
-          DEBUG_PRINT(0xa28ee,0xa39d6,(uint)*(byte *)(param_2 + 1));
+          log_message(0xa28ee,0xa39d6,(uint)*(byte *)(param_2 + 1));
         } else { debug_print(0xa28ee,0xa39d6,(uint)*(byte *)(param_2 + 1)); }
       }
       return 0xb;
@@ -141,12 +141,12 @@ LAB_0002c894:
     if (*param_1 == '\x01') { update_persist_task_status_to_idle(param_1); }
     else if (*(char *)(param_2 + 1) == '\x04') goto LAB_0002c894;
     FUN_0003443c(5);
-    if (*param_1 == '\x01') { thunk_FUN_00074844(0x4000,0); }
+    if (*param_1 == '\x01') { wait_for_event(0x4000,0); }
     iVar4 = FUN_00034410();
   } while (iVar4 == 4);
   if (2 < *(volatile int*)0x2000230c) {
     if (*(volatile int*)0x20007554 == 0) {
-      DEBUG_PRINT(0xa291d,0xa39d6,(uint)*(byte *)(param_2 + 1));
+      log_message(0xa291d,0xa39d6,(uint)*(byte *)(param_2 + 1));
     } else { debug_print(0xa291d,0xa39d6,(uint)*(byte *)(param_2 + 1)); }
   }
 LAB_0002c884:

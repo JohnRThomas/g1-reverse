@@ -16,7 +16,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int);
+extern void log_message(unsigned int, unsigned int);
 
 int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
 {
@@ -30,7 +30,7 @@ int sendAudioStreamFileToApp(unsigned char param_1, unsigned char param_2)
 
   int iVar1 = k_msgq_put(0x2000392c, message, 0, 0);
   if (iVar1 != 0) {
-    DEBUG_PRINT(0xef058, 0xef71d);
+    log_message(0xef058, 0xef71d);
     iVar1 = -1;
   }
   return iVar1;

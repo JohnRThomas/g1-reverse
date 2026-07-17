@@ -21,12 +21,12 @@ extern int sync_message_signal_to_slave(int);
 extern int msg_count_dec(void);
 extern int get_device_info(void);
 extern int FUN_0003443c(int);
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 void wait_touch_key_release_or_timeout(void){
   volatile int *piVar1 = (volatile int*)0x20007554UL;
   while(FUN_00034410()==5 && is_msg_expiration()==2){
     if(*piVar1==0){
-      DEBUG_PRINT(0x000a26cbUL);
+      log_message(0x000a26cbUL);
     } else {
       debug_print();
     }

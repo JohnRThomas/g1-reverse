@@ -19,7 +19,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
@@ -41,13 +41,13 @@ unsigned int SendDashBoardStartupModeInfoToSlave(int param_1)
                 uVar2 = ((unsigned long)&rodata_ef5df) /*=0xef5df*/;
             }
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_ef603) /*=0xef603*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
+                log_message(((unsigned long)&rodata_ef603) /*=0xef603*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
             } else {
                 debug_print(((unsigned long)&rodata_ef603) /*=0xef603*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/, uVar2, ((unsigned long)&rodata_ef5df) /*=0xef5df*/);
             }
         }
     } else {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6b0) /*=0xef6b0*/);
         uVar3 = 0xffffffff;
     }
     return uVar3;

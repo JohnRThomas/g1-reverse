@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00016110 @ 0x16110  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 extern int dev_ctrl_read1(int,int,int,int);
 extern int dev_write_reg3(int, ...);
 
@@ -40,20 +40,20 @@ int FUN_00016110(int param_1, unsigned int param_2, int param_3)
     dev_write_reg3(*(int *)(iVar1 + 0x1c), 3, 0x16, 0x2e);
     dev_write_reg3(*(int *)(iVar1 + 0x1c), 3, 0x17, 2);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x10, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x0009951c, uStack_14 >> 0x18);
+    log_message(0x0009951c, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x11, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099528, uStack_14 >> 0x18);
+    log_message(0x00099528, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x12, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099534, uStack_14 >> 0x18);
+    log_message(0x00099534, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x13, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099540, uStack_14 >> 0x18);
+    log_message(0x00099540, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x14, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x0009954c, uStack_14 >> 0x18);
+    log_message(0x0009954c, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x15, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099558, uStack_14 >> 0x18);
+    log_message(0x00099558, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x16, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099564, uStack_14 >> 0x18);
+    log_message(0x00099564, uStack_14 >> 0x18);
     dev_ctrl_read1(*(int *)(iVar1 + 0x1c), 3, 0x17, (int)&uStack_14 + 3);
-    DEBUG_PRINT(0x00099570, uStack_14 >> 0x18);
+    log_message(0x00099570, uStack_14 >> 0x18);
     return 0;
 }

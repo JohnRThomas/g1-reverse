@@ -15,7 +15,7 @@
 /* Full reconstruction FUN_00026338 @ 0x26338, exact extent 190 bytes.
  * CFG_VERIFY_CALL_ARITIES=1 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t,...);
+extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
 extern void FUN_00067248(void*);
 unsigned FUN_00026338(uintptr_t event){
@@ -27,14 +27,14 @@ unsigned FUN_00026338(uintptr_t event){
  uint32_t mode=*(volatile uint8_t*)(event+0x18);int level=*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/;
  const struct mapping *m;
  if(mode==3)m=&mode3;else if(mode==4)m=&mode4;else{
-  if(level>0){int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alternate)debug_print(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode,(uint32_t)alternate);else DEBUG_PRINT(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/);}return 0;
+  if(level>0){int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;if(alternate)debug_print(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode,(uint32_t)alternate);else log_message(((unsigned long)&rodata_9fb89) /*=0x9fb89*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/);}return 0;
  }
  *(volatile uint32_t*)(event+0xc)=m->base;*(volatile uint32_t*)(event+0x10)=m->tag;
  if(level>2){
   if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)&rodata_9fb9f) /*=0x9fb9f*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
-  else DEBUG_PRINT(((unsigned long)&rodata_9fb9f) /*=0x9fb9f*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
+  else log_message(((unsigned long)&rodata_9fb9f) /*=0x9fb9f*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
  }
  FUN_00067248((void*)(event+0xc));
- if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>2){if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)&rodata_9fbda) /*=0x9fbda*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode);else DEBUG_PRINT(((unsigned long)&rodata_9fbda) /*=0x9fbda*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode);}
+ if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>2){if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)debug_print(((unsigned long)&rodata_9fbda) /*=0x9fbda*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode);else log_message(((unsigned long)&rodata_9fbda) /*=0x9fbda*/,((unsigned long)&rodata_9fc79) /*=0x9fc79*/,mode);}
  *(volatile uint32_t*)(event+0x14)=0;return 0;
 }

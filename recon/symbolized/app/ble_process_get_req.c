@@ -25,7 +25,7 @@
 /* Reconstructed ble_process_get_req @ 0x1a064 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern int  get_device_type(void);
 extern int  get_device_info(void);
 extern void audio_fw_load_get_wrapper(void *, void *, uint32_t);
@@ -55,7 +55,7 @@ static __attribute__((always_inline)) inline void copy_bytes(volatile uint8_t *d
 
 #define LOG_AT(level) do {                         \
     if (LOG_LEVEL > (level)) {                     \
-        if (LOG_MODE == 0) DEBUG_PRINT(0);         \
+        if (LOG_MODE == 0) log_message(0);         \
         else debug_print(0);                      \
     }                                              \
 } while (0)
@@ -200,7 +200,7 @@ void ble_process_get_req(uint8_t *context, const uint8_t *packet,
         if (request_id != packet_id) {
             if (LOG_LEVEL < 2)
                 return;
-            if (LOG_MODE == 0) DEBUG_PRINT(0); else debug_print(0);
+            if (LOG_MODE == 0) log_message(0); else debug_print(0);
             return;
         }
         uint8_t load_status = request_data[5];

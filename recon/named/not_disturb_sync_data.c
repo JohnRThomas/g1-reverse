@@ -17,7 +17,7 @@
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 
-extern void DEBUG_PRINT(uint32_t a, uint32_t b);
+extern void log_message(uint32_t a, uint32_t b);
 extern uint32_t get_device_info(void);
 extern void debug_print(uint32_t a, uint32_t b);
 extern uint32_t esb_send_command_and_wait_ack(uint32_t a, uint32_t b, void* c, uint32_t d, void* e);
@@ -78,7 +78,7 @@ uint32_t not_disturb_sync_data(uint8_t *param_1, uint32_t param_2, uint32_t para
         uVar2 = 0xa98deUL;
     }
     if (iVar3 == 0) {
-        DEBUG_PRINT(uVar2, 0xa9935UL);
+        log_message(uVar2, 0xa9935UL);
     } else {
         debug_print(uVar2, 0xa9935UL);
     }

@@ -17,7 +17,6 @@ extern void printk(unsigned int,...);
 extern void assert_post_action(unsigned int,...);
 extern int FUN_00080ed8(unsigned int);
 extern void ble_conn_set_state(void*,unsigned int);
-extern int default_tail(void);
 int FUN_00056a68(unsigned short* param_1, unsigned char param_2){
   int iVar1; unsigned int uVar2;
   switch(*(unsigned char*)((int)param_1+0xd)){
@@ -40,7 +39,7 @@ int FUN_00056a68(unsigned short* param_1, unsigned char param_2){
   case 8:
     return 0;
   default:
-    return default_tail();
+    return -128;
   }
   ble_conn_set_state(param_1,uVar2);
   return 0;

@@ -19,7 +19,7 @@
 extern void debug_print(int, int);
 extern int k_msgq_put(void*, void*, int, int);
 extern void k_sem_give(void*);
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {
@@ -34,7 +34,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   if (iVar1 == 0) {
     if (*(int*)0x2000230cUL > 2) {
       if (*(int*)0x20007554UL == 0) {
-        DEBUG_PRINT(0x9e968, 0x9ed8f);
+        log_message(0x9e968, 0x9ed8f);
       } else {
         debug_print(0x9e968, 0x9ed8f);
       }
@@ -44,7 +44,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   } else {
     if (*(int*)0x2000230cUL > 0) {
       if (*(int*)0x20007554UL == 0) {
-        DEBUG_PRINT(0x9e903, 0x9ed8f);
+        log_message(0x9e903, 0x9ed8f);
       } else {
         debug_print(0x9e903, 0x9ed8f);
       }

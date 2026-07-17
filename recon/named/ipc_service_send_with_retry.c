@@ -9,13 +9,13 @@
  */
 /* Reconstructed FUN_0002563c @ 0x2563c  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int);
+extern void log_message(int);
 extern int FUN_0007ca18(int,int);
 int ipc_service_send_with_retry(int param_1)
 {
     volatile int *piVar1 = (volatile int*)0x20007a44UL;
     if (param_1 == 0 || *piVar1 == 0) {
-        DEBUG_PRINT(0x0009f1af);
+        log_message(0x0009f1af);
         return -1;
     }
     int iVar3 = 10;

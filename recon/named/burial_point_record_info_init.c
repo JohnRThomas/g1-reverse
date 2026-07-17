@@ -14,7 +14,7 @@
 /* Reconstructed burial_point_record_info_init @ 0x4ab3c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern uint8_t *get_device_info(void);
 extern void *memset_bytes(void *, int, uint32_t);
@@ -23,7 +23,7 @@ void burial_point_record_info_init(void)
 {
   if (*(volatile int32_t *)0x2000230c > 2) {
     if (*(volatile uint32_t *)0x20007554 == 0) {
-      DEBUG_PRINT(0x000f0416, 0x000f043b);
+      log_message(0x000f0416, 0x000f043b);
     } else {
       debug_print(0x000f0416, 0x000f043b);
     }

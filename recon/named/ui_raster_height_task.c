@@ -19,7 +19,7 @@
  */
 /* Reconstructed ui_raster_height_task @ 0x430c0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern void ui_DashBoard_task(uint32_t, uint32_t, int);
@@ -40,7 +40,7 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
     if (param_3 == 2) {
         if (2 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000aa7f2UL, 0x000aa83fUL);
+                log_message(0x000aa7f2UL, 0x000aa83fUL);
             } else {
                 debug_print(0x000aa7f2UL, 0x000aa83fUL);
             }
@@ -54,7 +54,7 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
         if ((local_20 != *piVar2) || (local_1c != *piVar1)) {
             if (2 < *(volatile int*)0x2000230cUL) {
                 if (*(volatile int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x000aa817UL, 0x000aa83fUL);
+                    log_message(0x000aa817UL, 0x000aa83fUL);
                 } else {
                     debug_print(0x000aa817UL, 0x000aa83fUL);
                 }

@@ -19,7 +19,7 @@
 #include <stdint.h>
 
 extern uint8_t *get_device_info(void);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
+extern void log_message(uint32_t format, uint32_t argument);
 extern void debug_print(uint32_t format, uint32_t argument, ...);
 extern void drain_audio_msgq(void);
 extern void startAudioStreamRecord(void);
@@ -32,7 +32,7 @@ void dmic_record_start(void)
 
     if (*(volatile int32_t *)0x2000230cUL > 2) {
         if (*(volatile uint32_t *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009d30bUL, 0x000a9843UL);
+            log_message(0x0009d30bUL, 0x000a9843UL);
         } else {
             debug_print(0x0009d30bUL, 0x000a9843UL);
         }

@@ -10,11 +10,11 @@
 /* Reconstructed FUN_0002a0c0 @ 0x2a0c0  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void thunk_FUN_00072880(unsigned int);
+extern void process_sync_buffer(unsigned int);
 void trigger_touch_key_hw_reset(void)
 {
   if (*(volatile uint8_t*)0x20018d8aUL != 0) {
-    thunk_FUN_00072880(0x20007b1cUL);
+    process_sync_buffer(0x20007b1cUL);
     return;
   }
   return;

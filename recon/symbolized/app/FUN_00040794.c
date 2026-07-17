@@ -52,7 +52,7 @@ extern void reflash_fb_data_to_lcd(int,int,int,int,int,int);
 extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern int get_localized_weekday_name(int);
-extern void send_event_status(int);
+extern void send_event(int);
 
 #define B(a) (*(volatile byte*)(a))
 
@@ -179,7 +179,7 @@ void FUN_00040794(void)
         B(((unsigned long)&g_2001cdd0) /*=0x2001cdd0*/) = 0;
         iVar4 = get_device_info();
         if ((*(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) & 3) != 1) goto switchD_000408e4_caseD_a;
-        send_event_status(0x14);
+        send_event(0x14);
         iVar4 = get_device_info();
         *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) = *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) | 2;
         iVar4 = get_device_info();
@@ -205,7 +205,7 @@ LAB_00040c1c:
     if ((*(char *)(*(int *)(iVar5 + 0x1014) + 2) == '\x15') &&
        (iVar5 = get_device_info(), -1 < (int)((uint)*(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) << 0x1f)
        )) {
-      send_event_status(0x13);
+      send_event(0x13);
       iVar5 = get_device_info();
       *(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) = *(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) | 1;
     }
@@ -370,7 +370,7 @@ LAB_00040c64:
         gui_bmp_bitmap_draw(0x38,uVar6,iVar4 + 0x37,0,0,0);
         iVar4 = get_device_info();
         if ((*(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) & 0xc) != 4) goto switchD_000408e4_caseD_a;
-        send_event_status(0x16);
+        send_event(0x16);
         iVar4 = get_device_info();
         *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) = *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) | 8;
         iVar4 = get_device_info();
@@ -396,7 +396,7 @@ LAB_00040c64:
     if (*(char *)(*(int *)(iVar5 + 0x1014) + 2) == '\x06') {
       iVar5 = get_device_info();
       if (-1 < (int)((uint)*(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) << 0x1d)) {
-        send_event_status(0x15);
+        send_event(0x15);
         iVar5 = get_device_info();
         *(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) = *(byte *)(*(int *)(iVar5 + 0x1014) + 0x1f) | 4;
       }

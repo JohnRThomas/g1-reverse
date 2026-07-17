@@ -19,7 +19,7 @@
  */
 /* Reconstructed FUN_00047260 @ 0x47260  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int debug_print(int, int);
 extern int k_mutex_lock(int,...);
 extern int k_mutex_unlock(int,...);
@@ -43,7 +43,7 @@ unsigned reflash_fb_data_to_lcd(int param_1,int param_2,int param_3,int param_4,
     if(*(int*)(iVar2+0x35c) == 0){
         if(0 < *(volatile int*)0x2000230c){
             if(*(volatile int*)0x20007554 == 0){
-                DEBUG_PRINT(0x000aa891, 0x000d7441);
+                log_message(0x000aa891, 0x000d7441);
             } else { debug_print(0x000aa891, 0x000d7441); }
         }
         uVar3 = 0xffffffff;
@@ -73,7 +73,7 @@ unsigned reflash_fb_data_to_lcd(int param_1,int param_2,int param_3,int param_4,
             k_mutex_unlock(0x2000a060);
             if(iVar4 != 0 && 0 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
-                    DEBUG_PRINT(0x000d7383, 0x000d7441);
+                    log_message(0x000d7383, 0x000d7441);
                 } else { debug_print(0x000d7383, 0x000d7441); }
             }
             *(unsigned char*)(iVar8+iVar7) = uVar1;

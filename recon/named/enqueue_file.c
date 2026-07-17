@@ -18,7 +18,7 @@
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void FUN_00086c1e(void*, unsigned int, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 int enqueue_file(unsigned int param_1, unsigned int param_2)
@@ -30,7 +30,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
         k_msgq_get(0x200079a0UL, buf, 0, 0);
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9e824, 0x9e8f6);
+                log_message(0x9e824, 0x9e8f6);
             } else {
                 debug_print(0x9e824, 0x9e8f6);
             }
@@ -41,7 +41,7 @@ int enqueue_file(unsigned int param_1, unsigned int param_2)
     iVar1 = k_msgq_put(0x200079a0UL, buf, 0, 0);
     if ((iVar1 != 0) && (0 < *(volatile int*)0x2000230cUL)) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x9e840, 0x9e8f6);
+            log_message(0x9e840, 0x9e8f6);
         } else {
             debug_print(0x9e840, 0x9e8f6);
         }

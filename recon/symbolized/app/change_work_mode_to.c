@@ -20,7 +20,7 @@
 /* Reconstructed change_work_mode_to @ 0x1694c  (parity: 296/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int enable_ship_mode(int,...);
 extern int global_system_resume(int,...);
 extern int debug_print(int,...);
@@ -57,7 +57,7 @@ void change_work_mode_to(uint mode)
   if ((uint)*(volatile byte *)(state + 1) != mode) {
     *(volatile byte *)(state + 1) = (byte)mode;
     if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
-      if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) DEBUG_PRINT(((unsigned long)&rodata_9976b) /*=0x9976b*/,((unsigned long)&rodata_99bb7) /*=0x99bb7*/,mode & 0xff);
+      if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) log_message(((unsigned long)&rodata_9976b) /*=0x9976b*/,((unsigned long)&rodata_99bb7) /*=0x99bb7*/,mode & 0xff);
       else debug_print(0);
     }
     unsigned selected = *(volatile byte *)(*state_slot + 1);

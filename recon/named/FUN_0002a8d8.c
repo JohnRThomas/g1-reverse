@@ -47,7 +47,7 @@
 
 extern void change_work_mode_to(uint32_t);
 extern void update_persist_task_status_to_idle(uint8_t *);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern int FUN_00019b2c(void);
@@ -66,7 +66,7 @@ extern void FUN_0007d1d6(uint8_t *, uint32_t);
 extern uint64_t k_uptime_get_1(void);
 extern void k_msleep(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
-extern void thunk_FUN_00074844(uint32_t, uint32_t);
+extern void wait_for_event(uint32_t, uint32_t);
 extern int FUN_00016580(void);
 extern void check_device_readiness(void);
 extern void FUN_0001658c(uint32_t);
@@ -97,7 +97,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
     update_persist_task_status_to_idle(ctx);
     if (*log_level > 1) {
         if (*(volatile int *)0x20007554u == 0)
-            DEBUG_PRINT(0x0009fc8bu, 0x000a19c0u);
+            log_message(0x0009fc8bu, 0x000a19c0u);
         else
             debug_print(0x0009fc8bu, 0x000a19c0u);
     }
@@ -117,7 +117,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 int error = bt_conn_set_security(connection, 2);
                 if (error != 0 && *log_level > 2) {
                     if (*(volatile int *)0x20007554u == 0)
-                        DEBUG_PRINT(0x000a1914u, 0x000a19c0u, error);
+                        log_message(0x000a1914u, 0x000a19c0u, error);
                     else
                         debug_print(0x000a1914u, 0x000a19c0u, error);
                 }
@@ -180,15 +180,15 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                         if (*(volatile int *)0x20007554u)
                             debug_print(0x000a193cu, 0x000a19c0u);
                         else
-                            DEBUG_PRINT(0x000a193cu, 0x000a19c0u);
+                            log_message(0x000a193cu, 0x000a19c0u);
                     }
                     for (;;) {
                         k_msleep(500);
                         uint32_t printed = sys_reboot(1);
-                        DEBUG_PRINT(printed);
+                        log_message(printed);
                     }
                 }
-                thunk_FUN_00074844(0x28000, 0);
+                wait_for_event(0x28000, 0);
             }
             if (*(volatile uint8_t *)0x2000302cu == 0)
                 disable_watchdog();
@@ -204,7 +204,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 uint32_t mode = rd8(ctx, 0xfea);
                 uint32_t value = check_charging_and_touch_flags();
                 if (*(volatile int *)0x20007554u == 0)
-                    DEBUG_PRINT(0x000a1962u, 0x000a19c0u, mode, value, side);
+                    log_message(0x000a1962u, 0x000a19c0u, mode, value, side);
                 else
                     debug_print(0x000a1962u, 0x000a19c0u, mode, value, side);
             }
@@ -227,6 +227,6 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
         FUN_0007cbae();
         if (*(volatile uint8_t *)0x20018d90u == 0)
             watchdog_feed_retry();
-        thunk_FUN_00074844(0x199a, 0);
+        wait_for_event(0x199a, 0);
     }
 }

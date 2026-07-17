@@ -42,7 +42,7 @@ extern int FUN_0007c108(void);
 extern int bt_start(void);
 extern void memcpy(void*,const void*,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
-extern void DEBUG_PRINT(uintptr_t,...);
+extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
 
 static __attribute__((always_inline)) inline void
@@ -51,7 +51,7 @@ ble_log(uintptr_t format, uint32_t value, int threshold)
     if (*(volatile int*)0x2000230cu > threshold) {
         int alternate=*(volatile int*)0x20007554u;
         if (alternate) debug_print(format,0x0009df99u,value,(uint32_t)alternate);
-        else DEBUG_PRINT(format,0x0009df99u,value,(uint32_t)alternate);
+        else log_message(format,0x0009df99u,value,(uint32_t)alternate);
     }
 }
 
@@ -138,7 +138,7 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
             if(state==0) {
                 ble_log(0x0009df28u,0,2);
                 int error=bt_start();
-                if(error) DEBUG_PRINT(0x0009df51u,(uint32_t)error,0,
+                if(error) log_message(0x0009df51u,(uint32_t)error,0,
                                       *(volatile uint32_t*)0x20007554u);
             } else {
                 ble_log(0x0009df00u,(uint32_t)state,1);

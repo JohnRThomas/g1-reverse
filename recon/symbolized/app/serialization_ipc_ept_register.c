@@ -19,7 +19,7 @@
 /* Reconstructed FUN_000259d4 @ 0x259d4 */
 #include <stdint.h>
 
-extern uint64_t DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint64_t log_message(uint32_t, uint32_t, uint32_t, uint32_t);
 extern uint64_t z_device_is_ready(uint32_t);
 extern void kmutex_dlist_init(uint32_t);
 
@@ -38,16 +38,16 @@ int serialization_ipc_ept_register(void)
     kmutex_dlist_init(((unsigned long)&g_eeprom_comm_mutex) /*=0x20007a60*/);
     uint64_t status = z_device_is_ready(*(volatile uint32_t *)config);
     uint32_t format = (int32_t)status == 0 ? ((unsigned long)&rodata_9f3fa) /*=0x9f3fa*/ : ((unsigned long)&rodata_9f418) /*=0x9f418*/;
-    DEBUG_PRINT(format, (uint32_t)(status >> 32), 0x1000u, ((unsigned long)&g_st25dv_i2c_cfg) /*=0x20007a48*/);
+    log_message(format, (uint32_t)(status >> 32), 0x1000u, ((unsigned long)&g_st25dv_i2c_cfg) /*=0x20007a48*/);
 
     status = z_device_is_ready(*(volatile uint32_t *)config);
     if ((int32_t)status == 0) {
         uint32_t base = *(volatile uint32_t *)config;
-        DEBUG_PRINT(((unsigned long)&rodata_9f433) /*=0x9f433*/, *(volatile uint32_t *)(uintptr_t)base,
+        log_message(((unsigned long)&rodata_9f433) /*=0x9f433*/, *(volatile uint32_t *)(uintptr_t)base,
                     0x1000u, ((unsigned long)&g_st25dv_i2c_cfg) /*=0x20007a48*/);
         return 0;
     }
-    DEBUG_PRINT(((unsigned long)&rodata_9f487) /*=0x9f487*/, (uint32_t)(status >> 32),
+    log_message(((unsigned long)&rodata_9f487) /*=0x9f487*/, (uint32_t)(status >> 32),
                 0x1000u, ((unsigned long)&g_st25dv_i2c_cfg) /*=0x20007a48*/);
     return ((unsigned long)&g_st25dv_i2c_cfg) /*=0x20007a48*/;
 }

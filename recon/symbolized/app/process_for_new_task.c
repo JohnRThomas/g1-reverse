@@ -174,12 +174,12 @@ extern int submit_task_work(int work_item_address);       /* FUN_00072880 */
 extern int peer_address_is_uninitialized(u32, u32);       /* FUN_0007c132 */
 extern int set_task_wake_state(int);                      /* FUN_0007ce60 */
 extern int memset_bytes(void *, int, u32);                /* FUN_00086c78 */
-extern int send_event_status(int);
+extern int send_event(int);
 extern int sync_to_slave(char *, int, int);               /* FUN_00026f74 */
 extern int FUN_0007ce5c(u32, u32);                        /* exact wait entry */
 extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 
-#define DEBUG_PRINT log_message
+#define log_message log_message
 #define get_device_info get_device_info
 #define debug_print debug_print
 #define FUN_00023eec get_task_signal_mode
@@ -212,7 +212,7 @@ extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 #define FUN_0007c132 peer_address_is_uninitialized
 #define reset_esb_sync_state set_task_wake_state
 #define memset_bytes memset_bytes
-#define thunk_FUN_00074844 FUN_0007ce5c
+#define wait_for_event FUN_0007ce5c
 #define task_wait_ticks FUN_0007ce5c /* FUN_0007ce5c @ 0x0007ce5c */
 
 /* dereferenced RAM globals (exact literal addresses from the literal pool) */
@@ -874,7 +874,7 @@ LAB_0002dc06:
         (((**(char **)(param_1 + 0x100c) == '\b' || (**(char **)(param_1 + 0x100c) == '\v')) &&
           (param_1[0xdb] == '\0')))) {
         if (*param_1 == '\x01') {
-            send_event_status(0);
+            send_event(0);
         }
         if (*param_2 == 2) {
             sync_to_slave(param_1, 8, 0);

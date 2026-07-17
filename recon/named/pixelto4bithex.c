@@ -15,7 +15,7 @@
 /* Reconstructed FUN_0003678c @ 0x3678c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int malloc(int,...);
 extern int memset_bytes(int,...);
 void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){
@@ -23,7 +23,7 @@ void pixelto4bithex(int param_1,int param_2,unsigned param_3,unsigned param_4){
   if(*piVar1==0){
     int iVar4 = malloc(0x140);
     *piVar1 = iVar4;
-    if(iVar4==0){ DEBUG_PRINT(0xa8d69,0xa8e18,0xa7,param_4); return; }
+    if(iVar4==0){ log_message(0xa8d69,0xa8e18,0xa7,param_4); return; }
     memset_bytes(iVar4,0,0x140);
   }
   volatile int *piVar3 = (volatile int*)0x20009fc8UL;

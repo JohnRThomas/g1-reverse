@@ -16,7 +16,7 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int);
 
 void check_bind_status(int param_1, int param_2, int param_3)
@@ -37,7 +37,7 @@ void check_bind_status(int param_1, int param_2, int param_3)
         base[0x71] = 0;
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ <= 0) return;
         if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9fd02) /*=0x9fd02*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+            log_message(((unsigned long)&rodata_9fd02) /*=0x9fd02*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
         } else {
             debug_print(((unsigned long)&rodata_9fd02) /*=0x9fd02*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
         }
@@ -49,7 +49,7 @@ void check_bind_status(int param_1, int param_2, int param_3)
                 base[0x71] = 1;
                 if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                     if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        DEBUG_PRINT(((unsigned long)&rodata_9fce4) /*=0x9fce4*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
+                        log_message(((unsigned long)&rodata_9fce4) /*=0x9fce4*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
                     } else {
                         debug_print(((unsigned long)&rodata_9fce4) /*=0x9fce4*/, ((unsigned long)&rodata_a1ad8) /*=0xa1ad8*/);
                     }

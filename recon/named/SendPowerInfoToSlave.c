@@ -18,7 +18,7 @@
  */
 /* Reconstructed SendPowerInfoToSlave @ 0x488bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int k_msgq_put(uint32_t, void*, int, int);
@@ -50,7 +50,7 @@ unsigned int SendPowerInfoToSlave(int param_1)
                 if (param_1 == 1) {
                     uVar6 = 0x000ef4faUL;
                 }
-                DEBUG_PRINT(0x000ef519UL, 0x000ef6f2UL, uVar6);
+                log_message(0x000ef519UL, 0x000ef6f2UL, uVar6);
             } else {
                 uVar6 = 0x000ef506UL;
                 if (param_1 == 1) {
@@ -63,7 +63,7 @@ unsigned int SendPowerInfoToSlave(int param_1)
                     iVar5 = (int)get_device_info();
                     bVar2 = *(unsigned char*)(iVar5 + 0xfc0);
                     iVar5 = (int)get_device_info();
-                    DEBUG_PRINT(0x000ef553UL, 0x000ef6f2UL, (unsigned int)bVar2, (unsigned int)*(unsigned char*)(iVar5 + 0xfc1));
+                    log_message(0x000ef553UL, 0x000ef6f2UL, (unsigned int)bVar2, (unsigned int)*(unsigned char*)(iVar5 + 0xfc1));
                 } else {
                     iVar5 = (int)get_device_info();
                     uVar1 = *(unsigned char*)(iVar5 + 0xfc0);
@@ -73,7 +73,7 @@ unsigned int SendPowerInfoToSlave(int param_1)
             }
         }
     } else {
-        DEBUG_PRINT(0x000ef058UL, 0x000ef6f2UL);
+        log_message(0x000ef058UL, 0x000ef6f2UL);
         uVar7 = 0xffffffffUL;
     }
     return uVar7;

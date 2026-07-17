@@ -45,7 +45,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void log_message(unsigned a, unsigned b);
 extern int  get_device_info(void);
 extern void debug_print(void);
 extern void reflash_fb_data_to_lcd(unsigned a, unsigned b, int c, int d, int e, int f);
@@ -80,7 +80,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)(0x20004bb8 + 5) == 0) {
         if (2 < *(volatile int*)0x2000230c) {
             if (*(volatile int*)0x20007554 == 0)
-                DEBUG_PRINT(0x000a9ebd, 0x000aa446);
+                log_message(0x000a9ebd, 0x000aa446);
             else
                 debug_print();
         }
@@ -115,7 +115,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        DEBUG_PRINT(0x000a9ee1, 0x000aa446);
+                        log_message(0x000a9ee1, 0x000aa446);
                     else
                         debug_print();
                 }
@@ -125,7 +125,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        DEBUG_PRINT(0x000a9eff, 0x000aa446);
+                        log_message(0x000a9eff, 0x000aa446);
                     else
                         debug_print();
                 }
@@ -242,14 +242,14 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
         if (*(volatile unsigned char*)0x20010326 == 1) {
             if (2 < *piVar2) {
                 if (*(volatile int*)0x20007554 == 0)
-                    DEBUG_PRINT(0x000a9f30, 0x000aa446);
+                    log_message(0x000a9f30, 0x000aa446);
                 else
                     debug_print();
             }
             if (*(volatile int*)(param_2 + 0xb1) == 0x1210) {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        DEBUG_PRINT(0x000a9ee1, 0x000aa446);
+                        log_message(0x000a9ee1, 0x000aa446);
                     else
                         debug_print();
                 }
@@ -259,7 +259,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
             } else {
                 if (2 < *piVar2) {
                     if (*(volatile int*)0x20007554 == 0)
-                        DEBUG_PRINT(0x000a9eff, 0x000aa446);
+                        log_message(0x000a9eff, 0x000aa446);
                     else
                         debug_print();
                 }
@@ -287,7 +287,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
     if (*(volatile unsigned char*)0x20010324 == 1) {
         if (2 < *(volatile int*)0x2000230c) {
             if (*(volatile int*)0x20007554 == 0)
-                DEBUG_PRINT(0x000a9f51, 0x000aa446);
+                log_message(0x000a9f51, 0x000aa446);
             else
                 debug_print();
         }

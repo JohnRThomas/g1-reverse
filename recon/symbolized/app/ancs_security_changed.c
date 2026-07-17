@@ -26,7 +26,7 @@
 /* Full ABI-faithful reconstruction FUN_000184f0 @ 0x184f0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void ancs_discover_start(uint32_t connection);
 extern void format_bt_addr_str(const void *connection, char *description);
@@ -48,7 +48,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
     if (error == 0) {
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9a52b) /*=0x9a52b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level);
+                log_message(((unsigned long)&rodata_9a52b) /*=0x9a52b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level);
             else
                 debug_print(((unsigned long)&rodata_9a52b) /*=0x9a52b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level);
         }
@@ -74,7 +74,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
+            log_message(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
         else
             debug_print(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
     }
@@ -87,13 +87,13 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
         if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
+                log_message(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
             else
                 debug_print(((unsigned long)&rodata_9a56b) /*=0x9a56b*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/);
         }
         FUN_0007c0a8(500u);
         sys_reboot(1u);
-        DEBUG_PRINT(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
+        log_message(((unsigned long)&rodata_9a53f) /*=0x9a53f*/, ((unsigned long)&rodata_9b229) /*=0x9b229*/, description, level, error);
     }
 
     bt_conn_set_security(connection, 2u);

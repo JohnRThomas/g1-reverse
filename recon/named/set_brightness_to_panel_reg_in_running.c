@@ -18,7 +18,7 @@
 /* Reconstructed FUN_00047058 @ 0x47058  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern int get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern void panel_write_xy_reg_cached(int,int);
@@ -28,7 +28,7 @@ extern void delay_ms(int);
 void set_brightness_to_panel_reg_in_running(uint param_1){
     if(*(volatile int*)0x2000230c > 2){
         if(*(volatile int*)0x20007554 == 0)
-            DEBUG_PRINT(0x000d7251u, 0x000d72e9u, param_1,
+            log_message(0x000d7251u, 0x000d72e9u, param_1,
                         *(volatile uint32_t *)0x20007554u);
         else
             debug_print(0x000d7251u, 0x000d72e9u, param_1,

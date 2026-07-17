@@ -27,7 +27,7 @@ extern void kmutex_dlist_init(unsigned int);
 extern unsigned int z_device_is_ready(unsigned int);
 extern unsigned short z_impl_flash_get_page_count(unsigned int);
 extern unsigned int get_device_info(void);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, unsigned int param_4)
@@ -42,7 +42,7 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
     if (iVar4 == 0) {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a3aa6) /*=0xa3aa6*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/);
+                log_message(((unsigned long)&rodata_a3aa6) /*=0xa3aa6*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/);
             } else {
                 debug_print(((unsigned long)&rodata_a3aa6) /*=0xa3aa6*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/);
             }
@@ -56,7 +56,7 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
         *(volatile unsigned int*)((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/ = uVar5;
         if (2 < iVar4) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a3a8b) /*=0xa3a8b*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
+                log_message(((unsigned long)&rodata_a3a8b) /*=0xa3a8b*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
             } else {
                 debug_print(((unsigned long)&rodata_a3a8b) /*=0xa3a8b*/, ((unsigned long)&rodata_a3ae5) /*=0xa3ae5*/, ((unsigned long)&g_ext_flash_dev) /*=0x20007b68*/, 0, param_4);
             }

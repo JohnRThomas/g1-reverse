@@ -16,7 +16,7 @@
 /* Reconstructed FUN_0004a5b0 @ 0x4a5b0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern void debug_print(void);
 extern void unix_timestamp_to_datetime(uint32_t,void *);
 extern uint32_t get_system_unix_time(void);
@@ -43,7 +43,7 @@ int update_burial_point_day_index(uint32_t context,uint32_t unused_2,
   if (year < 2025 && ((uint16_t)(month | day) < 2)) {
     if (*(volatile int *)0x2000230c > 1) {
       if (*(volatile int *)0x20007554 == 0)
-        DEBUG_PRINT(0xf0310,0xf04c1,day,0,context);
+        log_message(0xf0310,0xf04c1,day,0,context);
       else
         debug_print();
     }

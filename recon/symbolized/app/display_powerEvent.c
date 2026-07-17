@@ -18,7 +18,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
+extern void log_message(uint32_t format, uint32_t name, ...);
 extern void debug_print(uint32_t format, uint32_t name, ...);
 extern int k_msgq_put(void *owner, const void *packet,
                         int option_a, int option_b);
@@ -35,13 +35,13 @@ int display_powerEvent(int powered_on)
 
     result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, packet, 0, 0);
     if (result != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/);
         return -1;
     }
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
+            log_message(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
         } else {
             debug_print(((unsigned long)&rodata_f00ea) /*=0xf00ea*/, ((unsigned long)&rodata_f0126) /*=0xf0126*/, powered_on);
         }

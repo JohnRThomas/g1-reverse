@@ -16,7 +16,7 @@
  */
 /* Reconstructed deleteQuickNoteData @ 0x244a8  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
@@ -34,7 +34,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     if (iVar1 == 0) {
         if (2 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                DEBUG_PRINT(0x9ee23UL, 0x9f080UL, param_1);
+                log_message(0x9ee23UL, 0x9f080UL, param_1);
             else
                 debug_print(0x9ee23UL, 0x9f080UL, param_1);
         }
@@ -43,7 +43,7 @@ unsigned int deleteQuickNoteData(unsigned int param_1, unsigned int param_2, uns
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile int*)0x20007554UL == 0)
-                DEBUG_PRINT(0x9edc2UL, 0x9f080UL);
+                log_message(0x9edc2UL, 0x9f080UL);
             else
                 debug_print(0x9edc2UL, 0x9f080UL);
         }

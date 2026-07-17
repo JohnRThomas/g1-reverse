@@ -14,7 +14,7 @@
 /* Reconstructed getAudioMessageQueueCacheData @ 0x2f460  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     (void)param_2;
@@ -24,7 +24,7 @@ int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsi
         if(*(volatile int*)0x2000230cUL > 0){
             unsigned int sink = *(volatile unsigned int*)0x20007554UL;
             if(sink==0){
-                DEBUG_PRINT(0x000a3f62UL,0x000a4908UL,0,sink);
+                log_message(0x000a3f62UL,0x000a4908UL,0,sink);
             } else { debug_print(0x000a3f62UL,0x000a4908UL,0,sink); }
         }
         iVar1 = -1;

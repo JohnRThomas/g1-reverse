@@ -17,7 +17,7 @@
 
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
+extern void log_message(uint32_t format, uint32_t name, ...);
 extern void debug_print(uint32_t format, uint32_t name, ...);
 extern int k_msgq_put(void *owner, const void *packet,
                         int option_a, int option_b);
@@ -34,13 +34,13 @@ int display_powerEvent(int powered_on)
 
     result = k_msgq_put((void *)0x200038c4UL, packet, 0, 0);
     if (result != 0) {
-        DEBUG_PRINT(0x000ef058UL, 0x000f0126UL);
+        log_message(0x000ef058UL, 0x000f0126UL);
         return -1;
     }
 
     if (*(volatile int *)0x2000230cUL > 2) {
         if (*(volatile int *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000f00eaUL, 0x000f0126UL, powered_on);
+            log_message(0x000f00eaUL, 0x000f0126UL, powered_on);
         } else {
             debug_print(0x000f00eaUL, 0x000f0126UL, powered_on);
         }

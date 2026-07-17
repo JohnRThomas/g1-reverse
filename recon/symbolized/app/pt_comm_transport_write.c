@@ -10,14 +10,14 @@
 /* Reconstructed FUN_00030cd0 @ 0x30cd0  true code extent: 0x3a bytes */
 #include <stdint.h>
 
-extern int DEBUG_PRINT(uint32_t, ...);
+extern int log_message(uint32_t, ...);
 extern uint32_t FUN_00025950(int, uint8_t *, int, int);
 extern uint32_t FUN_0003364c(int, uint8_t *, int, int);
 
 uint32_t pt_comm_transport_write(int operation, int context, uint8_t *buffer, int length)
 {
     if (context == 0 || buffer == 0 || length == 0 || operation == 2) {
-        DEBUG_PRINT(((unsigned long)&rodata_a6589) /*=0xa6589*/);
+        log_message(((unsigned long)&rodata_a6589) /*=0xa6589*/);
         return UINT32_MAX;
     }
 

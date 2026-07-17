@@ -16,7 +16,7 @@
  */
 /* Reconstructed start_ancs_work_thread @ 0x198cc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(void);
 extern int is_battery_critical(void);
@@ -31,7 +31,7 @@ void start_ancs_work_thread(unsigned param_1){
         debug_print();
         return;
       }
-      DEBUG_PRINT(0x9af2e, 0x9b0f1);
+      log_message(0x9af2e, 0x9b0f1);
       return;
     }
   }

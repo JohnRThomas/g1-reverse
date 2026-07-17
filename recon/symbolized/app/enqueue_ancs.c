@@ -22,7 +22,7 @@ extern void memset_bytes(void*, int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(void*, unsigned int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, ...);
+extern void log_message(unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
@@ -37,7 +37,7 @@ int enqueue_ancs(unsigned int param_1)
         if (*(volatile int*)(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/ + 0x24) == 10) {
             k_msgq_get(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9a964) /*=0x9a964*/);
+                log_message(((unsigned long)&rodata_9a964) /*=0x9a964*/);
             } else {
                 debug_print(((unsigned long)&rodata_9a964) /*=0x9a964*/);
             }
@@ -46,7 +46,7 @@ int enqueue_ancs(unsigned int param_1)
         iVar1 = k_msgq_put(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/, buf, 0, 0);
         if ((iVar1 != 0) && (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9a981) /*=0x9a981*/, ((unsigned long)&rodata_9b19d) /*=0x9b19d*/);
+                log_message(((unsigned long)&rodata_9a981) /*=0x9a981*/, ((unsigned long)&rodata_9b19d) /*=0x9b19d*/);
             } else {
                 debug_print(((unsigned long)&rodata_9a981) /*=0x9a981*/, ((unsigned long)&rodata_9b19d) /*=0x9b19d*/);
             }

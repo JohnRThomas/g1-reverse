@@ -20,7 +20,7 @@
 extern void debug_print(int, int);
 extern int k_msgq_put(void*, void*, int, int);
 extern void k_sem_give(void*);
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 
 int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
 {
@@ -35,7 +35,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   if (iVar1 == 0) {
     if (*(int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
       if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
+        log_message(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
       } else {
         debug_print(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
       }
@@ -45,7 +45,7 @@ int cleanAppLanguageInfo(unsigned int param_1, unsigned int param_2)
   } else {
     if (*(int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
       if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
+        log_message(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
       } else {
         debug_print(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed8f) /*=0x9ed8f*/);
       }

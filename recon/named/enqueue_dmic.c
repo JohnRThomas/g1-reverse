@@ -20,7 +20,7 @@
 extern void memcpy(void*, unsigned int, int);
 extern void k_msgq_get(unsigned int, void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 int enqueue_dmic(unsigned int param_1)
@@ -33,7 +33,7 @@ int enqueue_dmic(unsigned int param_1)
         k_msgq_get(0x20007b7cUL, buf, 0, 0);
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa3f17, 0xa41e2, 8);
+                log_message(0xa3f17, 0xa41e2, 8);
             } else {
                 debug_print(0xa3f17, 0xa41e2, 8);
             }
@@ -43,7 +43,7 @@ int enqueue_dmic(unsigned int param_1)
     iVar1 = k_msgq_put(0x20007b7cUL, buf, 0, 0);
     if ((iVar1 != 0) && (0 < *(volatile int*)0x2000230cUL)) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0xa3f45, 0xa41e2);
+            log_message(0xa3f45, 0xa41e2);
         } else {
             debug_print(0xa3f45, 0xa41e2);
         }

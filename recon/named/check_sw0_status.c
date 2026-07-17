@@ -18,7 +18,7 @@
 extern int read_sw0_pin(void);
 extern void debug_print(void);
 extern void pt_nfc_eeprom_link_start(void);
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned int fmt, unsigned int arg);
 
 void check_sw0_status(void)
 {
@@ -29,7 +29,7 @@ void check_sw0_status(void)
     if (iVar3 == 0) {
         if (*piVar2 > 1) {
             if (*(volatile int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa18cdU, 0xa19afU);
+                log_message(0xa18cdU, 0xa19afU);
             } else {
                 debug_print();
             }
@@ -39,7 +39,7 @@ void check_sw0_status(void)
         if (iVar3 > 3) {
             if (*piVar2 > 1) {
                 if (*(volatile int *)0x20007554UL == 0) {
-                    DEBUG_PRINT(0xa18eaU, 0xa19afU);
+                    log_message(0xa18eaU, 0xa19afU);
                 } else {
                     debug_print();
                 }

@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 
 void check_bonded_addr(const void *connection)
@@ -29,7 +29,7 @@ void check_bonded_addr(const void *connection)
 
     if (*(volatile int32_t *)0x2000230cu > 0) {
         if (*(volatile uint32_t *)0x20007554u == 0)
-            DEBUG_PRINT(0x0009a46fu, 0x0009b108u, description);
+            log_message(0x0009a46fu, 0x0009b108u, description);
         else
             debug_print(0x0009a46fu, 0x0009b108u, description);
     }

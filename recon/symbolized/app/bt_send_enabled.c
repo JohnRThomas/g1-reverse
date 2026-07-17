@@ -14,14 +14,14 @@
 /* Full ABI-faithful reconstruction bt_send_enabled @ 0x17e3c. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 
 void bt_send_enabled(int32_t error)
 {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a143) /*=0x9a143*/, ((unsigned long)&rodata_9a2cd) /*=0x9a2cd*/, error);
+            log_message(((unsigned long)&rodata_9a143) /*=0x9a143*/, ((unsigned long)&rodata_9a2cd) /*=0x9a2cd*/, error);
         else
             debug_print(((unsigned long)&rodata_9a143) /*=0x9a143*/, ((unsigned long)&rodata_9a2cd) /*=0x9a2cd*/, error);
     }

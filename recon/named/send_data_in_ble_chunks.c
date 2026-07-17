@@ -15,7 +15,7 @@
 /* Full owned-CFG reconstruction FUN_0003384c @ 0x3384c. */
 #include <stdint.h>
 
-extern uint32_t DEBUG_PRINT(uintptr_t format, ...);
+extern uint32_t log_message(uintptr_t format, ...);
 extern uint32_t strlen(uint32_t command);
 extern uintptr_t get_device_info(void);
 extern uint32_t debug_print(uintptr_t format, ...);
@@ -39,7 +39,7 @@ uint32_t send_data_in_ble_chunks(const uint8_t *request)
         uint32_t value = strlen(command_copy[i]);
         if (FUN_00087036(command_copy[i], request + 0x10, value) == 0) {
             if (*(volatile int *)0x20007554u == 0)
-                return DEBUG_PRINT(0x000a7bf5u, 0x000a833eu,
+                return log_message(0x000a7bf5u, 0x000a833eu,
                                    0x137, request + 0x10);
             return debug_print(0x000a7bf5u, 0x000a833eu,
                                 0x137, request + 0x10);

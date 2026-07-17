@@ -48,7 +48,7 @@ typedef int i32;
 #define classify_text_character index_in_range32_mask
 #define copy_glyph_bitmap FUN_00086c1e
 
-extern void DEBUG_PRINT();
+extern void log_message();
 extern u32 get_device_info(void);
 extern void debug_print(void);
 extern u32 get_display_atomic_state(void);
@@ -119,7 +119,7 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
           if (iVar3 < 0) {
             if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
               if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/, uVar16);
+                log_message(((unsigned long)&rodata_aaa58) /*=0xaaa58*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/, uVar16);
               } else {
                 debug_print();
               }
@@ -174,7 +174,7 @@ LAB_00045422:
                     uVar13 = ((unsigned long)&rodata_aac1e) /*=0xaac1e*/;
 LAB_00045458:
                     if (iVar3 == 0) {
-                      DEBUG_PRINT(uVar13, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
+                      log_message(uVar13, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
                     } else {
                       debug_print();
                     }
@@ -274,7 +274,7 @@ LAB_0004537c:
 LAB_0004558c:
   if (1 < *(volatile i32*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
     if (*(volatile i32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
+      log_message(((unsigned long)&rodata_aaa7f) /*=0xaaa7f*/, ((unsigned long)&rodata_aad35) /*=0xaad35*/);
     } else {
       debug_print();
     }

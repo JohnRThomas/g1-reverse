@@ -223,7 +223,7 @@ typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr
 #define PTR_s_spec_ble_command_hook_0000f460 ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
 #define PTR_s_spec_ble_command_hook_0000fccc ((unsigned long)&rodata_9dfa9) /*=0x9dfa9*/
 #define PTR_s_t0____d_error_count____d_0000f790 ((unsigned long)&rodata_9dd09) /*=0x9dd09*/
-extern uint32_t DEBUG_PRINT(uintptr_t,...);
+extern uint32_t log_message(uintptr_t,...);
 extern uint32_t strcmp(uintptr_t,...);
 extern uint32_t strlen(uintptr_t,...);
 extern uint32_t opt3007_get_max_lux(uintptr_t,...);
@@ -257,7 +257,7 @@ extern uint32_t FUN_00087036(uintptr_t,...);
 extern uint32_t FUN_00087080(uintptr_t,...);
 extern uint32_t FUN_000870be(uintptr_t,...);
 extern uint32_t change_work_mode_to(uintptr_t,...);
-extern uint32_t thunk_FUN_00072880(uintptr_t,...);
+extern uint32_t process_sync_buffer(uintptr_t,...);
 
 undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
 
@@ -309,7 +309,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
   if (iVar5 == 0) {
     if (2 < *DAT_0000f1e8) {
       if (*DAT_0000f1ec == 0) {
-        DEBUG_PRINT(PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4,DAT_0000f1f0);
+        log_message(PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4,DAT_0000f1f0);
       }
       else {
         debug_print(PTR_s__s____test_BLE_REQ_POST_BT_UNPAI_0000f1f4,DAT_0000f1f0);
@@ -335,7 +335,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
     FUN_00086ffe((uintptr_t)&local_420,pcVar18 + 1,0x80);
     if (2 < *DAT_0000f1e8) {
       if (*DAT_0000f1ec == 0) {
-        DEBUG_PRINT(PTR_DAT_0000f1fc,DAT_0000f1f0,&local_5a0,&local_420);
+        log_message(PTR_DAT_0000f1fc,DAT_0000f1f0,&local_5a0,&local_420);
       }
       else {
         debug_print(PTR_DAT_0000f1fc,DAT_0000f1f0,&local_5a0,&local_420);
@@ -361,7 +361,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           pcVar14 = (char *)&local_420;
           if (2 < *DAT_0000f1e8) {
             if (*DAT_0000f1ec == 0) {
-              DEBUG_PRINT(PTR_s__s____buf__s_0000f220,DAT_0000f1f0,&local_420);
+              log_message(PTR_s__s____buf__s_0000f220,DAT_0000f1f0,&local_420);
             }
             else {
               debug_print(0);
@@ -376,7 +376,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           FUN_00086c1e((uintptr_t)&local_5c0,&local_420,(int)pcVar14 - (int)&local_420,4);
           if (2 < *piVar6) {
             if (*DAT_0000f1ec == 0) {
-              DEBUG_PRINT(PTR_s__s____cmd__s_0000f224,DAT_0000f1f0,&local_5c0);
+              log_message(PTR_s__s____cmd__s_0000f224,DAT_0000f1f0,&local_5c0);
             }
             else {
               debug_print(0);
@@ -392,7 +392,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           FUN_00086c1e((uintptr_t)&local_5a0,pcVar14,(int)pcVar18 - (int)pcVar14,4);
           if (2 < *piVar6) {
             if (*DAT_0000f1ec == 0) {
-              DEBUG_PRINT(PTR_s__s____en__s_0000f228,DAT_0000f1f0,&local_5a0);
+              log_message(PTR_s__s____en__s_0000f228,DAT_0000f1f0,&local_5a0);
             }
             else {
               debug_print(0);
@@ -409,7 +409,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           local_51b = (undefined1)uVar12;
           if (2 < *piVar6) {
             if (*DAT_0000f1ec == 0) {
-              DEBUG_PRINT(PTR_s__s____enable___d__sec__d_0000f464,
+              log_message(PTR_s__s____enable___d__sec__d_0000f464,
                           PTR_s_spec_ble_command_hook_0000f460,uVar12,iVar4);
             }
             else {
@@ -425,7 +425,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           pcVar14 = (char *)(iVar5 + 5);
           if (2 < *DAT_0000f46c) {
             if (*DAT_0000f470 == 0) {
-              DEBUG_PRINT(DAT_0000f474,PTR_s_spec_ble_command_hook_0000f460,pcVar14,param_2);
+              log_message(DAT_0000f474,PTR_s_spec_ble_command_hook_0000f460,pcVar14,param_2);
             }
             else {
               debug_print(DAT_0000f474,PTR_s_spec_ble_command_hook_0000f460,pcVar14,param_2);
@@ -442,7 +442,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           } while (*pcVar18 != '@');
           if (2 < *piVar6) {
             if (*DAT_0000f470 == 0) {
-              DEBUG_PRINT(PTR_s__s____11_len__d_0000f47c,PTR_s_spec_ble_command_hook_0000f460,
+              log_message(PTR_s__s____11_len__d_0000f47c,PTR_s_spec_ble_command_hook_0000f460,
                           (int)pcVar18 - (int)pcVar14);
             }
             else {
@@ -458,7 +458,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
           }
           else {
             if (*DAT_0000f470 == 0) {
-              DEBUG_PRINT(PTR_s__s____cmd__d_0000f480,PTR_s_spec_ble_command_hook_0000f460,iVar4);
+              log_message(PTR_s__s____cmd__d_0000f480,PTR_s_spec_ble_command_hook_0000f460,iVar4);
             }
             else {
               debug_print(0);
@@ -466,7 +466,7 @@ undefined4 spec_ble_command_hook(undefined4 param_1,undefined4 param_2)
             if (iVar4 == 4) {
               if (2 < *piVar6) {
                 if (*piVar1 == 0) {
-                  DEBUG_PRINT(PTR_DAT_0000f484,PTR_s_spec_ble_command_hook_0000f460);
+                  log_message(PTR_DAT_0000f484,PTR_s_spec_ble_command_hook_0000f460);
                 }
                 else {
                   debug_print(0);
@@ -479,7 +479,7 @@ LAB_0000f2fc:
               uVar12 = strlen((uintptr_t)&local_420);
               if (2 < *piVar6) {
                 if (*DAT_0000f470 == 0) {
-                  DEBUG_PRINT(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
+                  log_message(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
                               PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0,uVar12,
                               &local_420);
                 }
@@ -497,7 +497,7 @@ LAB_0000fc12:
               if (iVar4 == 0xa) {
                 if (2 < *piVar6) {
                   if (*DAT_0000fcc8 == 0) {
-                    DEBUG_PRINT(PTR_SIM_NAV_0000fcd0,
+                    log_message(PTR_SIM_NAV_0000fcd0,
                                 PTR_s_spec_ble_command_hook_0000fccc);
                   }
                   else {
@@ -514,7 +514,7 @@ LAB_0000fc12:
                 uVar9 = strlen(0);
                 if (2 < *piVar6) {
                   if (*DAT_0000fcc8 == 0) {
-                    DEBUG_PRINT(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
+                    log_message(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
                                 PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0,uVar9,
                                 uVar8);
                   }
@@ -530,7 +530,7 @@ LAB_0000fc12:
               if (iVar4 == 0x58) {
                 if (2 < *piVar6) {
                   if (*DAT_0000f470 == 0) {
-                    DEBUG_PRINT(DAT_0000f4a8,PTR_s_spec_ble_command_hook_0000f460);
+                    log_message(DAT_0000f4a8,PTR_s_spec_ble_command_hook_0000f460);
                   }
                   else {
                     debug_print(0);
@@ -548,7 +548,7 @@ LAB_0000fc12:
                 } while (*pcVar13 != '\0');
                 if (2 < *piVar6) {
                   if (*DAT_0000f76c == 0) {
-                    DEBUG_PRINT(PTR_s__s____22_len__d_0000f774,DAT_0000f770,
+                    log_message(PTR_s__s____22_len__d_0000f774,DAT_0000f770,
                                 (int)pcVar13 - (int)pcVar18);
                   }
                   else {
@@ -565,7 +565,7 @@ LAB_0000fc12:
                 FUN_00086ffe((uintptr_t)&local_420,pcVar13 + 1,0x80);
                 if (2 < *piVar6) {
                   if (*DAT_0000f76c == 0) {
-                    DEBUG_PRINT(PTR_s__s_____cmd_type__s__title__s__ms_0000f778,DAT_0000f770,
+                    log_message(PTR_s__s_____cmd_type__s__title__s__ms_0000f778,DAT_0000f770,
                                 &local_5c4,&local_5c0,&local_420);
                   }
                   else {
@@ -583,7 +583,7 @@ LAB_0000effe:
               uStack_51f = check_is_release_mode((uintptr_t)&local_5a0);
               if (2 < *piVar6) {
                 if (*DAT_0000f76c == 0) {
-                  DEBUG_PRINT(PTR_s__s______cmd_type__s__value__s__t_0000f780,DAT_0000f770,
+                  log_message(PTR_s__s______cmd_type__s__value__s__t_0000f780,DAT_0000f770,
                               &local_5c4,&local_5a0,2);
                 }
                 else {
@@ -596,7 +596,7 @@ LAB_0000effe:
             }
             if (2 < *piVar6) {
               if (*piVar1 == 0) {
-                DEBUG_PRINT(PTR_SIM_TEL_0000f494,
+                log_message(PTR_SIM_TEL_0000f494,
                             PTR_s_spec_ble_command_hook_0000f460);
               }
               else {
@@ -613,7 +613,7 @@ LAB_0000effe:
           uVar9 = strlen(0);
           if (2 < *piVar6) {
             if (*DAT_0000f470 == 0) {
-              DEBUG_PRINT(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
+              log_message(PTR_s__s____cmd_type__s__value__s__tx__0000f48c,
                           PTR_s_spec_ble_command_hook_0000f460,&local_5c4,&local_5a0,0,uVar9,uVar8);
             }
             else {
@@ -630,14 +630,14 @@ LAB_0000f3f4:
         }
         local_5c0 = FUN_00087036((uintptr_t)&local_520,PTR_DAT_0000f784,2);
         if (local_5c0 == 0) {
-          DEBUG_PRINT(PTR_s______test_callback_audio_data____0000f788);
+          log_message(PTR_s______test_callback_audio_data____0000f788);
           memset_bytes((uintptr_t)auStack_5bc,0,0x10);
           local_5c0 = 0x6e;
           do {
             uVar20 = (**(code **)(iVar4 + 0xc))((uintptr_t)&local_5c0,0x14);
             if ((int)uVar20 == 0) {
               z_impl_k_sem_take(iVar4 + 0x230,(int)((ulonglong)uVar20 >> 0x20),0xffffffff,0xffffffff);
-              DEBUG_PRINT(PTR_s______start_upload_audio______0000f78c);
+              log_message(PTR_s______start_upload_audio______0000f78c);
               pcVar14 = (char *)&local_420;
               local_420 = (int)uVar20;
               memset_bytes((uintptr_t)&local_41c,0,0x3fc);
@@ -671,7 +671,7 @@ LAB_0000f3f4:
                 pcVar14 = pcVar14 + 0x68;
                 if (iVar5 == 9) {
                   iVar4 = k_uptime_get_0(0);
-                  DEBUG_PRINT(PTR_s_t0____d_error_count____d_0000f790,iVar4 - iVar7,uVar19);
+                  log_message(PTR_s_t0____d_error_count____d_0000f790,iVar4 - iVar7,uVar19);
                   return 0;
                 }
               } while( true );
@@ -688,14 +688,14 @@ LAB_0000f660:
             debug_print(0);
             return 0;
           }
-          DEBUG_PRINT((uintptr_t)puVar11,DAT_0000f770);
+          log_message((uintptr_t)puVar11,DAT_0000f770);
           return 0;
         }
         iVar5 = FUN_00087036((uintptr_t)&local_520,PTR_DAT_0000f7a0,2);
         if (iVar5 == 0) {
           bVar2 = check_is_release_mode((uintptr_t)&cStack_51e);
           *(byte *)(iVar4 + -0x77a) = bVar2;
-          DEBUG_PRINT(PTR_s______test_set_esb_channel________0000f7a4,(uint)bVar2);
+          log_message(PTR_s______test_set_esb_channel________0000f7a4,(uint)bVar2);
 LAB_0000f6c2:
           *(undefined4 *)(iVar4 + 0x8d0) = 0;
         }
@@ -739,7 +739,7 @@ LAB_0000f9d4:
                     FUN_00074844(0x4000,0);
                     puVar11 = (undefined *)sys_reboot(1);
 LAB_0000f82a:
-                    DEBUG_PRINT((uintptr_t)puVar11);
+                    log_message((uintptr_t)puVar11);
                   } while( true );
                 }
                 iVar5 = FUN_00087036((uintptr_t)&local_520,PTR_DAT_0000fa7c);
@@ -885,7 +885,7 @@ LAB_0000fa4a:
                         uVar12 = 0x1a;
                       }
                       *(undefined4 *)(iVar4 + 0x8d0) = uVar12;
-                      thunk_FUN_00072880(iVar4 + -0x6fc);
+                      process_sync_buffer(iVar4 + -0x6fc);
                       goto LAB_0000fa4a;
                     }
                     memset_bytes((uintptr_t)&local_41c,0,0x10);
@@ -913,12 +913,12 @@ LAB_0000f750:
           }
           bVar2 = check_is_release_mode((uintptr_t)&cStack_51e);
           *(byte *)(iVar4 + 0x86e) = bVar2;
-          DEBUG_PRINT(PTR_s______display_mode_______d_0000f7ac,(uint)bVar2);
+          log_message(PTR_s______display_mode_______d_0000f7ac,(uint)bVar2);
           if (*(char *)(iVar4 + 0x86e) == '\v') {
             *(undefined1 *)(iVar4 + 0x768) = 2;
             change_work_mode_to(0);
             if (*(char *)(iVar4 + -0x77c) == '\x02') {
-              thunk_FUN_00072880(iVar4 + -0x75c);
+              process_sync_buffer(iVar4 + -0x75c);
             }
           }
           else {
@@ -930,14 +930,14 @@ LAB_0000f70c:
         }
         iVar5 = -0x6fc;
 LAB_0000f742:
-        thunk_FUN_00072880(iVar4 + iVar5);
+        process_sync_buffer(iVar4 + iVar5);
         return 0;
       }
       iVar5 = iVar5 + 3;
       iVar4 = check_is_release_mode(iVar5);
       if (2 < iVar4) {
         if (*DAT_0000f1ec == 0) {
-          DEBUG_PRINT(PTR_s__s____pos__s__new_log_level_set__0000f218,DAT_0000f1f0,iVar5,iVar4);
+          log_message(PTR_s__s____pos__s__new_log_level_set__0000f218,DAT_0000f1f0,iVar5,iVar4);
         }
         else {
           debug_print(PTR_s__s____pos__s__new_log_level_set__0000f218,DAT_0000f1f0,iVar5,iVar4);
@@ -951,7 +951,7 @@ LAB_0000f742:
       uVar12 = check_is_release_mode(iVar5);
       if (2 < *DAT_0000f1e8) {
         if (*DAT_0000f1ec == 0) {
-          DEBUG_PRINT(PTR_s__s____pos__s__new_screen_id__d_0000f210,DAT_0000f1f0,iVar5,uVar12);
+          log_message(PTR_s__s____pos__s__new_screen_id__d_0000f210,DAT_0000f1f0,iVar5,uVar12);
         }
         else {
           debug_print(PTR_s__s____pos__s__new_screen_id__d_0000f210,DAT_0000f1f0,iVar5,uVar12);
@@ -966,7 +966,7 @@ LAB_0000f742:
     iVar4 = check_is_release_mode(iVar5);
     if (2 < *DAT_0000f1e8) {
       if (*DAT_0000f1ec == 0) {
-        DEBUG_PRINT(PTR_DAT_0000f208,DAT_0000f1f0,iVar5,iVar4);
+        log_message(PTR_DAT_0000f208,DAT_0000f1f0,iVar5,iVar4);
       }
       else {
         debug_print(PTR_DAT_0000f208,DAT_0000f1f0,iVar5,iVar4);

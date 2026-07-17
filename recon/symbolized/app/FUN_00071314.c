@@ -8,7 +8,7 @@
 /* Reconstructed FUN_00071314 @ 0x71314  (parity: 300/300 trials, PROVEN) */
 
 extern void mutex_lock_wait_forever_dup(int a);
-extern void thunk_FUN_00072880(int a);
+extern void process_sync_buffer(int a);
 
 int FUN_00071314(int param_1)
 {
@@ -24,7 +24,7 @@ int FUN_00071314(int param_1)
                 iVar1 = -0x7d2;
             }
         }
-        thunk_FUN_00072880(param_1 + 0x58);
+        process_sync_buffer(param_1 + 0x58);
     }
     return iVar1;
 }

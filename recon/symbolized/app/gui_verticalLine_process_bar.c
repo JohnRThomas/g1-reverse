@@ -20,7 +20,7 @@
 /* Reconstructed FUN_0004396c @ 0x4396c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(int,int,uint,int,uint,int,uint);
+extern void log_message(int,int,uint,int,uint,int,uint);
 extern int get_device_info(void);
 extern void debug_print(int,...);
 extern int64_t atomic_get_3_0(void);
@@ -50,7 +50,7 @@ uint32_t gui_verticalLine_process_bar(uint param_1,int param_2,uint param_3,int 
         gui_bmp_bitmap_draw(0x17,param_1-4,(int)(uVar4*((param_4-param_2)-0xd))/100+param_2,0,0,0);
     } else {
         if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>1){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) DEBUG_PRINT(((unsigned long)&rodata_aa96d) /*=0xaa96d*/,((unsigned long)&rodata_aacee) /*=0xaacee*/,param_3,0,param_1,param_2,param_3);
+            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) log_message(((unsigned long)&rodata_aa96d) /*=0xaa96d*/,((unsigned long)&rodata_aacee) /*=0xaacee*/,param_3,0,param_1,param_2,param_3);
             else debug_print(((unsigned long)&rodata_aa96d) /*=0xaa96d*/,((unsigned long)&rodata_aacee) /*=0xaacee*/,param_3,
                               *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/,
                               param_1,param_2,param_3);

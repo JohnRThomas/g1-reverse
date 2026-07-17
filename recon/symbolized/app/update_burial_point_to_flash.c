@@ -16,7 +16,7 @@
  */
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
+extern void log_message(unsigned int a, unsigned int b);
 extern void debug_print(unsigned int,unsigned int);
 extern int flash_settings_read(unsigned int a, void *b, unsigned int n);
 extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
@@ -32,7 +32,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
     memset_bytes(buf, 0, 0xc0);
     if (1 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e655) /*=0x9e655*/, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
+            log_message(((unsigned long)&rodata_9e655) /*=0x9e655*/, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
         } else {
             debug_print(((unsigned long)&rodata_9e655) /*=0x9e655*/, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
         }
@@ -61,7 +61,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
         format_string = ((unsigned long)&rodata_9e67c) /*=0x9e67c*/;
     }
     if (iVar2 == 0) {
-        DEBUG_PRINT(format_string, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
+        log_message(format_string, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
     } else {
         debug_print(format_string, ((unsigned long)&rodata_9e789) /*=0x9e789*/);
     }

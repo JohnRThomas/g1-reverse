@@ -34,7 +34,7 @@
 
 extern int k_msgq_get(void *queue, void *request, uint32_t timeout,
                         uint32_t flags);
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern int z_device_is_ready(const void *object);
 extern void memset_bytes(void *destination, int value, uint32_t length);
@@ -92,7 +92,7 @@ static inline __attribute__((always_inline)) void copy_default_header(
 static inline __attribute__((always_inline)) void log_fixed(uint32_t format)
 {
     if (*deferred_logger == 0)
-        DEBUG_PRINT(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/);
+        log_message(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/);
     else
         debug_print(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/);
 }
@@ -101,7 +101,7 @@ static inline __attribute__((always_inline)) void log_value(uint32_t format,
                                                             uint32_t value)
 {
     if (*deferred_logger == 0)
-        DEBUG_PRINT(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/, value);
+        log_message(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/, value);
     else
         debug_print(format, ((unsigned long)&rodata_9f050) /*=0x9f050*/, value);
 }
@@ -146,7 +146,7 @@ int getQuickNoteBKPQueueCacheData(uint32_t operation, uint32_t slot, uint32_t va
         if (*log_level < 1)
             return -1;
         if (*deferred_logger == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9ef15) /*=0x9ef15*/, ((unsigned long)&rodata_9f032) /*=0x9f032*/);
+            log_message(((unsigned long)&rodata_9ef15) /*=0x9ef15*/, ((unsigned long)&rodata_9f032) /*=0x9f032*/);
         else
             debug_print(((unsigned long)&rodata_9ef15) /*=0x9ef15*/, ((unsigned long)&rodata_9f032) /*=0x9f032*/);
         if (*log_level < 1)

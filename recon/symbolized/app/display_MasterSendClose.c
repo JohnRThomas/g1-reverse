@@ -19,7 +19,7 @@
 extern void memset_bytes(void *destination, int value, unsigned int length);
 extern int k_msgq_put(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
-extern void DEBUG_PRINT(unsigned int format, unsigned int context);
+extern void log_message(unsigned int format, unsigned int context);
 extern void debug_print(unsigned int format, unsigned int context, ...);
 
 unsigned int display_MasterSendClose(void)
@@ -34,13 +34,13 @@ unsigned int display_MasterSendClose(void)
         uVar2 = 0;
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_f008c) /*=0xf008c*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
+                log_message(((unsigned long)&rodata_f008c) /*=0xf008c*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
             } else {
                 debug_print(((unsigned long)&rodata_f008c) /*=0xf008c*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
             }
         }
     } else {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f0139) /*=0xf0139*/);
         uVar2 = 0xffffffffUL;
     }
     return uVar2;

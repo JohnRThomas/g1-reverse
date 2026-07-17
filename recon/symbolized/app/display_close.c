@@ -27,7 +27,7 @@ struct display_close_packet {
     uint8_t payload[20];
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
+extern void log_message(uint32_t format, uint32_t name, ...);
 extern void debug_print(uint32_t format, uint32_t name, ...);
 extern int k_msgq_put(void *owner, const void *packet,
                         int option_a, int option_b);
@@ -45,7 +45,7 @@ int display_close(const void *payload, unsigned int payload_length)
     if (payload_length > 10) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/, 10);
+                log_message(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/, 10);
             } else {
                 debug_print(((unsigned long)&rodata_ef01c) /*=0xef01c*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/, 10);
             }
@@ -61,13 +61,13 @@ int display_close(const void *payload, unsigned int payload_length)
 
     result = k_msgq_put((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/, &packet, 0, 0);
     if (result != 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
         return -1;
     }
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_f0044) /*=0xf0044*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
+            log_message(((unsigned long)&rodata_f0044) /*=0xf0044*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
         } else {
             debug_print(((unsigned long)&rodata_f0044) /*=0xf0044*/, ((unsigned long)&rodata_f018c) /*=0xf018c*/);
         }

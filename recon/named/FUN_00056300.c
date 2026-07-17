@@ -17,7 +17,7 @@
 /* Full reconstruction FUN_00056300 @ 0x00056300 (128-byte exact extent). */
 #include <stdint.h>
 
-extern void *thunk_FUN_000727ac(void *, uint32_t, uint32_t, uint32_t);
+extern void *net_buf_get(void *, uint32_t, uint32_t, uint32_t);
 extern void net_buf_unref(void *);
 extern void net_buf_destroy(void *, void *);
 extern void printk(uintptr_t, ...);
@@ -29,7 +29,7 @@ void FUN_00056300(void *context, uint32_t inherited_r1)
 {
     uint8_t *base = context;
     for (;;) {
-        void *item = thunk_FUN_000727ac(base + 0x38, inherited_r1, 0, 0);
+        void *item = net_buf_get(base + 0x38, inherited_r1, 0, 0);
         if (!item) {
             if (*(uint32_t *)(base + 0x14)) {
                 printk(0x000f3abeu, 0x000f3a5du, 0x00099cbdu, 0x313u);

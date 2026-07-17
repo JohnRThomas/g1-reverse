@@ -19,7 +19,7 @@
 /* Reconstructed FUN_0004396c @ 0x4396c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(int,int,uint,int,uint,int,uint);
+extern void log_message(int,int,uint,int,uint,int,uint);
 extern int get_device_info(void);
 extern void debug_print(int,...);
 extern int64_t atomic_get_3_0(void);
@@ -49,7 +49,7 @@ uint32_t gui_verticalLine_process_bar(uint param_1,int param_2,uint param_3,int 
         gui_bmp_bitmap_draw(0x17,param_1-4,(int)(uVar4*((param_4-param_2)-0xd))/100+param_2,0,0,0);
     } else {
         if(*(volatile int*)0x2000230c>1){
-            if(*(volatile int*)0x20007554==0) DEBUG_PRINT(0xaa96d,0xaacee,param_3,0,param_1,param_2,param_3);
+            if(*(volatile int*)0x20007554==0) log_message(0xaa96d,0xaacee,param_3,0,param_1,param_2,param_3);
             else debug_print(0xaa96d,0xaacee,param_3,
                               *(volatile int*)0x20007554,
                               param_1,param_2,param_3);

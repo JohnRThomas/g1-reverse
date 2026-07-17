@@ -14,7 +14,7 @@
 /* Reconstructed cleanNewsIndex @ 0x37234  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void log_message(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void cleanNewsIndex(void)
@@ -28,5 +28,5 @@ void cleanNewsIndex(void)
     debug_print(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
     return;
   }
-  DEBUG_PRINT(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
+  log_message(0xa8ff3UL, 0xa958fUL, 0xa958fUL, 0);
 }

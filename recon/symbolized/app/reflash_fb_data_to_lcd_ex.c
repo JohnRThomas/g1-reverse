@@ -21,7 +21,7 @@
 /* Reconstructed FUN_000473c8 @ 0x473c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned long long u64;
-extern long long DEBUG_PRINT(int,...);
+extern long long log_message(int,...);
 extern long long debug_print(int,...);
 extern int k_mutex_lock(int,...);
 extern int k_mutex_unlock(int,...);
@@ -39,7 +39,7 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
     iVar2 = get_projector_controller(0);
     if(*(int*)(iVar2+0x35c) == 0){
         if(0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){ DEBUG_PRINT(((unsigned long)&rodata_aa891) /*=0xaa891*/,((unsigned long)&rodata_d7426) /*=0xd7426*/); }
+            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){ log_message(((unsigned long)&rodata_aa891) /*=0xaa891*/,((unsigned long)&rodata_d7426) /*=0xd7426*/); }
             else { debug_print(((unsigned long)&rodata_aa891) /*=0xaa891*/, ((unsigned long)&rodata_d7426) /*=0xd7426*/); }
         }
         uVar3 = 0xffffffff;
@@ -72,7 +72,7 @@ unsigned reflash_fb_data_to_lcd_ex(int param_1,int param_2,int param_3,int param
             uVar3 = (unsigned)((u64)ret >> 32);
             if(iVar4 != 0 && 0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/){
                 if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-                    uVar3 = (unsigned)((u64)DEBUG_PRINT(((unsigned long)&rodata_d7383) /*=0xd7383*/,((unsigned long)&rodata_d7426) /*=0xd7426*/) >> 32);
+                    uVar3 = (unsigned)((u64)log_message(((unsigned long)&rodata_d7383) /*=0xd7383*/,((unsigned long)&rodata_d7426) /*=0xd7426*/) >> 32);
                 } else {
                     uVar3 = (unsigned)((u64)debug_print(((unsigned long)&rodata_d7383) /*=0xd7383*/, ((unsigned long)&rodata_d7426) /*=0xd7426*/) >> 32);
                 }

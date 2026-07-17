@@ -44,9 +44,9 @@ extern int msg_content_recalc_unread(void);
 extern void k_msleep(int a);
 extern void prepare_quick_note_mode(unsigned a, int b);
 extern void reset_esb_sync_state(int a);
-extern void send_event_status(int a);
+extern void send_event(int a);
 extern int sync_to_slave(unsigned a, int b, int c);
-extern void thunk_FUN_00074844(int a, int b);
+extern void wait_for_event(int a, int b);
 extern void update_persist_task_status(unsigned a, int b, int c);
 
 void process_task_sync_event(unsigned param_1)
@@ -62,7 +62,7 @@ void process_task_sync_event(unsigned param_1)
     do {
         while ((iVar3 = get_device_info(), *(volatile char *)(iVar3 + 1) == '\x01' ||
                (iVar3 = get_device_info(), *(volatile char *)(iVar3 + 1) == '\b'))) {
-            thunk_FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
+            wait_for_event(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
         }
         pcVar4 = (char *)get_device_info();
         if (*(volatile char *)pcVar4 == '\x01') {
@@ -108,7 +108,7 @@ LAB_0002884a:
                 iVar3 = sync_to_slave(uVar5, 0xf, 0);
                 if (iVar3 < 500) {
                     mark_master_or_low_battery_flag();
-                    send_event_status(0x18);
+                    send_event(0x18);
                     iVar3 = get_device_info();
                     uVar6 = 6;
                     puVar7 = *(volatile undefined1 **)(iVar3 + 0x100c);

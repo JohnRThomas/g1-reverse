@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_0002e398 @ 0x2e398  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void log_message(unsigned a, unsigned b);
 extern void debug_print(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, int b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
@@ -47,6 +47,6 @@ int ext_flash_read(int param_1, unsigned param_2, unsigned param_3, unsigned par
         debug_print(0x000a3a5aUL, 0x000a3ab6UL);
         return res;
     }
-    DEBUG_PRINT(0x000a3a5aUL, 0x000a3ab6UL);
+    log_message(0x000a3a5aUL, 0x000a3ab6UL);
     return res;
 }

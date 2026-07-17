@@ -17,7 +17,7 @@
 extern int flash_write_paged(unsigned int a0, unsigned int a1, unsigned int a2);
 extern void revalidate_whitelist_json(void);
 extern void FUN_00074844(unsigned int a0, unsigned int a1);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 
 int store_whitelist(void)
@@ -32,13 +32,13 @@ int store_whitelist(void)
         }
         FUN_00074844(0xa4UL, 0UL);
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_a896c) /*=0xa896c*/);
+            log_message(((unsigned long)&rodata_a896c) /*=0xa896c*/);
         else
             debug_print(0);
         cVar5 = cVar5 - 1;
     } while (cVar5 != 0);
     if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        DEBUG_PRINT(((unsigned long)&rodata_a8994) /*=0xa8994*/, ((unsigned long)&rodata_a8ab7) /*=0xa8ab7*/, 0x24UL, iVar4);
+        log_message(((unsigned long)&rodata_a8994) /*=0xa8994*/, ((unsigned long)&rodata_a8ab7) /*=0xa8ab7*/, 0x24UL, iVar4);
     else
         debug_print(((unsigned long)&rodata_a8994) /*=0xa8994*/, ((unsigned long)&rodata_a8ab7) /*=0xa8ab7*/, 0x24UL, iVar4);
     return iVar4;

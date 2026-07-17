@@ -33,7 +33,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern void debug_print(unsigned, ...);
 extern int whitelist_contains_app(void *a, void *b);
 extern void cjson_delete(int a);
@@ -57,7 +57,7 @@ undefined4 verify_whitelist_json(void)
 
     iVar4 = FUN_0008500c();
     if (iVar4 == 0) {
-        if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a8762) /*=0xa8762*/);
+        if (*dbgp == 0) log_message(((unsigned long)&rodata_a8762) /*=0xa8762*/);
         else debug_print(((unsigned long)&rodata_a8762) /*=0xa8762*/);
         return 0;
     }
@@ -66,7 +66,7 @@ undefined4 verify_whitelist_json(void)
         iVar5 = *dbgp;
         uVar8 = ((unsigned long)&rodata_a8638) /*=0xa8638*/;
 LAB_00035088:
-        if (iVar5 == 0) DEBUG_PRINT(uVar8);
+        if (iVar5 == 0) log_message(uVar8);
         else debug_print(uVar8);
     } else {
         if ((int)((*pbVar2 & 1)) != (*(volatile int *)(iVar5 + 0xc) == 2)) {
@@ -147,7 +147,7 @@ LAB_00035088:
                     iVar6 = *piVar1;
                     uVar8 = ((unsigned long)&rodata_a870b) /*=0xa870b*/;
 LAB_000351c4:
-                    if (iVar6 == 0) DEBUG_PRINT(uVar8);
+                    if (iVar6 == 0) log_message(uVar8);
                     else debug_print(uVar8);
                 } else {
                     iVar7 = sllist_find_by_name_ci(iVar6, ((unsigned long)&rodata_9a1dd) /*=0x9a1dd*/);
@@ -172,7 +172,7 @@ LAB_000351c4:
                 }
             }
             if (uVar11 == uVar9) {
-                if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a886d) /*=0xa886d*/);
+                if (*dbgp == 0) log_message(((unsigned long)&rodata_a886d) /*=0xa886d*/);
                 else debug_print(((unsigned long)&rodata_a886d) /*=0xa886d*/);
                 uVar8 = 1;
                 goto LAB_0003523e;
@@ -182,7 +182,7 @@ LAB_000351c4:
     uVar8 = 0;
 LAB_0003523e:
     cjson_delete(iVar4);
-    if (*dbgp == 0) DEBUG_PRINT(((unsigned long)&rodata_a8884) /*=0xa8884*/, uVar8);
+    if (*dbgp == 0) log_message(((unsigned long)&rodata_a8884) /*=0xa8884*/, uVar8);
     else debug_print(((unsigned long)&rodata_a8884) /*=0xa8884*/, uVar8);
     return uVar8;
 }

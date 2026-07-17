@@ -13,19 +13,19 @@
 /* Reconstructed FUN_0004a3d0 @ 0x4a3d0  (parity: 300/300 trials, PROVEN)
  * CFG_VERIFY_CALL_ARITIES=2,2,4 */
 
-extern void DEBUG_PRINT(int, ...);
+extern void log_message(int, ...);
 extern void debug_print(int, ...);
 
 void log_notification_fields_debug(int param_1, int param_2, int param_3, int param_4)
 {
     volatile int *piVar1 = (volatile int*)0x20007554UL;
     if (*piVar1 == 0) {
-        DEBUG_PRINT(0x000f0229, param_2 + 0x10);
+        log_message(0x000f0229, param_2 + 0x10);
     } else {
         debug_print(0x000f0229, param_2 + 0x10, param_3, param_4);
     }
     if (*piVar1 == 0) {
-        DEBUG_PRINT(0x000f024d, param_2 + 0x90);
+        log_message(0x000f024d, param_2 + 0x90);
     } else {
         debug_print(0x000f024d, param_2 + 0x90, param_3, param_4);
     }
@@ -33,5 +33,5 @@ void log_notification_fields_debug(int param_1, int param_2, int param_3, int pa
         debug_print(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
         return;
     }
-    DEBUG_PRINT(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
+    log_message(0x000f028c, *(volatile int*)(param_2+8), param_3, param_4);
 }

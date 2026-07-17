@@ -19,7 +19,7 @@
 /* Reconstructed panel_init @ 0x47538. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void projector_send_cmd1(uint32_t a, uint32_t b);
 extern void projector_send_cmd_c0(uint32_t a, uint32_t b);
@@ -33,7 +33,7 @@ void panel_init(void)
 {
     if (*(volatile int*)0x2000230cUL > 3) {
         if (*(volatile uint32_t*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x00099969u, 0x000d741bu);
+            log_message(0x00099969u, 0x000d741bu);
         } else {
             debug_print(0x00099969u, 0x000d741bu);
         }

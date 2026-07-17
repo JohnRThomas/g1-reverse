@@ -18,7 +18,7 @@
 extern void gatt_discover(uint32_t connection, uint32_t enabled);
 extern void debug_print(uintptr_t format, ...);
 extern void FUN_00056a68(uint32_t connection, uint32_t reason);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 
 void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
                     int32_t error)
@@ -40,7 +40,7 @@ void indicate_sc_cb(const uint32_t *connection_ref, uint32_t security_level,
     *(volatile uint8_t *)0x2000ff70u = 0;
     if (*(volatile int32_t *)0x2000230cu > 0) {
         if (*(volatile uint32_t *)0x20007554u == 0)
-            DEBUG_PRINT(0x0009a8f9u, 0x0009b1dau);
+            log_message(0x0009a8f9u, 0x0009b1dau);
         else
             debug_print(0x0009a8f9u, 0x0009b1dau);
     }

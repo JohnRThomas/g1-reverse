@@ -22,7 +22,7 @@
  */
 /* Reconstructed FUN_0004334c @ 0x4334c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern int get_device_info(void);
 extern void debug_print(unsigned,...);
 extern unsigned atomic_get_3_0(void);
@@ -48,7 +48,7 @@ unsigned gui_bmp_dynamic_bitmap_draw(unsigned param_1,int param_2,int param_3,in
   if(iVar5 < 0){
     if(*(volatile int*)0x2000230cUL > 1){
       if(*(volatile int*)0x20007554UL == 0)
-        DEBUG_PRINT(0x000aa8eb, 0x000aade4);
+        log_message(0x000aa8eb, 0x000aade4);
       else
         debug_print(0x000aa8eb, 0x000aade4);
     }

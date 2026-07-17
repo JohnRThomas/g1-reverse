@@ -27,7 +27,7 @@
  */
 /* Reconstructed FUN_0002f4a8 @ 0x2f4a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned, ...);
 extern int z_device_is_ready(int);
@@ -36,9 +36,9 @@ extern void memset_bytes(uintptr_t, int, int);
 
 #define PUVAR3 ((unsigned long)&g_voice_block_dir_buf) /*=0x20018daa*/
 #define LOG_MODE (*mode_address)
-#define DBG2(msg, ctx) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx)); else debug_print((msg), (ctx)); } while (0)
-#define DBG4(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx), (v2), mode_); else debug_print((msg), (ctx), (v2), mode_); } while (0)
-#define DBGT(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx), (v2), param_4); else debug_print((msg), (ctx), (v2), param_4); } while (0)
+#define DBG2(msg, ctx) do { int mode_ = LOG_MODE; if (mode_ == 0) log_message((msg), (ctx)); else debug_print((msg), (ctx)); } while (0)
+#define DBG4(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) log_message((msg), (ctx), (v2), mode_); else debug_print((msg), (ctx), (v2), mode_); } while (0)
+#define DBGT(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) log_message((msg), (ctx), (v2), param_4); else debug_print((msg), (ctx), (v2), param_4); } while (0)
 
 typedef int (*fn4)(int,int,int,int);
 

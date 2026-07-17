@@ -16,7 +16,7 @@ extern void update_persist_task_status_to_idle(int);
 extern void mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
 extern void memset_bytes(int,int,int);
-extern void send_event_status(int);
+extern void send_event(int);
 void set_shutdown_flag(int param_1, int param_2)
 {
   int iVar1; char *pcVar2; char cVar3;
@@ -50,7 +50,7 @@ void set_shutdown_flag(int param_1, int param_2)
   }
   *(volatile char*)pcVar2 = 0;
 LAB:
-  if (param_2 != 0) send_event_status(0);
+  if (param_2 != 0) send_event(0);
   update_persist_task_status_to_idle(param_1);
   memset_bytes(param_1+0xef, 0, 0x5dc);
   return;

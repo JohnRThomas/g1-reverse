@@ -18,7 +18,7 @@
  */
 /* Reconstructed is_msg_expiration @ 0x3444c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern unsigned int get_timestamp(void);
@@ -55,7 +55,7 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
             if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
                     uVar4 = get_timestamp();
-                    DEBUG_PRINT(((unsigned long)&rodata_a80e3) /*=0xa80e3*/, ((unsigned long)&rodata_a820f) /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
+                    log_message(((unsigned long)&rodata_a80e3) /*=0xa80e3*/, ((unsigned long)&rodata_a820f) /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
                 } else {
                     uVar4 = get_timestamp();
                     debug_print(((unsigned long)&rodata_a80e3) /*=0xa80e3*/, ((unsigned long)&rodata_a820f) /*=0xa820f*/, uVar7, iVar5, uVar4, param_2, param_3);
@@ -70,7 +70,7 @@ unsigned int is_msg_expiration(unsigned int param_1, unsigned int param_2, unsig
     uVar7 = get_timestamp();
     if (uVar7 < uVar8) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a8146) /*=0xa8146*/);
+            log_message(((unsigned long)&rodata_a8146) /*=0xa8146*/);
         } else {
             debug_print(((unsigned long)&rodata_a8146) /*=0xa8146*/);
         }

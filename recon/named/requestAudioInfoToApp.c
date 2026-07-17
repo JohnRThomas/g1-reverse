@@ -18,7 +18,7 @@
 extern void debug_print(void);
 extern int k_msgq_put(void*, void*, int, int);
 extern void memset_bytes(void*, int, int);
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 
 int requestAudioInfoToApp(unsigned char param_1)
 {
@@ -35,13 +35,13 @@ int requestAudioInfoToApp(unsigned char param_1)
     uVar2 = 0;
     if (*(int*)0x2000230cUL > 2) {
       if (*(int*)0x20007554UL == 0) {
-        DEBUG_PRINT(0xef4d9, 0xef707);
+        log_message(0xef4d9, 0xef707);
       } else {
         debug_print();
       }
     }
   } else {
-    DEBUG_PRINT(0xef058, 0xef707);
+    log_message(0xef058, 0xef707);
     uVar2 = -1;
   }
   return uVar2;

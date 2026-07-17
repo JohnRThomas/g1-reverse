@@ -24,7 +24,7 @@
 /* Reconstructed FUN_0001965c @ 0x1965c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern int dequeue_ancs(void*);
 extern void debug_print(uint32_t, void*);
 extern void ble_process_req_dispatch(uint32_t, void*, void*);
@@ -83,7 +83,7 @@ void FUN_0001965c(uint32_t channel)
           return;
         }
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-          DEBUG_PRINT(((unsigned long)&rodata_9ad86) /*=0x9ad86*/, local.notification.text);
+          log_message(((unsigned long)&rodata_9ad86) /*=0x9ad86*/, local.notification.text);
         } else {
           debug_print(((unsigned long)&rodata_9ad86) /*=0x9ad86*/, local.notification.text);
         }

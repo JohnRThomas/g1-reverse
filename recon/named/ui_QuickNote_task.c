@@ -56,7 +56,7 @@
  */
 extern uintptr_t get_device_info(void);
 extern void debug_print(uintptr_t format, uintptr_t function_name, ...);
-extern void DEBUG_PRINT(uintptr_t format, uintptr_t function_name, ...);
+extern void log_message(uintptr_t format, uintptr_t function_name, ...);
 extern unsigned int FUN_00023ee0(void);
 extern void dmic_record_start(void);
 extern void consume_pending_event_and_refresh_flag(void);
@@ -176,7 +176,7 @@ static inline __attribute__((always_inline))
 void quicknote_log(uintptr_t format)
 {
     if (*(volatile int32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(format, LOG_FUNCTION);
+        log_message(format, LOG_FUNCTION);
     } else {
         debug_print(format, LOG_FUNCTION);
     }
@@ -186,7 +186,7 @@ static inline __attribute__((always_inline))
 void quicknote_log_value(uintptr_t format, unsigned int value)
 {
     if (*(volatile int32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(format, LOG_FUNCTION, value);
+        log_message(format, LOG_FUNCTION, value);
     } else {
         debug_print(format, LOG_FUNCTION, value);
     }

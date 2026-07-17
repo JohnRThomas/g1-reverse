@@ -27,7 +27,7 @@
 /* Reconstructed FUN_00022218 @ 0x22218  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned char byte;
-extern int DEBUG_PRINT(int,...); extern int strcmp(int,...); extern int get_device_info(int,...);
+extern int log_message(int,...); extern int strcmp(int,...); extern int get_device_info(int,...);
 extern int debug_print(int,...); extern int get_app_whitelist_buffer(int,...);
 typedef int (*codeptr)(int,...);
 
@@ -43,7 +43,7 @@ LAB_2232:
     iVar6 = *(volatile int*)0x2000230c;
 LAB_2270:
     if (iVar6 < 2) return iVar1;
-    if (*(volatile int*)0x20007554 == 0) { DEBUG_PRINT(0x9e1ba,0x9e53c,param_1,iVar1); return iVar1; }
+    if (*(volatile int*)0x20007554 == 0) { log_message(0x9e1ba,0x9e53c,param_1,iVar1); return iVar1; }
     debug_print(0x9e1ba,0x9e53c,param_1,iVar1);
     return iVar1;
   }
@@ -59,7 +59,7 @@ LAB_2270:
     if (*(volatile int*)0x20007554 == 0) {
       iVar1 = get_device_info(0); puVar4 = *(uint **)(iVar1 + 0xfec);
 LAB_22b4: uVar5 = *puVar4;
-LAB_22b6: DEBUG_PRINT(0x9e1eb,0x9e53c,param_1,uVar5); return 0;
+LAB_22b6: log_message(0x9e1eb,0x9e53c,param_1,uVar5); return 0;
     }
     iVar1 = get_device_info(0); puVar4 = *(uint **)(iVar1 + 0xfec);
   } else {

@@ -18,7 +18,7 @@
 extern void panel_init(void);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern int spi_read_id(void);
-extern void DEBUG_PRINT(unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int);
 
 unsigned int jdb_panel_init(unsigned char *param_1)
@@ -35,7 +35,7 @@ unsigned int jdb_panel_init(unsigned char *param_1)
     } else {
         if (*(volatile int*)0x2000230cUL > 2) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000d728d,0x000d72ac);
+                log_message(0x000d728d,0x000d72ac);
             } else {
                 debug_print(0x000d728d,0x000d72ac);
             }

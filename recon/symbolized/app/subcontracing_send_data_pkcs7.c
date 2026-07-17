@@ -22,7 +22,7 @@
 /* Reconstructed FUN_00021a40 @ 0x21a40. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void debug_print_hex_dump(uint32_t format, const void *record,
                          unsigned int record_size);
@@ -50,7 +50,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
 
     if (*log_level > 2) {
         if (*alternate_log == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9d6a1) /*=0x9d6a1*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, record_count,
+            log_message(((unsigned long)&rodata_9d6a1) /*=0x9d6a1*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, record_count,
                         remainder, byte_count);
         else
             debug_print(((unsigned long)&rodata_9d6a1) /*=0x9d6a1*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, record_count,
@@ -66,7 +66,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
         __builtin_memcpy(record + 3, source + index * 17, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9d6d8) /*=0x9d6d8*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
+                log_message(((unsigned long)&rodata_9d6d8) /*=0x9d6d8*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
                             index + 1, record_count);
             else
                 debug_print(((unsigned long)&rodata_9d6d8) /*=0x9d6d8*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
@@ -82,7 +82,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
         memset_bytes(record + 3, 17, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9d6f3) /*=0x9d6f3*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
+                log_message(((unsigned long)&rodata_9d6f3) /*=0x9d6f3*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
                             index + 1, record_count);
             else
                 debug_print(((unsigned long)&rodata_9d6f3) /*=0x9d6f3*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
@@ -95,7 +95,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
                      (unsigned int)remainder, 17);
         if (level > 2) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9d714) /*=0x9d714*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
+                log_message(((unsigned long)&rodata_9d714) /*=0x9d714*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
                             index + 1, record_count);
             else
                 debug_print(((unsigned long)&rodata_9d714) /*=0x9d714*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/,
@@ -106,7 +106,7 @@ uint32_t subcontracing_send_data_pkcs7(const uint8_t *source, int byte_count,
     debug_print_hex_dump(((unsigned long)&rodata_9d70f) /*=0x9d70f*/, record, sizeof(record));
     if (*log_level > 2) {
         if (*alternate_log == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9d734) /*=0x9d734*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, byte_count);
+            log_message(((unsigned long)&rodata_9d734) /*=0x9d734*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, byte_count);
         else
             debug_print(((unsigned long)&rodata_9d734) /*=0x9d734*/, ((unsigned long)&rodata_9e014) /*=0x9e014*/, byte_count);
     }

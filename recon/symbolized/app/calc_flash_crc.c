@@ -30,7 +30,7 @@
 typedef int (*flash_read_fn)(int context, int address, void *destination,
                              int count);
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern int get_device_info(void);
 extern void debug_print(uint32_t format, ...);
 extern void watchdog_feed_retry(void);
@@ -50,7 +50,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
 
     if (*log_level >= 3) {
         if (*alternate_log == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+            log_message(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
         else
             debug_print(((unsigned long)&rodata_9e484) /*=0x9e484*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
     }
@@ -58,7 +58,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
     if (crc == 0 || byte_count == 0) {
         if (*log_level >= 3) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                log_message(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
             else
                 debug_print(((unsigned long)&rodata_9e4a3) /*=0x9e4a3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
         }
@@ -72,7 +72,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
     *(uint32_t *)buffer = 0xff;
     memset_bytes(buffer + 4, 0, 0x3fc);
     if (z_device_is_ready((const void *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/) == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_a40ec) /*=0xa40ec*/, *(volatile uint32_t *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/);
+        log_message(((unsigned long)&rodata_a40ec) /*=0xa40ec*/, *(volatile uint32_t *)((unsigned long)&rodata_87bf0) /*=0x87bf0*/);
         return UINT32_MAX;
     }
 
@@ -94,7 +94,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
         context = get_device_info();
         status = read(context, cursor, buffer, chunk_size);
         if (status != 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e4c7) /*=0x9e4c7*/, cursor, status);
+            log_message(((unsigned long)&rodata_9e4c7) /*=0x9e4c7*/, cursor, status);
             return UINT32_MAX;
         }
 
@@ -105,7 +105,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
                 break;
             if (level > 2) {
                 if (*alternate_log == 0)
-                    DEBUG_PRINT(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/,
+                    log_message(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/,
                                 buffer[(uint8_t)dump_index]);
                 else
                     debug_print(((unsigned long)&rodata_9e4e3) /*=0x9e4e3*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
@@ -115,7 +115,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
 
         if (level > 2) {
             if (*alternate_log == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
+                log_message(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
             else
                 debug_print(((unsigned long)&rodata_9e4f0) /*=0x9e4f0*/, ((unsigned long)&rodata_9e4f9) /*=0x9e4f9*/);
         }

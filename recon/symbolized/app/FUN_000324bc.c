@@ -29,7 +29,7 @@ extern void memset_bytes(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_init(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
 extern int z_device_is_ready(void *);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern uint8_t *get_device_info(void);
 extern int FUN_0007d120(void *, uint32_t, void *, uint32_t);
@@ -53,7 +53,7 @@ void FUN_000324bc(void)
         if (!z_device_is_ready(object)) {
             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 if (!*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-                    DEBUG_PRINT(((unsigned long)&rodata_a40e6) /*=0xa40e6*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, *(uint32_t *)object);
+                    log_message(((unsigned long)&rodata_a40e6) /*=0xa40e6*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, *(uint32_t *)object);
                 else debug_print(((unsigned long)&rodata_a40e6) /*=0xa40e6*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, *(uint32_t *)object);
             }
             message.code = 0xca00u;
@@ -65,9 +65,9 @@ void FUN_000324bc(void)
                 uint32_t page = 0;
                 for (;;) {
                     uint32_t address = *(volatile uint32_t *)((unsigned long)&g_20002420) /*=0x20002420*/ + page * 200u;
-                    DEBUG_PRINT(((unsigned long)&rodata_a73e2) /*=0xa73e2*/, address, page);
+                    log_message(((unsigned long)&rodata_a73e2) /*=0xa73e2*/, address, page);
                     if (FUN_0007d120(object, address, message.data, 200)) {
-                        DEBUG_PRINT(((unsigned long)&rodata_9e2da) /*=0x9e2da*/);
+                        log_message(((unsigned long)&rodata_9e2da) /*=0x9e2da*/);
                         message.code = (uint16_t)(0xca00u | (uint8_t)page);
                         state = get_device_info();
                         ((void (*)(void *, uint32_t))*(uintptr_t *)(state + 0x788))(&message, 10);
@@ -89,7 +89,7 @@ void FUN_000324bc(void)
                         if (failures > 9) {
                             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                                 if (!*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-                                    DEBUG_PRINT(((unsigned long)&rodata_9b45e) /*=0x9b45e*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, failures);
+                                    log_message(((unsigned long)&rodata_9b45e) /*=0x9b45e*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, failures);
                                 else debug_print(((unsigned long)&rodata_9b45e) /*=0x9b45e*/, ((unsigned long)&rodata_a759e) /*=0xa759e*/, failures);
                             }
                             failures = 0;

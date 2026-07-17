@@ -6,4 +6,4 @@
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  */
 /* Tail thunk @ 0x859b2. */
-extern int k_sem_give(int,int,int,int); int thunk_FUN_00072880(int a,int b,int c,int d){return k_sem_give(a,b,c,d);}
+extern int k_sem_give(int,int,int,int); int process_sync_buffer(int a,int b,int c,int d){return k_sem_give(a,b,c,d);}

@@ -13,7 +13,7 @@
  */
 /* Reconstructed reset_all_static_info @ 0x16738  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void memset_bytes(void *dst, int val, unsigned int len);
 
@@ -22,7 +22,7 @@ void reset_all_static_info(unsigned int param_1, unsigned int param_2, unsigned 
     if (*(volatile int *)0x2000230cUL > 2) {
         unsigned int sink = *(volatile int *)0x20007554UL;
         if (sink == 0) {
-            DEBUG_PRINT(0x99707U, 0x99bd8U, param_3, sink, param_4);
+            log_message(0x99707U, 0x99bd8U, param_3, sink, param_4);
         } else {
             debug_print(0x99707U, 0x99bd8U, param_3, sink, param_4);
         }

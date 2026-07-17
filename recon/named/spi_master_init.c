@@ -25,7 +25,7 @@
 /* Full reconstruction FUN_00026418 @ 0x26418, exact extent 320 bytes.
  * CFG_VERIFY_CALL_ARITIES=3,4,2 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t,...);
+extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
 extern void FUN_0005010c(uint32_t,uint32_t);
 extern uint32_t FUN_000671d8(void*,void*,uintptr_t,uintptr_t);
@@ -55,13 +55,13 @@ unsigned spi_master_init(uintptr_t event)
     int level=*(volatile int*)0x2000230cu;
     struct spi_map *map;
     if(mode==3)map=&mode3; else if(mode==4)map=&mode4; else {
-        if(level>0){int alt=*(volatile int*)0x20007554u;if(alt)debug_print(0x9fb89u,0x9fc4du,mode,(uint32_t)alt);else DEBUG_PRINT(0x9fb89u,0x9fc4du);} return 0;
+        if(level>0){int alt=*(volatile int*)0x20007554u;if(alt)debug_print(0x9fb89u,0x9fc4du,mode,(uint32_t)alt);else log_message(0x9fb89u,0x9fc4du);} return 0;
     }
     *(volatile uint32_t*)(event+0xc)=map->base;
     *(volatile uint32_t*)(event+0x10)=map->tag;
     if(level>2){
         if(*(volatile int*)0x20007554u)debug_print(0x9fb9fu,0x9fc4du,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
-        else DEBUG_PRINT(0x9fb9fu,0x9fc4du,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
+        else log_message(0x9fb9fu,0x9fc4du,mode,*(uint8_t*)(event+0x1d),*(uint8_t*)(event+0x19),*(uint8_t*)(event+0x1a),*(uint8_t*)(event+0x1b),*(uint8_t*)(event+0x1c));
     }
     uintptr_t callback=mode==3?0x0007ca77u:0;
     uintptr_t callback_context=mode==3?event:0;
@@ -71,7 +71,7 @@ unsigned spi_master_init(uintptr_t event)
     }
     volatile uint8_t *once=(volatile uint8_t*)(mode==3?0x20018c6cu:0x20018c6du);
     if(!*once){*once=1;FUN_0005010c(mode==3?12:10,6);}
-    if(*(volatile int*)0x2000230cu>2){if(*(volatile int*)0x20007554u)debug_print(0x9fc2cu,0x9fc4du,mode);else DEBUG_PRINT(0x9fc2cu,0x9fc4du,mode);}
+    if(*(volatile int*)0x2000230cu>2){if(*(volatile int*)0x20007554u)debug_print(0x9fc2cu,0x9fc4du,mode);else log_message(0x9fc2cu,0x9fc4du,mode);}
     *(volatile uint32_t*)(event+0x14)=1;
     return 0;
 }

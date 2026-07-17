@@ -28,7 +28,7 @@
  */
 /* Reconstructed convert_app_whitelist_to_json @ 0x352e8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern void debug_print(int,...);
 extern int  strlen(int);
 extern int  cjson_delete(int);
@@ -66,7 +66,7 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
       FUN_00085046(iVar3,0x000f3630,iVar4);
       FUN_00085046(iVar9,0x0009e1b6,iVar3);
       uVar6 = FUN_0008501a(iVar9);
-      if (*g50==0) DEBUG_PRINT(0x000a892b,uVar6); else debug_print(0x000a892b,uVar6);
+      if (*g50==0) log_message(0x000a892b,uVar6); else debug_print(0x000a892b,uVar6);
       strcpy(param_1,uVar6);
       uVar2 = strlen(uVar6);
       heap_free(uVar6);
@@ -83,10 +83,10 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
   }
   uVar7=0x219; iVar3=*g50; uVar6=0x000a8912;
 inner:
-  if (iVar3 == 0) DEBUG_PRINT(uVar6,0x000a8a51,uVar7); else debug_print(uVar6,0x000a8a51,uVar7);
+  if (iVar3 == 0) log_message(uVar6,0x000a8a51,uVar7); else debug_print(uVar6,0x000a8a51,uVar7);
   cjson_delete(iVar9);
   return 0;
 final:
-  if (iVar9 == 0) DEBUG_PRINT(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3); else debug_print(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3);
+  if (iVar9 == 0) log_message(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3); else debug_print(uVar7,0x000a8a51,uVar6,iVar9,iVar3,param_2,param_3);
   return 0;
 }

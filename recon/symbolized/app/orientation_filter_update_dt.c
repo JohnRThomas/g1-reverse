@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_000267ac @ 0x267ac  (parity: 300/300 trials, PROVEN) */
 
-extern long long thunk_FUN_00074f68(void);
+extern long long uptime_ticks_get(void);
 
 float orientation_filter_update_dt(int param_1)
 {
@@ -17,7 +17,7 @@ float orientation_filter_update_dt(int param_1)
   unsigned int diff;
   float result;
 
-  lVar2 = (unsigned long long)thunk_FUN_00074f68();
+  lVar2 = (unsigned long long)uptime_ticks_get();
   P = lVar2 * 1000ULL;
   uVar1 = (unsigned int)(P >> 15);
   diff = uVar1 - *(volatile unsigned int *)(long)(param_1 + 0x3c);

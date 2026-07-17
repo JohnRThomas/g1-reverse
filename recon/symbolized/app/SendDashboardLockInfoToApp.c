@@ -18,7 +18,7 @@
 /* Reconstructed SendDashboardLockInfoToApp @ 0x25e2c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int debug_print(void);
 extern int send_response_data_to_msgqueue(void*,...);
 extern int send_response_data_to_ble(void);
@@ -40,7 +40,7 @@ void SendDashboardLockInfoToApp(unsigned p1, unsigned p2, unsigned p3){
           *(volatile uint16_t*)((char*)&buf[1]) = 0x101;
           if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
             if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0){
-              DEBUG_PRINT(((unsigned long)&rodata_9f73d) /*=0x9f73d*/,((unsigned long)&rodata_9fa9c) /*=0x9fa9c*/,1);
+              log_message(((unsigned long)&rodata_9f73d) /*=0x9f73d*/,((unsigned long)&rodata_9fa9c) /*=0x9fa9c*/,1);
             } else {
               debug_print();
             }

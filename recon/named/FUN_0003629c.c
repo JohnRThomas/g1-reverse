@@ -6,7 +6,7 @@
  */
 /* Reconstructed FUN_0003629c @ 0x3629c  (parity: 300/300 trials, PROVEN) */
 
-extern long long thunk_FUN_00074f68(void);
+extern long long uptime_ticks_get(void);
 
 void FUN_0003629c(unsigned int param_1, int *param_2)
 {
@@ -27,7 +27,7 @@ void FUN_0003629c(unsigned int param_1, int *param_2)
   if (bVar5) {
     *(char *)((int)param_2 + 6) = cVar4;
   }
-  lVar6 = thunk_FUN_00074f68();
+  lVar6 = uptime_ticks_get();
   uVar3 = *puVar1;
   uVar2 = (unsigned int)(((unsigned long long)(lVar6 * 1000)) >> 15);
   if (uVar3 != 0) {

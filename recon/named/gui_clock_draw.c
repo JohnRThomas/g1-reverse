@@ -27,7 +27,7 @@
 /* Reconstructed FUN_000442bc @ 0x442bc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef uint16_t undefined2; typedef unsigned int uint; typedef unsigned short ushort;
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int strlen(int,...);
 extern int get_device_info(int,...);
 extern int debug_print(int,...);
@@ -90,7 +90,7 @@ undefined4 gui_clock_draw(undefined4 param_1,int param_2,undefined4 param_3,unde
         iVar4 = iVar4 + local_4c + 6;
       } else if (1 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) {
-          DEBUG_PRINT(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7);
+          log_message(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7);
         } else { debug_print(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7); }
       }
       pbVar9 = pbVar9 + 1;
@@ -114,7 +114,7 @@ undefined4 gui_clock_draw(undefined4 param_1,int param_2,undefined4 param_3,unde
         if (*pbVar9 == 0x3a) { iVar4 = iVar4 + 7; }
       } else if (1 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) {
-          DEBUG_PRINT(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7);
+          log_message(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7);
         } else { debug_print(0xaaad4,0xaad0b,(uint)*pbVar9,0xaaab7); }
       }
       pbVar9 = pbVar9 + 1;

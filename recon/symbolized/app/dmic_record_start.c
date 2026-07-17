@@ -20,7 +20,7 @@
 #include <stdint.h>
 
 extern uint8_t *get_device_info(void);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
+extern void log_message(uint32_t format, uint32_t argument);
 extern void debug_print(uint32_t format, uint32_t argument, ...);
 extern void drain_audio_msgq(void);
 extern void startAudioStreamRecord(void);
@@ -33,7 +33,7 @@ void dmic_record_start(void)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9d30b) /*=0x9d30b*/, ((unsigned long)&rodata_a9843) /*=0xa9843*/);
+            log_message(((unsigned long)&rodata_9d30b) /*=0x9d30b*/, ((unsigned long)&rodata_a9843) /*=0xa9843*/);
         } else {
             debug_print(((unsigned long)&rodata_9d30b) /*=0x9d30b*/, ((unsigned long)&rodata_a9843) /*=0xa9843*/);
         }

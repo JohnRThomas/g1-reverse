@@ -16,7 +16,7 @@
 extern char* get_device_info(void);
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int);
+extern void log_message(unsigned int, unsigned int);
 
 unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -31,7 +31,7 @@ unsigned int send_response_data_to_ble(unsigned int param_1, unsigned int param_
     local_20 = (local_20 & 0xffffff00) | 1;
     int iVar2 = k_msgq_put(0x2000392c, &local_20, 0, 0);
     if (iVar2 != 0) {
-      DEBUG_PRINT(0xef058, 0xef736);
+      log_message(0xef058, 0xef736);
       return 0xffffffff;
     }
   }

@@ -15,7 +15,7 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int);
 
 void check_bind_status(int param_1, int param_2, int param_3)
@@ -36,7 +36,7 @@ void check_bind_status(int param_1, int param_2, int param_3)
         base[0x71] = 0;
         if (*(volatile int*)0x2000230cUL <= 0) return;
         if (*(volatile u32*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x9fd02U, 0xa1ad8U);
+            log_message(0x9fd02U, 0xa1ad8U);
         } else {
             debug_print(0x9fd02U, 0xa1ad8U);
         }
@@ -48,7 +48,7 @@ void check_bind_status(int param_1, int param_2, int param_3)
                 base[0x71] = 1;
                 if (*(volatile int*)0x2000230cUL > 0) {
                     if (*(volatile u32*)0x20007554UL == 0) {
-                        DEBUG_PRINT(0x9fce4U, 0xa1ad8U);
+                        log_message(0x9fce4U, 0xa1ad8U);
                     } else {
                         debug_print(0x9fce4U, 0xa1ad8U);
                     }

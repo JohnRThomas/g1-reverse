@@ -18,7 +18,7 @@
 
 typedef unsigned char byte;
 typedef unsigned int uint;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
 extern void puts(unsigned int);
@@ -35,7 +35,7 @@ uint utf8_to_unicode(byte *param_1, int param_2)
         }
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 3) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
+                log_message(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
             } else {
                 debug_print(((unsigned long)&rodata_d7499) /*=0xd7499*/, ((unsigned long)&rodata_d752a) /*=0xd752a*/);
             }

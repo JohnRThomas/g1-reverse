@@ -32,7 +32,7 @@ extern uint32_t cjson_create_object(void);
 extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
+extern void log_message(uint32_t a, uint32_t b, uint32_t c);
 extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
@@ -56,7 +56,7 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     uVar1 = FUN_00085014(uVar2);
     if (*(volatile int*)0x2000230cUL > 2) {
         if (*(volatile uint32_t*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x9d7aeUL, 0x9dfe8UL, uVar1);
+            log_message(0x9d7aeUL, 0x9dfe8UL, uVar1);
         } else {
             debug_print(0x9d7aeUL, 0x9dfe8UL, uVar1);
         }

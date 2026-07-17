@@ -22,7 +22,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
@@ -47,13 +47,13 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
                 uVar2 = 0xef596U;
             }
             if (*(volatile u32*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xef59eU, 0xef6d4U, uVar2);
+                log_message(0xef59eU, 0xef6d4U, uVar2);
             } else {
                 debug_print(0xef59eU, 0xef6d4U, uVar2);
             }
         }
     } else {
-        DEBUG_PRINT(0xef058U, 0xef6d4U);
+        log_message(0xef058U, 0xef6d4U);
         uVar4 = 0xffffffffU;
     }
     return uVar4;

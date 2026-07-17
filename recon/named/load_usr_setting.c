@@ -42,7 +42,7 @@ struct __attribute__((packed)) user_settings_record {
     uint32_t counter;
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
+extern void log_message(uint32_t format, uint32_t function_name);
 extern void debug_print(uint32_t format, uint32_t function_name, ...);
 extern int flash_settings_read(uint32_t address, void *destination, uint32_t length);
 extern void reset_usr_setting(void *settings);
@@ -59,7 +59,7 @@ int load_usr_setting(uint8_t *settings)
     if (flash_settings_read(0x00134000UL, &record, sizeof(record)) != 0) {
         if (*(volatile int32_t *)0x2000230cUL > 1) {
             if (*(volatile uint32_t *)0x20007554UL == 0) {
-                DEBUG_PRINT(0x0009e60cUL, 0x0009e7a6UL);
+                log_message(0x0009e60cUL, 0x0009e7a6UL);
             } else {
                 debug_print(0x0009e60cUL, 0x0009e7a6UL);
             }
@@ -69,7 +69,7 @@ int load_usr_setting(uint8_t *settings)
 
     if (*(volatile int32_t *)0x2000230cUL > 1) {
         if (*(volatile uint32_t *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009e632UL, 0x0009e7a6UL);
+            log_message(0x0009e632UL, 0x0009e7a6UL);
         } else {
             debug_print(0x0009e632UL, 0x0009e7a6UL);
         }

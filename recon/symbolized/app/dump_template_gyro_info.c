@@ -15,7 +15,7 @@
 /* Reconstructed dump_template_gyro_info @ 0x36164  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int get_device_info(void);
 extern unsigned long long __extendsfdf2(unsigned);
 extern void debug_print(int, ...);
@@ -33,7 +33,7 @@ void dump_template_gyro_info(int param_1){
     uVar3=__extendsfdf2(raw_y);
     uVar4=__extendsfdf2(raw_z);
     if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0){
-      DEBUG_PRINT(((unsigned long)&rodata_a8cf4) /*=0xa8cf4*/,((unsigned long)&rodata_a8d3a) /*=0xa8d3a*/,(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
+      log_message(((unsigned long)&rodata_a8cf4) /*=0xa8cf4*/,((unsigned long)&rodata_a8d3a) /*=0xa8d3a*/,(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
     } else {
       debug_print(((unsigned long)&rodata_a8cf4) /*=0xa8cf4*/,((unsigned long)&rodata_a8d3a) /*=0xa8d3a*/,(unsigned)*(uint8_t*)(param_1+1),uVar2,uVar3,uVar4);
     }

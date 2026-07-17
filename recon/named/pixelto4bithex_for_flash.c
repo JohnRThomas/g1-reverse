@@ -16,12 +16,12 @@
 
 extern int malloc(int);
 extern void memset_bytes(int,int,int);
-extern void DEBUG_PRINT(int,int,int,int);
+extern void log_message(int,int,int,int);
 void pixelto4bithex_for_flash(int param_1,int param_2,int param_3,int param_4){
   if(*(volatile int*)0x20009fccUL==0){
     int iVar4=malloc(0x140);
     *(volatile int*)0x20009fccUL=iVar4;
-    if(iVar4==0){ DEBUG_PRINT(0xa8d69,0xa8e48,0x28,param_4); return; }
+    if(iVar4==0){ log_message(0xa8d69,0xa8e48,0x28,param_4); return; }
     memset_bytes(iVar4,0,0x140);
   }
   unsigned uVar5=0;

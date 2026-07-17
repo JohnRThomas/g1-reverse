@@ -20,7 +20,7 @@
 extern void memset_bytes(void *destination, int value, uint32_t length);
 extern int k_msgq_put(uint32_t queue, const void *record,
                        uint32_t wait, uint32_t flags);
-extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
+extern void log_message(uint32_t format, uint32_t argument);
 extern void debug_print(uint32_t format, uint32_t argument, ...);
 
 uint32_t display_inputEvent(uint8_t input, uint8_t state)
@@ -34,13 +34,13 @@ uint32_t display_inputEvent(uint8_t input, uint8_t state)
     command[5] = state;
 
     if (k_msgq_put(0x200038c4UL, command, 0, 0) != 0) {
-        DEBUG_PRINT(0x000ef058UL, 0x000f0151UL);
+        log_message(0x000ef058UL, 0x000f0151UL);
         return UINT32_MAX;
     }
 
     if (*(volatile int32_t *)0x2000230cUL > 2) {
         if (*(volatile uint32_t *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000f00bbUL, 0x000f0151UL);
+            log_message(0x000f00bbUL, 0x000f0151UL);
         } else {
             debug_print(0x000f00bbUL, 0x000f0151UL);
         }

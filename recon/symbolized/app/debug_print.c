@@ -19,7 +19,7 @@ extern uintptr_t ancs_get_conn_ctx(void);
 extern void memset_bytes(void *dst, int val, unsigned int len);
 extern void vsnprintf_impl(void *dst, unsigned int size, unsigned int fmt, va_list args);
 extern void enqueue_debug(void *buf);
-extern void thunk_FUN_00072880(uintptr_t arg);
+extern void process_sync_buffer(uintptr_t arg);
 
 void debug_print(unsigned int format, ...)
 {
@@ -37,7 +37,7 @@ void debug_print(unsigned int format, ...)
     if ((*(volatile unsigned char *)(context + 0x248) == 0) &&
         (*(volatile unsigned int *)(context + 0x220) == 0)) {
         *(volatile unsigned int *)((unsigned long)&g_ring_log_pending) /*=0x20007550*/ = 1;
-        thunk_FUN_00072880(context + 0x218);
+        process_sync_buffer(context + 0x218);
     }
     va_end(arguments);
 }

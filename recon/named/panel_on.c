@@ -15,7 +15,7 @@
  */
 /* Reconstructed panel_on @ 0x46dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int power_for_panel(void);
 extern int get_ambient_light_sensor_ready_flag(void);
 extern int debug_print(void);
@@ -26,7 +26,7 @@ int panel_on(int param_1){
   if(*(volatile int*)(param_1-0x48)==0){
     if(*(volatile int*)0x2000230cUL > 2){
       if(*(volatile int*)0x20007554UL == 0){
-        DEBUG_PRINT(0x000d723a, 0x000d72bb);
+        log_message(0x000d723a, 0x000d72bb);
       } else {
         debug_print();
       }

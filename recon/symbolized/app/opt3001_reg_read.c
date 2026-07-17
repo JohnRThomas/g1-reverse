@@ -18,7 +18,7 @@
 #include <stdint.h>
 
 extern int z_device_is_ready(uint32_t);
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(void);
 
 struct io_part { void *data; uint32_t length; uint8_t type; };
@@ -32,7 +32,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
     if (z_device_is_ready(device) == 0) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a3af8) /*=0xa3af8*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/);
+                log_message(((unsigned long)&rodata_a3af8) /*=0xa3af8*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/);
             else
                 debug_print();
         }
@@ -46,7 +46,7 @@ int opt3001_reg_read(uint8_t request, uint16_t *result)
     if (status < 0) {
         if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_a3b17) /*=0xa3b17*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/, 0x45);
+                log_message(((unsigned long)&rodata_a3b17) /*=0xa3b17*/, ((unsigned long)&rodata_a3d26) /*=0xa3d26*/, 0x45);
             else
                 debug_print();
         }

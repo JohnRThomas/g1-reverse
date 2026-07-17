@@ -13,7 +13,7 @@ extern int FUN_00074844(int,int);
 extern int* virtqueue_get_buffer(uint32_t,int*,void*,uint32_t,int);
 extern void mutex_lock_wait_forever_dup(int);
 extern int* rpmsg_virtio_shm_pool_get_buffer(uint32_t,uint32_t);
-extern void thunk_FUN_00072880(int);
+extern void process_sync_buffer(int);
 typedef int (*fp0)(void);
 int* FUN_00085b0c(int param_1, int* param_2, int param_3){
     int iVar5=param_1;
@@ -35,11 +35,11 @@ int* FUN_00085b0c(int param_1, int* param_2, int param_3){
             piVar3=rpmsg_virtio_shm_pool_get_buffer(*(volatile uint32_t*)(param_1+0xb0),*(volatile uint32_t*)(param_1+0x94));
             *param_2=*(volatile int*)(param_1+0x94);
             uStack_24=uStack_24&0xffff;
-            thunk_FUN_00072880(addr58);
+            process_sync_buffer(addr58);
             if(piVar3!=0) goto L70;
         } else {
 L90:
-            thunk_FUN_00072880(addr58);
+            process_sync_buffer(addr58);
         }
         if(param_3==0) return 0;
         FUN_00074844(0x21,0);
@@ -55,7 +55,7 @@ L90:
         if(iVar4==0){ *param_2=*(volatile int*)(param_1+0x94); }
     }
 L6a:
-    thunk_FUN_00072880(addr58);
+    process_sync_buffer(addr58);
 L70:
     *(volatile int*)((int)piVar3+8)=(int)(uStack_24>>0x10);
     *param_2=*(volatile int*)param_2-0x10;

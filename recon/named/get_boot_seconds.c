@@ -16,7 +16,7 @@
 
 extern unsigned long long k_uptime_get_9(void);
 extern int __aeabi_ldivmod(unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 
 int get_boot_seconds(void)
@@ -29,7 +29,7 @@ int get_boot_seconds(void)
     if (*(volatile int*)0x2000230cUL > 2) {
         unsigned int sink = *(volatile unsigned int*)0x20007554UL;
         if (sink == 0) {
-            DEBUG_PRINT(0x000f02adUL,0x000f02ffUL,(unsigned int)diff,sink);
+            log_message(0x000f02adUL,0x000f02ffUL,(unsigned int)diff,sink);
         } else {
             debug_print(0x000f02adUL,0x000f02ffUL,(unsigned int)diff,sink);
         }

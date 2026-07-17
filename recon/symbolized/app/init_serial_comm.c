@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00033340 @ 0x33340  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a);
+extern void log_message(unsigned int a);
 extern int FUN_00033088(unsigned int a);
 extern int process_pt_data(void);
 extern int init_serial_port(void);
@@ -31,7 +31,7 @@ int init_serial_comm(void)
                 iVar1 = -3;
             }
         } else {
-            DEBUG_PRINT(((unsigned long)&rodata_a7907) /*=0xa7907*/);
+            log_message(((unsigned long)&rodata_a7907) /*=0xa7907*/);
             FUN_00074844(0x4000, 0);
             iVar1 = -2;
         }

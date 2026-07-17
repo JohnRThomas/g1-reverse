@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_0002eb40 @ 0x2eb40  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void log_message(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int check_ancs_inbox_flag_change(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -24,7 +24,7 @@ unsigned int check_ancs_inbox_flag_change(unsigned int param_1, unsigned int par
   unsigned int uVar3 = bVar1;
   if (*p6c != uVar3) {
     if (*(volatile unsigned int*)0x20007554UL == 0) {
-      DEBUG_PRINT(0xa3e80, uVar3, param_3, 0, param_4);
+      log_message(0xa3e80, uVar3, param_3, 0, param_4);
     } else {
       debug_print(0x000a3e80UL, uVar3, param_3,
                     *(volatile unsigned int*)0x20007554UL);

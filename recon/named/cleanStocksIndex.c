@@ -14,7 +14,7 @@
 /* Reconstructed cleanStocksIndex @ 0x37154  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void log_message(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void cleanStocksIndex(void)
@@ -28,5 +28,5 @@ void cleanStocksIndex(void)
     debug_print(0xa8ff3UL, 0xa95b8UL, 0xa95b8UL, 0);
     return;
   }
-  DEBUG_PRINT(0xa8ff3UL, 0xa95b8UL, 0xa95b8UL, 0);
+  log_message(0xa8ff3UL, 0xa95b8UL, 0xa95b8UL, 0);
 }

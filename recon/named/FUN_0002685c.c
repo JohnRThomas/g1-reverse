@@ -23,7 +23,7 @@
 /* Full reconstruction FUN_0002685c @ 0x2685c, exact extent 176 bytes.
  * CFG_VERIFY_PREFIX_FIRST CFG_VERIFY_PREFIX_K=150 */
 #include <stdint.h>
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern void handle_box_placement_event(void);
 extern void watchdog_feed_retry(void);
@@ -33,7 +33,7 @@ extern void FUN_00032fd0(uint32_t);
 extern uintptr_t sys_reboot(uint32_t);
 extern void k_msleep(uint32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
-extern void thunk_FUN_00074844(uint32_t, uint32_t);
+extern void wait_for_event(uint32_t, uint32_t);
 
 void FUN_0002685c(uintptr_t context)
 {
@@ -42,7 +42,7 @@ void FUN_0002685c(uintptr_t context)
         if (*(volatile int *)0x20007554u)
             debug_print(0x0009fc8bu, 0x000a19e5u);
         else
-            DEBUG_PRINT(0x0009fc8bu, 0x000a19e5u);
+            log_message(0x0009fc8bu, 0x000a19e5u);
     }
 
     *(volatile uint16_t *)(context + 0xfc0) = 0;
@@ -58,16 +58,16 @@ void FUN_0002685c(uintptr_t context)
                     if (*(volatile int *)0x20007554u)
                         debug_print(0x0009fc99u, 0x000a19e5u);
                     else
-                        DEBUG_PRINT(0x0009fc99u, 0x000a19e5u);
+                        log_message(0x0009fc99u, 0x000a19e5u);
                 }
                 for (;;) {
                     k_msleep(500);
                     uintptr_t result = sys_reboot(1);
-                    DEBUG_PRINT(result);
+                    log_message(result);
                 }
             }
             ++count;
-            thunk_FUN_00074844(0x28000, 0);
+            wait_for_event(0x28000, 0);
         } else {
             handle_box_placement_event();
             if (*(volatile uint8_t *)0x2000302cu == 0)
@@ -75,7 +75,7 @@ void FUN_0002685c(uintptr_t context)
             else if (*(volatile uint8_t *)0x20018d90u == 0)
                 watchdog_feed_retry();
             fuel_gauge_update(0x00087d70u, 0);
-            thunk_FUN_00074844(0x8000, 0);
+            wait_for_event(0x8000, 0);
         }
     }
 }

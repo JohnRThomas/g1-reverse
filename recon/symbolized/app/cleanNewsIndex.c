@@ -15,7 +15,7 @@
 /* Reconstructed cleanNewsIndex @ 0x37234  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void log_message(uint32_t,uint32_t,uint32_t,uint32_t);
 extern void debug_print(uint32_t,uint32_t,uint32_t,uint32_t);
 
 void cleanNewsIndex(void)
@@ -29,5 +29,5 @@ void cleanNewsIndex(void)
     debug_print(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, 0);
     return;
   }
-  DEBUG_PRINT(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, 0);
+  log_message(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, ((unsigned long)&rodata_a958f) /*=0xa958f*/, 0);
 }

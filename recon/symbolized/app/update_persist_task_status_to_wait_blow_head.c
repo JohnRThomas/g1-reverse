@@ -17,7 +17,7 @@
 extern void debug_print(void);
 extern void display_close_screen(unsigned char);
 extern void FUN_0007cdf8(void);
-extern int DEBUG_PRINT(int, ...);
+extern int log_message(int, ...);
 
 unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -34,7 +34,7 @@ unsigned int update_persist_task_status_to_wait_blow_head(unsigned char *param_1
   }
   if (*(int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
     if (*(int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT(((unsigned long)&rodata_a25d9) /*=0xa25d9*/, ((unsigned long)&rodata_a25f8) /*=0xa25f8*/, 1, 0, param_4);
+      log_message(((unsigned long)&rodata_a25d9) /*=0xa25d9*/, ((unsigned long)&rodata_a25f8) /*=0xa25f8*/, 1, 0, param_4);
     } else {
       debug_print();
     }

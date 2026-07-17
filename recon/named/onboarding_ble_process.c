@@ -30,7 +30,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void DEBUG_PRINT(u32,u32,...);
+extern void log_message(u32,u32,...);
 extern u32 get_device_info(void);
 extern void debug_print(u32,u32,...);
 extern u32 check_ancs_inbox_flag_change(void);
@@ -50,7 +50,7 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (0x17 < *(volatile u8*)(param_3 + 1)) {
     if (0 < *(volatile int*)0x2000230cUL) {
       if (*(volatile int*)0x20007554UL == 0) {
-        DEBUG_PRINT(0x000aa611UL, 0x000aa778UL,
+        log_message(0x000aa611UL, 0x000aa778UL,
                     (u32)*(volatile u8*)(param_3+1));
       } else {
         debug_print(0x000aa611UL, 0x000aa778UL,
@@ -81,7 +81,7 @@ u32 onboarding_ble_process(u32 param_1, u32 param_2, u32 param_3, u32 param_4)
   if (2 < *(volatile int*)0x2000230cUL) {
     ctx = *(volatile u32*)(param_1 + 0x1014);
     if (*(volatile int*)0x20007554UL == 0) {
-      DEBUG_PRINT(0x000aa63dUL, 0x000aa778UL,
+      log_message(0x000aa63dUL, 0x000aa778UL,
                   (u32)*(volatile u8*)(ctx+2));
     } else {
       debug_print(0x000aa63dUL, 0x000aa778UL,

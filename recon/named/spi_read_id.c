@@ -30,7 +30,7 @@ struct spi_state_47724 {
 extern struct spi_state_47724 *get_projector_controller(void);
 extern void projector_bus_lock(uint32_t a, uint32_t b);
 extern void projector_bus_unlock(void);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 
 uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)
@@ -51,7 +51,7 @@ uint32_t spi_read_id(uint32_t unused, uint32_t options, uint32_t ignored)
         uint32_t b2 = (response >> 16) & 0xff;
         uint32_t b3 = (response >> 24) & 0xff;
         if (*(volatile uint32_t *)(uintptr_t)0x20007554u == 0)
-            DEBUG_PRINT(0x000d7459u, 0x000d748du, b0, b1, b2, b3);
+            log_message(0x000d7459u, 0x000d748du, b0, b1, b2, b3);
         else
             debug_print(0x000d7459u, 0x000d748du, b0, b1, b2, b3);
     }

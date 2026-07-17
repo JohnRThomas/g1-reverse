@@ -18,7 +18,7 @@
 /* Reconstructed cleanDashBoardStartUpModeInfo @ 0x23c88 */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
 extern void k_sem_give(uint32_t);
@@ -34,7 +34,7 @@ int cleanDashBoardStartUpModeInfo(void)
   if (k_msgq_put(((unsigned long)&g_flash_store_cmd_msgq) /*=0x20003994*/, &request, 0, 0) != 0) {
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
       if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-        DEBUG_PRINT(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
+        log_message(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
       } else {
         debug_print(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
       }
@@ -44,7 +44,7 @@ int cleanDashBoardStartUpModeInfo(void)
 
   if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
     if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-      DEBUG_PRINT(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
+      log_message(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
     } else {
       debug_print(((unsigned long)&rodata_9e968) /*=0x9e968*/, ((unsigned long)&rodata_9ed4a) /*=0x9ed4a*/);
     }

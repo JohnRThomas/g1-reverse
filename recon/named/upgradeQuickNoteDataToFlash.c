@@ -17,7 +17,7 @@
 /* Reconstructed upgradeQuickNoteDataToFlash @ 0x24420  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 extern void k_sem_give(unsigned int);
 
@@ -34,7 +34,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     if (iVar1 == 0) {
         if (2 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9edf3, 0x9f094, param_1);
+                log_message(0x9edf3, 0x9f094, param_1);
             } else {
                 debug_print(0x9edf3, 0x9f094, param_1);
             }
@@ -44,7 +44,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9edc2, 0x9f094);
+                log_message(0x9edc2, 0x9f094);
             } else {
                 debug_print(0x9edc2, 0x9f094);
             }

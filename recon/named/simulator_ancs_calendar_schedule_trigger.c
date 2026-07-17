@@ -27,7 +27,7 @@ extern void debug_print(unsigned int, unsigned int);
 extern void memset_bytes(unsigned int, int, int);
 extern void strncpy_zero_pad(unsigned int, unsigned int, int);
 extern void log_notification_fields_debug(unsigned int, unsigned int);
-extern void thunk_FUN_00072880(unsigned int);
+extern void process_sync_buffer(unsigned int);
 
 void simulator_ancs_calendar_schedule_trigger(void)
 {
@@ -47,5 +47,5 @@ void simulator_ancs_calendar_schedule_trigger(void)
     strncpy_zero_pad(iVar1 + 0xc4, 0x9d7d4, 0x100);
     strncpy_zero_pad(iVar1 + 0x64, 0x9d7e1, 0x20);
     log_notification_fields_debug(0x9d7e8, iVar1 + 0x34);
-    thunk_FUN_00072880(iVar1 + 0x1e8);
+    process_sync_buffer(iVar1 + 0x1e8);
 }

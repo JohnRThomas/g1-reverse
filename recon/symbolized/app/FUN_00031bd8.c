@@ -11,12 +11,12 @@
 /* Reconstructed FUN_00031bd8 @ 0x31bd8  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int get_device_info(void);
 unsigned FUN_00031bd8(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
   int iVar1; uint16_t uVar2; uint8_t *puVar3;
-  DEBUG_PRINT(((unsigned long)&rodata_a704b) /*=0xa704b*/);
-  if(param_3==0 || param_4==0){ DEBUG_PRINT(((unsigned long)&rodata_a6603) /*=0xa6603*/); return 0xffffffff; }
+  log_message(((unsigned long)&rodata_a704b) /*=0xa704b*/);
+  if(param_3==0 || param_4==0){ log_message(((unsigned long)&rodata_a6603) /*=0xa6603*/); return 0xffffffff; }
   puVar3=(uint8_t*)*param_3;
   *puVar3=5; puVar3[1]=1; puVar3[2]=3; puVar3[3]=6;
   if(*(char*)(param_1+2)==1){ iVar1=get_device_info(); *(uint32_t*)(puVar3+4)=*(uint32_t*)(iVar1+0xfda); uVar2=*(uint16_t*)(iVar1+0xfde); }

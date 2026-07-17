@@ -18,7 +18,7 @@
  */
 /* Reconstructed power_down_panel @ 0x15fdc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void panel_pwr_gpio_deassert(void);
 extern void debug_print(uint32_t, ...);
 extern int app_msleep_thunk_a(int);
@@ -34,7 +34,7 @@ unsigned int power_down_panel(void)
     panel_pwr_gpio_deassert();
     if (0 < *piVar1) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9949a) /*=0x9949a*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+            log_message(((unsigned long)&rodata_9949a) /*=0x9949a*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
         } else {
             debug_print(((unsigned long)&rodata_9949a) /*=0x9949a*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
         }
@@ -50,7 +50,7 @@ unsigned int power_down_panel(void)
     } else {
         if (0 < *piVar1) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_994b9) /*=0x994b9*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+                log_message(((unsigned long)&rodata_994b9) /*=0x994b9*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
             } else {
                 debug_print(((unsigned long)&rodata_994b9) /*=0x994b9*/, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
             }
@@ -72,7 +72,7 @@ unsigned int power_down_panel(void)
         }
     }
     if (iVar2 == 0) {
-        DEBUG_PRINT(format_string, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
+        log_message(format_string, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
     } else {
         debug_print(format_string, ((unsigned long)&rodata_99c17) /*=0x99c17*/);
     }

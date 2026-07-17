@@ -13,7 +13,7 @@
 
 extern int FUN_000330a8(unsigned int a0);
 extern int process_pt_data(void);
-extern void DEBUG_PRINT(unsigned int a0);
+extern void log_message(unsigned int a0);
 
 int init_nfc_comm(void)
 {
@@ -24,7 +24,7 @@ int init_nfc_comm(void)
     iVar1 = process_pt_data();
     if (iVar1 != 0) { iVar1 = -2; }
   } else {
-    DEBUG_PRINT(((unsigned long)&rodata_9f196) /*=0x9f196*/);
+    log_message(((unsigned long)&rodata_9f196) /*=0x9f196*/);
     iVar1 = -1;
   }
   return iVar1;

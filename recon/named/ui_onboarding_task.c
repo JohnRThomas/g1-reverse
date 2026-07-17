@@ -26,7 +26,7 @@ typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char byte;
 typedef unsigned char undefined1;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern int get_device_info(void);
 extern void debug_print(unsigned, ...);
 extern void onboarding_retry_watchdog_update(void);
@@ -82,7 +82,7 @@ undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)
                 *(volatile unsigned long long *)(pbVar3 + 8) = uVar7;
                 if (0x13 < *pbVar3) {
                     if (1 < *verbose) {
-                        if (*dbg == 0) DEBUG_PRINT(0, 0);
+                        if (*dbg == 0) log_message(0, 0);
                         else debug_print(0);
                     }
                     *pbVar3 = 0x14;
@@ -125,7 +125,7 @@ undefined4 ui_onboarding_task(int param_1, undefined4 param_2, int param_3)
                         iVar4 = get_device_info();
                         bVar2 = *(volatile byte *)(*(volatile int *)(iVar4 + 0x1014) + 2);
                         iVar4 = get_device_info();
-                        DEBUG_PRINT(0, 0, (uint)bVar2, (uint)*(volatile byte *)(*(volatile int *)(iVar4 + 0x1014) + 3));
+                        log_message(0, 0, (uint)bVar2, (uint)*(volatile byte *)(*(volatile int *)(iVar4 + 0x1014) + 3));
                     } else {
                         iVar4 = get_device_info();
                         (void)*(volatile undefined1 *)(*(volatile int *)(iVar4 + 0x1014) + 2);

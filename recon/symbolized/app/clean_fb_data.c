@@ -14,7 +14,7 @@
 /* Reconstructed clean_fb_data @ 0x471cc  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 extern void memset_bytes(int, void*, int);
 
@@ -28,7 +28,7 @@ int clean_fb_data(int param_1, void *param_2, int param_3, int param_4, int para
     if ((param_5 < param_3) || (param_6 < param_4)) {
         if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_d7347) /*=0xd7347*/, ((unsigned long)&rodata_d7374) /*=0xd7374*/);
+                log_message(((unsigned long)&rodata_d7347) /*=0xd7347*/, ((unsigned long)&rodata_d7374) /*=0xd7374*/);
             } else {
                 debug_print(((unsigned long)&rodata_d7347) /*=0xd7347*/, ((unsigned long)&rodata_d7374) /*=0xd7374*/);
             }

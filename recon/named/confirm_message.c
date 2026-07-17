@@ -32,7 +32,7 @@
 /* Reconstructed FUN_00034524 @ 0x34524  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned char byte; typedef uint32_t undefined4; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
+extern int log_message(int,...); extern int get_device_info(int,...); extern int debug_print(int,...);
 extern int check_pending_messages_flag(int,...); extern int msg_queue_debug_dump(int,...); extern int debug_dump_message_slots_10_19(int,...);
 extern int get_active_message_count(int,...); extern int msg_content_used_count(int,...); extern int msg_content_recalc_unread(int,...);
 extern int clear_timeout_message(int,...); extern int message_table_contains_id(int,...); extern int is_msg_expiration(int,...);
@@ -51,7 +51,7 @@ void confirm_message(int param_1)
     pcVar6 = (char*)get_device_info(0);
     if ((*pcVar6 == 1) && (cVar1 == 0) && (iVar7 = message_table_contains_id(10,iVar13), iVar7 != 0)) {
       if (0 < *(volatile int*)0x2000230c) {
-        if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xa8174,0xa8255,iVar13);
+        if (*(volatile int*)0x20007554 == 0) log_message(0xa8174,0xa8255,iVar13);
         else debug_print(0);
       }
       memset_bytes(0x20008eb4,0,0x1b4);

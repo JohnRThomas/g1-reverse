@@ -14,7 +14,7 @@
 
 extern int k_msgq_get(unsigned int, void*, int, int);
 extern void memcpy(unsigned int, void*, int);
-extern void DEBUG_PRINT(unsigned int);
+extern void log_message(unsigned int);
 
 int dequeue_file(unsigned int param_1)
 {
@@ -24,7 +24,7 @@ int dequeue_file(unsigned int param_1)
     if (iVar1 == 0) {
         memcpy(param_1, buf, 0xc9);
     } else {
-        DEBUG_PRINT(((unsigned long)&rodata_9e85d) /*=0x9e85d*/);
+        log_message(((unsigned long)&rodata_9e85d) /*=0x9e85d*/);
     }
     return iVar1;
 }

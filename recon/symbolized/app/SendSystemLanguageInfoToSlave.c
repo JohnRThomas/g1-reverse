@@ -23,7 +23,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int);
 
 u32 SendSystemLanguageInfoToSlave(int param_1)
@@ -48,13 +48,13 @@ u32 SendSystemLanguageInfoToSlave(int param_1)
                 uVar2 = ((unsigned long)&rodata_ef596) /*=0xef596*/;
             }
             if (*(volatile u32*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
+                log_message(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
             } else {
                 debug_print(((unsigned long)&rodata_ef59e) /*=0xef59e*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/, uVar2);
             }
         }
     } else {
-        DEBUG_PRINT(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/);
+        log_message(((unsigned long)&rodata_ef058) /*=0xef058*/, ((unsigned long)&rodata_ef6d4) /*=0xef6d4*/);
         uVar4 = 0xffffffffU;
     }
     return uVar4;

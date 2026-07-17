@@ -9,12 +9,12 @@
  */
 /* Reconstructed FUN_00032b24 @ 0x32b24  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned int, ...);
+extern void log_message(unsigned int, ...);
 extern int FUN_0007d16a(void*,void*);
 typedef int (*fp5)(void*,int,void*,void*,uint32_t);
 uint32_t FUN_00032b24(int param_1, char* param_2, int param_3, uint32_t* param_4, uint8_t* param_5, uint32_t param_6){
     if(param_2==0 || param_3==0 || param_4==0 || param_5==0 || param_1==2){
-        DEBUG_PRINT(((unsigned long)&rodata_a74b9) /*=0xa74b9*/); return 0xffffffff;
+        log_message(((unsigned long)&rodata_a74b9) /*=0xa74b9*/); return 0xffffffff;
     }
     int iVar3=0;
     uint8_t cVar1=*(volatile uint8_t*)param_2;

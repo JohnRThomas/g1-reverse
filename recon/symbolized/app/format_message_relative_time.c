@@ -43,7 +43,7 @@ typedef uint32_t uint;
 typedef uint16_t ushort;
 typedef uint8_t byte;
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void debug_print(uintptr_t format, ...);
 extern int FUN_00023ee0(void);
@@ -72,7 +72,7 @@ void format_message_relative_time(undefined4 param_1,int param_2)
   uVar10 = iVar4 - param_2;
   memset_bytes(param_1,0,0x20);
   uVar9 = uVar10 & ~((int)uVar10 >> 0x1f);
-  if (*(volatile int*)piVar2 == 0) DEBUG_PRINT(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
+  if (*(volatile int*)piVar2 == 0) log_message(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
   else debug_print(((unsigned long)&rodata_a8ac7) /*=0xa8ac7*/,iVar4,param_2,uVar9);
   iVar4 = FUN_00023ee0();
   if (iVar4 == 6) {
@@ -125,9 +125,9 @@ LAB_96a:
             calendar[0] = 0; calendar[1] = 0; calendar[2] = 0;
             unix_timestamp_to_datetime(param_2,calendar);
             if (*(volatile int*)piVar2 == 0)
-              DEBUG_PRINT(((unsigned long)&rodata_a8b3f) /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
+              log_message(((unsigned long)&rodata_a8b3f) /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10,calendar[1] & 0xffff,calendar[1] >> 0x10,calendar[2] & 0xffff,calendar[2] >> 0x10);
             else debug_print(((unsigned long)&rodata_a8b3f) /*=0xa8b3f*/,param_2,calendar[0] & 0xffff,calendar[0] >> 0x10);
-            if (*(volatile int*)piVar2 == 0) { iVar4 = get_device_info(); DEBUG_PRINT(((unsigned long)&rodata_a8b67) /*=0xa8b67*/,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
+            if (*(volatile int*)piVar2 == 0) { iVar4 = get_device_info(); log_message(((unsigned long)&rodata_a8b67) /*=0xa8b67*/,(uint)*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             else { iVar4 = get_device_info(); debug_print(((unsigned long)&rodata_a8b67) /*=0xa8b67*/,*(byte *)(*(int *)(iVar4 + 0xfec) + 0x5e)); }
             iVar4 = get_device_info();
             uVar9 = calendar[2] & 0xffff; uVar5 = ((unsigned long)&rodata_a9c18) /*=0xa9c18*/; uVar8 = (ushort)(calendar[1] >> 16);
@@ -158,7 +158,7 @@ LAB_85e:
   clean_fb_data(iVar3 + 0xb90,0,iVar4 + 0x196,uVar5,iVar6 + 0x200,iVar7 + 0x1b);
   iVar3 = device_info_text_width_get(); uVar5 = device_info_text_height_get_clamped(); iVar4 = device_info_text_width_get(); iVar6 = device_info_text_height_get_clamped();
   gui_utf_draw_align_right(0,param_1,0,iVar3 + 0x196,uVar5,iVar4 + 0x200,iVar6 + 0x1b,1,0,0,0,0);
-  if (*(volatile int*)piVar2 == 0) { uVar5 = device_info_text_width_get(); DEBUG_PRINT(((unsigned long)&rodata_a8ba0) /*=0xa8ba0*/,uVar5,param_1); return; }
+  if (*(volatile int*)piVar2 == 0) { uVar5 = device_info_text_width_get(); log_message(((unsigned long)&rodata_a8ba0) /*=0xa8ba0*/,uVar5,param_1); return; }
   uVar5 = device_info_text_width_get(); debug_print(((unsigned long)&rodata_a8ba0) /*=0xa8ba0*/,uVar5,param_1);
   return;
 }

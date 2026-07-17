@@ -43,7 +43,7 @@
 /* Reconstructed ble_process_req_dispatch @ 0x21460  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t, ...);
+extern void log_message(uint32_t, uint32_t, ...);
 extern int  get_device_type(void);
 extern uintptr_t get_device_info(void);
 extern int  FUN_00019b2c(void);
@@ -132,7 +132,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             if (0 < LVL_A) {
                 uint32_t backend_state = (uint32_t)LVL_B;
                 if (backend_state == 0) {
-                    DEBUG_PRINT(0x0009d681u, 0x0009e08bu, command_id);
+                    log_message(0x0009d681u, 0x0009e08bu, command_id);
                 } else {
                     debug_print(0x0009d681u, 0x0009e08bu, command_id);
                 }
@@ -156,7 +156,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
             if (1 < LVL_A) {
                 uint32_t backend_state = (uint32_t)LVL_B;
                 if (backend_state == 0) {
-                    DEBUG_PRINT(0x0009d64eu, 0x0009e032u, command_id);
+                    log_message(0x0009d64eu, 0x0009e032u, command_id);
                 } else {
                     debug_print(0x0009d64eu, 0x0009e032u, command_id);
                 }
@@ -164,7 +164,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
         } else if (1 < LVL_A) {
             uint32_t backend_state = (uint32_t)LVL_B;
             if (backend_state == 0) {
-                DEBUG_PRINT(0x0009d64eu, 0x0009e032u, command_id);
+                log_message(0x0009d64eu, 0x0009e032u, command_id);
             } else {
                 debug_print(0x0009d64eu, 0x0009e032u, command_id);
             }
@@ -190,7 +190,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     case 0x47: {
         if (1 < LVL_A) {
             if (LVL_B == 0)
-                DEBUG_PRINT(0x0009d4e4u, 0x0009e04eu);
+                log_message(0x0009d4e4u, 0x0009e04eu);
             else
                 debug_print(0x0009d4e4u, 0x0009e04eu);
         }
@@ -203,7 +203,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
         if (iVar13 == 0) { return 0; }
         if (0 < LVL_A) {
             if (LVL_B == 0)
-                DEBUG_PRINT(0x0009d518u, 0x0009e04eu);
+                log_message(0x0009d518u, 0x0009e04eu);
             else
                 debug_print(0x0009d518u, 0x0009e04eu);
         }
@@ -213,7 +213,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     default:
         if (1 < LVL_A) {
             if (LVL_B == 0)
-                DEBUG_PRINT(0x0009d64eu, 0x0009e04eu, command_id);
+                log_message(0x0009d64eu, 0x0009e04eu, command_id);
             else
                 debug_print(0x0009d64eu, 0x0009e04eu, command_id);
         }
@@ -236,7 +236,7 @@ unsigned int ble_process_req_dispatch(uint8_t *param_1, uint8_t *packet, uint8_t
     case 0x4c:
         if (2 < LVL_A) {
             if (LVL_B == 0)
-                DEBUG_PRINT(0x0009d546u, 0x0009e04eu);
+                log_message(0x0009d546u, 0x0009e04eu);
             else
                 debug_print(0x0009d546u, 0x0009e04eu);
         }
@@ -395,7 +395,7 @@ LAB_000216b4:
             uint32_t error_format;
             if (2 < LVL_A) {
                 if (LVL_B == 0)
-                    DEBUG_PRINT(0x0009d587u, 0x0009e04eu);
+                    log_message(0x0009d587u, 0x0009e04eu);
                 else
                     debug_print(0x0009d587u, 0x0009e04eu);
             }
@@ -408,7 +408,7 @@ LAB_000216b4:
                     if ((int32_t)(flags << 0x1e) < 0) { return 0; }
                     if (2 < LVL_A) {
                         if (LVL_B == 0)
-                            DEBUG_PRINT(0x0009d5afu, 0x0009e04eu);
+                            log_message(0x0009d5afu, 0x0009e04eu);
                         else
                             debug_print(0x0009d5afu, 0x0009e04eu);
                     }
@@ -435,7 +435,7 @@ LAB_000216b4:
                 debug_print(error_format, 0x0009e04eu);
                 return 0;
             }
-            DEBUG_PRINT(error_format, 0x0009e04eu);
+            log_message(error_format, 0x0009e04eu);
             return 0;
         }
         if (LVL_A < 2) { return 0; }
@@ -444,7 +444,7 @@ LAB_000216b4:
                          load_u16(packet + 2), load_u16(param_3 + 1));
             return 0;
         }
-        DEBUG_PRINT(0x0009b8fdu, 0x0009e04eu,
+        log_message(0x0009b8fdu, 0x0009e04eu,
                     load_u16(packet + 2), load_u16(param_3 + 1));
         return 0;
     }

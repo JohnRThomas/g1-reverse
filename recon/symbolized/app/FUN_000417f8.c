@@ -55,7 +55,7 @@ extern void gui_bmp_dynamic_bitmap_draw(int,int,int,int,int,int,int);
 extern void gui_bmp_bitmap_draw(int,int,int,int,int,int);
 extern void gui_bmp_bitmap_draw_ex(int,int,int,void*,int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);
-extern void send_event_status(int);
+extern void send_event(int);
 
 /* Onboarding globals; each definition retains its raw address. */
 #define onboarding_render_retry_counter ((volatile unsigned char *)((unsigned long)&g_2001cdd0) /*=0x2001cdd0*/)
@@ -493,7 +493,7 @@ LAB_00041f76:
         *onboarding_attempt_counter = '\x01';
         iVar4 = get_device_info();
         if (-1 < (int)((uint)*(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) << 0x1d)) {
-          send_event_status(0x15);
+          send_event(0x15);
           iVar4 = get_device_info();
           *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) =
                *(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) | 4;
@@ -780,7 +780,7 @@ LAB_000418a6:
     uVar12 = 0x14;
     *pbVar3 = *pbVar3 + 1;
 LAB_000418d2:
-    send_event_status(uVar12);
+    send_event(uVar12);
     uVar16 = k_uptime_get_8();
     iVar4 = get_device_info();
     *(undefined8 *)(*(int *)(iVar4 + 0x1014) + 4) = uVar16;

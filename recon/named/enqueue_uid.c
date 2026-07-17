@@ -16,7 +16,7 @@
  */
 /* Reconstructed enqueue_uid @ 0x18e48  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, ...);
+extern void log_message(unsigned a, ...);
 extern void debug_print(unsigned a, ...);
 extern void k_msgq_get(unsigned a, void*b, int c, int d);
 extern int  k_msgq_put(unsigned a, void*b, int c, int d);
@@ -28,18 +28,18 @@ int enqueue_uid(unsigned *param_1, unsigned param_2, unsigned param_3){
     int iVar2;
     if (g[0x24/4] == 10){
         k_msgq_get(0x20006a38, local, 0, 0);
-        if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x0009aa2f);
+        if (*(volatile int*)0x20007554 == 0) log_message(0x0009aa2f);
         else debug_print(0x0009aa2f);
     }
     local[0] = param_1[0];
     local[1] = param_1[1];
     if (*(volatile int*)0x2000230c > 0){
-        if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x0009aa4b,0x0009b176,local[0]);
+        if (*(volatile int*)0x20007554 == 0) log_message(0x0009aa4b,0x0009b176,local[0]);
         else debug_print(0x0009aa4b,0x0009b176,local[0]);
     }
     iVar2 = k_msgq_put(0x20006a38, local, 0, 0);
     if (iVar2 != 0 && *(volatile int*)0x2000230c > 0){
-        if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x0009aa64,0x0009b176);
+        if (*(volatile int*)0x20007554 == 0) log_message(0x0009aa64,0x0009b176);
         else debug_print(0x0009aa64,0x0009b176);
     }
     return iVar2;

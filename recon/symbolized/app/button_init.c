@@ -39,7 +39,7 @@
  */
 /* Reconstructed button_init @ 0x17a40  (parity: 200/200 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern int log_message(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern int FUN_00017688(unsigned int, unsigned int);
 extern void gpio_pin_set_checked(unsigned int, unsigned int, unsigned int);
 extern unsigned int gpio_pin_get_raw_checked(unsigned int, unsigned int);
@@ -90,7 +90,7 @@ unsigned char button_init(void)
             uVar15 = ((unsigned long)&rodata_99f81) /*=0x99f81*/;
 LAB_b48_1:
             if (iVar5 == 0) {
-                DEBUG_PRINT(uVar15, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 0,0,0,0);
+                log_message(uVar15, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 0,0,0,0);
             } else {
                 debug_print();
             }
@@ -120,7 +120,7 @@ LAB_b48_1:
                     FUN_00017858(((unsigned long)&rodata_889d0) /*=0x889d0*/, 0x5c00000);
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            DEBUG_PRINT(((unsigned long)&rodata_99fd2) /*=0x99fd2*/, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 9,0,0,0);
+                            log_message(((unsigned long)&rodata_99fd2) /*=0x99fd2*/, ((unsigned long)&rodata_9a126) /*=0x9a126*/, 9,0,0,0);
                         } else {
                             debug_print();
                         }
@@ -155,7 +155,7 @@ LAB_b48_1:
                 FUN_00017858(((unsigned long)&rodata_889e0) /*=0x889e0*/, uVar15);
                 if (1 < *piVar2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        DEBUG_PRINT(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a119) /*=0x9a119*/, 10,0,0,0);
+                        log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a119) /*=0x9a119*/, 10,0,0,0);
                     } else {
                         debug_print();
                     }
@@ -169,7 +169,7 @@ LAB_b48_1:
         uVar14 = ((unsigned long)&rodata_9a119) /*=0x9a119*/;
     }
     if (iVar16 == 0) {
-        DEBUG_PRINT(uVar15, uVar14, 0,0,0,0);
+        log_message(uVar15, uVar14, 0,0,0,0);
     } else {
         debug_print();
     }
@@ -185,40 +185,40 @@ LAB_c40:
     if (1 < *piVar2) {
         uVar18 = bVar4;
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_99fe8) /*=0x99fe8*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1a, uVar18,0,0);
+            log_message(((unsigned long)&rodata_99fe8) /*=0x99fe8*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1a, uVar18,0,0);
         } else {
             debug_print();
         }
         if (1 < *piVar2) {
             uVar7 = uVar7 & 0xff;
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9a016) /*=0x9a016*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x19, uVar7,0,0);
+                log_message(((unsigned long)&rodata_9a016) /*=0x9a016*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x19, uVar7,0,0);
             } else {
                 debug_print();
             }
             if (1 < *piVar2) {
                 uVar8 = uVar8 & 0xff;
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_9a044) /*=0x9a044*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1c, uVar8,0,0);
+                    log_message(((unsigned long)&rodata_9a044) /*=0x9a044*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1c, uVar8,0,0);
                 } else {
                     debug_print();
                 }
                 if (1 < *piVar2) {
                     uVar9 = uVar9 & 0xff;
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                        DEBUG_PRINT(((unsigned long)&rodata_9a072) /*=0x9a072*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1b, uVar9,0,0);
+                        log_message(((unsigned long)&rodata_9a072) /*=0x9a072*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, 0x1b, uVar9,0,0);
                     } else {
                         debug_print();
                     }
                     if (1 < *piVar2) {
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                            DEBUG_PRINT(((unsigned long)&rodata_9a0a0) /*=0x9a0a0*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
+                            log_message(((unsigned long)&rodata_9a0a0) /*=0x9a0a0*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar18, uVar7, uVar8, uVar9);
                         } else {
                             debug_print();
                         }
                         if (1 < *piVar2) {
                             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                                DEBUG_PRINT(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
+                                log_message(((unsigned long)&rodata_9a0c6) /*=0x9a0c6*/, ((unsigned long)&rodata_9a132) /*=0x9a132*/, uVar10 & 0xff, uVar11 & 0xff, uVar12 & 0xff, uVar13 & 0xff);
                             } else {
                                 debug_print();
                             }

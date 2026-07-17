@@ -29,7 +29,7 @@ extern uint32_t mpsc_pbuf_claim(void);
 extern void z_log_msg_free(uint32_t item);
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t);
-extern uint64_t thunk_FUN_00074f68(void);
+extern uint64_t uptime_ticks_get(void);
 extern void log_dropped(uint32_t low, uint32_t high);
 extern int z_log_msg_pending(void);
 
@@ -66,7 +66,7 @@ int log_process(void)
 
     volatile uint64_t *deadline = (volatile uint64_t *)((unsigned long)&log_process_timestamp) /*=0x200056a0*/;
     if (*(volatile int32_t *)((unsigned long)&log_backend_count) /*=0x2000a0d4*/ > 0) {
-        uint64_t now = (thunk_FUN_00074f68() * UINT64_C(1000)) >> 15;
+        uint64_t now = (uptime_ticks_get() * UINT64_C(1000)) >> 15;
         uint64_t elapsed = now - *deadline;
         if (elapsed >= UINT64_C(1001))
             log_dropped((uint32_t)elapsed, (uint32_t)(elapsed >> 32));

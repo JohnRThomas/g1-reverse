@@ -19,7 +19,7 @@
  */
 /* Reconstructed FUN_000332dc @ 0x332dc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void*);
+extern void log_message(void*);
 extern int z_device_is_ready(void*);
 extern int uart_read_start(void*);
 extern void assert_post_action(void*, int);
@@ -40,7 +40,7 @@ unsigned int init_serial_port(void)
     iVar2 = uart_read_start((void*)((unsigned long)&rodata_87bc0) /*=0x87bc0*/);
     if (iVar2 != 0) {
       *pcVar1 = 0;
-      DEBUG_PRINT((void*)((unsigned long)&rodata_a78eb) /*=0xa78eb*/);
+      log_message((void*)((unsigned long)&rodata_a78eb) /*=0xa78eb*/);
       return 0xffffffff;
     }
     *pcVar1 = 1;

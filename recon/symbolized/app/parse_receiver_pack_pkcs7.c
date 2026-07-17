@@ -16,7 +16,7 @@
  */
 /* Reconstructed parse_receiver_pack_pkcs7 @ 0x19cd0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern void memcpy(int, ...);
 
@@ -42,7 +42,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
                     debug_print(((unsigned long)&rodata_9b3b5) /*=0x9b3b5*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xbbUL, param_3);
                     return 0xca;
                 }
-                DEBUG_PRINT(((unsigned long)&rodata_9b3b5) /*=0x9b3b5*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xbbUL, param_3);
+                log_message(((unsigned long)&rodata_9b3b5) /*=0x9b3b5*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xbbUL, param_3);
                 return 0xca;
             }
             bVar1 = param_2[2];
@@ -57,7 +57,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
                     debug_print(((unsigned long)&rodata_9b3e0) /*=0x9b3e0*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/);
                     return 0xca;
                 }
-                DEBUG_PRINT(((unsigned long)&rodata_9b3e0) /*=0x9b3e0*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xd0UL, uVar9, (unsigned int)*pbVar4);
+                log_message(((unsigned long)&rodata_9b3e0) /*=0x9b3e0*/, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, 0xd0UL, uVar9, (unsigned int)*pbVar4);
                 return 0xca;
             }
             uVar3 = *puVar5;
@@ -75,7 +75,7 @@ unsigned int parse_receiver_pack_pkcs7(int param_1, unsigned char *param_2, unsi
         uVar6 = 0x0009b38fUL;
     }
     if (iVar8 == 0) {
-        DEBUG_PRINT(uVar6, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, uVar7);
+        log_message(uVar6, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, uVar7);
     } else {
         debug_print(uVar6, ((unsigned long)&rodata_9e0d0) /*=0x9e0d0*/, uVar7);
     }

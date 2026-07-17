@@ -17,7 +17,7 @@
  */
 /* Reconstructed pull_message @ 0x342e0  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,...);
+extern void log_message(unsigned int,...);
 extern void debug_print(unsigned int,...);
 extern unsigned int get_device_info(void);
 
@@ -28,7 +28,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
     if (param_1 == (int *)0) {
         if (0 < *(int *)0x2000230cUL) {
             if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
+                log_message(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU, param_4);
             } else {
                 debug_print(0xa804bU, 0xa822eU, 0xa8221U, 0x3bdU);
             }
@@ -38,7 +38,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
         if (*(unsigned char *)(iVar3 + 0xdd) <= 0xa) {
             *param_1 = (unsigned int)(*(unsigned char *)0x2001a22aUL) * 0x1b4 + 0x20007dacU;
             if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa80bcU);
+                log_message(0xa80bcU);
             } else {
                 debug_print(0xa80bcU);
             }
@@ -46,7 +46,7 @@ unsigned char pull_message(int *param_1, unsigned int param_2, unsigned int para
         }
         if (*(int *)0x20007554UL == 0) {
             iVar3 = get_device_info();
-            DEBUG_PRINT(0xa806cU, (unsigned int)*(unsigned char *)(iVar3 + 0xdd));
+            log_message(0xa806cU, (unsigned int)*(unsigned char *)(iVar3 + 0xdd));
         } else {
             iVar3 = get_device_info();
             debug_print(0xa806cU, *(unsigned char *)(iVar3 + 0xdd));

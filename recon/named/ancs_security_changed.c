@@ -25,7 +25,7 @@
 /* Full ABI-faithful reconstruction FUN_000184f0 @ 0x184f0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void ancs_discover_start(uint32_t connection);
 extern void format_bt_addr_str(const void *connection, char *description);
@@ -47,7 +47,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
     if (error == 0) {
         if (*(volatile int32_t *)0x2000230cu > 2) {
             if (*(volatile uint32_t *)0x20007554u == 0)
-                DEBUG_PRINT(0x0009a52bu, 0x0009b229u, description, level);
+                log_message(0x0009a52bu, 0x0009b229u, description, level);
             else
                 debug_print(0x0009a52bu, 0x0009b229u, description, level);
         }
@@ -73,7 +73,7 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
     if (*(volatile int32_t *)0x2000230cu > 2) {
         if (*(volatile uint32_t *)0x20007554u == 0)
-            DEBUG_PRINT(0x0009a53fu, 0x0009b229u, description, level, error);
+            log_message(0x0009a53fu, 0x0009b229u, description, level, error);
         else
             debug_print(0x0009a53fu, 0x0009b229u, description, level, error);
     }
@@ -86,13 +86,13 @@ void ancs_security_changed(uint32_t connection, uint32_t level, int32_t error)
 
         if (*(volatile int32_t *)0x2000230cu > 0) {
             if (*(volatile uint32_t *)0x20007554u == 0)
-                DEBUG_PRINT(0x0009a56bu, 0x0009b229u);
+                log_message(0x0009a56bu, 0x0009b229u);
             else
                 debug_print(0x0009a56bu, 0x0009b229u);
         }
         FUN_0007c0a8(500u);
         sys_reboot(1u);
-        DEBUG_PRINT(0x0009a53fu, 0x0009b229u, description, level, error);
+        log_message(0x0009a53fu, 0x0009b229u, description, level, error);
     }
 
     bt_conn_set_security(connection, 2u);

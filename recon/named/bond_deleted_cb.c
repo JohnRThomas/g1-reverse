@@ -12,12 +12,12 @@
 /* Reconstructed FUN_000183ac @ 0x183ac  (parity: 300/300 trials, PROVEN) */
 
 extern void format_bt_addr_str(int, int);
-extern void DEBUG_PRINT(int, int);
+extern void log_message(int, int);
 void bond_deleted_cb(int param_1, int param_2)
 {
     char auStack_28[32];
     format_bt_addr_str(param_2, (int)auStack_28);
-    DEBUG_PRINT(0x0009a458, (int)auStack_28);
+    log_message(0x0009a458, (int)auStack_28);
     (*(volatile int*)0x20007514UL)--;
     *(volatile char*)(*(volatile int*)0x20006ab8UL + 0x367) = 0;
 }

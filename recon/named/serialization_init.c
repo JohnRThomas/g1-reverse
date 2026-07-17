@@ -21,7 +21,7 @@
  */
 /* Reconstructed serialization_init @ 0x25c54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern int ipc_service_open_instance(uint32_t);
 extern unsigned long long FUN_0004cbec(uint32_t, uint32_t, uint32_t);
@@ -36,7 +36,7 @@ unsigned int serialization_init(void)
 
     if (2 < *piVar1) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009f5ecUL, 0x0009f6f1UL);
+            log_message(0x0009f5ecUL, 0x0009f6f1UL);
         } else {
             debug_print(0x0009f5ecUL, 0x0009f6f1UL);
         }
@@ -51,7 +51,7 @@ unsigned int serialization_init(void)
     } else {
         if (2 < *piVar1) {
             if (*(volatile int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x0009f63cUL, 0x0009f6f1UL);
+                log_message(0x0009f63cUL, 0x0009f6f1UL);
             } else {
                 debug_print(0x0009f63cUL, 0x0009f6f1UL);
             }
@@ -62,7 +62,7 @@ unsigned int serialization_init(void)
             *(volatile int*)0x20007a80UL = 1;
             if (1 < *piVar1) {
                 if (*(volatile int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x0009f67eUL, 0x0009f6f1UL);
+                    log_message(0x0009f67eUL, 0x0009f6f1UL);
                 } else {
                     debug_print(0x0009f67eUL, 0x0009f6f1UL);
                 }
@@ -76,7 +76,7 @@ unsigned int serialization_init(void)
         format_string = 0x0009f64fUL;
     }
     if (iVar2 == 0) {
-        DEBUG_PRINT(format_string, 0x0009f6f1UL);
+        log_message(format_string, 0x0009f6f1UL);
     } else {
         debug_print(format_string, 0x0009f6f1UL);
     }

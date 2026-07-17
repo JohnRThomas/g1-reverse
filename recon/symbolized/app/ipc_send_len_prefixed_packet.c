@@ -12,7 +12,7 @@
 
 extern int FUN_0007c85e(int, void*, int, int);
 extern void sleep_fixed_33_ticks(void);
-extern void DEBUG_PRINT(unsigned int, int);
+extern void log_message(unsigned int, int);
 
 int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3, int param_4, int param_5)
 {
@@ -27,7 +27,7 @@ int ipc_send_len_prefixed_packet(int param_1, int param_2, unsigned int param_3,
   int iVar1 = FUN_0007c85e(param_1, &local_20, 2, param_2);
   sleep_fixed_33_ticks();
   if (iVar1 < 0) {
-    DEBUG_PRINT(((unsigned long)&rodata_9f239) /*=0x9f239*/, iVar1);
+    log_message(((unsigned long)&rodata_9f239) /*=0x9f239*/, iVar1);
   }
   return iVar1;
 }

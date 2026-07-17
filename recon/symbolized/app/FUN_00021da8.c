@@ -43,7 +43,7 @@ extern int FUN_0007c108(void);
 extern int bt_start(void);
 extern void memcpy(void*,const void*,uint32_t);
 extern void memset_bytes(void*,int,uint32_t);
-extern void DEBUG_PRINT(uintptr_t,...);
+extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
 
 static __attribute__((always_inline)) inline void
@@ -52,7 +52,7 @@ ble_log(uintptr_t format, uint32_t value, int threshold)
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > threshold) {
         int alternate=*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (alternate) debug_print(format,((unsigned long)&rodata_9df99) /*=0x9df99*/,value,(uint32_t)alternate);
-        else DEBUG_PRINT(format,((unsigned long)&rodata_9df99) /*=0x9df99*/,value,(uint32_t)alternate);
+        else log_message(format,((unsigned long)&rodata_9df99) /*=0x9df99*/,value,(uint32_t)alternate);
     }
 }
 
@@ -139,7 +139,7 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
             if(state==0) {
                 ble_log(((unsigned long)&rodata_9df28) /*=0x9df28*/,0,2);
                 int error=bt_start();
-                if(error) DEBUG_PRINT(((unsigned long)&rodata_9df51) /*=0x9df51*/,(uint32_t)error,0,
+                if(error) log_message(((unsigned long)&rodata_9df51) /*=0x9df51*/,(uint32_t)error,0,
                                       *(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
             } else {
                 ble_log(((unsigned long)&rodata_9df00) /*=0x9df00*/,(uint32_t)state,1);

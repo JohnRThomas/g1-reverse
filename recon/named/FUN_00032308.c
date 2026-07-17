@@ -16,7 +16,7 @@
  */
 /* Reconstructed FUN_00032308 @ 0x32308  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern void log_message(unsigned,...);
 extern int get_device_info(void);
 extern void debug_print(unsigned int, ...);
 extern void build_and_send_device_status_report(int,int);
@@ -25,9 +25,9 @@ extern void k_msleep_ticks32768_b(int);
 
 int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *param_4){
     unsigned char status_record[21];
-    DEBUG_PRINT(0x000a6711, 0x000a7712);
+    log_message(0x000a6711, 0x000a7712);
     if (param_3==0 || param_4==0 || param_1==0 || param_2 < 5){
-        DEBUG_PRINT(0x000a671e, 0x000a7712);
+        log_message(0x000a671e, 0x000a7712);
         return 0xffffffff;
     }
     unsigned char *puVar6 = (unsigned char*)*param_3;
@@ -52,7 +52,7 @@ int FUN_00032308(int param_1, unsigned param_2, uint32_t *param_3, uint8_t *para
         }
         uVar4 = 4;
     } else {
-        if (*(int*)0x20007554 == 0) DEBUG_PRINT(0x000a676d, 0x000a7712, 0x3c1);
+        if (*(int*)0x20007554 == 0) log_message(0x000a676d, 0x000a7712, 0x3c1);
         else debug_print(0x000a676d, 0x000a7712, 0x3c1);
         uVar4 = 3;
     }

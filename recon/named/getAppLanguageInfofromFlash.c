@@ -19,7 +19,7 @@
 /* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern int z_device_is_ready(uint32_t device);
@@ -38,7 +38,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
 
     if (*log_level > 2) {
         if (*deferred_logger == 0) {
-            DEBUG_PRINT(0x0009e9bf, 0x0009ed2e, reason, 0, request);
+            log_message(0x0009e9bf, 0x0009ed2e, reason, 0, request);
         } else {
             debug_print(0x0009e9bf, 0x0009ed2e, reason, 0, request);
         }
@@ -47,7 +47,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     if (z_device_is_ready((uint32_t)flash_device) == 0) {
         if (*log_level > 0) {
             if (*deferred_logger == 0) {
-                DEBUG_PRINT(0x0009e9ea, 0x0009ed2e,
+                log_message(0x0009e9ea, 0x0009ed2e,
                             *flash_device, 0, request);
             } else {
                 debug_print(0x0009e9ea, 0x0009ed2e,
@@ -66,7 +66,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     if (status != 0) {
         if (*log_level > 0) {
             if (*deferred_logger == 0) {
-                DEBUG_PRINT(0x0009ea0a, 0x0009ed2e, 0x13e000);
+                log_message(0x0009ea0a, 0x0009ed2e, 0x13e000);
             } else {
                 debug_print(0x0009ea0a, 0x0009ed2e, 0x13e000);
             }
@@ -79,7 +79,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     *published_language = language;
     if (*log_level > 3) {
         if (*deferred_logger == 0) {
-            DEBUG_PRINT(0x0009ea37, 0x0009ed2e, *published_language);
+            log_message(0x0009ea37, 0x0009ed2e, *published_language);
         } else {
             debug_print(0x0009ea37, 0x0009ed2e, *published_language);
         }

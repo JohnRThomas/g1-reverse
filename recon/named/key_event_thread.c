@@ -31,7 +31,7 @@ typedef unsigned char u8;
 extern void some_module_sem_init(void);
 extern u8  *get_device_info(void);
 extern void wait_for_event(uint32_t timeout, uint32_t flags);
-extern int  update_sync_buffer(void *object, uint64_t timeout);
+extern int  k_sem_take(void *object, uint64_t timeout);
 extern void debug_print(void);
 extern void log_message(void);
 extern void send_event(unsigned int event);
@@ -90,7 +90,7 @@ L29578:
     }
     B = get_device_info();
     if (*(volatile u8*)(B+1) == 8) goto L29578;
-    if (update_sync_buffer((void *)(uintptr_t)0x20007b1c,
+    if (k_sem_take((void *)(uintptr_t)0x20007b1c,
                            UINT64_MAX) != 0) goto L297ea;
     if (DBG > 0) LOG();
     state = ST;

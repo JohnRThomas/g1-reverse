@@ -30,7 +30,7 @@
 /* Reconstructed FUN_00034dbc @ 0x34dbc. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern void cjson_delete(int object);
 extern int FUN_0008500c(void);
@@ -44,7 +44,7 @@ extern void strncpy_zero_pad(void *destination, const void *source,
 
 #define REPORT_ERROR(format_) do {                                      \
     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)                              \
-        DEBUG_PRINT((format_));                                         \
+        log_message((format_));                                         \
     else                                                                \
         debug_print((format_));                                        \
 } while (0)
@@ -64,7 +64,7 @@ uint32_t parse_whitelist_json(uint32_t request, uint32_t unused_2,
 
     if (root == 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_a8604) /*=0xa8604*/, request);
+            log_message(((unsigned long)&rodata_a8604) /*=0xa8604*/, request);
         else
             debug_print(((unsigned long)&rodata_a8604) /*=0xa8604*/, request);
         return 0;

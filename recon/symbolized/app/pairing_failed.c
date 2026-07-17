@@ -17,7 +17,7 @@
 
 extern uintptr_t FUN_00081526(void);
 extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 extern void FUN_00056a68(uint32_t connection, uint32_t reason);
 
@@ -27,11 +27,11 @@ void pairing_failed(uint32_t connection, uint32_t error)
     uintptr_t active_connection = FUN_00081526();
 
     format_bt_addr_str((const void *)active_connection, description);
-    DEBUG_PRINT(((unsigned long)&rodata_9a48b) /*=0x9a48b*/, description, error);
+    log_message(((unsigned long)&rodata_9a48b) /*=0x9a48b*/, description, error);
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
+            log_message(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
         else
             debug_print(((unsigned long)&rodata_9a4af) /*=0x9a4af*/, ((unsigned long)&rodata_9b126) /*=0x9b126*/);
     }

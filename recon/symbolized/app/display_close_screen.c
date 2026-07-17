@@ -17,7 +17,7 @@
  */
 /* Reconstructed display_close_screen @ 0x49858  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 extern int get_device_info(void);
 extern int debug_print(int,...);
 extern int set_dashboard_close_pending_flag(void);
@@ -32,7 +32,7 @@ int display_close_screen(int param_1, uint32_t param_2){
   if(param_1 != 0){
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){
       if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0){
-        DEBUG_PRINT(((unsigned long)&rodata_f006d) /*=0xf006d*/, ((unsigned long)&rodata_f0177) /*=0xf0177*/, param_1);
+        log_message(((unsigned long)&rodata_f006d) /*=0xf006d*/, ((unsigned long)&rodata_f0177) /*=0xf0177*/, param_1);
       } else {
         debug_print(((unsigned long)&rodata_f006d) /*=0xf006d*/, ((unsigned long)&rodata_f0177) /*=0xf0177*/, param_1);
       }

@@ -13,7 +13,7 @@
 /* Reconstructed FUN_000227d0 @ 0x227d0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern int flash_settings_write_and_verify(const void *source, void *destination, int count);
 
@@ -27,7 +27,7 @@ int flash_write_paged(const uint8_t *source, uint8_t *destination,
     int total = 0;
 
     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-        DEBUG_PRINT(((unsigned long)&rodata_9e3db) /*=0x9e3db*/, byte_count);
+        log_message(((unsigned long)&rodata_9e3db) /*=0x9e3db*/, byte_count);
     else
         debug_print(((unsigned long)&rodata_9e3db) /*=0x9e3db*/, byte_count);
 

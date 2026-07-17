@@ -16,7 +16,7 @@
 /* Reconstructed disable_watchdog @ 0x2aeb4  (parity: 151/300 trials, PROVEN) */
 
 extern void FUN_00074844(unsigned int, unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 typedef int (*fp_t)(unsigned int);
@@ -29,7 +29,7 @@ int disable_watchdog(void)
     if (*piVar1 < 0) {
         if (3 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a1c4e) /*=0xa1c4e*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, *piVar1);
+                log_message(((unsigned long)&rodata_a1c4e) /*=0xa1c4e*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, *piVar1);
             } else {
                 debug_print(((unsigned long)&rodata_a1c4e) /*=0xa1c4e*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, *piVar1);
             }
@@ -40,7 +40,7 @@ int disable_watchdog(void)
         do {
             if (3 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_a1c6a) /*=0xa1c6a*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, 0,
+                    log_message(((unsigned long)&rodata_a1c6a) /*=0xa1c6a*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, 0,
                                 *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
                 } else {
                     debug_print(((unsigned long)&rodata_a1c6a) /*=0xa1c6a*/, ((unsigned long)&rodata_a1c85) /*=0xa1c85*/, 0,

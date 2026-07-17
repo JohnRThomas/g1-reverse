@@ -33,7 +33,7 @@ extern uint32_t cjson_create_object(void);
 extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
+extern void log_message(uint32_t a, uint32_t b, uint32_t c);
 extern void debug_print(uint32_t a, uint32_t b, ...);
 extern uint32_t strlen(uint32_t a);
 extern void subcontracing_send_data_pkcs7(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
@@ -57,7 +57,7 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     uVar1 = FUN_00085014(uVar2);
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9d7ae) /*=0x9d7ae*/, ((unsigned long)&rodata_9dfe8) /*=0x9dfe8*/, uVar1);
+            log_message(((unsigned long)&rodata_9d7ae) /*=0x9d7ae*/, ((unsigned long)&rodata_9dfe8) /*=0x9dfe8*/, uVar1);
         } else {
             debug_print(((unsigned long)&rodata_9d7ae) /*=0x9d7ae*/, ((unsigned long)&rodata_9dfe8) /*=0x9dfe8*/, uVar1);
         }

@@ -20,7 +20,7 @@
 extern uintptr_t get_device_info(void);
 extern void debug_print(uintptr_t format, uintptr_t function_name,
                         unsigned int gear, int coordinate);
-extern void DEBUG_PRINT(uintptr_t format, uintptr_t function_name,
+extern void log_message(uintptr_t format, uintptr_t function_name,
                         unsigned int gear, int coordinate);
 
 /* Fixed-address backmap retained for the standalone parity build. */
@@ -91,7 +91,7 @@ void cal_panel_canvas_coord(int *canvas_x, int *raster_y)
         if (*canvas_x != previous_x && g_log_level > 1) {
             unsigned int gear = panel_state()->canvas_distance_gear;
             if (g_log_use_alt_sink == 0) {
-                DEBUG_PRINT(LOG_CANVAS_GEAR_FMT, LOG_FUNCTION_NAME,
+                log_message(LOG_CANVAS_GEAR_FMT, LOG_FUNCTION_NAME,
                             gear, *canvas_x);
             } else {
                 debug_print(LOG_CANVAS_GEAR_FMT, LOG_FUNCTION_NAME,
@@ -109,7 +109,7 @@ void cal_panel_canvas_coord(int *canvas_x, int *raster_y)
         if (computed_y != previous_y && g_log_level > 1) {
             gear = panel_state()->raster_height_gear;
             if (g_log_use_alt_sink == 0) {
-                DEBUG_PRINT(LOG_RASTER_GEAR_FMT, LOG_FUNCTION_NAME,
+                log_message(LOG_RASTER_GEAR_FMT, LOG_FUNCTION_NAME,
                             gear, *raster_y);
             } else {
                 debug_print(LOG_RASTER_GEAR_FMT, LOG_FUNCTION_NAME,

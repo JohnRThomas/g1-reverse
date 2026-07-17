@@ -48,7 +48,7 @@
 
 extern void change_work_mode_to(uint32_t);
 extern void update_persist_task_status_to_idle(uint8_t *);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern int FUN_00019b2c(void);
@@ -67,7 +67,7 @@ extern void FUN_0007d1d6(uint8_t *, uint32_t);
 extern uint64_t k_uptime_get_1(void);
 extern void k_msleep(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
-extern void thunk_FUN_00074844(uint32_t, uint32_t);
+extern void wait_for_event(uint32_t, uint32_t);
 extern int FUN_00016580(void);
 extern void check_device_readiness(void);
 extern void FUN_0001658c(uint32_t);
@@ -98,7 +98,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
     update_persist_task_status_to_idle(ctx);
     if (*log_level > 1) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+            log_message(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
         else
             debug_print(((unsigned long)&rodata_9fc8b) /*=0x9fc8b*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
     }
@@ -118,7 +118,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 int error = bt_conn_set_security(connection, 2);
                 if (error != 0 && *log_level > 2) {
                     if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                        DEBUG_PRINT(((unsigned long)&rodata_a1914) /*=0xa1914*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, error);
+                        log_message(((unsigned long)&rodata_a1914) /*=0xa1914*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, error);
                     else
                         debug_print(((unsigned long)&rodata_a1914) /*=0xa1914*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, error);
                 }
@@ -181,15 +181,15 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
                             debug_print(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
                         else
-                            DEBUG_PRINT(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
+                            log_message(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
                     }
                     for (;;) {
                         k_msleep(500);
                         uint32_t printed = sys_reboot(1);
-                        DEBUG_PRINT(printed);
+                        log_message(printed);
                     }
                 }
-                thunk_FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
+                wait_for_event(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
             }
             if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_active_flag) /*=0x2000302c*/ == 0)
                 disable_watchdog();
@@ -205,7 +205,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 uint32_t mode = rd8(ctx, 0xfea);
                 uint32_t value = check_charging_and_touch_flags();
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    DEBUG_PRINT(((unsigned long)&rodata_a1962) /*=0xa1962*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, mode, value, side);
+                    log_message(((unsigned long)&rodata_a1962) /*=0xa1962*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, mode, value, side);
                 else
                     debug_print(((unsigned long)&rodata_a1962) /*=0xa1962*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/, mode, value, side);
             }
@@ -228,6 +228,6 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
         FUN_0007cbae();
         if (*(volatile uint8_t *)((unsigned long)&g_flash_crc_skip_watchdog_flag) /*=0x20018d90*/ == 0)
             watchdog_feed_retry();
-        thunk_FUN_00074844(0x199a, 0);
+        wait_for_event(0x199a, 0);
     }
 }

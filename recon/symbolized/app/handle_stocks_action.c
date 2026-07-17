@@ -14,7 +14,7 @@
  */
 /* Reconstructed handle_stocks_action @ 0x371e8  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
@@ -25,7 +25,7 @@ unsigned int handle_stocks_action(unsigned int param_1, unsigned int param_2,
     *(volatile unsigned char*)((unsigned long)&g_news_widget_index_raw) /*=0x2001b814*/ = (unsigned char)action;
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/,
+            log_message(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/,
                         action, param_4);
         } else {
             debug_print(((unsigned long)&rodata_a8ff3) /*=0xa8ff3*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/, ((unsigned long)&rodata_a959e) /*=0xa959e*/,

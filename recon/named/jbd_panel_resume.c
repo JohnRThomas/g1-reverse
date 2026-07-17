@@ -14,7 +14,7 @@
  */
 /* Reconstructed jbd_panel_resume @ 0x47638  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(void*, void*, unsigned int, int, unsigned int);
+extern void log_message(void*, void*, unsigned int, int, unsigned int);
 extern void debug_print(void*, void*, unsigned int, unsigned int, unsigned int);
 extern void set_brightness_to_panel_reg(unsigned int);
 extern void panel_init(void);
@@ -26,7 +26,7 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      DEBUG_PRINT((void*)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
+      log_message((void*)0xd73bcUL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
       debug_print((void*)0xd73bcUL, (void*)0xd73f8UL,
                    param_3, sink, param_4);
@@ -37,7 +37,7 @@ unsigned int jbd_panel_resume(int param_1, unsigned int param_2, unsigned int pa
   if (*piVar1 > 2) {
     unsigned int sink = *(volatile unsigned int*)0x20007554UL;
     if (sink == 0) {
-      DEBUG_PRINT((void*)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
+      log_message((void*)0xd73e0UL, (void*)0xd73f8UL, param_3, sink, param_4);
     } else {
       debug_print((void*)0xd73e0UL, (void*)0xd73f8UL,
                    param_3, sink, param_4);

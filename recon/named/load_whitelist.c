@@ -18,7 +18,7 @@
 extern void memset_bytes(void*, int, int);
 extern unsigned int flash_settings_read(unsigned int, void*, int);
 extern void memcpy(unsigned int, void*, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int load_whitelist(void)
@@ -53,6 +53,6 @@ unsigned int load_whitelist(void)
         uVar3 = 0x30;
         uVar2 = 0xa8400;
     }
-    DEBUG_PRINT(uVar2, 0xa8aa8, uVar3, uVar1);
+    log_message(uVar2, 0xa8aa8, uVar3, uVar1);
     return 0xffffffff;
 }

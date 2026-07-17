@@ -13,7 +13,7 @@
 /* Reconstructed get_glassbox_charge_percent @ 0x327c4. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t, ...);
+extern void log_message(uint32_t, uint32_t, ...);
 extern void debug_print(uint32_t, uint32_t, ...);
 
 uint8_t get_glassbox_charge_percent(void)
@@ -22,7 +22,7 @@ uint8_t get_glassbox_charge_percent(void)
 
     if (2 < *(volatile int *)0x2000230cUL) {
         if (*(volatile uint32_t *)0x20007554UL == 0)
-            DEBUG_PRINT(0x000a742dUL, 0x000a7735UL, percent);
+            log_message(0x000a742dUL, 0x000a7735UL, percent);
         else
             debug_print(0x000a742dUL, 0x000a7735UL, percent);
     }

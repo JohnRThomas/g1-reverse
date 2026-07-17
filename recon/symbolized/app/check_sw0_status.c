@@ -19,7 +19,7 @@
 extern int read_sw0_pin(void);
 extern void debug_print(void);
 extern void pt_nfc_eeprom_link_start(void);
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned int fmt, unsigned int arg);
 
 void check_sw0_status(void)
 {
@@ -30,7 +30,7 @@ void check_sw0_status(void)
     if (iVar3 == 0) {
         if (*piVar2 > 1) {
             if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a18cd) /*=0xa18cd*/, ((unsigned long)&rodata_a19af) /*=0xa19af*/);
+                log_message(((unsigned long)&rodata_a18cd) /*=0xa18cd*/, ((unsigned long)&rodata_a19af) /*=0xa19af*/);
             } else {
                 debug_print();
             }
@@ -40,7 +40,7 @@ void check_sw0_status(void)
         if (iVar3 > 3) {
             if (*piVar2 > 1) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_a18ea) /*=0xa18ea*/, ((unsigned long)&rodata_a19af) /*=0xa19af*/);
+                    log_message(((unsigned long)&rodata_a18ea) /*=0xa18ea*/, ((unsigned long)&rodata_a19af) /*=0xa19af*/);
                 } else {
                     debug_print();
                 }

@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00033b0c @ 0x33b0c  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void log_message(unsigned int, int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void debug_print(unsigned int, ...);
 
 void msg_queue_debug_dump(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -26,7 +26,7 @@ void msg_queue_debug_dump(unsigned int param_1, unsigned int param_2, unsigned i
         unsigned int value1 = puVar3[1];
         unsigned int value2 = puVar3[2];
         if (buffered == 0) {
-            DEBUG_PRINT(format_string, iVar2, value2, value1, value0, param_2, param_3);
+            log_message(format_string, iVar2, value2, value1, value0, param_2, param_3);
         } else {
             debug_print(format_string, iVar2, value2, value1,
                          value0, param_2, param_3);

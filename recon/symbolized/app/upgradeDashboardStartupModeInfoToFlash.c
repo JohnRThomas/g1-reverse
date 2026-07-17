@@ -17,7 +17,7 @@
  */
 /* Reconstructed upgradeDashboardStartupModeInfoToFlash @ 0x23bfc  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int a0, ...);
 extern void k_sem_give(unsigned int a0);
 
@@ -33,7 +33,7 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     if (iVar1 == 0) {
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e98c) /*=0x9e98c*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/, param_1);
+                log_message(((unsigned long)&rodata_9e98c) /*=0x9e98c*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/, param_1);
             else
                 debug_print(((unsigned long)&rodata_9e98c) /*=0x9e98c*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/, param_1);
         }
@@ -42,7 +42,7 @@ unsigned int upgradeDashboardStartupModeInfoToFlash(unsigned int param_1, unsign
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                DEBUG_PRINT(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/);
+                log_message(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/);
             else
                 debug_print(((unsigned long)&rodata_9e903) /*=0x9e903*/, ((unsigned long)&rodata_9ed68) /*=0x9ed68*/);
         }

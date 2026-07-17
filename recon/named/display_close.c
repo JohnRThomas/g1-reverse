@@ -26,7 +26,7 @@ struct display_close_packet {
     uint8_t payload[20];
 };
 
-extern void DEBUG_PRINT(uint32_t format, uint32_t name, ...);
+extern void log_message(uint32_t format, uint32_t name, ...);
 extern void debug_print(uint32_t format, uint32_t name, ...);
 extern int k_msgq_put(void *owner, const void *packet,
                         int option_a, int option_b);
@@ -44,7 +44,7 @@ int display_close(const void *payload, unsigned int payload_length)
     if (payload_length > 10) {
         if (*(volatile int *)0x2000230cUL > 0) {
             if (*(volatile int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000ef01cUL, 0x000f018cUL, 10);
+                log_message(0x000ef01cUL, 0x000f018cUL, 10);
             } else {
                 debug_print(0x000ef01cUL, 0x000f018cUL, 10);
             }
@@ -60,13 +60,13 @@ int display_close(const void *payload, unsigned int payload_length)
 
     result = k_msgq_put((void *)0x200038c4UL, &packet, 0, 0);
     if (result != 0) {
-        DEBUG_PRINT(0x000ef058UL, 0x000f018cUL);
+        log_message(0x000ef058UL, 0x000f018cUL);
         return -1;
     }
 
     if (*(volatile int *)0x2000230cUL > 0) {
         if (*(volatile int *)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000f0044UL, 0x000f018cUL);
+            log_message(0x000f0044UL, 0x000f018cUL);
         } else {
             debug_print(0x000f0044UL, 0x000f018cUL);
         }

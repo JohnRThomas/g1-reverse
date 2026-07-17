@@ -74,11 +74,11 @@ typedef long long i64; typedef unsigned long long u64;
 #define UB(a) (*(volatile unsigned char*)(a))
 #define F(a)  (*(volatile float*)(a))
 
-extern int DEBUG_PRINT(void);
+extern int log_message(void);
 extern int debug_print(void);
 extern int memset_bytes(int,int,int);
 extern int FUN_0007ca72(int,int);
-extern i64 thunk_FUN_00074f68(void);
+extern i64 uptime_ticks_get(void);
 extern int is_battery_critical(void);
 extern int set_shutdown_flag(void*,int);
 extern int sync_to_slave(void*,int,int,int);
@@ -120,10 +120,10 @@ void imu_fusion_thread(char *p)
     memset_bytes((int)buf2, 0, 0x18);
 
     if (p[0x14] != 0) {
-        if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) DEBUG_PRINT(); else debug_print(); }
+        if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) log_message(); else debug_print(); }
         return;
     }
-    if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) DEBUG_PRINT(); else debug_print(); }
+    if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) log_message(); else debug_print(); }
     p[0] = 1;
 
     while (p[0x15] != 0) {
@@ -134,7 +134,7 @@ void imu_fusion_thread(char *p)
             if (p[0x106] == 0x0b) { p[0] = 2; }
             else if (p[0x106] != 0x0c) {
                 if ((int)((unsigned)(u16)(*(u16*)(p+0x178)) << 0x1a) < 0) {
-                    i64 v = thunk_FUN_00074f68();
+                    i64 v = uptime_ticks_get();
                     local_a4 = (unsigned)(((u64)v * 1000ULL) >> 15);
                     if (1000u < (unsigned)(local_a4 - U(((unsigned long)&g_20007a94) /*=0x20007a94*/))) FUN_000265b8(p+0x28);
                     goto Lffb4;
@@ -271,7 +271,7 @@ void imu_fusion_thread(char *p)
             if (iVar6 < 2) goto L1064c;
             I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) = -3;
             B(((unsigned long)&g_20018d96) /*=0x20018d96*/) = 1;
-            if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/) == 0) DEBUG_PRINT(); else debug_print();
+            if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/) == 0) log_message(); else debug_print();
             send_event(3);
             p[0] = 1;
             {
@@ -293,7 +293,7 @@ void imu_fusion_thread(char *p)
         }
 
         if (*(int*)(p+8) < iVar27 || iVar27 < *(int*)(p+0xc)) goto L10734;
-        thunk_FUN_00074f68();
+        uptime_ticks_get();
         iVar6 = I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) + 1;
         if (iVar6 < 2) { I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) = iVar6; goto L1027a; }
         I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) = -3;
@@ -301,7 +301,7 @@ void imu_fusion_thread(char *p)
             u8 bv = (u8)p[0x10];
             if (p[-0xe0f]==0 && I(((unsigned long)&g_20007a88) /*=0x20007a88*/) <= iVar27) goto L1027a;
             B(((unsigned long)&g_20018d96) /*=0x20018d96*/) = 1;
-            if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) DEBUG_PRINT(); else debug_print();
+            if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) log_message(); else debug_print();
             k = 0x65;
             while (1) {
                 int iv = get_device_info();
@@ -327,7 +327,7 @@ void imu_fusion_thread(char *p)
                 if (-1 < (iVar6 << 0x1e)) {
                     iVar6 = FUN_0007ca4e((void*)((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/);
                     if (-1 < (iVar6 << 0x1e) && (FUN_0007ca4e((void*)((unsigned long)&g_dashboard_lock_ready_flags) /*=0x20007570*/) << 0x1e) < 0) {
-                        if (2 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) DEBUG_PRINT(); else debug_print(); }
+                        if (2 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) log_message(); else debug_print(); }
                         send_response_data_to_msgqueue(0,6);
                         send_response_data_to_ble();
                         I(((unsigned long)&g_dashboard_lock_sent_flags) /*=0x2000756c*/) |= 2;
@@ -337,7 +337,7 @@ void imu_fusion_thread(char *p)
                 /* bit1 clear: enter work-mode-2 path */
                 p[0] = 2; p[0x102] = 5; p[-0xe19] = p[-0xf];
                 if (p[-0xee4] == 1) {
-                    if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) DEBUG_PRINT(); else debug_print(); }
+                    if (1 < I(((unsigned long)&g_log_level) /*=0x2000230c*/)) { if (I(((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)==0) log_message(); else debug_print(); }
                     sync_to_slave(q8,2,0,3);
                     cal_panel_canvas_coord(p-0x20, p-0x2c);
                 }
@@ -366,7 +366,7 @@ void imu_fusion_thread(char *p)
         /* fallthrough */
     L1027a:
         if (p[0] == 1 && I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) <= 0) {
-            thunk_FUN_00074f68();
+            uptime_ticks_get();
             I(((unsigned long)&g_20007a88) /*=0x20007a88*/) = iVar27;
         }
         /* fallthrough */

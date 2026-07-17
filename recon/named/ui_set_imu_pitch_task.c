@@ -24,7 +24,7 @@
  */
 /* Reconstructed FUN_00046b80 @ 0x46b80  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int get_device_info(int,...);
 extern int debug_print(int,...);
 extern int gui_set_active_canvas(int,...);
@@ -97,7 +97,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         }
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)0x2000230c){
-            if(*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x000d71ad,0x000d71e3);
+            if(*(volatile int*)0x20007554 == 0) log_message(0x000d71ad,0x000d71e3);
             else debug_print(0);
         }
         gui_screen_clear(0);
@@ -106,7 +106,7 @@ unsigned ui_set_imu_pitch_task(int param_1, unsigned param_2, int param_3)
         if(param_3 == 1){ set_imu_pitch_reflash(0); return 0; }
         if(param_3 != 2) return 0;
         if(2 < *(volatile int*)0x2000230c){
-            if(*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0x000d71ad,0x000d71e3);
+            if(*(volatile int*)0x20007554 == 0) log_message(0x000d71ad,0x000d71e3);
             else debug_print(0);
         }
         FUN_0004382c(0);

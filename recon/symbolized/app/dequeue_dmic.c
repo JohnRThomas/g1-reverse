@@ -16,7 +16,7 @@
  */
 /* Reconstructed dequeue_dmic @ 0x2ed00  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned int fmt, unsigned int arg);
 extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(unsigned int queue, void *record,
                        unsigned int wait, unsigned int flags);
@@ -33,7 +33,7 @@ int dequeue_dmic(void *param_1)
         memcpy(param_1, record, 200);
     } else if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_a3f62) /*=0xa3f62*/, ((unsigned long)&rodata_a41d5) /*=0xa41d5*/);
+            log_message(((unsigned long)&rodata_a3f62) /*=0xa3f62*/, ((unsigned long)&rodata_a41d5) /*=0xa41d5*/);
         } else {
             debug_print(((unsigned long)&rodata_a3f62) /*=0xa3f62*/, ((unsigned long)&rodata_a41d5) /*=0xa41d5*/);
         }

@@ -21,12 +21,12 @@
 
 typedef unsigned char u8;
 typedef unsigned int u32;
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 extern int k_is_in_isr(void);
 extern void app_msleep_thunk_a(int);
 extern int sys_reboot(int);
-extern void thunk_FUN_00072880(unsigned int);
+extern void process_sync_buffer(unsigned int);
 
 void switch_to_dfu_mode(unsigned int param_1)
 {
@@ -38,7 +38,7 @@ void switch_to_dfu_mode(unsigned int param_1)
     *puVar1 = 1;
     iVar2 = k_is_in_isr();
     if (iVar2 != 0) {
-        thunk_FUN_00072880(param_1);
+        process_sync_buffer(param_1);
         return;
     }
     {
@@ -62,7 +62,7 @@ void switch_to_dfu_mode(unsigned int param_1)
             debug_print(((unsigned long)&rodata_990dc) /*=0x990dc*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, (unsigned int)iVar2, 0);
             return;
         }
-        DEBUG_PRINT(((unsigned long)&rodata_990dc) /*=0x990dc*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/);
+        log_message(((unsigned long)&rodata_990dc) /*=0x990dc*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/);
         return;
     }
 loop_start:
@@ -70,6 +70,6 @@ loop_start:
         app_msleep_thunk_a(500);
         r2val = (unsigned int)sys_reboot(1);
 print_lab:
-        DEBUG_PRINT(((unsigned long)&rodata_99105) /*=0x99105*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, r2val);
+        log_message(((unsigned long)&rodata_99105) /*=0x99105*/, ((unsigned long)&rodata_99b2a) /*=0x99b2a*/, r2val);
     }
 }

@@ -16,7 +16,7 @@
  */
 /* Reconstructed upgradeAppLanguageInfoToFlash @ 0x23af0  (parity: 300/300 trials, PROVEN) */
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
-extern void DEBUG_PRINT(unsigned int a0, ...);
+extern void log_message(unsigned int a0, ...);
 extern void debug_print(unsigned int,...);
 extern void k_sem_give(unsigned int a0);
 
@@ -35,7 +35,7 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (2 < *(volatile int*)0x2000230cUL) {
             unsigned int sink = *(volatile unsigned int*)0x20007554UL;
             if (sink == 0)
-                DEBUG_PRINT(0x9e932UL, 0x9eda4UL, param_1, sink);
+                log_message(0x9e932UL, 0x9eda4UL, param_1, sink);
             else
                 debug_print(0x9e932UL, 0x9eda4UL, param_1, sink);
         }
@@ -45,7 +45,7 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
         if (0 < *(volatile int*)0x2000230cUL) {
             unsigned int sink = *(volatile unsigned int*)0x20007554UL;
             if (sink == 0)
-                DEBUG_PRINT(0x9e903UL, 0x9eda4UL, 0UL, sink);
+                log_message(0x9e903UL, 0x9eda4UL, 0UL, sink);
             else
                 debug_print(0x9e903UL, 0x9eda4UL, 0UL, sink);
         }

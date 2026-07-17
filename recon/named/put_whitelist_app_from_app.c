@@ -23,7 +23,7 @@ typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
 typedef void (*fn2_t)(uint32_t, uint32_t);
 
-extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
+extern void log_message(uint32_t a, uint32_t b, uint32_t c);
 extern void debug_print(void);
 extern uint32_t parse_receiver_pack_pkcs7(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t parse_whitelist_json(uint32_t a);
@@ -44,7 +44,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
         *piVar1 = iVar2;
         if (iVar2 == 0) {
             if (*(volatile uint32_t*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000a7c9cUL, 0x000a8a6fUL, 0x1caUL);
+                log_message(0x000a7c9cUL, 0x000a8a6fUL, 0x1caUL);
             } else {
                 debug_print();
             }
@@ -71,7 +71,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
             format_string = 0x000a89c8UL;
         }
         if (iVar2 == 0) {
-            DEBUG_PRINT(format_string, 0, 0);
+            log_message(format_string, 0, 0);
         } else {
             debug_print();
         }

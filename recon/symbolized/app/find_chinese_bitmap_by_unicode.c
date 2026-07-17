@@ -20,7 +20,7 @@
 /* Reconstructed FUN_0004792c @ 0x4792c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(unsigned int, ...);
+extern void log_message(unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 extern void *get_device_info(void);
 extern unsigned int expand_bytes_via_lut32(void *, unsigned int, unsigned int);
@@ -55,14 +55,14 @@ unsigned int find_chinese_bitmap_by_unicode(unsigned int codepoint, int16_t widt
         if (status != 0) {
             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    DEBUG_PRINT(((unsigned long)&rodata_bbfee) /*=0xbbfee*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/);
+                    log_message(((unsigned long)&rodata_bbfee) /*=0xbbfee*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/);
                 else
                     debug_print(((unsigned long)&rodata_bbfee) /*=0xbbfee*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/);
             }
             return 0;
         }
 
-        DEBUG_PRINT(((unsigned long)&rodata_d74f4) /*=0xd74f4*/, dimensions[0], dimensions[1], 4);
+        log_message(((unsigned long)&rodata_d74f4) /*=0xd74f4*/, dimensions[0], dimensions[1], 4);
         {
             unsigned int offset = (bitmap_size >> 2) * dimensions[1];
             if (bitmap_size == 0x1b0)
@@ -76,7 +76,7 @@ unsigned int find_chinese_bitmap_by_unicode(unsigned int codepoint, int16_t widt
                               result, bitmap_size >> 2);
             if (status != 0 && *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
                 if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-                    DEBUG_PRINT(((unsigned long)&rodata_a1ce0) /*=0xa1ce0*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/, status);
+                    log_message(((unsigned long)&rodata_a1ce0) /*=0xa1ce0*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/, status);
                 else
                     debug_print(((unsigned long)&rodata_a1ce0) /*=0xa1ce0*/, ((unsigned long)&rodata_d750b) /*=0xd750b*/, status);
             }

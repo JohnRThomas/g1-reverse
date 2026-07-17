@@ -26,13 +26,13 @@
 #include <stdint.h>
 
 extern int z_impl_k_sem_init(uintptr_t object, uint32_t flags, uint32_t count);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void set_delay_deadline(uint32_t delay);
 extern void arm_timeout_10s(void);
-extern void thunk_FUN_00074844(uint32_t ticks, uint32_t flags);
+extern void wait_for_event(uint32_t ticks, uint32_t flags);
 extern uint64_t is_battery_critical(void);
-extern int thunk_FUN_00072908(uintptr_t object, uint32_t high,
+extern int k_sem_take(uintptr_t object, uint32_t high,
                              uint32_t timeout, uint32_t flags);
 extern uint64_t k_uptime_get_1(void);
 extern void ipc_service_send_with_retry(uint8_t *status);
@@ -58,17 +58,17 @@ void FUN_0002a4f4(uint32_t inherited_stack, uint32_t packed_status,
         *initialized = 1;
         stale_r2 = 1;
     }
-    DEBUG_PRINT(((unsigned long)&rodata_a1895) /*=0xa1895*/, (uint32_t)*initialized, stale_r2, ((unsigned long)&g_misc_dispatch_pending_flag) /*=0x20018d88*/);
+    log_message(((unsigned long)&rodata_a1895) /*=0xa1895*/, (uint32_t)*initialized, stale_r2, ((unsigned long)&g_misc_dispatch_pending_flag) /*=0x20018d88*/);
 
     for (;;) {
         if (*(volatile uint8_t *)(get_device_info() + 1) == 8) {
             set_delay_deadline(10000);
             arm_timeout_10s();
-            thunk_FUN_00074844(0x667, 0);
+            wait_for_event(0x667, 0);
             continue;
         }
         if (*(volatile uint8_t *)(get_device_info() + 1) == 1) {
-            thunk_FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
+            wait_for_event(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
             continue;
         }
 
@@ -77,14 +77,14 @@ void FUN_0002a4f4(uint32_t inherited_stack, uint32_t packed_status,
             int active = init_nfc_comm();
             if (*(volatile uint8_t *)(get_device_info() + 0x1088) == 1)
                 active = init_serial_comm();
-            thunk_FUN_00074844(0x1334, 0);
+            wait_for_event(0x1334, 0);
             if (active == 0)
                 FUN_0003271c();
-            thunk_FUN_00074844(0x1334, 0);
+            wait_for_event(0x1334, 0);
             continue;
         }
 
-        int wait_result = thunk_FUN_00072908(((unsigned long)&g_misc_dispatch_ctx) /*=0x20007b00*/,
+        int wait_result = k_sem_take(((unsigned long)&g_misc_dispatch_ctx) /*=0x20007b00*/,
                                              (uint32_t)(state >> 32),
                                              0x18000, 0);
         if (wait_result != 0) {

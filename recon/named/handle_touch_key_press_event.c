@@ -18,7 +18,7 @@
  */
 /* Reconstructed FUN_0002c3dc @ 0x2c3dc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned);
+extern void log_message(unsigned);
 extern unsigned long long get_device_info(void);
 extern void debug_print(unsigned);
 extern unsigned long long esb_send_command_and_wait_ack(unsigned a, int b, int c, int d);
@@ -69,7 +69,7 @@ unsigned handle_touch_key_press_event(unsigned inherited_r0, unsigned inherited_
         }
     }
     if (*(volatile int*)0x20007554 == 0)
-        DEBUG_PRINT(0x000a2748);
+        log_message(0x000a2748);
     else
         debug_print(0x000a2748);
     uVar5 = 0xffffffffu;

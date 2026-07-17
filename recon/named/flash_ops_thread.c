@@ -19,7 +19,7 @@
  */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uintptr_t format, ...); /* alias of FUN_0007dda4 */
+extern void log_message(uintptr_t format, ...); /* alias of FUN_0007dda4 */
 extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
 
 /* Semantic aliases retain the exact raw linker identities. */
@@ -52,7 +52,7 @@ static inline void log_thread_started(void)
 {
     if (*log_level_reg > 2) {
         if (*g_log_backend == 0)
-            DEBUG_PRINT(0x0009e7da, 0x0009e8be);
+            log_message(0x0009e7da, 0x0009e8be);
         else
             debug_print(0x0009e7da, 0x0009e8be);
     }

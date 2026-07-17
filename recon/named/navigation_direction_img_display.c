@@ -18,7 +18,7 @@ extern int device_info_text_width_get(void);
 extern int device_info_text_height_get_clamped(void);
 extern void gui_bmp_bitmap_draw(int a, int b, int c, int d, int e, int f, int g);
 extern void debug_print(int a, int b);
-extern void DEBUG_PRINT(int a, int b);
+extern void log_message(int a, int b);
 
 void navigation_direction_img_display(int param_1, int param_2, int param_3)
 {
@@ -33,7 +33,7 @@ void navigation_direction_img_display(int param_1, int param_2, int param_3)
         if (*(volatile int *)0x20007554UL != 0) {
             debug_print(0xa9e91, 0xaa466);
         } else {
-            DEBUG_PRINT(0xa9e91, 0xaa466);
+            log_message(0xa9e91, 0xaa466);
         }
     }
 }

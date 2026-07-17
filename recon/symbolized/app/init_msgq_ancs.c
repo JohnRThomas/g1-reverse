@@ -15,13 +15,13 @@
 /* Reconstructed init_msgq_ancs @ 0x18b6c  (parity: 300/300 trials, PROVEN) */
 
 extern int z_impl_k_msgq_alloc_init(unsigned int,int,int);
-extern void DEBUG_PRINT(unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int);
 extern void debug_print(unsigned int,...);
 int init_msgq_ancs(void){
     int iVar1 = z_impl_k_msgq_alloc_init(((unsigned long)&g_ancs_msgq) /*=0x20006a6c*/,0x1b4,10);
     if(iVar1!=0 && *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>0){
         if(*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0){
-            DEBUG_PRINT(((unsigned long)&rodata_9a949) /*=0x9a949*/,((unsigned long)&rodata_9b1aa) /*=0x9b1aa*/);
+            log_message(((unsigned long)&rodata_9a949) /*=0x9a949*/,((unsigned long)&rodata_9b1aa) /*=0x9b1aa*/);
         } else { debug_print(((unsigned long)&rodata_9a949) /*=0x9a949*/,((unsigned long)&rodata_9b1aa) /*=0x9b1aa*/); }
     }
     return iVar1;

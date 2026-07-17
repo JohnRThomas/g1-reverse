@@ -20,7 +20,7 @@ extern int get_device_info(void);
 extern unsigned get_current_burial_point_type(void);
 extern unsigned long long k_uptime_get_10(void);
 extern void debug_print(unsigned,unsigned,unsigned,unsigned);
-extern void DEBUG_PRINT(unsigned,unsigned,unsigned,unsigned);
+extern void log_message(unsigned,unsigned,unsigned,unsigned);
 
 void enter_dashboard_burial_point(void){
     int iVar1 = get_device_info();
@@ -39,7 +39,7 @@ void enter_dashboard_burial_point(void){
                     return;
                 }
                 iVar1=get_device_info();
-                DEBUG_PRINT(((unsigned long)&rodata_f038d) /*=0xf038d*/,((unsigned long)&rodata_f0475) /*=0xf0475*/,*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
+                log_message(((unsigned long)&rodata_f038d) /*=0xf038d*/,((unsigned long)&rodata_f0475) /*=0xf0475*/,*(unsigned*)(iVar1+0x1094),*(unsigned*)(iVar1+0x1098));
                 return;
             }
         }

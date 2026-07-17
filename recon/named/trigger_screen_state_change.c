@@ -14,7 +14,7 @@
 /* Reconstructed trigger_screen_state_change @ 0x2bc2c  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
@@ -22,7 +22,7 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
     if ((unsigned int)(*(volatile unsigned char*)(param_2 + 0xfe8)) == param_3) {
         if (1 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa2470, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(0xa2470, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
                 debug_print(0xa2470, 0xa254a, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
@@ -38,7 +38,7 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
         }
         if (1 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa2486, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(0xa2486, 0xa254a, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
                 debug_print(0xa2486, 0xa254a, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);

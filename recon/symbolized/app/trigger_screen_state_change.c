@@ -15,7 +15,7 @@
 /* Reconstructed trigger_screen_state_change @ 0x2bc2c  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
 unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsigned int param_3, unsigned int param_4)
@@ -23,7 +23,7 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
     if ((unsigned int)(*(volatile unsigned char*)(param_2 + 0xfe8)) == param_3) {
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a2470) /*=0xa2470*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(((unsigned long)&rodata_a2470) /*=0xa2470*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
                 debug_print(((unsigned long)&rodata_a2470) /*=0xa2470*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
@@ -39,7 +39,7 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
         }
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a2486) /*=0xa2486*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
+                log_message(((unsigned long)&rodata_a2486) /*=0xa2486*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1, *(volatile unsigned char*)(param_2 + 0xfe8), param_4);
             } else {
                 debug_print(((unsigned long)&rodata_a2486) /*=0xa2486*/, ((unsigned long)&rodata_a254a) /*=0xa254a*/, param_1,
                              *(volatile unsigned char*)(param_2 + 0xfe8), param_4);

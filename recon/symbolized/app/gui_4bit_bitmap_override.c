@@ -19,7 +19,7 @@
  */
 /* Reconstructed gui_4bit_bitmap_override @ 0x43d78  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern void *get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern int atomic_get_3_0(void);
@@ -50,14 +50,14 @@ unsigned int gui_4bit_bitmap_override(unsigned int param_1, unsigned int param_2
         }
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/);
+                log_message(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/);
             } else {
                 debug_print(((unsigned long)&rodata_aa8eb) /*=0xaa8eb*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/);
             }
         }
     } else if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
         if (*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_aaa01) /*=0xaaa01*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/, param_2, param_3);
+            log_message(((unsigned long)&rodata_aaa01) /*=0xaaa01*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/, param_2, param_3);
         } else {
             debug_print(((unsigned long)&rodata_aaa01) /*=0xaaa01*/, ((unsigned long)&rodata_aacaf) /*=0xaacaf*/, param_2, param_3);
         }

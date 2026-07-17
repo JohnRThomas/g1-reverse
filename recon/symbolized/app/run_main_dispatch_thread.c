@@ -47,7 +47,7 @@
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t, uint32_t);
+extern void log_message(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern void spawn_flash_ops_and_brightness_threads(void *);
 extern void init_watchdog(void);
@@ -71,7 +71,7 @@ void run_main_dispatch_thread(char *dispatch_mode)
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
+            log_message(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
         else
             debug_print(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
     }

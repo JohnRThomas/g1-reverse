@@ -20,7 +20,7 @@
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void k_sem_give(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
+extern void log_message(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
 unsigned int delAudioStreamRecord(unsigned char param_1)
@@ -31,7 +31,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
 
     if (2 < *(volatile int*)0x2000230cUL) {
         if (*(volatile unsigned int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0xa420e, 0xa4944);
+            log_message(0xa420e, 0xa4944);
         } else {
             debug_print(0xa420e, 0xa4944);
         }
@@ -47,7 +47,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa3f45, 0xa4944);
+                log_message(0xa3f45, 0xa4944);
             } else {
                 debug_print(0xa3f45, 0xa4944);
             }

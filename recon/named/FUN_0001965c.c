@@ -23,7 +23,7 @@
 /* Reconstructed FUN_0001965c @ 0x1965c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern int dequeue_ancs(void*);
 extern void debug_print(uint32_t, void*);
 extern void ble_process_req_dispatch(uint32_t, void*, void*);
@@ -82,7 +82,7 @@ void FUN_0001965c(uint32_t channel)
           return;
         }
         if (*(volatile uint32_t*)0x20007554UL == 0) {
-          DEBUG_PRINT(0x0009ad86UL, local.notification.text);
+          log_message(0x0009ad86UL, local.notification.text);
         } else {
           debug_print(0x0009ad86UL, local.notification.text);
         }

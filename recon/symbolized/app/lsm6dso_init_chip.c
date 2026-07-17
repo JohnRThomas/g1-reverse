@@ -44,7 +44,7 @@
  *   rodata_f6481                             @ 0x000f6481
  */
 /* Reconstructed FUN_000622a0 @ 0x622a0  (parity: 300/300 trials, PROVEN) */
-extern void DEBUG_PRINT(int fmt, ...);
+extern void log_message(int fmt, ...);
 extern int audio_codec_set_reg10_field2(int a0,int a1);
 extern int audio_codec_set_reg11_field1(int a0,int a1);
 extern int audio_codec_set_reg12_bit6(int a0,int a1);
@@ -83,7 +83,7 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
     uVar3 = ((unsigned long)&rodata_f62ac) /*=0xf62ac*/;
     if (iVar2 < 0) goto LAB_622bc;
 
-    DEBUG_PRINT(((unsigned long)&rodata_f62c5) /*=0xf62c5*/, (param_2 >> 0x10) & 0xff);
+    log_message(((unsigned long)&rodata_f62c5) /*=0xf62c5*/, (param_2 >> 0x10) & 0xff);
     uVar5 = (param_2 >> 0x10) & 0xff;
     uVar3 = ((unsigned long)&rodata_f62e6) /*=0xf62e6*/;
     if (uVar5 == 0x6c) {
@@ -94,19 +94,19 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
         uVar3 = ((unsigned long)&rodata_f6315) /*=0xf6315*/;
         if (iVar2 < 0) goto LAB_622bc;
         if (((param_2 >> 0x18) & 0xff) != 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_f6337) /*=0xf6337*/);
+            log_message(((unsigned long)&rodata_f6337) /*=0xf6337*/);
             audio_codec_set_reg14_bit2(iVar7, 0);
             delay_scaled_busy_wait(300);
         }
         iVar2 = audio_codec_set_reg12_bit0(iVar7, 1);
         if (iVar2 < 0) goto LAB_622ec;
         delay_scaled_busy_wait(100);
-        DEBUG_PRINT(((unsigned long)&rodata_f6353) /*=0xf6353*/, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x18));
+        log_message(((unsigned long)&rodata_f6353) /*=0xf6353*/, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x18));
         cVar4 = *(volatile signed char*)(iVar7+0x18);
         if ((cVar4 != 1) && (cVar4 != 2)) cVar4 = 0;
         audio_codec_set_dual_reg14_reg15(iVar7, cVar4);
         uVar5 = (*(volatile unsigned char*)(iVar7+0x1a)) & 0x3f;
-        DEBUG_PRINT(((unsigned long)&rodata_f6364) /*=0xf6364*/, uVar5);
+        log_message(((unsigned long)&rodata_f6364) /*=0xf6364*/, uVar5);
         iVar10 = *(int*)(param_1+0x10);
         iVar2 = audio_codec_set_reg10_field2(*(int*)(param_1+4), uVar5);
         uVar3 = ((unsigned long)&rodata_f6378) /*=0xf6378*/;
@@ -128,7 +128,7 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
                 *(volatile unsigned int*)(iVar8+0xc) = newv;
             }
             uVar5 = (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x19);
-            DEBUG_PRINT(uVar3, uVar5);
+            log_message(uVar3, uVar5);
             if (uVar5 > 10) {
                 iVar10 = 0x1a04;
             }
@@ -142,18 +142,18 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
             uVar3 = ((unsigned long)&rodata_f63c1) /*=0xf63c1*/;
             if (iVar2 >= 0) {
                 *(volatile unsigned short*)(iVar10+0x1c) = uVar9;
-                DEBUG_PRINT(((unsigned long)&rodata_f63b1) /*=0xf63b1*/, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1b));
+                log_message(((unsigned long)&rodata_f63b1) /*=0xf63b1*/, (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1b));
                 cVar4 = *(volatile signed char*)(iVar7+0x1b);
                 if (cVar4 != 1) cVar4 = 0;
                 audio_codec_set_reg16_bit7(iVar7, cVar4);
                 uVar5 = (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1d);
-                DEBUG_PRINT(((unsigned long)&rodata_f63e6) /*=0xf63e6*/, uVar5);
+                log_message(((unsigned long)&rodata_f63e6) /*=0xf63e6*/, uVar5);
                 iVar2 = audio_codec_set_reg11_field1(*(int*)(param_1+4), uVar5);
                 uVar3 = ((unsigned long)&rodata_f63f9) /*=0xf63f9*/;
                 if (iVar2 >= 0) {
                     *(volatile unsigned int*)(iVar8+0x18) = (unsigned int)(*(volatile unsigned short*)(((unsigned long)&rodata_99042) /*=0x99042*/ + (unsigned int)uVar5*2)) * 0x1117;
                     uVar5 = (unsigned int)(unsigned char)*(volatile unsigned char*)(iVar7+0x1c);
-                    DEBUG_PRINT(((unsigned long)&rodata_f641c) /*=0xf641c*/, uVar5);
+                    log_message(((unsigned long)&rodata_f641c) /*=0xf641c*/, uVar5);
                     if (uVar5 < 0xb) {
                         uVar9 = *(volatile unsigned short*)(0x00099066UL + (unsigned int)uVar5*2);
                     } else {
@@ -180,11 +180,11 @@ int lsm6dso_init_chip(int param_1, unsigned int param_2, int param_3)
     } else {
         uVar3 = ((unsigned long)&rodata_f62e6) /*=0xf62e6*/;
     }
-    DEBUG_PRINT(uVar3, uVar5);
+    log_message(uVar3, uVar5);
     goto LAB_622ec;
 LAB_622bc:
-    DEBUG_PRINT(uVar3);
+    log_message(uVar3);
 LAB_622ec:
-    DEBUG_PRINT(((unsigned long)&rodata_f6481) /*=0xf6481*/);
+    log_message(((unsigned long)&rodata_f6481) /*=0xf6481*/);
     return 0;
 }

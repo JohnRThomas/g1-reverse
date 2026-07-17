@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_0001905c @ 0x1905c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int log_message(int,...);
 extern int debug_print(int,...);
 extern int FUN_0007f69e(int,...);
 extern int bt_ancs_register_attr(int,...);
@@ -47,7 +47,7 @@ int ancs_c_init(int param_1, unsigned param_2, unsigned param_3, unsigned param_
                             if(C8 < 1) return iVar1;
                             if(CC == 0){ uVar2 = 0x3dc;
 LAB_00019090:
-                                DEBUG_PRINT(0x0009ab0c, 0x0009b15e, uVar2, iVar1); return iVar1; }
+                                log_message(0x0009ab0c, 0x0009b15e, uVar2, iVar1); return iVar1; }
                             uVar2 = 0x3dc;
                         }
                     } else {

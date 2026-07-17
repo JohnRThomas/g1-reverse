@@ -17,7 +17,7 @@
 #include <stdint.h>
 
 extern void format_bt_addr_str(const void *connection, char description[36]);
-extern void DEBUG_PRINT(uintptr_t format, ...);
+extern void log_message(uintptr_t format, ...);
 extern void debug_print(uintptr_t format, ...);
 
 void check_bonded_addr(const void *connection)
@@ -30,7 +30,7 @@ void check_bonded_addr(const void *connection)
 
     if (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_9a46f) /*=0x9a46f*/, ((unsigned long)&rodata_9b108) /*=0x9b108*/, description);
+            log_message(((unsigned long)&rodata_9a46f) /*=0x9a46f*/, ((unsigned long)&rodata_9b108) /*=0x9b108*/, description);
         else
             debug_print(((unsigned long)&rodata_9a46f) /*=0x9a46f*/, ((unsigned long)&rodata_9b108) /*=0x9b108*/, description);
     }

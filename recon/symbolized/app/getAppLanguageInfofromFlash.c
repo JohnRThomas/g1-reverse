@@ -20,7 +20,7 @@
 /* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern int z_device_is_ready(uint32_t device);
@@ -39,7 +39,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
 
     if (*log_level > 2) {
         if (*deferred_logger == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, reason, 0, request);
+            log_message(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, reason, 0, request);
         } else {
             debug_print(((unsigned long)&rodata_9e9bf) /*=0x9e9bf*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, reason, 0, request);
         }
@@ -48,7 +48,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     if (z_device_is_ready((uint32_t)flash_device) == 0) {
         if (*log_level > 0) {
             if (*deferred_logger == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/,
+                log_message(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/,
                             *flash_device, 0, request);
             } else {
                 debug_print(((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/,
@@ -67,7 +67,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     if (status != 0) {
         if (*log_level > 0) {
             if (*deferred_logger == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, 0x13e000);
+                log_message(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, 0x13e000);
             } else {
                 debug_print(((unsigned long)&rodata_9ea0a) /*=0x9ea0a*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, 0x13e000);
             }
@@ -80,7 +80,7 @@ uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
     *published_language = language;
     if (*log_level > 3) {
         if (*deferred_logger == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9ea37) /*=0x9ea37*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, *published_language);
+            log_message(((unsigned long)&rodata_9ea37) /*=0x9ea37*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, *published_language);
         } else {
             debug_print(((unsigned long)&rodata_9ea37) /*=0x9ea37*/, ((unsigned long)&rodata_9ed2e) /*=0x9ed2e*/, *published_language);
         }

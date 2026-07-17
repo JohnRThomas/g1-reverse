@@ -92,7 +92,7 @@ typedef uint64_t undefined8; typedef uint64_t ulonglong;
 typedef int64_t longlong;
 #define CONCAT11(a,b) ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))
 #define CONCAT22(a,b) ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))
-extern long long DEBUG_PRINT(int, ...);
+extern long long log_message(int, ...);
 extern long long strlen(int, ...);
 extern long long get_device_info(int, ...);
 extern long long debug_print(int, ...);
@@ -309,7 +309,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
   piVar2 = DAT_000374c0;
   if (2 < *DAT_000374c0) {
     if (*DAT_000374c4 == 0) {
-      DEBUG_PRINT(DAT_000374cc,DAT_000374c8,param_4);
+      log_message(DAT_000374cc,DAT_000374c8,param_4);
     }
     else {
       debug_print(DAT_000374cc,DAT_000374c8,param_4);
@@ -324,7 +324,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
           if (iVar4 != 1) {
             uVar5 = DAT_0003aba8;
           }
-          DEBUG_PRINT(DAT_0003abb0,DAT_0003abac,uVar5);
+          log_message(DAT_0003abb0,DAT_0003abac,uVar5);
         }
         else {
           uVar5 = DAT_0003aba4;
@@ -345,7 +345,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
         *(undefined1 *)(iVar9 + 0x19) = uVar1;
         if (2 < iVar14) {
           if (*DAT_0003aba0 == 0) {
-            DEBUG_PRINT(DAT_0003abb8,DAT_0003abac);
+            log_message(DAT_0003abb8,DAT_0003abac);
           }
           else {
             debug_print(DAT_0003abb8,DAT_0003abac);
@@ -387,7 +387,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
         }
         if (2 < *piVar2) {
           if (*DAT_0003aba0 == 0) {
-            DEBUG_PRINT(DAT_0003abc0,DAT_0003abac,(uint)*(byte *)(param_1 + 4));
+            log_message(DAT_0003abc0,DAT_0003abac,(uint)*(byte *)(param_1 + 4));
           }
           else {
             debug_print(DAT_0003abc0,DAT_0003abac,(uint)*(byte *)(param_1 + 4));
@@ -415,7 +415,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
             local_a0 = local_a4;
             if (2 < *piVar2) {
               if (*DAT_0003aba0 == 0) {
-                DEBUG_PRINT(DAT_0003abc4,DAT_0003abac,iVar9);
+                log_message(DAT_0003abc4,DAT_0003abac,iVar9);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -441,7 +441,7 @@ void DashBoard_Reflash(int param_1,int param_2,int param_3,int param_4)
             iVar4 = (iVar9 * 9) / 5 + 0x20;
             if (2 < *piVar2) {
               if (*DAT_0003ae58 == 0) {
-                DEBUG_PRINT(DAT_0003ae60,DAT_0003ae5c,iVar4);
+                log_message(DAT_0003ae60,DAT_0003ae5c,iVar4);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -580,7 +580,7 @@ LAB_0003acba:
         if (iVar4 != 1) {
           uVar5 = DAT_00037918;
         }
-        DEBUG_PRINT(DAT_00037920,DAT_0003791c,uVar5);
+        log_message(DAT_00037920,DAT_0003791c,uVar5);
       }
       else {
         uVar5 = DAT_000374d0;
@@ -601,7 +601,7 @@ LAB_0003acba:
       *(undefined1 *)(iVar9 + 0x19) = uVar1;
       if (2 < iVar14) {
         if (*DAT_000374c4 == 0) {
-          DEBUG_PRINT(DAT_000374e0,DAT_000374c8);
+          log_message(DAT_000374e0,DAT_000374c8);
         }
         else {
           ((long long (*)(void))debug_print)();
@@ -651,7 +651,7 @@ LAB_0003acba:
         gui_bmp_bitmap_draw(0x4e,iVar4 + 0xfe,iVar14 + 4,0,0,0);
         if (2 < *piVar2) {
           if (*DAT_00037924 == 0) {
-            DEBUG_PRINT(DAT_00037928,DAT_0003791c,(uint)*(byte *)(param_1 + 4));
+            log_message(DAT_00037928,DAT_0003791c,(uint)*(byte *)(param_1 + 4));
           }
           else {
             ((long long (*)(void))debug_print)();
@@ -671,7 +671,7 @@ LAB_0003acba:
             local_b4 = local_b8;
             if (2 < *piVar2) {
               if (*DAT_00037924 == 0) {
-                DEBUG_PRINT(DAT_0003792c,DAT_0003791c,iVar14);
+                log_message(DAT_0003792c,DAT_0003791c,iVar14);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -692,7 +692,7 @@ LAB_0003acba:
             iVar4 = (iVar14 * 9) / 5 + 0x20;
             if (2 < *piVar2) {
               if (*DAT_00037c0c == 0) {
-                DEBUG_PRINT(DAT_00037c14,DAT_00037c10,iVar4);
+                log_message(DAT_00037c14,DAT_00037c10,iVar4);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -916,7 +916,7 @@ LAB_0003741a:
               }
               if (2 < *piVar2) {
                 if (*DAT_00038268 == 0) {
-                  DEBUG_PRINT(DAT_00038270,DAT_0003826c,(uint)*(byte *)(param_1 + 0x68));
+                  log_message(DAT_00038270,DAT_0003826c,(uint)*(byte *)(param_1 + 0x68));
                 }
                 else {
                   ((long long (*)(void))debug_print)();
@@ -1040,7 +1040,7 @@ LAB_0003803a:
           }
           if (2 < *piVar2) {
             if (*DAT_00037ea4 == 0) {
-              DEBUG_PRINT(DAT_00037eac,DAT_00037ea8);
+              log_message(DAT_00037eac,DAT_00037ea8);
             }
             else {
               debug_print(DAT_00037eac,DAT_00037ea8,0);
@@ -1087,7 +1087,7 @@ LAB_0003803a:
             if (*(char *)(iVar4 + iVar14 * 0x159) == '\x01') {
               if (2 < *piVar2) {
                 if (*DAT_00038600 == 0) {
-                  DEBUG_PRINT(DAT_00038608,DAT_00038604,iVar14);
+                  log_message(DAT_00038608,DAT_00038604,iVar14);
                 }
                 else {
                   ((long long (*)(void))debug_print)();
@@ -1113,7 +1113,7 @@ LAB_0003803a:
               }
               if (2 < *piVar2) {
                 if (*DAT_00038600 == 0) {
-                  DEBUG_PRINT(DAT_00038614,DAT_00038604,iVar7);
+                  log_message(DAT_00038614,DAT_00038604,iVar7);
                 }
                 else {
                   ((long long (*)(void))debug_print)();
@@ -1286,7 +1286,7 @@ LAB_0003846c:
         if (*(char *)(iVar4 * 0x143 + *(int *)(param_2 + 0x1020) + 3) == '\x01') {
           if (2 < *piVar2) {
             if (*DAT_000374c4 == 0) {
-              DEBUG_PRINT(DAT_000374e8,DAT_000374c8,iVar4);
+              log_message(DAT_000374e8,DAT_000374c8,iVar4);
             }
             else {
               ((long long (*)(void))debug_print)();
@@ -1298,7 +1298,7 @@ LAB_0003846c:
       } while (iVar4 != 4);
       if (2 < *piVar2) {
         if (*DAT_000374c4 == 0) {
-          DEBUG_PRINT(DAT_000374ec,DAT_000374c8,iVar14);
+          log_message(DAT_000374ec,DAT_000374c8,iVar14);
         }
         else {
           ((long long (*)(void))debug_print)();
@@ -1524,7 +1524,7 @@ LAB_0003846c:
         if (*(char *)(iVar4 * 0x143 + *(int *)(param_2 + 0x1020) + 3) == '\x01') {
           if (2 < *piVar2) {
             if (*DAT_00038ae0 == 0) {
-              DEBUG_PRINT(DAT_00038ae8,DAT_00038ae4,iVar4);
+              log_message(DAT_00038ae8,DAT_00038ae4,iVar4);
             }
             else {
               ((long long (*)(void))debug_print)();
@@ -1536,7 +1536,7 @@ LAB_0003846c:
       } while (iVar4 != 4);
       if (2 < *piVar2) {
         if (*DAT_00038ae0 == 0) {
-          DEBUG_PRINT(DAT_00038aec,DAT_00038ae4,iVar14);
+          log_message(DAT_00038aec,DAT_00038ae4,iVar14);
         }
         else {
           ((long long (*)(void))debug_print)();
@@ -1680,7 +1680,7 @@ LAB_00037d2a:
       if (iVar4 != 1) {
         uVar5 = DAT_00039618;
       }
-      DEBUG_PRINT(DAT_00039620,DAT_0003961c,uVar5);
+      log_message(DAT_00039620,DAT_0003961c,uVar5);
     }
     else {
       uVar5 = DAT_00039260;
@@ -1701,7 +1701,7 @@ LAB_00037d2a:
     *(undefined1 *)(iVar9 + 0x19) = uVar1;
     if (2 < iVar14) {
       if (*DAT_0003925c == 0) {
-        DEBUG_PRINT(DAT_00039274,DAT_00039268);
+        log_message(DAT_00039274,DAT_00039268);
       }
       else {
         ((long long (*)(void))debug_print)();
@@ -1751,7 +1751,7 @@ LAB_00037d2a:
       gui_bmp_bitmap_draw(0x4e,iVar4 + 0xac,iVar14 + 4,0,0,0);
       if (2 < *piVar2) {
         if (*DAT_00039624 == 0) {
-          DEBUG_PRINT(DAT_00039628,DAT_0003961c,(uint)*(byte *)(param_1 + 4));
+          log_message(DAT_00039628,DAT_0003961c,(uint)*(byte *)(param_1 + 4));
         }
         else {
           ((long long (*)(void))debug_print)();
@@ -1771,7 +1771,7 @@ LAB_00037d2a:
           local_7c[0] = local_80;
           if (2 < *piVar2) {
             if (*DAT_00039624 == 0) {
-              DEBUG_PRINT(DAT_0003962c,DAT_0003961c,iVar14);
+              log_message(DAT_0003962c,DAT_0003961c,iVar14);
             }
             else {
               ((long long (*)(void))debug_print)();
@@ -1792,7 +1792,7 @@ LAB_00037d2a:
           iVar4 = (iVar14 * 9) / 5 + 0x20;
           if (2 < *piVar2) {
             if (*DAT_00039624 == 0) {
-              DEBUG_PRINT(DAT_00039638,DAT_0003961c,iVar4);
+              log_message(DAT_00039638,DAT_0003961c,iVar4);
             }
             else {
               ((long long (*)(void))debug_print)();
@@ -1884,7 +1884,7 @@ LAB_00037d2a:
             }
             if (2 < *piVar2) {
               if (*DAT_00039a20 == 0) {
-                DEBUG_PRINT(DAT_00039a28,DAT_00039a24,(uint)*(byte *)(param_1 + 0x68));
+                log_message(DAT_00039a28,DAT_00039a24,(uint)*(byte *)(param_1 + 0x68));
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -2018,7 +2018,7 @@ LAB_00038220:
         }
         if (2 < *piVar2) {
           if (*DAT_00039a20 == 0) {
-            DEBUG_PRINT(DAT_00039a28,DAT_00039a24,(uint)*(byte *)(param_1 + 0x68));
+            log_message(DAT_00039a28,DAT_00039a24,(uint)*(byte *)(param_1 + 0x68));
           }
           else {
             ((long long (*)(void))debug_print)();
@@ -2041,7 +2041,7 @@ LAB_00038220:
           if (*(char *)(iVar4 + iVar14 * 0x159) == '\x01') {
             if (2 < *piVar2) {
               if (*DAT_00039df8 == 0) {
-                DEBUG_PRINT(DAT_00039e00,DAT_00039dfc,iVar14);
+                log_message(DAT_00039e00,DAT_00039dfc,iVar14);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -2067,7 +2067,7 @@ LAB_00038220:
             }
             if (2 < *piVar2) {
               if (*DAT_0003a188 == 0) {
-                DEBUG_PRINT(DAT_0003a190,DAT_0003a18c,iVar7);
+                log_message(DAT_0003a190,DAT_0003a18c,iVar7);
               }
               else {
                 ((long long (*)(void))debug_print)();
@@ -2254,7 +2254,7 @@ LAB_00037e4a:
       if (*(char *)(iVar4 * 0x143 + *(int *)(param_2 + 0x1020) + 3) == '\x01') {
         if (2 < *piVar2) {
           if (*DAT_0003925c == 0) {
-            DEBUG_PRINT(DAT_0003927c,DAT_00039268,iVar4);
+            log_message(DAT_0003927c,DAT_00039268,iVar4);
           }
           else {
             ((long long (*)(void))debug_print)();
@@ -2266,7 +2266,7 @@ LAB_00037e4a:
     } while (iVar4 != 4);
     if (2 < *piVar2) {
       if (*DAT_0003925c == 0) {
-        DEBUG_PRINT(DAT_00039280,DAT_00039268,iVar14);
+        log_message(DAT_00039280,DAT_00039268,iVar14);
       }
       else {
         ((long long (*)(void))debug_print)();
@@ -2536,7 +2536,7 @@ LAB_00038e72:
       if (*(char *)(iVar4 * 0x143 + *(int *)(param_2 + 0x1020) + 3) == '\x01') {
         if (2 < *piVar2) {
           if (*DAT_0003a518 == 0) {
-            DEBUG_PRINT(DAT_0003a520,DAT_0003a51c,iVar4);
+            log_message(DAT_0003a520,DAT_0003a51c,iVar4);
           }
           else {
             ((long long (*)(void))debug_print)();
@@ -2548,7 +2548,7 @@ LAB_00038e72:
     } while (iVar4 != 4);
     if (2 < *piVar2) {
       if (*DAT_0003a518 == 0) {
-        DEBUG_PRINT(DAT_0003a524,DAT_0003a51c,iVar14);
+        log_message(DAT_0003a524,DAT_0003a51c,iVar14);
       }
       else {
         ((long long (*)(void))debug_print)();

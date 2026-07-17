@@ -16,7 +16,7 @@
  */
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
+extern void log_message(unsigned int fmt, unsigned int arg);
 extern void debug_print(unsigned int fmt, unsigned int arg, ...);
 extern int k_msgq_get(void *a, void *b, unsigned int c, unsigned int d);
 extern void memcpy(void *dst, void *src, unsigned int len);
@@ -37,7 +37,7 @@ int dequeue_ancs(void *param_1)
         memcpy(param_1, buf, 0x1b4);
     } else if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
         if (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9aa1f) /*=0x9aa1f*/, ((unsigned long)&rodata_9b190) /*=0x9b190*/);
+            log_message(((unsigned long)&rodata_9aa1f) /*=0x9aa1f*/, ((unsigned long)&rodata_9b190) /*=0x9b190*/);
         } else {
             debug_print(((unsigned long)&rodata_9aa1f) /*=0x9aa1f*/, ((unsigned long)&rodata_9b190) /*=0x9b190*/);
         }

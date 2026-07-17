@@ -28,7 +28,7 @@ extern void memset_bytes(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_init(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
 extern int z_device_is_ready(void *);
-extern void DEBUG_PRINT(uintptr_t, ...);
+extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern uint8_t *get_device_info(void);
 extern int FUN_0007d120(void *, uint32_t, void *, uint32_t);
@@ -52,7 +52,7 @@ void FUN_000324bc(void)
         if (!z_device_is_ready(object)) {
             if (*(volatile int *)0x2000230cu > 0) {
                 if (!*(volatile int *)0x20007554u)
-                    DEBUG_PRINT(0x000a40e6u, 0x000a759eu, *(uint32_t *)object);
+                    log_message(0x000a40e6u, 0x000a759eu, *(uint32_t *)object);
                 else debug_print(0x000a40e6u, 0x000a759eu, *(uint32_t *)object);
             }
             message.code = 0xca00u;
@@ -64,9 +64,9 @@ void FUN_000324bc(void)
                 uint32_t page = 0;
                 for (;;) {
                     uint32_t address = *(volatile uint32_t *)0x20002420u + page * 200u;
-                    DEBUG_PRINT(0x000a73e2u, address, page);
+                    log_message(0x000a73e2u, address, page);
                     if (FUN_0007d120(object, address, message.data, 200)) {
-                        DEBUG_PRINT(0x0009e2dau);
+                        log_message(0x0009e2dau);
                         message.code = (uint16_t)(0xca00u | (uint8_t)page);
                         state = get_device_info();
                         ((void (*)(void *, uint32_t))*(uintptr_t *)(state + 0x788))(&message, 10);
@@ -88,7 +88,7 @@ void FUN_000324bc(void)
                         if (failures > 9) {
                             if (*(volatile int *)0x2000230cu > 0) {
                                 if (!*(volatile int *)0x20007554u)
-                                    DEBUG_PRINT(0x0009b45eu, 0x000a759eu, failures);
+                                    log_message(0x0009b45eu, 0x000a759eu, failures);
                                 else debug_print(0x0009b45eu, 0x000a759eu, failures);
                             }
                             failures = 0;

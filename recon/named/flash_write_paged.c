@@ -12,7 +12,7 @@
 /* Reconstructed FUN_000227d0 @ 0x227d0. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern void debug_print(uint32_t format, ...);
 extern int flash_settings_write_and_verify(const void *source, void *destination, int count);
 
@@ -26,7 +26,7 @@ int flash_write_paged(const uint8_t *source, uint8_t *destination,
     int total = 0;
 
     if (*(volatile int *)0x20007554u == 0)
-        DEBUG_PRINT(0x0009e3db, byte_count);
+        log_message(0x0009e3db, byte_count);
     else
         debug_print(0x0009e3db, byte_count);
 

@@ -19,7 +19,7 @@
 /* Reconstructed FUN_00047058 @ 0x47058  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned int uint;
-extern void DEBUG_PRINT(uint32_t, ...);
+extern void log_message(uint32_t, ...);
 extern int get_device_info(void);
 extern void debug_print(uint32_t, ...);
 extern void panel_write_xy_reg_cached(int,int);
@@ -29,7 +29,7 @@ extern void delay_ms(int);
 void set_brightness_to_panel_reg_in_running(uint param_1){
     if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2){
         if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d72e9) /*=0xd72e9*/, param_1,
+            log_message(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d72e9) /*=0xd72e9*/, param_1,
                         *(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/);
         else
             debug_print(((unsigned long)&rodata_d7251) /*=0xd7251*/, ((unsigned long)&rodata_d72e9) /*=0xd72e9*/, param_1,

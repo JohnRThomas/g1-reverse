@@ -11,7 +11,7 @@
  */
 /* Reconstructed uint32_to_little_endian @ 0x4a568  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned int uint32_to_little_endian(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -21,7 +21,7 @@ unsigned int uint32_to_little_endian(unsigned char *param_1, unsigned int param_
         if (*(volatile int*)0x2000230cUL > 1) {
             unsigned int sink=*(volatile unsigned int*)0x20007554UL;
             if (sink == 0) {
-                DEBUG_PRINT(0x000f02d2,0x000f02e7,param_3,sink,param_4);
+                log_message(0x000f02d2,0x000f02e7,param_3,sink,param_4);
             } else {
                 debug_print(0x000f02d2,0x000f02e7,param_3,sink,param_4);
             }

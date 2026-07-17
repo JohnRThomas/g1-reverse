@@ -15,7 +15,7 @@
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
 extern void k_sem_give(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void log_message(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int param_3)
@@ -28,7 +28,7 @@ unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int pa
         *(volatile int*)(param_2 + 0xee8) = param_3;
         if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                DEBUG_PRINT(((unsigned long)&rodata_a24a9) /*=0xa24a9*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, param_1, param_3);
+                log_message(((unsigned long)&rodata_a24a9) /*=0xa24a9*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, param_1, param_3);
             } else {
                 debug_print(((unsigned long)&rodata_a24a9) /*=0xa24a9*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, param_1, param_3);
             }
@@ -37,7 +37,7 @@ unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int pa
             (*(volatile unsigned char*)(param_2 + 0xb0c) == 0)) {
             if (2 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
                 if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {
-                    DEBUG_PRINT(((unsigned long)&rodata_a24c3) /*=0xa24c3*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, 0, 0);
+                    log_message(((unsigned long)&rodata_a24c3) /*=0xa24c3*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, 0, 0);
                 } else {
                     debug_print(((unsigned long)&rodata_a24c3) /*=0xa24c3*/, ((unsigned long)&rodata_a2530) /*=0xa2530*/, 0, 0);
                 }

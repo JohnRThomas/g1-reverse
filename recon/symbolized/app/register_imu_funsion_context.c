@@ -16,7 +16,7 @@
  */
 /* Reconstructed register_imu_funsion_context @ 0x26250  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -28,7 +28,7 @@ unsigned int register_imu_funsion_context(unsigned char *param_1, unsigned int p
     if (*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 1) {
         unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
         if (sink == 0) {
-            DEBUG_PRINT(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9fb15) /*=0x9fb15*/,param_3,sink,param_4);
+            log_message(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9fb15) /*=0x9fb15*/,param_3,sink,param_4);
         } else {
             debug_print(((unsigned long)&rodata_9af2e) /*=0x9af2e*/,((unsigned long)&rodata_9fb15) /*=0x9fb15*/,param_3,sink,param_4);
         }

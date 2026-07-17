@@ -35,7 +35,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern void debug_print(unsigned, ...);
 extern void enqueue_dmic(int a);
 extern void sendAudioStram2Cache(int a);
@@ -72,7 +72,7 @@ void app_codec_lc3_test(int param_1, int param_2)
     iVar7 = malloc(iVar10);
     if (iVar5 == 0) {
         if (0 < *v) {
-            if (*dbg == 0) DEBUG_PRINT(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
+            if (*dbg == 0) log_message(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
             else debug_print(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
         }
 LAB_0002edf8:
@@ -89,7 +89,7 @@ LAB_0002edf8:
                         iVar10 = *dbg;
                         uVar3 = ((unsigned long)&rodata_9e9ea) /*=0x9e9ea*/;
 LAB_0002ee5a:
-                        if (iVar10 == 0) DEBUG_PRINT(uVar3, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, iVar9);
+                        if (iVar10 == 0) log_message(uVar3, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, iVar9);
                         else debug_print(uVar3, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, iVar9);
                     }
                 } else {
@@ -108,7 +108,7 @@ LAB_0002ee5a:
                                     get_synced_clock_time(&local_stats);
                                     if (2 < *v) {
                                         if (*dbg == 0) {
-                                            DEBUG_PRINT(((unsigned long)&rodata_a3fdf) /*=0xa3fdf*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/,
+                                            log_message(((unsigned long)&rodata_a3fdf) /*=0xa3fdf*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/,
                                                         local_stats.first,
                                                         local_stats.second);
                                         }
@@ -134,7 +134,7 @@ LAB_0002ee5a:
                                 goto LAB_0002ee5a;
                             }
                             if (0 < *v) {
-                                if (*dbg == 0) DEBUG_PRINT(((unsigned long)&rodata_a3fbe) /*=0xa3fbe*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, *puVar2);
+                                if (*dbg == 0) log_message(((unsigned long)&rodata_a3fbe) /*=0xa3fbe*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, *puVar2);
                                 else debug_print(((unsigned long)&rodata_a3fbe) /*=0xa3fbe*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/,
                                                  *puVar2);
                             }
@@ -162,7 +162,7 @@ LAB_0002eeb6:
                 goto LAB_0002edce;
             }
 LAB_0002ee16:
-            if (*dbg == 0) DEBUG_PRINT(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
+            if (*dbg == 0) log_message(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
             else debug_print(((unsigned long)&rodata_a3f7f) /*=0xa3f7f*/, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/);
             heap_free(iVar5);
             goto LAB_0002edf8;

@@ -25,7 +25,7 @@
 /* Reconstructed FUN_00036820 @ 0x36820. */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t format, ...);
+extern void log_message(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
@@ -53,13 +53,13 @@ void get_demo_image_source(unsigned int mode)
 {
     uint8_t *buffer = (uint8_t *)malloc(0x50u);
     if (buffer == 0) {
-        DEBUG_PRINT(0x000a8d69u, 0x000a8e02u, 0xd3u);
+        log_message(0x000a8d69u, 0x000a8e02u, 0xd3u);
         return;
     }
 
     memset_bytes(buffer, 0, 0x50u);
     if (mode > 4u) {
-        DEBUG_PRINT(0x000a8ddeu, mode);
+        log_message(0x000a8ddeu, mode);
         mode = 0;
     }
 
@@ -67,7 +67,7 @@ void get_demo_image_source(unsigned int mode)
     uintptr_t context = get_read_context();
     uint32_t address = mode * 0x3ebeu + 0x00180000u;
     if (read(context, address, buffer, 0x50u) != 0) {
-        DEBUG_PRINT(0x000a8d7fu, 0x000a8e02u, 0xdfu);
+        log_message(0x000a8d7fu, 0x000a8e02u, 0xdfu);
         heap_free(buffer);
         return;
     }
@@ -77,7 +77,7 @@ void get_demo_image_source(unsigned int mode)
         header[i] = buffer[i];
 
     if (FUN_00087036(header, 0x000a8da5u, 2u) != 0) {
-        DEBUG_PRINT(0x000a8da8u);
+        log_message(0x000a8da8u);
         heap_free(buffer);
         return;
     }
@@ -119,7 +119,7 @@ void get_demo_image_source(unsigned int mode)
         read = get_read_callback();
         context = get_read_context();
         if (read(context, address, buffer, (unsigned int)row_bytes) != 0) {
-            DEBUG_PRINT(0x000a8d7fu, 0x000a8e02u, 0x103u);
+            log_message(0x000a8d7fu, 0x000a8e02u, 0x103u);
             heap_free(buffer);
             return;
         }

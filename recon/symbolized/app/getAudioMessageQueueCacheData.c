@@ -15,7 +15,7 @@
 /* Reconstructed getAudioMessageQueueCacheData @ 0x2f460  (parity: 300/300 trials, PROVEN) */
 
 extern int k_msgq_get(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void log_message(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void debug_print(unsigned int,unsigned int,unsigned int,unsigned int);
 int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsigned int param_3,unsigned int param_4){
     (void)param_2;
@@ -25,7 +25,7 @@ int getAudioMessageQueueCacheData(unsigned int param_1,unsigned int param_2,unsi
         if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0){
             unsigned int sink = *(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
             if(sink==0){
-                DEBUG_PRINT(((unsigned long)&rodata_a3f62) /*=0xa3f62*/,((unsigned long)&rodata_a4908) /*=0xa4908*/,0,sink);
+                log_message(((unsigned long)&rodata_a3f62) /*=0xa3f62*/,((unsigned long)&rodata_a4908) /*=0xa4908*/,0,sink);
             } else { debug_print(((unsigned long)&rodata_a3f62) /*=0xa3f62*/,((unsigned long)&rodata_a4908) /*=0xa4908*/,0,sink); }
         }
         iVar1 = -1;

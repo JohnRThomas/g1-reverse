@@ -17,7 +17,7 @@
  */
 /* Reconstructed FUN_0002e440 @ 0x2e440  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned a, unsigned b);
+extern void log_message(unsigned a, unsigned b);
 extern void debug_print(unsigned a, unsigned b);
 extern void k_mutex_lock(unsigned a, int b, unsigned c, unsigned d);
 extern void k_mutex_unlock(unsigned a);
@@ -48,6 +48,6 @@ int ext_flash_write(int param_1, unsigned param_2, unsigned param_3, unsigned pa
         debug_print(((unsigned long)&rodata_a3a72) /*=0xa3a72*/, ((unsigned long)&rodata_a3ac5) /*=0xa3ac5*/);
         return res;
     }
-    DEBUG_PRINT(((unsigned long)&rodata_a3a72) /*=0xa3a72*/, ((unsigned long)&rodata_a3ac5) /*=0xa3ac5*/);
+    log_message(((unsigned long)&rodata_a3a72) /*=0xa3a72*/, ((unsigned long)&rodata_a3ac5) /*=0xa3ac5*/);
     return res;
 }

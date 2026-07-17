@@ -22,12 +22,12 @@ extern int sync_message_signal_to_slave(int);
 extern int msg_count_dec(void);
 extern int get_device_info(void);
 extern int FUN_0003443c(int);
-extern void DEBUG_PRINT(int,...);
+extern void log_message(int,...);
 void wait_touch_key_release_or_timeout(void){
   volatile int *piVar1 = (volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
   while(FUN_00034410()==5 && is_msg_expiration()==2){
     if(*piVar1==0){
-      DEBUG_PRINT(((unsigned long)&rodata_a26cb) /*=0xa26cb*/);
+      log_message(((unsigned long)&rodata_a26cb) /*=0xa26cb*/);
     } else {
       debug_print();
     }

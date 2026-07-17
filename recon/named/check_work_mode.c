@@ -111,7 +111,7 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT(long long format, ...);
+extern long long log_message(long long format, ...);
 extern long long FUN_00010840(long long);
 extern long long get_device_info(void);
 extern long long get_current_work_mode(void);
@@ -128,9 +128,9 @@ extern long long k_uptime_get_1(void);
 extern long long set_shutdown_flag(long long,long long);
 extern long long clear_app_switch_pending_flag(void);
 extern long long change_work_mode_to(long long);
-extern long long send_event_status(long long);
+extern long long send_event(long long);
 extern long long sync_to_slave(long long,long long,long long,long long);
-extern long long thunk_FUN_00072908(long long,long long,long long,long long);
+extern long long k_sem_take(long long,long long,long long,long long);
 typedef long long (*log2_fn)(long long,long long);
 typedef long long (*log3_fn)(long long,long long,long long);
 typedef long long (*log4_fn)(long long,long long,long long,long long);
@@ -282,7 +282,7 @@ void check_work_mode(int param_1,int param_2,int param_3)
             _event_id2 = DAT_00027a98;
 LAB_00027964:
             if (iVar5 == 0) {
-              DEBUG_PRINT(_event_id2,DAT_00027a7c);
+              log_message(_event_id2,DAT_00027a7c);
             }
             else {
               debug_print();
@@ -314,7 +314,7 @@ LAB_00027964:
         _event_id2 = DAT_00027a80;
 LAB_0002782c:
         if (iVar5 == 0) {
-          DEBUG_PRINT(_event_id2,DAT_00027a7c);
+          log_message(_event_id2,DAT_00027a7c);
         }
         else {
           debug_print();
@@ -359,17 +359,17 @@ LAB_00027844:
     iVar5 = get_device_info();
     if (*(int *)(iVar5 + 0x9b4) == 2) {
       uVar9 = get_device_info();
-      thunk_FUN_00072908((int)uVar9 + 0x9ac,(int)((ulonglong)uVar9 >> 0x20),0xffffffff,0xffffffff);
+      k_sem_take((int)uVar9 + 0x9ac,(int)((ulonglong)uVar9 >> 0x20),0xffffffff,0xffffffff);
     }
     if (0 < *piVar2) {
       if (*DAT_00027a78 == 0) {
-        DEBUG_PRINT(DAT_00027a94,DAT_00027a7c);
+        log_message(DAT_00027a94,DAT_00027a7c);
       }
       else {
         debug_print();
       }
     }
-    send_event_status(0x11);
+    send_event(0x11);
     *pcVar6 = -2;
     return;
   }
@@ -378,7 +378,7 @@ LAB_00027844:
     if (bVar1) {
       if (0 < iVar5) {
         if (*DAT_00027a78 == 0) {
-          DEBUG_PRINT(DAT_00027ab0,DAT_00027a7c);
+          log_message(DAT_00027ab0,DAT_00027a7c);
         }
         else {
           debug_print();
@@ -389,7 +389,7 @@ LAB_00027844:
     else {
       if (0 < iVar5) {
         if (*DAT_00027a78 == 0) {
-          DEBUG_PRINT(DAT_00027ab4,DAT_00027a7c);
+          log_message(DAT_00027ab4,DAT_00027a7c);
         }
         else {
           debug_print();
@@ -405,7 +405,7 @@ LAB_00027844:
   else if (param_2 == 0) {
     if (0 < iVar5) {
       if (*DAT_00027a78 == 0) {
-        DEBUG_PRINT(DAT_00027aac,DAT_00027a7c);
+        log_message(DAT_00027aac,DAT_00027a7c);
       }
       else {
         debug_print();
@@ -416,7 +416,7 @@ LAB_00027844:
   else {
     if (0 < iVar5) {
       if (*DAT_00027a78 == 0) {
-        DEBUG_PRINT(DAT_00027aa4,DAT_00027a7c);
+        log_message(DAT_00027aa4,DAT_00027a7c);
       }
       else {
         debug_print();
@@ -426,7 +426,7 @@ LAB_00027844:
   }
   pbVar7 = DAT_00027aa8;
   if (*DAT_00027aa8 != event_id) {
-    send_event_status(event_id);
+    send_event(event_id);
     *pbVar7 = event_id;
     return;
   }
@@ -438,7 +438,7 @@ LAB_00027844:
     *DAT_00027cc0 = bVar8;
     if (0 < *piVar2) {
       if (*DAT_00027cc4 == 0) {
-        DEBUG_PRINT(DAT_00027ccc,DAT_00027cc8);
+        log_message(DAT_00027ccc,DAT_00027cc8);
       }
       else {
         debug_print();
@@ -460,12 +460,12 @@ LAB_00027b72:
       iVar5 = get_device_info();
       *(byte *)(iVar5 + 0x794) = (byte)uVar4;
       *pbVar3 = (byte)uVar4;
-      send_event_status(9);
+      send_event(9);
       if (*piVar2 < 1) {
         return;
       }
       if (*DAT_00027cc4 == 0) {
-        DEBUG_PRINT(DAT_00027cec,DAT_00027cc8,uVar4);
+        log_message(DAT_00027cec,DAT_00027cc8,uVar4);
         return;
       }
       debug_print();
@@ -495,20 +495,20 @@ LAB_00027b72:
         *pbVar7 = (byte)new_box_charging_status;
         if (0 < iVar5) {
           if (*DAT_00027cc4 == 0) {
-            DEBUG_PRINT(DAT_00027cf0,DAT_00027cc8,new_box_charging_status);
+            log_message(DAT_00027cf0,DAT_00027cc8,new_box_charging_status);
           }
           else {
             debug_print();
           }
         }
-        send_event_status(0xe);
+        send_event(0xe);
       }
       if (*piVar2 < 1) {
         return;
       }
       uVar4 = (uint)*pbVar7;
       if (*DAT_00027cc4 == 0) {
-        DEBUG_PRINT(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
+        log_message(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
         return;
       }
       ((log4_fn)debug_print)(_DAT_00027cf4,DAT_00027cc8,uVar4,new_box_charging_status);
@@ -521,7 +521,7 @@ LAB_00027b72:
       *DAT_00027ce0 = (byte)uVar4;
       if (0 < iVar5) {
         if (*DAT_00027cc4 == 0) {
-          DEBUG_PRINT(DAT_00027ce4,DAT_00027cc8,uVar4,uVar4);
+          log_message(DAT_00027ce4,DAT_00027cc8,uVar4,uVar4);
         }
         else {
           ((log3_fn)debug_print)(DAT_00027ce4,DAT_00027cc8,uVar4);
@@ -532,7 +532,7 @@ LAB_00027b72:
     }
     if (0 < *piVar2) {
       if (*DAT_00027cc4 == 0) {
-        DEBUG_PRINT(_DAT_00027cf8,DAT_00027cc8,(uint)*DAT_00027ce0,uVar4);
+        log_message(_DAT_00027cf8,DAT_00027cc8,(uint)*DAT_00027ce0,uVar4);
       }
       else {
         ((log2_fn)debug_print)(_DAT_00027cf8,DAT_00027cc8);
@@ -549,7 +549,7 @@ LAB_00027b72:
       _event_id2 = 0x12;
       *pcVar6 = *(char *)(iVar5 + 0xed5);
 LAB_00027af8:
-      send_event_status(_event_id2);
+      send_event(_event_id2);
       return;
     }
   }

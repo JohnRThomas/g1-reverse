@@ -33,7 +33,7 @@
 typedef unsigned int uint;
 typedef unsigned char undefined1;
 typedef unsigned undefined4;
-extern void DEBUG_PRINT(unsigned, ...);
+extern void log_message(unsigned, ...);
 extern unsigned get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
 extern void debug_print(unsigned, ...);
@@ -45,7 +45,7 @@ extern unsigned char *FUN_00081526(unsigned a);
 extern void memcpy(void *a, void *b, uint c);
 extern void memset_bytes(void *a, int b, int c);
 extern void strcpy(void *a, unsigned b);
-extern long long thunk_FUN_00074f68(void);
+extern long long uptime_ticks_get(void);
 
 struct request_name_record {
     unsigned word;
@@ -109,14 +109,14 @@ LAB_00017fb6:
         uVar5 = (uint)param_2[4];
         puVar11 = (unsigned *)(uint)param_2[5];
         if (*dbg == 0) {
-            DEBUG_PRINT(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
+            log_message(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
                         (uint)*(unsigned char *)(*piVar1 + 0x248));
         } else {
             debug_print(0);
         }
     }
     iVar12 = *piVar1;
-    lVar13 = thunk_FUN_00074f68();
+    lVar13 = uptime_ticks_get();
     iVar10 = *piVar1;
     *(volatile uint *)(iVar12 + 0x368) =
         (uint)(lVar13 * 1000) >> 0xf | (int)((unsigned long long)(lVar13 * 1000) >> 0x20) * 0x20000;
@@ -161,13 +161,13 @@ LAB_00017fb6:
                 debug_print(0);
                 return;
             }
-            DEBUG_PRINT(0x9a295, 0x9a2bf);
+            log_message(0x9a295, 0x9a2bf);
             return;
         }
         if (*dbg == 0) {
             uVar4 = 0x59;
 LAB_000180e2:
-            DEBUG_PRINT(0x9a275, 0x9a2b1, uVar4, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11);
+            log_message(0x9a275, 0x9a2b1, uVar4, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11);
             return;
         }
         uVar4 = 0x59;
