@@ -8,7 +8,7 @@ extern int32_t FUN_01025bbc(void);
 extern int32_t FUN_01025bd4(uint32_t operation);
 extern void FUN_01025b8c(void);
 
-void FUN_01020634(void)
+void controller_radio_event_cleanup(void)
 {
     volatile uint8_t *controller = (volatile uint8_t *)0x210015f0u;
     volatile uint8_t *radio = (volatile uint8_t *)0x4100c000u;

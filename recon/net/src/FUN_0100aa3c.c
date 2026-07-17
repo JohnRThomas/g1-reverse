@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 /* Constant-time comparison of a one-byte address type plus a six-byte BLE address. */
-bool FUN_0100aa3c(uint32_t lhs_type, const uint8_t *lhs,
-                  uint32_t rhs_type, const uint8_t *rhs)
+bool sdc_ble_address_equal(uint32_t lhs_type, const uint8_t *lhs,
+                           uint32_t rhs_type, const uint8_t *rhs)
 {
     uint32_t difference = lhs_type ^ rhs_type;
     difference += (uint32_t)(lhs[0] ^ rhs[0]);
