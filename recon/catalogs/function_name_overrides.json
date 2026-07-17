@@ -77,6 +77,10 @@
    "name": "rpmsg_deinit_vdev",
    "evidence": "Instruction-exact public owner in pinned OpenAMP rpmsg_virtio.c. Raw identity remains FUN_00085bf6."
   },
+  "0x00086228": {
+   "name": "zcbor_str_encode",
+   "evidence": "Relocation-normalized instruction-exact static str_encode owner in pinned zcbor_encode.c at 67fd8bb, built with ZCBOR_STOP_ON_ERROR. Raw identity remains FUN_00086228."
+  },
   "0x0008673e": {
    "name": "z_impl_k_timer_stop",
    "evidence": "Instruction-exact public owner in the configured Zephyr kernel timer object. Raw identity remains FUN_0008673e."
@@ -500,6 +504,10 @@
   "0x0007c084": {
    "name": "gpio_pin_set_dt",
    "evidence": "Recovered out-of-line instance of Zephyr's gpio_pin_set_dt inline contract, including active-low flag normalization and gpio_pin_set_raw dispatch. Raw identity remains FUN_0007c084 at 0x0007c084."
+  },
+  "0x00085378": {
+   "name": "__nrfy_internal_twim_event_handle",
+   "evidence": "Pinned nrfx nrfy_twim.h helper used by the adjacent outlined TWIM event processor. The previous PWM label was a cross-peripheral same-shape guess; event offsets and all callers prove TWIM ownership. Raw identity remains FUN_00085378 at 0x00085378."
   },
   "0x00086698": {
    "name": "uptime_ticks_get",

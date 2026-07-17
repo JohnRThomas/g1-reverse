@@ -1,0 +1,180 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "fail_closed": true,
+  "reason": "Static/header-inline owners are not externally bindable from their SDK translation units.",
+  "forbid": [
+   "weak stub",
+   "byte blob",
+   "assembly wrapper",
+   "same-name alias guess"
+  ]
+ },
+ "summary": {
+  "function_count": 5,
+  "reference_count_before": 46,
+  "cfg_verified": 5,
+  "dependency_count": 1
+ },
+ "functions": [
+  {
+   "symbol": "bt_addr_le_eq_0",
+   "va": "0x000826b2",
+   "size": 16,
+   "upstream_owner": "zephyr/include/zephyr/bluetooth/addr.h:bt_addr_le_eq",
+   "linkage": "header_inline",
+   "config": [
+    "bt_addr_le_cmp length=7"
+   ],
+   "sha256": "653ba5b2da449a2dc3ff50dab34c9f08dd5963282fdb3d3ac9f711027166ac62",
+   "source": "recon/app/src/bt_addr_le_eq_0.c",
+   "verified_mirror": "recon/verified/src/bt_addr_le_eq_0.c",
+   "reference_count_before": 10,
+   "reference_sites_before": [
+    "FUN_00059c48.c:20",
+    "FUN_0005a6b0.c:35",
+    "ccc_find_cfg.c:18",
+    "find_cf_cfg.c:30",
+    "find_cf_cfg_by_addr.c:21",
+    "find_sc_cfg_59b94.c:21",
+    "find_sc_cfg_59bcc.c:21",
+    "gatt_cf_store_all.c:27",
+    "gatt_connected.c:44",
+    "gatt_send_ccc_update.c:56"
+   ],
+   "verification": "cfg_verify.py app bt_addr_le_eq_0: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "get_pin_idx",
+   "va": "0x00065434",
+   "size": 16,
+   "upstream_owner": "modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:get_pin_idx",
+   "linkage": "source_static",
+   "config": [
+    "FULL_PORTS_PRESENT=0",
+    "port_offset=0x000f6ba7"
+   ],
+   "sha256": "049cd7fd3d8f9b6ab353d9fcf9206ef76a7f53eddafe9118dfe2e6054d9ef741",
+   "source": "recon/app/src/get_pin_idx.c",
+   "verified_mirror": "recon/verified/src/get_pin_idx.c",
+   "reference_count_before": 10,
+   "reference_sites_before": [
+    "gpiote_channel_release_if_unshared.c:26",
+    "gpiote_in_event_enable.c:58",
+    "gpiote_in_init.c:35",
+    "gpiote_in_uninit.c:38",
+    "gpiote_irq_handler.c:50",
+    "gpiote_pin_channel_get.c:37",
+    "gpiote_pin_event_dispatch.c:23",
+    "gpiote_pin_is_used.c:18",
+    "gpiote_pin_sense_is_enabled.c:16",
+    "gpiote_trigger_enable.c:31"
+   ],
+   "verification": "cfg_verify.py app get_pin_idx: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "__nrfy_internal_twim_events_process",
+   "va": "0x0008539a",
+   "size": 84,
+   "upstream_owner": "modules/hal/nordic/nrfx/haly/nrfy_twim.h:__nrfy_internal_twim_events_process",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "p_xfer specialized away",
+    "7 event handlers"
+   ],
+   "sha256": "b42137f9f23a41b3fab860c08a1f2725eea36bf4a2eb436bd159fe191270f217",
+   "source": "recon/app/src/__nrfy_internal_twim_events_process.c",
+   "verified_mirror": "recon/verified/src/__nrfy_internal_twim_events_process.c",
+   "reference_count_before": 9,
+   "reference_sites_before": [
+    "FUN_00067600.c:63",
+    "FUN_00067600.c:64",
+    "FUN_00067600.c:70",
+    "FUN_00067600.c:80",
+    "FUN_00067938.c:163",
+    "FUN_00067938.c:231",
+    "FUN_00067938.c:278",
+    "FUN_00067938.c:281",
+    "FUN_00067938.c:293"
+   ],
+   "verification": "cfg_verify.py app __nrfy_internal_twim_events_process: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "k_uptime_get_1",
+   "va": "0x0007cb2c",
+   "size": 28,
+   "upstream_owner": "zephyr/include/zephyr/kernel.h:k_uptime_get",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768"
+   ],
+   "sha256": "57fa41adf0a126cade6e4e132d274aa26820a4e26ded9fd53f25e06448873e9a",
+   "source": "recon/app/src/k_uptime_get_1.c",
+   "verified_mirror": "recon/verified/src/k_uptime_get_1.c",
+   "reference_count_before": 9,
+   "reference_sites_before": [
+    "FUN_0002a4f4.c:94",
+    "check_disp_onboarding.c:69",
+    "check_work_mode.c:206",
+    "display_dispatch_thread.c:296",
+    "display_dispatch_thread.c:544",
+    "display_dispatch_thread.c:546",
+    "set_delay_deadline.c:18",
+    "slave_display_thread.c:409",
+    "sync_to_slave.c:73"
+   ],
+   "verification": "cfg_verify.py app k_uptime_get_1: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "smp_create_pdu",
+   "va": "0x000830b0",
+   "size": 62,
+   "upstream_owner": "zephyr/subsys/bluetooth/host/smp.c:smp_create_pdu",
+   "linkage": "source_static",
+   "config": [
+    "CONFIG_BT=y",
+    "CONFIG_BT_SMP=y",
+    "unused len specialized away"
+   ],
+   "sha256": "ac44ae2cc6d92aa93694b03148c6a1614da08816428d0ec41d335ff9f41ec3be",
+   "source": "recon/app/src/smp_create_pdu.c",
+   "verified_mirror": "recon/verified/src/smp_create_pdu.c",
+   "reference_count_before": 8,
+   "reference_sites_before": [
+    "FUN_0005d0ac.c:93",
+    "FUN_0005d964.c:103",
+    "FUN_000832f0.c:32",
+    "bt_smp_distribute_keys.c:126",
+    "bt_smp_distribute_keys.c:134",
+    "bt_smp_send_pairing_confirm.c:44",
+    "send_pairing_rsp.c:22",
+    "smp_error.c:38"
+   ],
+   "verification": "cfg_verify.py app smp_create_pdu: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  }
+ ],
+ "dependencies": [
+  {
+   "symbol": "__nrfy_internal_twim_event_handle",
+   "va": "0x00085378",
+   "size": 34,
+   "upstream_owner": "modules/hal/nordic/nrfx/haly/nrfy_twim.h:__nrfy_internal_twim_event_handle",
+   "linkage": "header_inline_outlined",
+   "config": [
+    "TWIM event register offsets",
+    "corrects prior cross-peripheral PWM label"
+   ],
+   "sha256": "e67d4759faa3d4d0d2c8dff072d0ea894f13939d94cb0b3de94047ce76f7bb6f",
+   "source": "recon/app/src/__nrfy_internal_twim_event_handle.c",
+   "verified_mirror": "recon/verified/src/__nrfy_internal_twim_event_handle.c",
+   "verification": "cfg_verify.py app __nrfy_internal_twim_event_handle: PASS (40 checked)",
+   "decision": "retain_cfg_verified_configured_dependency"
+  }
+ ]
+}
