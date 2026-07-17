@@ -3,6 +3,7 @@
  * public-name: sdc_buffer_accumulate
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_packed_cursor_advance         <= FUN_0100951c @ 0x0100951c
  *   controller_packet_overhead_span_get      <= FUN_01026856 @ 0x01026856
  *   sdc_buffer_accumulate                    <= FUN_01026f32 @ 0x01026f32
  */
@@ -11,7 +12,7 @@
 
 extern void sdc_assertion_fail(uint32_t reason, uint32_t location);
 /* Back-map: sdc_assertion_fail <= FUN_01008d00 @ 0x01008d00. */
-extern void FUN_0100951c(void *state, void *descriptor);
+extern void controller_packed_cursor_advance(void *state, void *descriptor);
 extern void FUN_01025998(void *destination, const void *source, uint32_t length);
 extern uint32_t controller_packet_overhead_span_get(uint8_t mode);
 
@@ -61,7 +62,7 @@ uint32_t sdc_buffer_accumulate(uint8_t *state, uint32_t amount_argument,
     write_u16(cursor, (uint16_t)(read_u16(cursor) + amount));
 
     if (complete != 0) {
-        FUN_0100951c(state, state + 6);
+        controller_packed_cursor_advance(state, state + 6);
         write_u16(state + 0x0c, 0);
     } else {
         uint32_t trailer_offset = controller_packet_overhead_span_get(state[0x13]);

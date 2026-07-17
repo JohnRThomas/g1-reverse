@@ -2,6 +2,7 @@
  * public-name: sdc_llcp_decode_control_pdu
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_packet_header_decode                 <= FUN_01019f9c @ 0x01019f9c
  *   sdc_llcp_decode_control_pdu              <= FUN_0101a070 @ 0x0101a070
  */
 /* net-core FUN_0101a070 @ 0x101a070 */
@@ -9,7 +10,7 @@
 
 extern uint8_t FUN_0100e04c(const uint8_t *packet);
 extern uint8_t FUN_0100e064(const uint8_t *packet);
-extern void FUN_01019f9c(const uint8_t *packet, void *description);
+extern void sdc_packet_header_decode(const uint8_t *packet, void *description);
 
 void sdc_llcp_decode_control_pdu(const uint8_t *packet, void *description)
 {
@@ -18,7 +19,7 @@ void sdc_llcp_decode_control_pdu(const uint8_t *packet, void *description)
     uint32_t value;
 
     if (kind == 7) {
-        FUN_01019f9c(packet, description);
+        sdc_packet_header_decode(packet, description);
         return;
     }
     out[0x11] = FUN_0100e04c(packet);

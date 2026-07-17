@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
+ *   controller_packet_rendering_budget_remaining <= FUN_0100f368 @ 0x0100f368
  *   radio_slot_margin_get                    <= FUN_0101a130 @ 0x0101a130
  *   controller_radio_transition_apply        <= FUN_01020d1c @ 0x01020d1c
  *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
@@ -21,7 +22,7 @@ extern int radio_slot_margin_get(void);
 extern int sdc_radio_context_fixed_time_get(int address);
 extern uint32_t FUN_01023dec(int unit);
 extern int FUN_01023ea8(uint32_t amount, int unit);
-extern uint32_t FUN_0100f368(int object, int offset, uint32_t span);
+extern uint32_t controller_packet_rendering_budget_remaining(int object, int offset, uint32_t span);
 extern void FUN_01023d38(int offset);
 extern void FUN_0101b7e4(void *scratch, int object, int zero, int one);
 extern int sdc_conn_window_admit(uint8_t channel, void *scratch);
@@ -72,7 +73,7 @@ static __attribute__((always_inline)) inline void render_case0(int object, int s
 
     baseline = radio_slot_margin_get();
     *(volatile uint32_t *)(skip_setup ? 4u : ((unsigned long)&g_21001120) /*=0x21001120*/) =
-        FUN_0100f368(object, offset, span);
+        controller_packet_rendering_budget_remaining(object, offset, span);
     FUN_01023d38((offset - 0xb7) - baseline);
 }
 

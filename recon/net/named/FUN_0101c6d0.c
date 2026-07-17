@@ -6,6 +6,7 @@
  *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
+ *   controller_timing_windows_clamp          <= FUN_0100f1f8 @ 0x0100f1f8
  * address symbols (name @ address):
  *   rodata_10100a1                           @ 0x010100a1
  *   rodata_10101cd                           @ 0x010101cd
@@ -47,7 +48,7 @@ extern uint32_t FUN_0100d14c(uintptr_t, ...); extern uint32_t FUN_0100d3c0(uintp
 extern uint32_t FUN_0100d5d0(uintptr_t, ...); extern uint32_t FUN_0100d7bc(uintptr_t, ...);
 extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
 extern uint32_t controller_work_update_or_enqueue(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
-extern uint32_t FUN_0100f1f8(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
+extern uint32_t controller_timing_windows_clamp(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
 extern uint32_t FUN_0100f7e0(uintptr_t, ...); extern uint32_t FUN_0100f86c(uintptr_t, ...);
 extern uint32_t FUN_0100fae4(uintptr_t, ...); extern uint32_t FUN_01016250(uintptr_t, ...);
 extern uint32_t FUN_0101bdd4(uintptr_t, ...); extern uint32_t FUN_0101c420(uintptr_t, ...);
@@ -377,7 +378,7 @@ LAB_0101c79c:
           *(undefined1 *)(iVar7 + 0x162) = 0;
         }
         if (*(char *)(*(int *)(iVar2 + 4) + 0xc6) == ' ') {
-          FUN_0100f1f8(0);
+          controller_timing_windows_clamp(0);
           FUN_0100fae4(DAT_0101d264);
           iVar7 = *(int *)(iVar2 + 4);
           *(undefined2 *)(iVar7 + 0x150) = *(undefined2 *)(iVar7 + 0x4e);

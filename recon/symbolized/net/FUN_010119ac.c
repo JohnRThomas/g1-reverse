@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_phase_finalize                <= FUN_010129f4 @ 0x010129f4
  *   controller_descriptor_octet_product      <= FUN_01012b24 @ 0x01012b24
  *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
  * address symbols (name @ address):
@@ -19,7 +20,7 @@ extern int FUN_0100e038(void*,int);
 extern int FUN_0100e054(void*,int);
 extern int FUN_0100e06c(void*,unsigned int,int);
 extern int FUN_010129e8(void*);
-extern int FUN_010129f4(void*);
+extern int controller_phase_finalize(void*);
 extern int FUN_01012ad4(void*);
 extern int controller_descriptor_octet_product(void*);
 extern int FUN_01012b48(void);
@@ -58,7 +59,7 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
             puVar9[2] = puVar9[2] + iVar8;
             FUN_010129e8(puVar10);
         }
-        FUN_010129f4(puVar10);
+        controller_phase_finalize(puVar10);
         FUN_010204f4();
         FUN_010202fc(0x25, param_1[4]);
     }

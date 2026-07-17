@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_descriptor_timing_copy        <= FUN_0100e83c @ 0x0100e83c
+ *   controller_masked_pair_sample_store      <= FUN_010100f4 @ 0x010100f4
  *   controller_packet_type29_init            <= FUN_01029bda @ 0x01029bda
  *   controller_packet_type30_init            <= FUN_01029bea @ 0x01029bea
  * address symbols (name @ address):
@@ -25,9 +27,9 @@ EXT(FUN_0100d64c); EXT(FUN_0100d688); EXT(FUN_0100dc1c); EXT(sdc_pdu_type_bits_s
 EXT(FUN_0100e5f4); EXT(FUN_0100e608); EXT(FUN_0100e634); EXT(FUN_0100e68c);
 EXT(FUN_0100e708); EXT(FUN_0100e72c); EXT(FUN_0100e744); EXT(FUN_0100e754);
 EXT(FUN_0100e774); EXT(FUN_0100e7b0); EXT(FUN_0100e7b8); EXT(FUN_0100e7c0);
-EXT(FUN_0100e7c8); EXT(FUN_0100e808); EXT(FUN_0100e83c); EXT(FUN_0100e8ac);
+EXT(FUN_0100e7c8); EXT(FUN_0100e808); EXT(controller_descriptor_timing_copy); EXT(FUN_0100e8ac);
 EXT(FUN_0100e8b4); EXT(FUN_0100e8bc); EXT(FUN_0100e8e8); EXT(FUN_0100e8f0);
-EXT(FUN_010100f4); EXT(FUN_01010110); EXT(FUN_0101bf30); EXT(FUN_0101c6d0);
+EXT(controller_masked_pair_sample_store); EXT(FUN_01010110); EXT(FUN_0101bf30); EXT(FUN_0101c6d0);
 EXT(FUN_01025a84); EXT(FUN_010298a8); EXT(controller_packet_type29_init); EXT(controller_packet_type30_init);
 extern void sdc_assertion_fail(uint32_t module, uint32_t line);
 static __attribute__((noreturn)) void fatal_loop(uint32_t line)
@@ -128,7 +130,7 @@ int FUN_0101d404(uint16_t *input)
             FUN_0100e774((intptr_t)packet,(intptr_t)(connection+0x140)); break;
         case 6: case 10: case 11: case 18: case 19: break;
         case 7: packet[4]=connection[0x150]; break;
-        case 8: FUN_010100f4((intptr_t)packet); break;
+        case 8: controller_masked_pair_sample_store((intptr_t)packet); break;
         case 9: FUN_01010110((intptr_t)state,(intptr_t)packet); break;
         case 12: wr32(packet,4,UINT32_C(0x0200590d)); packet[8]=0x21; break;
         case 17:
@@ -164,7 +166,7 @@ int FUN_0101d404(uint16_t *input)
         case 33: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210004b0); if(cb) cb(packet,connection); break; }
         case 34: { void (*cb)(uint8_t*,uint8_t*)=*(void (**)(uint8_t*,uint8_t*))UINT32_C(0x210001e8); if(cb) cb(packet,connection+0x160); break; }
         case 35: case 36: case 37: { void (*cb)(uint8_t,uint8_t*,build_state_t*)=*(void (**)(uint8_t,uint8_t*,build_state_t*))UINT32_C(0x210004c8); cb(attribute,packet,state); break; }
-        case 42: FUN_0100e83c((intptr_t)packet,(intptr_t)(connection+0x179),(intptr_t)(connection+0x19b)); break;
+        case 42: controller_descriptor_timing_copy((intptr_t)packet,(intptr_t)(connection+0x179),(intptr_t)(connection+0x19b)); break;
         default: fatal_loop(0x8ec);
         }
 

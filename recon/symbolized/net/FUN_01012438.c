@@ -6,6 +6,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_packet_airtime_compute        <= FUN_010109ec @ 0x010109ec
  *   controller_descriptor_octet_product      <= FUN_01012b24 @ 0x01012b24
+ *   controller_packet_duration_lookup        <= FUN_01012b50 @ 0x01012b50
  * address symbols (name @ address):
  *   rodata_103c1bc                           @ 0x0103c1bc
  */
@@ -27,7 +28,7 @@ extern void FUN_010129a4(void *);
 extern void FUN_010129b4(void *, u8);
 extern void FUN_010129b8(void *, i8, u8);
 extern u32 controller_descriptor_octet_product(void *);
-extern i32 FUN_01012b50(u32, u32, int);
+extern i32 controller_packet_duration_lookup(u32, u32, int);
 extern u32 FUN_010280be(u32);
 extern u32 FUN_010280d8(u32);
 
@@ -99,7 +100,7 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
     } else {
       uVar14 = controller_descriptor_octet_product(local_68);
       if ((int)((u32)bVar2 << 0x1b) < 0) {
-        iVar7 = FUN_01012b50(uVar14, uVar11, 0x28);
+        iVar7 = controller_packet_duration_lookup(uVar14, uVar11, 0x28);
       } else {
         uVar8 = FUN_0100a4d0();
         uVar14 = FUN_01010990(uVar14, cVar13);

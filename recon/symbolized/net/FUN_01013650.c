@@ -6,6 +6,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
+ *   controller_packet_rendering_budget_remaining <= FUN_0100f368 @ 0x0100f368
  *   sdc_conn_event_timing_prepare            <= FUN_01012f18 @ 0x01012f18
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
  *   controller_radio_transition_apply        <= FUN_01020d1c @ 0x01020d1c
@@ -32,7 +33,7 @@ extern int32_t sdc_radio_context_fixed_time_get(void *);
 extern uint64_t radio_phy_airtime_base_get(uint32_t);
 extern uint32_t FUN_01023dec(uint32_t, uint32_t, uint32_t);
 extern int32_t FUN_01023ea8(uint32_t, uint32_t);
-extern uint32_t FUN_0100f368(void *, int32_t, uint32_t, int32_t);
+extern uint32_t controller_packet_rendering_budget_remaining(void *, int32_t, uint32_t, int32_t);
 extern void FUN_01023d38(int32_t, uint32_t, uint32_t);
 extern void controller_radio_event1_dispatch(void *, uint32_t); /* FUN_01016144@0x01016144 */
 extern void controller_radio_transition_apply(void *, uint32_t);
@@ -176,7 +177,7 @@ static __attribute__((always_inline)) inline void finish_interval(void *context)
     available = available > (uint32_t)fixed ? available - fixed : 0;
     if (duration < available) available = duration;
     if (FUN_01023ea8(available, 2) == 0) fixed += available;
-    U32((void *)((unsigned long)&g_net_radio_ack_pending_flag) /*=0x21000f54*/, 0x0c) = FUN_0100f368(
+    U32((void *)((unsigned long)&g_net_radio_ack_pending_flag) /*=0x21000f54*/, 0x0c) = controller_packet_rendering_budget_remaining(
         context, fixed, (mode & 0x0c) ? 0x25e : 0x236, fixed - 0x28);
 
     timing = radio_phy_airtime_base_get(mode);

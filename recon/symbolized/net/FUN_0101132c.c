@@ -6,6 +6,7 @@
  *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
  *   controller_packet_config_apply_if_active <= FUN_0100cb4c @ 0x0100cb4c
  *   sdc_controller_random_get                <= FUN_0100f63c @ 0x0100f63c
+ *   controller_phase_finalize                <= FUN_010129f4 @ 0x010129f4
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
@@ -26,7 +27,7 @@ extern int FUN_010204e0(int);
 extern int FUN_0102072c(int);
 extern int FUN_01025c44(int);
 extern int FUN_010129e8(int);
-extern int FUN_010129f4(int);
+extern int controller_phase_finalize(int);
 extern int FUN_010204f4(void);
 extern int FUN_010202fc(int,int);
 extern int FUN_010204d4(int);
@@ -76,7 +77,7 @@ int FUN_0101132c(int param_1)
     FUN_0102072c(0x00555555);
     FUN_01025c44(0);
     FUN_010129e8(param_1+0x28);
-    FUN_010129f4(param_1+0x28);
+    controller_phase_finalize(param_1+0x28);
     FUN_010204f4();
     FUN_010202fc(0x25, *(volatile unsigned char*)(param_1+4));
     FUN_010204d4((int)*(volatile signed char*)(param_1+0x10));

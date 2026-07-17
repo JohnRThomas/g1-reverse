@@ -979,6 +979,54 @@
    "name": "strncpy",
    "evidence": "Exact pinned picolibc archive match for strncpy, including zero padding of the unused destination capacity and destination return ABI. Raw identity remains FUN_0103b5a4 at 0x0103b5a4."
   },
+  "0x0100951c": {
+   "name": "controller_packed_cursor_advance",
+   "evidence": "Recovered helper advances the packed controller-buffer cursor by the encoded packet overhead span and updates its wrap flag. Raw identity remains FUN_0100951c at 0x0100951c."
+  },
+  "0x0100e83c": {
+   "name": "controller_descriptor_timing_copy",
+   "evidence": "Recovered helper copies the 34-byte controller descriptor followed by its trailing eight-byte timing pair. Raw identity remains FUN_0100e83c at 0x0100e83c."
+  },
+  "0x0100f1f8": {
+   "name": "controller_timing_windows_clamp",
+   "evidence": "Recovered helper clamps the active controller timing-window bounds and reports whether any bound changed. Raw identity remains FUN_0100f1f8 at 0x0100f1f8."
+  },
+  "0x0100f300": {
+   "name": "controller_timing_snapshot_enqueue",
+   "evidence": "Recovered helper snapshots the controller timing fields into a deferred packet-result node and tail-calls the shared enqueue suffix. Raw identity remains FUN_0100f300 at 0x0100f300."
+  },
+  "0x0100f368": {
+   "name": "controller_packet_rendering_budget_remaining",
+   "evidence": "Recovered helper computes the remaining controller packet-rendering budget under the configured minimum-budget policy. Raw identity remains FUN_0100f368 at 0x0100f368."
+  },
+  "0x0100f7b0": {
+   "name": "controller_procedure_reference_release",
+   "evidence": "Recovered helper decrements one controller procedure reference and asserts if the signed reference count underflows. Raw identity remains FUN_0100f7b0 at 0x0100f7b0."
+  },
+  "0x0100f834": {
+   "name": "controller_procedure_slot_reserve",
+   "evidence": "Recovered helper reserves the controller procedure slot when free and latches the associated request tag. Raw identity remains FUN_0100f834 at 0x0100f834."
+  },
+  "0x010100f4": {
+   "name": "controller_masked_pair_sample_store",
+   "evidence": "Recovered helper samples a 64-bit controller pair, masks each half, and stores the resulting two words without overstating the private pair's domain identity. Raw identity remains FUN_010100f4 at 0x010100f4."
+  },
+  "0x010129f4": {
+   "name": "controller_phase_finalize",
+   "evidence": "Recovered helper advances the three one-bit phase counters and returns the corresponding phase result codes 0x25 through 0x27. Raw identity remains FUN_010129f4 at 0x010129f4."
+  },
+  "0x01012b50": {
+   "name": "controller_packet_duration_lookup",
+   "evidence": "Recovered helper performs the exact three-column packet-type duration-table lookup used by controller_packet_duration_calculate. Raw identity remains FUN_01012b50 at 0x01012b50."
+  },
+  "0x01019f9c": {
+   "name": "sdc_packet_header_decode",
+   "evidence": "Recovered private SDC helper decodes the optional packet-header flag bits into its 40-byte pointer/length descriptor. Raw identity remains FUN_01019f9c at 0x01019f9c."
+  },
+  "0x01027790": {
+   "name": "sdc_buffer_data_get",
+   "evidence": "Returns the controller buffer data area at buffer plus four; both recovered callers use the result as the entry payload. Raw identity remains FUN_01027790 at 0x01027790."
+  },
   "0x010109ec": {
    "name": "controller_packet_airtime_compute",
    "evidence": "The recovered 0x540-byte controller packet-airtime calculation has a proven scalar uint32_t r0 ABI; whole-image liveness analysis shows r1 is dead arithmetic residue at all three callsites. Raw identity remains FUN_010109ec at 0x010109ec; durable ABI evidence is in recon/catalogs/net_packet_airtime_abi.json."

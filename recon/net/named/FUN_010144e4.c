@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_descriptor_timing_copy        <= FUN_0100e83c @ 0x0100e83c
+ *   controller_masked_pair_sample_store      <= FUN_010100f4 @ 0x010100f4
  *   controller_packet_type29_init            <= FUN_01029bda @ 0x01029bda
  *   controller_packet_type30_init            <= FUN_01029bea @ 0x01029bea
  * address symbols (name @ address):
@@ -25,7 +27,7 @@ extern void FUN_0100e634(void *, uint);
 extern void FUN_0100e784(void *, int);
 extern void FUN_0100e79c(void *, int);
 extern void FUN_01010110(int, void *);
-extern void FUN_010100f4(void *);
+extern void controller_masked_pair_sample_store(void *);
 extern void FUN_0100e8e8(void *, int);
 extern void FUN_0100e8f0(void *, int);
 extern void FUN_0100e7b0(void *, int);
@@ -38,7 +40,7 @@ extern void FUN_0100e608(void *, void *);
 extern void FUN_0100e808(void *, int);
 extern void controller_packet_type29_init(void *);
 extern void controller_packet_type30_init(void *);
-extern void FUN_0100e83c(void *, int, int);
+extern void controller_descriptor_timing_copy(void *, int, int);
 extern int  FUN_0100a934(void);
 
 #define GBASE 0x21000f68
@@ -178,7 +180,7 @@ L_068e:
     goto L_058a;
 
 L_06aa:
-    FUN_0100e83c(buf, G4 + 0x179, G4 + 0x19b);
+    controller_descriptor_timing_copy(buf, G4 + 0x179, G4 + 0x19b);
     goto L_058a;
 
 L_06be:
@@ -187,7 +189,7 @@ L_06be:
     goto L_058a;
 
 L_06da:
-    FUN_010100f4(buf);
+    controller_masked_pair_sample_store(buf);
     goto L_058a;
 
 L_06e2:

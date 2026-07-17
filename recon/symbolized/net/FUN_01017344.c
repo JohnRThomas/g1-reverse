@@ -7,6 +7,7 @@
  *   controller_resolved_address_matches      <= FUN_0100aaac @ 0x0100aaac
  *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
+ *   sdc_packet_header_decode                 <= FUN_01019f9c @ 0x01019f9c
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  *   controller_random_window_step            <= FUN_010295d6 @ 0x010295d6
@@ -22,7 +23,7 @@ extern unsigned int FUN_0100cb10(void);
 extern int FUN_0100cbbc(unsigned int);
 extern unsigned char sdc_llcp_get_active_link_index(void);
 extern void FUN_010166c0(int, unsigned char*);
-extern void FUN_01019f9c(unsigned char*, void*);
+extern void sdc_packet_header_decode(unsigned char*, void*);
 extern void FUN_0101b54c(int);
 extern void sdc_llcp_release_rx_context(void);
 extern void sdc_llcp_stop_rx_timeout(void);
@@ -60,7 +61,7 @@ unsigned char FUN_01017344(unsigned char *param_1)
   bVar1 = *param_1;
   *(volatile unsigned char *)DAT_01017458 = uVar4;
   if ((((bVar1 & 0xf) == 8) &&
-       (FUN_01019f9c(param_1, &L.local_40), iVar3 = DAT_0101745c, L.local_40 == 0)) &&
+       (sdc_packet_header_decode(param_1, &L.local_40), iVar3 = DAT_0101745c, L.local_40 == 0)) &&
       ((L.local_3f & 3) == 3)) {
     if (*(volatile char *)(DAT_0101745c + 0x4d) == 0) {
       bVar1 = *(volatile unsigned char *)(DAT_0101745c + 0x78);

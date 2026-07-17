@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01014a50 @ 0x01014a50
  * public-name: FUN_01014a50
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_procedure_slot_reserve        <= FUN_0100f834 @ 0x0100f834
  * address symbols (name @ address):
  *   g_net_link_ctx_a                         @ 0x21000f68
  */
@@ -15,7 +17,7 @@ extern int FUN_0100e7e0(unsigned int a);
 extern void FUN_0100f198(int a, int b, int c, int d, int e);
 extern void FUN_0100f2d0(unsigned short a, void *b, void *c);
 extern void FUN_0100f798(int a);
-extern unsigned int FUN_0100f834(int a, unsigned int b);
+extern unsigned int controller_procedure_slot_reserve(int a, unsigned int b);
 
 #define DAT_b14 0x21000f68u
 
@@ -26,7 +28,7 @@ unsigned int FUN_01014a50(int param_1, unsigned int param_2)
 
     iVar1 = FUN_0100e7e0(param_2);
     if (iVar1 == 0) {
-        return FUN_0100f834(param_1, param_2);
+        return controller_procedure_slot_reserve(param_1, param_2);
     }
 
     iVar1 = *(volatile int *)(param_1 + 4);

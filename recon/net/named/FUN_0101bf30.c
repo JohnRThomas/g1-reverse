@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
+ *   controller_timing_windows_clamp          <= FUN_0100f1f8 @ 0x0100f1f8
+ *   controller_timing_snapshot_enqueue       <= FUN_0100f300 @ 0x0100f300
  * address symbols (name @ address):
  *   g_net_link_ctx_b_close_cb                @ 0x210004d0
  *   g_net_link_ctx_b                         @ 0x21001124
@@ -13,8 +15,8 @@
 
 extern void FUN_0101f934(int, int);
 extern unsigned int sdc_radio_context_fixed_time_get(int);
-extern int FUN_0100f1f8(int);
-extern void FUN_0100f300(unsigned short, void *, void *);
+extern int controller_timing_windows_clamp(int);
+extern void controller_timing_snapshot_enqueue(unsigned short, void *, void *);
 extern void FUN_0101bdd4(int, int);
 extern unsigned int FUN_01023e88(void);
 extern int FUN_01023ea8(unsigned int, unsigned int);
@@ -52,10 +54,10 @@ int FUN_0101bf30(void)
   }
   FUN_0101f934(C_0101bfc0, 0);
   uVar1 = sdc_radio_context_fixed_time_get(*(int *)(iVar4 + 4) + 0x30);
-  iVar9 = FUN_0100f1f8(*(int *)(iVar4 + 4));
+  iVar9 = controller_timing_windows_clamp(*(int *)(iVar4 + 4));
   if (iVar9 != 0) {
     puVar6 = *(unsigned short **)(iVar4 + 4);
-    FUN_0100f300(*puVar6, puVar6 + 0x18, puVar6 + 0xe7);
+    controller_timing_snapshot_enqueue(*puVar6, puVar6 + 0x18, puVar6 + 0xe7);
   }
   FUN_0101bdd4(*(int *)(iVar4 + 4), 4);
   uVar2 = sdc_radio_context_fixed_time_get(*(int *)(iVar4 + 4) + 0x30);

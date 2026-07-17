@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   controller_procedure_reference_release   <= FUN_0100f7b0 @ 0x0100f7b0
+ *   controller_procedure_slot_reserve        <= FUN_0100f834 @ 0x0100f834
  * address symbols (name @ address):
  *   rodata_10100a1                           @ 0x010100a1
  */
@@ -24,8 +26,8 @@ extern u32  FUN_0100e8b8(i32);
 extern u16  FUN_0100e8c4(i32);
 extern i32  FUN_0100e8c8(i32);
 extern void sdc_work_submit(i32,u32,u32);
-extern void FUN_0100f7b0(i32);
-extern u32  FUN_0100f834(i32,i32);
+extern void controller_procedure_reference_release(i32);
+extern u32  controller_procedure_slot_reserve(i32,i32);
 extern void FUN_0101f934(i32,u32,u32,i32,i32);
 extern u64  FUN_0102971e(u32,u32);
 extern i32  FUN_010297b4(i32,i32,void*);
@@ -79,8 +81,8 @@ LAB_0101fa52:
     }
     if (cVar1 != 0x22) {
       *puVar13 = 0;
-      FUN_0100f7b0(param_1);
-      uVar6 = FUN_0100f834(param_1, param_2);
+      controller_procedure_reference_release(param_1);
+      uVar6 = controller_procedure_slot_reserve(param_1, param_2);
       return uVar6;
     }
     cVar1 = *(volatile i8*)(param_2 + 3);
@@ -172,7 +174,7 @@ LAB_0101fa52:
   }
 LAB_0101fb0c:
   if (puVar13 == (u8*)(*(volatile i32*)(param_1 + 4) + 0xc6)) {
-    FUN_0100f7b0(param_1);
+    controller_procedure_reference_release(param_1);
   } else {
     *(volatile u8*)(*(volatile i32*)(param_1 + 4) + 0x100) = 0;
   }
