@@ -1,12 +1,13 @@
 /* Reconstructed ui_refalsh_warp @ 0x48b5c.
- * Reachable code ends at 0x48e10; the six-word literal pool occupies
- * [0x48e10,0x48e28), so the complete function extent is 716 bytes.
+ * Reachable code ends at 0x48e10; the following six words are its literal
+ * pool, not executable instructions.  The reviewed executable extent is
+ * therefore 692 bytes.
  * Bytes from 0x48e28 onward belong to separately reconstructed functions. */
 
 extern int FUN_00032ee4(void);
 extern int FUN_00036a18(int,int,int);
-extern int DEBUG_PRINT(int,int,int);
-extern int FUN_00019c70(void);
+extern int DEBUG_PRINT(int,int,int,int);
+extern int FUN_00019c70(int,int,int,int);
 extern int FUN_0003603c(int,int,int);
 extern int FUN_00036b3c(int,int,int);
 extern int FUN_0003f410(int,int,int);
@@ -20,8 +21,16 @@ extern int FUN_000430c0(int,int,int);
 extern int FUN_0003bfe0(int,int,int);
 extern int FUN_00046b80(int,int,int);
 
-#define DBG1(ID) do{ if(*p_7554==0) DEBUG_PRINT(0xef784,0xf01eb,(ID)); else FUN_00019c70(); }while(0)
-#define DBG2(ID) do{ if(*p_7554==0) DEBUG_PRINT(0xef7a0,0xf01eb,(ID)); else FUN_00019c70(); }while(0)
+#define DBG1(ID) do { \
+    int sink = *p_7554; \
+    if (sink == 0) DEBUG_PRINT(0xef784, 0xf01eb, (ID), sink); \
+    else FUN_00019c70(0xef784, 0xf01eb, (ID), sink); \
+} while (0)
+#define DBG2(ID) do { \
+    int sink = *p_7554; \
+    if (sink == 0) DEBUG_PRINT(0xef7a0, 0xf01eb, (ID), sink); \
+    else FUN_00019c70(0xef7a0, 0xf01eb, (ID), sink); \
+} while (0)
 #define NORMAL(H,ID) do{ \
     if(*p_230c > 2) DBG1(ID); \
     r4 = H(param_1+0xb6c, param_3, param_4); \

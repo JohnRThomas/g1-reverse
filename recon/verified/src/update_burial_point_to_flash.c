@@ -1,7 +1,7 @@
 /* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int,unsigned int);
 extern int FUN_000225b4(unsigned int a, void *b, unsigned int n);
 extern int FUN_00022658(unsigned int a, void *b, unsigned int n);
 extern int FUN_00086be4(void *a, void *b, unsigned int n);
@@ -18,7 +18,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
         if (*(volatile int *)0x20007554UL == 0) {
             DEBUG_PRINT(0x9e655U, 0x9e789U);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0x9e655U, 0x9e789U);
         }
     }
     iVar2 = FUN_000225b4(0x135000U, buf, 0xc0);
@@ -47,8 +47,7 @@ unsigned int update_burial_point_to_flash(char *param_1)
     if (iVar2 == 0) {
         DEBUG_PRINT(format_string, 0x9e789U);
     } else {
-        FUN_00019c70();
+        FUN_00019c70(format_string, 0x9e789U);
     }
     return 0xffffffff;
 }
-
