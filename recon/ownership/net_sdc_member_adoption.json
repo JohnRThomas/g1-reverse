@@ -1,0 +1,199 @@
+{
+  "component": "softdevice_controller",
+  "core": "net",
+  "inputs": [
+    {
+      "path": "nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a",
+      "sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81"
+    },
+    {
+      "path": "recon/ownership/net_sdc_archive_ownership.json",
+      "sha256": "de2e7454669930abc88d15bd5fb3b804ad9d570eb1c6aa018d9855135741f410"
+    },
+    {
+      "path": "recon/catalogs/net_link_function_residue.json",
+      "sha256": "4dd104b3d0771bda297b3b7bc96c5e4b52ccbf63d2e80ca71072828084061eb1"
+    },
+    {
+      "path": "recon/ownership/net_sdc_build_extraction.json",
+      "sha256": "71ca05f0a594498a9e161e02da47552bd5123b4878ba305ac7993d639e7c4bc4"
+    }
+  ],
+  "members": [
+    {
+      "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+      "decision": {
+        "blockers": [
+          "every_target_residue_mapped",
+          "every_executable_owner_exact_unique",
+          "every_private_abi_accounted",
+          "every_allocated_data_section_owned",
+          "retain_all_link_completed",
+          "retain_all_collision_free",
+          "retain_all_hidden_state_preserved"
+        ],
+        "coverage": {
+          "allocated_data_owner_mappings": 0,
+          "allocated_data_sections": 139,
+          "catalog_matches": 325,
+          "defined_functions": 2086,
+          "exact_unique_executable_owners": 218,
+          "explicit_abi_owners": 1,
+          "private_unpublished_abis": 324,
+          "target_residue_mapped": 131,
+          "target_residue_total": 132
+        },
+        "decision": "report_only_no_member_promotion",
+        "gates": {
+          "archive_hash_pinned": true,
+          "every_allocated_data_section_owned": false,
+          "every_executable_owner_exact_unique": false,
+          "every_private_abi_accounted": false,
+          "every_target_residue_mapped": false,
+          "member_selected_by_link": true,
+          "retain_all_collision_free": false,
+          "retain_all_hidden_state_preserved": false,
+          "retain_all_link_completed": false
+        },
+        "safe_to_adopt_complete_member": false
+      },
+      "member_sha256": "12327bce844cd5f57befeac6536b1b313fa1447213ea76af780a43f50e4e900f",
+      "member_size": 634392,
+      "promotion": null,
+      "retain_all_evidence": {
+        "available": false,
+        "reason": "The committed extraction proof selects this member but is scoped to sdc_default_tx_power_set and a normal-GC final link; it does not prove complete-member collision or state ownership."
+      },
+      "state_ownership_evidence": {
+        "mapped_allocated_data_sections": 0,
+        "reason": "No committed member-section to firmware data/state map accounts for all allocated .data/.bss/.rodata sections."
+      },
+      "stats": {
+        "allocated_data_bytes": 6725,
+        "allocated_data_sections": 139,
+        "defined_functions": 2086,
+        "defined_object_bytes": 425,
+        "defined_object_symbols": 3,
+        "elf_type": "ET_REL",
+        "executable_bytes": 219560,
+        "executable_sections": 2096,
+        "global_functions": 1551,
+        "local_functions": 535,
+        "machine": "EM_ARM",
+        "obfuscated_sym_functions": 1889,
+        "public_sdc_named_functions": 197,
+        "relocation_sections": 1807,
+        "relocations": 7693,
+        "section_count": 4047,
+        "undefined_import_names": [
+          "MPSL_IRQ_RADIO_Handler",
+          "MPSL_IRQ_RTC0_Handler",
+          "MPSL_IRQ_TIMER0_Handler",
+          "mpsl_cx_granted_ops_get",
+          "mpsl_cx_register_callback",
+          "mpsl_cx_release",
+          "mpsl_cx_request",
+          "mpsl_dppi_fixed_channels_clear",
+          "mpsl_dppi_fixed_channels_set",
+          "mpsl_fem_disable",
+          "mpsl_fem_lna_configuration_clear",
+          "mpsl_fem_lna_configuration_set",
+          "mpsl_fem_lna_is_configured",
+          "mpsl_fem_pa_configuration_clear",
+          "mpsl_fem_pa_configuration_set",
+          "mpsl_fem_pa_gain_set",
+          "mpsl_fem_pa_is_configured",
+          "mpsl_fem_tx_power_split",
+          "mpsl_is_initialized",
+          "mpsl_low_priority_process",
+          "mpsl_temperature_get",
+          "sym_24DWUIEE2POS3GYSEVA4IAL4G7TGCCCJXT6D5AA",
+          "sym_2FGI6PRNKAQGGACVKJNWC6EWB4C4ZZYUSEGOPOI",
+          "sym_3NUECOSAIC227DBCPHAP4U7EQ3UBTGANU5ASIOA",
+          "sym_4CZSFTTT34WDYFZKE2NSCSVSYLPHLZYN7QUTGHY",
+          "sym_4FXF7BZT2IZ3YRYSE3Z2XCICKWZPGDZTXL2ECZQ",
+          "sym_525JLJ5JEQ6FEZGTSIW74UTOCUZ2F4YECMQ6KVQ",
+          "sym_5POQORD6JKUMWUFK7EQMHJRVL6FP7FFCXP7FODA",
+          "sym_65YCAVBDKPZHZGRZXNQZCLS62UDJXZDBEFWVSII",
+          "sym_6TZLBWMEWRMPI4KKAUVLC2XHUBDGXEA4B4JJJYQ",
+          "sym_AR22FPVUFSZMVYMQBBXG7EEZNA2HPS2RLAKRPBA",
+          "sym_BJJ4JJDCVJTQH3OQZK6RMMOLISQZEJEZ3BJOKJY",
+          "sym_CAKDVRZXSEHOW43KKHIQZGJNYEKA6HKNJDAQRZY",
+          "sym_CFZK3G6ZC4ONUAYO2UALWQ4CBO7A6ADNAS2FS7Y",
+          "sym_CVH6S6LMSFPC2RM6I6LYWFRVOJUD3A6OCMG7AAI",
+          "sym_DQFOGVCNU4NTOMWSL3IYDNCMIXT2LT7SZHL5IHI",
+          "sym_DQONLUECJTIEYFOFJXXAPJO4POIAJKJNKBGVN5A",
+          "sym_ETIE3PCEXQYLK2GIVZENQ6V7PLBRV57MB7BDMNY",
+          "sym_F77FUTRRLLWPYDS7BBANG2WE3C4EDMYMAPNI54A",
+          "sym_FWJGAV6HUABGKXBT6K4XJ76WZDWHK3EOQOQRNOI",
+          "sym_GNQQQFEWM5SWEGVB5JHP7HYAZGI4CDQXSGHR4SQ",
+          "sym_GURZ3AH6X65RGSKYMYNWZVP6HM56LA5MRAQWT6Q",
+          "sym_H2AKPOL4Q6GKGQJVBUBWLPO3RBNKXXQE2HSOELQ",
+          "sym_HVFGTYCGAECGUJHOFSPMGUV2G4PTWWUYTJVAPNA",
+          "sym_K65IFLJONCLHPD5IQ4ENBWGA3PVI55UHZKOIVDQ",
+          "sym_MGCUANL7Q2CUPWKYBFLWSWSNXIEEYBPZTHT2VZI",
+          "sym_MGDULS4U2D5VQ5NBLZDC7UTSC6O3GJASJZPQJ2Q",
+          "sym_MLZNDMDYRI6WNTNQ4RIQGPD423CK7RT4YVI5CAI",
+          "sym_NFDFVOR5BUFND4TNTGYIYR4ARXJRXWSQ4PVFUKY",
+          "sym_OHTBSWYPR4OU4P2B6NF3OXQS5L223XCMLPNSNLI",
+          "sym_ORUJDMUJV7RZIFXM3X5KLRROPKJ7VPLJ65JMLRQ",
+          "sym_OWJYSTADR5I36MIHWNPICVB7CMCWNSFIZPFXQ2Q",
+          "sym_PAD7XREQQORPXRJMXMW2EYVS4S43S42A5D43SBA",
+          "sym_PIDJEDDM47FHOOZQXISY5YBB3CBP5VAXWPCUL2Q",
+          "sym_QGS2LEYYEBIVOUS5UHT6YFDN3P3XEEOUYDEWMOQ",
+          "sym_QLJBNB55XHXGY3EZ4W3ZZ3U6AVPE2YGDOXRUZSQ",
+          "sym_QWOE5H22ZADGJX5JSROW7BOI32Z6PPEEJCISNOQ",
+          "sym_R4Y3KWNYX4PGGLE5X2L7DXMWMJUY3DOXD7LSUKY",
+          "sym_RPHL2J7CVNKM6GKLDIFI4NVAPZE2FHTYW4VJSJI",
+          "sym_RWBLK2534FJMTER76IYUPZQ3YF74JEALZ2OBIDI",
+          "sym_SFR5TVV24PZRIRC5QGOHL2X436PUHKRY2QWKP5Y",
+          "sym_TSTNWLRH7RAXHHT2FC4R3RPI2WC3O7TXKBYGVCI",
+          "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ",
+          "sym_UG7CMBAYEZEKSKQK753P4TBTSPUXVRWUS6QJJOA",
+          "sym_URFU24FFGR2HYB6CCPIPKPNZNMTWHKDYOATUJNY",
+          "sym_VSILKYHVQ5DVF6LG5MG267DQVA3A2XZQ6FSCLXA",
+          "sym_W447CEMR6K6QRW3N63PRPIR7NK6ENOSBFXLCPRQ",
+          "sym_W7ROFHNOSDKPIRUKDGIZZ5YR3MC3DAM2YLJOUIA",
+          "sym_XEJLNUQGS5P4R5IXDJFF6NE6C2FZWRZYDQOGMPI",
+          "sym_YS3AHD7GWBHZEQHPIQANPGALEXB4QGY5O2DQKRY",
+          "sym_ZY67JFDYC72ZRZASFF2HOA7TV55LM74BXABVWRI"
+        ],
+        "undefined_imports": 71
+      }
+    }
+  ],
+  "policy": {
+    "canonical_semantics_mutated": false,
+    "default": "report_only_no_member_promotion",
+    "per_function_private_sdc_removal_forbidden": true,
+    "private_symbol_extraction_forbidden": true,
+    "unit_of_adoption": "archive_member_object"
+  },
+  "schema_version": 1,
+  "scope": "complete archive-member adoption; no per-function extraction",
+  "summary": {
+    "archive_members": 1,
+    "candidate_members": 1,
+    "promoted_members": 0,
+    "safe_members": 0,
+    "target_ambiguous_identities": 14,
+    "target_approximate_matches": 35,
+    "target_exact_matches": 96,
+    "target_private_unpublished_abis": 131,
+    "target_residue_matched": 131,
+    "target_residue_total": 132,
+    "target_residue_unmatched": 1,
+    "target_unique_identities": 117
+  },
+  "target_residue_evidence": {
+    "note": "The existing per-address catalog remains authoritative for all 131 matched rows; this catalog evaluates only the complete linker member.",
+    "per_address_match_source": "recon/ownership/net_sdc_archive_ownership.json",
+    "source": "recon/catalogs/net_link_function_residue.json",
+    "unmatched": [
+      {
+        "address": "0x0100d808",
+        "symbol": "FUN_0100d808"
+      }
+    ]
+  }
+}
