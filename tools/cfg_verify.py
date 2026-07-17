@@ -851,6 +851,14 @@ TRUE_SIZE_OVERRIDES = {
     # Catalog-missing controller timestamp getter ends at BX LR; the aligned
     # word at 0x010202ec is its global-state literal, not executable code.
     ("net", 0x010202e4): 0x06,
+    # Catalog-missing configured Zephyr/OpenAMP/logging/architecture entries;
+    # bounds exclude their aligned literals and following independent bodies.
+    ("net", 0x0102ce14): 0x0e2,
+    ("net", 0x0102da84): 0x036,
+    ("net", 0x0102ddf4): 0x014,
+    ("net", 0x0102de10): 0x01e,
+    ("net", 0x0102e1fc): 0x01c,
+    ("net", 0x0102ea00): 0x03e,
     # LLCP receive dispatcher ends immediately before FUN_010187e0.
     ("net", 0x01018690): 0x150,
     # Ghidra folded nine following utility symbols into this wrapper.

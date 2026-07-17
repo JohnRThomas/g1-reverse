@@ -192,6 +192,15 @@ TRUE_SIZE_OVERRIDES = {
     # Catalog-missing controller timestamp getter; the literal at 0x010202ec
     # follows its BX LR and is not executable ownership.
     0x010202e4: 0x06,
+    # Catalog-missing configured Zephyr/OpenAMP/logging/architecture entries.
+    # Every extent stops at the final return/tail instruction and excludes the
+    # following aligned literal pool or independent entry.
+    0x0102ce14: 0x0e2,
+    0x0102da84: 0x036,
+    0x0102ddf4: 0x014,
+    0x0102de10: 0x01e,
+    0x0102e1fc: 0x01c,
+    0x0102ea00: 0x03e,
 }
 def _load():
     global _fw
