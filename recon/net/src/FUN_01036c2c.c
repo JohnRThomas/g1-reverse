@@ -6,12 +6,17 @@ extern void FUN_01039bb0(uintptr_t message, unsigned line);
 extern int FUN_0103610c(void *lock);
 extern void FUN_01036144(void *lock);
 extern int FUN_01036128(void *lock);
-extern int FUN_01036b18(void *object, unsigned int *value);
+extern int FUN_01036b18(void *object, unsigned int *values,
+                        unsigned int third, unsigned int priority);
 
-int FUN_01036c2c(unsigned int value, void *object)
+int FUN_01036c2c(unsigned int value, void *object,
+                 unsigned int third, unsigned int fourth)
 {
     void *lock = (void *)0x21004b58;
+    unsigned int values[2] = { value, third };
     int result;
+
+    (void)fourth;
 
     if (object == 0) {
         FUN_01039bbe(0x0103d2a7, 0x0103eaed, 0x174);
@@ -22,7 +27,7 @@ int FUN_01036c2c(unsigned int value, void *object)
         FUN_01039bb0(0x0103d3b6, 0x72);
     }
     FUN_01036144(lock);
-    result = FUN_01036b18(object, &value);
+    result = FUN_01036b18(object, values, third, 0x40);
     if (!FUN_01036128(lock)) {
         FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);
         FUN_01039bb0(0x0103d3b6, 0xf0);

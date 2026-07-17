@@ -20,7 +20,7 @@ int FUN_00016110(int param_1, unsigned int param_2, int param_3)
     FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x12, 0xad);
     FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x13, 1);
     FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x14, 0x3f);
-    FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x15);
+    FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x15, 3);
     FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x16, 0x2e);
     FUN_00083dc8(*(int *)(iVar1 + 0x1c), 3, 0x17, 2);
     FUN_00083dba(*(int *)(iVar1 + 0x1c), 3, 0x10, (int)&uStack_14 + 3);
@@ -41,4 +41,3 @@ int FUN_00016110(int param_1, unsigned int param_2, int param_3)
     DEBUG_PRINT(0x00099570, uStack_14 >> 0x18);
     return 0;
 }
-

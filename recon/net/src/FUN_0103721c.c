@@ -1,8 +1,10 @@
 /* net-core FUN_0103721c @ 0x103721c  (parity 300 trials PROVEN) */
-static inline unsigned int getBasePriority(void){return 0;}
-static inline void setBasePriority(unsigned p){(void)p;}
-static inline void isb(void){__atomic_signal_fence(__ATOMIC_SEQ_CST);}
-static inline unsigned int readIPSR(void){return 0;}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline unsigned int getBasePriority(void){return __get_BASEPRI();}
+static inline void setBasePriority(unsigned p){__set_BASEPRI(p);}
+static inline void isb(void){__ISB();}
+static inline unsigned int readIPSR(void){return __get_IPSR();}
 
 #define C_010372a0 0x21004b68
 #define C_010372a4 0x0103d3b6

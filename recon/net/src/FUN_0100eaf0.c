@@ -17,7 +17,7 @@ void FUN_0100eaf0(unsigned short param_1, int *param_2)
     unsigned int uVar1;
     int iVar2;
     unsigned int uVar3;
-    int local_14[2];
+    int radio_result[2];
     unsigned char *p2;
 
     if (param_2 == 0) {
@@ -31,7 +31,7 @@ void FUN_0100eaf0(unsigned short param_1, int *param_2)
     if (iVar2 == 0) {
         FUN_01008d00(0x10, 0x119);
     }
-    uVar3 = FUN_0102709e(uVar1, iVar2, local_14);
+    uVar3 = FUN_0102709e(uVar1, iVar2, radio_result);
     *(volatile unsigned short *)(p2 + 6) = (unsigned short)uVar3;
     if (uVar3 == 0) {
         FUN_01008d00(0x10, 0x11e);
@@ -40,7 +40,7 @@ void FUN_0100eaf0(unsigned short param_1, int *param_2)
         FUN_01008d00(0x10, 0x120);
     }
 
-    iVar2 = FUN_0100e5ec(local_14[0]);
+    iVar2 = FUN_0100e5ec(radio_result[0]);
     if (iVar2 != 1 && iVar2 != 2) {
         FUN_01008d00(0x10, 0x130);
     }
@@ -48,7 +48,7 @@ void FUN_0100eaf0(unsigned short param_1, int *param_2)
     if (*param_2 == 0) {
         FUN_01008d00(0x10, 0x137);
     }
-    FUN_01025998(*param_2, local_14[0] + 3, *(volatile unsigned short *)(p2 + 6));
+    FUN_01025998(*param_2, radio_result[0] + 3, *(volatile unsigned short *)(p2 + 6));
     iVar2 = FUN_010270e8(uVar1);
     if (iVar2 != 0) {
         iVar2 = FUN_01026c94(uVar1, 0);

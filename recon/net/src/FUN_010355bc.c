@@ -13,7 +13,13 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
 {
     unsigned int uVar5 = *(volatile unsigned int *)(param_4 - 8);
     volatile int *piVar1 = *(volatile int **)(param_1 + 0xac);
-    unsigned int local_buf[8];
+    struct {
+        unsigned int first;
+        unsigned int second;
+        unsigned int reserved;
+        unsigned short result;
+        unsigned short padding;
+    } local_buf;
     unsigned int uVar4;
     unsigned int panic_code;
     int iVar2b;
@@ -23,7 +29,12 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
         uVar3 = 0xffffffff;
     }
 
-    int iVar2 = FUN_0103ab0e((void *)piVar1, uVar3, local_buf, 0x10);
+    local_buf.first = param_2;
+    local_buf.second = param_3;
+    local_buf.reserved = 0;
+    local_buf.result = (unsigned short)param_5;
+    local_buf.padding = 0;
+    int iVar2 = FUN_0103ab0e((void *)piVar1, uVar3, &local_buf, 0x10);
     uVar5 = uVar5 & 0xffff;
 
     if (iVar2 == 0x10) goto L_612;
@@ -54,4 +65,3 @@ L_success:
     FUN_0103aec2((void *)(param_1 + 0x58));
     return param_5;
 }
-

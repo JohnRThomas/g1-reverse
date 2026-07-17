@@ -64,7 +64,7 @@ void FUN_0101ab20(uint32_t unused, uint32_t event)
             struct {
                 uint32_t timestamp;
                 uint8_t mode;
-                uint8_t short_frame;
+                uint8_t reserved[8];
                 uint8_t exact_period;
             } request;
             if (packet[3] == 0 && (packet[4] & 0x1fU) == 0) {

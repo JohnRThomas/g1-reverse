@@ -3,7 +3,7 @@
 extern void FUN_01008d00(uint32_t, uint32_t);
 extern uint32_t FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
-extern int FUN_0100ca98(int8_t, void *);
+extern int FUN_0100ca98(uint8_t, void *);
 extern void FUN_0100ef88(void *, const void *, uint32_t);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(uint32_t, uint16_t, uint32_t);
@@ -18,7 +18,7 @@ static void copy_six(uint8_t *destination, const uint8_t *source)
 
 void FUN_01019750(const uint8_t *owner, uint32_t kind,
                    const uint8_t *near_address, uint32_t address_kind,
-                   int8_t identity, uint8_t channel, int8_t power)
+                   uint8_t identity, uint8_t channel, int8_t power)
 {
     uint32_t token = FUN_0100a5a0();
     uint32_t handle;
@@ -45,7 +45,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
         break;
     }
 
-    if (identity == -1) {
+    if (identity == UINT8_MAX) {
         entry[0x13] = owner[0x11];
         copy_six(entry + 0x14, *(const uint8_t *const *)(owner + 4));
     } else {

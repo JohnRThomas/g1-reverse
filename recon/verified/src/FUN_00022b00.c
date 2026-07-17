@@ -3,7 +3,7 @@
 
 extern void FUN_00086c78(void *destination, int value, unsigned int size);
 extern void FUN_00022658(unsigned int channel, const void *packet,
-                         unsigned int size);
+                         unsigned int size, unsigned int footer);
 
 static void put_u16(uint8_t *destination, uint16_t value)
 {
@@ -56,6 +56,8 @@ int FUN_00022b00(const uint8_t *state)
     put_u32(packet + 124, *(const uint32_t *)(state + 0xfb0));
     put_u32(packet + 128, *(const uint32_t *)(state + 0xfb4));
 
-    FUN_00022658(0x130000, packet, sizeof(packet));
+    /* r3 carries the final 16-bit footer as well as its copy in the packet. */
+    FUN_00022658(0x130000, packet, sizeof(packet),
+                 *(const uint16_t *)(state + 0xede));
     return 0;
 }

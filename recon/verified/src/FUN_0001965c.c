@@ -1,9 +1,9 @@
 /* Reconstructed FUN_0001965c @ 0x1965c  (parity: 300/300 trials, PROVEN) */
 
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, void*);
+extern void DEBUG_PRINT(uint32_t, ...);
 extern int FUN_00018d94(void*);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(uint32_t, void*);
 extern void FUN_00021460(uint32_t, void*, void*);
 extern void FUN_0003384c(void*);
 extern int FUN_00034bd4(void*);
@@ -13,46 +13,71 @@ extern int FUN_0007d224(void);
 extern void FUN_00086c78(void*, int, int);
 extern void FUN_0008705a(void*, uint32_t, int);
 
-void FUN_0001965c(uint32_t param_1){
-  uint32_t *puVar1;
-  int iVar2;
-  uint8_t uVar3;
-  uint32_t local_1c8;
-  int local_1c4[2];
-  uint32_t local_1bc;
-  char local_1b4[384];
-  uint8_t auStack_34[32];
-  volatile uint32_t local_14;
-  local_1c8 = 0x4b;
-  FUN_00086c78(local_1c4, 0, 0x1b4);
-  iVar2 = FUN_00018d94(local_1c4);
-  if (iVar2 == 0 && (1 < local_14 || local_1b4[0] != 0)){
-    local_1c4[0] = FUN_0007d224();
-    puVar1 = (uint32_t*)0x20006aac;
-    if (local_1c4[0] == 0) local_1c4[0] = 1;
-    local_1bc = *(volatile uint32_t*)0x20006aac;
-    FUN_0004a3d0(0x9ad7c, local_1c4);
-    if (local_14 < 2 && (iVar2 = FUN_00034bd4(local_1b4), iVar2 != 2)){
-      if (iVar2 != 3){
-        if (iVar2 != 1) return;
-        if (*(volatile int*)0x20007554 == 0){
-          DEBUG_PRINT(0x9ad86, local_1b4);
-        } else {
-          FUN_00019c70();
+struct ancs_record {
+  uint32_t uid[2];
+  uint32_t device_state;
+  uint32_t reserved;
+  char text[384];
+  uint8_t work[32];
+  uint32_t status;
+};
+
+struct command_record {
+  uint32_t opcode;
+  struct ancs_record notification;
+};
+
+_Static_assert(sizeof(struct ancs_record) == 0x1b4, "ANCS record layout");
+_Static_assert(sizeof(struct command_record) == 0x1b8, "command record layout");
+
+void FUN_0001965c(uint32_t channel)
+{
+  struct command_record local;
+  int kind;
+  uint8_t mode;
+
+  local.opcode = 0x4b;
+  FUN_00086c78(&local.notification, 0, sizeof(local.notification));
+  if (FUN_00018d94(&local.notification) != 0 ||
+      (local.notification.status <= 1 && local.notification.text[0] == 0)) {
+    return;
+  }
+
+  local.notification.uid[0] = (uint32_t)FUN_0007d224();
+  if (local.notification.uid[0] == 0) {
+    local.notification.uid[0] = 1;
+  }
+  local.notification.device_state = *(volatile uint32_t*)0x20006aacUL;
+  FUN_0004a3d0(0x0009ad7cUL, &local.notification);
+
+  if (local.notification.status < 2) {
+    kind = FUN_00034bd4(local.notification.text);
+    if (kind != 2) {
+      if (kind == 3) {
+        mode = 4;
+      } else {
+        if (kind != 1) {
+          return;
         }
-        FUN_0003384c(local_1c4);
+        if (*(volatile uint32_t*)0x20007554UL == 0) {
+          DEBUG_PRINT(0x0009ad86UL, local.notification.text);
+        } else {
+          FUN_00019c70(0x0009ad86UL, local.notification.text);
+        }
+        FUN_0003384c(&local.notification);
         return;
       }
-      uVar3 = 4;
     } else {
-      uVar3 = 2;
+      mode = 2;
     }
-    *((uint8_t*)&local_1c8 + 1) = uVar3;
-    if (*((char*)puVar1 + 6) == 2){
-      FUN_0008705a(local_1b4, 0x9adaa, 0x20);
-    }
-    FUN_0007ca80(auStack_34);
-    FUN_00021460(param_1, &local_1c8, local_1c4);
+  } else {
+    mode = 2;
   }
-}
 
+  ((uint8_t*)&local.opcode)[1] = mode;
+  if (*(volatile uint8_t*)0x20006ab2UL == 2) {
+    FUN_0008705a(local.notification.text, 0x0009adaaUL, 0x20);
+  }
+  FUN_0007ca80(local.notification.work);
+  FUN_00021460(channel, &local.opcode, &local.notification);
+}

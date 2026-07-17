@@ -6,7 +6,8 @@ extern void DEBUG_PRINT(unsigned int);
 
 int FUN_000235a4(unsigned int param_1)
 {
-    unsigned char buf[208];
+    /* The controller response is 201 bytes; retain three spare bytes. */
+    unsigned char buf[204];
     int iVar1 = FUN_00072240(0x200079a0U, buf, 0, 0);
     if (iVar1 == 0) {
         FUN_00086c04(param_1, buf, 0xc9);
@@ -15,4 +16,3 @@ int FUN_000235a4(unsigned int param_1)
     }
     return iVar1;
 }
-

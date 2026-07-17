@@ -25,6 +25,7 @@ void FUN_01017f7c(void)
     int iVar6;
     int iVar2;
     unsigned char bVar1;
+    volatile unsigned char *selected;
     unsigned int r5;
 
     uVar4 = FUN_0100a5a0();
@@ -38,7 +39,9 @@ void FUN_01017f7c(void)
     r5 = iVar5;
     iVar2 = DAT_18084;
     FUN_010195f8();
-    bVar1 = *(volatile unsigned char *)((unsigned int)*(volatile unsigned char *)(iVar2 + 0x98) + iVar2 + 0xbd);
+    selected = (volatile unsigned char *)(iVar2 +
+                 *(volatile unsigned char *)(iVar2 + 0x98));
+    bVar1 = selected[0xbd];
     *(volatile unsigned char *)(iVar2 + 0xb9) = bVar1;
     iVar6 = FUN_0101b15c(0);
 
@@ -107,4 +110,3 @@ LAB_tail:
     *(volatile unsigned char *)(iVar2 + 0x70) = 5;
     return;
 }
-

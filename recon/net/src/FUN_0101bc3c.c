@@ -13,7 +13,7 @@ extern unsigned FUN_010209f0(unsigned);
 extern void FUN_0100f48c(unsigned, unsigned);
 extern unsigned FUN_0101dec4(void);
 extern unsigned FUN_0100f69c(int, unsigned);
-extern unsigned FUN_0101dc50(unsigned);
+extern unsigned FUN_0101dc50(unsigned, unsigned, unsigned, unsigned);
 extern unsigned FUN_0100f0fc(unsigned);
 extern unsigned FUN_010231c8(unsigned, void*);
 
@@ -88,10 +88,10 @@ void FUN_0101bc3c(unsigned param_1)
     u8 fieldc5 = W8(param_1+0xc5);
     u8 local_26;
     if (((fieldc5 & 0xfd) == 0xc) || (fieldc5 == 0x26)) {
-      FUN_0101dc50(param_1);
+      FUN_0101dc50(param_1, 0, 0, fieldc5 & 0xfd);
       local_26 = 0;
     } else {
-      u32 iVar4c = FUN_0101dc50(param_1);
+      u32 iVar4c = FUN_0101dc50(param_1, 0, 0, fieldc5 & 0xfd);
       if (iVar4c != 0) {
         local_26 = (W8(param_1+0x300) == 1) ? 1 : 2;
       } else {
@@ -103,7 +103,14 @@ void FUN_0101bc3c(unsigned param_1)
     u32 local_2c = FUN_0100f0fc(param_1+0x30);
     (void)local_2c;
 
-    struct { u8 b0,b1,b2,b3; u32 w; u16 h; u8 c1,c2; } buf;
+    struct {
+      u8 b0,b1,b2,b3;
+      u32 w;
+      u16 h;
+      u8 c1,c2;
+      /* The event transport reserves three trailing words for the producer. */
+      u32 reserved[3];
+    } buf;
     buf.b0 = 0;
     buf.h = uVar3;
     buf.c1 = local_26;
@@ -117,4 +124,3 @@ void FUN_0101bc3c(unsigned param_1)
     for(;;) FUN_01008d00(0x35,0x1b7);
   }
 }
-

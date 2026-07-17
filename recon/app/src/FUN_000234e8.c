@@ -1,19 +1,18 @@
-/* Reconstructed FUN_000234e8 @ 0x234e8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_000234e8 @ 0x234e8 */
+#include <stdint.h>
 
-extern int FUN_00086448(void *, int, int);
-extern void DEBUG_PRINT(unsigned int);
+extern uint64_t FUN_00086448(uint32_t, uint32_t, uint32_t, uint32_t);
+extern void DEBUG_PRINT(uint32_t, uint32_t, uint32_t, uint32_t);
 
-int FUN_000234e8(void)
+int FUN_000234e8(uint32_t inherited_r0, uint32_t inherited_r1,
+                 uint32_t inherited_r2, uint32_t inherited_r3)
 {
-  int iVar1;
-  unsigned int format_string;
-
-  iVar1 = FUN_00086448((void*)0x200079a0UL,0xc9,0x1e);
-  format_string = 0x0009e810UL;
-  if (iVar1 != 0) {
-    format_string = 0x0009e7fdUL;
-  }
-  DEBUG_PRINT(format_string);
-  return iVar1;
+    uint64_t status = FUN_00086448(0x200079a0u, 0xc9u, 0x1eu,
+                                   inherited_r3);
+    uint32_t format = (int32_t)status == 0 ? 0x0009e810u : 0x0009e7fdu;
+    DEBUG_PRINT(format, (uint32_t)(status >> 32), 0x1eu, inherited_r3);
+    (void)inherited_r0;
+    (void)inherited_r1;
+    (void)inherited_r2;
+    return (int32_t)status;
 }
-

@@ -1,7 +1,7 @@
 /* net-core FUN_01026122 @ 0x1026122  (parity 300 trials PROVEN) */
-extern unsigned long long FUN_01008d00(unsigned int, unsigned int);
+extern void FUN_01008d00(unsigned int, unsigned int) __attribute__((noreturn));
 extern unsigned int FUN_0100938c(unsigned int);
-extern unsigned int FUN_01025998();
+extern void FUN_01025998(unsigned char *, unsigned char *, unsigned int);
 
 #define WB(p,o,v) (*(volatile unsigned char *)((p)+(o)) = (unsigned char)(v))
 #define WH(p,o,v) (*(volatile unsigned short *)((p)+(o)) = (unsigned short)(v))
@@ -71,21 +71,13 @@ unsigned int FUN_01026122(unsigned char *p1, unsigned char *p2,
     }
 
 L_c2:
-    {
-        /* FUN_01008d00 does not return in reality; in emulation the oracle
-           returns and clobbers r0/r1 with its (r0,r1) result. Execution then
-           falls through into the S==1 body whose "strb r3,[r1]" writes 0x0c to
-           the address left in r1 = the second return register. */
-        unsigned long long rr = FUN_01008d00(0xc7, uVar3);
-        *(volatile unsigned char *)(unsigned int)(rr >> 32) = 0x0c;
-    }
-    uVar8=0x08;
+    FUN_01008d00(0xc7, uVar3);
 L_ae:
     WB(p2,1,uVar8);
 L_b0:
     {
         unsigned int bv = p2[1];
-        FUN_01025998();
+        FUN_01025998(p1, p2, bv + 2);
         return bv + 2;
     }
 
@@ -110,7 +102,7 @@ C4:
         unsigned int r6 = RB(p2,0xb);
         WB(p1,0x1b,r6);
         if (r6 >= 0xe5) r6 = 0xe5;
-        FUN_01025998();
+        FUN_01025998(p1 + 0x1c, p2 + 0x1f, r6);
         uVar6 = (r6 + 0x1a) & 0xff;
     }
     goto L_274;
@@ -200,7 +192,7 @@ C1a:
         if (FUN_0100938c(0x24) != 0) { uVar7=0x24; iv=0x13; }
         else { uVar7=0x0e; iv=0x0f; }
         WB(p1,2,uVar7);
-        FUN_01025998();
+        FUN_01025998(p1 + 3, p2 + 2, iv);
         uVar6 = iv + 1;
     }
     goto L_274;
@@ -225,7 +217,7 @@ C1c:
             WW(p1,7,RW(p2,6));
             WH(p1,0xb,RH(p2,0xa));
         }
-        FUN_01025998();
+        FUN_01025998(p1 + iv + 3, p2 + 0xc, RB(p2,0xb));
         uVar6 = (unsigned int)RB(p2,0xb) + 1 + iv;
     }
     goto L_274;
@@ -237,7 +229,7 @@ C21:
         if (FUN_0100938c(0x26) != 0) { uVar7=0x26; iv=0x17; }
         else { uVar7=0x18; iv=0x13; }
         WB(p1,2,uVar7);
-        FUN_01025998();
+        FUN_01025998(p1 + 3, p2 + 2, iv);
         uVar6 = iv + 1;
     }
     goto L_274;
@@ -255,7 +247,7 @@ C23:
             WH(pv, u6+8, RH(p2, u6+0xa));
             {
                 unsigned int tb = RB(pv, u6+9);
-                FUN_01025998();
+                FUN_01025998(pv + u6 + 10, p2 + u6 + 0xc, tb);
                 u6 = (u6 + tb + 6) & 0xffff;
             }
             u4 = u4 + 1;
@@ -284,4 +276,3 @@ L_274:
     WB(p1,1,uVar6);
     return (uVar6 + 2) & 0xffff;
 }
-

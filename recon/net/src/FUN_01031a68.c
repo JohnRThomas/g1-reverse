@@ -28,48 +28,70 @@ extern void FUN_01031814(void);
 #define DAT_b80 0x010320d9u
 #define DAT_b84 0x003d0900u
 
+typedef struct {
+    unsigned int code;
+    unsigned int message;
+    int status;
+    unsigned short tag;
+    unsigned short reserved;
+} diagnostic_record_t;
+
+typedef struct {
+    unsigned int timer_period;
+    unsigned char startup_context[20];
+    unsigned int credentials[3];
+    unsigned int reserved;
+    struct {
+        unsigned int code;
+        unsigned int message;
+    } missing_service;
+    unsigned int tail_reserved;
+} init_frame_t;
+
+typedef struct {
+    unsigned int transport_reserved[4];
+    diagnostic_record_t startup;
+    init_frame_t frame;
+    unsigned int alignment_reserved;
+} init_workspace_t;
+
 int FUN_01031a68(void)
 {
     int iVar1, iVar2;
-    unsigned int local_50, local_4c;
-    int local_48;
-    unsigned short local_44;
-    unsigned int local_40;
-    unsigned char auStack_3c[20];
-    unsigned int local_28[3];
+    init_workspace_t workspace;
 
     FUN_01036bec(DAT_b54, DAT_b50);
     FUN_01032680();
-    FUN_01009054(auStack_3c);
+    FUN_01009054(workspace.frame.startup_context);
 
-    local_4c = DAT_b58;
-    local_48 = (int)DAT_b5c;
-    local_44 = 0x200;
-    local_50 = DAT_b60;
-    FUN_0102e284(DAT_b68, DAT_b64, &local_50, auStack_3c);
+    workspace.startup.code = DAT_b60;
+    workspace.startup.message = DAT_b58;
+    workspace.startup.status = (int)DAT_b5c;
+    workspace.startup.tag = 0x200;
+    FUN_0102e284(DAT_b68, DAT_b64, &workspace.startup,
+                 workspace.frame.startup_context);
 
     iVar1 = FUN_0103b0f0(DAT_b6c);
     if (iVar1 == 0) {
-        unsigned int loc18 = 2;
-        unsigned int loc14 = DAT_b70;
-        struct { unsigned int a; unsigned int b; } s = { loc18, loc14 };
-        FUN_0102e284(DAT_b68, 0x1040, &s, 0);
+        workspace.frame.missing_service.code = 2;
+        workspace.frame.missing_service.message = DAT_b70;
+        FUN_0102e284(DAT_b68, 0x1040,
+                     &workspace.frame.missing_service, 0);
         return -0x13;
     }
 
     {
         unsigned int *src = (unsigned int *)DAT_b74;
-        local_28[0] = src[0];
-        local_28[1] = src[1];
-        local_28[2] = src[2];
+        workspace.frame.credentials[0] = src[0];
+        workspace.frame.credentials[1] = src[1];
+        workspace.frame.credentials[2] = src[2];
     }
-    iVar1 = FUN_010091e8(local_28);
+    iVar1 = FUN_010091e8(workspace.frame.credentials);
     if (iVar1 != 0) {
-        struct { unsigned int a; int b; unsigned int c; } s;
-        s.a = 3;
-        s.b = iVar1;
-        s.c = DAT_b78;
-        FUN_0102e284(DAT_b68, 0x1840, &s, 0);
+        workspace.startup.code = 3;
+        workspace.startup.message = DAT_b78;
+        workspace.startup.status = iVar1;
+        FUN_0102e284(DAT_b68, 0x1840, &workspace.startup, 0);
         return -0x16;
     }
 
@@ -82,8 +104,8 @@ int FUN_01031a68(void)
     if (iVar1 == 0) {
         iVar1 = FUN_01008fd4(DAT_b80, DAT_b7c);
         if (iVar1 == 0) {
-            local_40 = DAT_b84;
-            iVar2 = thunk_FUN_0101f650(&local_40);
+            workspace.frame.timer_period = DAT_b84;
+            iVar2 = thunk_FUN_0101f650(&workspace.frame.timer_period);
             if (iVar2 != 0) {
                 goto LAB_b24;
             }
@@ -96,4 +118,3 @@ int FUN_01031a68(void)
     }
     return iVar1;
 }
-

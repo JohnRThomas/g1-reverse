@@ -11,7 +11,7 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern void FUN_01036144(int);
-extern void thunk_FUN_01036824(int);
+extern void FUN_01036824(int);
 extern void FUN_01039bb0(unsigned int,unsigned int);
 extern void FUN_01039bbe(unsigned int,unsigned int,unsigned int);
 extern unsigned int FUN_01039c20(int,int,int);
@@ -52,7 +52,7 @@ void FUN_0102cf00(int param_1, unsigned int *param_2)
         if (iVar3b != 0) {
             if (isCurrentModePrivileged()) setBasePriority(uVar7);
             InstructionSynchronizationBarrier(0xf);
-            thunk_FUN_01036824(param_1 + 0x2c);
+            FUN_01036824(param_1 + 0x2c);
             return;
         }
         FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);

@@ -2,7 +2,7 @@
 #include <stdint.h>
 extern int DEBUG_PRINT(int,...);
 extern int FUN_000179ec(int,...);
-extern int FUN_00019c70(int,...);
+extern void FUN_00019c70(int, int);
 extern int FUN_0007c038(int,...);
 extern int FUN_00083dc8(int,...);
 extern int FUN_00083e0e(int,...);
@@ -20,7 +20,7 @@ unsigned FUN_00015df4(unsigned param_1, unsigned param_2)
     }
     if(0 < *(volatile int*)0x2000230c){
         if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x00099345, 0x00099c3e); }
-        else { FUN_00019c70(0); }
+        else { FUN_00019c70(0x00099345, 0x00099c3e); }
     }
     FUN_0007c038(1);
     iVar2 = *(volatile int*)(0x00087d10+4);
@@ -37,7 +37,7 @@ unsigned FUN_00015df4(unsigned param_1, unsigned param_2)
             puVar3 = (unsigned char*)0x0009938c;
 LAB_00015e82:
             if(iVar4 == 0){ DEBUG_PRINT((int)puVar3, 0x00099c3e); }
-            else { FUN_00019c70(0); }
+            else { FUN_00019c70((int)puVar3, 0x00099c3e); }
         }
     } else {
         iVar4 = FUN_00083dc8(*(unsigned*)(iVar2+0x1c), 4, 10, 2, param_1, param_2);
@@ -67,7 +67,7 @@ LAB_00015e82:
         } else {
             if(0 < *piVar1){
                 if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x00099427, 0x00099c3e); }
-                else { FUN_00019c70(0); }
+                else { FUN_00019c70(0x00099427, 0x00099c3e); }
             }
             FUN_0007c038(1);
             FUN_000179ec(0);
@@ -79,7 +79,6 @@ LAB_00015e82:
     }
 LAB_00015e1a:
     if(iVar2 == 0){ DEBUG_PRINT((int)puVar3, 0x00099c3e); }
-    else { FUN_00019c70(0); }
+    else { FUN_00019c70((int)puVar3, 0x00099c3e); }
     return 0;
 }
-

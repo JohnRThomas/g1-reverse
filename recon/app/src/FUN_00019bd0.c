@@ -6,14 +6,12 @@ extern void DEBUG_PRINT(unsigned int);
 int FUN_00019bd0(void)
 {
   int iVar1;
-  unsigned int format_string;
 
-  iVar1 = FUN_00086448((void*)0x2000751cUL,200,0x14);
-  format_string = 0x0009b345UL;
+  iVar1 = FUN_00086448((void*)0x2000751cUL, 200, 0x14);
   if (iVar1 != 0) {
-    format_string = 0x0009b331UL;
+    DEBUG_PRINT(0x0009b331UL);
+    return iVar1;
   }
-  DEBUG_PRINT(format_string);
+  DEBUG_PRINT(0x0009b345UL);
   return iVar1;
 }
-

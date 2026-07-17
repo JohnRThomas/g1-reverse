@@ -11,7 +11,7 @@ ALWI void isb_(void){__ISB();}
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
-extern int FUN_010375b8(unsigned int, int, void*);
+extern int FUN_010375b8(unsigned int, int, void*, int, int, int);
 extern int FUN_01037130(unsigned int, int);
 extern void FUN_01039bbe(int,int,int);
 extern void FUN_01039bb0(int,int);
@@ -89,9 +89,10 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
         if (cVar1 <= cVar5) cVar5 = cVar1;
         if (cVar5 < -0x7f) cVar5 = -0x7f;
         int iVar3b = 0;
-        if (cVar5 < cVar1) iVar3b = FUN_0103b1c4(0,0);
+        if (cVar5 < cVar1) iVar3b = FUN_0103b1c4(param_1[2], cVar5);
 
-        int iVar4 = FUN_010375b8(OBJ, saved_bp, param_1);
+        int iVar4 = FUN_010375b8(OBJ, saved_bp, param_1, cVar1,
+                                 param_3, param_4);
         if (iVar4 == 0) return 0;
 
         saved_bp = 0;

@@ -19,6 +19,13 @@ extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, unsigned int d
 #define DAT_edc 0x4100f000u
 #define DAT_ee0 0x0103e4d1u
 
+typedef struct {
+    int severity;
+    unsigned int message;
+    int status;
+    unsigned int transport_reserved[3];
+} diagnostic_record_t;
+
 unsigned int FUN_01033df0(void)
 {
     int iStack_20;
@@ -56,20 +63,19 @@ unsigned int FUN_01033df0(void)
             *(volatile unsigned int *)(DAT_edc + 0x504) = 1u << (unsigned int)bVar1;
             return 0;
         } else {
-            struct { int a; unsigned int b; int c; } local;
-            local.a = 3;
-            local.b = DAT_ed0;
-            local.c = rv;
+            diagnostic_record_t local;
+            local.severity = 3;
+            local.message = DAT_ed0;
+            local.status = rv;
             FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
             return 0xffffffed;
         }
     } else {
-        struct { int a; unsigned int b; int c; } local;
-        local.a = 3;
-        local.b = DAT_ee0;
-        local.c = iStack_20;
+        diagnostic_record_t local;
+        local.severity = 3;
+        local.message = DAT_ee0;
+        local.status = iStack_20;
         FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
         return 0xffffffed;
     }
 }
-

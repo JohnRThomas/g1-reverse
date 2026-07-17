@@ -1,28 +1,33 @@
-/* Reconstructed FUN_00024cc8 @ 0x24cc8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00024cc8 @ 0x24cc8 */
+#include <stdint.h>
 
-extern void FUN_0007ca24(int a, void *b);
-extern void FUN_0007c99e(int a, void *b);
+extern void FUN_0007ca24(uint32_t, void *);
+extern void FUN_0007c99e(uint32_t, void *);
 
-char FUN_00024cc8(int param_1)
+struct controller_mode_frame {
+    uint8_t reserved[11];
+    uint8_t mode;
+    uint32_t interval[2];
+};
+
+uint8_t FUN_00024cc8(uint32_t enable)
 {
-    char local_19;
-    int local_18;
-    int local_14;
+    struct controller_mode_frame frame;
+    volatile uint32_t *controller = (volatile uint32_t *)0x20007a44u;
 
-    local_19 = 0;
-    FUN_0007ca24(*(volatile int *)0x20007a44UL, &local_19);
-    if (local_19 == 0) {
-        if (param_1 == 0) goto LAB_00024cf4;
-        local_14 = 0;
-        local_18 = 0;
-    } else {
-        if ((local_19 != 1) || (param_1 != 0)) goto LAB_00024cf4;
-        local_18 = 0x12345678;
-        local_14 = 0x12345678 + 0xf00000;
+    frame.mode = 0;
+    FUN_0007ca24(*controller, &frame.mode);
+    if (frame.mode == 0) {
+        if (enable != 0) {
+            frame.interval[0] = 0;
+            frame.interval[1] = 0;
+            FUN_0007c99e(*controller, frame.interval);
+        }
+    } else if (frame.mode == 1 && enable == 0) {
+        frame.interval[0] = 0x12345678u;
+        frame.interval[1] = 0x13245678u;
+        FUN_0007c99e(*controller, frame.interval);
     }
-    FUN_0007c99e(*(volatile int *)0x20007a44UL, &local_18);
-LAB_00024cf4:
-    FUN_0007ca24(*(volatile int *)0x20007a44UL, &local_19);
-    return local_19;
+    FUN_0007ca24(*controller, &frame.mode);
+    return frame.mode;
 }
-

@@ -6,8 +6,9 @@ extern void FUN_01032908(void);
 extern void FUN_01035068(uint32_t);
 extern void FUN_01033f38(void);
 extern uint64_t FUN_010327a0(uint32_t, uint32_t);
-extern void FUN_0103b62e(uint32_t, uint32_t, uint32_t);
-extern void FUN_0103a83e(void);
+extern uint64_t FUN_0103b62e(uint32_t, uint32_t, uint32_t);
+extern void FUN_0103a83e(uint32_t, uint32_t, uint32_t,
+                         volatile uint32_t *);
 
 void FUN_01033354(void)
 {
@@ -20,8 +21,11 @@ void FUN_01033354(void)
     *(volatile uint8_t *)0x21006458u = 0;
     *(volatile uint8_t *)0x21006459u = 0;
     uint64_t value = FUN_010327a0(0x21004b7cu, 0);
-    FUN_0103b62e((uint32_t)value, (uint32_t)(value >> 32), 0x20u);
-    *(volatile uint32_t *)0x21006256u = 0;
-    *(volatile uint32_t *)0x2100625au = 0;
-    FUN_0103a83e();
+    uint64_t completion = FUN_0103b62e((uint32_t)value,
+                                       (uint32_t)(value >> 32), 0x20u);
+    volatile uint32_t *state = (volatile uint32_t *)0x21006256u;
+    state[0] = 0;
+    state[1] = 0;
+    FUN_0103a83e((uint32_t)completion, (uint32_t)(completion >> 32),
+                 0x20u, state);
 }

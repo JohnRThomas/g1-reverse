@@ -21,7 +21,7 @@ void FUN_010399f6(int param_1, int param_2)
   }
   iVar1 = FUN_0103973c(param_1, param_2, 0);
   uVar4 = 1;
-  uVar3 = FUN_0103973c(param_1, param_2 - iVar1, 0);
+  uVar3 = FUN_0103973c(param_1, param_2 - iVar1, 1);
   if ((uVar3 & uVar4) == 0) {
     FUN_01039846(param_1, param_2 - iVar1);
     iVar1 = FUN_0103973c(param_1, param_2, 0);
@@ -32,4 +32,3 @@ void FUN_010399f6(int param_1, int param_2)
   FUN_01039972(param_1, param_2);
   return;
 }
-

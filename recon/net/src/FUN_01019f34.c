@@ -1,5 +1,5 @@
 /* net-core FUN_01019f34 @ 0x1019f34  (parity 300 trials PROVEN) */
-extern unsigned char FUN_0100e04c(void);
+extern unsigned char FUN_0100e04c(int packet);
 extern unsigned char FUN_0100e064(int a);
 
 void FUN_01019f34(int param_1, int param_2, unsigned int param_3)
@@ -8,7 +8,7 @@ void FUN_01019f34(int param_1, int param_2, unsigned int param_3)
     unsigned char bVar2;
     unsigned int uVar3;
 
-    uVar1 = FUN_0100e04c();
+    uVar1 = FUN_0100e04c(param_1);
     *(volatile unsigned char *)(param_2 + 0x11) = uVar1;
     uVar1 = FUN_0100e064(param_1);
     *(volatile unsigned char *)(param_2 + 0x12) = uVar1;

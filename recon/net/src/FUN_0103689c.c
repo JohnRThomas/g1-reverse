@@ -1,10 +1,12 @@
 /* net-core FUN_0103689c @ 0x103689c  (parity 300 trials PROVEN) */
 
-static inline int isCurrentModePrivileged(void){return 1;}
-static inline int getBasePriority(void){return 0;}
-static inline void setBasePriority(int p){(void)p;}
-static inline void InstructionSynchronizationBarrier(int x){(void)x; __atomic_signal_fence(__ATOMIC_SEQ_CST);}
-static inline unsigned int readIPSR(void){return 0;}
+#include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+static inline int isCurrentModePrivileged(void){return (__get_CONTROL() & 1u) == 0;}
+static inline unsigned int getBasePriority(void){return __get_BASEPRI();}
+static inline void setBasePriority(int p){__set_BASEPRI((unsigned int)p);}
+static inline void InstructionSynchronizationBarrier(int x){(void)x; __ISB();}
+static inline unsigned int readIPSR(void){return __get_IPSR();}
 
 extern int FUN_0103610c(void *);
 extern int FUN_01036128(void *);

@@ -2,7 +2,7 @@
 extern void FUN_0007c872(unsigned,unsigned,unsigned,unsigned);
 extern int FUN_0007c882(int,unsigned,unsigned,int);
 extern void FUN_0007c876(unsigned);
-extern unsigned FUN_0007c87a(void);
+extern unsigned long long FUN_0007c87a(void);
 extern void DEBUG_PRINT(unsigned,unsigned,unsigned,int);
 int FUN_00025850(int param_1, unsigned param_2, unsigned param_3, int param_4){
     int iVar1;
@@ -22,7 +22,7 @@ int FUN_00025850(int param_1, unsigned param_2, unsigned param_3, int param_4){
                 DEBUG_PRINT(0x9f2be, (*(unsigned short*)(iVar4 + 8)) | 4, param_2, iVar1);
                 return iVar1;
             }
-            lock_arg = FUN_0007c87a();
+            lock_arg = (unsigned)(FUN_0007c87a() >> 32);
         }
     }
     return iVar1;

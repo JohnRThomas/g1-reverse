@@ -1,7 +1,7 @@
 /* net-core FUN_01010470 @ 0x1010470  (parity 1 trials PROVEN) */
 extern signed char FUN_0101e2cc(unsigned char);
 extern unsigned long long thunk_FUN_01025034(void);
-extern int FUN_0100cfc0(unsigned short, void *, unsigned int, unsigned int);
+extern int FUN_0100cfc0(unsigned short, void *);
 extern int FUN_0101e2fc(void *, int, int, int);
 extern void FUN_01008d00(unsigned int, unsigned int);
 
@@ -19,11 +19,12 @@ void FUN_01010470(int param_1)
   int bVar10;
   unsigned long long uVar11;
   unsigned long long lVar12;
-  unsigned char auStack_28[12];
+  unsigned char packet[12];
   signed char *pcVar2;
+  unsigned char *controller = (unsigned char *)(long)(param_1 - 0x258);
 
+  cVar3 = FUN_0101e2cc(controller[0x6f]);
   puVar8 = (unsigned int *)(long)(param_1 + -0x1b0);
-  cVar3 = FUN_0101e2cc(*(unsigned char *)(long)(param_1 + -0x1e9));
   pcVar2 = (signed char *)DAT_01010574;
   iVar6 = *(int *)(long)(param_1 + -0x1a8) + 0x800;
   iVar4 = (iVar6 * 0x1000) >> 0x18;
@@ -58,13 +59,12 @@ void FUN_01010470(int param_1)
     uVar7 = *(unsigned int *)(long)(param_1 + -0x1ac);
     bVar10 = uVar5 <= (unsigned int)uVar11;
     if (uVar7 < uVar9 || uVar9 - uVar7 < (unsigned int)bVar10) {
-      iVar6 = FUN_0100cfc0(*(unsigned short *)(long)(param_1 + -600), auStack_28, uVar5,
-                            (uVar9 - uVar7) - (unsigned int)!bVar10);
+      iVar6 = FUN_0100cfc0(*(unsigned short *)(long)(param_1 + -600), packet);
       if (iVar6 != 0) {
         FUN_01008d00(0x7a, 0x85);
         return;
       }
-      iVar4 = FUN_0101e2fc(auStack_28, cVar3 + 1, cVar4, 2);
+      iVar4 = FUN_0101e2fc(packet, cVar3 + 1, cVar4, 2);
       if (iVar4 == 0) {
         uVar9 = (unsigned int)(unsigned char)pcVar2[4];
         lVar12 = thunk_FUN_01025034();

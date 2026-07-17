@@ -5,7 +5,9 @@ extern int FUN_010362d0(unsigned int a, void *b, int c, int d);
 
 int FUN_0102a6e0(void *param_1)
 {
-    unsigned char buf[256];
+    /* The protocol work area is 251 bytes; keeping its true extent also
+       preserves the compiler's aligned stack slot used by the firmware. */
+    unsigned char buf[251];
     int iVar1;
     FUN_0103b614(buf, (void*)0x0103c798, 0xfb);
     if (*(volatile int *)(0x210045b0 + 0x10) == 0) {
@@ -18,4 +20,3 @@ int FUN_0102a6e0(void *param_1)
     }
     return iVar1;
 }
-

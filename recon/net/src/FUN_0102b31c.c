@@ -1,5 +1,7 @@
 /* net-core FUN_0102b31c @ 0x102b31c  (parity 300 trials PROVEN) */
 
+#include <stdint.h>
+
 extern int FUN_010333b4(void *);
 extern void FUN_01033af8(int);
 extern void FUN_01033acc(int);
@@ -17,11 +19,19 @@ int FUN_0102b31c(int param_1)
   volatile unsigned char * const pE100 = (volatile unsigned char *)0xe000e100;
   volatile int * const p3e8 = (volatile int *)0x21000580;
 
-  unsigned char local_buf[24];
+  /* Five-word radio configuration assembled from the firmware template at
+     0x0103c100, with its mode and runtime fields overridden below. */
+  uint32_t config[5];
   int iVar2;
   int iVar1;
 
-  iVar2 = FUN_010333b4(local_buf);
+  config[0] = 0x21000088u | ((param_1 != 0) ? 0x100u : 0u);
+  config[1] = 0x0102bd0du;
+  config[2] = 0x0103aac3u;
+  config[3] = 0x0005012cu;
+  config[4] = 0x0101fb02u;
+
+  iVar2 = FUN_010333b4(config);
   if (iVar2 != 0) {
     return iVar2;
   }
@@ -55,4 +65,3 @@ int FUN_0102b31c(int param_1)
   }
   return iVar2;
 }
-

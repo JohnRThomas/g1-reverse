@@ -8,12 +8,15 @@ extern void FUN_01039722(int a, unsigned int b, int c);
 
 unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
-    unsigned int local_10c = 0;
-    unsigned char auStack_108[252];
+    struct {
+        unsigned int header;
+        unsigned char payload[248];
+    } packet;
     unsigned int uVar2;
 
-    FUN_0103b62e(auStack_108, 0, 0xf8);
-    FUN_0103b53a(&local_10c, param_2, param_3, 0xfc);
+    packet.header = 0;
+    FUN_0103b62e(packet.payload, 0, sizeof(packet.payload));
+    FUN_0103b53a(&packet, param_2, param_3, sizeof(packet));
     int iVar1 = FUN_0102a498();
     if (iVar1 == 1) {
         return 0;
@@ -21,7 +24,7 @@ unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned i
     if (param_3 < 0xfc) {
         iVar1 = FUN_0102a468();
         if (iVar1 == 0) {
-            FUN_0102a448(&local_10c, param_3);
+            FUN_0102a448(&packet, param_3);
             *(volatile unsigned char *)0x21004c9c = 1;
             return 0;
         }
@@ -31,5 +34,3 @@ unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned i
     uVar2 = 0xffffffff;
     return uVar2;
 }
-
-

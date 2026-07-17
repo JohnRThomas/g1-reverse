@@ -7,7 +7,8 @@ extern void DEBUG_PRINT(unsigned int a0);
 int FUN_0002560c(void)
 {
   int iVar1;
-  iVar1 = FUN_000330a8(*(volatile unsigned int*)0x20007a44UL);
+  volatile unsigned int *volatile state = (volatile unsigned int *)0x20007a44UL;
+  iVar1 = FUN_000330a8(*state);
   if (iVar1 == 0) {
     iVar1 = FUN_000330ec();
     if (iVar1 != 0) { iVar1 = -2; }
@@ -17,4 +18,3 @@ int FUN_0002560c(void)
   }
   return iVar1;
 }
-

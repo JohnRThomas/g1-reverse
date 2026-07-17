@@ -9,13 +9,13 @@ extern void FUN_0100ef88(unsigned int, unsigned int, int);
 extern void FUN_0100efc8(unsigned int, unsigned int, int);
 
 #define DAT_010167e0 0x21000f90u
-#define DAT_010167e4 0x21000fa4u
-#define DAT_010167e8_ADDR 0x21000f9eu
-#define DAT_010167ec 0x21001019u
-#define DAT_010167f0 0x21000faau
+#define DAT_010167e4 (DAT_010167e0 + 0x14u)
+#define DAT_010167e8_ADDR (DAT_010167e0 + 0x0eu)
+#define DAT_010167ec (DAT_010167e0 + 0x89u)
+#define DAT_010167f0 (DAT_010167e0 + 0x1au)
 #define DAT_010167f4 0x010175c9u
 #define DAT_010167f8 0x01016a71u
-#define DAT_010167fc 0x21000fbau
+#define DAT_010167fc (DAT_010167e0 + 0x2au)
 
 void FUN_010166c0(int param_1, unsigned char *param_2)
 {
@@ -98,4 +98,3 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
   FUN_0100efc8(uVar4, uVar6, 2);
   return;
 }
-

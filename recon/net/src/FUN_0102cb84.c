@@ -1,7 +1,7 @@
 /* net-core FUN_0102cb84 @ 0x102cb84 */
 #include <stdint.h>
 
-extern void FUN_010388c8(uint32_t object);
+extern void FUN_010388c8(uint32_t object, uint32_t completion);
 extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
 extern void FUN_01039bb0(const void *file, unsigned line);
 
@@ -19,7 +19,7 @@ int FUN_0102cb84(uint32_t state[3], uint32_t completion)
         object = state[0];
         state[1] = 0;
         if (object != 0)
-            FUN_010388c8(object);
+            FUN_010388c8(object, completion);
         return 0;
     case 3:
         object = state[0];
