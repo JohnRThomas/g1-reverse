@@ -44,7 +44,7 @@
   },
   {
    "path": "recon/catalogs/net_sdk_public_ownership.json",
-   "sha256": "54e4a1771e0cf8f672156b9d55c856c77a3f999b4fee3766245325c3e2cafeff"
+   "sha256": "acd8ce5033ac1a6fa6de0632b7d296ba6a3db969096688997983a793f00be8da"
   },
   {
    "path": "recon/catalogs/net_identity_alias_resolutions.json",
@@ -13090,11 +13090,11 @@
   },
   "net": {
    "summary": {
-    "entries": 468,
-    "exclude_reconstruction": 87,
+    "entries": 469,
+    "exclude_reconstruction": 88,
     "retain_reconstruction": 381,
     "by_kind": {
-     "source": 7,
+     "source": 8,
      "archive": 316,
      "static_helper": 1,
      "table": 0,
@@ -24849,6 +24849,9 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
         "CONFIG_USERSPACE": false,
         "CONFIG_LOG": true,
         "CONFIG_LOG_MODE_DEFERRED": true,
@@ -25351,6 +25354,9 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
         "CONFIG_USERSPACE": false,
         "CONFIG_LOG": true,
         "CONFIG_LOG_MODE_DEFERRED": true,
@@ -25362,6 +25368,47 @@
        },
        "source_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
        "object": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103657c",
+     "raw_symbol": "FUN_0103657c",
+     "current_symbol": "z_impl_k_mutex_unlock",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "z_impl_k_mutex_unlock",
+     "upstream_unit": "zephyr/kernel/libkernel.a(mutex.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "int z_impl_k_mutex_unlock(struct k_mutex *mutex)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "zephyr/kernel/mutex.c",
+       "object": "zephyr/kernel/libkernel.a(mutex.c.obj)"
       }
      ]
     },
@@ -25389,6 +25436,9 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
         "CONFIG_USERSPACE": false,
         "CONFIG_LOG": true,
         "CONFIG_LOG_MODE_DEFERRED": true,
@@ -25787,6 +25837,9 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
         "CONFIG_USERSPACE": false,
         "CONFIG_LOG": true,
         "CONFIG_LOG_MODE_DEFERRED": true,
@@ -25945,6 +25998,9 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_ASSERT_NO_MSG_INFO": true,
+        "CONFIG_THREAD_NAME": true,
+        "CONFIG_THREAD_MAX_NAME_LEN": 20,
         "CONFIG_USERSPACE": false,
         "CONFIG_LOG": true,
         "CONFIG_LOG_MODE_DEFERRED": true,

@@ -14,6 +14,9 @@
  "required_config": {
   "CONFIG_ASSERT": true,
   "CONFIG_ASSERT_NO_COND_INFO": true,
+  "CONFIG_ASSERT_NO_MSG_INFO": true,
+  "CONFIG_THREAD_NAME": true,
+  "CONFIG_THREAD_MAX_NAME_LEN": 20,
   "CONFIG_USERSPACE": false,
   "CONFIG_LOG": true,
   "CONFIG_LOG_MODE_DEFERRED": true,
@@ -53,6 +56,26 @@
    "match_score": 1.0,
    "exclude_reconstruction": true,
    "evidence": "With CONFIG_OPENAMP_MASTER=n and CONFIG_OPENAMP_SLAVE=y, OpenAMP defines VIRTIO_DEVICE_ONLY. The pinned source then emits the same complete 0x3c-byte CFG and instruction stream as firmware; only the three final-link call relocations differ in the relocatable object. The normal OpenAMP archive exports this public symbol."
+  },
+  {
+   "va": "0x0103657c",
+   "raw_symbol": "FUN_0103657c",
+   "upstream_symbol": "z_impl_k_mutex_unlock",
+   "abi": "int z_impl_k_mutex_unlock(struct k_mutex *mutex)",
+   "source": "zephyr/kernel/mutex.c",
+   "source_sha256": "8c7efb4e78d308b8074c958ae1380882b7ecac5559873a631a7cda4d114071ac",
+   "object": "zephyr/kernel/libkernel.a(mutex.c.obj)",
+   "firmware_code_size": 208,
+   "reference_code_size": 208,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "normalized_call_relocation_offsets": [
+    "0x10", "0x18", "0x34", "0x5a", "0x66", "0x72",
+    "0x7a", "0x80", "0x92", "0x9a", "0xa4", "0xb0"
+   ],
+   "normalized_code_sha256": "bf71c75f700b08ca737785b20d4fb80a5809b41c2e2a61ed5e1cc0b3916e8008",
+   "exclude_reconstruction": true,
+   "evidence": "Pinned Zephyr kernel/mutex.c compiled for the CPUNET soft-float ABI with CONFIG_ASSERT_NO_MSG_INFO=y, CONFIG_THREAD_NAME=y, and CONFIG_THREAD_MAX_NAME_LEN=20 emits the same complete 0xd0-byte instruction body as firmware after normalizing its twelve R_ARM_THM_CALL relocations. These settings select the firmware's two-call assertion lowering and place k_thread.arch.swap_return_value at offset 0x90. The normal Zephyr kernel archive exports this public symbol."
   },
   {
    "va": "0x01036bec",
