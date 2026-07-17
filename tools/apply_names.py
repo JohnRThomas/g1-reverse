@@ -23,6 +23,9 @@ SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
 ADDRESS = re.compile(r"0x[0-9a-fA-F]{4,8}")
 ENTRY = re.compile(r"@\s+(0x[0-9a-fA-F]+)")
 RAW_FUNCTION = re.compile(r"\b(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\b")
+RECONSTRUCTED_NAME = re.compile(
+    r"(?:Reconstructed|net-core)\s+([A-Za-z_$][A-Za-z0-9_$]*)\s+@\s+"
+    r"(0x[0-9a-fA-F]+)")
 
 
 def paths(core):
@@ -69,6 +72,35 @@ def global_backmap(original, address_symbols):
     return entries
 
 
+def rename_public_owner(original, entry, public_name):
+    """Export the durable public name without changing canonical parity C."""
+    matches = [(name, int(address, 16) & ~1)
+               for name, address in RECONSTRUCTED_NAME.findall(original[:1024])]
+    owners = {name for name, address in matches if address == entry}
+    if not owners:
+        return original
+    if len(owners) != 1:
+        raise RuntimeError("ambiguous public owner @ 0x%08x: %s" %
+                           (entry, sorted(owners)))
+    old_name = next(iter(owners))
+    if old_name == public_name:
+        return original
+    # Only code tokens move; comments and string literals retain the original
+    # reconstruction provenance.
+    token = re.compile(r"\b%s\b" % re.escape(old_name))
+    skip = re.compile(
+        r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',
+        re.DOTALL)
+    output = []
+    position = 0
+    for match in skip.finditer(original):
+        output.append(token.sub(public_name, original[position:match.start()]))
+        output.append(match.group(0))
+        position = match.end()
+    output.append(token.sub(public_name, original[position:]))
+    return "".join(output)
+
+
 def provenance_header(core, entry, public_name, function_entries, globals_):
     raw = function_names.raw_name(core, entry)
     lines = ["/* readable reconstruction; identity: %s @ 0x%08x" % (raw, entry),
@@ -113,6 +145,9 @@ def main():
         record = records.get(entry)
         public_name = record["name"] if record else function_names.raw_name(core, entry)
         body = function_names.substitute(original, core)
+        body = rename_public_owner(body, entry, public_name)
+        body = function_names.repair_internal_control_flow_labels(
+            body, core, entry)
         header = provenance_header(core, entry, public_name,
                                    function_backmap(original, core),
                                    global_backmap(original, address_symbols))

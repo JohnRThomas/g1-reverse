@@ -18,6 +18,73 @@ import tempfile
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 NM = ("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
       "arm-zephyr-eabi-nm")
+IDENTIFIER = re.compile(r"^[A-Za-z_$][A-Za-z0-9_$]*$")
+
+
+def load_link_aliases(core, manifest):
+    """Load explicit reversible link spellings and reject bad ownership."""
+    path = BASE + "/recon/catalogs/function_link_aliases_%s.json" % core
+    if not os.path.exists(path):
+        return {}
+    with open(path) as stream:
+        data = json.load(stream)
+    if data.get("schema") != 1 or data.get("core") != core:
+        raise SystemExit("invalid function link-alias catalog: %s" % path)
+    claimed = {}
+    for address, record in manifest["by_address"].items():
+        for name in (record["raw_name"], record["name"]):
+            claimed.setdefault(name, set()).add(address)
+    aliases = {}
+    for alias, address in data.get("aliases", {}).items():
+        if not IDENTIFIER.fullmatch(alias):
+            raise SystemExit("invalid link alias %r" % alias)
+        normalized = "0x%08x" % (int(address, 0) & ~1)
+        if normalized not in manifest["by_address"]:
+            raise SystemExit("link alias %s has unknown address %s" %
+                             (alias, normalized))
+        owners = claimed.get(alias, set())
+        if owners and owners != {normalized}:
+            raise SystemExit("link alias %s collides with owners %s" %
+                             (alias, sorted(owners)))
+        previous = aliases.setdefault(alias, normalized)
+        if previous != normalized:
+            raise SystemExit("link alias %s is ambiguous: %s/%s" %
+                             (alias, previous, normalized))
+    return aliases
+
+
+def plan_aliases(manifest, defined, undefined, link_aliases=None):
+    aliases = []
+    rejected = {"both_defined": [], "neither_defined": []}
+    for address, record in sorted(manifest["by_address"].items()):
+        raw = record["raw_name"]
+        readable = record["name"]
+        if raw == readable or not record.get("human"):
+            continue
+        raw_defined = raw in defined
+        readable_defined = readable in defined
+        if raw in undefined and readable_defined and not raw_defined:
+            aliases.append((raw, readable, address))
+        elif readable in undefined and raw_defined and not readable_defined:
+            aliases.append((readable, raw, address))
+        elif raw_defined and readable_defined:
+            rejected["both_defined"].append((raw, readable, address))
+        elif ((raw in undefined or readable in undefined) and
+              not raw_defined and not readable_defined):
+            rejected["neither_defined"].append((raw, readable, address))
+    for alias, address in sorted((link_aliases or {}).items()):
+        if alias not in undefined or alias in defined:
+            continue
+        record = manifest["by_address"][address]
+        candidates = [name for name in (record["name"], record["raw_name"])
+                      if name in defined]
+        candidates = list(dict.fromkeys(candidates))
+        if len(candidates) != 1:
+            raise SystemExit(
+                "link alias %s @ %s needs exactly one defined owner; got %s" %
+                (alias, address, candidates))
+        aliases.append((alias, candidates[0], address))
+    return aliases, rejected
 
 
 def symbols(elf):
@@ -93,24 +160,8 @@ def main():
     require_fresh_complete_elf(core, elf, manifest_path)
     manifest = json.load(open(manifest_path))
     defined, undefined = object_symbols(core)
-    aliases = []
-    rejected = {"both_defined": [], "neither_defined": []}
-    for address, record in sorted(manifest["by_address"].items()):
-        raw = record["raw_name"]
-        readable = record["name"]
-        if raw == readable or not record.get("human"):
-            continue
-        raw_defined = raw in defined
-        readable_defined = readable in defined
-        if raw in undefined and readable_defined and not raw_defined:
-            aliases.append((raw, readable, address))
-        elif readable in undefined and raw_defined and not readable_defined:
-            aliases.append((readable, raw, address))
-        elif raw_defined and readable_defined:
-            rejected["both_defined"].append((raw, readable, address))
-        elif ((raw in undefined or readable in undefined) and
-              not raw_defined and not readable_defined):
-            rejected["neither_defined"].append((raw, readable, address))
+    aliases, rejected = plan_aliases(
+        manifest, defined, undefined, load_link_aliases(core, manifest))
 
     targets = {}
     for alias, target, address in aliases:
