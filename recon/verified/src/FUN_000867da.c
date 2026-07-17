@@ -16,8 +16,9 @@ struct poll_event_view {
     uint32_t mode : 1;
     uint32_t unused : 10;
 };
+#define signal_poll_event FUN_000867da
 
-int FUN_000867da(uint8_t *event, uint32_t state)
+int signal_poll_event(uint8_t *event, uint32_t state)
 {
     uint8_t *poller = *(uint8_t **)(event + 8);
     if (poller != 0) {

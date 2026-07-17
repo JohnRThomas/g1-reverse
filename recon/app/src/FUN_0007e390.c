@@ -3,8 +3,9 @@
  */
 #include <stdint.h>
 extern uint32_t idx_inc(uint32_t *, uint32_t, int32_t); /* FUN_0007e35c */
+#define add_skip_item FUN_0007e390
 
-void FUN_0007e390(uint32_t *buffer, int32_t word_length)
+void add_skip_item(uint32_t *buffer, int32_t word_length)
 {
     uint32_t *storage = (uint32_t *)(uintptr_t)buffer[8];
 

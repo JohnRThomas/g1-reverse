@@ -3,8 +3,9 @@
  */
 #include <stdint.h>
 extern int z_sched_prio_cmp(void *, void *); /* FUN_00086622 */
+#define add_event FUN_00086778
 
-void FUN_00086778(uint32_t *events, uint32_t *event_node, uint8_t *poller)
+void add_event(uint32_t *events, uint32_t *event_node, uint8_t *poller)
 {
     uint32_t *tail = (uint32_t *)(uintptr_t)events[1];
     if ((uint32_t *)(uintptr_t)events[0] != events && tail != 0) {

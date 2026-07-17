@@ -7,8 +7,9 @@ extern void rd_idx_inc(uint32_t *, int32_t); /* FUN_0007e378 */
 extern void add_skip_item(uint32_t *, int32_t); /* FUN_0007e390 */
 
 typedef uint32_t (*get_wlen_fn)(uint32_t *);
+#define drop_item_locked FUN_0007e3ce
 
-uint32_t FUN_0007e3ce(uint32_t *buffer, uint32_t free_wlen,
+uint32_t drop_item_locked(uint32_t *buffer, uint32_t free_wlen,
                       uint32_t **item_to_drop, uint32_t *tmp_wr_shift)
 {
     uint32_t *storage = (uint32_t *)(uintptr_t)buffer[8];

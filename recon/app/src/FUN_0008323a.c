@@ -3,8 +3,9 @@
  */
 #include <stdint.h>
 extern int bt_encrypt_le(const uint8_t *, const uint8_t *, uint8_t *); /* FUN_00081326 */
+#define smp_c1 FUN_0008323a
 
-int FUN_0008323a(const uint8_t key[16], const uint8_t random[16],
+int smp_c1(const uint8_t key[16], const uint8_t random[16],
                  const uint8_t preq[7], const uint8_t pres[7],
                  const uint8_t *initiator_addr, const uint8_t *responder_addr,
                  uint8_t encrypted[16])

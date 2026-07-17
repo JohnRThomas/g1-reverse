@@ -6,8 +6,9 @@ extern int bucket_idx(uint32_t); /* FUN_0007de82 */
 extern uint32_t chunk_size(void *, uint32_t); /* FUN_0007de18 */
 extern uint32_t next_free_chunk(void *, uint32_t, uint32_t); /* FUN_0007ddec */
 extern void free_list_remove_bidx(void *, uint32_t, int); /* FUN_0007de9a */
+#define alloc_chunk FUN_0007df24
 
-uint32_t FUN_0007df24(uint8_t *heap, uint32_t requested_size)
+uint32_t alloc_chunk(uint8_t *heap, uint32_t requested_size)
 {
     int bucket_index = bucket_idx(*(uint32_t *)(heap + 8));
     uint32_t *bucket_next = (uint32_t *)(heap + 0x10 + bucket_index * 4);

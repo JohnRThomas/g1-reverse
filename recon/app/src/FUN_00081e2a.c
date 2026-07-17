@@ -12,8 +12,9 @@ extern void net_buf_add(void *, uint32_t); /* FUN_0005f5d0 */
 
 typedef int32_t (*attribute_read_fn)(void *, void *, void *, uint16_t, uint16_t);
 typedef int (*read_filter_fn)(void *, uint32_t, void *);
+#define att_chan_read FUN_00081e2a
 
-uint32_t FUN_00081e2a(uint8_t *chan, void *attribute, uint8_t *buffer,
+uint32_t att_chan_read(uint8_t *chan, void *attribute, uint8_t *buffer,
                       uint32_t offset, read_filter_fn filter, void *user_data)
 {
     uint32_t mtu = *(uint16_t *)(chan + 0x1e);

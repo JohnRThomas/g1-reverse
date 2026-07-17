@@ -4,8 +4,9 @@
 #include <stdint.h>
 extern uint64_t net_buf_frags_len(void *); /* FUN_00081bc0 */
 extern int bt_att_chan_send(void *, void *); /* FUN_00058a54 */
+#define chan_req_send FUN_00082030
 
-int FUN_00082030(uint8_t *chan, uint8_t *request)
+int chan_req_send(uint8_t *chan, uint8_t *request)
 {
     void *buffer = *(void **)(request + 8);
     uint32_t length = (uint32_t)net_buf_frags_len(buffer);
