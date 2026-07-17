@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0101e828 @ 0x0101e828
  * public-name: FUN_0101e828
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_status_defaults_reset         <= FUN_0100bc1c @ 0x0100bc1c
  * address symbols (name @ address):
  *   g_net_ble_conn_create_ctx                @ 0x21000eac
  *   g_net_ble_conn_role_cfg                  @ 0x21001208
@@ -10,7 +12,7 @@
 #include <stdint.h>
 
 extern void FUN_0100a9d0(void);
-extern void FUN_0100bc1c(void);
+extern void controller_status_defaults_reset(void);
 extern void FUN_0101f8f4(void);
 extern void FUN_0100ebf4(void);
 extern void FUN_0100d7ac(void);
@@ -28,7 +30,7 @@ void FUN_0101e828(void)
     const uint32_t p2 = ((unsigned long)&g_net_ble_conn_role_cfg) /*=0x21001208*/;
 
     FUN_0100a9d0();
-    FUN_0100bc1c();
+    controller_status_defaults_reset();
     FUN_0101f8f4();
     FUN_0100ebf4();
     FUN_0100d7ac();

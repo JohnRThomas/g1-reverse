@@ -2,11 +2,13 @@
 /* readable reconstruction; identity: FUN_0100cc20 @ 0x0100cc20
  * public-name: FUN_0100cc20
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_buffer_is_zero                <= FUN_0100d2c8 @ 0x0100d2c8
  * address symbols (name @ address):
  *   g_net_radio_addr_match_tbl               @ 0x21000d18
  */
 /* net-core FUN_0100cc20 @ 0x100cc20  (parity 300 trials PROVEN) */
-extern int FUN_0100d2c8(unsigned char *a0, unsigned int a1);
+extern int controller_buffer_is_zero(unsigned char *a0, unsigned int a1);
 extern void FUN_01025a84(void *a0, unsigned int a1);
 
 int FUN_0100cc20(unsigned int param_1, unsigned char *param_2, unsigned int param_3)
@@ -16,7 +18,7 @@ int FUN_0100cc20(unsigned int param_1, unsigned char *param_2, unsigned int para
     signed char cVar9;
     int iVar8;
 
-    iVar8 = FUN_0100d2c8(param_2, 6);
+    iVar8 = controller_buffer_is_zero(param_2, 6);
     if (iVar8 == 0) {
         cVar9 = (signed char)D[0];
         if (cVar9 != 0) {

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_slot_offsets_recompute        <= FUN_010095c0 @ 0x010095c0
  * address symbols (name @ address):
  *   g_net_bump_alloc_state                   @ 0x21000ba8
  *   g_net_bump_alloc_cursor                  @ 0x21000bac
@@ -12,7 +13,7 @@
 #include <stdint.h>
 
 extern void sdc_assertion_fail(uint32_t a, uint32_t b);
-extern void FUN_010095c0(void);
+extern void controller_slot_offsets_recompute(void);
 
 int32_t FUN_01009874(void)
 {
@@ -29,7 +30,7 @@ int32_t FUN_01009874(void)
         if (*p2 != *p3) {
             sdc_assertion_fail(0x17, 0x149);
         }
-        FUN_010095c0();
+        controller_slot_offsets_recompute();
         *p1 = 4;
         iVar1 = 0;
     } else {

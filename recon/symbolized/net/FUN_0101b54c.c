@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_phy_timing_offset_get                <= FUN_0100d58c @ 0x0100d58c
+ *   controller_count_to_duration             <= FUN_0100d624 @ 0x0100d624
  *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
  *   schedule_phase_offset_get                <= FUN_0101de10 @ 0x0101de10
  *   schedule_node_list_is_locked             <= FUN_0101dec4 @ 0x0101dec4
@@ -28,7 +29,7 @@ typedef long long i64;
 
 extern void sdc_assertion_fail(u32,u32);
 extern u32  sdc_phy_timing_offset_get(u32,u32,u32,u32);
-extern u16  FUN_0100d624(u32,i32);
+extern u16  controller_count_to_duration(u32,i32);
 extern u32  FUN_0100d6b0(u32,u32);
 extern void FUN_0100f1a8(u32,u32);
 extern i32  controller_radio_state_get(void);
@@ -170,7 +171,7 @@ LAB_0101b6b8:
   uVar7 = uVar9 + (u32)iVar11;
   *(volatile i32*)((u32)iVar8 + 0x24) = iVar11;
 LAB_0101b67a:
-  uVar6 = FUN_0100d624(5, iVar11);
+  uVar6 = controller_count_to_duration(5, iVar11);
   iVar11 = *(volatile i32*)(pcVar5 + 0x28);
   *(volatile u16*)((u32)iVar8 + 0x28) = uVar6;
   if ((u32)*(volatile u16*)((u32)iVar11 + 0x28) <= uVar7 - (u32)*(volatile i32*)((u32)iVar11 + 0x24)) {

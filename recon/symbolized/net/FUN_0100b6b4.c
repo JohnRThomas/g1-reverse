@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_completion_update      <= FUN_0100aba4 @ 0x0100aba4
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
@@ -26,7 +27,7 @@ typedef signed char s8;
 
 extern void sdc_assertion_fail(unsigned,unsigned);
 extern int FUN_0100a984(void);
-extern void FUN_0100aba4(void*);
+extern void controller_packet_completion_update(void*);
 extern void FUN_0100ac34(void);
 extern void FUN_0100ac98(void);
 extern int FUN_0100aeac(unsigned);
@@ -170,7 +171,7 @@ AFTER_STORE:
       if ((r6 == 0) ||
           ((u32)(((W8(pb) & 3u) - 1u)) > 1u) ||
           (W8(pb+1) <= W8(iVar4+0xcc))) {
-        FUN_0100aba4(&local_29);
+        controller_packet_completion_update(&local_29);
       } else {
         W8(iVar4+0x3d) = (u8)(W8(iVar4+0x3d) | 0x10u);
       }

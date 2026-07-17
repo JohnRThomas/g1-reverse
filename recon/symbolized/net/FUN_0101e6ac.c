@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_interval_code_to_duration     <= FUN_0100d600 @ 0x0100d600
  *   controller_timing_state_reset            <= FUN_0101e274 @ 0x0101e274
  * address symbols (name @ address):
  *   rodata_103ec0a                           @ 0x0103ec0a
@@ -19,7 +20,7 @@ typedef unsigned int u32;
 extern void sdc_assertion_fail(int,int);
 extern int FUN_01009f58(u16,u16,u16,u8,u8);
 extern int FUN_0100d14c(void*,int);
-extern u32 FUN_0100d600(u16);
+extern u32 controller_interval_code_to_duration(u16);
 extern u32 FUN_0100f66c(void);
 extern void FUN_0101bbc0(void*);
 extern u32 FUN_0101ded0(u32,u32,int);
@@ -102,8 +103,8 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
 
     u8 idx = *(volatile u8*)(param_3 + 0x4d);
     int p3 = param_3 + (unsigned)idx * 2;
-    u32 uVar6a = FUN_0100d600(*(volatile u16*)(p3+0x24));
-    u32 uVar4b = FUN_0100d600(*(volatile u16*)(p3+0x2a));
+    u32 uVar6a = controller_interval_code_to_duration(*(volatile u16*)(p3+0x24));
+    u32 uVar4b = controller_interval_code_to_duration(*(volatile u16*)(p3+0x2a));
     u16 uVar7b;
     if (uVar4b < 0x1d4c) {
         uVar7b = 1000;

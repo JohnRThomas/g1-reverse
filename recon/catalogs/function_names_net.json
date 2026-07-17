@@ -361,11 +361,13 @@
   "0x0100938c": {
    "address": "0x0100938c",
    "raw_name": "FUN_0100938c",
-   "name": "FUN_0100938c",
-   "display_name": "FUN_0100938c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_feature_bit_enabled",
+   "display_name": "controller_feature_bit_enabled",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper tests a one-based identifier in the global eight-word feature bitset. This is a descriptive identity, not a claimed public SDK symbol; raw identity remains FUN_0100938c at 0x0100938c.",
+   "aliases": [
+    "FUN_0100938c"
+   ]
   },
   "0x010093ac": {
    "address": "0x010093ac",
@@ -390,11 +392,13 @@
   "0x010095c0": {
    "address": "0x010095c0",
    "raw_name": "FUN_010095c0",
-   "name": "FUN_010095c0",
-   "display_name": "FUN_010095c0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_slot_offsets_recompute",
+   "display_name": "controller_slot_offsets_recompute",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper recomputes byte-four offsets across the eleven descriptor slots while preserving the sentinel handling and assertions. Raw identity remains FUN_010095c0 at 0x010095c0.",
+   "aliases": [
+    "FUN_010095c0"
+   ]
   },
   "0x01009668": {
    "address": "0x01009668",
@@ -617,11 +621,13 @@
   "0x0100a5c8": {
    "address": "0x0100a5c8",
    "raw_name": "FUN_0100a5c8",
-   "name": "FUN_0100a5c8",
-   "display_name": "FUN_0100a5c8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_descriptor_array_encode",
+   "display_name": "controller_descriptor_array_encode",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper sizes and optionally emits the aligned repeated type-0xf7 field-five descriptor records. Raw identity remains FUN_0100a5c8 at 0x0100a5c8.",
+   "aliases": [
+    "FUN_0100a5c8"
+   ]
   },
   "0x0100a664": {
    "address": "0x0100a664",
@@ -680,11 +686,13 @@
   "0x0100a7cc": {
    "address": "0x0100a7cc",
    "raw_name": "FUN_0100a7cc",
-   "name": "FUN_0100a7cc",
-   "display_name": "FUN_0100a7cc",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_radio_state_release",
+   "display_name": "controller_radio_state_release",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper releases the global radio-state object through its owner and records the resulting cleared status byte. Raw identity remains FUN_0100a7cc at 0x0100a7cc.",
+   "aliases": [
+    "FUN_0100a7cc"
+   ]
   },
   "0x0100a7e8": {
    "address": "0x0100a7e8",
@@ -754,11 +762,13 @@
   "0x0100a960": {
    "address": "0x0100a960",
    "raw_name": "FUN_0100a960",
-   "name": "FUN_0100a960",
-   "display_name": "FUN_0100a960",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_tx_buffer_ready_get",
+   "display_name": "controller_tx_buffer_ready_get",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper publishes the global TX buffer only when the producer/consumer indices match and the ready flag is set. Raw identity remains FUN_0100a960 at 0x0100a960.",
+   "aliases": [
+    "FUN_0100a960"
+   ]
   },
   "0x0100a984": {
    "address": "0x0100a984",
@@ -830,11 +840,13 @@
   "0x0100aba4": {
    "address": "0x0100aba4",
    "raw_name": "FUN_0100aba4",
-   "name": "FUN_0100aba4",
-   "display_name": "FUN_0100aba4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_completion_update",
+   "display_name": "controller_packet_completion_update",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper applies packet-mode completion/error flags and updates the associated 64-bit completion counter/callback state. Raw identity remains FUN_0100aba4 at 0x0100aba4.",
+   "aliases": [
+    "FUN_0100aba4"
+   ]
   },
   "0x0100ac34": {
    "address": "0x0100ac34",
@@ -965,11 +977,13 @@
   "0x0100bbec": {
    "address": "0x0100bbec",
    "raw_name": "FUN_0100bbec",
-   "name": "FUN_0100bbec",
-   "display_name": "FUN_0100bbec",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_indexed_status_byte_get",
+   "display_name": "controller_indexed_status_byte_get",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered controller helper returns the status byte selected by the caller's narrow index. Raw identity remains FUN_0100bbec at 0x0100bbec.",
+   "aliases": [
+    "FUN_0100bbec"
+   ]
   },
   "0x0100bc04": {
    "address": "0x0100bc04",
@@ -985,11 +999,13 @@
   "0x0100bc1c": {
    "address": "0x0100bc1c",
    "raw_name": "FUN_0100bc1c",
-   "name": "FUN_0100bc1c",
-   "display_name": "FUN_0100bc1c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_status_defaults_reset",
+   "display_name": "controller_status_defaults_reset",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper resets the controller status fields to their firmware defaults. Raw identity remains FUN_0100bc1c at 0x0100bc1c.",
+   "aliases": [
+    "FUN_0100bc1c"
+   ]
   },
   "0x0100bc44": {
    "address": "0x0100bc44",
@@ -1059,11 +1075,13 @@
   "0x0100ca80": {
    "address": "0x0100ca80",
    "raw_name": "FUN_0100ca80",
-   "name": "FUN_0100ca80",
-   "display_name": "FUN_0100ca80",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_indexed_record_get",
+   "display_name": "controller_indexed_record_get",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper resolves the controller record selected by the caller's narrow index. Raw identity remains FUN_0100ca80 at 0x0100ca80.",
+   "aliases": [
+    "FUN_0100ca80"
+   ]
   },
   "0x0100ca98": {
    "address": "0x0100ca98",
@@ -1142,11 +1160,13 @@
   "0x0100cbe4": {
    "address": "0x0100cbe4",
    "raw_name": "FUN_0100cbe4",
-   "name": "FUN_0100cbe4",
-   "display_name": "FUN_0100cbe4",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_six_byte_record_store",
+   "display_name": "controller_six_byte_record_store",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper stores the complete six-byte controller record using the firmware field layout. Raw identity remains FUN_0100cbe4 at 0x0100cbe4.",
+   "aliases": [
+    "FUN_0100cbe4"
+   ]
   },
   "0x0100cc00": {
    "address": "0x0100cc00",
@@ -1205,11 +1225,13 @@
   "0x0100d2c8": {
    "address": "0x0100d2c8",
    "raw_name": "FUN_0100d2c8",
-   "name": "FUN_0100d2c8",
-   "display_name": "FUN_0100d2c8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_buffer_is_zero",
+   "display_name": "controller_buffer_is_zero",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered selector-driven helper tests the selected controller buffer span and returns whether it is entirely zero. Raw identity remains FUN_0100d2c8 at 0x0100d2c8.",
+   "aliases": [
+    "FUN_0100d2c8"
+   ]
   },
   "0x0100d3a0": {
    "address": "0x0100d3a0",
@@ -1243,11 +1265,13 @@
   "0x0100d538": {
    "address": "0x0100d538",
    "raw_name": "FUN_0100d538",
-   "name": "FUN_0100d538",
-   "display_name": "FUN_0100d538",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_duration_to_units",
+   "display_name": "controller_duration_to_units",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper converts the controller duration into its bounded firmware unit representation. Raw identity remains FUN_0100d538 at 0x0100d538.",
+   "aliases": [
+    "FUN_0100d538"
+   ]
   },
   "0x0100d584": {
    "address": "0x0100d584",
@@ -1290,20 +1314,24 @@
   "0x0100d600": {
    "address": "0x0100d600",
    "raw_name": "FUN_0100d600",
-   "name": "FUN_0100d600",
-   "display_name": "FUN_0100d600",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_interval_code_to_duration",
+   "display_name": "controller_interval_code_to_duration",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper converts the narrow controller interval code to its duration representation. Raw identity remains FUN_0100d600 at 0x0100d600.",
+   "aliases": [
+    "FUN_0100d600"
+   ]
   },
   "0x0100d624": {
    "address": "0x0100d624",
    "raw_name": "FUN_0100d624",
-   "name": "FUN_0100d624",
-   "display_name": "FUN_0100d624",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_count_to_duration",
+   "display_name": "controller_count_to_duration",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered helper converts the controller count to its duration representation. Raw identity remains FUN_0100d624 at 0x0100d624.",
+   "aliases": [
+    "FUN_0100d624"
+   ]
   },
   "0x0100d64c": {
    "address": "0x0100d64c",
@@ -6956,11 +6984,13 @@
   "0x010277a6": {
    "address": "0x010277a6",
    "raw_name": "FUN_010277a6",
-   "name": "FUN_010277a6",
-   "display_name": "FUN_010277a6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_record_tail_ptr",
+   "display_name": "controller_record_tail_ptr",
+   "human": true,
+   "source": "function_name_overrides.json: Private controller helper returns the record tail pointer at entry plus its uint16 length plus four bytes. Raw identity remains FUN_010277a6 at 0x010277a6.",
+   "aliases": [
+    "FUN_010277a6"
+   ]
   },
   "0x010277c2": {
    "address": "0x010277c2",
@@ -11700,9 +11730,7 @@
   "FUN_01009210": "0x01009210",
   "FUN_01009224": "0x01009224",
   "FUN_0100930c": "0x0100930c",
-  "FUN_0100938c": "0x0100938c",
   "FUN_010093ac": "0x010093ac",
-  "FUN_010095c0": "0x010095c0",
   "FUN_01009668": "0x01009668",
   "FUN_01009708": "0x01009708",
   "FUN_01009874": "0x01009874",
@@ -11726,27 +11754,23 @@
   "FUN_0100a578": "0x0100a578",
   "FUN_0100a5a0": "0x0100a5a0",
   "FUN_0100a5b4": "0x0100a5b4",
-  "FUN_0100a5c8": "0x0100a5c8",
   "FUN_0100a664": "0x0100a664",
   "FUN_0100a6f0": "0x0100a6f0",
   "FUN_0100a718": "0x0100a718",
   "FUN_0100a760": "0x0100a760",
   "FUN_0100a790": "0x0100a790",
   "FUN_0100a7b0": "0x0100a7b0",
-  "FUN_0100a7cc": "0x0100a7cc",
   "FUN_0100a8c4": "0x0100a8c4",
   "FUN_0100a8dc": "0x0100a8dc",
   "FUN_0100a8f8": "0x0100a8f8",
   "FUN_0100a904": "0x0100a904",
   "FUN_0100a934": "0x0100a934",
   "FUN_0100a954": "0x0100a954",
-  "FUN_0100a960": "0x0100a960",
   "FUN_0100a984": "0x0100a984",
   "FUN_0100a9b0": "0x0100a9b0",
   "FUN_0100a9d0": "0x0100a9d0",
   "FUN_0100aa04": "0x0100aa04",
   "FUN_0100ab14": "0x0100ab14",
-  "FUN_0100aba4": "0x0100aba4",
   "FUN_0100ac34": "0x0100ac34",
   "FUN_0100ac98": "0x0100ac98",
   "FUN_0100aeac": "0x0100aeac",
@@ -11760,37 +11784,29 @@
   "FUN_0100b624": "0x0100b624",
   "FUN_0100b630": "0x0100b630",
   "FUN_0100b6b4": "0x0100b6b4",
-  "FUN_0100bbec": "0x0100bbec",
-  "FUN_0100bc1c": "0x0100bc1c",
   "FUN_0100bc44": "0x0100bc44",
   "FUN_0100bc50": "0x0100bc50",
   "FUN_0100bc5c": "0x0100bc5c",
   "FUN_0100bfb8": "0x0100bfb8",
   "FUN_0100c738": "0x0100c738",
   "FUN_0100c744": "0x0100c744",
-  "FUN_0100ca80": "0x0100ca80",
   "FUN_0100ca98": "0x0100ca98",
   "FUN_0100cad4": "0x0100cad4",
   "FUN_0100cb10": "0x0100cb10",
   "FUN_0100cb28": "0x0100cb28",
   "FUN_0100cb70": "0x0100cb70",
   "FUN_0100cbbc": "0x0100cbbc",
-  "FUN_0100cbe4": "0x0100cbe4",
   "FUN_0100cc00": "0x0100cc00",
   "FUN_0100cc20": "0x0100cc20",
   "FUN_0100cfa4": "0x0100cfa4",
   "FUN_0100cfc0": "0x0100cfc0",
   "FUN_0100cff4": "0x0100cff4",
   "FUN_0100d14c": "0x0100d14c",
-  "FUN_0100d2c8": "0x0100d2c8",
   "FUN_0100d3a0": "0x0100d3a0",
   "FUN_0100d3c0": "0x0100d3c0",
-  "FUN_0100d538": "0x0100d538",
   "FUN_0100d584": "0x0100d584",
   "FUN_0100d5c8": "0x0100d5c8",
   "FUN_0100d5d0": "0x0100d5d0",
-  "FUN_0100d600": "0x0100d600",
-  "FUN_0100d624": "0x0100d624",
   "FUN_0100d64c": "0x0100d64c",
   "FUN_0100d674": "0x0100d674",
   "FUN_0100d688": "0x0100d688",
@@ -12299,7 +12315,6 @@
   "FUN_0102771a": "0x0102771a",
   "FUN_01027742": "0x01027742",
   "FUN_0102776a": "0x0102776a",
-  "FUN_010277a6": "0x010277a6",
   "FUN_010277c2": "0x010277c2",
   "FUN_010277f2": "0x010277f2",
   "FUN_01027822": "0x01027822",
@@ -12772,17 +12787,25 @@
   "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
   "callback_list_invoke_all": "0x010294c2",
+  "controller_buffer_is_zero": "0x0100d2c8",
+  "controller_count_to_duration": "0x0100d624",
   "controller_deferred_event_raise": "0x0102583c",
+  "controller_descriptor_array_encode": "0x0100a5c8",
   "controller_descriptor_octet_product": "0x01012b24",
   "controller_descriptor_timing_copy": "0x0100e83c",
+  "controller_duration_to_units": "0x0100d538",
   "controller_entry_links_release": "0x0101df84",
+  "controller_feature_bit_enabled": "0x0100938c",
   "controller_handle_slot_byte_offset": "0x010274d0",
   "controller_handle_slot_find": "0x01027470",
   "controller_handle_slot_find_from": "0x0102741e",
   "controller_handle_slot_value_ptr": "0x010274ea",
   "controller_handle_slot_value_set": "0x0102751a",
   "controller_handle_update_state_apply": "0x0101e0a4",
+  "controller_indexed_record_get": "0x0100ca80",
   "controller_indexed_state_byte_get": "0x0100bc04",
+  "controller_indexed_status_byte_get": "0x0100bbec",
+  "controller_interval_code_to_duration": "0x0100d600",
   "controller_interval_half_saturating": "0x01027b0c",
   "controller_intrusive_list_append_unique": "0x010294d2",
   "controller_masked_pair_sample_store": "0x010100f4",
@@ -12791,6 +12814,7 @@
   "controller_packed_cursor_advance": "0x0100951c",
   "controller_packet_airtime_compute": "0x010109ec",
   "controller_packet_build_next": "0x0100ec88",
+  "controller_packet_completion_update": "0x0100aba4",
   "controller_packet_config_apply_if_active": "0x0100cb4c",
   "controller_packet_duration_calculate": "0x010122b4",
   "controller_packet_duration_lookup": "0x01012b50",
@@ -12810,6 +12834,7 @@
   "controller_radio_request_configure": "0x0101fdd0",
   "controller_radio_request_state_clear": "0x0101fdc0",
   "controller_radio_state_get": "0x01019204",
+  "controller_radio_state_release": "0x0100a7cc",
   "controller_radio_time_mode1_to_mode1": "0x01021614",
   "controller_radio_time_mode1_to_mode2": "0x010215f4",
   "controller_radio_time_mode2_to_mode1": "0x010215d8",
@@ -12819,8 +12844,12 @@
   "controller_radio_transition_schedule": "0x01020a6c",
   "controller_radio_work_pending": "0x01025be0",
   "controller_random_window_step": "0x010295d6",
+  "controller_record_tail_ptr": "0x010277a6",
   "controller_resolved_address_matches": "0x0100aaac",
+  "controller_six_byte_record_store": "0x0100cbe4",
+  "controller_slot_offsets_recompute": "0x010095c0",
   "controller_state_mode_is_invalid": "0x01029b24",
+  "controller_status_defaults_reset": "0x0100bc1c",
   "controller_time_now": "0x01022f08",
   "controller_timing_delta_clamp": "0x01027b32",
   "controller_timing_quarter_get": "0x01027af2",
@@ -12831,6 +12860,7 @@
   "controller_timing_state_reset": "0x0101e274",
   "controller_timing_windows_clamp": "0x0100f1f8",
   "controller_transition_pending_check": "0x01025cf0",
+  "controller_tx_buffer_ready_get": "0x0100a960",
   "controller_typed_handle_lookup": "0x01009d18",
   "controller_work_duplicate_enqueue_assert": "0x0100ebb8",
   "controller_work_enqueue_packet_result": "0x0100eec8",

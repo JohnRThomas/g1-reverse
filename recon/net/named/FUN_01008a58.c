@@ -2,6 +2,7 @@
  * public-name: FUN_01008a58
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_descriptor_array_encode       <= FUN_0100a5c8 @ 0x0100a5c8
  *   sdc_block_chain_layout_init              <= FUN_010279e6 @ 0x010279e6
  * address symbols (name @ address):
  *   g_net_sdc_optfeat_fp_a                   @ 0x21000044
@@ -16,7 +17,7 @@ extern int FUN_010098d8(uint32_t, void *);
 extern int FUN_01009ea4(uint32_t, uint8_t, int);
 extern int FUN_0100a1e0(uint32_t, uint8_t, uint8_t, uint16_t);
 extern int FUN_0100a50c(uint32_t, uint8_t, uint8_t);
-extern int FUN_0100a5c8(uint32_t, uint8_t, uint8_t);
+extern int controller_descriptor_array_encode(uint32_t, uint8_t, uint8_t);
 extern int FUN_0100a664(uint8_t, uint8_t, uint32_t, int);
 extern int FUN_0101077c(uint32_t);
 extern void FUN_010217ac(uint32_t, uint32_t, uint32_t);
@@ -108,7 +109,7 @@ int FUN_01008a58(uint32_t start, int sizing_only)
     }
     if (S[30] != 0 && S[4] != 0) {
         cursor = ALIGN4(cursor);
-        n = FUN_0100a5c8(sizing_only == 0 ? cursor : 0, S[4], S[20]);
+        n = controller_descriptor_array_encode(sizing_only == 0 ? cursor : 0, S[4], S[20]);
         cursor += (uint32_t)n;
     }
 

@@ -3,10 +3,11 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_feature_bit_enabled           <= FUN_0100938c @ 0x0100938c
  */
 /* net-core FUN_01026122 @ 0x1026122  (parity 300 trials PROVEN) */
 extern void sdc_assertion_fail(unsigned int, unsigned int) __attribute__((noreturn));
-extern unsigned int FUN_0100938c(unsigned int);
+extern unsigned int controller_feature_bit_enabled(unsigned int);
 extern void FUN_01025998(unsigned char *, unsigned char *, unsigned int);
 
 #define WB(p,o,v) (*(volatile unsigned char *)((p)+(o)) = (unsigned char)(v))
@@ -130,11 +131,11 @@ Cd:
     goto L_386;
 
 C13:
-    if (FUN_0100938c(0x29) != 0) {
+    if (controller_feature_bit_enabled(0x29) != 0) {
         WB(p2,0,0x3e); WB(p2,1,0x22); WB(p2,2,0x29); goto L_b0;
     }
     WB(p1,0,0x3e);
-    if (FUN_0100938c(0x0a) != 0) {
+    if (controller_feature_bit_enabled(0x0a) != 0) {
         WB(p1,2,0x0a);
         WB(p1,3,RB(p2,3));
         WB(p1,4,RH(p2,4));
@@ -195,7 +196,7 @@ C1a:
     WB(p1,0,0x3e);
     {
         unsigned int uVar7, iv;
-        if (FUN_0100938c(0x24) != 0) { uVar7=0x24; iv=0x13; }
+        if (controller_feature_bit_enabled(0x24) != 0) { uVar7=0x24; iv=0x13; }
         else { uVar7=0x0e; iv=0x0f; }
         WB(p1,2,uVar7);
         FUN_01025998(p1 + 3, p2 + 2, iv);
@@ -207,7 +208,7 @@ C1c:
     WB(p1,0,0x3e);
     {
         unsigned int iv;
-        if (FUN_0100938c(0x25) == 0) {
+        if (controller_feature_bit_enabled(0x25) == 0) {
             iv=7;
             WB(p1,2,0x0f);
             WH(p1,3,RH(p2,2));
@@ -232,7 +233,7 @@ C21:
     WB(p1,0,0x3e);
     {
         unsigned int uVar7, iv;
-        if (FUN_0100938c(0x26) != 0) { uVar7=0x26; iv=0x17; }
+        if (controller_feature_bit_enabled(0x26) != 0) { uVar7=0x26; iv=0x17; }
         else { uVar7=0x18; iv=0x13; }
         WB(p1,2,uVar7);
         FUN_01025998(p1 + 3, p2 + 2, iv);

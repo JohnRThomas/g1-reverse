@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_buffer_data_get                      <= FUN_01027790 @ 0x01027790
+ *   controller_record_tail_ptr               <= FUN_010277a6 @ 0x010277a6
  * address symbols (name @ address):
  *   g_net_obj_table_root_ptr                 @ 0x21000bb4
  */
@@ -20,7 +21,7 @@ extern void FUN_0102776a(void *entry, uint16_t key, uint16_t second);
 extern void *sdc_buffer_data_get(void *entry);
 extern void FUN_0102759e(void *side, uint16_t combined, uint16_t original,
                          uint32_t kind, uint16_t limit);
-extern void *FUN_010277a6(void *entry);
+extern void *controller_record_tail_ptr(void *entry);
 extern void FUN_010276b2(void *side, uint16_t combined, uint16_t original,
                          uint32_t kind, uint16_t limit);
 /* Back-map: FUN_01008d00 @ 0x01008d00 = sdc_assertion_fail. */
@@ -56,7 +57,7 @@ uint32_t FUN_01009f58(uint16_t index, uint16_t first_a, uint16_t second_a,
 
     FUN_0102776a(entry, combined, second);
     FUN_0102759e(sdc_buffer_data_get(entry), second, second_a, 9u, second_b);
-    FUN_010276b2(FUN_010277a6(entry), first, first_a, 10u, first_b);
+    FUN_010276b2(controller_record_tail_ptr(entry), first, first_a, 10u, first_b);
     state->entries[index] = entry;
     return 0u;
 }

@@ -979,6 +979,66 @@
    "name": "strncpy",
    "evidence": "Exact pinned picolibc archive match for strncpy, including zero padding of the unused destination capacity and destination return ABI. Raw identity remains FUN_0103b5a4 at 0x0103b5a4."
   },
+  "0x0100938c": {
+   "name": "controller_feature_bit_enabled",
+   "evidence": "Private controller helper tests a one-based identifier in the global eight-word feature bitset. This is a descriptive identity, not a claimed public SDK symbol; raw identity remains FUN_0100938c at 0x0100938c."
+  },
+  "0x010095c0": {
+   "name": "controller_slot_offsets_recompute",
+   "evidence": "Private controller helper recomputes byte-four offsets across the eleven descriptor slots while preserving the sentinel handling and assertions. Raw identity remains FUN_010095c0 at 0x010095c0."
+  },
+  "0x0100a5c8": {
+   "name": "controller_descriptor_array_encode",
+   "evidence": "Private controller helper sizes and optionally emits the aligned repeated type-0xf7 field-five descriptor records. Raw identity remains FUN_0100a5c8 at 0x0100a5c8."
+  },
+  "0x0100a7cc": {
+   "name": "controller_radio_state_release",
+   "evidence": "Private controller helper releases the global radio-state object through its owner and records the resulting cleared status byte. Raw identity remains FUN_0100a7cc at 0x0100a7cc."
+  },
+  "0x0100a960": {
+   "name": "controller_tx_buffer_ready_get",
+   "evidence": "Private controller helper publishes the global TX buffer only when the producer/consumer indices match and the ready flag is set. Raw identity remains FUN_0100a960 at 0x0100a960."
+  },
+  "0x0100aba4": {
+   "name": "controller_packet_completion_update",
+   "evidence": "Private controller helper applies packet-mode completion/error flags and updates the associated 64-bit completion counter/callback state. Raw identity remains FUN_0100aba4 at 0x0100aba4."
+  },
+  "0x0100bbec": {
+   "name": "controller_indexed_status_byte_get",
+   "evidence": "Recovered controller helper returns the status byte selected by the caller's narrow index. Raw identity remains FUN_0100bbec at 0x0100bbec."
+  },
+  "0x0100bc1c": {
+   "name": "controller_status_defaults_reset",
+   "evidence": "Recovered helper resets the controller status fields to their firmware defaults. Raw identity remains FUN_0100bc1c at 0x0100bc1c."
+  },
+  "0x0100ca80": {
+   "name": "controller_indexed_record_get",
+   "evidence": "Recovered helper resolves the controller record selected by the caller's narrow index. Raw identity remains FUN_0100ca80 at 0x0100ca80."
+  },
+  "0x0100cbe4": {
+   "name": "controller_six_byte_record_store",
+   "evidence": "Recovered helper stores the complete six-byte controller record using the firmware field layout. Raw identity remains FUN_0100cbe4 at 0x0100cbe4."
+  },
+  "0x0100d2c8": {
+   "name": "controller_buffer_is_zero",
+   "evidence": "Recovered selector-driven helper tests the selected controller buffer span and returns whether it is entirely zero. Raw identity remains FUN_0100d2c8 at 0x0100d2c8."
+  },
+  "0x0100d538": {
+   "name": "controller_duration_to_units",
+   "evidence": "Recovered helper converts the controller duration into its bounded firmware unit representation. Raw identity remains FUN_0100d538 at 0x0100d538."
+  },
+  "0x0100d600": {
+   "name": "controller_interval_code_to_duration",
+   "evidence": "Recovered helper converts the narrow controller interval code to its duration representation. Raw identity remains FUN_0100d600 at 0x0100d600."
+  },
+  "0x0100d624": {
+   "name": "controller_count_to_duration",
+   "evidence": "Recovered helper converts the controller count to its duration representation. Raw identity remains FUN_0100d624 at 0x0100d624."
+  },
+  "0x010277a6": {
+   "name": "controller_record_tail_ptr",
+   "evidence": "Private controller helper returns the record tail pointer at entry plus its uint16 length plus four bytes. Raw identity remains FUN_010277a6 at 0x010277a6."
+  },
   "0x0100951c": {
    "name": "controller_packed_cursor_advance",
    "evidence": "Recovered helper advances the packed controller-buffer cursor by the encoded packet overhead span and updates its wrap flag. Raw identity remains FUN_0100951c at 0x0100951c."

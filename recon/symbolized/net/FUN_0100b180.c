@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_duration_to_units             <= FUN_0100d538 @ 0x0100d538
  *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  * address symbols (name @ address):
  *   g_21000050                               @ 0x21000050
@@ -36,7 +37,7 @@ extern unsigned int FUN_01020738(unsigned int);
 extern unsigned int FUN_0100a17c(unsigned int);
 extern unsigned int FUN_0100a118(unsigned int);
 extern unsigned int FUN_01022a50(unsigned int, unsigned int, int);
-extern unsigned int FUN_0100d538(unsigned int, unsigned int);
+extern unsigned int controller_duration_to_units(unsigned int, unsigned int);
 extern unsigned int FUN_0100f100(volatile unsigned char *, unsigned int);
 extern unsigned int FUN_0100f5cc(void);
 extern unsigned int controller_radio_request_configure(unsigned int, unsigned int, unsigned int, unsigned int, int);
@@ -195,7 +196,7 @@ void FUN_0100b180(unsigned int param_1, unsigned int param_2,
     }
 
 L2c6:
-    uVar11 = FUN_0100d538(uVar8, uVar13);
+    uVar11 = controller_duration_to_units(uVar8, uVar13);
     uVar2 = RB(p16,0x6f);
     uVar13 = (unsigned short)RH(p16,0x38);
     if (uVar11 <= (unsigned short)RH(p16,0x38)) uVar13 = uVar11;
@@ -205,7 +206,7 @@ L2c6:
     cVar3  = RB(p16,0xcb);
     uVar4  = RH(p16,0x40);
     if (cVar12 == 8) cVar12 = 4;
-    uVar13 = FUN_0100d538(uVar10, (unsigned int)cVar12);
+    uVar13 = controller_duration_to_units(uVar10, (unsigned int)cVar12);
     if (cVar3 == 0) uVar13 = (uVar13 + 4) & 0xffff;
     if (uVar4 <= uVar13) uVar13 = uVar4;
     uVar11 = uVar13 & 0xff;

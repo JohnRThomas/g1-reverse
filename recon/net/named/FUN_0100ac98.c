@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_tx_buffer_ready_get           <= FUN_0100a960 @ 0x0100a960
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
@@ -18,7 +19,7 @@ typedef unsigned int u32;
 typedef signed char i8;
 
 extern void FUN_010202fc(u32, i8);
-extern int FUN_0100a960(u32);
+extern int controller_tx_buffer_ready_get(u32);
 extern int FUN_0100a9b0(void);
 extern void sdc_pdu_type_bits_set(u32, int);
 extern void FUN_0100e8f8(void *, u16);
@@ -75,7 +76,7 @@ LAB_0100acca:
   case 0:
     local_12 = (u16)*(volatile u8 *)(iVar4 + 0x7b);
     *(volatile u16 *)(iVar11 + 0x54) = local_12;
-    iVar6 = FUN_0100a960(uVar10);
+    iVar6 = controller_tx_buffer_ready_get(uVar10);
     if (iVar6 != 0) {
       *(volatile u16 *)(iVar4 + 0x32) = *(volatile u16 *)(iVar4 + 0x32) | 0x80;
       ((void (*)(u32, u32))(*(volatile u32 *)(iVar4 + 0x34)))(0x80, *(volatile u32 *)(iVar4 + 0x7c));
@@ -111,7 +112,7 @@ switchD_0100acd8_caseD_1:
     }
     break;
   case 3:
-    iVar6 = FUN_0100a960(DAT_0100aea0);
+    iVar6 = controller_tx_buffer_ready_get(DAT_0100aea0);
     if (iVar6 == 0) {
       sdc_assertion_fail(0x27, 0x2f2);
     }
