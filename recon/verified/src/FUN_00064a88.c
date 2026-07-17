@@ -1,44 +1,70 @@
-/* Reconstructed FUN_00064a88 @ 0x64a88  (parity: 300/300 trials, PROVEN) */
-
+/* Reconstructed FUN_00064a88 @ 0x00064a88. */
 #include <stdint.h>
-extern int FUN_000646c0(int,void*);
-extern void FUN_00084f16(void*);
-extern void FUN_00086c04(int,uint32_t,unsigned);
-extern void FUN_00086c78(void*,int,int);
-typedef int (*fp)(int,int);
-int FUN_00064a88(int param_1, int param_2){
-    volatile uint32_t *puVar1 = (volatile uint32_t*)0x20002bacUL;
-    uint32_t s[9];
-    int iVar2; unsigned uVar3;
-    FUN_00086c78(s, 0, 0x24);
-    s[0] = ((fp)puVar1[0])(0x100,0);
-    s[1] = 0x100;
-    s[6] = puVar1[0];
-    s[7] = puVar1[1];
-    s[8] = puVar1[2];
-    s[5] = param_2;
-    int local_34 = (int)s[0];
-    if(local_34 != 0 && (iVar2 = FUN_000646c0(param_1, s)) != 0){
-        FUN_00084f16(s);
-        int local_2c = (int)s[2];
-        if(puVar1[2]==0){
-            iVar2 = ((fp)puVar1[0])(local_2c+1,0);
-            if(iVar2!=0){
-                uVar3 = local_2c+1U;
-                if(s[1] <= (unsigned)(local_2c+1U)) uVar3 = s[1];
-                FUN_00086c04(iVar2, s[0], uVar3);
-                *(volatile uint8_t*)(iVar2+local_2c)=0;
-                ((fp)puVar1[1])(s[0],0);
-                return iVar2;
-            }
+
+typedef uintptr_t (*allocate_fn)(uint32_t size);
+typedef void (*release_fn)(uintptr_t allocation);
+typedef uintptr_t (*resize_fn)(uintptr_t allocation, uint32_t size);
+
+struct allocator_ops {
+    allocate_fn allocate;
+    release_fn release;
+    resize_fn resize;
+};
+
+struct encoded_buffer {
+    uintptr_t data;
+    uint32_t capacity;
+    uint32_t length;
+    uint32_t fields_0c_13[2];
+    uint32_t context;
+    allocate_fn allocate;
+    release_fn release;
+    resize_fn resize;
+};
+
+extern int FUN_000646c0(uint32_t source, struct encoded_buffer *buffer);
+extern void FUN_00084f16(struct encoded_buffer *buffer);
+extern void FUN_00086c04(void *destination, const void *source, uint32_t size);
+extern void FUN_00086c78(void *destination, int value, uint32_t size);
+
+int FUN_00064a88(uint32_t source, uint32_t context)
+{
+    const struct allocator_ops *ops =
+        (const struct allocator_ops *)(uintptr_t)0x20002bac;
+    struct encoded_buffer buffer;
+
+    FUN_00086c78(&buffer, 0, sizeof(buffer));
+    buffer.data = ops->allocate(0x100);
+    buffer.capacity = 0x100;
+    buffer.allocate = ops->allocate;
+    buffer.release = ops->release;
+    buffer.resize = ops->resize;
+    buffer.context = context;
+
+    if (buffer.data != 0 && FUN_000646c0(source, &buffer) != 0) {
+        FUN_00084f16(&buffer);
+        uint32_t required = buffer.length + 1;
+
+        if (ops->resize != 0) {
+            uintptr_t resized = ops->resize(buffer.data, required);
+            if (resized != 0)
+                return (int)resized;
         } else {
-            iVar2 = ((fp)puVar1[2])(s[0], local_2c+1);
-            if(iVar2!=0) return iVar2;
+            uintptr_t result = ops->allocate(required);
+            if (result != 0) {
+                uint32_t copy_size = required;
+                if (copy_size >= buffer.capacity)
+                    copy_size = buffer.capacity;
+                FUN_00086c04((void *)result, (const void *)buffer.data,
+                             copy_size);
+                *(uint8_t *)(result + buffer.length) = 0;
+                ops->release(buffer.data);
+                return (int)result;
+            }
         }
     }
-    if((int)s[0]!=0){
-        ((fp)puVar1[1])(0,0);
-    }
+
+    if (buffer.data != 0)
+        ops->release(buffer.data);
     return 0;
 }
-
