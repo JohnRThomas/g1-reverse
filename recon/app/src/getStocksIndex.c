@@ -1,7 +1,7 @@
 /* Reconstructed getStocksIndex @ 0x370bc  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(unsigned int a, unsigned int b);
+extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned char getStocksIndex(void)
 {
@@ -11,11 +11,10 @@ unsigned char getStocksIndex(void)
     base[3] = b;
     if (iVar2 > 2) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000a8ff3UL, 0x000a95d8UL);
+            DEBUG_PRINT(0x000a8ff3UL, 0x000a95d8UL, 0x000a95d8UL, b);
         } else {
-            FUN_00019c70(0x000a8ff3UL, 0x000a95d8UL);
+            FUN_00019c70(0x000a8ff3UL, 0x000a95d8UL, 0x000a95d8UL, b);
         }
     }
     return base[3];
 }
-

@@ -8,8 +8,8 @@ typedef unsigned short undefined2,ushort,uint2,wchar_t;
 typedef unsigned int undefined4,uint,uint3,code_t;
 typedef unsigned long long undefined8,ulonglong;
 typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)(long long,long long,long long,long long);
-typedef long long(*code3)(long long,long long,long long);
+typedef unsigned int(*code)(unsigned int,unsigned int,unsigned int,unsigned int);
+typedef unsigned int(*code3)(unsigned int,unsigned int,unsigned int);
 #define bool int
 #define false 0
 #define true 1
@@ -62,11 +62,11 @@ static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^
 #define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
 #define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
 
-extern long long DEBUG_PRINT(long long format, ...);
-extern long long FUN_000167a8(void);
-extern long long FUN_00019c70(void);
-extern long long FUN_00072240(long long,long long,long long,long long);
-extern long long FUN_0008638c(long long);
+extern void DEBUG_PRINT(unsigned int format, ...);
+extern unsigned int FUN_000167a8(void);
+extern void FUN_00019c70(unsigned int format, ...);
+extern int FUN_00072240(unsigned int,void*,unsigned int,unsigned int);
+extern int FUN_0008638c(unsigned int);
 #define DAT_0002418c 0x20003994UL
 #define DAT_00024190 ((volatile int*)0x2000230cUL)
 #define DAT_00024194 ((volatile int*)0x20007554UL)
@@ -113,8 +113,7 @@ uint SettingStoreHandler(void)
   bool bVar13;
   undefined2 local_24;
   byte local_22;
-  undefined1 local_20 [4];
-  byte local_1c;
+  undefined1 local_20 [5];
   
   iVar4 = FUN_00072240(DAT_0002418c,local_20,0,0);
   piVar2 = DAT_00024194;
@@ -125,7 +124,7 @@ uint SettingStoreHandler(void)
         DEBUG_PRINT(DAT_000241a8,DAT_000241a0);
       }
       else {
-        FUN_00019c70();
+        FUN_00019c70(DAT_000241a8,DAT_000241a0);
       }
     }
     puVar3 = DAT_000243f4;
@@ -133,13 +132,13 @@ uint SettingStoreHandler(void)
     uVar8 = 0;
     switch(local_20[0]) {
     case 1:
-      uVar8 = (uint)local_1c;
+      uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_00024194 == 0) {
           DEBUG_PRINT(DAT_000241ac,DAT_000241a0,uVar8);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_000241ac,DAT_000241a0,uVar8);
         }
       }
       puVar10 = DAT_000241bc;
@@ -161,7 +160,7 @@ uint SettingStoreHandler(void)
           uVar6 = FUN_000167a8();
           iVar7 = (*pcVar11)(uVar6,0x13e000,&local_24,3);
           if (iVar7 == 0) {
-            local_24 = CONCAT11(local_1c,0xaa);
+            local_24 = CONCAT11(local_20[4],0xaa);
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1038);
             uVar6 = FUN_000167a8();
@@ -234,7 +233,7 @@ LAB_00024044:
             uVar9 = uVar8;
 LAB_000240c6:
             if (iVar4 != 0) {
-              FUN_00019c70();
+              FUN_00019c70(uVar6,uVar5,uVar8);
               return uVar9;
             }
             DEBUG_PRINT(uVar6,uVar5,uVar8);
@@ -268,7 +267,7 @@ LAB_00024074:
                 DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
               }
               else {
-                FUN_00019c70();
+                FUN_00019c70(DAT_000243e4,DAT_000243e0);
               }
             }
             *(undefined1 *)(DAT_000243e8 + 1) = 2;
@@ -288,13 +287,13 @@ LAB_000240dc:
       }
       break;
     case 3:
-      uVar8 = (uint)local_1c;
+      uVar8 = (uint)local_20[4];
       if (2 < *piVar1) {
         if (*DAT_000243dc == 0) {
           DEBUG_PRINT(DAT_000243ec,DAT_000243e0,uVar8);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(DAT_000243ec,DAT_000243e0,uVar8);
         }
       }
       puVar10 = DAT_000243f4;
@@ -322,7 +321,7 @@ LAB_00023fc4:
           uVar6 = FUN_000167a8();
           iVar7 = (*pcVar11)(uVar6,0x13e000,&local_24,3);
           if (iVar7 == 0) {
-            local_22 = local_1c;
+            local_22 = local_20[4];
             local_24 = CONCAT11(((unsigned long long)(local_24)>>8 & 0xffULL),0xaa);
             iVar7 = FUN_000167a8();
             pcVar11 = *(code **)(iVar7 + 0x1038);
@@ -399,7 +398,7 @@ LAB_00023fc4:
             DEBUG_PRINT(DAT_000243e4,DAT_000243e0);
           }
           else {
-            FUN_00019c70();
+            FUN_00019c70(DAT_000243e4,DAT_000243e0);
           }
         }
         *(undefined1 *)(DAT_000243e8 + 2) = 0;
@@ -415,7 +414,7 @@ LAB_00023fea:
           DEBUG_PRINT(uVar5,DAT_000241a0,uVar6);
         }
         else {
-          FUN_00019c70();
+          FUN_00019c70(uVar5,DAT_000241a0,uVar6);
         }
       }
       break;
@@ -428,7 +427,7 @@ LAB_00023fea:
       DEBUG_PRINT(DAT_0002419c,DAT_00024198);
     }
     else {
-      FUN_00019c70();
+      FUN_00019c70(DAT_0002419c,DAT_00024198);
     }
     if (0 < *piVar1) {
       iVar4 = *piVar2;
@@ -439,7 +438,7 @@ LAB_00023f56:
         DEBUG_PRINT(uVar6,uVar5);
       }
       else {
-        FUN_00019c70();
+        FUN_00019c70(uVar6,uVar5);
       }
     }
   }
@@ -447,4 +446,3 @@ LAB_00023f56:
 switchD_00023f2c_caseD_4:
   return uVar8;
 }
-

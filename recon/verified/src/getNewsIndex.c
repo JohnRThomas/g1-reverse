@@ -1,7 +1,7 @@
 /* Reconstructed getNewsIndex @ 0x3719c  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(unsigned int a, unsigned int b);
+extern void DEBUG_PRINT(unsigned int,unsigned int,unsigned int,unsigned int);
+extern void FUN_00019c70(unsigned int,unsigned int,unsigned int,unsigned int);
 
 unsigned char getNewsIndex(void)
 {
@@ -11,11 +11,10 @@ unsigned char getNewsIndex(void)
     base[5] = b;
     if (iVar2 > 2) {
         if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x000a8ff3UL, 0x000a95abUL);
+            DEBUG_PRINT(0x000a8ff3UL, 0x000a95abUL, 0x000a95abUL, b);
         } else {
-            FUN_00019c70(0x000a8ff3UL, 0x000a95abUL);
+            FUN_00019c70(0x000a8ff3UL, 0x000a95abUL, 0x000a95abUL, b);
         }
     }
     return base[5];
 }
-

@@ -1,7 +1,7 @@
 /* Reconstructed draw_template_translate_screen @ 0x3fd44  (parity: 300/300 trials, PROVEN) */
 extern void DEBUG_PRINT(int,...);
 extern int  FUN_000167a8(void);
-extern void FUN_00019c70(int,int);
+extern void FUN_00019c70(int,int,...);
 extern void FUN_000431b4(int);
 extern void FUN_00043484(int,int,int,int,int,int);
 extern void FUN_00043e90(int,int,int,int,int,int,int,int,int,int,int,int);
@@ -33,7 +33,8 @@ int draw_template_translate_screen(int param_1){
     FUN_00043e90(0,(int)local_24,3,uVar2,iVar4+0x6e,iVar5+0x50,iVar6+0x89,1,0,0,0,0);
   } else if (0 < *lvl) {
     if (*g8==0) DEBUG_PRINT(0x000aa487,0x000aa5ab,uVar8,*(volatile unsigned char*)(iVar1+0xef));
-    else FUN_00019c70(0x000aa487,0x000aa5ab);
+    else FUN_00019c70(0x000aa487,0x000aa5ab,uVar8,
+                      *(volatile unsigned char*)(iVar1+0xef));
   }
   uVar2 = FUN_0007d224();
   uVar3 = FUN_0007d3ee();
@@ -58,4 +59,3 @@ int draw_template_translate_screen(int param_1){
   FUN_00043e90(0,iVar1+0xf5,0,iVar4+0x58,iVar5+1,iVar6+0x240,iVar7+0x88,5,0,0,0,0);
   return 0;
 }
-

@@ -1,7 +1,7 @@
 /* Reconstructed dequeue_ancs @ 0x18d94  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int fmt, unsigned int arg);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int fmt, unsigned int arg, ...);
 extern int FUN_00072240(void *a, void *b, unsigned int c, unsigned int d);
 extern void FUN_00086c04(void *dst, void *src, unsigned int len);
 extern void FUN_00086c78(void *dst, int val, unsigned int len);
@@ -23,9 +23,8 @@ int dequeue_ancs(void *param_1)
         if (*(volatile int *)0x20007554UL == 0) {
             DEBUG_PRINT(0x9aa1fU, 0x9b190U);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0x9aa1fU, 0x9b190U);
         }
     }
     return iVar1;
 }
-

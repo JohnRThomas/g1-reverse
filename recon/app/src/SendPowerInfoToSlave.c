@@ -15,16 +15,13 @@ unsigned int SendPowerInfoToSlave(int param_1)
     int iVar5;
     unsigned int uVar6;
     unsigned int uVar7;
-    unsigned char local_30;
-    unsigned char uStack_2f;
-    unsigned short local_2e;
-    unsigned char local_2c;
+    unsigned char request[24];
 
-    FUN_00086c78(&uStack_2f, 0, 0x17);
-    local_30 = 4;
-    local_2c = (unsigned char)param_1;
-    local_2e = 1;
-    iVar5 = FUN_000720d0(0x2000392cUL, &local_30, 0, 0);
+    FUN_00086c78(&request[1], 0, 0x17);
+    request[0] = 4;
+    request[4] = (unsigned char)param_1;
+    *(unsigned short *)&request[2] = 1;
+    iVar5 = FUN_000720d0(0x2000392cUL, request, 0, 0);
     piVar4 = (volatile int*)0x20007554UL;
     piVar3 = (volatile int*)0x2000230cUL;
     if (iVar5 == 0) {
@@ -63,4 +60,3 @@ unsigned int SendPowerInfoToSlave(int param_1)
     }
     return uVar7;
 }
-
