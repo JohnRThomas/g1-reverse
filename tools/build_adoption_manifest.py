@@ -22,7 +22,9 @@ DEFAULTS = {
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
+    "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
     "sdc_benchmark": "recon/ownership/net_sdc_archive_benchmark.md",
+    "sdc_catalog": "recon/ownership/net_sdc_archive_ownership.json",
     "app_names": "recon/catalogs/function_names_app.json",
     "net_names": "recon/catalogs/function_names_net.json",
     "output": "recon/ownership/adoption_manifest.json",
@@ -257,8 +259,35 @@ def _parse_sdc_benchmark(path):
     return values
 
 
-def _net_entries(data, source, benchmark_source, benchmark, names):
+def _sdc_entries(data, source, names):
+    """Convert the per-address SDC catalog into fail-closed decisions."""
     output = []
+    for row in data.get("functions", []):
+        best = row.get("best", {})
+        eligible = bool(row.get("safe_to_exclude"))
+        output.append(_entry(
+            "net", row["address"], names, "archive", "softdevice_controller",
+            best.get("symbol"), best.get("identity"), eligible,
+            ("Pinned public SDC symbol has per-VA unique identity, published ABI, "
+             "CFG verification, and exact build-extraction evidence." if eligible else
+             "SDC identity remains report-only under the per-VA machine policy."),
+            [_evidence(
+                source, "sdc_machine_ownership",
+                archive_sha256=data.get("inputs", {}).get("archive_sha256"),
+                match_kind=row.get("match_kind"), score=row.get("score"),
+                per_va_unique_identity=row.get("unique_identity"),
+                public_api=row.get("public_api"),
+                build_extraction_verified=row.get("build_extraction_verified"),
+                safe_to_exclude=eligible,
+                blockers=row.get("exclusion_blockers"))],
+            "high" if eligible else "medium"))
+    return output
+
+
+def _net_entries(data, source, benchmark_source, benchmark, names,
+                 machine_sdc_addresses=None):
+    output = []
+    machine_sdc_addresses = set(machine_sdc_addresses or ())
     for va, row in sorted(data.get("entries", {}).items()):
         match = row.get("signature_match")
         provenance = (match or {}).get("provenance", "")
@@ -266,6 +295,12 @@ def _net_entries(data, source, benchmark_source, benchmark, names):
         ratio = (match or {}).get("ratio")
         threshold = (match or {}).get("threshold")
         is_sdc = "softdevice_controller" in provenance
+        is_rtc = "nrf_rtc_timer.c.obj" in provenance
+        if is_sdc and _hex(va) in machine_sdc_addresses:
+            # The per-address catalog supersedes the older generic signature
+            # row. Otherwise its blanket retain decision would mask a narrowly
+            # proven public-symbol promotion during merge.
+            continue
         is_archive = ".a(" in provenance
         explicit_match = (match is not None and ratio is not None and threshold is not None
                           and ratio >= threshold)
@@ -292,9 +327,36 @@ def _net_entries(data, source, benchmark_source, benchmark, names):
                                       per_va_unique_identity=False))
         output.append(_entry(
             "net", va, names, kind,
-            "softdevice_controller" if is_sdc else "net_sdk_or_glue",
+            ("softdevice_controller" if is_sdc else
+             "zephyr_nrf_rtc_timer" if is_rtc else "net_sdk_or_glue"),
             symbol, provenance or None, eligible, reason, evidence,
             row.get("confidence")))
+    return output
+
+
+def _net_rtc_entries(data, source, names):
+    output = []
+    upstream = data["upstream"]
+    config = data["required_config"]
+    for row in data.get("functions", []):
+        eligible = (row.get("exclude_reconstruction") is True and
+                    row.get("match_score") == 1.0 and
+                    row.get("firmware_size") == row.get("reference_size"))
+        output.append(_entry(
+            "net", row["va"], names,
+            "static_helper" if row.get("linkage") == "file_static" else "source",
+            "zephyr_nrf_rtc_timer", row["upstream_symbol"],
+            upstream["object"], eligible,
+            ("Pinned Zephyr timer object is exact for this VA and is selected "
+             "by the recorded net-core configuration." if eligible else
+             "RTC timer evidence is incomplete; retain fail-closed."),
+            [_evidence(source, "net_rtc_exact_owner",
+                       commit=upstream.get("commit"),
+                       source_sha256=upstream.get("source_sha256"),
+                       match=row.get("match"), match_score=row.get("match_score"),
+                       abi=row.get("abi"), config=config,
+                       object=upstream.get("object"))],
+            "high" if eligible else "medium"))
     return output
 
 
@@ -320,6 +382,18 @@ def validate_manifest(data):
                     row.get("upstream_symbol", "").startswith("sym_") and
                     row.get("exclude_reconstruction")):
                 errors.append("unsafe private SDC exclusion at %s" % (key,))
+            if (row.get("component") == "softdevice_controller" and
+                    row.get("exclude_reconstruction")):
+                authority = [item for item in row.get("evidence", [])
+                             if item.get("type") == "sdc_machine_ownership"]
+                if not authority or not any(
+                        item.get("safe_to_exclude") is True and
+                        item.get("public_api") is True and
+                        item.get("per_va_unique_identity") is True and
+                        item.get("build_extraction_verified") is True
+                        for item in authority):
+                    errors.append("SDC exclusion lacks public build authority at %s" %
+                                  (key,))
     if errors:
         raise ValueError("invalid adoption manifest:\n" + "\n".join(errors))
 
@@ -329,6 +403,9 @@ def build(paths):
     names = {"app": _name_records(resolved["app_names"]),
              "net": _name_records(resolved["net_names"])}
     benchmark = _parse_sdc_benchmark(resolved["sdc_benchmark"])
+    sdc_catalog = _load_json(resolved["sdc_catalog"])
+    machine_sdc_addresses = {row["address"]
+                             for row in sdc_catalog.get("functions", [])}
     entries = {}
     producers = (
         _lc3_entries(_load_json(resolved["lc3"]), paths["lc3"], names),
@@ -336,7 +413,10 @@ def build(paths):
         _cc312_entries(_load_json(resolved["cc312"]), paths["cc312"], names),
         _crypto_entries(_load_json(resolved["crypto"]), paths["crypto"], names),
         _net_entries(_load_json(resolved["net"]), paths["net"],
-                     paths["sdc_benchmark"], benchmark, names),
+                     paths["sdc_benchmark"], benchmark, names,
+                     machine_sdc_addresses),
+        _net_rtc_entries(_load_json(resolved["net_rtc"]), paths["net_rtc"], names),
+        _sdc_entries(sdc_catalog, paths["sdc_catalog"], names),
     )
     for rows in producers:
         for row in rows:
@@ -357,7 +437,8 @@ def build(paths):
             },
             "entries": rows,
         }
-    input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "net", "sdc_benchmark")
+    input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "net", "net_rtc",
+                  "sdc_benchmark", "sdc_catalog")
     result = {
         "schema": 1,
         "generated_by": "tools/build_adoption_manifest.py",

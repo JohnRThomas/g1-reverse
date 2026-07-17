@@ -27,7 +27,7 @@ class AdoptionManifestTest(unittest.TestCase):
         root = self.temp.name
         app_addresses = (0x1000, 0x1010, 0x2000, 0x2010, 0x2020,
                          0x3000, 0x3010, 0x4000)
-        net_addresses = (0x01001000, 0x01002000, 0x01003000)
+        net_addresses = (0x01001000, 0x01002000, 0x01003000, 0x01004000)
 
         def name_map(core, values):
             return {"schema": 1, "core": core,
@@ -83,6 +83,11 @@ class AdoptionManifestTest(unittest.TestCase):
                         "symbol": "public_other_archive", "ratio": 0.99,
                         "threshold": 0.9,
                         "provenance": "libother.a(member.o)"}}}}),
+            "net_rtc": write_json(root, "net_rtc.json", {
+                "upstream": {"commit": "e" * 40, "source_sha256": "f" * 64,
+                             "object": "timer.c.obj"},
+                "required_config": {"CONFIG_SYS_CLOCK_TICKS_PER_SEC": 32768},
+                "functions": []}),
         }
         benchmark = os.path.join(root, "sdc.md")
         with open(benchmark, "w") as stream:
@@ -95,6 +100,19 @@ class AdoptionManifestTest(unittest.TestCase):
 | **Controller archive total** | **10** | **100** |
 """ % ("d" * 64))
         paths["sdc_benchmark"] = benchmark
+        paths["sdc_catalog"] = write_json(root, "sdc_catalog.json", {
+            "inputs": {"archive_sha256": "d" * 64},
+            "functions": [
+                {"address": "0x01001000", "match_kind": "exact", "score": 1.0,
+                 "best": {"symbol": "sym_PRIVATE", "identity": "archive:private"},
+                 "unique_identity": True, "public_api": False,
+                 "build_extraction_verified": False, "safe_to_exclude": False,
+                 "exclusion_blockers": ["private_abi_unpublished"]},
+                {"address": "0x01004000", "match_kind": "approximate", "score": .9,
+                 "best": {"symbol": "sdc_public", "identity": "archive:public"},
+                 "unique_identity": True, "public_api": True,
+                 "build_extraction_verified": True, "safe_to_exclude": True,
+                 "exclusion_blockers": []}]})
         paths["output"] = os.path.join(root, "out.json")
         self.paths = paths
 
@@ -118,6 +136,9 @@ class AdoptionManifestTest(unittest.TestCase):
         private = rows[("net", "0x01001000")]
         self.assertEqual(private["kind"], "archive")
         self.assertFalse(private["exclude_reconstruction"])
+        public = rows[("net", "0x01004000")]
+        self.assertTrue(public["exclude_reconstruction"])
+        self.assertEqual(public["upstream_symbol"], "sdc_public")
         self.assertTrue(rows[("net", "0x01002000")]["exclude_reconstruction"])
         self.assertEqual(rows[("net", "0x01003000")]["kind"], "glue")
         self.assertFalse(rows[("net", "0x01003000")]["exclude_reconstruction"])

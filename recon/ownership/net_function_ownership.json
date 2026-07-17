@@ -7984,6 +7984,26 @@
         "zephyr/kernel/device.c"
       ]
     },
+    "0x010315f0": {
+      "status": "sdk_library",
+      "name": "FUN_010315f0",
+      "size": 244,
+      "confidence": 1.0,
+      "evidence": "Relocation-normalized instruction-exact match to the pinned NCS 2.5.1 Zephyr drivers/timer/nrf_rtc_timer.c rtc_nrf_isr when CONFIG_NRF_RTC_TIMER_USER_CHAN_COUNT=1. The reference object and firmware bodies are both 0xf4 bytes.",
+      "callers": [],
+      "callees": [
+        "0x0102cfec",
+        "0x010313a8",
+        "0x0103a6ae"
+      ],
+      "signature_match": {
+        "symbol": "rtc_nrf_isr",
+        "ratio": 1.0,
+        "threshold": 0.9,
+        "reference_build": "NCS 2.5.1 Zephyr v3.4.99-ncs1-1, net core, RTC user channels=1",
+        "provenance": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
+      }
+    },
     "0x0103175c": {
       "status": "sdk_library",
       "name": "FUN_0103175c",
@@ -8899,7 +8919,7 @@
         "ratio": 1.0,
         "threshold": 0.9,
         "reference_build": "/Users/freedomcoder/ncs251/netref_build",
-        "provenance": "NCS 2.5.1 netref object index"
+        "provenance": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
       }
     },
     "0x0103a9be": {

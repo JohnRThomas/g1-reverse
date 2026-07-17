@@ -22,13 +22,14 @@ later build-selection layer to omit the hand reconstruction; it is not a claim
 of byte parity and this tool does not modify CMake or canonical C.
 
 The policy is fail-closed. Glue, generic SDK classifications, and ambiguous
-ownership remain included. In particular, the current SDC benchmark is useful
-archive-family evidence but only publishes aggregate unique/ambiguous counts in
-Markdown. It does not provide a per-VA machine-readable uniqueness field.
-Therefore all obfuscated/private SDC entries are report-only and remain
-`exclude_reconstruction: false`. A future machine catalog may promote an SDC
-row only by recording its exact archive/member/section/symbol identity and
-per-VA uniqueness explicitly.
+ownership remain included. The aggregate SDC benchmark alone has no exclusion
+authority. `net_sdc_archive_ownership.json` now supplies per-VA identities, but
+private and ambiguous SDC rows remain report-only. The sole promotion is the
+public `sdc_default_tx_power_set` at `0x010091cc`: its published header ABI and
+unique identity are CFG-verified, and a real net-shell link selected the pinned
+archive member and reported the expected strong-symbol collision with the
+deliberately retained reconstruction. Removing that one reconstruction makes
+the shell link successfully. No obfuscated private SDC symbol is excluded.
 
 The schema is `adoption_manifest.schema.json`. The standard-library self-test
 uses isolated fixtures:

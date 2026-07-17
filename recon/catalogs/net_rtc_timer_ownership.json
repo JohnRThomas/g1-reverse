@@ -1,0 +1,48 @@
+{
+ "schema": 1,
+ "core": "net",
+ "component": "zephyr_nrf_rtc_timer",
+ "upstream": {
+  "repository": "/Users/freedomcoder/ncs251/zephyr",
+  "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "tag": "v3.4.99-ncs1-1",
+  "source": "drivers/timer/nrf_rtc_timer.c",
+  "source_sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
+  "object": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
+ },
+ "required_config": {
+  "CONFIG_SOC_NRF53_RTC_PRETICK": true,
+  "CONFIG_NRF_RTC_TIMER_LOCK_ZERO_LATENCY_IRQS": true,
+  "CONFIG_NRF_RTC_TIMER_USER_CHAN_COUNT": 1,
+  "derived_CHAN_COUNT": 2
+ },
+ "functions": [
+  {
+   "va": "0x010315f0",
+   "raw_symbol": "FUN_010315f0",
+   "upstream_symbol": "rtc_nrf_isr",
+   "linkage": "global",
+   "abi": "void rtc_nrf_isr(const void *arg)",
+   "firmware_size": 244,
+   "reference_size": 244,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "The pinned source compiled for nrf5340dk_nrf5340_cpunet with the recorded config produces the same 0xf4-byte instruction sequence; only calls and BSS/literal relocations differ before final link. The normal Zephyr timer archive exports rtc_nrf_isr."
+  },
+  {
+   "va": "0x0103a6ae",
+   "raw_symbol": "FUN_0103a6ae",
+   "upstream_symbol": "event_clear",
+   "linkage": "file_static",
+   "abi": "static void event_clear(int32_t chan)",
+   "firmware_size": 24,
+   "reference_size": 24,
+   "match": "byte-exact",
+   "match_score": 1.0,
+   "firmware_bytes": "002200f150039b009bb203f1824303f5b0331a601b687047",
+   "exclude_reconstruction": true,
+   "evidence": "The complete 24-byte firmware body is identical to .text.event_clear in the pinned nrf_rtc_timer.c object. It is pulled with rtc_nrf_isr from the same archive member and is not an independently selectable symbol."
+  }
+ ]
+}
