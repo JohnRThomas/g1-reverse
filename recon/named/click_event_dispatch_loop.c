@@ -135,14 +135,14 @@ code_r0x00028b4a:
       break;
     case 4:
       if (0 < *(volatile int32_t *)0x2000230cUL) {
-        uVar5 = 0xa0c6c;
-        if (*(volatile int32_t *)0x20007554UL == 0) goto code_r0x00028ba2;
-        debug_print(0xa0c6c, 0xa1a58, 4);
+        if (*(volatile int32_t *)0x20007554UL == 0)
+          DEBUG_PRINT(0xa0c6c, 0xa1a58, 4);
+        else
+          debug_print(0xa0c6c, 0xa1a58, 4);
       }
       do {
         k_msleep_ticks32768_a(500);
         uVar5 = sys_reboot(1);
-code_r0x00028ba2:
         DEBUG_PRINT(uVar5);
       } while (1);
     default:

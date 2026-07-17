@@ -1,6 +1,6 @@
 /* Auto-generated: pin reconstructed app-core symbols to their original
  * addresses so &name resolves to the real VA (whole-image byte-match).
- * 3060 symbols. Include via: INSERT or -T with the main linker script. */
+ * 3080 symbols. Include via: INSERT or -T with the main linker script. */
 
 PROVIDE(rodata_f000 = 0x0000f000);
 PROVIDE(rodata_fa08 = 0x0000fa08);
@@ -54,7 +54,9 @@ PROVIDE(rodata_25d8d = 0x00025d8d);
 PROVIDE(rodata_25dc5 = 0x00025dc5);
 PROVIDE(rodata_25df9 = 0x00025df9);
 PROVIDE(rodata_25fad = 0x00025fad);
+PROVIDE(rodata_2692d = 0x0002692d);
 PROVIDE(rodata_27cf8 = 0x00027cf8);
+PROVIDE(rodata_27cfd = 0x00027cfd);
 PROVIDE(rodata_28000 = 0x00028000);
 PROVIDE(rodata_2e301 = 0x0002e301);
 PROVIDE(rodata_30000 = 0x00030000);
@@ -793,6 +795,7 @@ PROVIDE(rodata_a1626 = 0x000a1626);
 PROVIDE(rodata_a1681 = 0x000a1681);
 PROVIDE(rodata_a172a = 0x000a172a);
 PROVIDE(rodata_a1895 = 0x000a1895);
+PROVIDE(rodata_a18bf = 0x000a18bf);
 PROVIDE(rodata_a18cd = 0x000a18cd);
 PROVIDE(rodata_a18ea = 0x000a18ea);
 PROVIDE(rodata_a1914 = 0x000a1914);
@@ -802,6 +805,7 @@ PROVIDE(rodata_a19af = 0x000a19af);
 PROVIDE(rodata_a19c0 = 0x000a19c0);
 PROVIDE(rodata_a19e5 = 0x000a19e5);
 PROVIDE(rodata_a1a76 = 0x000a1a76);
+PROVIDE(rodata_a1a98 = 0x000a1a98);
 PROVIDE(rodata_a1ab1 = 0x000a1ab1);
 PROVIDE(rodata_a1ad8 = 0x000a1ad8);
 PROVIDE(rodata_a1aea = 0x000a1aea);
@@ -2538,6 +2542,14 @@ PROVIDE(g_ble_work_thread = 0x20003d60);
 PROVIDE(g_flash_ops_thread = 0x20003e38);
 PROVIDE(g_brightness_thread = 0x20003f10);
 PROVIDE(g_delay_deadline_ticks = 0x200040c8);
+PROVIDE(g_200040d0 = 0x200040d0);
+PROVIDE(g_200041a8 = 0x200041a8);
+PROVIDE(g_20004280 = 0x20004280);
+PROVIDE(g_20004358 = 0x20004358);
+PROVIDE(g_20004430 = 0x20004430);
+PROVIDE(g_20004508 = 0x20004508);
+PROVIDE(g_200045e0 = 0x200045e0);
+PROVIDE(g_200046b8 = 0x200046b8);
 PROVIDE(g_fuel_gauge_init_timestamp = 0x20004790);
 PROVIDE(g_aging_mode_aux_thread = 0x20004798);
 PROVIDE(g_aging_mode_thread = 0x20004870);
@@ -3039,6 +3051,14 @@ PROVIDE(g_ancs_work_thread_stack = 0x2001d568);
 PROVIDE(g_ble_work_thread_stack = 0x2001e968);
 PROVIDE(g_flash_ops_thread_stack = 0x20021968);
 PROVIDE(g_brightness_thread_stack = 0x20022168);
+PROVIDE(g_20023c68 = 0x20023c68);
+PROVIDE(g_20024868 = 0x20024868);
+PROVIDE(g_20024c68 = 0x20024c68);
+PROVIDE(g_20025068 = 0x20025068);
+PROVIDE(g_20025468 = 0x20025468);
+PROVIDE(g_20025a68 = 0x20025a68);
+PROVIDE(g_20026268 = 0x20026268);
+PROVIDE(g_20026a68 = 0x20026a68);
 PROVIDE(g_aging_mode_aux_thread_stack = 0x20027668);
 PROVIDE(g_aging_mode_thread_stack = 0x20027a68);
 PROVIDE(g_proxy_thread_stack = 0x20028668);

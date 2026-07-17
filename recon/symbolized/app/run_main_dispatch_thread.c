@@ -12,9 +12,37 @@
  *   spawn_display_thread                     <= FUN_00049638 @ 0x00049638
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
+ *   ADDR_FUN_0002685c_THUMB                  @ 0x0002685d
+ *   rodata_2692d                             @ 0x0002692d
+ *   rodata_27cfd                             @ 0x00027cfd
+ *   ADDR_process_task_sync_event_THUMB       @ 0x000286f9
+ *   ADDR_click_event_dispatch_loop_THUMB     @ 0x00028a1d
+ *   ADDR_display_dispatch_thread_THUMB       @ 0x00028bed
+ *   ADDR_key_event_thread_THUMB              @ 0x0002955d
+ *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
+ *   ADDR_FUN_0002a4f4_THUMB                  @ 0x0002a4f5
+ *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
+ *   rodata_a18bf                             @ 0x000a18bf
+ *   rodata_a1a98                             @ 0x000a1a98
  *   g_log_level                              @ 0x2000230c
+ *   g_200040d0                               @ 0x200040d0
+ *   g_200041a8                               @ 0x200041a8
+ *   g_20004280                               @ 0x20004280
+ *   g_20004358                               @ 0x20004358
+ *   g_20004430                               @ 0x20004430
+ *   g_20004508                               @ 0x20004508
+ *   g_200045e0                               @ 0x200045e0
+ *   g_200046b8                               @ 0x200046b8
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_state_mutex                         @ 0x20007b3c
+ *   g_20023c68                               @ 0x20023c68
+ *   g_20024868                               @ 0x20024868
+ *   g_20024c68                               @ 0x20024c68
+ *   g_20025068                               @ 0x20025068
+ *   g_20025468                               @ 0x20025468
+ *   g_20025a68                               @ 0x20025a68
+ *   g_20026268                               @ 0x20026268
+ *   g_20026a68                               @ 0x20026a68
  */
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>
@@ -43,9 +71,9 @@ void run_main_dispatch_thread(char *dispatch_mode)
 
     if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 2) {
         if (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0)
-            DEBUG_PRINT(0x000a18bfUL, 0x000a1a98UL);
+            DEBUG_PRINT(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
         else
-            debug_print(0x000a18bfUL, 0x000a1a98UL);
+            debug_print(((unsigned long)&rodata_a18bf) /*=0xa18bf*/, ((unsigned long)&rodata_a1a98) /*=0xa1a98*/);
     }
 
     kmutex_dlist_init(((unsigned long)&g_ui_state_mutex) /*=0x20007b3c*/);
@@ -54,37 +82,37 @@ void run_main_dispatch_thread(char *dispatch_mode)
 
     battery_critical = is_battery_critical();
     if (battery_critical == 0) {
-        CREATE_DISPATCH_THREAD(0x200046b8UL, 0x20026a68UL, 0xc00,
-                               0x0002a8d9UL, dispatch_mode, -10);
-        CREATE_DISPATCH_THREAD(0x200041a8UL, 0x20024868UL, 0x400,
-                               0x000286f9UL, dispatch_mode, -10);
+        CREATE_DISPATCH_THREAD(((unsigned long)&g_200046b8) /*=0x200046b8*/, ((unsigned long)&g_20026a68) /*=0x20026a68*/, 0xc00,
+                               ADDR_FUN_0002a8d8_THUMB /*=0x2a8d9*/, dispatch_mode, -10);
+        CREATE_DISPATCH_THREAD(((unsigned long)&g_200041a8) /*=0x200041a8*/, ((unsigned long)&g_20024868) /*=0x20024868*/, 0x400,
+                               ADDR_process_task_sync_event_THUMB /*=0x286f9*/, dispatch_mode, -10);
     } else {
-        CREATE_DISPATCH_THREAD(0x200046b8UL, 0x20026a68UL, 0xc00,
-                               0x0002685dUL, dispatch_mode, -10);
+        CREATE_DISPATCH_THREAD(((unsigned long)&g_200046b8) /*=0x200046b8*/, ((unsigned long)&g_20026a68) /*=0x20026a68*/, 0xc00,
+                               ADDR_FUN_0002685c_THUMB /*=0x2685d*/, dispatch_mode, -10);
         FUN_00032fe8();
         FUN_0003304c();
     }
 
-    CREATE_DISPATCH_THREAD(0x200040d0UL, 0x20023c68UL, 0xc00,
-                           0x0002a4f5UL, 0, -9);
+    CREATE_DISPATCH_THREAD(((unsigned long)&g_200040d0) /*=0x200040d0*/, ((unsigned long)&g_20023c68) /*=0x20023c68*/, 0xc00,
+                           ADDR_FUN_0002a4f4_THUMB /*=0x2a4f5*/, 0, -9);
 
     if ((uint8_t)dispatch_mode[0] == 1 || (uint8_t)dispatch_mode[0] == 2) {
-        CREATE_DISPATCH_THREAD(0x200045e0UL, 0x20026268UL, 0x800,
-                               0x00028bedUL, dispatch_mode, -13);
-        CREATE_DISPATCH_THREAD(0x20004508UL, 0x20025a68UL, 0x800,
-                               0x0002692dUL, dispatch_mode, -12);
+        CREATE_DISPATCH_THREAD(((unsigned long)&g_200045e0) /*=0x200045e0*/, ((unsigned long)&g_20026268) /*=0x20026268*/, 0x800,
+                               ADDR_display_dispatch_thread_THUMB /*=0x28bed*/, dispatch_mode, -13);
+        CREATE_DISPATCH_THREAD(((unsigned long)&g_20004508) /*=0x20004508*/, ((unsigned long)&g_20025a68) /*=0x20025a68*/, 0x800,
+                               ((unsigned long)&rodata_2692d) /*=0x2692d*/, dispatch_mode, -12);
         if ((uint8_t)dispatch_mode[0] == 1) {
             spawn_proxy_thread(dispatch_mode);
         } else {
-            CREATE_DISPATCH_THREAD(0x20004430UL, 0x20025468UL, 0x600,
-                                   0x00027cfdUL, dispatch_mode, -11);
+            CREATE_DISPATCH_THREAD(((unsigned long)&g_20004430) /*=0x20004430*/, ((unsigned long)&g_20025468) /*=0x20025468*/, 0x600,
+                                   ((unsigned long)&rodata_27cfd) /*=0x27cfd*/, dispatch_mode, -11);
         }
         spawn_display_thread(dispatch_mode);
     }
 
-    final_entry = is_battery_critical() == 1 ? 0x00028a1dUL : 0x0002a0d9UL;
-    CREATE_DISPATCH_THREAD(0x20004358UL, 0x20025068UL, 0x400,
+    final_entry = is_battery_critical() == 1 ? ADDR_click_event_dispatch_loop_THUMB /*=0x28a1d*/ : ADDR_touch_key_thread_THUMB /*=0x2a0d9*/;
+    CREATE_DISPATCH_THREAD(((unsigned long)&g_20004358) /*=0x20004358*/, ((unsigned long)&g_20025068) /*=0x20025068*/, 0x400,
                            final_entry, dispatch_mode, -14);
-    CREATE_DISPATCH_THREAD(0x20004280UL, 0x20024c68UL, 0x400,
-                           0x0002955dUL, dispatch_mode, -13);
+    CREATE_DISPATCH_THREAD(((unsigned long)&g_20004280) /*=0x20004280*/, ((unsigned long)&g_20024c68) /*=0x20024c68*/, 0x400,
+                           ADDR_key_event_thread_THUMB /*=0x2955d*/, dispatch_mode, -13);
 }

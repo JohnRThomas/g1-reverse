@@ -11,9 +11,37 @@
  *   spawn_display_thread                     <= FUN_00049638 @ 0x00049638
  *   kmutex_dlist_init                        <= FUN_000864c2 @ 0x000864c2
  * address symbols (name @ address):
+ *   ADDR_FUN_0002685c_THUMB                  @ 0x0002685d
+ *   rodata_2692d                             @ 0x0002692d
+ *   rodata_27cfd                             @ 0x00027cfd
+ *   ADDR_process_task_sync_event_THUMB       @ 0x000286f9
+ *   ADDR_click_event_dispatch_loop_THUMB     @ 0x00028a1d
+ *   ADDR_display_dispatch_thread_THUMB       @ 0x00028bed
+ *   ADDR_key_event_thread_THUMB              @ 0x0002955d
+ *   ADDR_touch_key_thread_THUMB              @ 0x0002a0d9
+ *   ADDR_FUN_0002a4f4_THUMB                  @ 0x0002a4f5
+ *   ADDR_FUN_0002a8d8_THUMB                  @ 0x0002a8d9
+ *   rodata_a18bf                             @ 0x000a18bf
+ *   rodata_a1a98                             @ 0x000a1a98
  *   g_log_level                              @ 0x2000230c
+ *   g_200040d0                               @ 0x200040d0
+ *   g_200041a8                               @ 0x200041a8
+ *   g_20004280                               @ 0x20004280
+ *   g_20004358                               @ 0x20004358
+ *   g_20004430                               @ 0x20004430
+ *   g_20004508                               @ 0x20004508
+ *   g_200045e0                               @ 0x200045e0
+ *   g_200046b8                               @ 0x200046b8
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_ui_state_mutex                         @ 0x20007b3c
+ *   g_20023c68                               @ 0x20023c68
+ *   g_20024868                               @ 0x20024868
+ *   g_20024c68                               @ 0x20024c68
+ *   g_20025068                               @ 0x20025068
+ *   g_20025468                               @ 0x20025468
+ *   g_20025a68                               @ 0x20025a68
+ *   g_20026268                               @ 0x20026268
+ *   g_20026a68                               @ 0x20026a68
  */
 /* Reconstructed FUN_0002a65c @ 0x2a65c */
 #include <stdint.h>

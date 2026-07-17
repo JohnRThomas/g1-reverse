@@ -118,7 +118,7 @@ int FUN_00012080(void)
   undefined4 *puVar12;
   undefined *puVar13;
   byte bVar14;
-  undefined4 *puVar15;
+  volatile undefined4 *puVar15;
   undefined8 uVar16;
   undefined4 local_58;
   undefined4 local_54;
@@ -313,7 +313,7 @@ int FUN_00012080(void)
   if (iVar5 != 0) {
     return iVar5;
   }
-  iVar5 = FUN_00053d70(0xfc01,0);
+  iVar5 = FUN_00053d70(0xfc01,0,&local_34);
   puVar13 = PTR_s_Vendor_HCI_extensions_not_availa_0001253c;
   if (iVar5 == 0) {
     iVar5 = *(int *)(local_34 + 0xc);
@@ -335,7 +335,7 @@ int FUN_00012080(void)
     local_4c = PTR_s_HW_Variant___s__0x_04x__00012558;
     ppuVar10 = &local_50;
     local_50 = DAT_00012550;
-    FUN_00080ea2(PTR_DAT_00012540,0x24c0);
+    FUN_00080ea2(PTR_DAT_00012540,0x24c0,&local_50);
     local_4c = (undefined *)(uint)*(byte *)(iVar5 + 5);
     puStack_48 = (undefined *)(uint)*(byte *)(iVar5 + 6);
     if (local_4c < 4) {
@@ -383,4 +383,3 @@ LAB_000123fe:
   }
   return iVar5;
 }
-

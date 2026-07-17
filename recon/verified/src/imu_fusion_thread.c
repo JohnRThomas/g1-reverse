@@ -1,4 +1,6 @@
-/* Reconstructed imu_fusion_thread @ 0xfe88  (parity: 1000/1000 trials, PROVEN) */
+/* Reconstructed imu_fusion_thread @ 0xfe88.
+ * CFG-directed parity: 8/8 reviewed entry, mode, sensor, fusion,
+ * calibration, and event-transition cases. */
 typedef unsigned char u8; typedef unsigned short u16; typedef unsigned int u32;
 typedef long long i64; typedef unsigned long long u64;
 
@@ -11,7 +13,7 @@ typedef long long i64; typedef unsigned long long u64;
 extern int DEBUG_PRINT(void);
 extern int FUN_00019c70(void);
 extern int FUN_00086c78(int,int,int);
-extern int thunk_FUN_00074844(int,int);
+extern int FUN_0007ca72(int,int);
 extern i64 thunk_FUN_00074f68(void);
 extern int FUN_00032ee4(void);
 extern int FUN_0007cbfe(void*,int);
@@ -21,31 +23,37 @@ extern int change_work_mode_to(int);
 extern int FUN_000265b8(void*);
 typedef int  (*qfn_t)(int,int);
 typedef void (*ffn_t)(int,int,void*);
-extern i64 FUN_0000d824(int); extern i64 FUN_0000db4c(int,int,int,int); extern i64 FUN_0000d58c(int,int,int,int);
-extern i64 FUN_0000d8f8(int,int,int,int); extern i64 FUN_0000d848(int); extern i64 FUN_0000d588(int,int,int,int);
-extern int FUN_0000dee8(void);
-extern int FUN_000267ac(void*); extern int FUN_00026624(int,int,int,int,int,int,int,void*);
-extern int FUN_00026828(void*); extern int FUN_00026808(void*); extern int FUN_000267e8(void*);
+extern u64 FUN_0000d824(int); extern u64 FUN_0000db4c(u32,u32,u32,u32); extern u64 FUN_0000d58c(u32,u32,u32,u32);
+extern u64 FUN_0000d8f8(u32,u32,u32,u32); extern u64 FUN_0000d848(u32); extern u64 FUN_0000d588(u32,u32,u32,u32);
+extern u32 FUN_0000dee8(u32,u32);
+extern float FUN_000267ac(void*);
+extern void FUN_00026624(float,float,float,float,float,float,float,void*);
+extern float FUN_00026828(void*); extern float FUN_00026808(void*); extern float FUN_000267e8(void*);
 extern int FUN_00025ecc(void*); extern int FUN_00025e2c(void);
 extern int FUN_0002be64(void*,int); extern int FUN_0003444c(void); extern int FUN_00023eec(void);
-extern int FUN_0007cdb6(void*,int); extern int send_event_status(int);
+extern int FUN_0007cdb6(void*,int); extern int FUN_000276ec(int);
 extern int FUN_000167a8(void); extern int FUN_0007ca4e(void*);
 extern int FUN_00047b1c(int,int); extern int FUN_00047ba8(void);
 extern int FUN_00042fb0(void*,void*);
 
-static inline float as_f(int x){ float f; __builtin_memcpy(&f,&x,4); return f; }
+static inline float as_f(u32 x){ float f; __builtin_memcpy(&f,&x,4); return f; }
+#define LO64(v) ((u32)(v))
+#define HI64(v) ((u32)((v) >> 32))
 
 void imu_fusion_thread(char *p)
 {
     char *q8 = p - 0xee4;
     unsigned local_a4 = 0;
     int iVar6, iVar27 = 0, cVar2, cnt, d, ad, k, sgn, prev;
-    int d1,d2,d3,d7;
-    float f7 = 0.0f;
+    u32 d1,d2,d3,d4,d5,d6;
+    u64 dv, part;
+    float roll = 0.0f, pitch = 0.0f, yaw = 0.0f, dt;
     int uVar7;
+    char buf1[24];
+    char buf2[24];
 
-    FUN_00086c78(0,0,0x18);
-    FUN_00086c78(0,0,0x18);
+    FUN_00086c78((int)buf1, 0, 0x18);
+    FUN_00086c78((int)buf2, 0, 0x18);
 
     if (p[0x14] != 0) {
         if (1 < I(0x2000230c)) { if (I(0x20007554)==0) DEBUG_PRINT(); else FUN_00019c70(); }
@@ -55,7 +63,7 @@ void imu_fusion_thread(char *p)
     p[0] = 1;
 
     while (p[0x15] != 0) {
-        while (p[-0xee3]==1 || p[-0xee3]==8) thunk_FUN_00074844(0x28000,0);
+        while (p[-0xee3]==1 || p[-0xee3]==8) FUN_0007ca72(0x28000,0);
 
         iVar6 = FUN_00032ee4();
         if (iVar6 == 0) {
@@ -81,7 +89,6 @@ void imu_fusion_thread(char *p)
 
     Lffb4:
         {
-            char buf1[24], buf2[24];
             int vobj = *(volatile int*)(p+0x1c);
             int mt   = *(volatile int*)(vobj+8);
             qfn_t qfn = *(qfn_t volatile*)(mt+0xc);
@@ -95,29 +102,70 @@ void imu_fusion_thread(char *p)
             { ffn_t ffn = *(ffn_t volatile*)(mt+0x10); ffn(vobj, 7, buf2); }
         }
 
-        /* group1 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0);FUN_0000d8f8(0,0,0,0); d1=FUN_0000dee8();
-        /* group2 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0);FUN_0000d8f8(0,0,0,0); d2=FUN_0000dee8();
-        /* group3 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0);FUN_0000d8f8(0,0,0,0); d3=FUN_0000dee8();
-        /* group4 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0); FUN_0000dee8();
-        /* group5 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0); FUN_0000dee8();
-        /* group6 */ FUN_0000d824(0);FUN_0000db4c(0,0,0,0);FUN_0000d824(0);FUN_0000d58c(0,0,0,0); FUN_0000dee8();
+        dv = FUN_0000d824(I(buf1 + 4));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf1));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        dv = FUN_0000d8f8(LO64(dv),HI64(dv),0,0x40240000);
+        d1 = FUN_0000dee8(LO64(dv),HI64(dv));
+
+        dv = FUN_0000d824(I(buf1 + 12));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf1 + 8));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        dv = FUN_0000d8f8(LO64(dv),HI64(dv),0,0x40240000);
+        d2 = FUN_0000dee8(LO64(dv),HI64(dv));
+
+        dv = FUN_0000d824(I(buf1 + 20));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf1 + 16));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        dv = FUN_0000d8f8(LO64(dv),HI64(dv),0,0x40240000);
+        d3 = FUN_0000dee8(LO64(dv),HI64(dv));
+
+        dv = FUN_0000d824(I(buf2 + 4));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf2));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        d4 = FUN_0000dee8(LO64(dv),HI64(dv));
+
+        dv = FUN_0000d824(I(buf2 + 12));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf2 + 8));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        d5 = FUN_0000dee8(LO64(dv),HI64(dv));
+
+        dv = FUN_0000d824(I(buf2 + 20));
+        dv = FUN_0000db4c(LO64(dv),HI64(dv),0,0x412e8480);
+        part = FUN_0000d824(I(buf2 + 16));
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),LO64(part),HI64(part));
+        d6 = FUN_0000dee8(LO64(dv),HI64(dv));
 
         I(p+0x198) = (int)as_f(d1);
         I(p+0x19c) = (int)as_f(d2);
         I(p+0x1a0) = (int)as_f(d3);
 
-        /* group7 */ FUN_0000d848(0);FUN_0000d588(0,0,0,0); d7=FUN_0000dee8();
-        /* group8 */ FUN_0000d848(0);FUN_0000d58c(0,0,0,0); FUN_0000dee8();
-        /* group9 */ FUN_0000d848(0);FUN_0000d588(0,0,0,0); FUN_0000dee8();
-        FUN_000267ac(p+0x28);
-        FUN_00026624(0,0,0,0,0,0,0,p+0x28);
-        FUN_00026828(p+0x28); FUN_00026808(p+0x28); FUN_000267e8(p+0x28);
+        dv = FUN_0000d848(d4);
+        dv = FUN_0000d588(LO64(dv),HI64(dv),0x45a1cac1,0x3fadf3b6);
+        d4 = FUN_0000dee8(LO64(dv),HI64(dv));
+        dv = FUN_0000d848(d5);
+        dv = FUN_0000d58c(LO64(dv),HI64(dv),0x0a3d70a4,0x3fa0a3d7);
+        d5 = FUN_0000dee8(LO64(dv),HI64(dv));
+        dv = FUN_0000d848(d6);
+        dv = FUN_0000d588(LO64(dv),HI64(dv),0x47ae147b,0x3f847ae1);
+        d6 = FUN_0000dee8(LO64(dv),HI64(dv));
 
-        f7 = as_f(d7);
-        iVar27 = (int)(f7 * 100.0f);
+        dt = FUN_000267ac(p+0x28);
+        FUN_00026624(as_f(d4),as_f(d5),as_f(d6),
+                     as_f(d1),as_f(d2),as_f(d3),dt,p+0x28);
+        roll = FUN_00026828(p+0x28);
+        pitch = FUN_00026808(p+0x28);
+        yaw = FUN_000267e8(p+0x28);
+
+        iVar27 = (int)(pitch * 100.0f);
         I(0x20007aac) = iVar27;
-        I(0x20007aa8) = iVar27;
-        I(0x20007aa4) = iVar27;
+        I(0x20007aa8) = (int)(roll * 100.0f);
+        I(0x20007aa4) = (int)(yaw * 100.0f);
 
         iVar6 = FUN_00032ee4();
         if (iVar6 == 1 && p[0x106] == 0x0b) { p[0] = 2; uVar7 = 0x148; goto Lff38; }
@@ -128,7 +176,7 @@ void imu_fusion_thread(char *p)
         if (UB(0x20007ab0) == 0) {
             if ((unsigned)(cnt + 1) < 0xc9) { uVar7 = 0x148; goto Lff38; }
             B(0x20007ab0) = 1;
-            F(0x20007acc) = f7; F(0x20007ad0) = f7; F(0x20007ad4) = f7;
+            F(0x20007acc) = roll; F(0x20007ad0) = pitch; F(0x20007ad4) = yaw;
         }
         FUN_00025ecc(p);
 
@@ -147,11 +195,11 @@ void imu_fusion_thread(char *p)
         I(0x20007a90) = iVar27;
         if (cVar2 == 0x0d) {
             p[-0xdf7] = 0x0c; p[-0xdf6] = 0;
-            *(float*)(p-0xdf5) = f7; *(float*)(p-0xdf1) = f7; *(float*)(p-0xded) = f7;
+            *(float*)(p-0xdf5) = roll; *(float*)(p-0xdf1) = pitch; *(float*)(p-0xded) = yaw;
         }
         I(0x20007aac) = iVar27;
-        I(0x20007aa8) = iVar27;
-        I(0x20007aa4) = iVar27;
+        I(0x20007aa8) = (int)(roll * 100.0f);
+        I(0x20007aa4) = (int)(yaw * 100.0f);
 
         if (p[0] == 2) {
             if (iVar27 <= *(int*)(p+8) + 100 && *(int*)(p+0xc) <= iVar27) goto L10734;
@@ -160,7 +208,7 @@ void imu_fusion_thread(char *p)
             I(0x20007a8c) = -3;
             B(0x20018d96) = 1;
             if (I(0x20007554) == 0) DEBUG_PRINT(); else FUN_00019c70();
-            send_event_status(3);
+            FUN_000276ec(3);
             p[0] = 1;
             {
                 int e = p[-0xe0f];
@@ -196,9 +244,9 @@ void imu_fusion_thread(char *p)
                 if (*(char*)(iv + 0x108f) != 0) break;
                 if (UB(0x20018d98) == 0) break;
                 if (--k == 0) break;
-                thunk_FUN_00074844(0x148,0);
+                FUN_0007ca72(0x148,0);
             }
-            send_event_status(2);
+            FUN_000276ec(2);
             (void)bv;
         }
         {
@@ -260,7 +308,8 @@ void imu_fusion_thread(char *p)
         /* fallthrough */
     L103ea:
         {
-            float la0 = f7, la1 = f7, la2 = f7;
+            float la0 = roll, la1 = pitch, la2 = yaw;
+            float corrected[3] = {0.0f, 0.0f, 0.0f};
             float d3f = la0 - F(0x20007acc);
             float d4f = la1 - F(0x20007ad0);
             float d5f = la2 - F(0x20007ad4);
@@ -272,8 +321,7 @@ void imu_fusion_thread(char *p)
                     if (!(__builtin_fabsf(diff) < 180.0f)) {
                         if (diff > 0.0f) diff -= 360.0f; else diff += 360.0f;
                     }
-                    /* results are stack-only */
-                    (void)diff;
+                    corrected[k] = F(0x20007ae4 + 4*k) + diff;
                 }
                 if (!(__builtin_fabsf(d3f) <= 0.1f) ||
                     !(__builtin_fabsf(d4f) <= 0.1f) ||
@@ -284,8 +332,9 @@ void imu_fusion_thread(char *p)
                     I(0x20007abc) = t + 1;
                     if (4 < t + 1) {
                         B(0x20007ab1) = 2;
-                        /* copy local_a0[6..8] (all 0) */
-                        I(0x20007ae4) = 0; I(0x20007ae8) = 0; I(0x20007aec) = 0;
+                        F(0x20007ae4) = corrected[0];
+                        F(0x20007ae8) = corrected[1];
+                        F(0x20007aec) = corrected[2];
                     }
                 }
             } else if (c2 == 2) {
@@ -320,9 +369,8 @@ void imu_fusion_thread(char *p)
             uVar7 = (p[0] == 2) ? 0x4de : 0xa3e;
         }
     Lff38:
-        thunk_FUN_00074844(uVar7,0);
+        FUN_0007ca72(uVar7,0);
     }
 
     return;
 }
-

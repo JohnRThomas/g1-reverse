@@ -41,6 +41,9 @@
 #define ADDR_FUN_00021da8_THUMB              0x21da9 /* FUN_00021da8 */
 #define ADDR_FUN_00023844_THUMB              0x23845 /* FUN_00023844 */
 #define ADDR_FUN_00026338_THUMB              0x26339 /* FUN_00026338 */
+#define ADDR_FUN_0002685c_THUMB              0x2685d /* FUN_0002685c */
+#define ADDR_FUN_0002a4f4_THUMB              0x2a4f5 /* FUN_0002a4f4 */
+#define ADDR_FUN_0002a8d8_THUMB              0x2a8d9 /* FUN_0002a8d8 */
 #define ADDR_FUN_0002e648_THUMB              0x2e649 /* FUN_0002e648 */
 #define ADDR_FUN_000324bc_THUMB              0x324bd /* FUN_000324bc */
 #define ADDR_FUN_0004c418_THUMB              0x4c419 /* FUN_0004c418 */
@@ -77,7 +80,9 @@
 #define ADDR_bt_ancs_data_source_handler_THUMB 0x18c49 /* bt_ancs_data_source_handler */
 #define ADDR_bt_le_adv_clear_pending_flag_THUMB 0x81081 /* bt_le_adv_clear_pending_flag */
 #define ADDR_cbor_decode_bool_THUMB          0x86007 /* cbor_decode_bool */
+#define ADDR_click_event_dispatch_loop_THUMB 0x28a1d /* click_event_dispatch_loop */
 #define ADDR_convert_to_id_on_match_THUMB    0x831e3 /* convert_to_id_on_match */
+#define ADDR_display_dispatch_thread_THUMB   0x28bed /* display_dispatch_thread */
 #define ADDR_display_thread_handler_THUMB    0x49091 /* display_thread_handler */
 #define ADDR_ept_cb_THUMB                    0x7ecc5 /* ept_cb */
 #define ADDR_ext_flash_read_THUMB            0x2e399 /* ext_flash_read */
@@ -102,6 +107,7 @@
 #define ADDR_init_ble_work_thread_THUMB      0x2201d /* init_ble_work_thread */
 #define ADDR_iobuf_ensure_capacity_and_append_THUMB 0x87737 /* iobuf_ensure_capacity_and_append */
 #define ADDR_jdb_panel_init_THUMB            0x46fc1 /* jdb_panel_init */
+#define ADDR_key_event_thread_THUMB          0x2955d /* key_event_thread */
 #define ADDR_l2cap_reassemble_frag_THUMB     0x82e05 /* l2cap_reassemble_frag */
 #define ADDR_libc_stream_write_syscall_THUMB 0x86f5b /* libc_stream_write_syscall */
 #define ADDR_libc_write_buffer_via_putc_THUMB 0x86cb7 /* libc_write_buffer_via_putc */
@@ -111,6 +117,7 @@
 #define ADDR_opt3007_chip_init_THUMB         0x2e67d /* opt3007_chip_init */
 #define ADDR_panel_off_THUMB                 0x46d2d /* panel_off */
 #define ADDR_panel_on_THUMB                  0x46dd9 /* panel_on */
+#define ADDR_process_task_sync_event_THUMB   0x286f9 /* process_task_sync_event */
 #define ADDR_proxy_thread_handler_THUMB      0x47c49 /* proxy_thread_handler */
 #define ADDR_read_included_uuid_encode_THUMB 0x8275f /* read_included_uuid_encode */
 #define ADDR_sc_restore_rsp_THUMB            0x82bd5 /* sc_restore_rsp */
@@ -118,11 +125,12 @@
 #define ADDR_spi_master_init_THUMB           0x26419 /* spi_master_init */
 #define ADDR_spi_master_trans_data_tx_rx_THUMB 0x262ad /* spi_master_trans_data_tx_rx */
 #define ADDR_stdio_reset_ungetc_buffer_THUMB 0x87863 /* stdio_reset_ungetc_buffer */
+#define ADDR_touch_key_thread_THUMB          0x2a0d9 /* touch_key_thread */
 #define ADDR_uart_callback_THUMB             0x33385 /* uart_callback */
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
 
-/* ---- RAM globals / kernel objects (674) ---- */
+/* ---- RAM globals / kernel objects (690) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
 extern volatile unsigned int g_ble_dev_state; /* @0x20002000 */
@@ -273,6 +281,14 @@ extern volatile unsigned int g_ble_work_thread; /* @0x20003d60 */
 extern volatile unsigned int g_flash_ops_thread; /* @0x20003e38 */
 extern volatile unsigned int g_brightness_thread; /* @0x20003f10 */
 extern volatile unsigned long long g_delay_deadline_ticks; /* @0x200040c8 */
+extern volatile unsigned int g_200040d0; /* @0x200040d0 */
+extern volatile unsigned int g_200041a8; /* @0x200041a8 */
+extern volatile unsigned int g_20004280; /* @0x20004280 */
+extern volatile unsigned int g_20004358; /* @0x20004358 */
+extern volatile unsigned int g_20004430; /* @0x20004430 */
+extern volatile unsigned int g_20004508; /* @0x20004508 */
+extern volatile unsigned int g_200045e0; /* @0x200045e0 */
+extern volatile unsigned int g_200046b8; /* @0x200046b8 */
 extern volatile unsigned long long g_fuel_gauge_init_timestamp; /* @0x20004790 */
 extern volatile unsigned int g_aging_mode_aux_thread; /* @0x20004798 */
 extern volatile unsigned int g_aging_mode_thread; /* @0x20004870 */
@@ -774,6 +790,14 @@ extern volatile unsigned int g_ancs_work_thread_stack; /* @0x2001d568 */
 extern volatile unsigned int g_ble_work_thread_stack; /* @0x2001e968 */
 extern volatile unsigned int g_flash_ops_thread_stack; /* @0x20021968 */
 extern volatile unsigned int g_brightness_thread_stack; /* @0x20022168 */
+extern volatile unsigned int g_20023c68; /* @0x20023c68 */
+extern volatile unsigned int g_20024868; /* @0x20024868 */
+extern volatile unsigned int g_20024c68; /* @0x20024c68 */
+extern volatile unsigned int g_20025068; /* @0x20025068 */
+extern volatile unsigned int g_20025468; /* @0x20025468 */
+extern volatile unsigned int g_20025a68; /* @0x20025a68 */
+extern volatile unsigned int g_20026268; /* @0x20026268 */
+extern volatile unsigned int g_20026a68; /* @0x20026a68 */
 extern volatile unsigned int g_aging_mode_aux_thread_stack; /* @0x20027668 */
 extern volatile unsigned int g_aging_mode_thread_stack; /* @0x20027a68 */
 extern volatile unsigned int g_proxy_thread_stack; /* @0x20028668 */
@@ -798,7 +822,7 @@ extern volatile unsigned char g_all_static_info_fc62; /* @0x2007fc62 */
 extern volatile unsigned char g_all_static_info_fc68; /* @0x2007fc68 */
 extern volatile unsigned char g_dashboard_default_widget0_index; /* @0x2007fc69 */
 
-/* ---- rodata table externs (2386) ---- */
+/* ---- rodata table externs (2390) ---- */
 extern const unsigned char __settings_handler_static_list_start[]; /* @0x882b0 */
 extern const unsigned char entropy_dev[]; /* @0x87b90 */
 extern const unsigned char g_default_font_glyph_table_count[]; /* @0x8ac28 */
@@ -852,7 +876,9 @@ extern const unsigned char rodata_25d8d[]; /* @0x25d8d */
 extern const unsigned char rodata_25dc5[]; /* @0x25dc5 */
 extern const unsigned char rodata_25df9[]; /* @0x25df9 */
 extern const unsigned char rodata_25fad[]; /* @0x25fad */
+extern const unsigned char rodata_2692d[]; /* @0x2692d */
 extern const unsigned char rodata_27cf8[]; /* @0x27cf8 */
+extern const unsigned char rodata_27cfd[]; /* @0x27cfd */
 extern const unsigned char rodata_28000[]; /* @0x28000 */
 extern const unsigned char rodata_2e301[]; /* @0x2e301 */
 extern const unsigned char rodata_30000[]; /* @0x30000 */
@@ -1584,6 +1610,7 @@ extern const unsigned char rodata_a1626[]; /* @0xa1626 */
 extern const unsigned char rodata_a1681[]; /* @0xa1681 */
 extern const unsigned char rodata_a172a[]; /* @0xa172a */
 extern const unsigned char rodata_a1895[]; /* @0xa1895 */
+extern const unsigned char rodata_a18bf[]; /* @0xa18bf */
 extern const unsigned char rodata_a18cd[]; /* @0xa18cd */
 extern const unsigned char rodata_a18ea[]; /* @0xa18ea */
 extern const unsigned char rodata_a1914[]; /* @0xa1914 */
@@ -1593,6 +1620,7 @@ extern const unsigned char rodata_a19af[]; /* @0xa19af */
 extern const unsigned char rodata_a19c0[]; /* @0xa19c0 */
 extern const unsigned char rodata_a19e5[]; /* @0xa19e5 */
 extern const unsigned char rodata_a1a76[]; /* @0xa1a76 */
+extern const unsigned char rodata_a1a98[]; /* @0xa1a98 */
 extern const unsigned char rodata_a1ab1[]; /* @0xa1ab1 */
 extern const unsigned char rodata_a1ad8[]; /* @0xa1ad8 */
 extern const unsigned char rodata_a1aea[]; /* @0xa1aea */

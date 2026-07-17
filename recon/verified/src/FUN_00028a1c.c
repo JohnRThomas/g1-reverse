@@ -4,19 +4,20 @@
 #include <stdint.h>
 
 extern void DEBUG_PRINT(uint32_t a, ...);
-extern uintptr_t FUN_000167a8(void);
-extern void FUN_00030af0(void);
+extern uintptr_t get_device_info(void);
+extern void handle_touch_key_irq(void);
 extern void FUN_00032fd0(int32_t);
 extern int64_t FUN_00032fdc(void);
-extern void FUN_0007cb8e(int32_t);
-extern void FUN_0007d0aa(void *a);
-extern int32_t FUN_00086690(void);
-extern void FUN_0007cb48(void *queue, int32_t oracle_r1, int32_t timeout, int32_t oracle_r3);
+extern void k_msleep_ticks32768_a(int32_t);
+extern void read_rtc_counter_ms(void *a);
+extern int32_t get_uptime_ms(void);
+extern void update_sync_buffer(void *queue, int32_t key, int32_t timeout,
+                               int32_t flags);
 extern void FUN_0002893c(void);
-extern void FUN_000289e4(void);
+extern void on_triple_click(void);
 extern void FUN_00028964(void);
-extern uint32_t FUN_0004c0a8(int32_t a);
-extern void FUN_00019c70(uint32_t a, uint32_t b, uint32_t c, ...);
+extern uint32_t sys_reboot(int32_t a);
+extern void debug_print(uint32_t a, uint32_t b, uint32_t c, ...);
 
 void FUN_00028a1c(char *param_1, int32_t param_2, uint32_t param_3)
 {
@@ -44,21 +45,22 @@ LAB_00028a32:
       if ((int32_t)uVar10 == 1) {
         return;
       }
-      FUN_0007cb48(param_1 + 0xb0, (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0);
+      update_sync_buffer(param_1 + 0xb0,
+                         (int32_t)((uint64_t)uVar10 >> 32), 0x4000, 0);
       if ((*(char *)(param_1 + 1) != '\x01') &&
-          (iVar3 = (int32_t)FUN_000167a8(), *(char *)(iVar3 + 1) != '\b')) break;
-      FUN_0007cb8e(5000);
+          (iVar3 = (int32_t)get_device_info(), *(char *)(iVar3 + 1) != '\b')) break;
+      k_msleep_ticks32768_a(5000);
     }
   } while (-1 < (int32_t)((uint32_t)*(uint16_t *)(param_1 + 0x105c) << 0x1f));
   if (*piVar1 != 0) {
-    FUN_00086690();
-    FUN_00030af0();
-    FUN_00086690();
+    get_uptime_ms();
+    handle_touch_key_irq();
+    get_uptime_ms();
     *piVar1 = 0;
   }
   if (*pcVar2 == '\x01') {
-    iVar3 = FUN_00086690();
-    FUN_0007d0aa(param_1 + 0x1078);
+    iVar3 = get_uptime_ms();
+    read_rtc_counter_ms(param_1 + 0x1078);
     if (30000 < iVar3 - iVar9) {
       iVar8 = 0;
       iVar6 = iVar8;
@@ -69,12 +71,12 @@ LAB_00028a32:
   else {
     iVar3 = iVar9;
     if (*pcVar2 == '\x02') {
-      iVar8 = FUN_00086690();
+      iVar8 = get_uptime_ms();
       *pcVar2 = 0;
     }
   }
-  param_2 = FUN_00086690();
-  iVar4 = FUN_00086690();
+  param_2 = get_uptime_ms();
+  iVar4 = get_uptime_ms();
   iVar9 = iVar3;
   if (iVar6 != 1) goto LAB_00028b3a;
   if (iVar7 == 0) {
@@ -95,7 +97,7 @@ LAB_00028ab0:
   if ((iVar8 <= iVar3) || (iVar4 - iVar8 < 0x2711)) goto LAB_00028a32;
   if (0x249f0 < iVar8 - iVar3) {
     DEBUG_PRINT(0xa0b7c);
-    FUN_0007d0aa(param_1 + 0x1078);
+    read_rtc_counter_ms(param_1 + 0x1078);
 code_r0x00028ad6:
     DEBUG_PRINT(0xa6990, *(uint32_t *)(param_1 + 0x1078));
     goto LAB_00028b4e;
@@ -118,18 +120,18 @@ code_r0x00028b4a:
       FUN_0002893c();
       break;
     case 3:
-      FUN_000289e4();
+      on_triple_click();
       break;
     case 4:
       if (0 < *(volatile int32_t *)0x2000230cUL) {
-        uVar5 = 0xa0c6c;
-        if (*(volatile int32_t *)0x20007554UL == 0) goto code_r0x00028ba2;
-        FUN_00019c70(0xa0c6c, 0xa1a58, 4);
+        if (*(volatile int32_t *)0x20007554UL == 0)
+          DEBUG_PRINT(0xa0c6c, 0xa1a58, 4);
+        else
+          debug_print(0xa0c6c, 0xa1a58, 4);
       }
       do {
-        FUN_0007cb8e(500);
-        uVar5 = FUN_0004c0a8(1);
-code_r0x00028ba2:
+        k_msleep_ticks32768_a(500);
+        uVar5 = sys_reboot(1);
         DEBUG_PRINT(uVar5);
       } while (1);
     default:

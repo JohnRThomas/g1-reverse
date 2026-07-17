@@ -1,7 +1,17 @@
 /* Reconstructed FUN_000133f8 @ 0x133f8  (parity: 300/300 trials, PROVEN) */
 typedef unsigned int u32;
 typedef unsigned long long u64;
-extern u64 orc(void);
+extern u64 FUN_0000d588(u32, u32, u32, u32);
+extern u64 FUN_0000d58c(u32, u32, u32, u32);
+extern u64 FUN_0000d824(int);
+extern u64 FUN_0000d8f8(u32, u32, u32, u32);
+extern u64 FUN_0000db4c(u32, u32, u32, u32);
+extern u32 FUN_0000de04(u32, u32, u32, u32);
+extern u32 FUN_0000de18(u32, u32, u32, u32);
+extern double FUN_00013e50(void);
+extern double FUN_00013e60(double, int);
+extern double FUN_00075e14(double);
+extern double FUN_000869cc(double);
 
 double FUN_000133f8(double xd, double yd)
 {
@@ -14,8 +24,18 @@ double FUN_000133f8(double xd, double yd)
     u32 sp00=0,sp04=0,sp08=0,sp0c=0,sp10=0,sp14=0,sp18=0,sp1c=0,
         sp24=0,sp28=0,sp2c=0,sp30=0,sp34=0,sp38=0,sp3c=0;
     u64 _t;
-#define CALL()  do{ _t = orc(); r0=(u32)_t; r1=(u32)(_t>>32);}while(0)
-#define CALLV() do{ (void)orc(); }while(0)
+#define PACK(a,b) (((u64)(b) << 32) | (a))
+#define BINCALL(fn) do { _t = fn(r0,r1,r2,r3); r0=(u32)_t; r1=(u32)(_t>>32); } while (0)
+#define DSUB() BINCALL(FUN_0000d588)
+#define DSUB_ONE() do { _t = FUN_0000d588(0,0x3ff00000,r2,r3); r0=(u32)_t; r1=(u32)(_t>>32); } while (0)
+#define DADD() BINCALL(FUN_0000d58c)
+#define DMUL() BINCALL(FUN_0000d8f8)
+#define DDIV() BINCALL(FUN_0000db4c)
+#define I2D() do { _t=FUN_0000d824((int)r0); r0=(u32)_t; r1=(u32)(_t>>32); } while (0)
+#define DCMPGE() do { r0=FUN_0000de04(r0,r1,r2,r3); } while (0)
+#define DCMPGT() do { r0=FUN_0000de18(r0,r1,r2,r3); } while (0)
+#define FABS() do { R.d=FUN_000869cc(X.d); r0=(u32)R.u; r1=(u32)(R.u>>32); } while (0)
+#define SCALE() do { R.u=PACK(r0,r1); R.d=FUN_00013e60(R.d,(int)r10); r0=(u32)R.u; r1=(u32)(R.u>>32); } while (0)
 
     /* entry 0x133f8 */
     sp00 = ylo; sp04 = yhi;
@@ -53,8 +73,7 @@ L1345a:
     r4 = r4 | r10;
     if (r4 == 0) goto L13560;
 L13468:
-    CALLV();
-    return xd;
+    return FUN_00013e50();
 
 L13474:
     if ((int)r5 >= 0) goto L1348a;
@@ -137,7 +156,7 @@ L1357e:
 L13582:
     r0 = r2; r1 = r3;
 L13586:
-    CALL();
+    DMUL();
     goto L13446;
 
 L1358c:
@@ -146,7 +165,7 @@ L13590:
     if ((int)r8 >= 0) goto L13dd8;
     r2 = r6; r3 = r7; r0 = 0; r1 = 0x3ff00000;
 L135a0:
-    CALL();
+    DDIV();
     goto L13446;
 
 L135a6:
@@ -155,9 +174,7 @@ L135a6:
     if (r8 == 0x40000000) goto L1357e;
     r2 = 0x3fe00000;
     if (r8 != r2) goto L134a6;
-    CALLV();
-    R.u = ((u64)r7 << 32) | r6;
-    return R.d;
+    return FUN_00075e14(X.d);
 
 L135c8:
     if (r8 != 0x40000000) goto L13484;
@@ -170,8 +187,7 @@ L135d2:
     goto L13446;
 
 L134d2:
-    CALLV();
-    r0 = r6; r1 = r7;
+    FABS();
     if (r10 != 0) goto L135e2;
     r2 = r5 & ~0xc0000000u;
     r3 = 0x3ff00000;
@@ -180,7 +196,7 @@ L134d2:
 L134f2:
     if ((int)r8 >= 0) goto L13504;
     r2 = r0; r3 = r1; r0 = 0; r1 = 0x3ff00000;
-    CALL();
+    DDIV();
 L13504:
     if ((int)r5 >= 0) goto L13446;
     r4 = r4 + (u32)(-0x40000000);
@@ -190,7 +206,7 @@ L13504:
     r2 = r0; r3 = r1;
 L1351a:
     r0 = r2; r1 = r3;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     goto L135a0;
 
@@ -224,81 +240,83 @@ L13624:
     /* ---- block A (0x13654) ---- */
 L13654:
     r2 = 0; r3 = 0x3ff00000;
-    CALL();
+    DSUB();
     r4 = r0; r5 = r1;
     r2 = 0x60000000; r3 = 0x3ff71547;
-    CALL();
+    DMUL();
     r6 = r0; r7 = r1;
     r0 = r4; r1 = r5;
     r2 = 0xf85ddf44; r3 = 0x3e54ae0b;
-    CALL();
+    DMUL();
     r2 = 0; r3 = 0x3fd00000;
     sp08 = r0; sp0c = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = 0x55555555; r1 = 0x3fd55555;
-    CALL();
+    DSUB();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = 0; r1 = 0x3fe00000;
-    CALL();
+    DSUB();
     r8 = r0; r9 = r1;
     r2 = r4; r3 = r5;
     r0 = r4; r1 = r5;
     r4 = 0;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = 0x652b82fe; r3 = 0x3ff71547;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = sp08; r1 = sp0c;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r8 = r0; r9 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DADD();
     r2 = r6; r3 = r7;
     r0 = r4;
     r5 = r1;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
 L13706:
-    CALL();
+    DSUB();
     r3 = r11 - 1;
     r2 = sp30;
     r6 = r0; r7 = r1;
     r3 = r3 | r2;
+    if (r3 == 0) goto L13b70;
 L1371a:
+    sp08 = 0; sp0c = 0x3ff00000;
+L1371e:
     r2 = sp00; r3 = sp04;
     r0 = sp00; r1 = sp04;
     sp10 = r2; sp14 = r3;
     r3 = 0;
     sp10 = 0;
     r10 = sp10; r11 = sp14;
-    sp08 = 0; sp0c = 0;
     r3 = r11; r2 = r10;
-    CALL();
+    DSUB();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r8 = r0; r9 = r1;
     r0 = r6; r1 = r7;
     r2 = sp00; r3 = sp04;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DADD();
     r6 = r0; r7 = r1;
     r3 = r11; r2 = r10;
     r0 = r4; r1 = r5;
-    CALL();
+    DMUL();
     r3 = r1; r2 = r0; r8 = r0; r9 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DADD();
     r4 = r0; r5 = r1;
     r11 = r1;
     if ((int)r1 <= (int)0x408fffff) goto L13bac;
@@ -309,7 +327,7 @@ L1371a:
 L1379e:
     r2 = 0x8800759c; r3 = 0x7e37e43c;
     r0 = sp08; r1 = sp0c;
-    CALL();
+    DMUL();
     r2 = 0x8800759c; r3 = 0x7e37e43c;
     goto L13586;
 
@@ -318,19 +336,20 @@ L13b6a:
     goto L13842;
 
 L13b70:
-    goto L1371a;
+    sp08 = 0; sp0c = 0xbff00000;
+    goto L1371e;
 
 L13b76:
     r2 = 0x652b82fe; r3 = 0x3c971547;
     r0 = r6; r1 = r7;
-    CALL();
+    DADD();
     r2 = r8; r3 = r9;
     sp00 = r0; sp04 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = sp00; r1 = sp04;
-    CALL();
+    DCMPGT();
     if (r0 != 0) goto L1379e;
     goto L13ba6;
 
@@ -341,7 +360,7 @@ L137f8:
     r3 = r3 & r5;
     if (r3 != 0) goto Lx1380c;
     r3 = 0x43400000;
-    CALL();
+    DMUL();
     r2 = (u32)(~0x34);
     sp08 = r1;
 Lx1380c:
@@ -374,18 +393,18 @@ L13842:
     r2 = 0; r3 = 0;
     sp28 = r0; sp2c = r1;
     sp18 = 0; sp1c = 0;
-    CALL();
+    DSUB();
     r6 = r0; r7 = r1;
     r2 = sp28; r3 = sp2c;
     r0 = sp18; r1 = sp1c;
-    CALL();
+    DADD();
     r2 = r0; r3 = r1;
     r0 = 0; r1 = 0x3ff00000;
-    CALL();
+    DDIV();
     r2 = r0; r3 = r1;
     sp38 = r0; sp3c = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DMUL();
     r2 = 0;
     sp10 = r0; sp14 = r1;
     r3 = sp10; r4 = sp14;
@@ -397,147 +416,147 @@ L13842:
     r8 = sp08; r9 = sp0c;
     r5 = r3;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DSUB();
     r6 = r0; r7 = r1;
     r0 = r4; r1 = r5;
     r2 = sp18; r3 = sp1c;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = sp28; r1 = sp2c;
-    CALL();
+    DSUB();
     r2 = r8; r3 = r9;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DSUB();
     r2 = sp38; r3 = sp3c;
-    CALL();
+    DMUL();
     r2 = sp10; r3 = sp14;
     sp18 = r0; sp1c = r1;
     r0 = r2; r1 = r3;
-    CALL();
+    DMUL();
     r4 = r0; r5 = r1;
     r2 = 0x4a454eef; r3 = 0x3fca7e28;
-    CALL();
+    DMUL();
     r2 = 0x93c9db65; r3 = 0x3fcd864a;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0xa91d4101; r3 = 0x3fd17460;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0x518f264d; r3 = 0x3fd55555;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0xdb6fabff; r3 = 0x3fdb6db6;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0x33333303; r3 = 0x3fe33333;
-    CALL();
+    DADD();
     r6 = r0; r7 = r1;
     r2 = r4; r3 = r5; r0 = r4; r1 = r5;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DMUL();
     r2 = r8; r3 = r9;
     r4 = r0; r5 = r1;
     r0 = sp10; r1 = sp14;
-    CALL();
+    DADD();
     r2 = sp18; r3 = sp1c;
-    CALL();
+    DMUL();
     r2 = r4; r3 = r5;
     r4 = 0;
-    CALL();
+    DADD();
     r2 = r8; r3 = r9;
     sp28 = r0; sp2c = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = 0; r3 = 0x40080000;
     r6 = r0; r7 = r1;
-    CALL();
+    DADD();
     r2 = sp28; r3 = sp2c;
-    CALL();
+    DADD();
     r5 = r1;
     r2 = r4; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = 0;
     r8 = r0; r9 = r1;
     r3 = 0x40080000;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r6; r3 = r7;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = sp28; r1 = sp2c;
-    CALL();
+    DSUB();
     r2 = sp10; r3 = sp14;
-    CALL();
+    DMUL();
     r6 = r0; r7 = r1;
     r2 = r4; r3 = r5;
     r4 = 0;
     r0 = sp18; r1 = sp1c;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DADD();
     r6 = r0; r7 = r1;
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DADD();
     r5 = r1;
     r0 = r4;
     r2 = 0xe0000000; r3 = 0x3feec709;
-    CALL();
+    DMUL();
     r2 = r8; r3 = r9;
     sp10 = r0; sp14 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DSUB();
     r2 = 0xdc3a03fd; r3 = 0x3feec709;
-    CALL();
+    DMUL();
     r6 = r0; r7 = r1;
     r0 = r4; r1 = r5;
     r4 = 0;
     r2 = 0x145b01f5; r3 = 0xbe3e2fe0;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DADD();
     r2 = sp34;
     r3 = 0x00088878; r3 = r3 + r2;
     r2 = 0; r3 = 0;
-    CALL();
+    DADD();
     sp18 = r0; sp1c = r1;
     r0 = sp24;
-    CALL();
+    I2D();
     r2 = sp34;
     r3 = 0x00088888; r3 = r3 + r2;
     r6 = r0; r7 = r1;
     r8 = 0; r9 = 0;
     r0 = sp10; r1 = sp14;
     r2 = sp18; r3 = sp1c;
-    CALL();
+    DADD();
     r2 = r8; r3 = r9;
-    CALL();
+    DADD();
     r2 = r6; r3 = r7;
-    CALL();
+    DADD();
     r2 = r6; r3 = r7;
     r0 = r4; r5 = r1;
-    CALL();
+    DSUB();
     r2 = r8; r3 = r9;
-    CALL();
+    DSUB();
     r2 = sp10; r3 = sp14;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
 L13b64:
     r0 = sp18; r1 = sp1c;
@@ -555,14 +574,14 @@ L13bac:
 L13bbe:
     r2 = 0xc2f8f359; r3 = 0x01a56e1f;
     r0 = sp08; r1 = sp0c;
-    CALL();
+    DMUL();
     r2 = 0xc2f8f359; r3 = 0x01a56e1f;
     goto L13586;
 L13bd4:
     r2 = r8; r3 = r9;
-    CALL();
+    DSUB();
     r2 = r6; r3 = r7;
-    CALL();
+    DCMPGE();
     if (r0 == 0) goto L13ba6;
     goto L13bbe;
 L13bea:
@@ -587,100 +606,98 @@ L13bf4:
     r10 = (u32)((int)r10 >> r1);
     r1 = r9;
     if ((int)r11 < 0) r10 = (u32)(-(int)r10);
-    CALL();
+    DSUB();
     r8 = r0; r9 = r1;
 L13c3e:
     r4 = 0;
     r2 = r6; r3 = r7;
     r0 = r8; r1 = r9;
-    CALL();
+    DADD();
     r5 = r1;
     r0 = r4;
     r2 = 0x00000000; r3 = 0x3fe62e43;
-    CALL();
+    DMUL();
     r2 = r8; r3 = r9;
     sp00 = r0; sp04 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = r6; r1 = r7;
-    CALL();
+    DSUB();
     r2 = 0xfefa39ef; r3 = 0x3fe62e42;
-    CALL();
+    DMUL();
     r8 = r0; r9 = r1;
     r0 = r4; r1 = r5;
     r2 = 0x0ca86c39; r3 = 0xbe205c61;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DADD();
     r4 = r0; r5 = r1;
     r2 = r0; r3 = r1;
     r0 = sp00; r1 = sp04;
-    CALL();
+    DADD();
     r8 = r0; r9 = r1;
     r2 = sp00; r3 = sp04;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r8; r3 = r9;
     r6 = r0; r7 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r4 = r0; r5 = r1;
     r2 = 0x72bea4d0; r3 = 0x3e663769;
-    CALL();
+    DMUL();
     r2 = 0xc5d26bf1; r3 = 0x3ebbbd41;
-    CALL();
+    DSUB();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0xaf25de2c; r3 = 0x3f11566a;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0x16bebd93; r3 = 0x3f66c16c;
-    CALL();
+    DSUB();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = 0x5555553e; r3 = 0x3fc55555;
-    CALL();
+    DADD();
     r2 = r4; r3 = r5;
-    CALL();
+    DMUL();
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DSUB();
     r4 = r0; r5 = r1;
     r2 = r0; r3 = r1;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = 0; r3 = 0x40000000;
     sp00 = r0; sp04 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r0; r3 = r1;
     r0 = sp00; r1 = sp04;
-    CALL();
+    DDIV();
     r2 = r6;
     r4 = r0; r5 = r1;
     r3 = r7;
     r0 = r8; r1 = r9;
-    CALL();
+    DMUL();
     r2 = r6; r3 = r7;
-    CALL();
+    DADD();
     r2 = r0; r3 = r1;
     r0 = r4; r1 = r5;
-    CALL();
+    DSUB();
     r2 = r8; r3 = r9;
-    CALL();
+    DSUB();
     r3 = r1; r2 = r0;
-    r1 = 0x3ff00000;
-    r0 = 0;
-    CALL();
+    DSUB_ONE();
     r3 = r1;
     r3 = r3 + (r10 << 20);
     if ((int)r3 >= 0x100000) goto L13dc8;
-    CALLV();
+    SCALE();
 L13dba:
     r2 = sp08; r3 = sp0c;
     goto L13586;
@@ -703,4 +720,3 @@ L13dd8:
     r0 = r6; r1 = r7;
     goto L13446;
 }
-
