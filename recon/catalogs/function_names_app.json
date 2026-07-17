@@ -10,10 +10,7 @@
    "display_name": "FUN_00000004",
    "human": false,
    "source": "committed durable map",
-   "aliases": [
-    "FUN_00052bf8",
-    "FUN_00056a68"
-   ]
+   "aliases": []
   },
   "0x00000006": {
    "address": "0x00000006",
@@ -22,9 +19,7 @@
    "display_name": "FUN_00000006",
    "human": false,
    "source": "committed durable map",
-   "aliases": [
-    "FUN_00067600"
-   ]
+   "aliases": []
   },
   "0x0000005e": {
    "address": "0x0000005e",
@@ -33,9 +28,7 @@
    "display_name": "FUN_0000005e",
    "human": false,
    "source": "committed durable map",
-   "aliases": [
-    "FUN_0005f200"
-   ]
+   "aliases": []
   },
   "0x00000072": {
    "address": "0x00000072",
@@ -44,9 +37,7 @@
    "display_name": "FUN_00000072",
    "human": false,
    "source": "committed durable map",
-   "aliases": [
-    "FUN_00072e50"
-   ]
+   "aliases": []
   },
   "0x0000c358": {
    "address": "0x0000c358",
@@ -12412,7 +12403,7 @@
    "name": "get_pin_idx",
    "display_name": "get_pin_idx",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/get_pin_idx.c",
    "aliases": [
     "FUN_00065434"
    ]
@@ -16962,7 +16953,7 @@
    "name": "k_uptime_get_1",
    "display_name": "k_uptime_get_1",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/k_uptime_get_1.c",
    "aliases": [
     "FUN_0007cb2c"
    ]
@@ -21436,7 +21427,7 @@
    "name": "bt_addr_le_eq_0",
    "display_name": "bt_addr_le_eq_0",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/bt_addr_le_eq_0.c",
    "aliases": [
     "FUN_000826b2"
    ]
@@ -21978,7 +21969,7 @@
    "name": "smp_create_pdu",
    "display_name": "smp_create_pdu",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/smp_create_pdu.c",
    "aliases": [
     "FUN_000830b0"
    ]
@@ -23521,12 +23512,13 @@
   "0x00085378": {
    "address": "0x00085378",
    "raw_name": "FUN_00085378",
-   "name": "__nrfy_internal_pwm_event_handle",
-   "display_name": "__nrfy_internal_pwm_event_handle",
+   "name": "__nrfy_internal_twim_event_handle",
+   "display_name": "__nrfy_internal_twim_event_handle",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Pinned nrfx nrfy_twim.h helper used by the adjacent outlined TWIM event processor. The previous PWM label was a cross-peripheral same-shape guess; event offsets and all callers prove TWIM ownership. Raw identity remains FUN_00085378 at 0x00085378.",
    "aliases": [
-    "FUN_00085378"
+    "FUN_00085378",
+    "__nrfy_internal_pwm_event_handle"
    ]
   },
   "0x0008539a": {
@@ -23535,7 +23527,7 @@
    "name": "__nrfy_internal_twim_events_process",
    "display_name": "__nrfy_internal_twim_events_process",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/__nrfy_internal_twim_events_process.c",
    "aliases": [
     "FUN_0008539a"
    ]
@@ -24130,6 +24122,15 @@
    "aliases": [
     "FUN_00086208"
    ]
+  },
+  "0x00086228": {
+   "address": "0x00086228",
+   "raw_name": "FUN_00086228",
+   "name": "zcbor_str_encode",
+   "display_name": "zcbor_str_encode",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized instruction-exact static str_encode owner in pinned zcbor_encode.c at 67fd8bb, built with ZCBOR_STOP_ON_ERROR. Raw identity remains FUN_00086228.",
+   "aliases": []
   },
   "0x0008629e": {
    "address": "0x0008629e",
@@ -26082,9 +26083,9 @@
   "__malloc_unlock": "0x000785c8",
   "__muldf3": "0x0000d8f8",
   "__nedf2": "0x0000dd2c",
-  "__nrfy_internal_pwm_event_handle": "0x00085378",
   "__nrfy_internal_spim_event_handle": "0x00085214",
   "__nrfy_internal_spim_events_process": "0x0008523e",
+  "__nrfy_internal_twim_event_handle": "0x00085378",
   "__nrfy_internal_twim_events_process": "0x0008539a",
   "__retarget_lock_acquire_recursive": "0x000510fc",
   "__retarget_lock_release_recursive": "0x00051134",
@@ -27735,7 +27736,8 @@
   "z_spin_lock_valid": "0x00072040",
   "z_spin_unlock_valid": "0x0007205c",
   "z_unpend_all": "0x00086668",
-  "z_unpend_first_thread": "0x000744a4"
+  "z_unpend_first_thread": "0x000744a4",
+  "zcbor_str_encode": "0x00086228"
  },
  "conflicts": {
   "thunk_FUN_000723b8": [
