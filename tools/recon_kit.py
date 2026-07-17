@@ -29,6 +29,9 @@ TRUE_SIZE_OVERRIDES = {
     0x00028964: 0x4c,  # enter_active_click_mode
     0x00052fbc: 0x4c,  # bt_settings_delete
     0x00066524: 0xf6,  # nrfx_qspi.c qspi_xfer
+    # CINSTRDAT get switch owns fall-through stores through POP at 0x6671a;
+    # its aligned peripheral-base literal begins independently at 0x6671c.
+    0x000666e0: 0x3c,
     0x0007332c: 0xc2,  # k_work_schedule_for_queue
     0x00073424: 0xbe,  # k_work_reschedule_for_queue
     0x00076a88: 0x06,  # newlib nanf; literal begins at +0x08
