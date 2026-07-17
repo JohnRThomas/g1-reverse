@@ -7,17 +7,16 @@ extern void FUN_0004ba38(unsigned int a);
 unsigned int FUN_0005fb30(unsigned int *param_1)
 {
   unsigned int uVar1;
-  unsigned int local_20;
-  unsigned int local_1c;
+  struct { unsigned int count, format; } error;
   int iStack_18;
 
   iStack_18 = FUN_00066214();
   if (iStack_18 == 0x0bad0000) {
     uVar1 = 0;
   } else {
-    local_1c = 0xf5692;
-    local_20 = 3;
-    FUN_000837a2(0x881a0, 0x1840, &local_20);
+    error.format = 0xf5692;
+    error.count = 3;
+    FUN_000837a2(0x881a0, 0x1840, &error);
     if ((int)((unsigned int)*(volatile unsigned char *)((char*)param_1 + 0x50) << 0x1f) < 0) {
       FUN_0004ba38(*param_1);
     }
@@ -26,4 +25,3 @@ unsigned int FUN_0005fb30(unsigned int *param_1)
   }
   return uVar1;
 }
-

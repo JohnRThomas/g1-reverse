@@ -19,7 +19,10 @@ undefined4 FUN_0005f760(undefined4 param_1, int *param_2)
   int bVar12;
   undefined4 uVar9;
   u64 r;
-  int *puVar3i;
+  volatile int *puVar3i;
+  u32 range_error[2];
+  u32 validation_error[3];
+  u32 capacity_error[4];
 
   FUN_00072908(0x200021d0u, param_2, 0xffffffffu, 0xffffffffu);
   iVar7 = 0x20002230;
@@ -69,14 +72,18 @@ undefined4 FUN_0005f760(undefined4 param_1, int *param_2)
       if (uVar4 != 0) goto LAB_f782;
 LAB_f874:
       *(volatile u32*)(long)(iVar11 + 0x5f4) = uVar4;
-      puVar3i = (int*)0x20002190L;
+      puVar3i = (volatile int*)0x20002190L;
       iVar5 = 0x5000e000;
       uVar10 = uVar6 * 2;
       if (*param_2 != 0) {
         uVar10 = (u32)(*(volatile u16*)((long)*param_2 + 0xc)) * uVar10 + uVar10;
       }
       if ((u32)param_2[3] < uVar10) {
-        FUN_0004d944(0x000880e0u, 0x2040u, 0, 0);
+        capacity_error[0] = 4;
+        capacity_error[1] = 0x000f5623u;
+        capacity_error[2] = (u32)param_2[3];
+        capacity_error[3] = uVar10;
+        FUN_0004d944(0x000880e0u, 0x2040u, capacity_error, 0);
         uVar9 = 0xfffffff4u;
         goto LAB_f7d6;
       }
@@ -127,14 +134,18 @@ LAB_f948:
     uVar9 = 0x000f5600u;
     if (uVar4 < 9) goto LAB_f874;
 LAB_f7c6:
-    FUN_0004d944(0x000880e0u, 0x1840u, 0, 0);
+    validation_error[0] = 3;
+    validation_error[1] = uVar9;
+    validation_error[2] = uVar4;
+    FUN_0004d944(0x000880e0u, 0x1840u, validation_error, 0);
   } else {
 LAB_f782:
-    FUN_0004d944(0x000880e0u, 0x1040u, 0, 0);
+    range_error[0] = 2;
+    range_error[1] = uVar9;
+    FUN_0004d944(0x000880e0u, 0x1040u, range_error, 0);
   }
   uVar9 = 0xffffffeau;
 LAB_f7d6:
   FUN_00072880(0x200021d0u);
   return uVar9;
 }
-
