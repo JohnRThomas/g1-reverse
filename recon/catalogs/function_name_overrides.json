@@ -548,8 +548,8 @@
    "evidence": "First-class tail target of FUN_01013650 event case one. It reads the active-link byte at owner+0x2ee, forwards context/event to the idle-radio completion path when clear, or dispatches the connection-event processor with (0,0) when set. Raw identity remains FUN_01016144."
   },
   "0x0100b594": {
-   "name": "controller_radio_idle_event_finish",
-   "evidence": "Event-one fallback when no active link is present. The body validates controller radio ownership, releases the active radio context when needed, and invokes the installed completion callback. Raw identity remains FUN_0100b594."
+   "name": "controller_radio_idle_state_finish",
+   "evidence": "Event-one fallback when no active link is present. The catalog-missing body consumes no argument values: it validates controller state at 0x21000c48, advances or closes the active radio context, and conditionally tail-dispatches the pending radio channel. Exact executable ownership is [0x0100b594,0x0100b5f4); raw identity remains FUN_0100b594."
   },
   "0x01014b18": {
    "name": "sdc_conn_event_process",
