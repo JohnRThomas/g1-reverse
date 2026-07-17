@@ -4,7 +4,7 @@ extern int FUN_000225b4(unsigned int, void*, int, unsigned int, unsigned int);
 extern unsigned int FUN_00052c40(void);
 extern void FUN_00086c78(void*, int, int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int,unsigned int);
 
 unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -28,11 +28,10 @@ unsigned int load_burial_point(int param_1, unsigned int param_2, unsigned int p
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0x9e67c, 0x9e777);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x9e67c, 0x9e777);
             }
         }
         uVar3 = 0xffffffff;
     }
     return uVar3;
 }
-

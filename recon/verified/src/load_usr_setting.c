@@ -1,82 +1,108 @@
-/* Reconstructed load_usr_setting @ 0x22e78  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed load_usr_setting @ 0x22e78 */
+
 #include <stdint.h>
-extern void DEBUG_PRINT(void);
-extern void FUN_00019c70(void);
-extern int FUN_000225b4(int, void*, int);
-extern void FUN_00022ddc(int);
+
+struct __attribute__((packed)) user_settings_record {
+    uint8_t display_mode;
+    uint8_t language;
+    uint8_t secondary_language;
+    uint8_t interaction_mode;
+    uint32_t timeout;
+    uint8_t brightness;
+    uint8_t gesture_mode;
+    uint8_t auxiliary_mode;
+    uint8_t primary_index;
+    uint32_t identifier;
+    uint16_t interval;
+    uint8_t identifier_tail;
+    uint8_t language_extension;
+    uint8_t boolean_mode;
+    uint8_t option_a;
+    uint8_t option_b;
+    uint8_t critical_mode;
+    uint8_t secondary_index;
+    uint8_t reserved[3];
+    uint32_t counter;
+};
+
+extern void DEBUG_PRINT(uint32_t format, uint32_t function_name);
+extern void FUN_00019c70(uint32_t format, uint32_t function_name, ...);
+extern int FUN_000225b4(uint32_t address, void *destination, uint32_t length);
+extern void FUN_00022ddc(void *settings);
 extern int FUN_00032ee4(void);
-extern void FUN_00032ef0(int);
-extern void FUN_0007c28e(int, int);
-extern void FUN_00086c78(void*, int, int);
+extern void FUN_00032ef0(uint32_t mode);
+extern void FUN_0007c28e(void *settings, uint32_t value);
+extern void FUN_00086c78(void *destination, int value, uint32_t length);
 
-int load_usr_setting(int param_1)
+int load_usr_setting(uint8_t *settings)
 {
-    volatile int *dbg = (volatile int*)0x2000230c;
-    volatile int *a4 = (volatile int*)0x20007554;
-    volatile uint8_t buf[0x20];
-    int iVar1;
-    int local_34;
-    uint8_t local_24, local_21;
+    struct user_settings_record record;
 
-    FUN_00086c78((void*)buf, 0, 0x20);
-    iVar1 = FUN_000225b4(0x134000, (void*)buf, 0x20);
-    if (iVar1 != 0) {
-        if (1 < *dbg) { if (*a4 == 0) DEBUG_PRINT(); else FUN_00019c70(); }
+    FUN_00086c78(&record, 0, sizeof(record));
+    if (FUN_000225b4(0x00134000UL, &record, sizeof(record)) != 0) {
+        if (*(volatile int32_t *)0x2000230cUL > 1) {
+            if (*(volatile uint32_t *)0x20007554UL == 0) {
+                DEBUG_PRINT(0x0009e60cUL, 0x0009e7a6UL);
+            } else {
+                FUN_00019c70(0x0009e60cUL, 0x0009e7a6UL);
+            }
+        }
         return -1;
     }
-    if (1 < *dbg) { if (*a4 == 0) DEBUG_PRINT(); else FUN_00019c70(); }
 
-    *(volatile uint8_t*)(param_1 + 0xed5) = buf[1];
-    *(volatile uint8_t*)(param_1 + 0xef4) = buf[2];
-    local_34 = *(volatile int*)(buf + 4);
-    if (local_34 == 0) local_34 = 400;
-    *(volatile int*)(param_1 + 0xf6c) = local_34;
-    *(volatile uint8_t*)(param_1 + 0xfea) = buf[0];
-    *(volatile uint8_t*)(param_1 + 0xf98) = buf[8];
-    *(volatile uint8_t*)(param_1 + 0xf60) = buf[3];
-    *(volatile uint8_t*)(param_1 + 0x1070) = buf[9];
-    *(volatile uint8_t*)(param_1 + 0x108d) = buf[0xa];
-    *(volatile uint8_t*)(param_1 + 0xec0) = buf[0xb];
-    *(volatile uint32_t*)(param_1 + 0x1069) = *(volatile uint32_t*)(buf + 0xc);
-    *(volatile uint8_t*)(param_1 + 0x106f) = buf[0x12];
-    *(volatile uint16_t*)(param_1 + 0x106d) = *(volatile uint16_t*)(buf + 0x10);
-    *(volatile uint8_t*)(param_1 + 0xef5) = buf[0x13];
-    local_24 = buf[0x14];
-    if (1 < local_24) local_24 = 0;
-    *(volatile uint8_t*)(param_1 + 0x108f) = local_24;
-    *(volatile uint8_t*)(param_1 + 0x1090) = buf[0x15];
-    *(volatile uint8_t*)(param_1 + 0x1091) = buf[0x16];
-    *(volatile uint8_t*)(param_1 + 0xec1) = buf[0x18];
-    *(volatile uint32_t*)(param_1 + 0xf68) = *(volatile uint32_t*)(buf + 0x1c);
+    if (*(volatile int32_t *)0x2000230cUL > 1) {
+        if (*(volatile uint32_t *)0x20007554UL == 0) {
+            DEBUG_PRINT(0x0009e632UL, 0x0009e7a6UL);
+        } else {
+            FUN_00019c70(0x0009e632UL, 0x0009e7a6UL);
+        }
+    }
 
-    if ((uint8_t)(buf[0] & buf[3]) == 0xff) {
-        FUN_00022ddc(param_1);
+    settings[0xed5] = record.language;
+    settings[0xef4] = record.secondary_language;
+    *(uint32_t *)(settings + 0xf6c) =
+        record.timeout == 0 ? 400 : record.timeout;
+    settings[0xfea] = record.display_mode;
+    settings[0xf98] = record.brightness;
+    settings[0xf60] = record.interaction_mode;
+    settings[0x1070] = record.gesture_mode;
+    settings[0x108d] = record.auxiliary_mode;
+    settings[0xec0] = record.primary_index;
+    *(uint32_t *)(settings + 0x1069) = record.identifier;
+    settings[0x106f] = record.identifier_tail;
+    *(uint16_t *)(settings + 0x106d) = record.interval;
+    settings[0xef5] = record.language_extension;
+    settings[0x108f] = record.boolean_mode < 2 ? record.boolean_mode : 0;
+    settings[0x1090] = record.option_a;
+    settings[0x1091] = record.option_b;
+    settings[0xec1] = record.secondary_index;
+    *(uint32_t *)(settings + 0xf68) = record.counter;
+
+    if ((uint8_t)(record.display_mode & record.interaction_mode) == 0xff) {
+        FUN_00022ddc(settings);
     }
-    if (8 < *(volatile uint8_t*)(param_1 + 0xec0)) {
-        *(volatile uint8_t*)(param_1 + 0xec0) = 3;
+    if (settings[0xec0] > 8) {
+        settings[0xec0] = 3;
     }
-    if ((uint32_t)(*(volatile uint8_t*)(param_1 + 0xec1) - 1) > 8) {
-        *(volatile uint8_t*)(param_1 + 0xec1) = 3;
+    if ((uint32_t)(settings[0xec1] - 1) > 8) {
+        settings[0xec1] = 3;
     }
-    if (*(volatile int8_t*)(param_1 + 0xfea) == 11) {
-        *(volatile uint8_t*)(param_1 + 0xfea) = 10;
-        FUN_0007c28e(param_1, 0);
+    if ((int8_t)settings[0xfea] == 11) {
+        settings[0xfea] = 10;
+        FUN_0007c28e(settings, 0);
     }
-    local_21 = buf[0x17];
-    if (1 < local_21) local_21 = 0;
-    FUN_00032ef0(local_21);
-    iVar1 = FUN_00032ee4();
-    if (iVar1 == 1) {
-        *(volatile uint8_t*)(param_1 + 0xf98) = 0;
-        *(volatile uint8_t*)(param_1 + 0xfea) = 0xb;
-        *(volatile uint8_t*)(param_1 + 0xed5) = 0x15;
-        *(volatile uint16_t*)(param_1 + 0xec0) = 0x303;
+
+    FUN_00032ef0(record.critical_mode < 2 ? record.critical_mode : 0);
+    if (FUN_00032ee4() == 1) {
+        settings[0xf98] = 0;
+        settings[0xfea] = 11;
+        settings[0xed5] = 0x15;
+        *(uint16_t *)(settings + 0xec0) = 0x303;
     } else {
-        *(volatile uint8_t*)(param_1 + 0xfea) = 10;
+        settings[0xfea] = 10;
     }
-    if (*(volatile int*)(param_1 + 0xf68) == -1) {
-        *(volatile uint32_t*)(param_1 + 0xf68) = 0;
+    if (*(int32_t *)(settings + 0xf68) == -1) {
+        *(uint32_t *)(settings + 0xf68) = 0;
     }
     return 0;
 }
-

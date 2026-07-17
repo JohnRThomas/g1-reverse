@@ -7,7 +7,7 @@ extern void FUN_0008509e(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_00085046(uint32_t a, uint32_t b, uint32_t c);
 extern uint32_t FUN_00085014(uint32_t a);
 extern void DEBUG_PRINT(uint32_t a, uint32_t b, uint32_t c);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(uint32_t a, uint32_t b, ...);
 extern uint32_t FUN_0000ef12(uint32_t a);
 extern void FUN_00021a40(uint32_t a, uint32_t b, uint32_t c, uint32_t d);
 extern void FUN_00064b1c(uint32_t a);
@@ -32,7 +32,7 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
         if (*(volatile uint32_t*)0x20007554UL == 0) {
             DEBUG_PRINT(0x9d7aeUL, 0x9dfe8UL, uVar1);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0x9d7aeUL, 0x9dfe8UL, uVar1);
         }
     }
     uVar3 = FUN_0000ef12(uVar1);
@@ -40,4 +40,3 @@ uint32_t mobile_send_notification_to_ble_device_test(uint32_t param_1, uint32_t 
     FUN_00064b1c(uVar2);
     return 0;
 }
-

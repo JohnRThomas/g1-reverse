@@ -1,36 +1,47 @@
-/* Reconstructed local_store_write @ 0x22168  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed local_store_write @ 0x22168 */
+
 #include <stdint.h>
-typedef uint32_t u32; typedef uint8_t u8;
-extern void DEBUG_PRINT(u32,u32,u32,u32);
-extern void FUN_00019c70(u32,u32,u32,u32);
-extern int FUN_0004e374(void*,u32,u32);
-extern void FUN_00086c78(void*,int,int);
-extern void FUN_00086fbe(void*,u32,int);
-u32 local_store_write(u32 param_1, u32 param_2, u32 param_3){
-    u32 local_98[8];
-    u8 auStack_7c[100];
-    u32* src = (u32*)0x0009e145;
-    u32* dst = local_98;
-    do { u32 a=src[0],b=src[1]; src+=2; dst[0]=a; dst[1]=b; dst+=2; } while(src != (u32*)0x0009e145 + 6);
-    *dst = *src;
-    FUN_00086c78(auStack_7c, 0, 100);
-    FUN_00086fbe(local_98, param_1, 0x80);
-    int iVar2 = FUN_0004e374(local_98, param_2, param_3);
-    u32 uVar1;
-    if(iVar2 == 0){
-        if(*(volatile int*)0x2000230cUL < 3) return 0;
-        iVar2 = *(volatile int*)0x20007554UL;
-        uVar1 = 0x0009e187;
-    } else {
-        if(*(volatile int*)0x2000230cUL < 1) return 0;
-        iVar2 = *(volatile int*)0x20007554UL;
-        uVar1 = 0x0009e161;
+
+extern void DEBUG_PRINT(uint32_t format, uint32_t function_name,
+                        const char *key_suffix, uint32_t length);
+extern void FUN_00019c70(uint32_t format, uint32_t function_name,
+                         const char *key_suffix, uint32_t length);
+extern int FUN_0004e374(const char *key, const void *value, uint32_t length);
+extern void FUN_00086c78(void *destination, int value, uint32_t length);
+extern void FUN_00086fbe(char *destination, const char *source,
+                         uint32_t capacity);
+
+uint32_t local_store_write(const char *key_suffix, const void *value,
+                           uint32_t length)
+{
+    static const char key_prefix[28] = "ar_glass_userdata_settings/";
+    char key[128];
+
+    for (uint32_t index = 0; index < sizeof(key_prefix); ++index) {
+        key[index] = key_prefix[index];
     }
-    if(iVar2 == 0){
-        DEBUG_PRINT(uVar1, 0x0009e553, param_1, param_3);
+
+    FUN_00086c78(key + 28, 0, 100);
+    FUN_00086fbe(key, key_suffix, sizeof(key));
+
+    int result = FUN_0004e374(key, value, length);
+    uint32_t format;
+    if (result == 0) {
+        if (*(volatile int32_t *)0x2000230cUL < 3) {
+            return 0;
+        }
+        format = 0x0009e187UL;
     } else {
-        FUN_00019c70(uVar1, 0x0009e553, param_1, param_3);
+        if (*(volatile int32_t *)0x2000230cUL < 1) {
+            return 0;
+        }
+        format = 0x0009e161UL;
+    }
+
+    if (*(volatile uint32_t *)0x20007554UL == 0) {
+        DEBUG_PRINT(format, 0x0009e553UL, key_suffix, length);
+    } else {
+        FUN_00019c70(format, 0x0009e553UL, key_suffix, length);
     }
     return 0;
 }
-
