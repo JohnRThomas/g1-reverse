@@ -7,11 +7,11 @@ extern void FUN_0007d642(int, int);
 extern void FUN_0007d67e(unsigned int);
 extern void FUN_0007d696(int);
 extern void FUN_0007d772(int);
-extern void thunk_FUN_0007d77c(int);
+extern void FUN_0007d63e(int);
 
 void set_brightness_to_panel_reg(unsigned int param_1)
 {
-    unsigned long long uVar1;
+    unsigned int uVar1;
     short sVar2;
     int iVar3;
     unsigned int uVar4;
@@ -24,8 +24,8 @@ void set_brightness_to_panel_reg(unsigned int param_1)
             FUN_00019c70(0x000d7251UL, 0x000d7310UL, param_1);
         }
     }
-    thunk_FUN_0007d77c(6);
-    thunk_FUN_0007d77c(0xa9);
+    FUN_0007d63e(6);
+    FUN_0007d63e(0xa9);
     if (5 < param_1) {
         iVar3 = (int)(intptr_t)FUN_000167a8();
         FUN_0007d696((int)((*(short*)(intptr_t)(iVar3 + 0xed8) + 1) * 0x6f));
@@ -33,7 +33,7 @@ void set_brightness_to_panel_reg(unsigned int param_1)
         goto LAB_00046ea0;
     }
     iVar3 = (int)(intptr_t)FUN_000167a8();
-    uVar1 = ((unsigned long long)*(unsigned short*)(intptr_t)(iVar3 + 0xed8) << 1) / 9;
+    uVar1 = ((unsigned int)*(unsigned short*)(intptr_t)(iVar3 + 0xed8) << 1) / 9;
     iVar3 = (int)uVar1;
     if (iVar3 == 0) {
 LAB_00046e7a:
@@ -50,9 +50,8 @@ LAB_00046e7a:
 LAB_00046ea0:
     FUN_0007d67e(uVar4);
     FUN_0007d642(0x31, 4);
-    thunk_FUN_0007d77c(0xa3);
-    thunk_FUN_0007d77c(0x97);
+    FUN_0007d63e(0xa3);
+    FUN_0007d63e(0x97);
     FUN_0007d772(1);
     return;
 }
-
