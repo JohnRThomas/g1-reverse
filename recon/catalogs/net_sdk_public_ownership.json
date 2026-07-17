@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "core": "net",
+ "upstream": {
+  "zephyr_repository": "/Users/freedomcoder/ncs251/zephyr",
+  "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "zephyr_tag": "v3.4.99-ncs1-1",
+  "openamp_repository": "/Users/freedomcoder/ncs251/modules/lib/open-amp",
+  "toolchain": "arm-zephyr-eabi GCC 12.2.0",
+  "optimization": "-Os",
+  "abi": "Cortex-M33+nodsp soft-float AAPCS"
+ },
+ "required_config": {
+  "CONFIG_ASSERT": true,
+  "CONFIG_ASSERT_NO_COND_INFO": true,
+  "CONFIG_OPENAMP_MASTER": false,
+  "CONFIG_OPENAMP_SLAVE": true,
+  "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+ },
+ "functions": [
+  {
+   "va": "0x010357ec",
+   "raw_symbol": "FUN_010357ec",
+   "upstream_symbol": "rpmsg_virtio_get_buffer_size",
+   "abi": "int rpmsg_virtio_get_buffer_size(struct rpmsg_device *rdev)",
+   "source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
+   "object": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+   "firmware_code_size": 60,
+   "reference_code_size": 60,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "With CONFIG_OPENAMP_MASTER=n and CONFIG_OPENAMP_SLAVE=y, OpenAMP defines VIRTIO_DEVICE_ONLY. The pinned source then emits the same complete 0x3c-byte CFG and instruction stream as firmware; only the three final-link call relocations differ in the relocatable object. The normal OpenAMP archive exports this public symbol."
+  },
+  {
+   "va": "0x01036bec",
+   "raw_symbol": "FUN_01036bec",
+   "upstream_symbol": "k_work_init",
+   "abi": "void k_work_init(struct k_work *work, k_work_handler_t handler)",
+   "source": "zephyr/kernel/work.c",
+   "object": "zephyr/kernel/libkernel.a(work.c.obj)",
+   "firmware_code_size": 54,
+   "reference_code_size": 54,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "CONFIG_ASSERT=y with CONFIG_ASSERT_NO_COND_INFO=y retains the two three-argument __ASSERT_NO_MSG branches seen in firmware, followed by the identical 16-byte k_work initialization and handler store. The normal Zephyr kernel archive exports this public symbol."
+  }
+ ]
+}

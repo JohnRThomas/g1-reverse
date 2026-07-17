@@ -18,6 +18,19 @@
  },
  "functions": [
   {
+   "va": "0x010313a8",
+   "raw_symbol": "FUN_010313a8",
+   "upstream_symbol": "z_nrf_rtc_timer_read",
+   "linkage": "global",
+   "abi": "uint64_t z_nrf_rtc_timer_read(void)",
+   "firmware_size": 54,
+   "reference_size": 54,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "exclude_reconstruction": true,
+   "evidence": "The complete 54-byte executable body is instruction-exact to the pinned nrf_rtc_timer.c object. Its three literal-pool words are outside the CFG body; the RTC peripheral literal is identical and the overflow_cnt/anchor words are normal final-link relocations. The normal timer archive exports z_nrf_rtc_timer_read."
+  },
+  {
    "va": "0x010315f0",
    "raw_symbol": "FUN_010315f0",
    "upstream_symbol": "rtc_nrf_isr",
