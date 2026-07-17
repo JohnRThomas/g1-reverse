@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Pure packet-duration CFG crosses the dc0/dc4 literal island; the catalog
+    # truncates its final remainder arm at f20.  Code ends at the branch at
+    # 0x01010f28; alignment/literals begin at 0x01010f2a/0x01010f2c.
+    0x010109ec: 0x540,
     # The controller connection-event timing planner owns all four TBH arms,
     # three terminal assertion tails, and its interleaved literal pools through
     # 0x0101364f.  FUN_01013650 is the next independent entry.

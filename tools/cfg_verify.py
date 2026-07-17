@@ -369,6 +369,9 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Pure packet-duration CFG crosses the dc0/dc4 literal island and ends at
+    # the final remainder-arm branch immediately before literals at 10f2c.
+    ("net", 0x010109ec): 0x540,
     # Link-residue recovery: these addresses were omitted from the exported
     # Ghidra catalog, but each is an independently referenced entry with an
     # exact return/tail-call boundary.  The extents deliberately exclude the
@@ -924,6 +927,9 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # Ghidra inferred undefined8 from live r1 scratch, but every caller uses
+    # only the controller packet-duration value returned in r0.
+    ("net", 0x010109ec): "i32",
     # Whitelist initialization is a void procedure; the tail-called
     # revalidation helper's r0 is not part of this entry's ABI.
     ("app", 0x00035744): "void",
