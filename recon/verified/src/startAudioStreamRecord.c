@@ -1,7 +1,7 @@
 /* Reconstructed startAudioStreamRecord @ 0x2f764  (parity: 300/300 trials, PROVEN) */
 
-extern void DEBUG_PRINT(unsigned int a, unsigned int b);
-extern void FUN_00019c70(void);
+extern void FUN_0007dda4(unsigned int message, unsigned int function);
+extern void FUN_00019c70(unsigned int message, unsigned int function);
 extern unsigned int FUN_000167a8(void);
 extern void FUN_000498c0(unsigned int ms);
 extern int FUN_000720d0(int a, void *b, int c, int d);
@@ -24,9 +24,9 @@ unsigned int startAudioStreamRecord(void)
     } else {
         if (0 < *(int *)0x2000230cUL) {
             if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa4304U, 0xa496fU);
+                FUN_0007dda4(0xa4304U, 0xa496fU);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa4304U, 0xa496fU);
             }
         }
         *(unsigned short *)buf = 1;
@@ -35,13 +35,12 @@ unsigned int startAudioStreamRecord(void)
         FUN_000498c0(10000);
         if (0 < *(int *)0x2000230cUL) {
             if (*(int *)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa432aU, 0xa496fU);
+                FUN_0007dda4(0xa432aU, 0xa496fU);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa432aU, 0xa496fU);
             }
         }
         uVar3 = 0xffffffff;
     }
     return uVar3;
 }
-

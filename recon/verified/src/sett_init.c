@@ -2,8 +2,8 @@
 
 extern int FUN_0004e744(void);
 extern int FUN_0004e494(unsigned int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void FUN_0007dda4(unsigned int, unsigned int, ...);
+extern void FUN_00019c70(unsigned int, unsigned int, ...);
 
 void sett_init(int *param_1)
 {
@@ -19,9 +19,9 @@ void sett_init(int *param_1)
         if (iVar2 == 0) {
             if (1 < *piVar1) {
                 if (*(volatile unsigned int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x9e2cb, 0x9e549);
+                    FUN_0007dda4(0x9e2cb, 0x9e549);
                 } else {
-                    FUN_00019c70();
+                    FUN_00019c70(0x9e2cb, 0x9e549);
                 }
             }
             iVar2 = 1;
@@ -36,9 +36,9 @@ void sett_init(int *param_1)
         format_string = 0x9e266;
     }
     if (iVar3 == 0) {
-        DEBUG_PRINT(format_string, 0x9e549, iVar2);
+        FUN_0007dda4(format_string, 0x9e549, iVar2);
     } else {
-        FUN_00019c70();
+        FUN_00019c70(format_string, 0x9e549, iVar2);
     }
 LAB:
     param_1[0] = iVar2;
@@ -46,4 +46,3 @@ LAB:
     param_1[2] = 0x7c26b;
     param_1[3] = 0x22121;
 }
-
