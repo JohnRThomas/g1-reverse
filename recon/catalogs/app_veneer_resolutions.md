@@ -5,8 +5,8 @@ exact same-entry historical spellings are materialized.
 
 - Residue symbols: 119 (117 unique VAs)
 - Materialized: 20 symbols (20 unique VAs)
-- Already resolved by strong owners: 15 symbols
-- Blocked: 84 symbols
+- Already resolved by strong owners: 16 symbols
+- Blocked: 83 symbols
 
 | VA | Symbol | Decision | Target | Evidence/reason |
 |---|---|---|---|---|
@@ -124,7 +124,7 @@ exact same-entry historical spellings are materialized.
 | `0x00085cf2` | `thunk_FUN_00085cf2` | `materialize_reviewed_same_entry_alias` | `FUN_00085cf2` | push {r4, lr}; historical spelling shares the exact catalog entry |
 | `0x00085ef0` | `FUN_00085ef0` | `blocked` | `` | push {r3, r4, r5, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x000861aa` | `FUN_000861aa` | `materialize_reviewed_tail_alias` | `FUN_00085cf2` | b.w #0x85cf2; exact four-byte unconditional Thumb tail branch |
-| `0x00086228` | `FUN_00086228` | `blocked` | `` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; interior instruction or split entry has no exact alias/ABI proof |
+| `0x00086228` | `FUN_00086228` | `already_resolved_by_strong_owner` | `zcbor_str_encode` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; exact standalone entry reconstructed and CFG-side-effect verified |
 | `0x00086360` | `FUN_00086360` | `blocked` | `` | push {r0, r1, r2, lr}; interior instruction or split entry has no exact alias/ABI proof |
 | `0x0008641c` | `FUN_0008641c` | `materialize_reviewed_tail_alias` | `sched_thread_ready` | b.w #0x73a78; exact four-byte unconditional Thumb tail branch |
 | `0x0008664c` | `FUN_0008664c` | `blocked` | `` | mov.w r3, #0x20; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |

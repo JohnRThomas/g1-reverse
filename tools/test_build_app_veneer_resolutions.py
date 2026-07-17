@@ -21,12 +21,12 @@ class AppVeneerResolutionTests(unittest.TestCase):
         summary = self.catalog["summary"]
         self.assertEqual(119, summary["residue_symbols"])
         self.assertEqual(117, summary["unique_vas"])
-        self.assertEqual(35, summary["resolved_symbols"])
-        self.assertEqual(33, summary["resolved_unique_vas"])
+        self.assertEqual(36, summary["resolved_symbols"])
+        self.assertEqual(34, summary["resolved_unique_vas"])
         self.assertEqual(20, summary["materialized_symbols"])
         self.assertEqual(20, summary["materialized_unique_vas"])
-        self.assertEqual(15, summary["already_strong_symbols"])
-        self.assertEqual(84, summary["blocked_symbols"])
+        self.assertEqual(16, summary["already_strong_symbols"])
+        self.assertEqual(83, summary["blocked_symbols"])
 
     def test_every_materialized_tail_has_exact_thumb_evidence(self):
         for row in self.catalog["entries"]:
@@ -42,7 +42,7 @@ class AppVeneerResolutionTests(unittest.TestCase):
 
     def test_cfg_verified_reconstructed_entries_are_strong_owners(self):
         by_symbol = {row["symbol"]: row for row in self.catalog["entries"]}
-        self.assertEqual(9, len(subject.REVIEWED_RECONSTRUCTED_ENTRIES))
+        self.assertEqual(10, len(subject.REVIEWED_RECONSTRUCTED_ENTRIES))
         for symbol, (address, filename) in subject.REVIEWED_RECONSTRUCTED_ENTRIES.items():
             row = by_symbol[symbol]
             self.assertEqual("0x%08x" % address, row["va"])

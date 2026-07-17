@@ -80,6 +80,10 @@ REVIEWED_RECONSTRUCTED_ENTRIES = {
     "touch_pmic_reset_deassert": (0x00017a34, "FUN_00017a34.c"),
     "FUN_0002893c": (0x0002893c, "FUN_0002893c.c"),
     "FUN_00032fdc": (0x00032fdc, "FUN_00032fdc.c"),
+    # Static zcbor string encoder omitted from the catalog.  Exact prologue,
+    # complete 0x76-byte CFG and typed BSTR/TSTR tail veneers establish it as
+    # an independent owner rather than an interior alias of 0x86208.
+    "FUN_00086228": (0x00086228, "FUN_00086228.c"),
 }
 
 # Identity regeneration completed while this residue snapshot remained

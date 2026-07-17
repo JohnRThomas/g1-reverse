@@ -14,12 +14,12 @@
   "summary": {
     "residue_symbols": 119,
     "unique_vas": 117,
-    "resolved_symbols": 35,
-    "resolved_unique_vas": 33,
+    "resolved_symbols": 36,
+    "resolved_unique_vas": 34,
     "materialized_symbols": 20,
     "materialized_unique_vas": 20,
-    "already_strong_symbols": 15,
-    "blocked_symbols": 84
+    "already_strong_symbols": 16,
+    "blocked_symbols": 83
   },
   "entries": [
     {
@@ -2247,8 +2247,10 @@
         "containing_owner_name": "FUN_00086208",
         "sequential_owner_boundary": true
       },
-      "decision": "blocked",
-      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00086228",
+      "target_symbol": "zcbor_str_encode",
+      "reason": "exact standalone entry reconstructed and CFG-side-effect verified"
     },
     {
       "va": "0x00086360",
