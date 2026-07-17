@@ -28,6 +28,32 @@
  },
  "functions": [
   {
+   "va": "0x0102d5b4",
+   "raw_symbol": "FUN_0102d5b4",
+   "upstream_symbol": "ipc_service_register_endpoint",
+   "abi": "int ipc_service_register_endpoint(const struct device *instance, struct ipc_ept *ept, const struct ipc_ept_cfg *cfg)",
+   "source": "zephyr/subsys/ipc/ipc_service/ipc_service.c",
+   "source_sha256": "86c9c10599c7702e27c4910a70b05fecc3132d553c37a203c387e1705976f8c7",
+   "object": "zephyr/libzephyr.a(ipc_service.c.obj)",
+   "required_config": {
+    "CONFIG_IPC_SERVICE": true,
+    "CONFIG_LOG": true,
+    "CONFIG_LOG_MODE_DEFERRED": true,
+    "CONFIG_LOG_FRONTEND": false,
+    "CONFIG_IPC_SERVICE_LOG_LEVEL": 3
+   },
+   "firmware_code_size": 100,
+   "reference_code_size": 100,
+   "match": "relocation-normalized instruction-exact",
+   "match_score": 1.0,
+   "normalized_relocation_offsets": [
+    "0x1a", "0x3e", "0x58", "0x5c", "0x60"
+   ],
+   "normalized_code_sha256": "a1dac6600d1c4d756c4f07d7ce0037aa3839de825d9891af45ed308f6a35a491",
+   "exclude_reconstruction": true,
+   "evidence": "Pinned Zephyr ipc_service.c at v3.4.99-ncs1-1, compiled by the retained CPUNET build with CONFIG_IPC_SERVICE=y, deferred logging, and CONFIG_IPC_SERVICE_LOG_LEVEL=3, emits the firmware's complete 0x64-byte body. After normalizing its two R_ARM_THM_CALL and three R_ARM_ABS32 relocations, every byte matches: the three argument guards, -EINVAL log path, instance->api and register_endpoint guards, -EIO log path, ept->instance publication, token address increment, and backend tail call. The normal Zephyr archive exports this public symbol; the strong retain-all collision identifies the selected object but is not used as the match proof."
+  },
+  {
    "va": "0x0102e284",
    "raw_symbol": "FUN_0102e284",
    "upstream_symbol": "z_impl_z_log_msg_static_create",

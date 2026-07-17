@@ -36,7 +36,7 @@
   },
   {
    "path": "recon/ownership/net_function_ownership.json",
-   "sha256": "4318333894fdbadd3a80a8a99e2ae31079a98f739c30e50bedae94d42ee84e80"
+   "sha256": "d7d39c2c90edf43aa0f131b25081c5aa9d1f1df9bb9e02dc1685472e2fddf43e"
   },
   {
    "path": "recon/catalogs/net_rtc_timer_ownership.json",
@@ -44,7 +44,7 @@
   },
   {
    "path": "recon/catalogs/net_sdk_public_ownership.json",
-   "sha256": "acd8ce5033ac1a6fa6de0632b7d296ba6a3db969096688997983a793f00be8da"
+   "sha256": "37d1d51f25e46b096a80ee3e823feeeaaad9016aceeb48476d2940d1315abac8"
   },
   {
    "path": "recon/catalogs/net_identity_alias_resolutions.json",
@@ -13091,14 +13091,14 @@
   "net": {
    "summary": {
     "entries": 469,
-    "exclude_reconstruction": 88,
-    "retain_reconstruction": 381,
+    "exclude_reconstruction": 89,
+    "retain_reconstruction": 380,
     "by_kind": {
-     "source": 8,
+     "source": 9,
      "archive": 316,
      "static_helper": 1,
      "table": 0,
-     "glue": 144
+     "glue": 143
     }
    },
    "entries": [
@@ -24766,18 +24766,31 @@
      "va": "0x0102d5b4",
      "raw_symbol": "FUN_0102d5b4",
      "current_symbol": "ipc_service_register_endpoint",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": null,
-     "upstream_unit": null,
-     "confidence": 0.95,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "ipc_service_register_endpoint",
+     "upstream_unit": "zephyr/libzephyr.a(ipc_service.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match"
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "int ipc_service_register_endpoint(const struct device *instance, struct ipc_ept *ept, const struct ipc_ept_cfg *cfg)",
+       "config": {
+        "CONFIG_IPC_SERVICE": true,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_IPC_SERVICE_LOG_LEVEL": 3
+       },
+       "source_unit": "zephyr/subsys/ipc/ipc_service/ipc_service.c",
+       "object": "zephyr/libzephyr.a(ipc_service.c.obj)"
       }
      ]
     },

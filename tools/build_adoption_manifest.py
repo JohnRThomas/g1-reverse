@@ -446,7 +446,8 @@ def _net_sdk_public_entries(data, source, names):
             [_evidence(source, "net_sdk_public_exact_owner",
                        zephyr_commit=upstream.get("zephyr_commit"),
                        match=row.get("match"), match_score=row.get("match_score"),
-                       abi=row.get("abi"), config=config,
+                       abi=row.get("abi"),
+                       config=row.get("required_config", config),
                        source_unit=row.get("source"), object=row.get("object"))],
             "high" if eligible else "medium"))
     return output

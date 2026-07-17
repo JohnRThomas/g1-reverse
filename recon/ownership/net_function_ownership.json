@@ -7680,9 +7680,9 @@
     "0x0102d5b4": {
       "status": "sdk_library",
       "name": "FUN_0102d5b4",
-      "size": 86,
-      "confidence": 0.95,
-      "evidence": "Literal/source-path strings embedded with this routine identify upstream NCS/Zephyr ownership: zephyr/lib/posix/barrier.c, zephyr/lib/posix/cond.c. Its callers/callees remain inside the SDK/controller/kernel cluster; no reconstructed net application boundary calls it as owner code.",
+      "size": 100,
+      "confidence": 1.0,
+      "evidence": "Relocation-normalized instruction-exact match to the pinned NCS 2.5.1 Zephyr subsys/ipc/ipc_service/ipc_service.c ipc_service_register_endpoint under the retained CPUNET IPC/deferred-log configuration. Firmware and reference bodies are both 0x64 bytes.",
       "callers": [
         "0x102ac0c",
         "0x102afbc"
@@ -7691,9 +7691,15 @@
         "0x1039e52"
       ],
       "source_path_evidence": [
-        "zephyr/lib/posix/barrier.c",
-        "zephyr/lib/posix/cond.c"
-      ]
+        "zephyr/subsys/ipc/ipc_service/ipc_service.c"
+      ],
+      "signature_match": {
+        "symbol": "ipc_service_register_endpoint",
+        "ratio": 1.0,
+        "threshold": 0.9,
+        "reference_build": "NCS 2.5.1 Zephyr v3.4.99-ncs1-1, CPUNET retained shell",
+        "provenance": "zephyr/libzephyr.a(ipc_service.c.obj)"
+      }
     },
     "0x0102d618": {
       "status": "sdk_library",
