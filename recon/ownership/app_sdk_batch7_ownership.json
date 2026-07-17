@@ -1,0 +1,190 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "fail_closed": true,
+  "reason": "Configured static/header-inline and application owners need independent verified bodies.",
+  "forbid": [
+   "weak stub",
+   "byte blob",
+   "assembly wrapper",
+   "same-name alias guess"
+  ]
+ },
+ "summary": {
+  "function_count": 8,
+  "reference_count_before": 24,
+  "cfg_verified": 8
+ },
+ "verification_infrastructure": {
+  "att_op_get_type_true_extent": "0x000582b8+0x6c",
+  "gatt_req_send_external_callback_arg": 3,
+  "bt_start_reviewed_state_count": 6
+ },
+ "integration": {
+  "derivatives": "pending centralized readable-tree consolidation",
+  "retain_all_result": "not claimed by this canonical-only milestone"
+ },
+ "functions": [
+  {
+   "symbol": "atomic_and_0",
+   "va": "0x0007f3f0",
+   "size": 22,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic_builtin.h:atomic_and",
+   "linkage": "header_inline_outlined",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "a13dbd30c173e4e8283a087d4f291ffe318aa6b4307622bcecf6ffede47faeeb",
+   "source": "recon/app/src/atomic_and_0.c",
+   "verified_mirror": "recon/verified/src/atomic_and_0.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "discovery_complete_error.c:19",
+    "discovery_complete_not_found.c:20",
+    "gatt_dm_start.c:69"
+   ],
+   "verification": "cfg_verify.py app atomic_and_0: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_and_1",
+   "va": "0x00081180",
+   "size": 22,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic_builtin.h:atomic_and",
+   "linkage": "header_inline_outlined",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "6be9530bdfeabda85b54bc67de82d0d3bbf3c998043509f0099f2d11213be67f",
+   "source": "recon/app/src/atomic_and_1.c",
+   "verified_mirror": "recon/verified/src/atomic_and_1.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_000559fc.c:32",
+    "FUN_000811a4.c:15",
+    "ble_conn_le_prepare_and_connect.c:105"
+   ],
+   "verification": "cfg_verify.py app atomic_and_1: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_clear_bit",
+   "va": "0x0007f5d8",
+   "size": 22,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic.h:atomic_clear_bit",
+   "linkage": "header_inline_outlined",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "0348909c9752bd019964a83576f2ee9f3c7120b89b827d7c3400f01939a07235",
+   "source": "recon/app/src/atomic_clear_bit.c",
+   "verified_mirror": "recon/verified/src/atomic_clear_bit.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_0004f040.c:37",
+    "FUN_0004f0ec.c:41",
+    "bt_ancs_cp_write_callback.c:17"
+   ],
+   "verification": "cfg_verify.py app atomic_clear_bit: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_clear_bit_0",
+   "va": "0x00081e14",
+   "size": 22,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic.h:atomic_clear_bit",
+   "linkage": "header_inline_outlined",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "98aa5de75e3d6faaabf12d55e2b94b34d0aa195a21add5de8a5abce3d08c42ca",
+   "source": "recon/app/src/atomic_clear_bit_0.c",
+   "verified_mirror": "recon/verified/src/atomic_clear_bit_0.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_00059834.c:64",
+    "FUN_00082326.c:18",
+    "att_cfm_sent.c:19"
+   ],
+   "verification": "cfg_verify.py app atomic_clear_bit_0: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "atomic_test_and_set_bit_0",
+   "va": "0x00082236",
+   "size": 34,
+   "upstream_owner": "zephyr/include/zephyr/sys/atomic.h:atomic_test_and_set_bit",
+   "linkage": "header_inline_outlined",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "560ebcdcdd688cda060a7a960737704c5cee992e62029609e22d0ccac25678d3",
+   "source": "recon/app/src/atomic_test_and_set_bit_0.c",
+   "verified_mirror": "recon/verified/src/atomic_test_and_set_bit_0.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_00058c34.c:31",
+    "FUN_000590bc.c:29",
+    "bt_att_recv.c:67"
+   ],
+   "verification": "cfg_verify.py app atomic_test_and_set_bit_0: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "att_op_get_type",
+   "va": "0x000582b8",
+   "size": 108,
+   "upstream_owner": "zephyr/subsys/bluetooth/host/att.c:att_op_get_type",
+   "linkage": "source_static",
+   "checked": 46,
+   "cfg_cases": 6,
+   "sha256": "5864c766eeeab5b91b8c6182845024ca103396f258a7f45457bc2cc295f4f5c9",
+   "source": "recon/app/src/att_op_get_type.c",
+   "verified_mirror": "recon/verified/src/att_op_get_type.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_00058a54.c:64",
+    "bt_att_chan_create_pdu.c:61",
+    "bt_att_recv.c:98"
+   ],
+   "verification": "cfg_verify.py app att_op_get_type: PASS (46 checked; reviewed cases=6)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "bt_start",
+   "va": "0x00019308",
+   "size": 766,
+   "upstream_owner": "firmware application Bluetooth-start owner",
+   "linkage": "application_misclassified",
+   "checked": 6,
+   "cfg_cases": 6,
+   "sha256": "5c00ad066c461afa43b96218eaaa353bfcf6162c2cfa3cb5a60df25dec644070",
+   "source": "recon/app/src/bt_start.c",
+   "verified_mirror": "recon/verified/src/bt_start.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "FUN_00021da8.c:141",
+    "ancs_main.c:176",
+    "global_system_resume.c:44"
+   ],
+   "verification": "cfg_verify.py app bt_start: PASS (6 checked; reviewed cases=6)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "gatt_req_send",
+   "va": "0x00082aee",
+   "size": 128,
+   "upstream_owner": "zephyr/subsys/bluetooth/host/gatt.c:gatt_req_send",
+   "linkage": "source_static_configured",
+   "checked": 40,
+   "cfg_cases": 0,
+   "sha256": "bc4b22a69511be2379d408921265ecfb87dc911d9e1d4f6f88006d3501f8ee50",
+   "source": "recon/app/src/gatt_req_send.c",
+   "verified_mirror": "recon/verified/src/gatt_req_send.c",
+   "reference_count_before": 3,
+   "reference_sites_before": [
+    "bt_gatt_discover.c:139",
+    "bt_gatt_read.c:61",
+    "gatt_parse_read_by_type_rsp.c:104"
+   ],
+   "verification": "cfg_verify.py app gatt_req_send: PASS (40 checked; reviewed cases=0)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  }
+ ]
+}

@@ -215,6 +215,9 @@ TRUE_SIZE_OVERRIDES = {
     0x00056704: 0x1e0,
     0x00059690: 0x28,
     0x00059834: 0xe6,
+    # att_op_get_type's classified extent stopped at 0x5831a, omitting the
+    # confirmation and request return islands at 0x5831c..0x58322.
+    0x000582b8: 0x6c,
     # Include the default-state arm's final branch at 0x599c0; literals start
     # at 0x599c4 after an alignment NOP.
     0x00059920: 0xa2,

@@ -769,6 +769,9 @@ TRUE_SIZE_OVERRIDES = {
     # Function returns at 0x5991a; 0x5991c is its literal and the catalog's
     # 478-byte span incorrectly folds the distinct function at 0x59920.
     ("app", 0x00059834): 0xe6,
+    # The ATT opcode classifier owns its two final return islands through
+    # 0x58322; 0x58324 begins its literal masks.
+    ("app", 0x000582b8): 0x6c,
     # The default-state arm calls the formatter at 0x599bc and rejoins the
     # shared body through the owned branch at 0x599c0.  The catalog boundary
     # excluded that final two-byte branch and misclassified it as a callee.
@@ -1099,6 +1102,10 @@ FIXED_EXTERNAL_CALLBACK_ARGS = {
     # from r3 after several fixed helper calls.
     ("app", 0x0007712c): {3: 0x00080001},
     ("app", 0x00055710): {0: 0x00080001},
+    # gatt_req_send invokes its encode callback from entry r3 after allocating
+    # and populating the ATT request. Keep both runs on the same external
+    # Thumb oracle rather than executing a random scalar as code.
+    ("app", 0x00082aee): {3: 0x00080001},
 }
 
 # Narrow reviewed contracts for external callees that initialize caller-owned
@@ -20608,6 +20615,64 @@ _TOUCH_KEY_THREAD_WITH_TRANSITIONS = [
 REVIEWED_ORACLE_CASES[("app", 0x0002a0d8)] = [
     case for case, _transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]
+
+
+def _bt_start_case(state, *, left=True, critical=True, identity=0x42,
+                   set_name_result=0, adv_result=0, deferred_log=False):
+    """Production-shaped Bluetooth start state with stable device-info owner."""
+    info = emu.SCRATCH + 0x6000
+    product = emu.SCRATCH + 0x7800
+    image = bytearray(0x1060)
+    image[2] = identity & 0xff
+    image[0xfda:0xfdd] = b"\x11\x22\x33"
+    image[0xfe0:0xfe3] = b"\x44\x55\x66"
+    image[0x1058] = state & 0xff
+    memory = [
+        (0x2000ff72, b"\x00"),
+        (0x2000230c, (1).to_bytes(4, "little")),
+        (0x20007554, int(deferred_log).to_bytes(4, "little")),
+        (info, bytes(image)),
+        (product, b"G1\x00"),
+    ]
+    oracles = {0: {0: info}}
+    if state == 2:
+        return ({}, memory, oracles)
+    oracles[1] = {0: info}
+    if state == 0:
+        return ({}, memory, oracles)
+    oracles.update({
+        2: {0: 1 if left else 2},
+        3: {0: product},
+        5: {0: info},
+        7: {0: 1 if left else 2},
+        8: {0: 1 if critical else 0},
+        9: {0: info}, 10: {0: info}, 11: {0: info}, 12: {0: info},
+        14: {0: 5}, 15: {0: set_name_result},
+    })
+    if set_name_result == 0:
+        oracles[16] = {0: adv_result}
+        if adv_result == 0:
+            oracles[17] = {0: info}
+            oracles[18] = {0: 0x12345678, 1: 0}
+    return ({}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00019308)] = [
+    _bt_start_case(2),
+    _bt_start_case(0),
+    _bt_start_case(1, left=True, critical=True, identity=0x42),
+    _bt_start_case(1, left=True, critical=False, identity=0xff,
+                   set_name_result=-5, deferred_log=False),
+    _bt_start_case(1, left=False, critical=True, identity=0xff,
+                   set_name_result=-5, deferred_log=True),
+    _bt_start_case(1, left=False, critical=False, identity=0x24,
+                   adv_result=-5),
+]
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00019308)] = {17: {0}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00019308)] = {
+    0x0007dda4: 4,
+    0x00019c70: 0,
+}
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
     transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]
