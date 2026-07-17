@@ -69,6 +69,16 @@ TRUE_SIZE_OVERRIDES = {
     0x010127f8: 0xba,
     # Scheduler division/round-up helper ends before its 217fc literal.
     0x010217cc: 0x30,
+    # Independently referenced private-controller entries absent from the
+    # exported function catalog.  Bounds exclude following literals/alignment.
+    0x01010110: 0x34,
+    0x010129f4: 0xde,
+    0x01012b50: 0x44,
+    0x01012c14: 0x70,
+    0x010199cc: 0x26,
+    0x01019f9c: 0xd2,
+    0x0101a218: 0xc4,
+    0x01027790: 0x16,
     0x0102d1c0: 0x7a,  # disable path rejoins return at 0x0102d238
     # Catalog-missing rpmsg endpoint delivery adapter.  Its final ordinary
     # return ends at 0x0102d6da; the aligned callback literal follows.

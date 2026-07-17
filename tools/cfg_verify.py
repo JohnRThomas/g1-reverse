@@ -522,6 +522,17 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x0100eec8): 0x3c,
     ("net", 0x010127f8): 0xba,
     ("net", 0x010217cc): 0x30,
+    # Four independently referenced private-controller entries omitted from
+    # the exported Ghidra catalog.  Each extent ends at its ordinary return or
+    # terminal assertion call, before alignment/literal data or the next entry.
+    ("net", 0x01010110): 0x34,
+    ("net", 0x010129f4): 0xde,
+    ("net", 0x01012b50): 0x44,
+    ("net", 0x01012c14): 0x70,
+    ("net", 0x010199cc): 0x26,
+    ("net", 0x01019f9c): 0xd2,
+    ("net", 0x0101a218): 0xc4,
+    ("net", 0x01027790): 0x16,
     # draw_message's catalog stops at 0x35ef0 in the live nonempty-body arm.
     # The body/package formatter, shared emptiness test, and word-wrap draw
     # continue through the back-branch at 0x35f18; literals begin at 0x35f1c.
@@ -935,6 +946,10 @@ RETURN_KIND_OVERRIDES = {
     # Ghidra inferred undefined8 from live r1 scratch, but every caller uses
     # only the controller packet-duration value returned in r0.
     ("net", 0x010109ec): "i32",
+    # Controller mask propagation writes its two-word destination and has no
+    # source-level result; r0 merely contains the masked low word at return.
+    ("net", 0x01010110): "void",
+    ("net", 0x01019f9c): "void",
     # Whitelist initialization is a void procedure; the tail-called
     # revalidation helper's r0 is not part of this entry's ABI.
     ("app", 0x00035744): "void",
@@ -17778,6 +17793,63 @@ REVIEWED_STATE_CASES[("net", 0x0101fd8c)] = [
                          mic_status=0x44),
     _net_ccm_result_case(1, 0x33, end_keystream=7, end_crypt=9, error=0,
                          mic_status=0x123456a9),
+]
+
+
+def _net_phase_finalize_case(flags, state, count, limit=2, completed=5):
+    phase = emu.SCRATCH + 0x3600
+    payload = bytes((0x11, int(limit) & 0xff, int(flags) & 0xff,
+                     int(state) & 0xff, int(completed) & 0xff,
+                     int(count) & 0xff, 0xa5, 0x5a))
+    return ({0: phase}, [(phase, payload)])
+
+
+# The private phase finalizer is intentionally valid only for progressing
+# controller states.  Unconstrained random pointee bytes can manufacture the
+# impossible flags.bit2/state.bit2 steady loop.  These production-shaped cases
+# cover all three phase bits, both count outcomes, completion/reset, and both
+# assertion-prefix outcomes without weakening side-effect comparison.
+REVIEWED_STATE_CASES[("net", 0x010129f4)] = [
+    _net_phase_finalize_case(1, 0, 0),
+    _net_phase_finalize_case(1, 0, 1),
+    _net_phase_finalize_case(2, 0, 0),
+    _net_phase_finalize_case(2, 0, 1),
+    _net_phase_finalize_case(4, 0, 0),
+    _net_phase_finalize_case(4, 0, 1),
+    _net_phase_finalize_case(7, 3, 0),
+    _net_phase_finalize_case(0, 0, 0),
+    _net_phase_finalize_case(0, 0, 1),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x010129f4)] = 1
+
+
+def _net_buffer_flag_case(flag):
+    payload = emu.SCRATCH + 0x3a00
+    image = bytearray(0x30)
+    image[0x13] = int(flag) & 0xff
+    handle = 0x13572468
+    writes = {1: [
+        (1, 0, handle.to_bytes(4, "little"), 0x0102714a),
+        (2, 0, b"\x34\x12", 0x0102714a),
+    ]}
+    oracles = {
+        0: {0: 0x24681357},
+        1: {0: 0},
+        2: {0: payload},
+    }
+    return ({}, [(payload, bytes(image))], oracles, writes)
+
+
+# Descriptor resolution writes both stack outputs before the payload lookup;
+# model that public contract explicitly so stack-layout differences cannot
+# masquerade as semantic differences.  Exercise exact 0xff and non-0xff.
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x010199cc)] = {
+    0x0100a5a0: 0, 0x0102714a: 3, 0x010270d2: 1,
+}
+REVIEWED_ORACLE_CASES[("net", 0x010199cc)] = [
+    _net_buffer_flag_case(0xff),
+    _net_buffer_flag_case(0x00),
+    _net_buffer_flag_case(0x7a),
 ]
 
 
