@@ -38,3 +38,21 @@ cd /tmp
 PYTHONSAFEPATH=1 /Users/freedomcoder/Projects/G1disasm2/.venv/bin/python \
   /Users/freedomcoder/Projects/G1disasm2/tools/test_build_adoption_manifest.py
 ```
+
+## Retained build-source lists
+
+`tools/gen_retained_sources.py` consumes this manifest and the authoritative
+`recon/app/src` and `recon/net/src` trees. It writes:
+
+- `recon/generated/app_retained_sources.cmake`
+- `recon/generated/net_retained_sources.cmake`
+
+Each artifact defines `G1_RETAINED_SOURCES`. Regenerate normally, or use
+`--check` in CI to verify that committed output is current. The generator maps
+every canonical C file to one firmware VA and fails on missing or duplicate
+mappings. Only manifest rows with `exclude_reconstruction: true` are omitted;
+report-only SDC rows are explicitly rejected as exclusion authority.
+
+The symbolized trees are intentionally not selected at this milestone. The
+current app symbolized output contains a stale filename/content identity, so it
+must be regenerated and pass unique-VA validation before becoming build input.
