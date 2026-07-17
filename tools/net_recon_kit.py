@@ -60,6 +60,10 @@ TRUE_SIZE_OVERRIDES = {
     0x0101e15c: 0x04,
     0x0101fd8c: 0x2c,
     0x0101fdc0: 0x0a,
+    # Catalog-missing idle-radio state finisher.  Its last assertion BL ends
+    # at 0x0100b5f4; the global-base literal occupies b5f4..b5f8 and the next
+    # independent tail entry starts at 0x0100b5f8.
+    0x0100b594: 0x60,
     # Three real internal entry points omitted from the Ghidra catalog.  Each
     # is reached by an exact direct tail branch from a catalogued caller.
     # 0x0100eec8 ends at its fatal assertion BL; its queue literal is ef04.

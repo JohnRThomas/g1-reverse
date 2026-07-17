@@ -377,6 +377,10 @@ TRUE_SIZE_OVERRIDES = {
     # exact return/tail-call boundary.  The extents deliberately exclude the
     # following literal pools and alignment halfwords.
     ("app", 0x00016574): 0x06,
+    # Catalog-missing idle-radio state finisher.  Both assertion tails and the
+    # channel-dispatch tail are executable ownership; the base literal begins
+    # exactly at 0x0100b5f4 and is excluded from this extent.
+    ("net", 0x0100b594): 0x60,
     ("app", 0x00016834): 0x1a,
     ("app", 0x00017a04): 0x08,
     ("app", 0x00017a10): 0x08,
@@ -946,6 +950,9 @@ RETURN_KIND_OVERRIDES = {
     # Ghidra inferred undefined8 from live r1 scratch, but every caller uses
     # only the controller packet-duration value returned in r0.
     ("net", 0x010109ec): "i32",
+    # The idle state finisher mutates fixed controller records and dispatches
+    # void helpers; residual r0 from the selected path is caller scratch.
+    ("net", 0x0100b594): "void",
     # Controller mask propagation writes its two-word destination and has no
     # source-level result; r0 merely contains the masked low word at return.
     ("net", 0x01010110): "void",
@@ -16289,6 +16296,48 @@ REVIEWED_TARGET_CALL_ARITIES[("net", 0x01016144)] = {
 }
 
 
+def _controller_radio_idle_state_finish_case(state_mode, ownership_active,
+                                             context_busy, pending_owner):
+    """Complete fixed controller/context records for every idle finish edge."""
+    context = emu.SCRATCH + 0x8200
+    state_image = bytearray(0x48)
+    state_image[0x24] = ownership_active
+    state_image[0x28:0x2c] = context.to_bytes(4, "little")
+    state_image[0x44] = state_mode
+    context_image = bytearray(0x300)
+    context_image[0x74:0x78] = pending_owner.to_bytes(4, "little")
+    context_image[0x7a] = 5
+    context_image[0x7b] = context_busy
+    context_image[0x2f0:0x2f4] = (0x12345678).to_bytes(4, "little")
+    return (
+        {0: emu.SCRATCH + 0x8000, 1: 1},
+        [(0x21000c48, bytes(state_image)), (context, bytes(context_image))],
+        {},
+    )
+
+
+REVIEWED_ORACLE_CASES[("net", 0x0100b594)] = [
+    # Reset/close helper then pending-channel tail.
+    _controller_radio_idle_state_finish_case(0, 0, 0, 1),
+    # Direct pending-channel tail without a preparatory helper.
+    _controller_radio_idle_state_finish_case(1, 0, 0, 1),
+    # Timestamp advance followed by the pending-channel tail.
+    _controller_radio_idle_state_finish_case(2, 1, 0, 1),
+    # The two distinct invalid ownership/mode assertion tails.
+    _controller_radio_idle_state_finish_case(2, 0, 0, 1),
+    _controller_radio_idle_state_finish_case(3, 1, 0, 1),
+    # Both ordinary no-tail returns.
+    _controller_radio_idle_state_finish_case(1, 0, 1, 1),
+    _controller_radio_idle_state_finish_case(1, 0, 0, 0),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0100b594)] = {
+    0x01008d00: 2,
+    0x0100ac34: 0,
+    0x010207cc: 1,
+    0x01022a50: 3,
+}
+
+
 def _controller_handle_update_state_case(*, state=0x2a, value=0,
                                          entry_present=False,
                                          lookup_success=True,
@@ -16756,6 +16805,9 @@ REVIEWED_INTERNAL_CODE_REGIONS = {
 # modes first can manufacture matching fault parity before their private
 # multi-register workers execute, so require the production pointer count.
 REVIEWED_NPTR_COUNTS = {
+    # The only production caller forwards its context/event ABI unchanged,
+    # although the catalog-missing fallback intentionally consumes neither.
+    ("net", 0x0100b594): 2,
     # main has no semantic entry arguments.  One synthetic pointer mode is the
     # verifier's minimum because an address literal is conservatively reported
     # as an r0-derived data slot; real ownership comes from reviewed allocators.
