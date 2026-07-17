@@ -51,8 +51,14 @@ endif()
 # not a glob: only manifest-authorized upstream owners may displace recovered
 # functions, while the canonical reconstruction files remain on disk.
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_retained_sources.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmake)
 
-target_sources(app PRIVATE ${G1_RETAINED_SOURCES})
+target_sources(app PRIVATE
+  ${G1_RETAINED_SOURCES}
+  # Generated only after compiling every recovered table and comparing its
+  # emitted bytes to app_update.bin.  Unknown/skipped tables are never added.
+  ${G1_VERIFIED_DATA_SOURCES}
+)
 target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src
   # The symbolized tree intentionally reuses reviewed helper headers and
@@ -62,4 +68,17 @@ target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/../../headers
   ${CMAKE_CURRENT_LIST_DIR}/../../symbols
   ${CMAKE_CURRENT_LIST_DIR}/../../wiring
+)
+
+# Symbolized reconstruction inputs refer to original-image RAM objects and
+# read-only bytes by their reversible names.  Resolve those names with the
+# generated VA pins used by the parity/full-link pipeline.  PROVIDE is
+# intentionally non-owning: a real Zephyr/module definition remains
+# authoritative, while an otherwise-unresolved recovered object retains its
+# exact original address.  The reviewed aliases are kept separate so this
+# does not turn missing ownership into guessed storage.
+zephyr_linker_sources(SECTIONS
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_globals.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_aliases.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_function_aliases.ld"
 )

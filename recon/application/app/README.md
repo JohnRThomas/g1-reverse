@@ -12,6 +12,21 @@ module integrations.  The symbolized sources reuse reviewed helper headers and
 `.inc` fragments from `../../app/src`; that directory is include-only and does
 not add canonical function bodies to the target.
 
+Recovered read-only tables are admitted through the separate generated list
+`../../generated/app_verified_data_sources.cmake`.  Regenerate that list only
+with `tools/verify_data.py --cmake-output`: the tool cross-compiles every table
+and byte-compares its emitted symbol with `app_update.bin`, so a skipped or
+mismatching input cannot silently enter the build.  Original-image RAM and
+read-only references are resolved by the generated `g1_app_globals.ld` pins;
+these are non-owning `PROVIDE` symbols, not invented storage.
+The integration probe retains the verified payloads to expose symbol/content
+collisions, but does not claim their final VAs: interleaving them at original
+addresses requires the later whole-image section-layout linker script.
+
+`../../wiring/app_objects.c` remains an evidence inventory rather than a build
+input.  It contains explicitly unrecovered queue depths and thread arguments;
+compiling guessed `K_*_DEFINE` objects would hide those real wiring gaps.
+
 The NCS 2.5.1 Zephyr integration exports liblc3's private `src` directory
 globally.  Since that directory also contains a generic `common.h`, it shadows
 nRF Security's Oberon `common.h` and breaks PSA private-field access whenever
