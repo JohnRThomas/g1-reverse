@@ -54,6 +54,9 @@ TRUE_SIZE_OVERRIDES = {
     # Final retry back-branch and read-exhaustion return end at 0x32e68;
     # literals begin at 0x32e6c.
     0x00032c28: 0x242,
+    # The catalog ends immediately before the live default arm.  MVN.W/B
+    # returns -128 through the shared epilogue; literals begin at 0x56ad0.
+    0x00056a68: 0x68,
     # lc3_spec_encode's catalog stops at 0x6ffcc inside two branch-reachable
     # noise-estimation setup islands.  Both rejoin the shared body; the final
     # branch ends at 0x6ffd8, where the next independent prologue begins.

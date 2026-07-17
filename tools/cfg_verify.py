@@ -422,6 +422,10 @@ TRUE_SIZE_OVERRIDES = {
     # and the read-exhaustion return tail are owned code through 0x32e68;
     # literals begin at 0x32e6c.
     ("app", 0x00032c28): 0x242,
+    # The catalog ends immediately before FUN_00056a68's live default arm.
+    # That arm returns -128 via MVN.W/B into the shared epilogue; literals
+    # begin at 0x56ad0.
+    ("app", 0x00056a68): 0x68,
     # Large radio transition omitted from the catalog. Four independent
     # dispatch owners tail-branch here at 0x01012e36, 0x01013746,
     # 0x0101ab86, and 0x0101ba9e. Its contiguous ownership span includes the

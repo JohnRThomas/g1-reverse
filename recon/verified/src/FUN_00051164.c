@@ -1,7 +1,15 @@
 /* Reconstructed FUN_00051164 @ 0x51164  (parity: 300/300 trials, PROVEN) */
 extern void FUN_0004b0dc(unsigned int,unsigned int,unsigned int);
-/* Zephyr architecture boundary; implemented by ARCH_EXCEPT(reason). */
-extern void ARCH_EXCEPT(unsigned int reason);
+/* NCS v2.5.1 Zephyr ARCH_EXCEPT() for ARMv8-M Mainline.  This is an
+ * in-body exception sequence, not a callable firmware symbol. */
+#define ARCH_EXCEPT(reason) do { \
+  __asm__ volatile ( \
+    "eors.n r0, r0\n\t" \
+    "msr BASEPRI, r0\n\t" \
+    "mov r0, %[why]\n\t" \
+    "svc %[id]\n\t" \
+    : : [why] "i" (reason), [id] "i" (2) : "memory"); \
+} while (0)
 void FUN_00051164(void)
 {
   FUN_0004b0dc(2,0xf2432,0x1d);

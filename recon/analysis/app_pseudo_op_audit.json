@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "core": "app",
+  "scope": "CPUAPP compiler_or_ghidra_pseudo_op residues",
+  "policy": {
+    "weak_stubs_forbidden": true,
+    "blob_fallback_forbidden": true,
+    "display_logging_left_unmodified_until_exact_source_path_mapping": true
+  },
+  "entries": [
+    {
+      "symbol": "ARCH_EXCEPT",
+      "classification": "zephyr_in_body_macro",
+      "owner": "FUN_00051164@0x00051164",
+      "evidence": {
+        "original_thumb": [
+          "0x00051170 eors r0,r0",
+          "0x00051172 msr BASEPRI,r0",
+          "0x00051176 mov.w r0,#3",
+          "0x0005117a svc #2"
+        ],
+        "upstream": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/arch/arm/aarch32/error.h",
+        "upstream_config_armv7_m_armv8_m_mainline": true
+      },
+      "resolution": "lower_to_exact_inline_ARCH_EXCEPT_3_sequence",
+      "verification": "cfg_verify_PASS_cases_0"
+    },
+    {
+      "symbol": "default_tail",
+      "classification": "reconstruction_artifact_not_a_call_or_tail",
+      "owner": "FUN_00056a68@0x00056a68",
+      "evidence": {
+        "default_thumb": [
+          "0x00056aca mvn.w r0,#127",
+          "0x00056ace b.n 0x00056a94",
+          "0x00056a94 pop {r4,pc}"
+        ],
+        "abi_return": -128
+      },
+      "resolution": "replace_placeholder_call_with_return_minus_128",
+      "verification": "cfg_verify_PASS_cases_7_true_size_0x68"
+    },
+    {
+      "symbol": "display_debug_log_boundary",
+      "classification": "reconstruction_artifact_for_omitted_real_logging",
+      "owner": "display_dispatch_thread@0x00028bec",
+      "resolution": "blocked_pending_exact_mapping_of_each_machine_log_path_to_readable_C",
+      "blocker": "The placeholder is neither a no-op nor one callable symbol. Each machine site tests g_log_use_alt_sink@0x20007554 and selects debug_print@0x00019c70 or log_message@0x0007dda4 with site-specific format/module/varargs. Removing it or defining a generic zero-argument helper would erase observable calls and arguments.",
+      "shared_operands": {
+        "sink_global": "0x20007554",
+        "module_string": "0x000a1a13",
+        "module_text": "display_dispatch_thread",
+        "alternate_sink": "debug_print@0x00019c70",
+        "default_sink": "log_message@0x0007dda4"
+      },
+      "machine_log_sites": [
+        {"alternate_call":"0x00028c0c","default_call":"0x00028cae","format":"0x00099969","text":"%s(): enter","payload_registers":[]},
+        {"alternate_call":"0x00028c38","default_call":"0x00028cb8","format":"0x000a0ca9","text":"%s(): raster_height_gear:%d, canvas_distance_gear:%d","payload_registers":["r2=display[0xec0]","r3=display[0xec1]"]},
+        {"alternate_call":"0x00028d00","default_call":"0x00028d48","format":"0x000a0cdf","text":"%s(): master sync display suspend.","payload_registers":[]},
+        {"alternate_call":"0x00028d8e","default_call":"0x00028ee2","format":"0x000a0d03","text":"%s(): thread goto sleep.","payload_registers":[]},
+        {"alternate_call":"0x00028dd4","default_call":"0x00028f3a","format":"0x000a0d1d","text":"%s(): thread wakeup!.","payload_registers":[]},
+        {"alternate_call":"0x00028dec","default_call":"0x00028f40","format":"0x000a0d34","text":"%s(): sync display resume.","payload_registers":[]},
+        {"alternate_call":"0x00028edc","default_call":"0x00028f98","format":"0x000a0d50","text":"%s(): no running task, goto next trun","payload_registers":[]},
+        {"alternate_call":"0x000290a2","default_call":"0x00029316","format":"0x000a0d92","text":"%s(): sync to slave exceed MAX_WAIT_COUNT, wait_time %d","payload_registers":["r2=wait_time"]},
+        {"alternate_call":"0x00029126","default_call":"0x00029138","format":"0x000a0d77","text":"%s(): set dashboard data.","payload_registers":[]},
+        {"alternate_call":"0x0002933a","default_call":"0x000293ae","format":"0x000a0dcb","text":"%s(): sync to slave exceed CMD_WAIT_COUNT, wait_time %d","payload_registers":["r2=wait_time"]},
+        {"alternate_call":"0x0002933a","default_call":"0x000293ae","format":"0x000a0e04","text":"%s(): sync to slave exceed LOW_WAIT_COUNT, wait_time %d","payload_registers":["r2=wait_time"],"note":"shared call-selector block; format is loaded at 0x000293aa and execution branches to the call test at 0x00029336"},
+        {"alternate_call":"0x000293e6","default_call":"0x000293f4","format":"0x000a0e3d","text":"%s(): screen id was changed, g->master_sync_pkg.new_screen_id %d pkg->screen_id %d","payload_registers":["r2=previous screen id","r3=current screen id"]},
+        {"alternate_call":"0x00029416","default_call":"0x0002943c","format":"0x000a0e91","text":"%s(): task was closed!!!","payload_registers":[]},
+        {"alternate_call":"0x00029416","default_call":"0x0002943c","format":"0x000a0eab","text":"%s(): screen is closed","payload_registers":[],"note":"shared call-selector block; format is loaded at 0x00029438 and execution branches to the call test at 0x00029414"},
+        {"alternate_call":"0x00029484","default_call":"0x000294ce","format":"0x000a0ee6","text":"%s(): imu->attitude changed ....","payload_registers":[]},
+        {"alternate_call":"0x000294a6","default_call":"0x000294d8","format":"0x000a0f08","text":"%s(): display_reflash_screen %d done","payload_registers":["r2=display[0xd5]"]}
+      ]
+    }
+  ]
+}
