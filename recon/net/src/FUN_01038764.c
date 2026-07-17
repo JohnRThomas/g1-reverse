@@ -1,5 +1,6 @@
 /* net-core FUN_01038764 @ 0x1038764 */
 #include <stdint.h>
+#include <cmsis_gcc.h>
 
 extern int FUN_0103610c(void *lock);
 extern void FUN_01036144(void *lock);
@@ -30,19 +31,19 @@ static __attribute__((always_inline)) inline void scheduler_lock_fatal(unsigned 
 int FUN_01038764(void *work, int priority,
                  uint32_t ticks_low, uint32_t ticks_high)
 {
-    /* The two scheduler-lock regions are BASEPRI-protected in the image; the
-     * integrated Zephyr source must wrap them with arch_irq_lock/unlock. */
     void *const lock = (void *)0x21004b78u;
     void *const wait_queue = (void *)0x21000758u;
     volatile uintptr_t *runtime = (volatile uintptr_t *)0x21004b28u;
     volatile uint8_t *state = (volatile uint8_t *)(runtime[2] + 0x60u);
-    uint32_t token;
+    uint32_t token, irq_key;
     int result;
 
     state[0] = 1;
     state[1] = 1;
-    /* This API is thread-only.  The original checks IPSR and panics with
-     * line 0x12d when invoked from an exception context. */
+    if ((__get_IPSR() & 0x1fu) != 0) {
+        scheduler_fatal(0x12d);
+        return -1;
+    }
     if (work == 0) {
         scheduler_fatal(0x12e);
         return -1;
@@ -54,6 +55,9 @@ int FUN_01038764(void *work, int priority,
 
     token = FUN_010384a8(work, priority, (void *)state,
                          (ticks_low | ticks_high) == 0);
+    irq_key = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
     if (FUN_0103610c(lock) == 0) {
         scheduler_lock_fatal(0x72);
         return -1;
@@ -61,9 +65,11 @@ int FUN_01038764(void *work, int priority,
     FUN_01036144(lock);
 
     if (state[0] == 0) {
-        FUN_01038654(work, token, 0);
+        FUN_01038654(work, token, irq_key);
         if (FUN_01036128(lock) == 0)
             scheduler_lock_fatal(0xf0);
+        __set_BASEPRI(irq_key);
+        __ISB();
         return 0;
     }
 
@@ -71,18 +77,25 @@ int FUN_01038764(void *work, int priority,
     if ((ticks_low | ticks_high) == 0) {
         if (FUN_01036128(lock) == 0)
             scheduler_lock_fatal(0xf0);
+        __set_BASEPRI(irq_key);
+        __ISB();
         return -11;
     }
 
-    result = FUN_010375b8(lock, 0, wait_queue, ticks_low | ticks_high,
+    result = FUN_010375b8(lock, irq_key, wait_queue, ticks_low | ticks_high,
                           ticks_low, ticks_high);
+    irq_key = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40u);
+    __ISB();
     if (FUN_0103610c(lock) == 0) {
         scheduler_lock_fatal(0x72);
         return result;
     }
     FUN_01036144(lock);
-    FUN_01038654(work, token, 0);
+    FUN_01038654(work, token, irq_key);
     if (FUN_01036128(lock) == 0)
         scheduler_lock_fatal(0xf0);
+    __set_BASEPRI(irq_key);
+    __ISB();
     return result;
 }

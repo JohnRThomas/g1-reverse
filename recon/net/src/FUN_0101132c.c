@@ -27,9 +27,22 @@ extern unsigned int FUN_0100f63c(void);
 #define PW(off) (*(volatile unsigned int*)(0x21000f20+(off)))
 #define PH(off) (*(volatile unsigned short*)(0x21000f20+(off)))
 
+struct controller_init_descriptor { unsigned int words[4]; };
+struct controller_iterator { int current; unsigned int control; };
+_Static_assert(sizeof(struct controller_init_descriptor) == 16,
+               "controller init descriptor layout");
+_Static_assert(sizeof(struct controller_iterator) == 8,
+               "controller iterator layout");
+
 int FUN_0101132c(int param_1)
 {
     int r6, r7, r8;
+    struct controller_init_descriptor controller_init;
+
+    controller_init.words[0] = 0x01012439u;
+    controller_init.words[1] = 0x0101205du;
+    controller_init.words[2] = 0x01011f29u;
+    controller_init.words[3] = *(volatile unsigned int *)(PW(0x28) + 4u);
 
     PB[5] = 0;
     *(volatile unsigned char*)(param_1+0x79) = 0;
@@ -37,12 +50,12 @@ int FUN_0101132c(int param_1)
     PW(8) = 0;
     PB[6] = 0;
 
-    FUN_01020738(0);
+    FUN_01020738((int)&controller_init);
     FUN_010203d0();
     FUN_010208b0();
     FUN_0101fca8();
-    FUN_010204e0(0);
-    FUN_0102072c(0);
+    FUN_010204e0((int)0x8e89bed6u);
+    FUN_0102072c(0x00555555);
     FUN_01025c44(0);
     FUN_010129e8(param_1+0x28);
     FUN_010129f4(param_1+0x28);
@@ -112,16 +125,16 @@ int FUN_0101132c(int param_1)
         unsigned short uVar1 = *(volatile unsigned short*)(param_1+2);
         PB[0x12] = (unsigned char)uVar4;
         if ((int)((unsigned int)uVar1 << 0x1f) < 0) {
-            int iVar5c, local0 = 0, local1 = 0x10000;
+            int iVar5c;
+            struct controller_iterator iterator = { 0, 0x10000u };
             int iVar9, iVar3;
             PB[0x20] = 0xff;
             iVar5c = *(volatile int*)(param_1+0x1c);
-            (void)local1;
             for (;;) {
-                iVar9 = FUN_01009dd8(&local0);
-                iVar3 = local0;
+                iVar9 = FUN_01009dd8(&iterator.current);
+                iVar3 = iterator.current;
                 if (iVar9 != 0) return 0;
-                if (iVar5c == local0) continue;
+                if (iVar5c == iterator.current) continue;
                 {
                     int r = FUN_0100aa3c((int)*(volatile unsigned char*)(iVar3+9), iVar3+10,
                                           (int)*(volatile unsigned char*)(iVar5c+9), iVar5c+10);
@@ -135,5 +148,3 @@ int FUN_0101132c(int param_1)
     }
     return 0;
 }
-
-
