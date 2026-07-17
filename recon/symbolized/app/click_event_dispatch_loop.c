@@ -3,6 +3,7 @@
  * public-name: click_event_dispatch_loop
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   enter_active_click_mode                  <= FUN_00028964 @ 0x00028964
  *   click_event_dispatch_loop                <= FUN_00028a1c @ 0x00028a1c
  * address symbols (name @ address):
  *   g_log_level                              @ 0x2000230c
@@ -27,7 +28,7 @@ extern void k_sem_take(void *queue, int32_t key, int32_t timeout,
                                int32_t flags);
 extern void FUN_0002893c(void);
 extern void on_triple_click(void);
-extern void FUN_00028964(void);
+extern void enter_active_click_mode(void);
 extern uint32_t sys_reboot(int32_t a);
 extern void debug_print(uint32_t a, uint32_t b, uint32_t c, ...);
 
@@ -147,7 +148,7 @@ code_r0x00028b4a:
         log_message(uVar5);
       } while (1);
     default:
-      FUN_00028964();
+      enter_active_click_mode();
       FUN_00032fd0(1);
     }
   }

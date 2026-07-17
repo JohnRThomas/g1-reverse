@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   logf                                     <= FUN_00075d5c @ 0x00075d5c
  *   log2f                                    <= FUN_00076718 @ 0x00076718
+ *   nanf                                     <= FUN_00076a88 @ 0x00076a88
  *   thunk_FUN_00071678                       <= FUN_000807f2 @ 0x000807f2
  * address symbols (name @ address):
  *   rodata_a8ea0                             @ 0x000a8ea0
@@ -13,14 +14,14 @@
 
 extern float log2f(void);
 extern unsigned* thunk_FUN_00071678(void);
-extern float FUN_00076a88(unsigned);
+extern float nanf(unsigned);
 float logf(float param_1){
   float result = log2f();
   if((*(signed char*)0x200035afUL != -1) && (param_1 <= 0.0f)){
     if(param_1 != 0.0f){
       unsigned *error = thunk_FUN_00071678();
       *error = 0x21;
-      return FUN_00076a88(0x000a8ea0);
+      return nanf(0x000a8ea0);
     }
     unsigned *error = thunk_FUN_00071678();
     *error = 0x22;

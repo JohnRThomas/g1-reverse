@@ -802,6 +802,15 @@
     "FUN_00016568"
    ]
   },
+  "0x00016574": {
+   "address": "0x00016574",
+   "raw_name": "FUN_00016574",
+   "name": "FUN_00016574",
+   "display_name": "FUN_00016574",
+   "human": false,
+   "source": "recon/app/src/FUN_00016574.c",
+   "aliases": []
+  },
   "0x00016580": {
    "address": "0x00016580",
    "raw_name": "FUN_00016580",
@@ -916,6 +925,15 @@
    "aliases": [
     "FUN_000167f4"
    ]
+  },
+  "0x00016834": {
+   "address": "0x00016834",
+   "raw_name": "FUN_00016834",
+   "name": "FUN_00016834",
+   "display_name": "FUN_00016834",
+   "human": false,
+   "source": "recon/app/src/FUN_00016834.c",
+   "aliases": []
   },
   "0x00016854": {
    "address": "0x00016854",
@@ -1043,6 +1061,33 @@
     "FUN_000179ec"
    ]
   },
+  "0x00017a04": {
+   "address": "0x00017a04",
+   "raw_name": "FUN_00017a04",
+   "name": "FUN_00017a04",
+   "display_name": "FUN_00017a04",
+   "human": false,
+   "source": "recon/app/src/FUN_00017a04.c",
+   "aliases": []
+  },
+  "0x00017a10": {
+   "address": "0x00017a10",
+   "raw_name": "FUN_00017a10",
+   "name": "FUN_00017a10",
+   "display_name": "FUN_00017a10",
+   "human": false,
+   "source": "recon/app/src/FUN_00017a10.c",
+   "aliases": []
+  },
+  "0x00017a1c": {
+   "address": "0x00017a1c",
+   "raw_name": "FUN_00017a1c",
+   "name": "FUN_00017a1c",
+   "display_name": "FUN_00017a1c",
+   "human": false,
+   "source": "recon/app/src/FUN_00017a1c.c",
+   "aliases": []
+  },
   "0x00017a28": {
    "address": "0x00017a28",
    "raw_name": "FUN_00017a28",
@@ -1050,7 +1095,9 @@
    "display_name": "touch_pmic_reset_assert",
    "human": true,
    "source": "function_name_overrides.json: Tail helper writes one through the fixed GPIO descriptor at 0x000889d8; touch_key_thread immediately logs reset_pmic_on. Raw identity remains FUN_00017a28.",
-   "aliases": []
+   "aliases": [
+    "FUN_00017a28"
+   ]
   },
   "0x00017a34": {
    "address": "0x00017a34",
@@ -1059,7 +1106,9 @@
    "display_name": "touch_pmic_reset_deassert",
    "human": true,
    "source": "function_name_overrides.json: Tail helper writes zero through the same fixed GPIO descriptor; touch_key_thread immediately logs reset_pmic_off. Raw identity remains FUN_00017a34.",
-   "aliases": []
+   "aliases": [
+    "FUN_00017a34"
+   ]
   },
   "0x00017a40": {
    "address": "0x00017a40",
@@ -2993,6 +3042,26 @@
     "FUN_000286f8"
    ]
   },
+  "0x0002893c": {
+   "address": "0x0002893c",
+   "raw_name": "FUN_0002893c",
+   "name": "FUN_0002893c",
+   "display_name": "FUN_0002893c",
+   "human": false,
+   "source": "recon/app/src/FUN_0002893c.c",
+   "aliases": []
+  },
+  "0x00028964": {
+   "address": "0x00028964",
+   "raw_name": "FUN_00028964",
+   "name": "enter_active_click_mode",
+   "display_name": "enter_active_click_mode",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered display-state helper clears the pending-reset flag, selects work mode 2, refreshes the device state, activates click mode, and publishes display mode 4. Raw identity remains FUN_00028964 at 0x00028964.",
+   "aliases": [
+    "FUN_00028964"
+   ]
+  },
   "0x000289b0": {
    "address": "0x000289b0",
    "raw_name": "FUN_000289b0",
@@ -4260,6 +4329,15 @@
    "display_name": "FUN_00032fd0",
    "human": false,
    "source": "recon/app/src/FUN_00032fd0.c",
+   "aliases": []
+  },
+  "0x00032fdc": {
+   "address": "0x00032fdc",
+   "raw_name": "FUN_00032fdc",
+   "name": "FUN_00032fdc",
+   "display_name": "FUN_00032fdc",
+   "human": false,
+   "source": "recon/app/src/FUN_00032fdc.c",
    "aliases": []
   },
   "0x00032fe8": {
@@ -8506,6 +8584,17 @@
    "source": "recon/app/src/FUN_00052f68.c",
    "aliases": []
   },
+  "0x00052fbc": {
+   "address": "0x00052fbc",
+   "raw_name": "FUN_00052fbc",
+   "name": "bt_settings_delete",
+   "display_name": "bt_settings_delete",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body implements the pinned NCS 2.5.1 Bluetooth settings deletion ABI: it formats the optional identity/address key path and calls settings_delete. Raw identity remains FUN_00052fbc at 0x00052fbc.",
+   "aliases": [
+    "FUN_00052fbc"
+   ]
+  },
   "0x00053008": {
    "address": "0x00053008",
    "raw_name": "FUN_00053008",
@@ -12657,6 +12746,17 @@
     "FUN_000664f0"
    ]
   },
+  "0x00066524": {
+   "address": "0x00066524",
+   "raw_name": "FUN_00066524",
+   "name": "qspi_xfer",
+   "display_name": "qspi_xfer",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body is the exact static nrfx_qspi.c transfer helper: it validates the EasyDMA buffer/state, programs QSPI read/write descriptors, starts the peripheral, and preserves the firmware error ABI. Raw identity remains FUN_00066524 at 0x00066524.",
+   "aliases": [
+    "FUN_00066524"
+   ]
+  },
   "0x00066644": {
    "address": "0x00066644",
    "raw_name": "FUN_00066644",
@@ -13943,6 +14043,17 @@
    "source": "recon/app/src/FUN_000732d4.c",
    "aliases": []
   },
+  "0x0007332c": {
+   "address": "0x0007332c",
+   "raw_name": "FUN_0007332c",
+   "name": "k_work_schedule_for_queue",
+   "display_name": "k_work_schedule_for_queue",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body implements Zephyr's queue-specific delayable-work scheduling path, including validation, work lock, submission and timeout programming. Raw identity remains FUN_0007332c at 0x0007332c.",
+   "aliases": [
+    "FUN_0007332c"
+   ]
+  },
   "0x00073418": {
    "address": "0x00073418",
    "raw_name": "FUN_00073418",
@@ -13951,6 +14062,17 @@
    "human": false,
    "source": "recon/app/src/FUN_00073418.c",
    "aliases": []
+  },
+  "0x00073424": {
+   "address": "0x00073424",
+   "raw_name": "FUN_00073424",
+   "name": "k_work_reschedule_for_queue",
+   "display_name": "k_work_reschedule_for_queue",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered body implements Zephyr's queue-specific delayable-work rescheduling path, including cancellation of an existing timeout before submission and reprogramming. Raw identity remains FUN_00073424 at 0x00073424.",
+   "aliases": [
+    "FUN_00073424"
+   ]
   },
   "0x0007350c": {
    "address": "0x0007350c",
@@ -14334,8 +14456,7 @@
    "human": true,
    "source": "function_name_overrides.json: Pinned Zephyr kernel timer implementation. The timer pointer plus two k_timeout_t arguments has the same public k_timer_start ABI; the AAPCS-aligned 64-bit register/stack placement was independently checked for this approximate signature. Raw identity remains FUN_00075174.",
    "aliases": [
-    "FUN_00075174",
-    "k_timer_start"
+    "FUN_00075174"
    ]
   },
   "0x000751d0": {
@@ -14550,6 +14671,17 @@
    "human": false,
    "source": "recon/app/src/FUN_000768e0.c",
    "aliases": []
+  },
+  "0x00076a88": {
+   "address": "0x00076a88",
+   "raw_name": "FUN_00076a88",
+   "name": "nanf",
+   "display_name": "nanf",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered newlib-compatible nanf leaf accepts the tag pointer and returns the canonical single-precision quiet-NaN bit pattern. Raw identity remains FUN_00076a88 at 0x00076a88.",
+   "aliases": [
+    "FUN_00076a88"
+   ]
   },
   "0x00076a94": {
    "address": "0x00076a94",
@@ -16041,6 +16173,17 @@
    "human": false,
    "source": "recon/app/src/FUN_0007c082.c",
    "aliases": []
+  },
+  "0x0007c084": {
+   "address": "0x0007c084",
+   "raw_name": "FUN_0007c084",
+   "name": "gpio_pin_set_dt",
+   "display_name": "gpio_pin_set_dt",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered out-of-line instance of Zephyr's gpio_pin_set_dt inline contract, including active-low flag normalization and gpio_pin_set_raw dispatch. Raw identity remains FUN_0007c084 at 0x0007c084.",
+   "aliases": [
+    "FUN_0007c084"
+   ]
   },
   "0x0007c08e": {
    "address": "0x0007c08e",
@@ -25087,12 +25230,17 @@
   "FUN_000133f8": "0x000133f8",
   "FUN_00014b60": "0x00014b60",
   "FUN_00016110": "0x00016110",
+  "FUN_00016574": "0x00016574",
   "FUN_00016580": "0x00016580",
   "FUN_0001658c": "0x0001658c",
   "FUN_000165a4": "0x000165a4",
+  "FUN_00016834": "0x00016834",
   "FUN_00017688": "0x00017688",
   "FUN_00017858": "0x00017858",
   "FUN_0001793c": "0x0001793c",
+  "FUN_00017a04": "0x00017a04",
+  "FUN_00017a10": "0x00017a10",
+  "FUN_00017a1c": "0x00017a1c",
   "FUN_000181f0": "0x000181f0",
   "FUN_00018300": "0x00018300",
   "FUN_0001965c": "0x0001965c",
@@ -25123,6 +25271,7 @@
   "FUN_00026850": "0x00026850",
   "FUN_0002685c": "0x0002685c",
   "FUN_000269fc": "0x000269fc",
+  "FUN_0002893c": "0x0002893c",
   "FUN_0002a4c0": "0x0002a4c0",
   "FUN_0002a4f4": "0x0002a4f4",
   "FUN_0002a8d8": "0x0002a8d8",
@@ -25145,6 +25294,7 @@
   "FUN_00032808": "0x00032808",
   "FUN_00032b24": "0x00032b24",
   "FUN_00032fd0": "0x00032fd0",
+  "FUN_00032fdc": "0x00032fdc",
   "FUN_00032fe8": "0x00032fe8",
   "FUN_0003304c": "0x0003304c",
   "FUN_00033088": "0x00033088",
@@ -26134,6 +26284,7 @@
   "bt_send_enabled": "0x00017e3c",
   "bt_set_name_internal": "0x00054c74",
   "bt_settings_decode_key": "0x00080cf2",
+  "bt_settings_delete": "0x00052fbc",
   "bt_settings_encode_key": "0x00052e7c",
   "bt_settings_save_or_delete_key": "0x00053184",
   "bt_settings_store": "0x00052f18",
@@ -26354,6 +26505,7 @@
   "enqueue_dmic": "0x0002ec5c",
   "enqueue_file": "0x00023514",
   "enqueue_uid": "0x00018e48",
+  "enter_active_click_mode": "0x00028964",
   "enter_dashboard_burial_point": "0x0004a9ec",
   "enter_wear_burial_point": "0x0004a890",
   "entropy_bt_get_entropy": "0x00083896",
@@ -26551,6 +26703,7 @@
   "gpio_pin_get_checked": "0x00017980",
   "gpio_pin_get_raw_checked": "0x000177c4",
   "gpio_pin_set_checked": "0x00017768",
+  "gpio_pin_set_dt": "0x0007c084",
   "gpiote_channel_release_if_unshared": "0x00065504",
   "gpiote_in_event_enable": "0x000659e4",
   "gpiote_in_event_reg_offset": "0x000655ec",
@@ -26708,7 +26861,9 @@
   "k_work_init": "0x00072e50",
   "k_work_queue_init": "0x000730b4",
   "k_work_queue_start": "0x000730e8",
+  "k_work_reschedule_for_queue": "0x00073424",
   "k_work_schedule_at_ticks": "0x000531cc",
+  "k_work_schedule_for_queue": "0x0007332c",
   "k_work_submit_to_queue": "0x000865fc",
   "key_event_thread": "0x0002955c",
   "kmu_derive_cmac": "0x0007be24",
@@ -26858,6 +27013,7 @@
   "mutex_lock_wait_forever": "0x0008583a",
   "mutex_lock_wait_forever_dup": "0x000859b6",
   "mutex_unlock_syscall_handler": "0x000745c8",
+  "nanf": "0x00076a88",
   "navigation_direction_img_display": "0x0003dff8",
   "navigation_overview_map_display": "0x0003e05c",
   "navigation_panoramic_map_display": "0x0003e7f8",
@@ -27072,6 +27228,7 @@
   "qspi_rdsr": "0x000839a6",
   "qspi_ready_wait": "0x0006649c",
   "qspi_workaround_apply": "0x000667e0",
+  "qspi_xfer": "0x00066524",
   "quicknote_buffer_pool_init": "0x00047148",
   "random": "0x00017f70",
   "rate_limited_elapsed_seconds_tick": "0x0004a46c",

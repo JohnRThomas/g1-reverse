@@ -433,6 +433,34 @@
    "name": "decode_rle_byte_pairs",
    "evidence": "Both navigation renderers pass a count/value byte-pair stream and output canvas; each pair expands through memset and the function returns the total decoded byte count. Raw identity remains FUN_0007da70."
   },
+  "0x00028964": {
+   "name": "enter_active_click_mode",
+   "evidence": "Recovered display-state helper clears the pending-reset flag, selects work mode 2, refreshes the device state, activates click mode, and publishes display mode 4. Raw identity remains FUN_00028964 at 0x00028964."
+  },
+  "0x00052fbc": {
+   "name": "bt_settings_delete",
+   "evidence": "Recovered body implements the pinned NCS 2.5.1 Bluetooth settings deletion ABI: it formats the optional identity/address key path and calls settings_delete. Raw identity remains FUN_00052fbc at 0x00052fbc."
+  },
+  "0x00066524": {
+   "name": "qspi_xfer",
+   "evidence": "Recovered body is the exact static nrfx_qspi.c transfer helper: it validates the EasyDMA buffer/state, programs QSPI read/write descriptors, starts the peripheral, and preserves the firmware error ABI. Raw identity remains FUN_00066524 at 0x00066524."
+  },
+  "0x0007332c": {
+   "name": "k_work_schedule_for_queue",
+   "evidence": "Recovered body implements Zephyr's queue-specific delayable-work scheduling path, including validation, work lock, submission and timeout programming. Raw identity remains FUN_0007332c at 0x0007332c."
+  },
+  "0x00073424": {
+   "name": "k_work_reschedule_for_queue",
+   "evidence": "Recovered body implements Zephyr's queue-specific delayable-work rescheduling path, including cancellation of an existing timeout before submission and reprogramming. Raw identity remains FUN_00073424 at 0x00073424."
+  },
+  "0x00076a88": {
+   "name": "nanf",
+   "evidence": "Recovered newlib-compatible nanf leaf accepts the tag pointer and returns the canonical single-precision quiet-NaN bit pattern. Raw identity remains FUN_00076a88 at 0x00076a88."
+  },
+  "0x0007c084": {
+   "name": "gpio_pin_set_dt",
+   "evidence": "Recovered out-of-line instance of Zephyr's gpio_pin_set_dt inline contract, including active-low flag normalization and gpio_pin_set_raw dispatch. Raw identity remains FUN_0007c084 at 0x0007c084."
+  },
   "0x00086698": {
    "name": "uptime_ticks_get",
    "evidence": "The four-byte tail thunk branches directly to the 64-bit uptime tick implementation at 0x00074f68. This unique name resolves the rejected generated thunk-name collision while preserving raw identity FUN_00086698."

@@ -3,6 +3,7 @@
  * public-name: FUN_00075c2c
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   nanf                                     <= FUN_00076a88 @ 0x00076a88
  *   thunk_FUN_00071678                       <= FUN_000807f2 @ 0x000807f2
  * address symbols (name @ address):
  *   rodata_a8ea0                             @ 0x000a8ea0
@@ -12,7 +13,7 @@
 extern float FUN_00075f88(void);
 extern float FUN_000868ee(float);
 extern int *thunk_FUN_00071678(void);
-extern float FUN_00076a88(unsigned int descriptor);
+extern float nanf(unsigned int descriptor);
 
 float FUN_00075c2c(float value)
 {
@@ -23,7 +24,7 @@ float FUN_00075c2c(float value)
         if (converted > 1.0f) {
             int *error_number = thunk_FUN_00071678();
             *error_number = 0x21;
-            return FUN_00076a88(((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/);
+            return nanf(((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/);
         }
     }
     return fallback;
