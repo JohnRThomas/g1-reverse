@@ -6,7 +6,7 @@ extern void FUN_0007350c(uint32_t,uint32_t,int,int);
 extern void FUN_0007e2ec(uint32_t,int);
 extern void FUN_0007e2fa(uint32_t,...);
 extern int FUN_00080f92(void);
-extern void FUN_000826e0(int,uint32_t);
+extern uint64_t FUN_000826e0(int,uint32_t);
 extern int FUN_0008270c(uint32_t);
 extern void FUN_000828da(int,uint32_t,int);
 
@@ -36,7 +36,6 @@ void FUN_00059d24(uint32_t param_1, uint32_t param_2, uint32_t param_3){
     FUN_000828da(0x20006328 + iVar2 + 1, param_2, iVar3);
     *(volatile char*)(iVar1 + iVar4*0xc) = (char)param_1;
   }
-  FUN_000826e0(iVar3 + 8, 1 << (param_3 & 0xff));
-  FUN_0007350c(0x20006350, 0, 0x8000, 0);
+  uint64_t pending = FUN_000826e0(iVar3 + 8, 1 << (param_3 & 0xff));
+  FUN_0007350c(0x20006350, (uint32_t)(pending >> 32), 0x8000, 0);
 }
-

@@ -10,8 +10,12 @@ extern void FUN_00059834(int);
 void FUN_00059920(int param_1){
   uint8_t *puVar1;
   uint32_t uVar2;
-  volatile uint32_t local_58, local_54;
-  volatile uint8_t *local_50, *local_4c;
+  struct {
+    uint32_t type;
+    uint32_t format;
+    uint8_t *text;
+    uintptr_t style;
+  } record;
   uint8_t auStack_44[12];
   uint8_t auStack_38[32];
   puVar1 = FUN_00081526(**(uint32_t**)(param_1 - 0x160));
@@ -26,16 +30,11 @@ void FUN_00059920(int param_1){
   }
   FUN_00086fee(auStack_44, uVar2);
 LAB:
-  local_50 = (volatile uint8_t*)(uint32_t)puVar1[1];
-  local_54 = puVar1[2];
-  local_58 = puVar1[3];
-  local_4c = auStack_44;
   FUN_0007ddbe(auStack_38, 0x1e, 0x9a1ea, puVar1[6], puVar1[5], puVar1[4]);
-  local_54 = 0xf4697;
-  local_4c = (volatile uint8_t*)(((uintptr_t)local_4c & 0xffff0000) | 0x200);
-  local_58 = 0x1000003;
-  local_50 = auStack_38;
-  FUN_00081ddc(0x88100, 0x1c40, (void*)&local_58);
+  record.type = 0x1000003;
+  record.format = 0xf4697;
+  record.text = auStack_38;
+  record.style = ((uintptr_t)auStack_44 & 0xffff0000) | 0x200;
+  FUN_00081ddc(0x88100, 0x1c40, &record);
   FUN_00059834(param_1 - 0x158);
 }
-

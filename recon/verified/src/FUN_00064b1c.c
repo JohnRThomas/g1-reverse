@@ -1,6 +1,5 @@
 /* Reconstructed FUN_00064b1c @ 0x64b1c  (parity: 300/300 trials, PROVEN) */
 
-typedef void (*fp0_t)(void);
 typedef void (*fp1_t)(volatile int*);
 
 void FUN_00064b1c(volatile int *param_1)
@@ -16,14 +15,14 @@ void FUN_00064b1c(volatile int *param_1)
             }
             if (cond1) {
                 if (param_1[4] != 0) {
-                    fp0_t fp = (fp0_t)(*(volatile int*)((char*)base + 4));
-                    fp();
+                    fp1_t release = (fp1_t)(*(volatile int*)((char*)base + 4));
+                    release((volatile int *)param_1[4]);
                 }
             }
         }
         if ((param_1[3] << 0x16) >= 0 && param_1[8] != 0) {
-            fp0_t fp2 = (fp0_t)(*(volatile int*)((char*)base + 4));
-            fp2();
+            fp1_t release = (fp1_t)(*(volatile int*)((char*)base + 4));
+            release((volatile int *)param_1[8]);
         }
         {
             fp1_t fp3 = (fp1_t)(*(volatile int*)((char*)base + 4));
@@ -32,4 +31,3 @@ void FUN_00064b1c(volatile int *param_1)
         param_1 = (volatile int*)iVar2;
     }
 }
-
