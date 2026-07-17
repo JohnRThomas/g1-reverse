@@ -1,76 +1,70 @@
-/* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed getAppLanguageInfofromFlash @ 0x23d0c. */
 #include <stdint.h>
-extern void DEBUG_PRINT(uint32_t, ...);
-extern void *FUN_000167a8(void);
-extern void FUN_00019c70(uint32_t, ...);
-extern int FUN_0008638c(uint32_t);
 
-unsigned char getAppLanguageInfofromFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
+extern void DEBUG_PRINT(uint32_t format, ...);
+extern void FUN_00019c70(uint32_t format, ...);
+extern uintptr_t FUN_000167a8(void);
+extern int FUN_0008638c(uint32_t device);
+
+typedef int (*flash_read_fn)(void *context, uint32_t address,
+                             void *destination, unsigned length);
+
+uint8_t getAppLanguageInfofromFlash(uint32_t request, uint32_t saved_word,
+                                    uint32_t reason)
 {
-    volatile int *piVar1;
-    volatile unsigned int *puVar2;
-    int iVar3;
-    unsigned int uVar4;
-    int iVar5;
-    unsigned char uVar6;
-    int iVar7;
+    volatile int *log_level = (volatile int *)0x2000230c;
+    volatile uint32_t *deferred_logger = (volatile uint32_t *)0x20007554;
+    volatile uint32_t *flash_device = (volatile uint32_t *)0x00087bf0;
+    volatile uint8_t *published_language = (volatile uint8_t *)0x20018463;
+    volatile uint32_t language_record = saved_word;
 
-    piVar1 = (volatile int*)0x2000230cUL;
-    unsigned int local_14 = param_2;
-
-    if (2 < *piVar1) {
-        if (*(volatile int*)0x20007554UL == 0) {
-            DEBUG_PRINT(0x0009e9bfUL, 0x0009ed2eUL, param_3, 0, param_1);
+    if (*log_level > 2) {
+        if (*deferred_logger == 0) {
+            DEBUG_PRINT(0x0009e9bf, 0x0009ed2e, reason, 0, request);
         } else {
-            FUN_00019c70(0x0009e9bfUL, 0x0009ed2eUL, param_3, 0, param_1);
+            FUN_00019c70(0x0009e9bf, 0x0009ed2e, reason, 0, request);
         }
     }
-    puVar2 = (volatile unsigned int*)0x00087bf0UL;
-    iVar3 = FUN_0008638c(0x00087bf0UL);
-    if (iVar3 == 0) {
-        if (0 < *piVar1) {
-            if (*(volatile int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x0009e9eaUL, 0x0009ed2eUL, *puVar2, 0, param_1);
+
+    if (FUN_0008638c((uint32_t)flash_device) == 0) {
+        if (*log_level > 0) {
+            if (*deferred_logger == 0) {
+                DEBUG_PRINT(0x0009e9ea, 0x0009ed2e,
+                            *flash_device, 0, request);
             } else {
-                FUN_00019c70(0x0009e9eaUL, 0x0009ed2eUL, *puVar2, 0, param_1);
+                FUN_00019c70(0x0009e9ea, 0x0009ed2e,
+                             *flash_device, 0, request);
             }
         }
-        uVar6 = 0xff;
-    } else {
-        local_14 = local_14 & 0xff000000UL;
-        char *p1 = (char*)FUN_000167a8();
-        void *pcVar8 = *(void**)(p1 + 0x1030);
-        void *r1arg = FUN_000167a8();
-        int (*fn)(void*, unsigned int, void*, int) = (int(*)(void*, unsigned int, void*, int))pcVar8;
-        iVar5 = fn(r1arg, 0x13e000, &local_14, 3);
-        iVar3 = 0x20018462;
-        iVar7 = *piVar1;
-        if (iVar5 == 0) {
-            if ((char)local_14 == -0x56) {
-                uVar6 = (unsigned char)(local_14 >> 8);
+        return 0xff;
+    }
+
+    language_record &= 0xff000000u;
+    uintptr_t state = FUN_000167a8();
+    flash_read_fn read_flash = *(flash_read_fn *)(state + 0x1030);
+    void *context = (void *)FUN_000167a8();
+    int status = read_flash(context, 0x13e000, (void *)&language_record, 3);
+
+    if (status != 0) {
+        if (*log_level > 0) {
+            if (*deferred_logger == 0) {
+                DEBUG_PRINT(0x0009ea0a, 0x0009ed2e, 0x13e000);
             } else {
-                uVar6 = 2;
+                FUN_00019c70(0x0009ea0a, 0x0009ed2e, 0x13e000);
             }
-            *(unsigned char*)(intptr_t)(0x20018462 + 1) = uVar6;
-            if (3 < iVar7) {
-                if (*(volatile int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x0009ea37UL, 0x0009ed2eUL, (unsigned int)*(unsigned char*)(intptr_t)(iVar3 + 1));
-                } else {
-                    FUN_00019c70(0x0009ea37UL, 0x0009ed2eUL, (unsigned int)*(unsigned char*)(intptr_t)(iVar3 + 1));
-                }
-            }
-            uVar6 = *(unsigned char*)(intptr_t)(iVar3 + 1);
+        }
+        return 0;
+    }
+
+    uint8_t language = (int8_t)language_record == (int8_t)0xaa ?
+                       (uint8_t)(language_record >> 8) : 2;
+    *published_language = language;
+    if (*log_level > 3) {
+        if (*deferred_logger == 0) {
+            DEBUG_PRINT(0x0009ea37, 0x0009ed2e, *published_language);
         } else {
-            if (0 < iVar7) {
-                if (*(volatile int*)0x20007554UL == 0) {
-                    DEBUG_PRINT(0x0009ea0aUL, 0x0009ed2eUL, 0x13e000UL);
-                } else {
-                    FUN_00019c70(0x0009ea0aUL, 0x0009ed2eUL, 0x13e000UL);
-                }
-            }
-            uVar6 = 0;
+            FUN_00019c70(0x0009ea37, 0x0009ed2e, *published_language);
         }
     }
-    return uVar6;
+    return *published_language;
 }
-

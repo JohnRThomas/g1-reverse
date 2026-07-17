@@ -5,7 +5,7 @@ extern unsigned int FUN_0008638c(unsigned int);
 extern unsigned short FUN_00083a9a(unsigned int);
 extern unsigned int FUN_000167a8(void);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int, ...);
 
 unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, unsigned int *param_3, unsigned int param_4)
 {
@@ -21,7 +21,7 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa3aa6, 0xa3ae5);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa3aa6, 0xa3ae5);
             }
         }
         uVar5 = 0xffffffff;
@@ -33,9 +33,9 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
         *(volatile unsigned int*)0x20007b68UL = uVar5;
         if (2 < iVar4) {
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0xa3a8b, 0xa3ae5, 0x87bf0, 0, param_4);
+                DEBUG_PRINT(0xa3a8b, 0xa3ae5, 0x20007b68, 0, param_4);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa3a8b, 0xa3ae5, 0x20007b68, 0, param_4);
             }
         }
         uVar3 = FUN_00083a9a(0x87bf0);
@@ -45,4 +45,3 @@ unsigned int ext_flash_api_init(unsigned int *param_1, unsigned int *param_2, un
     }
     return uVar5;
 }
-

@@ -4,8 +4,8 @@ extern void FUN_00086c78(void*, int, int);
 extern void FUN_00072240(unsigned int, void*, int, int);
 extern void FUN_00086c04(void*, unsigned int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
-extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void DEBUG_PRINT(unsigned int, ...);
+extern void FUN_00019c70(unsigned int, ...);
 
 int enqueue_ancs(unsigned int param_1)
 {
@@ -19,9 +19,9 @@ int enqueue_ancs(unsigned int param_1)
         if (*(volatile int*)(0x20006a6cUL + 0x24) == 10) {
             FUN_00072240(0x20006a6cUL, buf, 0, 0);
             if (*(volatile unsigned int*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x9a964, 0, 0);
+                DEBUG_PRINT(0x9a964);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x9a964);
             }
         }
         FUN_00086c04(buf, param_1, 0x1b4);
@@ -30,10 +30,9 @@ int enqueue_ancs(unsigned int param_1)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0x9a981, 0x9b19d);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0x9a981, 0x9b19d);
             }
         }
     }
     return iVar1;
 }
-

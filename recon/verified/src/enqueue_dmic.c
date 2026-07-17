@@ -4,7 +4,7 @@ extern void FUN_00086c04(void*, unsigned int, int);
 extern void FUN_00072240(unsigned int, void*, int, int);
 extern int FUN_000720d0(unsigned int, void*, int, int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int, ...);
 
 int enqueue_dmic(unsigned int param_1)
 {
@@ -18,7 +18,7 @@ int enqueue_dmic(unsigned int param_1)
             if (*(volatile unsigned int*)0x20007554UL == 0) {
                 DEBUG_PRINT(0xa3f17, 0xa41e2, 8);
             } else {
-                FUN_00019c70();
+                FUN_00019c70(0xa3f17, 0xa41e2, 8);
             }
         }
     }
@@ -28,9 +28,8 @@ int enqueue_dmic(unsigned int param_1)
         if (*(volatile unsigned int*)0x20007554UL == 0) {
             DEBUG_PRINT(0xa3f45, 0xa41e2);
         } else {
-            FUN_00019c70();
+            FUN_00019c70(0xa3f45, 0xa41e2);
         }
     }
     return iVar1;
 }
-
