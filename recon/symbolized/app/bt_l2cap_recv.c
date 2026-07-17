@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_l2cap_recv                            <= FUN_00057cc4 @ 0x00057cc4
- *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_put                              <= FUN_0005f200 @ 0x0005f200
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
  *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
@@ -16,7 +16,7 @@
 
 #include <stdint.h>
 extern void FUN_00057b60(int);
-extern void net_buf_destroy_default(int,int);
+extern void net_buf_put(int,int);
 extern void net_buf_unref(int);
 extern int  net_buf_simple_pull_5f594(int,int);
 extern void FUN_00072fdc(int);
@@ -49,7 +49,7 @@ void bt_l2cap_recv(uint32_t param_1, int param_2, int param_3){
         int iVar2 = FUN_000816a2(iVar1+0x10);
         if ((iVar2 << 0x1e) >= 0){
             if ((uint16_t)(*(volatile uint16_t*)(iVar1+0xb6) - 0x80) <= 0x7f){
-                net_buf_destroy_default(iVar1+0x98, param_2);
+                net_buf_put(iVar1+0x98, param_2);
                 FUN_00072fdc(iVar1+0x88); return;
             }
             FUN_00057b60(iVar1);

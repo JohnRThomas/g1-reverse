@@ -1,9 +1,19 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101a2e0 @ 0x0101a2e0
+ * public-name: FUN_0101a2e0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
+ * address symbols (name @ address):
+ *   g_net_session_state_block                @ 0x210010a0
+ *   g_net_session_queue_obj                  @ 0x210010f0
+ */
 /* net-core FUN_0101a2e0 @ 0x101a2e0  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern void FUN_01019128(void);
-extern void *FUN_01019204(void);
+extern void *controller_radio_state_get(void);
 extern void FUN_01019254(void);
 extern void FUN_010196e0(void);
 extern void FUN_0101dd0c(unsigned int);
@@ -17,8 +27,8 @@ void FUN_0101a2e0(void)
   unsigned char r2;
 
   if (pcVar2[0] == 0) {
-    FUN_01008d00(0x21, 0x17b);
-    for (;;) { FUN_01008d00(0x21, 0x17b); }
+    sdc_assertion_fail(0x21, 0x17b);
+    for (;;) { sdc_assertion_fail(0x21, 0x17b); }
   }
 
   if (pcVar2[0x2c] != 0) {
@@ -32,8 +42,8 @@ void FUN_0101a2e0(void)
 
 L_332:
   if (pcVar2[0] != 5) {
-    FUN_01008d00(0x21, 0x25b);
-    for (;;) { FUN_01008d00(0x21, 0x25b); }
+    sdc_assertion_fail(0x21, 0x25b);
+    for (;;) { sdc_assertion_fail(0x21, 0x25b); }
   }
   if (*(volatile unsigned int *)(pcVar2 + 0x70) == 0) {
     goto L_2f6;
@@ -72,13 +82,13 @@ L_306:
     FUN_010196e0();
   }
   pcVar2[0] = 0;
-  puVar3 = (volatile unsigned char *)FUN_01019204();
+  puVar3 = (volatile unsigned char *)controller_radio_state_get();
   {
     unsigned int r0b = puVar3[0];
     int iVar4 = FUN_01022ebc(r0b);
     if (iVar4 == 0) {
-      FUN_01008d00(0x21, 0x396);
-      for (;;) { FUN_01008d00(0x21, 0x396); }
+      sdc_assertion_fail(0x21, 0x396);
+      for (;;) { sdc_assertion_fail(0x21, 0x396); }
     }
   }
   puVar3[0] = 0x20;

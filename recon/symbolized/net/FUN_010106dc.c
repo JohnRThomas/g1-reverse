@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010106dc @ 0x010106dc
+ * public-name: FUN_010106dc
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_lookup_table_desc                  @ 0x21000f14
+ */
 /* net-core FUN_010106dc @ 0x10106dc  (parity 300 trials PROVEN) */
 #define P_01010778 ((unsigned long)&g_net_lookup_table_desc) /*=0x21000f14*/
 

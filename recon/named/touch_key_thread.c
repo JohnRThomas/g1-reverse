@@ -1,16 +1,6 @@
 /* readable reconstruction; identity: FUN_0002a0d8 @ 0x0002a0d8
  * public-name: touch_key_thread
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
- *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   reset_all_usr_data                       <= FUN_0002316c @ 0x0002316c
- *   trigger_touch_key_hw_reset               <= FUN_0002a0c0 @ 0x0002a0c0
- *   handle_touch_key_irq                     <= FUN_00030af0 @ 0x00030af0
- *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
- *   read_rtc_counter_ms                      <= FUN_0007d0aa @ 0x0007d0aa
- *   get_uptime_ms                            <= FUN_00086690 @ 0x00086690
  * address symbols (name @ address):
  *   rodata_a15d6                             @ 0x000a15d6
  *   rodata_a1626                             @ 0x000a1626
@@ -24,280 +14,300 @@
  *   g_touch_key_press_active                 @ 0x20018d89
  *   g_touch_key_irq_line_status              @ 0x20019dac
  */
-/* Reconstructed touch_key_thread @ 0x2a0d8  (parity: 1/1 trials, PROVEN) */
+/* Reconstructed touch_key_thread @ 0x0002a0d8.
+ * Back-map: FUN_0002a0d8.  Executable extent [0x0002a0d8,0x0002a4a0)
+ * includes the internal switch/literal islands; 0x0002a4a0 begins the
+ * trailing literal pool.
+ */
 #include <stdint.h>
 
-extern void DEBUG_PRINT(uint32_t a, ...);
-extern uintptr_t get_device_info(void);
-extern void debug_print(uint32_t a, uint32_t b, uint32_t c, ...);
-extern void trigger_touch_key_hw_reset(void);
-extern void handle_touch_key_irq(void);
-extern void k_msleep_ticks32768_a(int32_t);
-extern void read_rtc_counter_ms(void *a);
-extern int32_t get_uptime_ms(void);
-extern void thunk_FUN_00072908(void *a);
-extern void reset_all_usr_data(void *a, int32_t b);
-extern void FUN_0007c058(int32_t a);
-extern void FUN_00017a28(void);
-extern void FUN_00017a34(void);
-extern uint32_t sys_reboot(int32_t a);
+extern void log_message(uint32_t format, ...);                 /* FUN_0007dda4 */
+extern uintptr_t get_device_info(void);                        /* FUN_000167a8 */
+extern void debug_print(uint32_t format, uint32_t module,
+                        uint32_t value, ...);                  /* FUN_00019c70 */
+extern void trigger_touch_key_hw_reset(void);                  /* FUN_0002a0c0 */
+extern void handle_touch_key_irq(void);                        /* FUN_00030af0 */
+extern void k_msleep(int32_t milliseconds);                    /* FUN_0007cb8e */
+extern void read_rtc_counter_ms(void *destination);            /* FUN_0007d0aa */
+extern int32_t get_uptime_ms(void);                            /* FUN_00086690 */
+extern int k_sem_take(void *semaphore, int64_t timeout);       /* FUN_0007cb48 */
+extern void reset_all_usr_data(void *context, int32_t erase);  /* FUN_0002316c */
+extern void send_touch_click_event(int32_t event);             /* FUN_0007c058 */
+extern void touch_pmic_reset_assert(void);                     /* FUN_00017a28 */
+extern void touch_pmic_reset_deassert(void);                   /* FUN_00017a34 */
+extern uint32_t sys_reboot(int32_t type);                      /* FUN_0004c0a8 */
 
-void touch_key_thread(char *param_1)
+#define TOUCH_IRQ_PENDING \
+    (*(volatile int32_t *)0x20006a00UL) /* g_touch_key_irq_pending */
+#define TOUCH_IRQ_LINE_STATUS \
+    (*(volatile uint8_t *)0x20019dacUL) /* g_touch_key_irq_line_status */
+#define TOUCH_PRESS_ACTIVE \
+    (*(volatile uint8_t *)0x20018d89UL) /* g_touch_key_press_active */
+#define TOUCH_RESET_REASON \
+    (*(volatile int32_t *)0x20007b18UL) /* g_touch_key_reset_reason */
+#define LOG_LEVEL (*(volatile int32_t *)0x2000230cUL)
+#define LOG_ALTERNATE_SINK (*(volatile int32_t *)0x20007554UL)
+
+void touch_key_thread(char *context)
 {
-  volatile int32_t *piVar1;
-  volatile int32_t *piVar2;
-  int32_t iVar3;
-  int32_t iVar4;
-  int32_t iVar5;
+  volatile int32_t *log_level_ptr;
+  volatile int32_t *alternate_sink_ptr;
+  int32_t event_time;
+  int32_t now;
+  int32_t since_release;
   uint32_t format_string;
-  uint32_t uVar6;
-  int32_t iVar7;
-  int32_t iVar8;
-  int32_t iVar9;
-  int32_t iVar10;
-  int32_t iVar11;
-  int32_t iVar12;
-  int32_t iVar13;
+  uint32_t reset_reason;
+  int32_t click_count;
+  int32_t event_count;
+  int32_t release_time;
+  int32_t long_press_armed;
+  int32_t press_time;
+  int32_t short_stuck_timeout;
+  int32_t held_time;
+  uint8_t irq_line_status;
 
-  iVar10 = 0;
-  iVar9 = 0;
-  iVar7 = 0;
-  iVar11 = 0;
-  iVar12 = 0;
-LAB_0002a0e8:
+  /* Persistent loop state: long-press arm, release time, click count,
+   * previous press time, and the shortened stuck-key timeout selector. */
+  long_press_armed = 0;
+  release_time = 0;
+  click_count = 0;
+  press_time = 0;
+  short_stuck_timeout = 0;
+event_loop:
   do {
-    while ((thunk_FUN_00072908(param_1 + 0xb0), *(char *)(param_1 + 1) == '\x01' ||
-            ((iVar3 = (int32_t)get_device_info(), *(char *)(iVar3 + 1) == '\b')))) {
-      k_msleep_ticks32768_a(5000);
+    while ((k_sem_take(context + 0xb0, 0x2000), *(char *)(context + 1) == '\x01' ||
+            ((event_time = (int32_t)get_device_info(), *(char *)(event_time + 1) == '\b')))) {
+      k_msleep(5000);
     }
-    if (*(volatile int32_t *)0x20006a00UL != 0) {
+    if (TOUCH_IRQ_PENDING != 0) {
       handle_touch_key_irq();
-      *(volatile int32_t *)0x20006a00UL = 0;
+      TOUCH_IRQ_PENDING = 0;
     }
-  } while (-1 < (int32_t)((uint32_t)*(uint16_t *)(param_1 + 0x105c) << 0x1f));
-  if (*(volatile uint8_t *)0x20019dacUL == 1) {
-    iVar3 = get_uptime_ms();
-    read_rtc_counter_ms(param_1 + 0x1078);
-    if (10000 < iVar3 - iVar11) {
-      iVar9 = 0;
-      iVar7 = iVar9;
+  } while (-1 < (int32_t)((uint32_t)*(uint16_t *)(context + 0x105c) << 0x1f));
+  irq_line_status = TOUCH_IRQ_LINE_STATUS;
+  if (irq_line_status == 1) {
+    event_time = get_uptime_ms();
+    read_rtc_counter_ms(context + 0x1078);
+    if (10000 < event_time - press_time) {
+      release_time = 0;
+      click_count = release_time;
     }
-    iVar8 = iVar7 + 1;
-    *(volatile uint8_t *)0x20019dacUL = 0;
+    event_count = click_count + 1;
+    TOUCH_IRQ_LINE_STATUS = 0;
   }
   else {
-    iVar8 = iVar7;
-    iVar3 = iVar11;
-    if (*(volatile uint8_t *)0x20019dacUL == 2) {
-      iVar9 = get_uptime_ms();
-      *(volatile uint8_t *)0x20019dacUL = 0;
-      *(volatile uint8_t *)0x20018d89UL = 0;
+    event_count = click_count;
+    event_time = press_time;
+    if (irq_line_status == 2) {
+      release_time = get_uptime_ms();
+      TOUCH_IRQ_LINE_STATUS = 0;
+      TOUCH_PRESS_ACTIVE = 0;
     }
   }
-  iVar4 = get_uptime_ms();
-  iVar5 = get_uptime_ms();
-  piVar2 = (volatile int32_t *)0x20007554UL;
-  piVar1 = (volatile int32_t *)0x2000230cUL;
-  iVar5 = iVar5 - iVar9;
-  iVar13 = iVar9 - iVar3;
-  iVar7 = iVar8;
-  iVar11 = iVar3;
-  if (iVar8 != 1) goto LAB_0002a2c0;
-  iVar4 = iVar4 - iVar3;
-  if (iVar10 != 0) {
-    if (iVar9 == 0) {
-LAB_0002a222:
-      if (iVar12 == 0) {
-        iVar7 = 0x23;
+  now = get_uptime_ms();
+  since_release = get_uptime_ms();
+  alternate_sink_ptr = &LOG_ALTERNATE_SINK;
+  log_level_ptr = &LOG_LEVEL;
+  since_release = since_release - release_time;
+  held_time = release_time - event_time;
+  click_count = event_count;
+  press_time = event_time;
+  if (event_count != 1) goto check_multi_click;
+  now = now - event_time;
+  if (long_press_armed != 0) {
+    if (release_time == 0) {
+check_stuck_key:
+      if (short_stuck_timeout == 0) {
+        click_count = 0x23;
       }
       else {
-        iVar7 = 3;
+        click_count = 3;
       }
-      if (iVar7 * 30000 < iVar4) {
-        if (0 < *piVar1) {
-          if (*piVar2 == 0) {
-            DEBUG_PRINT(0xa1626, 0xa1a76, iVar12);
+      if (click_count * 30000 < now) {
+        if (0 < *log_level_ptr) {
+          if (*alternate_sink_ptr == 0) {
+            log_message(0xa1626, 0xa1a76, short_stuck_timeout);
           }
           else {
             debug_print(0,0,0);
           }
         }
-        iVar10 = 0;
-        *(volatile int32_t *)0x20007b18UL = 6;
+        long_press_armed = 0;
+        TOUCH_RESET_REASON = 6;
         trigger_touch_key_hw_reset();
-        iVar7 = 0;
-        iVar12 = iVar10;
-        goto LAB_0002a0e8;
+        click_count = 0;
+        short_stuck_timeout = long_press_armed;
+        goto event_loop;
       }
-      if (iVar3 < 0) goto LAB_0002a24e;
+      if (event_time < 0) goto check_completed_press;
     }
     else {
-      iVar7 = iVar10;
-      if (iVar9 <= iVar3) goto LAB_0002a0e8;
-LAB_0002a24e:
-      if (10000 < iVar5) {
-        if (15000 < iVar13) {
-          iVar10 = 1;
-          goto LAB_0002a260;
+      click_count = long_press_armed;
+      if (release_time <= event_time) goto event_loop;
+check_completed_press:
+      if (10000 < since_release) {
+        if (15000 < held_time) {
+          long_press_armed = 1;
+          goto check_long_hold;
         }
-        goto LAB_0002a174;
+        goto emit_single_click;
       }
     }
-    iVar10 = 1;
-    iVar7 = iVar8;
-    goto LAB_0002a0e8;
+    long_press_armed = 1;
+    click_count = event_count;
+    goto event_loop;
   }
-  if (iVar9 == 0) {
-    read_rtc_counter_ms(param_1 + 0x1078);
-    if (((int32_t)0xffffb1e1 <= *(int32_t *)(param_1 + 0x1078)) &&
-        (*(int32_t *)(param_1 + 0x1078) < 20000)) {
-      iVar7 = 0;
-      goto LAB_0002a0e8;
+  if (release_time == 0) {
+    read_rtc_counter_ms(context + 0x1078);
+    if (((int32_t)0xffffb1e1 <= *(int32_t *)(context + 0x1078)) &&
+        (*(int32_t *)(context + 0x1078) < 20000)) {
+      click_count = 0;
+      goto event_loop;
     }
-    if (15000 < iVar4) {
-      if (0 < *piVar1) {
-        if (*piVar2 == 0) {
-          DEBUG_PRINT(0xa15d6, 0xa1a76, iVar4);
+    if (15000 < now) {
+      if (0 < *log_level_ptr) {
+        if (*alternate_sink_ptr == 0) {
+          log_message(0xa15d6, 0xa1a76, now);
         }
         else {
           debug_print(0,0,0);
         }
       }
-      *(volatile int32_t *)0x20007b18UL = 4;
+      TOUCH_RESET_REASON = 4;
       trigger_touch_key_hw_reset();
-      goto LAB_0002a222;
+      goto check_stuck_key;
     }
-    if (-1 < iVar3) {
-      iVar10 = 0;
-      goto LAB_0002a0e8;
+    if (-1 < event_time) {
+      long_press_armed = 0;
+      goto event_loop;
     }
   }
-  else if (iVar9 <= iVar3) goto LAB_0002a0e8;
-  if (10000 < iVar5) {
-    if (15000 < iVar13) goto LAB_0002a260;
-LAB_0002a174:
-    if (0 < *piVar1) {
-      if (*piVar2 == 0) {
-        DEBUG_PRINT(0xa172a, 0xa1a76, *(uint32_t *)(param_1 + 0x1078));
+  else if (release_time <= event_time) goto event_loop;
+  if (10000 < since_release) {
+    if (15000 < held_time) goto check_long_hold;
+emit_single_click:
+    if (0 < *log_level_ptr) {
+      if (*alternate_sink_ptr == 0) {
+        log_message(0xa172a, 0xa1a76, *(uint32_t *)(context + 0x1078));
       }
       else {
         debug_print(0,0,0);
       }
     }
-    uVar6 = 1;
-    goto LAB_0002a282;
+    reset_reason = 1;
+    goto publish_reset_reason;
   }
-  goto LAB_0002a0e8;
-LAB_0002a2c0:
-  if (((iVar8 == 0) || (iVar9 <= iVar3)) || (iVar5 < 0x2711)) goto LAB_0002a0e8;
-  if (15000 < iVar13) {
-LAB_0002a260:
-    if (iVar13 <= (int32_t)0x11940) {
-      if (0 < *piVar1) {
-        if (*piVar2 == 0) {
-          DEBUG_PRINT(0xa1626, 0xa1a76);
+  goto event_loop;
+check_multi_click:
+  if (((event_count == 0) || (release_time <= event_time)) || (since_release < 0x2711)) goto event_loop;
+  if (15000 < held_time) {
+check_long_hold:
+    if (held_time <= (int32_t)0x11940) {
+      if (0 < *log_level_ptr) {
+        if (*alternate_sink_ptr == 0) {
+          log_message(0xa1626, 0xa1a76);
         }
         else {
           debug_print(0,0,0);
         }
       }
-      iVar9 = 0;
-      iVar7 = iVar8;
-      iVar12 = 1;
-      goto LAB_0002a0e8;
+      release_time = 0;
+      click_count = event_count;
+      short_stuck_timeout = 1;
+      goto event_loop;
     }
-    if (0 < *piVar1) {
-      if (*piVar2 == 0) {
-        DEBUG_PRINT(0xa1681, 0xa1a76);
+    if (0 < *log_level_ptr) {
+      if (*alternate_sink_ptr == 0) {
+        log_message(0xa1681, 0xa1a76);
       }
       else {
         debug_print(0,0,0);
       }
     }
-    uVar6 = 5;
-    goto LAB_0002a282;
+    reset_reason = 5;
+    goto publish_reset_reason;
   }
-  switch (iVar8) {
+  switch (event_count) {
   case 2:
-    if (0 < *piVar1) {
-      if (*piVar2 == 0) {
-        DEBUG_PRINT(0xa177f, 0xa1a76);
+    if (0 < *log_level_ptr) {
+      if (*alternate_sink_ptr == 0) {
+        log_message(0xa177f, 0xa1a76);
       }
       else {
         debug_print(0,0,0);
       }
     }
-    uVar6 = 2;
-    goto LAB_0002a282;
+    reset_reason = 2;
+    goto publish_reset_reason;
   case 3:
-    if (0 < *piVar1) {
-      if (*piVar2 == 0) {
-        DEBUG_PRINT(0xa17d1, 0xa1a76);
+    if (0 < *log_level_ptr) {
+      if (*alternate_sink_ptr == 0) {
+        log_message(0xa17d1, 0xa1a76);
       }
       else {
         debug_print(0,0,0);
       }
     }
-    uVar6 = 3;
-LAB_0002a282:
-    *(volatile int32_t *)0x20007b18UL = uVar6;
+    reset_reason = 3;
+publish_reset_reason:
+    TOUCH_RESET_REASON = reset_reason;
     trigger_touch_key_hw_reset();
     break;
   case 5:
-    goto code_r0x0002a410;
+    goto five_click_reboot;
   case 10:
-    reset_all_usr_data(param_1, 1);
+    reset_all_usr_data(context, 1);
     break;
   case 0xf:
-    FUN_0007c058(10);
-    if (0 < *(volatile int32_t *)0x2000230cUL) {
-      if (*(volatile int32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(0xa1823, 0xa1a76, 0xf);
+    send_touch_click_event(10);
+    if (0 < LOG_LEVEL) {
+      if (LOG_ALTERNATE_SINK == 0) {
+        log_message(0xa1823, 0xa1a76, 0xf);
       }
       else {
         debug_print(0,0,0);
       }
     }
   }
-  iVar10 = 0;
-  iVar7 = iVar10;
-  goto LAB_0002a0e8;
-code_r0x0002a410:
-  if (0 < *(volatile int32_t *)0x2000230cUL) {
+  long_press_armed = 0;
+  click_count = long_press_armed;
+  goto event_loop;
+five_click_reboot:
+  if (0 < LOG_LEVEL) {
     format_string = 0xa184b;
-    if (*(volatile int32_t *)0x20007554UL == 0) goto code_r0x0002a476;
+    if (LOG_ALTERNATE_SINK == 0) goto log_directly;
     debug_print(0xa184b, 0xa1a76, 5);
   }
   do {
-    FUN_00017a28();
-    if (0 < *(volatile int32_t *)0x2000230cUL) {
-      if (*(volatile int32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(0xa1868, 0xa1a76);
+    touch_pmic_reset_assert();
+    if (0 < LOG_LEVEL) {
+      if (LOG_ALTERNATE_SINK == 0) {
+        log_message(0xa1868, 0xa1a76);
       }
       else {
         debug_print(0,0,0);
       }
     }
-    FUN_00017a34();
-    if (0 < *(volatile int32_t *)0x2000230cUL) {
-      if (*(volatile int32_t *)0x20007554UL == 0) {
-        DEBUG_PRINT(0xa187e, 0xa1a76);
+    touch_pmic_reset_deassert();
+    if (0 < LOG_LEVEL) {
+      if (LOG_ALTERNATE_SINK == 0) {
+        log_message(0xa187e, 0xa1a76);
       }
       else {
         debug_print(0,0,0);
       }
-      if (0 < *(volatile int32_t *)0x2000230cUL) {
-        if (*(volatile int32_t *)0x20007554UL == 0) {
-          DEBUG_PRINT(0xa0c6c, 0xa1a76, 5);
+      if (0 < LOG_LEVEL) {
+        if (LOG_ALTERNATE_SINK == 0) {
+          log_message(0xa0c6c, 0xa1a76, 5);
         }
         else {
           debug_print(0,0,0);
         }
       }
     }
-    k_msleep_ticks32768_a(500);
+    k_msleep(500);
     format_string = sys_reboot(1);
-code_r0x0002a476:
-    DEBUG_PRINT(format_string);
+log_directly:
+    log_message(format_string);
   } while (1);
 }

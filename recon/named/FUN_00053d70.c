@@ -4,10 +4,10 @@
  * callees (readable <= raw @ address):
  *   bt_hci_cmd_create                        <= FUN_00053cd4 @ 0x00053cd4
  *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
- *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_put                              <= FUN_0005f200 @ 0x0005f200
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
@@ -28,8 +28,8 @@ extern void *bt_hci_cmd_create(uint32_t opcode, uint32_t reserve);
 extern void z_impl_k_sem_init(void *, uint32_t, uint32_t);
 extern uint64_t net_buf_id(void *);
 extern uintptr_t net_buf_ref(void *, uint32_t, uint32_t, uint32_t);
-extern uint64_t net_buf_destroy_default(uintptr_t, uintptr_t, uint32_t, uint32_t);
-extern int mutex_lock_syscall_handler(void *, uint32_t, uint32_t, uint32_t);
+extern uint64_t net_buf_put(uintptr_t, uintptr_t, uint32_t, uint32_t);
+extern int z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
 extern void printk(uintptr_t, ...);
 extern void FUN_00080ea2(uintptr_t, uint32_t, const void *);
 extern void net_buf_unref(void *);
@@ -54,8 +54,8 @@ int FUN_00053d70(uint32_t opcode, void *command, void **result)
     int slot = (int)indexed;
     *(void **)(0x2000abf4u + (uint32_t)slot * 12u + 8u) = completion;
     uintptr_t token = net_buf_ref(command, (uint32_t)(indexed >> 32), 1, 12);
-    uint64_t inherited = net_buf_destroy_default(0x2000214cu, token, 1, 12);
-    int wait_error = mutex_lock_syscall_handler(completion, (uint32_t)(inherited >> 32), 0x50000u, 0);
+    uint64_t inherited = net_buf_put(0x2000214cu, token, 1, 12);
+    int wait_error = z_impl_k_sem_take(completion, (uint32_t)(inherited >> 32), 0x50000u, 0);
     if (wait_error != 0) {
         printk(0x00099cbdu, 0x000a7a10u, 0x000f2e84u, 0x152u);
         printk(0x000f301eu, opcode, wait_error);

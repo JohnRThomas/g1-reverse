@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01024778 @ 0x01024778
+ * public-name: FUN_01024778
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_irq_lock_nest_cnt                  @ 0x21001bd6
+ *   g_net_irq_lock_suppress_flag             @ 0x21001bdf
+ */
 /* net-core FUN_01024778 @ 0x1024778  (parity 300 trials PROVEN) */
 #include <stdint.h>
 /* net-core FUN_01024778 @ 0x1024778  (parity 300 trials PROVEN) */

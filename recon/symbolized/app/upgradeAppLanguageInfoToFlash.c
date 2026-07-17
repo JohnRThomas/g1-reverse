@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_9e903                             @ 0x0009e903
  *   rodata_9e932                             @ 0x0009e932
@@ -18,7 +19,7 @@
 extern int k_msgq_put(unsigned int a0, void *a1, unsigned int a2, unsigned int a3);
 extern void DEBUG_PRINT(unsigned int a0, ...);
 extern void debug_print(unsigned int,...);
-extern void FUN_00072880(unsigned int a0);
+extern void k_sem_give(unsigned int a0);
 
 unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -39,7 +40,7 @@ unsigned int upgradeAppLanguageInfoToFlash(unsigned int param_1, unsigned int pa
             else
                 debug_print(((unsigned long)&rodata_9e932) /*=0x9e932*/, ((unsigned long)&rodata_9eda4) /*=0x9eda4*/, param_1, sink);
         }
-        FUN_00072880(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
+        k_sem_give(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar2 = 0;
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {

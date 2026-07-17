@@ -9,6 +9,7 @@
  *   global_system_suspend                    <= FUN_0002bd7c @ 0x0002bd7c
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   app_msleep_thunk_a                       <= FUN_0007c038 @ 0x0007c038
+ *   send_touch_click_event                   <= FUN_0007c058 @ 0x0007c058
  * address symbols (name @ address):
  *   device_info                              @ 0x200069fc
  */
@@ -26,7 +27,7 @@ extern int FUN_00017a10(int,...);
 extern int FUN_00017a1c(int,...);
 extern int FUN_00017a04(int,...);
 extern int FUN_000179f8(int,...);
-extern int FUN_0007c058(int,...);
+extern int send_touch_click_event(int,...);
 unsigned int global_system_resume(unsigned int param_1, int param_2)
 {
   volatile int *pp = (volatile int*)((unsigned long)&device_info) /*=0x200069fc*/;
@@ -56,9 +57,9 @@ unsigned int global_system_resume(unsigned int param_1, int param_2)
     return app_msleep_thunk_a(0x32);
   }
   if (param_2 == 0x40) {
-    if (param_1==1) return FUN_0007c058(0xb);
-    if (param_1==2) return FUN_0007c058(0xa);
-    return FUN_0007c058(0xc);
+    if (param_1==1) return send_touch_click_event(0xb);
+    if (param_1==2) return send_touch_click_event(0xa);
+    return send_touch_click_event(0xc);
   }
   if (param_2 == 1) {
     if (param_1==0) return FUN_00017a1c(0);

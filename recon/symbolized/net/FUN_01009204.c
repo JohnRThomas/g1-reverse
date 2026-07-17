@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01009204 @ 0x01009204
+ * public-name: FUN_01009204
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_21000a68                               @ 0x21000a68
+ */
 /* net-core FUN_01009204 @ 0x01009204 */
 #include <stdint.h>
 typedef uint32_t (*callback4_t)(uint32_t,uint32_t,uint32_t,uint32_t);

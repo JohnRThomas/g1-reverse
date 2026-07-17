@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01024e1c @ 0x01024e1c
+ * public-name: FUN_01024e1c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_timer_sync_state             @ 0x21001bf8
+ */
 /* net-core FUN_01024e1c @ 0x1024e1c  (parity 300 trials PROVEN) */
 
 extern void FUN_010256dc(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e) __attribute__((noreturn));

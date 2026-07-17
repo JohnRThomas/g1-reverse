@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_a24a9                             @ 0x000a24a9
  *   rodata_a24c3                             @ 0x000a24c3
@@ -13,7 +14,7 @@
  */
 /* Reconstructed update_imu_trigger_status @ 0x2bcbc  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00072880(unsigned int);
+extern void k_sem_give(unsigned int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, unsigned int, unsigned int);
 extern void debug_print(unsigned int, unsigned int, unsigned int, unsigned int);
 
@@ -42,7 +43,7 @@ unsigned int update_imu_trigger_status(unsigned int param_1, int param_2, int pa
                 }
             }
             *(volatile unsigned char*)(param_2 + 0xfe9) = 1;
-            FUN_00072880(param_2 + 0xaf4);
+            k_sem_give(param_2 + 0xaf4);
         }
         uVar2 = 0;
     }

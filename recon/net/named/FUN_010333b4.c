@@ -24,7 +24,10 @@
  *   g_esb_enabled_flag                       @ 0x21006459
  *   REG_41008000                             @ 0x41008000
  */
-/* net-core FUN_010333b4 @ 0x10333b4 — true extent 556 bytes */
+/* net-core radio-owner initialization @ 0x010333b4, true extent 0x22c.
+ * Raw-address callees remain declared below; semantic aliases keep every
+ * recovered role mechanically reversible to the shipped symbol/address.
+ */
 #include <stdint.h>
 
 extern void FUN_01033354(void);
@@ -41,6 +44,19 @@ extern void FUN_0102eb8c(uint32_t, uint32_t, uint32_t);
 extern void FUN_0103a38a(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 extern void FUN_0102eb2c(uint32_t);
 extern void FUN_0102e284(uint32_t, uint32_t, void *, uint32_t);
+
+#define reset_radio_owner             FUN_01033354
+#define clear_radio_storage           FUN_0103b62e
+#define initialize_radio_mode_state   FUN_01032764
+#define acquire_radio_buffer_table    FUN_010327a0
+#define start_radio_owner_timer       FUN_01034fa8
+#define initialize_radio_backend      FUN_01033df0
+#define read_radio_device_state       FUN_01033de4
+#define activate_radio_backend        FUN_0103a83e
+#define configure_radio_irq           FUN_0102eb8c
+#define connect_radio_irq_handler     FUN_0103a38a
+#define enable_radio_irq              FUN_0102eb2c
+#define publish_radio_diagnostic      FUN_0102e284
 
 struct timer_init {
     uint32_t period;
@@ -65,7 +81,7 @@ int FUN_010333b4(const uint32_t *configuration)
     if (configuration == 0)
         return -22;
     if (*initialized != 0)
-        FUN_01033354();
+        reset_radio_owner();
 
     *saved_word = configuration[1];
     for (unsigned i = 0; i < 4; ++i) {
@@ -74,10 +90,10 @@ int FUN_010333b4(const uint32_t *configuration)
     *(volatile uint32_t *)(saved + 16) = configuration[4];
 
     *control = 0;
-    value = FUN_0103b62e(0x21004b7cU, 0, 0x20);
+    value = clear_radio_storage(0x21004b7cU, 0, 0x20);
     *(volatile uint32_t *)0x21006256U = 0;
     *(volatile uint32_t *)0x2100625aU = 0;
-    uint64_t init_result = FUN_01032764(value, 0x2100499cU);
+    uint64_t init_result = initialize_radio_mode_state(value, 0x2100499cU);
     callback_slot = (volatile uint32_t *)(uintptr_t)(uint32_t)(init_result >> 32);
 
     if (saved[0] == 0)
@@ -105,7 +121,7 @@ int FUN_010333b4(const uint32_t *configuration)
     radio[0x524 / 4] = 0x23c343e7U;
     radio[0x528 / 4] = 0x13e363a3U;
 
-    table = FUN_010327a0(0x21004a60U);
+    table = acquire_radio_buffer_table(0x21004a60U);
     value = 0x21005a56U;
     for (unsigned i = 0; i < 8; ++i, value += 0x100U)
         table[i] = value;
@@ -123,38 +139,39 @@ int FUN_010333b4(const uint32_t *configuration)
         *(volatile uint32_t *)(entry + 8) = 0;
     }
 
-    FUN_0103b62e(0x210049b4U, 0, 0x20);
+    clear_radio_storage(0x210049b4U, 0, 0x20);
     struct timer_init timer = { 1000000U, 0, 0 };
-    status = (int)FUN_01034fa8(0x21000698U, &timer, 0x01032fbdU);
+    status = (int)start_radio_owner_timer(0x21000698U, &timer,
+                                          0x01032fbdU);
     if ((uint32_t)status != 0x0bad0000U) {
         struct { uint32_t count, text, code; } first = {
             3, 0x0103e414U, (uint32_t)status
         };
-        FUN_0102e284(0x0103c05cU, 0x1840U, &first, 0);
+        publish_radio_diagnostic(0x0103c05cU, 0x1840U, &first, 0);
         struct { uint32_t count, text; } second = { 2, 0x0103e43dU };
-        FUN_0102e284(0x0103c05cU, 0x1040U, &second, 0);
+        publish_radio_diagnostic(0x0103c05cU, 0x1040U, &second, 0);
         return -14;
     }
 
-    status = FUN_01033df0();
+    status = initialize_radio_backend();
     if (status != 0) {
         struct { uint32_t count, text; } message = { 2, 0x0103e463U };
-        FUN_0102e284(0x0103c05cU, 0x1040U, &message, 0);
+        publish_radio_diagnostic(0x0103c05cU, 0x1040U, &message, 0);
         return status;
     }
 
-    device_state[4] = FUN_01033de4();
+    device_state[4] = read_radio_device_state();
     radio[0x650 / 4] = (radio[0x650 / 4] & 0x300U) | saved[0x13];
-    FUN_0103a83e();
-    FUN_0102eb8c(8, 1, 0);
-    FUN_0102eb8c(0x1d, 2, 0);
-    FUN_0102eb8c(0x19, 2, 0);
-    FUN_0103a38a(8, 1, 0x01032fd9U, 0, 0);
-    FUN_0103a38a(0x1d, 2, 0x0103309dU, 0, 0);
-    FUN_0103a38a(0x19, 2, 0x0103b03bU, 0, 0);
-    FUN_0102eb2c(8);
-    FUN_0102eb2c(0x1d);
-    FUN_0102eb2c(0x19);
+    activate_radio_backend();
+    configure_radio_irq(8, 1, 0);
+    configure_radio_irq(0x1d, 2, 0);
+    configure_radio_irq(0x19, 2, 0);
+    connect_radio_irq_handler(8, 1, 0x01032fd9U, 0, 0);
+    connect_radio_irq_handler(0x1d, 2, 0x0103309dU, 0, 0);
+    connect_radio_irq_handler(0x19, 2, 0x0103b03bU, 0, 0);
+    enable_radio_irq(8);
+    enable_radio_irq(0x1d);
+    enable_radio_irq(0x19);
     *active = 0;
     *initialized = 1;
     return 0;

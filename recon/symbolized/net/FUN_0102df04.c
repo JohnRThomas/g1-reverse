@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102df04 @ 0x0102df04
+ * public-name: FUN_0102df04
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_periodic_work_obj                  @ 0x2100086c
+ */
 /* net-core FUN_0102df04 @ 0x102df04  (parity 300 trials PROVEN) */
 /* FUN_0102df04: entry is a 2-instr tail-thunk (ldr r0,[pc,#4]; b.w 0x102ce14)
    -- immediate tail branch out of the function's own body. The harness's

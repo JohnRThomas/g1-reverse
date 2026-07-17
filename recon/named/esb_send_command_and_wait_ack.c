@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -17,7 +17,7 @@
 #include <stdint.h>
 
 extern int32_t is_battery_critical(void);
-extern void k_msleep_ticks32768_a(int32_t);
+extern void k_msleep(int32_t);
 extern int32_t FUN_00086be4(void *a, void *b, uint32_t n);
 extern void memcpy(void *dst, void *src, uint32_t n);
 extern void FUN_00086c1e(void *a, void *b, uint32_t c, uint32_t d);
@@ -45,7 +45,7 @@ uint32_t esb_send_command_and_wait_ack(char *param_1, uint32_t param_2, uint32_t
     while (*pcVar1 != 0) {
       uVar9 = uVar9 + 1;
       if (uVar9 == 2000) goto LAB_000275de;
-      k_msleep_ticks32768_a(1);
+      k_msleep(1);
     }
     *pcVar1 = 1;
     uVar9 = uVar9 & 0xffff;
@@ -124,7 +124,7 @@ uint32_t esb_send_command_and_wait_ack(char *param_1, uint32_t param_2, uint32_t
         }
         goto LAB_000275de;
       }
-      k_msleep_ticks32768_a(1);
+      k_msleep(1);
     }
     if (param_2 == 1) {
       puVar5 = (uint32_t *)0x20018d6bUL;

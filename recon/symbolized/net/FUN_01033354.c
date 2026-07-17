@@ -1,4 +1,14 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01033354 @ 0x01033354
+ * public-name: FUN_01033354
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_log_msg_ctx                        @ 0x21000698
+ *   g_esb_pipe_pid_cnt                       @ 0x21006256
+ *   g_net_radio_busy_flag                    @ 0x21006458
+ *   g_esb_enabled_flag                       @ 0x21006459
+ *   REG_41008650                             @ 0x41008650
+ */
 /* net-core FUN_01033354 @ 0x1033354 */
 #include <stdint.h>
 

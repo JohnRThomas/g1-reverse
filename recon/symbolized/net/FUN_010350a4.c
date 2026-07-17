@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010350a4 @ 0x010350a4
+ * public-name: FUN_010350a4
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_gpiote_evt_handler_table           @ 0x21004af8
+ */
 /* net-core FUN_010350a4 @ 0x10350a4  (parity 300 trials PROVEN) */
 typedef void (*fnptr_t)(unsigned short, unsigned int);
 

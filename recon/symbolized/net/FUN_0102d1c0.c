@@ -1,4 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102d1c0 @ 0x0102d1c0
+ * public-name: FUN_0102d1c0
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_sdc_clock_recalc_flag                  @ 0x21004fa7
+ *   g_sdc_clock_history_idx                  @ 0x21004fa8
+ *   g_sdc_clock_calc_valid                   @ 0x21004faa
+ *   g_sdc_clock_calc_lock                    @ 0x21004fab
+ *   REG_41005114                             @ 0x41005114
+ *   REG_4100b004                             @ 0x4100b004
+ *   REG_410121ac                             @ 0x410121ac
+ */
 /* net-core FUN_0102d1c0 @ 0x102d1c0 */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"

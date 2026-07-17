@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103735c @ 0x0103735c
+ * public-name: FUN_0103735c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103eb0e                           @ 0x0103eb0e
+ */
 /* net-core FUN_0103735c @ 0x103735c  (parity 300 trials PROVEN) */
 
 extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c);

@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103b53a @ 0x0103b53a
+ * public-name: FUN_0103b53a
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* FUN_0103b53a @ 0x0103b53a: select and copy a non-overlapping span. */
 #include <stdint.h>
 

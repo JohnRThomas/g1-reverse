@@ -1,4 +1,14 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102e000 @ 0x0102e000
+ * public-name: FUN_0102e000
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103c0ec                           @ 0x0103c0ec
+ *   rodata_103c0fc                           @ 0x0103c0fc
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d5d7                           @ 0x0103d5d7
+ *   g_net_dev_init_done_flag                 @ 0x21004fad
+ */
 /* net-core FUN_0102e000 @ 0x0102e000
  *
  * One-time initialization of the closed controller's linker-collected

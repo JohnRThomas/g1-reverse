@@ -1,6 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101e8a0 @ 0x0101e8a0
+ * public-name: FUN_0101e8a0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_net_ble_conn_create_ctx                @ 0x21000eac
+ *   g_net_ble_conn_role_cfg                  @ 0x21001208
+ */
 /* net-core FUN_0101e8a0 @ 0x101e8a0  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(int,int);
+extern void sdc_assertion_fail(int,int);
 extern int FUN_01009d64(int,int);
 extern int FUN_01009f58(int,int,int,int,int,int);
 extern int FUN_0101e274(void*);
@@ -54,7 +63,7 @@ int FUN_0101e8a0(int param_1, int param_2, int param_3, int param_4)
     if (iVar3call != 0) {
         int iVar3c = FUN_01009d64(H(param_1,0),1);
         if (iVar3c == 0) return 9;
-        FUN_01008d00(0x39, 0x57d);
+        sdc_assertion_fail(0x39, 0x57d);
         /* falls through into shared block below with ret_r6 = iVar3call (nonzero) */
     }
     {
@@ -70,7 +79,7 @@ int FUN_0101e8a0(int param_1, int param_2, int param_3, int param_4)
                which falls through again into this same FUN_01009f58 sequence --
                replicate the loop so call-index progression (and therefore any
                runaway/instruction-cap timeout) matches exactly. */
-            FUN_01008d00(0x39, 0x588);
+            sdc_assertion_fail(0x39, 0x588);
         }
     }
 }

@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103533c @ 0x0103533c
+ * public-name: FUN_0103533c
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_0103533c @ 0x103533c */
 #include <stdint.h>
 extern int FUN_0103ac0c(void *, uint16_t, uint32_t, void *, uint32_t,

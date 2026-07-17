@@ -1,4 +1,19 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101b7e4 @ 0x0101b7e4
+ * public-name: FUN_0101b7e4
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_timing_request_schedule       <= FUN_0100d4d0 @ 0x0100d4d0
+ *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
+ *   sdc_conn_radio_overhead_set              <= FUN_0100f48c @ 0x0100f48c
+ *   signed_drift_clamp                       <= FUN_0100f69c @ 0x0100f69c
+ *   radio_transition_overhead_get            <= FUN_0101a0e8 @ 0x0101a0e8
+ *   schedule_node_list_is_locked             <= FUN_0101dec4 @ 0x0101dec4
+ *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
+ * address symbols (name @ address):
+ *   rodata_103c290                           @ 0x0103c290
+ */
 /* net-core timing-record construction @ 0x0101b7e4.
  *
  * Raw provenance: the TBB at 0x0101b810 owns states 0..3 and the three
@@ -8,28 +23,28 @@
  */
 #include <stdint.h>
 
-extern __attribute__((noreturn)) void FUN_01008d00(uint32_t module,
+extern __attribute__((noreturn)) void sdc_assertion_fail(uint32_t module,
                                                    uint32_t line);
-extern uint32_t FUN_0100d4d0(void *record, uint32_t timeline_unit);
-extern uint32_t FUN_0100f0fc(const void *source);
-extern void FUN_0100f48c(void *context, uint32_t delay);
-extern uint32_t FUN_0100f69c(int32_t budget, uint32_t requested);
-extern uint16_t FUN_0101a0e8(void);
+extern uint32_t controller_timing_request_schedule(void *record, uint32_t timeline_unit);
+extern uint32_t sdc_radio_context_fixed_time_get(const void *source);
+extern void sdc_conn_radio_overhead_set(void *context, uint32_t delay);
+extern uint32_t signed_drift_clamp(int32_t budget, uint32_t requested);
+extern uint16_t radio_transition_overhead_get(void);
 extern void FUN_0101da18(void *context, uint32_t count);
 extern uint32_t FUN_0101dc50(void *context);
-extern int32_t FUN_0101dec4(void);
-extern int32_t FUN_010209f0(uint8_t channel_flags);
+extern int32_t schedule_node_list_is_locked(void);
+extern int32_t radio_phy_airtime_base_get(uint8_t channel_flags);
 
-#define controller_fault           FUN_01008d00
-#define measure_record_count       FUN_0100d4d0
-#define read_record_source         FUN_0100f0fc
-#define schedule_controller_delay  FUN_0100f48c
-#define consume_timing_budget      FUN_0100f69c
-#define read_controller_timestamp  FUN_0101a0e8
+#define controller_fault           sdc_assertion_fail
+#define measure_record_count       controller_timing_request_schedule
+#define read_record_source         sdc_radio_context_fixed_time_get
+#define schedule_controller_delay  sdc_conn_radio_overhead_set
+#define consume_timing_budget      signed_drift_clamp
+#define read_controller_timestamp  radio_transition_overhead_get
 #define publish_record_count       FUN_0101da18
 #define read_controller_capacity   FUN_0101dc50
-#define timing_budget_is_blocked   FUN_0101dec4
-#define channel_timing_offset      FUN_010209f0
+#define timing_budget_is_blocked   schedule_node_list_is_locked
+#define channel_timing_offset      radio_phy_airtime_base_get
 
 #define CONTEXT_U8(offset)  (*(volatile uint8_t *)(context + (offset)))
 #define CONTEXT_U16(offset) (*(volatile uint16_t *)(context + (offset)))

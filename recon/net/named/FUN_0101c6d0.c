@@ -3,6 +3,8 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   rodata_10100a1                           @ 0x010100a1
  *   rodata_10101cd                           @ 0x010101cd
@@ -38,11 +40,11 @@ typedef uint32_t code(uintptr_t, ...);
 #define DAT_0101d3f8 ((volatile uint32_t *)0x21000208u)
 #define DAT_0101d3fc 0x21001124u
 #define DAT_0101d400 ((volatile uint32_t *)0x21000210u)
-extern uint32_t sdc_assertion_fail(uintptr_t, ...); extern uint32_t FUN_01009d18(uintptr_t, ...);
+extern uint32_t sdc_assertion_fail(uintptr_t, ...); extern uint32_t controller_typed_handle_lookup(uintptr_t, ...);
 extern uint32_t FUN_0100a984(uintptr_t, ...); extern uint32_t FUN_0100b630(uintptr_t, ...);
 extern uint32_t FUN_0100d14c(uintptr_t, ...); extern uint32_t FUN_0100d3c0(uintptr_t, ...);
 extern uint32_t FUN_0100d5d0(uintptr_t, ...); extern uint32_t FUN_0100d7bc(uintptr_t, ...);
-extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t FUN_0100ef88(uintptr_t, ...);
+extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
 extern uint32_t FUN_0100efc8(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
 extern uint32_t FUN_0100f1f8(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
 extern uint32_t FUN_0100f7e0(uintptr_t, ...); extern uint32_t FUN_0100f86c(uintptr_t, ...);
@@ -266,7 +268,7 @@ LAB_0101c78a:
       FUN_0100b630(3,&local_20);
       if (local_20 != 0) {
         *(undefined1 *)(local_20 + 8) = 0;
-        FUN_0100ef88(local_20,*(undefined4 *)(iVar2 + 4),0x10);
+        sdc_work_submit(local_20,*(undefined4 *)(iVar2 + 4),0x10);
       }
       puVar15 = *(undefined2 **)(iVar2 + 4);
       uVar8 = (uint)*(byte *)((int)puVar15 + 0xc5);
@@ -510,7 +512,7 @@ switchD_0101d2bc_caseD_3:
                       if (*(char *)(iVar7 + 0x1a6) == '\0') {
                         if (*(char *)(iVar7 + 0x1b2) == '\0') {
                           if (*(char *)(iVar7 + 0x1aa) != '\0') {
-                            iVar7 = FUN_01009d18(*(undefined2 *)(iVar7 + 0x1ac),8);
+                            iVar7 = controller_typed_handle_lookup(*(undefined2 *)(iVar7 + 0x1ac),8);
                             if (iVar7 == 0) {
                               *(undefined1 *)(*(int *)(iVar2 + 4) + 0x1aa) = 0;
                             }
@@ -797,7 +799,7 @@ LAB_0101c812:
   }
 LAB_0101c814:
   *(char *)(iVar7 + 0xe5) = cVar11;
-  FUN_0100ef88(iVar7 + 0xdc,uVar5,2);
+  sdc_work_submit(iVar7 + 0xdc,uVar5,2);
   uVar5 = *(undefined4 *)(iVar2 + 4);
   *(undefined2 *)(iVar7 + 0xc5) = 0;
   *(undefined1 *)(iVar7 + 0xc9) = 0;

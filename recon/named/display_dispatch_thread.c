@@ -13,10 +13,10 @@
  *   cal_panel_canvas_coord                   <= FUN_00042fb0 @ 0x00042fb0
  *   set_brightness_to_panel_reg_in_running   <= FUN_00047058 @ 0x00047058
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
  *   wait_for_event                           <= FUN_0007cb8a @ 0x0007cb8a
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   projector_reflash_and_release            <= FUN_0007d874 @ 0x0007d874
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -85,10 +85,10 @@ typedef long long s64;
 #define cal_panel_canvas_coord         cal_panel_canvas_coord
 #define set_brightness_to_panel_reg_in_running set_brightness_to_panel_reg_in_running
 #define display_mutex_lock             k_mutex_lock
-#define k_sem_take                     mutex_lock_syscall_handler
+#define k_sem_take                     z_impl_k_sem_take
 #define wait_for_event                 wait_for_event
 #define k_uptime_get                   k_uptime_get_1
-#define k_msleep                       k_msleep_ticks32768_a
+#define k_msleep                       k_msleep
 #define notify_display_mode            projector_reflash_and_release
 #define memory_compare_bytes           FUN_00086be4
 #define memory_copy_bytes              memcpy

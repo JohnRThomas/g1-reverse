@@ -1,16 +1,27 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01017344 @ 0x01017344
+ * public-name: FUN_01017344
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ * address symbols (name @ address):
+ *   g_net_ble_pending_channel_idx            @ 0x2100001c
+ *   g_sdc_ll_ctx_param                       @ 0x21001019
+ */
 /* net-core FUN_01017344 @ 0x1017344  (parity 300 trials PROVEN) */
 extern int FUN_0100aa3c(unsigned char, unsigned int, unsigned char, unsigned int);
 extern int FUN_0100aaac(int, int);
 extern int FUN_0100ca68(unsigned int);
 extern unsigned int FUN_0100cb10(void);
 extern int FUN_0100cbbc(unsigned int);
-extern unsigned char FUN_0100d760(void);
+extern unsigned char sdc_llcp_get_active_link_index(void);
 extern void FUN_010166c0(int, unsigned char*);
 extern void FUN_01019f9c(unsigned char*, void*);
 extern void FUN_0101b54c(int);
-extern void FUN_0101fca8(void);
-extern void FUN_010208b0(void);
+extern void sdc_llcp_release_rx_context(void);
+extern void sdc_llcp_stop_rx_timeout(void);
 extern void FUN_010295d6(unsigned int, int);
 
 #define DAT_01017458 ((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/
@@ -41,7 +52,7 @@ unsigned char FUN_01017344(unsigned char *param_1)
   unsigned int uVar8;
   struct S1017344 L;
 
-  uVar4 = FUN_0100d760();
+  uVar4 = sdc_llcp_get_active_link_index();
   bVar1 = *param_1;
   *(volatile unsigned char *)DAT_01017458 = uVar4;
   if ((((bVar1 & 0xf) == 8) &&
@@ -88,8 +99,8 @@ unsigned char FUN_01017344(unsigned char *param_1)
 LAB_010173d0:
       FUN_010295d6(DAT_01017468, 1);
       if (*(volatile char *)(iVar3 + 0x7c) != 0) {
-        FUN_010208b0();
-        FUN_0101fca8();
+        sdc_llcp_stop_rx_timeout();
+        sdc_llcp_release_rx_context();
         *(volatile unsigned char *)(iVar3 + 0x7c) = 0;
       }
       FUN_010166c0(1, param_1);

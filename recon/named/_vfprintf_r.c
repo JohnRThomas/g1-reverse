@@ -2,9 +2,9 @@
  * public-name: _vfprintf_r
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lock_acquire_or_fatal                    <= FUN_000510fc @ 0x000510fc
- *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
- *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   __retarget_lock_acquire_recursive        <= FUN_000510fc @ 0x000510fc
+ *   __retarget_lock_release_recursive        <= FUN_00051134 @ 0x00051134
+ *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   _vfprintf_r                              <= FUN_00076ed4 @ 0x00076ed4
  *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
  *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
@@ -22,9 +22,9 @@
 typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char undefined1;
-extern void lock_acquire_or_fatal(unsigned a);
-extern void lock_release_or_fatal(unsigned a);
-extern void stdio_streams_init(void);
+extern void __retarget_lock_acquire_recursive(unsigned a);
+extern void __retarget_lock_release_recursive(unsigned a);
+extern void __sinit(void);
 extern int FUN_0007712c(int a, void *b, int c, unsigned d, void *e);
 extern int vfprintf_format_engine(int a, void *b, int c, unsigned d, void *e);
 extern int stdio_fclose(int a, int b);
@@ -48,20 +48,20 @@ int _vfprintf_r(int param_1, int param_2, unsigned char *param_3, uint *param_4)
     undefined4 local_30;
 
     if ((param_1 != 0) && (*(volatile int *)(param_1 + 0x18) == 0)) {
-        stdio_streams_init();
+        __sinit();
     }
     if (param_2 == 0x9871c) param_2 = *(volatile int *)(param_1 + 4);
     else if (param_2 == 0x986fc) param_2 = *(volatile int *)(param_1 + 8);
     else if (param_2 == 0x986dc) param_2 = *(volatile int *)(param_1 + 0xc);
     if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
         (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-        lock_acquire_or_fatal(*(volatile unsigned *)(param_2 + 0x58));
+        __retarget_lock_acquire_recursive(*(volatile unsigned *)(param_2 + 0x58));
     }
     if (((-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x1c)) || (*(volatile int *)(param_2 + 0x10) == 0)) &&
         (iVar1 = stdio_fclose(param_1, param_2), iVar1 != 0)) {
         if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
             (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-            lock_release_or_fatal(*(volatile unsigned *)(param_2 + 0x58));
+            __retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
         }
         return -1;
     }
@@ -85,7 +85,7 @@ LAB_00076f76:
 LAB_000770da:
             if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
                 (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-                lock_release_or_fatal(*(volatile unsigned *)(param_2 + 0x58));
+                __retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
             }
             if ((int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x19) < 0) return -1;
             return local_74;

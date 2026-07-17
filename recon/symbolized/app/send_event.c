@@ -6,7 +6,7 @@
  *   enqueue_bt_data                          <= FUN_00017eec @ 0x00017eec
  *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
  *   process_sync_buffer                      <= FUN_0007cb4c @ 0x0007cb4c
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  * address symbols (name @ address):
  *   g_send_event_pending_id                  @ 0x2000302e
  */
@@ -17,7 +17,7 @@
 extern int enqueue_bt_data(const void *event, unsigned int length);
 extern void *ancs_get_conn_ctx(void);
 extern void process_sync_buffer(void *work);
-extern void k_msleep_ticks32768_a(int enabled);
+extern void k_msleep(int enabled);
 
 void send_event(int event_id, unsigned int unused_2, unsigned int unused_3)
 {
@@ -44,6 +44,6 @@ void send_event(int event_id, unsigned int unused_2, unsigned int unused_3)
 
     if (state[0x248] == 0) {
         process_sync_buffer(state + 0x218);
-        k_msleep_ticks32768_a(1);
+        k_msleep(1);
     }
 }

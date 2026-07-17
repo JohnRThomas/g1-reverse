@@ -1,10 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01018dac @ 0x01018dac
+ * public-name: FUN_01018dac
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ */
 /* net-core FUN_01018dac @ 0x1018dac  (parity 300 trials PROVEN) */
 
 extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
 extern unsigned int FUN_01026e48(unsigned int, unsigned short);
-extern void FUN_01008d00(int,int) __attribute__((noreturn));
+extern void sdc_assertion_fail(int,int) __attribute__((noreturn));
 void FUN_01018dac(unsigned int param_1)
 {
   unsigned int uVar2 = FUN_0100a5a0();
@@ -16,6 +22,6 @@ void FUN_01018dac(unsigned int param_1)
     fn(param_1, iVar3);
     return;
   }
-  FUN_01008d00(0x32, 0xaa5);
+  sdc_assertion_fail(0x32, 0xaa5);
   __builtin_unreachable();
 }

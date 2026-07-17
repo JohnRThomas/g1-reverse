@@ -9,7 +9,7 @@
  *   msg_content_used_count                   <= FUN_00033cdc @ 0x00033cdc
  *   msg_content_decrement_timer              <= FUN_0003441c @ 0x0003441c
  *   sync_dashboard_default_language          <= FUN_00037060 @ 0x00037060
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   is_system_idle_ready                     <= FUN_0007ce00 @ 0x0007ce00
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
  * address symbols (name @ address):
@@ -44,7 +44,7 @@ extern int  sync_to_slave(void);
 extern void display_inputEvent(void);
 extern void process_touch_event(void);
 extern int  msg_content_used_count(void);
-extern void k_msleep_ticks32768_a(void);
+extern void k_msleep(void);
 extern int  handle_touch_key_press_event(void);
 extern int  FUN_00023eec(void);
 extern void change_work_mode_to(void);
@@ -174,7 +174,7 @@ L29578:
     /* L297be wait-loop */
     goto L297cc;
  L297c4:
-    k_msleep_ticks32768_a();
+    k_msleep();
     r7 = r7 + 1;
  L297cc:
     if (*(volatile u8*)(p+0x108f) != 0) goto L297e2;
@@ -248,7 +248,7 @@ L29578:
         while (*(volatile u8*)(p+0xfe6) > 1) {
             cnt--;
             if (cnt == 0) break;
-            k_msleep_ticks32768_a();
+            k_msleep();
         }
     }
  L29936:

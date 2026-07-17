@@ -5,6 +5,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   ancs_discover_start                      <= FUN_000182c8 @ 0x000182c8
  *   ancs_cancel_timers                       <= FUN_00018ab0 @ 0x00018ab0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   g_ancs_conn                              @ 0x20007518
  */
@@ -13,7 +14,7 @@
 extern int get_device_info(void);
 extern void ancs_discover_start(uint32_t);
 extern void ancs_cancel_timers(void);
-extern void FUN_00072880(int);
+extern void k_sem_give(int);
 int FUN_00019ac0(int param_1){
   int iVar1;
   ancs_cancel_timers();
@@ -34,6 +35,6 @@ int FUN_00019ac0(int param_1){
   iVar1=get_device_info();
   *(volatile uint32_t*)(iVar1+0x104c)=0;
   iVar1=get_device_info();
-  FUN_00072880(iVar1+0x80);
+  k_sem_give(iVar1+0x80);
   return 0;
 }

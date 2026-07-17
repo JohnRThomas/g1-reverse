@@ -5,12 +5,13 @@
  * callees (readable <= raw @ address):
  *   ancs_get_conn_ctx                        <= FUN_000181fc @ 0x000181fc
  *   enqueue_uid                              <= FUN_00018e48 @ 0x00018e48
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  */
 /* Reconstructed FUN_0007c0e2 @ 0x7c0e2  (parity: 300/300 trials, PROVEN) */
 
 extern int ancs_get_conn_ctx(void);
 extern int enqueue_uid(void *p);
-extern void FUN_00072880(unsigned int a);
+extern void k_sem_give(unsigned int a);
 
 void FUN_0007c0e2(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -22,6 +23,6 @@ void FUN_0007c0e2(unsigned int param_1, unsigned int param_2, unsigned int param
   int iVar1 = ancs_get_conn_ctx();
   int iVar2 = enqueue_uid(&event);
   if (iVar2 == 0) {
-    FUN_00072880((unsigned int)iVar1 + 0x200);
+    k_sem_give((unsigned int)iVar1 + 0x200);
   }
 }

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   g_2100109c                               @ 0x2100109c
  */
@@ -12,7 +13,7 @@
 extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern void *FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
-extern void FUN_0100ef88(void *, const void *, uint32_t);
+extern void sdc_work_submit(void *, const void *, uint32_t);
 extern uint32_t FUN_01026d3e(void *);
 extern uint32_t FUN_01026f32(void *, uint16_t, uint32_t);
 extern uint8_t *FUN_010270d2(void *);
@@ -43,7 +44,7 @@ void FUN_01019660(void)
             return;
         }
         entry[8] = initial_flag;
-        FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
+        sdc_work_submit(entry, (const void *)0x01019a9d, 6);
     } else if (FUN_01026d3e(controller) == 0) {
         sdc_assertion_fail(0x33, 0x2be);
         sdc_assertion_fail(0x33, 0x2ba);

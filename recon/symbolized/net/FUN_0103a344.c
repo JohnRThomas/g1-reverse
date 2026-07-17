@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103a344 @ 0x0103a344
+ * public-name: FUN_0103a344
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_0103a344 @ 0x103a344  (parity 300 trials PROVEN) */
 
 typedef int (*fnptr)(int,int,unsigned int);

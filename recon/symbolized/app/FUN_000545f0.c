@@ -6,7 +6,8 @@
  *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_ref                              <= FUN_0005f2d4 @ 0x0005f2d4
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
@@ -41,13 +42,13 @@ extern void FUN_0005463e(uint32_t reason) __attribute__((noreturn));
 extern void FUN_00054688(uint32_t reason) __attribute__((noreturn));
 /* AAPCS aligns the 64-bit timeout in r2:r3, leaving r1 as unused padding. */
 extern uintptr_t net_buf_get(uintptr_t queue, uint64_t timeout);
-extern int mutex_lock_syscall_handler(uintptr_t event, uint64_t timeout);
+extern int z_impl_k_sem_take(uintptr_t event, uint64_t timeout);
 extern void FUN_00080ea2(uintptr_t source, uint32_t level, const void *record);
 extern void net_buf_unref(void *buffer);
 extern uintptr_t net_buf_ref(void *buffer);
 extern uint32_t FUN_000543c8(void *buffer);
 extern uint32_t net_buf_id(void *buffer);
-extern void FUN_00072880(uintptr_t event);
+extern void k_sem_give(uintptr_t event);
 extern void FUN_000538f8(uint16_t handle, uint32_t reason, void *buffer);
 extern void FUN_000571e8(void *connection);
 extern void mutex_unlock_syscall_handler(uint32_t inherited);
@@ -99,7 +100,7 @@ void FUN_000545f0(void)
                         FUN_00054688(3);
                     }
 
-                    mutex_lock_syscall_handler(((unsigned long)&g_20002128) /*=0x20002128*/, UINT64_MAX);
+                    z_impl_k_sem_take(((unsigned long)&g_20002128) /*=0x20002128*/, UINT64_MAX);
 
                     void **const pending = (void **)((unsigned long)&g_20002140) /*=0x20002140*/;
                     if (*pending != 0) {
@@ -114,7 +115,7 @@ void FUN_000545f0(void)
                     if (error != 0) {
                         const struct log3 record = {3, ((unsigned long)&rodata_f3103) /*=0xf3103*/, error};
                         FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x1840u, &record);
-                        FUN_00072880(((unsigned long)&g_20002128) /*=0x20002128*/);
+                        k_sem_give(((unsigned long)&g_20002128) /*=0x20002128*/);
                         uint32_t slot = net_buf_id(buffer);
                         uint16_t handle = *(volatile uint16_t *)
                             (((unsigned long)&bt_hci_cmd_data) /*=0x2000abf4*/ + slot * 12u + 2u);

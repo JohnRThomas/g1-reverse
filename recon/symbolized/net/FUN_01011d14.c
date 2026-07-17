@@ -1,7 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01011d14 @ 0x01011d14
+ * public-name: FUN_01011d14
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   rodata_103c1bc                           @ 0x0103c1bc
+ */
 /* net-core FUN_01011d14 @ 0x1011d14  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int a, unsigned int b) __attribute__((noreturn));
+extern void sdc_assertion_fail(unsigned int a, unsigned int b) __attribute__((noreturn));
 extern int FUN_01012b24(void);
 extern int FUN_010109ec(unsigned int a, int b, int c, int d, int e);
 
@@ -14,7 +22,7 @@ BOOL FUN_01011d14(unsigned int param_1, int *param_2)
   unsigned int uVar4, uVar6;
 
   if (*param_2 == 0) {
-    FUN_01008d00(0x2d, 0x3fc);
+    sdc_assertion_fail(0x2d, 0x3fc);
   }
   iVar1 = FUN_01012b24();
   uVar6 = *(volatile unsigned char *)((char *)param_2 + 0xc);

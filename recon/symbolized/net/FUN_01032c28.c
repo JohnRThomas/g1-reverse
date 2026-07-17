@@ -1,4 +1,22 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01032c28 @ 0x01032c28
+ * public-name: FUN_01032c28
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_10335e5                           @ 0x010335e5
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103e3e0                           @ 0x0103e3e0
+ *   g_net_radio_crc_scratch                  @ 0x21000684
+ *   g_esb_event_handler_fn                   @ 0x2100499c
+ *   g_net_radio_irq_continuation_ptr         @ 0x210049a0
+ *   g_esb_tx_busy_flag                       @ 0x210049a8
+ *   g_esb_pipe_cfg_field                     @ 0x210049ac
+ *   g_net_rf_cur_frame_ptr                   @ 0x21004a8c
+ *   g_esb_state                              @ 0x21004a94
+ *   g_net_rf_ack_hdr_buf                     @ 0x2100635b
+ *   g_net_radio_busy_flag                    @ 0x21006458
+ *   REG_41008000                             @ 0x41008000
+ */
 /* net-core FUN_01032c28 @ 0x1032c28  (parity 300 trials PROVEN) */
 typedef unsigned int u32;
 typedef unsigned short u16;

@@ -1,7 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01021654 @ 0x01021654
+ * public-name: FUN_01021654
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   radio_phy_airtime_tail_get               <= FUN_010209e0 @ 0x010209e0
+ * address symbols (name @ address):
+ *   rodata_103c5c4                           @ 0x0103c5c4
+ */
 /* net-core FUN_01021654 @ 0x1021654  (parity 300 trials PROVEN) */
 
-extern int FUN_010209e0(int, unsigned int, int, int);
+extern int radio_phy_airtime_tail_get(int, unsigned int, int, int);
 int FUN_01021654(int param_1,int param_2,int param_3,int param_4)
 {
   unsigned int base = ((unsigned long)&rodata_103c5c4) /*=0x103c5c4*/;
@@ -9,6 +17,6 @@ int FUN_01021654(int param_1,int param_2,int param_3,int param_4)
   int w = *(int*)(base + param_3*4 + 0x14);
   long long lVar1 = (unsigned long long)0x10624dd3u *
       (unsigned long long)(unsigned int)(param_1*1000 + w + (unsigned int)h + 2999);
-  int iVar2 = FUN_010209e0(param_3, 0x10624dd3, param_3, (int)lVar1);
+  int iVar2 = radio_phy_airtime_tail_get(param_3, 0x10624dd3, param_3, (int)lVar1);
   return iVar2 + (unsigned int)((unsigned long long)lVar1 >> 0x26) + param_4 + 5;
 }

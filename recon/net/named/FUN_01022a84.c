@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_timing_scale                         <= FUN_01024678 @ 0x01024678
+ *   controller_deferred_event_raise          <= FUN_0102583c @ 0x0102583c
  * address symbols (name @ address):
  *   g_libc_tz_calc_state                     @ 0x210016f0
  */
@@ -35,7 +36,7 @@ extern unsigned long long FUN_01025084(void);
 extern void FUN_0102524c(int);
 extern void FUN_01025344(void);
 extern __attribute__((noreturn)) void FUN_010256dc(unsigned int, unsigned int);
-extern void FUN_0102583c(unsigned char);
+extern void controller_deferred_event_raise(unsigned char);
 
 #define DAT_01022dbc ((volatile undefined4 *)0x210016f0)
 
@@ -223,7 +224,7 @@ LAB_01022b66:
       }
       *(volatile undefined1 *)((int)puVar8 + 0x39) = 0xff;
       if (*(volatile char *)((int)puVar8 + iVar16 + uVar17 + 0x31) != ' ') {
-        FUN_0102583c(*(volatile unsigned char *)((int)puVar8 + 0x4d9));
+        controller_deferred_event_raise(*(volatile unsigned char *)((int)puVar8 + 0x4d9));
       }
       if (*(volatile char *)((int)puVar8 + 0x28) != '\0') {
         FUN_0102460c();

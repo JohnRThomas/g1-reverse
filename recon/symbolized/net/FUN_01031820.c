@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01031820 @ 0x01031820
+ * public-name: FUN_01031820
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103c064                           @ 0x0103c064
+ *   rodata_103e16a                           @ 0x0103e16a
+ */
 /* net-core controller fatal-reset path @ 0x01031820.
  *
  * Raw provenance: the executable body is 0x01031820..0x01031841.  The NOP at

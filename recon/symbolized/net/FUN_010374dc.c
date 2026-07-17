@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010374dc @ 0x010374dc
+ * public-name: FUN_010374dc
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_ipc_shm_pool_desc_ptr              @ 0x21004b30
+ *   g_zephyr_sched_thread_field              @ 0x21004b40
+ */
 /* FUN_010374dc @ 0x010374dc: remove a queued node and advance the head. */
 #include <stdint.h>
 

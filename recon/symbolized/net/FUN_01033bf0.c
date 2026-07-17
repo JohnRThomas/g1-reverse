@@ -1,4 +1,13 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01033bf0 @ 0x01033bf0
+ * public-name: FUN_01033bf0
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_trx_ppi_ch_a                 @ 0x2100645a
+ *   g_esb_ppi_ch_id_1                        @ 0x2100645b
+ *   g_154_dppi_channel_ack                   @ 0x2100645c
+ *   REG_41008080                             @ 0x41008080
+ */
 /* net-core FUN_01033bf0 @ 0x1033bf0  (parity 300 trials PROVEN) */
 
 void FUN_01033bf0(unsigned int param_1, int param_2)

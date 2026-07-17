@@ -7,6 +7,7 @@
  *   enqueue_ancs                             <= FUN_00018bb4 @ 0x00018bb4
  *   bt_ancs_data_source_handler              <= FUN_00018c48 @ 0x00018c48
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   k_uptime_get_32                          <= FUN_0007c0c8 @ 0x0007c0c8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -27,7 +28,7 @@ extern int get_device_info(void);
 extern int ancs_get_conn_ctx(int);
 extern int enqueue_ancs(int);
 extern int debug_print(uintptr_t, ...);
-extern int FUN_00072880(int);
+extern int k_sem_give(int);
 extern int k_uptime_get_32(void);
 extern int memset_bytes(int,int,int);
 
@@ -92,7 +93,7 @@ void bt_ancs_data_source_handler(int param_1, unsigned char *param_2, int param_
                                         }
                                     }
                                     memset_bytes(iVar6 + 0x34, 0, 0x1b4);
-                                    FUN_00072880(iVar6 + 0x1e8);
+                                    k_sem_give(iVar6 + 0x1e8);
                                     *pcVar2 = '\0';
                                 }
                             }

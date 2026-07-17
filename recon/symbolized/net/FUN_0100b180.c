@@ -1,4 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100b180 @ 0x0100b180
+ * public-name: FUN_0100b180
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_21000050                               @ 0x21000050
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ *   g_ll_conn_trace_ctx_addr                 @ 0x21000cd0
+ *   REG_41008000                             @ 0x41008000
+ */
 /* net-core FUN_0100b180 @ 0x100b180  (parity 21 trials PROVEN) */
 #define P6  ((volatile unsigned char *)((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/)
 #define P7C ((volatile unsigned char *)((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/)
@@ -9,7 +20,7 @@
 #define RH(p,o)  (*(volatile unsigned short *)((unsigned char*)(p)+(o)))
 #define RW(p,o)  (*(volatile unsigned int   *)((unsigned char*)(p)+(o)))
 
-extern unsigned int FUN_01008d00(int, int);
+extern unsigned int sdc_assertion_fail(int, int);
 extern unsigned int FUN_010203d0(void);
 extern unsigned int FUN_0101ff4c(void);
 extern unsigned int FUN_010204d4(int);
@@ -43,7 +54,7 @@ void FUN_0100b180(unsigned int param_1, unsigned int param_2,
     unsigned char bVar5;
 
     if ((RB(P6,0x44) != 0) || (param_4 == 0 || param_3 == 0) || (param_5 == 0)) {
-        FUN_01008d00(0x27, 0x153); return;
+        sdc_assertion_fail(0x27, 0x153); return;
     }
 
     RW(P6,0xc0) = param_4;
@@ -213,7 +224,7 @@ L2c6:
             switch (uVar2) {
             case 1: break;
             case 2: uVar17 = 1; break;
-            default: FUN_01008d00(6, 0x3c5); for(;;){}
+            default: sdc_assertion_fail(6, 0x3c5); for(;;){}
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
@@ -230,7 +241,7 @@ L2c6:
             switch (uVar2) {
             case 1: break;
             case 2: uVar17 = 1; break;
-            default: FUN_01008d00(6, 0x3c5); for(;;){}
+            default: sdc_assertion_fail(6, 0x3c5); for(;;){}
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
@@ -251,5 +262,5 @@ L2c6:
         RH(P6,0x0) = s_0;
         return;
     }
-    FUN_01008d00(0x27, 0x208); return;
+    sdc_assertion_fail(0x27, 0x208); return;
 }

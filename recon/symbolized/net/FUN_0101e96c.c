@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101e96c @ 0x0101e96c
+ * public-name: FUN_0101e96c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_ble_conn_create_ctx                @ 0x21000eac
+ */
 /* net-core FUN_0101e96c @ 0x101e96c  (parity 300 trials PROVEN) */
 
 static volatile unsigned char * const DAT_0101e97c = (volatile unsigned char *)((unsigned long)&g_net_ble_conn_create_ctx) /*=0x21000eac*/;

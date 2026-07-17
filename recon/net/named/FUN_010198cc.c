@@ -3,13 +3,14 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  */
 /* net-core FUN_010198cc @ 0x10198cc  (parity 300 trials PROVEN) */
 extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
 extern int FUN_0100ca98(unsigned int, int);
-extern void FUN_0100ef88(int, unsigned int, unsigned int);
+extern void sdc_work_submit(int, unsigned int, unsigned int);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(unsigned int, unsigned short, unsigned int);
 extern int FUN_010270d2(unsigned int);
@@ -70,7 +71,7 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   uVar2 = DAT_010199c8;
   if (iVar4 != 0) {
     *(volatile unsigned char *)(long)(iVar3 + 8) = 0;
-    FUN_0100ef88(iVar3, uVar2, 6);
+    sdc_work_submit(iVar3, uVar2, 6);
     return;
   }
   sdc_assertion_fail(0x33, 0x361);

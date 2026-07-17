@@ -1,4 +1,21 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101c6d0 @ 0x0101c6d0
+ * public-name: FUN_0101c6d0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ * address symbols (name @ address):
+ *   rodata_10100a1                           @ 0x010100a1
+ *   rodata_10101cd                           @ 0x010101cd
+ *   g_210001e0                               @ 0x210001e0
+ *   g_21000208                               @ 0x21000208
+ *   g_21000210                               @ 0x21000210
+ *   g_210004ac                               @ 0x210004ac
+ *   g_210004bc                               @ 0x210004bc
+ *   g_net_link_ctx_b                         @ 0x21001124
+ */
 /* Full net-core reconstruction FUN_0101c6d0 @ 0x101c6d0. */
 #include <stdint.h>
 typedef uint8_t undefined1;
@@ -24,11 +41,11 @@ typedef uint32_t code(uintptr_t, ...);
 #define DAT_0101d3f8 ((volatile uint32_t *)((unsigned long)&g_21000208) /*=0x21000208*/)
 #define DAT_0101d3fc ((unsigned long)&g_net_link_ctx_b) /*=0x21001124*/
 #define DAT_0101d400 ((volatile uint32_t *)((unsigned long)&g_21000210) /*=0x21000210*/)
-extern uint32_t FUN_01008d00(uintptr_t, ...); extern uint32_t FUN_01009d18(uintptr_t, ...);
+extern uint32_t sdc_assertion_fail(uintptr_t, ...); extern uint32_t controller_typed_handle_lookup(uintptr_t, ...);
 extern uint32_t FUN_0100a984(uintptr_t, ...); extern uint32_t FUN_0100b630(uintptr_t, ...);
 extern uint32_t FUN_0100d14c(uintptr_t, ...); extern uint32_t FUN_0100d3c0(uintptr_t, ...);
 extern uint32_t FUN_0100d5d0(uintptr_t, ...); extern uint32_t FUN_0100d7bc(uintptr_t, ...);
-extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t FUN_0100ef88(uintptr_t, ...);
+extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
 extern uint32_t FUN_0100efc8(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
 extern uint32_t FUN_0100f1f8(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
 extern uint32_t FUN_0100f7e0(uintptr_t, ...); extern uint32_t FUN_0100f86c(uintptr_t, ...);
@@ -105,7 +122,7 @@ LAB_0101c6fc:
     iVar7 = *(int *)(iVar2 + 4);
     if (*(char *)(iVar7 + 0xc5) == '\x03') {
                     /* WARNING: Subroutine does not return */
-      FUN_01008d00(0x36,0x497);
+      sdc_assertion_fail(0x36,0x497);
     }
     if (*(char *)(iVar7 + 199) == '\a') {
       *(undefined1 *)(iVar2 + 0x14) = 1;
@@ -117,7 +134,7 @@ LAB_0101c6fc:
     if ((0x2a < uVar8) || (pcVar14 = *(code **)(DAT_0101c984 + uVar8 * 4), pcVar14 == (code *)0x0))
     {
                     /* WARNING: Subroutine does not return */
-      FUN_01008d00(0x36,0x58d);
+      sdc_assertion_fail(0x36,0x58d);
     }
     (*pcVar14)(DAT_0101c978);
     param_2 = (uint)*(ushort *)(iVar2 + 10);
@@ -180,7 +197,7 @@ LAB_0101c8f2:
 switchD_0101c8fc_caseD_2:
     if (cVar11 == -2) {
                     /* WARNING: Subroutine does not return */
-      FUN_01008d00(0x36,0x599);
+      sdc_assertion_fail(0x36,0x599);
     }
   }
   uVar8 = (uint)*(byte *)((int)puVar15 + 0xc5);
@@ -252,7 +269,7 @@ LAB_0101c78a:
       FUN_0100b630(3,&local_20);
       if (local_20 != 0) {
         *(undefined1 *)(local_20 + 8) = 0;
-        FUN_0100ef88(local_20,*(undefined4 *)(iVar2 + 4),0x10);
+        sdc_work_submit(local_20,*(undefined4 *)(iVar2 + 4),0x10);
       }
       puVar15 = *(undefined2 **)(iVar2 + 4);
       uVar8 = (uint)*(byte *)((int)puVar15 + 0xc5);
@@ -270,7 +287,7 @@ LAB_0101c78a:
       FUN_0100d14c((uintptr_t)puVar15,3);
       if (**(char **)(puVar15 + 0x188) == '\0') {
                     /* WARNING: Subroutine does not return */
-        FUN_01008d00(0x36,0x21e);
+        sdc_assertion_fail(0x36,0x21e);
       }
       if (*(char *)(*(int *)(iVar2 + 4) + 0x14e) != '\x01') {
         pcVar9 = *(char **)(*(int *)(iVar2 + 4) + 0x310);
@@ -470,7 +487,7 @@ LAB_0101d3b0:
                     default:
 switchD_0101d2bc_caseD_3:
                     /* WARNING: Subroutine does not return */
-                      FUN_01008d00(6,0x294);
+                      sdc_assertion_fail(6,0x294);
                     case 4:
                     case 8:
                       switch(*(undefined1 *)(iVar7 + 0x6f)) {
@@ -496,7 +513,7 @@ switchD_0101d2bc_caseD_3:
                       if (*(char *)(iVar7 + 0x1a6) == '\0') {
                         if (*(char *)(iVar7 + 0x1b2) == '\0') {
                           if (*(char *)(iVar7 + 0x1aa) != '\0') {
-                            iVar7 = FUN_01009d18(*(undefined2 *)(iVar7 + 0x1ac),8);
+                            iVar7 = controller_typed_handle_lookup(*(undefined2 *)(iVar7 + 0x1ac),8);
                             if (iVar7 == 0) {
                               *(undefined1 *)(*(int *)(iVar2 + 4) + 0x1aa) = 0;
                             }
@@ -520,7 +537,7 @@ switchD_0101d2bc_caseD_3:
                                 break;
                               default:
                     /* WARNING: Subroutine does not return */
-                                FUN_01008d00(0x36,0x657);
+                                sdc_assertion_fail(0x36,0x657);
                               }
                             }
                           }
@@ -605,11 +622,11 @@ switchD_0101d2bc_caseD_3:
             else {
               if (*(char *)(iVar6 + -0x51) != '\x01') {
                     /* WARNING: Subroutine does not return */
-                FUN_01008d00(0x36,0x682);
+                sdc_assertion_fail(0x36,0x682);
               }
               if (*(char *)(iVar6 + -0x28) != '\0') {
                     /* WARNING: Subroutine does not return */
-                FUN_01008d00(0x36,0x683);
+                sdc_assertion_fail(0x36,0x683);
               }
               if ((int)((uint)*(byte *)(iVar7 + 0x119) << 0x1a) < 0) {
                 *(undefined2 *)(iVar7 + 0xfc) = 0;
@@ -633,7 +650,7 @@ switchD_0101d2bc_caseD_3:
         else {
           if (*(char *)(iVar7 + 0xcb) == '\0') {
                     /* WARNING: Subroutine does not return */
-            FUN_01008d00(0x36,0x66a);
+            sdc_assertion_fail(0x36,0x66a);
           }
           uVar12 = 10;
 LAB_0101cefa:
@@ -768,7 +785,7 @@ LAB_0101ceac:
       if ((param_2 & 3) == 0) {
         if (-1 < (int)(param_2 << 0x1a)) {
                     /* WARNING: Subroutine does not return */
-          FUN_01008d00(0x36,0xb03);
+          sdc_assertion_fail(0x36,0xb03);
         }
         cVar11 = '#';
       }
@@ -783,7 +800,7 @@ LAB_0101c812:
   }
 LAB_0101c814:
   *(char *)(iVar7 + 0xe5) = cVar11;
-  FUN_0100ef88(iVar7 + 0xdc,uVar5,2);
+  sdc_work_submit(iVar7 + 0xdc,uVar5,2);
   uVar5 = *(undefined4 *)(iVar2 + 4);
   *(undefined2 *)(iVar7 + 0xc5) = 0;
   *(undefined1 *)(iVar7 + 0xc9) = 0;

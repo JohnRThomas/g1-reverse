@@ -1,4 +1,17 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010187e0 @ 0x010187e0
+ * public-name: FUN_010187e0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_apply_rx_transition             <= FUN_0101746c @ 0x0101746c
+ *   sdc_llcp_decode_control_pdu              <= FUN_0101a070 @ 0x0101a070
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ * address symbols (name @ address):
+ *   g_net_ble_pending_channel_idx            @ 0x2100001c
+ *   g_sdc_ll_ctx_field_308                   @ 0x21000308
+ *   g_net_link_ctx_field_buf                 @ 0x21000fec
+ */
 /* net-core FUN_010187e0 @ 0x10187e0  (parity 300 trials PROVEN) */
 typedef unsigned char u8; typedef unsigned short u16; typedef unsigned int u32;
 
@@ -7,16 +20,16 @@ extern int FUN_010162e0(int);
 extern int FUN_01016828(void);
 extern int FUN_01016cc8(void*,int);
 extern int FUN_0101709c(void*,int);
-extern int FUN_0101746c(void*,int,int);
+extern int sdc_llcp_apply_rx_transition(void*,int,int);
 extern int FUN_01017658(void*,void*,void*,void*);
 extern int FUN_01019660(void);
 extern int FUN_010196e0(void);
 extern int FUN_01019aa0(void*,int,int,int,int,int,int,int);
 extern int FUN_01019eb4(void*,int);
 extern int FUN_01019ef8(int,int);
-extern int FUN_0101a070(int,void*);
-extern int FUN_0101fca8(void);
-extern int FUN_010208b0(void);
+extern int sdc_llcp_decode_control_pdu(int,void*);
+extern int sdc_llcp_release_rx_context(void);
+extern int sdc_llcp_stop_rx_timeout(void);
 extern int FUN_0102961a(int);
 
 #define G8(o)  (*(volatile signed char*)(0x21000f90+(o)))
@@ -42,7 +55,7 @@ unsigned int FUN_010187e0(u32 param_1, u32 param_2)
     u32 uVar7;
     unsigned int uVar8;
 
-    FUN_0101a070(param_1, buf);
+    sdc_llcp_decode_control_pdu(param_1, buf);
 
     signed char *p48 = (signed char*)&buf[0];
     u8 *p47 = (u8*)&buf[1];
@@ -59,7 +72,7 @@ unsigned int FUN_010187e0(u32 param_1, u32 param_2)
          ( ( (iVar6=FUN_01019eb4(&buf[0],param_2), iVar6==0 &&
               ( (-1 < (int)((u32)*p47 << 0x1c)) ||
                 (iVar6=FUN_01019ef8((*p34)[1]>>4, (u32)(*p34)[0] | ((*p34)[1]&0xf)<<8), iVar6==0) ) )
-           ) || (FUN_0101746c(&buf[0],7,param_2), G16(0x82)==0) ) ) {
+           ) || (sdc_llcp_apply_rx_transition(&buf[0],7,param_2), G16(0x82)==0) ) ) {
         uVar8=1;
         FUN_010196e0();
         goto L_882e;
@@ -183,7 +196,7 @@ L_8932:
     uVar8=1;
 L_882e:
     if (G8(0x7c)!=0) {
-        FUN_010208b0(); FUN_0101fca8(); *(volatile signed char*)(0x21000f90+0x7c)=0;
+        sdc_llcp_stop_rx_timeout(); sdc_llcp_release_rx_context(); *(volatile signed char*)(0x21000f90+0x7c)=0;
         return uVar8;
     }
     return uVar8;

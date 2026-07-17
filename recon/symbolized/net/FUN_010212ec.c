@@ -1,11 +1,23 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010212ec @ 0x010212ec
+ * public-name: FUN_010212ec
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
+ * address symbols (name @ address):
+ *   rodata_103c4d0                           @ 0x0103c4d0
+ *   rodata_103c578                           @ 0x0103c578
+ *   rodata_103c5b0                           @ 0x0103c5b0
+ *   REG_41008000                             @ 0x41008000
+ */
 /* net-core FUN_010212ec @ 0x10212ec */
 #include <stdint.h>
 
-extern void FUN_01008d00(uint32_t reason, uint32_t line);
+extern void sdc_assertion_fail(uint32_t reason, uint32_t line);
 extern void FUN_01020108(void);
 extern void FUN_01020168(uint32_t channel);
-extern void FUN_01020500(void);
+extern void sdc_llcp_note_unsupported_pdu(void);
 extern void FUN_01020a00(uint32_t channel);
 extern void FUN_010215a8(int32_t request);
 extern void FUN_010216d4(uint32_t, uint32_t, int32_t, void *);
@@ -89,7 +101,7 @@ uint32_t FUN_010212ec(uint32_t mode, uint32_t channel, uint32_t request)
     }
     FUN_01020108();
     if (FUN_01023ac4() != 0) {
-        FUN_01020500();
+        sdc_llcp_note_unsupported_pdu();
         return 0;
     }
 
@@ -110,23 +122,23 @@ uint32_t FUN_010212ec(uint32_t mode, uint32_t channel, uint32_t request)
             WORK[2] = 0;
             WORK[3] = 0x28;
             if ((uint32_t)(FUN_010218c0((void *)WORK, (const void *)(LOOKUP8 + 0xa8)) + 1) > 1)
-                FUN_01008d00(0x3e, 0x6e9);
+                sdc_assertion_fail(0x3e, 0x6e9);
         }
     } else {
         timer_request.delay = 0x28;
         FUN_01025c9c(command);
         if (*(volatile uint16_t *)(STATE + 0x1c) > 0x95) {
             if (mode != 1)
-                FUN_01008d00(0x3e, 0x6fa);
+                sdc_assertion_fail(0x3e, 0x6fa);
             WORK[2] = 0;
             WORK[3] = 0x29;
             if ((uint32_t)(FUN_010218cc((void *)WORK, (const void *)UINT32_C(0x0103c578)) + 1) > 1)
-                FUN_01008d00(0x3e, 0x6f6);
+                sdc_assertion_fail(0x3e, 0x6f6);
         }
     }
 
     if (FUN_01025bc8(&observed) != 0)
-        FUN_01008d00(0x3e, 0xa8b);
+        sdc_assertion_fail(0x3e, 0xa8b);
 
     if (STATE[9] == 1)
         STATE[0x46] = (uint8_t)(((observed ^ 4u) >> 2) & 1u);
@@ -145,14 +157,14 @@ uint32_t FUN_010212ec(uint32_t mode, uint32_t channel, uint32_t request)
     return result;
 
 panic_a69:
-    FUN_01008d00(0x3e, 0xa69);
+    sdc_assertion_fail(0x3e, 0xa69);
     /* The diagnostic is noreturn in production.  Preserve the firmware's
        literal fall-through as well, since the parity oracle returns. */
     WORK[2] = mode;
     WORK[3] = 0x28;
     if ((uint32_t)(FUN_010218c0((void *)WORK,
                                 (const void *)(LOOKUP8 + 0xa8)) + 1) > 1)
-        FUN_01008d00(0x3e, 0x6e9);
+        sdc_assertion_fail(0x3e, 0x6e9);
     FUN_01020168(channel);
     /* r8 is still zero on the mode-zero early-failure path and was loaded
        with two on the nonzero-mode path. */
@@ -166,9 +178,9 @@ panic_a69:
         STATE[0x35] |= 4;
     FUN_01020108();
     if (FUN_01023ac4() != 0)
-        FUN_01020500();
+        sdc_llcp_note_unsupported_pdu();
     return 0;
 panic_57e:
-    FUN_01008d00(0x3e, 0x57e);
+    sdc_assertion_fail(0x3e, 0x57e);
     return 0;
 }

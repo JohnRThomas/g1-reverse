@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010323cc @ 0x010323cc
+ * public-name: FUN_010323cc
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_pending_tx_pkt                     @ 0x210051ae
+ */
 /* net-core FUN_010323cc @ 0x10323cc — true CFG extent 38 bytes (ends 0x10323f2) */
 /* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */
 /* net-core FUN_010323cc @ 0x10323cc  (parity 300 trials PROVEN) */

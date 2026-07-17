@@ -3,7 +3,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   lc3_ltpf_interpolate                     <= FUN_00069468 @ 0x00069468
- *   lc3_ltpf_resample                        <= FUN_0006954c @ 0x0006954c
+ *   lc3_ltpf_arm_correlate                   <= FUN_0006954c @ 0x0006954c
+ *   lc3_ltpf_detect_pitch                    <= FUN_000698d0 @ 0x000698d0
  *   lc3_ltpf_analyse                         <= FUN_0006ab80 @ 0x0006ab80
  * address symbols (name @ address):
  *   rodata_8c938                             @ 0x0008c938
@@ -40,8 +41,8 @@ typedef void (*resample_12k8_fn)(struct lc3_ltpf_hp50_state *,
     const int16_t *, int16_t *, int);
 
 extern void *FUN_00086c44(void *, const void *, uint32_t);
-extern bool FUN_000698d0(struct lc3_ltpf_analysis *, const int16_t *, int, int *);
-extern void lc3_ltpf_resample(const int16_t *, const int16_t *, int, float *);
+extern bool lc3_ltpf_detect_pitch(struct lc3_ltpf_analysis *, const int16_t *, int, int *);
+extern void lc3_ltpf_arm_correlate(const int16_t *, const int16_t *, int, float *);
 extern void lc3_ltpf_interpolate(const int16_t *, int, int, int16_t *);
 
 #define RESAMPLE_12K8 ((const resample_12k8_fn *)(uintptr_t)0x0008c938u)
@@ -79,7 +80,7 @@ static __attribute__((always_inline)) inline int refine_pitch(const int16_t *x, 
     if (top > 228) top = 228;
     int nr = top - r0 + 1;
 
-    lc3_ltpf_resample(x, x - (r0 - 4), n, r);
+    lc3_ltpf_arm_correlate(x, x - (r0 - 4), n, r);
     int best = 0;
     rm = r[4];
     for (int i = 1; i < nr; i++) {
@@ -146,7 +147,7 @@ bool lc3_ltpf_analyse(int dt, int sr, struct lc3_ltpf_analysis *ltpf,
 
     int tc, pitch = 0;
     float nc = 0.0f;
-    bool pitch_present = FUN_000698d0(ltpf, x_6k4, n_6k4, &tc);
+    bool pitch_present = lc3_ltpf_detect_pitch(ltpf, x_6k4, n_6k4, &tc);
 
     if (pitch_present) {
         int16_t u[n_12k8], v[n_12k8];

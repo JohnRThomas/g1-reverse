@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010344ec @ 0x010344ec
+ * public-name: FUN_010344ec
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_sdc_res_pool_slot_tbl                  @ 0x210006a8
+ */
 /* net-core FUN_010344ec @ 0x10344ec  (parity 300 trials PROVEN) */
 
 extern int FUN_010344a8(void);

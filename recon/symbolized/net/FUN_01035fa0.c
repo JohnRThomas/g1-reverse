@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01035fa0 @ 0x01035fa0
+ * public-name: FUN_01035fa0
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103bac9                           @ 0x0103bac9
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103ea45                           @ 0x0103ea45
+ */
 /* net-core FUN_01035fa0 @ 0x1035fa0 */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"

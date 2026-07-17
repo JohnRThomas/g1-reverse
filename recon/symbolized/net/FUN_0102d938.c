@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102d938 @ 0x0102d938
+ * public-name: FUN_0102d938
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103cf0a                           @ 0x0103cf0a
+ */
 /* net-core FUN_0102d938 @ 0x102d938; true CFG extent 0x102da14 (220 bytes) */
 #include <stdint.h>
 extern void FUN_01036410(void *, int32_t, int32_t);

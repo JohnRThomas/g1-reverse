@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101ff4c @ 0x0101ff4c
+ * public-name: FUN_0101ff4c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_pending_reset_flag           @ 0x210014dc
+ *   REG_4100e000                             @ 0x4100e000
+ */
 /* net-core FUN_0101ff4c @ 0x101ff4c  (parity 300 trials PROVEN) */
 
 volatile unsigned char * const DAT_0101ff90 = (volatile unsigned char *)((unsigned long)&g_net_radio_pending_reset_flag) /*=0x210014dc*/;

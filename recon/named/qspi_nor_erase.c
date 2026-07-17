@@ -7,6 +7,7 @@
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
  *   qspi_nor_erase                           <= FUN_00060dd0 @ 0x00060dd0
  *   nrfx_qspi_read                           <= FUN_00066bc4 @ 0x00066bc4
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
@@ -25,7 +26,7 @@ extern int FUN_000609f4(int,int);
 extern int qspi_nor_acquire(void);
 extern int FUN_00060a5c(int);
 extern int nrfx_qspi_read(int,int);
-extern int FUN_00072880(int);
+extern int k_sem_give(int);
 extern int FUN_000838d6(int,int,void*);
 extern int audio_stream_stop_and_wait(int);
 extern int audio_i2s_stop_and_reset_channels(int);
@@ -103,7 +104,7 @@ LAB_00060e40:
                 iVar1 = iVar3;
             }
         }
-        FUN_00072880(*(int *)(param_1 + 0x10));
+        k_sem_give(*(int *)(param_1 + 0x10));
     }
     FUN_00060a5c(param_1);
     return iVar1;

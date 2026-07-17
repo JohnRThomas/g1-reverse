@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01030efc @ 0x01030efc
+ * public-name: FUN_01030efc
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_01030efc @ 0x1030efc  (parity 300 trials PROVEN) */
 typedef unsigned int undefined4;
 typedef unsigned int uint;

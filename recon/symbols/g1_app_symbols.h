@@ -131,7 +131,7 @@
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
 
-/* ---- RAM globals / kernel objects (693) ---- */
+/* ---- RAM globals / kernel objects (696) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
 extern volatile unsigned int g_ble_dev_state; /* @0x20002000 */
@@ -330,6 +330,7 @@ extern volatile unsigned int g_bt_gatt_sc_cfg1_flags; /* @0x2000633c */
 extern volatile unsigned int g_bt_gatt_sc_cfg2_flags; /* @0x20006348 */
 extern volatile unsigned int g_bt_gatt_delayed_store_work; /* @0x20006350 */
 extern volatile unsigned int g_bt_gatt_db_hash; /* @0x20006380 */
+extern volatile unsigned int g_20006390; /* @0x20006390 */
 extern volatile unsigned int g_bt_gatt_db_hash_work; /* @0x200063a0 */
 extern volatile unsigned int g_bt_gatt_db_hash_work_63d0; /* @0x200063d0 */
 extern volatile unsigned int g_service_changed_range; /* @0x200063f8 */
@@ -347,7 +348,7 @@ extern volatile unsigned int g_200069f0; /* @0x200069f0 */
 extern volatile unsigned int g_200069f4; /* @0x200069f4 */
 extern volatile unsigned int g_ambient_light_sensor_ready; /* @0x200069f8 */
 extern volatile int device_info; /* @0x200069fc */
-extern volatile signed int g_touch_key_irq_pending; /* @0x20006a00 */
+extern volatile int g_touch_key_irq_pending; /* @0x20006a00 */
 extern volatile unsigned int g_button_irq_cb2; /* @0x20006a04 */
 extern volatile unsigned int g_button_irq_cb2_handler; /* @0x20006a08 */
 extern volatile unsigned int g_button_irq_cb1; /* @0x20006a10 */
@@ -431,7 +432,7 @@ extern volatile signed int g_20007af4; /* @0x20007af4 */
 extern volatile signed int g_20007af8; /* @0x20007af8 */
 extern volatile signed int g_20007afc; /* @0x20007afc */
 extern volatile unsigned int g_misc_dispatch_ctx; /* @0x20007b00 */
-extern volatile signed int g_touch_key_reset_reason; /* @0x20007b18 */
+extern volatile int g_touch_key_reset_reason; /* @0x20007b18 */
 extern volatile unsigned int g_some_module_sem; /* @0x20007b1c */
 extern volatile unsigned int g_20007b38; /* @0x20007b38 */
 extern volatile unsigned int g_ui_state_mutex; /* @0x20007b3c */
@@ -552,6 +553,7 @@ extern volatile unsigned int g_bt_gatt_indicate_ctx_pool; /* @0x2000add4 */
 extern volatile int att_handle_rsp_thread; /* @0x2000ae9c */
 extern volatile unsigned int cancel_req; /* @0x2000aea0 */
 extern volatile unsigned int g_bt_gatt_cf_cfg; /* @0x2000aed4 */
+extern volatile unsigned int g_2000aed5; /* @0x2000aed5 */
 extern volatile unsigned int gatt_service_init_guard; /* @0x2000af04 */
 extern volatile int g_bt_gatt_dynamic_db; /* @0x2000af08 */
 extern volatile unsigned int g_bt_gatt_callback_list_head; /* @0x2000af10 */
@@ -634,7 +636,7 @@ extern volatile unsigned short last_static_handle; /* @0x2000ff3c */
 extern volatile unsigned int g_change_work_mode_busy; /* @0x2000ff4b */
 extern volatile unsigned int g_notify_wakeup_msg_sync_flag; /* @0x2000ff4d */
 extern volatile unsigned int g_2000ff4e; /* @0x2000ff4e */
-extern volatile unsigned int g_runtime_mode_flag; /* @0x2000ff6e */
+extern volatile unsigned char g_runtime_mode_flag; /* @0x2000ff6e */
 extern volatile unsigned char g_ble_indicate_sc_retry_count; /* @0x2000ff70 */
 extern volatile unsigned int g_ancs_attr_data_pending; /* @0x2000ff71 */
 extern volatile unsigned int g_2000ff87; /* @0x2000ff87 */
@@ -825,14 +827,32 @@ extern volatile unsigned char g_dashboard_startup_mode_info_field_61; /* @0x2007
 extern volatile unsigned char g_all_static_info_fc62; /* @0x2007fc62 */
 extern volatile unsigned char g_all_static_info_fc68; /* @0x2007fc68 */
 extern volatile unsigned char g_dashboard_default_widget0_index; /* @0x2007fc69 */
+extern volatile unsigned char g_2007fc70; /* @0x2007fc70 */
 
-/* ---- rodata table externs (2464) ---- */
+/* ---- rodata table externs (2453) ---- */
 extern const unsigned char __settings_handler_static_list_start[]; /* @0x882b0 */
 extern const unsigned char entropy_dev[]; /* @0x87b90 */
 extern const unsigned char g_default_font_glyph_table_count[]; /* @0x8ac28 */
 extern const unsigned char g_gpio0_dev[]; /* @0x87b60 */
 extern const unsigned char g_gpio1_dev[]; /* @0x87b48 */
 extern const unsigned char g_watchdog_device[]; /* @0x87cc8 */
+extern const unsigned char lc3_attdet_nbytes_ranges[]; /* @0x884d0 */
+extern const unsigned char lc3_bwdet_bws_table[]; /* @0x8bbe0 */
+extern const unsigned char lc3_bwdet_l_table[]; /* @0x8bbc0 */
+extern const unsigned char lc3_bwdet_thresholds[]; /* @0x884f0 */
+extern const unsigned char lc3_energy_n1_table[]; /* @0x8bc60 */
+extern const unsigned char lc3_sns_dct16_matrix[]; /* @0x8ce4c */
+extern const unsigned char lc3_spec_iq_table[]; /* @0x8d350 */
+extern const unsigned char lc3_tns_coeffs_models_row1[]; /* @0x8fea4 */
+extern const unsigned char lc3_tns_coeffs_models_row2[]; /* @0x8fee8 */
+extern const unsigned char lc3_tns_coeffs_models_row3[]; /* @0x8ff2c */
+extern const unsigned char lc3_tns_coeffs_models_row4[]; /* @0x8ff70 */
+extern const unsigned char lc3_tns_coeffs_models_row5[]; /* @0x8ffb4 */
+extern const unsigned char lc3_tns_coeffs_models_row6[]; /* @0x8fff8 */
+extern const unsigned char lc3_tns_coeffs_models_row7[]; /* @0x9003c */
+extern const unsigned char lc3_tns_rc_levels[]; /* @0x98540 */
+extern const unsigned char lc3_tns_rc_thresholds[]; /* @0x98564 */
+extern const unsigned char lc3_tns_subdivision_table[]; /* @0x8853c */
 extern const unsigned char log_module_bt_conn[]; /* @0x88108 */
 extern const unsigned char rodata_10000[]; /* @0x10000 */
 extern const unsigned char rodata_1253c[]; /* @0x1253c */
@@ -999,9 +1019,6 @@ extern const unsigned char rodata_883ec[]; /* @0x883ec */
 extern const unsigned char rodata_88410[]; /* @0x88410 */
 extern const unsigned char rodata_88434[]; /* @0x88434 */
 extern const unsigned char rodata_8843e[]; /* @0x8843e */
-extern const unsigned char lc3_attdet_nbytes_ranges[]; /* @0x884d0 */
-extern const unsigned char lc3_bwdet_thresholds[]; /* @0x884f0 */
-extern const unsigned char lc3_tns_subdivision_table[]; /* @0x8853c */
 extern const unsigned char rodata_88570[]; /* @0x88570 */
 extern const unsigned char rodata_885b0[]; /* @0x885b0 */
 extern const unsigned char rodata_885cc[]; /* @0x885cc */
@@ -1060,36 +1077,10 @@ extern const unsigned char rodata_8ba7c[]; /* @0x8ba7c */
 extern const unsigned char rodata_8ba88[]; /* @0x8ba88 */
 extern const unsigned char rodata_8ba94[]; /* @0x8ba94 */
 extern const unsigned char rodata_8bb90[]; /* @0x8bb90 */
-extern const unsigned char lc3_bwdet_l_table[]; /* @0x8bbc0 */
-extern const unsigned char lc3_bwdet_bws_table[]; /* @0x8bbe0 */
-extern const unsigned char lc3_energy_n1_table[]; /* @0x8bc60 */
 extern const unsigned char rodata_8bc88[]; /* @0x8bc88 */
 extern const unsigned char rodata_8bc98[]; /* @0x8bc98 */
 extern const unsigned char rodata_8c938[]; /* @0x8c938 */
-extern const unsigned char lc3_sns_dct16_matrix[]; /* @0x8ce4c */
 extern const unsigned char rodata_8d24c[]; /* @0x8d24c */
-extern const unsigned char lc3_spec_iq_table[]; /* @0x8d350 */
-extern const unsigned char lc3_spectrum_bits[]; /* @0x8d3d0 */
-extern const unsigned char lc3_spectrum_models[]; /* @0x8dc50 */
-extern const unsigned char lc3_spectrum_lookup[]; /* @0x8ed50 */
-extern const unsigned char lc3_tns_coeffs_bits[]; /* @0x8fd50 */
-extern const unsigned char lc3_tns_coeffs_models[]; /* @0x8fe60 */
-extern const unsigned char lc3_tns_coeffs_models_row1[]; /* @0x8fea4 */
-extern const unsigned char lc3_tns_coeffs_models_row2[]; /* @0x8fee8 */
-extern const unsigned char lc3_tns_coeffs_models_row3[]; /* @0x8ff2c */
-extern const unsigned char lc3_tns_coeffs_models_row4[]; /* @0x8ff70 */
-extern const unsigned char lc3_tns_coeffs_models_row5[]; /* @0x8ffb4 */
-extern const unsigned char lc3_tns_coeffs_models_row6[]; /* @0x8fff8 */
-extern const unsigned char lc3_tns_coeffs_models_row7[]; /* @0x9003c */
-extern const unsigned char lc3_tns_order_bits[]; /* @0x90080 */
-extern const unsigned char lc3_tns_order_models[]; /* @0x900a0 */
-extern const unsigned char lc3_sns_mpvq_offsets[]; /* @0x90128 */
-extern const unsigned char lc3_sns_vq_gains[]; /* @0x903e8 */
-extern const unsigned char lc3_sns_hfcb[]; /* @0x90450 */
-extern const unsigned char lc3_sns_lfcb[]; /* @0x90850 */
-extern const unsigned char lc3_band_lim[]; /* @0x90c50 */
-extern const unsigned char lc3_tns_rc_levels[]; /* @0x98540 */
-extern const unsigned char lc3_tns_rc_thresholds[]; /* @0x98564 */
 extern const unsigned char rodata_98684[]; /* @0x98684 */
 extern const unsigned char rodata_98690[]; /* @0x98690 */
 extern const unsigned char rodata_9869c[]; /* @0x9869c */
@@ -3271,7 +3262,6 @@ extern const unsigned char rodata_f8901[]; /* @0xf8901 */
 extern const unsigned char rodata_f8911[]; /* @0xf8911 */
 extern const unsigned char rodata_f8a2e[]; /* @0xf8a2e */
 extern const unsigned char rodata_f8a3b[]; /* @0xf8a3b */
-extern const unsigned char rodata_f8a6a[]; /* @0xf8a6a */
 extern const unsigned char rodata_f8a6b[]; /* @0xf8a6b */
 extern const unsigned char rodata_f8b6b[]; /* @0xf8b6b */
 extern const unsigned char rodata_f8b71[]; /* @0xf8b71 */
@@ -3293,5 +3283,19 @@ extern const unsigned char rodata_fc09[]; /* @0xfc09 */
 extern const unsigned char rodata_fd00[]; /* @0xfd00 */
 extern const unsigned char rodata_ff20[]; /* @0xff20 */
 extern const unsigned char rodata_ff41[]; /* @0xff41 */
+
+/* Generic fallbacks for sources not including liblc3 tables.h. */
+#ifndef G1_APP_USE_LIBLC3_TABLE_DECLS
+extern const unsigned char lc3_band_lim[]; /* @0x90c50 */
+extern const unsigned char lc3_sns_hfcb[]; /* @0x90450 */
+extern const unsigned char lc3_sns_lfcb[]; /* @0x90850 */
+extern const unsigned char lc3_sns_mpvq_offsets[]; /* @0x90128 */
+extern const unsigned char lc3_sns_vq_gains[]; /* @0x903e8 */
+extern const unsigned char lc3_spectrum_bits[]; /* @0x8d3d0 */
+extern const unsigned char lc3_spectrum_lookup[]; /* @0x8ed50 */
+extern const unsigned char lc3_tns_coeffs_bits[]; /* @0x8fd50 */
+extern const unsigned char lc3_tns_coeffs_models[]; /* @0x8fe60 */
+extern const unsigned char lc3_tns_order_bits[]; /* @0x90080 */
+#endif
 
 #endif

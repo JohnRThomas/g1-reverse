@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100f5d8 @ 0x0100f5d8
+ * public-name: FUN_0100f5d8
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_prng_state                         @ 0x21000ef4
+ */
 /* net-core FUN_0100f5d8 @ 0x0100f5d8
  * Readable role: finalize the network core's four-word random state.
  * Address back-map:

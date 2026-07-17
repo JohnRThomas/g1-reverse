@@ -1,4 +1,20 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102df2c @ 0x0102df2c
+ * public-name: FUN_0102df2c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103c0ec                           @ 0x0103c0ec
+ *   rodata_103c0fc                           @ 0x0103c0fc
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d5d7                           @ 0x0103d5d7
+ *   g_net_periodic_work_obj                  @ 0x2100086c
+ *   g_net_uptime_ms_lo                       @ 0x21002788
+ *   g_net_uptime_ms_hi                       @ 0x2100278c
+ *   g_net_periodic_work_ptr                  @ 0x2100465c
+ *   g_net_tick_correction_pending            @ 0x21004664
+ *   g_net_tick_pending_cnt                   @ 0x21004668
+ *   g_net_tick_handler_enable_flag           @ 0x21004fac
+ */
 /* net-core FUN_0102df2c @ 0x102df2c  (parity 300 trials PROVEN) */
 
 typedef unsigned char undefined1;

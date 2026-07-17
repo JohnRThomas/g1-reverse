@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
  *   sdc_conn_event_timing_prepare            <= FUN_01012f18 @ 0x01012f18
  *   radio_phy_airtime_base_get               <= FUN_010209f0 @ 0x010209f0
@@ -21,7 +22,7 @@
 extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern uint64_t controller_time_now(void);
 extern uint32_t sdc_conn_event_timing_prepare(void *, uint32_t, uint32_t, uint32_t, uint16_t *);
-extern void FUN_0100ef88(void *, uint32_t, uint32_t);
+extern void sdc_work_submit(void *, uint32_t, uint32_t);
 extern void FUN_01016170(void *);
 extern void FUN_01022ebc(uint32_t);
 extern void FUN_01015ecc(void *);
@@ -117,7 +118,7 @@ static __attribute__((always_inline)) inline void advance_receive_window(void *c
     }
 
     U8(context, 0xe5) = U8(context, 0xc9) == 0 ? 0x3e : 8;
-    FUN_0100ef88((uint8_t *)context + 0xdc, 0x010100a1u, 2);
+    sdc_work_submit((uint8_t *)context + 0xdc, 0x010100a1u, 2);
     FUN_01016170(context);
     U8(context, 0x31c) = 0;
     FUN_01022ebc(U8(context, 0x364));

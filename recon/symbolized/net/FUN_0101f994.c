@@ -1,4 +1,13 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101f994 @ 0x0101f994
+ * public-name: FUN_0101f994
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ * address symbols (name @ address):
+ *   rodata_10100a1                           @ 0x010100a1
+ */
 /* net-core FUN_0101f994 @ 0x101f994  (parity 200 trials PROVEN) */
 /* net-core FUN_0101f994 @ 0x101f994  (parity 300 trials PROVEN) */
 typedef unsigned char u8;
@@ -10,12 +19,12 @@ typedef int i32;
 typedef unsigned long long u64;
 typedef long long i64;
 
-extern void FUN_01008d00(u32,u32);
+extern void sdc_assertion_fail(u32,u32);
 extern u32  FUN_0100e8b0(i32);
 extern u32  FUN_0100e8b8(i32);
 extern u16  FUN_0100e8c4(i32);
 extern i32  FUN_0100e8c8(i32);
-extern void FUN_0100ef88(i32,u32,u32);
+extern void sdc_work_submit(i32,u32,u32);
 extern void FUN_0100f7b0(i32);
 extern u32  FUN_0100f834(i32,i32);
 extern void FUN_0101f934(i32,u32,u32,i32,i32);
@@ -160,7 +169,7 @@ LAB_0101fa52:
       uVar10 = 0x28;
     }
     *(volatile u8*)(iVar12 + 0xe5) = uVar10;
-    FUN_0100ef88(iVar12 + 0xdc, DAT_0101fba0, 2);
+    sdc_work_submit(iVar12 + 0xdc, DAT_0101fba0, 2);
   }
 LAB_0101fb0c:
   if (puVar13 == (u8*)(*(volatile i32*)(param_1 + 4) + 0xc6)) {
@@ -171,6 +180,6 @@ LAB_0101fb0c:
   return 0;
 
 TRAP:
-  FUN_01008d00(uVar6, uVar9);
+  sdc_assertion_fail(uVar6, uVar9);
   goto ELSE_BR;
 }

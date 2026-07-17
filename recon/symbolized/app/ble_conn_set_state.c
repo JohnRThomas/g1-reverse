@@ -8,6 +8,7 @@
  *   ble_conn_ref                             <= FUN_00056654 @ 0x00056654
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   ble_conn_set_state                       <= FUN_00056704 @ 0x00056704
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
@@ -34,7 +35,7 @@ extern void tx_notify(int);
 extern void net_buf_destroy(int,void*,uint32_t,uint32_t);
 extern void ble_conn_ref(void);
 extern uint32_t ble_conn_unref(int);
-extern void FUN_00072880(int);
+extern void k_sem_give(int);
 extern void FUN_00073418(int,uint32_t,uint32_t,uint32_t);
 extern uint32_t FUN_00073518(int);
 extern void FUN_000757b0(uint32_t,int);
@@ -128,7 +129,7 @@ void ble_conn_set_state(int param_1, uint param_2)
         int iVar2;
         if (*(volatile uint16_t*)(((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + 0x104) == 0) iVar2 = 0;
         else iVar2 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/ + 0x108;
-        FUN_00072880(iVar2);
+        k_sem_give(iVar2);
       }
     }
     case 2: case 3: case 4: case 5: case 6: case 8:

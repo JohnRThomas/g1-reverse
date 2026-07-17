@@ -1,4 +1,13 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101da18 @ 0x0101da18
+ * public-name: FUN_0101da18
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   rodata_10101cd                           @ 0x010101cd
+ *   g_net_link_ctx_b                         @ 0x21001124
+ */
 /* net-core FUN_0101da18 @ 0x101da18  (parity 10 trials PROVEN) */
 /* net-core FUN_0101da18 @ 0x101da18  (parity 4 trials PROVEN) */
 /* net-core FUN_0101da18 @ 0x101da18  (parity 7 trials PROVEN) */
@@ -8,7 +17,7 @@ typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned int uint;
 
-extern void FUN_01008d00(uint, uint);
+extern void sdc_assertion_fail(uint, uint);
 extern void FUN_0100d14c(void *, uint);
 extern int FUN_0100d3c0(void *, uint, uchar, uint, uint);
 extern ushort FUN_0100d5d0(uint);
@@ -76,7 +85,7 @@ void FUN_0101da18(ushort *param_1, int param_2, uint param_3, uint param_4)
                 *(volatile uchar *)(param_1 + 0x69) = *(volatile uchar *)(*(volatile int *)(param_1 + 0x188) + 5);
                 FUN_0100d14c(param_1, 3);
                 if (**(volatile char **)(param_1 + 0x188) == 0) {
-                    FUN_01008d00(0x36, 0x21e);
+                    sdc_assertion_fail(0x36, 0x21e);
                     return;
                 }
                 if (*(volatile char *)(*(volatile int *)(iVar3 + 4) + 0x14e) != 1) {

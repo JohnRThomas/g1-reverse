@@ -15,7 +15,7 @@
  *   get_low_battery_flag_if_master           <= FUN_0002efa8 @ 0x0002efa8
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   prepare_quick_note_mode                  <= FUN_0007cdb6 @ 0x0007cdb6
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
  * address symbols (name @ address):
@@ -41,7 +41,7 @@ extern void update_touch_key_flag(void);
 extern int get_low_battery_flag_if_master(void);
 extern void mark_master_or_low_battery_flag(void);
 extern int msg_content_recalc_unread(void);
-extern void k_msleep_ticks32768_a(int a);
+extern void k_msleep(int a);
 extern void prepare_quick_note_mode(unsigned a, int b);
 extern void reset_esb_sync_state(int a);
 extern void send_event_status(int a);
@@ -157,7 +157,7 @@ LAB_0002884a:
             }
         }
         if (*pcVar1 != '\0') {
-            k_msleep_ticks32768_a(2000);
+            k_msleep(2000);
             *pcVar1 = '\0';
         }
         esb_pairing_sync_step();
@@ -177,6 +177,6 @@ LAB_0002884a:
             *pcVar2 = '\0';
             update_touch_key_flag();
         }
-        k_msleep_ticks32768_a(200);
+        k_msleep(200);
     } while (1);
 }

@@ -6,7 +6,7 @@
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
  *   rodata_f4783                             @ 0x000f4783
- *   g_bt_gatt_db_hash                        @ 0x20006390
+ *   g_20006390                               @ 0x20006390
  */
 /* Reconstructed FUN_0005a28c @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
 

@@ -7,7 +7,7 @@
  *   mgmt_find_group                          <= FUN_0005139c @ 0x0005139c
  *   smp_process_request_packet               <= FUN_000513e8 @ 0x000513e8
  *   net_buf_simple_pull_5f558                <= FUN_0005f558 @ 0x0005f558
- *   audio_buf_release                        <= FUN_00080b0e @ 0x00080b0e
+ *   smp_free_buf                             <= FUN_00080b0e @ 0x00080b0e
  *   cbor_encode_int32                        <= FUN_0008630c @ 0x0008630c
  *   cbor_encode_bstr                         <= FUN_0008633e @ 0x0008633e
  *   cbor_encode_map_indef_start              <= FUN_0008634c @ 0x0008634c
@@ -26,7 +26,7 @@ extern void net_buf_simple_pull_5f558(int a, unsigned b);
 extern void FUN_000807f6(void *a, void *b, int c);
 extern void FUN_00080830(int a, int b);
 extern void FUN_00080864(int a);
-extern void audio_buf_release(int a, int b);
+extern void smp_free_buf(int a, int b);
 extern int FUN_00080ae6(int a, int b);
 extern int cbor_encode_int32(int *a, uint b);
 extern int cbor_encode_bstr(int *a, void *b);
@@ -54,11 +54,11 @@ uint smp_process_request_packet(int *param_1, int param_2)
         uVar11 = (uint)*(volatile unsigned short *)(param_2 + 0x10);
         if (uVar11 == 0) {
 LAB_000513fa:
-            audio_buf_release(param_2, *param_1);
+            smp_free_buf(param_2, *param_1);
             iVar4 = 0;
             iVar9 = *param_1;
 LAB_00051506:
-            audio_buf_release(iVar4, iVar9);
+            smp_free_buf(iVar4, iVar9);
             return uVar11;
         }
         if (uVar11 < 8) {
@@ -105,7 +105,7 @@ LAB_000514f4:
                     iVar4 = 0;
                 }
             }
-            audio_buf_release(iVar9, *param_1);
+            smp_free_buf(iVar9, *param_1);
             iVar9 = *param_1;
             goto LAB_00051506;
         }

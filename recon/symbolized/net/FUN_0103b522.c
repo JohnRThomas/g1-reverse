@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103b522 @ 0x0103b522
+ * public-name: FUN_0103b522
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_0103b522 @ 0x103b522
  * True extent: 14-byte null-check/tail-call wrapper ending at 0x103b52f.
  * The former 134-byte Ghidra body overlapped the independent functions that

@@ -10,7 +10,7 @@
  *   crc32_table_init                         <= FUN_000235dc @ 0x000235dc
  *   try_to_save_file                         <= FUN_00023634 @ 0x00023634
  *   get_demo_image_source_from_flash         <= FUN_000365ec @ 0x000365ec
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   rproc_virtio_negotiate_features          <= FUN_0007c34a @ 0x0007c34a
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  * address symbols (name @ address):
@@ -38,7 +38,7 @@
 extern void file_subsystem_queue_init(void);
 extern void crc32_table_init(void);
 extern void try_to_save_file(uintptr_t);
-extern void mutex_lock_syscall_handler(uintptr_t,uintptr_t,uint32_t,uint32_t);
+extern void z_impl_k_sem_take(uintptr_t,uintptr_t,uint32_t,uint32_t);
 extern uintptr_t get_device_info(void);
 extern void update_burial_point_to_flash(void);
 extern void get_demo_image_source_from_flash(void);
@@ -59,7 +59,7 @@ void brightness_level(uintptr_t context)
     crc32_table_init();
     uint32_t completion_flag = 0;
     for (;;) {
-        mutex_lock_syscall_handler(context + 0x80,0,0xffffffffu,0xffffffffu);
+        z_impl_k_sem_take(context + 0x80,0,0xffffffffu,0xffffffffu);
         uint32_t drained = 0;
         while (*(volatile uint32_t *)((unsigned long)&g_200079c4) /*=0x200079c4*/ != 0) {
             try_to_save_file(context);
@@ -141,7 +141,7 @@ void brightness_level(uintptr_t context)
 wait_for_frame:
         do {
             uint64_t before=thunk_FUN_00074f68();
-            mutex_lock_syscall_handler(context+0x80,0,((unsigned long)&rodata_28000) /*=0x28000*/,0);
+            z_impl_k_sem_take(context+0x80,0,((unsigned long)&rodata_28000) /*=0x28000*/,0);
             uint64_t after=thunk_FUN_00074f68();
             before=(before*1000u)>>15;
             after=(after*1000u)>>15;

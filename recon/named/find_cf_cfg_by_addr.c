@@ -6,7 +6,7 @@
  *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
  * address symbols (name @ address):
  *   g_bt_gatt_cf_cfg                         @ 0x2000aed4
- *   g_bt_gatt_cf_cfg                         @ 0x2000aed5
+ *   g_2000aed5                               @ 0x2000aed5
  */
 /* Reconstructed FUN_00059b5c @ 0x59b5c  (parity: 300/300 trials, PROVEN) */
 

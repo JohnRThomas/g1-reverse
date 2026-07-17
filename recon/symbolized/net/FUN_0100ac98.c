@@ -1,4 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100ac98 @ 0x0100ac98
+ * public-name: FUN_0100ac98
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ *   g_ll_conn_empty_pdu_buf                  @ 0x21000c90
+ *   g_ll_conn_tx_ctx_addr                    @ 0x21000cc4
+ *   g_ll_conn_pdu_hdr_ptr                    @ 0x21000cfc
+ */
 /* net-core FUN_0100ac98 @ 0x100ac98  (parity 200 trials PROVEN) */
 /* net-core FUN_0100ac98 @ 0x100ac98  (parity 300 trials PROVEN) */
 typedef unsigned char u8;
@@ -13,7 +24,7 @@ extern void FUN_0100e5dc(u32, int);
 extern void FUN_0100e8f8(void *, u16);
 extern void FUN_0101fe98(u32, u32);
 extern void FUN_0101ff4c(void);
-extern void FUN_01008d00(u32, u32);
+extern void sdc_assertion_fail(u32, u32);
 extern void FUN_01020368(u32, int);
 extern void FUN_01020764(u32);
 extern void FUN_010208f0(int, int, u8);
@@ -96,13 +107,13 @@ switchD_0100acd8_caseD_1:
     pbVar7 = (volatile u8 *)FUN_01026b58(*(volatile u32 *)(iVar4 + 0x80), &local_12, &local_13);
     *(volatile u32 *)(iVar4 + 0x7c) = (u32)(unsigned long)pbVar7;
     if (pbVar7 == (volatile u8 *)0) {
-      FUN_01008d00(0x27, 0x2e9);
+      sdc_assertion_fail(0x27, 0x2e9);
     }
     break;
   case 3:
     iVar6 = FUN_0100a960(DAT_0100aea0);
     if (iVar6 == 0) {
-      FUN_01008d00(0x27, 0x2f2);
+      sdc_assertion_fail(0x27, 0x2f2);
     }
     pbVar7 = (volatile u8 *)*(volatile u32 *)(iVar4 + 0x7c);
     bVar2 = pbVar7[3];
@@ -113,7 +124,7 @@ joined_r0x0100adce:
     }
     break;
   default:
-    FUN_01008d00(0x27, 0x2ff);
+    sdc_assertion_fail(0x27, 0x2ff);
   }
   bVar2 = *pbVar7;
   bVar8 = (u8)((bVar2 & 0xe3) | ((*(volatile u8 *)(iVar11 + 0xbf) & 1) << 3) |

@@ -7,7 +7,7 @@
  * address symbols (name @ address):
  *   rodata_88128                             @ 0x00088128
  *   rodata_f4783                             @ 0x000f4783
- *   g_bt_gatt_db_hash                        @ 0x20006390
+ *   g_20006390                               @ 0x20006390
  */
 /* Reconstructed FUN_0005a28c @ 0x5a28c  (parity: 300/300 trials, PROVEN) */
 
@@ -21,7 +21,7 @@ int gatt_hash_settings_set(unsigned int param_1, unsigned int param_2, fn_t para
     unsigned int local_1c;
     int iStack_18;
 
-    iVar1 = param_3(param_4, ((unsigned long)&g_bt_gatt_db_hash + 0x10) /*=0x20006390*/, 0x10);
+    iVar1 = param_3(param_4, ((unsigned long)&g_20006390) /*=0x20006390*/, 0x10);
     if (iVar1 < 0) {
         local_1c = ((unsigned long)&rodata_f4783) /*=0xf4783*/;
         local_20 = 3;

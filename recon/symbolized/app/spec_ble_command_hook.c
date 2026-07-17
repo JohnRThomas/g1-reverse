@@ -16,7 +16,7 @@
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   k_uptime_get_0                           <= FUN_0007c18e @ 0x0007c18e
  *   ble_requeue_command_via_dispatch         <= FUN_0007c244 @ 0x0007c244
  *   check_is_release_mode                    <= FUN_00086a06 @ 0x00086a06
@@ -238,7 +238,7 @@ extern uint32_t debug_print_hex_dump(uintptr_t,...);
 extern uint32_t sys_reboot(uintptr_t,...);
 extern uint32_t cjson_delete(uintptr_t,...);
 extern uint32_t cjson_create_object(uintptr_t,...);
-extern uint32_t mutex_lock_syscall_handler(uintptr_t,...);
+extern uint32_t z_impl_k_sem_take(uintptr_t,...);
 extern uint32_t FUN_00074844(uintptr_t,...);
 extern uint32_t k_uptime_get_0(uintptr_t,...);
 extern uint32_t ble_requeue_command_via_dispatch(uintptr_t,...);
@@ -636,7 +636,7 @@ LAB_0000f3f4:
           do {
             uVar20 = (**(code **)(iVar4 + 0xc))((uintptr_t)&local_5c0,0x14);
             if ((int)uVar20 == 0) {
-              mutex_lock_syscall_handler(iVar4 + 0x230,(int)((ulonglong)uVar20 >> 0x20),0xffffffff,0xffffffff);
+              z_impl_k_sem_take(iVar4 + 0x230,(int)((ulonglong)uVar20 >> 0x20),0xffffffff,0xffffffff);
               DEBUG_PRINT(PTR_s______start_upload_audio______0000f78c);
               pcVar14 = (char *)&local_420;
               local_420 = (int)uVar20;

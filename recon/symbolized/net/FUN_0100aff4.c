@@ -1,6 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100aff4 @ 0x0100aff4
+ * public-name: FUN_0100aff4
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ *   g_ll_conn_trace_ctx_addr                 @ 0x21000cd0
+ */
 /* net-core FUN_0100aff4 @ 0x100aff4  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(unsigned int, unsigned int, ...);
+extern void sdc_assertion_fail(unsigned int, unsigned int, ...);
 extern void FUN_0100ac34(void);
 extern int FUN_0100aeac(int);
 extern void FUN_0100af3c(void);
@@ -27,7 +36,7 @@ void FUN_0100aff4(int param_1, int param_2)
   iVar3 = DAT_0100b10c;
   iVar7 = *(volatile int *)(DAT_0100b10c + 0x28);
   if (*(volatile char *)(DAT_0100b10c + 0x44) != 1) {
-    FUN_01008d00(0x27, 0x46e);
+    sdc_assertion_fail(0x27, 0x46e);
     return;
   }
   if (*(volatile char *)(iVar7 + 0xb8) != 0) {
@@ -80,7 +89,7 @@ LAB_0100b03e:
       uVar8 = 2;
       break;
     default:
-      FUN_01008d00(6, 0x3c5, *(volatile unsigned char *)(iVar3 + 0x7a));
+      sdc_assertion_fail(6, 0x3c5, *(volatile unsigned char *)(iVar3 + 0x7a));
       return;
     }
     FUN_0101fdd0(1, DAT_0100b110, *(volatile unsigned char *)(iVar3 + 0x7a), uVar8, 0);

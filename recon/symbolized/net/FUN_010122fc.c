@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010122fc @ 0x010122fc
+ * public-name: FUN_010122fc
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core record submission wrapper FUN_010122fc @ 0x010122fc, 48 bytes. */
 #include <stdint.h>
 

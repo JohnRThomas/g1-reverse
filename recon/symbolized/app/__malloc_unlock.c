@@ -3,15 +3,15 @@
  * public-name: __malloc_unlock
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lock_release_or_fatal                    <= FUN_00051134 @ 0x00051134
+ *   __retarget_lock_release_recursive        <= FUN_00051134 @ 0x00051134
  *   __malloc_unlock                          <= FUN_000785c8 @ 0x000785c8
  * address symbols (name @ address):
  *   g_malloc_lock                            @ 0x200037f0
  */
 /* Reconstructed FUN_000785c8 @ 0x785c8  (parity: 300/300 trials, PROVEN) */
 
-extern void lock_release_or_fatal(void *p);
+extern void __retarget_lock_release_recursive(void *p);
 void __malloc_unlock(void)
 {
-    lock_release_or_fatal((void*)((unsigned long)&g_malloc_lock) /*=0x200037f0*/);
+    __retarget_lock_release_recursive((void*)((unsigned long)&g_malloc_lock) /*=0x200037f0*/);
 }

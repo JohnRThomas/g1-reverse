@@ -1,8 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01020368 @ 0x01020368
+ * public-name: FUN_01020368
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   REG_41008000                             @ 0x41008000
+ */
 /* net-core FUN_01020368 @ 0x1020368  (parity 1 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01008d00(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e);
+extern void sdc_assertion_fail(uint32_t a, uint32_t b, uint32_t c, uint32_t d, uint32_t e);
 
 void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t param_4)
 {
@@ -25,6 +33,6 @@ void FUN_01020368(char *param_1, int32_t param_2, uint32_t param_3, uint32_t par
         return;
     }
 
-    FUN_01008d00(0x3e, 0x349, (uint32_t)(uint8_t)*param_1, iVar1, param_4);
+    sdc_assertion_fail(0x3e, 0x349, (uint32_t)(uint8_t)*param_1, iVar1, param_4);
     return;
 }

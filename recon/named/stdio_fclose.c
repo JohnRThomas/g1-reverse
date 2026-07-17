@@ -2,7 +2,7 @@
  * public-name: stdio_fclose
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   smakebuf_r                               <= FUN_00076cec @ 0x00076cec
  *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
  *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
@@ -10,12 +10,12 @@
  *   g_libc_heap_ctrl                         @ 0x20002d20
  */
 /* Reconstructed FUN_00077d54 @ 0x77d54  (parity: 300/300 trials, PROVEN) */
-extern void stdio_streams_init(int);
+extern void __sinit(int);
 extern void smakebuf_r(void*,void*);
 extern void heap_free_core(void*);
 int stdio_fclose(int *param_1, int *param_2){
   int iVar4 = *(volatile int*)0x20002d20UL;
-  if (iVar4 != 0 && *(int*)(iVar4+0x18) == 0) stdio_streams_init(iVar4);
+  if (iVar4 != 0 && *(int*)(iVar4+0x18) == 0) __sinit(iVar4);
   if (param_2 == (int*)0x0009871c) param_2 = *(int**)(iVar4+4);
   else if (param_2 == (int*)0x000986fc) param_2 = *(int**)(iVar4+8);
   else if (param_2 == (int*)0x000986dc) param_2 = *(int**)(iVar4+0xc);

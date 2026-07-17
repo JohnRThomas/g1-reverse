@@ -3,7 +3,7 @@
  * public-name: sync_to_slave
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
@@ -28,7 +28,7 @@ extern uint8_t *get_device_info(void);
 extern int32_t get_current_work_mode(void);
 extern int32_t is_battery_critical(void);
 extern int64_t k_uptime_get_1(void);
-extern void k_msleep_ticks32768_a(int32_t);
+extern void k_msleep(int32_t);
 extern void set_device_sync_timestamp(uint32_t);
 extern void memcpy(void *dst, void *src, uint32_t n);
 extern void memset_bytes(void *dst, int32_t val, uint32_t n);
@@ -107,10 +107,10 @@ LAB_00027008: ;
       while ((uVar14 = (uint16_t)(*(volatile uint8_t *)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/),
               *(volatile uint8_t *)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/ != 0 &&
               (uVar18 = uVar18 - 1, uVar14 = uVar18, uVar18 != 0))) {
-        k_msleep_ticks32768_a(1);
+        k_msleep(1);
       }
       while (pbVar5 = (volatile uint8_t *)((unsigned long)&g_esb_sync_inbound_status) /*=0x2000302b*/, *(volatile uint8_t *)((unsigned long)&g_esb_sync_tx_busy_flag) /*=0x20018d8f*/ != 0) {
-        k_msleep_ticks32768_a(1);
+        k_msleep(1);
         uVar14 = uVar14 + 1;
       }
       uVar16 = (uint32_t)*(volatile uint8_t *)((unsigned long)&g_esb_sync_inbound_status) /*=0x2000302b*/;
@@ -270,7 +270,7 @@ LAB_00027372:
               set_device_sync_timestamp(uVar10);
               goto LAB_00027390;
             }
-            k_msleep_ticks32768_a(1);
+            k_msleep(1);
           }
           set_device_sync_timestamp(previous_value);
 LAB_00027390:

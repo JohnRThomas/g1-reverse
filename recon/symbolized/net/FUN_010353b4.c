@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010353b4 @ 0x010353b4
+ * public-name: FUN_010353b4
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103e867                           @ 0x0103e867
+ *   g_net_debug_trace_level                  @ 0x21004b04
+ *   g_net_debug_trace_cb                     @ 0x21004b08
+ */
 /* net-core FUN_010353b4 @ 0x10353b4  (parity 300 trials PROVEN) */
 
 typedef void (*fp3_t)(unsigned int, unsigned int, unsigned int);

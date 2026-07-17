@@ -1,4 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100b6b4 @ 0x0100b6b4
+ * public-name: FUN_0100b6b4
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ * address symbols (name @ address):
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ *   g_net_link_drv_ctx_0x24                  @ 0x21000c6c
+ *   g_ll_conn_trace_ctx_addr                 @ 0x21000cd0
+ */
 /* net-core FUN_0100b6b4 @ 0x100b6b4  (parity 150 trials PROVEN) */
 typedef unsigned int u32;
 typedef unsigned short u16;
@@ -10,14 +21,14 @@ typedef signed char s8;
 #define S8(a)  (*(volatile s8*)(u32)(a))
 #define S16(a) (*(volatile short*)(u32)(a))
 
-extern void FUN_01008d00(unsigned,unsigned);
+extern void sdc_assertion_fail(unsigned,unsigned);
 extern int FUN_0100a984(void);
 extern void FUN_0100aba4(void*);
 extern void FUN_0100ac34(void);
 extern void FUN_0100ac98(void);
 extern int FUN_0100aeac(unsigned);
 extern void FUN_0100b630(unsigned,void*);
-extern void FUN_0100ef88(unsigned,unsigned,unsigned);
+extern void sdc_work_submit(unsigned,unsigned,unsigned);
 extern int FUN_0100f5cc(void);
 extern void FUN_01010578(unsigned);
 extern void FUN_0101fdd0(unsigned,unsigned,unsigned,unsigned,unsigned);
@@ -44,7 +55,7 @@ void FUN_0100b6b4(unsigned param_1, unsigned param_2)
   int have_iVar9 = 0;
   u32 uVar7;
 
-  if (W8(iVar4+0x44) != 2) { for(;;) FUN_01008d00(0x27,0x4e2); }
+  if (W8(iVar4+0x44) != 2) { for(;;) sdc_assertion_fail(0x27,0x4e2); }
 
   u16 uVar8 = W16(iVar4+0x30);
   if ((uVar8 & 0x40u) == 0) {
@@ -118,7 +129,7 @@ AFTER_STORE:
       if (W8(iVar9+0xbe) != 0) {
         if (W8(iVar9+0xbe) == 2) {
           int r6 = FUN_01026bfe(W32(iVar4+0x80), &local_28);
-          if (r6 == 0) { for(;;) FUN_01008d00(0x27,0x3dd); }
+          if (r6 == 0) { for(;;) sdc_assertion_fail(0x27,0x3dd); }
           u32 u10b = W32(iVar9+0x120);
           cVar5 = S8(iVar4+0x24);
           W32(iVar9+0x120) = u10b + 1;
@@ -135,7 +146,7 @@ AFTER_STORE:
         if (S8(iVar9+0xb9) != 0) {
           W8(iVar9+0xb9) = 0;
           int r6 = FUN_0100a984();
-          if (r6 == 0) { for(;;) FUN_01008d00(0x27,0x3f4); }
+          if (r6 == 0) { for(;;) sdc_assertion_fail(0x27,0x3f4); }
           W16(iVar4+0x32) = (u16)(W16(iVar4+0x32) | 8u);
           void (*fn2)(unsigned,unsigned) = (void(*)(unsigned,unsigned))W32(iVar4+0x34);
           fn2(8,0);
@@ -183,7 +194,7 @@ LAB_b7d8:
       case 4: uVar14 = 3; break;
       case 8: break;
       default:
-        for(;;) FUN_01008d00(6,0x3c5);
+        for(;;) sdc_assertion_fail(6,0x3c5);
     }
     FUN_0101fdd0(uVar7, DAT_0100b964, 0xfb, uVar14, 0);
   }
@@ -228,12 +239,12 @@ after_bVar3:
     u32 r13 = FUN_010270d2();
     u32 u7 = W32(iVar4+0x28);
     W8(r13+9) = 0;
-    FUN_0100ef88(r13+1, u7, 8);
+    sdc_work_submit(r13+1, u7, 8);
   }
   if (local_24 != 0) {
     u32 u7 = W32(iVar4+0x28);
     W8(local_24+8) = 0;
-    FUN_0100ef88(local_24, u7, 0x10);
+    sdc_work_submit(local_24, u7, 0x10);
   }
 
   if (!bVar3) {

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
  * address symbols (name @ address):
  *   g_net_ble_conn_setup_err_cb              @ 0x210004d8
  *   g_net_ble_conn_setup_ok_cb               @ 0x210004dc
@@ -16,7 +17,7 @@ typedef void (*code_v)(void);
 
 extern void sdc_assertion_fail(uint, uint);          /* noreturn */
 extern void *FUN_01009bc4(void *, int);
-extern int FUN_01009d18(unsigned char, uint);
+extern int controller_typed_handle_lookup(unsigned char, uint);
 extern void FUN_0100cff4(void *, int);
 extern int FUN_01012150(uint);
 extern int FUN_010122a8(void);
@@ -61,8 +62,8 @@ int FUN_0101f440(uint param_1, unsigned char *param_2)
   }
   ushort uVar2 = *(volatile ushort *)(param_2 + 1);
   FUN_01012694(param_1, param_2[3]);
-  iVar5 = FUN_01009d18(*param_2, 3);
-  iVar4 = FUN_01009d18(*param_2, 5);
+  iVar5 = controller_typed_handle_lookup(*param_2, 3);
+  iVar4 = controller_typed_handle_lookup(*param_2, 5);
 
   volatile int *DAT_0101f5d8 = (volatile int *)0x210004dc;
   volatile int *piVar3 = DAT_0101f5d8;

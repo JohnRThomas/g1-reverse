@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01031928 @ 0x01031928
+ * public-name: FUN_01031928
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103c044                           @ 0x0103c044
+ *   rodata_103cad0                           @ 0x0103cad0
+ *   rodata_103e1f4                           @ 0x0103e1f4
+ */
 /* net-core FUN_01031928 @ 0x1031928  (parity 300 trials PROVEN) */
 /* Platform boundary: implemented by the Zephyr ARM ARCH_EXCEPT(4) primitive.
  * It clears BASEPRI and raises runtime-exception SVC 2 with reason 4. */

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   g_ll_conn_default_ctx                    @ 0x21001058
  */
@@ -23,7 +24,7 @@ extern int FUN_010270d2(undefined4);
 extern void sdc_assertion_fail(int, int);
 extern int FUN_010199f4(int, ushort *, char, int, uint, char);
 extern int FUN_0100ca98(char, int);
-extern void FUN_0100ef88(int, undefined4, int);
+extern void sdc_work_submit(int, undefined4, int);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(undefined4, undefined2, int);
 /* The callee returns a full register word; this caller explicitly narrows it
@@ -220,11 +221,11 @@ LAB_01019c9c:
   if (iVar11 != 0) {
     cVar1 = *(char *)(DAT_01019eac + 0x46);
     *(undefined1 *)(iVar11 + 8) = 0;
-    FUN_0100ef88(iVar11,uVar3,6);
+    sdc_work_submit(iVar11,uVar3,6);
     uVar3 = DAT_01019eb0;
     if (cVar1 != '\0') {
       *(undefined1 *)(iVar11 + 0x11) = 0;
-      FUN_0100ef88(iVar11 + 9,uVar3,6);
+      sdc_work_submit(iVar11 + 9,uVar3,6);
     }
     *(undefined4 *)(iVar5 + 0x40) = 0;
   }
@@ -244,11 +245,11 @@ LAB_01019c9c:
   }
   else {
     *(undefined1 *)(iVar4 + 8) = 0;
-    FUN_0100ef88(iVar4,uVar3,6);
+    sdc_work_submit(iVar4,uVar3,6);
     uVar3 = DAT_01019eb0;
     if (0xe5 < local_40) {
       *(undefined1 *)(iVar4 + 0x11) = 0;
-      FUN_0100ef88(iVar4 + 9,uVar3,6);
+      sdc_work_submit(iVar4 + 9,uVar3,6);
     }
   }
   uVar2 = FUN_0100a5b4();

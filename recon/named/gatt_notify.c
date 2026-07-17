@@ -5,7 +5,7 @@
  *   att_get                                  <= FUN_0005858c @ 0x0005858c
  *   bt_att_create_pdu                        <= FUN_00058eb0 @ 0x00058eb0
  *   gatt_notify                              <= FUN_0005b680 @ 0x0005b680
- *   net_buf_destroy_default                  <= FUN_0005f200 @ 0x0005f200
+ *   net_buf_put                              <= FUN_0005f200 @ 0x0005f200
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
  *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
@@ -30,7 +30,7 @@ extern int FUN_0005833c(int,...);
 extern int att_get(int,...);
 extern int bt_att_create_pdu(int,...);
 extern int FUN_0005b0dc(int,...);
-extern int net_buf_destroy_default(int,...);
+extern int net_buf_put(int,...);
 extern int net_buf_unref(int,...);
 extern int net_buf_simple_add(int,...);
 extern int assert_post_action(int,...) __attribute__((noreturn));
@@ -71,7 +71,7 @@ unsigned gatt_notify(int param_1, unsigned short param_2, int param_3)
                             net_buf_unref(iVar2);
                             uVar3 = 0xffffff80;
                         } else {
-                            net_buf_destroy_default(iVar1+0xc, iVar2);
+                            net_buf_put(iVar1+0xc, iVar2);
                             piVar5 = *(int**)(iVar1+0x30);
                             if(piVar5 != 0){
                                 piVar6 = (int*)*piVar5;

@@ -5,7 +5,9 @@
  * callees (readable <= raw @ address):
  *   __aeabi_uldivmod                         <= FUN_0000e244 @ 0x0000e244
  *   adc_context_start_sampling               <= FUN_0005f638 @ 0x0005f638
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   k_timer_start                            <= FUN_00075174 @ 0x00075174
  * address symbols (name @ address):
  *   rodata_880e0                             @ 0x000880e0
  *   rodata_f4240                             @ 0x000f4240
@@ -31,9 +33,9 @@ typedef unsigned int undefined4;
 extern u64 __aeabi_uldivmod(int a, int b, u32 c, u32 d);
 extern void FUN_0004d944(u32 a, u32 b, void *c, u32 d);
 extern u64 adc_context_start_sampling(u32 a);
-extern int FUN_00072880(u32 a);
-extern int mutex_lock_syscall_handler(u32 a, void *b, u32 c, u32 d);
-extern u64 FUN_00075174(void *a, int b, u32 c, u32 d);
+extern int k_sem_give(u32 a);
+extern int z_impl_k_sem_take(u32 a, void *b, u32 c, u32 d);
+extern u64 k_timer_start(void *a, int b, u32 c, u32 d);
 
 undefined4 FUN_0005f760(undefined4 param_1, int *param_2)
 {
@@ -47,7 +49,7 @@ undefined4 FUN_0005f760(undefined4 param_1, int *param_2)
   u32 validation_error[3];
   u32 capacity_error[4];
 
-  mutex_lock_syscall_handler(((unsigned long)&g_adc_context_lock) /*=0x200021d0*/, param_2, 0xffffffffu, 0xffffffffu);
+  z_impl_k_sem_take(((unsigned long)&g_adc_context_lock) /*=0x200021d0*/, param_2, 0xffffffffu, 0xffffffffu);
   iVar7 = ((unsigned long)&m_adc_channel_input_cfg) /*=0x20002230*/;
   iVar5 = REG_5000e000 /*=0x5000e000*/;
   uVar10 = (u32)param_2[1];
@@ -143,11 +145,11 @@ LAB_f948:
         {
           long long lVar2 = (long long)(u32)puVar3i[0x22] * 0x8000LL + (long long)0x000f423fL;
           r = __aeabi_uldivmod((int)lVar2, (int)(lVar2>>32), ((unsigned long)&rodata_f4240) /*=0xf4240*/, 0);
-          r = FUN_00075174((void*)(puVar3i + 2), (int)(r>>32), 0, 0);
+          r = k_timer_start((void*)(puVar3i + 2), (int)(r>>32), 0, 0);
           uVar9 = (u32)(r>>32);
         }
       }
-      iVar5 = mutex_lock_syscall_handler(((unsigned long)&g_adc_saadc_ctrl_mutex) /*=0x200021e8*/, (void*)(long)uVar9, 0xffffffffu, 0xffffffffu);
+      iVar5 = z_impl_k_sem_take(((unsigned long)&g_adc_saadc_ctrl_mutex) /*=0x200021e8*/, (void*)(long)uVar9, 0xffffffffu, 0xffffffffu);
       if (iVar5 != 0) {
         puVar3i[0x1c] = iVar5;
       }
@@ -169,6 +171,6 @@ LAB_f782:
   }
   uVar9 = 0xffffffeau;
 LAB_f7d6:
-  FUN_00072880(((unsigned long)&g_adc_context_lock) /*=0x200021d0*/);
+  k_sem_give(((unsigned long)&g_adc_context_lock) /*=0x200021d0*/);
   return uVar9;
 }

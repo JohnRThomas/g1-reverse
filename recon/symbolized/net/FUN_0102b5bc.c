@@ -1,4 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102b5bc @ 0x0102b5bc
+ * public-name: FUN_0102b5bc
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103d18c                           @ 0x0103d18c
+ *   rodata_103d19e                           @ 0x0103d19e
+ *   rodata_103d1b8                           @ 0x0103d1b8
+ *   g_zephyr_log_level                       @ 0x21000580
+ *   g_net_ipc_msg_data                       @ 0x21004628
+ *   g_net_ipc_msg_type                       @ 0x21004fa2
+ */
 /* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
  * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
  * asynchronous completion flag written by hardware/ISR code. */

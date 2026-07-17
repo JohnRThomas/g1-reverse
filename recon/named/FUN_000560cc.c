@@ -5,7 +5,8 @@
  *   net_buf_destroy                          <= FUN_00056080 @ 0x00056080
  *   net_buf_simple_push                      <= FUN_0005f518 @ 0x0005f518
  *   net_buf_simple_pull_5f558                <= FUN_0005f558 @ 0x0005f558
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   sys_slist_find_and_remove                <= FUN_0008137e @ 0x0008137e
@@ -20,8 +21,8 @@ extern int FUN_000543c8(void);
 extern void net_buf_destroy(void);
 extern int net_buf_simple_push(void);
 extern void net_buf_simple_pull_5f558(void);
-extern void FUN_00072880(void);
-extern int mutex_lock_syscall_handler(void);
+extern void k_sem_give(void);
+extern int z_impl_k_sem_take(void);
 extern void assert_post_action(void);
 extern void printk(void);
 extern void sys_slist_find_and_remove(void);
@@ -45,7 +46,7 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
 
     iVar4 = (U16(iVar2 + 0x104) == 0) ? 0 : (iVar2 + 0x108);
     (void)iVar4;
-    if (mutex_lock_syscall_handler() != 0) {
+    if (z_impl_k_sem_take() != 0) {
         return 0xffffff97;
     }
     if (param_3 == 0) {
@@ -108,7 +109,7 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
     } else {
         uVar8 = 0xffffff80;
     }
-    FUN_00072880();
+    k_sem_give();
     if (puVar9 != 0) {
         U32(param_3 + 0x18) = 0;
         net_buf_destroy();

@@ -5,6 +5,7 @@
  *   net_buf_pool_get                         <= FUN_0005ee08 @ 0x0005ee08
  *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
  *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
  * address symbols (name @ address):
@@ -20,7 +21,7 @@
 extern int net_buf_pool_get(unsigned);
 extern int net_buf_id(int);
 extern void net_buf_unref(void);
-extern void FUN_00072880(unsigned);
+extern void k_sem_give(unsigned);
 extern void atomic_or(int);
 extern void FUN_00080ea2(unsigned,unsigned,void*);
 extern void atomic_and_3(int,int);
@@ -52,7 +53,7 @@ void FUN_000538f8(unsigned param_1, int param_2, int param_3, unsigned param_4){
           int m = net_buf_id(param_3);
           *(volatile char*)(0x2000abf4UL + m*0xc) = (char)param_2;
           int n = net_buf_id(param_3);
-          FUN_00072880(*(volatile unsigned*)(n*0xc + 0x2000abf4 + 8));
+          k_sem_give(*(volatile unsigned*)(n*0xc + 0x2000abf4 + 8));
         }
       }
     } else {

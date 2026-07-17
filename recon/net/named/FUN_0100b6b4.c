@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
  *   g_net_link_drv_ctx_0x24                  @ 0x21000c6c
@@ -26,7 +27,7 @@ extern void FUN_0100ac34(void);
 extern void FUN_0100ac98(void);
 extern int FUN_0100aeac(unsigned);
 extern void FUN_0100b630(unsigned,void*);
-extern void FUN_0100ef88(unsigned,unsigned,unsigned);
+extern void sdc_work_submit(unsigned,unsigned,unsigned);
 extern int FUN_0100f5cc(void);
 extern void FUN_01010578(unsigned);
 extern void FUN_0101fdd0(unsigned,unsigned,unsigned,unsigned,unsigned);
@@ -237,12 +238,12 @@ after_bVar3:
     u32 r13 = FUN_010270d2();
     u32 u7 = W32(iVar4+0x28);
     W8(r13+9) = 0;
-    FUN_0100ef88(r13+1, u7, 8);
+    sdc_work_submit(r13+1, u7, 8);
   }
   if (local_24 != 0) {
     u32 u7 = W32(iVar4+0x28);
     W8(local_24+8) = 0;
-    FUN_0100ef88(local_24, u7, 0x10);
+    sdc_work_submit(local_24, u7, 0x10);
   }
 
   if (!bVar3) {

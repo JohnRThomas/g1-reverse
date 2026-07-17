@@ -4,7 +4,8 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   k_current_get                            <= FUN_000748ac @ 0x000748ac
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -28,9 +29,9 @@ extern void assert_post_action(uint32_t, uint32_t) __attribute__((noreturn));
 extern uintptr_t FUN_0004d334(uint32_t, uint32_t);
 extern uintptr_t FUN_0004d2d0(uintptr_t);
 extern uintptr_t k_current_get(void);
-extern void FUN_00072880(uintptr_t);
+extern void k_sem_give(uintptr_t);
 extern uint64_t log_process(void);
-extern void mutex_lock_syscall_handler(uintptr_t, uint32_t, uint32_t, uint32_t);
+extern void z_impl_k_sem_take(uintptr_t, uint32_t, uint32_t, uint32_t);
 
 void FUN_0004d6ec(void)
 {
@@ -47,7 +48,7 @@ void FUN_0004d6ec(void)
     uintptr_t timer = k_current_get();
     *(volatile uintptr_t *)((unsigned long)&g_2000a0d0) /*=0x2000a0d0*/ = timer;
     if (timer && *(volatile int32_t *)((unsigned long)&log_buffered_cnt) /*=0x2000a0d8*/ > 9)
-        FUN_00072880(((unsigned long)&g_200039f8) /*=0x200039f8*/);
+        k_sem_give(((unsigned long)&g_200039f8) /*=0x200039f8*/);
 
     uint32_t previous = 0;
     for (;;) {
@@ -68,7 +69,7 @@ void FUN_0004d6ec(void)
                         ((void (*)(uintptr_t, uint32_t))callback)(item, 0);
                 }
             }
-            mutex_lock_syscall_handler(((unsigned long)&g_200039f8) /*=0x200039f8*/, aux, event, status);
+            z_impl_k_sem_take(((unsigned long)&g_200039f8) /*=0x200039f8*/, aux, event, status);
         }
         previous = current;
     }

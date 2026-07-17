@@ -1,4 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102b31c @ 0x0102b31c
+ * public-name: FUN_0102b31c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103d14a                           @ 0x0103d14a
+ *   g_zephyr_log_level                       @ 0x21000580
+ *   g_net_radio_op_state                     @ 0x210005b4
+ *   g_net_radio_sched_param_a                @ 0x21000761
+ *   g_net_radio_sched_param_b                @ 0x21000763
+ *   g_net_radio_sched_param_c                @ 0x21000767
+ *   g_net_radio_temp_raw                     @ 0x21004b9e
+ */
 /* net-core FUN_0102b31c @ 0x102b31c  (parity 300 trials PROVEN) */
 
 #include <stdint.h>

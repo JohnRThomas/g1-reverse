@@ -7,7 +7,7 @@
  *   bt_addr_le_eq_0                          <= FUN_000826b2 @ 0x000826b2
  * address symbols (name @ address):
  *   g_bt_gatt_cf_cfg                         @ 0x2000aed4
- *   g_bt_gatt_cf_cfg                         @ 0x2000aed5
+ *   g_2000aed5                               @ 0x2000aed5
  */
 /* Reconstructed FUN_00059b5c @ 0x59b5c  (parity: 300/300 trials, PROVEN) */
 
@@ -16,7 +16,7 @@ extern int bt_addr_le_eq_0(unsigned int a, unsigned int b, unsigned int c, unsig
 int find_cf_cfg_by_addr(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
     int iVar2 = 0;
-    unsigned int iVar3 = ((unsigned long)&g_bt_gatt_cf_cfg + 0x1) /*=0x2000aed5*/;
+    unsigned int iVar3 = ((unsigned long)&g_2000aed5) /*=0x2000aed5*/;
     while ((*(volatile unsigned char*)(iVar3 - 1) != param_1) ||
            (bt_addr_le_eq_0(param_2, iVar3, param_3, (unsigned int)*(volatile unsigned char*)(iVar3 - 1), param_4) == 0))
     {

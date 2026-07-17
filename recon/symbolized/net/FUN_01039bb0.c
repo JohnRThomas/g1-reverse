@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01039bb0 @ 0x01039bb0
+ * public-name: FUN_01039bb0
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_01039bb0 @ 0x1039bb0 */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"

@@ -1,4 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01033888 @ 0x01033888
+ * public-name: FUN_01033888
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_1033655                           @ 0x01033655
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103e3e0                           @ 0x0103e3e0
+ *   g_net_radio_crc_scratch                  @ 0x21000684
+ *   g_net_radio_irq_continuation_ptr         @ 0x210049a0
+ *   g_net_radio_busy_flag                    @ 0x21006458
+ *   REG_41008000                             @ 0x41008000
+ */
 /* net-core FUN_01033888 @ 0x1033888  (parity 300 trials PROVEN) */
 
 typedef unsigned int uint;

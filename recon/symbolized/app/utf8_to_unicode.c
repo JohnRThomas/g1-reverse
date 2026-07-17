@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
+ *   puts                                     <= FUN_000778d4 @ 0x000778d4
  * address symbols (name @ address):
  *   rodata_d7499                             @ 0x000d7499
  *   rodata_d74af                             @ 0x000d74af
@@ -20,7 +21,7 @@ typedef unsigned int uint;
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int);
 extern void printf(unsigned int);
-extern void FUN_000778d4(unsigned int);
+extern void puts(unsigned int);
 
 uint utf8_to_unicode(byte *param_1, int param_2)
 {
@@ -45,7 +46,7 @@ uint utf8_to_unicode(byte *param_1, int param_2)
             uVar2 = (uVar2 >> 2) & 7;
             return uVar1 | (uVar2 << 8);
         }
-        FUN_000778d4(((unsigned long)&rodata_d74af) /*=0xd74af*/);
+        puts(((unsigned long)&rodata_d74af) /*=0xd74af*/);
     } else {
         printf(((unsigned long)&rodata_d74bd) /*=0xd74bd*/);
     }

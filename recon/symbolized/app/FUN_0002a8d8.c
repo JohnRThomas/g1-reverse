@@ -23,7 +23,7 @@
  *   msg_queue_init                           <= FUN_00033c5c @ 0x00033c5c
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
  * address symbols (name @ address):
@@ -65,7 +65,7 @@ extern void disable_watchdog(void);
 extern void watchdog_feed_retry(void);
 extern void FUN_0007d1d6(uint8_t *, uint32_t);
 extern uint64_t k_uptime_get_1(void);
-extern void k_msleep_ticks32768_a(uint32_t);
+extern void k_msleep(uint32_t);
 extern uint32_t sys_reboot(uint32_t);
 extern void thunk_FUN_00074844(uint32_t, uint32_t);
 extern int FUN_00016580(void);
@@ -184,7 +184,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                             DEBUG_PRINT(((unsigned long)&rodata_a193c) /*=0xa193c*/, ((unsigned long)&rodata_a19c0) /*=0xa19c0*/);
                     }
                     for (;;) {
-                        k_msleep_ticks32768_a(500);
+                        k_msleep(500);
                         uint32_t printed = sys_reboot(1);
                         DEBUG_PRINT(printed);
                     }

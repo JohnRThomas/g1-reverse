@@ -1,15 +1,23 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100ac34 @ 0x0100ac34
+ * public-name: FUN_0100ac34
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
+ * address symbols (name @ address):
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ */
 /* net-core FUN_0100ac34 @ 0x100ac34 */
 #include <stdint.h>
 
-extern void FUN_01020500(void);
+extern void sdc_llcp_note_unsupported_pdu(void);
 extern void FUN_0101ff4c(void);
 extern void FUN_0100efc8(void *, const void *, unsigned);
 
 void FUN_0100ac34(void)
 {
     volatile uint8_t *const state = (volatile uint8_t *)((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/;
-    FUN_01020500();
+    sdc_llcp_note_unsupported_pdu();
     FUN_0101ff4c();
     ((void (*)(uint16_t, unsigned))*(volatile uintptr_t *)(state + 0x34))(
         *(volatile uint16_t *)(state + 0x30), 0);

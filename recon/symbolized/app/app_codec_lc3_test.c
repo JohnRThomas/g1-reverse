@@ -10,10 +10,10 @@
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
  *   get_synced_clock_time                    <= FUN_0004a4d0 @ 0x0004a4d0
  *   qspi_nor_write                           <= FUN_00060f20 @ 0x00060f20
- *   lc3_ns                                   <= FUN_00068e40 @ 0x00068e40
- *   lc3_frame_param_compute                  <= FUN_00068ecc @ 0x00068ecc
- *   lc3_ltpf_select_resampler_params         <= FUN_00068f94 @ 0x00068f94
- *   lc3_encode_frame                         <= FUN_00069238 @ 0x00069238
+ *   lc3_frame_samples                        <= FUN_00068e40 @ 0x00068e40
+ *   lc3_encoder_size                         <= FUN_00068ecc @ 0x00068ecc
+ *   lc3_setup_encoder                        <= FUN_00068f94 @ 0x00068f94
+ *   lc3_encode                               <= FUN_00069238 @ 0x00069238
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
@@ -42,10 +42,10 @@ extern void sendAudioStram2Cache(int a);
 extern int is_battery_critical(void);
 extern void get_synced_clock_time(void *a);
 extern unsigned qspi_nor_write(void);
-extern int lc3_ns(int a, int b);
-extern unsigned lc3_frame_param_compute(int a, int b);
-extern unsigned lc3_ltpf_select_resampler_params(int a, int b, int c, int d);
-extern int lc3_encode_frame(unsigned a, int b, int c, int d, int e, int f, unsigned g, int h);
+extern int lc3_frame_samples(int a, int b);
+extern unsigned lc3_encoder_size(int a, int b);
+extern unsigned lc3_setup_encoder(int a, int b, int c, int d);
+extern int lc3_encode(unsigned a, int b, int c, int d, int e, int f, unsigned g, int h);
 extern int malloc(unsigned a);
 extern void heap_free(int a);
 extern int z_device_is_ready(int a);
@@ -63,8 +63,8 @@ void app_codec_lc3_test(int param_1, int param_2)
     int iVar5, iVar6, iVar7, iVar8, iVar9, iVar10, iVar11;
     struct codec_statistics { unsigned first, second; } local_stats;
 
-    uVar3 = lc3_frame_param_compute(10000, 16000);
-    uVar4 = lc3_ns(10000, 16000);
+    uVar3 = lc3_encoder_size(10000, 16000);
+    uVar4 = lc3_frame_samples(10000, 16000);
     iVar5 = malloc(uVar3);
     iVar11 = (uVar4 & 0x7fff) * 2;
     iVar6 = malloc(iVar11);
@@ -93,7 +93,7 @@ LAB_0002ee5a:
                         else debug_print(uVar3, ((unsigned long)&rodata_a41c2) /*=0xa41c2*/, iVar9);
                     }
                 } else {
-                    uVar3 = lc3_ltpf_select_resampler_params(10000, 16000, 0, iVar5);
+                    uVar3 = lc3_setup_encoder(10000, 16000, 0, iVar5);
                     iVar8 = iVar7;
                     do {
                         if (iVar8 == iVar10 + iVar7) {
@@ -141,7 +141,7 @@ LAB_0002ee5a:
                             *puVar2 = *puVar2 + iVar10;
                             goto LAB_0002eeb6;
                         }
-                        iVar9 = lc3_encode_frame(uVar3, 0, param_1, 1, 0x14, iVar8, uVar3, param_1);
+                        iVar9 = lc3_encode(uVar3, 0, param_1, 1, 0x14, iVar8, uVar3, param_1);
                         iVar8 = iVar8 + 0x14;
                         param_1 = param_1 + iVar11;
                     } while (iVar9 == 0);

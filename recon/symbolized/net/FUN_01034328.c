@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01034328 @ 0x01034328
+ * public-name: FUN_01034328
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_sdc_res_pool_free_bitmap               @ 0x210006a4
+ */
 /* net-core FUN_01034328 @ 0x01034328
  * Readable role: atomically claim the highest-numbered free resource.
  *

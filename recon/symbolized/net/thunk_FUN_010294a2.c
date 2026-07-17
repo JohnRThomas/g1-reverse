@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01026842 @ 0x01026842
+ * public-name: thunk_FUN_010294a2
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core thunk_FUN_010294a2 @ 0x01026842: exact tail alias of FUN_010294a2. */
 #include <stdint.h>
 extern uint32_t FUN_010294a2(volatile uint16_t*,volatile uint16_t*);

@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01017018 @ 0x01017018
+ * public-name: FUN_01017018
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_pending_proc_flag            @ 0x2100104a
+ *   g_2100104c                               @ 0x2100104c
+ */
 /* Reconstructed net-core timestamp validator @ 0x01017018. */
 #include <stdint.h>
 

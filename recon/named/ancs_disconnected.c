@@ -6,7 +6,7 @@
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   ancs_cancel_timers                       <= FUN_00018ab0 @ 0x00018ab0
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_9a92a                             @ 0x0009a92a
  *   rodata_9b1c8                             @ 0x0009b1c8
@@ -23,7 +23,7 @@ extern uint64_t get_device_info(void);
 extern void format_bt_addr_str(const void *connection, char *description);
 extern void ancs_cancel_timers(void);
 extern void debug_print(uintptr_t format, ...);
-extern void mutex_lock_syscall_handler(uint32_t object_low, uint32_t object_high,
+extern void z_impl_k_sem_take(uint32_t object_low, uint32_t object_high,
                         uint32_t timeout_low, uint32_t timeout_high);
 extern uintptr_t FUN_00081526(uint32_t connection);
 
@@ -51,7 +51,7 @@ void ancs_disconnected(uint32_t connection, uint32_t reason)
             break;
 
         device = get_device_info();
-        mutex_lock_syscall_handler((uint32_t)device + 0x9acu, (uint32_t)(device >> 32),
+        z_impl_k_sem_take((uint32_t)device + 0x9acu, (uint32_t)(device >> 32),
                      UINT32_MAX, UINT32_MAX);
     }
 

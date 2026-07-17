@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102f580 @ 0x0102f580
+ * public-name: FUN_0102f580
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_ipc_shm_pool_desc_ptr              @ 0x21004b30
+ */
 /* net-core FUN_0102f580 @ 0x102f580 — true extent 36 bytes */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"

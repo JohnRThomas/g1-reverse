@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01036410 @ 0x01036410
+ * public-name: FUN_01036410
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d3b6                           @ 0x0103d3b6
+ *   rodata_103eaab                           @ 0x0103eaab
+ */
 /* net-core FUN_01036410 @ 0x1036410  (parity 300 trials PROVEN) */
 #define ALWI __attribute__((always_inline)) static inline
 #include <stdint.h>

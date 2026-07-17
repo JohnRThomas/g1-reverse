@@ -6,6 +6,7 @@
  *   format_bt_addr_str                       <= FUN_00018334 @ 0x00018334
  *   pairing_complete                         <= FUN_00018730 @ 0x00018730
  *   is_battery_critical                      <= FUN_00032ee4 @ 0x00032ee4
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_9a638                             @ 0x0009a638
  *   g_ancs_active_conn                       @ 0x20006ab8
@@ -19,7 +20,7 @@ extern int get_device_info(void);
 extern int is_battery_critical(void);
 extern int FUN_00086be4(int,void*,int);
 extern void FUN_0005420c(int,int);
-extern void FUN_00072880(int);
+extern void k_sem_give(int);
 extern void DEBUG_PRINT(unsigned, ...);
 
 void pairing_complete(unsigned param_1, unsigned param_2){
@@ -43,7 +44,7 @@ void pairing_complete(unsigned param_1, unsigned param_2){
             iVar2 = get_device_info();
             *(int*)(iVar2+0x104c) = iVar5;
             iVar2 = get_device_info();
-            FUN_00072880(iVar2+0x80);
+            k_sem_give(iVar2+0x80);
         }
     }
     iVar2 = get_device_info();

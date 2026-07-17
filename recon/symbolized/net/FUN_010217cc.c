@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010217cc @ 0x010217cc
+ * public-name: FUN_010217cc
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* Reconstructed internal net function FUN_010217cc @ 0x010217cc.
  * Semantic role: recompute the net-clock onoff manager's request batch size.
  * Exact code extent is [0x010217cc,0x010217fc); the raw 0x21001670 context

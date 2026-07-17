@@ -1,9 +1,18 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100ec40 @ 0x0100ec40
+ * public-name: FUN_0100ec40
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_deferred_event_raise          <= FUN_0102583c @ 0x0102583c
+ * address symbols (name @ address):
+ *   g_net_pending_work_list                  @ 0x21000ec8
+ *   g_net_ctrl_timeout_node_addr             @ 0x21000ee0
+ */
 /* net-core FUN_0100ec40 @ 0x100ec40  (parity 300 trials PROVEN) */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-extern void FUN_0102583c(unsigned int a);
+extern void controller_deferred_event_raise(unsigned int a);
 
 void FUN_0100ec40(void)
 {
@@ -27,5 +36,5 @@ void FUN_0100ec40(void)
     *puVar5 = uVar3;
     *(unsigned int *)(puVar2+4) = uVar3;
     if (primask == 0) __enable_irq();
-    FUN_0102583c(*puVar2);
+    controller_deferred_event_raise(*puVar2);
 }

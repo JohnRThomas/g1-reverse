@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01033a60 @ 0x01033a60
+ * public-name: FUN_01033a60
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_crc_scratch                  @ 0x21000684
+ *   g_net_radio_busy_flag                    @ 0x21006458
+ */
 /* net-core FUN_01033a60 @ 0x1033a60  (parity 300 trials PROVEN) */
 
 extern void FUN_0103b614(void *dst, unsigned int a, unsigned int b, unsigned int c, unsigned int d);

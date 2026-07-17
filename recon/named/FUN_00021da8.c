@@ -9,7 +9,7 @@
  *   debug_log_queue_init                     <= FUN_00019bd0 @ 0x00019bd0
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   ble_packet_receive_dispatch              <= FUN_00021d78 @ 0x00021d78
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -36,7 +36,7 @@ extern uintptr_t malloc(uint32_t);
 extern uintptr_t get_device_info(void);
 extern void FUN_00074844(uint32_t,uint32_t);
 extern uint64_t dequeue_bt_data(void*);
-extern void mutex_lock_syscall_handler(uintptr_t,uint32_t,uint32_t,uint32_t);
+extern void z_impl_k_sem_take(uintptr_t,uint32_t,uint32_t,uint32_t);
 extern void ble_packet_receive_dispatch(void*,uint32_t,uint32_t);
 extern int FUN_0007c108(void);
 extern int bt_start(void);
@@ -92,7 +92,7 @@ void ble_work_thread(uintptr_t context, uintptr_t unused_p2, uint32_t p3)
             }
         } else {
             *(volatile uint8_t*)(context+0x248)=0;
-            mutex_lock_syscall_handler(context+0x218,(uint32_t)(received>>32),0xffffffffu,0xffffffffu);
+            z_impl_k_sem_take(context+0x218,(uint32_t)(received>>32),0xffffffffu,0xffffffffu);
             *(volatile uint8_t*)(context+0x248)=1;
             if (*(volatile uint32_t*)(context+0x35c)==0 &&
                 *(volatile uint32_t*)(context+0x358)==0) {

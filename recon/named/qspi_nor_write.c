@@ -5,6 +5,7 @@
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
  *   qspi_nor_write                           <= FUN_00060f20 @ 0x00060f20
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
@@ -23,7 +24,7 @@ extern int qspi_get_zephyr_ret_code(int,...);
 extern int FUN_000609f4(int,...);
 extern int qspi_nor_acquire(int,...);
 extern int FUN_00060a5c(int,...);
-extern int FUN_00072880(int,...);
+extern int k_sem_give(int,...);
 extern int FUN_000838d6(int,...);
 extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);
@@ -86,7 +87,7 @@ LAB_00060fd6:
     }
     audio_i2s_start_channels(param_1);
     iVar1 = qspi_nor_write_protection_set(param_1, 1);
-    FUN_00072880(*(unsigned*)(param_1+0x10));
+    k_sem_give(*(unsigned*)(param_1+0x10));
     if (iVar2 == 0) iVar2 = iVar1;
     iVar1 = qspi_get_zephyr_ret_code(iVar2);
 LAB_00061054:

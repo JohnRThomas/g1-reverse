@@ -1,4 +1,14 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01033660 @ 0x01033660
+ * public-name: FUN_01033660
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_esb_tx_buf_pool                        @ 0x210049d4
+ *   g_esb_state                              @ 0x21004a94
+ *   g_esb_pipe_pid_cnt                       @ 0x21006256
+ *   g_net_radio_busy_flag                    @ 0x21006458
+ *   g_esb_enabled_flag                       @ 0x21006459
+ */
 /* net-core FUN_01033660 @ 0x1033660  (parity 300 trials PROVEN) */
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"

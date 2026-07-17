@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100ca98 @ 0x0100ca98
+ * public-name: FUN_0100ca98
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_addr_match_tbl               @ 0x21000d18
+ */
 /* net-core FUN_0100ca98 @ 0x100ca98  (parity 300 trials PROVEN) */
 
 unsigned int FUN_0100ca98(unsigned int param_1, unsigned char *param_2, unsigned int *param_3)

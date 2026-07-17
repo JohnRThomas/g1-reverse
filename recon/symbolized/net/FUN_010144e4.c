@@ -1,11 +1,22 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010144e4 @ 0x010144e4
+ * public-name: FUN_010144e4
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_210001d4                               @ 0x210001d4
+ *   g_210001e4                               @ 0x210001e4
+ *   g_210001ec                               @ 0x210001ec
+ *   g_net_link_ctx_a                         @ 0x21000f68
+ */
 /* net-core FUN_010144e4 @ 0x10144e4  (parity 300 trials PROVEN) */
 typedef unsigned char byte;
 typedef unsigned int uint;
 typedef unsigned short u16;
 
 extern int  FUN_0100a904(void *);
-extern void FUN_01008d00(int, int);
+extern void sdc_assertion_fail(int, int);
 extern void FUN_01025a84(void *, int, int);
 extern void FUN_0100e5dc(void *, int);
 extern void FUN_0100e634(void *, uint);
@@ -86,7 +97,7 @@ L_0598:
     goto L_058a;
 
 L_05b0:
-    FUN_01008d00(0x31, 0x8e4);
+    sdc_assertion_fail(0x31, 0x8e4);
     /* fall through */
 L_05ba:
     {
@@ -192,9 +203,9 @@ L_06e2:
     goto L_058a;
 
 L_071e:
-    FUN_01008d00(0x31, 0x832);
+    sdc_assertion_fail(0x31, 0x832);
     /* fall through */
 L_0728:
-    FUN_01008d00(0x31, 0x8e8);
+    sdc_assertion_fail(0x31, 0x8e8);
     return;
 }

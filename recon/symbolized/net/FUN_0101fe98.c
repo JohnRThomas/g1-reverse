@@ -1,7 +1,17 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101fe98 @ 0x0101fe98
+ * public-name: FUN_0101fe98
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_net_radio_pending_reset_flag           @ 0x210014dc
+ *   REG_41008000                             @ 0x41008000
+ *   REG_4100e000                             @ 0x4100e000
+ */
 /* net-core FUN_0101fe98 @ 0x101fe98  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 
 void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
 {
@@ -52,12 +62,12 @@ void FUN_0101fe98(unsigned int param_1, unsigned int param_2)
   return;
 
 fatal_fe:
-  FUN_01008d00(0x3c, 0xfe);
+  sdc_assertion_fail(0x3c, 0xfe);
   return;
 fatal_20e:
-  FUN_01008d00(0x3c, 0x20e);
+  sdc_assertion_fail(0x3c, 0x20e);
   return;
 fatal_eb:
-  FUN_01008d00(0x3c, 0xeb);
+  sdc_assertion_fail(0x3c, 0xeb);
   return;
 }

@@ -5,7 +5,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   free_space                               <= FUN_0007e314 @ 0x0007e314
@@ -28,7 +28,7 @@ extern int z_spin_lock_valid(void *); extern int z_spin_unlock_valid(void *); ex
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t) __attribute__((noreturn));
 extern void post_drop_action(mpsc_buffer*,uint32_t,uint32_t); extern int free_space(mpsc_buffer*,uint32_t*);
 extern uint32_t idx_inc(mpsc_buffer*,uint32_t,uint32_t); extern void FUN_0007e390(mpsc_buffer*,uint32_t);
-extern int k_is_in_isr(void); extern int mutex_lock_syscall_handler(void*,uint64_t);
+extern int k_is_in_isr(void); extern int z_impl_k_sem_take(void*,uint64_t);
 extern int FUN_0007e3ce(mpsc_buffer*,uint32_t,void**,uint32_t*);
 __attribute__((always_inline)) static inline uint32_t checked_lock(mpsc_buffer *b){ uint32_t k=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB(); if(!z_spin_lock_valid(&b->lock)){ printk(0x99cbd,0xf0920,0xf08c7,0x72); printk(0xf0935,&b->lock); assert_post_action(0xf08c7,0x72); } z_spin_lock_set_owner(&b->lock); return k; }
 __attribute__((always_inline)) static inline void checked_unlock(mpsc_buffer *b,uint32_t k){ if(!z_spin_unlock_valid(&b->lock)){ printk(0x99cbd,0xf08f4,0xf08c7,0xf0); printk(0xf090b,&b->lock); assert_post_action(0xf08c7,0xf0); } __set_BASEPRI(k); __ISB(); }
@@ -42,7 +42,7 @@ void *FUN_0004bc8c(mpsc_buffer *b,uint32_t wlen,uint32_t to_lo,uint32_t to_hi){
   uint32_t wrap=(uint32_t)free_space(b,&l.free_wlen);
   if(l.free_wlen>=wlen){ uint32_t idx=b->tmp_wr_idx; volatile uint8_t *h=(volatile uint8_t*)&b->buf[idx]; item=(void*)h; *h&=(uint8_t)~3u; uint32_t n=idx_inc(b,idx,wlen); b->tmp_wr_idx=n; if(n==b->rd_idx)b->flags|=8u; cont=0; }
   else if(wrap){ FUN_0007e390(b,l.free_wlen); cont=1; }
-  else if((l.to_lo|l.to_hi)&&!k_is_in_isr()){ checked_unlock(b,key); uint64_t timeout=((uint64_t)l.to_hi<<32)|l.to_lo; int e=mutex_lock_syscall_handler(b->sem,timeout); key=checked_lock(b); cont=(e==0); }
+  else if((l.to_lo|l.to_hi)&&!k_is_in_isr()){ checked_unlock(b,key); uint64_t timeout=((uint64_t)l.to_hi<<32)|l.to_lo; int e=z_impl_k_sem_take(b->sem,timeout); key=checked_lock(b); cont=(e==0); }
   else if(cont){ prev=b->tmp_wr_idx; cont=(uint32_t)FUN_0007e3ce(b,l.free_wlen,&l.dropped,&l.shift); }
   checked_unlock(b,key);
   if(l.dropped){ if(b->notify_drop)b->notify_drop(b,l.dropped); l.dropped=0; }

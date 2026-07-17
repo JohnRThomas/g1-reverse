@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01016430 @ 0x01016430
+ * public-name: FUN_01016430
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   rodata_103c24c                           @ 0x0103c24c
+ */
 /* net-core radio-operation setup @ 0x01016430.
  *
  * Raw provenance: the TBB at 0x0101645a dispatches modes 1..8.  Modes 1, 4,
@@ -10,7 +18,7 @@
 #include <stdint.h>
 
 extern uint32_t FUN_0100a5b4(void);
-extern __attribute__((noreturn)) void FUN_01008d00(uint32_t module,
+extern __attribute__((noreturn)) void sdc_assertion_fail(uint32_t module,
                                                    uint32_t line);
 extern void FUN_010202fc(uint32_t channel, uint32_t operation_mode);
 extern void FUN_010204f4(uint32_t mapped_value);
@@ -19,7 +27,7 @@ extern void FUN_01021108(uint32_t direction, uint32_t operation_mode);
 extern int32_t FUN_010212ec(uint32_t direction, uint32_t operation_mode);
 
 #define read_requested_channel          FUN_0100a5b4
-#define controller_fault                FUN_01008d00
+#define controller_fault                sdc_assertion_fail
 #define configure_radio_channel         FUN_010202fc
 #define latch_mapped_radio_value        FUN_010204f4
 #define arm_radio_packet                FUN_01020764

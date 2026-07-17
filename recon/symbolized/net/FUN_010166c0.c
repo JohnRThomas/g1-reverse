@@ -1,12 +1,19 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010166c0 @ 0x010166c0
+ * public-name: FUN_010166c0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ */
 /* net-core FUN_010166c0 @ 0x10166c0  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern int FUN_0100ca98(int, int);
 extern void FUN_0100d5c8(unsigned int, int);
 extern unsigned short FUN_0100d5d0(unsigned int);
 extern void FUN_0100e018(unsigned int, void*);
 extern unsigned int *FUN_0100e294(unsigned char*, int);
-extern void FUN_0100ef88(unsigned int, unsigned int, int);
+extern void sdc_work_submit(unsigned int, unsigned int, int);
 extern void FUN_0100efc8(unsigned int, unsigned int, int);
 
 #define DAT_010167e0 0x21000f90u
@@ -77,7 +84,7 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
   } else {
     iVar8 = FUN_0100ca98(cVar1, iVar8 + -1);
     if (iVar8 == 0) {
-      FUN_01008d00(0x32, 0x1596);
+      sdc_assertion_fail(0x32, 0x1596);
       return;
     }
     *(volatile unsigned char *)(iVar3 + 0xd) = *(volatile unsigned char *)(iVar3 + 0xd) | 2;
@@ -90,7 +97,7 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
     *(volatile unsigned short *)(iVar8 + 4) = *(volatile unsigned short *)(puVar9 + 1);
   }
   FUN_0100d5c8(*(volatile unsigned int *)(iVar3 + 0x50), (int)*(volatile char *)(iVar3 + 0x59));
-  FUN_0100ef88(DAT_010167e0, DAT_010167f4, 2);
+  sdc_work_submit(DAT_010167e0, DAT_010167f4, 2);
   uVar6 = DAT_010167f8;
   uVar2 = *(volatile unsigned char *)((int)*(volatile unsigned short **)(iVar3 + 0x50) + 0xcd);
   *(volatile unsigned short *)(iVar3 + 0x33) = **(volatile unsigned short **)(iVar3 + 0x50);

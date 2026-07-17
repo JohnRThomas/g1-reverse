@@ -1,4 +1,14 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102a394 @ 0x0102a394
+ * public-name: FUN_0102a394
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_ctrl_report_field0                 @ 0x210045e8
+ *   g_net_ctrl_report_field1                 @ 0x210045ec
+ *   g_net_ctrl_report_field2                 @ 0x210045f0
+ *   g_sdc_hci_transport_obj                  @ 0x210045f4
+ *   g_net_ctrl_status_byte                   @ 0x21004c9f
+ */
 /* net-core FUN_0102a394 @ 0x102a394  (parity 300 trials PROVEN) */
 extern void FUN_0103b62e(void *dst, int val, int len);
 extern void FUN_0103961c(int a);

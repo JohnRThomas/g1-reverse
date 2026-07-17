@@ -7,6 +7,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   drain_audio_msgq                         <= FUN_0002f688 @ 0x0002f688
  *   startAudioStreamRecord                   <= FUN_0002f764 @ 0x0002f764
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_9d30b                             @ 0x0009d30b
  *   rodata_a9843                             @ 0x000a9843
@@ -23,7 +24,7 @@ extern void DEBUG_PRINT(uint32_t format, uint32_t argument);
 extern void debug_print(uint32_t format, uint32_t argument, ...);
 extern void drain_audio_msgq(void);
 extern void startAudioStreamRecord(void);
-extern void FUN_00072880(void *event);
+extern void k_sem_give(void *event);
 
 void dmic_record_start(void)
 {
@@ -46,5 +47,5 @@ void dmic_record_start(void)
     device = get_device_info();
     *(uint32_t *)(device + 0x104c) = 0x1d;
     device = get_device_info();
-    FUN_00072880(device + 0x68);
+    k_sem_give(device + 0x68);
 }

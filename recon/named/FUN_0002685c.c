@@ -8,7 +8,7 @@
  *   disable_watchdog                         <= FUN_0002aeb4 @ 0x0002aeb4
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   sys_reboot                               <= FUN_0004c0a8 @ 0x0004c0a8
- *   k_msleep_ticks32768_a                    <= FUN_0007cb8e @ 0x0007cb8e
+ *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
@@ -31,7 +31,7 @@ extern void disable_watchdog(void);
 extern void mark_master_or_low_battery_flag(void);
 extern void FUN_00032fd0(uint32_t);
 extern uintptr_t sys_reboot(uint32_t);
-extern void k_msleep_ticks32768_a(uint32_t);
+extern void k_msleep(uint32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
 extern void thunk_FUN_00074844(uint32_t, uint32_t);
 
@@ -61,7 +61,7 @@ void FUN_0002685c(uintptr_t context)
                         DEBUG_PRINT(0x0009fc99u, 0x000a19e5u);
                 }
                 for (;;) {
-                    k_msleep_ticks32768_a(500);
+                    k_msleep(500);
                     uintptr_t result = sys_reboot(1);
                     DEBUG_PRINT(result);
                 }

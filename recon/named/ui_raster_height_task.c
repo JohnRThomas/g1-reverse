@@ -7,6 +7,7 @@
  *   ui_DashBoard_task                        <= FUN_0003af78 @ 0x0003af78
  *   cal_panel_canvas_coord                   <= FUN_00042fb0 @ 0x00042fb0
  *   gui_screen_clear                         <= FUN_000431c0 @ 0x000431c0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_aa7f2                             @ 0x000aa7f2
  *   rodata_aa817                             @ 0x000aa817
@@ -24,7 +25,7 @@ extern void debug_print(uint32_t, ...);
 extern void ui_DashBoard_task(uint32_t, uint32_t, int);
 extern void cal_panel_canvas_coord(int*, int*);
 extern void gui_screen_clear(void);
-extern void FUN_00072880(int);
+extern void k_sem_give(int);
 
 unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, int param_3)
 {
@@ -70,7 +71,7 @@ unsigned int ui_raster_height_task(unsigned int param_1, unsigned int param_2, i
             iVar5 = (int)(intptr_t)get_device_info();
             *(unsigned int*)(intptr_t)(iVar5 + 0x104c) = 0x26;
             iVar5 = (int)(intptr_t)get_device_info();
-            FUN_00072880(iVar5 + 0x80);
+            k_sem_give(iVar5 + 0x80);
         }
     }
     return 0;

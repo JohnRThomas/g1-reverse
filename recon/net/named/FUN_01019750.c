@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  */
 /* net-core FUN_01019750 @ 0x1019750 */
 #include <stdint.h>
@@ -10,7 +11,7 @@ extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern uint32_t FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
 extern int FUN_0100ca98(uint8_t, void *);
-extern void FUN_0100ef88(void *, const void *, uint32_t);
+extern void sdc_work_submit(void *, const void *, uint32_t);
 extern int FUN_01026d3e(void);
 extern int FUN_01026f32(uint32_t, uint16_t, uint32_t);
 extern uint8_t *FUN_010270d2(uint32_t);
@@ -79,5 +80,5 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
     if (FUN_01026f32(token, (uint16_t)FUN_0100a5b4(), 1) == 0)
         sdc_assertion_fail(0x33, 0x334);
     entry[8] = 0;
-    FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
+    sdc_work_submit(entry, (const void *)0x01019a9d, 6);
 }

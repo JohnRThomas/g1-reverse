@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -32,7 +33,7 @@ struct audio_cache_record {
 extern void DEBUG_PRINT(uint32_t format, uint32_t module);
 extern void debug_print(uint32_t format, uint32_t module);
 extern int k_msgq_put(void *queue, const void *record, int timeout, int flags);
-extern void FUN_00072880(void *event);
+extern void k_sem_give(void *event);
 extern void memcpy(void *destination, const void *source, int length);
 extern void memset_bytes(void *destination, int value, int length);
 
@@ -67,7 +68,7 @@ uint32_t sendAudioStram2Cache(const void *audio_stream)
     record.type = 2;
 
     if (k_msgq_put(AUDIO_CACHE_QUEUE, &record, 0, 0) == 0) {
-        FUN_00072880(AUDIO_CACHE_EVENT);
+        k_sem_give(AUDIO_CACHE_EVENT);
         return 0;
     }
 

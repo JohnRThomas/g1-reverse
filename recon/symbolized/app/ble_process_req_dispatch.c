@@ -11,6 +11,7 @@
  *   build_status_notify_packet               <= FUN_00021334 @ 0x00021334
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   post_notification_cmd_process            <= FUN_000338ec @ 0x000338ec
+ *   k_timer_start                            <= FUN_00075174 @ 0x00075174
  *   ble_flush_queued_indications             <= FUN_0007c20a @ 0x0007c20a
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -54,7 +55,7 @@ extern void build_status_notify_packet(void *, void *);
 extern void mark_master_or_low_battery_flag(void);
 extern void post_notification_cmd_process(void *, void *, void *);
 extern void FUN_00056a68(int, uint32_t);
-extern void FUN_00075174(uint32_t, uint32_t, uint32_t, uint32_t,
+extern void k_timer_start(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);
 extern void FUN_0007c176(uint32_t, uint32_t);
 extern void FUN_0007c1aa(uintptr_t, uint32_t, uint32_t, uint32_t);
@@ -418,7 +419,7 @@ LAB_000216b4:
                         uint32_t previous = __atomic_fetch_and(
                             P_2000756c, 0xfffffffdu, __ATOMIC_ACQ_REL);
                         uint32_t cleared = previous & 0xfffffffdu;
-                        FUN_00075174(((unsigned long)&g_ble_work_timer) /*=0x20003d28*/, cleared, 0x8000u,
+                        k_timer_start(((unsigned long)&g_ble_work_timer) /*=0x20003d28*/, cleared, 0x8000u,
                                      0, 0, 0);
                     }
                     return 0;

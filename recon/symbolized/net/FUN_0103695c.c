@@ -1,4 +1,13 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103695c @ 0x0103695c
+ * public-name: FUN_0103695c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d3b6                           @ 0x0103d3b6
+ *   rodata_103eaed                           @ 0x0103eaed
+ *   g_net_workq_pending_sync_list            @ 0x21004b50
+ */
 /* net-core FUN_0103695c @ 0x103695c
  * Complete 424-byte worker-loop body through 0x1036b03; its five literals
  * occupy 0x1036b04..0x1036b17 and the next function starts at 0x1036b18.

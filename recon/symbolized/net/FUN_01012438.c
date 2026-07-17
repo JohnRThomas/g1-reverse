@@ -1,4 +1,12 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01012438 @ 0x01012438
+ * public-name: FUN_01012438
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   rodata_103c1bc                           @ 0x0103c1bc
+ */
 /* net-core FUN_01012438 @ 0x1012438  (parity 200 trials PROVEN) */
 /* net-core FUN_01012438 @ 0x1012438  (parity 300 trials PROVEN) */
 typedef unsigned char u8;
@@ -8,7 +16,7 @@ typedef unsigned long long u64;
 typedef signed char i8;
 typedef int i32;
 
-extern void FUN_01008d00(u32, u32);
+extern void sdc_assertion_fail(u32, u32);
 extern u32 FUN_0100a4d0(void);
 extern u32 FUN_01010990(u32, i8);
 extern i32 FUN_010109ec(u32, u32, i8, int, u32);
@@ -68,7 +76,7 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
     if ((int)((u32)bVar2 << 0x1b) >= 0) {
       uVar10 = (u32)((u8)(param_2[0x16] - 1));
       if (uVar10 > 2) {
-        FUN_01008d00(6, 0x2a6);
+        sdc_assertion_fail(6, 0x2a6);
         __builtin_unreachable();
       }
       cVar12 = (i8)tbl[uVar10];
@@ -153,6 +161,6 @@ u32 FUN_01012438(u32 *param_1, u8 *param_2)
     }
     return uVar14;
   }
-  FUN_01008d00(6, 0x2a6);
+  sdc_assertion_fail(6, 0x2a6);
   __builtin_unreachable();
 }

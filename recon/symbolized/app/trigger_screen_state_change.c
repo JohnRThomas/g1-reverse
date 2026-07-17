@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_a2470                             @ 0x000a2470
  *   rodata_a2486                             @ 0x000a2486
@@ -13,7 +14,7 @@
  */
 /* Reconstructed trigger_screen_state_change @ 0x2bc2c  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_00072880(unsigned int);
+extern void k_sem_give(unsigned int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
 
@@ -34,7 +35,7 @@ unsigned int trigger_screen_state_change(unsigned int param_1, int param_2, unsi
             *(volatile unsigned char*)(param_2 + 0xfe8) = 0;
         } else {
             *(volatile unsigned char*)(param_2 + 0xfe8) = 1;
-            FUN_00072880(param_2 + 0x50);
+            k_sem_give(param_2 + 0x50);
         }
         if (1 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {
             if (*(volatile unsigned int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0) {

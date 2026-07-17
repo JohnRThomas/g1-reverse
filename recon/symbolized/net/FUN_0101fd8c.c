@@ -1,4 +1,11 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0101fd8c @ 0x0101fd8c
+ * public-name: FUN_0101fd8c
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_ccm_op_status                      @ 0x210014d8
+ *   REG_4100e000                             @ 0x4100e000
+ */
 /* net-core FUN_0101fd8c @ 0x0101fd8c
  * Readable role: report the current CCM operation result.
  *

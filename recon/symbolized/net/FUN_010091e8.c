@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010091e8 @ 0x010091e8
+ * public-name: FUN_010091e8
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_addr_record                        @ 0x21000a60
+ */
 /* net-core FUN_010091e8 @ 0x10091e8  (parity 300 trials PROVEN) */
 
 static volatile unsigned int * const DAT_010091f4 = (volatile unsigned int *)((unsigned long)&g_net_addr_record) /*=0x21000a60*/;

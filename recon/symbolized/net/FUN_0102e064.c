@@ -1,4 +1,15 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102e064 @ 0x0102e064
+ * public-name: FUN_0102e064
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_103c0ec                           @ 0x0103c0ec
+ *   rodata_103c0fc                           @ 0x0103c0fc
+ *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d5d7                           @ 0x0103d5d7
+ *   g_net_current_thread_field_cache         @ 0x21004660
+ *   g_net_tick_pending_cnt                   @ 0x21004668
+ */
 /* net-core FUN_0102e064 @ 0x0102e064
  *
  * Persistent controller participant/event supervisor.  This is the runtime

@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102946c @ 0x0102946c
+ * public-name: FUN_0102946c
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
+ */
 /* net-core FUN_0102946c @ 0x0102946c
  * Readable role: apply a byte-valued update to an active handle entry.
  *
@@ -13,7 +19,7 @@
 #include <stdint.h>
 
 extern uint64_t FUN_0101f8cc(void);
-extern void *FUN_01009d18(uint16_t handle, unsigned type);
+extern void *controller_typed_handle_lookup(uint16_t handle, unsigned type);
 extern void *FUN_0101e090(void *entry);
 extern unsigned FUN_0101e15c(void *context, void *entry, uint8_t value);
 
@@ -30,7 +36,7 @@ unsigned FUN_0102946c(uint16_t handle, uint8_t value)
     if ((controller_state & CONTROLLER_HANDLE_UPDATES_READY) == 0)
         return UPDATE_STATUS_INVALID_STATE;
 
-    void *entry = FUN_01009d18(handle, HANDLE_ENTRY_TYPE);
+    void *entry = controller_typed_handle_lookup(handle, HANDLE_ENTRY_TYPE);
     if (entry == 0)
         return UPDATE_STATUS_HANDLE_NOT_FOUND;
 

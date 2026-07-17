@@ -5,6 +5,7 @@
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
  *   nrfx_qspi_init                           <= FUN_00066994 @ 0x00066994
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
 
 extern int qspi_get_zephyr_ret_code(void);
 extern void nrfx_qspi_init(int,int,int,int,int);
-extern void FUN_00072880(int);
+extern void k_sem_give(int);
 extern void audio_i2s_stop_and_reset_channels(void);
 extern void audio_i2s_start_channels(int);
 
@@ -26,7 +27,7 @@ int qspi_nor_acquire(int param_1, int param_2, int param_3, int param_4)
     if (*(volatile char*)(iVar3+0x60) == 0) {
         audio_i2s_stop_and_reset_channels();
         volatile char *pcVar1 = (volatile char*)0x2001d535UL;
-        FUN_00072880(iVar3+0x48);
+        k_sem_give(iVar3+0x48);
         iVar2 = 0;
         if (*pcVar1 == 0) {
             nrfx_qspi_init(*(volatile int*)(param_1+4), 0x000838cb, iVar3, 0, param_4);

@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01034368 @ 0x01034368
+ * public-name: FUN_01034368
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_01034368 @ 0x1034368 — true CFG extent 48 bytes (ends 0x1034398) */
 #include <stdint.h>
 

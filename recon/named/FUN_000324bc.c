@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   k_msleep_ticks32768_b                    <= FUN_0007d14a @ 0x0007d14a
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
@@ -26,7 +26,7 @@
 
 extern void memset_bytes(void *, uint32_t, uint32_t);
 extern uint64_t z_impl_k_sem_init(void *, uint32_t, uint32_t);
-extern uint64_t mutex_lock_syscall_handler(void *, uint32_t, uint32_t, uint32_t);
+extern uint64_t z_impl_k_sem_take(void *, uint32_t, uint32_t, uint32_t);
 extern int z_device_is_ready(void *);
 extern void DEBUG_PRINT(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
@@ -46,7 +46,7 @@ void FUN_000324bc(void)
     memset_bytes(&message.code, 0, 0xca);
     uint64_t inherited = z_impl_k_sem_init(gate, 0, 1);
     for (;;) {
-        inherited = mutex_lock_syscall_handler(gate, (uint32_t)(inherited >> 32),
+        inherited = z_impl_k_sem_take(gate, (uint32_t)(inherited >> 32),
                                  0xffffffffu, 0xffffffffu);
         message.tag = 0x01f1a55au;
         if (!z_device_is_ready(object)) {

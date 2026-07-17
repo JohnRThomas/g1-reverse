@@ -1,0 +1,14 @@
+/* readable reconstruction; identity: FUN_00068b14 @ 0x00068b14
+ * public-name: lc3_bwdet_get_nbits
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   lc3_bwdet_get_nbits                      <= FUN_00068b14 @ 0x00068b14
+ */
+/* Reconstructed FUN_00068b14 @ 0x68b14  (parity: 300/300 trials, PROVEN) */
+
+char lc3_bwdet_get_nbits(unsigned int param_1) {
+    char cVar1 = (1 < param_1) ? 1 : 0;
+    if (param_1 != 0) cVar1 = cVar1 + 1;
+    if (3 < param_1) cVar1 = cVar1 + 1;
+    return cVar1;
+}

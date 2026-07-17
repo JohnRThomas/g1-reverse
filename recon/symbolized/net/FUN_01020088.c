@@ -1,8 +1,16 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01020088 @ 0x01020088
+ * public-name: FUN_01020088
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   REG_4100e000                             @ 0x4100e000
+ */
 /* net-core FUN_01020088 @ 0x1020088 */
 #include <stdint.h>
 extern void FUN_0101ff4c(void);
-extern void FUN_01008d00(uint32_t, uint32_t);
+extern void sdc_assertion_fail(uint32_t, uint32_t);
 
 void FUN_01020088(uint32_t mode)
 {
@@ -20,7 +28,7 @@ void FUN_01020088(uint32_t mode)
         peripheral[0x514 / 4] = 0x210014e4;
         peripheral[0x80 / 4] = 0x80000003;
     } else if (mode != 0) {
-        FUN_01008d00(0x3d, 0x82);
+        sdc_assertion_fail(0x3d, 0x82);
         peripheral[0x500 / 4] = 2;
         peripheral[0x514 / 4] = 0x210014e4;
     }

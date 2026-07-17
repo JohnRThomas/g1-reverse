@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a3f45                             @ 0x000a3f45
@@ -19,7 +20,7 @@
 
 extern void memset_bytes(void*, int, int);
 extern int k_msgq_put(unsigned int, void*, int, int);
-extern void FUN_00072880(unsigned int);
+extern void k_sem_give(unsigned int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, unsigned int, ...);
 
@@ -42,7 +43,7 @@ unsigned int delAudioStreamRecord(unsigned char param_1)
     buf[4] = param_1;
     iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf, 0, 0);
     if (iVar2 == 0) {
-        FUN_00072880(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
+        k_sem_give(((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar3 = 0;
     } else {
         if (0 < *(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/) {

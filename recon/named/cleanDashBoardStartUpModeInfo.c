@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_9e903                             @ 0x0009e903
  *   rodata_9e968                             @ 0x0009e968
@@ -19,7 +20,7 @@
 extern void DEBUG_PRINT(uint32_t, uint32_t);
 extern void debug_print(uint32_t, uint32_t);
 extern int k_msgq_put(uint32_t, const void *, uint32_t, uint32_t);
-extern void FUN_00072880(uint32_t);
+extern void k_sem_give(uint32_t);
 
 struct startup_request {
   uint8_t opcode;
@@ -47,6 +48,6 @@ int cleanDashBoardStartUpModeInfo(void)
       debug_print(0x0009e968, 0x0009ed4a);
     }
   }
-  FUN_00072880(0x200079e4);
+  k_sem_give(0x200079e4);
   return 0;
 }

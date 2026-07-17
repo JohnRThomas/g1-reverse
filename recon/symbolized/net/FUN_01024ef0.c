@@ -1,4 +1,10 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01024ef0 @ 0x01024ef0
+ * public-name: FUN_01024ef0
+ * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   g_net_radio_timer_sync_state             @ 0x21001bf8
+ */
 /* net-core FUN_01024ef0 @ 0x1024ef0  (parity 300 trials PROVEN) */
 #include <stdint.h>
 typedef unsigned int u32;

@@ -1,11 +1,17 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0103afac @ 0x0103afac
+ * public-name: FUN_0103afac
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   thunk_FUN_01036824                       <= FUN_0103aec2 @ 0x0103aec2
+ */
 /* net-core FUN_0103afac @ 0x103afac */
 #include <stdint.h>
 extern void FUN_0103aec6(void *);
 extern uint32_t FUN_0103ac46(void *, uint32_t);
 extern void FUN_010353ec(void *, uint32_t, uint32_t);
 extern void FUN_0103acca(void *);
-extern void FUN_0103aec2(void *);
+extern void thunk_FUN_01036824(void *);
 
 void FUN_0103afac(void *object, const uint8_t *record)
 {
@@ -18,5 +24,5 @@ void FUN_0103afac(void *object, const uint8_t *record)
     if (*(uint32_t *)(*(uint8_t **)(base + 0xa0) + 0x18) == 1)
         FUN_010353ec(channel, id, value);
     FUN_0103acca(channel);
-    FUN_0103aec2(lock);
+    thunk_FUN_01036824(lock);
 }

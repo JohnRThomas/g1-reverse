@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   malloc_lock_acquire                      <= FUN_00076b9c @ 0x00076b9c
  *   malloc_lock_release                      <= FUN_00076ba8 @ 0x00076ba8
- *   stdio_streams_init                       <= FUN_00076bcc @ 0x00076bcc
+ *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_9873c                             @ 0x0009873c
@@ -14,7 +14,7 @@
 #include <stddef.h>
 extern void malloc_lock_acquire(void);
 extern void malloc_lock_release(void);
-extern void stdio_streams_init(void *);
+extern void __sinit(void *);
 extern void FUN_0005109c(void *);
 extern void *FUN_00086b14(void *, uint32_t);
 extern void *memset_bytes(void *, int, size_t);
@@ -23,7 +23,7 @@ void *FUN_00076c3c(uint32_t *error)
 {
     malloc_lock_acquire();
     uint8_t *root = *(uint8_t **)(uintptr_t)0x0009873c;
-    if (*(uint32_t *)(root + 0x18) == 0) stdio_streams_init(root);
+    if (*(uint32_t *)(root + 0x18) == 0) __sinit(root);
     uint8_t *block = root + 0x48;
     for (;;) {
         int32_t count = *(int32_t *)(block + 4);

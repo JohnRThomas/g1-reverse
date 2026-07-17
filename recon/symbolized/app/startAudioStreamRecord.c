@@ -7,6 +7,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   display_DelayClose                       <= FUN_000498c0 @ 0x000498c0
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -25,7 +26,7 @@ extern void debug_print(unsigned int message, unsigned int function);
 extern unsigned int get_device_info(void);
 extern void display_DelayClose(unsigned int ms);
 extern int k_msgq_put(int a, void *b, int c, int d);
-extern void FUN_00072880(void *a);
+extern void k_sem_give(void *a);
 extern void memset_bytes(void *dst, int val, int n);
 extern void sync_to_slave(unsigned int a, unsigned int b, void *c, unsigned int d);
 
@@ -39,7 +40,7 @@ unsigned int startAudioStreamRecord(void)
     buf[4] = 1;
     iVar2 = k_msgq_put(((unsigned long)&g_audio_msgq) /*=0x20003890*/, buf + 4, 0, 0);
     if (iVar2 == 0) {
-        FUN_00072880((void*)((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
+        k_sem_give((void*)((unsigned long)&g_app_language_msgq) /*=0x200079e4*/);
         uVar3 = 0;
     } else {
         if (0 < *(int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {

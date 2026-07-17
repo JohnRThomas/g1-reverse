@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_9edc2                             @ 0x0009edc2
  *   rodata_9edf3                             @ 0x0009edf3
@@ -18,7 +19,7 @@
 extern int k_msgq_put(unsigned int, void*, int, int);
 extern void DEBUG_PRINT(unsigned int, unsigned int, ...);
 extern void debug_print(unsigned int, ...);
-extern void FUN_00072880(unsigned int);
+extern void k_sem_give(unsigned int);
 
 int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -38,7 +39,7 @@ int upgradeQuickNoteDataToFlash(unsigned int param_1, unsigned int param_2, unsi
                 debug_print(0x9edf3, 0x9f094, param_1);
             }
         }
-        FUN_00072880(0x200079e4UL);
+        k_sem_give(0x200079e4UL);
         uVar2 = 0;
     } else {
         if (0 < *(volatile int*)0x2000230cUL) {

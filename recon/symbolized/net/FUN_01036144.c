@@ -1,4 +1,8 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01036144 @ 0x01036144
+ * public-name: FUN_01036144
+ * durable-map: recon/catalogs/function_names_net.json
+ */
 /* net-core FUN_01036144 @ 0x1036144  (parity 300 trials PROVEN) */
 
 static volatile unsigned char * const DAT_01036150 = (volatile unsigned char *)0x21004b28;

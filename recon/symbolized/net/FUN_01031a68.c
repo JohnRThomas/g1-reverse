@@ -1,15 +1,30 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01031a68 @ 0x01031a68
+ * public-name: FUN_01031a68
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   k_work_init                              <= FUN_01036bec @ 0x01036bec
+ * address symbols (name @ address):
+ *   rodata_10320d9                           @ 0x010320d9
+ *   rodata_103bf70                           @ 0x0103bf70
+ *   rodata_103c044                           @ 0x0103c044
+ *   rodata_103c11c                           @ 0x0103c11c
+ *   rodata_103d73e                           @ 0x0103d73e
+ *   rodata_103e216                           @ 0x0103e216
+ *   rodata_103e23d                           @ 0x0103e23d
+ *   rodata_103e25d                           @ 0x0103e25d
+ */
 /* net-core FUN_01031a68 @ 0x1031a68  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01036bec(unsigned int a, unsigned int b);
+extern void k_work_init(unsigned int a, unsigned int b);
 extern void FUN_01032680(void);
 extern void FUN_01009054(void *a);
 extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, void *d);
 extern int FUN_0103b0f0(unsigned int a);
 extern int FUN_010091e8(void *a);
 extern int FUN_01031804(unsigned int a, unsigned int b);
-extern int FUN_010091cc(unsigned int a);
+extern int32_t sdc_default_tx_power_set(int8_t requested_power_level); /* FUN_010091cc */
 extern int FUN_01008fd4(unsigned int a, unsigned int b);
 extern int thunk_FUN_0101f650(void *a);
 extern void FUN_01031814(void);
@@ -61,7 +76,7 @@ int FUN_01031a68(void)
     int iVar1, iVar2;
     init_workspace_t workspace;
 
-    FUN_01036bec(DAT_b54, DAT_b50);
+    k_work_init(DAT_b54, DAT_b50);
     FUN_01032680();
     FUN_01009054(workspace.frame.startup_context);
 
@@ -101,7 +116,7 @@ int FUN_01031a68(void)
         return iVar1;
     }
 
-    iVar1 = FUN_010091cc(3);
+    iVar1 = sdc_default_tx_power_set(3);
     if (iVar1 == 0) {
         iVar1 = FUN_01008fd4(DAT_b80, DAT_b7c);
         if (iVar1 == 0) {

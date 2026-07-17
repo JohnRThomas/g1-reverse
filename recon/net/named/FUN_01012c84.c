@@ -4,6 +4,10 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_timing_request_schedule       <= FUN_0100d4d0 @ 0x0100d4d0
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   sdc_ext_adv_event_complete               <= FUN_010127f8 @ 0x010127f8
+ *   sdc_ext_adv_reschedule                   <= FUN_010140ec @ 0x010140ec
+ *   sdc_hci_event_suppressed                 <= FUN_0101f888 @ 0x0101f888
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
@@ -39,7 +43,7 @@ extern int FUN_010126c0(void);
 extern long long FUN_010122b4(void*,int);
 extern int FUN_01023ea8(int,int);
 extern int FUN_0101272c(void*);
-extern void FUN_010127f8(void*);
+extern void sdc_ext_adv_event_complete(void*);
 extern void controller_radio_transition_apply(void*,uint);
 extern int thunk_FUN_01025028(void);
 extern int controller_mode1_state_validate(void);
@@ -54,9 +58,9 @@ extern int sdc_llcp_note_unsupported_pdu(void);
 extern int controller_radio_work_pending(void);
 extern int sdc_llcp_stop_rx_timeout(void);
 extern int sdc_llcp_release_rx_context(void);
-extern int FUN_010140ec(void*,int);
-extern int FUN_0101f888(void);
-extern int FUN_0100ef88(void*,int,int,uint);
+extern int sdc_ext_adv_reschedule(void*,int);
+extern int sdc_hci_event_suppressed(void);
+extern int sdc_work_submit(void*,int,int,uint);
 extern int FUN_01022ebc(int);
 extern int FUN_010126e8(void);
 extern int FUN_010126b0(void*);
@@ -122,7 +126,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
         iVar8 = FUN_01023ea8(uVar14,3);
         *(uint *)(param_1 + 300) = uVar15;
         if (iVar8 != 0) {
-          FUN_010127f8(param_1);
+          sdc_ext_adv_event_complete(param_1);
           return;
         }
       }
@@ -408,7 +412,7 @@ LAB_01020f60:
     }
     goto LAB_01012cf8;
   case 6:
-    FUN_010127f8(param_1);
+    sdc_ext_adv_event_complete(param_1);
     return;
   case 7:
     FUN_01022ebc(param_1[0x100]);

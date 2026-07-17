@@ -10,6 +10,7 @@
  *   handle_touch_key_press_event             <= FUN_0002c3dc @ 0x0002c3dc
  *   get_message_entry                        <= FUN_00033c4c @ 0x00033c4c
  *   msg_content_recalc_unread                <= FUN_00033cf8 @ 0x00033cf8
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  * address symbols (name @ address):
  *   rodata_a2748                             @ 0x000a2748
  *   g_log_use_alt_sink                       @ 0x20007554
@@ -25,7 +26,7 @@ extern unsigned long long esb_send_command_and_wait_ack(unsigned a, int b, int c
 extern void update_touch_key_flag(void);
 extern int get_message_entry(int a);
 extern unsigned char msg_content_recalc_unread(void);
-extern void FUN_00072880(int a);
+extern void k_sem_give(int a);
 extern void FUN_0007ce5c(unsigned a, int b);
 unsigned handle_touch_key_press_event(unsigned inherited_r0, unsigned inherited_r1,
                       unsigned inherited_r2, unsigned inherited_r3){
@@ -63,7 +64,7 @@ unsigned handle_touch_key_press_event(unsigned inherited_r0, unsigned inherited_
             *(volatile unsigned char*)(t2 + 0xdd) = u3;
             update_touch_key_flag();
             int t3 = (int)get_device_info();
-            FUN_00072880(t3 + 0x38);
+            k_sem_give(t3 + 0x38);
             uVar5 = 0;
             goto out;
         }

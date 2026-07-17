@@ -26,6 +26,7 @@
  *   is_msg_expiration                        <= FUN_0003444c @ 0x0003444c
  *   set_new_message_pending_flag             <= FUN_00036030 @ 0x00036030
  *   clear_notification_display_buffer        <= FUN_0003cf34 @ 0x0003cf34
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -207,7 +208,7 @@ extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
 #define FUN_00034808 can_begin_task_transition
 #define set_new_message_pending_flag clear_active_task
 #define clear_notification_display_buffer finish_task_audio
-#define FUN_00072880 submit_task_work
+#define k_sem_give submit_task_work
 #define FUN_0007c132 peer_address_is_uninitialized
 #define reset_esb_sync_state set_task_wake_state
 #define memset_bytes memset_bytes

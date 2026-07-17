@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   rodata_101113d                           @ 0x0101113d
  *   g_net_own_addr_info                      @ 0x21000f20
@@ -11,7 +12,7 @@
 
 extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern int FUN_0100ca98(int, void*, void*);
-extern void FUN_0100ef88(void*, unsigned int, unsigned int);
+extern void sdc_work_submit(void*, unsigned int, unsigned int);
 
 void FUN_01010ff0(unsigned char *param_1, int param_2)
 {
@@ -31,5 +32,5 @@ void FUN_01010ff0(unsigned char *param_1, int param_2)
         }
         param_1[0xca] = param_1[0xca] | 2;
     }
-    FUN_0100ef88(param_1 + 0xc0, 0x0101113d, 2);
+    sdc_work_submit(param_1 + 0xc0, 0x0101113d, 2);
 }

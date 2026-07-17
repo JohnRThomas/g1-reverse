@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   ipc_service_open_instance                <= FUN_0004cb90 @ 0x0004cb90
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_87c08                             @ 0x00087c08
  *   rodata_9f5ec                             @ 0x0009f5ec
@@ -25,7 +25,7 @@ extern void DEBUG_PRINT(uint32_t, ...);
 extern void debug_print(uint32_t, ...);
 extern int ipc_service_open_instance(uint32_t);
 extern unsigned long long FUN_0004cbec(uint32_t, uint32_t, uint32_t);
-extern void mutex_lock_syscall_handler(uint32_t, int, int, int);
+extern void z_impl_k_sem_take(uint32_t, int, int, int);
 
 unsigned int serialization_init(void)
 {
@@ -58,7 +58,7 @@ unsigned int serialization_init(void)
         }
         uVar3 = FUN_0004cbec(0x00087c08UL, 0x20007a78UL, 0x200023dcUL);
         if (-1 < (int)uVar3) {
-            mutex_lock_syscall_handler(0x200039c8UL, (int)(uVar3 >> 32), -1, -1);
+            z_impl_k_sem_take(0x200039c8UL, (int)(uVar3 >> 32), -1, -1);
             *(volatile int*)0x20007a80UL = 1;
             if (1 < *piVar1) {
                 if (*(volatile int*)0x20007554UL == 0) {

@@ -5,7 +5,7 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   cancel_sync_locked                       <= FUN_00072c98 @ 0x00072c98
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
@@ -29,7 +29,7 @@
 #include <stdbool.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 extern int k_is_in_isr(void); extern int z_spin_lock_valid(uint32_t); extern void z_spin_lock_set_owner(uint32_t); extern uint64_t z_spin_unlock_valid(uint32_t);
-extern void unschedule_locked(void*); extern void FUN_00086596(void*); extern int cancel_sync_locked(void*,void*); extern void mutex_lock_syscall_handler(void*,uint32_t,uint32_t,uint32_t);
+extern void unschedule_locked(void*); extern void FUN_00086596(void*); extern int cancel_sync_locked(void*,void*); extern void z_impl_k_sem_take(void*,uint32_t,uint32_t,uint32_t);
 extern void printk(uint32_t,...); extern void assert_post_action(uint32_t,uint32_t);
 bool FUN_000735cc(uint8_t *obj,uint8_t *request)
 {
@@ -43,6 +43,6 @@ bool FUN_000735cc(uint8_t *obj,uint8_t *request)
     uint64_t unlock=z_spin_unlock_valid(0x2000b480);
     if (!(uint32_t)unlock) { printk(0x99cbd,0xf08f4,0xf08c7,0xf0); printk(0xf090b,0x2000b480); assert_post_action(0xf08c7,0xf0); }
     __set_BASEPRI(bp); __ISB();
-    if (notify) mutex_lock_syscall_handler(request+8,(uint32_t)(unlock>>32),UINT32_MAX,UINT32_MAX);
+    if (notify) z_impl_k_sem_take(request+8,(uint32_t)(unlock>>32),UINT32_MAX,UINT32_MAX);
     return active;
 }

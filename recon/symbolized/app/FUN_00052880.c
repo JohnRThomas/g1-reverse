@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_gatt_notify_cb                        <= FUN_0005b754 @ 0x0005b754
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
  *   att_get_max_payload_len                  <= FUN_00080c7c @ 0x00080c7c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -17,7 +17,7 @@
 extern int FUN_000527dc(int,...);
 extern int FUN_00056f4c(int,...);
 extern int bt_gatt_notify_cb(int,...);
-extern int mutex_lock_syscall_handler(int,...);
+extern int z_impl_k_sem_take(int,...);
 extern int FUN_000729fc(int,...);
 extern int mutex_unlock_syscall_handler(int,...);
 extern int FUN_00080c06(int,...);
@@ -67,7 +67,7 @@ unsigned int FUN_00052880(int param_1)
           unsigned short uVar1 = (unsigned short)((short)uVar7 + (short)uVar4);
           uVar7 = uVar1;
           request.cursor = *(uint32_t*)(param_1+0xc) + uVar1;
-          mutex_lock_syscall_handler(iVar3+0x6c, 0, 0xffffffff, 0xffffffff);
+          z_impl_k_sem_take(iVar3+0x6c, 0, 0xffffffff, 0xffffffff);
           bVar2 = 1;
         }
       }

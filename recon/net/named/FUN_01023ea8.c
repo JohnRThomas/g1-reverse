@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01023ea8 @ 0x01023ea8
  * public-name: FUN_01023ea8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   controller_deferred_event_raise          <= FUN_0102583c @ 0x0102583c
  * address symbols (name @ address):
  *   g_libc_tz_calc_state                     @ 0x210016f0
  */
@@ -16,7 +18,7 @@ extern i32 FUN_010246d8(void);
 extern void FUN_01024e1c(u32, u32);
 extern void FUN_0102524c(u32);
 extern void FUN_010256dc(u32, u32);
-extern void FUN_0102583c(u8);
+extern void controller_deferred_event_raise(u8);
 
 #define DAT_01024114 0x210016f0u
 #define DAT_01024118 0x0f423f8au
@@ -146,7 +148,7 @@ LAB_01023f84:
                  (u32)I(0x14) - 1 + (u32)(I(0x10) != 0) + (u32)CARRY4(uVar12b, (u32)I(0x18)));
   }
   if (uVar14 != 0x20) {
-    FUN_0102583c(B(0x4d9));
+    controller_deferred_event_raise(B(0x4d9));
     return 0;
   }
   return 0;

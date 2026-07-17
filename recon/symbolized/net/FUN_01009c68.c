@@ -1,7 +1,13 @@
 #include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01009c68 @ 0x01009c68
+ * public-name: FUN_01009c68
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ */
 /* net-core FUN_01009c68 @ 0x1009c68  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern signed char FUN_0102741e(void *, unsigned int, signed char);
 extern signed char FUN_01027470(void *, unsigned short);
 extern unsigned int FUN_010274ea(void *, signed char);
@@ -15,7 +21,7 @@ unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
     return 0;
   }
   if (param_1 > 0xeff) {
-    FUN_01008d00(0x17, 0x27e);
+    sdc_assertion_fail(0x17, 0x27e);
   }
   signed char cVar1 = FUN_01027470((void *)iVar3, param_1);
   if (cVar1 != -1) {

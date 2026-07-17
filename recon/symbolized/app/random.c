@@ -7,6 +7,7 @@
  *   enqueue_bt_data                          <= FUN_00017eec @ 0x00017eec
  *   random                                   <= FUN_00017f70 @ 0x00017f70
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
  *   snprintk                                 <= FUN_0007ddbe @ 0x0007ddbe
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
@@ -37,7 +38,7 @@ extern void DEBUG_PRINT(unsigned, ...);
 extern unsigned get_device_info(void);
 extern void enqueue_bt_data(void *a, uint b);
 extern void debug_print(unsigned, ...);
-extern void FUN_00072880(int a);
+extern void k_sem_give(int a);
 extern void set_shutdown_flag(unsigned a, int b);
 extern void snprintk(void *a, int b, unsigned c, ...);
 extern void FUN_00081526_dummy(void);
@@ -140,7 +141,7 @@ LAB_00017fb6:
             *(volatile uint *)(iVar10 + 0x358) = param_3;
         }
         *(volatile unsigned *)(iVar10 + 0x35c) = 1;
-        FUN_00072880(iVar10 + 0x218);
+        k_sem_give(iVar10 + 0x218);
     } else {
         request_name.word = 0;
         memset_bytes(request_name.tail, 0, sizeof(request_name.tail));

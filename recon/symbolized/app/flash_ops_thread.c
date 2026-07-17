@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   getQuickNoteBKPQueueCacheData            <= FUN_00024684 @ 0x00024684
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  * address symbols (name @ address):
  *   rodata_9e7da                             @ 0x0009e7da
  *   rodata_9e8be                             @ 0x0009e8be
@@ -24,8 +24,8 @@ extern void DEBUG_PRINT(uintptr_t format, ...); /* alias of FUN_0007dda4 */
 extern void debug_print(uintptr_t format, ...); /* FUN_00019c70 @ 0x19c70 */
 
 /* Semantic aliases retain the exact raw linker identities. */
-#define wait_for_flash_work mutex_lock_syscall_handler
-extern int mutex_lock_syscall_handler(void *object, uint64_t timeout); /* @ 0x72908 */
+#define wait_for_flash_work z_impl_k_sem_take
+extern int z_impl_k_sem_take(void *object, uint64_t timeout); /* @ 0x72908 */
 
 #define audio_flash_queue_pending FUN_0002f758
 extern unsigned int FUN_0002f758(void); /* @ 0x2f758 */

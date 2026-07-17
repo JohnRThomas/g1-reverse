@@ -9,7 +9,7 @@
  *   dequeue_uid                              <= FUN_00018ff8 @ 0x00018ff8
  *   request_ancs_attr_ext                    <= FUN_000191e4 @ 0x000191e4
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -29,7 +29,7 @@
 #include <stdint.h>
 extern void z_impl_k_sem_init(void*,int,int),init_msgq_ancs(void),init_msgq_uid(void),thunk_FUN_00074844(int,int);
 extern uint8_t *get_device_info(void); extern void FUN_0007c0a8(int);
-extern void mutex_lock_syscall_handler(void*,int64_t);
+extern void z_impl_k_sem_take(void*,int64_t);
 extern int dequeue_uid(void*); extern int request_ancs_attr_ext(void); extern void enqueue_ancs(void*),memset_bytes(void*,int,int),FUN_0001965c(void*);
 extern void DEBUG_PRINT(uint32_t,...),debug_print(uint32_t,...);
 void FUN_00019718(uint8_t *c,uint32_t p2,uint32_t p3,uint32_t p4){
@@ -38,9 +38,9 @@ void FUN_00019718(uint8_t *c,uint32_t p2,uint32_t p3,uint32_t p4){
  z_impl_k_sem_init(c+0x200,0,10);z_impl_k_sem_init(c+0x1e8,0,10);init_msgq_ancs();init_msgq_uid();thunk_FUN_00074844(0x28000,0);
  for(;;){uint8_t*g=get_device_info();if(g[1]==1){thunk_FUN_00074844(0x28000,0);continue;}g=get_device_info();if(g[1]==8){thunk_FUN_00074844(0x28000,0);continue;}g=get_device_info();
   if((*(uint16_t*)(g+0x105c)&0x80)==0){FUN_0007c0a8(1000);continue;}
-  if(*lv>0){if(!*sink)DEBUG_PRINT(0x9adc7,0x9b0d8);else debug_print(0x9adc7,0x9b0d8);}mutex_lock_syscall_handler(c+0x200,-1LL);
+  if(*lv>0){if(!*sink)DEBUG_PRINT(0x9adc7,0x9b0d8);else debug_print(0x9adc7,0x9b0d8);}z_impl_k_sem_take(c+0x200,-1LL);
   if(dequeue_uid((void*)ev)==0){if(*lv>0){if(!*sink)DEBUG_PRINT(0x9adf5,0x9b0d8,*ev,((uint8_t*)ev)[4]);else debug_print(0x9adf5,0x9b0d8,*ev,((uint8_t*)ev)[4]);}
-   if(((uint8_t*)ev)[4]<2){(void)request_ancs_attr_ext();if(*lv>0){if(!*sink)DEBUG_PRINT(0x9ae34,0x9b0d8);else debug_print(0x9ae34,0x9b0d8);}mutex_lock_syscall_handler(c+0x1e8,0x8000LL);}
+   if(((uint8_t*)ev)[4]<2){(void)request_ancs_attr_ext();if(*lv>0){if(!*sink)DEBUG_PRINT(0x9ae34,0x9b0d8);else debug_print(0x9ae34,0x9b0d8);}z_impl_k_sem_take(c+0x1e8,0x8000LL);}
    else{*(uint32_t*)(c+0x1e4)=2;*(uint32_t*)(c+0x3c)=*ev;c[0x41]=0;c[0x44]=0x30;c[0x64]=0x30;c[0x42]=0;enqueue_ancs(c+0x34);memset_bytes(c+0x34,0,0x1b4);if(*lv>0){if(!*sink)DEBUG_PRINT(0x9ae92,0x9b0d8);else debug_print(0x9ae92,0x9b0d8);}}
    FUN_0001965c(c);if(*lv>0){if(!*sink)DEBUG_PRINT(0x9aef3,0x9b0d8);else debug_print(0x9aef3,0x9b0d8);}}
  }}
