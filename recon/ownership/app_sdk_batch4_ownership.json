@@ -1,0 +1,229 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "fail_closed": true,
+  "reason": "Pinned static/header-inline SDK owners require separately linkable configured bodies.",
+  "forbid": [
+   "weak stub",
+   "byte blob",
+   "assembly wrapper",
+   "same-name alias guess"
+  ]
+ },
+ "summary": {
+  "function_count": 8,
+  "reference_count_before": 40,
+  "cfg_verified": 8,
+  "canonical_strong_owner_count": 8
+ },
+ "integration": {
+  "derivatives": "pending centralized batch3+batch4 readable-tree consolidation",
+  "retain_all_result": "not claimed by this canonical-only milestone"
+ },
+ "functions": [
+  {
+   "symbol": "pin_in_use_by_te",
+   "va": "0x00065460",
+   "size": 20,
+   "upstream_owner": "modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:pin_in_use_by_te",
+   "linkage": "source_static",
+   "cfg_cases": 0,
+   "config": [
+    "m_cb=0x20002bc0",
+    "pin_flags offset=0x10",
+    "PIN_FLAG_TE_USED=BIT(5)"
+   ],
+   "sha256": "39ba48d756dfe5aace12df72298d65df415d6bfbcfd9d3ff518d453599d95a35",
+   "source": "recon/app/src/pin_in_use_by_te.c",
+   "verified_mirror": "recon/verified/src/pin_in_use_by_te.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "gpio_pin_check_output_available.c:22",
+    "gpiote_in_event_enable.c:45",
+    "gpiote_in_uninit.c:31",
+    "gpiote_pin_channel_get.c:34",
+    "gpiote_trigger_enable.c:34"
+   ],
+   "verification": "cfg_verify.py app pin_in_use_by_te: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "pin_is_output",
+   "va": "0x00065494",
+   "size": 20,
+   "upstream_owner": "modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:pin_is_output",
+   "linkage": "source_static",
+   "cfg_cases": 0,
+   "config": [
+    "m_cb=0x20002bc0",
+    "pin_flags offset=0x10",
+    "PIN_FLAG_OUTPUT=BIT(1)"
+   ],
+   "sha256": "ac214f3cfb62e115cad5a2a0812c66efa1284b75225028ab7d86b0db8d417fe9",
+   "source": "recon/app/src/pin_is_output.c",
+   "verified_mirror": "recon/verified/src/pin_is_output.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "gpio_pin_check_output_available.c:19",
+    "gpiote_in_event_enable.c:46",
+    "gpiote_in_init.c:50",
+    "gpiote_trigger_enable.c:33",
+    "gpiote_trigger_enable.c:49"
+   ],
+   "verification": "cfg_verify.py app pin_is_output: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "nrf_gpio_cfg_sense_set",
+   "va": "0x000851ca",
+   "size": 30,
+   "upstream_owner": "modules/hal/nordic/nrfx/hal/nrf_gpio.h:nrf_gpio_cfg_sense_set",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 0,
+   "config": [
+    "nrf_gpio_reconfigure specialization",
+    "sense pointer is sixth argument"
+   ],
+   "sha256": "ee5c187d2113a54afb4fc28bb17d3c127ae9369d05cd65c3fcbe98150485e407",
+   "source": "recon/app/src/nrf_gpio_cfg_sense_set.c",
+   "verified_mirror": "recon/verified/src/nrf_gpio_cfg_sense_set.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "gpiote_in_event_enable.c:68",
+    "gpiote_irq_handler.c:70",
+    "gpiote_irq_handler.c:71",
+    "gpiote_irq_handler.c:74",
+    "gpiote_irq_handler.c:79"
+   ],
+   "verification": "cfg_verify.py app nrf_gpio_cfg_sense_set: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "net_buf_frags_len",
+   "va": "0x00081616",
+   "size": 16,
+   "upstream_owner": "zephyr/include/zephyr/net/buf.h:net_buf_frags_len",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 2,
+   "config": [
+    "32-bit net_buf ABI",
+    "frags offset=4",
+    "len offset=16"
+   ],
+   "sha256": "2ae98afc586b178a1b5d31f47eaca0b37fe30b92dcfc7fcdd10e9709f9a88ecb",
+   "source": "recon/app/src/net_buf_frags_len.c",
+   "verified_mirror": "recon/verified/src/net_buf_frags_len.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "FUN_0005757c.c:120",
+    "FUN_0005757c.c:149",
+    "FUN_00081852.c:17",
+    "l2cap_chan_le_recv_seg.c:45",
+    "l2cap_chan_le_recv_seg.c:62"
+   ],
+   "verification": "cfg_verify.py app net_buf_frags_len: PASS (CFG cases=2, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "k_uptime_get_6",
+   "va": "0x0007d33a",
+   "size": 28,
+   "upstream_owner": "zephyr/include/zephyr/kernel.h:k_uptime_get",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 0,
+   "config": [
+    "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768",
+    "uptime_ticks_get=FUN_00086698"
+   ],
+   "sha256": "76b55333569b558ecb5e254ab6683cc56bb73cdba8da5654e6e2f011ecb079f7",
+   "source": "recon/app/src/k_uptime_get_6.c",
+   "verified_mirror": "recon/verified/src/k_uptime_get_6.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "ui_teleprompter_task.c:157",
+    "ui_teleprompter_task.c:158",
+    "ui_teleprompter_task.c:169",
+    "ui_teleprompter_task.c:240",
+    "ui_teleprompter_task.c:261"
+   ],
+   "verification": "cfg_verify.py app k_uptime_get_6: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "k_uptime_get_8",
+   "va": "0x0007d382",
+   "size": 28,
+   "upstream_owner": "zephyr/include/zephyr/kernel.h:k_uptime_get",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 0,
+   "config": [
+    "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768",
+    "uptime_ticks_get=FUN_00086698"
+   ],
+   "sha256": "c6450f97ddbc3e8bd543894ccb249586da184d39369b16de9ae86c140c6a1e59",
+   "source": "recon/app/src/k_uptime_get_8.c",
+   "verified_mirror": "recon/verified/src/k_uptime_get_8.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "FUN_000417f8.c:104",
+    "FUN_000417f8.c:131",
+    "FUN_000417f8.c:158",
+    "FUN_000417f8.c:196",
+    "FUN_000417f8.c:784"
+   ],
+   "verification": "cfg_verify.py app k_uptime_get_8: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "k_uptime_get_9",
+   "va": "0x0007d9a4",
+   "size": 28,
+   "upstream_owner": "zephyr/include/zephyr/kernel.h:k_uptime_get",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 0,
+   "config": [
+    "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768",
+    "uptime_ticks_get=FUN_00086698"
+   ],
+   "sha256": "b4fecedce060027c9c8679a3757310b8bc35cd28eae3550e2ca6c5a448b9ebbf",
+   "source": "recon/app/src/k_uptime_get_9.c",
+   "verified_mirror": "recon/verified/src/k_uptime_get_9.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "boot_uptime_seconds_capture.c:21",
+    "get_synced_clock_time.c:19",
+    "rate_limited_elapsed_seconds_tick.c:20",
+    "rate_limited_elapsed_seconds_tick.c:31",
+    "record_dashboard_startup_snapshot.c:22"
+   ],
+   "verification": "cfg_verify.py app k_uptime_get_9: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  },
+  {
+   "symbol": "k_uptime_get_10",
+   "va": "0x0007daa4",
+   "size": 28,
+   "upstream_owner": "zephyr/include/zephyr/kernel.h:k_uptime_get",
+   "linkage": "header_inline_outlined",
+   "cfg_cases": 0,
+   "config": [
+    "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768",
+    "uptime_ticks_get=FUN_00086698"
+   ],
+   "sha256": "0c9e6343d425af038e7466e82627d845933edbcdbd9881d8619aaff2c6966eff",
+   "source": "recon/app/src/k_uptime_get_10.c",
+   "verified_mirror": "recon/verified/src/k_uptime_get_10.c",
+   "reference_count_before": 5,
+   "reference_sites_before": [
+    "enter_dashboard_burial_point.c:32",
+    "enter_wear_burial_point.c:34",
+    "get_dashboard_sum_time.c:29",
+    "get_dashboard_sum_time.c:35",
+    "get_dashboard_sum_time.c:38"
+   ],
+   "verification": "cfg_verify.py app k_uptime_get_10: PASS (CFG cases=0, random=40)",
+   "decision": "retain_cfg_verified_configured_reconstruction"
+  }
+ ]
+}
