@@ -23,6 +23,17 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # Independently callable SDK/application entries missed by the Ghidra
+    # function catalog.  Each extent ends before its literal pool or the next
+    # entry and is reviewed from the shipped Thumb CFG.
+    0x00028964: 0x4c,  # enter_active_click_mode
+    0x00052fbc: 0x4c,  # bt_settings_delete
+    0x00066524: 0xf6,  # nrfx_qspi.c qspi_xfer
+    0x0007332c: 0xc2,  # k_work_schedule_for_queue
+    0x00073424: 0xbe,  # k_work_reschedule_for_queue
+    0x00076a88: 0x06,  # newlib nanf; literal begins at +0x08
+    0x0007c058: 0x28,  # send_touch_click_event
+    0x0007c084: 0x0a,  # gpio_pin_set_dt
     0x00016574: 0x06,  # fixed-word setter
     0x00016834: 0x1a,  # state-normalizing tail adapter
     0x00017a04: 0x08,  # GPIO descriptor tail adapters

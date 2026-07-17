@@ -382,6 +382,17 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00017a34): 0x08,
     ("app", 0x0002893c): 0x1e,
     ("app", 0x00032fdc): 0x06,
+    # Independently callable SDK/application entries missed by the Ghidra
+    # function catalog.  Extents were reviewed directly from the shipped
+    # Thumb CFG and stop before literal pools / following entry points.
+    ("app", 0x00028964): 0x4c,  # enter_active_click_mode
+    ("app", 0x00052fbc): 0x4c,  # bt_settings_delete
+    ("app", 0x00066524): 0xf6,  # nrfx_qspi.c qspi_xfer
+    ("app", 0x0007332c): 0xc2,  # k_work_schedule_for_queue
+    ("app", 0x00073424): 0xbe,  # k_work_reschedule_for_queue
+    ("app", 0x00076a88): 0x06,  # newlib nanf; literal begins at +0x08
+    ("app", 0x0007c058): 0x28,  # send_touch_click_event
+    ("app", 0x0007c084): 0x0a,  # gpio_pin_set_dt
     # lc3_tns_analyze owns the complete floating-point analysis/filter body
     # through 0x709c6; trailing threshold literals begin at 0x709c8.
     ("app", 0x0006ffd8): 0x9ee,
