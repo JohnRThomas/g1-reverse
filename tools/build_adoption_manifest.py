@@ -22,9 +22,11 @@ DEFAULTS = {
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
     "app_collisions": "recon/ownership/app_build_collision_ownership.json",
+    "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
     "net_sdk_public": "recon/catalogs/net_sdk_public_ownership.json",
+    "net_alias_resolutions": "recon/catalogs/net_identity_alias_resolutions.json",
     "sdc_benchmark": "recon/ownership/net_sdc_archive_benchmark.md",
     "sdc_catalog": "recon/ownership/net_sdc_archive_ownership.json",
     "app_names": "recon/catalogs/function_names_app.json",
@@ -266,6 +268,34 @@ def _app_collision_entries(data, source, names):
     return output
 
 
+def _app_sdk_public_entries(data, source, names):
+    """Adopt only public SDK/runtime owners proven in retain-all output."""
+    output = []
+    for row in data.get("functions", []):
+        eligible = bool(row.get("safe_to_adopt") is True and
+                        row.get("exclude_reconstruction") is True and
+                        not row.get("blockers") and
+                        row.get("selected_link_owner") and
+                        row.get("upstream_member") and
+                        row.get("required_config"))
+        output.append(_entry(
+            "app", row["va"], names, "archive", "app_sdk_public",
+            row.get("upstream_symbol"), row.get("selected_link_owner"), eligible,
+            ("Pinned public export passed identity, ABI/config, and actual "
+             "retain-all selected-owner gates." if eligible else
+             "Public SDK candidate failed one or more fail-closed gates."),
+            [_evidence(source, "app_sdk_public_selected_owner",
+                       raw_symbol=row.get("raw_symbol"),
+                       member=row.get("upstream_member"),
+                       selected_link_owner=row.get("selected_link_owner"),
+                       signature_ratio=row.get("signature_ratio"),
+                       signature_gate=row.get("signature_gate"),
+                       abi=row.get("abi"), config=row.get("required_config"),
+                       safe_to_adopt=eligible, blockers=row.get("blockers"))],
+            "high" if eligible else "low"))
+    return output
+
+
 def _parse_sdc_benchmark(path):
     """Read benchmark metadata, but never turn prose uniqueness into exclusion."""
     with open(path) as stream:
@@ -315,9 +345,10 @@ def _sdc_entries(data, source, names):
 
 
 def _net_entries(data, source, benchmark_source, benchmark, names,
-                 machine_sdc_addresses=None):
+                 machine_sdc_addresses=None, machine_public_addresses=None):
     output = []
     machine_sdc_addresses = set(machine_sdc_addresses or ())
+    machine_public_addresses = set(machine_public_addresses or ())
     for va, row in sorted(data.get("entries", {}).items()):
         match = row.get("signature_match")
         provenance = (match or {}).get("provenance", "")
@@ -330,6 +361,13 @@ def _net_entries(data, source, benchmark_source, benchmark, names,
             # The per-address catalog supersedes the older generic signature
             # row. Otherwise its blanket retain decision would mask a narrowly
             # proven public-symbol promotion during merge.
+            continue
+        if _hex(va) in machine_public_addresses:
+            # The exact public-owner catalog records source, object, ABI,
+            # configuration and complete instruction equality.  It therefore
+            # supersedes the older generic signature row for the same VA;
+            # merging both would let the generic retain fallback mask the
+            # narrowly proven public-source adoption.
             continue
         is_archive = ".a(" in provenance
         explicit_match = (match is not None and ratio is not None and threshold is not None
@@ -414,6 +452,30 @@ def _net_sdk_public_entries(data, source, names):
     return output
 
 
+def _net_alias_resolution_entries(data, source, names):
+    """Preserve selected public owners for exact firmware tail veneers."""
+    output = []
+    for row in data.get("resolutions", []):
+        if row.get("resolution") != "adopt_selected_upstream_public_owner":
+            continue
+        raw = row.get("raw_identity", "")
+        match = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", raw)
+        if not match:
+            raise ValueError("invalid adopted net alias raw identity: %r" % raw)
+        address = int(match.group(1), 16)
+        output.append(_entry(
+            "net", address, names, "source", "net_selected_public_alias",
+            row.get("symbol"), row.get("upstream_object"), True,
+            "Reviewed Thumb tail veneer resolves to the selected public SDK owner.",
+            [_evidence(source, "net_public_tail_veneer",
+                       image_sha256=data.get("image_sha256"),
+                       target=row.get("veneer_target"),
+                       thumb_evidence=row.get("thumb_evidence"),
+                       historical_alias=row.get("historical_alias"))],
+            "high"))
+    return output
+
+
 def validate_manifest(data):
     errors = []
     if data.get("schema") != 1:
@@ -458,8 +520,11 @@ def build(paths):
              "net": _name_records(resolved["net_names"])}
     benchmark = _parse_sdc_benchmark(resolved["sdc_benchmark"])
     sdc_catalog = _load_json(resolved["sdc_catalog"])
+    net_sdk_public = _load_json(resolved["net_sdk_public"])
     machine_sdc_addresses = {row["address"]
                              for row in sdc_catalog.get("functions", [])}
+    machine_public_addresses = {row["va"]
+                                for row in net_sdk_public.get("functions", [])}
     entries = {}
     producers = (
         _lc3_entries(_load_json(resolved["lc3"]), paths["lc3"], names),
@@ -468,12 +533,17 @@ def build(paths):
         _crypto_entries(_load_json(resolved["crypto"]), paths["crypto"], names),
         _app_collision_entries(_load_json(resolved["app_collisions"]),
                                paths["app_collisions"], names),
+        _app_sdk_public_entries(_load_json(resolved["app_sdk_public"]),
+                                paths["app_sdk_public"], names),
         _net_entries(_load_json(resolved["net"]), paths["net"],
                      paths["sdc_benchmark"], benchmark, names,
-                     machine_sdc_addresses),
+                     machine_sdc_addresses, machine_public_addresses),
         _net_rtc_entries(_load_json(resolved["net_rtc"]), paths["net_rtc"], names),
-        _net_sdk_public_entries(_load_json(resolved["net_sdk_public"]),
+        _net_sdk_public_entries(net_sdk_public,
                                 paths["net_sdk_public"], names),
+        _net_alias_resolution_entries(
+            _load_json(resolved["net_alias_resolutions"]),
+            paths["net_alias_resolutions"], names),
         _sdc_entries(sdc_catalog, paths["sdc_catalog"], names),
     )
     for rows in producers:
@@ -496,8 +566,9 @@ def build(paths):
             "entries": rows,
         }
     input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "app_collisions",
+                  "app_sdk_public",
                   "net", "net_rtc",
-                  "net_sdk_public",
+                  "net_sdk_public", "net_alias_resolutions",
                   "sdc_benchmark", "sdc_catalog")
     result = {
         "schema": 1,

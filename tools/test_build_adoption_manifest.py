@@ -86,6 +86,23 @@ class AdoptionManifestTest(unittest.TestCase):
                                   "object": "bt.c.obj",
                                   "abi": {"return": "int", "params": []},
                                   "source": {"repository": "zephyr"}}}]}),
+            "app_sdk_public": write_json(root, "app_sdk_public.json", {
+                "functions": [
+                    {"va": "0x00002010", "raw_symbol": "FUN_00002010",
+                     "upstream_symbol": "public_runtime",
+                     "upstream_member": "runtime.o",
+                     "selected_link_owner": "lib.a(runtime.o)",
+                     "signature_ratio": 1.0, "signature_gate": "exact_signature",
+                     "abi": {"gate": "exact"},
+                     "required_config": ["GCC pinned"], "safe_to_adopt": True,
+                     "exclude_reconstruction": True, "blockers": []},
+                    {"va": "0x00002020", "raw_symbol": "FUN_00002020",
+                     "upstream_symbol": "collision",
+                     "upstream_member": "collision.o",
+                     "selected_link_owner": "lib.a(collision.o)",
+                     "required_config": ["CONFIG_X=y"], "safe_to_adopt": False,
+                     "exclude_reconstruction": False,
+                     "blockers": ["identity_collision"]}]}),
             "net": write_json(root, "net.json", {
                 "entries": {
                     "0x01001000": {"confidence": 0.99, "signature_match": {
@@ -94,7 +111,11 @@ class AdoptionManifestTest(unittest.TestCase):
                     "0x01002000": {"confidence": 0.99, "signature_match": {
                         "symbol": "public_other_archive", "ratio": 0.99,
                         "threshold": 0.9,
-                        "provenance": "libother.a(member.o)"}}}}),
+                        "provenance": "libother.a(member.o)"}},
+                    "0x01005000": {"confidence": 0.99, "signature_match": {
+                        "symbol": "ambiguous_generic_match", "ratio": 1.0,
+                        "threshold": 0.9,
+                        "provenance": "NCS 2.5.1 netref object index"}}}}),
             "net_rtc": write_json(root, "net_rtc.json", {
                 "upstream": {"commit": "e" * 40, "source_sha256": "f" * 64,
                              "object": "timer.c.obj"},
@@ -110,6 +131,9 @@ class AdoptionManifestTest(unittest.TestCase):
                     "firmware_code_size": 54, "reference_code_size": 54,
                     "match": "relocation-normalized instruction-exact",
                     "match_score": 1.0, "exclude_reconstruction": True}]}),
+            "net_alias_resolutions": write_json(root, "net_aliases.json", {
+                "image_sha256": "2" * 64,
+                "resolutions": []}),
         }
         benchmark = os.path.join(root, "sdc.md")
         with open(benchmark, "w") as stream:
@@ -155,6 +179,8 @@ class AdoptionManifestTest(unittest.TestCase):
         self.assertEqual(rows[("app", "0x00002020")]["kind"], "static_helper")
         self.assertEqual(rows[("app", "0x00003010")]["kind"], "archive")
         self.assertTrue(rows[("app", "0x00003010")]["exclude_reconstruction"])
+        self.assertTrue(rows[("app", "0x00002010")]["exclude_reconstruction"])
+        self.assertFalse(rows[("app", "0x00002020")]["exclude_reconstruction"])
         private = rows[("net", "0x01001000")]
         self.assertEqual(private["kind"], "archive")
         self.assertFalse(private["exclude_reconstruction"])

@@ -31,6 +31,10 @@
    "sha256": "88cda889af7633d4091e17a94d5eb14e7e1bd9f381bd3064b6a7389e69170d09"
   },
   {
+   "path": "recon/catalogs/app_sdk_public_ownership.json",
+   "sha256": "ee2d3652370a111d3f87f3b03e3359041dbfa0033d706bae2456be835e205384"
+  },
+  {
    "path": "recon/ownership/net_function_ownership.json",
    "sha256": "4318333894fdbadd3a80a8a99e2ae31079a98f739c30e50bedae94d42ee84e80"
   },
@@ -40,7 +44,11 @@
   },
   {
    "path": "recon/catalogs/net_sdk_public_ownership.json",
-   "sha256": "8ae8e5a15aae12b2b3ab924c6fac0c42e1c1ba50edc43f9033c0d9b8db54f740"
+   "sha256": "54e4a1771e0cf8f672156b9d55c856c77a3f999b4fee3766245325c3e2cafeff"
+  },
+  {
+   "path": "recon/catalogs/net_identity_alias_resolutions.json",
+   "sha256": "d89e23942b3d1b994f493e813813d750f93458780c18e7d81b315f5376041294"
   },
   {
    "path": "recon/ownership/net_sdc_archive_benchmark.md",
@@ -64,18 +72,84 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 326,
-    "exclude_reconstruction": 233,
-    "retain_reconstruction": 93,
+    "entries": 354,
+    "exclude_reconstruction": 260,
+    "retain_reconstruction": 94,
     "by_kind": {
      "source": 204,
-     "archive": 79,
+     "archive": 107,
      "static_helper": 21,
      "table": 22,
      "glue": 0
     }
    },
    "entries": [
+    {
+     "core": "app",
+     "va": "0x0000de58",
+     "raw_symbol": "FUN_0000de58",
+     "current_symbol": "__fixdfsi",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "__fixdfsi",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_arm_fixdfsi.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0000de58",
+       "member": "_arm_fixdfsi.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_arm_fixdfsi.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "GCC 12.2.0 cortex-m33 hard-float multilib"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0000ec34",
+     "raw_symbol": "FUN_0000ec34",
+     "current_symbol": "__fixdfdi",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "__fixdfdi",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_fixdfdi.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0000ec34",
+       "member": "_fixdfdi.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main+fp/hard/libgcc.a(_fixdfdi.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "GCC 12.2.0 cortex-m33 hard-float multilib"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
     {
      "core": "app",
      "va": "0x000113a8",
@@ -483,6 +557,77 @@
         "reconstruction_input": "app/libapp.a(ipc_service_open_instance.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/ipc_service.c:18: multiple definition of `ipc_service_open_instance'; app/libapp.a(ipc_service_open_instance.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/ipc_service_open_instance.c:16: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004cc50",
+     "raw_symbol": "FUN_0004cc50",
+     "current_symbol": "ipc_service_send",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "ipc_service_send",
+     "upstream_unit": "zephyr/libzephyr.a(ipc_service.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0004cc50",
+       "member": "ipc_service.c.obj",
+       "selected_link_owner": "zephyr/libzephyr.a(ipc_service.c.obj)",
+       "signature_ratio": 0.98,
+       "signature_gate": "approximate_signature_requires_abi_check",
+       "abi": {
+        "prototype": "int(struct ipc_ept *, const void *, size_t)",
+        "gate": "three AAPCS words; caller passes endpoint, data, length"
+       },
+       "config": [
+        "CONFIG_IPC_SERVICE=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004d490",
+     "raw_symbol": "FUN_0004d490",
+     "current_symbol": "z_log_dropped_read_and_clear_0",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "z_log_dropped_read_and_clear",
+     "upstream_unit": "zephyr/libzephyr.a(log_core.c.obj)",
+     "confidence": "low",
+     "exclude_reconstruction": false,
+     "decision": "retain_reconstruction",
+     "decision_reason": "Public SDK candidate failed one or more fail-closed gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "z_log_dropped_read_and_clear_0",
+       "member": "log_core.c.obj",
+       "selected_link_owner": "zephyr/libzephyr.a(log_core.c.obj)",
+       "signature_gate": "not_a_public_link_candidate",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_LOG=y"
+       ],
+       "safe_to_adopt": false,
+       "blockers": [
+        "source_catalog_not_public_safe",
+        "approximate_signature_without_abi_gate",
+        "reversible_name_not_owned_by_firmware_va",
+        "public_name_owned_by_distinct_firmware_va"
+       ]
       }
      ]
     },
@@ -4080,6 +4225,39 @@
     },
     {
      "core": "app",
+     "va": "0x000638dc",
+     "raw_symbol": "FUN_000638dc",
+     "current_symbol": "sys_clock_set_timeout",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "sys_clock_set_timeout",
+     "upstream_unit": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_000638dc",
+       "member": "nrf_rtc_timer.c.obj",
+       "selected_link_owner": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "compiled in actual CPUAPP shell; no independent Kconfig gate identified"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00064f78",
      "raw_symbol": "FUN_00064f78",
      "current_symbol": "nrfx_gppi_task_endpoint_setup",
@@ -5849,6 +6027,39 @@
     },
     {
      "core": "app",
+     "va": "0x00070f1c",
+     "raw_symbol": "FUN_00070f1c",
+     "current_symbol": "rpmsg_send_offchannel_raw",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "rpmsg_send_offchannel_raw",
+     "upstream_unit": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00070f1c",
+       "member": "rpmsg.c.obj",
+       "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_OPENAMP=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00071c20",
      "raw_symbol": "FUN_00071c20",
      "current_symbol": "k_mem_slab_alloc",
@@ -6374,6 +6585,41 @@
         "reconstruction_input": "app/libapp.a(z_unpend_first_thread.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/sched.c:895: multiple definition of `z_unpend_first_thread'; app/libapp.a(z_unpend_first_thread.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_unpend_first_thread.c:31: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00075174",
+     "raw_symbol": "FUN_00075174",
+     "current_symbol": "z_impl_k_timer_start",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "z_impl_k_timer_start",
+     "upstream_unit": "zephyr/kernel/libkernel.a(timer.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "k_timer_start",
+       "member": "timer.c.obj",
+       "selected_link_owner": "zephyr/kernel/libkernel.a(timer.c.obj)",
+       "signature_ratio": 0.97,
+       "signature_gate": "approximate_signature_requires_abi_check",
+       "abi": {
+        "prototype": "void(struct k_timer *, k_timeout_t, k_timeout_t)",
+        "gate": "timer in r0; duration aligned in r2:r3; period in the first two stack words, matching firmware callers"
+       },
+       "config": [
+        "CONFIG_MULTITHREADING=y",
+        "CONFIG_SYS_CLOCK_EXISTS=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -8612,6 +8858,39 @@
     },
     {
      "core": "app",
+     "va": "0x0007e212",
+     "raw_symbol": "FUN_0007e212",
+     "current_symbol": "onoff_manager_init",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "onoff_manager_init",
+     "upstream_unit": "zephyr/libzephyr.a(onoff.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0007e212",
+       "member": "onoff.c.obj",
+       "selected_link_owner": "zephyr/libzephyr.a(onoff.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "Zephyr core utility unit (no independent Kconfig gate)"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0007e2fa",
      "raw_symbol": "FUN_0007e2fa",
      "current_symbol": "printk",
@@ -9242,6 +9521,40 @@
     },
     {
      "core": "app",
+     "va": "0x0007f570",
+     "raw_symbol": "FUN_0007f570",
+     "current_symbol": "bt_gatt_dm_desc_by_uuid",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_gatt_dm_desc_by_uuid",
+     "upstream_unit": "zephyr/libzephyr.a(gatt_dm.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0007f570",
+       "member": "gatt_dm.c.obj",
+       "selected_link_owner": "zephyr/libzephyr.a(gatt_dm.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y",
+        "CONFIG_BT_GATT_DM=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0007f594",
      "raw_symbol": "FUN_0007f594",
      "current_symbol": "bt_gatt_dm_data_release",
@@ -9285,6 +9598,40 @@
         "reconstruction_input": "app/libapp.a(bt_gatt_dm_data_release.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/nrf/subsys/bluetooth/gatt_dm.c:703: multiple definition of `bt_gatt_dm_data_release'; app/libapp.a(bt_gatt_dm_data_release.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_dm_data_release.c:16: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f6b6",
+     "raw_symbol": "FUN_0007f6b6",
+     "current_symbol": "bt_ancs_request_attrs",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_ancs_request_attrs",
+     "upstream_unit": "zephyr/libzephyr.a(ancs_client.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0007f6b6",
+       "member": "ancs_client.c.obj",
+       "selected_link_owner": "zephyr/libzephyr.a(ancs_client.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y",
+        "CONFIG_BT_ANCS_CLIENT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -10318,6 +10665,39 @@
     },
     {
      "core": "app",
+     "va": "0x00080ed8",
+     "raw_symbol": "FUN_00080ed8",
+     "current_symbol": "bt_hci_disconnect",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_hci_disconnect",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00080ed8",
+       "member": "hci_core.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00081326",
      "raw_symbol": "FUN_00081326",
      "current_symbol": "bt_encrypt_le",
@@ -10336,6 +10716,39 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "App-side host implementation has the matching key/plaintext/ciphertext 16-byte ABI."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000813e8",
+     "raw_symbol": "FUN_000813e8",
+     "current_symbol": "conn_lookup_handle",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "conn_lookup_handle",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(conn.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_000813e8",
+       "member": "conn.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(conn.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -10540,6 +10953,39 @@
     },
     {
      "core": "app",
+     "va": "0x000817ea",
+     "raw_symbol": "FUN_000817ea",
+     "current_symbol": "bt_l2cap_disconnected",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_l2cap_disconnected",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_000817ea",
+       "member": "l2cap.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00081aca",
      "raw_symbol": "FUN_00081aca",
      "current_symbol": "bt_l2cap_le_lookup_tx_cid",
@@ -10584,6 +11030,40 @@
         "reconstruction_input": "app/libapp.a(bt_l2cap_le_lookup_tx_cid.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/slist.h:240: multiple definition of `bt_l2cap_le_lookup_tx_cid'; app/libapp.a(bt_l2cap_le_lookup_tx_cid.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_le_lookup_tx_cid.c:13: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000823fa",
+     "raw_symbol": "FUN_000823fa",
+     "current_symbol": "bt_att_get_mtu",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_att_get_mtu",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(att.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_000823fa",
+       "member": "att.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(att.c.obj)",
+       "signature_ratio": 0.93,
+       "signature_gate": "approximate_signature_requires_abi_check",
+       "abi": {
+        "prototype": "uint16_t(struct bt_conn *)",
+        "gate": "one pointer argument; uint16_t result is consumed narrowed"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -10790,6 +11270,106 @@
     },
     {
      "core": "app",
+     "va": "0x00082e24",
+     "raw_symbol": "FUN_00082e24",
+     "current_symbol": "bt_gatt_cancel",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_gatt_cancel",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00082e24",
+       "member": "gatt.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00082ec8",
+     "raw_symbol": "FUN_00082ec8",
+     "current_symbol": "bt_gatt_change_aware",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_gatt_change_aware",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00082ec8",
+       "member": "gatt.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00083370",
+     "raw_symbol": "FUN_00083370",
+     "current_symbol": "bt_smp_request_ltk",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_smp_request_ltk",
+     "upstream_unit": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(smp.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00083370",
+       "member": "smp.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(smp.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y",
+        "CONFIG_BT_SMP=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000835ae",
      "raw_symbol": "FUN_000835ae",
      "current_symbol": "bt_crypto_aes_cmac",
@@ -10831,6 +11411,40 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "Exact symbol and source signature."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00083634",
+     "raw_symbol": "FUN_00083634",
+     "current_symbol": "bt_crypto_f6",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "bt_crypto_f6",
+     "upstream_unit": "zephyr/subsys/bluetooth/crypto/libsubsys__bluetooth__crypto.a(bt_crypto.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00083634",
+       "member": "bt_crypto.c.obj",
+       "selected_link_owner": "zephyr/subsys/bluetooth/crypto/libsubsys__bluetooth__crypto.a(bt_crypto.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_BT=y",
+        "CONFIG_BT_HOST_CRYPTO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -11079,6 +11693,39 @@
     },
     {
      "core": "app",
+     "va": "0x0008557c",
+     "raw_symbol": "FUN_0008557c",
+     "current_symbol": "metal_io_block_set",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "metal_io_block_set",
+     "upstream_unit": "modules/libmetal/libmetal/lib/libmetal.a(io.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0008557c",
+       "member": "io.c.obj",
+       "selected_link_owner": "modules/libmetal/libmetal/lib/libmetal.a(io.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_LIBMETAL=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00085898",
      "raw_symbol": "FUN_00085898",
      "current_symbol": "rpmsg_send_ns_message",
@@ -11222,6 +11869,72 @@
         "reconstruction_input": "app/libapp.a(rpmsg_get_tx_payload_buffer.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c:181: multiple definition of `rpmsg_get_tx_payload_buffer'; app/libapp.a(rpmsg_get_tx_payload_buffer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/rpmsg_get_tx_payload_buffer.c:14: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085900",
+     "raw_symbol": "FUN_00085900",
+     "current_symbol": "rpmsg_get_endpoint",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "rpmsg_get_endpoint",
+     "upstream_unit": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00085900",
+       "member": "rpmsg.c.obj",
+       "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_OPENAMP=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085bf6",
+     "raw_symbol": "FUN_00085bf6",
+     "current_symbol": "rpmsg_deinit_vdev",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "rpmsg_deinit_vdev",
+     "upstream_unit": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00085bf6",
+       "member": "rpmsg_virtio.c.obj",
+       "selected_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_OPENAMP=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -11626,6 +12339,40 @@
     },
     {
      "core": "app",
+     "va": "0x0008673e",
+     "raw_symbol": "FUN_0008673e",
+     "current_symbol": "z_impl_k_timer_stop",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "z_impl_k_timer_stop",
+     "upstream_unit": "zephyr/kernel/libkernel.a(timer.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_0008673e",
+       "member": "timer.c.obj",
+       "selected_link_owner": "zephyr/kernel/libkernel.a(timer.c.obj)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_MULTITHREADING=y",
+        "CONFIG_SYS_CLOCK_EXISTS=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0008688e",
      "raw_symbol": "FUN_0008688e",
      "current_symbol": "z_handle_obj_poll_events",
@@ -11670,6 +12417,210 @@
         "reconstruction_input": "app/libapp.a(z_handle_obj_poll_events.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/poll.c:471: multiple definition of `z_handle_obj_poll_events'; app/libapp.a(z_handle_obj_poll_events.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_handle_obj_poll_events.c:13: first defined here"
        }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086be4",
+     "raw_symbol": "FUN_00086be4",
+     "current_symbol": "memcmp",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "memcmp",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memcmp.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00086be4",
+       "member": "lib_a-memcmp.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memcmp.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086c44",
+     "raw_symbol": "FUN_00086c44",
+     "current_symbol": "memmove",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "memmove",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memmove.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00086c44",
+       "member": "lib_a-memmove.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-memmove.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086fbe",
+     "raw_symbol": "FUN_00086fbe",
+     "current_symbol": "__strcat_chk",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "__strcat_chk",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcat_chk.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00086fbe",
+       "member": "lib_a-strcat_chk.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcat_chk.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086ffe",
+     "raw_symbol": "FUN_00086ffe",
+     "current_symbol": "__strcpy_chk",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "__strcpy_chk",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcpy_chk.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00086ffe",
+       "member": "lib_a-strcpy_chk.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strcpy_chk.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087036",
+     "raw_symbol": "FUN_00087036",
+     "current_symbol": "strncmp",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "strncmp",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strncmp.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_00087036",
+       "member": "lib_a-strncmp.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strncmp.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000870be",
+     "raw_symbol": "FUN_000870be",
+     "current_symbol": "strstr",
+     "kind": "archive",
+     "component": "app_sdk_public",
+     "upstream_symbol": "strstr",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strstr.o)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public export passed identity, ABI/config, and actual retain-all selected-owner gates.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/app_sdk_public_ownership.json",
+       "type": "app_sdk_public_selected_owner",
+       "raw_symbol": "FUN_000870be",
+       "member": "lib_a-strstr.o",
+       "selected_link_owner": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strstr.o)",
+       "signature_ratio": 1.0,
+       "signature_gate": "exact_signature",
+       "abi": {
+        "gate": "exact/direct public identity"
+       },
+       "config": [
+        "CONFIG_NEWLIB_LIBC=y",
+        "CONFIG_NEWLIB_LIBC_NANO=y"
+       ],
+       "safe_to_adopt": true,
+       "blockers": []
       }
      ]
     },
@@ -12139,15 +13090,15 @@
   },
   "net": {
    "summary": {
-    "entries": 467,
-    "exclude_reconstruction": 83,
-    "retain_reconstruction": 384,
+    "entries": 468,
+    "exclude_reconstruction": 87,
+    "retain_reconstruction": 381,
     "by_kind": {
-     "source": 3,
+     "source": 7,
      "archive": 316,
      "static_helper": 1,
      "table": 0,
-     "glue": 147
+     "glue": 144
     }
    },
    "entries": [
@@ -12664,7 +13615,7 @@
      "core": "net",
      "va": "0x0100aa3c",
      "raw_symbol": "FUN_0100aa3c",
-     "current_symbol": "FUN_0100aa3c",
+     "current_symbol": "sdc_ble_address_equal",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_4ZZLWI6QQY4KJYYVP4RVDTJJJ6MW72AL2TJDVOI",
@@ -13028,7 +13979,7 @@
      "core": "net",
      "va": "0x0100ca68",
      "raw_symbol": "FUN_0100ca68",
-     "current_symbol": "FUN_0100ca68",
+     "current_symbol": "sdc_llcp_procedure_slot_get",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_F2LWAH27IT4H2IA7TZWGNABUCWINGT6MWXH2WIA",
@@ -13817,7 +14768,7 @@
      "core": "net",
      "va": "0x0100e5dc",
      "raw_symbol": "FUN_0100e5dc",
-     "current_symbol": "FUN_0100e5dc",
+     "current_symbol": "sdc_pdu_type_bits_set",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_IGXXIFMDOTCDOLQAILBV5BXIU5R6AALP5I4HZGQ",
@@ -14274,7 +15225,7 @@
      "core": "net",
      "va": "0x0100efc8",
      "raw_symbol": "FUN_0100efc8",
-     "current_symbol": "FUN_0100efc8",
+     "current_symbol": "controller_work_update_or_enqueue",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_MWHYECJZLQQJKLQZGDI66SVA3IIWYKXL7G5FMHY",
@@ -17832,7 +18783,7 @@
      "core": "net",
      "va": "0x01020634",
      "raw_symbol": "FUN_01020634",
-     "current_symbol": "FUN_01020634",
+     "current_symbol": "controller_radio_event_cleanup",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_2YSDS7VWGMSD5CN64D2VGQIYXBV3A6NJCHWFZEY",
@@ -19413,7 +20364,7 @@
      "core": "net",
      "va": "0x01026d3e",
      "raw_symbol": "FUN_01026d3e",
-     "current_symbol": "FUN_01026d3e",
+     "current_symbol": "sdc_buffer_elapsed_units_get",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_75KMT5PJCT2CPYG74YP2V776XLQZ7MMXYP3KBVY",
@@ -19503,7 +20454,7 @@
      "core": "net",
      "va": "0x01026f32",
      "raw_symbol": "FUN_01026f32",
-     "current_symbol": "FUN_01026f32",
+     "current_symbol": "sdc_buffer_accumulate",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_3LZ364FVGUVSOSH6XGIFMW5SY36X7BQXDOES46Y",
@@ -19593,7 +20544,7 @@
      "core": "net",
      "va": "0x010270d2",
      "raw_symbol": "FUN_010270d2",
-     "current_symbol": "FUN_010270d2",
+     "current_symbol": "sdc_buffer_payload_get",
      "kind": "glue",
      "component": "net_sdk_or_glue",
      "upstream_symbol": "sym_UUHMPC5W3P4PWEVAQGR5Y2EQFQNI2I6BVK6THBA",
@@ -19662,7 +20613,7 @@
      "core": "net",
      "va": "0x0102714a",
      "raw_symbol": "FUN_0102714a",
-     "current_symbol": "FUN_0102714a",
+     "current_symbol": "sdc_buffer_descriptor_resolve",
      "kind": "archive",
      "component": "softdevice_controller",
      "upstream_symbol": "sym_LIYGXI2UGDXBB3WZBJYHTKFR7X66AHBTSGA7ZTA",
@@ -22793,7 +23744,7 @@
      "core": "net",
      "va": "0x010294d2",
      "raw_symbol": "FUN_010294d2",
-     "current_symbol": "FUN_010294d2",
+     "current_symbol": "controller_intrusive_list_append_unique",
      "kind": "glue",
      "component": "net_sdk_or_glue",
      "upstream_symbol": "sym_B4ZLWMQXAPYGHP2UH4R2ZIXSJLOO4ZUIM7ZADQQ",
@@ -23878,19 +24829,37 @@
      "core": "net",
      "va": "0x0102e284",
      "raw_symbol": "FUN_0102e284",
-     "current_symbol": "FUN_0102e284",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": null,
-     "upstream_unit": null,
-     "confidence": 0.95,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "current_symbol": "z_impl_z_log_msg_static_create",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "z_impl_z_log_msg_static_create",
+     "upstream_unit": "zephyr/libzephyr.a(log_msg.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match"
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "void z_impl_z_log_msg_static_create(const void *source, struct log_msg_desc desc, uint8_t *package, const void *data)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "zephyr/subsys/logging/log_msg.c",
+       "object": "zephyr/libzephyr.a(log_msg.c.obj)"
       }
      ]
     },
@@ -24382,6 +25351,11 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
         "CONFIG_OPENAMP_MASTER": false,
         "CONFIG_OPENAMP_SLAVE": true,
         "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
@@ -24415,6 +25389,11 @@
        "config": {
         "CONFIG_ASSERT": true,
         "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
         "CONFIG_OPENAMP_MASTER": false,
         "CONFIG_OPENAMP_SLAVE": true,
         "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
@@ -24788,23 +25767,37 @@
      "core": "net",
      "va": "0x01039722",
      "raw_symbol": "FUN_01039722",
-     "current_symbol": "FUN_01039722",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": "assert_print",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "current_symbol": "printk",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "printk",
+     "upstream_unit": "zephyr/libzephyr.a(printk.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "assert_print",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "void printk(const char *fmt, ...)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "zephyr/lib/os/printk.c",
+       "object": "zephyr/libzephyr.a(printk.c.obj)"
       }
      ]
     },
@@ -24932,23 +25925,37 @@
      "core": "net",
      "va": "0x01039bbe",
      "raw_symbol": "FUN_01039bbe",
-     "current_symbol": "FUN_01039bbe",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "assert_print",
+     "kind": "source",
+     "component": "net_sdk_public",
      "upstream_symbol": "assert_print",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/libzephyr.a(assert.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "assert_print",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "void assert_print(const char *fmt, ...)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_USERSPACE": false,
+        "CONFIG_LOG": true,
+        "CONFIG_LOG_MODE_DEFERRED": true,
+        "CONFIG_LOG_FRONTEND": false,
+        "CONFIG_LOG_PRINTK": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "zephyr/lib/os/assert.c",
+       "object": "zephyr/libzephyr.a(assert.c.obj)"
       }
      ]
     },
@@ -24981,28 +25988,22 @@
      "va": "0x01039e4e",
      "raw_symbol": "FUN_01039e4e",
      "current_symbol": "rtc_pretick_rtc1_isr_hook",
-     "kind": "veneer",
-     "component": "zephyr_nrf53_soc",
+     "kind": "source",
+     "component": "net_selected_public_alias",
      "upstream_symbol": "rtc_pretick_rtc1_isr_hook",
      "upstream_unit": "zephyr/libzephyr.a(soc.c.obj)",
-     "confidence": 1.0,
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The firmware entry is only a four-byte tail veneer to 0x0102cfec; the selected NCS 2.5.1 CPUNET soc.c object provides the public target and retain-all link evidence rejects retaining a second owner.",
+     "decision_reason": "Reviewed Thumb tail veneer resolves to the selected public SDK owner.",
      "evidence": [
       {
-       "source": "netcore_image.bin",
-       "type": "thumb_tail_veneer",
+       "source": "recon/catalogs/net_identity_alias_resolutions.json",
+       "type": "net_public_tail_veneer",
        "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
-       "entry": "0x01039e4e",
-       "target": "0x0102cfec"
-      },
-      {
-       "source": "retain-all CPUNET link",
-       "type": "selected_upstream_owner",
-       "symbol": "rtc_pretick_rtc1_isr_hook",
-       "object": "zephyr/libzephyr.a(soc.c.obj)",
-       "config": "CONFIG_SOC_NRF5340_CPUNET"
+       "target": "0x0102cfec",
+       "thumb_evidence": "f3f7cdb8 b.w 0x0102cfec",
+       "historical_alias": "thunk_FUN_0102cfec"
       }
      ]
     },
