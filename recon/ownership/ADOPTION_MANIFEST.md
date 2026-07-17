@@ -21,6 +21,13 @@ tables, and integration glue. `exclude_reconstruction` is permission for a
 later build-selection layer to omit the hand reconstruction; it is not a claim
 of byte parity and this tool does not modify CMake or canonical C.
 
+For CPUAPP SDK collisions, the manifest consumes
+`app_build_collision_ownership.json`. Its retain-all link found 151 strong
+same-name definitions; 58 passed the selected-object, DWARF ABI, and firmware
+instruction-signature gates, while 93 remain fail-closed. A post-exclusion
+link reproduced exactly the predicted 93-symbol retained set. See
+`app_build_collision_ownership.md` for the thresholds and regeneration flow.
+
 The policy is fail-closed. Glue, generic SDK classifications, and ambiguous
 ownership remain included. The aggregate SDC benchmark alone has no exclusion
 authority. `net_sdc_archive_ownership.json` now supplies per-VA identities, but

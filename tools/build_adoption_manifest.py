@@ -21,6 +21,7 @@ DEFAULTS = {
     "tinycrypt": "recon/analysis/tinycrypt_pinned_matches.json",
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
+    "app_collisions": "recon/ownership/app_build_collision_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
     "net_sdk_public": "recon/catalogs/net_sdk_public_ownership.json",
@@ -237,6 +238,34 @@ def _crypto_entries(data, source, names):
     return output
 
 
+def _app_collision_entries(data, source, names):
+    """Adopt only SDK owners proven by the retain-all CPUAPP link catalog."""
+    output = []
+    for row in data.get("functions", []):
+        upstream = row.get("upstream", {})
+        eligible = row.get("safe_to_exclude") is True
+        source_identity = upstream.get("source", {})
+        component = source_identity.get("repository") or "cpuapp_selected_sdk"
+        output.append(_entry(
+            "app", row["va"], names, "source", component,
+            upstream.get("symbol"), upstream.get("object"), eligible,
+            ("The configured CPUAPP link selected this strong owner and its "
+             "DWARF ABI plus firmware instruction signature passed every "
+             "fail-closed threshold." if eligible else
+             "The selected same-name CPUAPP owner failed one or more ABI, "
+             "identity, or instruction-signature gates; retain fail-closed."),
+            [_evidence(
+                source, "cpuapp_selected_owner_collision",
+                safe_to_exclude=eligible,
+                blockers=row.get("exclusion_blockers"),
+                signature_match=row.get("signature_match"),
+                abi=upstream.get("abi"),
+                upstream_source=source_identity,
+                link_provenance=row.get("link_provenance"))],
+            "high" if eligible else "low"))
+    return output
+
+
 def _parse_sdc_benchmark(path):
     """Read benchmark metadata, but never turn prose uniqueness into exclusion."""
     with open(path) as stream:
@@ -437,6 +466,8 @@ def build(paths):
         _tinycrypt_entries(_load_json(resolved["tinycrypt"]), paths["tinycrypt"], names),
         _cc312_entries(_load_json(resolved["cc312"]), paths["cc312"], names),
         _crypto_entries(_load_json(resolved["crypto"]), paths["crypto"], names),
+        _app_collision_entries(_load_json(resolved["app_collisions"]),
+                               paths["app_collisions"], names),
         _net_entries(_load_json(resolved["net"]), paths["net"],
                      paths["sdc_benchmark"], benchmark, names,
                      machine_sdc_addresses),
@@ -464,7 +495,8 @@ def build(paths):
             },
             "entries": rows,
         }
-    input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "net", "net_rtc",
+    input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "app_collisions",
+                  "net", "net_rtc",
                   "net_sdk_public",
                   "sdc_benchmark", "sdc_catalog")
     result = {

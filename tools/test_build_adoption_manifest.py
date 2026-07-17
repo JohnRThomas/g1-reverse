@@ -75,6 +75,17 @@ class AdoptionManifestTest(unittest.TestCase):
                      "component": "softdevice_controller",
                      "upstream_symbol": "unknown helper", "ownership": "glue",
                      "confidence": "medium"}]}),
+            "app_collisions": write_json(root, "app_collisions.json", {
+                "functions": [
+                    {"va": "0x4000", "safe_to_exclude": True,
+                     "exclusion_blockers": [],
+                     "signature_match": {"opcode": 1.0, "shape": 1.0,
+                                         "length": 1.0},
+                     "link_provenance": {"owner_input": "lib.a(bt.c.obj)"},
+                     "upstream": {"symbol": "bt_source",
+                                  "object": "bt.c.obj",
+                                  "abi": {"return": "int", "params": []},
+                                  "source": {"repository": "zephyr"}}}]}),
             "net": write_json(root, "net.json", {
                 "entries": {
                     "0x01001000": {"confidence": 0.99, "signature_match": {
