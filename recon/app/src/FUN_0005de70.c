@@ -9,7 +9,7 @@ extern int FUN_0005503c(int a);
 extern void FUN_0005505c(int a);
 extern void FUN_00056960(int a, u32 b, void *c);
 extern void FUN_00056d1c(int a);
-extern void FUN_0005daf0(int a);
+extern void FUN_0005daf0(int a, int event);
 extern int FUN_0005e938(u32 a, void *b);
 extern int FUN_0005e9d0(int a, u32 b, int c);
 extern void FUN_0005ea18(int a);
@@ -47,8 +47,8 @@ undefined4 FUN_0005de70(int param_1, int param_2)
 LAB_df2c:
     iVar1 = FUN_00082ff6((void*)(long)(param_1+4), 0xd);
     if (iVar1 != 0) {
-      int r = FUN_0005e9d0(2, *(u8*)(long)(iVar5+8), iVar7);
-      if (r == 0) {
+      iVar1 = FUN_0005e9d0(2, *(u8*)(long)(iVar5+8), iVar7);
+      if (iVar1 == 0) {
         FUN_00052cdc(iVar7);
         FUN_00083074(0x00088180u, 0x1c40u, 0);
         goto LAB_df70;
@@ -89,7 +89,7 @@ LAB_df2c:
       FUN_00083090(param_1, 10);
     }
     if (*(volatile u16*)(long)(param_1+0xe8) == 0) {
-      FUN_0005daf0(param_1);
+      FUN_0005daf0(param_1, 0);
     }
     uVar3 = 0;
   } else {
@@ -103,4 +103,3 @@ LAB_df70:
   }
   return uVar3;
 }
-

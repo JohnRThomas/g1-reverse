@@ -1,4 +1,4 @@
-/* Reconstructed FUN_0005cff0 @ 0x5cff0  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0005cff0 @ 0x5cff0  owned extent: 0xae bytes */
 
 extern int  FUN_0005cac0(void);
 extern int  FUN_00055cf0(void);
@@ -43,4 +43,3 @@ int FUN_0005cff0(int param_1, int param_2){
     }
     return FUN_0005ce6c(param_1);
 }
-

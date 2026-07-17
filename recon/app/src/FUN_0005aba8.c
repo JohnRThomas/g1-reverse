@@ -7,13 +7,18 @@ extern void FUN_000826e0(uint32_t);
 extern void FUN_00082a42(uint32_t,int,void*);
 extern void FUN_00082c9c(int,int,uint32_t,void*);
 void FUN_0005aba8(void){
-  volatile uint32_t local_140,uStack_13c,local_138,uStack_134,local_120;
-  uint8_t auStack_118[96], auStack_b8[176];
-  local_140=0;uStack_13c=0;local_138=0;uStack_134=0;
-  int iVar2=FUN_0008016a(auStack_118,(void*)&local_140,auStack_b8);
+  struct {
+    uint32_t header[4];
+    uint8_t reserved[16];
+    struct { uint32_t level, message; } log;
+    uint8_t work[96];
+    uint8_t scratch[176];
+  } frame;
+  frame.header[0]=0; frame.header[1]=0; frame.header[2]=0; frame.header[3]=0;
+  int iVar2=FUN_0008016a(frame.work,frame.header,frame.scratch);
   if(iVar2!=0){
-    FUN_00082c9c(1,0xffff,0x8260d,auStack_118);
-    iVar2=FUN_00080294_i(0x20006380,auStack_118);
+    FUN_00082c9c(1,0xffff,0x8260d,frame.work);
+    iVar2=FUN_00080294_i(0x20006380,frame.work);
     if(iVar2!=0){
       volatile uint8_t* puVar3=(volatile uint8_t*)(0x20006380UL+0x10);
       volatile uint8_t* puVar4=(volatile uint8_t*)0x20006380UL;
@@ -30,7 +35,7 @@ void FUN_0005aba8(void){
       return;
     }
   }
-  local_120=2;
-  FUN_00082a42(0x88128,0x1040,(void*)&local_120);
+  frame.log.level=2;
+  frame.log.message=(iVar2==0) ? 0x000f49d4 : 0x000f49ed;
+  FUN_00082a42(0x88128,0x1040,&frame.log);
 }
-

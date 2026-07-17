@@ -4,7 +4,7 @@ extern int FUN_00052cdc(int);
 extern int FUN_0005dc2c(int,int);
 extern int FUN_0005e6a8(int,int);
 extern int FUN_0005e9a0(int,int);
-extern int FUN_0005ea18(void);
+extern void FUN_0005ea18(int record);
 extern int FUN_00082ff6(int,int);
 extern int FUN_00083074(int,int,void*);
 extern int FUN_0008307a(void);
@@ -29,7 +29,7 @@ void FUN_0005e47c(int param_1)
     iVar2 = FUN_00082ff6(iVar9, 3);
     if (iVar2 == 0) return;
     if (*(int *)(param_1 + 0xc0) != 0) {
-        FUN_0005ea18();
+        FUN_0005ea18(*(int *)(param_1 + 0xc0));
     }
     iVar2 = FUN_0005e6a8(*(unsigned char *)(param_1 + 8), param_1 + 0x90);
     *(int *)(param_1 + 0xc0) = iVar2;
@@ -94,4 +94,3 @@ LAB_0005e51c:
     }
     return;
 }
-

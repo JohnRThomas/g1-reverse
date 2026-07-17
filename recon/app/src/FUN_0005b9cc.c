@@ -9,7 +9,7 @@ struct attr_value {
 };
 
 extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t,uint32_t);
-extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,uint32_t);
+extern void FUN_0007e2fa(uint32_t,...);
 extern int FUN_00080d3e(void*,void*);
 extern void FUN_00082a42(uint32_t,uint32_t,void*);
 extern uint32_t FUN_00082aee(int,uint32_t,int*,uint32_t,uint32_t,uint32_t);
@@ -18,25 +18,25 @@ int FUN_0005b9cc(int param_1, int *param_2)
 {
   uint32_t uVar4;
   if (param_1 == 0) {
-    FUN_0007e2fa(0x000f3ebdUL,0x000f46b8UL,0x00099cbdUL,0x118f);
-    FUN_0007e2fa(0x000f4a0aUL,0,0,0);
+    FUN_0007e2fa(0x00099cbdUL,0x000f3ebdUL,0x000f46b8UL,0x118f);
+    FUN_0007e2fa(0x000f4a0aUL);
     FUN_0007e2ec(0x000f46b8UL, 0x118f);
   }
   if (param_2 == 0 || param_2[1] == 0) {
-    FUN_0007e2fa(0x000f4c07UL,0x000f46b8UL,0x00099cbdUL,0x1190);
-    FUN_0007e2fa(0x000f4a0aUL,0,0,0);
+    FUN_0007e2fa(0x00099cbdUL,0x000f4c07UL,0x000f46b8UL,0x1190);
+    FUN_0007e2fa(0x000f4a0aUL);
     FUN_0007e2ec(0x000f46b8UL, 0x1190);
   }
   ushort a = *(volatile ushort*)((char*)param_2 + 8);
   ushort b = *(volatile ushort*)((char*)param_2 + 0xe);
   if (a == 0 || b == 0) {
-    FUN_0007e2fa(0x000f4c1eUL,0x000f46b8UL,0x00099cbdUL,0x1191);
-    FUN_0007e2fa(0x000f4a0aUL,0,0,0);
+    FUN_0007e2fa(0x00099cbdUL,0x000f4c1eUL,0x000f46b8UL,0x1191);
+    FUN_0007e2fa(0x000f4a0aUL);
     FUN_0007e2ec(0x000f46b8UL, 0x1191);
   }
   if (a > b) {
-    FUN_0007e2fa(0x000f4c4bUL,0x000f46b8UL,0x00099cbdUL,0x1193);
-    FUN_0007e2fa(0x000f4a0aUL,0,0,0);
+    FUN_0007e2fa(0x00099cbdUL,0x000f4c4bUL,0x000f46b8UL,0x1193);
+    FUN_0007e2fa(0x000f4a0aUL);
     FUN_0007e2ec(0x000f46b8UL, 0x1193);
   }
 

@@ -11,7 +11,7 @@ unsigned FUN_000639d4(int param_1){
   iVar2 = FUN_0008638c(*puVar5);
   if (iVar2 != 0) {
     if (puVar5[1] == 0) { return 0; }
-    iVar2 = FUN_0008638c(0);
+    iVar2 = FUN_0008638c(puVar5[1]);
     if (iVar2 != 0) {
       uVar7 = (unsigned)*(unsigned short *)((int)puVar5 + 10);
       iVar2 = puVar5[1];
@@ -43,4 +43,3 @@ unsigned FUN_000639d4(int param_1){
   }
   return 0xffffffed;
 }
-

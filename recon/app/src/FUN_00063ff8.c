@@ -5,7 +5,7 @@ extern int FUN_0007efaa(int a, unsigned int b, void *c, int d);
 
 int FUN_00063ff8(int param_1)
 {
-  unsigned int local_28[4];
+  unsigned int local_28[5];
   unsigned int iVar2 = *(volatile unsigned int*)(param_1+8);
   unsigned int i;
   volatile unsigned int *src = (volatile unsigned int*)0x0009907cUL;
@@ -18,4 +18,3 @@ int FUN_00063ff8(int param_1)
   if (r != 0) r = 1;
   return r;
 }
-

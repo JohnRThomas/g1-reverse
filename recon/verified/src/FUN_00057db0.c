@@ -149,6 +149,8 @@ undefined4 FUN_00057db0(int *param_1,int param_2)
   undefined2 local_3e;
   undefined4 local_30;
   undefined4 local_2c;
+  struct { uint count, format, value0, value1; } log4;
+  struct { uint count, format, value; } log3;
   
   uVar13 = DAT_00058054;
   if (*(ushort *)(param_2 + 0x10) < 4) goto LAB_00057dc4;
@@ -159,8 +161,11 @@ undefined4 FUN_00057db0(int *param_1,int param_2)
     local_5c = DAT_0005805c;
     local_58 = uVar17;
 LAB_00057e04:
-    local_60 = 4;
-    FUN_00081746(DAT_00058058,0x2040,&local_60);
+    log4.count = 4;
+    log4.format = local_5c;
+    log4.value0 = local_58;
+    log4.value1 = local_54;
+    FUN_00081746(DAT_00058058,0x2040,&log4);
     return 0;
   }
   uVar18 = (uint)pbVar7[1];
@@ -372,10 +377,10 @@ LAB_00057ed6:
           piVar10 = (int *)FUN_00081626(iVar21,uVar18,1);
           if (piVar10 == (int *)0x0) {
 LAB_00058032:
-            local_5c = DAT_0005807c;
-            local_60 = 3;
-            local_58 = uVar18;
-            FUN_00081746(DAT_00058058,0x1840,&local_60);
+            log3.count = 3;
+            log3.format = DAT_0005807c;
+            log3.value = uVar18;
+            FUN_00081746(DAT_00058058,0x1840,&log3);
             return 0;
           }
           FUN_00073518(piVar10 + 0x30);
@@ -444,10 +449,10 @@ LAB_00057dc4:
   }
   else {
 switchD_00057e38_caseD_2:
-    local_5c = DAT_000582b4;
-    local_60 = 3;
-    local_58 = uVar14;
-    FUN_00081746(DAT_000582b0,0x1880,&local_60);
+    log3.count = 3;
+    log3.format = DAT_000582b4;
+    log3.value = uVar14;
+    FUN_00081746(DAT_000582b0,0x1880,&log3);
     iVar21 = *param_1;
     iVar11 = FUN_000573f4(1,pbVar7[1],2);
     if (iVar11 == 0) {

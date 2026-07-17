@@ -14,7 +14,8 @@ uint32_t FUN_0006403c(int param_1, uint8_t *param_2){
   uint8_t uVar3;
   volatile uint8_t local_21;
   uint8_t auStack_20[20];
-  iVar1 = FUN_0007ef80(param_1, *(int*)(param_1+8) - 0x10, auStack_20);
+  iVar1 = FUN_0007ef80(param_1, *(int*)(param_1+8) - 0x10,
+                       auStack_20, 0x10);
   if (iVar1 >= 0){
     iVar1 = FUN_00084d8c(param_1, auStack_20, 0x10);
     if (iVar1 == 0){
@@ -43,4 +44,3 @@ uint32_t FUN_0006403c(int param_1, uint8_t *param_2){
   }
   return 1;
 }
-
