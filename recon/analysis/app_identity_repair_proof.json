@@ -1,0 +1,32 @@
+{
+ "schema": 1,
+ "core": "app",
+ "scope": "61 identity-safe naming/symbolization repairs",
+ "inputs": {
+  "before": {
+   "path": "/private/tmp/g1_app_link_pins.log",
+   "sha256": "0014b76f3d428275e246b405123b5f603d5e909ff20c857f05af90c2b2a8b4c7"
+  },
+  "after": {
+   "path": "/private/tmp/identity_cpuapp_retain_all.log",
+   "sha256": "69ed0c1229e0a57e5ded3731273206a51b0537ce25bafe122ace848c00fe7bd8"
+  },
+  "classification": {
+   "path": "recon/analysis/app_link_residue.json",
+   "sha256": "02ae599a99a56aa5262aa21a4bb8f99f58469fe8970edcaf3adf99aad35eceb9"
+  }
+ },
+ "queue_count": 61,
+ "present_before": 61,
+ "removed_after": 61,
+ "missing_from_before": [],
+ "remaining_after": [],
+ "duplicate_queue_symbols": [],
+ "pass": true,
+ "excluded_correction": {
+  "symbol": "DEBUG_PRINT",
+  "va": "0x0007dda4",
+  "category": "sdk_or_config_symbol",
+  "reason": "distinct variadic vprintf wrapper; never aliased to debug_print@0x00019c70"
+ }
+}

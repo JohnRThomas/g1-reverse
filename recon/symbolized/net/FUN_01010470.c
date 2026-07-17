@@ -9,7 +9,7 @@
  */
 /* net-core FUN_01010470 @ 0x1010470  (parity 1 trials PROVEN) */
 extern signed char FUN_0101e2cc(unsigned char);
-extern unsigned long long thunk_FUN_01025034(void);
+extern unsigned long long controller_time_now(void);
 extern int FUN_0100cfc0(unsigned short, void *);
 extern int FUN_0101e2fc(void *, int, int, int);
 extern void sdc_assertion_fail(unsigned int, unsigned int);
@@ -62,7 +62,7 @@ void FUN_01010470(int param_1)
   }
 
   if (*(unsigned int *)(long)(param_1 + -0x1ac) != 0x7fffffff || *puVar8 != 0xffffffff) {
-    uVar11 = thunk_FUN_01025034();
+    uVar11 = controller_time_now();
     uVar9 = (unsigned int)(uVar11 >> 0x20);
     uVar5 = *puVar8;
     uVar7 = *(unsigned int *)(long)(param_1 + -0x1ac);
@@ -76,7 +76,7 @@ void FUN_01010470(int param_1)
       iVar4 = FUN_0101e2fc(packet, cVar3 + 1, cVar4, 2);
       if (iVar4 == 0) {
         uVar9 = (unsigned int)(unsigned char)pcVar2[4];
-        lVar12 = thunk_FUN_01025034();
+        lVar12 = controller_time_now();
         unsigned long long wide = (unsigned long long)uVar9 * 1000000ULL;
         *(volatile unsigned long long *)puVar8 = lVar12 + wide;
       }

@@ -14,7 +14,7 @@ extern void sdc_assertion_fail(unsigned int a, unsigned int b, unsigned int c,
                          unsigned int d, unsigned int e) __attribute__((noreturn));
 extern int controller_radio_state_get(void);
 extern int FUN_0101a218(void);
-extern int thunk_FUN_01025034(void);
+extern int controller_time_now(void);
 
 #define LIT_22C 0x210010a0u
 
@@ -28,7 +28,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
     int iVar6;
 
     iVar1 = LIT_22C;
-    iVar2 = thunk_FUN_01025034();
+    iVar2 = controller_time_now();
     iVar6 = *(volatile int *)(iVar1 + 0x18);
     iVar3 = controller_radio_state_get();
     uVar4 = (unsigned int)*(volatile unsigned char *)(iVar3 + 1);

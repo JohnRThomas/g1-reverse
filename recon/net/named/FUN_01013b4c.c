@@ -28,8 +28,8 @@ extern u32 sdc_conn_window_admit(u8,void*);
 extern u32 sdc_timing_scale(u32,u16);
 extern short FUN_010246d8(void);
 extern void FUN_01025a84(void*,u32,u32);
-extern short thunk_FUN_010246cc(void);
-extern u64 thunk_FUN_01025034(void);
+extern short sdc_timing_compensation_get(void);
+extern u64 controller_time_now(void);
 
 static u32 *const DAT_01013cd4 = (u32*)0x21000f54;
 
@@ -81,7 +81,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
       uVar9 = (u32)*(volatile u16 *)(iVar5p + 0x12);
       uVar8 = uVar8 - (uVar8 / uVar9) * uVar9;
     }
-    lVar10 = thunk_FUN_01025034();
+    lVar10 = controller_time_now();
     lVar10 = lVar10 + (u64)(uVar6 + uVar8);
     *(volatile u64 *)(param_1 + 0x138) = lVar10;
     if (param_3 != 0) {
@@ -90,10 +90,10 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
     }
   }
   else {
-    sVar4 = thunk_FUN_010246cc();
+    sVar4 = sdc_timing_compensation_get();
     iVar5 = (int)sdc_timing_scale(param_3, (u16)(sVar4 + 0x668));
     *(volatile u32 *)(param_1 + 300) = (u32)(iVar5 + (int)param_3);
-    lVar10 = thunk_FUN_01025034();
+    lVar10 = controller_time_now();
     lVar10 = lVar10 + (u64)uVar6;
     *(volatile u16 *)(param_1 + 0x22) = 0;
     *(volatile int *)(param_1 + 0x138) = (int)lVar10;

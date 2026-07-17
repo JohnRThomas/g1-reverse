@@ -22,7 +22,7 @@
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "f4ae0af7eac230774995d3f4737cc61282549aa3b29cc6adad3b0c76a168e05f"
+   "sha256": "43ac7648fc1a43941917c39fd9c98b765faf5eaf6f543f007fd325865b8a9a32"
   },
   {
    "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/lib_sig2_hits.json",
@@ -34,8 +34,8 @@
   "by_category": {
    "compiler_or_ghidra_pseudo_op": 3,
    "interior_or_tail_alias": 119,
-   "naming_or_symbolization_defect": 62,
-   "sdk_or_config_symbol": 173
+   "naming_or_symbolization_defect": 61,
+   "sdk_or_config_symbol": 174
   },
   "true_missing_reconstructed_entries": 0
  },
@@ -53,8 +53,8 @@
   },
   {
    "symbol": "DEBUG_PRINT",
-   "category": "naming_or_symbolization_defect",
-   "reason": "uppercase legacy call spelling must alias retained debug_print",
+   "category": "sdk_or_config_symbol",
+   "reason": "distinct variadic vprintf wrapper at 0x0007dda4; it is not debug_print at 0x00019c70 and requires its own library owner",
    "reference_count": 425,
    "reference_sites": [
     "FUN_00018300.c:18",
@@ -3200,17 +3200,6 @@
     "process_for_new_task.c:954"
    ],
    "identities": [
-    {
-     "va": "0x00074844",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00074844",
-     "is_thunk": false,
-     "display_name": "FUN_00074844",
-     "retained_source": "FUN_00074844.c",
-     "adopted_component": null,
-     "library_signature": null
-    },
     {
      "va": "0x0007ce5c",
      "catalog_entry": true,

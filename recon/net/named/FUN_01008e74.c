@@ -13,8 +13,9 @@ extern int  FUN_01008a58(int, int);
 extern void FUN_0101fbbc(void);
 /* Ghidra split these two reachable return blocks out of the declared body.
  * Keep them as explicit tail-block oracles rather than silently inlining them. */
-extern int FUN_01008fc0(void);
-extern int FUN_01008fc6(void);
+/* Original interior labels: 0x01008fc0 => -45, 0x01008fc6 => -12. */
+static int FUN_01008fc0(void) { return -45; }
+static int FUN_01008fc6(void) { return -12; }
 
 int FUN_01008e74(int param_1, int param_2, uint16_t *param_3)
 {

@@ -55,6 +55,9 @@ PSEUDO_OPS = {
 # from the actual NCS/newlib symbol and therefore will not occur literally in
 # the pinned source tree.
 SDK_SPELLING_OVERRIDES = {
+    "DEBUG_PRINT":
+        "distinct variadic vprintf wrapper at 0x0007dda4; it is not "
+        "debug_print at 0x00019c70 and requires its own library owner",
     "k_msleep_ticks32768_a": "Zephyr k_msleep/tick-conversion wrapper spelling",
     "strtoll_internal": "newlib-nano internal strtoll implementation spelling",
 }
@@ -196,9 +199,6 @@ def classify(args):
         if symbol in PSEUDO_OPS:
             category = "compiler_or_ghidra_pseudo_op"
             reason = PSEUDO_OPS[symbol]
-        elif symbol == "DEBUG_PRINT":
-            category = "naming_or_symbolization_defect"
-            reason = "uppercase legacy call spelling must alias retained debug_print"
         elif symbol.startswith(("tail_", "thunk_FUN_", "ext")) or symbol.endswith("_i"):
             category = "interior_or_tail_alias"
             reason = "symbol spelling explicitly denotes a tail/thunk/interior label"

@@ -3,3 +3,4 @@
 PROVIDE(FUN_01018f1a = 0x01018f1a); /* SDC LLCP store-result shared tail */
 PROVIDE(FUN_01018f22 = 0x01018f22); /* SDC LLCP return shared tail */
 PROVIDE(FUN_01018fac = 0x01018fac); /* SDC LLCP procedure continuation */
+PROVIDE(FUN_0100b5f8 = FUN_0100ac34); /* 0x0100b5f8: exact b.w veneer */

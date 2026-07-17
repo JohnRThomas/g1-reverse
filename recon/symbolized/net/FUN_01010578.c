@@ -22,7 +22,7 @@ extern int sdc_llcp_get_active_link_index(void);
 extern void FUN_0100ef48(int, undefined4);
 extern void sdc_work_submit(int, undefined4, int, undefined4);
 extern undefined1 FUN_0102029c(void);
-extern undefined8 thunk_FUN_01025034(void);
+extern undefined8 controller_time_now(void);
 
 #define DAT_010106d0 ((char *)((unsigned long)&g_sdc_rssi_filter_cfg) /*=0x21000f04*/)
 #define DAT_010106d4 ((undefined4)0x01010c61)
@@ -79,7 +79,7 @@ void FUN_01010578(char *param_1,undefined4 param_2,undefined4 param_3,undefined4
     iVar10 = (int)(char)-(char)(iVar10 + 0x800 >> 0xc) + (int)cVar1;
     if ((((0xff < iVar10 + 0x80U) || ((char)iVar10 != '\0')) &&
         (*(int *)(iVar11 + 0xac) != 0x7fffffff || *(uint *)(iVar11 + 0xa8) != 0xffffffff)) &&
-       (uVar13 = thunk_FUN_01025034(), uVar6 = (uint)((ulonglong)uVar13 >> 0x20),
+       (uVar13 = controller_time_now(), uVar6 = (uint)((ulonglong)uVar13 >> 0x20),
        *(uint *)(iVar11 + 0xac) < uVar6 ||
        uVar6 - *(uint *)(iVar11 + 0xac) < (uint)(*(uint *)(iVar11 + 0xa8) <= (uint)uVar13))) {
       iVar10 = *(int *)(param_1 + 4);

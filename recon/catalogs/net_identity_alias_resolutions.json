@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "core": "net",
+  "source_residue_commit": "2391ac8",
+  "image": "netcore_image.bin",
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "policy": {
+    "raw_address_backmap_preserved": true,
+    "guessed_stubs": false,
+    "true_missing_bucket_touched": false,
+    "sdk_or_config_bucket_touched": false
+  },
+  "resolutions": [
+    {
+      "symbol": "FUN_01008fc0",
+      "category": "interior_or_tail_alias",
+      "resolution": "local_owner_label",
+      "owner": "FUN_01008e74",
+      "thumb_evidence": "6ff02c00 mvn r0,#0x2c; 81e7 b 0x01008eca",
+      "meaning": "return -45 through the owner epilogue"
+    },
+    {
+      "symbol": "FUN_01008fc6",
+      "category": "interior_or_tail_alias",
+      "resolution": "local_owner_label",
+      "owner": "FUN_01008e74",
+      "thumb_evidence": "6ff00b00 mvn r0,#0xb; 7ee7 b 0x01008eca",
+      "meaning": "return -12 through the owner epilogue"
+    },
+    {
+      "symbol": "FUN_0100b5f8",
+      "category": "interior_or_tail_alias",
+      "resolution": "reviewed_tail_alias",
+      "target": "FUN_0100ac34",
+      "target_va": "0x0100ac34",
+      "thumb_evidence": "fff71cbb b.w 0x0100ac34"
+    },
+    {
+      "symbol": "FUN_0101077c_after",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "remove_spurious_extern_after_noreturn_assertion",
+      "owner": "FUN_0101077c",
+      "cfg_verify": "PASS cases=2"
+    },
+    {
+      "symbol": "controller_assert",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "use_durable_public_name",
+      "target": "sdc_assertion_fail",
+      "target_va": "0x01008d00",
+      "cfg_verify": "sdc_llcp_process_rx_control_pdu PASS cases=9"
+    },
+    {
+      "symbol": "controller_radio_timer_capture_get",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "export_public_name",
+      "raw_identity": "FUN_01023de8",
+      "historical_alias": "thunk_FUN_01025028"
+    },
+    {
+      "symbol": "controller_time_now",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "export_public_name",
+      "raw_identity": "FUN_01022f08",
+      "historical_alias": "thunk_FUN_01025034"
+    },
+    {
+      "symbol": "rtc_pretick_rtc1_isr_hook",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "adopt_selected_upstream_public_owner",
+      "raw_identity": "FUN_01039e4e",
+      "historical_alias": "thunk_FUN_0102cfec",
+      "veneer_target": "0x0102cfec",
+      "thumb_evidence": "f3f7cdb8 b.w 0x0102cfec",
+      "upstream_object": "zephyr/libzephyr.a(soc.c.obj)"
+    },
+    {
+      "symbol": "sdc_timing_compensation_get",
+      "category": "naming_or_symbolization_defect",
+      "resolution": "export_public_name",
+      "raw_identity": "FUN_01029638",
+      "historical_alias": "thunk_FUN_010246cc"
+    }
+  ]
+}

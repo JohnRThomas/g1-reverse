@@ -47,7 +47,7 @@ extern int sdc_llcp_handle_unknown_response(struct llcp_decoded_pdu *decoded); /
 extern void sdc_llcp_note_unsupported_pdu(void);                  /* FUN_01020500 */
 extern void sdc_llcp_stop_rx_timeout(void);                       /* FUN_010208b0 */
 extern void sdc_llcp_release_rx_context(void);                    /* FUN_0101fca8 */
-extern void controller_assert(uint32_t module, uint32_t line);    /* FUN_01008d00 */
+extern void sdc_assertion_fail(uint32_t module, uint32_t line);   /* FUN_01008d00 */
 
 extern void FUN_01018f1a(uint32_t, uint32_t, uintptr_t, uint32_t);
 extern void FUN_01018f22(uint32_t, uint32_t, uintptr_t, uint32_t);
@@ -132,7 +132,7 @@ int sdc_llcp_process_rx_control_pdu(const uint8_t *pdu)
                 LLCP_UNKNOWN_RESPONSE_TABLE, state_index);
             __builtin_unreachable();
         default:
-            controller_assert(0x32, 0x13b3);
+            sdc_assertion_fail(0x32, 0x13b3);
             __builtin_unreachable();
         }
 
@@ -158,7 +158,7 @@ int sdc_llcp_process_rx_control_pdu(const uint8_t *pdu)
         sdc_llcp_note_unsupported_pdu();
         return finish_receive(result);
     default:
-        controller_assert(0x32, 0x13b3);
+        sdc_assertion_fail(0x32, 0x13b3);
         __builtin_unreachable();
     }
 }

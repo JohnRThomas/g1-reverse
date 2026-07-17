@@ -46,7 +46,7 @@ extern int FUN_01023ea8(int,int);
 extern int FUN_0101272c(void*);
 extern void sdc_ext_adv_event_complete(void*);
 extern void controller_radio_transition_apply(void*,uint);
-extern int thunk_FUN_01025028(void);
+extern int controller_radio_timer_capture_get(void);
 extern int controller_mode1_state_validate(void);
 extern int controller_mode2_state_validate(void);
 extern int controller_transition_pending_check(void*);
@@ -69,7 +69,7 @@ extern int FUN_010126b8(void*);
 extern int FUN_01021908(int);
 extern int FUN_01021914(int);
 extern int FUN_01025d28(void);
-extern long long thunk_FUN_01025034(void);
+extern long long controller_time_now(void);
 extern short FUN_010246d8(void);
 extern uint FUN_01022ea8(void);
 extern int controller_timing_request_schedule(void*,int);
@@ -150,7 +150,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
 #if 0 /* stale inlined Ghidra continuation; the raw CFG leaves this function */
     *(undefined4 *)(0x4100c000 + 0x4c) = 1;
     iVar8 = *(int *)(iVar8 + 0x54c);
-    uVar9 = thunk_FUN_01025028();
+    uVar9 = controller_radio_timer_capture_get();
     *(undefined4 *)(iVar5 + 0x38) = uVar9;
     *(undefined4 *)(iVar5 + 0x3c) = 0;
     *(int *)(iVar5 + 0x40) = iVar8;
@@ -472,7 +472,7 @@ LAB_01012d26:
     uVar13 = 2;
   }
   param_1[0x132] = uVar13;
-  lVar18 = thunk_FUN_01025034();
+  lVar18 = controller_time_now();
   uVar14 = *(uint *)(param_1 + 0x138);
   iVar8 = *(int *)(param_1 + 0x13c);
   sVar7 = FUN_010246d8();

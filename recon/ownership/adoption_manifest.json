@@ -24978,6 +24978,36 @@
     },
     {
      "core": "net",
+     "va": "0x01039e4e",
+     "raw_symbol": "FUN_01039e4e",
+     "current_symbol": "rtc_pretick_rtc1_isr_hook",
+     "kind": "veneer",
+     "component": "zephyr_nrf53_soc",
+     "upstream_symbol": "rtc_pretick_rtc1_isr_hook",
+     "upstream_unit": "zephyr/libzephyr.a(soc.c.obj)",
+     "confidence": 1.0,
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The firmware entry is only a four-byte tail veneer to 0x0102cfec; the selected NCS 2.5.1 CPUNET soc.c object provides the public target and retain-all link evidence rejects retaining a second owner.",
+     "evidence": [
+      {
+       "source": "netcore_image.bin",
+       "type": "thumb_tail_veneer",
+       "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+       "entry": "0x01039e4e",
+       "target": "0x0102cfec"
+      },
+      {
+       "source": "retain-all CPUNET link",
+       "type": "selected_upstream_owner",
+       "symbol": "rtc_pretick_rtc1_isr_hook",
+       "object": "zephyr/libzephyr.a(soc.c.obj)",
+       "config": "CONFIG_SOC_NRF5340_CPUNET"
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x01039f4c",
      "raw_symbol": "FUN_01039f4c",
      "current_symbol": "FUN_01039f4c",

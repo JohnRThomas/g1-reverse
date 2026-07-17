@@ -30,7 +30,7 @@ extern int FUN_010204d4(int);
 extern int FUN_010212ec(int,int);
 extern int FUN_01027ed4(int,int);
 extern int FUN_01027ef2(int,int);
-extern unsigned long long thunk_FUN_01025034(void);
+extern unsigned long long controller_time_now(void);
 extern unsigned int FUN_0100c738(void);
 extern int FUN_0101124c(int,int);
 extern int FUN_0100cb4c(int);
@@ -103,14 +103,14 @@ int FUN_0101132c(int param_1)
         if (*(volatile int*)(param_1+0x5c)==0x7fffffff && *(volatile int*)(param_1+0x58)==-1) {
             special = 1;
         } else {
-            unsigned long long cur = thunk_FUN_01025034();
+            unsigned long long cur = controller_time_now();
             unsigned long long stored = (((unsigned long long)(unsigned int)*(volatile int*)(param_1+0x5c))<<32) |
                                           (unsigned int)*(volatile int*)(param_1+0x58);
             special = (cur < stored) ? 1 : 0;
         }
         if (!(special && r8 == 0)) {
             unsigned int uVar8 = FUN_0100c738();
-            unsigned long long lVar13 = thunk_FUN_01025034();
+            unsigned long long lVar13 = controller_time_now();
             unsigned long long sum = (unsigned long long)uVar8 * 1000000ULL + lVar13;
             *(volatile unsigned int*)(param_1+0x58) = (unsigned int)(sum & 0xffffffffu);
             *(volatile unsigned int*)(param_1+0x5c) = (unsigned int)(sum >> 32);
