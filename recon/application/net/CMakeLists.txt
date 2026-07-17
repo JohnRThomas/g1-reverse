@@ -40,3 +40,9 @@ target_sources(app PRIVATE
   src/main.c
   ${G1_RETAINED_SOURCES}
 )
+
+# Symbolized reconstruction inputs include the generated reversible VA/name
+# declarations from this directory.
+target_include_directories(app PRIVATE
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols"
+)
