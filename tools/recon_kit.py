@@ -51,6 +51,8 @@ TRUE_SIZE_OVERRIDES = {
     0x00033a5c: 0x4c,  # notification-count response; literals at 0x33aa8
     0x00035744: 0x28,  # whitelist dump/init wrapper; literals at 0x3576c
     0x0003cebc: 0x72,  # do-not-disturb state setter; alignment at 0x3cf2e
+    0x00024e60: 0xa0,  # framed transport write; literals begin at 0x24f00
+    0x0004372c: 0xc8,  # display-mode globals dispatcher; literals begin at 0x437f4
     # lc3_tns_analyze continues through the final quantizer/order backedge at
     # 0x709c4; its trailing threshold literals begin at 0x709c8.
     0x0006ffd8: 0x9ee,

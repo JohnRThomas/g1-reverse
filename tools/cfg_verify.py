@@ -393,6 +393,8 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00033a5c): 0x4c,  # notification-count response
     ("app", 0x00035744): 0x28,  # whitelist dump/init wrapper
     ("app", 0x0003cebc): 0x72,  # do-not-disturb state setter
+    ("app", 0x00024e60): 0xa0,  # framed transport write
+    ("app", 0x0004372c): 0xc8,  # display-mode globals dispatcher
     # Independently callable SDK/application entries missed by the Ghidra
     # function catalog.  Extents were reviewed directly from the shipped
     # Thumb CFG and stop before literal pools / following entry points.
@@ -1305,6 +1307,9 @@ REVIEWED_ORACLE_MEMORY_COPIES = {
     },
 }
 REVIEWED_STACK_POINTER_CALLS = {
+    # The first and final transport writes consume compiler-dependent local
+    # header/delimiter addresses; their bytes and call order remain compared.
+    ("app", 0x00024e60): {2: {2}, 4: {2}},
     # Do-not-disturb synchronization consumes the address of one local byte.
     ("app", 0x0003cebc): {1: {0}},
     ("app", 0x00023400): {0: {0}, 1: {1}},
@@ -4336,6 +4341,18 @@ def _net_controller_assert_case(module_id, line, callback=True):
 
 
 REVIEWED_STATE_CASES = {
+    # The subtract-and-TBB mode selector is hidden behind a varargs register
+    # save prologue.  Drive every owned arm plus both logger implementations
+    # explicitly so the global publication matrix is CFG-covered.
+    ("app", 0x0004372c): [
+        ({0: mode, 1: 0x11223344, 2: 0x55667788}, [])
+        for mode in (4, 5, 6, 8)
+    ] + [
+        ({0: 7, 1: 0x11223344, 2: 0x55667788},
+         [(0x2000230c, (1).to_bytes(4, "little")),
+          (0x20007554, callback.to_bytes(4, "little"))])
+        for callback in (0, 1)
+    ],
     # The callback-null arm plus zero, ordinary, byte-boundary, and full-width
     # compact module ids.  Values >= 256 intentionally prove the shipped
     # low-byte remainder behavior instead of silently replacing it with an
@@ -8568,6 +8585,35 @@ def _lc3_tns_analysis_case(dt, bandwidth, near_nyquist, frame_bytes,
 
 
 REVIEWED_ORACLE_CASES = {
+    # Frame writer: capacity rejection, reservation failure, each of the three
+    # ordered write failures, short/extended headers, and complete success.
+    # The cursor and write statuses are callee results, so random scalar
+    # oracles cannot soundly reach these arms.
+    ("app", 0x00024e60): [
+        ({0: 3, 1: 10, 2: emu.SCRATCH + 0x1000},
+         [(0x20007a20, (100).to_bytes(4, "little")),
+          (0x20007a44, (emu.SCRATCH + 0x3000).to_bytes(4, "little"))],
+         {0: {0: 105}}),
+        ({0: 3, 1: 10, 2: emu.SCRATCH + 0x1000},
+         [(0x20007a20, bytes(4)),
+          (0x20007a44, (emu.SCRATCH + 0x3000).to_bytes(4, "little"))],
+         {0: {0: 1000}, 1: {0: 1}}),
+        *[
+            ({0: 3, 1: length, 2: emu.SCRATCH + 0x1000},
+             [(0x20007a20, bytes(4)),
+              (0x20007a44, (emu.SCRATCH + 0x3000).to_bytes(4, "little"))],
+             {0: {0: 1000}, 1: {0: 0},
+              2: {0: statuses[0]}, 3: {0: statuses[1]},
+              4: {0: statuses[2]}})
+            for length, statuses in (
+                (10, (1, 0, 0)),
+                (10, (0, 1, 0)),
+                (10, (0, 0, 1)),
+                (10, (0, 0, 0)),
+                (255, (0, 0, 0)),
+            )
+        ],
+    ],
     # Public SoftDevice Controller default-power API.  Exercise several valid
     # sign-extended int8_t values while the controller is disabled, plus the
     # enabled rejection path.  The nested setter's exact r0 is compared by the

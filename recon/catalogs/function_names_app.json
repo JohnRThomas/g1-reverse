@@ -2436,6 +2436,17 @@
     "FUN_00024dac"
    ]
   },
+  "0x00024e60": {
+   "address": "0x00024e60",
+   "raw_name": "FUN_00024e60",
+   "name": "packet_transport_write_frame",
+   "display_name": "packet_transport_write_frame",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered framed transport writer emits the short or extended length header, payload, and delimiter in exact order with every capacity/reservation/write failure CFG-proven. Raw identity remains FUN_00024e60 at 0x00024e60.",
+   "aliases": [
+    "FUN_00024e60"
+   ]
+  },
   "0x00024f08": {
    "address": "0x00024f08",
    "raw_name": "FUN_00024f08",
@@ -5648,7 +5659,7 @@
    "name": "atomic_get_3_0",
    "display_name": "atomic_get_3_0",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/atomic_get_3_0.c",
    "aliases": [
     "FUN_000431a8"
    ]
@@ -5772,6 +5783,17 @@
    "source": "committed durable map",
    "aliases": [
     "FUN_000436f8"
+   ]
+  },
+  "0x0004372c": {
+   "address": "0x0004372c",
+   "raw_name": "FUN_0004372c",
+   "name": "display_mode_globals_configure",
+   "display_name": "display_mode_globals_configure",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered varargs mode dispatcher publishes the complete display-buffer/global configuration for modes 4, 5, 6, and 8, with both diagnostic fallbacks CFG-proven. Raw identity remains FUN_0004372c at 0x0004372c.",
+   "aliases": [
+    "FUN_0004372c"
    ]
   },
   "0x0004382c": {
@@ -18021,7 +18043,7 @@
    "name": "log_message",
    "display_name": "log_message",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/log_message.c",
    "aliases": [
     "DEBUG_PRINT"
    ]
@@ -21876,7 +21898,7 @@
    "name": "atomic_test_bit",
    "display_name": "atomic_test_bit",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/atomic_test_bit.c",
    "aliases": [
     "FUN_00082ff6"
    ]
@@ -21934,7 +21956,7 @@
    "name": "atomic_set_bit",
    "display_name": "atomic_set_bit",
    "human": true,
-   "source": "committed durable map",
+   "source": "recon/app/src/atomic_set_bit.c",
    "aliases": [
     "FUN_00083090"
    ]
@@ -26562,6 +26584,7 @@
   "display_close_screen": "0x00049858",
   "display_dispatch_thread": "0x00028bec",
   "display_inputEvent": "0x00049938",
+  "display_mode_globals_configure": "0x0004372c",
   "display_panel_is_secondary": "0x0002bed0",
   "display_powerEvent": "0x00049a28",
   "display_reflash": "0x0004967c",
@@ -27231,6 +27254,7 @@
   "out": "0x0007dd7e",
   "outs": "0x0007e2be",
   "packet_transport_send_byte": "0x0003364c",
+  "packet_transport_write_frame": "0x00024e60",
   "pairing_complete": "0x00018730",
   "pairing_failed": "0x00018444",
   "panel_init": "0x00047538",

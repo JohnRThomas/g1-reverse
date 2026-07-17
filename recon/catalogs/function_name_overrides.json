@@ -437,6 +437,10 @@
    "name": "transport_state_update",
    "evidence": "Recovered transport helper advances the context phase, updates active state/timestamp bookkeeping, and preserves its raw identity FUN_0002538c at 0x0002538c."
   },
+  "0x00024e60": {
+   "name": "packet_transport_write_frame",
+   "evidence": "Recovered framed transport writer emits the short or extended length header, payload, and delimiter in exact order with every capacity/reservation/write failure CFG-proven. Raw identity remains FUN_00024e60 at 0x00024e60."
+  },
   "0x000258b4": {
    "name": "transport_parameters_read",
    "evidence": "Recovered body validates the transport/output arguments, checks key 0x2006 state, and reads the parameter value through the transport ABI. Raw identity remains FUN_000258b4 at 0x000258b4."
@@ -464,6 +468,10 @@
   "0x0003cebc": {
    "name": "not_disturb_disable_pending",
    "evidence": "Recovered do-not-disturb state helper publishes the pending disable value, synchronizes settings, and updates the persistent task status. Raw identity remains ext3cebc at 0x0003cebc."
+  },
+  "0x0004372c": {
+   "name": "display_mode_globals_configure",
+   "evidence": "Recovered varargs mode dispatcher publishes the complete display-buffer/global configuration for modes 4, 5, 6, and 8, with both diagnostic fallbacks CFG-proven. Raw identity remains FUN_0004372c at 0x0004372c."
   },
   "0x00028964": {
    "name": "enter_active_click_mode",
