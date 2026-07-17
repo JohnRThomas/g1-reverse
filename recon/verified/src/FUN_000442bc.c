@@ -17,38 +17,45 @@ extern int FUN_00086f00(int,...);
 undefined4 FUN_000442bc(undefined4 param_1,int param_2,undefined4 param_3,undefined4 param_4,
             undefined4 param_5,undefined4 param_6,char param_7)
 {
-  int *piVar1; int *piVar2; int iVar3; int iVar4; int iVar5; uint uVar6;
+  int *piVar1; int *piVar2; int iVar3; uint32_t iVar4; int iVar5; uint uVar6;
   short sVar7; undefined4 uVar8; byte *pbVar9; int iVar10;
-  int local_50; int local_4c; undefined4 local_48; undefined4 local_44;
-  undefined2 uStack_40; ushort local_3e; uint local_3c; byte local_38[20];
+  int local_50; int local_4c; undefined4 local_48;
+  struct {
+    undefined4 word_0;
+    undefined2 half_4;
+    ushort hour_6;
+    uint minute_8;
+    byte text_12[20];
+  } display;
 
-  local_44 = 0; uStack_40 = 0; local_3e = 0; local_3c = 0;
-  FUN_0004a1b8(param_1,(int)&local_44);
-  for (iVar10=0;iVar10<16;iVar10++) local_38[iVar10]=0;
-  uVar6 = (uint)local_3e;
+  display.word_0 = 0; display.half_4 = 0; display.hour_6 = 0; display.minute_8 = 0;
+  FUN_0004a1b8(param_1,(int)&display.word_0);
+  for (iVar10=0;iVar10<16;iVar10++) display.text_12[iVar10]=0;
+  uVar6 = (uint)display.hour_6;
   if (param_7 == '\0') {
-    if (uVar6 < 0xd) { if (uVar6 == 0) { local_3e = 0xc; } }
-    else { local_3e = local_3e - 0xc; }
-    uVar6 = local_3e / 10;
-    sVar7 = local_3e + (short)uVar6 * -10;
+    if (uVar6 < 0xd) { if (uVar6 == 0) { display.hour_6 = 0xc; } }
+    else { display.hour_6 = display.hour_6 - 0xc; }
+    uVar6 = display.hour_6 / 10;
+    sVar7 = display.hour_6 + (short)uVar6 * -10;
   } else {
     uVar6 = uVar6 / 10;
-    sVar7 = local_3e + (short)uVar6 * -10;
+    sVar7 = display.hour_6 + (short)uVar6 * -10;
   }
-  FUN_00086f00((int)local_38,0,0x10,0xaaaac,uVar6,sVar7,0xf02a3,(local_3c & 0xffff) / 10,
-               (local_3c & 0xffff) % 10);
-  iVar3 = FUN_0000ef12((int)local_38);
+  FUN_00086f00((int)display.text_12,0,0x10,0xaaaac,uVar6,sVar7,0xf02a3,
+               (display.minute_8 & 0xffff) / 10,
+               (display.minute_8 & 0xffff) % 10);
+  iVar3 = FUN_0000ef12((int)display.text_12);
   switch(param_6) {
   case 0:
     uVar8 = 0;
     break;
   case 1:
     iVar4 = FUN_000431a8(0);
-    if (iVar4 << 0x1e < 0) {
+    if ((iVar4 & 2u) != 0) {
       FUN_000471cc(*(volatile int*)0x2000a034,0,param_2,param_3,param_4,param_5);
     }
     piVar2 = (int*)0x20007554; piVar1 = (int*)0x2000230c;
-    pbVar9 = local_38; iVar4 = param_2;
+    pbVar9 = display.text_12; iVar4 = param_2;
     for (iVar10 = 0; iVar3 != iVar10; iVar10 = iVar10 + 1) {
       local_50 = 0;
       iVar5 = FUN_0004588c(1,*pbVar9,(int)&local_4c,(int)&local_48,(int)&local_50,0);
@@ -65,11 +72,11 @@ undefined4 FUN_000442bc(undefined4 param_1,int param_2,undefined4 param_3,undefi
     goto LAB_000443e4;
   case 2:
     iVar4 = FUN_000431a8(0);
-    if (iVar4 << 0x1e < 0) {
+    if ((iVar4 & 2u) != 0) {
       FUN_000471cc(*(volatile int*)0x2000a034,0,param_2,param_3,param_4,param_5);
     }
     piVar2 = (int*)0x20007554; piVar1 = (int*)0x2000230c;
-    iVar10 = 0; pbVar9 = local_38; iVar4 = param_2;
+    iVar10 = 0; pbVar9 = display.text_12; iVar4 = param_2;
     while (iVar3 != iVar10) {
       local_50 = 0;
       iVar5 = FUN_0004588c(2,*pbVar9,(int)&local_4c,(int)&local_48,(int)&local_50,0);
@@ -88,7 +95,7 @@ undefined4 FUN_000442bc(undefined4 param_1,int param_2,undefined4 param_3,undefi
     }
 LAB_000443e4:
     iVar3 = FUN_000431a8(0);
-    if (-1 < iVar3 << 0x1e) { return 0; }
+    if ((((uint32_t)iVar3) & 2u) == 0) { return 0; }
     iVar3 = FUN_000167a8(0);
     uVar8 = *(undefined4 *)(iVar3 + 0xeb4);
     iVar3 = FUN_000167a8(0);
@@ -100,9 +107,8 @@ LAB_000443e4:
   default:
     goto caseD_4;
   }
-  FUN_00043e90(0,(int)local_38,uVar8,param_2,param_3,param_4,param_5,1,0,0,0,0);
+  FUN_00043e90(0,(int)display.text_12,uVar8,param_2,param_3,param_4,param_5,1,0,0,0,0);
 caseD_4:
   (void)piVar1; (void)piVar2;
   return 0;
 }
-
