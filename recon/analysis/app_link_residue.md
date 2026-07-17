@@ -7,16 +7,16 @@ change function semantics or authorize automatic source removal.
 
 | Category | Unique symbols | Next action |
 |---|---:|---|
-| `interior_or_tail_alias` | 77 | materialize a safe veneer/alias after overlap review |
+| `interior_or_tail_alias` | 69 | materialize a safe veneer/alias after overlap review |
 | `sdk_or_config_symbol` | 131 | enable/pin the owning NCS unit or reconcile static linkage |
 
-Total: **208** unique symbols. True missing reconstructed entries: **0**.
+Total: **200** unique symbols. True missing reconstructed entries: **0**.
 
 ## Action queues
 
-### `interior_or_tail_alias` (77)
+### `interior_or_tail_alias` (69)
 
-`FUN_000179f8`, `FUN_00024e60`, `FUN_0002538c`, `FUN_000258b4`, `FUN_00025950`, `FUN_00026100`, `FUN_0002bdf0`, `FUN_00033554`, `FUN_0003364c`, `FUN_00033730`, `FUN_00033a5c`, `FUN_00035744`, `FUN_0003603c`, `FUN_00036b3c`, `FUN_0003f410`, `FUN_0003fecc`, `FUN_0004372c`, `FUN_0004b3c8`, `FUN_0004c254`, `FUN_0004d44c`, `FUN_0004d468`, `FUN_0004d8b8`, `FUN_0004de68`, `FUN_0004e3e8`, `FUN_0004e474`, `FUN_0004e8c0`, `FUN_0004f500`, `FUN_000534a8`, `FUN_0005463e`, `FUN_00054688`, `FUN_00054ea8`, `FUN_00055aac`, `FUN_000564cc`, `FUN_000573c8`, `FUN_00058568`, `FUN_0005a954`, `FUN_0005ad38`, `FUN_0005c310`, `FUN_0005c76c`, `FUN_0005c9a4`, `FUN_0005ce6c`, `FUN_0006446c`, `FUN_0006447c`, `FUN_00065000`, `FUN_000680f8`, `FUN_00068298`, `FUN_00071560`, `FUN_000715b8`, `FUN_00071b2c`, `FUN_00074184`, `FUN_000748b8`, `FUN_00075864`, `FUN_000758cc`, `FUN_00075e14`, `FUN_00076bc0`, `FUN_00077b24`, `FUN_00077b38`, `FUN_00077c4c`, `FUN_0007e12a`, `FUN_0007ef56`, `FUN_0008131c`, `FUN_00083a2c`, `FUN_00084e44`, `FUN_00084f06`, `FUN_00085c86`, `FUN_00085ef0`, `FUN_00086228`, `FUN_00086360`, `FUN_0008664c`, `ext3cebc`, `ext5c6c8`, `ext77c8c`, `k_sem_take`, `tail_54d88`, `tail_61200`, `tail_77d30`, `thunk_FUN_0007f7d2`
+`FUN_000179f8`, `FUN_00024e60`, `FUN_00026100`, `FUN_00033554`, `FUN_00033730`, `FUN_0003603c`, `FUN_00036b3c`, `FUN_0003f410`, `FUN_0003fecc`, `FUN_0004372c`, `FUN_0004b3c8`, `FUN_0004c254`, `FUN_0004d44c`, `FUN_0004d468`, `FUN_0004d8b8`, `FUN_0004de68`, `FUN_0004e3e8`, `FUN_0004e474`, `FUN_0004e8c0`, `FUN_0004f500`, `FUN_000534a8`, `FUN_0005463e`, `FUN_00054688`, `FUN_00054ea8`, `FUN_00055aac`, `FUN_000564cc`, `FUN_000573c8`, `FUN_00058568`, `FUN_0005a954`, `FUN_0005ad38`, `FUN_0005c310`, `FUN_0005c76c`, `FUN_0005c9a4`, `FUN_0005ce6c`, `FUN_0006446c`, `FUN_0006447c`, `FUN_00065000`, `FUN_000680f8`, `FUN_00068298`, `FUN_00071560`, `FUN_000715b8`, `FUN_00071b2c`, `FUN_00074184`, `FUN_000748b8`, `FUN_00075864`, `FUN_000758cc`, `FUN_00075e14`, `FUN_00076bc0`, `FUN_00077b24`, `FUN_00077b38`, `FUN_00077c4c`, `FUN_0007e12a`, `FUN_0007ef56`, `FUN_0008131c`, `FUN_00083a2c`, `FUN_00084e44`, `FUN_00084f06`, `FUN_00085c86`, `FUN_00085ef0`, `FUN_00086228`, `FUN_00086360`, `FUN_0008664c`, `ext5c6c8`, `ext77c8c`, `k_sem_take`, `tail_54d88`, `tail_61200`, `tail_77d30`, `thunk_FUN_0007f7d2`
 
 ### `sdk_or_config_symbol` (131)
 

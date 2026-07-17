@@ -10,11 +10,11 @@
  "inputs": [
   {
    "path": "/private/tmp/g1-app-residue-current-0718/link.log",
-   "sha256": "7b8f6d27dceceba9563b4af04a4478b35fcbde7f32e2290f33c4ab7cddbf912f"
+   "sha256": "945c758acee28c0b123cffd92f250a2a39a68d560cc0ab0111b240d5284d872c"
   },
   {
    "path": "recon/catalogs/function_names_app.json",
-   "sha256": "9f162755251563cce7e18ed055b80a50f64609098ea851c71acdfc87be3c1ca4"
+   "sha256": "4c2314b64aca646925c962aac52f06f302a6cf83fde80619e426f4f7e1f91907"
   },
   {
    "path": "recon/catalogs/classified.json.gz",
@@ -22,7 +22,7 @@
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "ca705fba8e81227e8502041d03f6a6d5a1c6fcd5c502591ef3d3559709dfd808"
+   "sha256": "47f597df98c4039f2ab8382f45761dc7839cec836468414d979fd055fcf8f3ab"
   },
   {
    "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/lib_sig2_hits.json",
@@ -30,9 +30,9 @@
   }
  ],
  "summary": {
-  "unique_symbols": 208,
+  "unique_symbols": 200,
   "by_category": {
-   "interior_or_tail_alias": 77,
+   "interior_or_tail_alias": 69,
    "sdk_or_config_symbol": 131
   },
   "true_missing_reconstructed_entries": 0
@@ -69,7 +69,7 @@
    "reason": "referenced VA is not a catalog function entry",
    "reference_count": 1,
    "reference_sites": [
-    "global_system_resume.c:46"
+    "global_system_resume.c:47"
    ],
    "identities": [
     {
@@ -110,75 +110,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0002538c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_box_event.c:25"
-   ],
-   "identities": [
-    {
-     "va": "0x0002538c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000258b4",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0007d0e8.c:17"
-   ],
-   "identities": [
-    {
-     "va": "0x000258b4",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00025950",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "pt_comm_transport_write.c:25"
-   ],
-   "identities": [
-    {
-     "va": "0x00025950",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00026100",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -202,63 +133,16 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0002bdf0",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "enter_active_click_mode.c:41",
-    "global_system_resume.c:51"
-   ],
-   "identities": [
-    {
-     "va": "0x0002bdf0",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00033554",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
    "reference_count": 1,
    "reference_sites": [
-    "FUN_0007d0e8.c:19"
+    "FUN_0007d0e8.c:21"
    ],
    "identities": [
     {
      "va": "0x00033554",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0003364c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "pt_comm_transport_write.c:27"
-   ],
-   "identities": [
-    {
-     "va": "0x0003364c",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -282,52 +166,6 @@
    "identities": [
     {
      "va": "0x00033730",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00033a5c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "master_process_audio_fw_load_req.c:575"
-   ],
-   "identities": [
-    {
-     "va": "0x00033a5c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00035744",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "notification_system_init.c:28"
-   ],
-   "identities": [
-    {
-     "va": "0x00035744",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -3030,7 +2868,7 @@
    "reference_sites": [
     "FUN_00021da8.c:141",
     "ancs_main.c:176",
-    "global_system_resume.c:43"
+    "global_system_resume.c:44"
    ],
    "identities": [
     {
@@ -3163,17 +3001,6 @@
     }
    ],
    "sdk_source_hit": "nrf/modules/nrfxlib/nrf_802154/sl/platform/nrf_802154_platform_sl_lptimer_zephyr.c:206"
-  },
-  {
-   "symbol": "ext3cebc",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0007cbae.c:30"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
   },
   {
    "symbol": "ext5c6c8",
@@ -3879,7 +3706,7 @@
    "symbol": "log_message",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 281,
+   "reference_count": 268,
    "reference_sites": [
     "FUN_00018300.c:18",
     "FUN_0001965c.c:86",
@@ -3898,10 +3725,6 @@
     "FUN_0002ea78.c:22",
     "FUN_0002eaa8.c:22",
     "FUN_0002ead8.c:23",
-    "FUN_00031b60.c:31",
-    "FUN_00031b60.c:33",
-    "FUN_00031bd8.c:18",
-    "FUN_00031bd8.c:19",
     "FUN_00032b24.c:17",
     "FUN_00032fe8.c:24",
     "ancs_connected.c:82",
@@ -3999,8 +3822,7 @@
     "get_lux_info.c:34",
     "get_lux_info.c:38",
     "get_lux_info.c:72",
-    "get_notification_counts_cmd_process.c:29",
-    "global_system_suspend.c:27",
+    "get_notification_counts_cmd_response.c:38",
     "gui_4bit_bitmap_override.c:53",
     "gui_4bit_bitmap_override.c:60",
     "gui_bitmap_draw.c:88",
@@ -4078,14 +3900,11 @@
     "navigation_overview_map_display.c:246",
     "navigation_overview_map_display.c:84",
     "not_disturb_sync_data.c:82",
-    "on_triple_click.c:20",
     "onboarding_ble_process.c:54",
     "onboarding_ble_process.c:85",
     "onboarding_sync_data.c:82",
     "pairing_complete.c:56",
     "pairing_failed.c:30",
-    "parse_ncs_notification.c:54",
-    "parse_ncs_notification.c:60",
     "pixelto4bithex_for_flash.c:25",
     "post_notification_cmd_process.c:47",
     "post_notification_cmd_process.c:64",
@@ -4104,7 +3923,6 @@
     "resource_manger_get.c:1183",
     "resource_manger_get.c:645",
     "run_main_dispatch_thread.c:74",
-    "set_brightness_lum_base.c:35",
     "set_imu_pitch_reflash.c:67",
     "set_test_mode.c:22",
     "slave_display_thread.c:244",
@@ -4140,8 +3958,6 @@
     "touch_key_thread.c:192",
     "touch_key_thread.c:209",
     "touch_key_thread.c:222",
-    "trigger_screen_state_change.c:26",
-    "trigger_screen_state_change.c:42",
     "ui_onboarding_task.c:129",
     "ui_onboarding_task.c:86",
     "ui_raster_height_task.c:44",
@@ -4154,8 +3970,6 @@
     "update_burial_point_day_index.c:47",
     "update_burial_point_to_flash.c:36",
     "update_burial_point_to_flash.c:65",
-    "update_imu_trigger_status.c:31",
-    "update_imu_trigger_status.c:40",
     "update_touch_key_flag.c:38",
     "wait_touch_key_release_or_timeout.c:30",
     "write_font_to_flash_with_verify.c:49",
