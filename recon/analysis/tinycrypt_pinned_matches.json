@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "scope": "app firmware executable functions versus pinned NCS TinyCrypt",
+  "upstream": {
+    "repository": "/Users/freedomcoder/ncs251/modules/crypto/tinycrypt",
+    "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+    "version": "TinyCrypt 2.0 in NCS 2.5.1",
+    "compiler": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc (GCC 12.2.0)",
+    "flags": [
+      "-Os", "-mcpu=cortex-m33", "-mthumb", "-mabi=aapcs",
+      "-mfpu=fpv5-sp-d16", "-mfloat-abi=hard", "-mfp16-format=ieee",
+      "-fno-strict-aliasing", "-fno-common", "-fno-pic", "-fno-pie",
+      "-fno-asynchronous-unwind-tables", "-ftls-model=local-exec",
+      "-fno-reorder-functions", "--param=min-pagesize=0", "-fno-defer-pop",
+      "-ffunction-sections", "-fdata-sections", "-std=c99"
+    ],
+    "enabled_config": [
+      "CONFIG_TINYCRYPT", "CONFIG_TINYCRYPT_AES", "CONFIG_TINYCRYPT_AES_CMAC",
+      "CONFIG_TINYCRYPT_SHA256", "CONFIG_TINYCRYPT_SHA256_HMAC",
+      "CONFIG_TINYCRYPT_SHA256_HMAC_PRNG"
+    ],
+    "disabled_config": [
+      "CONFIG_TINYCRYPT_AES_CBC", "CONFIG_TINYCRYPT_AES_CTR",
+      "CONFIG_TINYCRYPT_AES_CCM", "CONFIG_TINYCRYPT_CTR_PRNG",
+      "CONFIG_TINYCRYPT_ECC_DH", "CONFIG_TINYCRYPT_ECC_DSA"
+    ]
+  },
+  "method": {
+    "index_tool": "tools/build_upstream_index.py",
+    "rank_tool": "tools/rank_upstream.py",
+    "index_artifact": "/tmp/g1_tinycrypt_actual_index.json",
+    "exact_definition": "Firmware normalized Thumb operand-shape stream equals the pinned object's executable stream, or equals its executable prefix when the ELF symbol suffix is verified trailing literal-pool/alignment data.",
+    "score_note": "rank_score also weighs call names, signatures, and literal metadata; it may be below 1.0 even when the executable stream is exact.",
+    "mutation": "No canonical reconstruction source was renamed or rewritten by this audit."
+  },
+  "matches": [
+    {"address":"0x0004fa1c","extent":20,"symbol":"sub_bytes","source":"aes_encrypt.c","linkage":"file_static","rank_score":0.894737,"runner_up":"inv_sub_bytes","runner_up_score":0.894737,"gap":0.0,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit","notes":"Byte-identical tie; tc_aes_encrypt caller selects encryption sub_bytes."},
+    {"address":"0x0004fa34","extent":158,"symbol":"tc_aes128_set_encrypt_key","source":"aes_encrypt.c","linkage":"public","rank_score":0.709830,"runner_up":"add_round_key","runner_up_score":0.301215,"gap":0.408615,"shape_ratio":0.962963,"literal_pool_suffix":true,"replacement":"direct_pinned_source"},
+    {"address":"0x0004fadc","extent":442,"symbol":"compress","source":"sha256.c","linkage":"file_static","rank_score":0.725624,"runner_up":"tc_aes128_set_encrypt_key","runner_up_score":0.202066,"gap":0.523558,"shape_ratio":0.984709,"literal_pool_suffix":true,"replacement":"compile_source_unit"},
+    {"address":"0x0004fca0","extent":60,"symbol":"tc_sha256_init","source":"sha256.c","linkage":"public","rank_score":0.587210,"runner_up":"tc_cmac_init","runner_up_score":0.277803,"gap":0.309407,"shape_ratio":0.938776,"literal_pool_suffix":true,"replacement":"direct_pinned_source"},
+    {"address":"0x0007feaa","extent":26,"symbol":"_copy","source":"utils.c","linkage":"public","rank_score":1.0,"runner_up":"_compare","runner_up_score":0.412955,"gap":0.587045,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x0007fec8","extent":18,"symbol":"_double_byte","source":"utils.c","linkage":"public","rank_score":1.0,"runner_up":"gf_double","runner_up_score":0.293445,"gap":0.706555,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x0007feda","extent":138,"symbol":"add_round_key","source":"aes_encrypt.c","linkage":"file_static","rank_score":1.0,"runner_up":"add_round_key (aes_decrypt.c)","runner_up_score":1.0,"gap":0.0,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit","notes":"Identical helper in both objects; tc_aes_encrypt caller/source context selects encryption unit."},
+    {"address":"0x0007ff64","extent":114,"symbol":"shift_rows","source":"aes_encrypt.c","linkage":"file_static","rank_score":1.0,"runner_up":"inv_shift_rows","runner_up_score":0.831309,"gap":0.168691,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit"},
+    {"address":"0x0007ffd6","extent":130,"symbol":"mult_row_column","source":"aes_encrypt.c","linkage":"file_static","rank_score":0.918129,"runner_up":"add_round_key","runner_up_score":0.404738,"gap":0.513391,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit"},
+    {"address":"0x00080058","extent":172,"symbol":"tc_aes_encrypt","source":"aes_encrypt.c","linkage":"public","rank_score":0.924812,"runner_up":"tc_aes_decrypt","runner_up_score":0.711126,"gap":0.213686,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080104","extent":42,"symbol":"gf_double","source":"cmac_mode.c","linkage":"file_static","rank_score":1.0,"runner_up":"_compare","runner_up_score":0.396285,"gap":0.603715,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit"},
+    {"address":"0x0008012e","extent":16,"symbol":"tc_cmac_erase","source":"cmac_mode.c","linkage":"public","rank_score":0.894737,"runner_up":"tc_hmac_update","runner_up_score":0.619048,"gap":0.275689,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x0008013e","extent":44,"symbol":"tc_cmac_init","source":"cmac_mode.c","linkage":"public","rank_score":0.894737,"runner_up":"tc_hmac_init","runner_up_score":0.518060,"gap":0.376677,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x0008016a","extent":86,"symbol":"tc_cmac_setup","source":"cmac_mode.c","linkage":"public","rank_score":0.964912,"runner_up":"tc_hmac_final","runner_up_score":0.584492,"gap":0.380420,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x000801c0","extent":212,"symbol":"tc_cmac_update","source":"cmac_mode.c","linkage":"public","rank_score":0.954887,"runner_up":"tc_cmac_final","runner_up_score":0.364313,"gap":0.590574,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080294","extent":108,"symbol":"tc_cmac_final","source":"cmac_mode.c","linkage":"public","rank_score":0.964912,"runner_up":"tc_hmac_final","runner_up_score":0.434653,"gap":0.530259,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080300","extent":76,"symbol":"tc_sha256_update","source":"sha256.c","linkage":"public","rank_score":0.894737,"runner_up":"tc_hmac_prng_init","runner_up_score":0.392059,"gap":0.502678,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x0008034c","extent":186,"symbol":"tc_sha256_final","source":"sha256.c","linkage":"public","rank_score":0.894737,"runner_up":"tc_aes_decrypt","runner_up_score":0.397035,"gap":0.497702,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080406","extent":76,"symbol":"rekey","source":"hmac.c","linkage":"file_static","rank_score":0.894737,"runner_up":"_copy","runner_up_score":0.407838,"gap":0.486899,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit"},
+    {"address":"0x00080452","extent":104,"symbol":"tc_hmac_set_key","source":"hmac.c","linkage":"public","rank_score":0.952153,"runner_up":"tc_hmac_final","runner_up_score":0.556684,"gap":0.395469,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x000804ba","extent":26,"symbol":"tc_hmac_init","source":"hmac.c","linkage":"public","rank_score":1.0,"runner_up":"tc_hmac_update","runner_up_score":0.578947,"gap":0.421053,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x000804d4","extent":12,"symbol":"tc_hmac_update","source":"hmac.c","linkage":"public","rank_score":1.0,"runner_up":"tc_cmac_erase","runner_up_score":0.619048,"gap":0.380952,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x000804e0","extent":80,"symbol":"tc_hmac_final","source":"hmac.c","linkage":"public","rank_score":0.957895,"runner_up":"tc_cmac_setup","runner_up_score":0.531075,"gap":0.426820,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080530","extent":290,"symbol":"update","source":"hmac_prng.c","linkage":"file_static","rank_score":0.927126,"runner_up":"tc_hmac_prng_generate","runner_up_score":0.445805,"gap":0.481321,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"compile_source_unit"},
+    {"address":"0x00080652","extent":64,"symbol":"tc_hmac_prng_init","source":"hmac_prng.c","linkage":"public","rank_score":0.936842,"runner_up":"tc_hmac_prng_reseed","runner_up_score":0.518996,"gap":0.417846,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x00080692","extent":50,"symbol":"tc_hmac_prng_reseed","source":"hmac_prng.c","linkage":"public","rank_score":1.0,"runner_up":"tc_hmac_prng_init","runner_up_score":0.501452,"gap":0.498548,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"},
+    {"address":"0x000806c4","extent":142,"symbol":"tc_hmac_prng_generate","source":"hmac_prng.c","linkage":"public","rank_score":0.982456,"runner_up":"tc_hmac_final","runner_up_score":0.430532,"gap":0.551924,"shape_ratio":1.0,"literal_pool_suffix":0,"replacement":"direct_pinned_source"}
+  ],
+  "integration_exceptions": [
+    {"symbol":"_set","status":"wrapper_or_sdk_libc","notes":"No standalone target body; compiler lowering/tail-call reaches the libc memset-like veneer at 0x0007fec4."},
+    {"symbols":["_compare","tc_aes128_set_decrypt_key","tc_aes_decrypt","decrypt file-static helpers"],"status":"configured_but_not_linked","notes":"Present in compiled upstream objects where applicable but absent/garbage-collected from the shipped target; do not add unless a reachable consumer requires them."}
+  ]
+}
