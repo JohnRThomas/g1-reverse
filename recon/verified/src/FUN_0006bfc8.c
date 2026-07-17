@@ -64,7 +64,9 @@ extern void *FUN_00086c44(void *dst, void *src, int n);
 void FUN_0006bfc8(int param_1, int param_2, float *param_3, int param_4,
                   int param_5, int param_6)
 {
-    float buf[64];
+    /* The in-place collapse reads pairs through element 127 when the
+       configured count is zero, then compacts the upper half downward. */
+    float buf[128];
     float *pfVar1;
     float *pfVar3;
     float *pfVar4;
@@ -326,4 +328,3 @@ void FUN_0006bfc8(int param_1, int param_2, float *param_3, int param_4,
     }
     return;
 }
-

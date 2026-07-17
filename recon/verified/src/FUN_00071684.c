@@ -1,38 +1,80 @@
-/* Reconstructed FUN_00071684 @ 0x71684  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_00071684 @ 0x71684 */
 #include <stdint.h>
-extern void FUN_0004d944(unsigned,unsigned,void*,int);
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+
+extern void FUN_0004d944(uint32_t, uint32_t, const void *, uint32_t);
 extern void FUN_00050b8c(int);
-extern void FUN_00063b7c(unsigned,int);
+extern void FUN_00063b7c(uint32_t, int);
 extern int FUN_000748ac(void);
-extern void FUN_0007e2ec(unsigned,unsigned);
-extern void FUN_0007e2fa(unsigned,unsigned,unsigned,unsigned);
+extern void FUN_0007e2ec(uint32_t, uint32_t);
+extern void FUN_0007e2fa(uint32_t, ...);
 extern char *FUN_00086418(int);
-void FUN_00071684(unsigned param_1, int param_2)
+
+struct event_log_record {
+  uint32_t metadata;
+  uint32_t format;
+  uint32_t value;
+  const void *text;
+  uint32_t flags;
+  uint16_t argument_types;
+};
+
+struct compact_log_record {
+  uint32_t metadata;
+  uint32_t format;
+  uint32_t value;
+  const void *text;
+  uint16_t argument_types;
+};
+
+struct log_argument {
+  uint32_t type;
+  const void *value;
+};
+
+void FUN_00071684(uint32_t event, int context)
 {
-  int iVar3; char *local_44;
-  unsigned local_50, local_4c, uStack_48, local_40, local_28, local_24; unsigned short local_3c;
-  __atomic_signal_fence(__ATOMIC_SEQ_CST);
-  iVar3 = FUN_000748ac();
-  local_44 = (char*)0x000f7c8e;
-  if (param_1 < 5) local_44 = *(char**)(0x00098658 + param_1 * 4);
-  local_3c = 0x301; local_4c = 0x000f7c9c; local_40 = 0; local_50 = 0x01000005; uStack_48 = param_1;
-  FUN_0004d944(0x00088258, 0x2c40, &local_50, 0);
-  if ((param_2 != 0) && ((*(unsigned*)(param_2 + 0x1c) & 0x1ff) != 0)) {
-    local_24 = 0x000f7cc4; local_28 = 2;
-    FUN_0004d944(0x00088258, 0x1040, &local_28, 0);
+  uint32_t previous_priority = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
+
+  int handle = FUN_000748ac();
+  const char *event_name = (const char *)0x000f7c8e;
+  if (event < 5) {
+    event_name = *(const char **)(0x00098658 + event * sizeof(void *));
   }
-  if (((iVar3 == 0) || (local_44 = FUN_00086418(iVar3), local_44 == 0)) || (*local_44 == 0)) {
-    local_44 = (char*)0x000ef596;
+
+  struct event_log_record event_log = {
+    0x01000005, 0x000f7c9c, event, event_name, 0, 0x0301
+  };
+  FUN_0004d944(0x00088258, 0x2c40, &event_log, 0);
+
+  if (context != 0 && (*(uint32_t *)(context + 0x1c) & 0x1ff) != 0) {
+    struct log_argument queued = {2, (const void *)0x000f7cc4};
+    FUN_0004d944(0x00088258, 0x1040, &queued, 0);
   }
-  local_4c = 0x000f7ce5; local_40 = (local_40 & 0xffff0000) | 0x301; local_50 = 0x01000004; uStack_48 = iVar3;
-  FUN_0004d944(0x00088258, 0x2440, &local_50, 0);
-  FUN_00063b7c(param_1, param_2);
-  if (param_1 == 4) {
+
+  const char *handle_name = (const char *)0x000ef596;
+  if (handle != 0) {
+    char *candidate = FUN_00086418(handle);
+    if (candidate != 0 && candidate[0] != '\0') {
+      handle_name = candidate;
+    }
+  }
+
+  struct compact_log_record handle_log = {
+    0x01000004, 0x000f7ce5, (uint32_t)handle, handle_name, 0x0301
+  };
+  FUN_0004d944(0x00088258, 0x2440, &handle_log, 0);
+
+  FUN_00063b7c(event, context);
+  if (event == 4) {
     FUN_0007e2fa(0x00099cbd, 0x000f7d1f, 0x000f7cfd, 0x93);
-    FUN_0007e2fa(0x000f7d3c, 0, 0, 0);
+    FUN_0007e2fa(0x000f7d3c);
     FUN_0007e2ec(0x000f7cfd, 0x93);
   }
-  __atomic_signal_fence(__ATOMIC_SEQ_CST);
-  FUN_00050b8c(iVar3);
-  return;
+
+  __set_BASEPRI(previous_priority);
+  __ISB();
+  FUN_00050b8c(handle);
 }
