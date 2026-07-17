@@ -51,11 +51,11 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
     unsigned int extraout_r1 = (unsigned int)(f2 >> 32);
 
     if ((int)(extraout_r1 << 30) < 0) {
-        unsigned char local_20[4];
-        unsigned short *local_1c;
-        local_20[0] = 0;
-        local_1c = param_1;
-        FUN_0101e274(local_20);
+        struct {
+            u32 mode;
+            unsigned short *owner;
+        } descriptor = {0, param_1};
+        FUN_0101e274(&descriptor);
     }
 
     int iVarS = TBL3;

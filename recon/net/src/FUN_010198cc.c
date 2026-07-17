@@ -1,7 +1,7 @@
 /* net-core FUN_010198cc @ 0x10198cc  (parity 300 trials PROVEN) */
 extern void FUN_01008d00(unsigned int, unsigned int);
 extern unsigned int FUN_0100a5a0(void);
-extern unsigned short FUN_0100a5b4(void);
+extern unsigned int FUN_0100a5b4(void);
 extern int FUN_0100ca98(unsigned int, int);
 extern void FUN_0100ef88(int, unsigned int, unsigned int);
 extern int FUN_01026d3e(void);
@@ -59,7 +59,7 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   *(volatile unsigned char *)(long)(iVar3 + 0x2c) = 0x7f;
   *(volatile unsigned short *)(long)(iVar3 + 0x1e) = 1;
   uVar2 = FUN_0100a5a0();
-  uVar1 = FUN_0100a5b4();
+  uVar1 = (unsigned short)FUN_0100a5b4();
   iVar4 = FUN_01026f32(uVar2, uVar1, 1);
   uVar2 = DAT_010199c8;
   if (iVar4 != 0) {
@@ -70,4 +70,3 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   FUN_01008d00(0x33, 0x361);
   __builtin_unreachable();
 }
-
