@@ -2739,7 +2739,7 @@
    "name": "FUN_010122fc",
    "display_name": "FUN_010122fc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010122fc.c",
    "aliases": []
   },
   "0x01012308": {
@@ -2748,7 +2748,7 @@
    "name": "FUN_01012308",
    "display_name": "FUN_01012308",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01012308.c",
    "aliases": []
   },
   "0x0101232c": {
@@ -2920,9 +2920,7 @@
    "display_name": "sdc_ext_adv_event_complete",
    "human": true,
    "source": "function_name_overrides.json: Forced extended-advertising completion path: increments completed-event count, reschedules below the configured maximum, otherwise builds LE Advertising Set Terminated status 0x43 (Limit Reached), handle, connection handle and completed count. NCS 2.5.1 SDC variants sym_2K3JTQJLCTROZQI43ERT7GF5BTQ3SMAJXYMCVJI and sym_2CUDUPKI7JF4DCST2EA4IQU5SWO2YDS37ASKGPY match at 0.964 over 67 normalized operations. Raw identity remains FUN_010127f8.",
-   "aliases": [
-    "FUN_010127f8"
-   ]
+   "aliases": []
   },
   "0x010128bc": {
    "address": "0x010128bc",
@@ -3390,7 +3388,7 @@
    "name": "FUN_01016430",
    "display_name": "FUN_01016430",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01016430.c",
    "aliases": []
   },
   "0x01016628": {
@@ -3417,7 +3415,7 @@
    "name": "FUN_01016828",
    "display_name": "FUN_01016828",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01016828.c",
    "aliases": []
   },
   "0x010168e4": {
@@ -3455,7 +3453,7 @@
    "name": "FUN_01017018",
    "display_name": "FUN_01017018",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01017018.c",
    "aliases": []
   },
   "0x0101709c": {
@@ -3473,7 +3471,7 @@
    "name": "FUN_01017154",
    "display_name": "FUN_01017154",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01017154.c",
    "aliases": []
   },
   "0x010171c8": {
@@ -3661,7 +3659,7 @@
    "name": "FUN_0101920c",
    "display_name": "FUN_0101920c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0101920c.c",
    "aliases": []
   },
   "0x01019254": {
@@ -3688,7 +3686,7 @@
    "name": "FUN_01019588",
    "display_name": "FUN_01019588",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01019588.c",
    "aliases": []
   },
   "0x010195f8": {
@@ -3706,7 +3704,7 @@
    "name": "FUN_01019660",
    "display_name": "FUN_01019660",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01019660.c",
    "aliases": []
   },
   "0x010196e0": {
@@ -3984,7 +3982,7 @@
    "name": "FUN_0101b7e4",
    "display_name": "FUN_0101b7e4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0101b7e4.c",
    "aliases": []
   },
   "0x0101ba58": {
@@ -4074,7 +4072,7 @@
    "name": "FUN_0101c6d0",
    "display_name": "FUN_0101c6d0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0101c6d0.c",
    "aliases": []
   },
   "0x0101d404": {
@@ -4289,6 +4287,15 @@
    "display_name": "controller_handle_update_state_apply",
    "human": true,
    "source": "function_name_overrides.json: State-transition body reached through the 0x0101e15c tail veneer after typed-handle/context resolution. It accepts only state 0x2a, publishes either no-value state 0x2b or value/kind/applied state 0x30, releases an optional type-seven entry link, and returns controller status 0/0x0c. Raw identity remains FUN_0101e0a4.",
+   "aliases": []
+  },
+  "0x0101e15c": {
+   "address": "0x0101e15c",
+   "raw_name": "FUN_0101e15c",
+   "name": "FUN_0101e15c",
+   "display_name": "FUN_0101e15c",
+   "human": false,
+   "source": "recon/net/src/FUN_0101e15c.c",
    "aliases": []
   },
   "0x0101e160": {
@@ -5258,6 +5265,15 @@
    "display_name": "FUN_010217ac",
    "human": false,
    "source": "recon/net/src/FUN_010217ac.c",
+   "aliases": []
+  },
+  "0x010217cc": {
+   "address": "0x010217cc",
+   "raw_name": "FUN_010217cc",
+   "name": "FUN_010217cc",
+   "display_name": "FUN_010217cc",
+   "human": false,
+   "source": "recon/net/src/FUN_010217cc.c",
    "aliases": []
   },
   "0x01021800": {
@@ -8801,7 +8817,7 @@
    "name": "FUN_01031248",
    "display_name": "FUN_01031248",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01031248.c",
    "aliases": []
   },
   "0x010312d0": {
@@ -8886,7 +8902,7 @@
    "name": "FUN_01031820",
    "display_name": "FUN_01031820",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01031820.c",
    "aliases": []
   },
   "0x010318d8": {
@@ -9039,7 +9055,7 @@
    "name": "FUN_010333b4",
    "display_name": "FUN_010333b4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010333b4.c",
    "aliases": []
   },
   "0x010333e4": {
@@ -9907,7 +9923,7 @@
    "name": "FUN_010374dc",
    "display_name": "FUN_010374dc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010374dc.c",
    "aliases": []
   },
   "0x01037514": {
@@ -11443,7 +11459,7 @@
    "name": "FUN_0103b53a",
    "display_name": "FUN_0103b53a",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103b53a.c",
    "aliases": []
   },
   "0x0103b580": {
@@ -11935,6 +11951,7 @@
   "FUN_0101ded0": "0x0101ded0",
   "FUN_0101e078": "0x0101e078",
   "FUN_0101e090": "0x0101e090",
+  "FUN_0101e15c": "0x0101e15c",
   "FUN_0101e160": "0x0101e160",
   "FUN_0101e1e4": "0x0101e1e4",
   "FUN_0101e274": "0x0101e274",
@@ -12026,6 +12043,7 @@
   "FUN_010216d4": "0x010216d4",
   "FUN_01021790": "0x01021790",
   "FUN_010217ac": "0x010217ac",
+  "FUN_010217cc": "0x010217cc",
   "FUN_01021800": "0x01021800",
   "FUN_01021820": "0x01021820",
   "FUN_0102182c": "0x0102182c",

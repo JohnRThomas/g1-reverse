@@ -14,6 +14,7 @@ import sys
 
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import function_names
+import generated_identity
 
 
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
@@ -93,7 +94,8 @@ def main():
     address_symbols = load_address_symbols(address_map)
     os.makedirs(output, exist_ok=True)
 
-    expected = set()
+    planned = {}
+    identities = {}
     renamed = 0
     for path in sorted(glob.glob(source + "/*.c")):
         with open(path) as stream:
@@ -115,18 +117,24 @@ def main():
                                    function_backmap(original, core),
                                    global_backmap(original, address_symbols))
         outname = public_name + ".c"
-        expected.add(outname)
-        with open(os.path.join(output, outname), "w") as stream:
-            rendered = header + body
-            stream.write("\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n")
+        rendered = header + body
+        rendered = "\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n"
+        generated_identity.add(planned, identities, outname, entry, path, rendered)
         renamed += bool(record and record.get("human"))
+
+    # Do not touch the output tree until every filename and address is known to
+    # be unique.  This is the key guard against a stale readable alias silently
+    # overwriting the source that actually owns that alias.
+    for outname, item in sorted(planned.items()):
+        generated_identity.atomic_write(os.path.join(output, outname),
+                                        item["rendered"])
 
     # Remove only stale generated C files.  Non-C notes/assets are untouched.
     for path in glob.glob(output + "/*.c"):
-        if os.path.basename(path) not in expected:
+        if os.path.basename(path) not in planned:
             os.unlink(path)
     print("[%s] readable sources: %d | human public names: %d -> %s" %
-          (core, len(expected), renamed, output))
+          (core, len(planned), renamed, output))
 
 
 if __name__ == "__main__":

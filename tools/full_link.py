@@ -58,12 +58,27 @@ def link_and_report():
     # Generated raw/readable aliases are safe to apply during the real partial
     # link because their target was observed defined in the previous clean ELF.
     defsym = []
+    # Read the freshly compiled objects before trusting the direction of a
+    # durable alias fragment.  Switching a core from raw to readable generated
+    # sources reverses which side is defined; stale direction must not make the
+    # otherwise valid partial link fail.
+    defined = set()
+    for obj in objs:
+        for line in subprocess.run([NM, "-g", obj], capture_output=True,
+                                   text=True).stdout.splitlines():
+            fields = line.split()
+            if len(fields) >= 3 and fields[-2] != "U":
+                defined.add(fields[-1])
     generated_aliases = BASE + "/recon/symbols/g1_%s_function_aliases.ld" % CORE
     if os.path.exists(generated_aliases):
         for line in open(generated_aliases):
             match = re.search(r'PROVIDE\(([^\s=]+)\s*=\s*([^\s;)]+)', line)
             if match:
-                defsym += ["--defsym", "%s=%s" % match.groups()]
+                alias, target = match.groups()
+                if target in defined and alias not in defined:
+                    defsym += ["--defsym", "%s=%s" % (alias, target)]
+                elif alias in defined and target not in defined:
+                    defsym += ["--defsym", "%s=%s" % (target, alias)]
     r = subprocess.run([LD, "-r", "-o", out] + defsym + objs,
                        capture_output=True, text=True)
     undef = [l.split()[-1] for l in subprocess.run([NM, "-u", out], capture_output=True, text=True).stdout.splitlines() if l.strip()]

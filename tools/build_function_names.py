@@ -26,6 +26,7 @@ SCR = ("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
 HEADER = re.compile(
     r"(?:Reconstructed|net-core)\s+([A-Za-z_$][\w$]*)\s+@\s+"
     r"(0x[0-9a-fA-F]+)")
+ENTRY = re.compile(r"@\s+(0x[0-9a-fA-F]+)")
 VALID_C_NAME = re.compile(r"^[A-Za-z_$][A-Za-z0-9_$]*$")
 C_KEYWORDS = set("auto break case char const continue default do double else enum "
                  "extern float for goto if inline int long register restrict return "
@@ -71,6 +72,19 @@ def source_headers(core, candidates):
             if match:
                 add(candidates, int(match.group(2), 16), match.group(1),
                     priority, os.path.relpath(path, BASE))
+                continue
+            # Some reviewed sources use a descriptive leading comment rather
+            # than the historical "Reconstructed NAME @ VA" spelling.  Their
+            # address still has to exist in the durable map; otherwise a
+            # generated tree can contain an identity the reverse map cannot
+            # represent.  The raw filename is the safe presentation fallback.
+            entry = ENTRY.search(prefix)
+            raw_file = re.fullmatch(r"(?:FUN_|sub_)0*([0-9a-fA-F]{3,8})\.c",
+                                    os.path.basename(path))
+            if entry and raw_file:
+                address = int(entry.group(1), 16) & ~1
+                add(candidates, address, "FUN_%08x" % address, priority,
+                    os.path.relpath(path, BASE))
 
 
 def durable_names(core, candidates):

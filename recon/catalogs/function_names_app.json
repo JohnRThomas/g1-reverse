@@ -32,8 +32,10 @@
    "name": "FUN_0000005e",
    "display_name": "FUN_0000005e",
    "human": false,
-   "source": "recon/named/net_buf_put.c",
-   "aliases": []
+   "source": "committed durable map",
+   "aliases": [
+    "FUN_0005f200"
+   ]
   },
   "0x00000072": {
    "address": "0x00000072",
@@ -341,7 +343,7 @@
    "name": "FUN_0000e2b4",
    "display_name": "FUN_0000e2b4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0000e2b4.c",
    "aliases": []
   },
   "0x0000e340": {
@@ -961,7 +963,7 @@
    "name": "FUN_00017688",
    "display_name": "FUN_00017688",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00017688.c",
    "aliases": []
   },
   "0x00017768": {
@@ -992,7 +994,7 @@
    "name": "FUN_00017858",
    "display_name": "FUN_00017858",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00017858.c",
    "aliases": []
   },
   "0x0001793c": {
@@ -2749,7 +2751,7 @@
    "name": "FUN_00026338",
    "display_name": "FUN_00026338",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00026338.c",
    "aliases": []
   },
   "0x00026418": {
@@ -2800,7 +2802,7 @@
    "name": "FUN_00026624",
    "display_name": "FUN_00026624",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00026624.c",
    "aliases": []
   },
   "0x000267ac": {
@@ -2860,7 +2862,7 @@
    "name": "FUN_0002685c",
    "display_name": "FUN_0002685c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0002685c.c",
    "aliases": []
   },
   "0x000269fc": {
@@ -3095,7 +3097,7 @@
    "name": "FUN_0002a4f4",
    "display_name": "FUN_0002a4f4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0002a4f4.c",
    "aliases": []
   },
   "0x0002a65c": {
@@ -3910,7 +3912,7 @@
    "name": "FUN_00030340",
    "display_name": "FUN_00030340",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00030340.c",
    "aliases": []
   },
   "0x000304f0": {
@@ -4140,7 +4142,7 @@
    "name": "FUN_000324bc",
    "display_name": "FUN_000324bc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000324bc.c",
    "aliases": []
   },
   "0x00032628": {
@@ -4913,7 +4915,7 @@
    "name": "FUN_000361d8",
    "display_name": "FUN_000361d8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000361d8.c",
    "aliases": []
   },
   "0x0003629c": {
@@ -5608,7 +5610,7 @@
    "name": "FUN_0004382c",
    "display_name": "FUN_0004382c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004382c.c",
    "aliases": []
   },
   "0x000438d0": {
@@ -5617,7 +5619,7 @@
    "name": "FUN_000438d0",
    "display_name": "FUN_000438d0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000438d0.c",
    "aliases": []
   },
   "0x0004396c": {
@@ -5692,7 +5694,7 @@
    "name": "FUN_000440ec",
    "display_name": "FUN_000440ec",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000440ec.c",
    "aliases": []
   },
   "0x000442bc": {
@@ -6772,7 +6774,7 @@
    "name": "FUN_0004b214",
    "display_name": "FUN_0004b214",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004b214.c",
    "aliases": []
   },
   "0x0004b2b0": {
@@ -6790,7 +6792,7 @@
    "name": "FUN_0004b4fc",
    "display_name": "FUN_0004b4fc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004b4fc.c",
    "aliases": []
   },
   "0x0004b908": {
@@ -6889,9 +6891,7 @@
    "display_name": "mpsc_pbuf_free",
    "human": true,
    "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation and ABI: clears valid, either clears busy and advances read indices or publishes a skip record in overwrite mode, unlocks, then gives the buffer semaphore. Raw identity remains FUN_0004bfc8.",
-   "aliases": [
-    "FUN_0004bfc8"
-   ]
+   "aliases": []
   },
   "0x0004c0a8": {
    "address": "0x0004c0a8",
@@ -6943,7 +6943,7 @@
    "name": "FUN_0004c418",
    "display_name": "FUN_0004c418",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004c418.c",
    "aliases": []
   },
   "0x0004c4d0": {
@@ -7052,7 +7052,7 @@
    "name": "FUN_0004cd4c",
    "display_name": "FUN_0004cd4c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004cd4c.c",
    "aliases": []
   },
   "0x0004cefc": {
@@ -7201,8 +7201,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact NCS 2.5.1 logging wrapper: loads curr_log_buffer from 0x2000a0cc and tail-calls mpsc_pbuf_free(buffer, msg). The former mpsc_pbuf_free assignment belongs to 0x0004bfc8. Raw identity remains FUN_0004d578.",
    "aliases": [
-    "FUN_0004d578",
-    "mpsc_pbuf_free"
+    "FUN_0004d578"
    ]
   },
   "0x0004d588": {
@@ -7242,7 +7241,7 @@
    "name": "FUN_0004d6ec",
    "display_name": "FUN_0004d6ec",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004d6ec.c",
    "aliases": []
   },
   "0x0004d8dc": {
@@ -7273,7 +7272,7 @@
    "name": "FUN_0004d944",
    "display_name": "FUN_0004d944",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004d944.c",
    "aliases": []
   },
   "0x0004da6c": {
@@ -7618,7 +7617,7 @@
    "name": "FUN_0004ed3c",
    "display_name": "FUN_0004ed3c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004ed3c.c",
    "aliases": []
   },
   "0x0004ed8c": {
@@ -7721,7 +7720,7 @@
    "name": "FUN_0004f770",
    "display_name": "FUN_0004f770",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004f770.c",
    "aliases": []
   },
   "0x0004f860": {
@@ -7730,7 +7729,7 @@
    "name": "FUN_0004f860",
    "display_name": "FUN_0004f860",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004f860.c",
    "aliases": []
   },
   "0x0004f92c": {
@@ -7739,7 +7738,7 @@
    "name": "FUN_0004f92c",
    "display_name": "FUN_0004f92c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0004f92c.c",
    "aliases": []
   },
   "0x0004fa1c": {
@@ -8057,8 +8056,7 @@
    "human": true,
    "source": "function_name_overrides.json: Newlib retargetable recursive-lock acquire boundary; validates the lock then waits on its Zephyr mutex. Raw identity remains FUN_000510fc.",
    "aliases": [
-    "FUN_000510fc",
-    "lock_acquire_or_fatal"
+    "FUN_000510fc"
    ]
   },
   "0x00051134": {
@@ -8069,8 +8067,7 @@
    "human": true,
    "source": "function_name_overrides.json: Newlib retargetable recursive-lock release boundary; validates the lock then unlocks its Zephyr mutex. Raw identity remains FUN_00051134.",
    "aliases": [
-    "FUN_00051134",
-    "lock_release_or_fatal"
+    "FUN_00051134"
    ]
   },
   "0x00051164": {
@@ -8679,7 +8676,7 @@
    "name": "FUN_00053658",
    "display_name": "FUN_00053658",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00053658.c",
    "aliases": []
   },
   "0x000536b8": {
@@ -8739,7 +8736,7 @@
    "name": "FUN_00053d70",
    "display_name": "FUN_00053d70",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00053d70.c",
    "aliases": []
   },
   "0x00053e74": {
@@ -8821,7 +8818,7 @@
    "name": "FUN_00054444",
    "display_name": "FUN_00054444",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00054444.c",
    "aliases": []
   },
   "0x00054528": {
@@ -8839,7 +8836,7 @@
    "name": "FUN_000545f0",
    "display_name": "FUN_000545f0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000545f0.c",
    "aliases": []
   },
   "0x00054784": {
@@ -9298,7 +9295,7 @@
    "name": "FUN_00056300",
    "display_name": "FUN_00056300",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00056300.c",
    "aliases": []
   },
   "0x00056394": {
@@ -9542,7 +9539,7 @@
    "name": "FUN_000571e8",
    "display_name": "FUN_000571e8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000571e8.c",
    "aliases": []
   },
   "0x000572fc": {
@@ -9651,7 +9648,7 @@
    "name": "FUN_0005757c",
    "display_name": "FUN_0005757c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0005757c.c",
    "aliases": []
   },
   "0x0005774c": {
@@ -9660,7 +9657,7 @@
    "name": "FUN_0005774c",
    "display_name": "FUN_0005774c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0005774c.c",
    "aliases": []
   },
   "0x00057874": {
@@ -9722,7 +9719,7 @@
    "name": "FUN_00057b60",
    "display_name": "FUN_00057b60",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00057b60.c",
    "aliases": []
   },
   "0x00057cc4": {
@@ -9817,7 +9814,7 @@
    "name": "FUN_00058808",
    "display_name": "FUN_00058808",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00058808.c",
    "aliases": []
   },
   "0x00058930": {
@@ -9837,7 +9834,7 @@
    "name": "FUN_00058a54",
    "display_name": "FUN_00058a54",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00058a54.c",
    "aliases": []
   },
   "0x00058b78": {
@@ -9846,7 +9843,7 @@
    "name": "FUN_00058b78",
    "display_name": "FUN_00058b78",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00058b78.c",
    "aliases": []
   },
   "0x00058bfc": {
@@ -10028,7 +10025,7 @@
    "name": "FUN_00059834",
    "display_name": "FUN_00059834",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00059834.c",
    "aliases": []
   },
   "0x00059920": {
@@ -10613,7 +10610,7 @@
    "name": "FUN_0005c5f0",
    "display_name": "FUN_0005c5f0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0005c5f0.c",
    "aliases": []
   },
   "0x0005c80c": {
@@ -10766,7 +10763,7 @@
    "name": "FUN_0005d5c0",
    "display_name": "FUN_0005d5c0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0005d5c0.c",
    "aliases": []
   },
   "0x0005d964": {
@@ -11119,8 +11116,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact Zephyr net_buf FIFO wrapper: validates fifo and buffer then appends the buffer to the underlying k_queue. smp_rx_remove_invalid uses it for both the temporary and transport FIFOs. The stale net_buf_destroy_default assignment was incompatible with the two-argument FIFO ABI. Raw identity remains FUN_0005f200.",
    "aliases": [
-    "FUN_0005f200",
-    "net_buf_destroy_default"
+    "FUN_0005f200"
    ]
   },
   "0x0005f24c": {
@@ -11344,7 +11340,7 @@
    "name": "FUN_000604e4",
    "display_name": "FUN_000604e4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000604e4.c",
    "aliases": []
   },
   "0x00060564": {
@@ -11380,7 +11376,7 @@
    "name": "FUN_00060788",
    "display_name": "FUN_00060788",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00060788.c",
    "aliases": []
   },
   "0x00060990": {
@@ -11431,7 +11427,7 @@
    "name": "FUN_00060a5c",
    "display_name": "FUN_00060a5c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00060a5c.c",
    "aliases": []
   },
   "0x00060ab0": {
@@ -11575,7 +11571,7 @@
    "name": "FUN_00061f64",
    "display_name": "FUN_00061f64",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00061f64.c",
    "aliases": []
   },
   "0x00062070": {
@@ -11622,7 +11618,7 @@
    "name": "FUN_00062930",
    "display_name": "FUN_00062930",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00062930.c",
    "aliases": []
   },
   "0x00062ad8": {
@@ -11700,7 +11696,7 @@
    "name": "FUN_00063524",
    "display_name": "FUN_00063524",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00063524.c",
    "aliases": []
   },
   "0x00063570": {
@@ -11845,7 +11841,7 @@
    "name": "FUN_00063b7c",
    "display_name": "FUN_00063b7c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00063b7c.c",
    "aliases": []
   },
   "0x00063ba8": {
@@ -11919,7 +11915,7 @@
    "name": "FUN_000640e8",
    "display_name": "FUN_000640e8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000640e8.c",
    "aliases": []
   },
   "0x00064134": {
@@ -11959,7 +11955,7 @@
    "name": "FUN_000644f8",
    "display_name": "FUN_000644f8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000644f8.c",
    "aliases": []
   },
   "0x00064640": {
@@ -12023,7 +12019,7 @@
    "name": "FUN_00064b64",
    "display_name": "FUN_00064b64",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00064b64.c",
    "aliases": []
   },
   "0x00064c3c": {
@@ -12297,7 +12293,7 @@
    "name": "FUN_00065584",
    "display_name": "FUN_00065584",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00065584.c",
    "aliases": []
   },
   "0x000655ec": {
@@ -12540,7 +12536,7 @@
    "name": "FUN_00065ff4",
    "display_name": "FUN_00065ff4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00065ff4.c",
    "aliases": []
   },
   "0x00066050": {
@@ -12800,7 +12796,7 @@
    "name": "FUN_00066d1c",
    "display_name": "FUN_00066d1c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00066d1c.c",
    "aliases": []
   },
   "0x00066d78": {
@@ -12865,7 +12861,7 @@
    "name": "FUN_00067304",
    "display_name": "FUN_00067304",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00067304.c",
    "aliases": []
   },
   "0x00067548": {
@@ -12914,7 +12910,7 @@
    "name": "FUN_00067884",
    "display_name": "FUN_00067884",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00067884.c",
    "aliases": []
   },
   "0x000678d0": {
@@ -12941,7 +12937,7 @@
    "name": "FUN_00067d84",
    "display_name": "FUN_00067d84",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00067d84.c",
    "aliases": []
   },
   "0x00067dfc": {
@@ -12961,7 +12957,7 @@
    "name": "FUN_00067e30",
    "display_name": "FUN_00067e30",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00067e30.c",
    "aliases": []
   },
   "0x00067e8c": {
@@ -13059,8 +13055,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/attdet.c lc3_attdet_run: identical five-argument attack-detector state machine and threshold table; firmware extent 436 bytes versus 440 bytes under the pinned -O3/-ffast-math build. Displaces the incorrect lc3_ltpf_correlate label, retained by the generated manifest as an alias. Raw identity remains FUN_000682f0.",
    "aliases": [
-    "FUN_000682f0",
-    "lc3_ltpf_correlate"
+    "FUN_000682f0"
    ]
   },
   "0x000684a8": {
@@ -13203,8 +13198,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_frame_samples; exact 140-byte compiled extent and identical 7.5/10 ms sample-rate dispatch. Displaces descriptive lc3_ns, retained as an alias. Raw identity remains FUN_00068e40.",
    "aliases": [
-    "FUN_00068e40",
-    "lc3_ns"
+    "FUN_00068e40"
    ]
   },
   "0x00068ecc": {
@@ -13215,8 +13209,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_encoder_size; identical duration/sample-rate validation and encoder workspace size calculation. Displaces lc3_frame_param_compute, retained as an alias. Raw identity remains FUN_00068ecc.",
    "aliases": [
-    "FUN_00068ecc",
-    "lc3_frame_param_compute"
+    "FUN_00068ecc"
    ]
   },
   "0x00068f94": {
@@ -13227,8 +13220,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_setup_encoder; identical four-argument setup ABI, format/rate resolution, 0x4b0-byte state initialization, and workspace layout. Displaces lc3_ltpf_select_resampler_params, retained as an alias. Raw identity remains FUN_00068f94.",
    "aliases": [
-    "FUN_00068f94",
-    "lc3_ltpf_select_resampler_params"
+    "FUN_00068f94"
    ]
   },
   "0x00069238": {
@@ -13239,8 +13231,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 public lc3_encode; exact 560-byte compiled extent and matching encoder pipeline/callee order. Displaces descriptive lc3_encode_frame, retained as an alias. Raw identity remains FUN_00069238.",
    "aliases": [
-    "FUN_00069238",
-    "lc3_encode_frame"
+    "FUN_00069238"
    ]
   },
   "0x00069468": {
@@ -13262,8 +13253,7 @@
    "human": true,
    "source": "function_name_overrides.json: Qualified form of static src/ltpf_arm.h arm_correlate; exact 898-byte compiled extent and matching SIMD32 correlation kernel. Displaces incorrect lc3_ltpf_resample, retained as an alias. Raw identity remains FUN_0006954c.",
    "aliases": [
-    "FUN_0006954c",
-    "lc3_ltpf_resample"
+    "FUN_0006954c"
    ]
   },
   "0x000698d0": {
@@ -13417,8 +13407,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/sns.c lc3_sns_put_data; matching SNS codebook, shape/gain and MVPQ index bit packing. Displaces lc3_encode_pack_frame_header_bits, retained as an alias. Raw identity remains FUN_0006efdc.",
    "aliases": [
-    "FUN_0006efdc",
-    "lc3_encode_pack_frame_header_bits"
+    "FUN_0006efdc"
    ]
   },
   "0x0006f164": {
@@ -13462,8 +13451,7 @@
    "human": true,
    "source": "function_name_overrides.json: NCS 2.5.1 liblc3 src/spec.c lc3_spec_put_side; exact 164-byte compiled extent and matching nq/lsb_mode/g_idx fields. Displaces lc3_encode_pack_gain_bits, retained as an alias. Raw identity remains FUN_0006f91c.",
    "aliases": [
-    "FUN_0006f91c",
-    "lc3_encode_pack_gain_bits"
+    "FUN_0006f91c"
    ]
   },
   "0x0006f9c0": {
@@ -13687,7 +13675,7 @@
    "name": "FUN_00071df8",
    "display_name": "FUN_00071df8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00071df8.c",
    "aliases": []
   },
   "0x00071eac": {
@@ -13822,8 +13810,7 @@
    "human": true,
    "source": "function_name_overrides.json: Complete Zephyr semaphore-take implementation: locks the kernel spinlock, consumes a positive count or pends the current thread with the supplied k_timeout_t, then reschedules. Raw identity remains FUN_00072908.",
    "aliases": [
-    "FUN_00072908",
-    "mutex_lock_syscall_handler"
+    "FUN_00072908"
    ]
   },
   "0x000729fc": {
@@ -14368,7 +14355,7 @@
    "name": "FUN_00075574",
    "display_name": "FUN_00075574",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00075574.c",
    "aliases": []
   },
   "0x000755f8": {
@@ -14439,7 +14426,7 @@
    "name": "FUN_00075acc",
    "display_name": "FUN_00075acc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00075acc.c",
    "aliases": []
   },
   "0x00075c2c": {
@@ -14625,8 +14612,7 @@
    "human": true,
    "source": "function_name_overrides.json: Newlib stdio initializer for struct _reent: allocates/configures stdin, stdout and stderr and sets __sdidinit under the environment lock. Raw identity remains FUN_00076bcc.",
    "aliases": [
-    "FUN_00076bcc",
-    "stdio_streams_init"
+    "FUN_00076bcc"
    ]
   },
   "0x00076c3c": {
@@ -14753,7 +14739,9 @@
    "display_name": "_puts_r",
    "human": true,
    "source": "function_name_overrides.json: Exact newlib reentrant puts implementation: builds a two-iovec __suio for text plus the newline literal, initializes reent stdio, resolves fake stdin/stdout/stderr FILE pointers, recursively locks the FILE, calls __sfvwrite_r, unlocks, and returns newline or EOF. Raw identity remains FUN_00077820.",
-   "aliases": []
+   "aliases": [
+    "FUN_00077820"
+   ]
   },
   "0x000778d4": {
    "address": "0x000778d4",
@@ -14880,8 +14868,7 @@
    "human": true,
    "source": "function_name_overrides.json: Newlib scatter/gather FILE writer consuming struct _reent, FILE and __suio; handles line/unbuffered/buffered paths and advances iovec residuals. Raw identity remains FUN_00077e70.",
    "aliases": [
-    "FUN_00077e70",
-    "stdio_buffer_grow"
+    "FUN_00077e70"
    ]
   },
   "0x00078110": {
@@ -16270,7 +16257,7 @@
    "name": "FUN_0007c3da",
    "display_name": "FUN_0007c3da",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007c3da.c",
    "aliases": []
   },
   "0x0007c3ea": {
@@ -16463,7 +16450,7 @@
    "name": "FUN_0007c85e",
    "display_name": "FUN_0007c85e",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007c85e.c",
    "aliases": []
   },
   "0x0007c872": {
@@ -16787,8 +16774,7 @@
    "human": true,
    "source": "function_name_overrides.json: Public millisecond sleep wrapper converting its signed millisecond argument to a Zephyr timeout before the scheduler sleep path. touch_key_thread uses 5000 ms and 500 ms delays. Raw identity remains FUN_0007cb8e.",
    "aliases": [
-    "FUN_0007cb8e",
-    "k_msleep_ticks32768_a"
+    "FUN_0007cb8e"
    ]
   },
   "0x0007cbae": {
@@ -17285,7 +17271,7 @@
    "name": "FUN_0007d3dc",
    "display_name": "FUN_0007d3dc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007d3dc.c",
    "aliases": []
   },
   "0x0007d3ee": {
@@ -17587,7 +17573,7 @@
    "name": "FUN_0007d8f4",
    "display_name": "FUN_0007d8f4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007d8f4.c",
    "aliases": []
   },
   "0x0007d968": {
@@ -18167,7 +18153,7 @@
    "name": "FUN_0007e526",
    "display_name": "FUN_0007e526",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007e526.c",
    "aliases": []
   },
   "0x0007e53e": {
@@ -18517,7 +18503,7 @@
    "name": "FUN_0007ee74",
    "display_name": "FUN_0007ee74",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007ee74.c",
    "aliases": []
   },
   "0x0007eea6": {
@@ -18694,7 +18680,7 @@
    "name": "FUN_0007f064",
    "display_name": "FUN_0007f064",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f064.c",
    "aliases": []
   },
   "0x0007f088": {
@@ -19068,7 +19054,7 @@
    "name": "FUN_0007f7c8",
    "display_name": "FUN_0007f7c8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f7c8.c",
    "aliases": []
   },
   "0x0007f7d2": {
@@ -19086,7 +19072,7 @@
    "name": "FUN_0007f894",
    "display_name": "FUN_0007f894",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f894.c",
    "aliases": []
   },
   "0x0007f8c6": {
@@ -19124,7 +19110,7 @@
    "name": "FUN_0007f97c",
    "display_name": "FUN_0007f97c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f97c.c",
    "aliases": []
   },
   "0x0007f98a": {
@@ -19133,7 +19119,7 @@
    "name": "FUN_0007f98a",
    "display_name": "FUN_0007f98a",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f98a.c",
    "aliases": []
   },
   "0x0007f998": {
@@ -19687,7 +19673,7 @@
    "name": "FUN_00080872",
    "display_name": "FUN_00080872",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00080872.c",
    "aliases": []
   },
   "0x0008096a": {
@@ -19834,8 +19820,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact NCS 2.5.1 mcumgr transport helper: optionally invokes smpt->functions.ud_free on net_buf_user_data(buf), then calls smp_packet_free/net_buf_unref. Raw identity remains FUN_00080b0e.",
    "aliases": [
-    "FUN_00080b0e",
-    "audio_buf_release"
+    "FUN_00080b0e"
    ]
   },
   "0x00080b28": {
@@ -20696,7 +20681,7 @@
    "name": "FUN_000819ea",
    "display_name": "FUN_000819ea",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000819ea.c",
    "aliases": []
   },
   "0x00081a4e": {
@@ -21011,7 +20996,7 @@
    "name": "FUN_000822ae",
    "display_name": "FUN_000822ae",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000822ae.c",
    "aliases": []
   },
   "0x000822bc": {
@@ -21120,7 +21105,7 @@
    "name": "FUN_00082594",
    "display_name": "FUN_00082594",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00082594.c",
    "aliases": []
   },
   "0x000825ac": {
@@ -21802,7 +21787,7 @@
    "name": "FUN_0008349c",
    "display_name": "FUN_0008349c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0008349c.c",
    "aliases": []
   },
   "0x0008352c": {
@@ -22539,7 +22524,7 @@
    "name": "FUN_00084840",
    "display_name": "FUN_00084840",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00084840.c",
    "aliases": []
   },
   "0x0008484e": {
@@ -22884,7 +22869,7 @@
    "name": "FUN_00084ed8",
    "display_name": "FUN_00084ed8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00084ed8.c",
    "aliases": []
   },
   "0x00084f16": {
@@ -23913,7 +23898,7 @@
    "name": "FUN_00086338",
    "display_name": "FUN_00086338",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00086338.c",
    "aliases": []
   },
   "0x0008633e": {
@@ -24422,7 +24407,7 @@
    "name": "FUN_000868ee",
    "display_name": "FUN_000868ee",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000868ee.c",
    "aliases": []
   },
   "0x000868fc": {
@@ -24431,7 +24416,7 @@
    "name": "FUN_000868fc",
    "display_name": "FUN_000868fc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000868fc.c",
    "aliases": []
   },
   "0x00086902": {
@@ -24482,7 +24467,7 @@
    "name": "FUN_000869c6",
    "display_name": "FUN_000869c6",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000869c6.c",
    "aliases": []
   },
   "0x000869cc": {
@@ -24491,7 +24476,7 @@
    "name": "FUN_000869cc",
    "display_name": "FUN_000869cc",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_000869cc.c",
    "aliases": []
   },
   "0x000869dc": {
@@ -24551,7 +24536,7 @@
    "name": "FUN_00086b40",
    "display_name": "FUN_00086b40",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00086b40.c",
    "aliases": []
   },
   "0x00086b7e": {
@@ -24704,7 +24689,7 @@
    "name": "FUN_00086f92",
    "display_name": "FUN_00086f92",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_00086f92.c",
    "aliases": []
   },
   "0x00086fbe": {
@@ -24802,7 +24787,7 @@
    "name": "FUN_0008712e",
    "display_name": "FUN_0008712e",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0008712e.c",
    "aliases": []
   },
   "0x00087184": {

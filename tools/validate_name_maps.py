@@ -10,6 +10,7 @@ import sys
 
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import function_names
+import generated_identity
 
 
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
@@ -57,6 +58,51 @@ def check_function_map(core, errors):
         if len(paths) > 1:
             errors.append("%s duplicate source entry 0x%08x: %s" %
                           (core, address, ", ".join(sorted(paths))))
+
+    expected = {int(address, 16): record
+                for address, record in by_address.items()
+                if int(address, 16) in owners}
+    roots = ([BASE + "/recon/named", BASE + "/recon/symbolized/app"]
+             if core == "app" else
+             [BASE + "/recon/net/named", BASE + "/recon/symbolized/net"])
+    for root in roots:
+        generated = {}
+        filenames = {}
+        for path in sorted(glob.glob(root + "/*.c")):
+            try:
+                identity = generated_identity.parse(open(path).read(4096), path)
+            except ValueError as exc:
+                errors.append(str(exc))
+                continue
+            address = identity["address"]
+            if address in generated:
+                errors.append("%s duplicate generated address 0x%08x: %s/%s" %
+                              (core, address, generated[address], path))
+            generated[address] = path
+            filename = os.path.basename(path)
+            if filename in filenames:
+                errors.append("%s duplicate generated filename %s" % (core, filename))
+            filenames[filename] = address
+            record = expected.get(address)
+            if not record:
+                errors.append("%s unexpected generated identity 0x%08x in %s" %
+                              (core, address, path))
+                continue
+            wanted = record["name"] + ".c"
+            if filename != wanted or identity["public_name"] != record["name"]:
+                errors.append("%s stale generated identity 0x%08x: %s/public %s, wanted %s" %
+                              (core, address, filename, identity["public_name"], wanted))
+            if identity["raw_name"] != record["raw_name"]:
+                errors.append("%s generated raw identity mismatch 0x%08x in %s" %
+                              (core, address, path))
+        missing = sorted(set(expected) - set(generated))
+        extra = sorted(set(generated) - set(expected))
+        if missing:
+            errors.append("%s generated tree %s missing %d identities (first 0x%08x)" %
+                          (core, root, len(missing), missing[0]))
+        if extra:
+            errors.append("%s generated tree %s has %d extra identities" %
+                          (core, root, len(extra)))
 
 
 def check_address_map(core, errors):

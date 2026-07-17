@@ -33,6 +33,23 @@ def symbols(elf):
     return defined, undefined
 
 
+def object_symbols(core):
+    """Return pre-alias evidence from the freshly compiled object set.
+
+    The partial ELF may already contain --defsym aliases from the previous
+    fragment, making both names look defined and feeding stale direction back
+    into the next generation.  Individual objects preserve the real source
+    definition/reference direction.
+    """
+    defined = set()
+    undefined = set()
+    for obj in sorted(glob.glob(BASE + "/build/%s_full_obj/*.o" % core)):
+        obj_defined, obj_undefined = symbols(obj)
+        defined.update(obj_defined)
+        undefined.update(obj_undefined)
+    return defined, undefined
+
+
 def require_fresh_complete_elf(core, elf, manifest_path):
     """Reject stale/partial link evidence before touching the durable output."""
     if not os.path.exists(elf):
@@ -75,7 +92,7 @@ def main():
     manifest_path = BASE + "/recon/catalogs/function_names_%s.json" % core
     require_fresh_complete_elf(core, elf, manifest_path)
     manifest = json.load(open(manifest_path))
-    defined, undefined = symbols(elf)
+    defined, undefined = object_symbols(core)
     aliases = []
     rejected = {"both_defined": [], "neither_defined": []}
     for address, record in sorted(manifest["by_address"].items()):

@@ -17,6 +17,9 @@ proof. Use --write to emit into recon/symbolized/<core>/ (copies, originals kept
 """
 import sys, os, re, json, glob, collections
 
+sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
+import generated_identity
+
 SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 BASE = "/Users/freedomcoder/Projects/G1disasm2"
 
@@ -29,11 +32,23 @@ for a in sys.argv[1:]:
 if CORE == "app":
     NAMED = BASE + "/recon/named"; MAP = SCR + "/symbol_map.json"
 else:
-    NAMED = BASE + "/recon/net/src"; MAP = SCR + "/symbol_map_net.json"
+    NAMED = BASE + "/recon/net/named"; MAP = SCR + "/symbol_map_net.json"
 OUTSRC = BASE + "/recon/symbolized/" + CORE
 HDR = BASE + "/recon/symbols"
 
 smap = json.load(open(MAP))
+
+# These names are declared with their real multidimensional/struct types by
+# liblc3's tables.h.  Generic byte-array declarations remain useful to the
+# standalone reconstructed sources, but must be suppressible for sources that
+# include the authoritative upstream headers.
+LIBLC3_TABLE_DECLS = {
+    "lc3_band_lim", "lc3_sns_lfcb", "lc3_sns_hfcb",
+    "lc3_sns_vq_gains", "lc3_sns_mpvq_offsets",
+    "lc3_tns_order_models", "lc3_tns_order_bits",
+    "lc3_tns_coeffs_models", "lc3_tns_coeffs_bits",
+    "lc3_spectrum_lookup", "lc3_spectrum_models", "lc3_spectrum_bits",
+}
 
 def c_string(s):
     out = '"'
@@ -162,7 +177,7 @@ def san_ctype(ct):
 
 def gen_headers():
     os.makedirs(HDR, exist_ok=True)
-    globs, parts, regs, rodata, functions = [], [], [], [], []
+    globs, parts, regs, rodata, lc3_rodata, functions = [], [], [], [], [], []
     for a, rec in sorted(smap.items(), key=lambda kv: int(kv[0], 16)):
         k = rec.get("kind"); n = rec.get("name"); v = int(a, 16)
         if rec.get("symbol_offset", 0):
@@ -179,7 +194,8 @@ def gen_headers():
         elif k == "mmio_reg":
             regs.append("#define %-16s %sUL" % (n, a))
         elif k in ("rodata_ref", "string"):
-            rodata.append("extern const unsigned char %s[]; /* @%s */" % (n, a))
+            declaration = "extern const unsigned char %s[]; /* @%s */" % (n, a)
+            (lc3_rodata if n in LIBLC3_TABLE_DECLS else rodata).append(declaration)
         elif k == "function_addr":
             functions.append("#define %-36s %s /* %s */" %
                              (n, a, rec.get("function_name", "function")))
@@ -191,6 +207,8 @@ def gen_headers():
              "/* ---- function addresses ---- */", *sorted(set(functions)), "",
              "/* ---- RAM globals / kernel objects (%d) ---- */" % len(globs), *globs, "",
              "/* ---- rodata table externs (%d) ---- */" % len(set(rodata)), *sorted(set(rodata)), "",
+             "/* Generic fallbacks for sources not including liblc3 tables.h. */",
+             "#ifndef G1_APP_USE_LIBLC3_TABLE_DECLS", *sorted(set(lc3_rodata)), "#endif", "",
              "#endif"]
     path = HDR + "/g1_%s_symbols.h" % CORE
     if WRITE:
@@ -198,8 +216,9 @@ def gen_headers():
     return path, len(globs), len(parts), len(regs), len(set(rodata)), len(set(functions))
 
 def main():
-    files = glob.glob(NAMED + "/*.c")
-    expected = {os.path.basename(path) for path in files}
+    files = sorted(glob.glob(NAMED + "/*.c"))
+    planned = {}
+    identities = {}
     total = collections.Counter()
     remain_addr = collections.Counter()
     if WRITE: os.makedirs(OUTSRC, exist_ok=True)
@@ -214,17 +233,30 @@ def main():
             v = int(re.sub(r'[ULul]+$', '', m), 16)
             if v >= 0x1000 and hex(v) in smap and smap[hex(v)].get("kind") == "const":
                 remain_addr["const_kept"] += 1
-        if WRITE:
-            hdr_inc = '#include "g1_%s_symbols.h"\n' % CORE
-            rendered = hdr_inc + new
-            rendered = "\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n"
-            open(os.path.join(OUTSRC, os.path.basename(f)), "w").write(rendered)
+        identity = generated_identity.parse(txt, f)
+        if os.path.basename(f) != identity["public_name"] + ".c":
+            raise ValueError("readable filename/identity mismatch %s: public-name %s" %
+                             (f, identity["public_name"]))
+        liblc3_guard = ("#define G1_APP_USE_LIBLC3_TABLE_DECLS 1\n"
+                        if CORE == "app" and
+                        re.search(r'#include\s+["<][^">]*liblc3/src/', new)
+                        else "")
+        hdr_inc = liblc3_guard + '#include "g1_%s_symbols.h"\n' % CORE
+        rendered = hdr_inc + new
+        rendered = "\n".join(line.rstrip() for line in rendered.splitlines()).rstrip() + "\n"
+        generated_identity.add(planned, identities, os.path.basename(f),
+                               identity["address"], f, rendered)
     if WRITE:
+        # As in apply_names.py, validate the complete plan before replacing a
+        # single generated output.
+        for filename, item in sorted(planned.items()):
+            generated_identity.atomic_write(os.path.join(OUTSRC, filename),
+                                            item["rendered"])
         for path in glob.glob(OUTSRC + "/*.c"):
-            if os.path.basename(path) not in expected:
+            if os.path.basename(path) not in planned:
                 os.unlink(path)
     path, ng, npart, nreg, nrod, nfunc = gen_headers()
-    print("[%s] files: %d  | substitutions by kind:" % (CORE, len(files)))
+    print("[%s] files: %d  | substitutions by kind:" % (CORE, len(planned)))
     for k, n in total.most_common():
         print("   %-14s %6d" % (k, n))
     print("   header:", path, "(%swritten)" % ("" if WRITE else "DRY-not-"))
