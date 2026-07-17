@@ -544,6 +544,10 @@
   "0x00081050": {
    "name": "addr_res_enable",
    "evidence": "Pinned NCS 2.5.1 subsys/bluetooth/host/id.c address-resolution enable helper. The recovered body allocates the LE Set Address Resolution Enable command, appends the enable byte, and sends it synchronously. Raw identity remains FUN_00081050 at 0x00081050."
+  },
+  "0x00055534": {
+   "name": "hci_set_ad",
+   "evidence": "Exact configured NCS 2.5.1 Bluetooth host advertising-data command builder from adv.c. Raw identity remains FUN_00055534 at 0x00055534."
   }
  },
  "net": {

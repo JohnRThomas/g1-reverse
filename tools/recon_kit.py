@@ -23,6 +23,8 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # Catalog stops at the shared success island; include MOVS/BX LR.
+    0x00085316: 0x62,
     # Independently callable SDK/application entries missed by the Ghidra
     # function catalog.  Each extent ends before its literal pool or the next
     # entry and is reviewed from the shipped Thumb CFG.

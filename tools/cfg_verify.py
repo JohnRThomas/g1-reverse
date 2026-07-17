@@ -377,6 +377,11 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # nrfx_twim xfer_completeness_check includes its shared success return.
+    ("app", 0x00085316): 0x62,
+    # CINSTRDAT get switch owns fall-through stores through POP at 0x6671a;
+    # its aligned peripheral-base literal begins independently at 0x6671c.
+    ("app", 0x000666e0): 0x3c,
     # Pure packet-duration CFG crosses the dc0/dc4 literal island and ends at
     # the final remainder-arm branch immediately before literals at 10f2c.
     ("net", 0x010109ec): 0x540,
@@ -18052,6 +18057,99 @@ REVIEWED_ORACLE_CASES[("net", 0x01021b7c)] = [
     _net_record_window_case(initial=1, request_start=110, request_flag=1,
                             timing_code=0x356),
 ]
+
+
+def _app_hci_set_ad_case(kind):
+    ad = emu.SCRATCH + 0x1000
+    data_record = emu.SCRATCH + 0x1100
+    value = emu.SCRATCH + 0x1200
+    buffer = emu.SCRATCH + 0x2000
+    payload = emu.SCRATCH + 0x2100
+    memory = [(ad, bytes(16)), (data_record, bytes(16)),
+              (value, b"abc"), (buffer, bytes(0x100)),
+              (payload, bytes(0x40))]
+    if kind == "alloc-fail":
+        return ({0: 0x2008, 1: ad, 2: 0}, memory, {0: {0: 0}})
+    oracles = {0: {0: buffer}, 1: {0: payload}, 2: {0: 0}}
+    if kind == "empty":
+        oracles[3] = {0: 7}
+        return ({0: 0x2008, 1: ad, 2: 0}, memory, oracles)
+    outer = bytearray(8)
+    outer[0:4] = data_record.to_bytes(4, "little")
+    outer[4:8] = (1).to_bytes(4, "little")
+    record = bytearray(8)
+    record[0] = 1
+    record[1] = 31 if kind == "overflow" else 3
+    record[4:8] = value.to_bytes(4, "little")
+    memory[0] = (ad, bytes(outer))
+    memory[1] = (data_record, bytes(record))
+    if kind == "overflow":
+        oracles[3] = {0: 0}
+        oracles[4] = {0: 0}
+    else:
+        oracles[3] = {0: payload}
+        oracles[4] = {0: 9}
+    return ({0: 0x2008, 1: ad, 2: 1}, memory, oracles)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00055534)] = 2
+REVIEWED_ORACLE_CASES[("app", 0x00055534)] = [
+    _app_hci_set_ad_case("alloc-fail"),
+    _app_hci_set_ad_case("one"),
+    _app_hci_set_ad_case("overflow"),
+]
+
+
+def _app_timer_start_case(duration, period=11):
+    timer = emu.SCRATCH + 0x1800
+    bits = int(duration) & 0xffffffffffffffff
+    return (
+        {0: timer, 2: bits & 0xffffffff, 3: bits >> 32},
+        [(timer, bytes(0x40)),
+         (emu.STACK_TOP, (int(period) & 0xffffffffffffffff).to_bytes(8, "little"))],
+        {},
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00075174)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x00075174)] = [
+    _app_timer_start_case(-1),
+    _app_timer_start_case(0),
+    _app_timer_start_case(5),
+    _app_timer_start_case(-2),
+]
+
+
+def _app_twim_completeness_case(xfer_type, primary=4, secondary=6,
+                                tx_amount=4, rx_amount=6, suspended=False):
+    twim = emu.SCRATCH + 0x2800
+    control = emu.SCRATCH + 0x3000
+    twim_image = bytearray(0x600)
+    twim_image[0x54c:0x550] = int(tx_amount).to_bytes(4, "little")
+    twim_image[0x53c:0x540] = int(rx_amount).to_bytes(4, "little")
+    cb = bytearray(0x30)
+    cb[8:12] = ((1 << 18) if suspended else 0).to_bytes(4, "little")
+    cb[0x10:0x14] = int(primary).to_bytes(4, "little")
+    cb[0x18:0x1c] = int(secondary).to_bytes(4, "little")
+    cb[0x20] = int(xfer_type) & 0xff
+    return ({0: twim, 1: control},
+            [(twim, bytes(twim_image)), (control, bytes(cb))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00085316)] = 2
+REVIEWED_ORACLE_CASES[("app", 0x00085316)] = [
+    _app_twim_completeness_case(0),
+    _app_twim_completeness_case(0, tx_amount=3),
+    _app_twim_completeness_case(1),
+    _app_twim_completeness_case(2),
+    _app_twim_completeness_case(2, rx_amount=5),
+    _app_twim_completeness_case(3, suspended=True),
+    _app_twim_completeness_case(3, suspended=True, tx_amount=3),
+    _app_twim_completeness_case(3, suspended=False),
+    _app_twim_completeness_case(4),
+]
+
+
 
 
 def _net_buffer_flag_case(flag):
