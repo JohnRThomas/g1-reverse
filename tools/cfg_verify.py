@@ -524,6 +524,9 @@ TRUE_SIZE_OVERRIDES = {
     # branches at 0x0101f98a, 0x01012e2c and 0x01021852 prove ownership; each
     # extent stops before its reviewed literal/alignment boundary.
     ("net", 0x0100eec8): 0x3c,
+    # Packet-result metadata adapter ends at its tail branch.  Exclude the
+    # callback literal at f2fc and the independent entry beginning at f300.
+    ("net", 0x0100f2d0): 0x2a,
     ("net", 0x010127f8): 0xba,
     ("net", 0x010217cc): 0x30,
     # Four independently referenced private-controller entries omitted from
@@ -17873,6 +17876,20 @@ REVIEWED_STATE_CASES[("net", 0x010129f4)] = [
     _net_phase_finalize_case(0, 0, 1),
 ]
 REVIEWED_NPTR_COUNTS[("net", 0x010129f4)] = 1
+
+# Scalar packet arithmetic helpers consume no pointer arguments; the storage
+# initializer and record-initializer adapters consume exactly their leading
+# object pointer.  Without these reviewed ABIs, generic contiguous-pointer
+# probing turns narrow scalar registers into scratch addresses and masks the
+# firmware's required uint8/uint16 truncation behavior.
+REVIEWED_NPTR_COUNTS[("net", 0x01026872)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010268ce)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01026912)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010271f6)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x0102759e)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x010275d2)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x01027662)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010276b2)] = 1
 
 
 def _net_buffer_flag_case(flag):

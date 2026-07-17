@@ -1047,9 +1047,21 @@
    "name": "controller_descriptor_timing_copy",
    "evidence": "Recovered helper copies the 34-byte controller descriptor followed by its trailing eight-byte timing pair. Raw identity remains FUN_0100e83c at 0x0100e83c."
   },
+  "0x0100ef48": {
+   "name": "controller_work_enqueue_state4",
+   "evidence": "Recovered private controller helper marks a work node with state 4, appends an available node to the pending-work queue under PRIMASK, and raises the queue's deferred-event channel. Raw identity remains FUN_0100ef48 at 0x0100ef48."
+  },
+  "0x0100f198": {
+   "name": "controller_timing_windows_store",
+   "evidence": "Recovered private controller helper stores four ordered uint16 timing-window values at record offsets 0x14 through 0x1a. Raw identity remains FUN_0100f198 at 0x0100f198."
+  },
   "0x0100f1f8": {
    "name": "controller_timing_windows_clamp",
    "evidence": "Recovered helper clamps the active controller timing-window bounds and reports whether any bound changed. Raw identity remains FUN_0100f1f8 at 0x0100f1f8."
+  },
+  "0x0100f2d0": {
+   "name": "controller_packet_result_prepare",
+   "evidence": "Recovered private controller helper copies a packet kind and four timing halfwords into the deferred work node, then enqueues its packet-result callback. Raw identity remains FUN_0100f2d0 at 0x0100f2d0."
   },
   "0x0100f300": {
    "name": "controller_timing_snapshot_enqueue",
@@ -1058,6 +1070,26 @@
   "0x0100f368": {
    "name": "controller_packet_rendering_budget_remaining",
    "evidence": "Recovered helper computes the remaining controller packet-rendering budget under the configured minimum-budget policy. Raw identity remains FUN_0100f368 at 0x0100f368."
+  },
+  "0x0100f6e8": {
+   "name": "controller_byte_popcount",
+   "evidence": "Recovered private arithmetic leaf returns the population count of the caller's low byte. Raw identity remains FUN_0100f6e8 at 0x0100f6e8."
+  },
+  "0x0100f70c": {
+   "name": "controller_word_transition_count",
+   "evidence": "Recovered private arithmetic leaf folds a signed 32-bit word with its arithmetic right-shifted neighbor and returns the resulting population count. Raw identity remains FUN_0100f70c at 0x0100f70c."
+  },
+  "0x0100f748": {
+   "name": "controller_halfword_transition_count",
+   "evidence": "Recovered private arithmetic leaf folds a signed 16-bit value with its arithmetic right-shifted neighbor and returns the resulting population count. Raw identity remains FUN_0100f748 at 0x0100f748."
+  },
+  "0x0100f784": {
+   "name": "controller_procedure_counters_reset",
+   "evidence": "Recovered private helper clears the procedure object's byte counters at 0xc5 and 0x100 and its halfword counter at 0xfc. Raw identity remains FUN_0100f784 at 0x0100f784."
+  },
+  "0x0100f798": {
+   "name": "controller_procedure_generation_advance",
+   "evidence": "Recovered private helper clears the procedure object's halfword at 0x102 and advances its generation byte at 0x104 modulo 256. Raw identity remains FUN_0100f798 at 0x0100f798."
   },
   "0x0100f7b0": {
    "name": "controller_procedure_reference_release",

@@ -68,6 +68,10 @@ TRUE_SIZE_OVERRIDES = {
     # is reached by an exact direct tail branch from a catalogued caller.
     # 0x0100eec8 ends at its fatal assertion BL; its queue literal is ef04.
     0x0100eec8: 0x3c,
+    # Compact packet-result metadata adapter.  Its tail branch ends at
+    # 0x0100f2fa; the callback literal at 0x0100f2fc and independent entry at
+    # 0x0100f300 are not part of this function.
+    0x0100f2d0: 0x2a,
     # Retry/descriptor completion tails through 0x010128ae; 128b2 is
     # alignment and its two literals occupy 128b4..128bc.
     0x010127f8: 0xba,
