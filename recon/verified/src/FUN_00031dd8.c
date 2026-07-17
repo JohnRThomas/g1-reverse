@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00031dd8 @ 0x31dd8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(unsigned,...);
+extern uint64_t DEBUG_PRINT(unsigned, unsigned, unsigned, unsigned);
 extern int FUN_000167a8(void);
 extern void FUN_00022b00(unsigned,int);
 extern int FUN_000232f8(void*);
@@ -11,9 +11,18 @@ unsigned FUN_00031dd8(unsigned param_1, unsigned param_2, unsigned **param_3, un
 {
   int *piVar1; int iVar2, iVar4; unsigned uVar3; unsigned char *puVar5; unsigned char uVar6; char cVar7;
   unsigned local_b0; unsigned char auStack_ac[16]; unsigned char auStack_9c[12]; int local_90;
-  DEBUG_PRINT(0x000a715d);
-  if ((param_3 == 0) || (param_4 == 0)) { DEBUG_PRINT(0x000a7173); return 0xffffffff; }
-  if (*(char*)0x20019ef3 != 1) { DEBUG_PRINT(0x000a672f); return 0xfffffffe; }
+  uint64_t debug_result = DEBUG_PRINT(0x000a715d, param_2, (unsigned)param_3,
+                                      (unsigned)param_4);
+  if ((param_3 == 0) || (param_4 == 0)) {
+    DEBUG_PRINT(0x000a7173, (unsigned)(debug_result >> 32), (unsigned)param_3,
+                (unsigned)param_4);
+    return 0xffffffff;
+  }
+  if (*(char*)0x20019ef3 != 1) {
+    DEBUG_PRINT(0x000a672f, (unsigned)(debug_result >> 32),
+                (unsigned)param_3, 0x20019ef3);
+    return 0xfffffffe;
+  }
   puVar5 = (unsigned char*)*param_3;
   *(volatile unsigned char*)(puVar5) = 0x2d;
   *(volatile unsigned char*)(puVar5+2) = 3;
@@ -54,4 +63,3 @@ LAB_c0:
   *(volatile unsigned char*)param_4 = 9;
   return 0;
 }
-

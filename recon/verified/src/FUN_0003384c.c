@@ -6,7 +6,7 @@ extern uint32_t FUN_0000ef12(uint32_t command);
 extern uintptr_t FUN_000167a8(void);
 extern uint32_t FUN_00019c70(uintptr_t format, ...);
 extern uint32_t FUN_00033730(void *transport, const void *name,
-                             const void *payload);
+                             const void *payload, uint32_t reserved);
 extern int FUN_00087036(uint32_t command, const void *name, uint32_t value);
 
 uint32_t FUN_0003384c(const uint8_t *request)
@@ -33,5 +33,5 @@ uint32_t FUN_0003384c(const uint8_t *request)
     }
 
     return FUN_00033730((void *)(FUN_000167a8() + 0x77c),
-                         request + 0x10, request + 0x30);
+                         request + 0x10, request + 0x30, 0);
 }

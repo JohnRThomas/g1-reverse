@@ -14,7 +14,7 @@ extern void FUN_01036144(int);
 extern int FUN_01036128(int);
 extern void FUN_01039bbe(int, int, unsigned int);
 extern void FUN_01039bb0(int, unsigned int);
-extern int FUN_0103b442(void);
+extern int FUN_0103b442(int *item, unsigned int state);
 extern void FUN_01037130(int, unsigned int);
 
 int FUN_010388c8(int *param_1, int param_2)
@@ -68,7 +68,7 @@ L8f8:
     *(int **)(iVar3 + 4) = piVar5;
     *piVar4 = 0;
     piVar4[1] = 0;
-    uVar6 = FUN_0103b442();
+    uVar6 = FUN_0103b442(piVar4, 1);
     FUN_01037130(C_0103894c, r6);
     return uVar6;
   }

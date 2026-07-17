@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00033f54 @ 0x33f54  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int, ...);
+extern int FUN_0007dda4(int, ...);
 extern int FUN_00019c70(int, ...);
 extern long long FUN_00033f24(int,int,int,int,int,int,int);
 extern int FUN_00086c04(int, ...);
@@ -16,6 +16,7 @@ unsigned char FUN_00033f54(int param_1, int param_2, int param_3)
     unsigned int uVar6;
     int iVar7;
     unsigned int uVar8;
+    unsigned int final_r2;
     long long uVar9;
     volatile int *g88 = (volatile int*)0x20007554;
     volatile int *g94 = (volatile int*)0x2000230c;
@@ -46,9 +47,9 @@ unsigned char FUN_00033f54(int param_1, int param_2, int param_3)
         }
     }
     if (iVar7 == 0) {
-        DEBUG_PRINT(format_string, uVar5, uVar6);
+        FUN_0007dda4(format_string, uVar5, uVar6, iVar7);
     } else {
-        FUN_00019c70(0);
+        FUN_00019c70(format_string, uVar5, uVar6, iVar7);
     }
     return 0;
 
@@ -62,21 +63,24 @@ LAB_00033fb2:
         *(unsigned char *)(param_1 + 0xe) = 0;
         *(unsigned char *)(param_1 + 0xd) = 0;
         *(unsigned char *)(param_1 + 0xc) = bVar4;
-        FUN_00086c04(iVar2, param_1);
+        FUN_00086c04(iVar2, param_1, 0x1b4);
+        final_r2 = 0x1b4;
         if (0 < iVar7) {
             if (*g88 == 0) {
-                DEBUG_PRINT(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
+                FUN_0007dda4(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
             } else {
-                FUN_00019c70(0x000a7e3d);
+                FUN_00019c70(0x000a7e3d, 0x000a823b, uVar8, *(int *)(param_1 + 8), *(int *)(param_1 + 4), *(int *)(param_1 + 0x1b0));
             }
+            final_r2 = uVar8;
         }
         bVar4 = *pbVar1 + 1;
     } else {
+        final_r2 = 0;
         if (0 < iVar7) {
             if (*g88 == 0) {
-                DEBUG_PRINT(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
+                FUN_0007dda4(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
             } else {
-                FUN_00019c70(0x000a7e85, 0x000a823b, 0x13);
+                FUN_00019c70(0x000a7e85, 0x000a823b, 0x13, uVar6, *(int *)(param_1 + 4));
             }
         }
         iVar2 = 10;
@@ -102,10 +106,9 @@ LAB_00033fb2:
     iVar7 = *g88;
     *pbVar1 = bVar4;
     if (iVar7 == 0) {
-        DEBUG_PRINT(uVar6);
+        FUN_0007dda4(uVar6, bVar4, final_r2, iVar7);
     } else {
-        FUN_00019c70(0);
+        FUN_00019c70(uVar6, bVar4, final_r2, iVar7);
     }
     return *pbVar1;
 }
-

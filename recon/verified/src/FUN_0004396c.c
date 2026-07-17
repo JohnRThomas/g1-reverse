@@ -3,7 +3,7 @@
 typedef unsigned int uint;
 extern void DEBUG_PRINT(int,int,uint,int,uint,int,uint);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(int,...);
 extern int64_t FUN_000431a8(void);
 extern void FUN_00043484(int,int,int,int,int,int);
 extern void FUN_000471cc(int,int,int,int,int,int);
@@ -32,10 +32,11 @@ uint32_t FUN_0004396c(uint param_1,int param_2,uint param_3,int param_4,uint32_t
     } else {
         if(*(volatile int*)0x2000230c>1){
             if(*(volatile int*)0x20007554==0) DEBUG_PRINT(0xaa96d,0xaacee,param_3,0,param_1,param_2,param_3);
-            else FUN_00019c70();
+            else FUN_00019c70(0xaa96d,0xaacee,param_3,
+                              *(volatile int*)0x20007554,
+                              param_1,param_2,param_3);
         }
         uVar1=0xffffffff;
     }
     return uVar1;
 }
-

@@ -21,7 +21,7 @@ undefined4 FUN_00044544(undefined4 param_1,undefined4 param_2,int param_3,int pa
 LAB_a2:
       if (1 < *(volatile int*)0x2000230c) {
         if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaaa7f,0xaad8e);
-        else FUN_00019c70(0);
+        else FUN_00019c70(0xaaa7f,0xaad8e);
       }
       uVar9 = (*param_11)(0,param_2,param_3,param_4,param_5);
       return uVar9;
@@ -39,7 +39,7 @@ LAB_a2:
             if (*(volatile char*)0x2001cdd4 == 0) {
               *(volatile char*)0x2001cdd4 = 1;
               if (1 < iVar3) { iVar3 = *(volatile int*)0x20007554; uVar9 = 0xaab3b;
-LAB_2c: if (iVar3 == 0) DEBUG_PRINT(uVar9,0xaad8e,uVar13); else FUN_00019c70(0); }
+LAB_2c: if (iVar3 == 0) DEBUG_PRINT(uVar9,0xaad8e,uVar13); else FUN_00019c70(uVar9,0xaad8e,uVar13); }
             } else {
               *(volatile char*)0x2001cdd4 = 0;
               if (1 < iVar3) { iVar3 = *(volatile int*)0x20007554; uVar9 = 0xaab60; goto LAB_2c; }
@@ -93,8 +93,7 @@ LAB_2c: if (iVar3 == 0) DEBUG_PRINT(uVar9,0xaad8e,uVar13); else FUN_00019c70(0);
   *(volatile char*)0x2001cdd4 = 0;
   if (1 < *(volatile int*)0x2000230c) {
     if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xaab85,0xaad8e);
-    else FUN_00019c70(0);
+    else FUN_00019c70(0xaab85,0xaad8e);
   }
   return 0;
 }
-

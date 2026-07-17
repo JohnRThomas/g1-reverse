@@ -1,8 +1,8 @@
 /* Reconstructed FUN_000338ec @ 0x338ec  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int DEBUG_PRINT(int,...);
+extern int FUN_0007dda4(int,...);
 extern int FUN_00019b54(int,...);
-extern int FUN_00019c70(void);
+extern int FUN_00019c70(int,...);
 extern int FUN_00019da4(int,...);
 extern int FUN_00034980(int,...);
 extern int FUN_00076d6c(int,...);
@@ -17,8 +17,8 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
 
     if(param_1==0 || param_2==0 || param_3==0){
         if(1 < *(volatile int*)0x2000230c){
-            if(*(volatile int*)0x20007554 != 0){ FUN_00019c70(); return; }
-            DEBUG_PRINT(0x000a7c2d, 0x000a82e2); return;
+            if(*(volatile int*)0x20007554 != 0){ FUN_00019c70(0x000a7c2d, 0x000a82e2); return; }
+            FUN_0007dda4(0x000a7c2d, 0x000a82e2); return;
         }
     } else {
         puVar4 = *(unsigned char**)(param_1+0x10);
@@ -35,8 +35,8 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
             FUN_00086c04((int)(puVar4+4), param_3);
             if(2 < *(volatile int*)0x2000230c){
                 if(*(volatile int*)0x20007554 == 0){
-                    DEBUG_PRINT(0x000a7c4a, 0x000a82e2, uVar5);
-                } else { FUN_00019c70(); }
+                    FUN_0007dda4(0x000a7c4a, 0x000a82e2, uVar5);
+                } else { FUN_00019c70(0x000a7c4a, 0x000a82e2, uVar5); }
             }
             FUN_00019b54(param_1, (int)auStack_a0, 8);
         } else {
@@ -45,8 +45,8 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
                 *piVar1 = iVar3;
                 if(iVar3==0){
                     if(*(volatile int*)0x20007554 == 0){
-                        DEBUG_PRINT(0x000a7c9c, 0x000a82c4, 0x19f);
-                    } else { FUN_00019c70(); }
+                        FUN_0007dda4(0x000a7c9c, 0x000a82c4, 0x19f);
+                    } else { FUN_00019c70(0x000a7c9c, 0x000a82c4, 0x19f); }
                 } else {
                     FUN_00086c78(iVar3, 0, 0x800);
                 }
@@ -61,8 +61,8 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
                     FUN_00034980(*piVar1, (int)(puVar4+4));
                     if(2 < *(volatile int*)0x2000230c){
                         if(*(volatile int*)0x20007554 == 0){
-                            DEBUG_PRINT(0x000a7cb6, 0x000a82e2);
-                        } else { FUN_00019c70(); }
+                            FUN_0007dda4(0x000a7cb6, 0x000a82e2);
+                        } else { FUN_00019c70(0x000a7cb6, 0x000a82e2); }
                     }
                     *(unsigned short*)(puVar4+2) = 0x1b4;
                     FUN_00019b54(param_1, (int)auStack_a0, 8);
@@ -76,4 +76,3 @@ void FUN_000338ec(int param_1, unsigned char *param_2, int param_3)
     }
     return;
 }
-

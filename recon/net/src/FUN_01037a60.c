@@ -1,12 +1,13 @@
 /* net-core FUN_01037a60 @ 0x1037a60  (parity 300 trials PROVEN) */
 #include <stdint.h>
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern void FUN_0102ec10(unsigned int a);
 extern int FUN_0103610c(unsigned int a);
 extern int FUN_01036128(unsigned int a);
 extern void FUN_01036144(unsigned int a);
 extern void FUN_01036f74(int a);
-extern void FUN_0103735c(void *a);
+extern void FUN_0103735c(void *list_head, void *node);
 extern void FUN_01039bb0(unsigned int a, unsigned int b);
 extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
@@ -24,10 +25,15 @@ void FUN_01037a60(void)
     int *piVar8;
     int *puVar9, *puVar6, *puVar5;
 
-    /* isCurrentModePrivileged/getCurrentExceptionNumber/getBasePriority/setBasePriority/ISB:
-       inline MRS/MSR/ISB instructions; deterministic reset-state values under this harness
-       (IPSR==0, BASEPRI==0) -> no observable effect, no call events */
-    uVar10 = 0;
+    unsigned int exception = __get_IPSR() & 0x1fU;
+    if (exception != 0) {
+        FUN_01039bbe(DAT_37b48, DAT_37b44, 0x57a, exception, 0);
+        FUN_01039bb0(DAT_37b44, 0x57a);
+    }
+
+    uVar10 = __get_BASEPRI();
+    __set_BASEPRI_MAX(0x40);
+    __ISB();
 
     iVar2 = FUN_0103610c(DAT_37b4c);
     if (iVar2 == 0) {
@@ -41,7 +47,7 @@ SHARED:
     puVar9 = (int *)(iVar3 + 0x18);
     *(volatile unsigned char *)(*(volatile int *)(iVar3 + 8) + 0xd) =
         *(volatile unsigned char *)(*(volatile int *)(iVar3 + 8) + 0xd) & 0x7f;
-    FUN_0103735c(puVar9);
+    FUN_0103735c(puVar9, *(volatile void **)(iVar3 + 8));
     piVar8 = *(volatile int **)(iVar3 + 8);
     *(volatile unsigned char *)((int)piVar8 + 0xd) =
         *(volatile unsigned char *)((int)piVar8 + 0xd) | 0x80;

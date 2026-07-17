@@ -15,12 +15,12 @@ unsigned FUN_00031fd8(int param_1, unsigned param_2, unsigned *param_3, unsigned
     piVar1 = (volatile int*)0x2000230c;
     if(3 < *piVar1){
         if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x000a723e, 0x000a76da); }
-        else { FUN_00019c70(0); }
+        else { FUN_00019c70(0x000a723e, 0x000a76da); }
     }
     if(param_3 == 0 || param_4 == 0){
         if(0 < *piVar1){
             if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x000a7266, 0x000a76da); }
-            else { FUN_00019c70(0); }
+            else { FUN_00019c70(0x000a7266, 0x000a76da); }
         }
         uVar3 = 0xffffffff;
     } else if(*(volatile char*)0x20019ef3 == 1){
@@ -85,4 +85,3 @@ LAB_00032102:
     }
     return uVar3;
 }
-

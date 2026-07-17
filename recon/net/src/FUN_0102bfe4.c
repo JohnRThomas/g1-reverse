@@ -14,6 +14,7 @@ extern void FUN_0103b614(void *d, void *s, uint n);
 int FUN_0102bfe4(byte *param_1, int param_2, codefn param_3, uint param_4,
                  uint param_5, int param_6, uint param_7)
 {
+  volatile byte *header = param_1;
   byte bVar1, bVar2, bVar9;
   unsigned short sVar3;
   byte *pbVar4, *pbVar6, *pbVar14, *local_6c;
@@ -171,16 +172,16 @@ LAB_0102c1dc:
       bVar2 = (byte)param_5;
       if (!bv) bVar2 = 0;
     }
-    param_1[1] = (byte)((char)uVar12 + param_1[1]);
-    param_1[2] = bVar2;
-    param_1[3] = bVar9;
+    header[1] = (byte)((char)uVar12 + header[1]);
+    header[2] = bVar2;
+    header[3] = bVar9;
     local_64 = uVar11;
     iVar16 = (*local_54)((uint)param_1, (uint)local_68, local_5c);
     if (iVar16 < 0) return iVar16;
-    *param_1 = (byte)local_64;
-    param_1[1] = (byte)local_58;
-    param_1[2] = bVar1;
-    param_1[3] = (byte)local_60;
+    header[0] = (byte)local_64;
+    header[1] = (byte)local_58;
+    header[2] = bVar1;
+    header[3] = (byte)local_60;
     iVar7 = (*local_54)((uint)abStack_38, uVar13, local_5c);
     if (iVar7 < 0) return iVar7;
     iVar5 = (*local_54)((uint)pbVar6, (uint)(((param_2 - uVar15) - local_68) - local_70), local_5c);
@@ -264,4 +265,3 @@ LAB_0102c366:
   }
   goto LAB_0102c1dc;
 }
-

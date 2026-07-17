@@ -7,7 +7,7 @@ extern void FUN_0002eaa8(void);
 extern void FUN_0007c28e(int a, int b);
 extern void FUN_0007d14a(int a);
 unsigned FUN_00032254(int param_1, unsigned param_2, unsigned *param_3, unsigned char *param_4){
-    unsigned char stk[0x20];
+    unsigned char stk[0x18];
     DEBUG_PRINT(0x000a731c);
     if (param_3 == 0 || param_4 == 0){
         DEBUG_PRINT(0x000a7336);
@@ -39,4 +39,3 @@ unsigned FUN_00032254(int param_1, unsigned param_2, unsigned *param_3, unsigned
     *param_4 = 5;
     return 0;
 }
-

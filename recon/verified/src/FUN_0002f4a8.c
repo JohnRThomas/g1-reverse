@@ -1,49 +1,55 @@
 /* Reconstructed FUN_0002f4a8 @ 0x2f4a8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void DEBUG_PRINT(void);
+extern void DEBUG_PRINT(unsigned, ...);
 extern int FUN_000167a8(void);
-extern void FUN_00019c70(void);
-extern int FUN_0008638c(void);
-extern void FUN_00086c04(void);
-extern void FUN_00086c78(void);
+extern void FUN_00019c70(unsigned, ...);
+extern int FUN_0008638c(int);
+extern void FUN_00086c04(uintptr_t, int, int);
+extern void FUN_00086c78(uintptr_t, int, int);
 
 #define PUVAR3 0x20018daaUL
-#define DBG() do { if (*flag == 0) DEBUG_PRINT(); else FUN_00019c70(); } while (0)
+#define LOG_MODE (*mode_address)
+#define DBG2(msg, ctx) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx)); else FUN_00019c70((msg), (ctx)); } while (0)
+#define DBG4(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx), (v2), mode_); else FUN_00019c70((msg), (ctx), (v2), mode_); } while (0)
+#define DBGT(msg, ctx, v2) do { int mode_ = LOG_MODE; if (mode_ == 0) DEBUG_PRINT((msg), (ctx), (v2), param_4); else FUN_00019c70((msg), (ctx), (v2), param_4); } while (0)
 
 typedef int (*fn4)(int,int,int,int);
 
 void FUN_0002f4a8(unsigned param_1, int param_2, int param_3, int param_4)
 {
     volatile int *piVar1 = (volatile int*)0x2000230c;
-    volatile int *flag = (volatile int*)0x20007554;
+    volatile int * volatile mode_address = (volatile int*)0x20007554;
     int i5;
 
-    if (2 < *piVar1) { DBG(); }
+    if (2 < *piVar1) { DBG2(0x000a420e, 0x000a48fa); }
 
     if (((param_1 - 5) & 0xff) < 0xfa || param_1 == 0) {
-        if (0 < *piVar1) { DBG(); }
+        if (0 < *piVar1) { DBGT(0x000a4233, 0x000a48fa, param_3); }
         return;
     }
 
-    i5 = FUN_0008638c();
+    i5 = FUN_0008638c(0x00087bf0);
     if (i5 == 0) {
-        if (0 < *piVar1) { DBG(); }
+        if (0 < *piVar1) { DBGT(0x0009e9ea, 0x000a48fa,
+                                *(volatile int*)0x00087bf0); }
         return;
     }
 
-    FUN_00086c78();
+    FUN_00086c78(PUVAR3, 0, 0x1000);
 
-    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1030); FUN_000167a8();
-      i5 = ((fn4)(intptr_t)fn)(0, 0x400000, PUVAR3, 0x1000); }
+    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1030);
+      int object = FUN_000167a8();
+      i5 = ((fn4)(intptr_t)fn)(object, 0x400000, PUVAR3, 0x1000); }
     if (i5 != 0) {
-        if (0 < *piVar1) { DBG(); }
+        if (0 < *piVar1) { DBGT(0x0009ea0a, 0x000a48fa, 0x400000); }
         return;
     }
 
-    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1038); FUN_000167a8();
-      i5 = ((fn4)(intptr_t)fn)(0, 0x400000, 0x1000, 0); }
+    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1038);
+      int object = FUN_000167a8();
+      i5 = ((fn4)(intptr_t)fn)(object, 0x400000, 0x1000, 0x1000); }
     if (i5 != 0) {
-        if (2 < *piVar1) { DBG(); }
+        if (2 < *piVar1) { DBGT(0x0009eba7, 0x000a48fa, i5); }
         return;
     }
 
@@ -68,20 +74,20 @@ void FUN_0002f4a8(unsigned param_1, int param_2, int param_3, int param_4)
             *(volatile uint8_t*)(base + 0x15) = 0;
             *(volatile uint8_t*)(base + 0x16) = 0;
             *(volatile uint8_t*)(base + 0x17) = 0;
-            if (2 < lvl) { DBG(); }
+            if (2 < lvl) { DBG4(0x000a4253, 0x000a48fa, param_1); }
         } else {
-            FUN_00086c04();
-            if (2 < lvl) { DBG(); }
+            FUN_00086c04(PUVAR3, 0x0008a050, 0x58);
+            if (2 < lvl) { DBG4(0x000a427e, 0x000a48fa, 0x58); }
         }
     }
 
-    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1034); FUN_000167a8();
-      i5 = ((fn4)(intptr_t)fn)(0, 0x400000, PUVAR3, 0x1000); }
+    { int b = FUN_000167a8(); int fn = *(volatile int*)(b + 0x1034);
+      int object = FUN_000167a8();
+      i5 = ((fn4)(intptr_t)fn)(object, 0x400000, PUVAR3, 0x1000); }
     if (i5 == 0) {
-        if (2 < *piVar1) { DBG(); }
+        if (2 < *piVar1) { DBGT(0x000a42a5, 0x000a48fa, i5); }
     } else {
-        if (0 < *piVar1) { DBG(); }
+        if (0 < *piVar1) { DBGT(0x0009ebc6, 0x000a48fa, i5); }
     }
     return;
 }
-
