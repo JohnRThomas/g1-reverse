@@ -1059,6 +1059,12 @@ BOUNDED_RANDOM_ARGS = {
     # Checksum input and padded byte length; cover empty, one word, padding,
     # and two loop backedges without manufacturing billion-iteration buffers.
     ("app", 0x0007cf34): {1: (0, 4, 8), 2: (0, 4, 8)},
+    # Private-controller block-chain allocator.  Its sole direct caller passes
+    # a caller-validated nonzero uint8 count; one, two, and three exercise the
+    # final-record path and two distinct loop backedges.  The uint16 zero
+    # underflow path remains covered separately by the raised-budget regression
+    # in test_net_block_chain_records_init.py.
+    ("net", 0x01027974): {2: (1, 2, 3)},
 }
 
 # Raw entry-register callback: FUN_00077594 saves r3 in r10 at 0x775a2 and
@@ -17890,6 +17896,14 @@ REVIEWED_NPTR_COUNTS[("net", 0x0102759e)] = 1
 REVIEWED_NPTR_COUNTS[("net", 0x010275d2)] = 1
 REVIEWED_NPTR_COUNTS[("net", 0x01027662)] = 0
 REVIEWED_NPTR_COUNTS[("net", 0x010276b2)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x0102776a)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x010277c2)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010277f2)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01027822)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01027974)] = 1
+REVIEWED_NPTR_COUNTS[("net", 0x010280f2)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x010283fe)] = 0
+REVIEWED_NPTR_COUNTS[("net", 0x01028656)] = 1
 
 
 def _net_buffer_flag_case(flag):
