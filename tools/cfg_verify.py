@@ -279,6 +279,12 @@ CALL_ARITY_OVERRIDES = {
     ("net", 0x0103735c): 2,  # ready-list removal takes list head and node
     ("net", 0x0103b442): 2,  # queue item and state bit consumed by finalizer
     ("net", 0x0103b3e0): 3,  # list, inserted record and comparison key
+    # Configured Zephyr MPSC packet-buffer internal helper ABIs.
+    ("net", 0x01039bd8): 2,
+    ("net", 0x01039c20): 3,
+    ("net", 0x01039c54): 2,
+    ("net", 0x01039c92): 4,
+    ("net", 0x01039d80): 3,
     # The conversion wrapper consumes the low/high words of one 64-bit value.
     # r2/r3 are caller scratch left by the preceding division helper.
     ("net", 0x01037c64): 2,
@@ -856,6 +862,7 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x010202e4): 0x06,
     # Catalog-missing configured Zephyr/OpenAMP/logging/architecture entries;
     # bounds exclude their aligned literals and following independent bodies.
+    ("net", 0x0102cc34): 0x150,
     ("net", 0x0102ce14): 0x0e2,
     ("net", 0x0102da84): 0x036,
     ("net", 0x0102ddf4): 0x014,
@@ -1452,6 +1459,11 @@ REVIEWED_STACK_POINTER_CALLS = {
     # Controller registration passes a compiler-local descriptor in r1.
     ("net", 0x010187e0): {0: {1}},
     ("net", 0x0102b5bc): {1: {1}},
+    # The allocator passes a compiler-local free-word output slot to its
+    # availability helper at these reviewed loop-path ordinals.
+    ("net", 0x0102cc34): {
+        2: {1}, 3: {2, 3}, 4: {2, 3}, 7: {1}, 11: {1},
+    },
     # Retry packet is compiler-local and is passed to memset plus each
     # register-indirect transport callback.
     ("net", 0x0102a394): {i: {0} for i in range(32)},
@@ -5922,6 +5934,21 @@ def _mpsc_alloc_case(kind):
             {2: [(1, 0, (2).to_bytes(4, "little"), 0x0007e314)]})
 
 
+def _net_mpsc_alloc_case(kind):
+    """Reuse the proven allocator matrix with the CPUNET helper identity."""
+    case = list(_mpsc_alloc_case(kind))
+    if len(case) > 3:
+        case[3] = {
+            ordinal: [
+                (*write[:3], 0x01039bd8)
+                if len(write) > 3 and write[3] == 0x0007e314 else write
+                for write in writes
+            ]
+            for ordinal, writes in case[3].items()
+        }
+    return tuple(case)
+
+
 def _net_queue_remove_case(result, removed_index):
     request = emu.SCRATCH + 0x1000
     backing = emu.SCRATCH + 0x2000
@@ -10099,6 +10126,11 @@ REVIEWED_ORACLE_CASES = {
     ],
     ("app", 0x0004bc8c): [
         _mpsc_alloc_case(kind)
+        for kind in ("reject", "allocate", "wrap", "drop", "timeout",
+                     "timeout-error", "mode-drop", "drop-publish")
+    ],
+    ("net", 0x0102cc34): [
+        _net_mpsc_alloc_case(kind)
         for kind in ("reject", "allocate", "wrap", "drop", "timeout",
                      "timeout-error", "mode-drop", "drop-publish")
     ],

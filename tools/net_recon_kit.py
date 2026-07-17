@@ -195,6 +195,7 @@ TRUE_SIZE_OVERRIDES = {
     # Catalog-missing configured Zephyr/OpenAMP/logging/architecture entries.
     # Every extent stops at the final return/tail instruction and excludes the
     # following aligned literal pool or independent entry.
+    0x0102cc34: 0x150,
     0x0102ce14: 0x0e2,
     0x0102da84: 0x036,
     0x0102ddf4: 0x014,

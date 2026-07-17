@@ -1195,6 +1195,10 @@
    "name": "ipc_static_vrings_shm_size",
    "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."
   },
+  "0x0102cc34": {
+   "name": "mpsc_pbuf_alloc",
+   "evidence": "Recovered configured Zephyr 3.4.99 MPSC packet-buffer allocator, matched to the proven CPUAPP counterpart and verified across eight reviewed allocation, wrap, drop, and timeout paths. Raw identity remains FUN_0102cc34 at 0x0102cc34."
+  },
   "0x0102ce14": {
    "name": "mpsc_pbuf_claim",
    "evidence": "Recovered configured Zephyr 3.4.99 MPSC packet-buffer claim implementation. Raw identity remains FUN_0102ce14 at 0x0102ce14."
