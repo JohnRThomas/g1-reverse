@@ -9,12 +9,12 @@
  },
  "inputs": [
   {
-   "path": "/private/tmp/g1_app_link_pins.log",
-   "sha256": "0014b76f3d428275e246b405123b5f603d5e909ff20c857f05af90c2b2a8b4c7"
+   "path": "/private/tmp/g1-app-residue-current-0718/link.log",
+   "sha256": "7b8f6d27dceceba9563b4af04a4478b35fcbde7f32e2290f33c4ab7cddbf912f"
   },
   {
    "path": "recon/catalogs/function_names_app.json",
-   "sha256": "25bdbdc221ebe5285c1960b2bae15475eddc3773571504695dbd729d4b9ac0f3"
+   "sha256": "9f162755251563cce7e18ed055b80a50f64609098ea851c71acdfc87be3c1ca4"
   },
   {
    "path": "recon/catalogs/classified.json.gz",
@@ -22,7 +22,7 @@
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "43ac7648fc1a43941917c39fd9c98b765faf5eaf6f543f007fd325865b8a9a32"
+   "sha256": "ca705fba8e81227e8502041d03f6a6d5a1c6fcd5c502591ef3d3559709dfd808"
   },
   {
    "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/lib_sig2_hits.json",
@@ -30,458 +30,23 @@
   }
  ],
  "summary": {
-  "unique_symbols": 357,
+  "unique_symbols": 208,
   "by_category": {
-   "compiler_or_ghidra_pseudo_op": 3,
-   "interior_or_tail_alias": 119,
-   "naming_or_symbolization_defect": 61,
-   "sdk_or_config_symbol": 174
+   "interior_or_tail_alias": 77,
+   "sdk_or_config_symbol": 131
   },
   "true_missing_reconstructed_entries": 0
  },
  "entries": [
   {
-   "symbol": "ARCH_EXCEPT",
-   "category": "compiler_or_ghidra_pseudo_op",
-   "reason": "Zephyr architecture exception macro emitted as a call",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00051164.c:17"
-   ],
-   "identities": [],
-   "sdk_source_hit": "zephyr/arch/arm/core/aarch32/cortex_m/fault.c:775"
-  },
-  {
    "symbol": "DEBUG_PRINT",
    "category": "sdk_or_config_symbol",
    "reason": "distinct variadic vprintf wrapper at 0x0007dda4; it is not debug_print at 0x00019c70 and requires its own library owner",
-   "reference_count": 425,
+   "reference_count": 3,
    "reference_sites": [
-    "FUN_00018300.c:18",
-    "FUN_0001965c.c:86",
-    "FUN_00019718.c:38",
-    "FUN_00019718.c:42",
-    "FUN_00019718.c:43",
-    "FUN_00019718.c:44",
-    "FUN_00019718.c:45",
-    "FUN_00019718.c:46",
-    "FUN_00021da8.c:55",
-    "FUN_00025670.c:27",
-    "FUN_00026338.c:30",
-    "FUN_00026338.c:35",
-    "FUN_00026338.c:38",
-    "FUN_0002a4f4.c:61",
-    "FUN_0002a8d8.c:101",
-    "FUN_0002a8d8.c:121",
-    "FUN_0002a8d8.c:184",
-    "FUN_0002a8d8.c:189",
-    "FUN_0002a8d8.c:208",
-    "FUN_0002ea78.c:22",
-    "FUN_0002eaa8.c:22",
-    "FUN_0002ead8.c:23",
-    "FUN_00031b60.c:31",
-    "FUN_00031b60.c:33",
-    "FUN_00031bd8.c:18",
-    "FUN_00031bd8.c:19",
-    "FUN_00032308.c:29",
-    "FUN_00032b24.c:17",
-    "FUN_00032fe8.c:24",
-    "ancs_connected.c:46",
-    "ancs_connected.c:55",
-    "ancs_connected.c:81",
-    "ancs_disconnected.c:43",
-    "ancs_discover_start.c:26",
-    "ancs_security_changed.c:77",
-    "ancs_security_changed.c:90",
-    "ancs_security_changed.c:96",
-    "audioStreamFileManagerHandler.c:181",
-    "audioStreamFileManagerHandler.c:218",
-    "audioStreamFileManagerHandler.c:246",
-    "audioStreamFileManagerHandler.c:272",
-    "audioStreamFileManagerHandler.c:294",
-    "audioStreamFileManagerHandler.c:347",
-    "audioStreamFileManagerHandler.c:378",
-    "audioStreamFileManagerHandler.c:393",
-    "audioStreamFileManagerHandler.c:659",
-    "audio_fw_load_get_wrapper.c:21",
-    "audio_fw_load_get_wrapper.c:25",
-    "auth_cancel.c:30",
-    "ble_process_req_dispatch.c:136",
-    "ble_process_req_dispatch.c:168",
-    "ble_process_req_dispatch.c:194",
-    "ble_process_req_dispatch.c:207",
-    "ble_process_req_dispatch.c:217",
-    "ble_process_req_dispatch.c:439",
-    "ble_process_req_dispatch.c:448",
-    "ble_whitelist_app.c:47",
-    "ble_whitelist_app.c:63",
-    "bond_deleted_cb.c:21",
-    "bt_ancs_data_source_handler.c:50",
-    "bt_ancs_data_source_handler.c:87",
-    "burial_point_record_info_init.c:27",
-    "button_init.c:123",
-    "button_init.c:172",
-    "button_init.c:188",
-    "button_init.c:195",
-    "button_init.c:202",
-    "cal_panel_canvas_coord.c:112",
-    "cal_panel_canvas_coord.c:94",
-    "calc_flash_crc.c:108",
-    "calc_flash_crc.c:53",
-    "calc_flash_crc.c:75",
-    "calc_flash_crc.c:97",
-    "change_work_mode_to.c:60",
-    "check_ancs_inbox_flag_change.c:28",
-    "check_bind_status.c:40",
-    "check_bind_status.c:52",
-    "check_bonded_addr.c:33",
-    "check_disp_onboarding.c:61",
-    "check_sw0_status.c:33",
-    "check_sw0_status.c:43",
-    "check_work_mode.c:286",
-    "check_work_mode.c:318",
-    "check_work_mode.c:367",
-    "check_work_mode.c:382",
-    "check_work_mode.c:393",
-    "check_work_mode.c:409",
-    "check_work_mode.c:420",
-    "check_work_mode.c:442",
-    "check_work_mode.c:469",
-    "check_work_mode.c:499",
-    "check_work_mode.c:512",
-    "check_work_mode.c:525",
-    "check_work_mode.c:536",
-    "clean_fb_data.c:31",
-    "clear_timeout_message.c:125",
-    "click_event_dispatch_loop.c:111",
-    "click_event_dispatch_loop.c:114",
-    "click_event_dispatch_loop.c:120",
-    "click_event_dispatch_loop.c:127",
-    "click_event_dispatch_loop.c:140",
-    "click_event_dispatch_loop.c:147",
-    "click_event_dispatch_loop.c:96",
-    "debounce_read_pending_flag_1.c:20",
-    "debug_dump_message_slots_10_19.c:27",
-    "debug_log_queue_init.c:27",
-    "delAudioStreamRecord.c:35",
-    "delAudioStreamRecord.c:51",
-    "dequeue_ancs.c:40",
-    "discovery_completed_cb_ancs.c:34",
-    "discovery_completed_cb_ancs.c:40",
-    "discovery_completed_cb_ancs.c:45",
-    "discovery_completed_cb_ancs.c:48",
-    "discovery_completed_cb_gatt.c:33",
-    "discovery_completed_cb_gatt.c:35",
-    "discovery_completed_cb_gatt.c:39",
-    "discovery_completed_cb_gatt.c:43",
-    "discovery_error_found_cb_ancs.c:21",
-    "discovery_error_found_cb_gatt.c:18",
-    "discovery_service_not_found_cb_ancs.c:21",
-    "discovery_service_not_found_cb_gatt.c:18",
-    "display_close.c:48",
-    "display_reflash.c:41",
-    "display_reflash.c:56",
-    "display_reflash.c:67",
-    "display_reflash.c:77",
-    "display_reflash_handler.c:42",
-    "display_reflash_handler.c:50",
-    "display_reflash_handler.c:58",
-    "display_reflash_handler.c:72",
-    "display_reflash_handler.c:80",
     "draw_message.c:119",
     "draw_message.c:126",
-    "draw_message.c:215",
-    "draw_template_translate_screen.c:57",
-    "dump_template_gyro_info.c:36",
-    "enqueue_ancs.c:40",
-    "enqueue_ancs.c:49",
-    "enqueue_debug.c:31",
-    "enqueue_file.c:34",
-    "enqueue_uid.c:32",
-    "enqueue_uid.c:38",
-    "enter_dashboard_burial_point.c:42",
-    "enter_wear_burial_point.c:49",
-    "exit_dashboard_burial_point.c:49",
-    "ext_flash_api_init.c:45",
-    "ext_flash_api_init.c:59",
-    "ext_flash_read.c:51",
-    "ext_flash_write.c:51",
-    "file_subsystem_queue_init.c:25",
-    "flash_ops_thread.c:56",
-    "flash_write_paged.c:30",
-    "fuel_gauge_update.c:121",
-    "fuel_gauge_update.c:152",
-    "fuel_gauge_update.c:182",
-    "fuel_gauge_update.c:270",
-    "gatt_discover.c:53",
-    "getQuickNoteBKPQueueCacheData.c:104",
-    "getQuickNoteBKPQueueCacheData.c:95",
-    "get_assign_channel_info.c:40",
-    "get_assign_channel_info.c:45",
-    "get_assign_channel_info.c:61",
-    "get_boot_seconds.c:33",
-    "get_dashboard_sum_time.c:47",
-    "get_demo_image_source.c:123",
-    "get_demo_image_source.c:57",
-    "get_demo_image_source.c:63",
-    "get_demo_image_source.c:71",
-    "get_demo_image_source.c:81",
-    "get_demo_image_source_from_flash.c:46",
-    "get_demo_image_source_from_flash.c:52",
-    "get_demo_image_source_from_flash.c:56",
-    "get_glassbox_charge_percent.c:26",
-    "get_glassbox_charge_status.c:23",
-    "get_lux_info.c:34",
-    "get_lux_info.c:38",
-    "get_lux_info.c:72",
-    "global_ipc_service_send.c:54",
-    "global_ipc_service_send.c:62",
-    "global_ipc_service_send.c:73",
-    "global_system_suspend.c:27",
-    "gui_4bit_bitmap_override.c:53",
-    "gui_4bit_bitmap_override.c:60",
-    "gui_bitmap_draw.c:88",
-    "gui_bmp_bitmap_draw.c:55",
-    "gui_bmp_dynamic_bitmap_draw.c:52",
-    "gui_clock_draw.c:118",
-    "gui_clock_draw.c:94",
-    "gui_string_draw.c:61",
-    "gui_utf_Wordwrap_draw.c:122",
-    "gui_utf_Wordwrap_draw.c:177",
-    "gui_utf_Wordwrap_draw.c:277",
-    "gui_utf_draw.c:67",
-    "gui_utf_draw.c:89",
-    "gui_utf_draw_dark_light_split.c:123",
-    "gui_utf_draw_dark_light_split.c:51",
-    "gui_utf_draw_dark_light_split.c:70",
-    "gui_utf_draw_middle.c:49",
-    "gui_utf_draw_middle.c:67",
-    "gui_utf_draw_middle.c:79",
-    "gui_verticalLine_process_bar.c:53",
-    "handle_touch_key_press_event.c:73",
-    "imu_fusion_thread.c:123",
-    "imu_fusion_thread.c:126",
-    "imu_fusion_thread.c:274",
-    "imu_fusion_thread.c:304",
-    "imu_fusion_thread.c:330",
-    "imu_fusion_thread.c:340",
-    "init_dashboard_info.c:41",
-    "init_dashboard_info.c:82",
-    "init_msgq_ancs.c:24",
-    "init_msgq_uid.c:24",
-    "init_nfc_comm.c:27",
-    "init_serial_comm.c:34",
-    "init_serial_port.c:43",
-    "init_watchdog.c:105",
-    "init_watchdog.c:57",
-    "init_watchdog.c:60",
-    "init_watchdog.c:66",
-    "init_watchdog.c:72",
-    "ipc0_ept_recv.c:28",
-    "ipc_ept_op_a_locked_retry.c:32",
-    "ipc_ept_op_b_locked_retry.c:33",
-    "ipc_ept_op_c_locked_retry.c:33",
-    "ipc_send_len_prefixed_packet.c:30",
-    "ipc_send_len_prefixed_packet_locked_retry.c:33",
-    "ipc_service_send_with_retry.c:19",
-    "is_on_whitelist_by_identifier.c:102",
-    "is_on_whitelist_by_identifier.c:105",
-    "is_on_whitelist_by_identifier.c:114",
-    "is_on_whitelist_by_identifier.c:49",
-    "is_on_whitelist_by_identifier.c:76",
-    "is_on_whitelist_by_identifier.c:83",
-    "jdb_panel_init.c:39",
-    "load_burial_point.c:44",
-    "load_sys_setting.c:70",
-    "load_usr_setting.c:63",
-    "load_usr_setting.c:73",
-    "load_whitelist.c:57",
-    "local_store_write.c:57",
-    "lsm6dso_init_chip.c:104",
-    "lsm6dso_init_chip.c:109",
-    "lsm6dso_init_chip.c:186",
-    "lsm6dso_init_chip.c:86",
-    "lsm6dso_init_chip.c:97",
-    "msg_count_dec.c:36",
-    "msg_queue_debug_dump.c:30",
-    "navigation_direction_img_display.c:37",
-    "navigation_overview_map_display.c:119",
-    "navigation_overview_map_display.c:129",
-    "navigation_overview_map_display.c:246",
-    "navigation_overview_map_display.c:253",
-    "navigation_overview_map_display.c:263",
-    "navigation_overview_map_display.c:291",
-    "navigation_overview_map_display.c:84",
-    "navigation_panoramic_map_display.c:150",
-    "navigation_panoramic_map_display.c:203",
-    "navigation_panoramic_map_display.c:343",
-    "navigation_panoramic_map_display.c:461",
-    "navigation_panoramic_map_display.c:474",
-    "not_disturb_sync_data.c:82",
-    "on_triple_click.c:19",
-    "onboarding_ble_process.c:54",
-    "onboarding_ble_process.c:85",
-    "onboarding_sync_data.c:82",
-    "opt3001_reg_read.c:35",
-    "opt3007_get_max_lux.c:44",
-    "pairing_complete.c:55",
-    "pairing_failed.c:30",
-    "pairing_failed.c:34",
-    "parse_ncs_notification.c:54",
-    "parse_ncs_notification.c:60",
-    "parse_receiver_pack_pkcs7.c:78",
-    "parse_whitelist_json.c:129",
-    "parse_whitelist_json.c:147",
-    "parse_whitelist_json.c:67",
-    "pixelto4bithex.c:27",
-    "pixelto4bithex_for_flash.c:25",
-    "post_notification_cmd_response.c:103",
-    "post_notification_cmd_response.c:119",
-    "post_notification_cmd_response.c:146",
-    "post_notification_cmd_response.c:80",
-    "power_for_imu_and_mic.c:30",
-    "power_for_panel.c:103",
-    "power_for_panel.c:44",
-    "power_for_panel.c:61",
-    "power_for_panel.c:91",
-    "process_for_message_show.c:136",
-    "process_for_message_show.c:150",
-    "process_for_message_show.c:78",
-    "process_for_message_show.c:89",
-    "process_for_message_show.c:98",
-    "process_for_new_message_come_on.c:101",
-    "process_for_new_message_come_on.c:139",
-    "process_for_new_message_come_on.c:75",
-    "process_for_new_message_come_on.c:95",
-    "process_for_new_message_come_on.c:99",
-    "read_sys_settting_from_flash.c:34",
-    "read_sys_settting_from_flash.c:64",
-    "read_usr_settting_from_flash.c:32",
-    "read_usr_settting_from_flash.c:42",
-    "reflash_fb_data_to_lcd.c:47",
-    "reflash_fb_data_to_lcd.c:77",
-    "reflash_fb_data_to_lcd_ex.c:42",
-    "reflash_fb_data_to_lcd_ex.c:75",
-    "render_ancs_notification_animation.c:57",
-    "request_ancs_attr_ext.c:50",
-    "request_ancs_attr_ext.c:61",
-    "request_ancs_attr_ext.c:73",
-    "request_ancs_attr_ext.c:78",
-    "reset_all_usr_data.c:83",
-    "reset_usr_setting.c:27",
-    "resource_manger_get.c:1183",
-    "resource_manger_get.c:645",
-    "run_main_dispatch_thread.c:74",
-    "send_data_in_ble_chunks.c:43",
-    "serialization_init.c:40",
-    "serialization_init.c:80",
-    "serialization_ipc_ept_register.c:41",
-    "serialization_ipc_ept_register.c:46",
-    "serialization_ipc_ept_register.c:50",
-    "setDelayExitValue.c:21",
-    "set_brightness_lum_base.c:35",
-    "set_brightness_to_panel_reg_in_running.c:32",
-    "set_device_sn_info.c:61",
-    "set_device_sn_info.c:67",
-    "set_display_brightness.c:24",
-    "set_display_brightness.c:26",
-    "set_glasses_sn_info.c:61",
-    "set_glasses_sn_info.c:67",
-    "set_imu_pitch_reflash.c:67",
-    "slave_display_thread.c:206",
-    "slave_display_thread.c:244",
-    "slave_display_thread.c:250",
-    "slave_display_thread.c:266",
-    "slave_display_thread.c:270",
-    "slave_display_thread.c:272",
-    "slave_display_thread.c:292",
-    "slave_display_thread.c:315",
-    "slave_display_thread.c:317",
-    "slave_display_thread.c:326",
-    "slave_display_thread.c:331",
-    "slave_display_thread.c:356",
-    "slave_display_thread.c:379",
-    "slave_display_thread.c:399",
-    "slave_display_thread.c:440",
-    "slave_display_thread.c:455",
-    "slave_display_thread.c:467",
-    "slave_display_thread.c:475",
-    "slave_display_thread.c:477",
-    "slave_display_thread.c:482",
-    "spec_ble_command_hook.c:312",
-    "spec_ble_command_hook.c:338",
-    "spec_ble_command_hook.c:364",
-    "spec_ble_command_hook.c:379",
-    "spec_ble_command_hook.c:395",
-    "spec_ble_command_hook.c:412",
-    "spec_ble_command_hook.c:428",
-    "spec_ble_command_hook.c:445",
-    "spec_ble_command_hook.c:461",
-    "spec_ble_command_hook.c:469",
-    "spec_ble_command_hook.c:482",
-    "spec_ble_command_hook.c:551",
-    "spec_ble_command_hook.c:633",
-    "spec_ble_command_hook.c:640",
-    "spec_ble_command_hook.c:674",
-    "spec_ble_command_hook.c:691",
-    "spec_ble_command_hook.c:698",
-    "spec_ble_command_hook.c:742",
-    "spec_ble_command_hook.c:916",
-    "spec_ble_command_hook.c:954",
-    "spec_ble_command_hook.c:969",
-    "spi_master_init.c:59",
-    "spi_master_init.c:65",
-    "st25dv_read_chip_ids.c:39",
-    "st25dv_read_chip_ids.c:47",
-    "st25dv_read_chip_ids.c:49",
-    "subcontracing_send_data_pkcs7.c:53",
-    "subcontracing_send_data_pkcs7.c:69",
-    "subcontracing_send_data_pkcs7.c:98",
-    "switch_to_dfu_mode.c:65",
-    "switch_to_dfu_mode.c:73",
-    "sync_message_signal_to_slave.c:43",
-    "sync_message_signal_to_slave.c:50",
-    "trigger_screen_state_change.c:26",
-    "trigger_screen_state_change.c:42",
-    "uart_callback.c:102",
-    "uart_callback.c:50",
-    "uart_callback.c:52",
-    "ui_DashBoard_task.c:273",
-    "ui_DashBoard_task.c:280",
-    "ui_DashBoard_task.c:287",
-    "ui_DashBoard_task.c:294",
-    "ui_DashBoard_task.c:317",
-    "ui_DashBoard_task.c:491",
-    "ui_DashBoard_task.c:505",
-    "ui_DashBoard_task.c:519",
-    "ui_DashBoard_task.c:535",
-    "ui_DashBoard_task.c:571",
-    "ui_QuickNote_task.c:180",
-    "ui_onboarding_task.c:129",
-    "ui_onboarding_task.c:86",
-    "ui_raster_height_task.c:44",
-    "ui_raster_height_task.c:58",
-    "ui_set_imu_pitch_task.c:101",
-    "uint32_to_little_endian.c:25",
-    "update_burial_point_day_index.c:47",
-    "update_burial_point_to_flash.c:35",
-    "update_burial_point_to_flash.c:64",
-    "update_imu_trigger_status.c:31",
-    "update_imu_trigger_status.c:40",
-    "update_persist_task_status_to_idle.c:40",
-    "update_persist_task_status_to_wait_blow_head.c:37",
-    "update_temp_task_status.c:52",
-    "update_touch_key_flag.c:38",
-    "verify_whitelist_json.c:150",
-    "verify_whitelist_json.c:175",
-    "verify_whitelist_json.c:185",
-    "verify_whitelist_json.c:60",
-    "verify_whitelist_json.c:69",
-    "wait_touch_key_release_or_timeout.c:30",
-    "write_font_to_flash_with_verify.c:48",
-    "write_font_to_flash_with_verify.c:58",
-    "write_font_to_flash_with_verify.c:83",
-    "write_font_to_flash_with_verify.c:91"
+    "draw_message.c:215"
    ],
    "identities": [
     {
@@ -497,175 +62,6 @@
     }
    ],
    "sdk_source_hit": "modules/lib/hostap/src/crypto/crypto_mbedtls-ec.c:757"
-  },
-  {
-   "symbol": "FUN_0000de58",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 8,
-   "reference_sites": [
-    "FUN_00012db0.c:65",
-    "FUN_00014b60.c:204",
-    "FUN_00014b60.c:363",
-    "FUN_00014b60.c:387",
-    "FUN_00014b60.c:687",
-    "cjson_create_number.c:32",
-    "cjson_parse_value.c:147",
-    "opt3007_get_max_lux.c:52"
-   ],
-   "identities": [
-    {
-     "va": "0x0000de58",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0000de58",
-     "is_thunk": false,
-     "display_name": "FUN_0000de58",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "__fixdfsi",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0000ec34",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "us_to_ticks_scaled.c:29",
-    "us_to_ticks_scaled_v2.c:27"
-   ],
-   "identities": [
-    {
-     "va": "0x0000ec34",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0000ec34",
-     "is_thunk": false,
-     "display_name": "FUN_0000ec34",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "__fixdfdi",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00016568",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00016568",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00016568",
-     "is_thunk": false,
-     "display_name": "get_device_type",
-     "retained_source": "get_device_type.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00016574",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0007d1d6.c:28"
-   ],
-   "identities": [
-    {
-     "va": "0x00016574",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000165cc",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x000165cc",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000165cc",
-     "is_thunk": false,
-     "display_name": "device_info_copy_record_fields",
-     "retained_source": "device_info_copy_record_fields.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000167a8",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x000167a8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "get_device_info",
-     "is_thunk": false,
-     "display_name": "get_device_info",
-     "retained_source": "get_device_info.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00016834",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "global_system_resume.c:56"
-   ],
-   "identities": [
-    {
-     "va": "0x00016834",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "FUN_000179f8",
@@ -684,226 +80,6 @@
      "is_thunk": false,
      "display_name": null,
      "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00017a04",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "global_system_resume.c:46"
-   ],
-   "identities": [
-    {
-     "va": "0x00017a04",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00017a10",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "global_system_resume.c:66"
-   ],
-   "identities": [
-    {
-     "va": "0x00017a10",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00017a1c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "global_system_resume.c:65"
-   ],
-   "identities": [
-    {
-     "va": "0x00017a1c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00019b38",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00019b38",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00019b38",
-     "is_thunk": false,
-     "display_name": "ble_work_queue_lock",
-     "retained_source": "ble_work_queue_lock.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00019b48",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00019b48",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00019b48",
-     "is_thunk": false,
-     "display_name": "ble_work_queue_unlock",
-     "retained_source": "ble_work_queue_unlock.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00019b54",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00019b54",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00019b54",
-     "is_thunk": false,
-     "display_name": "audio_fw_load_get_wrapper",
-     "retained_source": "audio_fw_load_get_wrapper.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00019c70",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "draw_message.c:117",
-    "draw_message.c:128",
-    "draw_message.c:217"
-   ],
-   "identities": [
-    {
-     "va": "0x00019c70",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "debug_print",
-     "is_thunk": false,
-     "display_name": "debug_print",
-     "retained_source": "debug_print.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00023514",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00023514",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "enqueue_file",
-     "is_thunk": false,
-     "display_name": "enqueue_file",
-     "retained_source": "enqueue_file.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00024420",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00024420",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "upgradeQuickNoteDataToFlash",
-     "is_thunk": false,
-     "display_name": "upgradeQuickNoteDataToFlash",
-     "retained_source": "upgradeQuickNoteDataToFlash.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000244a8",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x000244a8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "deleteQuickNoteData",
-     "is_thunk": false,
-     "display_name": "deleteQuickNoteData",
-     "retained_source": "deleteQuickNoteData.c",
      "adopted_component": null,
      "library_signature": null
     }
@@ -1003,40 +179,16 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0002893c",
+   "symbol": "FUN_00026100",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
    "reference_count": 1,
    "reference_sites": [
-    "click_event_dispatch_loop.c:132"
+    "FUN_00016834.c:23"
    ],
    "identities": [
     {
-     "va": "0x0002893c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00028964",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "click_event_dispatch_loop.c:150",
-    "on_triple_click.c:21"
-   ],
-   "identities": [
-    {
-     "va": "0x00028964",
+     "va": "0x00026100",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -1053,120 +205,14 @@
    "symbol": "FUN_0002bdf0",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
+   "reference_count": 2,
    "reference_sites": [
+    "enter_active_click_mode.c:41",
     "global_system_resume.c:51"
    ],
    "identities": [
     {
      "va": "0x0002bdf0",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0002efc0",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0002efc0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002efc0",
-     "is_thunk": false,
-     "display_name": "mark_master_or_low_battery_flag",
-     "retained_source": "mark_master_or_low_battery_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0002efe4",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0002efe4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002efe4",
-     "is_thunk": false,
-     "display_name": "set_box_link_state_flag",
-     "retained_source": "set_box_link_state_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0002f878",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0002f878",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "delAudioStreamRecord",
-     "is_thunk": false,
-     "display_name": "delAudioStreamRecord",
-     "retained_source": "delAudioStreamRecord.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00032ee4",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00032ee4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "is_battery_critical",
-     "is_thunk": false,
-     "display_name": "is_battery_critical",
-     "retained_source": "is_battery_critical.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00032fdc",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "click_event_dispatch_loop.c:56"
-   ],
-   "identities": [
-    {
-     "va": "0x00032fdc",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -1231,7 +277,7 @@
    "reason": "referenced VA is not a catalog function entry",
    "reference_count": 1,
    "reference_sites": [
-    "send_data_in_ble_chunks.c:50"
+    "send_data_in_ble_chunks.c:51"
    ],
    "identities": [
     {
@@ -1341,69 +387,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_00037060",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00037060",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00037060",
-     "is_thunk": false,
-     "display_name": "sync_dashboard_default_language",
-     "retained_source": "sync_dashboard_default_language.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00037154",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00037154",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00037154",
-     "is_thunk": false,
-     "display_name": "cleanStocksIndex",
-     "retained_source": "cleanStocksIndex.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00037234",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00037234",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00037234",
-     "is_thunk": false,
-     "display_name": "cleanNewsIndex",
-     "retained_source": "cleanNewsIndex.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_0003f410",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -1450,27 +433,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_00042a64",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00042a64",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "onboarding_ble_process",
-     "is_thunk": false,
-     "display_name": "onboarding_ble_process",
-     "retained_source": "onboarding_ble_process.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_0004372c",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -1487,174 +449,6 @@
      "is_thunk": false,
      "display_name": null,
      "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00047b1c",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00047b1c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "send_response_data_to_msgqueue",
-     "is_thunk": false,
-     "display_name": "send_response_data_to_msgqueue",
-     "retained_source": "send_response_data_to_msgqueue.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00047bf8",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00047bf8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00047bf8",
-     "is_thunk": false,
-     "display_name": "sendAudioStreamFileToApp",
-     "retained_source": "sendAudioStreamFileToApp.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00048840",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00048840",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "requestAudioInfoToApp",
-     "is_thunk": false,
-     "display_name": "requestAudioInfoToApp",
-     "retained_source": "requestAudioInfoToApp.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00048a3c",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00048a3c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "SendDashBoardStartupModeInfoToSlave",
-     "is_thunk": false,
-     "display_name": "SendDashBoardStartupModeInfoToSlave",
-     "retained_source": "SendDashBoardStartupModeInfoToSlave.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004a1b8",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0004a1b8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004a1b8",
-     "is_thunk": false,
-     "display_name": "unix_timestamp_to_datetime",
-     "retained_source": "unix_timestamp_to_datetime.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004a46c",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0004a46c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004a46c",
-     "is_thunk": false,
-     "display_name": "rate_limited_elapsed_seconds_tick",
-     "retained_source": "rate_limited_elapsed_seconds_tick.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004a4b4",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0004a4b4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004a4b4",
-     "is_thunk": false,
-     "display_name": "record_dashboard_startup_snapshot",
-     "retained_source": "record_dashboard_startup_snapshot.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004a4d0",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0004a4d0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004a4d0",
-     "is_thunk": false,
-     "display_name": "get_synced_clock_time",
-     "retained_source": "get_synced_clock_time.c",
      "adopted_component": null,
      "library_signature": null
     }
@@ -1703,58 +497,6 @@
      "retained_source": null,
      "adopted_component": null,
      "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004c4e4",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "nvs_mount.c:175"
-   ],
-   "identities": [
-    {
-     "va": "0x0004c4e4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004c4e4",
-     "is_thunk": false,
-     "display_name": "FUN_0004c4e4",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_recover_last_ate",
-      "ratio": 0.986
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0004cc50",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "global_ipc_service_send.c:41"
-   ],
-   "identities": [
-    {
-     "va": "0x0004cc50",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004cc50",
-     "is_thunk": false,
-     "display_name": "FUN_0004cc50",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "ipc_service_send",
-      "ratio": 0.98
-     }
     }
    ],
    "sdk_source_hit": null
@@ -1971,31 +713,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_00052fbc",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 3,
-   "reference_sites": [
-    "FUN_00053024.c:13",
-    "FUN_0005306c.c:13",
-    "bt_settings_save_or_delete_key.c:16"
-   ],
-   "identities": [
-    {
-     "va": "0x00052fbc",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_000534a8",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -2166,8 +883,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 3,
    "reference_sites": [
-    "ble_conn_process_complete_or_disconnect.c:69",
-    "ble_conn_process_complete_or_disconnect.c:78",
+    "ble_conn_process_complete_or_disconnect.c:70",
+    "ble_conn_process_complete_or_disconnect.c:79",
     "bt_conn_le_param_update.c:20"
    ],
    "identities": [
@@ -2373,32 +1090,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_000638dc",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00074bf4.c:100"
-   ],
-   "identities": [
-    {
-     "va": "0x000638dc",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000638dc",
-     "is_thunk": false,
-     "display_name": "FUN_000638dc",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "sys_clock_set_timeout",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_0006446c",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -2455,30 +1146,6 @@
    "identities": [
     {
      "va": "0x00065000",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00066524",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "audio_i2s_stream0_trigger_start.c:12",
-    "audio_i2s_stream1_trigger_start.c:13"
-   ],
-   "identities": [
-    {
-     "va": "0x00066524",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -2568,32 +1235,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_00070f1c",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "rpmsg_send_ns_message.c:23"
-   ],
-   "identities": [
-    {
-     "va": "0x00070f1c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00070f1c",
-     "is_thunk": false,
-     "display_name": "FUN_00070f1c",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "rpmsg_send_offchannel_nocopy",
-      "ratio": 0.974
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00071560",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -2650,54 +1291,6 @@
    "identities": [
     {
      "va": "0x00071b2c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007332c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_00073418.c:13",
-    "k_work_schedule_at_ticks.c:15"
-   ],
-   "identities": [
-    {
-     "va": "0x0007332c",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00073424",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_000531d8.c:13",
-    "FUN_0007350c.c:13"
-   ],
-   "identities": [
-    {
-     "va": "0x00073424",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -2826,30 +1419,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_00076a88",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_00075c2c.c:26",
-    "logf.c:24"
-   ],
-   "identities": [
-    {
-     "va": "0x00076a88",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00076bc0",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -2934,331 +1503,6 @@
      "catalog_name": null,
      "is_thunk": false,
      "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c010",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 1,
-   "reference_sites": [
-    "local_esbs_ipc_service_recv.c:220"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c010",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00072880",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00072880",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c084",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "gpio_dt_spec_activate.c:19",
-    "panel_pwr_gpio_deassert.c:19"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c084",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c0a4",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 2,
-   "reference_sites": [
-    "request_ancs_attr_ext.c:42",
-    "request_ancs_attr_ext.c:71"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c0a4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00074844",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00074844",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c18e",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0007c18e",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "k_uptime_get_0",
-     "is_thunk": false,
-     "display_name": "k_uptime_get_0",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c872",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 2,
-   "reference_sites": [
-    "ipc_ept_op_b_locked_retry.c:27",
-    "ipc_ept_op_c_locked_retry.c:27"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c872",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_000723b8",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_000723b8",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007c876",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 2,
-   "reference_sites": [
-    "ipc_ept_op_b_locked_retry.c:29",
-    "ipc_ept_op_c_locked_retry.c:29"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c876",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00072558",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00072558",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007ca72",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 3,
-   "reference_sites": [
-    "imu_fusion_thread.c:130",
-    "imu_fusion_thread.c:311",
-    "imu_fusion_thread.c:436"
-   ],
-   "identities": [
-    {
-     "va": "0x0007ca72",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00074844",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00074844",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007cbfe",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0007cbfe",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "set_shutdown_flag",
-     "is_thunk": false,
-     "display_name": "set_shutdown_flag",
-     "retained_source": "set_shutdown_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007cce8",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0007cce8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "update_display_status",
-     "is_thunk": false,
-     "display_name": "update_display_status",
-     "retained_source": "update_display_status.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007ce00",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x0007ce00",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007ce00",
-     "is_thunk": false,
-     "display_name": "is_system_idle_ready",
-     "retained_source": "is_system_idle_ready.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007ce5c",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 23,
-   "reference_sites": [
-    "handle_touch_key_press_event.c:41",
-    "handle_touch_key_press_event.c:57",
-    "process_for_new_message_come_on.c:125",
-    "process_for_new_task.c:1002",
-    "process_for_new_task.c:1049",
-    "process_for_new_task.c:1098",
-    "process_for_new_task.c:1149",
-    "process_for_new_task.c:1178",
-    "process_for_new_task.c:1195",
-    "process_for_new_task.c:1217",
-    "process_for_new_task.c:1265",
-    "process_for_new_task.c:323",
-    "process_for_new_task.c:448",
-    "process_for_new_task.c:465",
-    "process_for_new_task.c:490",
-    "process_for_new_task.c:531",
-    "process_for_new_task.c:547",
-    "process_for_new_task.c:659",
-    "process_for_new_task.c:676",
-    "process_for_new_task.c:707",
-    "process_for_new_task.c:842",
-    "process_for_new_task.c:915",
-    "process_for_new_task.c:954"
-   ],
-   "identities": [
-    {
-     "va": "0x0007ce5c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00074844",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00074844",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007d376",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 5,
-   "reference_sites": [
-    "navigation_overview_map_display.c:124",
-    "navigation_overview_map_display.c:134",
-    "navigation_overview_map_display.c:258",
-    "navigation_overview_map_display.c:268",
-    "navigation_panoramic_map_display.c:468"
-   ],
-   "identities": [
-    {
-     "va": "0x0007d376",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_000723b8",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_000723b8",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007d37a",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 3,
-   "reference_sites": [
-    "navigation_overview_map_display.c:138",
-    "navigation_overview_map_display.c:272",
-    "navigation_panoramic_map_display.c:486"
-   ],
-   "identities": [
-    {
-     "va": "0x0007d37a",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00072558",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00072558",
      "retained_source": null,
      "adopted_component": null,
      "library_signature": null
@@ -3371,32 +1615,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0007e212",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0006058c.c:29"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e212",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e212",
-     "is_thunk": false,
-     "display_name": "FUN_0007e212",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "onoff_manager_init",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_0007e390",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -3449,254 +1667,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0007e53e",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 3,
-   "reference_sites": [
-    "nvs_mount.c:181",
-    "nvs_mount.c:245",
-    "nvs_read_hist.c:67"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e53e",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e53e",
-     "is_thunk": false,
-     "display_name": "FUN_0007e53e",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_rd",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e574",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "nvs_write.c:79"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e574",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e574",
-     "is_thunk": false,
-     "display_name": "FUN_0007e574",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_block_cmp",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e5da",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 5,
-   "reference_sites": [
-    "nvs_mount.c:159",
-    "nvs_mount.c:163",
-    "nvs_mount.c:172",
-    "nvs_mount.c:207",
-    "nvs_mount.c:214"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e5da",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e5da",
-     "is_thunk": false,
-     "display_name": "FUN_0007e5da",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_cmp_const",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e624",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 3,
-   "reference_sites": [
-    "nvs_mount.c:222",
-    "nvs_mount.c:236",
-    "nvs_mount.c:254"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e624",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e624",
-     "is_thunk": false,
-     "display_name": "FUN_0007e624",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_erase_sector",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e672",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 4,
-   "reference_sites": [
-    "nvs_mount.c:190",
-    "nvs_mount.c:247",
-    "nvs_read_hist.c:57",
-    "nvs_write.c:74"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e672",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e672",
-     "is_thunk": false,
-     "display_name": "FUN_0007e672",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_ate_valid",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e6e2",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "nvs_read_hist.c:54",
-    "nvs_write.c:70"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e6e2",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e6e2",
-     "is_thunk": false,
-     "display_name": "FUN_0007e6e2",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_prev_ate",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e776",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "nvs_write.c:103"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e776",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e776",
-     "is_thunk": false,
-     "display_name": "FUN_0007e776",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_al_wrt",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e7ea",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "nvs_write.c:107",
-    "nvs_write.c:121"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e7ea",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e7ea",
-     "is_thunk": false,
-     "display_name": "FUN_0007e7ea",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_flash_ate_wrt",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007e83a",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "nvs_mount.c:242",
-    "nvs_write.c:124"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e83a",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007e83a",
-     "is_thunk": false,
-     "display_name": "FUN_0007e83a",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "nvs_gc",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_0007ef56",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -3715,113 +1685,6 @@
      "retained_source": null,
      "adopted_component": null,
      "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007f570",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 7,
-   "reference_sites": [
-    "FUN_0004ee68.c:65",
-    "FUN_0004ee68.c:74",
-    "FUN_0004ee68.c:81",
-    "FUN_0004ee68.c:90",
-    "FUN_0004ee68.c:97",
-    "gatt_service_changed_c_discovery_completed.c:37",
-    "gatt_service_changed_c_discovery_completed.c:42"
-   ],
-   "identities": [
-    {
-     "va": "0x0007f570",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007f570",
-     "is_thunk": false,
-     "display_name": "FUN_0007f570",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_gatt_dm_desc_by_uuid",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0007f6b6",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "request_ancs_attr_ext.c:36"
-   ],
-   "identities": [
-    {
-     "va": "0x0007f6b6",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007f6b6",
-     "is_thunk": false,
-     "display_name": "FUN_0007f6b6",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_ancs_request_attrs",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00080294_i",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 1,
-   "reference_sites": [
-    "gatt_db_hash_gen.c:39"
-   ],
-   "identities": [
-    {
-     "va": "0x00080294",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "tc_cmac_final",
-     "is_thunk": false,
-     "display_name": "tc_cmac_final",
-     "retained_source": null,
-     "adopted_component": "tinycrypt",
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00080ed8",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00056a68.c:36"
-   ],
-   "identities": [
-    {
-     "va": "0x00080ed8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00080ed8",
-     "is_thunk": false,
-     "display_name": "FUN_00080ed8",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_hci_disconnect",
-      "ratio": 1.0
-     }
     }
    ],
    "sdk_source_hit": null
@@ -3872,58 +1735,6 @@
      "retained_source": null,
      "adopted_component": null,
      "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000813e8",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "ble_conn_lookup_masked.c:28"
-   ],
-   "identities": [
-    {
-     "va": "0x000813e8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000813e8",
-     "is_thunk": false,
-     "display_name": "FUN_000813e8",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "conn_lookup_handle",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000817ea",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "ble_conn_process_complete_or_disconnect.c:40"
-   ],
-   "identities": [
-    {
-     "va": "0x000817ea",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000817ea",
-     "is_thunk": false,
-     "display_name": "FUN_000817ea",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_l2cap_disconnected",
-      "ratio": 1.0
-     }
     }
    ],
    "sdk_source_hit": null
@@ -4009,87 +1820,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_000823fa",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 3,
-   "reference_sites": [
-    "bt_gatt_read.c:48",
-    "bt_gatt_read.c:54",
-    "thunk_FUN_000823fa.c:7"
-   ],
-   "identities": [
-    {
-     "va": "0x000823fa",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000823fa",
-     "is_thunk": false,
-     "display_name": "FUN_000823fa",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_att_get_mtu",
-      "ratio": 0.93
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00082e24",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "bt_gatt_subscribe.c:54"
-   ],
-   "identities": [
-    {
-     "va": "0x00082e24",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00082e24",
-     "is_thunk": false,
-     "display_name": "FUN_00082e24",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_gatt_cancel",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00082ec8",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_00058c34.c:28",
-    "FUN_000590bc.c:26"
-   ],
-   "identities": [
-    {
-     "va": "0x00082ec8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00082ec8",
-     "is_thunk": false,
-     "display_name": "FUN_00082ec8",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_gatt_change_aware",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00082f3a",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -4137,59 +1867,6 @@
      "adopted_component": null,
      "library_signature": {
       "name": "smp_c1",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00083370",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00054444.c:40"
-   ],
-   "identities": [
-    {
-     "va": "0x00083370",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00083370",
-     "is_thunk": false,
-     "display_name": "FUN_00083370",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_smp_request_ltk",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00083634",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_0005d0ac.c:70",
-    "FUN_0005d0ac.c:87"
-   ],
-   "identities": [
-    {
-     "va": "0x00083634",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00083634",
-     "is_thunk": false,
-     "display_name": "FUN_00083634",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "bt_crypto_f6",
       "ratio": 1.0
      }
     }
@@ -4266,113 +1943,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0008557c",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "rpmsg_virtqueue_channel_init.c:113"
-   ],
-   "identities": [
-    {
-     "va": "0x0008557c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0008557c",
-     "is_thunk": false,
-     "display_name": "FUN_0008557c",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "metal_io_block_set",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00085900",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0007118c.c:31"
-   ],
-   "identities": [
-    {
-     "va": "0x00085900",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00085900",
-     "is_thunk": false,
-     "display_name": "FUN_00085900",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "rpmsg_get_endpoint",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000859b2",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 7,
-   "reference_sites": [
-    "FUN_000710b4.c:59",
-    "FUN_0007118c.c:27",
-    "FUN_0007118c.c:28",
-    "FUN_0007118c.c:31",
-    "FUN_0007118c.c:46",
-    "FUN_0007118c.c:49",
-    "FUN_00085a9c.c:34"
-   ],
-   "identities": [
-    {
-     "va": "0x000859b2",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00072880",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00072880",
-     "retained_source": "FUN_000859b2.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00085bf6",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "ipc_rpmsg_deinit.c:18"
-   ],
-   "identities": [
-    {
-     "va": "0x00085bf6",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00085bf6",
-     "is_thunk": false,
-     "display_name": "FUN_00085bf6",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "rpmsg_deinit_vdev",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00085c86",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -4419,29 +1989,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_000861aa",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 1,
-   "reference_sites": [
-    "smp_process_request_packet.c:124"
-   ],
-   "identities": [
-    {
-     "va": "0x000861aa",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00085cf2",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00085cf2",
-     "retained_source": "FUN_000861aa.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00086228",
    "category": "interior_or_tail_alias",
    "reason": "referenced VA is not a catalog function entry",
@@ -4476,29 +2023,6 @@
    "identities": [
     {
      "va": "0x00086360",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": null,
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_0008641c",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "k_work_queue_start.c:48"
-   ],
-   "identities": [
-    {
-     "va": "0x0008641c",
      "catalog_entry": false,
      "catalog_class": null,
      "catalog_name": null,
@@ -4563,37 +2087,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "FUN_0008673e",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 6,
-   "reference_sites": [
-    "driver_stop_active_timer.c:20",
-    "flowctl_schedule_next_send.c:65",
-    "nvs_timer_arm_and_mark_dirty.c:31",
-    "stop_some_timer.c:15",
-    "uarte_nrfx_isr.c:151",
-    "uarte_nrfx_isr.c:306"
-   ],
-   "identities": [
-    {
-     "va": "0x0008673e",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0008673e",
-     "is_thunk": false,
-     "display_name": "FUN_0008673e",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "z_impl_k_timer_stop",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "FUN_00086778",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -4623,10 +2116,9 @@
    "symbol": "FUN_000867da",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
+   "reference_count": 1,
    "reference_sites": [
-    "FUN_000757b0.c:65",
-    "z_handle_obj_poll_events.c:21"
+    "FUN_000757b0.c:65"
    ],
    "identities": [
     {
@@ -4640,327 +2132,6 @@
      "adopted_component": null,
      "library_signature": {
       "name": "signal_poll_event",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086be4",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 35,
-   "reference_sites": [
-    "FUN_0005420c.c:23",
-    "FUN_00054dd8.c:45",
-    "FUN_00054dd8.c:46",
-    "FUN_00055614.c:19",
-    "FUN_0005d0ac.c:89",
-    "FUN_0006403c.c:35",
-    "FUN_0007c132.c:21",
-    "FUN_0007c132.c:25",
-    "FUN_00080872.c:52",
-    "FUN_00080a4e.c:22",
-    "ancs_connected.c:51",
-    "ancs_security_changed.c:63",
-    "ble_privacy_request_random_address.c:41",
-    "ble_privacy_request_random_address.c:43",
-    "bt_keys_pool_find_or_alloc.c:21",
-    "bt_keys_pool_find_or_alloc.c:24",
-    "bt_keys_pool_find_or_alloc.c:28",
-    "bt_keys_pool_find_or_alloc.c:34",
-    "bt_keys_pool_find_or_alloc.c:37",
-    "bt_smp_ah.c:31",
-    "convert_to_id_on_match.c:15",
-    "display_dispatch_thread.c:414",
-    "esb_send_command_and_wait_ack.c:89",
-    "find_type_cb.c:92",
-    "getQuickNoteBKPQueueCacheData.c:203",
-    "getQuickNoteBKPQueueCacheData.c:210",
-    "img_mgmt_impl_write_image_data.c:79",
-    "pairing_complete.c:39",
-    "qspi_nor_configure.c:165",
-    "set_device_sn_info.c:61",
-    "set_glasses_sn_info.c:61",
-    "smp_ident_addr_info.c:72",
-    "update_burial_point_to_flash.c:43",
-    "write_font_to_flash_with_verify.c:56",
-    "write_font_to_flash_with_verify.c:79"
-   ],
-   "identities": [
-    {
-     "va": "0x00086be4",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086be4",
-     "is_thunk": false,
-     "display_name": "FUN_00086be4",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "memcmp",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086c04",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 0,
-   "reference_sites": [],
-   "identities": [
-    {
-     "va": "0x00086c04",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086c04",
-     "is_thunk": false,
-     "display_name": "memcpy",
-     "retained_source": "memcpy.c",
-     "adopted_component": null,
-     "library_signature": {
-      "name": "memcpy",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086c44",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 6,
-   "reference_sites": [
-    "__sfvwrite_r.c:113",
-    "__sfvwrite_r.c:120",
-    "__sfvwrite_r.c:74",
-    "__sfvwrite_r.c:81",
-    "iobuf_ensure_capacity_and_append.c:52",
-    "storage_read_with_word_cache.c:58"
-   ],
-   "identities": [
-    {
-     "va": "0x00086c44",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086c44",
-     "is_thunk": false,
-     "display_name": "FUN_00086c44",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "memmove",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086c78",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 10,
-   "reference_sites": [
-    "draw_message.c:107",
-    "draw_message.c:109",
-    "draw_message.c:113",
-    "draw_message.c:143",
-    "draw_message.c:148",
-    "draw_message.c:161",
-    "draw_message.c:177",
-    "draw_message.c:186",
-    "draw_message.c:194",
-    "draw_message.c:235"
-   ],
-   "identities": [
-    {
-     "va": "0x00086c78",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "memset_bytes",
-     "is_thunk": false,
-     "display_name": "memset_bytes",
-     "retained_source": "memset_bytes.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086fbe",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "local_store_write.c:40"
-   ],
-   "identities": [
-    {
-     "va": "0x00086fbe",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086fbe",
-     "is_thunk": false,
-     "display_name": "FUN_00086fbe",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "__strcat_chk",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086fee",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "format_bt_addr_str.c:64"
-   ],
-   "identities": [
-    {
-     "va": "0x00086fee",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086fee",
-     "is_thunk": false,
-     "display_name": "strcpy",
-     "retained_source": "strcpy.c",
-     "adopted_component": null,
-     "library_signature": {
-      "name": "strcpy",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00086ffe",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "spec_ble_command_hook.c:335",
-    "spec_ble_command_hook.c:565"
-   ],
-   "identities": [
-    {
-     "va": "0x00086ffe",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086ffe",
-     "is_thunk": false,
-     "display_name": "FUN_00086ffe",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "__strcpy_chk",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_00087036",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 38,
-   "reference_sites": [
-    "FUN_00052d58.c:38",
-    "FUN_00052d58.c:61",
-    "FUN_00064b64.c:35",
-    "cjson_parse_value.c:124",
-    "cjson_parse_value.c:129",
-    "cjson_parse_value.c:36",
-    "dtoa.c:165",
-    "dtoa.c:66",
-    "dtoa.c:97",
-    "get_demo_image_source.c:80",
-    "get_demo_image_source_from_flash.c:55",
-    "is_on_whitelist_by_identifier.c:51",
-    "is_on_whitelist_by_identifier.c:55",
-    "is_on_whitelist_by_identifier.c:56",
-    "is_on_whitelist_by_identifier.c:57",
-    "is_on_whitelist_by_identifier.c:62",
-    "is_on_whitelist_by_identifier.c:63",
-    "is_on_whitelist_by_identifier.c:86",
-    "notification_icon_type_from_package.c:41",
-    "notification_icon_type_from_package.c:42",
-    "notification_icon_type_from_package.c:45",
-    "notification_icon_type_from_package.c:46",
-    "notification_icon_type_from_package.c:49",
-    "send_data_in_ble_chunks.c:41",
-    "spec_ble_command_hook.c:631",
-    "spec_ble_command_hook.c:694",
-    "spec_ble_command_hook.c:703",
-    "spec_ble_command_hook.c:705",
-    "spec_ble_command_hook.c:714",
-    "spec_ble_command_hook.c:716",
-    "spec_ble_command_hook.c:731",
-    "spec_ble_command_hook.c:745",
-    "spec_ble_command_hook.c:755",
-    "spec_ble_command_hook.c:766",
-    "spec_ble_command_hook.c:786",
-    "spec_ble_command_hook.c:795",
-    "whitelist_contains_app.c:39",
-    "whitelist_contains_app.c:40"
-   ],
-   "identities": [
-    {
-     "va": "0x00087036",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00087036",
-     "is_thunk": false,
-     "display_name": "FUN_00087036",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "strncmp",
-      "ratio": 1.0
-     }
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "FUN_000870be",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 7,
-   "reference_sites": [
-    "is_on_whitelist_by_identifier.c:91",
-    "spec_ble_command_hook.c:322",
-    "spec_ble_command_hook.c:348",
-    "spec_ble_command_hook.c:350",
-    "spec_ble_command_hook.c:352",
-    "spec_ble_command_hook.c:354",
-    "spec_ble_command_hook.c:422"
-   ],
-   "identities": [
-    {
-     "va": "0x000870be",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000870be",
-     "is_thunk": false,
-     "display_name": "FUN_000870be",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "strstr",
       "ratio": 1.0
      }
     }
@@ -5126,10 +2297,8 @@
    "symbol": "atomic_and_0",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 5,
+   "reference_count": 3,
    "reference_sites": [
-    "bt_gatt_dm_data_release.c:18",
-    "bt_gatt_dm_data_release.c:21",
     "discovery_complete_error.c:19",
     "discovery_complete_not_found.c:20",
     "gatt_dm_start.c:69"
@@ -5182,8 +2351,8 @@
    "reference_sites": [
     "FUN_000565c4.c:29",
     "FUN_000571e8.c:56",
-    "ble_conn_process_complete_or_disconnect.c:65",
-    "ble_conn_process_complete_or_disconnect.c:72",
+    "ble_conn_process_complete_or_disconnect.c:66",
+    "ble_conn_process_complete_or_disconnect.c:73",
     "ble_notify_le_param_updated.c:31",
     "bt_conn_le_param_update.c:26",
     "bt_conn_set_security.c:24"
@@ -5260,11 +2429,10 @@
    "symbol": "atomic_clear_bit",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 4,
+   "reference_count": 3,
    "reference_sites": [
     "FUN_0004f040.c:37",
     "FUN_0004f0ec.c:41",
-    "bt_ancs_cp_write.c:29",
     "bt_ancs_cp_write_callback.c:17"
    ],
    "identities": [
@@ -5286,12 +2454,11 @@
    "symbol": "atomic_clear_bit_0",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 4,
+   "reference_count": 3,
    "reference_sites": [
     "FUN_00059834.c:64",
     "FUN_00082326.c:18",
-    "att_cfm_sent.c:19",
-    "bt_att_clear_out_of_sync_sent.c:22"
+    "att_cfm_sent.c:19"
    ],
    "identities": [
     {
@@ -5522,7 +2689,7 @@
    "reference_sites": [
     "FUN_0005cff0.c:37",
     "FUN_0005cff0.c:54",
-    "FUN_0005d0ac.c:102",
+    "FUN_0005d0ac.c:104",
     "FUN_0005d5c0.c:100",
     "FUN_0005d5c0.c:108",
     "FUN_0005d5c0.c:174",
@@ -5546,7 +2713,7 @@
     "bt_smp_distribute_keys.c:92",
     "smp_central_ident.c:59",
     "smp_dhkey_generate.c:27",
-    "smp_ident_addr_info.c:116",
+    "smp_ident_addr_info.c:117",
     "smp_init.c:27",
     "smp_timeout.c:26"
    ],
@@ -5619,8 +2786,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 3,
    "reference_sites": [
-    "FUN_00058c34.c:30",
-    "FUN_000590bc.c:28",
+    "FUN_00058c34.c:31",
+    "FUN_000590bc.c:29",
     "bt_att_recv.c:67"
    ],
    "identities": [
@@ -5676,7 +2843,7 @@
     "smp_error.c:29",
     "smp_error.c:33",
     "smp_error.c:34",
-    "smp_ident_addr_info.c:75",
+    "smp_ident_addr_info.c:76",
     "smp_pairing_complete.c:101",
     "smp_pairing_complete.c:46",
     "smp_pairing_complete.c:88",
@@ -5729,7 +2896,7 @@
    "reference_count": 5,
    "reference_sites": [
     "FUN_00054d18.c:35",
-    "FUN_00054dd8.c:43",
+    "FUN_00054dd8.c:44",
     "FUN_00055204.c:25",
     "FUN_00055204.c:39",
     "id_find.c:27"
@@ -5787,8 +2954,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 2,
    "reference_sites": [
-    "FUN_00058c34.c:48",
-    "FUN_000590bc.c:35"
+    "FUN_00058c34.c:49",
+    "FUN_000590bc.c:36"
    ],
    "identities": [
     {
@@ -5809,9 +2976,8 @@
    "symbol": "bt_gatt_foreach_attr_0",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 5,
+   "reference_count": 4,
    "reference_sites": [
-    "bt_gatt_store_ccc.c:31",
     "gatt_ccc_settings_set.c:79",
     "gatt_connected.c:34",
     "gatt_db_hash_gen.c:38",
@@ -5882,29 +3048,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "can_begin_task_transition",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:374"
-   ],
-   "identities": [
-    {
-     "va": "0x00034808",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00034808",
-     "is_thunk": false,
-     "display_name": "FUN_00034808",
-     "retained_source": "FUN_00034808.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "cancel_sync_locked",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -5926,31 +3069,6 @@
     }
    ],
    "sdk_source_hit": "zephyr/kernel/work.c:1057"
-  },
-  {
-   "symbol": "checked_bitmap_copy",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "gui_utf_draw_align_right.c:159",
-    "gui_utf_draw_truncate.c:135",
-    "gui_utf_draw_truncate.c:220"
-   ],
-   "identities": [
-    {
-     "va": "0x00086c1e",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00086c1e",
-     "is_thunk": false,
-     "display_name": "FUN_00086c1e",
-     "retained_source": "FUN_00086c1e.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "chunk_field",
@@ -6024,57 +3142,6 @@
    "sdk_source_hit": "modules/lib/hostap/src/wps/httpread.c:546"
   },
   {
-   "symbol": "classify_text_character",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "gui_utf_draw_align_right.c:104",
-    "gui_utf_draw_align_right.c:138",
-    "gui_utf_draw_truncate.c:112"
-   ],
-   "identities": [
-    {
-     "va": "0x0007d860",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007d860",
-     "is_thunk": false,
-     "display_name": "index_in_range32_mask",
-     "retained_source": "index_in_range32_mask.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "clear_active_task",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 4,
-   "reference_sites": [
-    "process_for_new_task.c:380",
-    "process_for_new_task.c:419",
-    "process_for_new_task.c:645",
-    "process_for_new_task.c:678"
-   ],
-   "identities": [
-    {
-     "va": "0x00036030",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00036030",
-     "is_thunk": false,
-     "display_name": "set_new_message_pending_flag",
-     "retained_source": "set_new_message_pending_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "compare_set",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -6096,98 +3163,6 @@
     }
    ],
    "sdk_source_hit": "nrf/modules/nrfxlib/nrf_802154/sl/platform/nrf_802154_platform_sl_lptimer_zephyr.c:206"
-  },
-  {
-   "symbol": "default_tail",
-   "category": "compiler_or_ghidra_pseudo_op",
-   "reason": "reconstruction-local name for an unresolved tail path",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00056a68.c:44"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "display_debug_log_boundary",
-   "category": "compiler_or_ghidra_pseudo_op",
-   "reason": "reconstruction-local debug boundary helper with no firmware entry",
-   "reference_count": 13,
-   "reference_sites": [
-    "display_dispatch_thread.c:158",
-    "display_dispatch_thread.c:161",
-    "display_dispatch_thread.c:187",
-    "display_dispatch_thread.c:201",
-    "display_dispatch_thread.c:213",
-    "display_dispatch_thread.c:214",
-    "display_dispatch_thread.c:250",
-    "display_dispatch_thread.c:305",
-    "display_dispatch_thread.c:441",
-    "display_dispatch_thread.c:449",
-    "display_dispatch_thread.c:469",
-    "display_dispatch_thread.c:475",
-    "display_dispatch_thread.c:480"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "display_panel_is_secondary",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 9,
-   "reference_sites": [
-    "check_work_mode.c:233",
-    "check_work_mode.c:302",
-    "display_dispatch_thread.c:186",
-    "display_dispatch_thread.c:199",
-    "display_dispatch_thread.c:248",
-    "display_dispatch_thread.c:456",
-    "prepare_quick_note_mode.c:19",
-    "set_shutdown_flag.c:23",
-    "update_display_status.c:25"
-   ],
-   "identities": [
-    {
-     "va": "0x0002bed0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "check_battery_critical",
-     "is_thunk": false,
-     "display_name": "display_panel_is_secondary",
-     "retained_source": "display_panel_is_secondary.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "encode_uint",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "z_cbvprintf_impl.c:1484",
-    "z_cbvprintf_impl.c:1513"
-   ],
-   "identities": [
-    {
-     "va": "0x0004bb90",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0004bb90",
-     "is_thunk": false,
-     "display_name": "encode_uint",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": {
-      "name": "encode_uint",
-      "ratio": 0.9
-     }
-    }
-   ],
-   "sdk_source_hit": "modules/hal/st/sensor/vl53l1x/api/core/inc/vl53l1_core.h:187"
   },
   {
    "symbol": "ext3cebc",
@@ -6223,77 +3198,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "finalize_task_transition",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "process_for_new_task.c:385",
-    "process_for_new_task.c:650"
-   ],
-   "identities": [
-    {
-     "va": "0x0003439c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0003439c",
-     "is_thunk": false,
-     "display_name": "push_message_3439c",
-     "retained_source": "push_message_3439c.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "finish_task_audio",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "process_for_new_task.c:1168",
-    "process_for_new_task.c:1188"
-   ],
-   "identities": [
-    {
-     "va": "0x0003cf34",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0003cf34",
-     "is_thunk": false,
-     "display_name": "clear_notification_display_buffer",
-     "retained_source": "clear_notification_display_buffer.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "finish_task_media",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:1165"
-   ],
-   "identities": [
-    {
-     "va": "0x0002efc0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002efc0",
-     "is_thunk": false,
-     "display_name": "mark_master_or_low_battery_flag",
-     "retained_source": "mark_master_or_low_battery_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "flash_settings_read",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -6305,7 +3209,7 @@
     "load_whitelist.c:32",
     "read_sys_settting_from_flash.c:31",
     "read_usr_settting_from_flash.c:28",
-    "update_burial_point_to_flash.c:40"
+    "update_burial_point_to_flash.c:41"
    ],
    "identities": [
     {
@@ -6332,7 +3236,7 @@
     "build_and_send_device_status_report.c:72",
     "flash_erase_settings_record.c:20",
     "flash_write_paged.c:36",
-    "update_burial_point_to_flash.c:47"
+    "update_burial_point_to_flash.c:48"
    ],
    "identities": [
     {
@@ -6406,7 +3310,7 @@
    "reference_count": 3,
    "reference_sites": [
     "bt_gatt_discover.c:139",
-    "bt_gatt_read.c:60",
+    "bt_gatt_read.c:61",
     "gatt_parse_read_by_type_rsp.c:104"
    ],
    "identities": [
@@ -6431,7 +3335,7 @@
    "reference_count": 2,
    "reference_sites": [
     "FUN_0005c3c4.c:70",
-    "bt_gatt_subscribe.c:61"
+    "bt_gatt_subscribe.c:62"
    ],
    "identities": [
     {
@@ -6498,36 +3402,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "get_glyph_pair_spacing",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 8,
-   "reference_sites": [
-    "gui_utf_draw_align_right.c:121",
-    "gui_utf_draw_align_right.c:172",
-    "gui_utf_draw_align_right.c:189",
-    "gui_utf_draw_align_right.c:199",
-    "gui_utf_draw_truncate.c:146",
-    "gui_utf_draw_truncate.c:179",
-    "gui_utf_draw_truncate.c:250",
-    "gui_utf_draw_truncate.c:258"
-   ],
-   "identities": [
-    {
-     "va": "0x00043e58",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00043e58",
-     "is_thunk": false,
-     "display_name": "count_chars_in_default_font_table",
-     "retained_source": "count_chars_in_default_font_table.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "get_pin_idx",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -6560,34 +3434,6 @@
    "sdk_source_hit": "modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:1017"
   },
   {
-   "symbol": "get_task_signal_mode",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 6,
-   "reference_sites": [
-    "process_for_new_task.c:369",
-    "process_for_new_task.c:370",
-    "process_for_new_task.c:457",
-    "process_for_new_task.c:591",
-    "process_for_new_task.c:592",
-    "process_for_new_task.c:593"
-   ],
-   "identities": [
-    {
-     "va": "0x00023eec",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00023eec",
-     "is_thunk": false,
-     "display_name": "FUN_00023eec",
-     "retained_source": "FUN_00023eec.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "is_regular_addr_valid",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -6609,54 +3455,6 @@
     }
    ],
    "sdk_source_hit": "nrf/subsys/emds/emds_flash.c:108"
-  },
-  {
-   "symbol": "is_task_transition_ready",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "process_for_new_task.c:1307",
-    "process_for_new_task.c:397",
-    "process_for_new_task.c:644"
-   ],
-   "identities": [
-    {
-     "va": "0x00034410",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00034410",
-     "is_thunk": false,
-     "display_name": "FUN_00034410",
-     "retained_source": "FUN_00034410.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "is_task_transport_blocked",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:866"
-   ],
-   "identities": [
-    {
-     "va": "0x00026c28",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00026c28",
-     "is_thunk": false,
-     "display_name": "check_charging_and_touch_flags",
-     "retained_source": "check_charging_and_touch_flags.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "is_tx_ready",
@@ -6686,39 +3484,13 @@
    "sdk_source_hit": "modules/lib/loramac-node/src/boards/mcu/saml21/hal/include/hpl_spi_s_sync.h:197"
   },
   {
-   "symbol": "k_fifo_init",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "smp_rx_remove_invalid.c:70"
-   ],
-   "identities": [
-    {
-     "va": "0x000864e8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000864e8",
-     "is_thunk": false,
-     "display_name": "z_impl_k_queue_init",
-     "retained_source": "z_impl_k_queue_init.c",
-     "adopted_component": "zephyr",
-     "library_signature": {
-      "name": "z_impl_k_queue_init",
-      "ratio": 0.933
-     }
-    }
-   ],
-   "sdk_source_hit": "modules/debug/TraceRecorder/kernelports/Zephyr/include/tracing_tracerecorder.h:1067"
-  },
-  {
    "symbol": "k_msleep_ticks32768_a",
    "category": "sdk_or_config_symbol",
    "reason": "Zephyr k_msleep/tick-conversion wrapper spelling",
    "reference_count": 2,
    "reference_sites": [
-    "click_event_dispatch_loop.c:145",
-    "click_event_dispatch_loop.c:64"
+    "click_event_dispatch_loop.c:146",
+    "click_event_dispatch_loop.c:65"
    ],
    "identities": [],
    "sdk_source_hit": null
@@ -6727,8 +3499,13 @@
    "symbol": "k_sem_take",
    "category": "interior_or_tail_alias",
    "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 1,
+   "reference_count": 6,
    "reference_sites": [
+    "FUN_0002a4f4.c:87",
+    "check_work_mode.c:363",
+    "click_event_dispatch_loop.c:61",
+    "key_event_thread.c:94",
+    "slave_display_thread.c:216",
     "touch_key_thread.c:79"
    ],
    "identities": [
@@ -6761,13 +3538,10 @@
    "symbol": "k_timer_start",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 5,
+   "reference_count": 2,
    "reference_sites": [
-    "FUN_0005f760.c:148",
-    "ble_process_req_dispatch.c:422",
     "main.c:167",
-    "main.c:327",
-    "uarte_nrfx_isr.c:216"
+    "main.c:327"
    ],
    "identities": [
     {
@@ -6776,9 +3550,9 @@
      "catalog_class": "APPLICATION",
      "catalog_name": "FUN_00075174",
      "is_thunk": false,
-     "display_name": "k_timer_start",
+     "display_name": "z_impl_k_timer_start",
      "retained_source": null,
-     "adopted_component": null,
+     "adopted_component": "app_sdk_public",
      "library_signature": {
       "name": "z_impl_k_timer_start",
       "ratio": 0.97
@@ -6793,8 +3567,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 2,
    "reference_sites": [
-    "spec_ble_command_hook.c:652",
-    "spec_ble_command_hook.c:673"
+    "spec_ble_command_hook.c:655",
+    "spec_ble_command_hook.c:676"
    ],
    "identities": [
     {
@@ -6826,9 +3600,9 @@
     "FUN_0002a8d8.c:217",
     "check_disp_onboarding.c:69",
     "check_work_mode.c:206",
-    "display_dispatch_thread.c:264",
-    "display_dispatch_thread.c:508",
-    "display_dispatch_thread.c:510",
+    "display_dispatch_thread.c:296",
+    "display_dispatch_thread.c:544",
+    "display_dispatch_thread.c:546",
     "set_delay_deadline.c:18",
     "slave_display_thread.c:409",
     "sync_to_slave.c:73"
@@ -6933,8 +3707,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 3,
    "reference_sites": [
-    "ancs_connected.c:68",
-    "ancs_connected.c:71",
+    "ancs_connected.c:69",
+    "ancs_connected.c:72",
     "bt_ancs_data_source_handler.c:68"
    ],
    "identities": [
@@ -7046,16 +3820,12 @@
    "symbol": "k_uptime_get_8",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 14,
+   "reference_count": 10,
    "reference_sites": [
     "FUN_000417f8.c:104",
     "FUN_000417f8.c:131",
     "FUN_000417f8.c:158",
     "FUN_000417f8.c:196",
-    "FUN_000417f8.c:485",
-    "FUN_000417f8.c:659",
-    "FUN_000417f8.c:756",
-    "FUN_000417f8.c:771",
     "FUN_000417f8.c:784",
     "onboarding_ble_process.c:67",
     "onboarding_ble_process.c:75",
@@ -7109,53 +3879,191 @@
    "symbol": "log_message",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 160,
+   "reference_count": 281,
    "reference_sites": [
-    "ancs_main.c:100",
-    "ancs_main.c:132",
-    "ancs_main.c:149",
+    "FUN_00018300.c:18",
+    "FUN_0001965c.c:86",
+    "FUN_00019718.c:38",
+    "FUN_00019718.c:42",
+    "FUN_00019718.c:43",
+    "FUN_00019718.c:44",
+    "FUN_00021da8.c:55",
+    "FUN_00025670.c:27",
+    "FUN_0002a4f4.c:61",
+    "FUN_0002a8d8.c:101",
+    "FUN_0002a8d8.c:121",
+    "FUN_0002a8d8.c:184",
+    "FUN_0002a8d8.c:189",
+    "FUN_0002a8d8.c:208",
+    "FUN_0002ea78.c:22",
+    "FUN_0002eaa8.c:22",
+    "FUN_0002ead8.c:23",
+    "FUN_00031b60.c:31",
+    "FUN_00031b60.c:33",
+    "FUN_00031bd8.c:18",
+    "FUN_00031bd8.c:19",
+    "FUN_00032b24.c:17",
+    "FUN_00032fe8.c:24",
+    "ancs_connected.c:82",
+    "ancs_disconnected.c:43",
+    "ancs_discover_start.c:26",
     "ancs_main.c:178",
-    "ancs_main.c:86",
-    "ancs_main.c:95",
-    "display_thread_handler.c:162",
+    "audioStreamFileManagerHandler.c:246",
+    "audioStreamFileManagerHandler.c:272",
+    "audioStreamFileManagerHandler.c:294",
+    "audioStreamFileManagerHandler.c:347",
+    "audioStreamFileManagerHandler.c:378",
+    "audioStreamFileManagerHandler.c:393",
+    "audio_fw_load_get_wrapper.c:21",
+    "audio_fw_load_get_wrapper.c:25",
+    "ble_whitelist_app.c:47",
+    "ble_whitelist_app.c:63",
+    "bond_deleted_cb.c:21",
+    "bt_ancs_data_source_handler.c:50",
+    "bt_ancs_data_source_handler.c:87",
+    "burial_point_record_info_init.c:27",
+    "cal_panel_canvas_coord.c:112",
+    "cal_panel_canvas_coord.c:94",
+    "calc_flash_crc.c:53",
+    "change_work_mode_to.c:60",
+    "check_ancs_inbox_flag_change.c:28",
+    "check_bind_status.c:40",
+    "check_bind_status.c:52",
+    "check_bonded_addr.c:33",
+    "check_sw0_status.c:33",
+    "check_sw0_status.c:43",
+    "check_work_mode.c:286",
+    "check_work_mode.c:318",
+    "check_work_mode.c:367",
+    "check_work_mode.c:382",
+    "check_work_mode.c:393",
+    "check_work_mode.c:409",
+    "check_work_mode.c:420",
+    "click_event_dispatch_loop.c:112",
+    "click_event_dispatch_loop.c:115",
+    "click_event_dispatch_loop.c:121",
+    "click_event_dispatch_loop.c:128",
+    "click_event_dispatch_loop.c:148",
+    "click_event_dispatch_loop.c:97",
+    "debounce_read_pending_flag_1.c:20",
+    "debug_log_queue_init.c:27",
+    "dequeue_ancs.c:40",
+    "discovery_completed_cb_ancs.c:34",
+    "discovery_completed_cb_ancs.c:40",
+    "discovery_completed_cb_ancs.c:45",
+    "discovery_completed_cb_ancs.c:48",
+    "discovery_completed_cb_gatt.c:33",
+    "discovery_completed_cb_gatt.c:35",
+    "discovery_completed_cb_gatt.c:39",
+    "discovery_completed_cb_gatt.c:43",
+    "discovery_error_found_cb_ancs.c:21",
+    "discovery_error_found_cb_gatt.c:18",
+    "discovery_service_not_found_cb_ancs.c:21",
+    "discovery_service_not_found_cb_gatt.c:18",
+    "display_dispatch_thread.c:189",
+    "display_dispatch_thread.c:193",
+    "display_dispatch_thread.c:219",
+    "display_dispatch_thread.c:233",
+    "display_dispatch_thread.c:337",
+    "display_dispatch_thread.c:473",
+    "display_dispatch_thread.c:482",
+    "display_dispatch_thread.c:487",
+    "display_dispatch_thread.c:516",
+    "display_reflash_handler.c:42",
+    "display_reflash_handler.c:50",
+    "display_reflash_handler.c:58",
+    "display_reflash_handler.c:72",
+    "display_reflash_handler.c:80",
+    "dump_template_gyro_info.c:36",
+    "enqueue_ancs.c:40",
+    "enqueue_ancs.c:49",
+    "enqueue_debug.c:31",
+    "enqueue_file.c:34",
+    "enqueue_uid.c:32",
+    "enqueue_uid.c:38",
+    "enter_dashboard_burial_point.c:42",
+    "enter_wear_burial_point.c:49",
+    "exit_dashboard_burial_point.c:49",
+    "file_subsystem_queue_init.c:25",
+    "flash_ops_thread.c:56",
+    "fuel_gauge_update.c:152",
+    "fuel_gauge_update.c:182",
+    "fuel_gauge_update.c:270",
+    "gatt_discover.c:53",
+    "get_boot_seconds.c:33",
+    "get_dashboard_sum_time.c:47",
+    "get_demo_image_source_from_flash.c:53",
+    "get_demo_image_source_from_flash.c:57",
+    "get_glassbox_charge_percent.c:26",
+    "get_glassbox_charge_status.c:23",
+    "get_lux_info.c:34",
+    "get_lux_info.c:38",
+    "get_lux_info.c:72",
     "get_notification_counts_cmd_process.c:29",
-    "gui_area_clear.c:38",
-    "gui_area_clear.c:47",
+    "global_system_suspend.c:27",
+    "gui_4bit_bitmap_override.c:53",
+    "gui_4bit_bitmap_override.c:60",
+    "gui_bitmap_draw.c:88",
     "gui_bitmps_merge_draw.c:82",
+    "gui_bmp_bitmap_draw.c:55",
     "gui_bmp_bitmap_draw_ex.c:85",
+    "gui_clock_draw.c:118",
+    "gui_clock_draw.c:94",
     "gui_screen_clear.c:29",
-    "gui_screen_clear.c:39",
+    "gui_string_draw.c:61",
+    "gui_utf_Wordwrap_draw.c:122",
+    "gui_utf_Wordwrap_draw.c:177",
+    "gui_utf_Wordwrap_draw.c:277",
+    "gui_utf_draw.c:67",
+    "gui_utf_draw.c:89",
     "gui_utf_draw_align_right.c:111",
     "gui_utf_draw_align_right.c:150",
     "gui_utf_draw_align_right.c:248",
+    "gui_utf_draw_dark_light_split.c:123",
+    "gui_utf_draw_dark_light_split.c:51",
+    "gui_utf_draw_dark_light_split.c:70",
+    "gui_utf_draw_middle.c:49",
+    "gui_utf_draw_middle.c:67",
+    "gui_utf_draw_middle.c:79",
     "gui_utf_draw_truncate.c:170",
     "gui_utf_draw_truncate.c:196",
     "gui_utf_draw_truncate.c:209",
     "gui_utf_draw_truncate.c:89",
+    "gui_verticalLine_process_bar.c:53",
+    "handle_touch_key_press_event.c:73",
+    "init_msgq_ancs.c:24",
+    "init_msgq_uid.c:24",
+    "init_nfc_comm.c:27",
+    "init_watchdog.c:57",
+    "init_watchdog.c:60",
+    "init_watchdog.c:66",
+    "ipc_ept_op_a_locked_retry.c:32",
+    "ipc_send_len_prefixed_packet.c:30",
+    "ipc_service_send_with_retry.c:19",
     "is_ext_flash_burned.c:56",
     "is_ext_flash_burned.c:68",
     "is_ext_flash_burned.c:82",
+    "is_on_whitelist_by_identifier.c:104",
+    "is_on_whitelist_by_identifier.c:51",
+    "is_on_whitelist_by_identifier.c:78",
+    "is_on_whitelist_by_identifier.c:85",
     "key_event_thread.c:147",
     "key_event_thread.c:149",
     "key_event_thread.c:150",
     "key_event_thread.c:151",
-    "key_event_thread.c:159",
-    "key_event_thread.c:223",
-    "key_event_thread.c:273",
-    "key_event_thread.c:279",
-    "key_event_thread.c:293",
-    "key_event_thread.c:374",
-    "key_event_thread.c:440",
-    "key_event_thread.c:443",
-    "key_event_thread.c:457",
-    "key_event_thread.c:485",
-    "key_event_thread.c:494",
-    "key_event_thread.c:502",
-    "key_event_thread.c:526",
     "key_event_thread.c:96",
-    "local_esbs_ipc_service_recv.c:183",
-    "local_esbs_ipc_service_recv.c:196",
+    "load_burial_point.c:44",
+    "load_sys_setting.c:70",
+    "load_usr_setting.c:63",
+    "load_usr_setting.c:73",
+    "load_whitelist.c:57",
     "local_esbs_ipc_service_recv.c:54",
+    "local_store_write.c:58",
+    "lsm6dso_init_chip.c:104",
+    "lsm6dso_init_chip.c:109",
+    "lsm6dso_init_chip.c:186",
+    "lsm6dso_init_chip.c:86",
+    "lsm6dso_init_chip.c:97",
     "main.c:162",
     "main.c:171",
     "main.c:177",
@@ -7165,92 +4073,64 @@
     "main.c:361",
     "main.c:367",
     "main.c:372",
+    "navigation_direction_img_display.c:37",
+    "navigation_overview_map_display.c:119",
+    "navigation_overview_map_display.c:246",
+    "navigation_overview_map_display.c:84",
+    "not_disturb_sync_data.c:82",
+    "on_triple_click.c:20",
+    "onboarding_ble_process.c:54",
+    "onboarding_ble_process.c:85",
+    "onboarding_sync_data.c:82",
+    "pairing_complete.c:56",
+    "pairing_failed.c:30",
+    "parse_ncs_notification.c:54",
+    "parse_ncs_notification.c:60",
+    "pixelto4bithex_for_flash.c:25",
     "post_notification_cmd_process.c:47",
     "post_notification_cmd_process.c:64",
     "post_notification_cmd_process.c:74",
     "post_notification_cmd_process.c:90",
-    "process_for_new_task.c:1006",
-    "process_for_new_task.c:1020",
-    "process_for_new_task.c:1026",
-    "process_for_new_task.c:1046",
-    "process_for_new_task.c:1053",
-    "process_for_new_task.c:1072",
-    "process_for_new_task.c:1079",
-    "process_for_new_task.c:1095",
-    "process_for_new_task.c:1102",
-    "process_for_new_task.c:1124",
-    "process_for_new_task.c:1134",
-    "process_for_new_task.c:1146",
-    "process_for_new_task.c:1153",
-    "process_for_new_task.c:1170",
-    "process_for_new_task.c:1183",
-    "process_for_new_task.c:1207",
-    "process_for_new_task.c:1214",
-    "process_for_new_task.c:1221",
-    "process_for_new_task.c:1239",
-    "process_for_new_task.c:1255",
-    "process_for_new_task.c:1262",
-    "process_for_new_task.c:1269",
-    "process_for_new_task.c:1280",
-    "process_for_new_task.c:1286",
-    "process_for_new_task.c:1303",
-    "process_for_new_task.c:287",
-    "process_for_new_task.c:328",
-    "process_for_new_task.c:334",
-    "process_for_new_task.c:414",
-    "process_for_new_task.c:436",
-    "process_for_new_task.c:453",
-    "process_for_new_task.c:474",
-    "process_for_new_task.c:482",
-    "process_for_new_task.c:497",
-    "process_for_new_task.c:508",
-    "process_for_new_task.c:519",
-    "process_for_new_task.c:540",
-    "process_for_new_task.c:552",
-    "process_for_new_task.c:560",
-    "process_for_new_task.c:574",
-    "process_for_new_task.c:584",
-    "process_for_new_task.c:610",
-    "process_for_new_task.c:619",
-    "process_for_new_task.c:671",
-    "process_for_new_task.c:688",
-    "process_for_new_task.c:699",
-    "process_for_new_task.c:710",
-    "process_for_new_task.c:720",
-    "process_for_new_task.c:732",
-    "process_for_new_task.c:744",
-    "process_for_new_task.c:755",
-    "process_for_new_task.c:766",
-    "process_for_new_task.c:846",
-    "process_for_new_task.c:861",
-    "process_for_new_task.c:889",
-    "process_for_new_task.c:898",
-    "process_for_new_task.c:907",
-    "process_for_new_task.c:944",
-    "process_for_new_task.c:951",
-    "process_for_new_task.c:958",
-    "process_for_new_task.c:973",
-    "process_for_new_task.c:978",
-    "process_for_new_task.c:992",
-    "process_for_new_task.c:999",
-    "process_pt_data.c:113",
-    "process_pt_data.c:126",
-    "process_pt_data.c:66",
-    "process_pt_data.c:80",
-    "process_pt_data.c:86",
-    "push_message.c:105",
-    "push_message.c:133",
-    "push_message.c:74",
-    "push_message.c:94",
+    "process_for_new_message_come_on.c:75",
+    "process_for_new_message_come_on.c:95",
+    "process_for_new_message_come_on.c:99",
+    "read_sys_settting_from_flash.c:34",
+    "read_sys_settting_from_flash.c:64",
+    "read_usr_settting_from_flash.c:32",
+    "read_usr_settting_from_flash.c:42",
+    "render_ancs_notification_animation.c:57",
+    "reset_all_usr_data.c:83",
+    "reset_usr_setting.c:27",
+    "resource_manger_get.c:1183",
+    "resource_manger_get.c:645",
+    "run_main_dispatch_thread.c:74",
+    "set_brightness_lum_base.c:35",
+    "set_imu_pitch_reflash.c:67",
     "set_test_mode.c:22",
-    "sett_init.c:42",
-    "sett_init.c:59",
-    "simulator_ancs_calendar_schedule_trigger.c:40",
-    "spi_master_trans_data_tx_rx.c:33",
-    "spi_master_trans_data_tx_rx.c:45",
-    "startAudioStreamRecord.c:48",
-    "startAudioStreamRecord.c:59",
-    "stopAudioStreamRecord.c:41",
+    "slave_display_thread.c:244",
+    "slave_display_thread.c:250",
+    "slave_display_thread.c:266",
+    "slave_display_thread.c:270",
+    "slave_display_thread.c:272",
+    "slave_display_thread.c:440",
+    "slave_display_thread.c:467",
+    "slave_display_thread.c:475",
+    "slave_display_thread.c:477",
+    "slave_display_thread.c:482",
+    "spec_ble_command_hook.c:315",
+    "spec_ble_command_hook.c:341",
+    "spec_ble_command_hook.c:367",
+    "spec_ble_command_hook.c:382",
+    "spec_ble_command_hook.c:398",
+    "spec_ble_command_hook.c:677",
+    "spec_ble_command_hook.c:694",
+    "spec_ble_command_hook.c:701",
+    "spec_ble_command_hook.c:745",
+    "spec_ble_command_hook.c:919",
+    "switch_to_dfu_mode.c:65",
+    "switch_to_dfu_mode.c:73",
+    "sync_message_signal_to_slave.c:43",
+    "sync_message_signal_to_slave.c:50",
     "sync_to_slave.c:126",
     "sync_to_slave.c:192",
     "sync_to_slave.c:263",
@@ -7260,17 +4140,28 @@
     "touch_key_thread.c:192",
     "touch_key_thread.c:209",
     "touch_key_thread.c:222",
-    "touch_key_thread.c:266",
-    "touch_key_thread.c:286",
-    "touch_key_thread.c:295",
-    "touch_key_thread.c:302",
-    "touch_key_thread.c:312",
-    "ui_even_ai_task.c:127",
+    "trigger_screen_state_change.c:26",
+    "trigger_screen_state_change.c:42",
+    "ui_onboarding_task.c:129",
+    "ui_onboarding_task.c:86",
+    "ui_raster_height_task.c:44",
+    "ui_raster_height_task.c:58",
+    "ui_set_imu_pitch_task.c:101",
     "ui_teleprompter_task.c:113",
     "ui_teleprompter_task.c:139",
     "ui_teleprompter_task.c:296",
-    "update_persist_task_status.c:47",
-    "whitelist_contains_app.c:29"
+    "uint32_to_little_endian.c:25",
+    "update_burial_point_day_index.c:47",
+    "update_burial_point_to_flash.c:36",
+    "update_burial_point_to_flash.c:65",
+    "update_imu_trigger_status.c:31",
+    "update_imu_trigger_status.c:40",
+    "update_touch_key_flag.c:38",
+    "wait_touch_key_release_or_timeout.c:30",
+    "write_font_to_flash_with_verify.c:49",
+    "write_font_to_flash_with_verify.c:59",
+    "write_font_to_flash_with_verify.c:84",
+    "write_font_to_flash_with_verify.c:92"
    ],
    "identities": [
     {
@@ -7312,30 +4203,6 @@
    "sdk_source_hit": "zephyr/lib/os/heap.c:157"
   },
   {
-   "symbol": "mutex_lock_syscall_handler",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 2,
-   "reference_sites": [
-    "main.c:319",
-    "main.c:425"
-   ],
-   "identities": [
-    {
-     "va": "0x00072908",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00072908",
-     "is_thunk": false,
-     "display_name": "z_impl_k_sem_take",
-     "retained_source": "z_impl_k_sem_take.c",
-     "adopted_component": "zephyr",
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "net_buf_frags_len",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -7369,9 +4236,9 @@
    "reference_count": 4,
    "reference_sites": [
     "FUN_00058808.c:61",
-    "find_type_cb.c:60",
-    "find_type_cb.c:67",
-    "find_type_cb.c:74"
+    "find_type_cb.c:61",
+    "find_type_cb.c:68",
+    "find_type_cb.c:75"
    ],
    "identities": [
     {
@@ -7389,35 +4256,12 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "net_buf_get_impl",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "net_buf_get.c:13"
-   ],
-   "identities": [
-    {
-     "va": "0x000727ac",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_000727ac",
-     "is_thunk": false,
-     "display_name": "FUN_000727ac",
-     "retained_source": "FUN_000727ac.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "next_timeout",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 1,
    "reference_sites": [
-    "FUN_00074bf4.c:100"
+    "FUN_00074bf4.c:101"
    ],
    "identities": [
     {
@@ -7625,157 +4469,6 @@
    "sdk_source_hit": "modules/bsim_hw_models/nrf_hw_models/src/nrfx/hal/nrf_nvmc.c:55"
   },
   {
-   "symbol": "nvs_add_gc_done_ate",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 1,
-   "reference_sites": [
-    "nvs_mount.c:260"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e80c",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "nvs_add_gc_done_ate",
-     "is_thunk": false,
-     "display_name": "nvs_add_gc_done_ate",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/subsys/fs/nvs/nvs.c:608"
-  },
-  {
-   "symbol": "nvs_al_size",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 7,
-   "reference_sites": [
-    "nvs_mount.c:155",
-    "nvs_mount.c:195",
-    "nvs_read_hist.c:40",
-    "nvs_write.c:104",
-    "nvs_write.c:114",
-    "nvs_write.c:61",
-    "nvs_write.c:62"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e65e",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "nvs_al_size",
-     "is_thunk": false,
-     "display_name": "nvs_al_size",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/subsys/fs/nvs/nvs.c:1067"
-  },
-  {
-   "symbol": "nvs_ate_crc8_update",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "nvs_write.c:102",
-    "nvs_write.c:120"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e5c8",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "nvs_ate_crc8_update",
-     "is_thunk": false,
-     "display_name": "nvs_ate_crc8_update",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/subsys/fs/nvs/nvs.c:366"
-  },
-  {
-   "symbol": "nvs_sector_advance",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 5,
-   "reference_sites": [
-    "nvs_mount.c:161",
-    "nvs_mount.c:173",
-    "nvs_mount.c:206",
-    "nvs_mount.c:253",
-    "nvs_write.c:122"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e55a",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "nvs_sector_advance",
-     "is_thunk": false,
-     "display_name": "nvs_sector_advance",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "zephyr/subsys/fs/nvs/nvs.c:571"
-  },
-  {
-   "symbol": "outs",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 3,
-   "reference_sites": [
-    "z_cbvprintf_impl.c:1427",
-    "z_cbvprintf_impl.c:1668",
-    "z_cbvprintf_impl.c:1683"
-   ],
-   "identities": [
-    {
-     "va": "0x0007e2be",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "outs",
-     "is_thunk": false,
-     "display_name": "outs",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "modules/bsim_hw_models/nrf_hw_models/src/HW_models/NRF_NVMC.c:276"
-  },
-  {
-   "symbol": "peer_address_is_uninitialized",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:365"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c132",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007c132",
-     "is_thunk": false,
-     "display_name": "FUN_0007c132",
-     "retained_source": "FUN_0007c132.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "pin_in_use_by_te",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -7854,29 +4547,6 @@
    "sdk_source_hit": "modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c:307"
   },
   {
-   "symbol": "prepare_new_task",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:252"
-   ],
-   "identities": [
-    {
-     "va": "0x0002c2b0",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002c2b0",
-     "is_thunk": false,
-     "display_name": "wait_touch_key_release_or_timeout",
-     "retained_source": "wait_touch_key_release_or_timeout.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "print_formatted",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -7927,137 +4597,16 @@
    "sdk_source_hit": "nrf/drivers/wifi/nrf700x/osal/hw_if/hal/src/hal_api.c:740"
   },
   {
-   "symbol": "process_sync_buffer",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 5,
-   "reference_sites": [
-    "key_event_thread.c:414",
-    "send_event.c:46",
-    "slave_display_thread.c:262",
-    "slave_display_thread.c:290",
-    "slave_display_thread.c:548"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb4c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "process_sync_buffer",
-     "is_thunk": true,
-     "display_name": "process_sync_buffer",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "process_task_state_five",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:563"
-   ],
-   "identities": [
-    {
-     "va": "0x0002c498",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002c498",
-     "is_thunk": false,
-     "display_name": "process_for_new_message_come_on",
-     "retained_source": "process_for_new_message_come_on.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "process_task_state_four",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:555"
-   ],
-   "identities": [
-    {
-     "va": "0x0002c714",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002c714",
-     "is_thunk": false,
-     "display_name": "process_for_message_show",
-     "retained_source": "process_for_message_show.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "process_touch_event",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 5,
-   "reference_sites": [
-    "key_event_thread.c:162",
-    "key_event_thread.c:396",
-    "slave_display_thread.c:351",
-    "slave_display_thread.c:363",
-    "slave_display_thread.c:459"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb50",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "process_touch_event",
-     "is_thunk": true,
-     "display_name": "process_touch_event",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "publish_task_transition",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:318"
-   ],
-   "identities": [
-    {
-     "va": "0x0002c214",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002c214",
-     "is_thunk": false,
-     "display_name": "FUN_0002c214",
-     "retained_source": "FUN_0002c214.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "qspi_activate",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 3,
+   "reference_count": 5,
    "reference_sites": [
     "nrfx_qspi_erase.c:46",
     "nrfx_qspi_read.c:41",
-    "nrfx_qspi_read.c:56"
+    "nrfx_qspi_read.c:56",
+    "qspi_xfer.c:100",
+    "qspi_xfer.c:73"
    ],
    "identities": [
     {
@@ -8104,11 +4653,11 @@
    "reference_count": 6,
    "reference_sites": [
     "qspi_nor_acquire.c:35",
-    "qspi_nor_configure.c:107",
+    "qspi_nor_configure.c:108",
     "qspi_nor_erase.c:91",
     "qspi_nor_send_cinstr.c:58",
     "qspi_nor_write.c:93",
-    "storage_read_with_word_cache.c:78"
+    "storage_read_with_word_cache.c:79"
    ],
    "identities": [
     {
@@ -8157,8 +4706,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 2,
    "reference_sites": [
-    "qspi_nor_configure.c:119",
-    "qspi_nor_configure.c:145"
+    "qspi_nor_configure.c:120",
+    "qspi_nor_configure.c:146"
    ],
    "identities": [
     {
@@ -8179,10 +4728,11 @@
    "symbol": "qspi_ready_wait",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
+   "reference_count": 3,
    "reference_sites": [
     "nrfx_qspi_erase.c:58",
-    "nrfx_qspi_read.c:44"
+    "nrfx_qspi_read.c:44",
+    "qspi_xfer.c:82"
    ],
    "identities": [
     {
@@ -8222,29 +4772,6 @@
     }
    ],
    "sdk_source_hit": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:115"
-  },
-  {
-   "symbol": "read_task_mode",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:704"
-   ],
-   "identities": [
-    {
-     "va": "0x00033cf8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00033cf8",
-     "is_thunk": false,
-     "display_name": "msg_content_recalc_unread",
-     "retained_source": "msg_content_recalc_unread.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "region_init",
@@ -8294,96 +4821,6 @@
    "sdk_source_hit": "modules/lib/hostap/src/radius/radius_server.c:1532"
   },
   {
-   "symbol": "reset_task_transition_state",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "process_for_new_task.c:384",
-    "process_for_new_task.c:537",
-    "process_for_new_task.c:649"
-   ],
-   "identities": [
-    {
-     "va": "0x0002c1fc",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002c1fc",
-     "is_thunk": false,
-     "display_name": "check_pending_messages_flag",
-     "retained_source": "check_pending_messages_flag.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "send_event_status",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 19,
-   "reference_sites": [
-    "FUN_00040794.c:182",
-    "FUN_00040794.c:208",
-    "FUN_00040794.c:373",
-    "FUN_00040794.c:399",
-    "FUN_000417f8.c:496",
-    "FUN_000417f8.c:783",
-    "check_work_mode.c:373",
-    "check_work_mode.c:430",
-    "check_work_mode.c:464",
-    "check_work_mode.c:505",
-    "check_work_mode.c:553",
-    "fuel_gauge_update.c:252",
-    "prepare_quick_note_mode.c:22",
-    "process_for_new_task.c:877",
-    "process_task_sync_event.c:111",
-    "set_shutdown_flag.c:53",
-    "ui_DashBoard_task.c:254",
-    "ui_DashBoard_task.c:646",
-    "update_display_status.c:75"
-   ],
-   "identities": [
-    {
-     "va": "0x000276ec",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "send_event",
-     "is_thunk": false,
-     "display_name": "send_event",
-     "retained_source": "send_event.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "send_touch_click_event",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 2,
-   "reference_sites": [
-    "global_system_resume.c:61",
-    "touch_key_thread.c:263"
-   ],
-   "identities": [
-    {
-     "va": "0x0007c058",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": "send_touch_click_event",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "set_chunk_used",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -8406,56 +4843,6 @@
     }
    ],
    "sdk_source_hit": "zephyr/lib/os/heap-validate.c:138"
-  },
-  {
-   "symbol": "set_task_display_mode",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "process_for_new_task.c:1317",
-    "process_for_new_task.c:317",
-    "process_for_new_task.c:679"
-   ],
-   "identities": [
-    {
-     "va": "0x0003443c",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0003443c",
-     "is_thunk": false,
-     "display_name": "FUN_0003443c",
-     "retained_source": "FUN_0003443c.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "set_task_wake_state",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 3,
-   "reference_sites": [
-    "process_for_new_task.c:1296",
-    "process_for_new_task.c:291",
-    "process_for_new_task.c:901"
-   ],
-   "identities": [
-    {
-     "va": "0x0007ce60",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007ce60",
-     "is_thunk": false,
-     "display_name": "reset_esb_sync_state",
-     "retained_source": "reset_esb_sync_state.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "shm_size",
@@ -8482,35 +4869,12 @@
    "sdk_source_hit": "zephyr/drivers/ipm/ipm_esp32.c:100"
   },
   {
-   "symbol": "should_finish_task_wait",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:674"
-   ],
-   "identities": [
-    {
-     "va": "0x00033cdc",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00033cdc",
-     "is_thunk": false,
-     "display_name": "msg_content_used_count",
-     "retained_source": "msg_content_used_count.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "smp_create_pdu",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 8,
    "reference_sites": [
-    "FUN_0005d0ac.c:91",
+    "FUN_0005d0ac.c:93",
     "FUN_0005d964.c:103",
     "FUN_000832f0.c:32",
     "bt_smp_distribute_keys.c:126",
@@ -8621,29 +4985,6 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "submit_task_work",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:299"
-   ],
-   "identities": [
-    {
-     "va": "0x00072880",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_00072880",
-     "is_thunk": false,
-     "display_name": "k_sem_give",
-     "retained_source": "k_sem_give.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "sys_put_le64",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
@@ -8696,8 +5037,8 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 2,
    "reference_sites": [
-    "bt_gatt_subscribe.c:56",
-    "bt_gatt_subscribe.c:63"
+    "bt_gatt_subscribe.c:57",
+    "bt_gatt_subscribe.c:64"
    ],
    "identities": [
     {
@@ -8794,200 +5135,12 @@
    "sdk_source_hit": null
   },
   {
-   "symbol": "task_transition_pending",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "process_for_new_task.c:350"
-   ],
-   "identities": [
-    {
-     "va": "0x0002eb40",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0002eb40",
-     "is_thunk": false,
-     "display_name": "check_ancs_inbox_flag_change",
-     "retained_source": "check_ancs_inbox_flag_change.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_00043308",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 3,
-   "reference_sites": [
-    "onboarding_ble_process.c:166",
-    "slave_display_thread.c:407",
-    "ui_onboarding_task.c:139"
-   ],
-   "identities": [
-    {
-     "va": "0x0007d3be",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00043308",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_00043308",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_000723b8",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 4,
-   "reference_sites": [
-    "ipc_ept_op_a_locked_retry.c:26",
-    "ipc_send_len_prefixed_packet_locked_retry.c:27",
-    "lock_device_mutex.c:15",
-    "navigation_panoramic_map_display.c:481"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_00072558",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 5,
-   "reference_sites": [
-    "fd_table_dispatch_op1.c:36",
-    "fd_table_dispatch_op2.c:37",
-    "ipc_ept_op_a_locked_retry.c:28",
-    "ipc_send_len_prefixed_packet_locked_retry.c:29",
-    "unlock_device_mutex.c:15"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_000727ac",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_00056300.c:33",
-    "att_send_with_retry.c:25"
-   ],
-   "identities": [
-    {
-     "va": "0x000836e8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_000727ac",
-     "is_thunk": true,
-     "display_name": "net_buf_get",
-     "retained_source": "net_buf_get.c",
-     "adopted_component": "zephyr",
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_00072908",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 2,
-   "reference_sites": [
-    "FUN_0002a4f4.c:87",
-    "check_work_mode.c:363"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb48",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "update_sync_buffer",
-     "is_thunk": true,
-     "display_name": "k_sem_take",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_00074844",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 13,
-   "reference_sites": [
-    "FUN_00019718.c:39",
-    "FUN_00019718.c:40",
-    "FUN_0002685c.c:79",
-    "FUN_0002a4f4.c:71",
-    "FUN_0002a4f4.c:80",
-    "FUN_0002a8d8.c:192",
-    "FUN_0002a8d8.c:231",
-    "FUN_0007c0a8.c:15",
-    "k_msleep.c:23",
-    "process_for_message_show.c:119",
-    "process_for_message_show.c:145",
-    "process_for_message_show.c:60",
-    "process_task_sync_event.c:65"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb8a",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "wait_for_event",
-     "is_thunk": true,
-     "display_name": "wait_for_event",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_0007d77c",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 6,
-   "reference_sites": [
-    "set_brightness_to_panel_reg.c:45",
-    "set_brightness_to_panel_reg.c:46",
-    "set_brightness_to_panel_reg.c:71",
-    "set_brightness_to_panel_reg.c:72",
-    "set_brightness_to_panel_reg_in_running.c:60",
-    "set_brightness_to_panel_reg_in_running.c:62"
-   ],
-   "identities": [
-    {
-     "va": "0x0007d63e",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_0007d77c",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_0007d77c",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
    "symbol": "thunk_FUN_0007f7d2",
    "category": "interior_or_tail_alias",
    "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
    "reference_count": 1,
    "reference_sites": [
-    "request_ancs_attr_ext.c:69"
+    "request_ancs_attr_ext.c:70"
    ],
    "identities": [
     {
@@ -8997,86 +5150,6 @@
      "catalog_name": "thunk_FUN_0007f7d2",
      "is_thunk": true,
      "display_name": "thunk_FUN_0007f7d2",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_00085cf2",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_00080830.c:26"
-   ],
-   "identities": [],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "thunk_FUN_000868b4",
-   "category": "interior_or_tail_alias",
-   "reason": "symbol spelling explicitly denotes a tail/thunk/interior label",
-   "reference_count": 1,
-   "reference_sites": [
-    "FUN_0004f5b0.c:116"
-   ],
-   "identities": [
-    {
-     "va": "0x0007f978",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_000868b4",
-     "is_thunk": true,
-     "display_name": "thunk_FUN_000868b4",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "touch_pmic_reset_assert",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "touch_key_thread.c:283"
-   ],
-   "identities": [
-    {
-     "va": "0x00017a28",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": "touch_pmic_reset_assert",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "touch_pmic_reset_deassert",
-   "category": "interior_or_tail_alias",
-   "reason": "referenced VA is not a catalog function entry",
-   "reference_count": 1,
-   "reference_sites": [
-    "touch_key_thread.c:292"
-   ],
-   "identities": [
-    {
-     "va": "0x00017a34",
-     "catalog_entry": false,
-     "catalog_class": null,
-     "catalog_name": null,
-     "is_thunk": false,
-     "display_name": "touch_pmic_reset_deassert",
      "retained_source": null,
      "adopted_component": null,
      "library_signature": null
@@ -9160,7 +5233,7 @@
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
    "reference_count": 1,
    "reference_sites": [
-    "FUN_0005420c.c:26"
+    "FUN_0005420c.c:27"
    ],
    "identities": [
     {
@@ -9205,10 +5278,11 @@
    "symbol": "unschedule_locked",
    "category": "sdk_or_config_symbol",
    "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
+   "reference_count": 3,
    "reference_sites": [
     "FUN_00073518.c:51",
-    "FUN_000735cc.c:43"
+    "FUN_000735cc.c:43",
+    "k_work_reschedule_for_queue.c:66"
    ],
    "identities": [
     {
@@ -9248,54 +5322,6 @@
     }
    ],
    "sdk_source_hit": "zephyr/subsys/bluetooth/host/br.c:194"
-  },
-  {
-   "symbol": "update_sync_buffer",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 3,
-   "reference_sites": [
-    "click_event_dispatch_loop.c:60",
-    "key_event_thread.c:94",
-    "slave_display_thread.c:216"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb48",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "update_sync_buffer",
-     "is_thunk": true,
-     "display_name": "k_sem_take",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
-  },
-  {
-   "symbol": "uptime_ticks_get",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 1,
-   "reference_sites": [
-    "ui_QuickNote_task.c:199"
-   ],
-   "identities": [
-    {
-     "va": "0x00086698",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "thunk_FUN_00074f68",
-     "is_thunk": true,
-     "display_name": "uptime_ticks_get",
-     "retained_source": "uptime_ticks_get.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "validate_args",
@@ -9343,55 +5369,6 @@
     }
    ],
    "sdk_source_hit": "modules/lib/matter/src/platform/nrfconnect/FactoryDataParser.c:197"
-  },
-  {
-   "symbol": "wait_for_event",
-   "category": "interior_or_tail_alias",
-   "reason": "back-mapped catalog identity is a tail thunk/veneer",
-   "reference_count": 4,
-   "reference_sites": [
-    "display_dispatch_thread.c:504",
-    "key_event_thread.c:89",
-    "slave_display_thread.c:219",
-    "slave_display_thread.c:264"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cb8a",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "wait_for_event",
-     "is_thunk": true,
-     "display_name": "wait_for_event",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "nrf/drivers/wifi/nrf700x/zephyr/src/zephyr_wpa_supp_if.c:1063"
-  },
-  {
-   "symbol": "wait_for_persist_task_status_lock",
-   "category": "naming_or_symbolization_defect",
-   "reason": "back-mapped VA already has a retained reconstructed owner",
-   "reference_count": 1,
-   "reference_sites": [
-    "update_persist_task_status.c:60"
-   ],
-   "identities": [
-    {
-     "va": "0x0007cdf8",
-     "catalog_entry": true,
-     "catalog_class": "APPLICATION",
-     "catalog_name": "FUN_0007cdf8",
-     "is_thunk": false,
-     "display_name": "FUN_0007cdf8",
-     "retained_source": "FUN_0007cdf8.c",
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": null
   },
   {
    "symbol": "xfer_completeness_check",
@@ -9457,7 +5434,7 @@
      "is_thunk": false,
      "display_name": "z_log_dropped_read_and_clear_0",
      "retained_source": null,
-     "adopted_component": null,
+     "adopted_component": "app_sdk_public",
      "library_signature": null
     }
    ],
