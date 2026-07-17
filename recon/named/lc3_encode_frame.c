@@ -3,7 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   lc3_ltpf_correlate                       <= FUN_000682f0 @ 0x000682f0
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  *   lc3_encode_frame                         <= FUN_00069238 @ 0x00069238
  *   lc3_ltpf_analyse                         <= FUN_0006ab80 @ 0x0006ab80
  *   lc3_ltpf_put_data                        <= FUN_0006b378 @ 0x0006b378
@@ -20,7 +20,7 @@ typedef unsigned char byte;
 extern void lc3_ltpf_correlate(uint a, uint b, int c, void *d);
 extern void FUN_000684a8(void *a, int b, unsigned c, int d);
 extern void FUN_000685f4(void *a);
-extern int lc3_bits_accu_flush(void *a, uint b, int c);
+extern int lc3_put_bits_generic(void *a, uint b, int c);
 extern int FUN_00068a10(uint a, uint b, void *c);
 extern void FUN_00068b2c(void *a, uint b, unsigned c);
 extern int FUN_00068b68(uint a, uint b, int c, void *d);
@@ -74,7 +74,7 @@ undefined4 lc3_encode_frame(byte *param_1, int param_2, undefined4 param_3, unde
                 local_10c = local_10c | (uint)local_1ab << (local_108 & 0xff);
                 local_108 = local_108 + 1;
             } else {
-                lc3_bits_accu_flush(auStack_128, (uint)local_1ab, 1);
+                lc3_put_bits_generic(auStack_128, (uint)local_1ab, 1);
             }
             lc3_encode_pack_frame_header_bits(auStack_128, auStack_1a0);
             if (local_1ab != 0) {

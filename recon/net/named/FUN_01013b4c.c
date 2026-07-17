@@ -1,6 +1,10 @@
 /* readable reconstruction; identity: FUN_01013b4c @ 0x01013b4c
  * public-name: FUN_01013b4c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
+ *   sdc_timing_scale                         <= FUN_01024678 @ 0x01024678
  * address symbols (name @ address):
  *   g_net_radio_ack_pending_flag             @ 0x21000f54
  */
@@ -10,7 +14,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef unsigned long long u64;
 
-extern void FUN_01008d00(u32,u32);
+extern void sdc_assertion_fail(u32,u32);
 extern u32 FUN_0100f66c(void);
 extern u32 FUN_010122b4(void*,u32);
 extern u32 FUN_010126c0(void*);
@@ -20,8 +24,8 @@ extern u32 FUN_01012b98(u32);
 extern u16 FUN_01012c14(void*);
 extern u32 FUN_01022e34(u32,void*);
 extern u32 FUN_01022ea8(void);
-extern u32 FUN_010231c8(u8,void*);
-extern u32 FUN_01024678(u32,u16);
+extern u32 sdc_conn_window_admit(u8,void*);
+extern u32 sdc_timing_scale(u32,u16);
 extern short FUN_010246d8(void);
 extern void FUN_01025a84(void*,u32,u32);
 extern short thunk_FUN_010246cc(void);
@@ -87,7 +91,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
   }
   else {
     sVar4 = thunk_FUN_010246cc();
-    iVar5 = (int)FUN_01024678(param_3, (u16)(sVar4 + 0x668));
+    iVar5 = (int)sdc_timing_scale(param_3, (u16)(sVar4 + 0x668));
     *(volatile u32 *)(param_1 + 300) = (u32)(iVar5 + (int)param_3);
     lVar10 = thunk_FUN_01025034();
     lVar10 = lVar10 + (u64)uVar6;
@@ -108,7 +112,7 @@ unsigned int FUN_01013b4c(void *param_1_v, void *param_2_v, unsigned int param_3
   *(volatile u32 *)(param_1 + 0x140) = 0xffffffff;
   *(volatile u32 *)(param_1 + 0x144) = 0x7fffffff;
 LAB_01013c32:
-  iVar5 = (int)FUN_010231c8(*(volatile u8 *)(param_1 + 0x100), param_1 + 0x128);
+  iVar5 = (int)sdc_conn_window_admit(*(volatile u8 *)(param_1 + 0x100), param_1 + 0x128);
   if (iVar5 != 0) {
     *(volatile u16 *)(param_1 + 0x122) = 0;
     *(volatile u32 *)(param_1 + 0x118) = *(volatile u32 *)(param_1 + 0x138);
@@ -116,6 +120,6 @@ LAB_01013c32:
     FUN_01012960(param_1, 0);
     return 0;
   }
-  FUN_01008d00(0x30, 0x1ec);
+  sdc_assertion_fail(0x30, 0x1ec);
   return 0;
 }

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
  *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
+ *   log_gatt_sc_store_failure                <= FUN_0005a0e8 @ 0x0005a0e8
  *   set_change_aware                         <= FUN_00082bb8 @ 0x00082bb8
  *   sc_restore_rsp                           <= FUN_00082bd4 @ 0x00082bd4
  */
@@ -13,7 +14,7 @@ extern int FUN_0008256e(void);
 extern void *find_cf_cfg(int a);
 extern void set_change_aware(void *a, int b);
 extern void *find_sc_cfg_59bcc(unsigned char a, int b);
-extern void FUN_0005a0e8(void *a);
+extern void log_gatt_sc_store_failure(void *a);
 
 void sc_restore_rsp(int param_1, unsigned int param_2, int param_3, unsigned int param_4)
 {
@@ -33,7 +34,7 @@ void sc_restore_rsp(int param_1, unsigned int param_2, int param_3, unsigned int
         puVar2 = find_sc_cfg_59bcc(*(volatile unsigned char *)(param_1 + 8), param_1 + 0x90);
         if (puVar2 != 0) {
             *(volatile int *)(puVar2 + 8) = param_3;
-            FUN_0005a0e8(puVar2);
+            log_gatt_sc_store_failure(puVar2);
             return;
         }
     }

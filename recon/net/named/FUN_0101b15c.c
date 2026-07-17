@@ -1,15 +1,18 @@
 /* readable reconstruction; identity: FUN_0101b15c @ 0x0101b15c
  * public-name: FUN_0101b15c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
  * address symbols (name @ address):
  *   g_net_session_state_block                @ 0x210010a0
  */
 /* net-core FUN_0101b15c @ 0x101b15c  (parity 8 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01008d00(unsigned int a, unsigned int b, unsigned int c,
+extern void sdc_assertion_fail(unsigned int a, unsigned int b, unsigned int c,
                          unsigned int d, unsigned int e) __attribute__((noreturn));
-extern int FUN_01019204(void);
+extern int controller_radio_state_get(void);
 extern int FUN_0101a218(void);
 extern int thunk_FUN_01025034(void);
 
@@ -27,7 +30,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
     iVar1 = LIT_22C;
     iVar2 = thunk_FUN_01025034();
     iVar6 = *(volatile int *)(iVar1 + 0x18);
-    iVar3 = FUN_01019204();
+    iVar3 = controller_radio_state_get();
     uVar4 = (unsigned int)*(volatile unsigned char *)(iVar3 + 1);
 
     switch (param_1) {
@@ -49,7 +52,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
                     iVar3 = 0x150;
                     break;
                 default:
-                    FUN_01008d00(5, 0x104, uVar4 - 1, uVar4, param_4);
+                    sdc_assertion_fail(5, 0x104, uVar4 - 1, uVar4, param_4);
                 case 4:
                 case 8:
                     iVar3 = 0xa0;
@@ -87,7 +90,7 @@ int FUN_0101b15c(unsigned int param_1, unsigned int param_2, unsigned int param_
         iVar3 = 0x1f8;
         break;
     default:
-        FUN_01008d00(0x21, 0x3d9, 0, 0, 0);
+        sdc_assertion_fail(0x21, 0x3d9, 0, 0, 0);
     }
 
     uVar4 = (unsigned int)(iVar2 - iVar6) + (unsigned int)iVar3;

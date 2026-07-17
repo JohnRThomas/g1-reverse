@@ -1,6 +1,23 @@
 /* readable reconstruction; identity: FUN_01012c84 @ 0x01012c84
  * public-name: FUN_01012c84
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_timing_request_schedule       <= FUN_0100d4d0 @ 0x0100d4d0
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
+ *   controller_radio_transition_apply        <= FUN_01020d1c @ 0x01020d1c
+ *   controller_radio_time_mode2_to_mode1     <= FUN_010215d8 @ 0x010215d8
+ *   controller_radio_time_mode1_to_mode2     <= FUN_010215f4 @ 0x010215f4
+ *   controller_radio_time_mode1_to_mode1     <= FUN_01021614 @ 0x01021614
+ *   controller_radio_time_mode2_to_mode2     <= FUN_01021634 @ 0x01021634
+ *   controller_mode1_state_validate          <= FUN_010218d8 @ 0x010218d8
+ *   controller_mode2_state_validate          <= FUN_010218e4 @ 0x010218e4
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
+ *   controller_radio_work_pending            <= FUN_01025be0 @ 0x01025be0
+ *   controller_transition_pending_check      <= FUN_01025cf0 @ 0x01025cf0
  * address symbols (name @ address):
  *   REG_41008000                             @ 0x41008000
  */
@@ -15,7 +32,7 @@ typedef unsigned short ushort;
 typedef long long longlong;
 typedef unsigned long long ulonglong;
 
-extern int FUN_01008d00(int,int);
+extern int sdc_assertion_fail(int,int);
 extern int FUN_01012704(void);
 extern int FUN_01023d38(int);
 extern int FUN_010126c0(void);
@@ -23,20 +40,20 @@ extern long long FUN_010122b4(void*,int);
 extern int FUN_01023ea8(int,int);
 extern int FUN_0101272c(void*);
 extern void FUN_010127f8(void*);
-extern void FUN_01020d1c(void*,uint);
+extern void controller_radio_transition_apply(void*,uint);
 extern int thunk_FUN_01025028(void);
-extern int FUN_010218d8(void);
-extern int FUN_010218e4(void);
-extern int FUN_01025cf0(void*);
-extern int FUN_01021614(int);
-extern int FUN_010215d8(void);
-extern int FUN_010215f4(void);
-extern int FUN_01021634(void);
-extern int FUN_01020a6c(int);
-extern int FUN_01020500(void);
-extern int FUN_01025be0(void);
-extern int FUN_010208b0(void);
-extern int FUN_0101fca8(void);
+extern int controller_mode1_state_validate(void);
+extern int controller_mode2_state_validate(void);
+extern int controller_transition_pending_check(void*);
+extern int controller_radio_time_mode1_to_mode1(int);
+extern int controller_radio_time_mode2_to_mode1(void);
+extern int controller_radio_time_mode1_to_mode2(void);
+extern int controller_radio_time_mode2_to_mode2(void);
+extern int controller_radio_transition_schedule(int);
+extern int sdc_llcp_note_unsupported_pdu(void);
+extern int controller_radio_work_pending(void);
+extern int sdc_llcp_stop_rx_timeout(void);
+extern int sdc_llcp_release_rx_context(void);
 extern int FUN_010140ec(void*,int);
 extern int FUN_0101f888(void);
 extern int FUN_0100ef88(void*,int,int,uint);
@@ -50,9 +67,9 @@ extern int FUN_01025d28(void);
 extern long long thunk_FUN_01025034(void);
 extern short FUN_010246d8(void);
 extern uint FUN_01022ea8(void);
-extern int FUN_0100d4d0(void*,int);
+extern int controller_timing_request_schedule(void*,int);
 extern int FUN_010128bc(void*,int,int,int);
-extern int FUN_010231c8(int,void*);
+extern int sdc_conn_window_admit(int,void*);
 extern uint FUN_0101232c(void*,uint,uint,uint);
 
 void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param_4)
@@ -81,7 +98,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
   iVar5 = 0x210015f0;
   iVar8 = 0x4100c000;
   if (param_1 == (undefined1 *)0x0) {
-    FUN_01008d00(0x30,0xcd);
+    sdc_assertion_fail(0x30,0xcd);
   }
   switch(param_2) {
   case 0:
@@ -90,7 +107,7 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
       FUN_01023d38(*(int *)(param_1 + 300) + -0x141);
       return;
     }
-    FUN_01008d00(0x30,0x27e);
+    sdc_assertion_fail(0x30,0x27e);
   case 1:
     iVar8 = FUN_010126c0();
     if (iVar8 == 0) {
@@ -117,13 +134,13 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
     if (iVar8 == 0) {
       return;
     }
-    FUN_01008d00(0x30,0x2b4);
+    sdc_assertion_fail(0x30,0x2b4);
   case 2:
   case 3:
     break;
   case 4:
     /* The image tail-branches to the shared radio-event handler here. */
-    FUN_01020d1c(param_1,param_2);
+    controller_radio_transition_apply(param_1,param_2);
     return;
 #if 0 /* stale inlined Ghidra continuation; the raw CFG leaves this function */
     *(undefined4 *)(0x4100c000 + 0x4c) = 1;
@@ -134,13 +151,13 @@ void FUN_01012c84(undefined1 *param_1,uint param_2,undefined4 param_3,uint param
     *(int *)(iVar5 + 0x40) = iVar8;
     if (0x95 < *(ushort *)(iVar5 + 0x1c)) {
       if (*(char *)(iVar5 + 9) == '\x01') {
-        iVar12 = FUN_010218d8();
+        iVar12 = controller_mode1_state_validate();
         if (1 < iVar12 + 1U) {
-          FUN_01008d00(0x3e,0x851);
+          sdc_assertion_fail(0x3e,0x851);
         }
       }
-      else if ((*(char *)(iVar5 + 9) == '\x02') && (iVar12 = FUN_010218e4(), 1 < iVar12 + 1U)) {
-        FUN_01008d00(0x3e,0x857);
+      else if ((*(char *)(iVar5 + 9) == '\x02') && (iVar12 = controller_mode2_state_validate(), 1 < iVar12 + 1U)) {
+        sdc_assertion_fail(0x3e,0x857);
       }
     }
     uVar15 = 0xfffffee2;
@@ -212,7 +229,7 @@ LAB_01020d96:
     *(undefined4 *)(iVar10 + 0x118) = 0;
     *(undefined4 *)(iVar10 + 0x108) = 0;
     *(undefined4 *)(iVar10 + 0x16c) = 0;
-    iVar10 = FUN_01025cf0(&uStack_24);
+    iVar10 = controller_transition_pending_check(&uStack_24);
     iVar12 = 0x4100c000;
     if (iVar10 != 0) {
       uVar15 = uVar15 & 0xff | 0x10;
@@ -266,24 +283,24 @@ LAB_01020ec2:
         iVar12 = 1;
       }
       if (cVar1 == '\0') {
-        FUN_01008d00(0x3e,0x804);
+        sdc_assertion_fail(0x3e,0x804);
       }
       if (uVar14 == 1) {
         if (cVar1 == '\x01') {
-          iVar11 = FUN_01021614(*(undefined2 *)(iVar5 + 0x1c));
+          iVar11 = controller_radio_time_mode1_to_mode1(*(undefined2 *)(iVar5 + 0x1c));
           uVar14 = iVar11 + iVar10;
         }
         else {
-          iVar11 = FUN_010215d8();
+          iVar11 = controller_radio_time_mode2_to_mode1();
           uVar14 = iVar11 + iVar10;
         }
       }
       else if (cVar1 == '\x01') {
-        iVar11 = FUN_010215f4();
+        iVar11 = controller_radio_time_mode1_to_mode2();
         uVar14 = iVar11 + iVar10;
       }
       else {
-        iVar11 = FUN_01021634();
+        iVar11 = controller_radio_time_mode2_to_mode2();
         uVar14 = iVar11 + iVar10;
       }
       if (cVar6 == '\x01') {
@@ -294,14 +311,14 @@ LAB_01020ec2:
         }
         *(undefined1 *)(iVar5 + 7) = 1;
       }
-      iVar8 = FUN_01020a6c(iVar12);
+      iVar8 = controller_radio_transition_schedule(iVar12);
       if (iVar8 == 0) {
-        FUN_01008d00(0x3e,0xa52);
+        sdc_assertion_fail(0x3e,0xa52);
       }
       uVar9 = 0;
     }
     else {
-      FUN_01020500();
+      sdc_llcp_note_unsupported_pdu();
       uVar9 = 0;
     }
 LAB_01020ee8:
@@ -347,7 +364,7 @@ LAB_01020f2e:
       if (uVar15 != 0) goto LAB_01020f2e;
 LAB_01021000:
       if (*(char *)(iVar5 + 9) != '\x02') {
-        FUN_01025be0();
+        controller_radio_work_pending();
         return;
       }
     }
@@ -358,24 +375,24 @@ LAB_01021000:
       }
       else {
         if (cVar6 != '\x01') {
-          FUN_01008d00(0x3e,0xc15);
+          sdc_assertion_fail(0x3e,0xc15);
         }
         if (*(uint *)(iVar5 + 0x10) <= *(uint *)(iVar5 + 0x24)) {
-          FUN_01008d00(0x3e,0xc16);
+          sdc_assertion_fail(0x3e,0xc16);
         }
         *(uint *)(0x4100c000 + 0x544) = *(uint *)(iVar5 + 0x10);
       }
       *(undefined4 *)(0x4100c000 + 0x1c4) = 0x8000000b;
     }
 LAB_01020f60:
-    cVar6 = (char)FUN_01025be0();
+    cVar6 = (char)controller_radio_work_pending();
     iVar8 = 0xe000e100;
     if ((uVar15 != 0) && (cVar6 != '\x01')) {
       uStack_24 = 0;
       do {
         uStack_24 = uStack_24 + 1;
         if (uStack_24 == -1) {
-          FUN_01008d00(0x3e,0xc34);
+          sdc_assertion_fail(0x3e,0xc34);
         }
       } while ((*(uint *)(0x41008000 + 0x550) & 0xf7) == 4);
       *(undefined4 *)(0x41008000 + 0x110) = 0;
@@ -384,9 +401,9 @@ LAB_01020f60:
     return;
 #endif
   default:
-    FUN_01008d00(0x30,0xf1);
+    sdc_assertion_fail(0x30,0xf1);
     sVar7 = 0;
-    if (FUN_01025be0() != 0) {
+    if (controller_radio_work_pending() != 0) {
       sVar7 = (short)(ushort)(sVar7 + 0xf);
     }
     goto LAB_01012cf8;
@@ -398,7 +415,7 @@ LAB_01020f60:
     param_1[0x120] = 0;
     return;
   case 8:
-    FUN_01008d00(0x30,0xed);
+    sdc_assertion_fail(0x30,0xed);
   }
   iVar8 = FUN_010126e8();
   if (iVar8 == 0) {
@@ -424,7 +441,7 @@ LAB_01020f60:
     sVar7 = sVar17;
     iVar8 = FUN_01025d28();
     if (iVar8 == 0) {
-      iVar8 = FUN_01025be0();
+      iVar8 = controller_radio_work_pending();
       if (iVar8 != 0) {
         sVar7 = sVar7 + 0xf;
       }
@@ -464,7 +481,7 @@ LAB_01012d26:
       (int)(uint)(uVar14 - (uint)lVar18 < uVar15)) {
     *(ulonglong *)(param_1 + 0x138) = lVar18 + (ulonglong)uVar15;
   }
-  FUN_0100d4d0(param_1 + 0x128,0);
+  controller_timing_request_schedule(param_1 + 0x128,0);
   if (param_1[0x148] == '\0') {
     if (*(int *)(param_1 + 0x144) != 0x7fffffff || *(int *)(param_1 + 0x140) != -1) {
       uVar16 = *(uint *)(param_1 + 0x138);
@@ -479,9 +496,9 @@ LAB_01012d26:
         goto LAB_01012ea2;
       }
     }
-    iVar8 = FUN_010231c8(param_1[0x100],param_1 + 0x128);
+    iVar8 = sdc_conn_window_admit(param_1[0x100],param_1 + 0x128);
     if (iVar8 == 0) {
-      FUN_01008d00(0x30,0x6df);
+      sdc_assertion_fail(0x30,0x6df);
     }
   }
   else {

@@ -1,9 +1,11 @@
 /* readable reconstruction; identity: FUN_010198cc @ 0x010198cc
  * public-name: FUN_010198cc
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  */
 /* net-core FUN_010198cc @ 0x10198cc  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
 extern int FUN_0100ca98(unsigned int, int);
@@ -49,7 +51,7 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
   } else {
     iVar4 = FUN_0100ca98((unsigned int)param_2, iVar3 + 0x13);
     if (iVar4 == 0) {
-      FUN_01008d00(0x33, 0xe6);
+      sdc_assertion_fail(0x33, 0xe6);
       __builtin_unreachable();
     }
     *(volatile unsigned char *)(long)(iVar3 + 0x13) = *(volatile unsigned char *)(long)(iVar3 + 0x13) | 2;
@@ -71,6 +73,6 @@ void FUN_010198cc(int param_1, int param_2, unsigned char param_3, unsigned char
     FUN_0100ef88(iVar3, uVar2, 6);
     return;
   }
-  FUN_01008d00(0x33, 0x361);
+  sdc_assertion_fail(0x33, 0x361);
   __builtin_unreachable();
 }

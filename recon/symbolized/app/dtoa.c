@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   dtoa                                     <= FUN_00078110 @ 0x00078110
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
@@ -25,7 +25,7 @@ typedef unsigned char byte;
 typedef unsigned int uint;
 
 extern int strlen(int);
-extern void libc_fatal_error_and_abort(int,...) __attribute__((noreturn));
+extern void __assert_func(int,...) __attribute__((noreturn));
 extern int Balloc(int,...);
 extern int Bfree(int,...);
 extern int lshift(int,...);
@@ -154,7 +154,7 @@ LAB_00078258:
   iVar7 = Balloc(param_1, iVar7);
   if (iVar7 == 0) {
     uVar11 = 0xde;
-    libc_fatal_error_and_abort(((unsigned long)&rodata_f8c53) /*=0xf8c53*/, uVar11, 0);
+    __assert_func(((unsigned long)&rodata_f8c53) /*=0xf8c53*/, uVar11, 0);
   }
   uVar23 = 0;
   puVar20 = (uint*)(iVar7 + 0x14);
@@ -283,7 +283,7 @@ joined_r0x0007846c:
     iVar8 = Balloc(param_1, *(volatile int*)(iVar7 + 4) + 1);
     if (iVar8 == 0) {
       uVar11 = 0x84;
-      libc_fatal_error_and_abort(((unsigned long)&rodata_f8c42) /*=0xf8c42*/, uVar11, 0);
+      __assert_func(((unsigned long)&rodata_f8c42) /*=0xf8c42*/, uVar11, 0);
     }
     memcpy(iVar8 + 0xc, iVar7 + 0xc, (*(volatile int*)(iVar7 + 0x10) + 2) * 4);
     Bfree(param_1, iVar7);

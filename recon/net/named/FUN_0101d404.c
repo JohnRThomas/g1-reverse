@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0101d404 @ 0x0101d404
  * public-name: FUN_0101d404
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_210001e8                               @ 0x210001e8
  *   g_210004b0                               @ 0x210004b0
@@ -23,9 +25,9 @@ EXT(FUN_0100e7c8); EXT(FUN_0100e808); EXT(FUN_0100e83c); EXT(FUN_0100e8ac);
 EXT(FUN_0100e8b4); EXT(FUN_0100e8bc); EXT(FUN_0100e8e8); EXT(FUN_0100e8f0);
 EXT(FUN_010100f4); EXT(FUN_01010110); EXT(FUN_0101bf30); EXT(FUN_0101c6d0);
 EXT(FUN_01025a84); EXT(FUN_010298a8); EXT(FUN_01029bda); EXT(FUN_01029bea);
-extern void FUN_01008d00(uint32_t module, uint32_t line);
+extern void sdc_assertion_fail(uint32_t module, uint32_t line);
 static __attribute__((noreturn)) void fatal_loop(uint32_t line)
-{ for (;;) FUN_01008d00(0x36, line); }
+{ for (;;) sdc_assertion_fail(0x36, line); }
 
 typedef struct {
     uint8_t active;

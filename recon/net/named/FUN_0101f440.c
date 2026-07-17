@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0101f440 @ 0x0101f440
  * public-name: FUN_0101f440
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_net_ble_conn_setup_err_cb              @ 0x210004d8
  *   g_net_ble_conn_setup_ok_cb               @ 0x210004dc
@@ -12,7 +14,7 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef void (*code_v)(void);
 
-extern void FUN_01008d00(uint, uint);          /* noreturn */
+extern void sdc_assertion_fail(uint, uint);          /* noreturn */
 extern void *FUN_01009bc4(void *, int);
 extern int FUN_01009d18(unsigned char, uint);
 extern void FUN_0100cff4(void *, int);
@@ -153,6 +155,6 @@ LAB_after_dispatch:;
   }
 
 LAB_0101f4c8:
-  FUN_01008d00(0x39, uVar7);
+  sdc_assertion_fail(0x39, uVar7);
   __builtin_unreachable();
 }

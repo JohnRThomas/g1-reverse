@@ -1,6 +1,10 @@
 /* readable reconstruction; identity: FUN_0101132c @ 0x0101132c
  * public-name: FUN_0101132c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_controller_random_get                <= FUN_0100f63c @ 0x0100f63c
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
  *   rodata_1011f29                           @ 0x01011f29
  *   rodata_101205d                           @ 0x0101205d
@@ -13,8 +17,8 @@
 /* net-core FUN_0101132c @ 0x101132c  (parity 300 trials PROVEN) */
 extern int FUN_01020738(int);
 extern int FUN_010203d0(void);
-extern int FUN_010208b0(void);
-extern int FUN_0101fca8(void);
+extern int sdc_llcp_stop_rx_timeout(void);
+extern int sdc_llcp_release_rx_context(void);
 extern int FUN_010204e0(int);
 extern int FUN_0102072c(int);
 extern int FUN_01025c44(int);
@@ -32,7 +36,7 @@ extern int FUN_0101124c(int,int);
 extern int FUN_0100cb4c(int);
 extern int FUN_01009dd8(int*);
 extern int FUN_0100aa3c(int,int,int,int);
-extern unsigned int FUN_0100f63c(void);
+extern unsigned int sdc_controller_random_get(void);
 
 #define PB ((volatile unsigned char*)0x21000f20)
 #define PW(off) (*(volatile unsigned int*)(0x21000f20+(off)))
@@ -63,8 +67,8 @@ int FUN_0101132c(int param_1)
 
     FUN_01020738((int)&controller_init);
     FUN_010203d0();
-    FUN_010208b0();
-    FUN_0101fca8();
+    sdc_llcp_stop_rx_timeout();
+    sdc_llcp_release_rx_context();
     FUN_010204e0((int)0x8e89bed6u);
     FUN_0102072c(0x00555555);
     FUN_01025c44(0);
@@ -123,7 +127,7 @@ int FUN_0101132c(int param_1)
         unsigned int target = (((unsigned int)iVar5b) << 0xc) >> 0x14;
         unsigned int uVar6b;
         do {
-            uVar6b = FUN_0100f63c();
+            uVar6b = sdc_controller_random_get();
         } while (target == (uVar6b & 0xfff));
         *(volatile unsigned char*)(param_1+0x3d) = (unsigned char)uVar6b;
         *(volatile unsigned char*)(param_1+0x3e) =

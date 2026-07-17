@@ -1,22 +1,44 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01034328 @ 0x1034328  (parity 300 trials PROVEN) */
+/* net-core FUN_01034328 @ 0x01034328
+ * Readable role: atomically claim the highest-numbered free resource.
+ *
+ * Raw/address provenance:
+ *   code [0x01034328, 0x0103435e)
+ *   status literals [0x01034360, 0x01034368)
+ *   callers: FUN_01034458, FUN_01034480, FUN_010346d8
+ *   g_sdc_res_pool_free_bitmap @ 0x210006a4 is one concrete owner;
+ *   g_net_dppi_chan_ctx        @ 0x210006a0 is the other.
+ */
+#include <stdint.h>
 
-#include <stdatomic.h>
-int FUN_01034328(_Atomic unsigned int *param_1, unsigned char *param_2)
+enum {
+    RESOURCE_CLAIM_OK = 0x0bad0000U,
+    RESOURCE_CLAIM_EMPTY = 0x0bad0002U
+};
+
+uint32_t FUN_01034328(volatile uint32_t *free_bitmap,
+                      uint8_t *claimed_index)
 {
-  unsigned int r4 = atomic_load(param_1);
-  if (r4 == 0) {
-    return 0xbad0002;
-  }
-  for (;;) {
-    int bit = 31 - __builtin_clz(r4);
-    unsigned int newval = r4 & ~(1u << bit);
-    if (atomic_compare_exchange_strong(param_1, &r4, newval)) {
-      *param_2 = (unsigned char)bit;
-      return 0xbad0000;
+    /* The shipped fast probe is an ordinary load before the acquire/release
+     * exclusive compare-exchange loop. */
+    uint32_t observed = *free_bitmap;
+
+    while (observed != 0) {
+        unsigned int bit = 31U - (unsigned int)__builtin_clz(observed);
+        uint32_t desired = observed & ~(1U << bit);
+        uint32_t expected = observed;
+
+        if (__atomic_compare_exchange_n(
+                free_bitmap, &expected, desired, 0,
+                __ATOMIC_ACQ_REL, __ATOMIC_ACQUIRE)) {
+            *claimed_index = (uint8_t)bit;
+            return RESOURCE_CLAIM_OK;
+        }
+
+        /* A competing claimant changed the word. The shipped loop performs
+         * a fresh ordinary load before selecting the next highest bit. */
+        observed = *free_bitmap;
     }
-    if (r4 == 0) {
-      return 0xbad0002;
-    }
-  }
+
+    return RESOURCE_CLAIM_EMPTY;
 }

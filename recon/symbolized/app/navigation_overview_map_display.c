@@ -16,6 +16,7 @@
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   decode_rle_byte_pairs                    <= FUN_0007da70 @ 0x0007da70
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -62,7 +63,7 @@ extern void FUN_00077914(unsigned a, int b, unsigned c, int d, int e);
 extern void gui_utf_draw(int a, unsigned b, int c, int d, int e, int f, int g, int h, int i, int j, int k, int l);
 extern void gui_clock_draw(int a, int b, int c, int d, int e, int f, int g);
 extern void navigation_direction_img_display(unsigned char a);
-extern void FUN_0007da70(unsigned a, unsigned b, unsigned c);
+extern void decode_rle_byte_pairs(unsigned a, unsigned b, unsigned c);
 extern void FUN_0007d376(unsigned a, unsigned b, unsigned c, unsigned d);
 extern void FUN_0007d37a(unsigned a);
 
@@ -131,7 +132,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
-                FUN_0007da70(((unsigned long)&g_20015e52) /*=0x20015e52*/, *(volatile unsigned*)(param_2 + 0xb1), ((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/);
+                decode_rle_byte_pairs(((unsigned long)&g_20015e52) /*=0x20015e52*/, *(volatile unsigned*)(param_2 + 0xb1), ((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/);
             }
             *pcVar4 = 1;
             FUN_0007d37a(((unsigned long)&g_ble_work_queue) /*=0x20007574*/);
@@ -265,7 +266,7 @@ void navigation_overview_map_display(unsigned param_1, int param_2)
                 }
                 memset_bytes(((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/, 0, 0x1210);
                 FUN_0007d376(((unsigned long)&g_ble_work_queue) /*=0x20007574*/, 0, 0xffffffff, 0xffffffff);
-                FUN_0007da70(((unsigned long)&g_20015e52) /*=0x20015e52*/, *(volatile unsigned*)(param_2 + 0xb1), ((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/);
+                decode_rle_byte_pairs(((unsigned long)&g_20015e52) /*=0x20015e52*/, *(volatile unsigned*)(param_2 + 0xb1), ((unsigned long)g_buf_2001ba2e) /*=0x2001ba2e*/);
             }
             *pcVar5 = 1;
             FUN_0007d37a(((unsigned long)&g_ble_work_queue) /*=0x20007574*/);

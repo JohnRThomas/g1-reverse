@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01019aa0 @ 0x01019aa0
  * public-name: FUN_01019aa0
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_ll_conn_default_ctx                    @ 0x21001058
  */
@@ -18,7 +20,7 @@ typedef unsigned short ushort;
 extern undefined4 FUN_0100a5a0(void);
 extern void FUN_0102714a(undefined4, undefined4 *, undefined1 *);
 extern int FUN_010270d2(undefined4);
-extern void FUN_01008d00(int, int);
+extern void sdc_assertion_fail(int, int);
 extern int FUN_010199f4(int, ushort *, char, int, uint, char);
 extern int FUN_0100ca98(char, int);
 extern void FUN_0100ef88(int, undefined4, int);
@@ -63,7 +65,7 @@ int FUN_01019aa0(ushort *param_1,int param_2,undefined4 *param_3,uint param_4,un
       break;
     default:
 switchD_01019af8_caseD_3:
-      FUN_01008d00(6,0x294); while(1){}
+      sdc_assertion_fail(6,0x294); while(1){}
     case 4:
     case 8:
       uVar7 = 3;
@@ -183,7 +185,7 @@ LAB_01019b56:
       else {
         iVar5 = FUN_0100ca98(param_6,iVar4 + 0x13);
         if (iVar5 == 0) {
-          FUN_01008d00(0x33,0xe6); while(1){}
+          sdc_assertion_fail(0x33,0xe6); while(1){}
         }
         *(byte *)(iVar4 + 0x13) = *(byte *)(iVar4 + 0x13) | 2;
       }
@@ -268,6 +270,6 @@ LAB_01019c9c:
     *(undefined4 *)(iVar11 + 0x2a) = uVar6;
     return iVar5;
   }
-  FUN_01008d00(0x33,0x212); while(1){}
+  sdc_assertion_fail(0x33,0x212); while(1){}
   return iVar5;
 }

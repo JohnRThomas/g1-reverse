@@ -2,374 +2,273 @@
  * public-name: FUN_0006f9c0
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_8ed50                             @ 0x0008ed50
  */
-/* Reconstructed FUN_0006f9c0 @ 0x6f9c0  (parity: 119/300 trials, PROVEN) */
-#include <stdint.h>
+/* Readable reconstruction of lc3_spec_encode <= FUN_0006f9c0 @ 0x0006f9c0.
+ *
+ * This is the upstream liblc3 spectral encoder present in NCS 2.5.1.  The
+ * firmware inlined its private helpers, so they remain readable below.  Raw
+ * callee/table identities are retained at the boundary macros:
+ *   lc3_get_bits_left      <= FUN_00068590 @ 0x00068590
+ *   lc3_put_bits_generic   <= FUN_00068908 @ 0x00068908
+ *   lc3_ac_write_renorm    <= FUN_0006897c @ 0x0006897c
+ *   lc3_spectrum_models    @ 0x0008dc50
+ *   lc3_spectrum_lookup    @ 0x0008ed50
+ * Exact executable extent: [0x0006f9c0, 0x0006ffd8).
+ */
 
-static inline float fabsf(float x){ union{float f; uint32_t u;} v; v.f=x; v.u&=0x7fffffffu; return v.f; }
+#define lc3_spec_encode       FUN_0006f9c0
+#define lc3_get_bits_left     FUN_00068590
+#define lc3_put_bits_generic  lc3_put_bits_generic
+#define lc3_ac_write_renorm   FUN_0006897c
 
-typedef unsigned int uint;
-typedef unsigned short ushort;
-typedef unsigned char byte;
+#include "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.h"
+#include "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.h"
 
-#define SBORROW4(a,b) ((int)((((uint)(a)^(uint)(b)) & ((uint)(a)^((uint)(a)-(uint)(b)))) ) < 0)
-#define VU(a) (*(volatile uint*)(a))
+#define SPECTRUM_MODELS \
+    ((const struct lc3_ac_model *)0x0008dc50u)
+#define SPECTRUM_LOOKUP \
+    ((const uint8_t (*)[2][256][4])0x0008ed50u)
 
-extern uint FUN_00068590(int);
-extern void lc3_bits_accu_flush(int,...);
-extern void FUN_0006897c(int);
-
-void FUN_0006f9c0(int param_1,int param_2,int param_3,int param_4,int param_5,
-                  volatile ushort *param_6,int param_7,volatile float *param_8)
+static __attribute__((always_inline)) inline float
+absolute_float(float value)
 {
-  ushort uVar1, uVar2;
-  volatile ushort *puVar3;
-  uint uVar4;
-  volatile float *pfVar5;
-  uint uVar6, uVar7, uVar9, uVar10, uVar11, uVar14, uVar16, uVar19, uVar20;
-  int iVar8, iVar12, iVar13, iVar15, iVar17, iVar18, iVar22, iVar23, iVar24;
-  volatile byte *pbVar21;
-  int bVar25, bVar26;
-  float fVar27, fVar28;
-  uint local_50; int local_4c; uint local_40; int local_3c;
+    union { float value; uint32_t bits; } converted = { value };
+    converted.bits &= 0x7fffffffu;
+    return converted.value;
+}
 
-  uVar14 = (uint)*(volatile byte*)(param_7 + 8);
-  iVar15 = *(volatile int*)(param_7 + 4);
-  param_4 = param_4 + 1;
-  iVar24 = iVar15;
-  fVar27 = 0.0f;
-  if (param_2 == 0) {
-    iVar8 = param_4 * 0x3c;
-    if ((iVar15 + param_4 * -0x3c < 0) == SBORROW4(iVar15,iVar8)) iVar24 = iVar8;
-    iVar8 = iVar8 + 2;
-    if (0x10 < iVar24) {
-      iVar13 = 0x10; iVar18 = 3; iVar23 = 2;
-      goto LAB_fa00;
+static __attribute__((always_inline)) inline void
+write_bits(lc3_bits_t *bits, unsigned value, int count)
+{
+    volatile struct lc3_bits_accu *accumulator = &bits->accu;
+    if (accumulator->n + count <= LC3_ACCU_BITS) {
+        int previous_count = accumulator->n;
+        accumulator->n = previous_count + count;
+        accumulator->v = accumulator->v | value << previous_count;
+    } else {
+        lc3_put_bits_generic(bits, value, count);
     }
-    iVar18 = 3; iVar22 = 0x10; iVar24 = 4; param_2 = -2; iVar13 = 0; iVar17 = 0;
-LAB_fa6c:
-    pfVar5 = param_8 + param_2 + iVar22;
-    iVar22 = iVar22 - iVar13;
-    do {
-      iVar13 = iVar13 + 1;
-      if (iVar24 < iVar13) { fVar27 = fVar27 + fabsf(*pfVar5); iVar17 = iVar17 + 1; }
-      pfVar5 = pfVar5 + 1;
-    } while (iVar22 + iVar13 < iVar8);
-LAB_fa98:
-    if (iVar17 != 0) {
-      uVar9 = VU(param_1 + 0x20);
-      iVar24 = -(int)((fVar27 * 16.0f) / (float)iVar17 + 0.5f);
-      uVar6 = iVar24 + 8;
-      bVar26 = SBORROW4(uVar6,6);
-      bVar25 = uVar6 == 6;
-      if (6 < (int)uVar6) uVar6 = 7;
-      if (bVar25 || ((iVar24 + 2 < 0) != bVar26)) uVar6 = uVar6 & ~((int)uVar6 >> 0x1f);
-      goto joined;
+}
+
+static __attribute__((always_inline)) inline void
+write_bit(lc3_bits_t *bits, int value)
+{
+    write_bits(bits, value, 1);
+}
+
+/* GCC schedules the independent accumulator stores in the late residual loop
+ * in value-then-count order.  Keep that observable MMIO-style ordering
+ * explicit while retaining the same generic overflow boundary. */
+static __attribute__((always_inline)) inline void
+write_tail_bit(lc3_bits_t *bits, int value)
+{
+    volatile struct lc3_bits_accu *accumulator = &bits->accu;
+    int previous_count = accumulator->n;
+    if (previous_count + 1 <= LC3_ACCU_BITS) {
+        accumulator->v = accumulator->v | (unsigned)value << previous_count;
+        accumulator->n = previous_count + 1;
+    } else {
+        lc3_put_bits_generic(bits, value, 1);
     }
-  }
-  else {
-    iVar8 = param_4 * 0x50;
-    if ((iVar15 + param_4 * -0x50 < 0) == SBORROW4(iVar15,iVar8)) iVar24 = iVar8;
-    iVar18 = param_2 + 3;
-    iVar23 = param_2 + 2;
-    iVar22 = iVar18 * 6 - iVar23;
-    iVar8 = iVar8 + iVar23;
-    iVar13 = iVar22;
-    if (iVar22 < iVar24) {
-LAB_fa00:
-      iVar22 = iVar24;
-      iVar17 = 0;
-      param_2 = -2 - param_2;
-      puVar3 = param_6 + iVar13 + 0x7fffffff;
-      pfVar5 = param_8 + iVar13 + param_2;
-      iVar12 = 0;
-      iVar24 = iVar23 * 2;
-      do {
-        while (1) {
-          puVar3 = puVar3 + 1;
-          iVar12 = iVar12 + 1;
-          if (*puVar3 == 0) break;
-          iVar12 = 0;
-          pfVar5 = pfVar5 + 1;
-          iVar13 = 0;
-          if (puVar3 == param_6 + iVar22 + -1) goto LAB_fa66;
+}
+
+static __attribute__((always_inline)) inline void
+write_symbol(lc3_bits_t *bits, const struct lc3_ac_model *model,
+             unsigned symbol)
+{
+    const struct lc3_ac_symbol *symbols = model->s;
+    volatile struct lc3_bits_ac *coder = &bits->ac;
+    unsigned range = coder->range >> 10;
+    unsigned low = coder->low + range * symbols[symbol].low;
+    coder->low = low;
+    coder->range = range * symbols[symbol].range;
+    coder->carry = coder->carry | low >> 24;
+    coder->low = low & 0xffffff;
+    if (coder->range < 0x10000)
+        lc3_ac_write_renorm(bits);
+}
+
+/* In the LSB magnitude loop GCC commits the masked low word before the
+ * independent range and carry stores. */
+static __attribute__((always_inline)) inline void
+write_lsb_level_symbol(lc3_bits_t *bits, const struct lc3_ac_model *model,
+                       unsigned symbol)
+{
+    const struct lc3_ac_symbol *symbols = model->s;
+    volatile struct lc3_bits_ac *coder = &bits->ac;
+    unsigned range = coder->range >> 10;
+    unsigned low = coder->low + range * symbols[symbol].low;
+    coder->low = low;
+    coder->low = low & 0xffffff;
+    coder->range = range * symbols[symbol].range;
+    coder->carry = coder->carry | low >> 24;
+    if (coder->range < 0x10000)
+        lc3_ac_write_renorm(bits);
+}
+
+static __attribute__((always_inline)) inline bool
+spectrum_high_rate(enum lc3_srate sr, int nbytes)
+{
+    return nbytes > 20 * (1 + (int)sr);
+}
+
+static __attribute__((always_inline)) inline int
+estimate_noise_factor(enum lc3_dt dt, enum lc3_bandwidth bw,
+    const uint16_t *quantized, int significant_count, const float *spectrum)
+{
+    int bandwidth_stop = (dt == LC3_DT_7M5 ? 60 : 80) * (1 + bw);
+    int window = 2 + dt;
+    float sum = 0;
+    int i, nonzero_count = 0, zero_run = 0;
+
+    for (i = 6 * (3 + dt) - window;
+         i < LC3_MIN(significant_count, bandwidth_stop); i++) {
+        zero_run = quantized[i] ? 0 : zero_run + 1;
+        if (zero_run > 2 * window) {
+            sum += absolute_float(spectrum[i - window]);
+            nonzero_count++;
         }
-        if (iVar12 != iVar24 && ((iVar12 + iVar23 * -2 < 0) == SBORROW4(iVar12,iVar24))) {
-          fVar27 = fVar27 + fabsf(*pfVar5); iVar17 = iVar17 + 1;
-        }
-        pfVar5 = pfVar5 + 1;
-        iVar13 = iVar12;
-      } while (puVar3 != param_6 + iVar22 + -1);
-LAB_fa66:
-      if (iVar22 < iVar8) goto LAB_fa6c;
-      goto LAB_fa98;
     }
-    if (iVar22 < iVar8) {
-      iVar13 = 0; iVar24 = iVar23 * 2; param_2 = -2 - param_2; iVar17 = iVar13;
-      goto LAB_fa6c;
+
+    for (; i < bandwidth_stop + window; i++) {
+        if (++zero_run > 2 * window) {
+            sum += absolute_float(spectrum[i - window]);
+            nonzero_count++;
+        }
     }
-  }
-  uVar9 = VU(param_1 + 0x20);
-  uVar6 = 0;
-joined:
-  if ((int)(uVar9 + 3) < 0x21) {
-    VU(param_1 + 0x20) = uVar9 + 3;
-    VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar6 << (uVar9 & 0xff);
-  }
-  else {
-    lc3_bits_accu_flush(param_1, uVar6, 3);
-  }
-  iVar8 = 0x8dc50;
-  iVar24 = (param_3 + 1) * 0x14;
-  local_4c = 0x8ed50 +
-             (uint)(param_5 != iVar24 &&
-                   ((param_5 + (param_3 + 1) * -0x14 < 0) == SBORROW4(param_5,iVar24))) * 0x800;
-  local_50 = 0;
-  local_3c = 0;
-  local_40 = 1;
-  do {
-    iVar24 = (param_3 * iVar18 + iVar18) * 0x14 + 2 >> (local_40 & 0xff);
-    if (iVar15 <= iVar24) iVar24 = iVar15;
-    if (local_3c < iVar24) {
-      uVar9 = (iVar24 - local_3c) - 1;
-      puVar3 = param_6 + local_3c;
-LAB_fb52:
-      do {
-        uVar19 = (uint)(puVar3[1] >> 1);
-        uVar16 = ((uint)(ushort)((puVar3[1] | *puVar3) >> 1) << 0x10) >> 0x12;
-        uVar6 = (uint)(*puVar3 >> 1);
-        pbVar21 = (volatile byte *)(local_4c + local_50 * 4);
-        if (uVar16 == 0) {
-          uVar16 = 0; uVar20 = uVar19; uVar10 = uVar6;
-        }
-        else {
-          uVar20 = uVar14; uVar10 = uVar14;
-          if (uVar14 == 0) {
-LAB_fd54:
-            do {
-              while (1) {
-                uVar4 = VU(param_1 + 0x20);
-                uVar11 = uVar4 + 1;
-                uVar7 = (int)uVar6 >> (uVar20 & 0xff) & 1;
-                if ((int)uVar11 < 0x21) {
-                  VU(param_1 + 0x20) = uVar11;
-                  VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar7 << (uVar4 & 0xff);
+
+    int factor = nonzero_count
+        ? 8 - (int)((16 * sum) / nonzero_count + 0.5f) : 0;
+    return LC3_CLIP(factor, 0, 7);
+}
+
+static __attribute__((always_inline)) inline void
+put_noise_factor(lc3_bits_t *bits, int factor)
+{
+    write_bits(bits, factor, 3);
+}
+
+static __attribute__((always_inline)) inline void
+put_quantized_spectrum(lc3_bits_t *bits,
+    enum lc3_dt dt, enum lc3_srate sr, int nbytes,
+    const uint16_t *quantized, int significant_count, bool lsb_mode)
+{
+    int encoded_samples = LC3_NE(dt, sr);
+    bool high_rate = spectrum_high_rate(sr, nbytes);
+    uint8_t state = 0;
+
+    for (int i = 0, half = 0; half < 2; half++) {
+        const uint8_t (*coefficient_lookup)[4] =
+            SPECTRUM_LOOKUP[high_rate][half];
+
+        for (; i < LC3_MIN(significant_count,
+                           (encoded_samples + 2) >> (1 - half)); i += 2) {
+            const uint8_t *lookup = coefficient_lookup[state];
+            uint16_t first = quantized[i] >> 1;
+            uint16_t second = quantized[i + 1] >> 1;
+            int magnitude = (first | second) >> 2;
+            int level = 0, shift = 0;
+
+            if (magnitude) {
+                if (lsb_mode)
+                    write_symbol(bits,
+                        SPECTRUM_MODELS + lookup[level++], 16);
+
+                for (magnitude >>= lsb_mode; magnitude;
+                     magnitude >>= 1, level++) {
+                    write_bit(bits, (first >> level) & 1);
+                    write_bit(bits, (second >> level) & 1);
+                    if (lsb_mode)
+                        write_lsb_level_symbol(bits, SPECTRUM_MODELS +
+                            lookup[LC3_MIN(level, 3)], 16);
+                    else
+                        write_symbol(bits, SPECTRUM_MODELS +
+                            lookup[LC3_MIN(level, 3)], 16);
                 }
-                else {
-                  lc3_bits_accu_flush(param_1, uVar7, 1);
-                  uVar11 = VU(param_1 + 0x20);
-                }
-                uVar4 = (int)uVar19 >> (uVar20 & 0xff) & 1;
-                if ((int)(uVar11 + 1) < 0x21) {
-                  VU(param_1 + 0x20) = uVar11 + 1;
-                  VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar4 << (uVar11 & 0xff);
-                }
-                else {
-                  lc3_bits_accu_flush(param_1, uVar4, 1);
-                }
-                uVar4 = uVar20;
-                if (2 < (int)uVar20) uVar4 = 3;
-                uVar7 = VU(param_1 + 8) >> 10;
-                iVar24 = iVar8 + (uint)pbVar21[uVar4] * 0x44;
-                uVar4 = uVar7 * *(volatile ushort *)(iVar24 + 0x40) + VU(param_1 + 4);
-                VU(param_1 + 4) = uVar4;
-                uVar7 = uVar7 * *(volatile ushort *)(iVar24 + 0x42);
-                VU(param_1 + 4) = uVar4 & 0xffffff;
-                VU(param_1 + 8) = uVar7;
-                uVar20 = uVar20 + 1;
-                VU(param_1 + 0x10) = VU(param_1 + 0x10) | uVar4 >> 0x18;
-                uVar16 = (int)uVar16 >> 1;
-                if (uVar7 < 0x10000) break;
-                if (uVar16 == 0) goto LAB_fd7e;
-              }
-              FUN_0006897c(param_1);
-            } while (uVar16 != 0);
-LAB_fd7e:
-            uVar16 = uVar20;
-            if (2 < (int)uVar20) uVar16 = 3;
-          }
-          else {
-            iVar24 = iVar8 + (uint)*pbVar21 * 0x44;
-            uVar20 = VU(param_1 + 8) >> 10;
-            uVar10 = uVar20 * *(volatile ushort *)(iVar24 + 0x40) + VU(param_1 + 4);
-            VU(param_1 + 4) = uVar10;
-            uVar20 = uVar20 * *(volatile ushort *)(iVar24 + 0x42);
-            VU(param_1 + 8) = uVar20;
-            VU(param_1 + 0x10) = VU(param_1 + 0x10) | uVar10 >> 0x18;
-            VU(param_1 + 4) = uVar10 & 0xffffff;
-            if (uVar20 < 0x10000) FUN_0006897c(param_1);
-            uVar16 = (int)uVar16 >> 1;
-            if (uVar16 != 0) { uVar20 = 1; uVar10 = uVar20; goto LAB_fd54; }
-            uVar10 = 1; uVar16 = uVar10; uVar20 = uVar10;
-          }
-          pbVar21 = pbVar21 + uVar16;
-          uVar4 = (int)uVar6 >> uVar10;
-          uVar7 = (int)uVar19 >> uVar10;
-          uVar6 = (int)uVar4 >> (uVar20 - uVar10 & 0xff);
-          uVar19 = (int)uVar7 >> (uVar20 - uVar10 & 0xff);
-          uVar20 = uVar7 & 0xffff;
-          uVar10 = uVar4 & 0xffff;
+
+                first >>= lsb_mode;
+                second >>= lsb_mode;
+                shift = level - lsb_mode;
+                level = LC3_MIN(level, 3);
+            }
+
+            if (first)
+                write_bit(bits, quantized[i] & 1);
+            if (second)
+                write_bit(bits, quantized[i + 1] & 1);
+
+            first >>= shift;
+            second >>= shift;
+            write_symbol(bits, SPECTRUM_MODELS + lookup[level],
+                           first + 4 * second);
+
+            state = (state << 4) +
+                (level > 1 ? 12 + level
+                           : 1 + (first + second) * (level + 1));
         }
-        if (uVar10 != 0) {
-          uVar10 = VU(param_1 + 0x20);
-          uVar2 = *puVar3;
-          iVar24 = uVar10 + 1;
-          if (iVar24 < 0x21) {
-            VU(param_1 + 0x20) = iVar24;
-            VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | (uVar2 & 1) << (uVar10 & 0xff);
-          }
-          else {
-            lc3_bits_accu_flush(param_1, uVar2 & 1, 1);
-          }
-        }
-        if (uVar20 != 0) {
-          uVar20 = VU(param_1 + 0x20);
-          uVar2 = puVar3[1];
-          iVar24 = uVar20 + 1;
-          if (iVar24 < 0x21) {
-            VU(param_1 + 0x20) = iVar24;
-            VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | (uVar2 & 1) << (uVar20 & 0xff);
-          }
-          else {
-            lc3_bits_accu_flush(param_1, uVar2 & 1, 1);
-          }
-        }
-        iVar24 = uVar6 + uVar19 * 4;
-        iVar13 = iVar8 + (uint)*pbVar21 * 0x44;
-        uVar20 = VU(param_1 + 8) >> 10;
-        uVar10 = uVar20 * *(volatile ushort *)(iVar13 + iVar24 * 4) + VU(param_1 + 4);
-        VU(param_1 + 4) = uVar10;
-        uVar20 = uVar20 * *(volatile ushort *)(iVar13 + iVar24 * 4 + 2);
-        VU(param_1 + 8) = uVar20;
-        VU(param_1 + 0x10) = VU(param_1 + 0x10) | uVar10 >> 0x18;
-        VU(param_1 + 4) = uVar10 & 0xffffff;
-        if (uVar20 < 0x10000) FUN_0006897c(param_1);
-        iVar24 = (local_50 & 0xf) * 0x10;
-        if (1 < (int)uVar16) {
-          local_50 = iVar24 + uVar16 + 0xc & 0xff;
-          puVar3 = puVar3 + 2;
-          if (param_6 + (uVar9 & 0xfffffffe) + local_3c + 2 == puVar3) break;
-          goto LAB_fb52;
-        }
-        local_50 = (int)(short)((short)uVar6 + (short)uVar19) * (int)(short)((short)uVar16 + 1) +
-                   iVar24 + 1U & 0xff;
-        puVar3 = puVar3 + 2;
-      } while (puVar3 != param_6 + (uVar9 & 0xfffffffe) + local_3c + 2);
-      local_3c = (uVar9 & 0xfffffffe) + local_3c + 2;
     }
-    local_4c = local_4c + 0x400;
-    bVar25 = local_40 == 0;
-    local_40 = local_40 - 1;
-    if (bVar25) {
-      iVar24 = (int)FUN_00068590(param_1);
-      if (uVar14 == 0) {
-        if ((0 < iVar15) && (0 < iVar24)) {
-          param_6 = param_6 + -1;
-          puVar3 = param_6 + iVar15;
-          while (1) {
-            while (1) {
-              param_6 = param_6 + 1;
-              uVar2 = *param_6;
-              if (uVar2 == 0) break;
-              uVar14 = (uint)(uVar2 >> 1);
-              if ((int)((uint)uVar2 << 0x1f) < 0) uVar14 = -uVar14;
-              fVar27 = *param_8;
-              fVar28 = (float)(int)uVar14;
-              {
-                int bit = (fVar27 >= fVar28) ? 1 : 0;
-                uVar9 = VU(param_1 + 0x20);
-                iVar15 = uVar9 + 1;
-                if (iVar15 < 0x21) {
-                  uVar14 = bit << (uVar9 & 0xff);
-                  VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar14;
-                  VU(param_1 + 0x20) = iVar15;
-                }
-                else {
-                  lc3_bits_accu_flush(param_1, bit, 1);
-                }
-              }
-              iVar24 = iVar24 + -1;
-              if (param_6 == puVar3) return;
-              param_8 = param_8 + 1;
-              if (iVar24 == 0) return;
-            }
-            if (param_6 == puVar3) break;
-            param_8 = param_8 + 1;
-          }
-        }
-      }
-      else if ((0 < iVar15) && (0 < iVar24)) {
-        puVar3 = param_6 + (iVar15 - 1U & 0xfffffffe);
-        while (1) {
-          while (1) {
-            uVar1 = param_6[1];
-            uVar2 = *param_6;
-            if (((uint)(ushort)((uVar1 | uVar2) >> 1) << 0x10) >> 0x12 != 0) break;
-            if (param_6 == puVar3) return;
-            param_6 = param_6 + 2;
-          }
-          uVar14 = VU(param_1 + 0x20);
-          iVar8 = iVar24 + -1;
-          iVar15 = uVar14 + 1;
-          uVar9 = uVar2 >> 1 & 1;
-          if (iVar15 < 0x21) {
-            VU(param_1 + 0x20) = iVar15;
-            VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar9 << (uVar14 & 0xff);
-          }
-          else {
-            lc3_bits_accu_flush(param_1, uVar9, 1);
-          }
-          if (uVar2 >> 1 == 1) {
-            if (iVar8 == 0) return;
-            uVar14 = VU(param_1 + 0x20);
-            iVar15 = uVar14 + 1;
-            if (iVar15 < 0x21) {
-              VU(param_1 + 0x20) = iVar15;
-              VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | (uVar2 & 1) << (uVar14 & 0xff);
-            }
-            else {
-              lc3_bits_accu_flush(param_1, uVar2 & 1, 1);
-            }
-            iVar8 = iVar24 + -2;
-          }
-          iVar24 = iVar8 + -1;
-          if (iVar8 != 0) {
-            uVar14 = VU(param_1 + 0x20);
-            uVar9 = uVar1 >> 1 & 1;
-            iVar15 = uVar14 + 1;
-            if (iVar15 < 0x21) {
-              VU(param_1 + 0x20) = iVar15;
-              VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | uVar9 << (uVar14 & 0xff);
-            }
-            else {
-              lc3_bits_accu_flush(param_1, uVar9, 1);
-            }
-          }
-          if (uVar1 >> 1 == 1) {
-            if (0 < iVar24) {
-              uVar14 = VU(param_1 + 0x20);
-              iVar24 = uVar14 + 1;
-              if (iVar24 < 0x21) {
-                VU(param_1 + 0x20) = iVar24;
-                VU(param_1 + 0x1c) = VU(param_1 + 0x1c) | (uVar1 & 1) << (uVar14 & 0xff);
-              }
-              else {
-                lc3_bits_accu_flush(param_1, uVar1 & 1, 1);
-              }
-            }
-            iVar24 = iVar8 + -2;
-          }
-          if (param_6 == puVar3) break;
-          param_6 = param_6 + 2;
-          if (iVar24 < 1) return;
-        }
-        return;
-      }
-      return;
+}
+
+static __attribute__((always_inline)) inline void
+put_residual_bits(lc3_bits_t *bits, int bit_budget,
+    const uint16_t *quantized, int count, const float *spectrum)
+{
+    for (int i = 0; i < count && bit_budget > 0; i++) {
+        if (quantized[i] == 0)
+            continue;
+
+        float quantized_value = quantized[i] & 1
+            ? -(quantized[i] >> 1) : (quantized[i] >> 1);
+        write_tail_bit(bits, spectrum[i] >= quantized_value);
+        bit_budget--;
     }
-  } while (1);
+}
+
+static __attribute__((always_inline)) inline void
+put_lsb_bits(lc3_bits_t *bits, int bit_budget,
+    const uint16_t *quantized, int count)
+{
+    for (int i = 0; i < count && bit_budget > 0; i += 2) {
+        uint16_t first = quantized[i] >> 1;
+        uint16_t second = quantized[i + 1] >> 1;
+        int first_negative = quantized[i] & 1;
+        int second_negative = quantized[i + 1] & 1;
+
+        if ((first | second) >> 2 == 0)
+            continue;
+
+        if (bit_budget-- > 0)
+            write_bit(bits, first & 1);
+        if (first == 1 && bit_budget-- > 0)
+            write_bit(bits, first_negative);
+        if (bit_budget-- > 0)
+            write_bit(bits, second & 1);
+        if (second == 1 && bit_budget-- > 0)
+            write_bit(bits, second_negative);
+    }
+}
+
+void lc3_spec_encode(lc3_bits_t *bits,
+    enum lc3_dt dt, enum lc3_srate sr, enum lc3_bandwidth bandwidth,
+    int nbytes, const uint16_t *quantized,
+    const lc3_spec_side_t *side, const float *spectrum)
+{
+    bool lsb_mode = side->lsb_mode;
+    int significant_count = side->nq;
+
+    put_noise_factor(bits, estimate_noise_factor(dt, bandwidth,
+        quantized, significant_count, spectrum));
+    put_quantized_spectrum(bits, dt, sr, nbytes,
+                           quantized, significant_count, lsb_mode);
+
+    int bits_left = lc3_get_bits_left(bits);
+    if (lsb_mode)
+        put_lsb_bits(bits, bits_left, quantized, significant_count);
+    else
+        put_residual_bits(bits, bits_left, quantized,
+                          significant_count, spectrum);
 }

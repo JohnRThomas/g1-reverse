@@ -1,14 +1,371 @@
 {
  "schema": 1,
  "app": {
+  "0x0002bed0": {
+   "name": "display_panel_is_secondary",
+   "evidence": "The function waits for the display-state update guard at 0x20018d9c, then returns whether byte +0xd5 of its sole display-context argument is greater than one. All callers, including display_dispatch_thread, pass that display context. The legacy check_battery_critical label is incompatible with both the ABI and complete body. Raw identity remains FUN_0002bed0."
+  },
+  "0x00068908": {
+   "name": "lc3_put_bits_generic",
+   "evidence": "The complete body matches NCS 2.5.1 liblc3 bits.c lc3_put_bits_generic: it fills bits->accu to 32 bits, flushes up to the available reverse-buffer bytes, then stores v >> n1 and n - n1. Encoder callers pass the same (bits, value, count) ABI. The legacy lc3_bits_accu_flush label described only the internal middle operation. Raw identity remains FUN_00068908."
+  },
   "0x0004e434": {
    "name": "settings_load_subtree_direct",
    "evidence": "Body and ABI match NCS 2.5.1 settings_store.c; legacy settings_save_one assignment belongs to 0x0004e374."
   },
-  "0x00061624": {
+ "0x00061624": {
    "name": "gpio_nrfx_pin_configure",
    "evidence": "Firmware gpio_driver_api at 0x8b748 points pin_configure slot to 0x61625; body and NCS reference match."
+  },
+  "0x00018334": {
+   "name": "format_bt_addr_str",
+   "evidence": "The input is Zephyr's packed bt_addr_le_t wire layout: type byte followed by six address bytes. The body selects the four standard LE type labels or formats an unknown type, then emits BT_ADDR_LE_STR in reverse byte order. Raw identity remains FUN_00018334."
+  },
+  "0x000751d0": {
+   "name": "register_events",
+   "evidence": "Exact NCS 2.5.1 Zephyr kernel/poll.c static register_events implementation: iterates 20-byte k_poll_event records, checks semaphore/queue/signal/msgq readiness, registers pending events under the poll spinlock, and returns the number registered. Raw identity remains FUN_000751d0."
+  },
+  "0x000753ec": {
+   "name": "clear_event_registrations",
+   "evidence": "Exact NCS 2.5.1 Zephyr kernel/poll.c static clear_event_registrations implementation: walks registered k_poll_event records in reverse, clears poller links, removes linked nodes, and releases/reacquires the subsystem spinlock between records. Raw identity remains FUN_000753ec."
+  },
+  "0x00076a94": {
+   "name": "__assert_func",
+   "evidence": "Exact newlib/newlib-nano assertion sink ABI and format: (file, line, function, expression), fiprintf(stderr, assertion format, ...), then noreturn abort. The optional function prefix and empty-string fallback match newlib assert.c. Raw identity remains FUN_00076a94."
+  },
+  "0x000809b0": {
+   "name": "img_mgmt_get_next_boot_slot",
+   "evidence": "Exact NCS 2.5.1 Zephyr mcumgr img_mgmt_state.c implementation: obtains active slot and MCUboot swap type, selects current/opposite slot, reports NORMAL/TEST/REVERT through the optional output, and returns -1 for unknown swap state. Raw identity remains FUN_000809b0."
+  },
+  "0x00080ab4": {
+   "name": "smp_handle_reqs",
+   "evidence": "Exact NCS 2.5.1 Zephyr mcumgr transport/src/smp.c static work handler: treats work as smp_transport, drains its FIFO with K_NO_WAIT, creates reader/writer/streamer locals, and calls smp_process_request_packet for every net_buf. Raw identity remains FUN_00080ab4."
+  },
+  "0x000836e8": {
+   "name": "net_buf_get",
+   "evidence": "The exported four-byte tail entry used by NCS 2.5.1 net_buf consumers branches to the full FIFO dequeue implementation at 0x000727ac. Its two-argument ABI is struct k_fifo pointer plus k_timeout_t, and raw identity remains FUN_000836e8."
+  },
+  "0x000513e8": {
+   "name": "smp_process_request_packet",
+   "evidence": "Exact NCS 2.5.1 Zephyr mcumgr smp/src/smp.c request-packet processor called with smp_streamer and net_buf pointers. Raw identity remains FUN_000513e8."
+  },
+  "0x000476b4": {
+   "name": "projector_transfer_pixel_chunk",
+   "evidence": "Custom projector transport helper: packs 10-bit X/9-bit Y into its five-byte SPI prefix, transfers length+6 bytes, and forwards the chunk coordinates/context. Raw identity remains FUN_000476b4."
+  },
+  "0x0007da70": {
+   "name": "decode_rle_byte_pairs",
+   "evidence": "Both navigation renderers pass a count/value byte-pair stream and output canvas; each pair expands through memset and the function returns the total decoded byte count. Raw identity remains FUN_0007da70."
+  },
+  "0x00086698": {
+   "name": "uptime_ticks_get",
+   "evidence": "The four-byte tail thunk branches directly to the 64-bit uptime tick implementation at 0x00074f68. This unique name resolves the rejected generated thunk-name collision while preserving raw identity FUN_00086698."
   }
  },
- "net": {}
+ "net": {
+  "0x01016144": {
+   "name": "controller_radio_event1_dispatch",
+   "evidence": "First-class tail target of FUN_01013650 event case one. It reads the active-link byte at owner+0x2ee, forwards context/event to the idle-radio completion path when clear, or dispatches the connection-event processor with (0,0) when set. Raw identity remains FUN_01016144."
+  },
+  "0x0100b594": {
+   "name": "controller_radio_idle_event_finish",
+   "evidence": "Event-one fallback when no active link is present. The body validates controller radio ownership, releases the active radio context when needed, and invokes the installed completion callback. Raw identity remains FUN_0100b594."
+  },
+  "0x01014b18": {
+   "name": "sdc_conn_event_process",
+   "evidence": "Large connection-event processor selected by controller_radio_event1_dispatch when owner+0x2ee marks an active link; it consumes the current connection record and event flags. Raw identity remains FUN_01014b18."
+  },
+  "0x0101fdc0": {
+   "name": "controller_radio_request_state_clear",
+   "evidence": "Tail target of the controller radio shutdown sequence at 0x0101fc14. It clears active+mode as one halfword transaction and the pending byte separately while preserving request_kind/channel. Reachable code is 0x0101fdc0..0x0101fdc9; raw identity remains FUN_0101fdc0."
+  },
+  "0x01020d1c": {
+   "name": "controller_radio_transition_apply",
+   "evidence": "Complete fixed-state radio transition owner: captures controller time, resets RADIO event state, derives transition flags from current/pending modes, updates the fixed radio-state record, invokes mode callbacks, publishes RADIO timing registers, and completes pending work. Raw identity remains FUN_01020d1c."
+  },
+  "0x01023de8": {
+   "name": "controller_radio_timer_capture_get",
+   "evidence": "Four-byte thunk to 0x01025028, which returns the fixed controller timer/capture word at peripheral offset 0x504. Raw identity remains FUN_01023de8."
+  },
+  "0x010218d8": {
+   "name": "controller_mode1_state_validate",
+   "evidence": "Mode-one validation thunk dispatching vtable slot +0x10; controller_radio_transition_apply treats values outside {-1,0} as an assertion. Raw identity remains FUN_010218d8."
+  },
+  "0x010218e4": {
+   "name": "controller_mode2_state_validate",
+   "evidence": "Mode-two validation thunk dispatching vtable slot +0x14; controller_radio_transition_apply treats values outside {-1,0} as an assertion. Raw identity remains FUN_010218e4."
+  },
+  "0x01025cf0": {
+   "name": "controller_transition_pending_check",
+   "evidence": "Returns zero outside controller states 2/3 and otherwise dispatches the installed +0x10 transition query; its result supplies the transition-pending flag. Raw identity remains FUN_01025cf0."
+  },
+  "0x01025be0": {
+   "name": "controller_radio_work_pending",
+   "evidence": "Boolean leaf comparing the controller work cursor and end pointer; radio-transition completion uses it to decide whether a pending RADIO state must be drained. Raw identity remains FUN_01025be0."
+  },
+  "0x01020a6c": {
+   "name": "controller_radio_transition_schedule",
+   "evidence": "Consumes transition direction, absolute radio time and controller selector after the mode-specific time calculation; success is required before the new radio state is published. Raw identity remains FUN_01020a6c."
+  },
+  "0x01021614": {
+   "name": "controller_radio_time_mode1_to_mode1",
+   "evidence": "Selected only when both current and requested radio mode are one; advances the interval value by the PHY-indexed timing term. Raw identity remains FUN_01021614."
+  },
+  "0x010215d8": {
+   "name": "controller_radio_time_mode2_to_mode1",
+   "evidence": "Selected when current radio mode is not one and requested mode is one; subtracts the selected PHY airtime term. Raw identity remains FUN_010215d8."
+  },
+  "0x010215f4": {
+   "name": "controller_radio_time_mode1_to_mode2",
+   "evidence": "Selected when current radio mode is one and requested mode is not one; advances by the complementary PHY-indexed timing term. Raw identity remains FUN_010215f4."
+  },
+  "0x01021634": {
+   "name": "controller_radio_time_mode2_to_mode2",
+   "evidence": "Selected when neither current nor requested radio mode is one; subtracts the complementary selected-PHY airtime term. Raw identity remains FUN_01021634."
+  },
+  "0x01008d00": {
+   "name": "controller_assert",
+   "evidence": "Two-argument SDC fatal endpoint: formats the module identifier, invokes the registered assertion callback, then requests SYSRESETREQ. Raw identity remains FUN_01008d00."
+  },
+  "0x0100a7e8": {
+   "name": "sdc_ecb_run_blocking",
+   "evidence": "Exact NRF_ECB_NS register layout and 48-byte AES ECB callers identify the SDC-internal blocking hardware transaction runner. Raw identity remains FUN_0100a7e8."
+  },
+  "0x0102a1ea": {
+   "name": "sdc_byte_lock_try_acquire",
+   "evidence": "Sole caller is sdc_ecb_run_blocking; the helper atomically replaces the byte lock with one and returns -35 when it was already owned."
+  },
+  "0x0102a208": {
+   "name": "sdc_byte_lock_release",
+   "evidence": "Sole caller is sdc_ecb_run_blocking; the helper atomically clears the same ownership byte."
+  },
+  "0x0102a21e": {
+   "name": "sdc_cpu_relax",
+   "evidence": "Two SDC-owned polling loops call this empty weak hook while waiting for hardware or scheduler-owned state; the ECB runner calls it only inside its bounded SEVONPEND polling section."
+  },
+  "0x0100ec88": {
+   "name": "controller_packet_build_next",
+   "evidence": "The sole caller repeatedly consumes return classes 0/2/4/8 and passes the produced packet to controller encoders; this function dequeues typed work nodes and fills that packet. Raw identity remains FUN_0100ec88."
+  },
+  "0x0101a38c": {
+   "name": "controller_timing_snapshot_build",
+   "evidence": "Both callers provide a 24-byte current-radio-state output consumed by the controller scheduler. The complete body advances interval slots, selects BLE PHY airtime for encoded PHY values 1/2/4/8, maintains the schedule-node list, applies drift correction, and emits the timing snapshot. Raw identity remains FUN_0101a38c."
+  },
+  "0x01019204": {
+   "name": "controller_radio_state_get",
+   "evidence": "Leaf accessor returns the fixed controller radio-state record at 0x21001048; snapshot builder and event dispatcher consume its PHY/status bytes. Raw identity remains FUN_01019204."
+  },
+  "0x010209f0": {
+   "name": "radio_phy_airtime_base_get",
+   "evidence": "Unary leaf indexes the controller timing table by encoded PHY value; all three snapshot-builder PHY dispatches pass values 1/2/4/8 and combine its result with packet-airtime constants. Raw identity remains FUN_010209f0."
+  },
+  "0x01022f08": {
+   "name": "controller_time_now",
+   "evidence": "Thunk to the network-core extended RTC time reader at 0x01025034; the timing snapshot builder consumes its r1:r0 64-bit result. Raw identity remains thunk_FUN_01025034/FUN_01022f08."
+  },
+  "0x0101a130": {
+   "name": "radio_slot_margin_get",
+   "evidence": "Returns the controller slot margin selected from radio mode/feature state; snapshot code adds it once per scheduled slot. Raw identity remains FUN_0101a130."
+  },
+  "0x0101a0e8": {
+   "name": "radio_transition_overhead_get",
+   "evidence": "Returns the selected radio transition overhead used in request descriptors and final snapshots. Raw identity remains FUN_0101a0e8."
+  },
+  "0x01022f3c": {
+   "name": "controller_timing_request_submit",
+   "evidence": "Consumes the complete 24-byte timing request built by controller_timing_snapshot_build and returns success/failure. Raw identity remains FUN_01022f3c."
+  },
+  "0x0100d4d0": {
+   "name": "controller_timing_request_schedule",
+   "evidence": "Consumes the timing request plus interval, submits it, and normalizes the resulting target time to an interval multiple. Raw identity remains FUN_0100d4d0."
+  },
+  "0x0100f69c": {
+   "name": "signed_drift_clamp",
+   "evidence": "Leaf clamps a signed drift value to the symmetric magnitude supplied in r1. Raw identity remains FUN_0100f69c."
+  },
+  "0x01008d00": {
+   "name": "sdc_assertion_fail",
+   "evidence": "Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00."
+  },
+  "0x0101deac": {
+   "name": "schedule_node_list_lock",
+   "evidence": "Sets the schedule-list lock byte before traversal/update. Raw identity remains FUN_0101deac."
+  },
+  "0x0101dda8": {
+   "name": "schedule_node_tail_get",
+   "evidence": "Traverses next links at +0x18 and returns the final schedule node. Raw identity remains FUN_0101dda8."
+  },
+  "0x0101dd48": {
+   "name": "schedule_node_insert_after",
+   "evidence": "Links a schedule node after the supplied predecessor while maintaining adjacent next/previous links. Raw identity remains FUN_0101dd48."
+  },
+  "0x0101ddc0": {
+   "name": "schedule_node_find_at_or_after",
+   "evidence": "Searches schedule nodes for the smallest timestamp at or above the requested value, with a fallback-tail mode. Raw identity remains FUN_0101ddc0."
+  },
+  "0x0101dec4": {
+   "name": "schedule_node_list_is_locked",
+   "evidence": "Returns the schedule-list lock byte read by the mode-five update path. Raw identity remains FUN_0101dec4."
+  },
+  "0x0101de10": {
+   "name": "schedule_phase_offset_get",
+   "evidence": "Computes a bounded phase offset modulo the supplied interval from two 64-bit timestamps. Raw identity remains FUN_0101de10."
+  },
+  "0x0101deb8": {
+   "name": "schedule_node_list_unlock",
+   "evidence": "Clears the schedule-list lock byte after traversal/update. Raw identity remains FUN_0101deb8."
+  },
+  "0x010315f0": {
+   "name": "rtc_nrf_isr",
+   "evidence": "Exact match to NCS 2.5.1 Zephyr drivers/timer/nrf_rtc_timer.c rtc_nrf_isr: RTC1 pretick hook, overflow accounting, force_isr_mask atomic clear, two compare channels, 64-bit target comparison, event disable/clear, and the aligned callback ABI. Raw identity remains FUN_010315f0."
+  },
+  "0x010313a8": {
+   "name": "z_nrf_rtc_timer_read",
+   "evidence": "Exact NCS 2.5.1 system RTC timer implementation: combines overflow_cnt with the 24-bit RTC1 counter and corrects a pending overflow using the 64-bit anchor. Raw identity remains FUN_010313a8."
+  },
+  "0x0103a6ae": {
+   "name": "rtc_compare_event_clear",
+   "evidence": "Compiler-outlined nrf_rtc event_clear helper used by rtc_nrf_isr; channel n selects RTC1 EVENTS_COMPARE[n], writes zero, and performs the required readback. Raw identity remains FUN_0103a6ae."
+  },
+  "0x01039e4e": {
+   "name": "rtc_pretick_rtc1_isr_hook",
+   "evidence": "Linker thunk called at the start of rtc_nrf_isr and tail-branching to the nRF53 SoC rtc_pretick_rtc1_isr_hook implementation at 0x0102cfec. Raw identity remains FUN_01039e4e/thunk_FUN_0102cfec."
+  },
+  "0x01018690": {
+   "name": "sdc_llcp_process_rx_control_pdu",
+   "evidence": "The PDU low-nibble dispatch and opcode 7 special case identify BLE LL_UNKNOWN_RSP processing; complete 0x150-byte body matches the NCS 2.5.1 obfuscated SoftDevice Controller symbol sym_D3OF4UKYCAB3P5XZOK7JC3PV7TCXDH2CWS4GEEY at opcode ratio 0.939. Raw identity remains FUN_01018690."
+  },
+  "0x0100d760": {
+   "name": "sdc_llcp_get_active_link_index",
+   "evidence": "The LLCP receive dispatcher stores this byte as the active controller link index before decoding each control PDU. Raw identity remains FUN_0100d760."
+  },
+  "0x0101a070": {
+   "name": "sdc_llcp_decode_control_pdu",
+   "evidence": "All callers pass an on-air LL control PDU and a stack output record subsequently inspected by opcode/response fields. Raw identity remains FUN_0101a070."
+  },
+  "0x0101746c": {
+   "name": "sdc_llcp_apply_rx_transition",
+   "evidence": "The receive dispatcher passes the decoded LLCP record, opcode and flags before state-specific handling; related controller paths use the same transition helper. Raw identity remains FUN_0101746c."
+  },
+  "0x010168e4": {
+   "name": "sdc_llcp_handle_control_opcode",
+   "evidence": "Called for ordinary admitted control opcodes 0,1,2,6 with the decoded LLCP record and opcode. Raw identity remains FUN_010168e4."
+  },
+  "0x010183e0": {
+   "name": "sdc_llcp_handle_unknown_response",
+   "evidence": "The sole caller selects it from the LL_UNKNOWN_RSP path after decoding and state admission. Raw identity remains FUN_010183e0."
+  },
+  "0x01020500": {
+   "name": "sdc_llcp_note_unsupported_pdu",
+   "evidence": "Called when the LLCP receive-state/opcode combination is rejected and the dispatcher returns controller status 5. Raw identity remains FUN_01020500."
+  },
+  "0x010208b0": {
+   "name": "sdc_llcp_stop_rx_timeout",
+   "evidence": "First operation in the cleanup_pending tail shared by LLCP receive handlers, immediately before releasing the receive context. Raw identity remains FUN_010208b0."
+  },
+  "0x0101fca8": {
+   "name": "sdc_llcp_release_rx_context",
+   "evidence": "Second operation in the cleanup_pending tail shared by LLCP receive handlers, followed by clearing the pending byte. Raw identity remains FUN_0101fca8."
+  },
+  "0x0100d58c": {
+   "name": "sdc_phy_timing_offset_get",
+   "evidence": "The connection-event timing planner passes its PHY/config bytes and adds the returned signed correction before timing scaling. Raw identity remains FUN_0100d58c."
+  },
+  "0x0100d6e8": {
+   "name": "sdc_conn_recovery_window_update",
+   "evidence": "Called only by the recovery-mode arm with interval timing, the published controller timing word, and the local window accumulator; its byte result becomes recovery-pending state. Raw identity remains FUN_0100d6e8."
+  },
+  "0x0100f0fc": {
+   "name": "sdc_radio_context_fixed_time_get",
+   "evidence": "Consumes the radio subcontext at connection+0x30 and contributes its fixed duration to the prepared event budget. Raw identity remains FUN_0100f0fc."
+  },
+  "0x0100f48c": {
+   "name": "sdc_conn_radio_overhead_set",
+   "evidence": "The initial and established timing arms pass the connection context plus a PHY-derived fixed overhead before publishing their event window. Raw identity remains FUN_0100f48c."
+  },
+  "0x0100f63c": {
+   "name": "sdc_controller_random_get",
+   "evidence": "Zero-argument controller PRNG helper; this caller masks its low three bits to choose the next timing-retry divisor. Raw identity remains FUN_0100f63c."
+  },
+  "0x01012c08": {
+   "name": "sdc_conn_timing_fault",
+   "evidence": "No-return timing fault helper reached immediately before the planner's source-line 0x571 assertion tail. Raw identity remains FUN_01012c08."
+  },
+  "0x01012f18": {
+   "name": "sdc_conn_event_timing_prepare",
+   "evidence": "Exact 0x738-byte NCS 2.5.1 SDC archive match (obfuscated symbol sym_RGPKJ26QV7SQW5X3WYCPY4K6NKRUE6OJNP7M2PA, normalized Thumb opcode ratio 0.997). Four timing modes prepare and publish a connection-event window; return one supplies an event skip count. Raw identity remains FUN_01012f18."
+  },
+  "0x01016160": {
+   "name": "sdc_conn_timing_guard_enabled",
+   "evidence": "Boolean feature gate that adds the controller's fixed 30-unit guard to the prepared connection-event budget. Raw identity remains FUN_01016160."
+  },
+  "0x0101618c": {
+   "name": "sdc_conn_recovery_state_restore",
+   "evidence": "Called in the event-counter recovery path between restoring saved timing fields and switching the planner from recovery to established mode. Raw identity remains FUN_0101618c."
+  },
+  "0x010209c8": {
+   "name": "mpsl_timeslot_window_get",
+   "evidence": "Writes the two-word-plus-tail timing tuple consumed immediately by mpsl_timeslot_distance_get in the initial planner arm. Raw identity remains FUN_010209c8."
+  },
+  "0x010209e0": {
+   "name": "radio_phy_airtime_tail_get",
+   "evidence": "Unary PHY timing-table leaf paired throughout the connection planner with radio_phy_airtime_base_get to form complete radio event durations. Raw identity remains FUN_010209e0."
+  },
+  "0x010231c8": {
+   "name": "sdc_conn_window_admit",
+   "evidence": "Final planner admission check consumes the scheduler slot byte and complete timing request at context+0x338; success publishes prepared state. Raw identity remains FUN_010231c8."
+  },
+  "0x010243c0": {
+   "name": "mpsl_timeslot_distance_get",
+   "evidence": "Consumes the saved 64-bit connection anchor and complete tuple returned by mpsl_timeslot_window_get to calculate the initial event-window distance. Raw identity remains FUN_010243c0."
+  },
+  "0x01024678": {
+   "name": "sdc_timing_scale",
+   "evidence": "Repeatedly scales interval and anchor timing values by the signed compensation selected from the controller table. Raw identity remains FUN_01024678."
+  },
+  "0x010247cc": {
+   "name": "sdc_timing_compensation_enabled",
+   "evidence": "Boolean gate for the planner's timing-compensation update block, after the global enable flag is checked. Raw identity remains FUN_010247cc."
+  },
+  "0x01029638": {
+   "name": "sdc_timing_compensation_get",
+   "evidence": "Thumb thunk used at planner entry to fetch the signed base timing compensation before adding the indexed controller coefficient. Raw identity remains thunk_FUN_010246cc at 0x01029638."
+  },
+  "0x0102d708": {
+   "name": "ipc_rpmsg_static_vrings_open",
+   "evidence": "Normalized Thumb opcode sequence matches NCS 2.5.1 ipc_rpmsg_static_vrings.c:open at 0.931, with the same vring layout, mailbox setup, RPMsg initialization, callbacks, errno paths, and state machine. Raw identity remains FUN_0102d708."
+  },
+  "0x0102dac0": {
+   "name": "ipc_rpmsg_init",
+   "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; argument layout and downstream rpmsg_virtio initialization agree. Raw identity remains FUN_0102dac0."
+  },
+  "0x0102db30": {
+   "name": "ipc_static_vrings_init",
+   "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation and exact role/vrings argument ABI. Raw identity remains FUN_0102db30."
+  },
+  "0x010357ec": {
+   "name": "rpmsg_virtio_get_buffer_size",
+   "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; its nonnegative result is stored as tx_buffer_size. Raw identity remains FUN_010357ec."
+  },
+  "0x01036bec": {
+   "name": "k_work_init",
+   "evidence": "Body zeroes a Zephyr k_work object and installs the handler; direct matched-open call initializes mbox_work with mbox_callback_process. Raw identity remains FUN_01036bec."
+  },
+  "0x01036cb8": {
+   "name": "k_work_queue_init",
+   "evidence": "Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence; body zero-initializes the complete work queue object. Raw identity remains FUN_01036cb8."
+  },
+  "0x01036ce4": {
+   "name": "k_work_queue_start",
+   "evidence": "Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence, including queue, stack, stack-size, priority and null config arguments. Raw identity remains FUN_01036ce4."
+  },
+  "0x01039fb6": {
+   "name": "atomic_set",
+   "evidence": "Body is Zephyr's atomic exchange loop and the matched backend open uses it for READY/INITED state publication. Raw identity remains FUN_01039fb6."
+  },
+  "0x0103a056": {
+   "name": "ipc_static_vrings_shm_size",
+   "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."
+  }
+ }
 }

@@ -1,9 +1,11 @@
 /* readable reconstruction; identity: FUN_010166c0 @ 0x010166c0
  * public-name: FUN_010166c0
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  */
 /* net-core FUN_010166c0 @ 0x10166c0  (parity 300 trials PROVEN) */
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern int FUN_0100ca98(int, int);
 extern void FUN_0100d5c8(unsigned int, int);
 extern unsigned short FUN_0100d5d0(unsigned int);
@@ -80,7 +82,7 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
   } else {
     iVar8 = FUN_0100ca98(cVar1, iVar8 + -1);
     if (iVar8 == 0) {
-      FUN_01008d00(0x32, 0x1596);
+      sdc_assertion_fail(0x32, 0x1596);
       return;
     }
     *(volatile unsigned char *)(iVar3 + 0xd) = *(volatile unsigned char *)(iVar3 + 0xd) | 2;

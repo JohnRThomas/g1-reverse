@@ -3,7 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   boot_set_next                            <= FUN_000641e4 @ 0x000641e4
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   flash_write_close_ate_marker             <= FUN_00084e58 @ 0x00084e58
  * address symbols (name @ address):
  *   rodata_f68d7                             @ 0x000f68d7
@@ -16,7 +16,7 @@
 extern int FUN_00063ff8(char*);
 extern int FUN_0006403c(char*, void*);
 extern int FUN_000640e8(char*, uint32_t, int);
-extern void libc_fatal_error_and_abort(uint32_t,int,uint32_t,uint32_t);
+extern void __assert_func(uint32_t,int,uint32_t,uint32_t);
 extern void FUN_0007efd4(char*, int, uint32_t);
 extern int flash_write_close_ate_marker(char*);
 
@@ -60,7 +60,7 @@ int boot_set_next(char *param_1, int param_2, int param_3){
       if (local[3] != 3) return 0;
       return flash_write_close_ate_marker(param_1);
     }
-    libc_fatal_error_and_abort(0xf68d7, 0x22e, 0xf692c, 0xf7a30);
+    __assert_func(0xf68d7, 0x22e, 0xf692c, 0xf7a30);
   }
   return 4;
 }

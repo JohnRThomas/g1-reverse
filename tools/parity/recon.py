@@ -113,6 +113,26 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
     """Compile the reconstructed function AND link it at its real VA with a
     generated stub for every external callee, so that `bl <callee>` targets an
     address OUTSIDE the function body (detectable as a call by the emulator)."""
+    # A readable reconstruction may name a callee semantically while retaining
+    # its raw identity in the declaration comment:
+    #
+    #   extern int process_task_state_four(...); /* FUN_0002c714 */
+    #
+    # Treat that explicit back-map as first-class identity.  The durable
+    # catalog remains the fallback, but newly recovered names no longer lose
+    # call-target strictness while waiting for a catalog regeneration.
+    source_backmaps = {}
+    source_backmap_pattern = re.compile(
+        r'\bextern\b[^;\n]*?\b([A-Za-z_$][\w$]*)\s*\([^;\n]*\)\s*;'
+        r'\s*/\*\s*(?:=\s*)?FUN_([0-9a-fA-F]{3,8})\b')
+    for match in source_backmap_pattern.finditer(csrc):
+        name = match.group(1)
+        address = int(match.group(2), 16) & ~1
+        previous = source_backmaps.setdefault(name, address)
+        if previous != address:
+            return None, ("ambiguous source back-map for %s: 0x%x vs 0x%x" %
+                          (name, previous, address))
+
     d = tempfile.mkdtemp(prefix="parity_")
     cpath = os.path.join(d, "f.c"); opath = os.path.join(d, "f.o")
     open(cpath, "w").write(csrc)
@@ -153,7 +173,8 @@ def compile_func(csrc, func_name, link_va, extra_cflags=None):
         semantic_names = _semantic_name_map("net" if link_va >= 0x01000000 else "app")
         for name in undef:
             mm = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", name)
-            semantic_va = (int(mm.group(1), 16) if mm else semantic_names.get(name))
+            semantic_va = (int(mm.group(1), 16) if mm else
+                           source_backmaps.get(name, semantic_names.get(name)))
             if semantic_va is None:
                 continue
             ss = next((s for s in st.iter_symbols() if s.name == name), None)

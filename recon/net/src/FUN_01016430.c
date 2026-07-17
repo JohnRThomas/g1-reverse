@@ -1,46 +1,65 @@
-/* net-core FUN_01016430 @ 0x1016430 */
+/* net-core radio-operation setup @ 0x01016430.
+ *
+ * Raw provenance: the TBB at 0x0101645a dispatches modes 1..8.  Modes 1, 4,
+ * and 8 share the dynamic-channel path, mode 2 selects channel 13, and every
+ * other value reaches the noreturn controller fault at 0x0101649c.  That
+ * fault call ends at 0x010164a6; 0x010164a6 is alignment and the words at
+ * 0x010164a8/0x010164ac are the state/table literals.
+ */
 #include <stdint.h>
 
-extern unsigned int FUN_0100a5b4(void);
-extern __attribute__((noreturn)) void FUN_01008d00(unsigned int, unsigned int, ...);
-extern void FUN_010202fc(unsigned int, unsigned int);
-extern void FUN_010204f4(unsigned int);
-extern void FUN_01020764(unsigned int);
-extern int FUN_01021108(unsigned int, unsigned int);
-extern int FUN_010212ec(unsigned int, unsigned int);
+extern uint32_t FUN_0100a5b4(void);
+extern __attribute__((noreturn)) void FUN_01008d00(uint32_t module,
+                                                   uint32_t line);
+extern void FUN_010202fc(uint32_t channel, uint32_t operation_mode);
+extern void FUN_010204f4(uint32_t mapped_value);
+extern void FUN_01020764(uintptr_t packet);
+extern void FUN_01021108(uint32_t direction, uint32_t operation_mode);
+extern int32_t FUN_010212ec(uint32_t direction, uint32_t operation_mode);
 
-int FUN_01016430(int use_alternate_finish, unsigned int context)
+#define read_requested_channel          FUN_0100a5b4
+#define controller_fault                FUN_01008d00
+#define configure_radio_channel         FUN_010202fc
+#define latch_mapped_radio_value        FUN_010204f4
+#define arm_radio_packet                FUN_01020764
+#define finish_radio_setup              FUN_01021108
+#define finish_radio_setup_with_status  FUN_010212ec
+
+#define CONTROLLER_STATE ((volatile uint8_t *)UINT32_C(0x21000f90))
+#define RADIO_VALUE_MAP  ((const uint8_t *)UINT32_C(0x0103c24c))
+
+uint32_t FUN_01016430(uint32_t return_finish_status, uintptr_t packet)
 {
-    volatile uint8_t *const state = (volatile uint8_t *)0x21000f90;
-    const uint8_t *const lookup = (const uint8_t *)0x0103c24c;
-    unsigned int mode;
-    unsigned int amount;
-    uint8_t mapped = lookup[state[0x7a]];
+    uint8_t mapped_value;
+    uint8_t operation_mode;
+    uint32_t channel;
 
-    FUN_010204f4(mapped);
-    state[0x8f] = mapped;
-    mode = state[0xbd + state[0x98]];
+    mapped_value = RADIO_VALUE_MAP[CONTROLLER_STATE[0x7a]];
+    latch_mapped_radio_value(mapped_value);
+    CONTROLLER_STATE[0x8f] = mapped_value;
 
-    switch (mode) {
+    operation_mode = CONTROLLER_STATE[0xbd + CONTROLLER_STATE[0x98]];
+    switch (operation_mode) {
     case 1:
     case 4:
     case 8:
-        amount = FUN_0100a5b4();
-        if (amount > 0x40)
-            amount = 0x40;
-        amount = (uint8_t)amount;
+        channel = read_requested_channel();
+        if (channel >= 0x40)
+            channel = 0x40;
+        channel = (uint8_t)channel;
         break;
     case 2:
-        amount = 0x0d;
+        channel = 0x0d;
         break;
     default:
-        FUN_01008d00(0x32, 0x90f);
+        controller_fault(0x32, 0x90f);
     }
 
-    FUN_010202fc(amount, mode);
-    FUN_01020764(context);
-    if (use_alternate_finish)
-        return FUN_010212ec(1, mode) != 0;
-    FUN_01021108(1, mode);
+    configure_radio_channel(channel, operation_mode);
+    arm_radio_packet(packet);
+    if (return_finish_status != 0)
+        return finish_radio_setup_with_status(1, operation_mode) != 0;
+
+    finish_radio_setup(1, operation_mode);
     return 1;
 }

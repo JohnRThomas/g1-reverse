@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0101c420 @ 0x0101c420
  * public-name: FUN_0101c420
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_net_link_ctx_b                         @ 0x21001124
  */
@@ -8,7 +10,7 @@
 #define P_0101c4a4 0x21001124
 
 extern int FUN_010091f8(int, unsigned int);
-extern void FUN_01008d00(int, int);
+extern void sdc_assertion_fail(int, int);
 
 void FUN_0101c420(void)
 {
@@ -29,7 +31,7 @@ L438:
   if (r3 <= 0xb) return;
   if (r3 != 0xc) {
     for (;;) {
-      FUN_01008d00(0x36, 0x963);
+      sdc_assertion_fail(0x36, 0x963);
     }
   }
   *(unsigned char *)(r2 + 0x154) = 0;

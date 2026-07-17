@@ -2,11 +2,11 @@
  * public-name: lc3_encode_pack_frame_header_bits
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  *   lc3_encode_pack_frame_header_bits        <= FUN_0006efdc @ 0x0006efdc
  */
 /* Reconstructed FUN_0006efdc @ 0x6efdc  (parity: 300/300 trials, PROVEN) */
-extern void lc3_bits_accu_flush(int,int,int,...);
+extern void lc3_put_bits_generic(int,int,int,...);
 #define VI(a) (*(volatile int*)(a))
 void lc3_encode_pack_frame_header_bits(int param_1,int *param_2,int param_3,int param_4){
   unsigned int uVar4,uVar5,uVar6; int iVar2,iVar3,iVar7; unsigned char bVar1;
@@ -22,7 +22,7 @@ void lc3_encode_pack_frame_header_bits(int param_1,int *param_2,int param_3,int 
     iVar2 = p2[1];
     if ((int)uVar5 < 0x21) goto LAB_effe;
 LAB_f0f2:
-    lc3_bits_accu_flush(param_1,iVar2,5);
+    lc3_put_bits_generic(param_1,iVar2,5);
     uVar5 = VI(param_1+0x20);
     uVar4 = uVar5 + 1;
     iVar2 = p2[2] >> 1;
@@ -31,7 +31,7 @@ LAB_f014:
     VI(param_1+0x20) = uVar4;
     VI(param_1+0x1c) = VI(param_1+0x1c) | (iVar2 << (uVar5 & 0xff));
   } else {
-    lc3_bits_accu_flush(param_1,iVar2,5);
+    lc3_put_bits_generic(param_1,iVar2,5);
     uVar4 = VI(param_1+0x20);
     iVar2 = p2[1];
     uVar5 = uVar4 + 5;
@@ -43,7 +43,7 @@ LAB_effe:
     iVar2 = p2[2] >> 1;
     if ((int)uVar4 < 0x21) goto LAB_f014;
 LAB_f108:
-    lc3_bits_accu_flush(param_1,iVar2,1);
+    lc3_put_bits_generic(param_1,iVar2,1);
     uVar4 = VI(param_1+0x20);
   }
   iVar7 = p2[4];
@@ -58,21 +58,21 @@ LAB_f108:
     if ((int)uVar5 < 0x21) {
       VI(param_1+0x20) = uVar5;
       VI(param_1+0x1c) = VI(param_1+0x1c) | (iVar3 << (uVar4 & 0xff));
-    } else { lc3_bits_accu_flush(param_1,iVar3,1); uVar5 = VI(param_1+0x20); }
+    } else { lc3_put_bits_generic(param_1,iVar3,1); uVar5 = VI(param_1+0x20); }
     uVar6 = uVar5 + 1;
     bVar1 = *(unsigned char*)((int)param_2+0x18);
     if ((int)uVar6 < 0x21) {
       VI(param_1+0x20) = uVar6;
       VI(param_1+0x1c) = VI(param_1+0x1c) | ((unsigned int)bVar1 << (uVar5 & 0xff));
-    } else { lc3_bits_accu_flush(param_1,(unsigned int)bVar1,1); uVar6 = VI(param_1+0x20); }
+    } else { lc3_put_bits_generic(param_1,(unsigned int)bVar1,1); uVar6 = VI(param_1+0x20); }
     iVar2 = uVar6 + 0x19;
-    if (0x20 < iVar2) { lc3_bits_accu_flush(param_1,iVar7,0x19,param_4); return; }
+    if (0x20 < iVar2) { lc3_put_bits_generic(param_1,iVar7,0x19,param_4); return; }
     goto LAB_f0ac;
   }
   if (uVar5 == 0) {
     if ((int)(uVar4+2) < 0x21) goto LAB_f086;
 LAB_f116:
-    lc3_bits_accu_flush(param_1,iVar3,2);
+    lc3_put_bits_generic(param_1,iVar3,2);
     uVar5 = VI(param_1+0x20);
     bVar1 = *(unsigned char*)((int)param_2+0x18);
     uVar6 = uVar5 + 1;
@@ -89,9 +89,9 @@ LAB_f086:
   if ((int)uVar6 < 0x21) {
     VI(param_1+0x20) = uVar6;
     VI(param_1+0x1c) = VI(param_1+0x1c) | ((unsigned int)bVar1 << (uVar5 & 0xff));
-  } else { lc3_bits_accu_flush(param_1,(unsigned int)bVar1,1); uVar6 = VI(param_1+0x20); }
+  } else { lc3_put_bits_generic(param_1,(unsigned int)bVar1,1); uVar6 = VI(param_1+0x20); }
   iVar2 = uVar6 + 0x18;
-  if (0x20 < iVar2) { lc3_bits_accu_flush(param_1,iVar7,0x18,param_4); return; }
+  if (0x20 < iVar2) { lc3_put_bits_generic(param_1,iVar7,0x18,param_4); return; }
 LAB_f0ac:
   VI(param_1+0x1c) = VI(param_1+0x1c) | (iVar7 << (uVar6 & 0xff));
   VI(param_1+0x20) = iVar2;

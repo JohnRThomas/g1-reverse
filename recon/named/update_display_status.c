@@ -2,14 +2,14 @@
  * public-name: update_display_status
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   display_panel_is_secondary               <= FUN_0002bed0 @ 0x0002bed0
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  */
 /* Reconstructed update_display_status @ 0x7cce8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int check_battery_critical(void);
+extern int display_panel_is_secondary(void);
 extern void mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
 extern void memset_bytes(void*, int, int);
@@ -21,7 +21,7 @@ void update_display_status(int param_1, int param_2)
     char *pcVar2;
     char cVar3 = 0;
 
-    iVar1 = check_battery_critical();
+    iVar1 = display_panel_is_secondary();
     if (iVar1 == 0) {
         return;
     }

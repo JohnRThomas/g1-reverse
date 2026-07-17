@@ -1,26 +1,42 @@
 #include "g1_net_symbols.h"
-/* Reconstructed internal net function FUN_0102946c @ 0x0102946c.
- * Exact owned extent is [0x0102946c,0x010294a2), 54 bytes; the caller wrapper
- * begins immediately at 0x010294a2. */
+/* net-core FUN_0102946c @ 0x0102946c
+ * Readable role: apply a byte-valued update to an active handle entry.
+ *
+ * Raw/address provenance:
+ *   FUN_0101f8cc @ 0x0101f8cc -> controller-state snapshot
+ *   FUN_01009d18 @ 0x01009d18 -> typed handle lookup
+ *   FUN_0101e090 @ 0x0101e090 -> entry-to-active-context lookup
+ *   FUN_0101e15c @ 0x0101e15c -> context state-transition tail
+ *   code/ownership [0x0102946c, 0x010294a2)
+ *   sole direct owner: FUN_010294a2 tail branch @ 0x010294aa
+ */
 #include <stdint.h>
 
-extern unsigned FUN_0101f8cc(void);
+extern uint64_t FUN_0101f8cc(void);
 extern void *FUN_01009d18(uint16_t handle, unsigned type);
-extern void *FUN_0101e090(void);
+extern void *FUN_0101e090(void *entry);
 extern unsigned FUN_0101e15c(void *context, void *entry, uint8_t value);
+
+enum {
+    CONTROLLER_HANDLE_UPDATES_READY = 0x20000000U,
+    HANDLE_ENTRY_TYPE = 8,
+    UPDATE_STATUS_INVALID_STATE = 0x0c,
+    UPDATE_STATUS_HANDLE_NOT_FOUND = 2
+};
 
 unsigned FUN_0102946c(uint16_t handle, uint8_t value)
 {
-    if ((int32_t)(FUN_0101f8cc() << 2) >= 0)
-        return 0x0c;
+    uint32_t controller_state = (uint32_t)FUN_0101f8cc();
+    if ((controller_state & CONTROLLER_HANDLE_UPDATES_READY) == 0)
+        return UPDATE_STATUS_INVALID_STATE;
 
-    void *entry = FUN_01009d18(handle, 8);
+    void *entry = FUN_01009d18(handle, HANDLE_ENTRY_TYPE);
     if (entry == 0)
-        return 2;
+        return UPDATE_STATUS_HANDLE_NOT_FOUND;
 
-    void *context = FUN_0101e090();
+    void *context = FUN_0101e090(entry);
     if (context == 0)
-        return 0x0c;
+        return UPDATE_STATUS_INVALID_STATE;
 
     return FUN_0101e15c(context, entry, value);
 }

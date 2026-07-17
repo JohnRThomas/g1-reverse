@@ -2,7 +2,7 @@
  * public-name: set_shutdown_flag
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   display_panel_is_secondary               <= FUN_0002bed0 @ 0x0002bed0
  *   update_persist_task_status_to_idle       <= FUN_0002c0e8 @ 0x0002c0e8
  *   mark_master_or_low_battery_flag          <= FUN_0002efc0 @ 0x0002efc0
  *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
@@ -10,7 +10,7 @@
  */
 /* Reconstructed set_shutdown_flag @ 0x7cbfe  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int check_battery_critical(void);
+extern int display_panel_is_secondary(void);
 extern void update_persist_task_status_to_idle(int);
 extern void mark_master_or_low_battery_flag(void);
 extern void reset_esb_sync_state(int);
@@ -19,7 +19,7 @@ extern void send_event_status(int);
 void set_shutdown_flag(int param_1, int param_2)
 {
   int iVar1; char *pcVar2; char cVar3;
-  iVar1 = check_battery_critical();
+  iVar1 = display_panel_is_secondary();
   if (iVar1 == 0) return;
   if ((*(volatile char*)(*(int*)(param_1+0x1004)+6) != 0) ||
       (cVar3 = *(volatile char*)(*(int*)(param_1+0x1008)+6), cVar3 != 0)) {

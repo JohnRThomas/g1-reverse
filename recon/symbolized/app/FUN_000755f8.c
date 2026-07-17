@@ -6,6 +6,8 @@
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
+ *   register_events                          <= FUN_000751d0 @ 0x000751d0
+ *   clear_event_registrations                <= FUN_000753ec @ 0x000753ec
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -29,8 +31,8 @@
 /* Reconstructed FUN_000755f8 @ 0x755f8  (parity: 300/300 trials, PROVEN) */
 extern void assert_post_action(int,int);
 extern void printk(int,int,int,int);
-extern int  FUN_000751d0(int,int,int,int,int,int,int);
-extern void FUN_000753ec(int,int,int);
+extern int  register_events(int,int,int,int,int,int,int);
+extern void clear_event_registrations(int,int,int);
 extern int  z_spin_lock_valid(int);
 extern void z_spin_lock_set_owner(int);
 extern int  z_spin_unlock_valid(int);
@@ -64,12 +66,12 @@ int FUN_000755f8(int param_1,int param_2,unsigned int param_3,unsigned int param
     assert_post_action(((unsigned long)&rodata_f871d) /*=0xf871d*/,0x12f);
     return 0;
   }
-  uVar3 = FUN_000751d0(param_1,param_2,iVar5+0x60,(param_3==0&&param_4==0),param_1,param_2,(int)param_3);
+  uVar3 = register_events(param_1,param_2,iVar5+0x60,(param_3==0&&param_4==0),param_1,param_2,(int)param_3);
   iVar2 = z_spin_lock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
   if (iVar2 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
   z_spin_lock_set_owner(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
   if (VSC(iVar5+0x60) == 0) {
-    FUN_000753ec(param_1,uVar3,uVar6);
+    clear_event_registrations(param_1,uVar3,uVar6);
     if (z_spin_unlock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/) != 0) return 0;
   } else {
     VB(iVar5+0x60) = 0;
@@ -80,7 +82,7 @@ int FUN_000755f8(int param_1,int param_2,unsigned int param_3,unsigned int param
       iVar5 = z_spin_lock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
       if (iVar5 == 0) { printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&poll_spinlock) /*=0x2000b4a0*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); return 0; }
       z_spin_lock_set_owner(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/);
-      FUN_000753ec(param_1,uVar3,uVar4);
+      clear_event_registrations(param_1,uVar3,uVar4);
       if (z_spin_unlock_valid(((unsigned long)&poll_spinlock) /*=0x2000b4a0*/) != 0) return uVar6;
     }
   }

@@ -1,12 +1,15 @@
 /* readable reconstruction; identity: FUN_010119ac @ 0x010119ac
  * public-name: FUN_010119ac
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
  * address symbols (name @ address):
  *   g_net_own_addr_info                      @ 0x21000f20
  *   g_21000f24                               @ 0x21000f24
  */
 /* net-core FUN_010119ac @ 0x10119ac  (parity 400 trials PROVEN) */
-extern void FUN_01008d00(int,int);
+extern void sdc_assertion_fail(int,int);
 extern int FUN_0100dfbc(void*,int);
 extern int FUN_0100e008(void*,void*);
 extern int FUN_0100e028(void*,void*);
@@ -23,7 +26,7 @@ extern int FUN_01012ba4(int,int,int);
 extern int FUN_010204f4(void);
 extern int FUN_010202fc(int,int);
 extern int FUN_01020764(void*);
-extern int FUN_01020a6c(int,int,int);
+extern int controller_radio_transition_schedule(int,int,int);
 extern int FUN_010208f0(int,int,int);
 extern int FUN_01021108(int,int);
 extern void FUN_01011664(void*);
@@ -91,7 +94,7 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
         }
         break;
     default:
-        FUN_01008d00(0x2d, 0x64a);
+        sdc_assertion_fail(0x2d, 0x64a);
         __builtin_unreachable();
     }
 
@@ -118,9 +121,9 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
                 iVar8 = FUN_01012b48();
                 *(int *)(param_1 + 0x110) = iVar8 + iVar7;
             }
-            iVar8 = FUN_01020a6c(0, iVar7, param_1[4]);
+            iVar8 = controller_radio_transition_schedule(0, iVar7, param_1[4]);
             if (iVar8 == 0) {
-                FUN_01008d00(0x2d, 0xd65);
+                sdc_assertion_fail(0x2d, 0xd65);
             }
         }
     }
@@ -135,6 +138,6 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
         FUN_010208f0(0, 1, param_1[4]);
         return;
     default:
-        FUN_01008d00(0x2d, 0xd79);
+        sdc_assertion_fail(0x2d, 0xd79);
     }
 }

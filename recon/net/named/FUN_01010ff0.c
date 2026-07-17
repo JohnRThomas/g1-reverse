@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01010ff0 @ 0x01010ff0
  * public-name: FUN_01010ff0
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   rodata_101113d                           @ 0x0101113d
  *   g_net_own_addr_info                      @ 0x21000f20
  */
 /* net-core FUN_01010ff0 @ 0x1010ff0  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern int FUN_0100ca98(int, void*, void*);
 extern void FUN_0100ef88(void*, unsigned int, unsigned int);
 
@@ -25,7 +27,7 @@ void FUN_01010ff0(unsigned char *param_1, int param_2)
     } else {
         int iVar1 = FUN_0100ca98(param_2, param_1 + 0xca, param_1 + 0xcb);
         if (iVar1 == 0) {
-            FUN_01008d00(0x2d, 0xfc2);
+            sdc_assertion_fail(0x2d, 0xfc2);
         }
         param_1[0xca] = param_1[0xca] | 2;
     }

@@ -3,6 +3,7 @@
  * public-name: projector_fill_framebuffer
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   projector_transfer_pixel_chunk           <= FUN_000476b4 @ 0x000476b4
  *   get_projector_controller                 <= FUN_0007d4ec @ 0x0007d4ec
  *   projector_fill_framebuffer               <= FUN_0007d6ae @ 0x0007d6ae
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -13,7 +14,7 @@
 
 extern int get_projector_controller(void);
 extern void memset_bytes(unsigned int, unsigned int, unsigned int);
-extern void FUN_000476b4(unsigned int, unsigned int, unsigned int, unsigned int);
+extern void projector_transfer_pixel_chunk(unsigned int, unsigned int, unsigned int, unsigned int);
 
 void projector_fill_framebuffer(unsigned int param_1)
 {
@@ -23,8 +24,8 @@ void projector_fill_framebuffer(unsigned int param_1)
   iVar1 = get_projector_controller();
   uVar2 = *(unsigned int*)(iVar1+0x24);
   memset_bytes(uVar2, param_1, 64000);
-  FUN_000476b4(0,0,uVar2,((unsigned long)&rodata_f000) /*=0xf000*/);
-  FUN_000476b4(0,0xc0,uVar2,((unsigned long)&rodata_f000) /*=0xf000*/);
-  FUN_000476b4(0,0x180,uVar2,0x7800);
+  projector_transfer_pixel_chunk(0,0,uVar2,((unsigned long)&rodata_f000) /*=0xf000*/);
+  projector_transfer_pixel_chunk(0,0xc0,uVar2,((unsigned long)&rodata_f000) /*=0xf000*/);
+  projector_transfer_pixel_chunk(0,0x180,uVar2,0x7800);
   return;
 }

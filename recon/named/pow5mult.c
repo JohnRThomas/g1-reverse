@@ -2,7 +2,7 @@
  * public-name: pow5mult
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
  *   multadd                                  <= FUN_00078698 @ 0x00078698
@@ -18,7 +18,7 @@
 
 #include <stdint.h>
 typedef unsigned int uint;
-extern uint32_t libc_fatal_error_and_abort(uint32_t,int,int,uint32_t);
+extern uint32_t __assert_func(uint32_t,int,int,uint32_t);
 extern uint32_t malloc(int);
 extern void Bfree(int,uint32_t);
 extern uint32_t multadd(int,uint32_t,uint32_t,int,uint32_t);
@@ -38,7 +38,7 @@ uint32_t pow5mult(int param_1, uint32_t param_2, uint param_3, uint32_t param_4)
       puVar1 = (uint32_t*)malloc(0x10);
       *(uint32_t**)(param_1+0x24) = puVar1;
       if (puVar1 == 0){
-        puVar1 = (uint32_t*)libc_fatal_error_and_abort(0xf8cd5, 0x1ae, 0, 0xf8bb7);
+        puVar1 = (uint32_t*)__assert_func(0xf8cd5, 0x1ae, 0, 0xf8bb7);
       }
       puVar1[1] = 0; puVar1[2] = 0; puVar1[0] = 0; puVar1[3] = 0;
     }

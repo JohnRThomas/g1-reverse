@@ -10,7 +10,7 @@
  *   k_mem_slab_free                          <= FUN_00071cf4 @ 0x00071cf4
  *   sys_slist_find_and_remove_2              <= FUN_00081de2 @ 0x00081de2
  *   atomic_clear_bit_0                       <= FUN_00081e14 @ 0x00081e14
- *   thunk_FUN_000727ac                       <= FUN_000836e8 @ 0x000836e8
+ *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   g_bt_att_slab                            @ 0x20003738
  */
@@ -19,7 +19,7 @@
 #include <stdint.h>
 
 extern uint64_t sys_slist_find_and_remove_2(void *, void *);
-extern void *thunk_FUN_000727ac(void *, uint32_t, uint32_t, uint32_t);
+extern void *net_buf_get(void *, uint32_t, uint32_t, uint32_t);
 extern void FUN_0005833c(void *);
 extern void net_buf_unref(void *);
 extern void att_handle_rsp(void *, uint32_t, uint32_t, uint32_t);
@@ -53,7 +53,7 @@ void FUN_00059834(uint8_t *context, uint32_t arg1)
     uint64_t initial = sys_slist_find_and_remove_2((uint8_t *)owner + 0x30, context + 0x188);
     uint32_t inherited_r1 = (uint32_t)(initial >> 32);
     for (;;) {
-        void *item = thunk_FUN_000727ac(context + 0x120, inherited_r1, 0, 0);
+        void *item = net_buf_get(context + 0x120, inherited_r1, 0, 0);
         if (item == 0) break;
         FUN_0005833c(*(void **)((uint8_t *)item + 0x18));
         net_buf_unref(item);
@@ -71,7 +71,7 @@ void FUN_00059834(uint8_t *context, uint32_t arg1)
         net_buf_unref(item);
     }
     for (;;) {
-        void *item = thunk_FUN_000727ac((uint8_t *)owner + 0x0c, 0, 0, 0);
+        void *item = net_buf_get((uint8_t *)owner + 0x0c, 0, 0, 0);
         if (item == 0) break;
         FUN_0005833c(*(void **)((uint8_t *)item + 0x18));
         net_buf_unref(item);

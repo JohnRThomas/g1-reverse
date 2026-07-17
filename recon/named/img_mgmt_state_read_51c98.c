@@ -5,6 +5,7 @@
  *   img_mgmt_state_encode_image              <= FUN_00051ac0 @ 0x00051ac0
  *   img_mgmt_state_read_51c98                <= FUN_00051c98 @ 0x00051c98
  *   k_heap_alloc                             <= FUN_0008099e @ 0x0008099e
+ *   img_mgmt_get_next_boot_slot              <= FUN_000809b0 @ 0x000809b0
  *   nullsub_4                                <= FUN_00080a42 @ 0x00080a42
  *   nullsub_5                                <= FUN_00080a44 @ 0x00080a44
  *   cbor_encode_int32                        <= FUN_0008630c @ 0x0008630c
@@ -20,7 +21,7 @@
 extern int img_mgmt_state_encode_image(int,unsigned,int);
 extern unsigned FUN_00051c38(void);
 extern unsigned k_heap_alloc(int,unsigned,int,unsigned,int);
-extern unsigned FUN_000809b0(int,int);
+extern unsigned img_mgmt_get_next_boot_slot(int,int);
 extern void nullsub_4(void);
 extern void nullsub_5(void);
 extern unsigned FUN_00080a46(int);
@@ -60,7 +61,7 @@ LAB_00051cde:
       goto LAB_00051cde;
     }
     uStack_24 = uStack_24 & 0xffffff;
-    uVar3 = FUN_000809b0(iVar7, (int)&uStack_24 + 3);
+    uVar3 = img_mgmt_get_next_boot_slot(iVar7, (int)&uStack_24 + 3);
     uVar4 = FUN_00080a46(iVar7);
     uVar2 = uVar4;
     if (3 < uVar4) {

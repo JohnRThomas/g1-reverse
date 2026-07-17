@@ -19,7 +19,7 @@ extern uint32_t FUN_01023dec(uint32_t, uint32_t, uint32_t);
 extern int32_t FUN_01023ea8(uint32_t, uint32_t);
 extern uint32_t FUN_0100f368(void *, int32_t, uint32_t, int32_t);
 extern void FUN_01023d38(int32_t, uint32_t, uint32_t);
-extern void FUN_01016144(void *, uint32_t);
+extern void controller_radio_event1_dispatch(void *, uint32_t); /* FUN_01016144@0x01016144 */
 extern void FUN_01020d1c(void *, uint32_t);
 extern uint64_t FUN_01022a30(uint32_t);
 extern void FUN_0100b5f8(uint64_t);
@@ -179,7 +179,7 @@ void FUN_01013650(void *context, uint32_t event)
     }
     switch (event) {
     case 0: finish_interval(context); return;
-    case 1: FUN_01016144(context, event); return;
+    case 1: controller_radio_event1_dispatch(context, event); return;
     case 2:
     case 3: advance_receive_window(context); return;
     case 4: FUN_01020d1c(context, event); return;

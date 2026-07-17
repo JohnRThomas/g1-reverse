@@ -15,6 +15,56 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # The controller connection-event timing planner owns all four TBH arms,
+    # three terminal assertion tails, and its interleaved literal pools through
+    # 0x0101364f.  FUN_01013650 is the next independent entry.
+    0x01012f18: 0x738,
+    # The catalog cuts the final invalid-state assertion BL in half.  That BL
+    # ends at 0x0101ba4e; alignment/literals and FUN_0101ba58 follow.
+    0x0101b7e4: 0x26a,
+    # The catalog truncates the default TBB arm inside its MOVW.  The owned
+    # noreturn controller-fault BL ends at 0x010164a6; alignment/literals follow.
+    0x01016430: 0x76,
+    # The final BL is the noreturn sys_reboot implementation.  The halfword
+    # at 0x01031842 is alignment and the following words are literal data.
+    0x01031820: 0x22,
+    # Catalog 0x1e-byte extent truncates the acquire/release exclusive loop;
+    # executable ownership continues through the shared return at 0x103435c.
+    0x01034328: 0x36,
+    # Catalog-missing radio transition and normalized handle/value updater.
+    # The former is tail-owned by four dispatchers and spans its embedded
+    # literals through the boundary before FUN_01021108; FUN_010294a2 owns the
+    # latter through its exact tail branch at 0x010294aa.
+    0x01020d1c: 0x3ec,
+    0x0102946c: 0x36,
+    # The TBB default/null-callback assertion tails continue through the BL at
+    # 0x0100eeb0.  The five aligned literal words begin at 0x0100eeb4.
+    0x0100ec88: 0x22c,
+    # Ghidra stopped inside the force-ISR atomic loop.  The RTC1 ISR owns the
+    # complete channel-processing tail through 0x010316ce; its five-word
+    # literal pool then occupies 0x010316d0..0x010316e3.
+    0x010315f0: 0xf4,
+    # Three PHY-type TBH dispatches and seven branch-owned fatal tails are all
+    # part of the scheduling snapshot builder.  The last tail BL ends at
+    # 0x0101ab1e; FUN_0101ab20 is the next independent entry.
+    0x0101a38c: 0x794,
+    # Catalog-missing entry points with exact executable ownership proven by
+    # direct branches from FUN_01013650, FUN_0102946c/FUN_0101e15c,
+    # FUN_0100cb10, and FUN_0101fc14 respectively.
+    0x01016144: 0x16,
+    0x0101e0a4: 0x68,
+    0x0101e15c: 0x04,
+    0x0101fd8c: 0x2c,
+    0x0101fdc0: 0x0a,
+    # Three real internal entry points omitted from the Ghidra catalog.  Each
+    # is reached by an exact direct tail branch from a catalogued caller.
+    # 0x0100eec8 ends at its fatal assertion BL; its queue literal is ef04.
+    0x0100eec8: 0x3c,
+    # Retry/descriptor completion tails through 0x010128ae; 128b2 is
+    # alignment and its two literals occupy 128b4..128bc.
+    0x010127f8: 0xba,
+    # Scheduler division/round-up helper ends before its 217fc literal.
+    0x010217cc: 0x30,
     0x0102d1c0: 0x7a,  # disable path rejoins return at 0x0102d238
     # Default return island owns the back-branch at 0x01030ef6; the literal
     # starts at 0x01030ef8 and the next prologue at 0x01030efc.
@@ -52,6 +102,9 @@ TRUE_SIZE_OVERRIDES = {
     # before the literal pool at 0x0102c420.
     0x0102bfe4: 0x43c,
     0x0101ba58: 0x13c,  # renderer diagnostics end before independent helpers
+    # LLCP RX dispatcher owns its complete jump-table setup and literal pool
+    # boundary through 0x010187e0; catalog stopped inside its pointer table.
+    0x01018690: 0x150,
     0x01021838: 30,     # wrapper ends at tail call; following code is separate
     0x0101bdd4: 0x10e,  # owned default diagnostic ends before literals
     0x01020a00: 0x60,   # owned default diagnostic ends before literals
@@ -64,6 +117,9 @@ TRUE_SIZE_OVERRIDES = {
     0x010312d0: 0x3c,
     0x010122fc: 0x30,
     0x0102d1c0: 0x7a,
+    # ipc_rpmsg_static_vrings.c:open; Ghidra stopped after its prologue.
+    # The complete function returns at 0x0102d8a0, where its literal pool starts.
+    0x0102d708: 0x198,
     0x0102d938: 0xdc,
     0x0103a076: 0xb6,
     0x01028464: 0x22,

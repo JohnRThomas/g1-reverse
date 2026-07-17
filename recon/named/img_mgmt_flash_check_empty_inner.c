@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
  *   img_mgmt_flash_check_empty_inner         <= FUN_000516ac @ 0x000516ac
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
  *   flash_area_read                          <= FUN_0007ef80 @ 0x0007ef80
  *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
@@ -18,7 +18,7 @@
 #include <stdint.h>
 extern int flash_area_open(int,...);
 extern int FUN_0005169c(int);
-extern int libc_fatal_error_and_abort(int,...);
+extern int __assert_func(int,...);
 extern int nullsub_3(int,...);
 extern int flash_area_read(int,...);
 extern int FUN_0007efd4(int,...);
@@ -42,7 +42,7 @@ int img_mgmt_flash_check_empty_inner(int param_1)
       iVar5 = 10;
     } else {
       uVar1 = *(volatile unsigned int*)(local_64 + 8) & 3;
-      if (uVar1 != 0) libc_fatal_error_and_abort(0xf2634, 0x43, 0xf270e, 0xf261f);
+      if (uVar1 != 0) __assert_func(0xf2634, 0x43, 0xf270e, 0xf261f);
       int iVar2 = flash_area_erased_val(iVar5);
       int iVar7 = *(volatile int*)(iVar5 + 8);
       for (; (int)uVar1 < iVar7; uVar1 = uVar1 + 0x40) {

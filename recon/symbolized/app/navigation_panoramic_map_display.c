@@ -16,6 +16,7 @@
  *   get_timestamp                            <= FUN_0007d224 @ 0x0007d224
  *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
  *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
+ *   decode_rle_byte_pairs                    <= FUN_0007da70 @ 0x0007da70
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -71,7 +72,7 @@ extern long long gui_canvas_flags_set_bit1(int, ...);
 extern long long memset_bytes(int, ...);
 extern long long thunk_FUN_000723b8(int, ...);
 extern long long memcpy(int, ...);
-extern long long FUN_0007da70(int, ...);
+extern long long decode_rle_byte_pairs(int, ...);
 extern long long thunk_FUN_00072558(int, ...);
 extern long long FUN_0007d376(int, ...);
 extern long long FUN_0007d37a(uint32_t);
@@ -478,7 +479,7 @@ LAB_0003ed90:
       }
       memset_bytes(DAT_0003f29c,0,0x1210);
       thunk_FUN_000723b8(DAT_0003f2a0,extraout_r1_00,0xffffffff,0xffffffff);
-      FUN_0007da70(DAT_0003f2a4,*(undefined4 *)(param_2 + 0xb1),DAT_0003f29c);
+      decode_rle_byte_pairs(DAT_0003f2a4,*(undefined4 *)(param_2 + 0xb1),DAT_0003f29c);
     }
     uVar14 = DAT_0003ef78;
     *puVar5 = 1;

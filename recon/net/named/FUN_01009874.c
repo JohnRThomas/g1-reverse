@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01009874 @ 0x01009874
  * public-name: FUN_01009874
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_net_bump_alloc_state                   @ 0x21000ba8
  *   g_net_bump_alloc_cursor                  @ 0x21000bac
@@ -9,7 +11,7 @@
 /* net-core FUN_01009874 @ 0x1009874  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01008d00(uint32_t a, uint32_t b);
+extern void sdc_assertion_fail(uint32_t a, uint32_t b);
 extern void FUN_010095c0(void);
 
 int32_t FUN_01009874(void)
@@ -20,12 +22,12 @@ int32_t FUN_01009874(void)
     int32_t iVar1;
 
     if (*p1 != 1 && *p1 != 3) {
-        FUN_01008d00(0x17, 0x146);
+        sdc_assertion_fail(0x17, 0x146);
     }
 
     if (*p1 == 3) {
         if (*p2 != *p3) {
-            FUN_01008d00(0x17, 0x149);
+            sdc_assertion_fail(0x17, 0x149);
         }
         FUN_010095c0();
         *p1 = 4;

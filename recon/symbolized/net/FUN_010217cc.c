@@ -1,16 +1,39 @@
 #include "g1_net_symbols.h"
 /* Reconstructed internal net function FUN_010217cc @ 0x010217cc.
- * Code [0x010217cc,0x010217fc), 48 bytes; one literal occupies
- * [0x010217fc,0x01021800), before FUN_01021800. */
+ * Semantic role: recompute the net-clock onoff manager's request batch size.
+ * Exact code extent is [0x010217cc,0x010217fc); the raw 0x21001670 context
+ * maps durably to g_net_clk_onoff_ctx.  Its literal occupies 0x010217fc.
+ */
 #include <stdint.h>
-void FUN_010217cc(void)
+
+struct net_clock_onoff_batch_state {
+    uint8_t reserved[10];
+    volatile uint8_t active_requests;
+    volatile uint8_t requests_per_batch;
+    volatile uint8_t pending_requests;
+};
+
+#define NET_CLOCK_ONOFF_BATCH_STATE \
+    ((volatile struct net_clock_onoff_batch_state *)0x21001670u) /* g_net_clk_onoff_ctx */
+#define net_clock_onoff_recompute_batch_size FUN_010217cc /* raw entry back-map */
+
+void net_clock_onoff_recompute_batch_size(void)
 {
-    volatile uint8_t *state=(volatile uint8_t *)0x21001670u;
-    unsigned divisor=state[10];
-    if(divisor==0){state[11]=0;return;}
-    unsigned total=state[12];
-    unsigned quotient=total/divisor;
-    if(quotient<1) quotient=1;
-    if(divisor<total && total-divisor*(total/divisor)!=0) ++quotient;
-    state[11]=(uint8_t)quotient;
+    volatile struct net_clock_onoff_batch_state *state =
+        NET_CLOCK_ONOFF_BATCH_STATE;
+    unsigned active_requests = state->active_requests;
+
+    if (active_requests == 0) {
+        state->requests_per_batch = 0;
+        return;
+    }
+
+    unsigned pending_requests = state->pending_requests;
+    unsigned requests_per_batch = pending_requests / active_requests;
+    if (requests_per_batch < 1)
+        requests_per_batch = 1;
+    if (active_requests < pending_requests &&
+        pending_requests % active_requests != 0)
+        ++requests_per_batch;
+    state->requests_per_batch = (uint8_t)requests_per_batch;
 }

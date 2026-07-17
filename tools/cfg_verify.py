@@ -33,6 +33,30 @@ _CACHE = {}
 # loops, never a capability supplied by candidate source text.  Values are the
 # exact ordered-event prefix lengths compared for each reviewed entry point.
 REVIEWED_PREFIX_PROOFS = {
+    # Main display dispatcher is a deliberate nonreturning worker.  The
+    # concrete display/buffer graphs below cover every mode selector; forty
+    # ordered events include the selected arm and cross its iteration tail.
+    ("app", 0x00028bec): 40,
+    # Nonreturning proxy transport worker.  Concrete queue records below drive
+    # one complete opcode dispatch and compare into the following loop head.
+    ("app", 0x00047c48): 20,
+    # The display worker is intentionally nonreturning.  Reviewed queue
+    # records below cover one complete state/opcode dispatch and continue
+    # through the service-abort poll into the following loop iteration.
+    ("app", 0x00049090): 50,
+    # Nonreturning flash worker: reviewed queue-result sequences below reach
+    # the next semaphore wait after every selected drain loop completes.
+    ("app", 0x00023480): 30,
+    # The slave display worker is intentionally nonreturning.  Concrete
+    # device/record fixtures below compare complete dispatch iterations; the
+    # following iteration supplies a stable boundary beyond every handler's
+    # writes and calls without pretending the production thread returns.
+    ("app", 0x00027cfe): 50,
+    # The key-event worker is likewise a deliberate nonreturning queue loop.
+    # Each reviewed fixture drives one complete state dispatch, then supplies
+    # quiescent polls; fifty ordered events cross the selected arm's writes
+    # and calls and reach stable iterations of the following loop head.
+    ("app", 0x0002955c): 50,
     ("app", 0x00016eb8): 500,
     ("app", 0x00019718): 200,
     ("app", 0x00021da8): 80,
@@ -53,6 +77,10 @@ REVIEWED_PREFIX_PROOFS = {
     ("net", 0x010255a4): 200,
     ("net", 0x0102b5bc): 200,
     ("net", 0x0102f4ec): 200,
+    # Controller assertion dispatch is deliberately noreturn after its fault
+    # callback and AIRCR reset request.  Two events cover callback+reset; the
+    # null-callback case has the single reset event before the terminal loop.
+    ("net", 0x01008d00): 2,
 }
 
 # Direct callees absent from, or ambiguous in, the decompiler catalog.  These
@@ -60,6 +88,14 @@ REVIEWED_PREFIX_PROOFS = {
 # scratch and must not create false mismatches merely because GCC leaves a
 # different stale value in them.
 CALL_ARITY_OVERRIDES = {
+    # Zephyr sys_reboot consumes the reboot mode in r0 even though this arch
+    # implementation ignores the value before its AIRCR reset request.
+    ("net", 0x0102f4ec): 1,
+    # Catalog-missing net entries and their internal transition helpers.
+    ("net", 0x01020d1c): 2,  # radio transition consumes r0/r1
+    ("net", 0x0102946c): 2,  # normalized handle and byte value
+    ("net", 0x0101e090): 1,  # selected entry object
+    ("net", 0x0101e15c): 3,  # context, entry, and byte value
     ("app", 0x00076ed4): 6,  # request tuple plus duplicated key/object pointer
     ("app", 0x000737d8): 1,  # boolean list-state update
     ("app", 0x00073cdc): 1,  # list head/object
@@ -161,6 +197,7 @@ CALL_ARITY_OVERRIDES = {
     ("net", 0x010218cc): 2,  # request object and immutable descriptor
     ("net", 0x010218c0): 2,  # request object and type selector
     ("app", 0x00019950): 1,  # BLE worker initializer consumes context only
+    ("app", 0x00032c28): 0,  # exported flash-signature check has no arguments
     ("app", 0x0007c172): 1,  # k_sem_give thunk consumes only the semaphore
     ("app", 0x00086698): 0,  # 64-bit clock query returns r1:r0; no arguments
     ("app", 0x000835ae): 3,  # block transform consumes dst, src, and byte count
@@ -332,6 +369,123 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # gui_utf_draw_align_right's catalog ends immediately after the logger BL
+    # at 0x451b4, truncating the callback invocation and fallback logger tail.
+    # Live code ends with the branch at 0x451cc; alignment/literals follow and
+    # gui_utf_Wordwrap_draw begins independently at 0x451e0.
+    ("app", 0x00044ec4): 0x30a,
+    # Complete four-mode SDC connection-event timing planner; the catalog's
+    # 0x710-byte extent stops before its terminal assertion tails/literals.
+    ("net", 0x01012f18): 0x738,
+    # The catalog cuts the final invalid-state assertion BL in half.  That BL
+    # ends at 0x0101ba4e; alignment/literals and FUN_0101ba58 follow.
+    ("net", 0x0101b7e4): 0x26a,
+    # img_mgmt_get_next_boot_slot owns the invalid-state return branch through
+    # 0x809f4; the next independent function begins at 0x809f6.
+    ("app", 0x000809b0): 0x46,
+    # The catalog truncates the default TBB arm inside its MOVW.  The owned
+    # noreturn controller-fault BL ends at 0x010164a6; alignment/literals follow.
+    ("net", 0x01016430): 0x76,
+    # clear_event_registrations owns the final lock-validation/set-owner tail
+    # and backedge through 0x7552a; literals begin at 0x7552c.
+    ("app", 0x000753ec): 0x140,
+    # register_events owns the invalid-registration assertion tail and shared
+    # BASEPRI restore/loop through 0x7539c; literals begin at 0x753a0.
+    ("app", 0x000751d0): 0x1ce,
+    # The final BL is the noreturn sys_reboot implementation.  The halfword
+    # at 0x01031842 is alignment and the following words are literal data.
+    ("net", 0x01031820): 0x22,
+    # process_for_new_task's catalog extent ends at 0x2e038 inside the live
+    # state-zero polling loop.  The remaining switch/default and shared
+    # status-return tail run through the branch at 0x2e2be; literals begin at
+    # 0x2e2c4 (0x2e2c2 is alignment) and 0x2e300 is a new prologue.
+    ("app", 0x0002c99c): 0x1924,
+    # The catalog ends at the unknown-type snprintk call.  Its ordinary branch
+    # back into the shared final formatter is live code through 0x18390;
+    # literals begin at 0x18394.
+    ("app", 0x00018334): 0x5e,
+    # The catalog stops at 0x01034346 inside the LDAEX/STLEX loop.  The
+    # mismatch retry, claimed-index store, empty return, and shared epilogue
+    # continue through 0x0103435c; alignment/literals begin at 0x0103435e.
+    ("net", 0x01034328): 0x36,
+    # The catalog stops at 0x32e64 on the final retry back-branch.  That branch
+    # and the read-exhaustion return tail are owned code through 0x32e68;
+    # literals begin at 0x32e6c.
+    ("app", 0x00032c28): 0x242,
+    # Large radio transition omitted from the catalog. Four independent
+    # dispatch owners tail-branch here at 0x01012e36, 0x01013746,
+    # 0x0101ab86, and 0x0101ba9e. Its contiguous ownership span includes the
+    # embedded literal islands and ends before FUN_01021108.
+    ("net", 0x01020d1c): 0x3ec,
+    # The normalized handle/value updater is owned by FUN_010294a2's tail
+    # branch at 0x010294aa and ends exactly where that wrapper begins.
+    ("net", 0x0102946c): 0x36,
+    # The packet-builder TBB owns six late fatal tails through 0x0100eeb0;
+    # its literal pool begins at 0x0100eeb4.
+    ("net", 0x0100ec88): 0x22c,
+    # Complete RTC1 overflow/compare ISR; catalog 0x5c ends in its exclusive
+    # loop, while executable ownership continues to the final loop backedge.
+    ("net", 0x010315f0): 0xf4,
+    # Complete scheduling snapshot builder, including every TBH-selected PHY
+    # arm and the branch-owned assertion tails through 0x0101ab1e.
+    ("net", 0x0101a38c): 0x794,
+    # lc3_spec_encode owns late setup islands through 0x6ffd8; the catalog's
+    # 0x60c extent cuts the second island before its shared-body branch.
+    ("app", 0x0006f9c0): 0x618,
+    # display_thread_handler continues beyond its catalog extent through the
+    # final forced-reset branch at 0x49630.  Alignment is at 0x49632 and its
+    # last literal is supplied by the verifier's padded immutable byte read.
+    ("app", 0x00049090): 0x5a2,
+    # display_dispatch_thread's live notification/delay tail ends with the
+    # branch at 0x29500; alignment and its literal pool follow before the next
+    # independent entry at 0x2953c.
+    ("app", 0x00028bec): 0x916,
+    # The catalog stops at 0x285e4 inside the final inner switch.  Its four
+    # live handlers end with the branch at 0x286c0..0x286c3; literals occupy
+    # 0x286c4..0x286f7 and FUN_000286f8 has an independent push prologue.
+    ("app", 0x00027cfe): 0x9fa,
+    # Catalog truncates the proxy switch inside case seven.  Include every
+    # live retry/default/atomic tail plus its final literal pool up to the
+    # independent requestAudioInfoToApp entry at 0x48840.
+    ("app", 0x00047c48): 0xbf8,
+    # Catalog truncates gui_utf_Wordwrap_draw inside the callback/logger tail.
+    # Include live code through 0x455b6 and its literals through 0x455cb; the
+    # independent gui_string_draw prologue begins exactly at 0x455cc.
+    ("app", 0x000451e0): 0x3ec,
+    # Five real net entry points omitted from Ghidra's function catalog.
+    # Each has an exact direct owner branch: FUN_01013650 -> 0x01016144,
+    # FUN_0102946c -> 0x0101e15c -> 0x0101e0a4, FUN_0100cb10 ->
+    # 0x0101fd8c, and FUN_0101fc14 -> 0x0101fdc0.  These executable extents
+    # stop before their alignment/literal pools or the next independent entry.
+    ("net", 0x01016144): 0x16,
+    ("net", 0x0101e0a4): 0x68,
+    ("net", 0x0101e15c): 0x04,
+    ("net", 0x0101fd8c): 0x2c,
+    ("net", 0x0101fdc0): 0x0a,
+    # Real net internal entries omitted from the catalog.  Exact direct tail
+    # branches at 0x0101f98a, 0x01012e2c and 0x01021852 prove ownership; each
+    # extent stops before its reviewed literal/alignment boundary.
+    ("net", 0x0100eec8): 0x3c,
+    ("net", 0x010127f8): 0xba,
+    ("net", 0x010217cc): 0x30,
+    # draw_message's catalog stops at 0x35ef0 in the live nonempty-body arm.
+    # The body/package formatter, shared emptiness test, and word-wrap draw
+    # continue through the back-branch at 0x35f18; literals begin at 0x35f1c.
+    ("app", 0x00035afc): 0x41e,
+    # Refgraph stops at 0x2144c in the middle of the default response arm.
+    # STRB.W/STRB/B continue through 0x21456; 0x21458 and 0x2145c are the two
+    # RAM-address literals and FUN_00021460 is the next independent prologue.
+    ("app", 0x00021334): 0x122,
+    # The dashboard/onboarding renderer's catalog stops at 0x4296c inside a
+    # branch-reachable switch island.  Its three late case continuations span
+    # 0x4296c..0x429f2 and branch back into the shared body; 0x429f2 is
+    # alignment, 0x429f4 is a RAM-address literal, and FUN_000429f8 is the
+    # next independent prologue.
+    ("app", 0x000417f8): 0x11fa,
+    # Both logger islands tail-call their sinks, but the ordinary no-log and
+    # null-output paths continue past the catalog's 0x430a2 cutoff.  Their
+    # shared POP return is at 0x430aa; literals start at 0x430ac.
+    ("app", 0x00042fb0): 0xfc,
     # The catalog's 0x8dc extent ends exactly at 0x10764, the first VFP load
     # in the live three-axis calibration loop.  Its backedges, mode reset,
     # final attitude publication, delay call, and return continue through
@@ -577,6 +731,15 @@ TRUE_SIZE_OVERRIDES = {
     # catalog size 266 stopped immediately before this final instruction.
     ("net", 0x0103038c): 0x10c,
     ("app", 0x00028a1c): 0x198,  # reviewed persistent-input thread body
+    # Complete late command-switch islands end at 0x15dd4; literal pool starts
+    # at 0x15dd8 (catalog size 0x438 stopped in case 0xf).
+    ("app", 0x00015960): 0x478,
+    # sync_to_slave owns the validation/logger tail through 0x2741a.  Its
+    # catalog stops at 0x273ee; literals begin at 0x2741c.
+    ("app", 0x00026f74): 0x4a8,
+    # key_event_thread's state-5/state-6 tails and shared loopback continue
+    # through the branch ending at 0x2a096; literals begin at 0x2a098.
+    ("app", 0x0002955c): 0xb3a,
     ("net", 0x01013e98): 0x1cc,  # reviewed dispatcher code ends at 0x01014064
     ("net", 0x01038654): 0x100,  # loop continuation ends at branch 0x01038752
     ("app", 0x1a064): 1764,
@@ -613,6 +776,8 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x4e98c): 0x10,
     # TBH case handlers and three fatal tails continue past catalog end 0x101d810.
     ("net", 0x101d404): 0x478,
+    # LLCP receive dispatcher ends immediately before FUN_010187e0.
+    ("net", 0x01018690): 0x150,
     # Ghidra folded nine following utility symbols into this wrapper.
     ("net", 0x103b1c4): 16,
     # Thin adapter ends at the next symbol; old 174-byte extent absorbed eight.
@@ -626,6 +791,8 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x100cb10): 20,
     ("net", 0x101fc14): 22,
     ("net", 0x1021838): 30,
+    # ipc_rpmsg_static_vrings.c:open; literal pool begins at 0x0102d8a0.
+    ("net", 0x0102d708): 0x198,
     ("net", 0x102e23c): 58,
     # Catalog entries stop after their first instruction(s); each reviewed
     # body continues to the next symbol boundary shown here.
@@ -653,6 +820,18 @@ TRUE_SIZE_OVERRIDES = {
     # NCS mpsc_pbuf_claim internal entry; code ends at 0x4bfae and the owned
     # checked-lock assertion literals end immediately before 0x4bfc8.
     ("app", 0x4beb8): 0x110,
+    # mpsc_pbuf_free tail-branches at 0x4c08c; literals begin at 0x4c090 and
+    # the next independent body begins at 0x4c0a8.
+    ("app", 0x4bfc8): 0xc8,
+    # Two-instruction scheduler-state tail wrapper; its literal starts at
+    # 0x4d590 and FUN_0004d594 is the next body.
+    ("app", 0x4d588): 0x06,
+    # Service Changed persistence diagnostic returns at 0x5a11e; its literal
+    # pool starts at 0x5a120 before FUN_0005a128.
+    ("app", 0x5a0e8): 0x38,
+    # Final reachable branch ends at 0x778c2; the following NOP and words are
+    # alignment/literal data before the wrapper at 0x778d4.
+    ("app", 0x77820): 0xa2,
 }
 
 # net_recon_kit is used by reconstruction workers before this verifier runs.
@@ -691,6 +870,19 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # libLC3 spectral encoding mutates the bitstream and has no ABI result;
+    # r0 at return is merely loop/callee scratch.
+    ("app", 0x0006f9c0): "void",
+    # Tail-called from the void clock-release wrapper; r0 is calculation
+    # scratch (or inherited on the zero-divisor arm), not an ABI result.
+    ("net", 0x010217cc): "void",
+    # Controller radio transition mutates fixed SDC/MMIO state only.  Any
+    # r0/r1 values at its two return sites are helper/callback scratch.
+    ("net", 0x01020d1c): "void",
+    # Three-byte fixed radio-request state reset; r0/r1 are untouched scratch.
+    ("net", 0x0101fdc0): "void",
+    # Pure tail dispatcher; both selected handlers are void procedures.
+    ("net", 0x01016144): "void",
     ("app", 0x00086cda): "i32",  # digit-buffer pointer in r0
     # Signed double-to-integer conversion returns the complete r1:r0 pair.
     # Its catalog signature loses the high word, which previously let callers
@@ -1204,6 +1396,12 @@ REVIEWED_STACK_POINTER_CALLS = {
     # Dashboard refresh owns several temporary date/text/layout descriptors;
     # compare their symbolic stack ownership rather than compiler frame offset.
     ("app", 0x0003727c): {i: {0, 1, 2, 3} for i in range(200)},
+    # The onboarding/status renderer clears its compiler-owned 1020-byte
+    # scratch canvas before inspecting device state.  Only the destination
+    # pointer's frame offset is compiler-specific; its zero fill and exact
+    # 1020-byte extent remain fully compared.
+    ("app", 0x000417f8): {
+        0: {0}, **{i: {3} for i in range(1, 200)}},
 }
 
 # Narrow identities for uninitialized compiler-local words whose concrete
@@ -1213,6 +1411,17 @@ REVIEWED_STACK_POINTER_CALLS = {
 # scalar or per-case value sequence pins a reviewed incoming stack argument.
 # All full-width effects remain compared.
 REVIEWED_PAIRED_STACK_INITIAL_WORDS = {
+    # lc3_spec_encode arguments five through eight are AAPCS stack words:
+    # frame bytes, quantized spectrum, side data, and float spectrum.  Bind
+    # the three pointer words to complete production-shaped objects; per-case
+    # frame sizes select ordinary/high-rate table halves without unbounded
+    # random loop counts.
+    ("app", 0x0006f9c0): [
+        (0, 0, (20, 20, 21, 60, 80, 100, 40, 120)),
+        (4, 4, emu.SCRATCH + 0x3000),
+        (8, 8, emu.SCRATCH + 0x4000),
+        (12, 12, emu.SCRATCH + 0x5000),
+    ],
     # Fifth/sixth AAPCS arguments are payload and output pointers.  Pin both
     # per production case; generic r0-r3 overrides cannot initialize incoming
     # stack arguments, and random output pointers would only manufacture
@@ -1305,6 +1514,29 @@ REVIEWED_PAIRED_STACK_INITIAL_WORDS = {
 # only the declared half-open regions and compares identity, interior offset,
 # declared size, and complete bytes at every external call boundary.
 REVIEWED_PAIRED_STACK_OBJECTS = {
+    # calc_flash_crc accumulates into one two-byte local.  The readable table
+    # loop saves two fewer registers, shifting the object by eight bytes.
+    ("app", 0x00032c28): [
+        ("flash-crc-accumulator", -34, -26, 2, None, None,
+         (0x00022974,)),
+    ],
+    # The controller expands its compact module id into this complete local
+    # string before passing it to the installed two-argument fault handler.
+    # Both shipped and readable GCC use the saved r1-r3 area at entry-SP-20.
+    ("net", 0x01008d00): [
+        ("controller-fault-module-text", -20, -20, 12, None, (0,)),
+    ],
+    # draw_message owns four independent text workspaces.  The readable body
+    # saves one additional callee register, shifting every object by eight
+    # bytes while preserving each allocation, interior memset pointer, and
+    # complete content.  Pairing the actual objects is stronger than broadly
+    # ignoring stack-valued call arguments.
+    ("app", 0x00035afc): [
+        ("notification-heading", -0x18c, -0x194, 72),
+        ("notification-relative-time", -0x1ac, -0x1b4, 32),
+        ("notification-counter", -0x1b4, -0x1bc, 8),
+        ("notification-body", -0x144, -0x14c, 292),
+    ],
     # init_watchdog owns one complete Zephyr wdt_timeout_cfg.  The shipped
     # frame places it at entry-SP-48; readable GCC uses entry-SP-32.
     ("app", 0x0002ace0): [
@@ -2078,6 +2310,14 @@ REVIEWED_PAIRED_STACK_OBJECTS = {
         ("current-radio-state", -64, -56, 32, (), (2, 3),
          (0x0101a38c, 0x010231c8)),
     ],
+    # The snapshot builder passes a complete 24-byte timing request to the
+    # scheduler.  GCC's readable TU places it twenty bytes above the shipped
+    # frame location; normalize identity while retaining every initialized
+    # byte and both semantic call arguments.
+    ("net", 0x0101a38c): [
+        ("timing-request", -64, -64, 24,
+         ((0, 1), (4, 12), (16, 24)), (5,), (0x0100d4d0,)),
+    ],
     ("net", 0x0101ba58): [
         ("render-request", -48, -36, 12),
     ],
@@ -2412,6 +2652,9 @@ REVIEWED_PAIRED_STACK_OBJECTS = {
 # target-address overrides, these remain valid when the callback address is
 # supplied by runtime state rather than fixed firmware text.
 REVIEWED_CALL_ARITIES = {
+    # Installed sdc_fault_handler_t receives module text and source line.  The
+    # controller's r2/r3 values are conversion scratch, not callback inputs.
+    ("net", 0x01008d00): [2],
     # These wrappers call one zero-argument status/default helper; incoming
     # r0-r3 values at the boundary are residual caller scratch.
     ("app", 0x000560cc): [0],
@@ -2448,12 +2691,71 @@ REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET = {
     # FUN_00067138 consumes r0 and r2.  Its catalogued r1 parameter is unused,
     # and this caller intentionally leaves that register as scratch.
     ("app", 0x00067248): {0x00067138: (0, 2)},
+    # even_ai_status_icon_render consumes only status (r0) and frame/context
+    # (r3).  Its r1/r2 formals are unused; the final-page call intentionally
+    # leaves publication temporaries there while passing r3=0.
+    ("app", 0x0003bfe0): {0x0003be18: (0, 3)},
 }
+
+# FUN_00082a42 consumes the complete three-word log record.  The firmware's
+# temporary frame places it at entry-SP-32; GCC's compact frame uses SP-20.
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0005a0e8)] = [
+    ("gatt-sc-store-log", -32, -20, 12, None, None, (0x00082a42,)),
+]
+
+# Both state helpers receive the same two-word local result object.  The
+# shipped frame places local_2c at entry-SP-44; GCC's readable reconstruction
+# places it at entry-SP-48.  Pair the complete object only at those semantic
+# helper boundaries, so its contents and later use remain differential.
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0002c99c)] = [
+    ("task-state-result", -44, -48, 8, None, None,
+     (0x0002c498, 0x0002c714)),
+]
 
 # Arguments beyond these widths are diagnostics-only stale registers on the
 # reviewed caller path.  The source still spells all production arguments;
 # differential call traces compare only the callee-consumed semantic prefix.
 REVIEWED_TARGET_CALL_ARITIES = {
+    ("app", 0x0002bef4): {
+        0x0007cdf8: 0,  # bounded lock-wait delay
+        0x00049858: 1,  # active screen/task selector
+        0x0007dda4: 3,  # format, source, task id
+        0x00019c70: 3,
+    },
+    # process_for_new_task is a large state dispatcher whose original keeps
+    # loop/context temporaries live in r1-r3 around many unary/no-argument
+    # helpers.  These widths come from the recovered callee bodies.  The
+    # peer-address test is genuinely binary even though Ghidra omitted both
+    # arguments at this call site; the readable source spells the live values.
+    ("app", 0x0002c99c): {
+        0x000167a8: 0, 0x00023eec: 0, 0x00026c28: 0,
+        0x00026f74: 3, 0x0002bc2c: 3, 0x0002be64: 2,
+        0x0002bef4: 3, 0x0002bffc: 3, 0x0002c0e8: 1,
+        0x0002c180: 0, 0x0002c1fc: 0, 0x0002c214: 0,
+        0x0002c224: 1, 0x0002c2b0: 0, 0x0002c498: 4,
+        0x0002c714: 4, 0x0002eb40: 0, 0x0002efc0: 0,
+        0x00032ee4: 0, 0x00033cdc: 0, 0x00033cf8: 0,
+        0x00033d58: 1, 0x0003439c: 0, 0x00034410: 0,
+        0x0003443c: 1, 0x0003444c: 0, 0x00034808: 0,
+        0x00036030: 0, 0x0003cf34: 0, 0x00072880: 1,
+        0x0007c132: 2, 0x0007ce5c: 2, 0x0007ce60: 1,
+        0x00086c78: 3,
+    },
+    # Only the event id is consumed by the onboarding renderer's send-event
+    # boundary; r1/r2 are explicitly unused by send_event and remain compiler
+    # scratch in the shipped caller.
+    ("app", 0x000417f8): {0x000276ec: 1},
+    # ANCS initialization has many no-argument Zephyr helpers surrounded by
+    # retry counters and object pointers that remain live in caller-scratch
+    # registers.  Compare each boundary using the callee's reviewed ABI.
+    ("app", 0x00019950): {
+        0x000167a8: 0, 0x0007c0a8: 1, 0x00054a44: 1,
+        0x00054b70: 0, 0x0005e6d4: 2, 0x0007f192: 0,
+        0x0001905c: 1, 0x000191d8: 0, 0x000572fc: 1,
+        0x00057330: 1, 0x0005a9d8: 1, 0x000181f0: 0,
+        0x00019308: 0, 0x000198cc: 1, 0x0004c0a8: 1,
+        0x00019c70: 0,
+    },
     # The attitude worker's delay veneer consumes duration and flags only;
     # r2/r3 retain loop/calibration scratch values at the final delay.
     ("app", 0x0000fe88): {
@@ -2934,6 +3236,12 @@ REVIEWED_TARGET_CALL_ARITIES = {
 # tail-calls it with endpoint context, payload, and payload size.
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x00025a48)] = {0x00080000: 3}
 
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005a0e8)] = {
+    0x00053008: 4,
+    0x00082a42: 3,
+}
+
+
 # Re-reviewed brightness/serialization helpers use fixed production ABIs.
 # Keeping these widths target-scoped prevents caller-scratch registers from
 # masquerading as semantic arguments at zero/one-argument helper boundaries.
@@ -2959,6 +3267,9 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00046e3c)] = {
 # Additional AAPCS words consumed from the callee-entry stack. Register call
 # arity remains independently reviewed above.
 REVIEWED_TARGET_CALL_STACK_ARITIES = {
+    # Newlib __assert_func passes line, optional-function prefix, and optional
+    # function name after the four register arguments to fiprintf.
+    ("app", 0x00076a94): {0x00076cc8: 3},
     ("app", 0x0003ce04): {0x00027448: 1},
     ("app", 0x00042c8c): {0x00027448: 1},
     ("app", 0x0003dff8): {0x00043484: 3},
@@ -3024,6 +3335,26 @@ REVIEWED_TARGET_CALL_STACK_ARITIES = {
 # number of arguments.  Compare only the exact format ABI, not stale r2/r3
 # values left live by surrounding dispatch code.
 REVIEWED_CALL_ARITIES_BY_FORMAT = {
+    ("app", 0x00019950): {
+        (0x0007dda4, 0x0009af3b): 2,
+        (0x0007dda4, 0x0009af75): 3,
+        (0x0007dda4, 0x0009afa1): 2,
+        (0x0007dda4, 0x0009b089): 1,
+        (0x0007dda4, 0x0009b0ae): 2,
+        (0x0007dda4, 0x0009afc3): 2,
+        (0x0007dda4, 0x0009afed): 1,
+        (0x0007dda4, 0x0009b019): 1,
+        (0x0007dda4, 0x0009b04b): 1,
+        (0x0007dda4, 0x0009b060): 3,
+    },
+    ("app", 0x00032c28): {
+        (0x0007dda4, 0x000a74dc): 2,
+        (0x0007dda4, 0x000a7500): 4,
+        (0x0007dda4, 0x0009e2f1): 3,
+        (0x00019c70, 0x000a74dc): 2,
+        (0x00019c70, 0x000a7500): 4,
+        (0x00019c70, 0x0009e2f1): 3,
+    },
     # Watchdog diagnostics have exact fixed record widths.  The alternate
     # sink is a zero-argument backend even though the selected format remains
     # live in r0 at several call sites.
@@ -3313,6 +3644,16 @@ REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00031cbc)] = {
     **{(target, 0x000a70e7): 3
        for target in (0x0007dda4, 0x00019c70)},
 }
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x0003b824)] = {
+    **{(target, fmt): 2
+       for target in (0x0007dda4, 0x00019c70)
+       for fmt in (0x000a960d, 0x000a9654, 0x000a96e0,
+                   0x000a9709, 0x000a9727, 0x000a974b,
+                   0x000a9775, 0x000a9797, 0x000a97bb,
+                   0x000a97e4)},
+    **{(target, 0x000a9629): 3
+       for target in (0x0007dda4, 0x00019c70)},
+}
 
 REVIEWED_CALL_STACK_ARITIES_BY_FORMAT = {
     ("app", 0x00019ed4): {
@@ -3476,33 +3817,61 @@ _QN_FB = emu.SCRATCH + 0x8000
 _QN_ROW = emu.SCRATCH + 0x12000
 
 def _quicknote_case(state, phase, level=0, sink=0, enable=1,
-                    deadline=(0, 0, 0), exit_flag=0):
+                    deadline=(0, 0, 0), exit_flag=0, device_type=0,
+                    uptime_ticks=None, language=None, sparse_pixels=False,
+                    warning_offset=100):
     """Production-shaped QuickNote UI state with bounded shared raster rows."""
     ctx = bytearray(0x400)
     for row in range(199):
         struct.pack_into("<I", ctx, 0x24 + row * 4, _QN_ROW)
     global_state = bytearray(0x1100)
+    global_state[0] = int(device_type) & 0xff
     struct.pack_into("<I", global_state, 0x1020, _QN_ENABLE)
     struct.pack_into("<I", global_state, 0xeb4, _QN_FB)
     struct.pack_into("<I", global_state, 0xeb8, _QN_FB + 0x400)
+    row_image = bytearray(0x140)
+    if sparse_pixels:
+        # Three columns encounter distinct 0/0xf/0xf0/0xff mask values over
+        # the four production frames without producing a 63k-write trace.
+        row_image[2] = 0xff
+        row_image[16] = 0xff
+        row_image[29] = 0xff
     oracles = {i: {0: _QN_GLOBAL, 1: 0} for i in range(160)}
-    if state == 0 and phase == 1:
-        # With verbose production logging enabled, ordinal 10 is the language
-        # query (the earlier accessor calls supply the enable byte/pointers).
-        oracles[10] = {0: 6 if sink == 0 else 5, 1: 0}
+    if state == 0 and phase == 1 and language is not None:
+        # Initial logging contributes four calls before the gate; without it,
+        # memset/accessor/screen/reset place the language query at ordinal six.
+        language_ordinal = 10 if level > 2 else 6
+        oracles[language_ordinal] = {0: int(language), 1: 0}
+    if state == 1 and phase == 3 and uptime_ticks is not None:
+        uptime_ordinal = 4 + (2 if level > 2 else 0) + (1 if device_type == 1 else 0)
+        oracles[uptime_ordinal] = {
+            0: int(uptime_ticks) & 0xffffffff,
+            1: (int(uptime_ticks) >> 32) & 0xffffffff,
+        }
+    if state == 2 and phase != 2 and uptime_ticks is not None:
+        uptime_ordinal = 3 if level > 2 else 2
+        oracles[uptime_ordinal] = {
+            0: int(uptime_ticks) & 0xffffffff,
+            1: (int(uptime_ticks) >> 32) & 0xffffffff,
+        }
+        if language is not None:
+            # Within-warning display calls screen-clear, two icon metrics and
+            # bitmap draw before the language selector.
+            language_ordinal = 9 if level > 2 else 7
+            oracles[language_ordinal] = {0: int(language), 1: 0}
     return (
         {0: _QN_CTX, 2: phase},
         [(_QN_CTX, bytes(ctx)), (_QN_GLOBAL, bytes(global_state)),
          (_QN_ENABLE, bytes((enable,))), (_QN_FB, bytes(0x800)),
          # Zero pixels exercise all 199x320 loop bounds without manufacturing
          # 63k non-stack write events per language pass.
-         (_QN_ROW, bytes(0x140)),
+         (_QN_ROW, bytes(row_image)),
          (0x20004978, bytes((state, 0, 0, 0)) +
           b"".join(x.to_bytes(4, "little") for x in deadline)),
          (0x2000230c, level.to_bytes(4, "little", signed=True)),
          (0x20007554, sink.to_bytes(4, "little")),
          (0x2001b817, bytes((exit_flag,))),
-         (0x200024e8, (100).to_bytes(4, "little"))],
+         (0x200024e8, int(warning_offset).to_bytes(4, "little", signed=True))],
         # All global-accessor calls return the reviewed object.  Individual
         # language and uptime results are refined after the first smoke run.
         oracles,
@@ -3821,7 +4190,32 @@ def _app_67248_case(index, record_present, release_enabled, active=True):
              (0x2000b384, bytes(table))])
 
 
+def _net_controller_assert_case(module_id, line, callback=True):
+    """One bounded internal-controller fault dispatch and reset request."""
+    callback_address = 0x01040001 if callback else 0
+    return (
+        {0: module_id, 1: line, 2: 0x22222222, 3: 0x33333333},
+        [(0x21000a58, callback_address.to_bytes(4, "little")),
+         # Nonzero PRIGROUP proves the AIRCR read/mask/or reset write rather
+         # than accepting a candidate that merely stores SYSRESETREQ.
+         (0xe000ed0c, (0x00000300).to_bytes(4, "little"))],
+    )
+
+
 REVIEWED_STATE_CASES = {
+    # The callback-null arm plus zero, ordinary, byte-boundary, and full-width
+    # compact module ids.  Values >= 256 intentionally prove the shipped
+    # low-byte remainder behavior instead of silently replacing it with an
+    # ordinary decimal formatter.  Every callback case also preserves r1 as
+    # the exact source-line argument.
+    ("net", 0x01008d00): [
+        _net_controller_assert_case(42, 0x4444, callback=False),
+        _net_controller_assert_case(0, 0x1000),
+        _net_controller_assert_case(3, 0x1001),
+        _net_controller_assert_case(255, 0x1002),
+        _net_controller_assert_case(256, 0x1003),
+        _net_controller_assert_case(0xffffffff, 0x1004),
+    ],
     # Production command families for the large master dispatcher.  Keep all
     # payloads bounded and logging disabled: these cover the firmware-load
     # length rejection, unchanged-mode acknowledgement, invalid audio mode,
@@ -5061,31 +5455,92 @@ ORACLE_STATE_CASES = {
 # by callee return values.  Keeping these three inputs together avoids turning
 # arbitrary fuzz-oracle values into an unbounded synthetic input stream.
 def _even_ai_case(active, phase, status, substate=0, level=0, sink=0,
-                  frame=0, saved=0xffffffff):
+                  frame=0, saved=0xffffffff, initialized=0, rendered=0,
+                  hide_progress=1, sparse_pixels=False):
     app = emu.SCRATCH + 0x1000
     ctx = emu.SCRATCH + 0x4000
+    row = emu.SCRATCH + 0x6000
+    # The first accessor returns the absolute UI/application state object
+    # whose fields drive this reviewed case.  Keep the pointer explicit so
+    # importing the verifier cannot fall through to an undefined fixture.
+    oracles = {0: {0: app}, 1: {0: 1}}
+    if active == 0 and phase == 1 and not initialized and status == 0:
+        # Common setup owns ordinals 0..9.  Each complete frame then calls
+        # four metric getters, draws, obtains both framebuffer owners, and
+        # publishes.  Pin only the two pointer-producing getters per frame.
+        for frame_index in range(8):
+            base = 10 + frame_index * 8
+            for ordinal in range(base, base + 4):
+                oracles[ordinal] = {0: 0}
+            oracles[base + 5] = {0: app}
+            oracles[base + 6] = {0: app}
+    elif active == 0 and phase == 1 and not initialized and status == 14:
+        oracles[9] = {0: app}
+        oracles[10] = {0: app}
+    elif active == 1 and phase == 1 and status == 7 and substate == 3:
+        for frame_index in range(8):
+            base = 8 + frame_index * 9
+            for ordinal in range(base + 1, base + 5):
+                oracles[ordinal] = {0: 0}
+            oracles[base + 6] = {0: app}
+            oracles[base + 7] = {0: app}
+    elif active == 1 and phase == 1 and substate == 4:
+        # A changing live layout may legitimately collapse either wipe pass.
+        # Make each outer bound empty (initial top=200, live top=0), then run
+        # all eight bounded text-region masks with stable zero coordinates.
+        oracles.update({7: {0: app}, 8: {0: 200}, 9: {0: 0},
+                        10: {0: app}, 11: {0: app},
+                        12: {0: 0}, 13: {0: 0}, 14: {0: 0}, 15: {0: 0},
+                        17: {0: 200}, 18: {0: 0},
+                        19: {0: app}, 20: {0: app},
+                        21: {0: 0}, 22: {0: 0}, 23: {0: 0}, 24: {0: 0}})
+        # status 7 reaches the generic copied-text render at ordinals 29..34.
+        for ordinal in range(30, 34):
+            oracles[ordinal] = {0: 0}
+        for frame_index in range(8):
+            base = 35 + frame_index * 7
+            for ordinal in range(base, base + 4):
+                oracles[ordinal] = {0: 0}
+            oracles[base + 4] = {0: app}
+            oracles[base + 5] = {0: app}
+        # Final canvas-flag publication remains live as r1 at the following
+        # one-formal icon call; pin it rather than comparing target-seeded
+        # random oracle returns from differently linked candidates.
+        oracles[91] = {0: 0}
+    elif active == 1 and phase == 1 and status == 14:
+        oracles[7] = {0: app}
+        oracles[8] = {0: app}
     state = bytearray(0x1000)
     state[0xef] = status
     state[0xf0] = substate
     state[0xf3] = 2
-    state[0xf4] = 1
+    state[0xf4] = hide_progress
     state[0xf5] = 3
-    state[0x286:0x288] = (0).to_bytes(2, "little")
+    state[0xf6:0xf9] = b"AI!"
+    state[0x286:0x288] = (3).to_bytes(2, "little")
+    canvas = bytearray(0x1000)
+    for y in range(199):
+        canvas[0x24 + y * 4:0x28 + y * 4] = row.to_bytes(4, "little")
+        state[0xb90 + y * 4:0xb94 + y * 4] = row.to_bytes(4, "little")
+    state[0xeb4:0xeb8] = (emu.SCRATCH + 0x7000).to_bytes(4, "little")
+    state[0xeb8:0xebc] = (emu.SCRATCH + 0x7100).to_bytes(4, "little")
     return (
         {0: ctx, 1: 0, 2: phase},
-        [(app, bytes(state)), (ctx, bytes(0x1000)),
+        [(app, bytes(state)), (ctx, bytes(canvas)),
+         (row, (b"\xff" if sparse_pixels else b"\0") + bytes(0x13f)),
+         (emu.SCRATCH + 0x7000, bytes(0x200)),
          (0x2000230c, level.to_bytes(4, "little", signed=True)),
          (0x20007554, sink.to_bytes(4, "little")),
          (0x20009fd8, frame.to_bytes(4, "little")),
-         (0x20009fd4, (0).to_bytes(4, "little")),
+         (0x20009fd4, rendered.to_bytes(4, "little")),
          (0x200024ec, saved.to_bytes(4, "little")),
          (0x20007b3c, bytes(0x40)),
          (0x2000a038, bytes(0x20)),
          (0x2001b818, bytes(0x200)),
          # The active bytes live inside the line-buffer allocation above and
          # therefore must be applied after its deterministic zero fixture.
-         (0x2001b9a8, bytes((active, 0)))],
-        {0: {0: app}, 1: {0: 1}},
+         (0x2001b9a8, bytes((active, initialized)))],
+        oracles,
     )
 
 
@@ -5702,6 +6157,7 @@ def _app_442bc_case(mode, glyph="success", flush=True, buffered=False,
     accessor_image = bytearray(0xf00)
     accessor_image[0xeb4:0xeb8] = (0x11223344).to_bytes(4, "little")
     accessor_image[0xeb8:0xebc] = (0x55667788).to_bytes(4, "little")
+    glyph_bytes = bytes((0xa5, 0x5a, 0x3c, 0xc3)) + bytes(60)
     memory = [
         (accessor, bytes(accessor_image)),
         (0x2000a034, (0x2000d000).to_bytes(4, "little")),
@@ -9809,17 +10265,37 @@ REVIEWED_ORACLE_CASES = {
     # Enumerate the deep logger/cleanup/icon/render families explicitly; raw
     # random state otherwise almost never produces active=0/1 and valid status.
     ("app", 0x0003bfe0): [
+        _even_ai_case(2, 1, 0),                    # unknown active state
+        _even_ai_case(0, 0, 0),                    # inactive ignored phase
+        _even_ai_case(0, 1, 0, initialized=1),     # one-time init latch
         _even_ai_case(0, 2, 0, level=3, sink=0),   # inactive direct logger + cleanup
         _even_ai_case(0, 2, 0, level=3, sink=1),   # inactive fallback logger
+        _even_ai_case(0, 1, 0, sparse_pixels=True),# complete eight-frame init mask
+        _even_ai_case(0, 1, 0xc),                  # status 12 immediate init return
+        _even_ai_case(0, 1, 0xe),                  # status 14 full publish
         _even_ai_case(1, 0, 4),                    # active status-icon painter
         _even_ai_case(1, 2, 4, level=3, sink=0),   # active logger + teardown
         _even_ai_case(1, 2, 4, level=3, sink=1),   # active fallback logger
+        _even_ai_case(1, 3, 4),                    # active ignored phase
         _even_ai_case(1, 1, 4, frame=1),           # low-status text render
+        _even_ai_case(1, 1, 5, frame=1),           # blank transitional page
+        _even_ai_case(1, 1, 6, frame=1),           # blank transitional page boundary
+        _even_ai_case(1, 1, 7, substate=3,
+                      sparse_pixels=True),         # page-change eight-frame mask
+        _even_ai_case(1, 1, 7, substate=4,
+                      sparse_pixels=True),         # completed-page transition
         _even_ai_case(1, 1, 0xb, frame=1),         # status 11 mic/header render
+        _even_ai_case(1, 1, 0xc, frame=1),         # status 12 no-render return
+        _even_ai_case(1, 1, 0xd, frame=1),         # status 13 no-render return
         _even_ai_case(1, 1, 0xe, frame=1),         # status 14 full-frame publish
+        _even_ai_case(1, 1, 0xf, frame=1),         # status 15 no-render return
         _even_ai_case(1, 1, 0x10, frame=1),        # status 16 text render
         _even_ai_case(1, 1, 8, frame=0),           # streaming render first frame
         _even_ai_case(1, 1, 8, frame=1),           # streaming render update frame
+        _even_ai_case(1, 1, 9, frame=1,
+                      hide_progress=0),             # forced plain stream + progress
+        _even_ai_case(1, 1, 10, frame=1,
+                      rendered=1, hide_progress=0), # scrolling stream + progress
     ],
     # QuickNote is selected first by an absolute UI-state byte and only then
     # by the phase argument.  Random RAM almost never enters states 0/1/2, so
@@ -9827,23 +10303,53 @@ REVIEWED_ORACLE_CASES = {
     # 0/2 cases cover both logger sinks, enable gates, recording transitions,
     # review warning/exit flags, and a bounded shared-row raster allocation.
     ("app", 0x0003b824): [
-        _quicknote_case(state, phase, level, sink, enable, deadline, exit_flag)
-        for state, phase, level, sink, enable, deadline, exit_flag in (
-            (0, 0, 0, 0, 1, (0, 0, 0), 0),
-            (0, 1, 3, 0, 1, (0, 0, 0), 0),
-            (0, 1, 3, 1, 1, (0, 0, 0), 0),
-            (0, 1, 0, 0, 0, (0, 0, 0), 0),
-            (0, 2, 3, 0, 1, (0, 0, 0), 0),
-            (0, 3, 0, 0, 1, (0, 0, 0), 0),
-            (1, 0, 3, 0, 1, (0, 0, 0), 0),
-            (1, 2, 3, 1, 1, (0, 0, 0), 0),
-            (1, 3, 3, 0, 1, (0, 0, 0), 0),
-            (2, 0, 0, 0, 1, (0, 0, 0), 0),
-            (2, 1, 0, 1, 1, (0, 0, 0), 0),
-            (2, 2, 0, 0, 1, (0, 0, 0), 0),
-            (2, 3, 0, 1, 1, (0xffffffff, 0, 0), 0),
-            (2, 3, 0, 0, 1, (0xffffffff, 0, 0), 1),
-        )
+        # Unknown-state return plus every state-zero phase family and exact
+        # logger threshold.  The two render cases complete all four masks,
+        # both language layouts, and the primary-side DMIC start.
+        _quicknote_case(3, 0),
+        _quicknote_case(0, 0),
+        _quicknote_case(0, 0, level=3, sink=0),
+        _quicknote_case(0, 0, level=3, sink=1),
+        _quicknote_case(0, 1, enable=0),
+        _quicknote_case(0, 1, enable=1, language=5,
+                        sparse_pixels=True),
+        _quicknote_case(0, 1, level=3, sink=1, enable=1,
+                        device_type=1, language=6, sparse_pixels=True),
+        _quicknote_case(0, 2, level=1, device_type=1),
+        _quicknote_case(0, 3),
+
+        # Recording-state idle icon, no-op render phase, exit cleanup, and
+        # release-to-review transition with/without the primary-side callback.
+        _quicknote_case(1, 0),
+        _quicknote_case(1, 1),
+        _quicknote_case(1, 2, level=3, sink=1, device_type=1),
+        _quicknote_case(1, 3, level=3, sink=0, device_type=1,
+                        uptime_ticks=32768),
+        _quicknote_case(1, 3, uptime_ticks=65536),
+
+        # At one second of reviewed uptime: expired, pre-warning animation,
+        # and inside-warning saved-message paths.  Duplicate hint/language/log
+        # cases cover both skip arms, both strings, and both logger sinks.
+        _quicknote_case(2, 2, level=3, device_type=1),
+        _quicknote_case(2, 0, level=3, sink=1,
+                        deadline=(0, 999, 0), uptime_ticks=32768),
+        _quicknote_case(2, 0, deadline=(0, 2000, 0),
+                        uptime_ticks=32768, exit_flag=0),
+        _quicknote_case(2, 0, deadline=(0, 2000, 0),
+                        uptime_ticks=32768, exit_flag=1),
+        # Equality remains live: exact deadline is not expired, while exact
+        # warning boundary remains in the pre-warning animation arm.
+        _quicknote_case(2, 1, deadline=(0, 1000, 0),
+                        uptime_ticks=32768, language=5),
+        _quicknote_case(2, 1, deadline=(0, 1100, 0),
+                        uptime_ticks=32768),
+        _quicknote_case(2, 1, level=3, sink=0,
+                        deadline=(0, 1050, 0), uptime_ticks=32768,
+                        language=5, exit_flag=0),
+        _quicknote_case(2, 3, deadline=(0, 1050, 0),
+                        uptime_ticks=32768, language=6, exit_flag=0),
+        _quicknote_case(2, 3, deadline=(0, 1050, 0),
+                        uptime_ticks=32768, exit_flag=1),
     ],
     # Persistent low-speed supervisor.  These are production state families,
     # not random padding: external query results are pinned to valid bounded
@@ -10533,6 +11039,20 @@ REVIEWED_ORACLE_CASES = {
 }
 
 
+def _gatt_sc_store_failure_case(error):
+    entry = emu.SCRATCH + 0x1a00
+    return ({0: entry},
+            [(entry, bytes((1, 2, 3, 4, 5, 6, 7, 8,
+                            0x34, 0x12, 0x78, 0x56)))],
+            {0: {0: int(error) & 0xffffffff}})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0005a0e8)] = [
+    _gatt_sc_store_failure_case(0),
+    _gatt_sc_store_failure_case(-5),
+]
+
+
 def _ancs_dispatch_case(dequeue_result=0, status=0, text_first=0,
                         kind=None, transport=0, sink=0, uid=5):
     """Production-shaped dequeue outcomes for FUN_0001965c.
@@ -10746,6 +11266,148 @@ REVIEWED_ORACLE_CASES[("app", 0x0002e67c)] = [
     _option_init_case("success", transfer_result=0),
     _option_init_logged_success(0),
     _option_init_logged_success(1),
+]
+
+
+def _bt_addr_format_case(address_type, address_bytes):
+    """Exercise one complete bt_addr_le_t formatting path.
+
+    The two formatter callees are modeled with their reviewed caller-owned
+    writes.  This makes the type-label stack buffer deterministic and exposes
+    the final string as the real observable side effect.
+    """
+    source = emu.SCRATCH + 0x2400
+    destination = emu.SCRATCH + 0x2800
+    labels = {
+        0: b"public\0",
+        1: b"random\0",
+        2: b"public-id\0",
+        3: b"random-id\0",
+    }
+    label = labels.get(address_type, ("0x%02x" % address_type).encode() + b"\0")
+    rendered = ("%02X:%02X:%02X:%02X:%02X:%02X (%s)" %
+                (*reversed(address_bytes), label[:-1].decode())).encode() + b"\0"
+    first_callee = 0x00086fee if address_type in labels else 0x0007ddbe
+    writes = {
+        0: [(0, 0, label, first_callee)],
+        1: [(0, 0, rendered, 0x0007ddbe)],
+    }
+    return (
+        {0: source, 1: destination},
+        [(source, bytes([address_type]) + bytes(address_bytes)),
+         (destination, b"\xa5" * 64)],
+        {},
+        writes,
+    )
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00018334)] = [
+    _bt_addr_format_case(0, bytes.fromhex("0123456789ab")),
+    _bt_addr_format_case(1, bytes.fromhex("fedcba987654")),
+    _bt_addr_format_case(2, bytes.fromhex("001122334455")),
+    _bt_addr_format_case(3, bytes.fromhex("a0b1c2d3e4f5")),
+    _bt_addr_format_case(4, bytes.fromhex("102030405060")),
+    _bt_addr_format_case(0xff, bytes.fromhex("ffeeddccbbaa")),
+]
+
+
+def _poll_register_case(events, just_check=False, poller_active=True):
+    """Build bounded production-shaped k_poll_event registration inputs.
+
+    Event tuples are (type, condition_met, null_object).  Objects use exactly
+    the fields read by poll.c's is_condition_met implementation.
+    """
+    event_address = emu.SCRATCH + 0x3000
+    poller_address = emu.SCRATCH + 0x3800
+    event_image = bytearray(max(20, 20 * len(events)))
+    memory = [
+        (0x2000b4a0, bytes(4)),
+        (poller_address, bytes([int(bool(poller_active))]) + bytes(15)),
+    ]
+    for index, (event_type, condition_met, null_object) in enumerate(events):
+        base = 20 * index
+        object_address = emu.SCRATCH + 0x4000 + 0x80 * index
+        object_image = bytearray(0x40)
+        if condition_met:
+            if event_type in (1, 2):
+                object_image[8:12] = (1).to_bytes(4, "little")
+            elif event_type == 4:
+                object_image[0:4] = (emu.SCRATCH + 0x7000).to_bytes(4, "little")
+            elif event_type == 8:
+                object_image[0x24:0x28] = (1).to_bytes(4, "little")
+        event_image[base + 8:base + 12] = (0x11223344).to_bytes(4, "little")
+        # tag=0xa5, type in bits 8..13, state starts with bit 0x20 set so
+        # state updates prove OR-not-assignment behavior.
+        flags = 0xa5 | ((int(event_type) & 0x3f) << 8) | (0x20 << 14)
+        event_image[base + 12:base + 16] = flags.to_bytes(4, "little")
+        if not null_object:
+            event_image[base + 16:base + 20] = object_address.to_bytes(4, "little")
+            memory.append((object_address, bytes(object_image)))
+    memory.append((event_address, bytes(event_image)))
+    return ({0: event_address, 1: len(events), 2: poller_address,
+             3: int(bool(just_check))}, memory, {})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x000751d0)] = [
+    _poll_register_case([]),
+    *[_poll_register_case([(kind, True, False)]) for kind in (1, 2, 4, 8)],
+    *[_poll_register_case([(kind, False, False)]) for kind in (0, 1, 2, 4, 8)],
+    _poll_register_case([(2, False, False)], just_check=True),
+    _poll_register_case([(1, True, False), (2, False, False)]),
+    _poll_register_case([(1, False, False), (2, False, False),
+                         (4, False, False), (8, False, False)]),
+    _poll_register_case([(3, False, False)]),
+    *[_poll_register_case([(kind, False, True)]) for kind in (1, 2, 4, 8)],
+]
+
+
+def _poll_clear_case(events, interrupt_key=0, unlock_valid=True,
+                     lock_valid=True):
+    """Build reversed clear_event_registrations inputs.
+
+    Event tuples are (type, null_object, linked).  Linked nodes receive real
+    predecessor/successor storage so sys_dlist_remove effects are compared.
+    """
+    event_address = emu.SCRATCH + 0x3000
+    event_image = bytearray(max(20, 20 * len(events)))
+    memory = [(0x2000b4a0, bytes(4))]
+    for index, (event_type, null_object, linked) in enumerate(events):
+        base = 20 * index
+        object_address = emu.SCRATCH + 0x4000 + 0x80 * index
+        event_image[base + 8:base + 12] = (0x11223344).to_bytes(4, "little")
+        event_image[base + 12:base + 16] = (
+            0xa5 | ((int(event_type) & 0x3f) << 8)).to_bytes(4, "little")
+        if not null_object:
+            event_image[base + 16:base + 20] = object_address.to_bytes(4, "little")
+            memory.append((object_address, bytes(0x40)))
+        if linked:
+            successor = emu.SCRATCH + 0x6000 + 0x40 * index
+            predecessor = emu.SCRATCH + 0x7000 + 0x40 * index
+            event_image[base:base + 4] = successor.to_bytes(4, "little")
+            event_image[base + 4:base + 8] = predecessor.to_bytes(4, "little")
+            memory.extend([(successor, b"\x11" * 8),
+                           (predecessor, b"\x22" * 8)])
+    memory.append((event_address, bytes(event_image)))
+    oracles = {}
+    for index in range(len(events)):
+        oracles[2 * index] = {0: int(bool(unlock_valid))}
+        oracles[2 * index + 1] = {0: int(bool(lock_valid))}
+    return ({0: event_address, 1: len(events), 2: int(interrupt_key)},
+            memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x000753ec)] = [
+    _poll_clear_case([]),
+    _poll_clear_case([(0, False, False)], interrupt_key=0x20),
+    *[_poll_clear_case([(kind, False, False)]) for kind in (1, 2, 4, 8)],
+    *[_poll_clear_case([(kind, False, True)]) for kind in (1, 2, 4, 8)],
+    _poll_clear_case([(1, False, True), (2, False, False),
+                      (4, False, True), (8, False, False)],
+                     interrupt_key=0x40),
+    _poll_clear_case([(3, False, False)]),
+    *[_poll_clear_case([(kind, True, False)]) for kind in (1, 2, 4, 8)],
+    _poll_clear_case([(0, False, False)], unlock_valid=False),
+    _poll_clear_case([(0, False, False)], lock_valid=False),
 ]
 
 
@@ -11591,6 +12253,293 @@ REVIEWED_ORACLE_CASES[("app", 0x000352e8)] = [
      {0: {0: _wl_root}, 5: {0: _wl_object}, 7: {0: _wl_array},
       8: {0: _wl_item}, 14: {0: _wl_json}, 17: {0: 0x1234}}),
 ]
+
+# ANCS startup is a finite initializer in production, but random oracle
+# returns manufacture either a 50-iteration readiness wait or the fatal reboot
+# loop.  These cases bind every real initializer result and keep the device
+# readiness byte at an explicit object address.  Error cases stop at the
+# production-noreturn sys_reboot boundary below.
+_ancs_device_info = emu.SCRATCH + 0x7000
+_ancs_context = emu.SCRATCH + 0x9000
+
+
+def _ancs_startup_state(log_level=0, alt_sink=0, ready=True):
+    return [
+        (0x2000230c, int(log_level).to_bytes(4, "little")),
+        (0x20007554, int(alt_sink).to_bytes(4, "little")),
+        (_ancs_device_info + 0x1058, bytes((bool(ready),))),
+    ]
+
+
+def _ancs_startup_case(fail_at=None, log_level=0, alt_sink=0):
+    # With a ready device and no initial diagnostic the initializer calls are:
+    # device-info, bt_send, foreach-bond, settings-load, ANCS client,
+    # discovery params, auth callbacks, auth-info callbacks, GATT callbacks,
+    # notify sync, bt_start, and work-thread start.
+    shift = 1 if log_level else 0
+    result_ordinals = {
+        "send": 1, "client": 4, "discovery": 5, "auth": 6,
+        "auth_info": 7, "notify": 9, "bt_start": 10,
+    }
+    oracles = {shift: {0: _ancs_device_info}}
+    for stage, ordinal in result_ordinals.items():
+        oracles[shift + ordinal] = {0: 7 if stage == fail_at else 0}
+        if stage == fail_at:
+            break
+    return ({0: _ancs_context},
+            _ancs_startup_state(log_level, alt_sink), oracles)
+
+
+def _ancs_wait_then_start_case():
+    # One wait iteration: the exact delay call publishes device readiness,
+    # after which the same accessor returns the same object and initialization
+    # continues normally.
+    oracles = {
+        0: {0: _ancs_device_info}, 2: {0: _ancs_device_info},
+        3: {0: 0}, 6: {0: 0}, 7: {0: 0}, 8: {0: 0},
+        9: {0: 0}, 11: {0: 0}, 12: {0: 0},
+    }
+    writes = {1: [(None, _ancs_device_info + 0x1058, b"\x01",
+                   0x0007c0a8)]}
+    return ({0: _ancs_context}, _ancs_startup_state(ready=False),
+            oracles, writes)
+
+
+def _ancs_send_exhaustion_case():
+    # Five failed bt_send attempts each revisit the readiness accessor.  The
+    # firmware intentionally proceeds to client initialization after the
+    # retry budget is exhausted.
+    oracles = {}
+    for base in (0, 5, 10, 15, 20):
+        oracles[base] = {0: _ancs_device_info}
+        oracles[base + 1] = {0: -5}
+    # foreach/settings are 25/26; client through bt_start occupy 27..33.
+    for ordinal in (27, 28, 29, 30, 32, 33):
+        oracles[ordinal] = {0: 0}
+    return ({0: _ancs_context}, _ancs_startup_state(), oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00019950)] = [
+    _ancs_startup_case(),
+    _ancs_startup_case(log_level=1, alt_sink=0),
+    _ancs_startup_case(log_level=1, alt_sink=1),
+    _ancs_wait_then_start_case(),
+    _ancs_send_exhaustion_case(),
+    *[_ancs_startup_case(stage) for stage in
+      ("client", "discovery", "auth", "auth_info", "notify", "bt_start")],
+]
+
+
+# The flash checker is driven by CRC values written through calc_flash_crc's
+# first argument.  A return-only oracle leaves the seed at 0xffff and proves
+# only the first mismatch exit.  These fixtures publish a distinct
+# intermediate and final CRC for all seven production regions.
+_flash_signature_crcs = (0x0d59, 0xdab9, 0x1265, 0xdab9,
+                         0xd412, 0xdab9, 0x2632)
+
+
+def _flash_crc_write(value):
+    return [(0, 0, int(value).to_bytes(2, "little"), 0x00022974)]
+
+
+def _flash_check_state(log_level=0, alt_sink=0):
+    return [(0x2000230c, int(log_level).to_bytes(4, "little")),
+            (0x20007554, int(alt_sink).to_bytes(4, "little"))]
+
+
+def _flash_check_success_case(log_level=0, alt_sink=0):
+    high_log = log_level > 2
+    oracles = {}
+    writes = {}
+    for index, expected in enumerate(_flash_signature_crcs):
+        first = (1 + 3 * index) if high_log else (2 * index)
+        second = first + 1
+        oracles[first] = {0: 0}
+        oracles[second] = {0: 0}
+        writes[first] = _flash_crc_write(expected ^ 0xffff)
+        writes[second] = _flash_crc_write(expected)
+    return ({}, _flash_check_state(log_level, alt_sink), oracles, writes)
+
+
+def _flash_check_retry_case(first_call_fails):
+    # Level one observes the retry diagnostic without enabling the entry or
+    # per-region CRC logs.  Calls 0..2 are failed CRC, delay, diagnostic; the
+    # retried region begins at call three.
+    oracles = {0: {0: -5 if first_call_fails else 0}}
+    writes = {}
+    if not first_call_fails:
+        writes[0] = _flash_crc_write(0x2468)
+        oracles[1] = {0: -5}
+        retry_first = 4
+    else:
+        retry_first = 3
+    # A second-call failure inserts one extra call before the delay/logger.
+    retry_second = retry_first + 1
+    oracles[retry_first] = {0: 0}
+    oracles[retry_second] = {0: 0}
+    writes[retry_first] = _flash_crc_write(0xf2a6)
+    writes[retry_second] = _flash_crc_write(_flash_signature_crcs[0])
+    next_call = retry_second + 1
+    for expected in _flash_signature_crcs[1:]:
+        oracles[next_call] = {0: 0}
+        oracles[next_call + 1] = {0: 0}
+        writes[next_call] = _flash_crc_write(expected ^ 0xffff)
+        writes[next_call + 1] = _flash_crc_write(expected)
+        next_call += 2
+    return ({}, _flash_check_state(log_level=1), oracles, writes)
+
+
+def _flash_check_exhaustion_case():
+    # Six failed first reads; only the first five are followed by a delay.
+    return ({}, _flash_check_state(),
+            {ordinal: {0: -5} for ordinal in (0, 2, 4, 6, 8, 10)})
+
+
+def _flash_check_mismatch_case():
+    return ({}, _flash_check_state(), {0: {0: 0}, 1: {0: 0}},
+            {0: _flash_crc_write(0x2468),
+             1: _flash_crc_write(_flash_signature_crcs[0] ^ 1)})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00032c28)] = [
+    _flash_check_success_case(),
+    _flash_check_success_case(log_level=3, alt_sink=0),
+    _flash_check_success_case(log_level=3, alt_sink=1),
+    _flash_check_retry_case(first_call_fails=True),
+    _flash_check_retry_case(first_call_fails=False),
+    _flash_check_exhaustion_case(),
+    _flash_check_mismatch_case(),
+]
+
+
+def _message_table_contains_case(slot_count, message_id, entries=()):
+    image = bytearray(max(1, int(slot_count)) * 0x1b4)
+    for index, occupied, entry_id in entries:
+        offset = int(index) * 0x1b4
+        image[offset + 8:offset + 12] = int(entry_id).to_bytes(4, "little")
+        image[offset + 0x10] = int(occupied) & 0xff
+    return ({0: int(slot_count), 1: int(message_id)},
+            [(0x20007dac, bytes(image))], {})
+
+
+# Empty bound, inactive and wrong-id records, first/last matches, mixed misses,
+# and the full production twenty-slot bound.  Nonuniform ids make the occupied
+# byte, id offset, stride, comparison direction, and loop bound observable.
+REVIEWED_ORACLE_CASES[("app", 0x00033f24)] = [
+    _message_table_contains_case(0, 0x11223344),
+    _message_table_contains_case(1, 0x11223344,
+                                 [(0, 0, 0x11223344)]),
+    _message_table_contains_case(1, 0x11223344,
+                                 [(0, 1, 0x55667788)]),
+    _message_table_contains_case(1, 0x11223344,
+                                 [(0, 1, 0x11223344)]),
+    _message_table_contains_case(4, 0x89abcdef,
+                                 [(0, 1, 7), (1, 0, 0x89abcdef),
+                                  (2, 1, 9), (3, 1, 0x89abcdef)]),
+    _message_table_contains_case(4, 0x89abcdef,
+                                 [(0, 1, 7), (1, 0, 0x89abcdef),
+                                  (2, 1, 9), (3, 1, 11)]),
+    _message_table_contains_case(20, 0x2468ace0,
+                                 [(0, 1, 1), (10, 1, 2),
+                                  (19, 1, 0x2468ace0)]),
+]
+
+
+_persist_status_context = emu.SCRATCH + 0x1000
+_persist_status_record = emu.SCRATCH + 0x3000
+
+
+def _persist_status_case(active_task, task_id, requested_status,
+                         current_task=0x31, current_status=0,
+                         saved_status=0, log_level=0, alt_sink=0,
+                         context=_persist_status_context, busy_lock=False):
+    record = (int(current_task).to_bytes(4, "little") +
+              bytes((int(current_status) & 0xff, 0, 0, 0)))
+    memory = [
+        (context + 0xd5, bytes((int(active_task) & 0xff,))),
+        (context + 0xf98, bytes((int(saved_status) & 0xff,))),
+        (context + 0x1054, _persist_status_record.to_bytes(4, "little")),
+        (_persist_status_record, record),
+        (0x20018d9c, bytes((1 if busy_lock else 0,))),
+        (0x20018d9d, b"\x5a"),
+        (0x2000230c, int(log_level).to_bytes(4, "little")),
+        (0x20007554, int(alt_sink).to_bytes(4, "little")),
+    ]
+    writes = ({0: [(0, 0, b"\x00", 0x0007cdf8)]}
+              if busy_lock else {})
+    return ({0: context, 1: int(task_id), 2: int(requested_status)},
+            memory, {}, writes)
+
+
+# Same-record short circuits, both idle values, active-task replacement,
+# whitelist accept/reject boundaries, every status/log family, both sinks,
+# the task-16 saved-status transfer, and one finite busy-lock iteration.
+REVIEWED_ORACLE_CASES[("app", 0x0002bef4)] = [
+    _persist_status_case(0, 7, 2, current_task=7, current_status=1),
+    _persist_status_case(0, 7, 3, current_task=7, current_status=3),
+    _persist_status_case(0, 0x10, 2, saved_status=1,
+                         log_level=1, alt_sink=0),
+    _persist_status_case(1, 5, 2),
+    _persist_status_case(4, 4, 2),
+    _persist_status_case(4, 5, 2),
+    _persist_status_case(4, 0x11, 2),
+    _persist_status_case(0, 8, 3),
+    _persist_status_case(0, 9, 0),
+    _persist_status_case(4, 8, 3, log_level=1, alt_sink=1),
+    _persist_status_case(0, 6, 2, context=0x20018d9c, busy_lock=True),
+]
+
+
+# process_for_new_task is a long-lived state dispatcher.  Random object bytes
+# turn most selector arms into polling loops, while its old source collapsed
+# every direct callee into one oracle.  Give each of the complete 0..17 TBH
+# slots an owned context graph and select the production cancellation/ready
+# boundary so every state body reaches a finite handoff.
+_new_task_context = emu.SCRATCH + 0x1000
+_new_task_worker = emu.SCRATCH + 0x3000
+_new_task_record = emu.SCRATCH + 0x4000
+
+
+def _new_task_state_case(selector):
+    context = bytearray(0x1100)
+    worker = bytearray(0xa0)
+    context[1] = 1                 # cancellation/transport-complete boundary
+    context[0xd5] = selector & 0xff
+    context[0xfea] = 10            # finite state-eight wait predicate
+    worker[0] = 1 if selector in (1, 8) else 2
+    worker[0x98:0x9c] = (0x00080001).to_bytes(4, "little")
+    pointer_offsets = (0xff0, 0xffc, 0x1000, 0x1004, 0x1008, 0x100c,
+                       0x1010, 0x1014, 0x1018, 0x101c, 0x1020, 0x1054)
+    memory = [(_new_task_context, bytes(context)),
+              (_new_task_worker, bytes(worker)),
+              # Keep the bounded state cases on the production quiet-log
+              # path. Diagnostic argument fidelity is recovered in the C,
+              # but random verbosity words must not dominate state coverage.
+              (0x2000230c, (0).to_bytes(4, "little")),
+              (0x20007554, (0).to_bytes(4, "little"))]
+    for index, offset in enumerate(pointer_offsets):
+        target = (_new_task_record if offset == 0x1054 else
+                  emu.SCRATCH + 0x5000 + index * 0x100)
+        memory.append((_new_task_context + offset,
+                       int(target).to_bytes(4, "little")))
+        memory.append((target, bytes(0x40)))
+    oracles = {}
+    if selector == 0:
+        # memset, clear-timeout, wake-state, then now_has_persist_task.
+        oracles[3] = {0: 1, 1: 0}
+    elif selector == 1:
+        # State one immediately normalizes to state zero; bind the second
+        # pass's task lookup so it takes the finite cancellation boundary.
+        oracles[6] = {0: 1, 1: 0}
+    elif selector in (4, 5):
+        oracles[2] = {0: 10}
+    return ({0: _new_task_context, 1: _new_task_worker}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0002c99c)] = [
+    _new_task_state_case(selector) for selector in range(18)
+] + [_new_task_state_case(0xff)]
+
 
 # The context accessor owns both branches after formatting: disabled byte,
 # nonempty pending word, and the empty state that submits the work item.
@@ -13473,6 +14422,175 @@ REVIEWED_ORACLE_CASES[("app", 0x00076cc8)] = [
     ({0: 0xa1, 1: 0xb2, 2: 0xc3, 3: 0xd4},
      [(0x20002d20, (emu.SCRATCH + 0x1100).to_bytes(4, "little"))], {}),
 ]
+def _newlib_assert_case(has_function):
+    reent = emu.SCRATCH + 0x1800
+    stderr_stream = emu.SCRATCH + 0x1a00
+    source_file = emu.SCRATCH + 0x2000
+    function_name = emu.SCRATCH + 0x2100 if has_function else 0
+    expression = emu.SCRATCH + 0x2200
+    reent_image = bytearray(0x20)
+    reent_image[0x0c:0x10] = stderr_stream.to_bytes(4, "little")
+    memory = [
+        (0x20002d20, reent.to_bytes(4, "little")),
+        (reent, bytes(reent_image)),
+        (stderr_stream, bytes(0x20)),
+        (source_file, b"newlib_source.c\0"),
+        (expression, b"allocation != NULL\0"),
+    ]
+    if has_function:
+        memory.append((function_name, b"allocate_bigint\0"))
+    return ({0: source_file, 1: 0x123, 2: function_name, 3: expression},
+            memory, {})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00076a94)] = [
+    _newlib_assert_case(False),
+    _newlib_assert_case(True),
+]
+def _img_next_boot_case(active_slot, swap_type, output=True):
+    output_address = emu.SCRATCH + 0x2600 if output else 0
+    memory = ([(output_address, b"\xa5")] if output else [])
+    return ({0: 1, 1: output_address}, memory,
+            {0: {0: int(active_slot)}, 1: {0: int(swap_type)}})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x000809b0)] = [
+    _img_next_boot_case(0, 1),
+    _img_next_boot_case(2, 1),
+    _img_next_boot_case(0, 2),
+    _img_next_boot_case(1, 2, output=False),
+    _img_next_boot_case(2, 3),
+    _img_next_boot_case(3, 4),
+    _img_next_boot_case(0, 0),
+    _img_next_boot_case(1, 5),
+    _img_next_boot_case(4, 1),
+    _img_next_boot_case(0xffffffff, 1),
+]
+def _smp_handle_requests_case(packet_count):
+    transport = emu.SCRATCH + 0x2800
+    oracles = {}
+    for index in range(packet_count):
+        packet = emu.SCRATCH + 0x3000 + 0x100 * index
+        oracles[2 * index] = {0: packet}
+        oracles[2 * index + 1] = {0: 0}
+    oracles[2 * packet_count] = {0: 0}
+    return ({0: transport}, [(transport, bytes(0x40))], oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00080ab4)] = [
+    _smp_handle_requests_case(0),
+    _smp_handle_requests_case(1),
+    _smp_handle_requests_case(3),
+]
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00080ab4)] = [
+    # GCC's readable body saves one extra register, shifting the complete
+    # streamer and both CBOR adapters by eight bytes.  The adapters are
+    # intentionally uninitialized here: smp_process_request_packet owns their
+    # initialization, so only their object identities (not indeterminate
+    # incoming bytes) are observable at this call boundary.
+    ("smp-streamer", -184, -192, 12, None, None,
+     (0x000513e8,), (4, 8)),
+    ("smp-cbor-reader", -116, -124, 100, (), None,
+     (0x000513e8,)),
+    ("smp-cbor-writer", -172, -180, 56, (), None,
+     (0x000513e8,)),
+]
+
+
+def _align_right_text_case(kind):
+    source = emu.SCRATCH + 0x1800
+    utf16 = emu.SCRATCH + 0x2800
+    display = emu.SCRATCH + 0x3800
+    memory = [
+        (source, b"A\0"),
+        (utf16, b"A\0\0\0"),
+        (display, bytes(0xeb4) +
+         (emu.SCRATCH + 0x4800).to_bytes(4, "little") +
+         (emu.SCRATCH + 0x4900).to_bytes(4, "little") + bytes(0x48)),
+        (emu.SCRATCH + 0x4800, bytes(0x200)),
+    ]
+    if kind == "skip":
+        return ({0: 0, 1: source, 2: 0, 3: 10}, memory,
+                {0: {0: utf16}})
+    if kind == "callback":
+        return ({0: 0, 1: source, 2: 0, 3: 10}, memory,
+                {0: {0: utf16}, 1: {0: 0x12345678}})
+    if kind == "empty-refresh":
+        return ({0: 0, 1: source, 2: 0, 3: 10}, memory,
+                {0: {0: utf16}, 1: {0: 2}, 2: {0: 0},
+                 3: {0: 2}, 4: {0: display}, 5: {0: display},
+                 6: {0: 0}})
+    # One decoded glyph reaches both right-alignment measurement calls.
+    writes = {
+        0: [(1, 0, (1).to_bytes(2, "little"), 0x000478d8)],
+        3: [(2, 0, (4).to_bytes(4, "little"), 0x0004588c),
+            (3, 0, (8).to_bytes(4, "little"), 0x0004588c),
+            (4, 0, (emu.SCRATCH + 0x4800).to_bytes(4, "little"),
+             0x0004588c)],
+    }
+    if kind == "draw":
+        writes[6] = list(writes[3])
+        writes[7] = [
+            (0, 0, bytes(range(16)), 0x00086c1e),
+        ]
+        return ({0: 0, 1: source, 2: 0, 3: 10}, memory,
+                {0: {0: utf16}, 1: {0: 0}, 2: {0: 0}, 3: {0: 0},
+                 4: {0: 2}, 5: {0: 0}, 6: {0: 0}, 7: {0: 0},
+                 8: {0: 2}, 9: {0: 0}, 10: {0: 2}, 11: {0: 0}},
+                writes)
+    # The bounded measurement-only case deliberately fails the second lookup
+    # after the aligned origin has been calculated.
+    return ({0: 0, 1: source, 2: 0, 3: 10}, memory,
+            {0: {0: utf16}, 1: {0: 0}, 2: {0: 0}, 3: {0: 0},
+             4: {0: 2}, 5: {0: 0}, 6: {0: 0xffffffff},
+             7: {0: 0}}, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00044ec4)] = [
+    _align_right_text_case("skip"),
+    _align_right_text_case("callback"),
+    _align_right_text_case("empty-refresh"),
+    _align_right_text_case("measure"),
+    _align_right_text_case("draw"),
+]
+REVIEWED_PAIRED_STACK_INITIAL_WORDS[("app", 0x00044ec4)] = [
+    (0, 0, (10, 10, 10, 10, 10)),       # top
+    (4, 4, (100, 100, 100, 100, 100)),   # right
+    (8, 8, (100, 100, 100, 100, 100)),   # bottom
+    (12, 12, (2, 2, 2, 2, 2)),           # maximum lines
+    (16, 16, (0, 0, 0, 0, 0)),           # masked-glyph prefix length
+    (20, 20, (0, 1, 0, 0, 0)),           # callback mode
+    (24, 24, (0, 0x00080001, 0, 0, 0)),  # callback
+    (28, 28, (1, 0, 0, 0, 0)),           # skip built-in rendering
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00044ec4)] = {
+    0x000167a8: 0,  # get_device_info
+    0x00019c70: 0,  # alternate diagnostic sink
+    0x000431a8: 0,  # display atomic state
+    0x00043e58: 2,  # glyph pair spacing
+    0x0004588c: 6,  # font, codepoint, width, height, bitmap, flags
+    0x000471cc: 6,  # framebuffer clear rectangle
+    0x00047260: 6,  # framebuffer refresh rectangle
+    0x000478d8: 2,  # UTF-8 source and UTF-16 count output
+    0x0007d53a: 6,  # glyph bitmap blit
+    0x0007d860: 1,  # control-character classifier
+    0x00086c1e: 4,  # checked bitmap copy
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00044ec4)] = [
+    # The readable frame places each small output slot four bytes lower than
+    # the shipped frame.  Pair the exact objects rather than ignoring generic
+    # stack-looking arguments; every written byte remains compared.
+    ("align-right-utf16-count", -730, -734, 2, None, None,
+     (0x000478d8,)),
+    ("align-right-glyph-bitmap", -728, -732, 4, None, None,
+     (0x0004588c,)),
+    ("align-right-glyph-width", -724, -728, 4, None, None,
+     (0x0004588c,)),
+    ("align-right-glyph-height", -720, -724, 4, None, None,
+     (0x0004588c,)),
+    ("align-right-glyph-pixels", -716, -720, 680, None, None,
+     (0x00086c1e, 0x0007d53a)),
+]
 REVIEWED_ORACLE_CASES[("app", 0x000777f0)] = [
     ({0: 0x11, 1: 0x22, 2: 0x33, 3: 0x44},
      [(0x20002d20, (emu.SCRATCH + 0x1200).to_bytes(4, "little")),
@@ -13989,6 +15107,668 @@ POINTER_READ_TRANSITION_CASES = {
     ],
 }
 
+
+def _sdc_ecb_case(lock_result, sev_on_pend=False, retry_on_relax=False):
+    """Complete nRF ECB ownership, MMIO and architectural wait state."""
+    ecb = 0x4100d000
+    ownership = 0x21000bf4
+    oracles = {0: {0: int(lock_result) & 0xffffffff}}
+    oracle_writes = {}
+    if retry_on_relax:
+        # A contending caller observes ownership and sets the adjacent retry
+        # byte while this transaction is in the reviewed relax hook.
+        oracles[3] = {0: (-35) & 0xffffffff}
+        oracle_writes = {1: [
+            (None, ownership + 1, b"\x01", 0x0102a21e),
+        ]}
+    return (
+        {0: emu.SCRATCH + 0x1000},
+        [(ownership, bytes(2)),
+         # The transaction buffer is caller-owned and the peripheral only
+         # consumes it; a nonuniform image catches pointer truncation/swaps.
+         (emu.SCRATCH + 0x1000, bytes(range(48))),
+         (ecb, bytes(0x600)),
+         (0xe000ed10, (0x10 if sev_on_pend else 0).to_bytes(4, "little")),
+         (0xe000e280, bytes(4))],
+        oracles,
+        oracle_writes,
+    )
+
+
+# The first completion read covers ordinary success and recursive ownership;
+# ERROR on the first attempt followed by END on the second proves retry.  The
+# two SEVONPEND cases wait through the weak relax hook and cover both incoming
+# PRIMASK restoration outcomes.
+REVIEWED_ORACLE_CASES[("net", 0x0100a7e8)] = [
+    _sdc_ecb_case(0),
+    _sdc_ecb_case(-35),
+    _sdc_ecb_case(0),
+    _sdc_ecb_case(0, sev_on_pend=True),
+    _sdc_ecb_case(0, sev_on_pend=True),
+    _sdc_ecb_case(0, sev_on_pend=True, retry_on_relax=True),
+]
+
+ABSOLUTE_READ_TRANSITION_CASES = {
+    ("net", 0x0100a7e8): [
+        [(0x4100d100, 1, 1)],
+        [(0x4100d100, 1, 1)],
+        [(0x4100d104, 1, 1), (0x4100d100, 2, 1)],
+        [(0x4100d100, 3, 1)],
+        [(0x4100d100, 3, 1)],
+        [(0x4100d100, 3, 1), (0x4100d100, 4, 1)],
+    ],
+}
+
+REVIEWED_INITIAL_PRIMASK_CASES = {
+    ("net", 0x0100a7e8): [0, 0, 0, 0, 1, 0],
+}
+
+
+_CTRL_PACKET = emu.SCRATCH + 0x1000
+_CTRL_NODE = emu.SCRATCH + 0x3000
+_CTRL_SENTINEL = emu.SCRATCH + 0x3100
+_CTRL_CONTEXT = emu.SCRATCH + 0x3200
+_CTRL_CALLBACK = 0x00080001
+
+
+def _controller_packet_case(state, *, current=True, head_state=1,
+                            context=None, context_cb=0, release_cb=0,
+                            handle_cb=0, flow_flag=0, flow_count=1,
+                            packet=b"", oracle_returns=None,
+                            oracle_writes=None, next_state=1):
+    """One bounded controller queue/node and packet-production transaction."""
+    queue = bytearray(0x2c)
+    head = _CTRL_SENTINEL if current else _CTRL_NODE
+    queue[8:12] = head.to_bytes(4, "little")
+    queue[0x14:0x18] = (_CTRL_NODE if current else 0).to_bytes(4, "little")
+    node = bytearray(0x20)
+    node[0:4] = _CTRL_SENTINEL.to_bytes(4, "little")
+    if context is None:
+        context = _CTRL_CALLBACK
+    node[4:8] = int(context).to_bytes(4, "little")
+    node[8] = int(state) & 0xff
+    node[9:13] = b"\x11\x22\x33\x44"
+    sentinel = bytearray(0x20)
+    sentinel[0:4] = _CTRL_SENTINEL.to_bytes(4, "little")
+    sentinel[8] = int(head_state if current else next_state) & 0xff
+    flow = bytearray(0x30)
+    flow[0x17] = int(flow_flag) & 0xff
+    flow[0x18:0x1a] = int(flow_count).to_bytes(2, "little")
+    ctx = bytearray(0x20)
+    ctx[0:2] = (0x1357).to_bytes(2, "little")
+    ctx[8:10] = (0x2468).to_bytes(2, "little")
+    callbacks = (int(handle_cb).to_bytes(4, "little") +
+                 int(context_cb).to_bytes(4, "little") +
+                 int(release_cb).to_bytes(4, "little"))
+    packet_image = bytearray(0x40)
+    packet_image[:len(packet)] = packet
+    return (
+        {0: _CTRL_PACKET},
+        [(0x21000ec8, bytes(queue)),
+         (0x21000eac, bytes(flow)),
+         (0x21000054, callbacks),
+         (_CTRL_NODE, bytes(node)),
+         (_CTRL_SENTINEL, bytes(sentinel)),
+         (_CTRL_CONTEXT, bytes(ctx)),
+         (_CTRL_PACKET, bytes(packet_image))],
+        dict(oracle_returns or {}),
+        dict(oracle_writes or {}),
+    )
+
+
+def _packet_callback_write(data, offset=0, ordinal=0):
+    return {ordinal: [(1, offset, bytes(data), _CTRL_CALLBACK & ~1)]}
+
+
+_CONTROLLER_PACKET_CASES = [
+    # Top-level flow gate, empty sentinel, and dequeue of a stale zero node.
+    _controller_packet_case(16, head_state=16, flow_flag=1, flow_count=0),
+    _controller_packet_case(2, head_state=16, flow_flag=0, flow_count=0),
+    _controller_packet_case(2, head_state=16, flow_flag=1, flow_count=1),
+    _controller_packet_case(1, current=False, next_state=1),
+    _controller_packet_case(0, current=False, next_state=1),
+    _controller_packet_case(0),
+    # Dequeue a live callback node with interrupts initially enabled/disabled.
+    _controller_packet_case(2, current=False, next_state=1),
+    _controller_packet_case(2, current=False, next_state=1),
+    # Callback changed the state concurrently: restart once, then complete.
+    _controller_packet_case(
+        2, oracle_writes={0: [(0, 8, b"\x02", _CTRL_CALLBACK & ~1)]}),
+    _controller_packet_case(
+        2, oracle_writes={0: [(0, 8, b"\x00", _CTRL_CALLBACK & ~1)]}),
+    # Result callbacks: ordinary packet, direct deferred result, and retry.
+    _controller_packet_case(3, oracle_returns={0: {0: 4}}),
+    _controller_packet_case(3, oracle_returns={0: {0: 0x0107}}),
+    _controller_packet_case(3, oracle_returns={0: {0: 0x0100}, 1: {0: 4}}),
+    _controller_packet_case(4),
+    # Radio packet completion: either activity flag, then the clear/restart arm.
+    _controller_packet_case(6, oracle_returns={1: {0: 1}}),
+    _controller_packet_case(6, oracle_returns={1: {0: 0}, 2: {0: 1}}),
+    _controller_packet_case(6, oracle_returns={1: {0: 0}, 2: {0: 0}}),
+    # Context callback family, including absent callback and type-13 completion.
+    _controller_packet_case(7, context_cb=0),
+    _controller_packet_case(7, context_cb=_CTRL_CALLBACK),
+    _controller_packet_case(9, context_cb=_CTRL_CALLBACK),
+    _controller_packet_case(12, context_cb=_CTRL_CALLBACK),
+    _controller_packet_case(13, context_cb=_CTRL_CALLBACK),
+    _controller_packet_case(14, context_cb=_CTRL_CALLBACK),
+    # Handle lookup packet construction and both fatal validation arms.
+    _controller_packet_case(8, context=_CTRL_CONTEXT,
+                            oracle_returns={0: {0: 0x2468}}),
+    _controller_packet_case(8, context=0),
+    _controller_packet_case(8, context=_CTRL_CONTEXT,
+                            oracle_returns={0: {0: 0}}),
+    # Release callback absent, ordinary packet, and both release packet forms.
+    _controller_packet_case(10, context=_CTRL_CONTEXT, release_cb=0),
+    _controller_packet_case(
+        10, context=_CTRL_CONTEXT, release_cb=_CTRL_CALLBACK,
+        oracle_writes=_packet_callback_write(b"\x09")),
+    _controller_packet_case(
+        10, context=_CTRL_CONTEXT, release_cb=_CTRL_CALLBACK,
+        oracle_returns={1: {0: 0}},
+        oracle_writes=_packet_callback_write(b"\x1d")),
+    _controller_packet_case(
+        11, context=_CTRL_CONTEXT, release_cb=_CTRL_CALLBACK,
+        oracle_returns={1: {0: 0}},
+        oracle_writes=_packet_callback_write(b"\x1a\x00\x01")),
+    _controller_packet_case(
+        11, context=_CTRL_CONTEXT, release_cb=_CTRL_CALLBACK,
+        oracle_returns={1: {0: 3}},
+        oracle_writes=_packet_callback_write(b"\x1d")),
+    _controller_packet_case(15),
+    # Handle callback absent/present and null-context assertion.
+    _controller_packet_case(16, handle_cb=0),
+    _controller_packet_case(16, context=_CTRL_CONTEXT,
+                            handle_cb=_CTRL_CALLBACK),
+    _controller_packet_case(16, context=0, handle_cb=_CTRL_CALLBACK),
+    # Every distinct callback-null assertion plus switch default.
+    _controller_packet_case(2, context=0),
+    _controller_packet_case(3, context=0),
+    _controller_packet_case(4, context=0),
+    _controller_packet_case(6, context=0),
+    _controller_packet_case(5),
+    _controller_packet_case(17),
+]
+
+REVIEWED_ORACLE_CASES[("net", 0x0100ec88)] = _CONTROLLER_PACKET_CASES
+REVIEWED_INITIAL_PRIMASK_CASES[("net", 0x0100ec88)] = [
+    1 if index == 7 else 0 for index in range(len(_CONTROLLER_PACKET_CASES))
+]
+
+
+_RTC1_CALLBACK = 0x00080001
+_RTC_INVALID_TIME = (1 << 64) - 1
+
+
+def _rtc_nrf_isr_case(intenset=0, overflow_event=0, overflow_count=7,
+                      force_mask=0, compare_events=(0, 0),
+                      current_times=(0, 0),
+                      deadlines=(_RTC_INVALID_TIME, _RTC_INVALID_TIME),
+                      callbacks=(0, 0),
+                      contexts=(0x11223344, 0x55667788)):
+    """One bounded Zephyr RTC1 overflow/compare interrupt transaction."""
+    rtc = bytearray(0x550)
+    rtc[0x104:0x108] = int(overflow_event).to_bytes(4, "little")
+    rtc[0x140:0x144] = int(compare_events[0]).to_bytes(4, "little")
+    rtc[0x144:0x148] = int(compare_events[1]).to_bytes(4, "little")
+    rtc[0x304:0x308] = int(intenset).to_bytes(4, "little")
+    channel_data = bytearray(0x20)
+    for channel in range(2):
+        offset = channel * 0x10
+        channel_data[offset:offset + 4] = int(callbacks[channel]).to_bytes(
+            4, "little")
+        channel_data[offset + 4:offset + 8] = int(contexts[channel]).to_bytes(
+            4, "little")
+        channel_data[offset + 8:offset + 16] = int(deadlines[channel]).to_bytes(
+            8, "little")
+
+    oracles = {0: {}}
+    ordinal = 1
+    for channel in range(2):
+        interrupt_mask = 0x10000 << channel
+        channel_bit = 1 << channel
+        if ((intenset & interrupt_mask) != 0 and
+                ((force_mask & channel_bit) != 0 or
+                 compare_events[channel] != 0)):
+            oracles[ordinal] = {}  # rtc_compare_event_clear(channel)
+            ordinal += 1
+            now = int(current_times[channel])
+            oracles[ordinal] = {
+                0: now & 0xffffffff, 1: (now >> 32) & 0xffffffff,
+            }
+            ordinal += 1
+            if now >= int(deadlines[channel]):
+                # The real outlined leaf preserves r0/r1.  Model that concrete
+                # implementation, because rtc_nrf_isr deliberately retains
+                # channel and handler across this compiler-created boundary.
+                oracles[ordinal] = {
+                    0: channel, 1: int(callbacks[channel]),
+                }
+                ordinal += 1
+                if callbacks[channel] != 0:
+                    oracles[ordinal] = {}  # installed compare callback
+                    ordinal += 1
+
+    return (
+        {},
+        [(0x41016000, bytes(rtc)),
+         (0x21004964, int(force_mask).to_bytes(4, "little")),
+         (0x21004970, int(overflow_count).to_bytes(4, "little")),
+         (0x21002b60, bytes(channel_data))],
+        oracles,
+    )
+
+
+_RTC_NRF_ISR_CASES = [
+    # Disabled and enabled-but-not-pending overflow, then real overflow.
+    _rtc_nrf_isr_case(),
+    _rtc_nrf_isr_case(intenset=0x2),
+    _rtc_nrf_isr_case(intenset=0x2, overflow_event=1),
+    # Compare zero: no trigger, forced future deadline, event-driven due/null,
+    # and due callback with incoming interrupts already masked.
+    _rtc_nrf_isr_case(intenset=0x10000),
+    _rtc_nrf_isr_case(intenset=0x10000, force_mask=1,
+                      current_times=(99, 0),
+                      deadlines=(100, _RTC_INVALID_TIME)),
+    _rtc_nrf_isr_case(intenset=0x10000, compare_events=(1, 0),
+                      current_times=(100, 0),
+                      deadlines=(100, _RTC_INVALID_TIME)),
+    _rtc_nrf_isr_case(intenset=0x10000, compare_events=(1, 0),
+                      current_times=(0x100000002, 0),
+                      deadlines=(0x100000001, _RTC_INVALID_TIME),
+                      callbacks=(_RTC1_CALLBACK, 0)),
+    # Channel one proves the loop index, shifted masks, second data record,
+    # callback channel value, and fifth (stacked) user-context argument.
+    _rtc_nrf_isr_case(intenset=0x20000, compare_events=(0, 1),
+                      current_times=(0, 0x200000003),
+                      deadlines=(_RTC_INVALID_TIME, 0x200000002),
+                      callbacks=(0, _RTC1_CALLBACK)),
+    # Both channels in one IRQ prove ordered clear/read/callback boundaries.
+    _rtc_nrf_isr_case(intenset=0x30002, overflow_event=1, force_mask=1,
+                      compare_events=(0, 1),
+                      current_times=(10, 21), deadlines=(11, 20),
+                      callbacks=(0, _RTC1_CALLBACK)),
+]
+
+REVIEWED_ORACLE_CASES[("net", 0x010315f0)] = _RTC_NRF_ISR_CASES
+REVIEWED_INITIAL_PRIMASK_CASES[("net", 0x010315f0)] = [
+    1 if index == 6 else 0 for index in range(len(_RTC_NRF_ISR_CASES))
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x010315f0)] = {
+    0x01039e4e: 0,
+    0x0103a6ae: 1,
+    0x010313a8: 0,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x010315f0)] = {
+    _RTC1_CALLBACK & ~1: (0, 2, 3),
+}
+REVIEWED_TARGET_CALL_STACK_ARITIES[("net", 0x010315f0)] = {
+    _RTC1_CALLBACK & ~1: 1,
+}
+
+
+_TIMING_SNAPSHOT_OUT = emu.SCRATCH + 0x1000
+_TIMING_RADIO_STATE = emu.SCRATCH + 0x3000
+
+
+def _timing_snapshot_refresh_case(phy, timeout_units=0):
+    """Refresh-path fixture with a one-slot schedule and empty ticker list."""
+    state = bytearray(0x78)
+    state[4:8] = (120).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x30:0x38] = (0x7fffffffffffffff).to_bytes(8, "little")
+    state[0x50:0x58] = (9000).to_bytes(8, "little")
+    state[0x74:0x76] = (10).to_bytes(2, "little", signed=True)
+    radio = bytearray(0x20)
+    radio[5] = int(phy) & 0xff
+    # state pointer, 64-bit clock, slot overhead, lock, empty tail, insert,
+    # unlock, PHY timing, drift clamp, and final radio overhead.
+    oracles = {
+        0: {0: _TIMING_RADIO_STATE},
+        1: {0: 10000, 1: 0},
+        2: {0: 20},
+        3: {},
+        4: {0: 0},
+        5: {},
+        6: {},
+    }
+    if phy in (1, 2, 4, 8):
+        oracles.update({7: {0: 50}, 8: {0: 0}, 9: {0: 193}})
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 1, 2: 1, 3: timeout_units},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20)),
+         (0x2100113c, bytes(0x30))],
+        oracles,
+    )
+
+
+def _timing_snapshot_existing_case(phy):
+    """Checksum-valid active schedule; no ticker-list refresh is required."""
+    state = bytearray(0x78)
+    state[4:8] = (120).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x30:0x38] = (0x7fffffffffffffff).to_bytes(8, "little")
+    radio = bytearray(0x20)
+    radio[5] = int(phy) & 0xff
+    oracles = {
+        0: {0: _TIMING_RADIO_STATE},
+        1: {0: 10000, 1: 0},
+        2: {0: 20},
+    }
+    if phy in (1, 2, 4, 8):
+        oracles.update({3: {0: 50}, 4: {0: 50}, 5: {0: 193}})
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 0, 2: 1, 3: 0},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20))],
+        oracles,
+    )
+
+
+def _timing_snapshot_advance_case(phy):
+    """Checksum-stale ordinary advance through slot/PHY airtime selection."""
+    state = bytearray(0x78)
+    state[4:8] = (1000).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x18:0x20] = (9000).to_bytes(8, "little")
+    state[0x20:0x28] = (9000).to_bytes(8, "little")
+    state[0x30:0x38] = (20000).to_bytes(8, "little")
+    state[0x50:0x58] = (9000).to_bytes(8, "little")
+    state[0x74:0x76] = (10).to_bytes(2, "little", signed=True)
+    radio = bytearray(0x20)
+    radio[5] = int(phy) & 0xff
+    oracles = {
+        0: {0: _TIMING_RADIO_STATE},
+        1: {0: 10000, 1: 0},
+        2: {0: 20},
+        3: {0: _TIMING_RADIO_STATE},
+        4: {0: 193},
+        5: {0: 20},
+    }
+    if phy in (1, 2, 4, 8):
+        oracles.update({6: {0: 50}, 7: {0: 50},
+                        8: {0: 0}, 9: {0: 193}})
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 0, 2: 0, 3: 0},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20))],
+        oracles,
+    )
+
+
+def _timing_snapshot_schedule_case(mode, schedule_result):
+    """Checksum-stale forced scheduling path and its request descriptor."""
+    state = bytearray(0x78)
+    state[0] = int(mode) & 0xff
+    state[4:8] = (1000).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x18:0x20] = (9000).to_bytes(8, "little")
+    state[0x20:0x28] = (9000).to_bytes(8, "little")
+    state[0x30:0x38] = (20000).to_bytes(8, "little")
+    state[0x3c:0x40] = (100).to_bytes(4, "little")
+    state[0x50:0x58] = (9000).to_bytes(8, "little")
+    state[0x74:0x76] = (10).to_bytes(2, "little", signed=True)
+    radio = bytearray(0x20)
+    radio[5] = 1
+    oracles = {
+        0: {0: _TIMING_RADIO_STATE},
+        1: {0: 10000, 1: 0},
+        2: {0: 20},
+        3: {0: 193},
+        4: {0: 193},
+        5: {0: int(schedule_result)},
+        6: {0: 50},
+    }
+    ordinal = 7
+    if schedule_result:
+        oracles[ordinal] = {0: 0}
+        ordinal += 1
+    oracles[ordinal] = {0: 193}
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 0, 2: 1, 3: 0},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20))],
+        oracles,
+    )
+
+
+def _timing_snapshot_request_failure_case():
+    """Finite active deadline reaches the one-shot request failure assert."""
+    state = bytearray(0x78)
+    state[4:8] = (120).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x30:0x38] = (20000).to_bytes(8, "little")
+    radio = bytearray(0x20)
+    radio[5] = 1
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 0, 2: 1, 3: 0},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20))],
+        {0: {0: _TIMING_RADIO_STATE}, 1: {0: 10000, 1: 0},
+         2: {0: 20}, 3: {0: 50}, 4: {0: 193}, 5: {0: 193},
+         6: {0: 0}},
+    )
+
+
+def _timing_snapshot_mode5_empty_case():
+    """Mode-five refresh with an empty schedule-node list."""
+    owner = emu.SCRATCH + 0x5000
+    state = bytearray(0x78)
+    state[0] = 5
+    state[4:8] = (120).to_bytes(4, "little")
+    state[8:12] = (100).to_bytes(4, "little")
+    state[0x28:0x2c] = owner.to_bytes(4, "little")
+    state[0x30:0x38] = (0x7fffffffffffffff).to_bytes(8, "little")
+    state[0x50:0x58] = (9000).to_bytes(8, "little")
+    owner_image = bytearray(0x310)
+    owner_image[0x2e0:0x2e4] = (200).to_bytes(4, "little")
+    radio = bytearray(0x20)
+    radio[5] = 1
+    return (
+        {0: _TIMING_SNAPSHOT_OUT, 1: 1, 2: 1, 3: 0},
+        [(0x210010a0, bytes(state)),
+         (_TIMING_RADIO_STATE, bytes(radio)),
+         (_TIMING_SNAPSHOT_OUT, bytes(0x20)),
+         (owner, bytes(owner_image)),
+         (0x2100113c, bytes(0x30))],
+        {0: {0: _TIMING_RADIO_STATE}, 1: {0: 10000, 1: 0},
+         2: {0: 20}, 3: {}, 4: {0: 0}, 5: {0: 0}, 6: {}, 7: {},
+         8: {0: 50}, 9: {0: 0}, 10: {0: 193}},
+    )
+
+
+_TIMING_SNAPSHOT_CASES = [
+    _timing_snapshot_refresh_case(1, 0),
+    _timing_snapshot_refresh_case(2, 3),
+    _timing_snapshot_refresh_case(4, 0),
+    _timing_snapshot_refresh_case(8, 3),
+    _timing_snapshot_refresh_case(3, 0),  # invalid PHY assertion boundary
+    # The first PHY dispatch (checksum-valid active schedule).
+    _timing_snapshot_existing_case(1),
+    _timing_snapshot_existing_case(2),
+    _timing_snapshot_existing_case(4),
+    _timing_snapshot_existing_case(8),
+    _timing_snapshot_existing_case(3),
+    # The second PHY dispatch and slot-advance arithmetic.
+    _timing_snapshot_advance_case(1),
+    _timing_snapshot_advance_case(2),
+    _timing_snapshot_advance_case(4),
+    _timing_snapshot_advance_case(8),
+    _timing_snapshot_advance_case(3),
+    # Request emission, including mode-four request kind and drift correction.
+    _timing_snapshot_schedule_case(0, 0),
+    _timing_snapshot_schedule_case(4, 3),
+    _timing_snapshot_request_failure_case(),
+    _timing_snapshot_mode5_empty_case(),
+]
+
+REVIEWED_ORACLE_CASES[("net", 0x0101a38c)] = _TIMING_SNAPSHOT_CASES
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101a38c)] = {
+    0x01019204: 0,
+    0x01022f08: 0,
+    0x0101a130: 0,
+    0x0101deac: 0,
+    0x0101dda8: 0,
+    0x0101dd48: 2,
+    0x0101ddc0: 2,
+    0x0101deb8: 0,
+    0x010209f0: 1,
+    0x0100f69c: 2,
+    0x0101a0e8: 0,
+    0x01022f3c: 1,
+    0x0100d4d0: 2,
+    0x01008d00: 2,
+}
+
+
+def _controller_radio_transition_case(*, mode=0, next_mode=0,
+                                      pending_mode=0, last_mode=0,
+                                      phy=1, previous_active=0,
+                                      cleanup_pending=0,
+                                      radio_cleanup=0,
+                                      interval=100,
+                                      cross_pending=0,
+                                      descriptor_limit=8,
+                                      transition_result=0,
+                                      guard_result=1):
+    """One complete production-shaped radio transition over fixed SDC state."""
+    controller = bytearray(0x60)
+    controller[7] = previous_active
+    controller[8] = next_mode
+    controller[9] = mode
+    controller[0xc] = pending_mode
+    controller[0x18] = phy
+    controller[0x1c:0x1e] = interval.to_bytes(2, "little")
+    controller[0x29] = last_mode
+    controller[0x34] = 3
+    controller[0x44] = radio_cleanup
+    descriptor = emu.SCRATCH + 0x6e00
+    controller[0x30:0x34] = descriptor.to_bytes(4, "little")
+    for offset in (0x4c, 0x50, 0x54, 0x58):
+        controller[offset:offset + 4] = (0x00080001).to_bytes(4, "little")
+
+    peripheral = bytearray(0x1000)
+    peripheral[0x104:0x108] = (1 if cleanup_pending else 0).to_bytes(4, "little")
+    peripheral[0x10c:0x110] = (1 if pending_mode else 0).to_bytes(4, "little")
+    peripheral[0x400:0x404] = (0).to_bytes(4, "little")
+    peripheral[0x414:0x418] = (0).to_bytes(4, "little")
+    peripheral[0x550:0x554] = (0).to_bytes(4, "little")
+    radio = bytearray(0x1000)
+    radio[0x144:0x148] = (1 if cross_pending else 0).to_bytes(4, "little")
+    radio[0x544:0x548] = (1000).to_bytes(4, "little")
+    radio[0x548:0x54c] = (2000).to_bytes(4, "little")
+    radio[0x54c:0x550] = (900).to_bytes(4, "little")
+    calls = {0: {0: 1100}}
+    if interval > 0x95 and mode in (1, 2):
+        calls[1] = {0: guard_result}
+        calls[2] = {0: transition_result}
+        calls[3] = {0: 1}
+    else:
+        calls[1] = {0: transition_result}
+        calls[2] = {0: guard_result}
+    return (
+        {0: 0x12345678, 1: 0x89abcdef},
+        [(0x210015f0, bytes(controller)),
+         (descriptor, bytes((0, descriptor_limit, 0, 0))),
+         (0x41008000, bytes(peripheral)),
+         (0x4100c000, bytes(radio))],
+        calls,
+    )
+
+
+# Fixed controller state, rather than incoming arguments, selects every arm.
+# These cases deliberately include all three modes, the pending-mode path,
+# zero/nonzero next state, and both transition/cleanup results.
+REVIEWED_ORACLE_CASES[("net", 0x01020d1c)] = [
+    _controller_radio_transition_case(),
+    _controller_radio_transition_case(mode=1),
+    _controller_radio_transition_case(mode=2),
+    _controller_radio_transition_case(mode=1, pending_mode=1),
+    _controller_radio_transition_case(mode=2, pending_mode=2),
+    _controller_radio_transition_case(mode=1, next_mode=1),
+    _controller_radio_transition_case(mode=2, next_mode=2),
+    _controller_radio_transition_case(mode=1, next_mode=1,
+                                      transition_result=1),
+    _controller_radio_transition_case(mode=1, cleanup_pending=1,
+                                      guard_result=0),
+    # Callback-mask combinations: +0x58, +0x54, and the paired +0x4c/+0x50.
+    _controller_radio_transition_case(transition_result=1),
+    _controller_radio_transition_case(mode=1, pending_mode=1,
+                                      transition_result=1),
+    _controller_radio_transition_case(mode=2, pending_mode=1,
+                                      cross_pending=1),
+    _controller_radio_transition_case(mode=2, pending_mode=1,
+                                      cross_pending=1, descriptor_limit=2),
+    # RADIO cleanup register publication and both valid high-interval guards.
+    _controller_radio_transition_case(radio_cleanup=1),
+    _controller_radio_transition_case(mode=1, interval=200,
+                                      guard_result=0),
+    _controller_radio_transition_case(mode=2, interval=200,
+                                      guard_result=-1),
+    # Invalid validator result reaches the reviewed noreturn assertion sink.
+    _controller_radio_transition_case(mode=1, interval=200,
+                                      guard_result=1),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01020d1c)] = {
+    0x01023de8: 0,
+    0x010218d8: 0,
+    0x010218e4: 0,
+    0x01025cf0: 0,
+    0x01021614: 2,
+    0x010215d8: 2,
+    0x010215f4: 2,
+    0x01021634: 2,
+    0x01020a6c: 3,
+    0x01020500: 0,
+    0x01025be0: 0,
+    0x01008d00: 2,
+    0x00080000: 2,
+}
+
+
+def _controller_radio_request_state_clear_case(initial):
+    """Complete five-byte request state; only bytes 0..2 may be cleared."""
+    assert len(initial) == 5
+    return ({}, [(0x210014dc, bytes(initial))], {})
+
+
+REVIEWED_ORACLE_CASES[("net", 0x0101fdc0)] = [
+    _controller_radio_request_state_clear_case((1, 2, 3, 4, 5)),
+    _controller_radio_request_state_clear_case((0xff, 0x80, 0x7f, 0xa5, 0x5a)),
+]
+
+
+def _controller_radio_event1_dispatch_case(active, context, event):
+    """Fixed owner slot plus complete byte selecting either tail target."""
+    owner = emu.SCRATCH + 0x7400
+    global_words = bytearray(12)
+    global_words[4:8] = owner.to_bytes(4, "little")
+    owner_image = bytearray(0x300)
+    owner_image[0x2ee] = active
+    return (
+        {0: context, 1: event},
+        [(0x21000f68, bytes(global_words)), (owner, bytes(owner_image))],
+        {},
+    )
+
+
+REVIEWED_ORACLE_CASES[("net", 0x01016144)] = [
+    _controller_radio_event1_dispatch_case(0, emu.SCRATCH + 0x7000, 1),
+    _controller_radio_event1_dispatch_case(0, emu.SCRATCH + 0x7100, 0xa5),
+    _controller_radio_event1_dispatch_case(1, emu.SCRATCH + 0x7200, 1),
+    _controller_radio_event1_dispatch_case(0xff, emu.SCRATCH + 0x7300, 0xa5),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01016144)] = {
+    0x0100b594: 2,
+    0x01014b18: 2,
+}
+
 _CHANNEL_OPTION_BYTES = (
     emu.SCRATCH + 0x1600,
     emu.SCRATCH + 0x1604,
@@ -14312,6 +16092,40 @@ REVIEWED_INTERNAL_CODE_REGIONS = {
 # modes first can manufacture matching fault parity before their private
 # multi-register workers execute, so require the production pointer count.
 REVIEWED_NPTR_COUNTS = {
+    # Work handler has exactly one transport pointer; queue results are fully
+    # bounded by the reviewed oracle sequences above.
+    ("app", 0x00080ab4): 1,
+    # The optional type output is supplied explicitly by each fixture.
+    ("app", 0x000809b0): 1,
+    ("net", 0x0101a38c): 1,
+    # IPC callback ABI is exactly (context pointer, packet pointer); both full
+    # pointee graphs are supplied by the reviewed cases.
+    ("app", 0x00015960): 2,
+    # r0 is the persistent device context.  The optional r2 payload is
+    # supplied explicitly because the intervening r1 command selector makes
+    # generic contiguous nptr modes inapplicable.
+    ("app", 0x00026f74): 1,
+    # key_event_thread consumes only its r0 context pointer; r1/r2 are unused
+    # scalar thread-entry arguments and every reviewed case supplies them.
+    ("app", 0x0002955c): 1,
+    # Fixtures supply the noncontiguous file/function/expression pointers.
+    ("app", 0x00076a94): 1,
+    # Complete fixtures provide the event buffer explicitly; one pointer mode
+    # avoids replaying all terminal assertion paths under synthetic ABIs.
+    ("app", 0x000753ec): 1,
+    # Complete fixtures provide both noncontiguous pointer arguments (events
+    # in r0 and poller in r2); one pointer ABI mode is sufficient and avoids
+    # replaying every terminal assertion path under synthetic alternatives.
+    ("app", 0x000751d0): 1,
+    # Only r0 is a pointer (canvas owner); r1 is unused and r2 is the phase.
+    # Repeating the million-instruction render under extra synthetic pointer
+    # modes adds no coverage and makes negative controls unnecessarily costly.
+    ("app", 0x0003b824): 1,
+    # Even-AI likewise consumes only its r0 canvas pointer; r1 is unused and
+    # r2 is the scalar phase.  Its three eight-frame render families are
+    # already covered by explicit state fixtures and must not be replayed
+    # under four synthetic pointer-count modes.
+    ("app", 0x0003bfe0): 1,
     # Four pointer arguments with complete reviewed pointee graphs; additional
     # generic pointer modes only duplicate hundreds of expensive TBB runs.
     ("app", 0x00042a64): 4,
@@ -14328,6 +16142,7 @@ REVIEWED_NPTR_COUNTS = {
     ("net", 0x010087f0): 2,  # result[16], value[8]
     ("net", 0x01008a28): 2,  # result[8], value[8]
     ("net", 0x010089f8): 3,  # result[8], left[8], right[8]
+    ("net", 0x0101a38c): 1,  # complete 24-byte scheduling snapshot output
 }
 
 def core_ctx(core):
@@ -14941,6 +16756,90 @@ REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00023af0)] = [
 ]
 
 
+def _panel_canvas_coord_case(canvas_gear=0, raster_gear=8,
+                             device_type=0, current_x=0x1234,
+                             current_y=0x5678, x_present=True,
+                             y_present=True, level=0, sink=0):
+    """Production-shaped calibration state for cal_panel_canvas_coord.
+
+    The two output pointers are independently optional.  The device singleton
+    supplies the handedness byte at +0 and both one-byte display gears at
+    +0xec0/+0xec1.  Keeping that singleton concrete at every dynamic accessor
+    call avoids the historical random-oracle timeout while the ordinary call
+    trace still verifies accessor/logger identity, order, and arguments.
+    """
+    device = emu.SCRATCH + 0x2000
+    x_out = emu.SCRATCH + 0x1000
+    y_out = emu.SCRATCH + 0x1100
+    image = bytearray(0xec2)
+    image[0] = int(device_type) & 0xff
+    image[0xec0] = int(raster_gear) & 0xff
+    image[0xec1] = int(canvas_gear) & 0xff
+    memory = [
+        (device, bytes(image)),
+        (x_out, int(current_x).to_bytes(4, "little", signed=True)),
+        (y_out, int(current_y).to_bytes(4, "little", signed=True)),
+        (0x2000230c, int(level).to_bytes(4, "little", signed=True)),
+        (0x20007554, int(sink).to_bytes(4, "little", signed=True)),
+    ]
+    # At most six calls occur (four accessors plus two log sinks).  Publishing
+    # the same singleton result at every ordinal is safe for void log calls and
+    # makes each subsequent get_device_info dereference deterministic.
+    oracles = {ordinal: {0: device} for ordinal in range(6)}
+    return ({0: x_out if x_present else 0,
+             1: y_out if y_present else 0}, memory, oracles)
+
+
+_PANEL_CANVAS_X = {
+    0: 0, 1: 22, 2: 8, 3: 0, 4: -4, 5: -8,
+    6: -10, 7: -12, 8: -14, 9: -16, 10: 0,
+}
+REVIEWED_ORACLE_CASES[("app", 0x00042fb0)] = [
+    # Null handling and every entry/default edge of the nine-way TBB.  The
+    # alternating handedness byte covers both the direct and negated X paths.
+    _panel_canvas_coord_case(x_present=False, y_present=False),
+    *[_panel_canvas_coord_case(
+        canvas_gear=gear, device_type=gear & 1,
+        current_x=0x1234 + gear, y_present=False)
+      for gear in range(11)],
+    _panel_canvas_coord_case(
+        canvas_gear=0xff, raster_gear=0xff, device_type=2,
+        current_x=99, current_y=99, level=1),
+    # Equality suppresses logging after the output write for both axes.
+    _panel_canvas_coord_case(
+        canvas_gear=1, device_type=0,
+        current_x=_PANEL_CANVAS_X[1], y_present=False, level=3),
+    _panel_canvas_coord_case(
+        raster_gear=7, current_y=35, x_present=False, level=3),
+    # Exact diagnostic threshold: a changed coordinate at level one remains
+    # silent, distinguishing the shipped >1 condition from >=1.
+    _panel_canvas_coord_case(
+        canvas_gear=1, current_x=99, y_present=False, level=1),
+    # Direct and buffered logger sinks for X and Y independently.
+    _panel_canvas_coord_case(
+        canvas_gear=4, current_x=99, y_present=False, level=3, sink=0),
+    _panel_canvas_coord_case(
+        canvas_gear=5, current_x=99, y_present=False, level=3, sink=1),
+    _panel_canvas_coord_case(
+        raster_gear=6, current_y=99, x_present=False, level=3, sink=0),
+    _panel_canvas_coord_case(
+        raster_gear=5, current_y=99, x_present=False, level=3, sink=1),
+    # Both output paths and both logger targets in a single invocation verify
+    # the accessor/log call ordering across the X-to-Y fallthrough boundary.
+    _panel_canvas_coord_case(
+        canvas_gear=9, raster_gear=4, device_type=1,
+        current_x=99, current_y=99, level=3, sink=0),
+    _panel_canvas_coord_case(
+        canvas_gear=2, raster_gear=3, device_type=0,
+        current_x=99, current_y=99, level=3, sink=1),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00042fb0)] = {
+    0x000167a8: 0,
+    0x00019c70: 4,
+    0x0007dda4: 4,
+}
+
+
 def _raster_case(current_height, current_offset, measured_height,
                  measured_offset, mode=0, level=0, sink=0):
     app = emu.SCRATCH + 0x2000
@@ -15175,6 +17074,136 @@ REVIEWED_ORACLE_CASES[("net", 0x01008650)] = [
 ]
 
 
+def _net_random_state_finalize_case(*seeds):
+    """Model successive eight-byte outputs from the installed RNG provider."""
+    writes = {}
+    for ordinal, (state_a, state_b) in enumerate(seeds):
+        payload = ((int(state_a) & 0xffffffff).to_bytes(4, "little") +
+                   (int(state_b) & 0xffffffff).to_bytes(4, "little"))
+        writes[ordinal] = [(0, 0, payload, 0x01009204)]
+    return ({}, [(0x21000ef4, bytes(16))], {}, writes)
+
+
+# FUN_01009204 is the sys_rand_get veneer and consumes only buffer plus length.
+# Include both seed-word asymmetries and a provider retry so the complete
+# two-word transition, its split-source rotate, and the refill backedge are
+# compared against writes made by the production-shaped provider oracle.
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0100f5d8)] = {0x01009204: 2}
+REVIEWED_ORACLE_CASES[("net", 0x0100f5d8)] = [
+    _net_random_state_finalize_case((1, 0)),
+    _net_random_state_finalize_case((0, 1)),
+    _net_random_state_finalize_case((0x01234567, 0x89abcdef)),
+    _net_random_state_finalize_case((0xffffffff, 0x80000000)),
+    _net_random_state_finalize_case((0, 0), (0x13579bdf, 0x2468ace0)),
+]
+
+
+def _net_ccm_result_case(active, saved_result, end_keystream=0,
+                         end_crypt=0, error=0, mic_status=0):
+    status = bytes((int(active) & 0xff, 0x5a,
+                    int(saved_result) & 0xff, 0xa5))
+    return (
+        {},
+        [(0x210014d8, status),
+         (0x4100e100, int(end_keystream).to_bytes(4, "little")),
+         (0x4100e104, int(end_crypt).to_bytes(4, "little")),
+         (0x4100e108, int(error).to_bytes(4, "little")),
+         (0x4100e400, int(mic_status).to_bytes(4, "little"))],
+    )
+
+
+# Cached completion plus every short-circuit point of the live CCM register
+# path.  Non-boolean event words and a wide MICSTATUS value prove the exact
+# zero/nonzero tests and shipped low-byte result contract.
+REVIEWED_STATE_CASES[("net", 0x0101fd8c)] = [
+    _net_ccm_result_case(0, 0x00),
+    _net_ccm_result_case(0, 0xa7, end_keystream=1, end_crypt=1,
+                         mic_status=0x55),
+    _net_ccm_result_case(1, 0x33, end_keystream=0),
+    _net_ccm_result_case(1, 0x33, end_keystream=7, end_crypt=0),
+    _net_ccm_result_case(1, 0x33, end_keystream=7, end_crypt=9, error=1,
+                         mic_status=0x44),
+    _net_ccm_result_case(1, 0x33, end_keystream=7, end_crypt=9, error=0,
+                         mic_status=0x123456a9),
+]
+
+
+def _net_handle_update_case(controller_state, handle=0x1234, value=0x5a,
+                            entry=None, context=None, transition_result=0):
+    oracles = {0: {0: int(controller_state) & 0xffffffff,
+                   1: 0x89abcdef}}
+    if int(controller_state) & 0x20000000:
+        oracles[1] = {0: int(entry or 0)}
+        if entry:
+            oracles[2] = {0: int(context or 0)}
+            if context:
+                oracles[3] = {0: int(transition_result) & 0xffffffff}
+    return ({0: int(handle) & 0xffff, 1: int(value) & 0xff}, [], oracles)
+
+
+# Bit 29 is the exact readiness gate.  The remaining cases stop at each real
+# failure boundary, then exercise two complete context transitions with
+# nonuniform handle/value/result data.  The explicit entry argument at ordinal
+# two prevents a stale-r0 reconstruction from receiving a false proof.
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102946c)] = {
+    0x0101f8cc: 0,
+    0x01009d18: 2,
+    0x0101e090: 1,
+    0x0101e15c: 3,
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102946c)] = [
+    _net_handle_update_case(0),
+    _net_handle_update_case(0x10000000),
+    _net_handle_update_case(0x20000000, entry=0),
+    _net_handle_update_case(0x20000000, entry=emu.SCRATCH + 0x1000,
+                            context=0),
+    _net_handle_update_case(0x20000000, handle=0x2468, value=0xa5,
+                            entry=emu.SCRATCH + 0x1000,
+                            context=emu.SCRATCH + 0x2000,
+                            transition_result=0),
+    _net_handle_update_case(0xe0000000, handle=0xffff, value=0xff,
+                            entry=emu.SCRATCH + 0x3000,
+                            context=emu.SCRATCH + 0x4000,
+                            transition_result=0x6d),
+]
+
+
+_NET_RESOURCE_FREE_MASK = emu.SCRATCH + 0x5000
+_NET_RESOURCE_CLAIMED_INDEX = emu.SCRATCH + 0x5100
+
+
+def _net_resource_claim_case(free_mask, output_seed=0xa5):
+    return (
+        {0: _NET_RESOURCE_FREE_MASK, 1: _NET_RESOURCE_CLAIMED_INDEX},
+        [(_NET_RESOURCE_FREE_MASK,
+          (int(free_mask) & 0xffffffff).to_bytes(4, "little")),
+         (_NET_RESOURCE_CLAIMED_INDEX,
+          bytes((int(output_seed) & 0xff,)))],
+    )
+
+
+# Empty, boundary-bit, and nonuniform masks prove highest-bit selection and
+# the exact remaining bitmap.  The last two cases change the word on the
+# compare-exchange read: one retries with a new mask, the other observes that
+# a competing claimant exhausted the pool.
+REVIEWED_STATE_CASES[("net", 0x01034328)] = [
+    _net_resource_claim_case(0),
+    _net_resource_claim_case(1),
+    _net_resource_claim_case(0x80000000),
+    _net_resource_claim_case(0x80000005),
+    _net_resource_claim_case(0x7fffffff),
+    _net_resource_claim_case(0x00010001),
+    _net_resource_claim_case(0x80000005),
+    _net_resource_claim_case(0x80000000, output_seed=0x6c),
+]
+ABSOLUTE_READ_TRANSITION_CASES[("net", 0x01034328)] = [
+    [], [], [], [], [], [],
+    [(_NET_RESOURCE_FREE_MASK, 2, 0x00000006)],
+    [(_NET_RESOURCE_FREE_MASK, 2, 0x00000000)],
+]
+REVIEWED_NPTR_COUNTS[("net", 0x01034328)] = 2
+
+
 # run_main_dispatch_thread has several calls whose argument registers are
 # intentionally inherited from earlier calls in the shipped code.  Record the
 # semantic callee contracts so stale r0-r3 values are excluded, while each
@@ -15270,6 +17299,1838 @@ REVIEWED_ORACLE_CASES[("app", 0x00058a54)] = [
     _att_create_pdu_case(4, 0x02, opcode=3, create_result=-7),
     _att_create_pdu_case(4, 0x02, opcode=6),
 ]
+
+
+def _status_notify_case(selector, box_state=0x42, variant=0,
+                        accessor_result=None):
+    """One complete BLE context/request for FUN_00021334.
+
+    Generic pointer synthesis used to alias the request and context for some
+    nptr modes.  It consequently replaced the context callback with bytes from
+    the request and recursively entered 0x2144c until the instruction budget
+    expired.  These bounded fixtures model the two distinct production
+    objects and keep every byte consumed by the status encoder explicit.
+    """
+    context = emu.SCRATCH + 0xc000
+    request = emu.SCRATCH + 0xe000
+    request_image = bytearray(16)
+    request_image[0] = 0xa5
+    request_image[1] = int(selector) & 0xff
+    request_image[2] = 0x3c
+    memory = [
+        (context + 0x000c, (0x00080001).to_bytes(4, "little")),
+        (context - 0x06b0, b"\x72"),
+        (context - 0x06af, b"\x39"),
+        (context + 0x0759, b"\x2b"),
+        (context + 0x0844, bytes((int(box_state) & 0xff,))),
+        (context + 0x0846, bytes((int(variant) & 0xff,))),
+        (request, bytes(request_image)),
+        (0x20018d99, b"\x55"),
+        (0x20018d9a, b"\x44"),
+    ]
+    oracles = {}
+    if accessor_result is not None:
+        # Ordinal zero is the explicit memset; the selected box accessor is
+        # ordinal one and the two-argument transport callback is ordinal two.
+        oracles[1] = {0: int(accessor_result) & 0xff}
+    return ({0: context, 1: request}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00021334)] = [
+    # Every TBB selector, including all default entries.
+    *[_status_notify_case(selector) for selector in range(0x09, 0x13)],
+    # Both zero/out-of-range default families and all three high C9 replies.
+    _status_notify_case(0x00),
+    _status_notify_case(0x13),
+    _status_notify_case(0xf0),
+    _status_notify_case(0xf1),
+    _status_notify_case(0xf2),
+    # Every nested box-state conversion edge, including the variant splits.
+    _status_notify_case(0x0a, box_state=0x5c),
+    _status_notify_case(0x0a, box_state=0x5d, variant=0),
+    _status_notify_case(0x0a, box_state=0x5d, variant=1),
+    _status_notify_case(0x0a, box_state=0x5e, variant=0),
+    _status_notify_case(0x0a, box_state=0x5e, variant=1),
+    _status_notify_case(0x0a, box_state=0x5f),
+    _status_notify_case(0x0a, box_state=0x60),
+    _status_notify_case(0x0a, box_state=0x61),
+    # Nonuniform accessor returns catch constant/substitution cheats.
+    _status_notify_case(0x0e, accessor_result=0x6d),
+    _status_notify_case(0x0f, accessor_result=0x83),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00021334)] = {
+    0x00086c78: 3,
+    0x00032784: 0,
+    0x000327c4: 0,
+    0x00080000: 2,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00021334)] = [
+    # Both compilers place the complete transmitted record at entry-SP-40.
+    # Scope comparison to the transport callback: the preceding memset sees
+    # only its +4 interior before those seventeen bytes have been initialized.
+    ("status-notify-packet", -40, -40, 21, None, None, (0x00080000,)),
+]
+
+
+def _onboarding_render_case(mode, secondary=0, retry=0, attempt=0,
+                            saved_time=0):
+    """Concrete device/status objects for the callee-selected render modes."""
+    device = emu.SCRATCH + 0xc000
+    status = emu.SCRATCH + 0xe000
+    device_image = bytearray(0x1020)
+    status_image = bytearray(16)
+    device_image[0xee4] = 0x5a
+    device_image[0x1014:0x1018] = status.to_bytes(4, "little")
+    status_image[2] = int(mode) & 0xff
+    status_image[3] = 0
+    saved_time = device if saved_time == "now" else int(saved_time)
+    status_image[4:12] = saved_time.to_bytes(8, "little")
+    memory = [
+        (device, bytes(device_image)),
+        (status, bytes(status_image)),
+        (0x2001cdce, bytes((int(secondary) & 0xff,))),
+        (0x2001cdd0, bytes((int(retry) & 0xff,))),
+        (0x2001cdd1, bytes((int(retry) & 0xff,))),
+        (0x2001cdd2, bytes((int(attempt) & 0xff,))),
+    ]
+    # get_device_info is called at different ordinals in every render arm.
+    # Supplying the same concrete singleton at all boundaries is harmless for
+    # scalar/layout oracles and makes every device-info dereference valid.
+    oracles = {i: {0: device, 1: 0} for i in range(200)}
+    return ({}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x000417f8)] = [
+    # Every TBH entry (including aliases and default), plus the timed retry,
+    # secondary-screen and one-shot redraw gates that choose the substantial
+    # nested bodies for modes 5/6/19/20/21.
+    *[_onboarding_render_case(mode) for mode in
+      (0, 3, 4, 5, 6, 8, 15, 17, 19, 20, 21, 22, 23, 0xff)],
+    _onboarding_render_case(0, saved_time="now"),
+    _onboarding_render_case(3, retry=1, saved_time="now"),
+    _onboarding_render_case(3, retry=6),
+    _onboarding_render_case(5, secondary=1, saved_time="now"),
+    _onboarding_render_case(5, secondary=2, retry=1),
+    _onboarding_render_case(5, secondary=2, retry=1, attempt=1),
+    _onboarding_render_case(20, secondary=1),
+    _onboarding_render_case(21, secondary=1),
+    _onboarding_render_case(6, secondary=1, saved_time="now"),
+    _onboarding_render_case(6, secondary=2, retry=1),
+    _onboarding_render_case(19, secondary=1),
+    _onboarding_render_case(19, secondary=2, retry=1),
+    _onboarding_render_case(23, retry=1, saved_time="now"),
+    _onboarding_render_case(23, retry=6),
+]
+
+
+def _net_clock_batch_case(active_requests, pending_requests):
+    context = bytearray(16)
+    context[10] = int(active_requests) & 0xff
+    context[11] = 0xa5  # stale published value must always be replaced
+    context[12] = int(pending_requests) & 0xff
+    return ({}, [(0x21001670, bytes(context))], {})
+
+
+REVIEWED_ORACLE_CASES[("net", 0x010217cc)] = [
+    # Disabled, minimum-one, exact division, rounded division and byte-limit
+    # boundaries for the complete onoff-manager batch calculation.
+    _net_clock_batch_case(0, 0),
+    _net_clock_batch_case(0, 255),
+    _net_clock_batch_case(1, 0),
+    _net_clock_batch_case(2, 1),
+    _net_clock_batch_case(2, 4),
+    _net_clock_batch_case(3, 8),
+    _net_clock_batch_case(10, 255),
+    _net_clock_batch_case(255, 255),
+]
+
+
+_DISPLAY_THREAD_CONTEXT = emu.SCRATCH + 0xc000
+
+
+def _display_thread_case(phase, opcode=None, parameter_kind=0,
+                         selector=1, payload=7, parameter=0x12345678,
+                         current_panel=3, runtime_state=0,
+                         log_level=0, alternate_sink=0,
+                         queue_status=None):
+    """One complete display worker iteration with a concrete 24-byte record."""
+    context = bytearray(0xc00)
+    context[1] = int(runtime_state) & 0xff
+    context[0xd5] = int(current_panel) & 0xff
+    record = bytearray(24)
+    if opcode is not None:
+        record[0] = int(opcode) & 0xff
+        struct.pack_into("<H", record, 2, int(parameter_kind) & 0xffff)
+        encoded = (int(selector) | (int(payload) << 8)
+                   if parameter_kind == 2 else int(parameter))
+        struct.pack_into("<I", record, 4, encoded & 0xffffffff)
+
+    memory = [
+        (_DISPLAY_THREAD_CONTEXT, bytes(context)),
+        (0x2000230c, int(log_level).to_bytes(4, "little", signed=True)),
+        (0x20007554, int(alternate_sink).to_bytes(4, "little", signed=True)),
+        (0x20002544, (2).to_bytes(4, "little", signed=True)),
+        (0x200038c4, bytes(0x28)),
+        (0x20004ce0, bytes(0x40)),
+        (0x2001d446, b"\0"),
+        (0x2001d447, bytes((int(phase) & 0xff, 0x5a))),
+    ]
+
+    # Without logging, queue receive is ordinal five: initial memset,
+    # timer-init, canvas-select, per-iteration memset, 64-bit divide, receive.
+    # Each initial logger adds one; a busy runtime adds sleep and, when
+    # enabled, the wait logger too.
+    queue_ordinal = 5 + (2 if log_level > 2 else 0)
+    if runtime_state in (1, 8):
+        queue_ordinal += 1 + (1 if log_level > 2 else 0)
+    status = (0 if opcode is not None else -35) if queue_status is None else queue_status
+    oracles = {queue_ordinal: {0: int(status) & 0xffffffff}}
+    writes = ({queue_ordinal: [(1, 0, bytes(record), 0x00072240)]}
+              if status == 0 else {})
+    return ({0: _DISPLAY_THREAD_CONTEXT}, memory, oracles, writes)
+
+
+_display_thread_cases = [
+    # Idle start/stop parameter encodings, malformed records, and ignored op.
+    _display_thread_case(0, 2, 0, current_panel=3),
+    _display_thread_case(0, 2, 2, selector=1, payload=9),
+    _display_thread_case(0, 2, 2, selector=0, payload=9),
+    _display_thread_case(0, 3, 0, current_panel=4),
+    _display_thread_case(0, 3, 2, selector=1, payload=6),
+    _display_thread_case(0, 3, 2, selector=2, payload=6),
+    _display_thread_case(0, 4, parameter=0x87654321),
+    # Active queue timeout/retry and every live message opcode.
+    _display_thread_case(1, None, current_panel=5),
+    _display_thread_case(1, None, current_panel=0),
+    _display_thread_case(1, 2, 0, current_panel=2),
+    _display_thread_case(1, 3, 0, current_panel=2),
+    _display_thread_case(1, 4, parameter=0x13579bdf, current_panel=2),
+    _display_thread_case(1, 5, current_panel=2),
+    _display_thread_case(1, 6, current_panel=2),
+    _display_thread_case(1, 7, current_panel=2),
+    _display_thread_case(1, 8, current_panel=2),
+    # Stopping, corrupt phase, both logger sinks, and a finite busy wait.
+    _display_thread_case(2, 5, current_panel=2),
+    _display_thread_case(9, 5, current_panel=2),
+    _display_thread_case(1, 4, parameter=17, current_panel=2,
+                         log_level=4, alternate_sink=0),
+    _display_thread_case(1, 5, current_panel=2,
+                         log_level=4, alternate_sink=1),
+    _display_thread_case(0, None, runtime_state=1),
+]
+REVIEWED_ORACLE_CASES[("app", 0x00049090)] = _display_thread_cases
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00049090)] = {
+    0x0000e244: 4,
+    0x000167a8: 0,
+    0x00019c70: 0,
+    0x000431b4: 1,
+    0x00048e28: 4,
+    0x00048ff4: 0,
+    0x00049000: 1,
+    0x0004906c: 0,
+    0x00072240: 4,
+    0x0007cb8a: 2,
+    0x0007d6f4: 1,
+    0x0007dda4: 3,
+    0x00086726: 3,
+    0x00086c78: 3,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x00049090)] = {
+    **{(0x0007dda4, fmt): 2 for fmt in (
+        0x000efb2e, 0x000efb50, 0x000efb7a, 0x000efb9f,
+        0x000efbb7, 0x000efc00, 0x000efc2d, 0x000efc62,
+        0x000efcaf, 0x000efcdf, 0x000efd03, 0x000efd45,
+        0x000efd6f, 0x000efef4, 0x000eff0e, 0x000eff2c,
+        0x000eff5c, 0x000eff70, 0x000effaf,
+    )},
+    **{(0x0007dda4, fmt): 3 for fmt in (
+        0x000efbe5, 0x000efc92, 0x000efd2d, 0x000efe74,
+        0x000efebc,
+    )},
+}
+REVIEWED_NPTR_COUNTS[("app", 0x00049090)] = 1
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00049090)] = [
+    # The complete 24-byte queue record is at entry-SP-64 in the shipped
+    # register-rich loop and entry-SP-56 in the readable structured body.
+    ("display-queue-record", -64, -56, 24, None, None,
+     (0x00086c78, 0x00072240)),
+]
+ABSOLUTE_READ_TRANSITION_CASES[("app", 0x00049090)] = [
+    *([[]] * (len(_display_thread_cases) - 1)),
+    [(_DISPLAY_THREAD_CONTEXT + 1, 1, 0)],
+]
+
+
+def _lc3_spec_encode_case(dt, sample_rate, bandwidth, quantized,
+                          significant_count, lsb_mode, accumulator_bits=0):
+    bits = emu.SCRATCH + 0x1000
+    output = emu.SCRATCH + 0x2000
+    quantized_address = emu.SCRATCH + 0x3000
+    side = emu.SCRATCH + 0x4000
+    spectrum_address = emu.SCRATCH + 0x5000
+
+    bits_image = bytearray(64)
+    struct.pack_into("<I", bits_image, 8, 0x00ffffff)  # AC range
+    struct.pack_into("<i", bits_image, 12, -1)         # AC cache
+    struct.pack_into("<I", bits_image, 32, accumulator_bits)
+    for offset, pointer in ((40, output), (44, output + 400),
+                            (48, output), (52, output + 400)):
+        struct.pack_into("<I", bits_image, offset, pointer)
+
+    quantized_image = bytearray(800)
+    for index, value in enumerate(quantized):
+        struct.pack_into("<H", quantized_image, 2 * index,
+                         int(value) & 0xffff)
+    side_image = bytearray(12)
+    struct.pack_into("<i", side_image, 4, int(significant_count))
+    side_image[8] = bool(lsb_mode)
+    spectrum_image = bytearray(500 * 4)
+    for index in range(500):
+        # Nonuniform bounded values exercise positive/negative residual and
+        # noise-estimation comparisons without NaNs or infinities.
+        value = ((index % 11) - 5) * 0.1875
+        struct.pack_into("<f", spectrum_image, 4 * index, value)
+
+    memory = [(bits, bytes(bits_image)), (output, bytes(400)),
+              (quantized_address, bytes(quantized_image)),
+              (side, bytes(side_image)),
+              (spectrum_address, bytes(spectrum_image))]
+    # Only lc3_get_bits_left has a scalar result.  The other two boundaries
+    # are void accumulator/renormalization helpers, so the common bounded r0
+    # value is ignored there while keeping the residual/LSB budget finite.
+    oracles = {ordinal: {0: 8} for ordinal in range(200)}
+    return ({0: bits, 1: dt, 2: sample_rate, 3: bandwidth},
+            memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0006f9c0)] = [
+    _lc3_spec_encode_case(0, 0, 0, (), 0, False),
+    _lc3_spec_encode_case(1, 0, 0, (0, 0), 2, False),
+    _lc3_spec_encode_case(0, 0, 0, (2, 0), 2, False),
+    _lc3_spec_encode_case(0, 0, 0, (8, 0), 2, True),
+    _lc3_spec_encode_case(1, 1, 1, (3, 4, 0, 2), 4, False),
+    _lc3_spec_encode_case(0, 2, 2, (17, 10, 4, 3, 0, 8), 6, True),
+    _lc3_spec_encode_case(1, 0, 0, (2, 3), 2, False,
+                          accumulator_bits=31),
+    _lc3_spec_encode_case(1, 1, 2, (31, 16, 7, 2), 4, True),
+]
+
+
+def _draw_message_case(icon_type=None, sink=0, body=True, subtitle=True,
+                       rendered_body=True):
+    """Bounded notification-renderer state with exact formatter ownership.
+
+    The icon selector is returned by the second application call after the
+    three initial buffer clears.  Random oracle values previously selected
+    only the default arm and, more importantly, the opaque snprintf wrapper
+    never populated its output, so every body path returned early.  These
+    fixtures cover the null routes, all five concrete icons, the fallback
+    title/subtitle split, all body-format families, and both centered-message
+    empty/nonempty exits.  Formatter writes are tied to both ordinal and the
+    reviewed FUN_00077914 target.
+    """
+    level = [(0x20007554, int(sink).to_bytes(4, "little"))]
+    if icon_type is None:
+        return ({0: 7, 1: 0}, level, {})
+
+    message = emu.SCRATCH + 0x4800
+    record = bytearray(0xb0)
+    record[0:4] = (0x10203040).to_bytes(4, "little")
+    record[0x30:0x36] = b"TITLE\0"
+    if body:
+        record[0x50:0x55] = b"BODY\0"
+    if subtitle:
+        record[0x70:0x74] = b"SUB\0"
+    record[0x90:0x98] = b"PACKAGE\0"
+    memory = [(message, bytes(record))] + level
+    oracles = {3: {0: 2}, 4: {0: int(icon_type)}}
+    writes = {}
+    if icon_type == 2:
+        writes[7] = [(0, 0, b"PACKAGE\0", 0x00077914)]
+        writes[17] = [(0, 0, (b"BODY\0" if rendered_body else b"\0"),
+                       0x00077914)]
+    else:
+        writes[10] = [(0, 0, b"HEADING\0", 0x00077914)]
+        writes[28] = [(0, 0, (b"BODY PACKAGE\0" if rendered_body else b"\0"),
+                        0x00077914)]
+    return ({0: 7, 1: message}, memory, oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00035afc)] = [
+    _draw_message_case(None, sink=0),
+    _draw_message_case(None, sink=1),
+    _draw_message_case(0, body=False, subtitle=False),
+    _draw_message_case(1, body=True, subtitle=False),
+    _draw_message_case(2, rendered_body=False),
+    _draw_message_case(2, rendered_body=True),
+    _draw_message_case(3, body=True, subtitle=True),
+    _draw_message_case(4, body=True, subtitle=False),
+    _draw_message_case(5, body=False, subtitle=False),
+    _draw_message_case(5, body=True, subtitle=True),
+]
+
+
+def _slave_display_case(event, command=0, value=0, work_mode=0,
+                        ready=1, aux=0, flag=0, system_event=0,
+                        onboarding_mode=0, message_ready=0,
+                        unread_mode=0):
+    """One production-shaped iteration of the nonreturning slave worker.
+
+    The worker, the device singleton, and its embedded dispatch state are the
+    same object in firmware.  Separate pointed-to persistence/event records
+    keep every indirect access concrete while the fifty-event reviewed prefix
+    reaches the following iteration after each selected handler completes.
+    """
+    context = emu.SCRATCH + 0xc000
+    dnd = emu.SCRATCH + 0xe000
+    onboarding = emu.SCRATCH + 0xe100
+    quick_note = emu.SCRATCH + 0xe200
+    system_record = emu.SCRATCH + 0xe300
+    image = bytearray(0x1100)
+    image[0] = 2
+    image[0xcb] = 0x2a
+    image[0xd4] = int(event) & 0xff
+    image[0xd5] = int(work_mode) & 0xff
+    image[0xe5] = int(command) & 0xff
+    image[0xe6] = int(value) & 0xff
+    image[0xe7] = int(aux) & 0xff
+    image[0xe8] = int(flag) & 0xff
+    image[0xed5] = 0x2a
+    image[0xed7] = 0x2a
+    image[0xfe6] = int(ready) & 0xff
+    image[0x1010:0x1014] = dnd.to_bytes(4, "little")
+    image[0x1014:0x1018] = onboarding.to_bytes(4, "little")
+    image[0x1020:0x1024] = quick_note.to_bytes(4, "little")
+    image[0x1054:0x1058] = system_record.to_bytes(4, "little")
+    image[0x108f] = int(message_ready) & 0xff
+    image[0xdd] = 3
+    image[0xd5] = int(unread_mode if event == 7 and command == 3
+                      else work_mode) & 0xff
+    onboarding_image = bytearray(0x30)
+    onboarding_image[1] = 0
+    onboarding_image[2] = int(onboarding_mode) & 0xff
+    memory = [
+        (context, bytes(image)),
+        (dnd, bytes(16)),
+        (onboarding, bytes(onboarding_image)),
+        (quick_note, bytes(16)),
+        (system_record, int(system_event).to_bytes(4, "little")),
+        (0x2000230c, bytes(4)),       # logging disabled
+        (0x20007554, bytes(4)),
+        (0x20018d96, b"\0"),
+        (0x20018d97, b"\0"),
+        (0x20018d9f, b"\0"),
+        (0x20018d8d, b"\0"),
+        (0x20018462, b"\x03"),
+        (0x2001cdce, b"\x12"),
+        (0x2001b9ab, b"\0"),
+        (0x20007b38, bytes(4)),
+    ]
+    # Every accessor observes the concrete singleton.  Other callees' return
+    # values are harmless but deliberately nonzero, selecting the substantial
+    # battery/message/onboarding arms instead of manufacturing null pointers.
+    oracles = {i: {0: context, 1: 0x12345678} for i in range(160)}
+    return ({0: context, 1: 0x11223344, 2: 0x55667788, 3: 0x7e},
+            memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00027cfe)] = [
+    _slave_display_case(0, work_mode=6),
+    _slave_display_case(1, ready=0),
+    _slave_display_case(1, ready=1),
+    _slave_display_case(2, command=0, work_mode=5),
+    _slave_display_case(2, command=11, value=9, aux=8, work_mode=6),
+    _slave_display_case(3),
+    _slave_display_case(4),
+    _slave_display_case(5),
+    _slave_display_case(6, command=9, value=0x35),
+    _slave_display_case(6, command=1, value=0, work_mode=12),
+    _slave_display_case(6, command=1, value=1, work_mode=5),
+    _slave_display_case(6, command=2, value=0x21, work_mode=6),
+    _slave_display_case(6, command=2, value=0x21, work_mode=5),
+    _slave_display_case(6, command=2, value=0x32, work_mode=5),
+    _slave_display_case(6, command=2, value=0x43, work_mode=6),
+    _slave_display_case(6, command=2, value=0x54, work_mode=5),
+    _slave_display_case(6, command=2, value=0x65, work_mode=6),
+    _slave_display_case(6, command=2, value=0x76, work_mode=5),
+    _slave_display_case(6, command=2, value=0x80, work_mode=5),
+    _slave_display_case(6, command=3, value=1, work_mode=9),
+    _slave_display_case(6, command=3, value=0, work_mode=9),
+    _slave_display_case(6, command=3, value=1, work_mode=8),
+    _slave_display_case(6, command=4, value=3, aux=0x12, flag=1,
+                        system_event=14, onboarding_mode=3),
+    _slave_display_case(6, command=4, value=11, aux=1, flag=0,
+                        onboarding_mode=11),
+    _slave_display_case(6, command=5, value=1),
+    _slave_display_case(6, command=6, value=1, work_mode=10),
+    _slave_display_case(6, command=6, value=0, work_mode=10),
+    _slave_display_case(6, command=7, value=0x44, work_mode=6),
+    _slave_display_case(6, command=7, value=0x44, work_mode=5),
+    _slave_display_case(6, command=8, value=2),
+    _slave_display_case(6, command=8, value=3),
+    _slave_display_case(6, command=10),
+    _slave_display_case(7, command=0),
+    _slave_display_case(7, command=1),
+    _slave_display_case(7, command=2),
+    _slave_display_case(7, command=3, message_ready=1, unread_mode=3),
+    _slave_display_case(8, command=1, work_mode=4),
+    _slave_display_case(8, command=0, work_mode=5),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00027cfe)] = {
+    0x000167a8: 0,  # get_device_info()
+    0x0001694c: 1,  # change_work_mode_to(mode)
+    0x00019c70: 2,  # debug_print(format, tag, ...); logs disabled in fixtures
+    0x00023af0: 1,  # upgradeAppLanguageInfoToFlash(language)
+    0x00023bfc: 1,  # upgradeDashboardStartupModeInfoToFlash(mode)
+    0x00023eec: 0,  # get_pending_language_code()
+    0x0002bc2c: 3,  # trigger_screen_state_change(reason, context, enabled)
+    0x0002bed0: 1,  # check_battery_critical(context)
+    0x0002bef4: 3,  # update_persist_task_status(context, task, state)
+    0x0002bffc: 3,  # update_temp_task_status(context, task, state)
+    0x0002c0e8: 1,  # update_persist_task_status_to_idle(context)
+    0x0002c1fc: 0,  # check_pending_messages_flag()
+    0x00032ee4: 0,  # is_battery_critical()
+    0x00033cf8: 0,  # msg_content_recalc_unread()
+    0x00033d58: 1,  # clear_timeout_message(reason)
+    0x00034274: 0,  # msg_count_dec()
+    0x0003439c: 0,  # push_message_3439c()
+    0x0003441c: 0,  # msg_content_decrement_timer()
+    0x0003443c: 1,  # set_message_indicator(value)
+    0x0003707c: 1,  # handle_touch_single_click(side)
+    0x00037108: 1,  # handle_dashboard_action(side)
+    0x000371e8: 1,  # handle_stocks_action(side)
+    0x0003cb4c: 0,  # update_not_disturb_settings()
+    0x00040708: 0,  # onboarding_retry_watchdog_update()
+    0x000429f8: 0,  # refresh_onboarding_retry_state()
+    0x00042fb0: 2,  # cal_panel_canvas_coord(panel, canvas)
+    0x00047058: 1,  # set_brightness_to_panel_reg_in_running(level)
+    0x000498c0: 1,  # display_DelayClose(delay_ms)
+    0x00049938: 2,  # display_inputEvent(event, pressed)
+    0x000499b8: 0,  # display_MasterSendClose()
+    0x00049a28: 1,  # display_powerEvent(event)
+    0x0007cb4c: 1,  # process_sync_buffer(object)
+    0x0007cb50: 0,  # process_touch_event()
+    0x0007cb54: 1,  # set_atomic_flag_bits(flags)
+    0x0007cb8a: 2,  # wait_for_event(timeout, flags)
+    0x0007cb2c: 0,  # k_uptime_get_1()
+    0x0007cbfe: 2,  # set_shutdown_flag(context, publish)
+    0x0007c132: 2,  # peer_address_is_uninitialized(low, high)
+    0x0007cdb6: 2,  # prepare_quick_note_mode(context, side)
+    0x0007cce8: 2,  # update_display_status(context, status)
+    0x0007d224: 0,  # get_timestamp()
+    0x0007d3be: 0,  # reset_onboarding_bitmap_state()
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("app", 0x00027cfe)] = {
+    # The 64-bit timeout follows AAPCS even-register alignment: r1 is an
+    # unused hole and the complete UINT64_MAX value occupies r2:r3.
+    0x0007cb48: (0, 2, 3),
+}
+
+
+def _sync_to_slave_case(command, gate=None, current_mode=0, device_mode=0,
+                        battery_critical=0, role=1, uptime=10000,
+                        last_sync=0, active_command=0, dispatch=False,
+                        payload_length=0, late_reject=False):
+    """Concrete gate, throttle, dispatch, and late-validation paths."""
+    context = emu.SCRATCH + 0x1000
+    device = emu.SCRATCH + 0x3000
+    snapshot = emu.SCRATCH + 0x4000
+    mode_record = emu.SCRATCH + 0x4100
+    payload = emu.SCRATCH + 0x5000
+    image = bytearray(0x1080)
+    image[0] = int(role) & 0xff
+    image[0xd0:0xd4] = (0xaabbccdd).to_bytes(4, "little")
+    image[0xd5] = 9 if late_reject else 5
+    image[0xec] = 8 if late_reject else (0 if dispatch else 1)
+    image[0xeb] = 8 if late_reject else 1
+    image[0xee4] = 8 if late_reject else 2
+    image[0xfec:0xff0] = snapshot.to_bytes(4, "little")
+    image[0x1000:0x1004] = mode_record.to_bytes(4, "little")
+    image[0x1060:0x1068] = int(last_sync).to_bytes(8, "little")
+    # Reviewed data-derived callback target.  Both machines invoke the same
+    # external Thumb sentinel after building their complete 0x21-byte packet.
+    image[0x774:0x778] = (0x00080001).to_bytes(4, "little")
+    device_image = bytearray(8)
+    device_image[1] = int(device_mode) & 0xff
+    memory = [
+        (context, bytes(image)), (device, bytes(device_image)),
+        (snapshot, (0x12345678).to_bytes(4, "little")),
+        (mode_record, bytes(16)),
+        (payload, bytes((0x31, 0x52, 0x73, 0x94, 0xb5, 0xd6, 0xf7, 0x18))),
+        (0x2000f6e6, bytes(2)), (0x20018d8f, bytes(1)),
+        (0x20018d9c, bytes(1)),
+        (0x2000302b, bytes((int(active_command) & 0xff,))),
+        (0x2000230c, bytes(4)), (0x20007554, bytes(4)),
+    ]
+    oracles = {0: {0: 0}, 1: {0: int(current_mode)}}
+    if gate != "work-mode":
+        oracles[2] = {0: device}
+        if gate != "device-mode":
+            oracles[3] = {0: int(battery_critical)}
+            if gate not in ("battery", "role"):
+                oracles[4] = {
+                    0: int(uptime) & 0xffffffff,
+                    1: (int(uptime) >> 32) & 0xffffffff,
+                }
+    # The real memset owns all 248 packet bytes.  The dispatch callback then
+    # acknowledges via context+0x105a, bounding the wait loop immediately.
+    writes = {0: [(0, 0, bytes(248), 0x00086c78)]}
+    if dispatch:
+        writes[5] = [(None, context + 0x105a, b"\x02")]
+    payload_arg = payload if payload_length else 0
+    return ({0: context, 1: int(command), 2: payload_arg,
+             3: int(payload_length)}, memory, oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00026f74)] = [
+    _sync_to_slave_case(3, gate="work-mode", current_mode=1),
+    _sync_to_slave_case(3, gate="device-mode", device_mode=8),
+    _sync_to_slave_case(3, gate="battery", battery_critical=1),
+    _sync_to_slave_case(3, gate="role", role=2),
+    _sync_to_slave_case(12, uptime=500),
+    _sync_to_slave_case(3, dispatch=True, payload_length=8),
+    _sync_to_slave_case(0, late_reject=True),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00026f74)] = {
+    0x000167a8: 0,  # get_device_info()
+    0x00016940: 0,  # get_current_work_mode()
+    0x00019c70: 2,  # debug_print(format, function, ...)
+    0x00032ee4: 0,  # is_battery_critical()
+    0x0007cb2c: 0,  # k_uptime_get_1()
+    0x0007cb8e: 1,  # one-millisecond wait
+    0x0007d230: 1,  # restore synchronization value
+    0x0007dda4: 2,  # log_message(format, function, ...)
+    0x00086c04: 3,  # memcpy
+    0x00086c78: 3,  # memset
+    0x00080000: 2,  # packet transport callback(packet, 0x21)
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00026f74)] = [
+    # Both frames place the 252-byte packet at entry-SP-292.  The first four
+    # header bytes precede the memset's packet+4 argument; compare the whole
+    # initialized transport object at its callback boundary.
+    ("sync-packet", -292, -292, 252, None, (5,), (0x00080000,)),
+]
+
+
+def _local_esbs_recv_case(command, sequence=2, direction=0,
+                          context_mode=5, received_mode=6,
+                          suspend_state=0, receive_busy=False,
+                          packet_status=4, packet_side=0,
+                          message_state=0):
+    """Production-shaped ESB IPC record and complete reachable object graph."""
+    context = emu.SCRATCH + 0x1000
+    packet = emu.SCRATCH + 0x3000
+    master = emu.SCRATCH + 0x4000
+    screen = emu.SCRATCH + 0x5200
+    task = emu.SCRATCH + 0x5300
+    timestamp_store = emu.SCRATCH + 0x5400
+    mirror = emu.SCRATCH + 0x5500
+    alternate_up = emu.SCRATCH + 0x5800
+    alternate_down = emu.SCRATCH + 0x5b00
+    message = emu.SCRATCH + 0x5e00
+    image = bytearray(0x1100)
+    image[0xc9] = 0x80
+    image[0xd5] = int(context_mode) & 0xff
+    image[0xda] = 1
+    image[0xce] = 1 if receive_busy else 0
+    image[0xcf] = 1 if receive_busy else 0
+    image[0xfe6] = int(suspend_state) & 0xff
+    image[0xfec:0xff0] = timestamp_store.to_bytes(4, "little")
+    image[0xff4:0xff8] = mirror.to_bytes(4, "little")
+    image[0x1024:0x1028] = alternate_up.to_bytes(4, "little")
+    image[0x1028:0x102c] = alternate_down.to_bytes(4, "little")
+    record = bytearray(21)
+    record[0] = (int(command) | int(direction)) & 0xff
+    record[1] = int(received_mode) & 0xff
+    record[6] = int(sequence) & 0xff
+    record[17:21] = (0x12345678).to_bytes(4, "little")
+    packet_image = bytearray(32)
+    packet_image[0] = int(packet_status) & 0xff
+    packet_image[1] = int(packet_side) & 0xff
+    packet_image[3] = 0x31
+    packet_image[4] = 0x52
+    packet_image[7:11] = (0x89abcdef).to_bytes(4, "little")
+    packet_image[11:32] = record
+    master_image = bytearray(0x1100)
+    master_image[0x100c:0x1010] = screen.to_bytes(4, "little")
+    master_image[0x1054:0x1058] = task.to_bytes(4, "little")
+    message_image = bytearray(32)
+    message_image[13] = int(message_state) & 0xff
+    memory = [
+        (context, bytes(image)), (packet, bytes(packet_image)),
+        (master, bytes(master_image)), (screen, bytes(8)),
+        (task, bytes(4)), (timestamp_store, bytes(4)),
+        (mirror, bytes(0x180)),
+        (alternate_up, bytes(0x210)), (alternate_down, bytes(0x210)),
+        (message, bytes(message_image)),
+        (0x200069fc, master.to_bytes(4, "little")),
+        (0x2000230c, bytes(4)), (0x20007554, bytes(4)),
+        (0x20018d98, b"\x01"),
+    ]
+    # memset, timestamp publication, then optional message lookup.
+    oracles = {0: {0: 0}, 1: {0: 0}, 2: {0: message}}
+    writes = {0: [(0, 0, bytes(18), 0x00086c78)]}
+    return ({0: context, 1: packet}, memory, oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00015960)] = [
+    _local_esbs_recv_case(3, sequence=1),
+    _local_esbs_recv_case(1, suspend_state=1),
+    _local_esbs_recv_case(2, suspend_state=0),
+    _local_esbs_recv_case(3, direction=0x80, context_mode=9,
+                          receive_busy=True),
+    _local_esbs_recv_case(3, context_mode=16, receive_busy=True),
+    _local_esbs_recv_case(0),
+    _local_esbs_recv_case(10, message_state=0),
+    _local_esbs_recv_case(11, message_state=2),
+    _local_esbs_recv_case(12),
+    _local_esbs_recv_case(13),
+    _local_esbs_recv_case(14),
+    _local_esbs_recv_case(15),
+    _local_esbs_recv_case(16),
+    _local_esbs_recv_case(17),
+    _local_esbs_recv_case(18),
+    _local_esbs_recv_case(12, packet_status=3, packet_side=1),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00015960)] = {
+    0x000158bc: 1,  # switch_to_dfu_mode(state)
+    0x00019c70: 2,  # debug_print(format, function, ...)
+    0x0002bef4: 2,  # update_persist_task_status(context, task)
+    0x00033c18: 1,  # find_message_pool_entry_by_id(id)
+    0x00033c5c: 0,  # msg_queue_init()
+    0x00034524: 1,  # confirm_message(id)
+    0x0007c010: 1,  # default packet handler(state)
+    0x0007ce60: 1,  # reset_esb_sync_state(reason)
+    0x0007d230: 1,  # set_device_sync_timestamp(timestamp)
+    0x0007dda4: 2,  # log_message(format, function, ...)
+    0x00086c78: 3,  # memset(record + 4, 0, 18)
+}
+
+
+def _key_event_case(state, role=0, work_mode=0,
+                    onboarding_active=0, sc_sync_active=0):
+    """One bounded key worker dispatch followed by quiescent queue polls."""
+    context = emu.SCRATCH + 0xa000
+    standby = emu.SCRATCH + 0xc000
+    screen = emu.SCRATCH + 0xc100
+    onboarding = emu.SCRATCH + 0xc200
+    auxiliary = emu.SCRATCH + 0xc300
+    quick_note = emu.SCRATCH + 0xc400
+    image = bytearray(0x1100)
+    image[0] = int(role) & 0xff
+    image[0xd5] = int(work_mode) & 0xff
+    image[0xffc:0x1000] = standby.to_bytes(4, "little")
+    image[0x100c:0x1010] = screen.to_bytes(4, "little")
+    image[0x1014:0x1018] = onboarding.to_bytes(4, "little")
+    image[0x101c:0x1020] = auxiliary.to_bytes(4, "little")
+    image[0x1020:0x1024] = quick_note.to_bytes(4, "little")
+    onboarding_image = bytearray(8)
+    onboarding_image[0] = int(onboarding_active) & 0xff
+    memory = [
+        (context, bytes(image)),
+        (standby, bytes(8)), (screen, bytes(8)),
+        (onboarding, bytes(onboarding_image)),
+        (auxiliary, bytes(8)), (quick_note, bytes(8)),
+        (0x2000230c, bytes(4)), (0x20007554, bytes(4)),
+        (0x20007b18, int(state).to_bytes(4, "little")),
+        (0x20007b1c, bytes(16)),
+        (0x20018d89, bytes(1)), (0x20018d95, bytes(1)),
+        (0x20018d96, bytes((int(sc_sync_active) & 0xff,))),
+        (0x20018d98, bytes(1)),
+    ]
+    # init, two singleton reads, and one successful queue poll enter exactly
+    # one selected state arm.  Every following poll reports no event, bounding
+    # the nonreturning worker in its quiescent loop.
+    oracles = {0: {0: 0}, 1: {0: context}, 2: {0: context}, 3: {0: 0}}
+    ordinal = 4
+    for _ in range(64):
+        oracles[ordinal] = {0: context}
+        oracles[ordinal + 1] = {0: context}
+        oracles[ordinal + 2] = {0: 1}
+        ordinal += 3
+    return ({0: context, 1: 0x11223344, 2: 0x55667788}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0002955c)] = [
+    _key_event_case(0),
+    _key_event_case(1),
+    _key_event_case(2, work_mode=7),
+    _key_event_case(3, onboarding_active=1),
+    _key_event_case(4, role=1, work_mode=6, sc_sync_active=1),
+    _key_event_case(5),
+    _key_event_case(6),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0002955c)] = {
+    0x0002953c: 0,
+    0x000167a8: 0,
+    0x0007cb8a: 2,
+    0x000276ec: 1,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("app", 0x0002955c)] = {
+    # AAPCS aligns the signed 64-bit timeout in r2:r3; r1 is a hole.
+    0x0007cb48: (0, 2, 3),
+}
+
+
+def _flash_ops_case(nonzero_count_ordinals=()):
+    """Bound one complete semaphore wake and ordered three-queue drain.
+
+    Oracle ordinals are the actual external-call order.  Starting every call
+    at zero makes later worker iterations quiescent; selected count-query
+    ordinals become one and force the corresponding handler/backedge.
+    """
+    oracles = {i: {0: 0} for i in range(96)}
+    for ordinal in nonzero_count_ordinals:
+        oracles[int(ordinal)] = {0: 1}
+    return ({}, [(0x2000230c, bytes(4)), (0x20007554, bytes(4))], oracles)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00023480)] = [
+    _flash_ops_case(),
+    # wait=0, audio-count=1, handler, audio-count=0
+    _flash_ops_case((1,)),
+    # wait=0, audio-count=0, quicknote-count=1, handler, count=0
+    _flash_ops_case((2,)),
+    # wait=0, audio=0, quicknote=0, settings-count=1, handler, count=0
+    _flash_ops_case((3,)),
+    # Two audio requests prove the first while-loop backedge.
+    _flash_ops_case((1, 3)),
+    # One request in every queue proves the fixed audio->quicknote->settings
+    # drain priority and all three handler identities in one iteration.
+    _flash_ops_case((1, 4, 7)),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00023480)] = {
+    0x0002f758: 0,
+    0x0002f94c: 0,
+    0x00024678: 0,
+    0x00024684: 0,
+    0x00023ef8: 0,
+    0x00023f04: 0,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("app", 0x00023480)] = {
+    # k_sem_take-style wrapper uses r0 and aligned timeout r2:r3; r1 is the
+    # AAPCS hole and is not read by the complete callee.
+    0x00072908: (0, 2, 3),
+}
+
+
+def _proxy_thread_case(opcode=None, subtype=0, value=0, length=0,
+                       pending_response=0):
+    """Concrete proxy context and one complete 24-byte queue record."""
+    context = emu.SCRATCH + 0xc000
+    image = bytearray(0x1060)
+    image[1] = 0
+    image[0x788:0x78c] = (0x00080001).to_bytes(4, "little")
+    image[0x105c] = 0 if opcode is None else 0x80
+    memory = [
+        (context, bytes(image)),
+        (0x2000230c, bytes(4)),
+        (0x20007554, bytes(4)),
+        (0x2001d431, bytes((int(pending_response) & 0xff,))),
+        (0x2001d432, bytes(0x20)),
+        (0x2000ff04, bytes(4)),
+        (0x2001d262, b"\0"),
+        (0x2001d263, b"\0"),
+        (0x2001d34a, b"\0"),
+        (0x2001d34b, bytes(0xe6)),
+        (0x20007b38, bytes(4)),
+    ]
+    oracles = {i: {0: 0} for i in range(96)}
+    writes = {}
+    if opcode is not None:
+        record = bytearray(24)
+        record[0] = int(opcode) & 0xff
+        record[2:4] = int(length).to_bytes(2, "little")
+        record[4] = int(subtype) & 0xff
+        record[5] = int(value) & 0xff
+        # Initial stack clear is ordinal zero, per-iteration clear ordinal one,
+        # and k_msgq_get is ordinal two with its destination in r1.
+        writes[2] = [(1, 0, bytes(record), 0x00072240)]
+        oracles[2] = {0: 0}
+        if opcode in (4, 5, 6):
+            # get_device_info follows the queue receive for these compact
+            # forwarding commands; sync_to_slave then succeeds immediately.
+            oracles[3] = {0: context}
+            oracles[4] = {0: 0}
+    return ({0: context}, memory, oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00047c48)] = [
+    _proxy_thread_case(None),
+    _proxy_thread_case(0, subtype=0x41, length=3),
+    _proxy_thread_case(0, subtype=0x41, length=0x21),
+    _proxy_thread_case(1, pending_response=0),
+    _proxy_thread_case(1, pending_response=1),
+    _proxy_thread_case(2, subtype=1, value=2),
+    _proxy_thread_case(3, subtype=0, value=1),
+    _proxy_thread_case(4, subtype=0x22),
+    _proxy_thread_case(5, subtype=0x23),
+    _proxy_thread_case(6, subtype=0x24),
+    _proxy_thread_case(7),
+    _proxy_thread_case(8),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00047c48)] = {
+    0x000167a8: 0,
+    0x00023af0: 1,
+    0x00023bfc: 1,
+    0x00023eec: 0,
+    0x0002f910: 1,
+    0x0002f928: 0,
+    0x00047bf8: 2,
+    0x00049a28: 1,
+    0x0004a4d0: 1,
+    0x00072240: 4,
+    0x000745c8: 0,
+    0x00074844: 2,
+    0x0008638c: 1,
+    0x00086c04: 3,
+    0x00086c1e: 4,
+    0x00086c78: 3,
+    0x0001694c: 1,
+    0x00026f74: 4,
+    0x00080000: 2,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00047c48)] = [
+    # The clear and queue-receive calls are output boundaries: their incoming
+    # bytes are not consumed, so normalize only the compiler-owned address.
+    ("proxy-queue-output", -64, -64, 24, (), None,
+     (0x00086c78, 0x00072240)),
+    # Once received, copy consumers observe the complete populated record.
+    ("proxy-queue-record", -64, -64, 24, None, None,
+     (0x00086c04,)),
+    # The timestamp helper consumes the complete initialized two-word result.
+    # GCC reuses part of the now-dead receive-record slot for this local.
+    ("proxy-timestamp-result", -72, -72, 8, None, None,
+     (0x0004a4d0,)),
+    # Opcodes four and five publish the low two initialized bytes of the same
+    # local through sync_to_slave; opcode six uses its adjacent byte packet.
+    ("proxy-forward-packet-4-5", -72, -72, 2, None, None,
+     (0x00026f74,)),
+    ("proxy-forward-packet-6", -76, -76, 2, None, None,
+     (0x00026f74,)),
+]
+
+
+def _wordwrap_text_case(characters=(), classification=None,
+                        resource_status=None, display_state=0,
+                        callback=0, param10=0, param12=0,
+                        level=0, sink=0):
+    """One bounded UTF-16 layout family with explicit decoder ownership."""
+    text = emu.SCRATCH + 0x2600
+    device = emu.SCRATCH + 0x3000
+    glyph = emu.SCRATCH + 0x3800
+    glyph_bytes = bytes((0xa5, 0x5a, 0x3c, 0xc3)) + bytes(60)
+    encoded = b"".join((int(ch) & 0xffff).to_bytes(2, "little")
+                       for ch in characters) + b"\0\0"
+    memory = [
+        (text, encoded),
+        (device, bytes(0x1000)),
+        (glyph, glyph_bytes),
+        (0x2000230c, int(level).to_bytes(4, "little", signed=True)),
+        (0x20007554, int(sink).to_bytes(4, "little")),
+        (0x200034f6, b"\xf0"),
+        (0x2000a034, (emu.SCRATCH + 0x5000).to_bytes(4, "little")),
+    ]
+    oracles = {0: {0: text}}
+    writes = {0: [(1, 0, len(characters).to_bytes(2, "little"),
+                   0x000478d8)]}
+    if callback:
+        oracles[1] = {0: 0x2468ace0}
+    elif not param10 and not param12:
+        ordinal = 1
+        oracles[ordinal] = {0: int(display_state)}
+        ordinal += 1
+        if int(display_state) & 2:
+            # clear_framebuffer_region is a void boundary.
+            oracles[ordinal] = {0: 0}
+            ordinal += 1
+        for ch in characters:
+            result = (classification if classification is not None else 1)
+            oracles[ordinal] = {0: int(result) & 0xffffffff}
+            ordinal += 1
+            if result == 0:
+                status = int(resource_status if resource_status is not None
+                             else -1)
+                oracles[ordinal] = {0: status & 0xffffffff}
+                writes[ordinal] = [
+                    (2, 0, (8).to_bytes(4, "little"), 0x0004588c),
+                    (3, 0, (4).to_bytes(4, "little"), 0x0004588c),
+                    (4, 0, glyph.to_bytes(4, "little"), 0x0004588c),
+                ]
+                ordinal += 1
+                if status >= 0:
+                    # copy, spacing, draw, and the post-draw spacing query.
+                    oracles[ordinal] = {0: 0}
+                    writes[ordinal] = [
+                        (0, 0, glyph_bytes[:16], 0x00086c1e),
+                    ]
+                    ordinal += 1
+                    oracles[ordinal] = {0: 1}
+                    ordinal += 1
+                    oracles[ordinal] = {0: 0}
+                    ordinal += 1
+                    oracles[ordinal] = {0: 1}
+                    ordinal += 1
+        oracles[ordinal] = {0: int(display_state)}
+        ordinal += 1
+        if int(display_state) & 2:
+            oracles[ordinal] = {0: device}
+            oracles[ordinal + 1] = {0: device}
+            oracles[ordinal + 2] = {0: 0}
+    return ({0: 0, 1: emu.SCRATCH + 0x2500, 2: 0, 3: 10},
+            memory, oracles, writes)
+
+
+_WORDWRAP_CASE_SPECS = [
+    # param10, callback, and param12 gates after the mandatory decoder call.
+    ((), None, None, 0, 0, 0),
+    ((), None, None, 1, 0, 0),
+    ((), None, None, 1, 0x00080001, 0),
+    ((), None, None, 0, 0, 1),
+    # Empty/no-refresh and empty/clear-refresh production display modes.
+    ((), None, None, 0, 0, 0),
+    ((), None, None, 0, 0, 0),
+    # Skipped classifier, newline, carriage return, and failed glyph lookup.
+    ((0x41,), 1, None, 0, 0, 0),
+    ((0x0a,), -1, None, 0, 0, 0),
+    ((0x0d,), -1, None, 0, 0, 0),
+    ((0x41,), 0, -1, 0, 0, 0),
+]
+REVIEWED_ORACLE_CASES[("app", 0x000451e0)] = [
+    _wordwrap_text_case(chars, classification, resource_status,
+                        display_state=(2 if index == 5 else 0),
+                        param10=param10, callback=callback, param12=param12)
+    for index, (chars, classification, resource_status,
+                param10, callback, param12) in enumerate(_WORDWRAP_CASE_SPECS)
+]
+REVIEWED_ORACLE_CASES[("app", 0x000451e0)] += [
+    _wordwrap_text_case((0x41,), 0, 0),
+    _wordwrap_text_case((0x41,), 0, 0, display_state=2),
+    _wordwrap_text_case((0x41,), 0, -1, level=2, sink=0),
+    _wordwrap_text_case((0x41,), 0, -1, level=2, sink=1),
+    _wordwrap_text_case((0x41,), 0, 0),
+    # Narrow first glyph forces a line transition; the comma then enters the
+    # punctuation table and bounded end-of-text lookahead arm.
+    _wordwrap_text_case((0x41, 0x2c), 0, 0),
+]
+REVIEWED_PAIRED_STACK_INITIAL_WORDS[("app", 0x000451e0)] = [
+    (0, 0, tuple(20 for _ in _WORDWRAP_CASE_SPECS)),      # top
+    (4, 4, tuple([110] * 14 + [15, 15])),                  # right
+    (8, 8, tuple([200] * 16)),                             # bottom
+    (12, 12, tuple([3] * 16)),                             # max lines
+    (16, 16, tuple([0] * 10 + [0, 1, 0, 0, 0, 0])),       # mask count
+    (20, 20, tuple([spec[3] for spec in _WORDWRAP_CASE_SPECS] + [0] * 6)),
+    (24, 24, tuple([spec[4] for spec in _WORDWRAP_CASE_SPECS] + [0] * 6)),
+    (28, 28, tuple([spec[5] for spec in _WORDWRAP_CASE_SPECS] + [0] * 6)),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000451e0)] = {
+    0x000167a8: 0,
+    0x00019c70: 0,
+    0x000431a8: 0,
+    0x00043e58: 2,
+    0x0004588c: 6,
+    0x000471cc: 6,
+    0x00047260: 6,
+    0x000478d8: 2,
+    0x0007d53a: 6,
+    0x0007d860: 1,
+    0x00086c1e: 4,
+    0x00080000: 5,
+}
+REVIEWED_CALL_ARITIES_BY_FORMAT[("app", 0x000451e0)] = {
+    (0x0007dda4, 0x000aaa58): 3,
+    (0x0007dda4, 0x000aabe8): 2,
+    (0x0007dda4, 0x000aac1e): 2,
+    (0x0007dda4, 0x000aaa7f): 2,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x000451e0)] = [
+    # UTF decoder owns this two-byte output count.  Incoming bytes are not
+    # consumed; the oracle's exact two-byte write and every later load remain
+    # compared.  Readable GCC saves 24 fewer frame bytes than the firmware.
+    ("wordwrap-decoded-length", -0x302, -0x2ea, 2, (), None,
+     (0x000478d8,)),
+    # resource_manger_get fills three independent words.  Their incoming
+    # bytes are irrelevant, while exact oracle writes and later loads remain
+    # fully differential.
+    ("wordwrap-glyph-width", -0x2fc, -0x2e4, 4, (), None,
+     (0x0004588c,)),
+    ("wordwrap-glyph-height", -0x2f8, -0x2e0, 4, (), None,
+     (0x0004588c,)),
+    ("wordwrap-glyph-bitmap", -0x300, -0x2e8, 4, (), None,
+     (0x0004588c,)),
+    # The secure copy fills the first width/2*height bytes; drawing consumes
+    # the complete compiler-owned canvas identity and therefore still checks
+    # all initialized content rather than merely normalizing its address.
+    ("wordwrap-glyph-canvas-output", -0x2cc, -0x2d0, 680, (), None,
+     (0x00086c1e,)),
+    ("wordwrap-glyph-canvas", -0x2cc, -0x2d0, 680, None, None,
+     (0x0007d53a,)),
+]
+
+
+def _projector_pixel_transfer_case(byte_count, first_row=0x120,
+                                   x=0x2345):
+    """Bound one exact chunk family without weakening the signed ABI.
+
+    The production loop is linear in byte_count.  Generic 32-bit fuzz values
+    can request tens of thousands of SPI chunks and made the historical sweep
+    time out; these cases retain both signed boundaries and three backedges,
+    including the 16-bit row wrap performed after every full chunk.
+    """
+    return ({0: x, 1: first_row, 2: 0x89abcdef,
+             3: byte_count & 0xffffffff}, [], {})
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0007d70a)] = [
+    _projector_pixel_transfer_case(-1, first_row=0x1ffff, x=0x12345),
+    _projector_pixel_transfer_case(0),
+    _projector_pixel_transfer_case(0xefff),
+    _projector_pixel_transfer_case(0xf000),
+    _projector_pixel_transfer_case(0xf001),
+    _projector_pixel_transfer_case(0x1e000),
+    _projector_pixel_transfer_case(0x1e001),
+    _projector_pixel_transfer_case(0x3c001, first_row=0xff80),
+]
+
+
+def _rle_byte_pair_case(runs, encoded_length=None):
+    """One complete navigation RLE stream with exact expanded output writes."""
+    encoded = emu.SCRATCH + 0x2400
+    decoded = emu.SCRATCH + 0x2800
+    stream = b"".join(bytes((count, value)) for count, value in runs)
+    if encoded_length is None:
+        encoded_length = len(stream)
+    writes = {
+        ordinal: [(0, 0, bytes((value,)) * count, 0x00086c78)]
+        for ordinal, (count, value) in enumerate(runs)
+    }
+    return (
+        {0: encoded, 1: encoded_length, 2: decoded},
+        [(encoded, stream + bytes(2)), (decoded, b"\xa5" * 0x400)],
+        {}, writes,
+    )
+
+
+REVIEWED_ORACLE_CASES[("app", 0x0007da70)] = [
+    _rle_byte_pair_case([], encoded_length=0),
+    _rle_byte_pair_case([(3, 0x5a)]),
+    _rle_byte_pair_case([(0, 0x11), (2, 0x22)]),
+    _rle_byte_pair_case([(1, 0x10), (4, 0x20), (2, 0x30), (7, 0x40)]),
+    _rle_byte_pair_case([(0xff, 0x6d)]),
+    # The loop owns this behavior even though production encoders emit pairs:
+    # offsets 0 and 2 are both below three, so the second value at offset 3 is
+    # consumed as the final run.
+    _rle_byte_pair_case([(2, 0x31), (3, 0x42)], encoded_length=3),
+]
+
+
+def _net_controller_participants_init_case(initialized, active=False,
+                                           process_results=(0,),
+                                           start_result=0):
+    """One finite linker-table initialization and pending-event drain."""
+    if initialized:
+        return ({}, [(0x21004fad, b"\x01")], {})
+
+    ops = emu.SCRATCH + 0x1000
+    state = emu.SCRATCH + 0x1100
+    callback = 0x01040001
+    entry_image = bytearray(16)
+    entry_image[0:4] = ops.to_bytes(4, "little")
+    entry_image[4:8] = state.to_bytes(4, "little")
+    ops_image = bytearray(12)
+    ops_image[8:12] = callback.to_bytes(4, "little")
+    state_image = bytearray(8)
+    state_image[5] = int(active)
+    memory = [
+        (0x21004fad, b"\x00"),
+        (0x0103c0ec, bytes(entry_image)),
+        (ops, bytes(ops_image)),
+        (state, bytes(state_image)),
+    ]
+
+    oracles = {0: {0: int(start_result)}}
+    process_ordinal = 2 if active else 1
+    for result in process_results:
+        oracles[process_ordinal] = {0: int(result)}
+        process_ordinal += 1
+    return ({}, memory, oracles)
+
+
+# One already-initialized fast path, inactive/active participant forms, an
+# ignored nonzero start result, and bounded one-/multi-event drain loops.  The
+# installed callback is a unary participant initializer; its higher registers
+# are conversion/table-walk scratch and are excluded only at this exact target.
+REVIEWED_ORACLE_CASES[("net", 0x0102e000)] = [
+    _net_controller_participants_init_case(True),
+    _net_controller_participants_init_case(False, process_results=(0,)),
+    _net_controller_participants_init_case(False, active=True,
+                                           process_results=(0,)),
+    _net_controller_participants_init_case(False, process_results=(2, 1, 0)),
+    _net_controller_participants_init_case(False, active=True,
+                                           process_results=(1, 0),
+                                           start_result=0x55aa),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102e000)] = {
+    0x01040000: 1,
+}
+
+
+def _net_controller_supervisor_case(retry_mask=0, retry_results=(),
+                                    event_results=(0,), wait_source_value=0,
+                                    pending_count=0, drained_callback=True):
+    """Bound the supervisor's retry, event-drain, callback, and wait cycle."""
+    ops = emu.SCRATCH + 0x1000
+    wait_source = emu.SCRATCH + 0x1200
+    callback = 0x01040001 if drained_callback else 0
+    entry_image = bytearray(16)
+    entry_image[0:4] = ops.to_bytes(4, "little")
+    ops_image = bytearray(28)
+    ops_image[24:28] = callback.to_bytes(4, "little")
+    wait_source_image = bytearray(12)
+    wait_source_image[8:12] = int(wait_source_value).to_bytes(4, "little")
+    memory = [
+        (0x0103c0ec, bytes(entry_image)),
+        (ops, bytes(ops_image)),
+        (wait_source, bytes(wait_source_image)),
+        (0x21004668, int(pending_count).to_bytes(4, "little", signed=True)),
+        (0x21004660, bytes(4)),
+        (0x21000944, bytes(0x20)),
+    ]
+
+    # Startup and wait-source lookup are always the first two calls.
+    oracles = {0: {0: int(retry_mask)}, 1: {0: wait_source}}
+    ordinal = 2
+    if wait_source_value != 0 and pending_count > 9:
+        ordinal += 1  # controller_wait_prepare; its return is ignored
+
+    retry_values = iter(retry_results)
+    event_values = iter(event_results)
+    current_retry = int(retry_mask)
+    previous_event = 0
+    while ordinal < 28:
+        if current_retry != 0:
+            current_retry = int(next(retry_values, 0))
+            oracles[ordinal] = {0: current_retry}
+            ordinal += 1
+
+        event = int(next(event_values, 0))
+        oracles[ordinal] = {0: event}
+        ordinal += 1
+        if event == 0:
+            if previous_event != 0 and drained_callback:
+                ordinal += 1  # participant on_events_drained callback
+            ordinal += 1      # controller_wait; return is ignored
+        previous_event = event
+
+    return ({}, memory, oracles)
+
+
+# Six production-shaped supervisor families.  Prefix comparison is target-owned
+# because this function is a deliberate noreturn service loop; sixteen ordered
+# events cover startup publication plus retry, event, drained-callback and wait
+# cycles without depending on instruction counts.
+REVIEWED_PREFIX_PROOFS[("net", 0x0102e064)] = 16
+REVIEWED_ORACLE_CASES[("net", 0x0102e064)] = [
+    _net_controller_supervisor_case(),
+    _net_controller_supervisor_case(wait_source_value=0x1234,
+                                    pending_count=10),
+    _net_controller_supervisor_case(retry_mask=1, retry_results=(0,)),
+    _net_controller_supervisor_case(retry_mask=3, retry_results=(2, 0)),
+    _net_controller_supervisor_case(event_results=(7, 0),
+                                    drained_callback=True),
+    _net_controller_supervisor_case(event_results=(7, 0),
+                                    drained_callback=False),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102e064)] = {
+    0x01040000: 2,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x0102e064)] = {
+    # FUN_0103689c consumes the wait object and timeout pair.  Its physical r1
+    # slot is never read (confirmed by the complete callee disassembly).
+    0x0103689c: (0, 2, 3),
+}
+
+
+def _ipc_static_vrings_open_case(stage):
+    """Complete one-device fixture for ipc_rpmsg_static_vrings_open.
+
+    The generic allocator fills the atomic state with random nonzero data and
+    therefore proves only -EALREADY.  These cases own every externally visible
+    initialization boundary from descriptor sizing through READY/INITED state
+    publication.
+    """
+    owner = emu.SCRATCH + 0x1000
+    config = emu.SCRATCH + 0x2000
+    mailbox = emu.SCRATCH + 0x3000
+    mailbox_api = emu.SCRATCH + 0x3100
+    data = emu.SCRATCH + 0x4000
+    register_callback = 0x01040001
+    set_enabled = 0x01040005
+
+    owner_image = bytearray(0x14)
+    owner_image[4:8] = config.to_bytes(4, "little")
+    owner_image[0x10:0x14] = data.to_bytes(4, "little")
+    config_image = bytearray(0x2c)
+    config_image[0:4] = (1).to_bytes(4, "little")
+    config_image[4:8] = (emu.SCRATCH + 0x7000).to_bytes(4, "little")
+    config_image[8:12] = (104).to_bytes(4, "little")
+    config_image[0x14:0x18] = mailbox.to_bytes(4, "little")
+    config_image[0x18:0x1c] = (7).to_bytes(4, "little")
+    config_image[0x1c:0x20] = (1).to_bytes(4, "little")
+    config_image[0x20:0x24] = (3).to_bytes(4, "little")
+    config_image[0x24:0x28] = (1).to_bytes(4, "little")
+    config_image[0x28:0x2c] = (32).to_bytes(4, "little")
+    mailbox_image = bytearray(12)
+    mailbox_image[8:12] = mailbox_api.to_bytes(4, "little")
+    api_image = bytearray(20)
+    if stage != "missing_register":
+        api_image[4:8] = register_callback.to_bytes(4, "little")
+    if stage != "missing_enable":
+        api_image[0x10:0x14] = set_enabled.to_bytes(4, "little")
+    data_image = bytearray(0x384)
+    data_image[0x37c:0x380] = (1 if stage == "busy" else 0).to_bytes(4, "little")
+    data_image[0x208:0x20c] = (emu.SCRATCH + 0x7200).to_bytes(4, "little")
+    data_image[0x210:0x214] = (0x800).to_bytes(4, "little")
+    data_image[0x268:0x26c] = (emu.SCRATCH + 0x7300).to_bytes(4, "little")
+    data_image[0x378:0x37c] = (1).to_bytes(4, "little")
+
+    memory = [(owner, bytes(owner_image)), (config, bytes(config_image)),
+              (mailbox, bytes(mailbox_image)), (mailbox_api, bytes(api_image)),
+              (data, bytes(data_image))]
+    if stage == "busy":
+        return ({0: owner}, memory, {})
+
+    # descriptor 1 fits, descriptor 2 does not; the rounded answer is one.
+    oracles = {0: {0: 50}, 1: {0: 120}, 2: {0: 50}, 3: {0: 0}}
+    if stage == "no_memory":
+        config_image[8:12] = (4).to_bytes(4, "little")
+        memory[1] = (config, bytes(config_image))
+        return ({0: owner}, memory, {0: {0: 8}})
+    if stage == "vrings_init_error":
+        oracles[3] = {0: -5}
+        return ({0: owner}, memory, oracles)
+
+    # Queue setup occupies ordinals 4..6.  Mailbox callbacks then begin at 7.
+    if stage == "missing_register":
+        return ({0: owner}, memory, oracles)
+    if stage == "register_error":
+        oracles[7] = {0: -7}
+        return ({0: owner}, memory, oracles)
+    oracles[7] = {0: 0}
+    if stage == "missing_enable":
+        return ({0: owner}, memory, oracles)
+    if stage == "enable_error":
+        oracles[8] = {0: -9}
+        return ({0: owner}, memory, oracles)
+    oracles[8] = {0: 0}
+    if stage == "rpmsg_init_error":
+        oracles[9] = {0: -11}
+        return ({0: owner}, memory, oracles)
+    oracles[9] = {0: 0}
+    oracles[10] = {0: -1 if stage == "buffer_size_error" else 256}
+    return ({0: owner}, memory, oracles)
+
+
+REVIEWED_ORACLE_CASES[("net", 0x0102d708)] = [
+    _ipc_static_vrings_open_case("busy"),
+    _ipc_static_vrings_open_case("no_memory"),
+    _ipc_static_vrings_open_case("vrings_init_error"),
+    _ipc_static_vrings_open_case("missing_register"),
+    _ipc_static_vrings_open_case("register_error"),
+    _ipc_static_vrings_open_case("missing_enable"),
+    _ipc_static_vrings_open_case("enable_error"),
+    _ipc_static_vrings_open_case("rpmsg_init_error"),
+    _ipc_static_vrings_open_case("buffer_size_error"),
+    _ipc_static_vrings_open_case("success"),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x0102d708)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102d708)] = {
+    0x0103a056: 2, 0x0102db30: 2, 0x01036cb8: 1,
+    0x01036ce4: 5, 0x01036bec: 2, 0x01040000: 4,
+    0x01040004: 3, 0x0102dac0: 8, 0x010357ec: 1,
+    0x01039fb6: 2,
+}
+REVIEWED_TARGET_CALL_STACK_ARITIES[("net", 0x0102d708)] = {
+    0x01036ce4: 1,
+    0x0102dac0: 4,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x0102d708)] = {
+    # ipc_static_vrings_shm_size is a compiler-outlined static inline helper.
+    # Its complete body modifies r0/r3 only, so the original deliberately
+    # carries buffer_size in caller-clobbered r1 across loop iterations.  The
+    # separately compiled readable TU reloads the same semantic value; compare
+    # the changing descriptor-count argument and ordinal-controlled result.
+    0x0103a056: (0,),
+}
+
+
+def _sdc_llcp_rx_case(opcode, receive_state, response_type=0,
+                      response_flags=0, cleanup=False,
+                      transition_result=0, handler_result=9):
+    """One complete decoded LL control PDU and controller-state fixture."""
+    pdu = emu.SCRATCH + 0x1000
+    state = bytearray(0xba)
+    state[0x7c] = int(cleanup)
+    state[0xb9] = receive_state
+    decoded = bytearray(0x2c)
+    decoded[0] = response_type
+    decoded[1] = response_flags
+    oracles = {0: {0: 3}, 2: {0: transition_result,
+                               1: (transition_result << 4) & 0xffffffff}}
+    if opcode != 7:
+        if receive_state == 1 and (opcode == 6 or opcode <= 2):
+            oracles[3] = {0: handler_result}
+    writes = {1: [(1, 0, bytes(decoded), 0x0101a070)]}
+    return ({0: pdu},
+            [(pdu, bytes((opcode & 0x0f,))),
+             (0x2100001c, b"\x00"),
+             # The controller object crosses the emulator's 0x21001000 page
+             # boundary; seed each mapped page independently.
+             (0x21000f90, bytes(state[:0x70])),
+             (0x21001000, bytes(state[0x70:]))],
+            oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("net", 0x01018690)] = [
+    # Ordinary admitted opcode, with and without the cleanup tail.
+    _sdc_llcp_rx_case(0, 1, cleanup=False, handler_result=9),
+    _sdc_llcp_rx_case(6, 1, cleanup=True, handler_result=-4),
+    # Unsupported and invalid receive-state paths.
+    _sdc_llcp_rx_case(4, 2),
+    _sdc_llcp_rx_case(3, 3),
+    # LL_UNKNOWN_RSP preprocessing and each shared continuation class.
+    _sdc_llcp_rx_case(7, 1, response_type=2,
+                      response_flags=0xff, transition_result=2),
+    _sdc_llcp_rx_case(7, 2, response_type=1,
+                      response_flags=0xff, transition_result=3),
+    _sdc_llcp_rx_case(7, 3, response_type=1,
+                      response_flags=0xff, transition_result=4),
+    _sdc_llcp_rx_case(7, 4, response_type=0,
+                      response_flags=0x10, transition_result=5),
+    _sdc_llcp_rx_case(7, 9, response_type=0,
+                      response_flags=0, transition_result=6),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x01018690)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01018690)] = {
+    0x0100d760: 0, 0x0101a070: 2, 0x0101746c: 3,
+    0x010168e4: 2, 0x010183e0: 1, 0x01020500: 0,
+    0x010208b0: 0, 0x0101fca8: 0, 0x01008d00: 2,
+    # Shared tails are ownership boundaries, not ordinary C callees.  Their
+    # physical scratch-register contract is deliberately excluded here; all
+    # writes and calls before the transfer remain strict.
+    0x01018f1a: 0, 0x01018f22: 0, 0x01018fac: 0,
+}
+
+# Production-shaped fixtures for each of the planner's four timing modes.  The
+# generic pointer seeder almost always chooses an invalid coefficient index and
+# therefore proves only the 0x571 assertion tail.
+def _sdc_conn_event_timing_case(mode, initial_attempt=1,
+                                allow_reschedule=1):
+    context = emu.SCRATCH + 0x5000
+    state = bytearray(0x3d0)
+    state[0x14:0x18] = (10000).to_bytes(4, "little")
+    state[0x24:0x28] = (500).to_bytes(4, "little")
+    state[0x28:0x2a] = (10).to_bytes(2, "little")
+    state[0x6f] = 1
+    state[0xbc:0xbe] = (10).to_bytes(2, "little")
+    state[0x2d8] = 0
+    state[0x2f6:0x2f8] = (1).to_bytes(2, "little")
+    state[0x31c] = mode
+    state[0x318:0x31c] = (0).to_bytes(4, "little")
+    state[0x324:0x328] = (9000).to_bytes(4, "little")
+    state[0x358:0x35c] = (0x2000).to_bytes(4, "little")
+    state[0x35c:0x360] = (0).to_bytes(4, "little")
+    state[0x360:0x362] = (10).to_bytes(2, "little")
+    state[0x364] = 1
+    state[0x368:0x36c] = (0).to_bytes(4, "little")
+    state[0x36c:0x370] = (500).to_bytes(4, "little")
+
+    # Every helper result is selected to keep arithmetic bounded while the
+    # complete writes/call order remain differential.  The initial-mode MPSL
+    # snapshot owns an 8-byte timestamp and adjacent 4-byte remainder.
+    oracles = {0: {0: 0}}
+    writes = {}
+    if mode == 0:
+        values = (0, 100, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+        for ordinal, value in enumerate(values, 1):
+            oracles[ordinal] = {0: value}
+        writes[4] = [
+            (0, 0, b"\x00" * 8, 0x010209c8),
+            (1, 0, b"\x00" * 4, 0x010209c8),
+        ]
+    elif mode == 1:
+        # base airtime, tail airtime, fixed time, guard, admission
+        for ordinal, value in enumerate((0, 0, 0, 0, 1), 1):
+            oracles[ordinal] = {0: value}
+    elif mode == 2:
+        # two scales, PHY timing pair(s), fixed time, guard, admission
+        for ordinal, value in enumerate(
+                (100, 1000, 0, 0, 0, 0, 0, 0, 1), 1):
+            oracles[ordinal] = {0: value}
+    else:
+        # PHY timing pair, fixed time, guard, admission
+        for ordinal, value in enumerate((0, 0, 0, 0, 1), 1):
+            oracles[ordinal] = {0: value}
+    return ({0: context, 1: 10, 2: initial_attempt,
+             3: allow_reschedule},
+            [(context, bytes(state)),
+             (0x21000f54, b"\x00" * 8)],
+            oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("net", 0x01012f18)] = [
+    _sdc_conn_event_timing_case(0),
+    _sdc_conn_event_timing_case(1),
+    _sdc_conn_event_timing_case(2),
+    _sdc_conn_event_timing_case(3),
+    # A distinct retry input proves the initial-attempt result byte.
+    _sdc_conn_event_timing_case(1, initial_attempt=0),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x01012f18)] = 1
+REVIEWED_PAIRED_STACK_INITIAL_WORDS[("net", 0x01012f18)] = [
+    (0, 0, (0, 0, 0, 0, 0)),  # optional fifth argument, event_skip_out
+]
+REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x01012f18)] = [
+    ("mpsl-window-timestamp", -48, -44, 8, None, (4,),
+     (0x010209c8,)),
+    ("mpsl-window-remainder", -52, -48, 4, None, (4,),
+     (0x010209c8,)),
+]
+
+
+# The connection-event timing planner is an exact SDC archive match, but its
+# large body leaves unrelated caller-clobbered registers live at many opaque
+# helper boundaries.  Compare each helper's reviewed ABI arguments only.
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01012f18)] = {
+    0x01029638: 0,  # timing-compensation thunk
+    0x01012c08: 0,  # no-return timing fault preamble
+    0x01008d00: 2,  # controller assertion
+    0x0101618c: 1,
+    0x010247cc: 0,
+    0x0100d58c: 2,
+    0x01024678: 2,
+    0x010209c8: 2,
+    0x010243c0: 5,
+    0x010209f0: 1,
+    0x0100f48c: 2,
+    0x010209e0: 1,
+    0x0100d6e8: 4,
+    0x0100f0fc: 1,
+    0x01016160: 0,
+    0x0100d4d0: 2,
+    0x0100f63c: 0,
+    0x010231c8: 2,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x01018690)] = [
+    ("decoded-ll-control-pdu", -56, -60, 0x2c, None, (1, 2, 3),
+     (0x0101a070, 0x0101746c, 0x010168e4)),
+]
+
+
+# The fatal path has no ABI inputs: varied incoming scratch registers prove
+# that only the fixed diagnostic record and reboot mode are observable.  The
+# final sys_reboot call is an explicit terminal boundary, not a timed prefix.
+REVIEWED_ORACLE_CASES[("net", 0x01031820)] = [
+    ({}, [], {}),
+    ({0: 0, 1: 1, 2: 2, 3: 3}, [], {}),
+    ({0: 0xffffffff, 1: 0x80000000,
+      2: 0x13579bdf, 3: 0x2468ace0}, [], {}),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01031820)] = {
+    0x0102e000: 0,
+    0x0102e284: 4,
+    0x0102f4ec: 1,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x01031820)] = [
+    # Both translations place the complete two-word record at entry-SP-16;
+    # compare its identity and all eight bytes at the logger boundary.
+    ("controller-reset-diagnostic", -16, -16, 8, None, (1,),
+     (0x0102e284,)),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x01031820)] = 0
+
+
+def _net_radio_operation_setup_case(operation_mode, return_finish_status,
+                                    channel_result=0,
+                                    finish_result=None):
+    """One complete TBB mode/channel/finalizer path for FUN_01016430."""
+    state = bytearray(0x200)
+    lookup = bytearray(0x100)
+    selector = 0x31
+    slot = 7
+    mapped_value = 0xa6
+    state[0x7a] = selector
+    state[0x98] = slot
+    state[0xbd + slot] = int(operation_mode) & 0xff
+    lookup[selector] = mapped_value
+
+    dynamic_channel = operation_mode in (1, 4, 8)
+    oracles = {}
+    if dynamic_channel:
+        # latch_mapped_radio_value is call zero; channel query is call one.
+        oracles[1] = {0: int(channel_result) & 0xffffffff}
+    if finish_result is not None:
+        finalizer_ordinal = 4 if dynamic_channel else 3
+        oracles[finalizer_ordinal] = {0: int(finish_result) & 0xffffffff}
+
+    return (
+        {0: int(return_finish_status), 1: 0x20014000},
+        # The net state begins 0x70 bytes before a Unicorn page boundary;
+        # split the identical image so fixture setup maps both RAM pages.
+        [(0x21000f90, bytes(state[:0x70])),
+         (0x21001000, bytes(state[0x70:])),
+         (0x0103c24c, bytes(lookup))],
+        oracles,
+    )
+
+
+# Every TBB class, both finalizers, the unsigned channel clamp boundaries, and
+# zero/nonzero status normalization are finite and explicitly represented.
+REVIEWED_ORACLE_CASES[("net", 0x01016430)] = [
+    _net_radio_operation_setup_case(1, 0, channel_result=0),
+    _net_radio_operation_setup_case(1, 1, channel_result=0x3f,
+                                    finish_result=0),
+    _net_radio_operation_setup_case(4, 1, channel_result=0x40,
+                                    finish_result=7),
+    _net_radio_operation_setup_case(8, 1, channel_result=0x41,
+                                    finish_result=0xffffffff),
+    _net_radio_operation_setup_case(8, 0, channel_result=0xff),
+    _net_radio_operation_setup_case(2, 0),
+    _net_radio_operation_setup_case(2, 1, finish_result=0),
+    _net_radio_operation_setup_case(2, 1, finish_result=0x80000000),
+    _net_radio_operation_setup_case(0, 0),
+    _net_radio_operation_setup_case(3, 1),
+    _net_radio_operation_setup_case(9, 0),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x01016430)] = {
+    0x01008d00: 2,
+    0x0100a5b4: 0,
+    0x010202fc: 2,
+    0x010204f4: 1,
+    0x01020764: 1,
+    0x01021108: 2,
+    0x010212ec: 2,
+}
+REVIEWED_NPTR_COUNTS[("net", 0x01016430)] = 0
+
+
+def _net_timing_record_case(state_mode, initialize_state, update_state,
+                            controller_mode, oracles, timeline_unit=7,
+                            alternate_unit=11, budget=0x1234,
+                            align=None):
+    """One finite state-machine path through FUN_0101b7e4."""
+    output = emu.SCRATCH + 0x5000
+    context = emu.SCRATCH + 0x6000
+    output_image = bytearray(b"\xa5" * 24)
+    context_image = bytearray(0x320)
+    table = bytearray(0x200)
+
+    context_image[0xc5] = int(controller_mode) & 0xff
+    context_image[0x300] = int(state_mode) & 0xff
+    context_image[0x6e] = 2
+    context_image[0x6f] = 0x0c
+    context_image[0x14:0x18] = int(timeline_unit).to_bytes(4, "little")
+    context_image[0x308:0x30c] = int(alternate_unit).to_bytes(4, "little")
+    context_image[0x2d8:0x2dc] = (0x10203040).to_bytes(4, "little")
+    context_image[0x2dc:0x2e0] = (0x50607080).to_bytes(4, "little")
+    context_image[0x2fc:0x2fe] = (int(budget) & 0xffff).to_bytes(2, "little")
+    table[4:6] = (100).to_bytes(2, "little")
+    if align is not None:
+        previous, current, quantum = align
+        context_image[0x74:0x78] = (1).to_bytes(4, "little")
+        context_image[0x78:0x7a] = int(quantum).to_bytes(2, "little")
+        context_image[0xbc:0xbe] = int(current).to_bytes(2, "little")
+        context_image[0xf2:0xf4] = int(previous).to_bytes(2, "little")
+
+    complete_oracles = {0: {0: 0x12345678}}
+    complete_oracles.update({int(k): {0: int(v) & 0xffffffff}
+                             for k, v in oracles.items()})
+    return (
+        {0: output, 1: context, 2: int(initialize_state),
+         3: int(update_state)},
+        [(output, bytes(output_image)), (context, bytes(context_image)),
+         (0x0103c290, bytes(table))],
+        complete_oracles,
+    )
+
+
+# Exact state-0 initialization, all four state values, three assertion tails,
+# both controller-mode record layouts, both early-return gates, the capacity
+# correction path, doubled-count saturation, and final quantum alignment.
+REVIEWED_ORACLE_CASES[("net", 0x0101b7e4)] = [
+    # Invalid TBB state -> controller fault line 0x264.
+    _net_timing_record_case(4, 1, 0, 0x10, {}),
+    # State zero without initialization permission -> fault line 0x22c.
+    _net_timing_record_case(0, 0, 0, 0x10, {}),
+    # Complete state-zero setup; controller mode 0x0e returns at its age gate.
+    _net_timing_record_case(0, 1, 0, 0x0e,
+                            {1: -3, 3: 0, 4: 2, 6: 0x89abcdef}),
+    # Existing state, ordinary empty/nonempty record forms and both gates.
+    _net_timing_record_case(1, 1, 0, 0x0f,
+                            {1: 1, 2: 0, 3: 0x11223344}),
+    _net_timing_record_case(3, 1, 0, 0x10,
+                            {1: 1, 2: 1, 3: 0x55667788}),
+    # State two publishes state three and takes the full special-mode path.
+    _net_timing_record_case(2, 1, 1, 0x0c,
+                            {2: 1, 4: 0xaabbccdd, 5: 5,
+                             8: 0, 9: 3}),
+    # Ordinary full path where capacity exceeds the submitted count.
+    _net_timing_record_case(1, 1, 1, 0x10,
+                            {2: 0, 3: 1, 4: 0, 5: 0x01020304,
+                             6: 2, 7: 5, 9: 1}),
+    # Capacity correction, second count query, final adjustment, and alignment.
+    _net_timing_record_case(2, 1, 1, 0x10,
+                            {2: 1, 3: 1, 4: 0x10293847, 5: 8,
+                             6: 3, 7: 4, 9: 0, 10: 2},
+                            align=(3, 11, 4)),
+    # Zero timeline unit at the capacity-correction boundary -> line 0x2a6.
+    _net_timing_record_case(1, 1, 1, 0x10,
+                            {2: 1, 3: 0, 4: 0x76543210, 5: 1, 6: 0},
+                            timeline_unit=0),
+    # Alternate special controller mode with update disabled.
+    _net_timing_record_case(3, 1, 0, 0x26,
+                            {1: 1, 3: 0x0badc0de}),
+    # Exact 0x8000 count proves doubled-count saturation to 0xffff.
+    _net_timing_record_case(1, 1, 1, 0x10,
+                            {2: 1, 3: 0, 4: 0xc001d00d,
+                             5: 0x8000, 6: 0xffff, 8: 0, 9: 7}),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0101b7e4)] = {
+    0x01008d00: 2,
+    0x0100d4d0: 2,
+    0x0100f0fc: 1,
+    0x0100f48c: 2,
+    0x0100f69c: 2,
+    0x0101a0e8: 0,
+    0x0101da18: 2,
+    0x0101dc50: 1,
+    0x0101dec4: 0,
+    0x010209f0: 1,
+}
+REVIEWED_NPTR_COUNTS[("net", 0x0101b7e4)] = 2
+
+
+_DISPLAY_DISPATCH_CONTEXT = emu.SCRATCH + 0xc000
+
+
+def _display_dispatch_case(mode, pending=0, mode16_tag=13):
+    """One production-shaped display-dispatch iteration for a mode byte."""
+    context = bytearray(0x1800)
+    context[0] = 1                  # primary display owner
+    context[1] = 0                  # worker is runnable
+    context[0xfe6] = 0
+    context[0xfea] = 0              # bypass critical-battery startup path
+    context[0xcc] = 3
+    context[0xcd] = 4
+    context[0xed5] = 8
+    context[0xee4] = 1
+
+    descriptor = emu.SCRATCH + 0xe000
+    buffers = emu.SCRATCH + 0x10000
+    descriptor_image = bytes((0x11, 0x22, 0x33, 0x44, 0x55, 0, 0, 0))
+    struct.pack_into("<I", context, 0x1054, descriptor)
+    pointer_offsets = (0xfec, 0xff0, 0xff4, 0xffc, 0x1000, 0x1004,
+                       0x1008, 0x100c, 0x1010, 0x1014, 0x101c, 0x1020,
+                       0x1024, 0x1028)
+    memory = [(_DISPLAY_DISPATCH_CONTEXT, bytes(context)),
+              (descriptor, descriptor_image)]
+    for index, offset in enumerate(pointer_offsets):
+        address = buffers + index * 0x800
+        struct.pack_into("<I", context, offset, address)
+        image = bytearray(0x800)
+        if offset == 0x100c:
+            image[0] = int(mode16_tag) & 0xff
+        memory.append((address, bytes(image)))
+    # Re-emit the context after pointer installation; later overlapping maps
+    # intentionally replace the preliminary image above.
+    memory[0] = (_DISPLAY_DISPATCH_CONTEXT, bytes(context))
+    memory.extend([
+        (0x2000230c, (0).to_bytes(4, "little", signed=True)),
+        (0x20007554, (0).to_bytes(4, "little", signed=True)),
+        (0x20007af4, bytes(12)),
+        (0x20007b3c, bytes(0x40)),
+        (0x2000a098, int(mode).to_bytes(4, "little", signed=True)),
+        (0x20018c6e, b"\0"),
+        (0x20018d96, b"\0"),
+        (0x20018d9b, bytes((int(pending) & 0xff,))),
+        (0x20018d9c, b"\0"),
+    ])
+
+    # Calls 0/1 initialize geometry, call 3 is the loop-head device lookup,
+    # and calls 4/5 are the two panel-owner gates.  Remaining generic returns
+    # keep subsequent prefix iterations mapped and deterministic.
+    oracles = {ordinal: {0: _DISPLAY_DISPATCH_CONTEXT, 1: 0}
+               for ordinal in range(96)}
+    oracles[4] = {0: 1}
+    oracles[5] = {0: 1}
+    writes = {3: [(None, _DISPLAY_DISPATCH_CONTEXT + 0xd5,
+                   bytes((int(mode) & 0xff,)), 0x000167a8)]}
+
+    # Force the first iteration's comparison to equality where that arm has
+    # a buffer.  The selected call ordinal differs for the few setup-heavy
+    # modes and is part of the reviewed call-order contract.
+    compare_ordinal = 7
+    if mode == 2:
+        compare_ordinal = 8
+    elif mode == 4:
+        language = buffers + 0x7800
+        memory.append((language, bytes(0x400)))
+        oracles[7] = {0: 0}
+        oracles[8] = {0: language}
+        oracles[9] = {0: 0}
+        oracles[10] = {0: _DISPLAY_DISPATCH_CONTEXT}
+        compare_ordinal = None
+    elif mode == 14:
+        oracles[7] = {0: _DISPLAY_DISPATCH_CONTEXT}
+        compare_ordinal = 8
+    elif mode == 16 and mode16_tag in (13, 15):
+        compare_ordinal = None       # valid tag exits immediately after unlock
+    elif mode in (0, 1, 3, 13):
+        compare_ordinal = None       # no buffer selected by the switch
+    if compare_ordinal is not None:
+        oracles[compare_ordinal] = {0: 0}
+    return ({0: _DISPLAY_DISPATCH_CONTEXT}, memory, oracles, writes)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00028bec)] = [
+    # Every switch value, the unsigned default, all three event translations,
+    # and both accepted/rejected mode-16 record families.
+    *[_display_dispatch_case(mode) for mode in range(18)],
+    _display_dispatch_case(5, pending=0x0f),
+    _display_dispatch_case(5, pending=0x4e),
+    _display_dispatch_case(5, pending=0x0d),
+    _display_dispatch_case(16, mode16_tag=7),
+    _display_dispatch_case(0xff),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00028bec)] = {
+    0x0000e244: 4,
+    0x00010840: 1,
+    0x000167a8: 0,
+    0x00016940: 0,
+    0x0001694c: 1,
+    0x00026850: 0,
+    0x00026f74: 3,
+    0x000276ec: 1,
+    0x000289b0: 0,
+    0x0002bed0: 1,
+    0x0002c214: 0,
+    0x00032ee4: 0,
+    0x00033c4c: 1,
+    0x00034390: 0,
+    0x0003629c: 2,
+    0x00042fb0: 2,
+    0x00047058: 0,
+    0x000723b8: 4,
+    0x00072908: 4,
+    0x0007cb8a: 2,
+    0x0007cb2c: 0,
+    0x0007cb8e: 1,
+    0x0007d874: 1,
+    0x00086be4: 3,
+    0x00086c04: 3,
+    0x00086c78: 3,
+}
+REVIEWED_NPTR_COUNTS[("app", 0x00028bec)] = 1
 
 
 def verify(core, name, trials_random=40, source_override=None):
@@ -15372,6 +19233,13 @@ def verify(core, name, trials_random=40, source_override=None):
     paired_stack_initial_words = REVIEWED_PAIRED_STACK_INITIAL_WORDS.get((core, va))
     paired_stack_objects = REVIEWED_PAIRED_STACK_OBJECTS.get((core, va))
     pointer_read_transitions = POINTER_READ_TRANSITION_CASES.get((core, va))
+    absolute_read_transitions = ABSOLUTE_READ_TRANSITION_CASES.get((core, va))
+    initial_primask_overrides = REVIEWED_INITIAL_PRIMASK_CASES.get((core, va))
+    compare_primask = (core, va) in {
+        ("net", 0x0100a7e8),
+        ("net", 0x0100ec88),
+        ("net", 0x010315f0),
+    }
     oracle_overrides = ({0: {0: emu.SCRATCH + 0x1000}}
                         if "CFG_VERIFY_ORACLE0_R0_POINTER" in txt[:400] else None)
     reviewed_oracles = ORACLE_STATE_CASES.get((core, va))
@@ -15492,7 +19360,27 @@ def verify(core, name, trials_random=40, source_override=None):
             ({ordinal: [(0, 0x104c, (0x15).to_bytes(4, "little"))]}
              if ordinal is not None else {})
             for ordinal in completion_ordinals]
-    comp, err = recon.compile_func(body, name, va, extra_cflags=extra_cflags)
+    # Canonical files retain their raw/address-derived filenames for reversible
+    # provenance, while reviewed bodies may now define the readable symbol from
+    # function_names_<core>.json.  Select the symbol actually defined by this
+    # translation unit; do not require an asm-label that hides the readable C
+    # identity from agents and source tooling.
+    compile_name = name
+    try:
+        manifest_path = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
+            "function_names_%s.json" % core)
+        record = json.load(open(manifest_path))["by_address"]["0x%08x" % va]
+        readable_name = record.get("name")
+        definition = re.compile(
+            r"\b%s\s*\([^;{}]*\)\s*\{" % re.escape(readable_name or ""),
+            re.S)
+        if readable_name and definition.search(body):
+            compile_name = readable_name
+    except (OSError, ValueError, KeyError, TypeError, re.error):
+        pass
+    comp, err = recon.compile_func(body, compile_name, va,
+                                   extra_cflags=extra_cflags)
     if err: return {"status": "compile-fail"}
     candidate_direct_target_map = dict(recon.LAST_DIRECT_TARGET_MAP)
     if (core, va) == ("app", 0x0001a75c) and os.environ.get("BLE_TRACE_DIAG"):
@@ -15551,8 +19439,23 @@ def verify(core, name, trials_random=40, source_override=None):
     # Both cores use Zephyr's ARCH_EXCEPT(4): clear BASEPRI, load reason 4,
     # SVC #2. The SVC is a production-noreturn runtime exception even though
     # the compiler emits a defensive BX LR after it.
-    terminal_targets = ({0x01008d00, 0x0100ebb8, 0x01014884, 0x01016828, 0x010256dc, 0x01039bb0}
+    terminal_targets = ({0x01008d00, 0x0100ebb8, 0x01014884, 0x01016828,
+                         0x010256dc, 0x0102f4ec, 0x01039bb0}
                         if core == "net" else {0x00050af8, 0x0007e2ec})
+    if (core, va) == ("net", 0x01018690):
+        # LL_UNKNOWN_RSP leaves this ownership unit through a pointer-table
+        # jump into one of three shared SoftDevice continuation entries.
+        terminal_targets = set(terminal_targets) | {
+            0x01018f1a, 0x01018f22, 0x01018fac,
+        }
+    if (core, va) == ("app", 0x00076a94):
+        # Newlib abort is the required terminal action of __assert_func; the
+        # catalog's old returning-oracle model manufactured an infinite loop.
+        terminal_targets = set(terminal_targets) | {0x00051180}
+    if (core, va) == ("app", 0x000809b0):
+        # The impossible-slot assertion helper is specialized and noreturn;
+        # treating it as an ordinary oracle falls into defensive switch code.
+        terminal_targets = set(terminal_targets) | {0x00051c38}
     if (core, va) in (("app", 0x00086c1e), ("app", 0x00087080)):
         # The secure-copy constraint handler ends in ARCH_EXCEPT(3).  Its
         # post-BL instructions are unreachable defensive fallthrough.
@@ -15564,6 +19467,11 @@ def verify(core, name, trials_random=40, source_override=None):
         # sink as an ordinary returning oracle manufactures a meaningless
         # retry size.  Compare the exact call prefix through the fatal helper.
         terminal_targets = set(terminal_targets) | {0x00076a94}
+    if (core, va) == ("app", 0x00019950):
+        # sys_reboot does not return in production.  Modeling it as an
+        # ordinary oracle drops execution back into ANCS's deliberate fatal
+        # retry loop and turns each initializer-error fixture into a timeout.
+        terminal_targets = set(terminal_targets) | {0x0004c0a8}
     target_call_arities = dict(ctx["call_arity_by_target"])
     target_call_arities.update(REVIEWED_TARGET_CALL_ARITIES.get((core, va), {}))
     target_call_argument_indices = REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET.get(
@@ -15579,6 +19487,15 @@ def verify(core, name, trials_random=40, source_override=None):
     ]
     compare_max_insns = 1000000 if orig_internal_code_regions else 200000
     compare_max_resumes = 20000 if orig_internal_code_regions else 5000
+    if (core, va) == ("app", 0x0003b824):
+        # A complete recording render owns four 199x320 pixel-mask passes.
+        # The generic cap stopped during frame one and allowed the remaining
+        # frames, final LCD publications, and DMIC transition to go unproved.
+        compare_max_insns = 3000000
+    if (core, va) == ("app", 0x0003bfe0):
+        # Both initialization and page-change rendering own eight complete
+        # 199x320 mask traversals; the old 200k cap stopped during frame one.
+        compare_max_insns = 7000000
     for nptr in nptr_modes:
         if prefix_first:
             v = emu.compare(orig, va, size, cb + ct, cva, cs, code_base=ctx["cb"],
@@ -15587,6 +19504,7 @@ def verify(core, name, trials_random=40, source_override=None):
                             arg_overrides=ovs, memory_overrides=movs,
                             absolute_memory_overrides=absolute_movs,
                             pointer_read_transitions=pointer_read_transitions,
+                            absolute_read_transitions=absolute_read_transitions,
                             terminal_targets=terminal_targets,
                             oracle_overrides=oracle_overrides, call_arities=call_arities,
                             call_float_arities=call_float_arities,
@@ -15606,6 +19524,8 @@ def verify(core, name, trials_random=40, source_override=None):
                             paired_stack_initial_words=paired_stack_initial_words,
                             paired_stack_objects=paired_stack_objects,
                             initial_xpsr_overrides=initial_xpsr_overrides,
+                            initial_primask_overrides=initial_primask_overrides,
+                            compare_primask=compare_primask,
                             initial_exclusive_monitors=initial_exclusive_monitors,
                             orig_internal_code_regions=orig_internal_code_regions,
                             max_insns=compare_max_insns,
@@ -15616,6 +19536,7 @@ def verify(core, name, trials_random=40, source_override=None):
                             memory_overrides=movs, terminal_targets=terminal_targets,
                             absolute_memory_overrides=absolute_movs,
                             pointer_read_transitions=pointer_read_transitions,
+                            absolute_read_transitions=absolute_read_transitions,
                             oracle_overrides=oracle_overrides, call_arities=call_arities,
                             call_float_arities=call_float_arities,
                             call_return_kinds=call_return_kinds,
@@ -15634,6 +19555,8 @@ def verify(core, name, trials_random=40, source_override=None):
                             paired_stack_initial_words=paired_stack_initial_words,
                             paired_stack_objects=paired_stack_objects,
                             initial_xpsr_overrides=initial_xpsr_overrides,
+                            initial_primask_overrides=initial_primask_overrides,
+                            compare_primask=compare_primask,
                             initial_exclusive_monitors=initial_exclusive_monitors,
                             orig_internal_code_regions=orig_internal_code_regions,
                             max_insns=compare_max_insns,
@@ -15693,6 +19616,16 @@ def self_test():
     # readable negative source for every repaired contract, including the
     # fifth AAPCS stack argument and the channel helper's input object.
     negative_sources = {
+        # Every canvas-distance TBB arm is semantically live under the bounded
+        # panel-state fixtures; changing one recovered gear offset must fail.
+        "cal_panel_canvas_coord": (
+            "case 2:\n            computed_x = 8;",
+            "case 2:\n            computed_x = 9;"),
+        # All four mask frames, LCD publications, and the final DMIC gate are
+        # beyond the historical generic instruction cap and must stay live.
+        "ui_QuickNote_task": (
+            "frame != 4; ++frame",
+            "frame != 3; ++frame"),
         # The reviewed command-prefix cases bind controller response objects
         # to the exact Read Local Supported Features opcode.
         "FUN_00012080": (
@@ -16054,6 +19987,11 @@ def self_test():
     # argument five, event-name modes, six stacked descriptor fields, ordered
     # multi-node insertion, and the already-linked flag transition.
     net_negative_sources = {
+        # An ECB hardware error retries the transaction; treating completion
+        # as the retry condition silently returns after an aborted block.
+        "FUN_0100a7e8": (
+            "} while (ecb->EVENTS_ERRORECB != 0);",
+            "} while (ecb->EVENTS_ENDECB != 0);"),
         "FUN_0102bbec": ("case 0x61:", "case 0x62:"),
         "FUN_0102fbd0": ("0x2aU >>", "0x20U >>"),
         "FUN_01030bac": ("unsigned int mask = 1u << bit;",
@@ -16097,6 +20035,40 @@ def self_test():
     assert serializer_verdict["status"] == "FAIL", serializer_verdict
 
     net_directed_negative_sources = (
+        # The state-eight handle packet publishes a fixed ready flag after
+        # its zero byte; all four volatile header stores are order/value live.
+        ("FUN_0100ec88",
+         "*(volatile uint8_t *)(packet + 5) = 1;",
+         "*(volatile uint8_t *)(packet + 5) = 2;"),
+        # Architectural interrupt masking and the adjacent contention byte
+        # are independently live in the blocking ECB runner.
+        ("FUN_0100a7e8",
+         "if (saved_primask == 0) {",
+         "if (1) {"),
+        ("FUN_0100a7e8",
+         "if (retry_requested == 0) {",
+         "if (retry_requested != 0) {"),
+        # The final state word uses the post-shift mix for its low 26 bits but
+        # the pre-shift mix for its high six bits.  Moving that recovered
+        # six-bit splice by one position must be observable.
+        ("FUN_0100f5d8",
+         "(pre_shift_mix << 26)",
+         "(pre_shift_mix << 25)"),
+        # A completed CCM operation is valid only when the hardware error
+        # event remains clear; the live error fixture rejects polarity drift.
+        ("FUN_0101fd8c",
+         "CCM_REGISTER(CCM_EVENT_ERROR) == 0",
+         "CCM_REGISTER(CCM_EVENT_ERROR) != 0"),
+        # FUN_0101e090 consumes the selected entry explicitly.  Passing null
+        # recreates the old stale-r0 shortcut and must change its call ABI.
+        ("FUN_0102946c",
+         "FUN_0101e090(entry)",
+         "FUN_0101e090((void *)0)"),
+        # Allocation is deliberately highest-numbered-first; mixed masks
+        # distinguish the recovered CLZ selection from a lowest-bit claim.
+        ("FUN_01034328",
+         "31U - (unsigned int)__builtin_clz(observed)",
+         "(unsigned int)__builtin_ctz(observed)"),
         ("FUN_01037a60",
          "if (exception != 0) {",
          "if (0) {"),

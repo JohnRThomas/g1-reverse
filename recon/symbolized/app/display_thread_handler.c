@@ -12,6 +12,7 @@
  *   setDelayExitValue                        <= FUN_00049000 @ 0x00049000
  *   k_msgq_get                               <= FUN_00072240 @ 0x00072240
  *   projector_fill_and_sync                  <= FUN_0007d6f4 @ 0x0007d6f4
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   k_timer_init                             <= FUN_00086726 @ 0x00086726
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -42,221 +43,317 @@
  *   g_some_k_timer                           @ 0x20004ce0
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_2001d447                               @ 0x2001d447
- *   g_display_last_reflash_id                @ 0x2001d448
  */
-/* Reconstructed display_thread_handler @ 0x49090  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed display_thread_handler @ 0x00049090.
+ *
+ * Readable identity/back-map:
+ *   log_message                         <= FUN_0007dda4 @ 0x0007dda4
+ *   debug_print                         <= FUN_00019c70 @ 0x00019c70
+ *   unsigned_divide_64                  <= FUN_0000e244 @ 0x0000e244
+ *   get_device_info                     <= FUN_000167a8 @ 0x000167a8
+ *   gui_set_active_canvas               <= FUN_000431b4 @ 0x000431b4
+ *   display_reflash_handler             <= FUN_00048e28 @ 0x00048e28
+ *   display_timer_stop                  <= FUN_00048ff4 @ 0x00048ff4
+ *   display_delay_set                   <= FUN_00049000 @ 0x00049000
+ *   display_thread_service_abort        <= FUN_0004906c @ 0x0004906c
+ *   k_msgq_get                          <= FUN_00072240 @ 0x00072240
+ *   k_sleep_ticks                       <= FUN_00074844 @ 0x00074844
+ *   display_power_set                   <= FUN_0007d6f4 @ 0x0007d6f4
+ *   k_timer_init                        <= FUN_00086726 @ 0x00086726
+ *   memset_bytes                        <= FUN_00086c78 @ 0x00086c78
+ *
+ * Exact executable ownership is [0x00049090, 0x00049632).  The halfword at
+ * 0x49632 is alignment, 0x49634 is the final literal, and FUN_00049638 is the
+ * next independent function.
+ */
+
+#include <stdbool.h>
 #include <stdint.h>
 
-extern void    DEBUG_PRINT(unsigned a, unsigned b, unsigned c);
-extern int     debug_print(void);
-extern int64_t __aeabi_uldivmod(int, int, int, int);
-extern int     get_device_info(void);
-extern void    gui_set_active_canvas(int);
-extern void    display_reflash_handler(int, int, int, int);
-extern void    stop_some_timer(void);
-extern int     setDelayExitValue(int);
-extern void    FUN_0004906c(void);
-extern int     k_msgq_get(int, void *, int, int);
-extern void    FUN_00074844(int, int);
-extern void    projector_fill_and_sync(int);
-extern void    k_timer_init(int, int, int);
-extern void    memset_bytes(void *, int, int);
+#define log_message                  log_message
+#define debug_print                  debug_print
+#define unsigned_divide_64           __aeabi_uldivmod
+#define get_device_info              get_device_info
+#define gui_set_active_canvas        gui_set_active_canvas
+#define display_reflash_handler      display_reflash_handler
+#define display_timer_stop           stop_some_timer
+#define display_delay_set            setDelayExitValue
+#define display_thread_service_abort FUN_0004906c
+#define k_msgq_get                    k_msgq_get
+#define k_sleep_ticks                 FUN_00074844
+#define display_power_set            projector_fill_and_sync
+#define k_timer_init                  k_timer_init
+#define memset_bytes                 memset_bytes
 
-/* globals (absolute addresses from literal pool) */
-#define PIV5   (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)   /* DAT_00049310 : verbosity level */
-#define PIV6   (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)   /* DAT_00049314 / DAT_000495cc    */
-#define P30    (*(volatile int *)((unsigned long)&g_dashboard_display_level) /*=0x20002544*/)   /* DAT_00049330                   */
-#define PC8    (*(volatile signed char *)((unsigned long)&g_2001d447) /*=0x2001d447*/)   /* DAT_0004932c[0] */
-#define PC8_1  (*(volatile signed char *)((unsigned long)&g_display_last_reflash_id) /*=0x2001d448*/)   /* DAT_0004932c[1] */
-#define PC16   (*(volatile short *)((unsigned long)&g_2001d447) /*=0x2001d447*/)         /* 16-bit store form */
+extern void log_message(uintptr_t message, uintptr_t function_name, ...);
+extern void debug_print(void);
+extern uint64_t unsigned_divide_64(uint64_t dividend, uint64_t divisor);
+extern uintptr_t get_device_info(void);
+extern unsigned int gui_set_active_canvas(void *canvas);
+extern void display_reflash_handler(void *display, unsigned int panel,
+                                    void *frame_state, unsigned int action);
+extern void display_timer_stop(void);
+extern int display_delay_set(uint32_t delay);
+extern void display_thread_service_abort(void);
+extern int k_msgq_get(void *queue, void *message, uint64_t timeout);
+extern uint32_t k_sleep_ticks(uint64_t timeout);
+extern void display_power_set(unsigned int enabled);
+extern void k_timer_init(void *timer, uintptr_t expiry, uintptr_t stop);
+extern void memset_bytes(void *destination, int value, unsigned int length);
 
-void display_thread_handler(int param_1)
+#define g_log_level              (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
+#define g_log_use_alt_sink       (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define g_dashboard_display_level (*(volatile int32_t *)((unsigned long)&g_dashboard_display_level) /*=0x20002544*/)
+#define g_display_msgq           ((void *)((unsigned long)&g_display_msgq) /*=0x200038c4*/)
+#define g_display_timer          ((void *)((unsigned long)&g_some_k_timer) /*=0x20004ce0*/)
+
+#define DISPLAY_TIMER_EXPIRY     ((uintptr_t)((unsigned long)&rodata_7d86d) /*=0x7d86d*/)
+#define DISPLAY_LOG_FUNCTION     ((uintptr_t)((unsigned long)&rodata_f01aa) /*=0xf01aa*/)
+
+struct display_reflash_state {
+    volatile uint8_t phase;
+    volatile uint8_t panel;
+};
+
+#define g_display_reflash_state \
+    (*(struct display_reflash_state *)((unsigned long)&g_2001d447) /*=0x2001d447*/)
+#define g_display_reflash_state_word (*(volatile uint16_t *)((unsigned long)&g_2001d447) /*=0x2001d447*/)
+
+struct display_message {
+    uint8_t opcode;
+    uint8_t reserved;
+    uint16_t parameter_kind;
+    uint32_t parameter;
+    uint8_t payload[16];
+};
+
+enum display_message_opcode {
+    DISPLAY_MESSAGE_START = 2,
+    DISPLAY_MESSAGE_STOP = 3,
+    DISPLAY_MESSAGE_SET_DELAY = 4,
+    DISPLAY_MESSAGE_ACTION_4 = 5,
+    DISPLAY_MESSAGE_ACTION_5 = 6,
+    DISPLAY_MESSAGE_ACTION_6 = 7,
+    DISPLAY_MESSAGE_ACTION_7 = 8,
+};
+
+enum display_reflash_phase {
+    DISPLAY_REFLASH_IDLE = 0,
+    DISPLAY_REFLASH_ACTIVE = 1,
+    DISPLAY_REFLASH_STOPPING = 2,
+};
+
+enum display_reflash_action {
+    DISPLAY_ACTION_RETRY = 0,
+    DISPLAY_ACTION_START = 1,
+    DISPLAY_ACTION_STOP = 2,
+    DISPLAY_ACTION_SET_DELAY = 3,
+    DISPLAY_ACTION_4 = 4,
+    DISPLAY_ACTION_5 = 5,
+    DISPLAY_ACTION_6 = 6,
+    DISPLAY_ACTION_7 = 7,
+};
+
+static __attribute__((always_inline)) inline void
+display_log(int minimum_level, uintptr_t message, unsigned int argument)
 {
-    volatile signed char *base = (volatile signed char *)param_1;
-    unsigned char local[24];
-    int  iVar13, iVar9;
-    int  bVar3;
-    signed char cVar1;
-    short local_3e;
-    unsigned lo, b1;
-    unsigned uVar12, uVar10, uVar8;
-
-    if (2 < PIV5) {
-        if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efb2e) /*=0xefb2e*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0);
-        else debug_print();
+    if (g_log_level > minimum_level) {
+        if (g_log_use_alt_sink == 0)
+            log_message(message, DISPLAY_LOG_FUNCTION, argument);
+        else
+            debug_print();
     }
-    memset_bytes(local, 0, 0x18);
-    iVar13 = param_1 + 0xd4;
-    if (2 < PIV5) {
-        if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efb50) /*=0xefb50*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0);
-        else debug_print();
+}
+
+static __attribute__((always_inline)) inline bool
+message_panel(const struct display_message *message, uint8_t fallback,
+              uint8_t *panel)
+{
+    if (message->parameter_kind == 0) {
+        *panel = fallback;
+        return true;
     }
-    k_timer_init(((unsigned long)&g_some_k_timer) /*=0x20004ce0*/, ((unsigned long)&rodata_7d86d) /*=0x7d86d*/, 0);
-    gui_set_active_canvas(param_1 + 0xb90);
-    PC16 = 0;
+    if (message->parameter_kind == 2 &&
+        (uint8_t)message->parameter == 1) {
+        *panel = (uint8_t)(message->parameter >> 8);
+        return true;
+    }
+    return false;
+}
 
-    do {
-        while (base[1] == 1 || base[1] == 8) {
-            if (2 < PIV5) {
-                if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efb7a) /*=0xefb7a*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0);
-                else debug_print();
-            }
-            FUN_00074844(((unsigned long)&rodata_28000) /*=0x28000*/, 0);
-        }
-        memset_bytes(local, 0, 0x18);
-        bVar3 = 0;
-        {
-            int x = P30;
-            int t = x & ~(x >> 31);
-            int64_t lVar2 = (int64_t)t * 0x8000 + 999;
-            int64_t uVar14 = __aeabi_uldivmod((int)lVar2, (int)((uint64_t)lVar2 >> 32), 1000, 0);
-            iVar9 = k_msgq_get(((unsigned long)&g_display_msgq) /*=0x200038c4*/, local, (int)uVar14, (int)((uint64_t)uVar14 >> 32));
-        }
-        local_3e   = *(short *)(local + 2);
-        lo         = local[4];
-        b1         = local[5];
-        uVar8      = *(unsigned *)(local + 4);
-        if (iVar9 == 0) bVar3 = 1;
-        else if (iVar9 == -0x23 || iVar9 == -0xb) bVar3 = 0;
+static __attribute__((always_inline)) inline void
+reset_reflash_state(void)
+{
+    g_display_reflash_state_word = 0;
+}
 
-        cVar1 = PC8;
-        if (cVar1 == 1) {
-            if (!bVar3) {
-                if (base[0xd5] != 0) { uVar12 = 0; uVar10 = (unsigned char)base[0xd5]; goto LAB_492ee; }
-                /* second identical test is dead */
-                if (3 < PIV5) {
-                    if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efebc) /*=0xefebc*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, (unsigned char)base[0xd5]);
-                    else debug_print();
+static __attribute__((always_inline)) inline void
+shutdown_display(void)
+{
+    display_power_set(0);
+    display_timer_stop();
+    reset_reflash_state();
+}
+
+void display_thread_handler(void *display)
+{
+    uint8_t *context = display;
+    struct display_message message;
+    void *frame_state = context + 0xd4;
+    uint8_t *current_panel = context + 0xd5;
+
+    display_log(2, ((unsigned long)&rodata_efb2e) /*=0xefb2e*/, 0);
+    memset_bytes(&message, 0, sizeof(message));
+    display_log(2, ((unsigned long)&rodata_efb50) /*=0xefb50*/, 0);
+    k_timer_init(g_display_timer, DISPLAY_TIMER_EXPIRY, 0);
+    gui_set_active_canvas(context + 0xb90);
+    reset_reflash_state();
+
+    for (;;) {
+        while (context[1] == 1 || context[1] == 8) {
+            display_log(2, ((unsigned long)&rodata_efb7a) /*=0xefb7a*/, 0);
+            k_sleep_ticks(((unsigned long)&rodata_28000) /*=0x28000*/);
+        }
+
+        memset_bytes(&message, 0, sizeof(message));
+        int32_t level = g_dashboard_display_level;
+        uint64_t interval = (uint64_t)(level & ~(level >> 31)) * 0x8000u + 999u;
+        uint64_t timeout = unsigned_divide_64(interval, 1000u);
+        bool received = k_msgq_get(g_display_msgq, &message, timeout) == 0;
+        uint8_t phase = g_display_reflash_state.phase;
+        uint8_t panel;
+
+        if (phase == DISPLAY_REFLASH_ACTIVE) {
+            if (!received) {
+                if (*current_panel != 0) {
+                    display_reflash_handler(display, *current_panel,
+                                             frame_state,
+                                             DISPLAY_ACTION_RETRY);
+                } else {
+                    display_log(3, ((unsigned long)&rodata_efebc) /*=0xefebc*/, *current_panel);
+                    display_log(0, 0x000eff0eu, 0);
+                    shutdown_display();
                 }
-                if (PIV5 < 1) goto LAB_495ba;
-                iVar9 = PIV6;
-                uVar12 = 0xeff0e; { unsigned uVar11 = ((unsigned long)&rodata_f01aa) /*=0xf01aa*/;
-LAB_495a8:
-                if (iVar9 == 0) DEBUG_PRINT(uVar12, uVar11, 0);
-                else debug_print(); }
-                goto LAB_495ba;
+                display_thread_service_abort();
+                continue;
             }
-            if (local[0] == 2) {
-                if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efcdf) /*=0xefcdf*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                if (local_3e == 0) {
-                    if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efd03) /*=0xefd03*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    uVar12 = 1; uVar10 = (unsigned char)base[0xd5]; goto LAB_492ee;
+
+            switch (message.opcode) {
+            case DISPLAY_MESSAGE_START:
+                display_log(2, ((unsigned long)&rodata_efcdf) /*=0xefcdf*/, 0);
+                if (message.parameter_kind == 0)
+                    display_log(3, ((unsigned long)&rodata_efd03) /*=0xefd03*/, 0);
+                else if (message.parameter_kind == 2 &&
+                         (uint8_t)message.parameter == 1)
+                    display_log(3, ((unsigned long)&rodata_efd2d) /*=0xefd2d*/,
+                                (uint8_t)(message.parameter >> 8));
+                else
+                    display_log(0, 0x000efd45u, 0);
+                if (message_panel(&message, *current_panel, &panel))
+                    display_reflash_handler(display, panel, frame_state,
+                                             DISPLAY_ACTION_START);
+                break;
+
+            case DISPLAY_MESSAGE_STOP:
+                display_log(2, ((unsigned long)&rodata_efd6f) /*=0xefd6f*/, 0);
+                g_display_reflash_state.phase = DISPLAY_REFLASH_STOPPING;
+                if (message.parameter_kind == 0)
+                    display_log(3, ((unsigned long)&rodata_efd03) /*=0xefd03*/, 0);
+                else if (message.parameter_kind == 2 &&
+                         (uint8_t)message.parameter == 1)
+                    display_log(3, ((unsigned long)&rodata_efd2d) /*=0xefd2d*/,
+                                (uint8_t)(message.parameter >> 8));
+                else
+                    display_log(0, 0x000efd45u, 0);
+                if (!message_panel(&message, *current_panel, &panel))
+                    panel = *current_panel;
+                display_reflash_handler(display, panel, frame_state,
+                                         DISPLAY_ACTION_STOP);
+                display_timer_stop();
+                display_log(2, ((unsigned long)&rodata_eff70) /*=0xeff70*/, 0);
+                break;
+
+            case DISPLAY_MESSAGE_SET_DELAY:
+                display_log(2, ((unsigned long)&rodata_efe74) /*=0xefe74*/, message.parameter);
+                display_delay_set(message.parameter);
+                display_reflash_handler(display, *current_panel, frame_state,
+                                         DISPLAY_ACTION_SET_DELAY);
+                break;
+
+            case DISPLAY_MESSAGE_ACTION_4:
+                display_log(2, ((unsigned long)&rodata_efebc) /*=0xefebc*/, 0);
+                display_reflash_handler(display, *current_panel, frame_state,
+                                         DISPLAY_ACTION_4);
+                break;
+
+            case DISPLAY_MESSAGE_ACTION_5:
+                display_log(2, 0x000efef4u, 0);
+                display_reflash_handler(display, *current_panel, frame_state,
+                                         DISPLAY_ACTION_5);
+                break;
+
+            case DISPLAY_MESSAGE_ACTION_6:
+                display_log(2, 0x000eff2cu, 0);
+                display_reflash_handler(display, *current_panel, frame_state,
+                                         DISPLAY_ACTION_6);
+                break;
+
+            case DISPLAY_MESSAGE_ACTION_7:
+                display_log(2, 0x000eff5cu, 0);
+                display_reflash_handler(display, *current_panel, frame_state,
+                                         DISPLAY_ACTION_7);
+                break;
+            default:
+                break;
+            }
+        } else if (phase == DISPLAY_REFLASH_STOPPING) {
+            display_log(2, ((unsigned long)&rodata_eff70) /*=0xeff70*/, 0);
+        } else if (phase == DISPLAY_REFLASH_IDLE) {
+            if (received && message.opcode == DISPLAY_MESSAGE_START) {
+                if (*current_panel == 0x10) {
+                    uintptr_t info = get_device_info();
+                    uintptr_t version = *(uintptr_t *)(info + 0x100c);
+                    if (*(uint8_t *)version < 12)
+                        display_power_set(0);
                 }
-                if (local_3e == 2) {
-                    if (lo == 1) {
-                        if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efd2d) /*=0xefd2d*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, b1); else debug_print(); }
-                        uVar12 = 1;
-LAB_492e8:
-                        uVar10 = b1; goto LAB_492ee;
-                    }
-                    if (0 < PIV5) {
-                        iVar9 = PIV6; { unsigned u12 = 0xefd45, u11 = ((unsigned long)&rodata_f01aa) /*=0xf01aa*/;
-LAB_49270:
-                        if (iVar9 == 0) DEBUG_PRINT(u12, u11, 0); else debug_print(); }
-                    }
+                display_log(2, ((unsigned long)&rodata_efb9f) /*=0xefb9f*/, 0);
+                if (message.parameter_kind == 0)
+                    display_log(3, ((unsigned long)&rodata_efbb7) /*=0xefbb7*/, 0);
+                else if (message.parameter_kind == 2 &&
+                         (uint8_t)message.parameter == 1)
+                    display_log(3, ((unsigned long)&rodata_efbe5) /*=0xefbe5*/,
+                                (uint8_t)(message.parameter >> 8));
+                else
+                    display_log(0, ((unsigned long)&rodata_efc00) /*=0xefc00*/, 0);
+                if (message_panel(&message, *current_panel, &panel)) {
+                    g_display_reflash_state.panel = panel;
+                    display_reflash_handler(display, panel, frame_state,
+                                             DISPLAY_ACTION_START);
+                    g_display_reflash_state.phase = DISPLAY_REFLASH_ACTIVE;
                 }
-            } else {
-                switch (local[0]) {
-                case 3:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efd6f) /*=0xefd6f*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    PC8 = 2;
-                    if (local_3e == 0) {
-                        if (3 < PIV5) { iVar9 = PIV6; uVar12 = ((unsigned long)&rodata_efd03) /*=0xefd03*/;
-LAB_4943a:
-                            if (iVar9 == 0) DEBUG_PRINT(uVar12, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print();
-                        }
-LAB_49442:
-                        uVar10 = (unsigned char)base[0xd5];
-LAB_4947e:
-                        display_reflash_handler(param_1, uVar10, iVar13, 2);
-                    } else if (local_3e == 2) {
-                        if ((signed char)lo != 1) {
-                            if (0 < PIV5) { iVar9 = PIV6; uVar12 = 0xefd45; goto LAB_4943a; }
-                            goto LAB_49442;
-                        }
-                        if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efd2d) /*=0xefd2d*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, b1); else debug_print(); }
-                        uVar10 = b1; goto LAB_4947e;
-                    }
-                    stop_some_timer();
-                    goto LAB_49488;
-                case 4:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efe74) /*=0xefe74*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, uVar8); else debug_print(); }
-                    setDelayExitValue(uVar8); uVar12 = 3; uVar10 = (unsigned char)base[0xd5]; break;
-                case 5:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efebc) /*=0xefebc*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    uVar12 = 4; uVar10 = (unsigned char)base[0xd5]; break;
-                case 6:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(0xefef4, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    uVar12 = 5; uVar10 = (unsigned char)base[0xd5]; break;
-                case 7:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(0xeff2c, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    uVar12 = 6; uVar10 = (unsigned char)base[0xd5]; break;
-                case 8:
-                    if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(0xeff5c, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                    uVar12 = 7; uVar10 = (unsigned char)base[0xd5]; break;
-                default:
-                    goto LAB_switchD;
-                }
-LAB_492ee:
-                display_reflash_handler(param_1, uVar10, iVar13, uVar12);
+            } else if (received && message.opcode == DISPLAY_MESSAGE_STOP) {
+                display_log(2, ((unsigned long)&rodata_efc2d) /*=0xefc2d*/, 0);
+                reset_reflash_state();
+                if (message.parameter_kind == 0)
+                    display_log(3, ((unsigned long)&rodata_efc62) /*=0xefc62*/, 0);
+                else if (message.parameter_kind == 2 &&
+                         (uint8_t)message.parameter == 1)
+                    display_log(3, ((unsigned long)&rodata_efc92) /*=0xefc92*/,
+                                (uint8_t)(message.parameter >> 8));
+                else
+                    display_log(0, 0x000efcafu, 0);
+                if (!message_panel(&message, *current_panel, &panel))
+                    panel = *current_panel;
+                display_reflash_handler(display, panel, frame_state,
+                                         DISPLAY_ACTION_STOP);
             }
         } else {
-            if (cVar1 == 2) {
-LAB_49488:
-                if (2 < PIV5) {
-                    iVar9 = PIV6; uVar12 = ((unsigned long)&rodata_eff70) /*=0xeff70*/; unsigned uVar11 = ((unsigned long)&rodata_f01aa) /*=0xf01aa*/;
-                    if (iVar9 == 0) DEBUG_PRINT(uVar12, uVar11, 0); else debug_print();
-                }
-            } else {
-                if (cVar1 == 0) {
-                    if (bVar3) {
-                        if (local[0] == 2) {
-                            if (base[0xd5] == 0x10) {
-                                iVar9 = get_device_info();
-                                if (**(unsigned char **)(iVar9 + 0x100c) < 0xc) projector_fill_and_sync(0);
-                            }
-                            if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efb9f) /*=0xefb9f*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                            if (local_3e == 0) {
-                                if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efbb7) /*=0xefbb7*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                                cVar1 = base[0xd5]; PC8_1 = base[0xd5];
-LAB_49204:
-                                display_reflash_handler(param_1, cVar1, iVar13, 1); PC8 = 1;
-                            } else if (local_3e == 2) {
-                                if (lo == 1) {
-                                    if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efbe5) /*=0xefbe5*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, b1); else debug_print(); }
-                                    PC8_1 = (signed char)b1; cVar1 = (signed char)b1; goto LAB_49204;
-                                }
-                                if (0 < PIV5) { iVar9 = PIV6; uVar12 = ((unsigned long)&rodata_efc00) /*=0xefc00*/; unsigned uVar11 = ((unsigned long)&rodata_f01aa) /*=0xf01aa*/;
-                                    if (iVar9 == 0) DEBUG_PRINT(uVar12, uVar11, 0); else debug_print(); }
-                            }
-                        } else if (local[0] == 3) {
-                            if (2 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efc2d) /*=0xefc2d*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                            PC16 = 0;
-                            if (local_3e == 0) {
-                                if (3 < PIV5) { iVar9 = PIV6; uVar12 = ((unsigned long)&rodata_efc62) /*=0xefc62*/;
-LAB_492ac:
-                                    if (iVar9 == 0) DEBUG_PRINT(uVar12, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print();
-                                }
-                            } else {
-                                if (local_3e != 2) goto LAB_switchD;
-                                if ((signed char)lo == 1) {
-                                    if (3 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_efc92) /*=0xefc92*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, b1); else debug_print(); }
-                                    uVar12 = 2; goto LAB_492e8;
-                                }
-                                if (0 < PIV5) { iVar9 = PIV6; uVar12 = 0xefcaf; goto LAB_492ac; }
-                            }
-                            uVar12 = 2; uVar10 = (unsigned char)base[0xd5]; goto LAB_492ee;
-                        }
-                    }
-                    goto LAB_switchD;
-                }
-                if (0 < PIV5) { if (PIV6 == 0) DEBUG_PRINT(((unsigned long)&rodata_effaf) /*=0xeffaf*/, ((unsigned long)&rodata_f01aa) /*=0xf01aa*/, 0); else debug_print(); }
-                display_reflash_handler(param_1, (unsigned char)base[0xd5], iVar13, 2);
-            }
-LAB_495ba:
-            projector_fill_and_sync(0); stop_some_timer(); PC16 = 0;
+            display_log(0, ((unsigned long)&rodata_effaf) /*=0xeffaf*/, 0);
+            display_reflash_handler(display, *current_panel, frame_state,
+                                     DISPLAY_ACTION_STOP);
+            shutdown_display();
         }
-LAB_switchD:
-        FUN_0004906c();
-    } while (1);
+
+        display_thread_service_abort();
+    }
 }

@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_0101b758 @ 0x0101b758
  * public-name: FUN_0101b758
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_net_conn_teardown_busy_flag            @ 0x2100111c
  */
 /* net-core FUN_0101b758 @ 0x101b758  (parity 300 trials PROVEN) */
 #define P_0101b7e0 0x2100111c
 
-extern void FUN_01008d00(int, int);
+extern void sdc_assertion_fail(int, int);
 extern int FUN_01009dd8(void *);
 extern int FUN_01009d18(int, int);
 extern void FUN_0102411c(int);
@@ -54,9 +56,9 @@ L_inner:
   goto L_loop_top;
 
 L_abort1:
-  FUN_01008d00(0x35, 0x1d0);
+  sdc_assertion_fail(0x35, 0x1d0);
 L_abort2:
-  FUN_01008d00(0x35, 0x1bf);
+  sdc_assertion_fail(0x35, 0x1bf);
   return;
 
 LAB_end:

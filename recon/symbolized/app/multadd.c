@@ -3,7 +3,7 @@
  * public-name: multadd
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
  *   multadd                                  <= FUN_00078698 @ 0x00078698
@@ -16,7 +16,7 @@
 /* Reconstructed FUN_00078698 @ 0x78698  (parity: 152/300 trials, PROVEN) */
 
 extern int Balloc(int,int);
-extern int libc_fatal_error_and_abort(int,int,int,int);
+extern int __assert_func(int,int,int,int);
 extern void memcpy(int,int,int);
 extern void Bfree(int,int);
 int multadd(int param_1,int param_2,int param_3,unsigned param_4){
@@ -37,7 +37,7 @@ int multadd(int param_1,int param_2,int param_3,unsigned param_4){
     if(*(int*)(param_2+8)<=iVar5){
       int iVar2=Balloc(param_1,*(int*)(param_2+4)+1);
       iVar1r=iVar2;
-      if(iVar2==0){ iVar2=libc_fatal_error_and_abort(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/,0xb5,0,((unsigned long)&rodata_f8c42) /*=0xf8c42*/); }
+      if(iVar2==0){ iVar2=__assert_func(((unsigned long)&rodata_f8cd5) /*=0xf8cd5*/,0xb5,0,((unsigned long)&rodata_f8c42) /*=0xf8c42*/); }
       memcpy(iVar2+0xc,param_2+0xc,(*(int*)(param_2+0x10)+2)*4);
       Bfree(param_1,param_2);
     }

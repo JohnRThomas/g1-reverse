@@ -1,11 +1,13 @@
 /* readable reconstruction; identity: FUN_0100d878 @ 0x0100d878
  * public-name: FUN_0100d878
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  */
 /* net-core FUN_0100d878 @ 0x100d878  (parity 500 trials PROVEN) */
 typedef unsigned int uint;
 typedef unsigned char byte;
-extern void FUN_01008d00(uint,uint,uint,uint,uint);
+extern void sdc_assertion_fail(uint,uint,uint,uint,uint);
 
 static inline __attribute__((always_inline)) uint rev8(byte b){
   return ((((((((((uint)(b&1)<<1)|(b>>1&1))<<1|(b>>2&1))<<1|(b>>3&1))<<1|(b>>4&1))<<1|(b>>5&1))<<1|(b>>6&1))<<1)|(b>>7));
@@ -58,7 +60,7 @@ L0d948:
 L0d954:
   if (B(0xa) >= R2) goto L0db84;
   /* call (noreturn in HW; oracle returns -> falls into +4 block) */
-  FUN_01008d00(0x46,0x9d,R2,B(0xa),param_4);
+  sdc_assertion_fail(0x46,0x9d,R2,B(0xa),param_4);
 L0d966:
   R3 = B(4);
   if ((int)(R3 << 0x1f) < 0){ R2=(R2-1)&0xff; if(R2==0){ R2=3; goto L0da7e; } }
@@ -124,7 +126,7 @@ L0dbcc:
   if ((int)(R3 << 0x18) < 0){ if (R2 == 1){ R2=4; goto L0da66; } }
   goto L0d95e;
 L0d95e:
-  FUN_01008d00(0x46,0x9d,R2,B(0xa),param_4);
+  sdc_assertion_fail(0x46,0x9d,R2,B(0xa),param_4);
   goto L0d966;
 
 L0dc00:

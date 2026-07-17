@@ -9,7 +9,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
- *   ADDR_FUN_00080ab4_THUMB                  @ 0x00080ab5
+ *   ADDR_smp_handle_reqs_THUMB               @ 0x00080ab5
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f2901                             @ 0x000f2901
  *   rodata_f293b                             @ 0x000f293b
@@ -31,7 +31,7 @@ unsigned int smp_transport_init(int param_1)
         assert_post_action(((unsigned long)&rodata_f2901) /*=0xf2901*/, 0x92);
     }
     FUN_00080b28();
-    k_work_init(param_1, ADDR_FUN_00080ab4_THUMB /*=0x80ab5*/);
+    k_work_init(param_1, ADDR_smp_handle_reqs_THUMB /*=0x80ab5*/);
     z_impl_k_queue_init(param_1 + 0x10);
     return 0;
 }

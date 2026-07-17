@@ -2,7 +2,7 @@
  * public-name: s2b
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   multadd                                  <= FUN_00078698 @ 0x00078698
  *   s2b                                      <= FUN_00078728 @ 0x00078728
@@ -12,7 +12,7 @@
  */
 /* Reconstructed FUN_00078728 @ 0x78728  (parity: 71/300 trials, PROVEN) */
 
-extern int libc_fatal_error_and_abort(unsigned a, unsigned b);
+extern int __assert_func(unsigned a, unsigned b);
 extern int Balloc(unsigned a, int b);
 extern int multadd(unsigned a, int b, int c, int d, int e);
 void s2b(unsigned param_1, int param_2, int param_3, int param_4, unsigned param_5){
@@ -27,7 +27,7 @@ void s2b(unsigned param_1, int param_2, int param_3, int param_4, unsigned param
             node = Balloc(param_1, iVar1);
             if (node != 0) goto found;
             iVar3 = 0x000f8c42;
-            libc_fatal_error_and_abort(0x000f8cd5, 0xce);
+            __assert_func(0x000f8cd5, 0xce);
             iVar1 = 0;
         }
         iVar2 = iVar2 << 1;

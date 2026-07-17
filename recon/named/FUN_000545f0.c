@@ -8,7 +8,7 @@
  *   mutex_lock_syscall_handler               <= FUN_00072908 @ 0x00072908
  *   mutex_unlock_syscall_handler             <= FUN_000745c8 @ 0x000745c8
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
- *   thunk_FUN_000727ac                       <= FUN_000836e8 @ 0x000836e8
+ *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_99cbd                             @ 0x00099cbd
@@ -39,7 +39,7 @@ extern uint64_t printk(uintptr_t module, uintptr_t file,
 extern void FUN_0005463e(uint32_t reason) __attribute__((noreturn));
 extern void FUN_00054688(uint32_t reason) __attribute__((noreturn));
 /* AAPCS aligns the 64-bit timeout in r2:r3, leaving r1 as unused padding. */
-extern uintptr_t thunk_FUN_000727ac(uintptr_t queue, uint64_t timeout);
+extern uintptr_t net_buf_get(uintptr_t queue, uint64_t timeout);
 extern int mutex_lock_syscall_handler(uintptr_t event, uint64_t timeout);
 extern void FUN_00080ea2(uintptr_t source, uint32_t level, const void *record);
 extern void net_buf_unref(void *buffer);
@@ -90,7 +90,7 @@ void FUN_000545f0(void)
             if (type == 4) {
                 uint8_t state = *(volatile uint8_t *)(event + 12);
                 if (state == 0) {
-                    uintptr_t dequeued = thunk_FUN_000727ac(0x2000214cu, 0);
+                    uintptr_t dequeued = net_buf_get(0x2000214cu, 0);
                     void *buffer = (void *)dequeued;
                     if (buffer == 0) {
                         (void)printk(0x00099cbdu, 0x000f45beu,

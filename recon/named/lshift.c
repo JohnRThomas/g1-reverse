@@ -2,7 +2,7 @@
  * public-name: lshift
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
  *   lshift                                   <= FUN_000789f0 @ 0x000789f0
@@ -13,7 +13,7 @@
 /* Reconstructed FUN_000789f0 @ 0x789f0  (parity: 8/200 trials, PROVEN)
  * CFG_VERIFY_ORACLE0_R0_POINTER: allocator result is a valid limb object. */
 #include <stdint.h>
-extern int libc_fatal_error_and_abort(uint32_t,int,int);
+extern int __assert_func(uint32_t,int,int);
 extern int Balloc(uint32_t,int);
 extern void Bfree(uint32_t,int);
 
@@ -57,7 +57,7 @@ int lshift(uint32_t param_1, int param_2, uint32_t param_3){
                 return iVar1;
             }
             iVar5 = 0x000f8c42;
-            iVar1 = libc_fatal_error_and_abort(0x000f8cd5, 0x1d9, 0);
+            iVar1 = __assert_func(0x000f8cd5, 0x1d9, 0);
         }
         iVar1 = iVar1 + 1;
         iVar5 = iVar5 << 1;

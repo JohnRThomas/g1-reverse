@@ -24,24 +24,41 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_gui_active_canvas                      @ 0x2000a034
  */
-/* Reconstructed gui_utf_Wordwrap_draw @ 0x451e0  (parity: 300/300 trials, PROVEN) */
+/* Recovered gui_utf_Wordwrap_draw <= FUN_000451e0 @ 0x000451e0.
+ * Reviewed image span is 0x3ec bytes through 0x455cb.  The historical 0x3b0
+ * catalog extent stopped inside the live callback/logger tail at 0x45590.
+ * Durable reverse mapping: recon/catalogs/function_names_app.json.
+ */
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 typedef int i32;
 
-extern void DEBUG_PRINT(u32,u32);
+/* Semantic aliases preserve the exact raw linker identities. */
+#define get_device_info get_device_info
+#define debug_print debug_print
+#define get_display_atomic_state atomic_get_3_0
+#define get_glyph_spacing count_chars_in_default_font_table
+#define load_glyph_resource resource_manger_get
+#define clear_framebuffer_region clean_fb_data
+#define refresh_display_region reflash_fb_data_to_lcd
+#define decode_utf16_text utf8_string_to_utf16
+#define draw_glyph_bitmap fb_blit_rows_copy
+#define classify_text_character index_in_range32_mask
+#define copy_glyph_bitmap FUN_00086c1e
+
+extern void DEBUG_PRINT();
 extern u32 get_device_info(void);
 extern void debug_print(void);
-extern u32 atomic_get_3_0(void);
-extern u32 count_chars_in_default_font_table(u32,u32);
-extern i32 resource_manger_get(u32,u32,void*,void*,void*,u32);
-extern void clean_fb_data(u32,u32,u32,u32,u32,u32);
-extern void reflash_fb_data_to_lcd(u32,u32,u32,u32,u32,u32);
-extern u16* utf8_string_to_utf16(u32,void*);
-extern void fb_blit_rows_copy(u32,void*,u32,u32,u32,u32);
-extern u32 index_in_range32_mask(u32);
-extern void FUN_00086c1e(void*,u32,u32,u32);
+extern u32 get_display_atomic_state(void);
+extern u32 get_glyph_spacing(u32,u32);
+extern i32 load_glyph_resource(u32,u32,void*,void*,void*,u32);
+extern void clear_framebuffer_region(u32,u32,u32,u32,u32,u32);
+extern void refresh_display_region(u32,u32,u32,u32,u32,u32);
+extern u16* decode_utf16_text(u32,void*);
+extern void draw_glyph_bitmap(u32,void*,u32,u32,u32,u32);
+extern u32 classify_text_character(u32);
+extern void copy_glyph_bitmap(void*,u32,u32,u32);
 
 typedef u32 (*fnptr_t)(u32,u32,u32,u32,u32);
 
@@ -76,16 +93,16 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
 
   local_302 = 0;
   local_300 = 0;
-  puVar2 = utf8_string_to_utf16(param_2, &local_302);
+  puVar2 = decode_utf16_text(param_2, &local_302);
   local_2fc = 0;
   local_2f8 = 0;
 
   if (param_10 == 0) {
     if (param_11 != 0) goto LAB_0004558c;
     if (param_12 == 0) {
-      iVar3 = atomic_get_3_0();
+      iVar3 = get_display_atomic_state();
       if ((i32)(iVar3 << 30) < 0) {
-        clean_fb_data(*(volatile u32*)0x2000a034UL, 0, param_4, param_5, param_6, param_7);
+        clear_framebuffer_region(*(volatile u32*)0x2000a034UL, 0, param_4, param_5, param_6, param_7);
       }
       uVar14 = 0;
       uVar15 = 0;
@@ -95,20 +112,20 @@ u32 gui_utf_Wordwrap_draw(u32 param_1, u32 param_2, i32 param_3, i32 param_4, i3
       puVar17 = puVar2;
       for (uVar18 = 0; (i32)uVar18 < (i32)(u32)local_302; uVar18 = uVar18 + 1) {
         uVar16 = (u32)*puVar17;
-        iVar3 = index_in_range32_mask(uVar16);
+        iVar3 = classify_text_character(uVar16);
         if (iVar3 == 0) {
-          iVar3 = resource_manger_get(param_3, uVar16, &local_2fc, &local_2f8, &local_300, 0);
+          iVar3 = load_glyph_resource(param_3, uVar16, &local_2fc, &local_2f8, &local_300, 0);
           if (iVar3 < 0) {
             if (1 < *(volatile i32*)0x2000230cUL) {
               if (*(volatile i32*)0x20007554UL == 0) {
-                DEBUG_PRINT(0x000aaa58UL, 0x000aad35UL);
+                DEBUG_PRINT(0x000aaa58UL, 0x000aad35UL, uVar16);
               } else {
                 debug_print();
               }
             }
           } else {
             iVar3 = local_2f8 * (local_2fc / 2);
-            FUN_00086c1e(local_2cc, local_300, iVar3, 0x2a4);
+            copy_glyph_bitmap(local_2cc, local_300, iVar3, 0x2a4);
             if (uVar18 < param_9) {
               pbVar9 = local_2cc;
               for (iVar5 = 0; iVar3 - iVar5 != 0 && iVar5 <= iVar3; iVar5 = iVar5 + 1) {
@@ -171,9 +188,9 @@ LAB_00045458:
                   puVar4 = puVar17;
                   local_318 = uVar15;
                   for (local_314 = uVar18; (i32)local_314 <= (i32)uVar16; local_314 = local_314 + 1) {
-                    iVar3 = resource_manger_get(param_3, *puVar4, &local_2f4_0, &local_2f4_1, &auStack_2ec, 0);
+                    iVar3 = load_glyph_resource(param_3, *puVar4, &local_2f4_0, &local_2f4_1, &auStack_2ec, 0);
                     if (iVar3 == 0) {
-                      iVar3 = count_chars_in_default_font_table(*puVar4, puVar4[1]);
+                      iVar3 = get_glyph_spacing(*puVar4, puVar4[1]);
                       local_318 = local_318 + (u32)iVar3 + (u32)local_2f4_0;
                     }
                     if (uVar8 < local_318) {
@@ -194,7 +211,7 @@ LAB_00045442:
               }
             }
 LAB_00045314:
-            iVar3 = count_chars_in_default_font_table(*puVar17, puVar17[1]);
+            iVar3 = get_glyph_spacing(*puVar17, puVar17[1]);
             uVar15 = uVar15 + (u32)iVar3 + (u32)local_2fc;
             if (uVar8 < uVar15) {
               uVar12 = uVar12 + (u32)local_2f8;
@@ -203,13 +220,13 @@ LAB_00045314:
               }
               uVar14 = uVar14 + 1;
               if ((param_8 <= uVar14) || ((u32)(param_7 - param_5) <= uVar12)) break;
-              fb_blit_rows_copy(*(volatile u32*)0x2000a034UL, local_2cc, local_2fc / 2, local_2f8, param_4, uVar12 + param_5);
-              iVar3 = count_chars_in_default_font_table(*puVar17, puVar17[1]);
+              draw_glyph_bitmap(*(volatile u32*)0x2000a034UL, local_2cc, local_2fc / 2, local_2f8, param_4, uVar12 + param_5);
+              iVar3 = get_glyph_spacing(*puVar17, puVar17[1]);
               uVar15 = (u32)iVar3 + (u32)local_2fc;
               uVar19 = uVar15;
             } else {
-              fb_blit_rows_copy(*(volatile u32*)0x2000a034UL, local_2cc, local_2fc / 2, local_2f8, param_4 + (i32)uVar19, uVar12 + param_5);
-              iVar3 = count_chars_in_default_font_table(*puVar17, puVar17[1]);
+              draw_glyph_bitmap(*(volatile u32*)0x2000a034UL, local_2cc, local_2fc / 2, local_2f8, param_4 + (i32)uVar19, uVar12 + param_5);
+              iVar3 = get_glyph_spacing(*puVar17, puVar17[1]);
               uVar19 = uVar19 + (u32)iVar3 + (u32)local_2fc;
             }
 LAB_0004537a:
@@ -240,12 +257,12 @@ LAB_0004537c:
         }
         puVar17 = puVar17 + 1;
       }
-      iVar3 = atomic_get_3_0();
+      iVar3 = get_display_atomic_state();
       if ((i32)(iVar3 << 30) < 0) {
         iVar3 = get_device_info();
         uVar13x = *(volatile u32*)(iVar3 + 0xeb4);
         iVar3 = get_device_info();
-        reflash_fb_data_to_lcd(uVar13x, *(volatile u32*)(iVar3 + 0xeb8), param_4, param_5, param_6, param_7);
+        refresh_display_region(uVar13x, *(volatile u32*)(iVar3 + 0xeb8), param_4, param_5, param_6, param_7);
       }
     }
   } else if (param_11 != 0) {

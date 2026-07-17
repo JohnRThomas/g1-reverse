@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_01017f7c @ 0x01017f7c
  * public-name: FUN_01017f7c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
  *   g_net_radio_pending_proc_flag            @ 0x2100104a
  */
@@ -16,8 +19,8 @@ extern unsigned int FUN_0100cb4c(unsigned int a);
 extern void FUN_01016430(unsigned int a, unsigned int b);
 extern void FUN_0101fc70(void);
 extern void FUN_01020898(unsigned int a);
-extern void FUN_010208b0(void);
-extern void FUN_0101fca8(void);
+extern void sdc_llcp_stop_rx_timeout(void);
+extern void sdc_llcp_release_rx_context(void);
 extern void FUN_010208f0(unsigned int a);
 extern unsigned int PHANTOM_RETRY(void);
 
@@ -53,10 +56,10 @@ void FUN_01017f7c(void)
 
     if (iVar6 == 0) {
         if (*(volatile signed char *)(iVar2 + 0x7c) != 0) {
-            FUN_010208b0();
-            FUN_0101fca8();
+            sdc_llcp_stop_rx_timeout();
+            sdc_llcp_release_rx_context();
             for (;;) {
-                FUN_0101fca8();
+                sdc_llcp_release_rx_context();
             }
         }
         *(volatile unsigned short *)(iVar2 + 0xba) = 0;

@@ -206,7 +206,7 @@ extern volatile unsigned int g_net_fault_record_ptr; /* @0x21004610 */
 extern volatile unsigned int g_net_ipc_msg_data; /* @0x21004628 */
 extern volatile unsigned int g_net_evt_callback_fn; /* @0x2100463c */
 extern volatile unsigned int g_net_periodic_work_ptr; /* @0x2100465c */
-extern volatile int g_net_current_thread_field_cache; /* @0x21004660 */
+extern volatile unsigned int g_net_current_thread_field_cache; /* @0x21004660 */
 extern volatile int g_net_tick_correction_pending; /* @0x21004664 */
 extern volatile unsigned int g_net_tick_pending_cnt; /* @0x21004668 */
 extern volatile unsigned int g_21004690; /* @0x21004690 */

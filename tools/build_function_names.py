@@ -15,6 +15,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 
 
@@ -72,6 +73,40 @@ def source_headers(core, candidates):
                     priority, os.path.relpath(path, BASE))
 
 
+def durable_names(core, candidates):
+    """Seed the build from already-reviewed persistent naming knowledge.
+
+    Scratch catalogs are enrichment, not authority.  In particular, a wiped
+    or partially regenerated scratchpad must never turn a committed human name
+    back into FUN_xxxxxxxx.  Explicit overrides and reviewed canonical source
+    headers retain higher precedence and can deliberately upgrade a record.
+    The generated worktree manifest is deliberately not fed back into itself:
+    doing so makes a stale collision-rejected record influence the next run.
+    """
+    relative = "recon/catalogs/function_names_%s.json" % core
+    manifests = []
+    try:
+        committed = subprocess.run(
+            ["git", "-C", BASE, "show", "HEAD:" + relative],
+            capture_output=True, text=True, check=True)
+        manifests.append((json.loads(committed.stdout), 5, "committed durable map"))
+    except (subprocess.CalledProcessError, ValueError, OSError):
+        pass
+
+    seen = set()
+    for manifest, priority, source in manifests:
+        for address, record in manifest.get("by_address", {}).items():
+            key = (int(address, 16) & ~1, record.get("name"))
+            if key in seen:
+                continue
+            seen.add(key)
+            # Preserve every address identity, and most importantly every
+            # reviewed human record.  Raw identities remain the lowest-value
+            # candidate because add()/selection always prefer a human name.
+            add(candidates, key[0], key[1] or record.get("raw_name"),
+                priority, source)
+
+
 def catalog_names(core, candidates):
     path = SCR + "/%s_funcs.json" % core
     with open(path) as stream:
@@ -96,6 +131,7 @@ def catalog_names(core, candidates):
 
 def build(core):
     candidates = collections.defaultdict(list)
+    durable_names(core, candidates)
     catalog_names(core, candidates)
     source_headers(core, candidates)
     overrides_path = BASE + "/recon/catalogs/function_name_overrides.json"

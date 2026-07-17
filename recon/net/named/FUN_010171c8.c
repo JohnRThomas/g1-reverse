@@ -1,6 +1,10 @@
 /* readable reconstruction; identity: FUN_010171c8 @ 0x010171c8
  * public-name: FUN_010171c8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
  *   REG_41008000                             @ 0x41008000
  */
@@ -9,18 +13,18 @@ typedef unsigned char byte;
 typedef unsigned int uint;
 typedef unsigned long long ulonglong;
 
-extern void FUN_01008d00(int,int) __attribute__((noreturn));
+extern void sdc_assertion_fail(int,int) __attribute__((noreturn));
 extern int FUN_01016430(int,unsigned int);
 extern void FUN_01016628(void);
 extern int FUN_01016e6c(int,unsigned int);
-extern void FUN_0101fca8(void);
+extern void sdc_llcp_release_rx_context(void);
 extern void FUN_010203d0(void);
 extern void FUN_010204d4(int);
 extern void FUN_010204e0(unsigned int);
 extern void FUN_0102072c(unsigned int);
 extern void FUN_01020738(unsigned int);
 extern void FUN_01020764(unsigned int);
-extern void FUN_010208b0(void);
+extern void sdc_llcp_stop_rx_timeout(void);
 extern void FUN_01022a50(unsigned char,int,int);
 extern void FUN_01025c44(int);
 
@@ -62,8 +66,8 @@ unsigned int FUN_010171c8(unsigned int *param_1, unsigned int param_2)
         cVar4 = *(volatile signed char*)((int)param_1+0xd);
     } else {
         FUN_010203d0();
-        FUN_010208b0();
-        FUN_0101fca8();
+        sdc_llcp_stop_rx_timeout();
+        sdc_llcp_release_rx_context();
         FUN_01020738(0x21000344u);
         FUN_0102072c(0x00555555u);
         FUN_010204e0(0x8e89bed6u);
@@ -75,7 +79,7 @@ unsigned int FUN_010171c8(unsigned int *param_1, unsigned int param_2)
             if (*(volatile signed char*)((int)param_1+4) != 3) goto LAB_read_cvar4;
         }
         if (*(volatile int*)(IVAR5+0x74) != 0) {
-            FUN_01008d00(0x32, 0xa6c);
+            sdc_assertion_fail(0x32, 0xa6c);
         }
         iVar6 = FUN_01016e6c(1, param_2);
         if (iVar6 == 0) return 0;
@@ -121,5 +125,5 @@ LAB_end:
     if (*(volatile int*)(MMIO+0x550) != 3) {
         return 0;
     }
-    FUN_01008d00(0x32, 0xa98);
+    sdc_assertion_fail(0x32, 0xa98);
 }

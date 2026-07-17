@@ -3,11 +3,11 @@
  * public-name: FUN_00068b2c
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  */
 /* Reconstructed FUN_00068b2c @ 0x68b2c  (parity: 300/300 trials, PROVEN) */
 
-extern void lc3_bits_accu_flush(int,unsigned int,unsigned int);
+extern void lc3_put_bits_generic(int,unsigned int,unsigned int);
 void FUN_00068b2c(int param_1, unsigned int param_2, int param_3)
 {
   unsigned int uVar1;
@@ -18,7 +18,7 @@ void FUN_00068b2c(int param_1, unsigned int param_2, int param_3)
   if (uVar1 != 0) {
     iVar2 = uVar1 + *(unsigned int*)(param_1+0x20);
     if (iVar2 > 0x20) {
-      lc3_bits_accu_flush(param_1, (unsigned int)param_3, uVar1);
+      lc3_put_bits_generic(param_1, (unsigned int)param_3, uVar1);
       return;
     }
     *(unsigned int*)(param_1+0x1c) = *(unsigned int*)(param_1+0x1c) | (param_3 << (*(unsigned int*)(param_1+0x20) & 0xff));

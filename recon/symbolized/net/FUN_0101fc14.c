@@ -4,13 +4,13 @@
 extern void FUN_0102023c(void);
 extern void FUN_01020054(void);
 extern void FUN_0101fc2c(void);
-extern void FUN_0101fdc0(void);
+extern void controller_radio_request_state_clear(void); /* FUN_0101fdc0@0x0101fdc0 */
 
 void FUN_0101fc14(void)
 {
   FUN_0102023c();
   FUN_01020054();
   FUN_0101fc2c();
-  FUN_0101fdc0();
+  controller_radio_request_state_clear();
   return;
 }

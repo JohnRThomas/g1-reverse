@@ -1,19 +1,22 @@
 /* readable reconstruction; identity: FUN_01016e6c @ 0x01016e6c
  * public-name: FUN_01016e6c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
  * address symbols (name @ address):
  *   rodata_103c24c                           @ 0x0103c24c
  */
 /* net-core FUN_01016e6c @ 0x1016e6c  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern int FUN_0100cb4c(int);
 extern void FUN_0101fc70(void);
 extern void FUN_010202fc(unsigned int, unsigned int);
 extern void FUN_010204f4(unsigned int);
 extern int FUN_01020764(int);
 extern void FUN_01020898(unsigned int);
-extern unsigned int FUN_01020a6c(unsigned int, unsigned int, unsigned int);
+extern unsigned int controller_radio_transition_schedule(unsigned int, unsigned int, unsigned int);
 extern unsigned int FUN_010212ec(unsigned int, unsigned int);
 
 unsigned int FUN_01016e6c(int param_1, int param_2)
@@ -39,9 +42,9 @@ unsigned int FUN_01016e6c(int param_1, int param_2)
 
   if (param_1 == 0) {
     unsigned int arg1 = *(volatile unsigned int *)(base + 0x74);
-    iVar3 = FUN_01020a6c(1, arg1, bVar5);
+    iVar3 = controller_radio_transition_schedule(1, arg1, bVar5);
     if (iVar3 == 0) {
-      FUN_01008d00(0x32, 0x93e);
+      sdc_assertion_fail(0x32, 0x93e);
     }
   } else {
     iVar3 = FUN_010212ec(1, bVar5);

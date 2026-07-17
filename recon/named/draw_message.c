@@ -1,278 +1,256 @@
 /* readable reconstruction; identity: FUN_00035afc @ 0x00035afc
  * public-name: draw_message
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   notification_icon_type_from_package      <= FUN_0003483c @ 0x0003483c
- *   format_message_relative_time             <= FUN_000357dc @ 0x000357dc
- *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
- *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
- *   gui_utf_draw_truncate                    <= FUN_00044818 @ 0x00044818
- *   gui_utf_draw_middle                      <= FUN_00044bd8 @ 0x00044bd8
- *   gui_utf_Wordwrap_draw                    <= FUN_000451e0 @ 0x000451e0
- *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
- *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
- *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
- *   vdprintf_to_fd                           <= FUN_00086f00 @ 0x00086f00
  * address symbols (name @ address):
- *   rodata_35f24                             @ 0x00035f24
  *   rodata_a8bcd                             @ 0x000a8bcd
  *   rodata_a8be6                             @ 0x000a8be6
  *   rodata_a8c09                             @ 0x000a8c09
  *   rodata_a8c11                             @ 0x000a8c11
  *   rodata_a8c34                             @ 0x000a8c34
  *   rodata_a8c37                             @ 0x000a8c37
+ *   rodata_a8c3a                             @ 0x000a8c3a
  *   rodata_a8ce7                             @ 0x000a8ce7
  *   rodata_f4ca5                             @ 0x000f4ca5
  *   g_log_use_alt_sink                       @ 0x20007554
  */
-/* Reconstructed draw_message @ 0x35afc  (parity: 30/30 trials, PROVEN) */
-#pragma GCC diagnostic ignored "-Wint-conversion"
-#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
-#pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
-typedef unsigned char undefined,undefined1,byte,uchar,uint1;
-typedef unsigned short undefined2,ushort,uint2,wchar_t;
-typedef unsigned int undefined4,uint,uint3,code_t;
-typedef unsigned long long undefined8,ulonglong;
-typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
-#define bool int
-#define false 0
-#define true 1
-static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
-static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
-static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
-static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
-static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
-static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
+/* Reconstructed draw_message @ 0x35afc; reviewed executable extent 0x41e bytes.
+ * Raw identity: FUN_00035afc.  The bytes at 0x35f1c..0x35f27 are its literal
+ * pool, not executable code. */
+#include <stdint.h>
 
-#define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
-#define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
-#define CONCAT12(a,b) (((unsigned)(unsigned char)(a)<<16)|(unsigned short)(b))
-#define CONCAT31(a,b) (((unsigned)(a)<<8)|(unsigned char)(b))
-#define CONCAT13(a,b) (((unsigned)(unsigned char)(a)<<24)|((unsigned)(b)&0xffffffu))
-#define CONCAT22(a,b) (((unsigned)(unsigned short)(a)<<16)|(unsigned short)(b))
-#define CONCAT41(a,b) (((unsigned long long)(unsigned)(a)<<8)|(unsigned char)(b))
-#define CONCAT44(a,b) (((unsigned long long)(unsigned)(a)<<32)|(unsigned)(b))
-#define CONCAT62(a,b) (((unsigned long long)(a)<<16)|(unsigned short)(b))
-#define CONCAT71(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
-#define CONCAT53(a,b) (((unsigned long long)(a)<<24)|((unsigned)(b)&0xffffffu))
-#define CONCAT61(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
-#define SUB41(x,n) ((unsigned char)((unsigned)(x)>>((n)*8)))
-#define SUB42(x,n) ((unsigned short)((unsigned)(x)>>((n)*8)))
-#define SUB84(x,n) ((unsigned)((unsigned long long)(x)>>((n)*8)))
-#define SUB81(x,n) ((unsigned char)((unsigned long long)(x)>>((n)*8)))
-#define SUB82(x,n) ((unsigned short)((unsigned long long)(x)>>((n)*8)))
-#define SUB83(x,n) ((unsigned)(((unsigned long long)(x)>>((n)*8))&0xffffffu))
-#define SUB168(x,n) ((unsigned long long)(x))
-#define ZEXT14(a) ((unsigned)(unsigned char)(a))
-#define ZEXT18(a) ((unsigned long long)(unsigned char)(a))
-#define ZEXT24(a) ((unsigned)(unsigned short)(a))
-#define ZEXT28(a) ((unsigned long long)(unsigned short)(a))
-#define ZEXT48(a) ((unsigned long long)(unsigned)(a))
-#define ZEXT12(a) ((unsigned short)(unsigned char)(a))
-#define ZEXT816(a) ((unsigned long long)(a))
-#define SEXT14(a) ((unsigned)(int)(signed char)(a))
-#define SEXT18(a) ((unsigned long long)(long long)(signed char)(a))
-#define SEXT24(a) ((unsigned)(int)(short)(a))
-#define SEXT48(a) ((unsigned long long)(long long)(int)(a))
-#define __ROL4(x,n) (((unsigned)(x)<<((n)&31))|((unsigned)(x)>>((32-((n)&31))&31)))
-#define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
-#define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
+/* Keep stable raw link identities while making the recovered body readable. */
+extern void debug_log(uintptr_t format, ...) __asm__("DEBUG_PRINT");
+extern void buffered_debug_log(uintptr_t format, ...) __asm__("FUN_00019c70");
+extern uint8_t current_notification_slot(void) __asm__("FUN_00034390");
+extern int notification_icon_type_from_package(uint32_t slot);
+extern void format_message_relative_time(char *output, uint32_t timestamp);
+extern void gui_bmp_bitmap_draw(uint32_t bitmap, uint32_t x, uint32_t y,
+                                uint32_t, uint32_t, uint32_t);
+extern void gui_utf_draw(uint32_t, const char *, uint32_t, uint32_t, uint32_t,
+                         uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
+                         uint32_t, uint32_t);
+extern void gui_utf_draw_truncate(uint32_t, const char *, uint32_t, uint32_t,
+                                  uint32_t, uint32_t, uint32_t, uint32_t,
+                                  uint32_t, uint32_t, uint32_t, uint32_t);
+extern void gui_utf_draw_middle(uint32_t, const char *, uint32_t, uint32_t,
+                                uint32_t, uint32_t, uint32_t, uint32_t,
+                                uint32_t, uint32_t, uint32_t, uint32_t);
+extern void gui_utf_Wordwrap_draw(uint32_t, const char *, uint32_t, uint32_t,
+                                  uint32_t, uint32_t, uint32_t, uint32_t,
+                                  uint32_t, uint32_t, uint32_t, uint32_t);
+extern int bounded_snprintf(char *output, uint32_t capacity,
+                            uintptr_t format, ...) __asm__("FUN_00077914");
+extern uint32_t display_text_width(void) __asm__("FUN_0007d3ee");
+extern uint32_t display_text_height(void) __asm__("FUN_0007d446");
+extern void clear_bytes(void *output, uint32_t value,
+                        uint32_t length) __asm__("FUN_00086c78");
+extern void format_uint_bounded(void *output, uint32_t reserved,
+                                int32_t capacity, uintptr_t format,
+                                uint32_t value) __asm__("FUN_00086f00");
 
-extern long long DEBUG_PRINT(long long format, ...);
-extern long long debug_print(void);
-extern long long FUN_00034390(void);
-extern long long notification_icon_type_from_package(void);
-extern long long format_message_relative_time(long long, long long);
-extern long long gui_bmp_bitmap_draw(long long,long long,long long,long long,long long,long long);
-extern long long gui_utf_draw(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
-extern long long gui_utf_draw_truncate(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
-extern long long gui_utf_draw_middle(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
-extern long long gui_utf_Wordwrap_draw(long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long,long long);
-extern long long FUN_00077914(long long destination, long long size, long long format, ...);
-extern long long device_info_text_width_get(void);
-extern long long device_info_text_height_get_clamped(void);
-extern long long memset_bytes(long long,long long,long long);
-extern long long vdprintf_to_fd(long long,long long,long long,long long,long long);
-#define DAT_00035e74 ((volatile int*)0x20007554UL)
-#define DAT_00035e78 0xa8ce7UL
-#define DAT_00035e7c 0xa8bcdUL
-#define DAT_00035e80 0xa8be6UL
-#define DAT_00035e84 0xa8c37UL
-#define DAT_00035e88 0xa8c09UL
-#define DAT_00035e8c 0xa8c11UL
-#define DAT_00035e90 0xf4ca5UL
-#define DAT_00035f1c 0xa8c34UL
-#define DAT_00035f20 0xa8c37UL
-#define DAT_00035f24 (*(volatile int*)0x35f24UL)
+/* Notification record used by the draw queue.  Each text field is a fixed
+ * 32-byte slot; retaining the offsets documents every pointer seen in the
+ * original code without inventing ownership beyond the last accessed field. */
+struct notification_message {
+    uint32_t received_at;                 /* +0x00 */
+    uint8_t reserved_04[0x2c];
+    char title[0x20];                     /* +0x30 */
+    char body[0x20];                      /* +0x50 */
+    char subtitle[0x20];                  /* +0x70 */
+    char package_name[0x20];              /* +0x90 */
+};
 
+enum notification_icon_type {
+    ICON_TYPE_SMS = 0,
+    ICON_TYPE_MISSED_CALL = 1,
+    ICON_TYPE_IN_CALL = 2,
+    ICON_TYPE_PACKAGE_GROUP_3 = 3,
+    ICON_TYPE_PACKAGE_GROUP_4 = 4,
+};
 
-void draw_message(undefined4 param_1,undefined4 *param_2)
+enum notification_bitmap {
+    BITMAP_IN_CALL = 0x36,
+    BITMAP_MISSED_CALL = 0x37,
+    BITMAP_SMS_OR_DEFAULT = 0x38,
+    BITMAP_PACKAGE_GROUP_4 = 0x39,
+    BITMAP_PACKAGE_GROUP_3 = 0x3a,
+    BITMAP_CLOCK = 0x3c,
+};
 
+#define DEBUG_SINK_MODE (*(volatile uint32_t *)0x20007554u)
+
+#define LOG_FUNCTION_NAME       ((uintptr_t)0x000a8ce7u) /* "draw_message" */
+#define LOG_NULL_MESSAGE        ((uintptr_t)0x000a8bcdu)
+#define LOG_MESSAGE_TYPE        ((uintptr_t)0x000a8be6u)
+#define FORMAT_STRING           ((uintptr_t)0x000a8c37u) /* "%s" */
+#define FORMAT_TITLE_SUBTITLE   ((uintptr_t)0x000a8c09u) /* "%s | %s" */
+#define LOG_MESSAGE             ((uintptr_t)0x000a8c11u)
+#define FORMAT_COUNTER          ((uintptr_t)0x000f4ca5u) /* "%u" */
+#define FORMAT_BODY_PACKAGE_NL  ((uintptr_t)0x000a8c34u) /* "%s\n%s" */
+#define FORMAT_BODY_PACKAGE_DASH ((uintptr_t)0x000a8c3au) /* "%s - %s" */
+
+void draw_message(uint32_t unread_count, struct notification_message *message)
 {
-  int *piVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  int iVar7;
-  undefined4 *puVar8;
-  undefined4 *puVar9;
-  undefined4 local_1b4;
-  undefined4 uStack_1b0;
-  undefined4 local_1ac;
-  undefined1 auStack_1a8 [28];
-  undefined4 local_18c;
-  undefined1 auStack_188 [68];
-  uint local_144;
-  undefined1 auStack_140 [288];
+    /* These split initializations reproduce the four firmware-owned local
+     * objects exactly: the memset calls begin four bytes into each large
+     * buffer, while the leading word is cleared directly. */
+    char heading[72];
+    char relative_time[32];
+    uint32_t count_text[2];
+    char body_text[292];
+    uint32_t icon_type;
+    uint32_t x1, y1, x2, y2;
+    const char *heading_source;
 
-  local_18c = 0;
-  memset_bytes(auStack_188,0,0x44);
-  local_1ac = 0;
-  memset_bytes(auStack_1a8,0,0x1c);
-  local_1b4 = 0;
-  uStack_1b0 = 0;
-  local_144 = 0;
-  memset_bytes(auStack_140,0,0x11f);
-  piVar1 = DAT_00035e74;
-  if (param_2 == (undefined4 *)0x0) {
-    if (*DAT_00035e74 != 0) {
-      debug_print();
-      return;
-    }
-    DEBUG_PRINT(DAT_00035e7c,DAT_00035e78,0xdb);
-    return;
-  }
-  FUN_00034390();
-  iVar2 = notification_icon_type_from_package();
-  if (*piVar1 == 0) {
-    DEBUG_PRINT(DAT_00035e80,iVar2,param_1);
-  }
-  else {
-    debug_print();
-  }
-  puVar9 = param_2 + 0x24;
-  switch(iVar2) {
-  case 0:
-    uVar6 = device_info_text_width_get();
-    iVar7 = device_info_text_height_get_clamped();
-    uVar5 = 0x38;
-    goto LAB_00035e0a;
-  case 1:
-    uVar6 = device_info_text_width_get();
-    iVar7 = device_info_text_height_get_clamped();
-    gui_bmp_bitmap_draw(0x37,uVar6,iVar7 + 4,0,0,0);
-    memset_bytes(&local_18c,0,0x48);
-    puVar8 = puVar9;
-    break;
-  case 2:
-    memset_bytes(&local_18c,0,0x48);
-    FUN_00077914(&local_18c,0x48,DAT_00035e84,puVar9);
-    uVar6 = device_info_text_width_get();
-    iVar2 = device_info_text_height_get_clamped();
-    iVar7 = device_info_text_width_get();
-    iVar3 = device_info_text_height_get_clamped();
-    gui_utf_draw_middle(0,&local_18c,0,uVar6,iVar2 + 0x36,iVar7 + 0x240,iVar3 + 0x51,1,0,0,0,0);
-    uVar6 = device_info_text_width_get();
-    iVar2 = device_info_text_height_get_clamped();
-    gui_bmp_bitmap_draw(0x36,uVar6,iVar2 + 0x3a,0,0,0);
-    memset_bytes(&local_144,0,0x123);
-    FUN_00077914(&local_144,0x123,DAT_00035e84,param_2 + 0x14);
-    if ((local_144 & 0xff) == 0) {
-      return;
-    }
-    uVar6 = device_info_text_width_get();
-    iVar2 = device_info_text_height_get_clamped();
-    iVar7 = device_info_text_width_get();
-    iVar3 = device_info_text_height_get_clamped();
-    gui_utf_draw_middle(0,&local_144,0,uVar6,iVar2 + 0x51,iVar7 + 0x240,iVar3 + 0x51,1,0,0,0,0);
-    return;
-  case 3:
-    uVar6 = device_info_text_width_get();
-    iVar7 = device_info_text_height_get_clamped();
-    gui_bmp_bitmap_draw(0x3a,uVar6,iVar7 + 4,0,0,0);
-    memset_bytes(&local_18c,0,0x48);
-LAB_00035cba:
-    FUN_00077914(&local_18c,0x48,DAT_00035e88,param_2 + 0xc,param_2 + 0x1c);
-    goto LAB_00035cc4;
-  case 4:
-    uVar6 = device_info_text_width_get();
-    iVar7 = device_info_text_height_get_clamped();
-    uVar5 = 0x39;
-LAB_00035e0a:
-    gui_bmp_bitmap_draw(uVar5,uVar6,iVar7 + 4,0,0,0);
-    memset_bytes(&local_18c,0,0x48);
-    puVar8 = param_2 + 0xc;
-    break;
-  default:
-    uVar6 = device_info_text_width_get();
-    iVar7 = device_info_text_height_get_clamped();
-    gui_bmp_bitmap_draw(0x38,uVar6,iVar7 + 4,0,0,0);
-    memset_bytes(&local_18c,0,0x48);
-    puVar8 = param_2 + 0xc;
-    if (*(char *)(param_2 + 0x1c) != '\0') goto LAB_00035cba;
-  }
-  FUN_00077914(&local_18c,0x48,DAT_00035e84,puVar8);
-LAB_00035cc4:
-  iVar7 = device_info_text_width_get();
-  uVar6 = device_info_text_height_get_clamped();
-  iVar3 = device_info_text_width_get();
-  iVar4 = device_info_text_height_get_clamped();
-  gui_utf_draw_truncate(0,&local_18c,0,iVar7 + 0x24,uVar6,iVar3 + 0x186,iVar4 + 0x1b,1,0,0,0,0);
-  if (*DAT_00035e74 == 0) {
-    DEBUG_PRINT(DAT_00035e8c,*param_2,puVar9);
-  }
-  else {
-    debug_print();
-  }
-  format_message_relative_time(&local_1ac,*param_2);
-  iVar7 = device_info_text_width_get();
-  uVar6 = device_info_text_height_get_clamped();
-  gui_bmp_bitmap_draw(0x3c,iVar7 + 0x210,uVar6,0,0,0);
-  local_1b4 = 0;
-  uStack_1b0 = 0;
-  vdprintf_to_fd(&local_1b4,0,8,DAT_00035e90,param_1);
-  iVar7 = device_info_text_width_get();
-  uVar6 = device_info_text_height_get_clamped();
-  iVar3 = device_info_text_width_get();
-  iVar4 = device_info_text_height_get_clamped();
-  gui_utf_draw(0,&local_1b4,0,iVar7 + 0x22c,uVar6,iVar3 + 0x244,iVar4 + 0x1b,1,0,0,0,0);
-  memset_bytes(&local_144,0,0x123);
-  if (iVar2 == 1) {
-    FUN_00077914(&local_144,0x123,DAT_00035e84,param_2 + 0x14);
-  }
-  else {
-    if (iVar2 != 4) {
-      if (*(char *)(param_2 + 0x14) == '\0') {
-        FUN_00077914(&local_144,0x123,DAT_00035f20,puVar9);
-      }
-      else {
-        FUN_00077914(&local_144,0x123,DAT_00035f24,param_2 + 0x14,puVar9);
-      }
-      if ((local_144 & 0xff) == 0) {
+    *(uint32_t *)heading = 0;
+    clear_bytes(heading + 4, 0, 68);
+    *(uint32_t *)relative_time = 0;
+    clear_bytes(relative_time + 4, 0, 28);
+    count_text[0] = 0;
+    count_text[1] = 0;
+    *(uint32_t *)body_text = 0;
+    clear_bytes(body_text + 4, 0, 0x11f);
+
+    if (message == 0) {
+        if (DEBUG_SINK_MODE != 0)
+            buffered_debug_log(LOG_NULL_MESSAGE, LOG_FUNCTION_NAME, 0xdb);
+        else
+            debug_log(LOG_NULL_MESSAGE, LOG_FUNCTION_NAME, 0xdb);
         return;
-      }
-      uVar6 = device_info_text_width_get();
-      iVar2 = device_info_text_height_get_clamped();
-      iVar7 = device_info_text_width_get();
-      iVar3 = device_info_text_height_get_clamped();
-      goto LAB_00035de8;
     }
-    FUN_00077914(&local_144,0x123,DAT_00035f1c,param_2 + 0x14,puVar9);
-  }
-  if ((local_144 & 0xff) == 0) {
-    return;
-  }
-  uVar6 = device_info_text_width_get();
-  iVar2 = device_info_text_height_get_clamped();
-  iVar7 = device_info_text_width_get();
-  iVar3 = device_info_text_height_get_clamped();
-LAB_00035de8:
-  gui_utf_Wordwrap_draw(0,&local_144,0,uVar6,iVar2 + 0x36,iVar7 + 0x240,iVar3 + 0x87,3,0,0,0,0);
-  return;
+
+    icon_type = (uint32_t)notification_icon_type_from_package(
+        current_notification_slot());
+    if (DEBUG_SINK_MODE == 0)
+        debug_log(LOG_MESSAGE_TYPE, icon_type, unread_count);
+    else
+        buffered_debug_log(LOG_MESSAGE_TYPE, icon_type, unread_count);
+
+    switch (icon_type) {
+    case ICON_TYPE_SMS:
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_SMS_OR_DEFAULT, x1, y1 + 4, 0, 0, 0);
+        clear_bytes(heading, 0, 72);
+        heading_source = message->title;
+        break;
+
+    case ICON_TYPE_MISSED_CALL:
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_MISSED_CALL, x1, y1 + 4, 0, 0, 0);
+        clear_bytes(heading, 0, 72);
+        heading_source = message->package_name;
+        break;
+
+    case ICON_TYPE_IN_CALL:
+        clear_bytes(heading, 0, 72);
+        bounded_snprintf(heading, 72, FORMAT_STRING, message->package_name);
+        x1 = display_text_width();
+        y1 = display_text_height();
+        x2 = display_text_width();
+        y2 = display_text_height();
+        gui_utf_draw_middle(0, heading, 0, x1, y1 + 0x36,
+                            x2 + 0x240, y2 + 0x51, 1, 0, 0, 0, 0);
+
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_IN_CALL, x1, y1 + 0x3a, 0, 0, 0);
+
+        clear_bytes(body_text, 0, 0x123);
+        bounded_snprintf(body_text, 0x123, FORMAT_STRING, message->body);
+        if (body_text[0] == '\0')
+            return;
+        x1 = display_text_width();
+        y1 = display_text_height();
+        x2 = display_text_width();
+        y2 = display_text_height();
+        gui_utf_draw_middle(0, body_text, 0, x1, y1 + 0x51,
+                            x2 + 0x240, y2 + 0x51, 1, 0, 0, 0, 0);
+        return;
+
+    case ICON_TYPE_PACKAGE_GROUP_3:
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_PACKAGE_GROUP_3, x1, y1 + 4, 0, 0, 0);
+        clear_bytes(heading, 0, 72);
+        bounded_snprintf(heading, 72, FORMAT_TITLE_SUBTITLE,
+                         message->title, message->subtitle);
+        goto draw_heading;
+
+    case ICON_TYPE_PACKAGE_GROUP_4:
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_PACKAGE_GROUP_4, x1, y1 + 4, 0, 0, 0);
+        clear_bytes(heading, 0, 72);
+        heading_source = message->title;
+        break;
+
+    default:
+        x1 = display_text_width();
+        y1 = display_text_height();
+        gui_bmp_bitmap_draw(BITMAP_SMS_OR_DEFAULT, x1, y1 + 4, 0, 0, 0);
+        clear_bytes(heading, 0, 72);
+        if (message->subtitle[0] != '\0') {
+            bounded_snprintf(heading, 72, FORMAT_TITLE_SUBTITLE,
+                             message->title, message->subtitle);
+            goto draw_heading;
+        }
+        heading_source = message->title;
+        break;
+    }
+
+    bounded_snprintf(heading, 72, FORMAT_STRING, heading_source);
+
+draw_heading:
+    x1 = display_text_width();
+    y1 = display_text_height();
+    x2 = display_text_width();
+    y2 = display_text_height();
+    gui_utf_draw_truncate(0, heading, 0, x1 + 0x24, y1,
+                          x2 + 0x186, y2 + 0x1b, 1, 0, 0, 0, 0);
+
+    if (DEBUG_SINK_MODE == 0)
+        debug_log(LOG_MESSAGE, message->received_at, message->package_name);
+    else
+        buffered_debug_log(LOG_MESSAGE, message->received_at,
+                           message->package_name);
+
+    format_message_relative_time(relative_time, message->received_at);
+    x1 = display_text_width();
+    y1 = display_text_height();
+    gui_bmp_bitmap_draw(BITMAP_CLOCK, x1 + 0x210, y1, 0, 0, 0);
+
+    count_text[0] = 0;
+    count_text[1] = 0;
+    format_uint_bounded(count_text, 0, 8, FORMAT_COUNTER, unread_count);
+    x1 = display_text_width();
+    y1 = display_text_height();
+    x2 = display_text_width();
+    y2 = display_text_height();
+    gui_utf_draw(0, (const char *)count_text, 0, x1 + 0x22c, y1,
+                 x2 + 0x244, y2 + 0x1b, 1, 0, 0, 0, 0);
+
+    clear_bytes(body_text, 0, 0x123);
+    if (icon_type == ICON_TYPE_MISSED_CALL) {
+        bounded_snprintf(body_text, 0x123, FORMAT_STRING, message->body);
+    } else if (icon_type == ICON_TYPE_PACKAGE_GROUP_4) {
+        bounded_snprintf(body_text, 0x123, FORMAT_BODY_PACKAGE_NL,
+                         message->body, message->package_name);
+    } else if (message->body[0] == '\0') {
+        bounded_snprintf(body_text, 0x123, FORMAT_STRING,
+                         message->package_name);
+    } else {
+        bounded_snprintf(body_text, 0x123, FORMAT_BODY_PACKAGE_DASH,
+                         message->body, message->package_name);
+    }
+
+    if (body_text[0] == '\0')
+        return;
+    x1 = display_text_width();
+    y1 = display_text_height();
+    x2 = display_text_width();
+    y2 = display_text_height();
+    gui_utf_Wordwrap_draw(0, body_text, 0, x1, y1 + 0x36,
+                          x2 + 0x240, y2 + 0x87, 3, 0, 0, 0, 0);
 }

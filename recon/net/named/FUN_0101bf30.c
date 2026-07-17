@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0101bf30 @ 0x0101bf30
  * public-name: FUN_0101bf30
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
  * address symbols (name @ address):
  *   g_net_link_ctx_b_close_cb                @ 0x210004d0
  *   g_net_link_ctx_b                         @ 0x21001124
@@ -10,7 +12,7 @@
 #define P_0101bfc4 0x210004d0
 
 extern void FUN_0101f934(int, int);
-extern unsigned int FUN_0100f0fc(int);
+extern unsigned int sdc_radio_context_fixed_time_get(int);
 extern int FUN_0100f1f8(int);
 extern void FUN_0100f300(unsigned short, void *, void *);
 extern void FUN_0101bdd4(int, int);
@@ -49,14 +51,14 @@ int FUN_0101bf30(void)
     pcVar8(*(int *)(iVar4 + 4));
   }
   FUN_0101f934(C_0101bfc0, 0);
-  uVar1 = FUN_0100f0fc(*(int *)(iVar4 + 4) + 0x30);
+  uVar1 = sdc_radio_context_fixed_time_get(*(int *)(iVar4 + 4) + 0x30);
   iVar9 = FUN_0100f1f8(*(int *)(iVar4 + 4));
   if (iVar9 != 0) {
     puVar6 = *(unsigned short **)(iVar4 + 4);
     FUN_0100f300(*puVar6, puVar6 + 0x18, puVar6 + 0xe7);
   }
   FUN_0101bdd4(*(int *)(iVar4 + 4), 4);
-  uVar2 = FUN_0100f0fc(*(int *)(iVar4 + 4) + 0x30);
+  uVar2 = sdc_radio_context_fixed_time_get(*(int *)(iVar4 + 4) + 0x30);
   if (uVar2 <= uVar1) {
     return 1;
   }

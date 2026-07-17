@@ -1,59 +1,93 @@
-/* net-core FUN_0100a7e8 @ 0x100a7e8  (parity 300 trials PROVEN) */
-/* net-core FUN_0100a7e8 @ 0x100a7e8  (parity 300 trials PROVEN) */
+/* net-core sdc_ecb_run_blocking @ 0x0100a7e8
+ * Back-map: FUN_0100a7e8.  Runs one 48-byte key/plaintext/ciphertext ECB
+ * transaction against the nRF5340 network-core ECB peripheral.
+ */
+#include <stdint.h>
+#include <cmsis_gcc.h>
 
-typedef unsigned int uint;
-extern unsigned int g1_irq_lock(void);
-extern void g1_irq_unlock(unsigned int key);
+extern int sdc_byte_lock_try_acquire(volatile uint8_t *lock);
+extern void sdc_byte_lock_release(volatile uint8_t *lock);
+extern void sdc_cpu_relax(void);
 
-extern int FUN_0102a1ea(int);
-extern void FUN_0102a208(int);
-extern void FUN_0102a21e(void);
+struct nrf_ecb_registers {
+    volatile uint32_t TASKS_STARTECB;              /* 0x000 */
+    volatile uint32_t TASKS_STOPECB;               /* 0x004 */
+    uint32_t reserved_008[62];
+    volatile uint32_t EVENTS_ENDECB;               /* 0x100 */
+    volatile uint32_t EVENTS_ERRORECB;             /* 0x104 */
+    uint32_t reserved_108[127];
+    volatile uint32_t INTENSET;                    /* 0x304 */
+    volatile uint32_t INTENCLR;                    /* 0x308 */
+    uint32_t reserved_30c[126];
+    volatile uint32_t ECBDATAPTR;                  /* 0x504 */
+};
 
-void FUN_0100a7e8(unsigned int param_1)
+enum {
+    ECB_INTERRUPT_MASK = 3,
+    ECB_NETWORK_IRQ_PENDING_MASK = 0x2000,
+    SCB_SCR_SEVONPEND_MASK = 0x10,
+};
+
+void FUN_0100a7e8(uint32_t ecb_data_address)
 {
-    volatile unsigned char * const pc6 = (volatile unsigned char *)0x21000bf4; /* DAT_0100a89c */
-    volatile unsigned int * const p4  = (volatile unsigned int *)0x4100d000;  /* DAT_0100a8a0 */
-    volatile unsigned int * const p_sb = (volatile unsigned int *)0xe000ed00; /* DAT_0100a8a4 */
-    volatile unsigned int * const p_ir = (volatile unsigned int *)0xe000e100; /* DAT_0100a8a8 */
+    volatile uint8_t *const ownership = (volatile uint8_t *)0x21000bf4;
+    volatile struct nrf_ecb_registers *const ecb =
+        (volatile struct nrf_ecb_registers *)0x4100d000;
+    volatile uint32_t *const scb_scr = (volatile uint32_t *)0xe000ed10;
+    volatile uint32_t *const nvic_icpr2 = (volatile uint32_t *)0xe000e280;
+    int lock_status;
 
     for (;;) {
-        int iVar6 = FUN_0102a1ea((int)(long)pc6);
-        if (iVar6 != 0) {
-            pc6[1] = 0xff;
+        lock_status = sdc_byte_lock_try_acquire(ownership);
+        if (lock_status != 0) {
+            ownership[1] = 0xff;
         }
-        for (;;) {
-            p4[1] = 1;
-            p4[0x40] = 0;
-            p4[0x41] = 0;
-            p4[0x141] = param_1;
-            p4[0] = 1;
-            while (p4[0x40] == 0 && p4[0x41] == 0) {
-                if ((int)(p_sb[4] << 0x1b) < 0) {
-                    p_ir[0x180/4] = 0x2000;
-                    unsigned int irq_key = g1_irq_lock();
-                    p4[0xc1] = 3;
-                    if (p4[0x40] == 0 && p4[0x41] == 0) {
-                        FUN_0102a21e();
+
+        do {
+            ecb->TASKS_STOPECB = 1;
+            ecb->EVENTS_ENDECB = 0;
+            ecb->EVENTS_ERRORECB = 0;
+            ecb->ECBDATAPTR = ecb_data_address;
+            ecb->TASKS_STARTECB = 1;
+
+            while ((ecb->EVENTS_ENDECB == 0) &&
+                   (ecb->EVENTS_ERRORECB == 0)) {
+                /* SDC supports callers that set SCR.SEVONPEND while waiting.
+                 * Clear the ECB pending bit and poll once with interrupts
+                 * masked so the weak wait hook cannot race event delivery. */
+                if ((*scb_scr & SCB_SCR_SEVONPEND_MASK) != 0) {
+                    uint32_t saved_primask;
+
+                    *nvic_icpr2 = ECB_NETWORK_IRQ_PENDING_MASK;
+                    saved_primask = __get_PRIMASK();
+                    __disable_irq();
+                    ecb->INTENSET = ECB_INTERRUPT_MASK;
+                    if ((ecb->EVENTS_ENDECB == 0) &&
+                        (ecb->EVENTS_ERRORECB == 0)) {
+                        sdc_cpu_relax();
                     }
-                    g1_irq_unlock(irq_key);
+                    if (saved_primask == 0) {
+                        __enable_irq();
+                    }
                 }
             }
-            if (p4[0x41] == 0) break;
+        } while (ecb->EVENTS_ERRORECB != 0);
+
+        if (lock_status != 0) {
+            return;
         }
-        if (iVar6 == 0) {
-            unsigned char cVar1 = pc6[1];
-            pc6[1] = 0;
-            p4[0xc2] = 3;
-            p4[0x41] = 0;
-            p4[0x40] = 0;
-            p_ir[0x180/4] = 0x2000;
-            FUN_0102a208((int)(long)pc6);
-            if (cVar1 == 0) {
+
+        {
+            uint8_t retry_requested = ownership[1];
+            ownership[1] = 0;
+            ecb->INTENCLR = ECB_INTERRUPT_MASK;
+            ecb->EVENTS_ERRORECB = 0;
+            ecb->EVENTS_ENDECB = 0;
+            *nvic_icpr2 = ECB_NETWORK_IRQ_PENDING_MASK;
+            sdc_byte_lock_release(ownership);
+            if (retry_requested == 0) {
                 return;
             }
-        } else {
-            return;
         }
     }
 }
-

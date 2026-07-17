@@ -7,7 +7,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   att_send_simple                          <= FUN_00081940 @ 0x00081940
- *   thunk_FUN_000727ac                       <= FUN_000836e8 @ 0x000836e8
+ *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  * address symbols (name @ address):
  *   rodata_88160                             @ 0x00088160
  *   rodata_99cbd                             @ 0x00099cbd
@@ -53,7 +53,7 @@ extern uintptr_t FUN_00057394(void);
 extern int FUN_000573f4(uint32_t type, uintptr_t object, uint32_t count);
 extern void FUN_00081746(uintptr_t sink, uint32_t level, const void *record);
 extern void net_buf_unref(uintptr_t packet);
-extern uintptr_t thunk_FUN_000727ac(void *queue, uint32_t wait, uint32_t unused);
+extern uintptr_t net_buf_get(void *queue, uint32_t wait, uint32_t unused);
 extern uint32_t FUN_000816a2(const uint32_t *value);
 extern stop_record_t *net_buf_simple_add(uintptr_t pool, uint32_t size);
 extern void att_send_simple(uintptr_t endpoint, int status);
@@ -108,9 +108,9 @@ void FUN_0005774c(transfer_t *transfer, uint32_t reason)
         transfer->packet_a = 0;
     }
     uintptr_t packet;
-    while ((packet = thunk_FUN_000727ac(transfer->pending_a, 0, 0)) != 0)
+    while ((packet = net_buf_get(transfer->pending_a, 0, 0)) != 0)
         net_buf_unref(packet);
-    while ((packet = thunk_FUN_000727ac(transfer->pending_b, 0, 0)) != 0)
+    while ((packet = net_buf_get(transfer->pending_b, 0, 0)) != 0)
         net_buf_unref(packet);
 
     if (transfer->ops->stopped != 0)

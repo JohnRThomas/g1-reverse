@@ -2,26 +2,10 @@
 /* readable reconstruction; identity: FUN_00015960 @ 0x00015960
  * public-name: local_esbs_ipc_service_recv
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   switch_to_dfu_mode                       <= FUN_000158bc @ 0x000158bc
- *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   find_message_pool_entry_by_id            <= FUN_00033c18 @ 0x00033c18
- *   msg_queue_init                           <= FUN_00033c5c @ 0x00033c5c
- *   confirm_message                          <= FUN_00034524 @ 0x00034524
- *   reset_esb_sync_state                     <= FUN_0007ce60 @ 0x0007ce60
- *   set_device_sync_timestamp                <= FUN_0007d230 @ 0x0007d230
- *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
- *   rodata_15b9c                             @ 0x00015b9c
- *   rodata_15ba0                             @ 0x00015ba0
- *   rodata_15ba4                             @ 0x00015ba4
- *   rodata_15ba8                             @ 0x00015ba8
- *   rodata_15bac                             @ 0x00015bac
- *   rodata_15bb0                             @ 0x00015bb0
- *   rodata_15bb4                             @ 0x00015bb4
- *   rodata_15dd8                             @ 0x00015dd8
- *   rodata_15ddc                             @ 0x00015ddc
- *   rodata_15de0                             @ 0x00015de0
+ *   rodata_99133                             @ 0x00099133
+ *   rodata_99152                             @ 0x00099152
+ *   rodata_99228                             @ 0x00099228
  *   rodata_99297                             @ 0x00099297
  *   rodata_992e1                             @ 0x000992e1
  *   rodata_99b89                             @ 0x00099b89
@@ -30,351 +14,215 @@
  *   g_log_use_alt_sink                       @ 0x20007554
  *   g_esb_notify_sync_substate               @ 0x20018d98
  */
-/* Reconstructed local_esbs_ipc_service_recv @ 0x15960  (parity: 40/40 trials, PROVEN) */
-#pragma GCC diagnostic ignored "-Wint-conversion"
-#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
-#pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
-typedef unsigned char undefined,undefined1,byte,uchar,uint1;
-typedef unsigned short undefined2,ushort,uint2,wchar_t;
-typedef unsigned int undefined4,uint,uint3,code_t,undefined3,undefined5,undefined6,undefined7;
-typedef unsigned long long undefined8,ulonglong;
-typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
-typedef long long(*code)();
-#define bool int
-#define false 0
-#define true 1
-#define NAN(x) __builtin_isnan((double)(x))
-#define ABS(x) __builtin_fabs((double)(x))
-#define SQRT(x) __builtin_sqrt((double)(x))
-#define FPMaxNum(a,b) __builtin_fmaxf((a),(b))
-#define FPMinNum(a,b) __builtin_fminf((a),(b))
-#define FPMax(a,b) __builtin_fmaxf((a),(b))
-#define FPMin(a,b) __builtin_fminf((a),(b))
-static inline int CARRY4(unsigned a,unsigned b){return (a+b)<a;}
-static inline int CARRY1(unsigned a,unsigned b){return ((a&0xff)+(b&0xff))>0xff;}
-static inline int CARRY2(unsigned a,unsigned b){return ((a&0xffff)+(b&0xffff))>0xffff;}
-static inline int SCARRY4(int a,int b){int r=(int)((unsigned)a+(unsigned)b);return (((a^r)&(b^r))<0);}
-static inline int SBORROW4(int a,int b){int r=(int)((unsigned)a-(unsigned)b);return (((a^b)&(a^r))<0);}
-static inline int SBORROW1(int a,int b){signed char r=(signed char)(a-b);return ((((signed char)a^(signed char)b)&((signed char)a^r))<0);}
-static inline int SBORROW2(int a,int b){short r=(short)(a-b);return ((((short)a^(short)b)&((short)a^r))<0);}
+/* local_esbs_ipc_service_recv @ 0x15960 / FUN_00015960 (CFG parity: 16/16, PROVEN) */
+#include <stdint.h>
+#include <string.h>
 
-#define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
-#define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
-#define CONCAT12(a,b) (((unsigned)(unsigned char)(a)<<16)|(unsigned short)(b))
-#define CONCAT31(a,b) (((unsigned)(a)<<8)|(unsigned char)(b))
-#define CONCAT13(a,b) (((unsigned)(unsigned char)(a)<<24)|((unsigned)(b)&0xffffffu))
-#define CONCAT22(a,b) (((unsigned)(unsigned short)(a)<<16)|(unsigned short)(b))
-#define CONCAT41(a,b) (((unsigned long long)(unsigned)(a)<<8)|(unsigned char)(b))
-#define CONCAT44(a,b) (((unsigned long long)(unsigned)(a)<<32)|(unsigned)(b))
-#define CONCAT62(a,b) (((unsigned long long)(a)<<16)|(unsigned short)(b))
-#define CONCAT71(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
-#define CONCAT53(a,b) (((unsigned long long)(a)<<24)|((unsigned)(b)&0xffffffu))
-#define CONCAT61(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
-#define SUB41(x,n) ((unsigned char)((unsigned)(x)>>((n)*8)))
-#define SUB42(x,n) ((unsigned short)((unsigned)(x)>>((n)*8)))
-#define SUB84(x,n) ((unsigned)((unsigned long long)(x)>>((n)*8)))
-#define SUB81(x,n) ((unsigned char)((unsigned long long)(x)>>((n)*8)))
-#define SUB82(x,n) ((unsigned short)((unsigned long long)(x)>>((n)*8)))
-#define SUB83(x,n) ((unsigned)(((unsigned long long)(x)>>((n)*8))&0xffffffu))
-#define SUB168(x,n) ((unsigned long long)(x))
-#define ZEXT14(a) ((unsigned)(unsigned char)(a))
-#define ZEXT18(a) ((unsigned long long)(unsigned char)(a))
-#define ZEXT24(a) ((unsigned)(unsigned short)(a))
-#define ZEXT28(a) ((unsigned long long)(unsigned short)(a))
-#define ZEXT48(a) ((unsigned long long)(unsigned)(a))
-#define ZEXT12(a) ((unsigned short)(unsigned char)(a))
-#define ZEXT816(a) ((unsigned long long)(a))
-#define SEXT14(a) ((unsigned)(int)(signed char)(a))
-#define SEXT18(a) ((unsigned long long)(long long)(signed char)(a))
-#define SEXT24(a) ((unsigned)(int)(short)(a))
-#define SEXT48(a) ((unsigned long long)(long long)(int)(a))
-#define __ROL4(x,n) (((unsigned)(x)<<((n)&31))|((unsigned)(x)>>((32-((n)&31))&31)))
-#define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
-#define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
+extern void log_message(uint32_t format, uint32_t function, ...);
+extern void debug_print(uint32_t format, uint32_t function, ...);
+extern void switch_to_dfu_mode(void *state);
+extern void *find_message_pool_entry_by_id(uint32_t id);
+extern void msg_queue_init(void);
+extern void confirm_message(uint32_t id);
+extern void reset_esb_sync_state(uint32_t reason);
+extern void set_device_sync_timestamp(uint32_t timestamp);
+extern void FUN_0007c010(void *state);
+extern void update_persist_task_status(void *context, uint32_t task);
+extern void memset_bytes(void *destination, uint32_t value, uint32_t length);
 
-extern long long DEBUG_PRINT(unsigned long first, ...);
-extern long long switch_to_dfu_mode(unsigned long);
-extern long long debug_print(unsigned long first, ...);
-extern long long find_message_pool_entry_by_id(unsigned long);
-extern long long msg_queue_init(void);
-extern long long confirm_message(unsigned long);
-extern long long reset_esb_sync_state(unsigned long);
-extern long long set_device_sync_timestamp(unsigned long);
-extern long long memset_bytes(void *, unsigned long, unsigned long);
-extern long long thunk_FUN_00072880(unsigned long);
-extern long long update_persist_task_status(unsigned long, unsigned long);
-#define DAT_00015b90 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
-#define DAT_00015b94 ((volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
-#define DAT_00015b98 ((unsigned long)&rodata_99b89) /*=0x99b89*/
-#define DAT_00015bb8 ((volatile int*)((unsigned long)&device_info) /*=0x200069fc*/)
-#define DAT_00015bbc 0x9924fUL
-#define DAT_00015bc0 0x99272UL
-#define DAT_00015de4 ((unsigned long)&rodata_99b89) /*=0x99b89*/
-#define DAT_00015de8 ((unsigned long)&rodata_99297) /*=0x99297*/
-#define DAT_00015dec ((unsigned long)&rodata_992e1) /*=0x992e1*/
-#define DAT_00015df0 ((unsigned long)&g_esb_notify_sync_substate) /*=0x20018d98*/
-#define PTR_s__s____slave_recv_same_package_00015b9c (*(volatile int*)((unsigned long)&rodata_15b9c) /*=0x15b9c*/)
-#define PTR_s__s___________________loss_packag_00015ba0 (*(volatile int*)((unsigned long)&rodata_15ba0) /*=0x15ba0*/)
-#define PTR_s__s____slave_recv_suspend_package_00015ba4 (*(volatile int*)((unsigned long)&rodata_15ba4) /*=0x15ba4*/)
-#define PTR_s__s____slave_recv_resume_package_00015ba8 (*(volatile int*)((unsigned long)&rodata_15ba8) /*=0x15ba8*/)
-#define PTR_s__s____slave_recv_up_recving_00015bac (*(volatile int*)((unsigned long)&rodata_15bac) /*=0x15bac*/)
-#define PTR_s__s____slave_recv_down_recving_00015bb0 (*(volatile int*)((unsigned long)&rodata_15bb0) /*=0x15bb0*/)
-#define PTR_s__s____slave_even_ai_recv_down_re_00015bb4 (*(volatile int*)((unsigned long)&rodata_15bb4) /*=0x15bb4*/)
-#define PTR_DAT_00015dd8 (*(volatile int*)((unsigned long)&rodata_15dd8) /*=0x15dd8*/)
-#define PTR_DAT_00015ddc (*(volatile int*)((unsigned long)&rodata_15ddc) /*=0x15ddc*/)
-#define PTR_IS_DEBUG_00015de0 (*(volatile int*)((unsigned long)&rodata_15de0) /*=0x15de0*/)
+#define LOG_LEVEL       (*(volatile int32_t *)((unsigned long)&g_log_level) /*=0x2000230c*/)
+#define LOG_SINK        (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+#define MASTER_CONTEXT  (*(volatile uint8_t **)((unsigned long)&device_info) /*=0x200069fc*/)
+#define EVEN_AI_STATE   (*(volatile uint8_t *)((unsigned long)&g_esb_notify_sync_substate) /*=0x20018d98*/)
+#define LOG_TAG         ((unsigned long)&rodata_99b89) /*=0x99b89*/
 
-
-undefined4 local_esbs_ipc_service_recv(int param_1,byte *param_2)
-
+static uint32_t load_u32(const void *pointer)
 {
-  byte bVar1;
-  undefined4 *puVar2;
-  undefined *format_string;
-  undefined4 uVar3;
-  undefined1 uVar4;
-  undefined4 *puVar5;
-  byte *pbVar6;
-  int iVar7;
-  byte *pbVar8;
-  undefined1 *puVar9;
-  undefined4 local_30;
-  undefined4 uStack_2c;
-  undefined4 local_28;
-  byte local_24 [4];
-  byte local_20;
-  undefined4 local_1f;
+    uint32_t value;
+    __builtin_memcpy(&value, pointer, sizeof(value));
+    return value;
+}
 
-  local_30 = 0;
-  memset_bytes(&uStack_2c,0,0x12);
-  puVar2 = &local_30;
-  pbVar6 = param_2 + 0xb;
-  do {
-    pbVar8 = pbVar6;
-    puVar5 = puVar2;
-    uVar3 = *(undefined4 *)(pbVar8 + 4);
-    pbVar6 = pbVar8 + 8;
-    *puVar5 = *(undefined4 *)pbVar8;
-    puVar5[1] = uVar3;
-    puVar2 = puVar5 + 2;
-  } while (pbVar6 != param_2 + 0x1b);
-  puVar5[2] = *(undefined4 *)pbVar6;
-  *(byte *)(puVar5 + 3) = pbVar8[0xc];
-  if (((unsigned long long)(uStack_2c)>>16 & 0xffULL) == *(char *)(param_1 + 0xda)) {
-    if (*DAT_00015b90 < 1) {
-      return 0;
-    }
-    iVar7 = *DAT_00015b94;
-    format_string = PTR_s__s____slave_recv_same_package_00015b9c;
-    goto LAB_000159b4;
-  }
-  if ((((unsigned long long)(uStack_2c)>>16 & 0xffULL) != (char)(*(char *)(param_1 + 0xda) + '\x01')) && (0 < *DAT_00015b90)) {
-    if (*DAT_00015b94 == 0) {
-      DEBUG_PRINT(PTR_s__s___________________loss_packag_00015ba0,DAT_00015b98);
-    }
-    else {
-      debug_print(PTR_s__s___________________loss_packag_00015ba0,DAT_00015b98);
-    }
-  }
-  if ((local_30 & 0x3f) == 1) {
-    if (*(char *)(param_1 + 0xfe6) == '\x01') {
-      *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-      if (*DAT_00015b90 < 1) {
+static void store_u32(void *pointer, uint32_t value)
+{
+    __builtin_memcpy(pointer, &value, sizeof(value));
+}
+
+static inline __attribute__((always_inline)) void log_simple(uint32_t format)
+{
+    if (LOG_SINK == 0)
+        log_message(format, LOG_TAG);
+    else
+        debug_print(format, LOG_TAG);
+}
+
+uint32_t local_esbs_ipc_service_recv(uint8_t *context,
+                                     const uint8_t *packet)
+{
+    uint8_t received[22];
+    uint32_t header;
+    uint8_t command;
+    uint8_t direction;
+    uint8_t work_mode;
+    uint8_t sequence;
+    uint8_t *master;
+    uint8_t *screen_state;
+    uint32_t timestamp;
+    uint32_t message_id;
+    void *message;
+
+    /* Raw code clears the stack record, then copies packet[11..31]. */
+    store_u32(received, 0);
+    memset_bytes(received + 4, 0, 18);
+    __builtin_memcpy(received, packet + 11, 21);
+    header = load_u32(received);
+    command = (uint8_t)(header & 0x3fu);
+    direction = (uint8_t)(header & 0xc0u);
+    work_mode = received[1];
+    sequence = received[6];
+
+    if (sequence == context[0xda]) {
+        if (LOG_LEVEL > 0)
+            log_simple(((unsigned long)&rodata_99133) /*=0x99133*/);
         return 0;
-      }
-      iVar7 = *DAT_00015b94;
-      format_string = PTR_s__s____slave_recv_suspend_package_00015ba4;
-      goto LAB_000159b4;
     }
-  }
-  else if (((local_30 & 0x3f) == 2) && (*(char *)(param_1 + 0xfe6) == '\0')) {
-    *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-    if (*DAT_00015b90 < 1) {
-      return 0;
-    }
-    iVar7 = *DAT_00015b94;
-    format_string = PTR_s__s____slave_recv_resume_package_00015ba8;
-    goto LAB_000159b4;
-  }
-  if (((*(char *)(param_1 + 0xd5) == '\t') || (*(char *)(param_1 + 0xd5) == '\v')) ||
-     (*(char *)(param_1 + 0xd5) == '\n')) {
-    if ((local_30 & 0xc0) == 0x80) {
-      if (*(char *)(param_1 + 0xce) != '\0') {
-        *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-        if (*DAT_00015b90 < 1) {
-          return 0;
-        }
-        iVar7 = *DAT_00015b94;
-        format_string = PTR_s__s____slave_recv_up_recving_00015bac;
-        goto LAB_000159b4;
-      }
-    }
-    else if (((local_30 & 0xc0) == 0x40) && (*(char *)(param_1 + 0xcf) != '\0')) {
-      *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-      if (*DAT_00015b90 < 1) {
+    if (sequence != (uint8_t)(context[0xda] + 1u) && LOG_LEVEL > 0)
+        log_simple(((unsigned long)&rodata_99152) /*=0x99152*/);
+
+    if (command == 1 && context[0xfe6] == 1) {
+        context[0xda]++;
+        if (LOG_LEVEL > 0)
+            log_simple(0x000991a9u);
         return 0;
-      }
-      iVar7 = *DAT_00015b94;
-      format_string = PTR_s__s____slave_recv_down_recving_00015bb0;
-      goto LAB_000159b4;
     }
-  }
-  else if ((*(char *)(param_1 + 0xd5) == '\x10') && (*(char *)(param_1 + 0xce) != '\0')) {
-    if (0 < *DAT_00015b90) {
-      if (*DAT_00015b94 == 0) {
-        DEBUG_PRINT(PTR_s__s____slave_even_ai_recv_down_re_00015bb4,DAT_00015b98);
-      }
-      else {
-        ((long long (*)(void))debug_print)();
-      }
+    if (command == 2 && context[0xfe6] == 0) {
+        context[0xda]++;
+        if (LOG_LEVEL > 0)
+            log_simple(0x000991cbu);
+        return 0;
     }
-    *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-    return 0;
-  }
-  if ((((unsigned long long)(local_30)>>8 & 0xffULL) != '\x06') && (((unsigned long long)(local_30)>>8 & 0xffULL) != '\0')) {
-    *(byte *)(param_1 + 0xe9) = param_2[3];
-    bVar1 = param_2[4];
-    *(byte *)(param_1 + 0xea) = bVar1;
-    if ((local_30 & 0x3f) == 0) {
-      if (((local_30 & 0xc0) == 0x80) ||
-         ((((unsigned long long)(local_30)>>8 & 0xffULL) == '\x10' && (**(byte **)(*DAT_00015bb8 + 0x100c) - 6 < 4)))) {
-        if ((*(byte *)(param_1 + 0xcc) != param_2[3]) &&
-           (*(byte *)(*(int *)(param_1 + 0x1024) + 0x200) != param_2[3])) {
-          *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-          if (*DAT_00015b90 < 1) {
+
+    if (context[0xd5] == 9 || context[0xd5] == 11 || context[0xd5] == 10) {
+        if ((direction == 0x80 && context[0xce] != 0) ||
+            (direction == 0x40 && context[0xcf] != 0)) {
+            context[0xda]++;
+            if (LOG_LEVEL > 0)
+                log_simple(direction == 0x80 ? 0x000991ecu : 0x00099209u);
             return 0;
-          }
-          iVar7 = *DAT_00015b94;
-          format_string = DAT_00015bbc;
-          goto LAB_000159b4;
         }
-      }
-      else if ((*(byte *)(param_1 + 0xcd) != bVar1) &&
-              (*(byte *)(*(int *)(param_1 + 0x1028) + 0x200) != bVar1)) {
-        *(char *)(param_1 + 0xda) = *(char *)(param_1 + 0xda) + '\x01';
-        if (*DAT_00015b90 < 1) {
-          return 0;
-        }
-        iVar7 = *DAT_00015b94;
-        format_string = DAT_00015bc0;
-LAB_000159b4:
-        if (iVar7 != 0) {
-          ((long long (*)(void))debug_print)();
-          return 0;
-        }
-        DEBUG_PRINT(format_string,DAT_00015b98);
+    } else if (context[0xd5] == 16 && context[0xce] != 0) {
+        if (LOG_LEVEL > 0)
+            log_simple(((unsigned long)&rodata_99228) /*=0x99228*/);
+        context[0xda]++;
         return 0;
-      }
     }
-  }
-  *(byte *)(param_1 + 0xc9) = *(byte *)(param_1 + 0xc9) & 0xc0 | *param_2 & 0x3f;
-  *(byte *)(param_1 + 0xca) = param_2[1];
-  *(byte *)(param_1 + 0xcb) = param_2[2];
-  set_device_sync_timestamp(*(undefined4 *)(param_2 + 7));
-  uVar4 = *(undefined1 *)(param_1 + 0xd5);
-  local_30 = (local_30 & ~(0xffffULL<<0)) | (((unsigned long long)(CONCAT11(uVar4,(byte)local_30)) & 0xffffULL)<<0);
-  puVar2 = (undefined4 *)(param_1 + 0xd4);
-  pbVar6 = (byte *)&local_30;
-  do {
-    pbVar8 = pbVar6;
-    puVar5 = puVar2;
-    uVar3 = *(undefined4 *)(pbVar8 + 4);
-    pbVar6 = pbVar8 + 8;
-    *puVar5 = *(undefined4 *)pbVar8;
-    puVar5[1] = uVar3;
-    puVar2 = puVar5 + 2;
-  } while (pbVar6 != &local_20);
-  puVar5[2] = *(undefined4 *)pbVar6;
-  *(byte *)(puVar5 + 3) = pbVar8[0xc];
-  *(byte *)(param_1 + 0xee4) = (byte)local_30 >> 6;
-  **(undefined4 **)(param_1 + 0xfec) = *(undefined4 *)(param_2 + 7);
-  if (*(int *)(*(int *)(param_1 + 0xff4) + 0x164) != 0) {
-    *(undefined4 *)(*(int *)(param_1 + 0xff4) + 0x164) = **(undefined4 **)(param_1 + 0xfec);
-  }
-  *(byte *)(param_1 + 0xeb) = (byte)local_30 >> 6;
-  *(undefined1 *)(param_1 + 0xec) = uVar4;
-  if ((int)((uint)local_20 << 0x1d) < 0) {
-    msg_queue_init();
-    *(byte *)(param_1 + 0xe4) = *(byte *)(param_1 + 0xe4) & 0xfb;
-  }
-  switch(local_30 & 0x3f) {
-  case 10:
-    if ((int)((uint)*(byte *)(*(int *)PTR_DAT_00015dd8 + 0x6de) << 0x1d) < 0) {
-      return 0;
+
+    if (work_mode != 6 && work_mode != 0) {
+        context[0xe9] = packet[3];
+        context[0xea] = packet[4];
+        if (command == 0) {
+            master = (uint8_t *)MASTER_CONTEXT;
+            screen_state = *(uint8_t **)(master + 0x100c);
+            if (direction == 0x80 ||
+                (work_mode == 16 && (uint8_t)(*screen_state - 6u) < 4u)) {
+                uint8_t *alternate = *(uint8_t **)(context + 0x1024);
+                if (context[0xcc] != packet[3] &&
+                    alternate[0x200] != packet[3]) {
+                    context[0xda]++;
+                    if (LOG_LEVEL > 0)
+                        log_simple(0x0009924fu);
+                    return 0;
+                }
+            } else {
+                uint8_t *alternate = *(uint8_t **)(context + 0x1028);
+                if (context[0xcd] != packet[4] &&
+                    alternate[0x200] != packet[4]) {
+                    context[0xda]++;
+                    if (LOG_LEVEL > 0)
+                        log_simple(0x00099272u);
+                    return 0;
+                }
+            }
+        }
     }
-    iVar7 = find_message_pool_entry_by_id(local_1f);
-    if (0 < *(int *)PTR_DAT_00015ddc) {
-      if (*(int *)PTR_IS_DEBUG_00015de0 == 0) {
-        DEBUG_PRINT(DAT_00015de8,DAT_00015de4,DAT_00015de4,0x2fd);
-      }
-      else {
-        debug_print(DAT_00015de8,DAT_00015de4,DAT_00015de4,0x2fd);
-      }
+
+    context[0xc9] = (uint8_t)((context[0xc9] & 0xc0u) | (packet[0] & 0x3fu));
+    context[0xca] = packet[1];
+    context[0xcb] = packet[2];
+    timestamp = load_u32(packet + 7);
+    set_device_sync_timestamp(timestamp);
+
+    received[1] = context[0xd5];
+    __builtin_memcpy(context + 0xd4, received, 21);
+    context[0xee4] = (uint8_t)(received[0] >> 6);
+    store_u32(*(void **)(context + 0xfec), timestamp);
+    {
+        uint8_t *mirror = *(uint8_t **)(context + 0xff4);
+        uint32_t *mirror_timestamp = (uint32_t *)(mirror + 0x164);
+        if (*mirror_timestamp != 0)
+            *mirror_timestamp = timestamp;
     }
-    if ((iVar7 != 0) && (*(char *)(iVar7 + 0xd) == '\0')) {
-      *(undefined1 *)(iVar7 + 0xd) = 2;
+    context[0xeb] = (uint8_t)(received[0] >> 6);
+    context[0xec] = context[0xd5];
+
+    if ((received[16] & 4u) != 0) {
+        msg_queue_init();
+        context[0xe4] &= 0xfbu;
     }
-    goto switchD_00015c70_caseD_c;
-  case 0xb:
-    if ((int)((uint)*(byte *)(*(int *)PTR_DAT_00015dd8 + 0x6de) << 0x1d) < 0) {
-      return 0;
+
+    message_id = load_u32(received + 17);
+    master = (uint8_t *)MASTER_CONTEXT;
+    screen_state = *(uint8_t **)(master + 0x100c);
+    switch (command) {
+    case 10:
+        if ((master[0x6de] & 4u) != 0)
+            return 0;
+        message = find_message_pool_entry_by_id(message_id);
+        if (LOG_LEVEL > 0) {
+            if (LOG_SINK == 0)
+                log_message(((unsigned long)&rodata_99297) /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
+            else
+                debug_print(((unsigned long)&rodata_99297) /*=0x99297*/, LOG_TAG, LOG_TAG, 0x2fdu);
+        }
+        if (message != 0 && *((uint8_t *)message + 13) == 0)
+            *((uint8_t *)message + 13) = 2;
+        break;
+    case 11:
+        if ((master[0x6de] & 4u) != 0)
+            return 0;
+        message = find_message_pool_entry_by_id(message_id);
+        if (LOG_LEVEL > 0) {
+            if (LOG_SINK == 0)
+                log_message(((unsigned long)&rodata_992e1) /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
+            else
+                debug_print(((unsigned long)&rodata_992e1) /*=0x992e1*/, LOG_TAG, LOG_TAG, 0x30au);
+        }
+        if (message != 0 && *((uint8_t *)message + 13) == 2) {
+            *((uint8_t *)message + 13) = 4;
+            confirm_message(message_id);
+            EVEN_AI_STATE = 0;
+        }
+        break;
+    case 12:
+        break;
+    case 13:
+        reset_esb_sync_state(0);
+        *screen_state = 2;
+        if (**(uint32_t **)(master + 0x1054) != 16)
+            update_persist_task_status(master, 16);
+        break;
+    case 14: *screen_state = 4; break;
+    case 15: *screen_state = 6; break;
+    case 16: *screen_state = 11; master[0xdb] = 8; break;
+    case 17: *screen_state = 14; break;
+    case 18: *screen_state = 16; break;
+    default:
+        FUN_0007c010(context + 0x20);
+        break;
     }
-    iVar7 = find_message_pool_entry_by_id(local_1f);
-    if (0 < *(int *)PTR_DAT_00015ddc) {
-      if (*(int *)PTR_IS_DEBUG_00015de0 == 0) {
-        DEBUG_PRINT(DAT_00015dec,DAT_00015de4,DAT_00015de4,0x30a);
-      }
-      else {
-        debug_print(DAT_00015dec,DAT_00015de4,DAT_00015de4,0x30a);
-      }
-    }
-    if ((iVar7 == 0) || (*(char *)(iVar7 + 0xd) != '\x02')) goto switchD_00015c70_caseD_c;
-    *(undefined1 *)(iVar7 + 0xd) = 4;
-    confirm_message(local_1f);
-    uVar4 = 0;
-    puVar9 = DAT_00015df0;
-    break;
-  case 0xc:
-    goto switchD_00015c70_caseD_c;
-  case 0xd:
-    reset_esb_sync_state(0);
-    iVar7 = *(int *)PTR_DAT_00015dd8;
-    **(undefined1 **)(iVar7 + 0x100c) = 2;
-    if (**(int **)(iVar7 + 0x1054) != 0x10) {
-      update_persist_task_status(iVar7,0x10);
-    }
-    goto switchD_00015c70_caseD_c;
-  case 0xe:
-    uVar4 = 4;
-    puVar9 = *(undefined1 **)(*(int *)PTR_DAT_00015dd8 + 0x100c);
-    break;
-  case 0xf:
-    uVar4 = 6;
-    puVar9 = *(undefined1 **)(*(int *)PTR_DAT_00015dd8 + 0x100c);
-    break;
-  case 0x10:
-    iVar7 = *(int *)PTR_DAT_00015dd8;
-    **(undefined1 **)(iVar7 + 0x100c) = 0xb;
-    *(undefined1 *)(iVar7 + 0xdb) = 8;
-    goto switchD_00015c70_caseD_c;
-  case 0x11:
-    uVar4 = 0xe;
-    puVar9 = *(undefined1 **)(*(int *)PTR_DAT_00015dd8 + 0x100c);
-    break;
-  case 0x12:
-    uVar4 = 0x10;
-    puVar9 = *(undefined1 **)(*(int *)PTR_DAT_00015dd8 + 0x100c);
-    break;
-  default:
-    thunk_FUN_00072880(param_1 + 0x20);
-    goto switchD_00015c70_caseD_c;
-  }
-  *puVar9 = uVar4;
-switchD_00015c70_caseD_c:
-  if ((((*(byte *)(param_1 + 0xc9) & 0x3f) == 3) && ((*(byte *)(param_1 + 0xc9) & 0xc0) == 0x80)) &&
-     (*(char *)(param_1 + 0xca) == '\x01')) {
-    switch_to_dfu_mode(param_1 + 0x68);
-  }
-  return 0;
+
+    if ((context[0xc9] & 0x3fu) == 3 &&
+        (context[0xc9] & 0xc0u) == 0x80 && context[0xca] == 1)
+        switch_to_dfu_mode(context + 0x68);
+    return 0;
 }

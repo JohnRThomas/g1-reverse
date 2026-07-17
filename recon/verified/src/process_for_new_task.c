@@ -1,54 +1,92 @@
-/* Reconstructed process_for_new_task @ 0x2c99c  (parity: 295/300 trials, PROVEN) */
+/* Reconstructed process_for_new_task @ 0x2c99c.
+ * Raw identity/back-map: FUN_0002c99c @ 0x0002c99c. */
 typedef unsigned char      u8;
 typedef unsigned int       u32;
 typedef unsigned long long u64;
 
-/* callees (opaque oracles) -> single index-keyed oracle */
-extern int g_oracle(void);
-#define DEBUG_PRINT(...) g_oracle()
-#define FUN_000167a8(...) g_oracle()
-#define FUN_00019c70(...) g_oracle()
-#define FUN_00023eec(...) g_oracle()
-#define FUN_00026c28(...) g_oracle()
-#define FUN_0002bc2c(...) g_oracle()
-#define FUN_0002be64(...) g_oracle()
-#define FUN_0002bffc(...) g_oracle()
-#define FUN_0002c0e8(...) g_oracle()
-#define FUN_0002c180(...) g_oracle()
-#define FUN_0002c1fc(...) g_oracle()
-#define FUN_0002c214(...) g_oracle()
-#define FUN_0002c224(...) g_oracle()
-#define FUN_0002c2b0(...) g_oracle()
-#define FUN_0002c498(...) g_oracle()
-#define FUN_0002c714(...) g_oracle()
-#define FUN_0002eb40(...) g_oracle()
-#define FUN_0002efc0(...) g_oracle()
-#define FUN_00032ee4(...) g_oracle()
-#define FUN_00033cdc(...) g_oracle()
-#define FUN_00033cf8(...) g_oracle()
-#define FUN_00033d58(...) g_oracle()
-#define FUN_0003439c(...) g_oracle()
-#define FUN_00034410(...) g_oracle()
-#define FUN_0003443c(...) g_oracle()
-#define FUN_0003444c(...) g_oracle()
-#define FUN_00034808(...) g_oracle()
-#define FUN_00036030(...) g_oracle()
-#define FUN_0003cf34(...) g_oracle()
-#define FUN_00072880(...) g_oracle()
-#define FUN_0007c132(...) g_oracle()
-#define FUN_0007ce60(...) g_oracle()
-#define FUN_00086c78(...) g_oracle()
-#define send_event_status(...) g_oracle()
-#define sync_to_slave(...) g_oracle()
-#define thunk_FUN_00074844(...) g_oracle()
-#define update_persist_task_status(...) g_oracle()
+/* Every raw identity below is retained as an address back-map; semantic names
+ * are used in the function body where the subsystem role is known. */
+extern int log_message(u32, ...);                         /* FUN_0007dda4 */
+extern int get_device_info(void);                         /* FUN_000167a8 */
+extern int debug_print(u32, ...);                         /* FUN_00019c70 */
+extern int get_task_signal_mode(void);                    /* FUN_00023eec */
+extern int is_task_transport_blocked(void);               /* FUN_00026c28 */
+extern int trigger_screen_state_change(u32, char *, int); /* FUN_0002bc2c */
+extern long long now_has_persist_task(char *, int);       /* FUN_0002be64 */
+extern int update_temp_task_status(char *, int, ...);     /* FUN_0002bffc */
+extern int update_persist_task_status_to_idle(char *);    /* FUN_0002c0e8 */
+extern int update_persist_task_status_to_wait_blow_head(void); /* FUN_0002c180 */
+extern int reset_task_transition_state(void);             /* FUN_0002c1fc */
+extern int publish_task_transition(void);                 /* FUN_0002c214 */
+extern int sync_message_signal_to_slave(int, ...);        /* FUN_0002c224 */
+extern int prepare_new_task(void);                        /* FUN_0002c2b0 */
+extern int process_task_state_five(char *, char *, u8 *, int *); /* FUN_0002c498 */
+extern int process_task_state_four(char *, char *, u8 *, int *); /* FUN_0002c714 */
+extern int task_transition_pending(void);                 /* FUN_0002eb40 */
+extern int finish_task_media(void);                       /* FUN_0002efc0 */
+extern int is_battery_critical(void);                     /* FUN_00032ee4 */
+extern int should_finish_task_wait(void);                 /* FUN_00033cdc */
+extern int read_task_mode(void);                          /* FUN_00033cf8 */
+extern int clear_timeout_message(int);                    /* FUN_00033d58 */
+extern int finalize_task_transition(void);                /* FUN_0003439c */
+extern int is_task_transition_ready(void);                /* FUN_00034410 */
+extern int set_task_display_mode(int);                    /* FUN_0003443c */
+extern int is_msg_expiration(void);                       /* FUN_0003444c */
+extern int can_begin_task_transition(void);               /* FUN_00034808 */
+extern int clear_active_task(void);                       /* FUN_00036030 */
+extern int finish_task_audio(void);                       /* FUN_0003cf34 */
+extern int submit_task_work(int work_item_address);       /* FUN_00072880 */
+extern int peer_address_is_uninitialized(u32, u32);       /* FUN_0007c132 */
+extern int set_task_wake_state(int);                      /* FUN_0007ce60 */
+extern int memset_bytes(void *, int, u32);                /* FUN_00086c78 */
+extern int send_event_status(int);
+extern int sync_to_slave(char *, int, int);               /* FUN_00026f74 */
+extern int FUN_0007ce5c(u32, u32);                        /* exact wait entry */
+extern int update_persist_task_status(char *, u32, int);  /* FUN_0002bef4 */
+
+#define DEBUG_PRINT log_message
+#define FUN_000167a8 get_device_info
+#define FUN_00019c70 debug_print
+#define FUN_00023eec get_task_signal_mode
+#define FUN_00026c28 is_task_transport_blocked
+#define FUN_0002bc2c trigger_screen_state_change
+#define FUN_0002be64 now_has_persist_task
+#define FUN_0002bffc update_temp_task_status
+#define FUN_0002c0e8 update_persist_task_status_to_idle
+#define FUN_0002c180 update_persist_task_status_to_wait_blow_head
+#define FUN_0002c1fc reset_task_transition_state
+#define FUN_0002c214 publish_task_transition
+#define FUN_0002c224 sync_message_signal_to_slave
+#define FUN_0002c2b0 prepare_new_task
+#define FUN_0002c498 process_task_state_five
+#define FUN_0002c714 process_task_state_four
+#define FUN_0002eb40 task_transition_pending
+#define FUN_0002efc0 finish_task_media
+#define FUN_00032ee4 is_battery_critical
+#define FUN_00033cdc should_finish_task_wait
+#define FUN_00033cf8 read_task_mode
+#define FUN_00033d58 clear_timeout_message
+#define FUN_0003439c finalize_task_transition
+#define FUN_00034410 is_task_transition_ready
+#define FUN_0003443c set_task_display_mode
+#define FUN_0003444c is_msg_expiration
+#define FUN_00034808 can_begin_task_transition
+#define FUN_00036030 clear_active_task
+#define FUN_0003cf34 finish_task_audio
+#define FUN_00072880 submit_task_work
+#define FUN_0007c132 peer_address_is_uninitialized
+#define FUN_0007ce60 set_task_wake_state
+#define FUN_00086c78 memset_bytes
+#define thunk_FUN_00074844 FUN_0007ce5c
+#define task_wait_ticks FUN_0007ce5c /* FUN_0007ce5c @ 0x0007ce5c */
 
 /* dereferenced RAM globals (exact literal addresses from the literal pool) */
-#define G_18d9f  (*(volatile u8 *)0x20018d9f)   /* byte store */
-#define G_18d9e  (*(volatile char *)0x20018d9e) /* byte read  */
-#define V230C    (*(volatile int *)0x2000230c)  /* verbose level */
-#define V7554    (*(volatile int *)0x20007554)  /* mode flag     */
-#define P7B38    ((volatile u32 *)0x20007b38)   /* atomic flags  */
+#define g_esb_notify_slave_role_guard (*(volatile u8 *)0x20018d9f)
+#define g_pending_message_flag        (*(volatile char *)0x20018d9e)
+#define g_log_level                   (*(volatile int *)0x2000230c)
+#define g_log_use_alt_sink            (*(volatile int *)0x20007554)
+/* No durable semantic name exists yet for this atomic word. */
+#define g_20007b38                    ((volatile u32 *)0x20007b38)
 
 int process_for_new_task(char *param_1, u8 *param_2)
 {
@@ -73,13 +111,13 @@ int process_for_new_task(char *param_1, u8 *param_2)
     iVar18 = 0;
     local_2c[0] = 0;
 LAB_0002c9b6:
-    FUN_00086c78(param_1 + 0xef, 0);
-    FUN_00033d58(0);
+    memset_bytes(param_1 + 0xef, 0, 0x5dc);
+    clear_timeout_message(0);
     if (*param_1 == '\x01') {
-        FUN_0002c2b0(0);
+        prepare_new_task();
     }
     if (param_1[0xd5] != '\x04') {
-        G_18d9f = 0;
+        g_esb_notify_slave_role_guard = 0;
     }
     piVar10 = (volatile int *)0x2000230c;
     piVar9  = (volatile int *)0x2000230c;
@@ -110,20 +148,20 @@ LAB_0002c9b6:
     else goto CASE_DEFAULT;
 
 CASE0:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a3669,0x000a3a0f);
+        else            debug_print(0x000a3669,0x000a3a0f);
     }
     puVar21 = *(u32 **)(param_1 + 0x1054);
-    FUN_0007ce60(1);
-    iVar18 = FUN_0002be64(param_1, param_1[0xd5]);
+    set_task_wake_state(1);
+    iVar18 = now_has_persist_task(param_1, param_1[0xd5]);
     if (iVar18 == 0) {
         if (*param_2 != 2) {
-            FUN_0002bc2c(0, param_1, 0);
-            pcVar20 = (char *)FUN_000167a8(0);
-            if ((*pcVar20 == '\x02') && (iVar18 = FUN_000167a8(0), *(int *)(iVar18 + 0x40) == 0)) {
-                iVar18 = FUN_000167a8(0);
-                FUN_00072880(iVar18 + 0x38);
+            trigger_screen_state_change(0, param_1, 0);
+            pcVar20 = (char *)get_device_info();
+            if ((*pcVar20 == '\x02') && (iVar18 = get_device_info(), *(int *)(iVar18 + 0x40) == 0)) {
+                iVar18 = get_device_info();
+                submit_task_work(iVar18 + 0x38);
             }
         }
         param_1[0xd5] = '\0';
@@ -133,39 +171,39 @@ CASE0:
         puVar16[2] = 0;
         puVar16[3] = 0;
         *(u8 *)(*(int *)(param_1 + 0x1054) + 4) = 1;
-        iVar18 = FUN_0003444c(0);
+        iVar18 = is_msg_expiration();
         if (iVar18 == 1) {
             cVar12 = '\x05';
         } else {
-            iVar18 = FUN_000167a8(0);
+            iVar18 = get_device_info();
             cVar12 = *(char *)(iVar18 + 0xdd);
             if (cVar12 != '\0') cVar12 = '\x06';
         }
-        FUN_0003443c(cVar12);
-        FUN_0002c214(0);
+        set_task_display_mode(cVar12);
+        publish_task_transition();
         if (*param_2 != 2) {
             iVar18 = 100;
             do {
                 if (param_1[0xfe6] == '\x01') break;
-                thunk_FUN_00074844(0x148, 0);
+                task_wait_ticks(0x148, 0);
                 iVar18 = iVar18 + -1;
             } while (iVar18 != 0);
         }
         if (1 < *piVar10) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a3696,0x000a3875,**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
+            else            debug_print(0x000a3696,0x000a3875,**(u32 **)(param_1 + 0x1054),uVar19, (u32)(u8)param_1[0xd5]);
         }
     }
-    G_18d9f = 0;                       /* *DAT_0002e0fc = 0 (same addr, byte) */
+    g_esb_notify_slave_role_guard = 0; /* *DAT_0002e0fc: same byte address */
     if (2 < *piVar10) {
-        if (V7554 == 0) { iVar18 = FUN_000167a8(0); DEBUG_PRINT(0); }
-        else            { iVar18 = FUN_000167a8(0); FUN_00019c70(0); }
+        if (g_log_use_alt_sink == 0) { iVar18 = get_device_info(); log_message(0x000a36ff,0x000a3875,(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
+        else            { iVar18 = get_device_info(); debug_print(0x000a36ff,0x000a3875,(u32)*(u8 *)(iVar18 + 0xdd), (u32)(u8)param_1[0x1070]); }
     }
-    puVar3 = P7B38;
+    puVar3 = g_20007b38;
     piVar2 = (volatile int *)0x20007554;
     uVar19 = 0;
 LAB_0002df4c:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b')) {
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b')) {
 LAB_0002e012:
         iVar13 = local_2c[0];
         if (*param_1 == '\x01') {
@@ -174,80 +212,82 @@ LAB_0002e012:
         }
         goto LAB_0002ce1c;
     }
-    cVar12 = (char)FUN_0002eb40(0);
+    cVar12 = (char)task_transition_pending();
     if (cVar12 != '\0') goto LAB_0002df66;
     if ((param_1[0xfea] != '\f') || (**(int **)(param_1 + 0x1054) == 7)) {
-        uVar22 = (u64)(unsigned)FUN_0002be64(param_1, param_1[0xd5]);
+        uVar22 = (u64)(unsigned)now_has_persist_task(param_1, param_1[0xd5]);
         uVar14 = 0;
         iVar18 = (int)uVar22;
         if (iVar18 == 1) {
             param_1[0xd5] = (char)*puVar21;
 LAB_0002e00e:
-            FUN_0002bc2c(uVar14, param_1, 1);
+            trigger_screen_state_change(uVar14, param_1, 1);
             goto LAB_0002e012;
         }
-        iVar18 = FUN_00032ee4(iVar18, (int)(uVar22 >> 0x20), iVar18);
+        iVar18 = is_battery_critical();
         if (iVar18 != 1) {
             if (((*(char *)(*(int *)(param_1 + 0x1014) + 1) == '\0') &&
-                 (iVar18 = FUN_0007c132(0), iVar18 != 0)) &&
-                (iVar18 = FUN_000167a8(0), *(char *)(*(int *)(iVar18 + 0x1010) + 1) == '\0')) {
-                if (((*param_2 == 2) && (iVar18 = FUN_00023eec(0), iVar18 == 0)) ||
-                    (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = FUN_00023eec(0), iVar18 == 1)))) {
+                 (iVar18 = peer_address_is_uninitialized(iVar18,
+                                                         (u32)(uVar22 >> 32)),
+                  iVar18 != 0)) &&
+                (iVar18 = get_device_info(), *(char *)(*(int *)(iVar18 + 0x1010) + 1) == '\0')) {
+                if (((*param_2 == 2) && (iVar18 = get_task_signal_mode(), iVar18 == 0)) ||
+                    (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = get_task_signal_mode(), iVar18 == 1)))) {
                     if ((int)(*puVar3 << 0x1e) < 0) {
                         *puVar3 = *puVar3 & 0xfffffffd;
                     }
-                    iVar18 = FUN_00034808(0);
+                    iVar18 = can_begin_task_transition();
                     if (iVar18 == 0) {
-                        FUN_0002bffc(param_1, 6, 2);
+                        update_temp_task_status(param_1, 6, 2);
                         uVar14 = 0xa2733;
                         goto LAB_0002cd8c;
                     }
-                    FUN_00036030(0);
+                    clear_active_task();
                     if (*param_1 == '\x01') {
-                        FUN_0002c224(1);
-                        FUN_00033d58(0);
-                        FUN_0002c1fc(0);
-                        FUN_0003439c(0);
-                        FUN_0002bffc(param_1, 4, 2);
-                        FUN_0002bc2c(0xa0a61, param_1, 1);
+                        sync_message_signal_to_slave(1);
+                        clear_timeout_message(0);
+                        reset_task_transition_state();
+                        finalize_task_transition();
+                        update_temp_task_status(param_1, 4, 2);
+                        trigger_screen_state_change(0xa0a61, param_1, 1);
                     } else if (param_1[0xd5] != '\x04') {
                         goto LAB_0002e084;
                     }
                     if (*piVar10 < 1) goto LAB_0002cf58;
-                    iVar18 = V7554;
+                    iVar18 = g_log_use_alt_sink;
                     uVar14 = 0xa37a8;
                     goto LAB_0002e184;
                 }
 LAB_0002e084:
-                iVar18 = FUN_00034410(0);
+                iVar18 = is_task_transition_ready();
                 if (iVar18 == 1) {
                     if (param_1[0x108f] == '\0') {
                         if (*param_1 == '\x01') {
-                            FUN_0002c224(0);
-                            FUN_0002bffc(param_1, 5, 2);
-                            FUN_0002bc2c(0xa0a47, param_1, 1);
+                            sync_message_signal_to_slave(0);
+                            update_temp_task_status(param_1, 5, 2);
+                            trigger_screen_state_change(0xa0a47, param_1, 1);
                             if (*piVar10 < 1) goto LAB_0002cf58;
-                            iVar18 = V7554;
+                            iVar18 = g_log_use_alt_sink;
                             uVar14 = 0xa2831;
                             goto LAB_0002e184;
                         }
                         if (param_1[0xd5] != '\x05') goto LAB_0002e040;
                         if (0 < *piVar10) {
-                            iVar18 = V7554;
+                            iVar18 = g_log_use_alt_sink;
                             uVar14 = 0xa37c8;
 LAB_0002e184:
-                            if (iVar18 == 0) DEBUG_PRINT(uVar14);
-                            else             FUN_00019c70(0);
+                            if (iVar18 == 0) log_message(uVar14,0x000a3875);
+                            else             debug_print(uVar14,0x000a3875);
                         }
                         goto LAB_0002cf58;
                     }
-                    FUN_00036030(0);
+                    clear_active_task();
                     if (*param_1 == '\x01') {
-                        FUN_0002c224(1);
-                        FUN_00033d58(0);
-                        FUN_0002c1fc(0);
-                        FUN_0003439c(0);
-                        FUN_0002bffc(param_1, 4, 2);
+                        sync_message_signal_to_slave(1);
+                        clear_timeout_message(0);
+                        reset_task_transition_state();
+                        finalize_task_transition();
+                        update_temp_task_status(param_1, 4, 2);
                         uVar14 = 0xa0a61;
                         goto LAB_0002cd8c;
                     }
@@ -258,8 +298,8 @@ LAB_0002e184:
             } else {
                 uVar19 = uVar19 + 1;
                 if (((uVar19 & 0x1f) == 0) && (0 < *piVar10)) {
-                    if (V7554 == 0) DEBUG_PRINT(0);
-                    else            FUN_00019c70(0);
+                    if (g_log_use_alt_sink == 0) log_message(0x000a3770,0x000a3875);
+                    else            debug_print(0x000a3770,0x000a3875);
                 }
             }
         }
@@ -270,24 +310,24 @@ LAB_0002e040:
         (*(void (**)(void *, int))(param_2 + 0x98))(param_2, 0x50);
     }
 LAB_0002df66:
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002df4c;
 
 CASE1:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a3811,0x000a3a0f);
+        else            debug_print(0x000a3811,0x000a3a0f);
     }
-    FUN_0002bc2c(0xa383d, param_1, 0);
-    while ((*param_2 != 1 && (iVar18 = FUN_00023eec(0), iVar18 != 1))) {
+    trigger_screen_state_change(0xa383d, param_1, 0);
+    while ((*param_2 != 1 && (iVar18 = get_task_signal_mode(), iVar18 != 1))) {
         if (((char)((int *)*(int **)(param_1 + 0x1054))[1] == '\x02') &&
             (**(int **)(param_1 + 0x1054) == 0x10)) {
             param_1[0xd5] = '\x10';
-            FUN_0002bc2c(0xa3758, param_1, 1);
+            trigger_screen_state_change(0xa3758, param_1, 1);
             iVar13 = local_2c[0];
             goto LAB_0002ce1c;
         }
-        thunk_FUN_00074844(0x667, 0);
+        task_wait_ticks(0x667, 0);
     }
     uVar17 = 0;
 LAB_0002cb9a:
@@ -295,34 +335,34 @@ LAB_0002cb9a:
     goto LAB_0002cf58;
 
 CASE2:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2c85,0x000a3a0f);
+        else            debug_print(0x000a2c85,0x000a3a0f);
     }
     piVar2 = (volatile int *)0x20007554;
     uVar19 = 0;
     while (1) {
         if ((*(char *)(*(int *)(param_1 + 0xff0) + 5) == '\0') || (param_1[0xfea] != '\n')) {
             if (2 < *piVar4) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2cb2,0x000a39a0,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a2cb2,0x000a39a0,(u32)(u8)param_1[0xd5]);
             }
             sync_to_slave(param_1, 8, 0);
-            if (*param_2 == 2) FUN_0002c180(0);
-            else               FUN_0002c0e8(param_1);
+            if (*param_2 == 2) update_persist_task_status_to_wait_blow_head();
+            else               update_persist_task_status_to_idle(param_1);
             iVar13 = 0xa2ce2;
             if (*param_1 == '\x01') {
-                thunk_FUN_00074844(0x4000, 0);
+                task_wait_ticks(0x4000, 0);
                 iVar13 = 0xa2ce2;
             }
             goto LAB_0002ce1c;
         }
-        if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b')) {
+        if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b')) {
             if (2 < *piVar4) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a39a0,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a2768,0x000a39a0,(u32)(u8)param_1[0xd5]);
             }
-            FUN_0002c0e8(param_1);
+            update_persist_task_status_to_idle(param_1);
             iVar13 = 0xa2cfc;
             goto LAB_0002ce1c;
         }
@@ -330,8 +370,8 @@ CASE2:
         if (iVar18 == 0) {
             *(u8 *)(*(int *)(param_1 + 0xff0) + 5) = 0;
             if (2 < *piVar4) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2d1a,0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
+                else            debug_print(0x000a2d1a,0x000a39a0,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(*(int *)(param_1 + 0xff0) + 5));
             }
             local_2c[0] = 0xa2d5a;
             update_persist_task_status(param_1, **(u32 **)(param_1 + 0x1054), 1);
@@ -341,51 +381,51 @@ CASE2:
         if (*param_2 == 2) break;
         uVar19 = uVar19 + 1;
         if (((uVar19 & 0xf) == 0) && (2 < *piVar4)) {
-            if (*piVar2 == 0) DEBUG_PRINT(0);
-            else              FUN_00019c70(0);
+            if (*piVar2 == 0) log_message(0x000a2d97,0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
+            else              debug_print(0x000a2d97,0x000a39a0,uVar19,iVar18,(u32)*param_2, (u32)(u8)param_1[0xdd]);
         }
         if (param_1[0xd5] == '\x01') {
             iVar13 = 0xa2ad4;
             if (*piVar4 < 3) goto LAB_0002ce1c;
             uVar19 = (u8)param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2de3;
             uVar15 = 0xa39a0;
             goto LAB_0002cbe8;
         }
-        thunk_FUN_00074844(0x667, 0);
+        task_wait_ticks(0x667, 0);
     }
     if (param_1[0xdd] == '\0') {
-        FUN_0002bffc(param_1, 6);
+        update_temp_task_status(param_1, 6);
     } else {
-        FUN_0002bffc(param_1, 4);
-        FUN_0002c1fc(0);
+        update_temp_task_status(param_1, 4);
+        reset_task_transition_state();
     }
     if (2 < *piVar4) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2d6f,0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2d6f,0x000a39a0,**(u32 **)(param_1 + 0x1054), (u32)(u8)param_1[0xd5]);
     }
     update_persist_task_status(param_1, **(u32 **)(param_1 + 0x1054), 3);
     goto LAB_0002cf58;
 
 CASE_DEFAULT:
-    thunk_FUN_00074844(0x8000, 0);
+    task_wait_ticks(0x8000, 0);
     goto LAB_0002ca3c;
 
 CASE4:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2a7e,0x000a3a0f);
+        else            debug_print(0x000a2a7e,0x000a3a0f);
     }
-    iVar18 = FUN_0002c714(param_1, param_1 + 0xd4, param_2, local_2c);
+    iVar18 = process_task_state_four(param_1, param_1 + 0xd4, param_2, local_2c);
     goto LAB_0002ca34;
 
 CASE5:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2a4d,0x000a3a0f);
+        else            debug_print(0x000a2a4d,0x000a3a0f);
     }
-    iVar18 = FUN_0002c498(param_1, param_1 + 0xd4, param_2, local_2c);
+    iVar18 = process_task_state_five(param_1, param_1 + 0xd4, param_2, local_2c);
 LAB_0002ca34:
     iVar13 = local_2c[0];
     if (iVar18 == 10) goto LAB_0002ce1c;
@@ -395,54 +435,54 @@ LAB_0002ca3c:
     goto LAB_0002cf58;
 
 CASE6:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2aad,0x000a3a0f);
+        else            debug_print(0x000a2aad,0x000a3a0f);
     }
-    pcVar20 = (char *)&G_18d9e;
-    puVar3 = P7B38;
+    pcVar20 = (char *)&g_pending_message_flag;
+    puVar3 = g_20007b38;
     uVar19 = 0;
     param_1[0xdc] = '\0';
     while (1) {
-        if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b')) {
+        if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b')) {
             if (2 < *piVar2) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a39bb,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a2768,0x000a39bb,(u32)(u8)param_1[0xd5]);
             }
-            FUN_0002c0e8(param_1);
+            update_persist_task_status_to_idle(param_1);
             iVar13 = 0xa2ad4;
             goto LAB_0002ce1c;
         }
-        if ((((*param_2 == 1) && (iVar18 = FUN_00023eec(0), iVar18 == 0)) ||
-             (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = FUN_00023eec(0), iVar18 == 1)))) ||
-            (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = FUN_00023eec(0), iVar18 == 2)))) {
+        if ((((*param_2 == 1) && (iVar18 = get_task_signal_mode(), iVar18 == 0)) ||
+             (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = get_task_signal_mode(), iVar18 == 1)))) ||
+            (((int)(*puVar3 << 0x1e) < 0 && (iVar18 = get_task_signal_mode(), iVar18 == 2)))) {
             if ((int)(*puVar3 << 0x1e) < 0) {
                 *puVar3 = *puVar3 & 0xfffffffd;
             }
-            iVar18 = FUN_0002be64(param_1, param_1[0xd5]);
+            iVar18 = now_has_persist_task(param_1, param_1[0xd5]);
             if (iVar18 != 1) {
                 sync_to_slave(param_1, 8, 0);
-                FUN_0002c0e8(param_1);
+                update_persist_task_status_to_idle(param_1);
                 iVar13 = 0xa2ad4;
                 if (*piVar2 < 3) goto LAB_0002ce1c;
                 uVar19 = (u8)param_1[0xd5];
-                iVar18 = V7554;
+                iVar18 = g_log_use_alt_sink;
                 uVar14 = 0xa291d;
                 uVar15 = 0xa39bb;
                 goto LAB_0002cbe8;
             }
             if (2 < *piVar2) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2af2,0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
+                else            debug_print(0x000a2af2,0x000a39bb,(u32)(u8)param_1[0xd5], **(u32 **)(param_1 + 0x1054));
             }
             uVar17 = **(u32 **)(param_1 + 0x1054) & 0xff;
             goto LAB_0002cb9a;
         }
-        iVar18 = FUN_0002be64(param_1, param_1[0xd5]);
+        iVar18 = now_has_persist_task(param_1, param_1[0xd5]);
         if (iVar18 == 1) {
             if (2 < *piVar2) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2b22,0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
+                else            debug_print(0x000a2b22,0x000a39bb,(u32)(u8)param_1[0xd5], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xe3]);
             }
             uVar17 = *(u32 *)(param_1 + 0xdf);
             if (uVar17 == 0xb) goto LAB_0002cb9a;
@@ -461,19 +501,19 @@ CASE6:
             iVar13 = 0xa2ad4;
             if (*piVar2 < 3) goto LAB_0002ce1c;
             uVar19 = (u8)param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2b59;
             uVar15 = 0xa39bb;
             goto LAB_0002cbe8;
         }
-        if ((param_1[0x108f] != '\0') && (iVar18 = FUN_00034410(0), iVar18 == 1)) {
-            FUN_00036030(0);
+        if ((param_1[0x108f] != '\0') && (iVar18 = is_task_transition_ready(), iVar18 == 1)) {
+            clear_active_task();
             if (*param_1 == '\x01') {
-                FUN_0002c224(1);
-                FUN_00033d58(0);
-                FUN_0002c1fc(0);
-                FUN_0003439c(0);
-                FUN_0002bffc(param_1, 4, 2);
+                sync_message_signal_to_slave(1);
+                clear_timeout_message(0);
+                reset_task_transition_state();
+                finalize_task_transition();
+                update_temp_task_status(param_1, 4, 2);
                 uVar14 = 0xa0a61;
                 goto LAB_0002cd8c;
             }
@@ -481,9 +521,9 @@ CASE6:
         }
         if (param_1[0xd5] == '\x04') {
             if (*param_1 == '\x02') {
-                thunk_FUN_00074844(0x1334, 0);
+                task_wait_ticks(0x1334, 0);
             }
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2bc0;
             goto LAB_0002cd00;
         }
@@ -493,25 +533,25 @@ CASE6:
         }
         uVar19 = uVar19 + 1;
         if (((uVar19 & 0xf) == 0) && (2 < *piVar2)) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a2c0b,0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
+            else            debug_print(0x000a2c0b,0x000a39bb,uVar19,**(u32 **)(param_1 + 0xff0), (u32)*param_2,(u32)(u8)param_1[0xdd],(u32)(u8)param_1[0xe3], *(u32 *)(param_1 + 0xdf),(u32)(u8)param_1[0xdc]);
         }
-        if ((*pcVar20 != '\0') && (iVar18 = FUN_00033cdc(0), iVar18 != 0)) break;
-        FUN_000167a8(0);
-        thunk_FUN_00074844(0x667, 0);
+        if ((*pcVar20 != '\0') && (iVar18 = should_finish_task_wait(), iVar18 != 0)) break;
+        get_device_info();
+        task_wait_ticks(0x667, 0);
     }
-    FUN_00036030(0);
-    FUN_0003443c(6);
-    FUN_0002bffc(param_1, 4, 2);
+    clear_active_task();
+    set_task_display_mode(6);
+    update_temp_task_status(param_1, 4, 2);
     uVar14 = 0xa2c70;
 LAB_0002cd8c:
-    FUN_0002bc2c(uVar14, param_1, 1);
+    trigger_screen_state_change(uVar14, param_1, 1);
     goto LAB_0002cf58;
 
 CASE7:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a32b6,0x000a3a0f);
+        else            debug_print(0x000a32b6,0x000a3a0f);
     }
     uVar15 = 0xa3325;
     uVar14 = 0xa38f9;
@@ -520,30 +560,30 @@ CASE7:
     goto LAB_0002d6ce;
 
 CASE8:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a3290,0x000a3a0f);
+        else            debug_print(0x000a3290,0x000a3a0f);
     }
     param_1[0xb0d] = '\0';
-    iVar18 = FUN_000167a8(0);
-    uVar11 = (u8)FUN_00033cf8(0);
+    iVar18 = get_device_info();
+    uVar11 = (u8)read_task_mode();
     *(u8 *)(iVar18 + 0xdd) = uVar11;
     while ((*param_2 != 1 || (param_1[0xfea] != '\n'))) {
-        thunk_FUN_00074844(0x667, 0);
+        task_wait_ticks(0x667, 0);
     }
     if (2 < *piVar7) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a291d,0x000a3916,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a291d,0x000a3916,(u32)(u8)param_1[0xd5]);
     }
     sync_to_slave(param_1, 8, 0);
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     local_2c[0] = 0xa3311;
     goto LAB_0002d118;
 
 CASE9:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2e31,0x000a3a0f);
+        else            debug_print(0x000a2e31,0x000a3a0f);
     }
     uVar15 = 0xa2f08;
     uVar14 = 0xa3982;
@@ -553,9 +593,9 @@ CASE9:
     goto LAB_0002d03e;
 
 CASE10:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a30bd,0x000a3a0f);
+        else            debug_print(0x000a30bd,0x000a3a0f);
     }
     uVar15 = 0xa318d;
     uVar14 = 0xa394b;
@@ -565,9 +605,9 @@ CASE10:
     goto LAB_0002d37c;
 
 CASE11:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a31da,0x000a3a0f);
+        else            debug_print(0x000a31da,0x000a3a0f);
     }
     uVar15 = 0xa3244;
     uVar14 = 0xa3590;
@@ -576,9 +616,9 @@ CASE11:
     goto LAB_0002d4ce;
 
 CASE12:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a2f57,0x000a3a0f);
+        else            debug_print(0x000a2f57,0x000a3a0f);
     }
     uVar15 = 0xa3071;
     uVar14 = 0xa3967;
@@ -587,9 +627,9 @@ CASE12:
     goto LAB_0002d1b4;
 
 CASE14:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a3373,0x000a3a0f);
+        else            debug_print(0x000a3373,0x000a3a0f);
     }
     uVar15 = 0xa33de;
     uVar14 = 0xa38dd;
@@ -598,9 +638,9 @@ CASE14:
     goto LAB_0002d7ee;
 
 CASE15:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a342b,0x000a3a0f);
+        else            debug_print(0x000a342b,0x000a3a0f);
     }
     uVar15 = 0xa34a2;
     uVar14 = 0xa38be;
@@ -609,18 +649,18 @@ CASE15:
     goto LAB_0002d998;
 
 CASE16:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a34f2,0x000a3a0f);
+        else            debug_print(0x000a34f2,0x000a3a0f);
     }
     piVar2 = (volatile int *)0x20007554;
     uVar19 = 0;
     goto LAB_0002dac0;
 
 CASE17:
-    if (2 < V230C) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+    if (2 < g_log_level) {
+        if (g_log_use_alt_sink == 0) log_message(0x000a35a2,0x000a3a0f);
+        else            debug_print(0x000a35a2,0x000a3a0f);
     }
     uVar15 = 0xa3619;
     uVar14 = 0xa3886;
@@ -633,69 +673,69 @@ LAB_0002cf58:
     goto LAB_0002c9b6;
 
 LAB_0002dd2a:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002dd30;
     if (**(char **)(param_1 + 0x101c) == '\0') {
         local_2c[0] = 0xa35df;
         if (*param_2 != 2) {
             if (*piVar9 < 3) goto LAB_0002d2da;
             uVar19 = (u8)param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa3886;
             goto LAB_0002d5b8;
         }
         sync_to_slave(param_1, 8, 0);
         if (*piVar9 < 3) goto LAB_0002d9fc;
         bVar1 = param_1[0xd5];
-        iVar18 = V7554;
+        iVar18 = g_log_use_alt_sink;
         uVar14 = 0xa3886;
         goto LAB_0002d9f0;
     }
     if (param_1[0xd5] == '\x01') {
         iVar13 = 0xa35f7;
         if (2 < *piVar9) {
-            if (V7554 == 0) { DEBUG_PRINT(0); iVar13 = 0xa35f7; }
-            else            { FUN_00019c70(0); iVar13 = 0xa35f7; }
+            if (g_log_use_alt_sink == 0) { log_message(0x000a2de3,0x000a3886,(u32)(u8)param_1[0xd5]); iVar13 = 0xa35f7; }
+            else            { debug_print(0x000a2de3,0x000a3886,(u32)(u8)param_1[0xd5]); iVar13 = 0xa35f7; }
         }
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar9)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002dd2a;
 LAB_0002dd30:
     if (2 < *piVar9) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a3886,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a3886,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa35cd;
     goto LAB_0002ce1c;
 
 LAB_0002dac0:
     if (param_1[0xfea] == '\f') goto code_r0x0002dac8;
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b')) {
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b')) {
         if (2 < *piVar8) {
             bVar1 = param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2768;
 LAB_0002dc06:
-            if (iVar18 == 0) DEBUG_PRINT(uVar14, bVar1);
-            else             FUN_00019c70(0);
+            if (iVar18 == 0) log_message(uVar14,0x000a38a5,(u32)bVar1);
+            else             debug_print(uVar14,0x000a38a5,(u32)bVar1);
         }
         goto LAB_0002db7c;
     }
-    iVar18 = FUN_00026c28(0);
-    if (((iVar18 == 0) && (iVar18 = FUN_000167a8(0), 1 < **(u8 **)(iVar18 + 0x100c))) &&
-        (iVar18 = FUN_000167a8(0), **(u8 **)(iVar18 + 0x100c) < 10)) {
-        iVar18 = FUN_000167a8(0);
+    iVar18 = is_task_transport_blocked();
+    if (((iVar18 == 0) && (iVar18 = get_device_info(), 1 < **(u8 **)(iVar18 + 0x100c))) &&
+        (iVar18 = get_device_info(), **(u8 **)(iVar18 + 0x100c) < 10)) {
+        iVar18 = get_device_info();
         **(u8 **)(iVar18 + 0x100c) = 10;
     }
     if (((*(char *)(*(int *)(param_1 + 0x100c) + 7) == '\0') ||
-         (iVar18 = FUN_000167a8(0), **(char **)(iVar18 + 0x100c) == '\0')) ||
+         (iVar18 = get_device_info(), **(char **)(iVar18 + 0x100c) == '\0')) ||
         (((**(char **)(param_1 + 0x100c) == '\b' || (**(char **)(param_1 + 0x100c) == '\v')) &&
           (param_1[0xdb] == '\0')))) {
         if (*param_1 == '\x01') {
@@ -705,14 +745,14 @@ LAB_0002dc06:
             sync_to_slave(param_1, 8, 0);
             if (2 < *piVar8) {
                 bVar1 = param_1[0xd5];
-                iVar18 = V7554;
+                iVar18 = g_log_use_alt_sink;
                 uVar14 = 0xa3215;
                 goto LAB_0002dc06;
             }
         } else {
             if (2 < *piVar8) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a294a,0x000a38a5,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a294a,0x000a38a5,(u32)(u8)param_1[0xd5]);
             }
             sync_to_slave(param_1, 8, 0);
         }
@@ -720,28 +760,28 @@ LAB_0002dc06:
     }
     if (param_1[0xd5] == '\x01') {
         if (2 < *piVar8) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a2de3,0x000a38a5,(u32)(u8)param_1[0xd5]);
+            else            debug_print(0x000a2de3,0x000a38a5,(u32)(u8)param_1[0xd5]);
         }
-        FUN_0007ce60(1);
+        set_task_wake_state(1);
         iVar13 = 0xa2a32;
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar8)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(0x000a3558,0x000a38a5,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
+        else              debug_print(0x000a3558,0x000a38a5,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2 ,(u32)(u8)param_1[0xdd]);
     }
     if ((*param_1 == '\x01') &&
         (((**(u8 **)(param_1 + 0x100c) - 7 < 2 || (**(u8 **)(param_1 + 0x100c) == 0xb)) &&
           ((uVar19 * 0xcccccccdu >> 2 | uVar19 * 0xcccccccdu << 30) <= 0xcccccccu)))) {
         param_1[0xdb] = param_1[0xdb] + -1;
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002dac0;
 
 LAB_0002d998:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002d99e;
     if (**(char **)(param_1 + 0x1018) == '\0') {
         local_2c[0] = 0xa3468;
@@ -749,63 +789,63 @@ LAB_0002d998:
             sync_to_slave(param_1, 8, 0);
             if (2 < *piVar8) {
                 bVar1 = param_1[0xd5];
-                iVar18 = V7554;
+                iVar18 = g_log_use_alt_sink;
                 uVar14 = 0xa38be;
 LAB_0002d9f0:
-                if (iVar18 == 0) DEBUG_PRINT(uVar14, bVar1);
-                else             FUN_00019c70(0);
+                if (iVar18 == 0) log_message(0x000a3215,uVar14,(u32)bVar1);
+                else             debug_print(0x000a3215,uVar14,(u32)bVar1);
             }
             goto LAB_0002d9fc;
         }
         if (*piVar8 < 3) goto LAB_0002d2da;
         uVar19 = (u8)param_1[0xd5];
-        iVar18 = V7554;
+        iVar18 = g_log_use_alt_sink;
         uVar14 = 0xa38be;
         goto LAB_0002d5b8;
     }
     if (param_1[0xd5] == '\x01') {
         iVar13 = 0xa3480;
         if (2 < *piVar8) {
-            if (V7554 == 0) { DEBUG_PRINT(0); iVar13 = 0xa3480; }
-            else            { FUN_00019c70(0); iVar13 = 0xa3480; }
+            if (g_log_use_alt_sink == 0) { log_message(0x000a2de3,0x000a38be,(u32)(u8)param_1[0xd5]); iVar13 = 0xa3480; }
+            else            { debug_print(0x000a2de3,0x000a38be,(u32)(u8)param_1[0xd5]); iVar13 = 0xa3480; }
         }
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar8)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d998;
 LAB_0002d99e:
     if (2 < *piVar8) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a38be,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a38be,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa3456;
     goto LAB_0002ce1c;
 
 LAB_0002d7ee:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002d7f4;
     if (**(char **)(param_1 + 0x1014) == '\0') {
         local_2c[0] = 0xa33aa;
         if (*param_2 == 2) {
             sync_to_slave(param_1, 8, 0);
             if (2 < *piVar7) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a3215,0x000a38dd,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a3215,0x000a38dd,(u32)(u8)param_1[0xd5]);
             }
         } else {
             if (2 < *piVar7) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a294a,0x000a38dd,(u32)(u8)param_1[0xd5]);
+                else            debug_print(0x000a294a,0x000a38dd,(u32)(u8)param_1[0xd5]);
             }
             sync_to_slave(param_1, 8, 0);
         }
-        FUN_0002c0e8(param_1);
+        update_persist_task_status_to_idle(param_1);
         iVar13 = local_2c[0];
         if (*param_1 != '\x01') goto LAB_0002ce1c;
         uVar14 = 0xccd;
@@ -814,76 +854,76 @@ LAB_0002d7ee:
     if (param_1[0xd5] == '\x01') {
         iVar13 = 0xa33bf;
         if (2 < *piVar7) {
-            if (V7554 == 0) { DEBUG_PRINT(0); iVar13 = 0xa33bf; }
-            else            { FUN_00019c70(0); iVar13 = 0xa33bf; }
+            if (g_log_use_alt_sink == 0) { log_message(0x000a2de3,0x000a38dd,(u32)(u8)param_1[0xd5]); iVar13 = 0xa33bf; }
+            else            { debug_print(0x000a2de3,0x000a38dd,(u32)(u8)param_1[0xd5]); iVar13 = 0xa33bf; }
         }
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar7)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d7ee;
 LAB_0002d7f4:
     if (2 < *piVar7) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a38dd,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a38dd,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa339b;
     goto LAB_0002ce1c;
 
 LAB_0002d1b4:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002d1ba;
     if (**(char **)(param_1 + 0x1020) == '\0') {
         local_2c[0] = 0xa2f9c;
         if (*param_2 != 2) {
             if (2 < *piVar5) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a301e,0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
+                else            debug_print(0x000a301e,0x000a3967,(u32)(u8)param_1[0xd5],0, (u32)(u8)param_1[0xfea],(u32)*param_2);
             }
             goto LAB_0002d2da;
         }
         if (2 < *piVar5) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a2fb0,0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
+            else            debug_print(0x000a2fb0,0x000a3967,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[0xfea] ,2);
         }
         sync_to_slave(param_1, 8, 0);
-        if (*param_2 == 2) FUN_0002c180(0);
-        else               FUN_0002c0e8(param_1);
-        FUN_0002bc2c(0xa2733, param_1, 1);
+        if (*param_2 == 2) update_persist_task_status_to_wait_blow_head();
+        else               update_persist_task_status_to_idle(param_1);
+        trigger_screen_state_change(0xa2733, param_1, 1);
         goto LAB_0002d118;
     }
     if (param_1[0xd5] == '\x01') {
         iVar13 = 0xa2ad4;
         if (*piVar5 < 3) goto LAB_0002ce1c;
         uVar19 = (u8)param_1[0xd5];
-        iVar18 = V7554;
+        iVar18 = g_log_use_alt_sink;
         uVar14 = 0xa2de3;
         uVar15 = 0xa3967;
         goto LAB_0002cbe8;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar5)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d1b4;
 LAB_0002d1ba:
     if (2 < *piVar5) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a3967,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a3967,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa2f7e;
     goto LAB_0002ce1c;
 
 LAB_0002d4ce:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002d4d4;
     if ((*(char *)(*(int *)(param_1 + 0x1004) + 6) == '\0') &&
         (*(char *)(*(int *)(param_1 + 0x1008) + 6) == '\0')) {
@@ -891,18 +931,18 @@ LAB_0002d4ce:
         if (*param_2 != 2) {
             if (2 < *piVar6) {
                 uVar19 = (u8)param_1[0xd5];
-                iVar18 = V7554;
+                iVar18 = g_log_use_alt_sink;
                 uVar14 = 0xa3930;
 LAB_0002d5b8:
-                if (iVar18 == 0) DEBUG_PRINT(uVar14, uVar19);
-                else             FUN_00019c70(0);
+                if (iVar18 == 0) log_message(0x000a294a,uVar14,uVar19);
+                else             debug_print(0x000a294a,uVar14,uVar19);
             }
             goto LAB_0002d2da;
         }
         sync_to_slave(param_1, 8, 0);
         if (2 < *piVar6) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a3215,0x000a3930,(u32)(u8)param_1[0xd5]);
+            else            debug_print(0x000a3215,0x000a3930,(u32)(u8)param_1[0xd5]);
         }
         goto LAB_0002d0b4;
     }
@@ -910,35 +950,35 @@ LAB_0002d5b8:
         iVar13 = 0xa2ad4;
         if (*piVar6 < 3) goto LAB_0002ce1c;
         uVar19 = (u8)param_1[0xd5];
-        iVar18 = V7554;
+        iVar18 = g_log_use_alt_sink;
         uVar14 = 0xa2de3;
         uVar15 = 0xa3930;
         goto LAB_0002cbe8;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar6)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d4ce;
 LAB_0002d4d4:
     if (2 < *piVar6) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a3930,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a3930,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa3201;
     goto LAB_0002ce1c;
 
 LAB_0002d37c:
-    if ((param_1[1] != '\x01') && (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) != '\b')) {
+    if ((param_1[1] != '\x01') && (iVar18 = get_device_info(), *(char *)(iVar18 + 1) != '\b')) {
         if (*pcVar20 != '\0') {
             if (param_1[0xd5] != '\x01') goto LAB_0002d46a;
             iVar13 = 0xa2ad4;
             if (*piVar6 < 3) goto LAB_0002ce1c;
             uVar19 = (u8)param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2de3;
             uVar15 = 0xa394b;
             goto LAB_0002cbe8;
@@ -946,78 +986,78 @@ LAB_0002d37c:
         local_2c[0] = 0xa3104;
         if (*param_2 != 2) {
             if (2 < *piVar6) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a315d,0x000a394b,(u32)(u8)param_1[0xd5],0);
+                else            debug_print(0x000a315d,0x000a394b,(u32)(u8)param_1[0xd5],0);
             }
 LAB_0002d2da:
             sync_to_slave(param_1, 8, 0);
 LAB_0002d9fc:
-            FUN_0002c0e8(param_1);
+            update_persist_task_status_to_idle(param_1);
             goto LAB_0002d118;
         }
         if (2 < *piVar6) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+            if (g_log_use_alt_sink == 0) log_message(0x000a3119,0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
+            else            debug_print(0x000a3119,0x000a394b,(u32)(u8)param_1[0xd5],0,(u32)(u8)param_1[1]);
         }
         sync_to_slave(param_1, 8, 0);
-        FUN_0002c0e8(param_1);
-        FUN_0002bc2c(0xa2733, param_1, 1);
+        update_persist_task_status_to_idle(param_1);
+        trigger_screen_state_change(0xa2733, param_1, 1);
         goto LAB_0002d3ec;
     }
     goto LAB_0002d382;
 LAB_0002d46a:
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar6)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d37c;
 LAB_0002d382:
     if (2 < *piVar6) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a394b,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a394b,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa30e5;
     goto LAB_0002ce1c;
 
 LAB_0002d03e:
-    if ((param_1[1] == '\x01') || (iVar13 = FUN_000167a8(0), *(char *)(iVar13 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar13 = get_device_info(), *(char *)(iVar13 + 1) == '\b'))
         goto LAB_0002d044;
     if (*(char *)(iVar18 + 1) == '\0') {
         local_2c[0] = 0xa2e7c;
-        FUN_0002efc0(0);
+        finish_task_media();
         if (*param_2 == 2) {
-            FUN_0002bc2c(0xa2733, param_1, 1);
-            FUN_0003cf34(0);
+            trigger_screen_state_change(0xa2733, param_1, 1);
+            finish_task_audio();
             if (2 < *piVar5) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2e93,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
+                else            debug_print(0x000a2e93,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1),(u32)(u8)param_1[1]);
             }
             sync_to_slave(param_1, 8, 0);
 LAB_0002d0b4:
-            FUN_0002c0e8(param_1);
+            update_persist_task_status_to_idle(param_1);
 LAB_0002d3ec:
             if (*param_1 == '\x01') {
-                thunk_FUN_00074844(0x4000, 0);
+                task_wait_ticks(0x4000, 0);
             }
             uVar14 = 0x2667;
         } else {
             if (2 < *piVar5) {
-                if (V7554 == 0) DEBUG_PRINT(0);
-                else            FUN_00019c70(0);
+                if (g_log_use_alt_sink == 0) log_message(0x000a2ed8,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
+                else            debug_print(0x000a2ed8,0x000a3982,(u32)(u8)param_1[0xd5], (u32)*(u8 *)(iVar18 + 1));
             }
             sync_to_slave(param_1, 8, 0);
-            FUN_0002c0e8(param_1);
-            FUN_0003cf34(0);
+            update_persist_task_status_to_idle(param_1);
+            finish_task_audio();
 LAB_0002d118:
             iVar13 = local_2c[0];
             if (*param_1 != '\x01') goto LAB_0002ce1c;
             uVar14 = 0x4000;
         }
 LAB_0002cd18:
-        thunk_FUN_00074844(uVar14, 0);
+        task_wait_ticks(uVar14, 0);
         iVar13 = local_2c[0];
         goto LAB_0002ce1c;
     }
@@ -1025,123 +1065,122 @@ LAB_0002cd18:
         iVar13 = 0xa2ad4;
         if (2 < *piVar5) {
             uVar19 = (u8)param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa2de3;
             uVar15 = 0xa3982;
 LAB_0002cbe8:
-            if (iVar18 == 0) { DEBUG_PRINT(uVar14, uVar15, uVar19); iVar13 = 0xa2ad4; }
-            else             { FUN_00019c70(0);                      iVar13 = 0xa2ad4; }
+            if (iVar18 == 0) { log_message(uVar14,uVar15,uVar19); iVar13 = 0xa2ad4; }
+            else             { debug_print(uVar14,uVar15,uVar19);                      iVar13 = 0xa2ad4; }
         }
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar5)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d03e;
 LAB_0002d044:
     if (2 < *piVar5) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a291d,0x000a3982,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a291d,0x000a3982,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa2e5b;
     goto LAB_0002ce1c;
 
 LAB_0002d6ce:
-    if ((param_1[1] == '\x01') || (iVar18 = FUN_000167a8(0), *(char *)(iVar18 + 1) == '\b'))
+    if ((param_1[1] == '\x01') || (iVar18 = get_device_info(), *(char *)(iVar18 + 1) == '\b'))
         goto LAB_0002d6d4;
     if (**(char **)(param_1 + 0x1010) == '\0') {
         local_2c[0] = 0xa32ef;
         if (*param_2 == 2) {
             if (2 < *piVar7) {
                 bVar1 = param_1[0xd5];
-                iVar18 = V7554;
+                iVar18 = g_log_use_alt_sink;
                 uVar14 = 0xa3215;
 LAB_0002d71c:
-                if (iVar18 == 0) DEBUG_PRINT(uVar14, bVar1);
-                else             FUN_00019c70(0);
+                if (iVar18 == 0) log_message(uVar14,0x000a38f9,(u32)bVar1);
+                else             debug_print(uVar14,0x000a38f9,(u32)bVar1);
             }
         } else if (2 < *piVar7) {
             bVar1 = param_1[0xd5];
-            iVar18 = V7554;
+            iVar18 = g_log_use_alt_sink;
             uVar14 = 0xa294a;
             goto LAB_0002d71c;
         }
-        FUN_0002c0e8(param_1);
+        update_persist_task_status_to_idle(param_1);
         iVar13 = local_2c[0];
         goto LAB_0002ce1c;
     }
     if (param_1[0xd5] == '\x01') {
         iVar13 = 0xa3305;
         if (2 < *piVar7) {
-            if (V7554 == 0) { DEBUG_PRINT(0); iVar13 = 0xa3305; }
-            else            { FUN_00019c70(0); iVar13 = 0xa3305; }
+            if (g_log_use_alt_sink == 0) { log_message(0x000a2de3,0x000a38f9,(u32)(u8)param_1[0xd5]); iVar13 = 0xa3305; }
+            else            { debug_print(0x000a2de3,0x000a38f9,(u32)(u8)param_1[0xd5]); iVar13 = 0xa3305; }
         }
         goto LAB_0002ce1c;
     }
     uVar19 = uVar19 + 1;
     if (((uVar19 & 0xf) == 0) && (2 < *piVar7)) {
-        if (*piVar2 == 0) DEBUG_PRINT(0);
-        else              FUN_00019c70(0);
+        if (*piVar2 == 0) log_message(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
+        else              debug_print(uVar15,uVar14,uVar19,**(u32 **)(param_1 + 0xff0),(u32)*param_2, (u32)(u8)param_1[0xdd]);
     }
-    thunk_FUN_00074844(0x667, 0);
+    task_wait_ticks(0x667, 0);
     goto LAB_0002d6ce;
 LAB_0002d6d4:
     if (2 < *piVar7) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a2768,0x000a38f9,(u32)(u8)param_1[0xd5]);
+        else            debug_print(0x000a2768,0x000a38f9,(u32)(u8)param_1[0xd5]);
     }
-    FUN_0002c0e8(param_1);
+    update_persist_task_status_to_idle(param_1);
     iVar13 = 0xa32df;
     goto LAB_0002ce1c;
 
 LAB_0002ccda:
-    iVar18 = V7554;
+    iVar18 = g_log_use_alt_sink;
     uVar14 = 0xa2ba7;
 LAB_0002cd00:
-    if (iVar18 == 0) DEBUG_PRINT(uVar14);
-    else             FUN_00019c70(0);
+    if (iVar18 == 0) log_message(uVar14);
+    else             debug_print(uVar14);
     goto LAB_0002cf58;
 
 code_r0x0002dac8:
     if (2 < *piVar8) {
-        if (V7554 == 0) DEBUG_PRINT(0);
-        else            FUN_00019c70(0);
+        if (g_log_use_alt_sink == 0) log_message(0x000a3517,0x000a38a5,(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
+        else            debug_print(0x000a3517,0x000a38a5,(u32)(u8)param_1[0xd5],(u32)(u8)param_1[1]);
     }
     sync_to_slave(param_1, 8, 0);
     if (*param_2 == 2) {
-        FUN_0002c180(0);
+        update_persist_task_status_to_wait_blow_head();
     } else {
 LAB_0002db7c:
-        FUN_0002c0e8(param_1);
+        update_persist_task_status_to_idle(param_1);
     }
-    FUN_0007ce60(1);
+    set_task_wake_state(1);
     iVar13 = 0xa2a21;
 LAB_0002ce1c:
     local_2c[0] = iVar13;
     iVar18 = local_2c[0];
     if (local_2c[0] != 0) {
-        if (2 < V230C) {
-            if (V7554 == 0) DEBUG_PRINT(0);
-            else            FUN_00019c70(0);
+        if (2 < g_log_level) {
+            if (g_log_use_alt_sink == 0) log_message(0x000a384c,0x000a3a0f,(u32)(u8)param_1[0xd5],local_2c[0]);
+            else            debug_print(0x000a384c,0x000a3a0f,(u32)(u8)param_1[0xd5],local_2c[0]);
         }
-        FUN_0002bc2c(iVar18, param_1, 0);
-        iVar18 = FUN_00034410(0);
+        trigger_screen_state_change(iVar18, param_1, 0);
+        iVar18 = is_task_transition_ready();
         if (iVar18 == 1) {
-            iVar18 = FUN_0003444c(0);
+            iVar18 = is_msg_expiration();
             if (iVar18 == 1) {
                 cVar12 = '\x05';
             } else {
-                iVar18 = FUN_000167a8(0);
+                iVar18 = get_device_info();
                 cVar12 = *(char *)(iVar18 + 0xdd);
                 if (cVar12 != '\0') cVar12 = '\x06';
             }
-            FUN_0003443c(cVar12);
+            set_task_display_mode(cVar12);
         }
     }
     return 0;
 }
-

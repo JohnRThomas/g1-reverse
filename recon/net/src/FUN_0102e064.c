@@ -1,82 +1,117 @@
-/* net-core FUN_0102e064 @ 0x102e064  (parity 300 trials PROVEN) */
+/* net-core FUN_0102e064 @ 0x0102e064
+ *
+ * Persistent controller participant/event supervisor.  This is the runtime
+ * companion to FUN_0102e000's one-time initialization.  Raw function and
+ * address identities remain explicit for reversible symbolization.
+ */
+#include <stdint.h>
 
-extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c);
-extern void FUN_01039bb0(unsigned int a, unsigned int b) __attribute__((noreturn));
-extern int FUN_0102dcf4(int a);
-extern int FUN_0103b650(void);
-extern void FUN_01036824(unsigned int a);
-extern int FUN_0102dc90(int a);
-extern unsigned long long FUN_0102df2c(void);
-extern void FUN_0103689c(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+extern uint32_t FUN_0102dcf4(uint32_t wait_until_ready,
+                             uint32_t delay_between_retries);
+extern uint32_t FUN_0102dc90(uint32_t retry_mask);
+extern int32_t FUN_0102df2c(void);
+extern uintptr_t FUN_0103b650(void);
+extern void FUN_01036824(void *wait_object);
+extern void FUN_0103689c(void *wait_object, uint32_t reserved,
+                         uint32_t timeout_low, uint32_t timeout_high);
+extern void FUN_01039bbe(uint32_t condition, uint32_t source, uint32_t line);
+extern void FUN_01039bb0(uint32_t source, uint32_t line);
 
-typedef unsigned long long (*fnptr2_t)(int *, int);
+#define controller_participants_start FUN_0102dcf4
+#define controller_participants_retry FUN_0102dc90
+#define controller_process_one_event  FUN_0102df2c
+#define controller_wait_source_get    FUN_0103b650
+#define controller_wait_prepare       FUN_01036824
+#define controller_wait               FUN_0103689c
+#define assert_print                  FUN_01039bbe
+#define arch_raise_kernel_oops        FUN_01039bb0
 
-void FUN_0102e064(void)
+struct controller_participant;
+
+struct controller_participant_ops {
+    uintptr_t process_event;
+    uintptr_t stop;
+    uintptr_t initialize;
+    uintptr_t start;
+    uintptr_t retry;
+    uintptr_t reserved;
+    void (*on_events_drained)(const struct controller_participant *participant,
+                              uint32_t reason);
+};
+
+struct controller_participant {
+    const struct controller_participant_ops *ops;
+    uintptr_t state;
+    uint32_t reserved;
+    uint8_t enabled;
+    uint8_t padding[3];
+};
+
+_Static_assert(sizeof(struct controller_participant) == 16,
+               "controller participant ABI");
+
+__attribute__((noreturn)) void FUN_0102e064(void)
 {
-  volatile int *piVar1 = (volatile int *)0x0103c0fc;
-  unsigned int uVar2;
-  int iVar3;
-  int iVar4;
-  unsigned int uVar5;
-  unsigned int uVar6 = 0;
-  int iVar7;
-  int *piVar8;
-  unsigned int uVar9;
-  unsigned long long uVar10;
+    const uintptr_t participants_begin = UINT32_C(0x0103c0ec);
+    const uintptr_t participants_end = UINT32_C(0x0103c0fc);
+    void *const wait_object = (void *)UINT32_C(0x21000944);
 
-  if (((unsigned int)((int)piVar1 - 0x0103c0ec)) >> 4 == 0) {
-    FUN_01039bbe(0x0103d2a7, 0x0103d5d7, 0x35c);
-    uVar5 = 0x35c;
-    FUN_01039bb0(0x0103d5d7, uVar5);
-  }
-  iVar3 = FUN_0102dcf4(0);
-  if (iVar3 == 0) {
-    uVar5 = 0xffffffff;
-    uVar9 = 0xffffffff;
-  } else {
-    uVar5 = 0x667;
-    uVar9 = 0;
-  }
-  iVar4 = FUN_0103b650();
-  iVar4 = *(volatile int *)(8 + iVar4);
-  *(volatile int *)0x21004660 = iVar4;
-  if ((iVar4 != 0) && (9 < *(volatile int *)0x21004668)) {
-    FUN_01036824(0x21000944);
-  }
-  uVar2 = 0x21000944;
-  iVar4 = 0;
-  for (;;) {
-    do {
-      iVar7 = iVar4;
-      if ((iVar3 != 0) && (iVar3 = FUN_0102dc90(iVar3), iVar3 == 0)) {
-        uVar5 = 0xffffffff;
-        uVar9 = 0xffffffff;
-      }
-      uVar10 = FUN_0102df2c();
-      uVar6 = (unsigned int)(uVar10 >> 32);
-      iVar4 = (int)uVar10;
-    } while (iVar4 != 0);
-    piVar8 = (int *)0x0103c0ec;
-    if (iVar7 != 0) {
-      for (;;) {
-        if (piVar1 < (volatile int *)piVar8) {
-          FUN_01039bbe(0x0103d2a7, 0x0103d5d7, 0x350);
-          uVar5 = 0x350;
-          FUN_01039bb0(0x0103d5d7, uVar5);
-        }
-        if (piVar1 <= (volatile int *)piVar8) break;
-        {
-          int base = *(volatile int *)piVar8;
-          fnptr2_t fn = *(fnptr2_t *)(base + 0x18);
-          if (fn != 0) {
-            unsigned long long rc = fn(piVar8, 0);
-            uVar6 = (unsigned int)(rc >> 32);
-          }
-        }
-        piVar8 = piVar8 + 4;
-      }
+    if (((participants_end - participants_begin) >> 4) == 0U) {
+        assert_print(UINT32_C(0x0103d2a7), UINT32_C(0x0103d5d7),
+                     UINT32_C(0x35c));
+        arch_raise_kernel_oops(UINT32_C(0x0103d5d7), UINT32_C(0x35c));
     }
-    FUN_0103689c(uVar2, uVar6, uVar5, uVar9);
-  }
-}
 
+    uint32_t retry_mask = controller_participants_start(0U, 0U);
+    uint64_t timeout = retry_mask != 0U ? UINT64_C(0x667) : UINT64_MAX;
+
+    const uintptr_t wait_source = controller_wait_source_get();
+    const uint32_t wait_source_value =
+        *(const volatile uint32_t *)(wait_source + 8U);
+    *(volatile uint32_t *)UINT32_C(0x21004660) = wait_source_value;
+    if (wait_source_value != 0U &&
+        *(const volatile int32_t *)UINT32_C(0x21004668) > 9) {
+        controller_wait_prepare(wait_object);
+    }
+
+    int32_t last_event = 0;
+    for (;;) {
+        const int32_t previous_event = last_event;
+
+        if (retry_mask != 0U) {
+            retry_mask = controller_participants_retry(retry_mask);
+            if (retry_mask == 0U) {
+                timeout = UINT64_MAX;
+            }
+        }
+
+        last_event = controller_process_one_event();
+        if (last_event != 0) {
+            continue;
+        }
+
+        if (previous_event != 0) {
+            for (uintptr_t participant_address = participants_begin;
+                 participant_address != participants_end;
+                 participant_address += sizeof(struct controller_participant)) {
+                if (participant_address > participants_end) {
+                    assert_print(UINT32_C(0x0103d2a7),
+                                 UINT32_C(0x0103d5d7), UINT32_C(0x350));
+                    arch_raise_kernel_oops(UINT32_C(0x0103d5d7),
+                                           UINT32_C(0x350));
+                }
+
+                const struct controller_participant *const participant =
+                    (const struct controller_participant *)participant_address;
+                if (participant->ops->on_events_drained != 0) {
+                    participant->ops->on_events_drained(participant, 0U);
+                }
+            }
+        }
+
+        /* FUN_0103689c never consumes its physical r1 slot.  Pass a stable
+         * reserved value while preserving the live wait object and timeout. */
+        controller_wait(wait_object, 0U, (uint32_t)timeout,
+                        (uint32_t)(timeout >> 32));
+    }
+}

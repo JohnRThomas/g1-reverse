@@ -59,7 +59,6 @@
 #define ADDR_FUN_0007eec0_THUMB              0x7eec1 /* FUN_0007eec0 */
 #define ADDR_FUN_0007f634_THUMB              0x7f635 /* FUN_0007f634 */
 #define ADDR_FUN_0007f894_THUMB              0x7f895 /* FUN_0007f894 */
-#define ADDR_FUN_00080ab4_THUMB              0x80ab5 /* FUN_00080ab4 */
 #define ADDR_FUN_00081a60_THUMB              0x81a61 /* FUN_00081a60 */
 #define ADDR_FUN_00081a76_THUMB              0x81a77 /* FUN_00081a76 */
 #define ADDR_FUN_00081c8c_THUMB              0x81c8d /* FUN_00081c8c */
@@ -80,6 +79,7 @@
 #define ADDR_bt_ancs_data_source_handler_THUMB 0x18c49 /* bt_ancs_data_source_handler */
 #define ADDR_bt_le_adv_clear_pending_flag_THUMB 0x81081 /* bt_le_adv_clear_pending_flag */
 #define ADDR_cbor_decode_bool_THUMB          0x86007 /* cbor_decode_bool */
+#define ADDR_check_bonded_addr_THUMB         0x183e5 /* check_bonded_addr */
 #define ADDR_click_event_dispatch_loop_THUMB 0x28a1d /* click_event_dispatch_loop */
 #define ADDR_convert_to_id_on_match_THUMB    0x831e3 /* convert_to_id_on_match */
 #define ADDR_display_dispatch_thread_THUMB   0x28bed /* display_dispatch_thread */
@@ -122,6 +122,7 @@
 #define ADDR_read_included_uuid_encode_THUMB 0x8275f /* read_included_uuid_encode */
 #define ADDR_sc_restore_rsp_THUMB            0x82bd5 /* sc_restore_rsp */
 #define ADDR_settings_nvs_read_fn_THUMB      0x7f211 /* settings_nvs_read_fn */
+#define ADDR_smp_handle_reqs_THUMB           0x80ab5 /* smp_handle_reqs */
 #define ADDR_spi_master_init_THUMB           0x26419 /* spi_master_init */
 #define ADDR_spi_master_trans_data_tx_rx_THUMB 0x262ad /* spi_master_trans_data_tx_rx */
 #define ADDR_stdio_reset_ungetc_buffer_THUMB 0x87863 /* stdio_reset_ungetc_buffer */
@@ -130,7 +131,7 @@
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
 
-/* ---- RAM globals / kernel objects (690) ---- */
+/* ---- RAM globals / kernel objects (693) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
 extern volatile unsigned int g_ble_dev_state; /* @0x20002000 */
@@ -159,6 +160,9 @@ extern volatile unsigned int m_adc_channel_input_cfg; /* @0x20002230 */
 extern volatile int g_log_level; /* @0x2000230c */
 extern volatile unsigned int g_ancs_notify_sync_obj; /* @0x20002310 */
 extern volatile unsigned int g_ancs_last_cmd_id; /* @0x2000231c */
+extern volatile unsigned int g_20002320; /* @0x20002320 */
+extern volatile unsigned int g_20002328; /* @0x20002328 */
+extern volatile unsigned int g_20002338; /* @0x20002338 */
 extern volatile unsigned int g_t_init; /* @0x20002368 */
 extern volatile unsigned int g_box_event_state_buf; /* @0x20002380 */
 extern volatile unsigned int g_st25dv_i2c_dev; /* @0x200023cc */
@@ -175,13 +179,13 @@ extern volatile int g_pt_comm_dev; /* @0x20002428 */
 extern volatile unsigned char g_pt_comm_state; /* @0x2000242c */
 extern volatile unsigned int g_demo_img_cached_height; /* @0x200024e0 */
 extern volatile unsigned int g_demo_img_cached_width; /* @0x200024e4 */
-extern volatile unsigned int g_quicknote_warn_offset_ms; /* @0x200024e8 */
-extern volatile unsigned int g_even_ai_saved_page_index; /* @0x200024ec */
+extern volatile signed int g_quicknote_warn_offset_ms; /* @0x200024e8 */
+extern volatile signed int g_even_ai_saved_page_index; /* @0x200024ec */
 extern volatile unsigned int g_status_icon_last_state; /* @0x200024f0 */
 extern volatile unsigned int g_translate_lang_string_table; /* @0x200024f4 */
 extern volatile unsigned int g_display_canvas_y_cache; /* @0x2000253c */
 extern volatile unsigned int g_display_canvas_x_cache; /* @0x20002540 */
-extern volatile int g_dashboard_display_level; /* @0x20002544 */
+extern volatile signed int g_dashboard_display_level; /* @0x20002544 */
 extern volatile unsigned int g_posix_fd_table; /* @0x20002548 */
 extern volatile unsigned int g_fd_table; /* @0x20002550 */
 extern volatile unsigned int g_misc_val_27c8; /* @0x200027c8 */
@@ -461,8 +465,8 @@ extern volatile int g_pixel4bit_bitpos; /* @0x20009fc4 */
 extern volatile int g_pixel4bit_row_buf_off; /* @0x20009fc8 */
 extern volatile int g_pixel4bit_row_buf; /* @0x20009fcc */
 extern volatile unsigned int g_dashboard_reflash_frame_idx; /* @0x20009fd0 */
-extern volatile unsigned int g_20009fd4; /* @0x20009fd4 */
-extern volatile unsigned int g_even_ai_frame_idx; /* @0x20009fd8 */
+extern volatile signed int g_20009fd4; /* @0x20009fd4 */
+extern volatile signed int g_even_ai_frame_idx; /* @0x20009fd8 */
 extern volatile unsigned int g_20009fdc; /* @0x20009fdc */
 extern volatile unsigned int g_20009fe0; /* @0x20009fe0 */
 extern volatile unsigned int g_20009fe4; /* @0x20009fe4 */
@@ -633,6 +637,7 @@ extern volatile unsigned int g_2000ff4e; /* @0x2000ff4e */
 extern volatile unsigned int g_runtime_mode_flag; /* @0x2000ff6e */
 extern volatile unsigned char g_ble_indicate_sc_retry_count; /* @0x2000ff70 */
 extern volatile unsigned int g_ancs_attr_data_pending; /* @0x2000ff71 */
+extern volatile unsigned int g_2000ff87; /* @0x2000ff87 */
 extern volatile unsigned int g_2000ffa7; /* @0x2000ffa7 */
 extern unsigned char g_debug_msg_scratch_buf[]; /* @0x20010257 */
 extern volatile unsigned int g_pkcs7_rx_cmd_id; /* @0x2001031f */
@@ -678,7 +683,7 @@ extern volatile unsigned char g_touch_key_press_active; /* @0x20018d89 */
 extern volatile unsigned char g_some_module_init_done_flag; /* @0x20018d8a */
 extern volatile unsigned char g_suspend_pending_flag; /* @0x20018d8b */
 extern volatile unsigned int g_esb_seg_tx_lock_flag; /* @0x20018d8c */
-extern volatile unsigned char g_new_notification_pending_flag; /* @0x20018d8d */
+extern volatile unsigned int g_new_notification_pending_flag; /* @0x20018d8d */
 extern volatile unsigned char g_msg_queue_busy; /* @0x20018d8e */
 extern volatile unsigned char g_esb_sync_tx_busy_flag; /* @0x20018d8f */
 extern volatile unsigned char g_flash_crc_skip_watchdog_flag; /* @0x20018d90 */
@@ -688,7 +693,7 @@ extern volatile unsigned int onboarding_pending_flag; /* @0x20018d93 */
 extern volatile unsigned char g_low_power_mode_enabled; /* @0x20018d94 */
 extern volatile unsigned char g_20018d95; /* @0x20018d95 */
 extern volatile unsigned char g_20018d96; /* @0x20018d96 */
-extern volatile unsigned char g_notify_wakeup_delay_flag; /* @0x20018d97 */
+extern volatile unsigned int g_notify_wakeup_delay_flag; /* @0x20018d97 */
 extern volatile unsigned char g_esb_notify_sync_substate; /* @0x20018d98 */
 extern volatile unsigned char g_ble_xfer_seq_prev; /* @0x20018d99 */
 extern volatile unsigned char g_ble_xfer_seq_cur; /* @0x20018d9a */
@@ -696,7 +701,7 @@ extern volatile unsigned char g_ble_dispatch_pending_marker; /* @0x20018d9b */
 extern volatile unsigned char g_persist_task_status_lock; /* @0x20018d9c */
 extern volatile unsigned char g_persist_task_status; /* @0x20018d9d */
 extern volatile unsigned char g_pending_message_flag; /* @0x20018d9e */
-extern volatile unsigned char g_esb_notify_slave_role_guard; /* @0x20018d9f */
+extern volatile char g_esb_notify_slave_role_guard; /* @0x20018d9f */
 extern volatile unsigned int g_battery_level_bucket; /* @0x20018da0 */
 extern volatile unsigned char g_opt3007_chip_ready; /* @0x20018da1 */
 extern volatile unsigned int g_20018da2; /* @0x20018da2 */
@@ -737,11 +742,11 @@ extern volatile unsigned char g_display_page_dirty_flag; /* @0x2001b811 */
 extern volatile unsigned char g_news_widget_index_raw; /* @0x2001b814 */
 extern volatile unsigned char g_stocks_widget_index_raw; /* @0x2001b815 */
 extern volatile unsigned char g_widget0_index_raw; /* @0x2001b816 */
-extern volatile unsigned int g_quicknote_hint_shown; /* @0x2001b817 */
+extern volatile unsigned char g_quicknote_hint_shown; /* @0x2001b817 */
 extern volatile unsigned int g_even_ai_line_text_buf; /* @0x2001b818 */
 extern volatile unsigned int g_even_ai_active_flag; /* @0x2001b9a8 */
 extern volatile unsigned char g_not_disturb_settings; /* @0x2001b9aa */
-extern volatile unsigned char g_even_ai_mic_icon_visible; /* @0x2001b9ab */
+extern volatile char g_even_ai_mic_icon_visible; /* @0x2001b9ab */
 extern unsigned char g_buf_2001b9ac[]; /* @0x2001b9ac */
 extern volatile unsigned int g_2001ba2c; /* @0x2001ba2c */
 extern volatile unsigned char g_2001ba2d; /* @0x2001ba2d */
@@ -770,8 +775,7 @@ extern volatile unsigned int g_2001d34b; /* @0x2001d34b */
 extern volatile unsigned int g_2001d431; /* @0x2001d431 */
 extern volatile unsigned int g_2001d432; /* @0x2001d432 */
 extern volatile unsigned char g_display_reflash_pending; /* @0x2001d446 */
-extern volatile signed char g_2001d447; /* @0x2001d447 */
-extern volatile signed char g_display_last_reflash_id; /* @0x2001d448 */
+extern volatile unsigned short g_2001d447; /* @0x2001d447 */
 extern volatile unsigned int g_analytics_evt_hist_ready; /* @0x2001d449 */
 extern volatile unsigned int g_analytics_evt_buf_idx; /* @0x2001d44a */
 extern volatile unsigned char log_process_active; /* @0x2001d44b */
@@ -822,7 +826,7 @@ extern volatile unsigned char g_all_static_info_fc62; /* @0x2007fc62 */
 extern volatile unsigned char g_all_static_info_fc68; /* @0x2007fc68 */
 extern volatile unsigned char g_dashboard_default_widget0_index; /* @0x2007fc69 */
 
-/* ---- rodata table externs (2390) ---- */
+/* ---- rodata table externs (2464) ---- */
 extern const unsigned char __settings_handler_static_list_start[]; /* @0x882b0 */
 extern const unsigned char entropy_dev[]; /* @0x87b90 */
 extern const unsigned char g_default_font_glyph_table_count[]; /* @0x8ac28 */
@@ -841,16 +845,6 @@ extern const unsigned char rodata_12558[]; /* @0x12558 */
 extern const unsigned char rodata_1255c[]; /* @0x1255c */
 extern const unsigned char rodata_1256c[]; /* @0x1256c */
 extern const unsigned char rodata_1274f[]; /* @0x1274f */
-extern const unsigned char rodata_15b9c[]; /* @0x15b9c */
-extern const unsigned char rodata_15ba0[]; /* @0x15ba0 */
-extern const unsigned char rodata_15ba4[]; /* @0x15ba4 */
-extern const unsigned char rodata_15ba8[]; /* @0x15ba8 */
-extern const unsigned char rodata_15bac[]; /* @0x15bac */
-extern const unsigned char rodata_15bb0[]; /* @0x15bb0 */
-extern const unsigned char rodata_15bb4[]; /* @0x15bb4 */
-extern const unsigned char rodata_15dd8[]; /* @0x15dd8 */
-extern const unsigned char rodata_15ddc[]; /* @0x15ddc */
-extern const unsigned char rodata_15de0[]; /* @0x15de0 */
 extern const unsigned char rodata_162ed[]; /* @0x162ed */
 extern const unsigned char rodata_16bf1[]; /* @0x16bf1 */
 extern const unsigned char rodata_17819[]; /* @0x17819 */
@@ -886,7 +880,6 @@ extern const unsigned char rodata_32421[]; /* @0x32421 */
 extern const unsigned char rodata_33c44[]; /* @0x33c44 */
 extern const unsigned char rodata_33c48[]; /* @0x33c48 */
 extern const unsigned char rodata_35775[]; /* @0x35775 */
-extern const unsigned char rodata_35f24[]; /* @0x35f24 */
 extern const unsigned char rodata_40000[]; /* @0x40000 */
 extern const unsigned char rodata_40002[]; /* @0x40002 */
 extern const unsigned char rodata_40202[]; /* @0x40202 */
@@ -1115,6 +1108,9 @@ extern const unsigned char rodata_9907c[]; /* @0x9907c */
 extern const unsigned char rodata_990cf[]; /* @0x990cf */
 extern const unsigned char rodata_990dc[]; /* @0x990dc */
 extern const unsigned char rodata_99105[]; /* @0x99105 */
+extern const unsigned char rodata_99133[]; /* @0x99133 */
+extern const unsigned char rodata_99152[]; /* @0x99152 */
+extern const unsigned char rodata_99228[]; /* @0x99228 */
 extern const unsigned char rodata_99297[]; /* @0x99297 */
 extern const unsigned char rodata_992e1[]; /* @0x992e1 */
 extern const unsigned char rodata_99329[]; /* @0x99329 */
@@ -1275,11 +1271,22 @@ extern const unsigned char rodata_9ae34[]; /* @0x9ae34 */
 extern const unsigned char rodata_9ae92[]; /* @0x9ae92 */
 extern const unsigned char rodata_9aef3[]; /* @0x9aef3 */
 extern const unsigned char rodata_9af2e[]; /* @0x9af2e */
+extern const unsigned char rodata_9af3b[]; /* @0x9af3b */
+extern const unsigned char rodata_9af75[]; /* @0x9af75 */
+extern const unsigned char rodata_9afa1[]; /* @0x9afa1 */
+extern const unsigned char rodata_9afc3[]; /* @0x9afc3 */
+extern const unsigned char rodata_9afed[]; /* @0x9afed */
+extern const unsigned char rodata_9b019[]; /* @0x9b019 */
+extern const unsigned char rodata_9b04b[]; /* @0x9b04b */
+extern const unsigned char rodata_9b060[]; /* @0x9b060 */
+extern const unsigned char rodata_9b089[]; /* @0x9b089 */
+extern const unsigned char rodata_9b0ae[]; /* @0x9b0ae */
 extern const unsigned char rodata_9b0d8[]; /* @0x9b0d8 */
 extern const unsigned char rodata_9b0f1[]; /* @0x9b0f1 */
 extern const unsigned char rodata_9b108[]; /* @0x9b108 */
 extern const unsigned char rodata_9b11a[]; /* @0x9b11a */
 extern const unsigned char rodata_9b126[]; /* @0x9b126 */
+extern const unsigned char rodata_9b135[]; /* @0x9b135 */
 extern const unsigned char rodata_9b148[]; /* @0x9b148 */
 extern const unsigned char rodata_9b15e[]; /* @0x9b15e */
 extern const unsigned char rodata_9b16a[]; /* @0x9b16a */
@@ -1484,6 +1491,7 @@ extern const unsigned char rodata_9e789[]; /* @0x9e789 */
 extern const unsigned char rodata_9e7a6[]; /* @0x9e7a6 */
 extern const unsigned char rodata_9e7b7[]; /* @0x9e7b7 */
 extern const unsigned char rodata_9e7c9[]; /* @0x9e7c9 */
+extern const unsigned char rodata_9e7da[]; /* @0x9e7da */
 extern const unsigned char rodata_9e7fd[]; /* @0x9e7fd */
 extern const unsigned char rodata_9e810[]; /* @0x9e810 */
 extern const unsigned char rodata_9e824[]; /* @0x9e824 */
@@ -1492,6 +1500,7 @@ extern const unsigned char rodata_9e85d[]; /* @0x9e85d */
 extern const unsigned char rodata_9e873[]; /* @0x9e873 */
 extern const unsigned char rodata_9e88b[]; /* @0x9e88b */
 extern const unsigned char rodata_9e8af[]; /* @0x9e8af */
+extern const unsigned char rodata_9e8be[]; /* @0x9e8be */
 extern const unsigned char rodata_9e8cf[]; /* @0x9e8cf */
 extern const unsigned char rodata_9e8e5[]; /* @0x9e8e5 */
 extern const unsigned char rodata_9e8f6[]; /* @0x9e8f6 */
@@ -1597,6 +1606,31 @@ extern const unsigned char rodata_a028c[]; /* @0xa028c */
 extern const unsigned char rodata_a02ab[]; /* @0xa02ab */
 extern const unsigned char rodata_a02cc[]; /* @0xa02cc */
 extern const unsigned char rodata_a030d[]; /* @0xa030d */
+extern const unsigned char rodata_a0354[]; /* @0xa0354 */
+extern const unsigned char rodata_a036a[]; /* @0xa036a */
+extern const unsigned char rodata_a0396[]; /* @0xa0396 */
+extern const unsigned char rodata_a03b3[]; /* @0xa03b3 */
+extern const unsigned char rodata_a03d9[]; /* @0xa03d9 */
+extern const unsigned char rodata_a03f5[]; /* @0xa03f5 */
+extern const unsigned char rodata_a0434[]; /* @0xa0434 */
+extern const unsigned char rodata_a044e[]; /* @0xa044e */
+extern const unsigned char rodata_a0477[]; /* @0xa0477 */
+extern const unsigned char rodata_a04cb[]; /* @0xa04cb */
+extern const unsigned char rodata_a050a[]; /* @0xa050a */
+extern const unsigned char rodata_a052d[]; /* @0xa052d */
+extern const unsigned char rodata_a0568[]; /* @0xa0568 */
+extern const unsigned char rodata_a05c2[]; /* @0xa05c2 */
+extern const unsigned char rodata_a0621[]; /* @0xa0621 */
+extern const unsigned char rodata_a067b[]; /* @0xa067b */
+extern const unsigned char rodata_a06d7[]; /* @0xa06d7 */
+extern const unsigned char rodata_a07eb[]; /* @0xa07eb */
+extern const unsigned char rodata_a0889[]; /* @0xa0889 */
+extern const unsigned char rodata_a0932[]; /* @0xa0932 */
+extern const unsigned char rodata_a0962[]; /* @0xa0962 */
+extern const unsigned char rodata_a09ac[]; /* @0xa09ac */
+extern const unsigned char rodata_a09ee[]; /* @0xa09ee */
+extern const unsigned char rodata_a0a04[]; /* @0xa0a04 */
+extern const unsigned char rodata_a0a2e[]; /* @0xa0a2e */
 extern const unsigned char rodata_a0a47[]; /* @0xa0a47 */
 extern const unsigned char rodata_a0a61[]; /* @0xa0a61 */
 extern const unsigned char rodata_a0a7b[]; /* @0xa0a7b */
@@ -1619,6 +1653,7 @@ extern const unsigned char rodata_a1962[]; /* @0xa1962 */
 extern const unsigned char rodata_a19af[]; /* @0xa19af */
 extern const unsigned char rodata_a19c0[]; /* @0xa19c0 */
 extern const unsigned char rodata_a19e5[]; /* @0xa19e5 */
+extern const unsigned char rodata_a1a43[]; /* @0xa1a43 */
 extern const unsigned char rodata_a1a76[]; /* @0xa1a76 */
 extern const unsigned char rodata_a1a98[]; /* @0xa1a98 */
 extern const unsigned char rodata_a1ab1[]; /* @0xa1ab1 */
@@ -1716,49 +1751,87 @@ extern const unsigned char rodata_a2977[]; /* @0xa2977 */
 extern const unsigned char rodata_a29be[]; /* @0xa29be */
 extern const unsigned char rodata_a2a21[]; /* @0xa2a21 */
 extern const unsigned char rodata_a2a32[]; /* @0xa2a32 */
+extern const unsigned char rodata_a2a4d[]; /* @0xa2a4d */
+extern const unsigned char rodata_a2a7e[]; /* @0xa2a7e */
+extern const unsigned char rodata_a2aad[]; /* @0xa2aad */
 extern const unsigned char rodata_a2ad4[]; /* @0xa2ad4 */
+extern const unsigned char rodata_a2af2[]; /* @0xa2af2 */
+extern const unsigned char rodata_a2b22[]; /* @0xa2b22 */
 extern const unsigned char rodata_a2ba7[]; /* @0xa2ba7 */
+extern const unsigned char rodata_a2c0b[]; /* @0xa2c0b */
 extern const unsigned char rodata_a2c70[]; /* @0xa2c70 */
+extern const unsigned char rodata_a2c85[]; /* @0xa2c85 */
+extern const unsigned char rodata_a2cb2[]; /* @0xa2cb2 */
 extern const unsigned char rodata_a2ce2[]; /* @0xa2ce2 */
 extern const unsigned char rodata_a2cfc[]; /* @0xa2cfc */
+extern const unsigned char rodata_a2d1a[]; /* @0xa2d1a */
 extern const unsigned char rodata_a2d5a[]; /* @0xa2d5a */
+extern const unsigned char rodata_a2d6f[]; /* @0xa2d6f */
+extern const unsigned char rodata_a2d97[]; /* @0xa2d97 */
 extern const unsigned char rodata_a2de3[]; /* @0xa2de3 */
+extern const unsigned char rodata_a2e31[]; /* @0xa2e31 */
 extern const unsigned char rodata_a2e5b[]; /* @0xa2e5b */
 extern const unsigned char rodata_a2e7c[]; /* @0xa2e7c */
+extern const unsigned char rodata_a2e93[]; /* @0xa2e93 */
+extern const unsigned char rodata_a2ed8[]; /* @0xa2ed8 */
 extern const unsigned char rodata_a2f08[]; /* @0xa2f08 */
+extern const unsigned char rodata_a2f57[]; /* @0xa2f57 */
 extern const unsigned char rodata_a2f7e[]; /* @0xa2f7e */
 extern const unsigned char rodata_a2f9c[]; /* @0xa2f9c */
+extern const unsigned char rodata_a2fb0[]; /* @0xa2fb0 */
+extern const unsigned char rodata_a301e[]; /* @0xa301e */
 extern const unsigned char rodata_a3071[]; /* @0xa3071 */
+extern const unsigned char rodata_a30bd[]; /* @0xa30bd */
 extern const unsigned char rodata_a30e5[]; /* @0xa30e5 */
 extern const unsigned char rodata_a3104[]; /* @0xa3104 */
+extern const unsigned char rodata_a3119[]; /* @0xa3119 */
+extern const unsigned char rodata_a315d[]; /* @0xa315d */
 extern const unsigned char rodata_a318d[]; /* @0xa318d */
+extern const unsigned char rodata_a31da[]; /* @0xa31da */
 extern const unsigned char rodata_a3201[]; /* @0xa3201 */
 extern const unsigned char rodata_a3215[]; /* @0xa3215 */
 extern const unsigned char rodata_a3244[]; /* @0xa3244 */
+extern const unsigned char rodata_a3290[]; /* @0xa3290 */
+extern const unsigned char rodata_a32b6[]; /* @0xa32b6 */
 extern const unsigned char rodata_a32df[]; /* @0xa32df */
 extern const unsigned char rodata_a32ef[]; /* @0xa32ef */
 extern const unsigned char rodata_a3305[]; /* @0xa3305 */
 extern const unsigned char rodata_a3311[]; /* @0xa3311 */
 extern const unsigned char rodata_a3325[]; /* @0xa3325 */
+extern const unsigned char rodata_a3373[]; /* @0xa3373 */
 extern const unsigned char rodata_a339b[]; /* @0xa339b */
 extern const unsigned char rodata_a33aa[]; /* @0xa33aa */
 extern const unsigned char rodata_a33bf[]; /* @0xa33bf */
 extern const unsigned char rodata_a33de[]; /* @0xa33de */
+extern const unsigned char rodata_a342b[]; /* @0xa342b */
 extern const unsigned char rodata_a3456[]; /* @0xa3456 */
 extern const unsigned char rodata_a3468[]; /* @0xa3468 */
 extern const unsigned char rodata_a3480[]; /* @0xa3480 */
 extern const unsigned char rodata_a34a2[]; /* @0xa34a2 */
+extern const unsigned char rodata_a34f2[]; /* @0xa34f2 */
+extern const unsigned char rodata_a3517[]; /* @0xa3517 */
+extern const unsigned char rodata_a3558[]; /* @0xa3558 */
+extern const unsigned char rodata_a35a2[]; /* @0xa35a2 */
 extern const unsigned char rodata_a35cd[]; /* @0xa35cd */
 extern const unsigned char rodata_a35df[]; /* @0xa35df */
 extern const unsigned char rodata_a35f7[]; /* @0xa35f7 */
 extern const unsigned char rodata_a3619[]; /* @0xa3619 */
+extern const unsigned char rodata_a3669[]; /* @0xa3669 */
+extern const unsigned char rodata_a3696[]; /* @0xa3696 */
+extern const unsigned char rodata_a36ff[]; /* @0xa36ff */
 extern const unsigned char rodata_a3758[]; /* @0xa3758 */
+extern const unsigned char rodata_a3770[]; /* @0xa3770 */
 extern const unsigned char rodata_a37f6[]; /* @0xa37f6 */
+extern const unsigned char rodata_a3811[]; /* @0xa3811 */
 extern const unsigned char rodata_a383d[]; /* @0xa383d */
+extern const unsigned char rodata_a384c[]; /* @0xa384c */
+extern const unsigned char rodata_a3875[]; /* @0xa3875 */
 extern const unsigned char rodata_a3886[]; /* @0xa3886 */
+extern const unsigned char rodata_a38a5[]; /* @0xa38a5 */
 extern const unsigned char rodata_a38be[]; /* @0xa38be */
 extern const unsigned char rodata_a38dd[]; /* @0xa38dd */
 extern const unsigned char rodata_a38f9[]; /* @0xa38f9 */
+extern const unsigned char rodata_a3916[]; /* @0xa3916 */
 extern const unsigned char rodata_a3930[]; /* @0xa3930 */
 extern const unsigned char rodata_a394b[]; /* @0xa394b */
 extern const unsigned char rodata_a3967[]; /* @0xa3967 */
@@ -1767,6 +1840,7 @@ extern const unsigned char rodata_a39a0[]; /* @0xa39a0 */
 extern const unsigned char rodata_a39bb[]; /* @0xa39bb */
 extern const unsigned char rodata_a39d6[]; /* @0xa39d6 */
 extern const unsigned char rodata_a39ef[]; /* @0xa39ef */
+extern const unsigned char rodata_a3a0f[]; /* @0xa3a0f */
 extern const unsigned char rodata_a3a24[]; /* @0xa3a24 */
 extern const unsigned char rodata_a3a5a[]; /* @0xa3a5a */
 extern const unsigned char rodata_a3a72[]; /* @0xa3a72 */
@@ -2039,6 +2113,7 @@ extern const unsigned char rodata_a8c09[]; /* @0xa8c09 */
 extern const unsigned char rodata_a8c11[]; /* @0xa8c11 */
 extern const unsigned char rodata_a8c34[]; /* @0xa8c34 */
 extern const unsigned char rodata_a8c37[]; /* @0xa8c37 */
+extern const unsigned char rodata_a8c3a[]; /* @0xa8c3a */
 extern const unsigned char rodata_a8c57[]; /* @0xa8c57 */
 extern const unsigned char rodata_a8cd1[]; /* @0xa8cd1 */
 extern const unsigned char rodata_a8ce7[]; /* @0xa8ce7 */
@@ -3172,6 +3247,7 @@ extern const unsigned char rodata_f8658[]; /* @0xf8658 */
 extern const unsigned char rodata_f86d9[]; /* @0xf86d9 */
 extern const unsigned char rodata_f86fd[]; /* @0xf86fd */
 extern const unsigned char rodata_f871d[]; /* @0xf871d */
+extern const unsigned char rodata_f873e[]; /* @0xf873e */
 extern const unsigned char rodata_f875b[]; /* @0xf875b */
 extern const unsigned char rodata_f8775[]; /* @0xf8775 */
 extern const unsigned char rodata_f878a[]; /* @0xf878a */
@@ -3191,6 +3267,8 @@ extern const unsigned char rodata_f88dc[]; /* @0xf88dc */
 extern const unsigned char rodata_f88f2[]; /* @0xf88f2 */
 extern const unsigned char rodata_f8901[]; /* @0xf8901 */
 extern const unsigned char rodata_f8911[]; /* @0xf8911 */
+extern const unsigned char rodata_f8a2e[]; /* @0xf8a2e */
+extern const unsigned char rodata_f8a3b[]; /* @0xf8a3b */
 extern const unsigned char rodata_f8a6a[]; /* @0xf8a6a */
 extern const unsigned char rodata_f8a6b[]; /* @0xf8a6b */
 extern const unsigned char rodata_f8b6b[]; /* @0xf8b6b */

@@ -2,9 +2,6 @@
 /* readable reconstruction; identity: FUN_0002bef4 @ 0x0002bef4
  * public-name: update_persist_task_status
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   debug_print                              <= FUN_00019c70 @ 0x00019c70
- *   display_close_screen                     <= FUN_00049858 @ 0x00049858
  * address symbols (name @ address):
  *   rodata_a2597                             @ 0x000a2597
  *   rodata_a25b9                             @ 0x000a25b9
@@ -15,58 +12,90 @@
  *   g_persist_task_status_lock               @ 0x20018d9c
  *   g_persist_task_status                    @ 0x20018d9d
  */
-/* Reconstructed update_persist_task_status @ 0x2bef4  (parity: 3/300 trials, PROVEN) */
-#include <stdint.h>
-typedef unsigned int uint;
-extern void DEBUG_PRINT(int,int,uint);
-extern void debug_print(void);
-extern void display_close_screen(int);
-extern void FUN_0007cdf8(void);
-uint update_persist_task_status(int param_1, uint param_2, uint param_3){
-    volatile char* pcVar2=(volatile char*)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/;
-    while(*pcVar2!=0) FUN_0007cdf8();
-    *pcVar2=1;
-    int* p1054=*(int* volatile*)(param_1+0x1054);
-    if(*(volatile uint*)p1054==param_2){
-        uint uVar3=*(volatile uint8_t*)((int)p1054+4);
-        if(uVar3==1 || uVar3==param_3) goto L8a;
+/* Reconstructed update_persist_task_status @ 0x2bef4.
+ * Raw identity/back-map: FUN_0002bef4 @ 0x0002bef4.
+ * Executable extent: 0xe4 bytes; literals begin at 0x0002bfd8. */
+typedef unsigned char u8;
+typedef unsigned int  u32;
+
+extern void log_message(u32 format, u32 source, u32 task_id); /* FUN_0007dda4 */
+extern void debug_print(u32 format, u32 source, u32 task_id); /* FUN_00019c70 */
+extern void display_close_screen(u32 screen_id);              /* FUN_00049858 */
+extern void wait_for_persist_task_status_lock(void);          /* FUN_0007cdf8 */
+
+struct persist_task_record {
+    u32 task_id;
+    u8 status;
+};
+
+#define g_persist_task_status_lock (*(volatile u8 *)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/)
+#define g_persist_task_status      (*(volatile u8 *)((unsigned long)&g_persist_task_status) /*=0x20018d9d*/)
+#define g_log_level                (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/)
+#define g_log_use_alt_sink         (*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/)
+
+enum {
+    TASK_STATUS_ACTIVE = 1,
+    TASK_STATUS_ASSIGNED = 2,
+    TASK_STATUS_COMPLETE = 3,
+};
+
+static inline __attribute__((always_inline))
+void log_task_status(u32 format, u32 task_id)
+{
+    if (g_log_level > 0) {
+        if (g_log_use_alt_sink == 0) {
+            log_message(format, ((unsigned long)&rodata_a2660) /*=0xa2660*/, task_id);
+        } else {
+            debug_print(format, ((unsigned long)&rodata_a2660) /*=0xa2660*/, task_id);
+        }
     }
-    { char d5=*(volatile char*)(param_1+0xd5);
-      if(d5!=0 && d5!=1) goto elseb; }
-    if(param_3!=2) goto L9e;
-    goto L4a;
-elseb:
-    display_close_screen(*(volatile uint8_t*)(param_1+0xd5));
-    if(param_3==2){
-        if(param_2>0x10) goto L8a;
-        if((int)(((uint)0x10050>>(param_2&0xff))<<0x1f) >= 0) goto L8a;
-        goto L4a;
+}
+
+u32 update_persist_task_status(u8 *context, u32 task_id, u32 requested_status)
+{
+    struct persist_task_record *record;
+    u8 active_task;
+
+    while (g_persist_task_status_lock != 0) {
+        wait_for_persist_task_status_lock();
     }
-L9e:
-    if(param_3==3){
-        if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>0){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) DEBUG_PRINT(((unsigned long)&rodata_a25b9) /*=0xa25b9*/,((unsigned long)&rodata_a2660) /*=0xa2660*/,param_2); else debug_print();
+    g_persist_task_status_lock = 1;
+
+    record = *(struct persist_task_record **)(context + 0x1054);
+    if (record->task_id == task_id &&
+        (record->status == TASK_STATUS_ACTIVE ||
+         record->status == requested_status)) {
+        goto unlock;
+    }
+
+    active_task = context[0xd5];
+    if (active_task > 1) {
+        display_close_screen(active_task);
+        if (requested_status == TASK_STATUS_ASSIGNED &&
+            (task_id > 0x10 || (0x00010050u & (1u << task_id)) == 0)) {
+            goto unlock;
+        }
+    }
+
+    if (requested_status == TASK_STATUS_ASSIGNED) {
+        log_task_status(((unsigned long)&rodata_a2597) /*=0xa2597*/, task_id);
+        if (task_id == 0x10) {
+            g_persist_task_status = context[0xf98];
+            if (context[0xf98] == 1) {
+                context[0xf98] = 0;
+            }
         }
     } else {
-        if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>0){
-            if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) DEBUG_PRINT(((unsigned long)&rodata_a25d9) /*=0xa25d9*/,((unsigned long)&rodata_a2660) /*=0xa2660*/,param_2); else debug_print();
-        }
+        log_task_status(requested_status == TASK_STATUS_COMPLETE ?
+                        ((unsigned long)&rodata_a25b9) /*=0xa25b9*/ : ((unsigned long)&rodata_a25d9) /*=0xa25d9*/,
+                        task_id);
     }
-    goto Ltail;
-L4a:
-    if(*(volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/>0){
-        if(*(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/==0) DEBUG_PRINT(((unsigned long)&rodata_a2597) /*=0xa2597*/,((unsigned long)&rodata_a2660) /*=0xa2660*/,param_2); else debug_print();
-    }
-    if(param_2==0x10){
-        char cVar1=*(volatile char*)(param_1+0xf98);
-        *(volatile char*)((unsigned long)&g_persist_task_status) /*=0x20018d9d*/=cVar1;
-        if(cVar1==1) *(volatile char*)(param_1+0xf98)=0;
-    }
-Ltail:
-    *(volatile char*)(param_1+0xd5)=(char)param_2;
-    **(int* volatile*)(param_1+0x1054)=(int)param_2;
-    *(volatile char*)(*(int* volatile*)(param_1+0x1054)+1)=(char)param_3;
-L8a:
-    *pcVar2=0;
-    return param_3;
+
+    context[0xd5] = (u8)task_id;
+    record->task_id = task_id;
+    record->status = (u8)requested_status;
+
+unlock:
+    g_persist_task_status_lock = 0;
+    return requested_status;
 }

@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01014748 @ 0x01014748
  * public-name: FUN_01014748
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_radio_context_fixed_time_get         <= FUN_0100f0fc @ 0x0100f0fc
  * address symbols (name @ address):
  *   g_net_link_ctx_a_close_cb                @ 0x210001f4
  *   g_net_link_ctx_a                         @ 0x21000f68
  */
 /* net-core FUN_01014748 @ 0x1014748  (parity 300 trials PROVEN) */
 
-extern unsigned int FUN_0100f0fc(int);
+extern unsigned int sdc_radio_context_fixed_time_get(int);
 extern int FUN_0100f1f8(int);
 extern void FUN_0100f300(unsigned short, void *, void *);
 extern void FUN_01013e98(int, int);
@@ -53,7 +55,7 @@ int FUN_01014748(void)
     iVar11 = iVar6base[1];
   }
 
-  unsigned int uVar3 = FUN_0100f0fc(iVar11 + 0x30);
+  unsigned int uVar3 = sdc_radio_context_fixed_time_get(iVar11 + 0x30);
   int iVar11b = FUN_0100f1f8(iVar6base[1]);
   if (iVar11b != 0) {
     volatile unsigned short *puVar8 = (volatile unsigned short *)(int)iVar6base[1];
@@ -61,7 +63,7 @@ int FUN_01014748(void)
   }
 
   FUN_01013e98(iVar6base[1], 5);
-  unsigned int uVar4 = FUN_0100f0fc(iVar6base[1] + 0x30);
+  unsigned int uVar4 = sdc_radio_context_fixed_time_get(iVar6base[1] + 0x30);
 
   if (uVar3 < uVar4) {
     unsigned int uVar5 = FUN_01023e88();

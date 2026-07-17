@@ -13,7 +13,7 @@
  *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
  *   __aeabi_dcmpge                           <= FUN_0000de04 @ 0x0000de04
  *   __aeabi_dcmpgt                           <= FUN_0000de18 @ 0x0000de18
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   Bfree                                    <= FUN_00078654 @ 0x00078654
@@ -61,7 +61,7 @@ extern u64 __aeabi_dcmplt();
 extern u64 __aeabi_dcmpge();
 extern u64 __aeabi_dcmpgt();
 extern u64 FUN_0000de58();
-extern u64 libc_fatal_error_and_abort();
+extern u64 __assert_func();
 extern u64 malloc();
 extern u64 Balloc();
 extern u64 Bfree();
@@ -117,7 +117,7 @@ char *FUN_00014b60(int a1, u32 a2, int a3, int a4, int a5, int a6, double dval)
     uVar8 = ((unsigned long)&rodata_f8bb7) /*=0xf8bb7*/;
     local_80 = in_d0;
 LAB_b8e:
-    pcVar3 = (u32)libc_fatal_error_and_abort(((unsigned long)&rodata_f8bce) /*=0xf8bce*/, uVar9, param_3, uVar8);
+    pcVar3 = (u32)__assert_func(((unsigned long)&rodata_f8bce) /*=0xf8bce*/, uVar9, param_3, uVar8);
 LAB_b94:
     P32(pcVar3 + 4) = puVar15;
     P32(pcVar3 + 8) = puVar15;

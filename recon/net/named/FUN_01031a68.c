@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01031a68 @ 0x01031a68
  * public-name: FUN_01031a68
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   k_work_init                              <= FUN_01036bec @ 0x01036bec
  * address symbols (name @ address):
  *   rodata_10320d9                           @ 0x010320d9
  *   rodata_103bf70                           @ 0x0103bf70
@@ -14,7 +16,7 @@
 /* net-core FUN_01031a68 @ 0x1031a68  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01036bec(unsigned int a, unsigned int b);
+extern void k_work_init(unsigned int a, unsigned int b);
 extern void FUN_01032680(void);
 extern void FUN_01009054(void *a);
 extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, void *d);
@@ -73,7 +75,7 @@ int FUN_01031a68(void)
     int iVar1, iVar2;
     init_workspace_t workspace;
 
-    FUN_01036bec(DAT_b54, DAT_b50);
+    k_work_init(DAT_b54, DAT_b50);
     FUN_01032680();
     FUN_01009054(workspace.frame.startup_context);
 

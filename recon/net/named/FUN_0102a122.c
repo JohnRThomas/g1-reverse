@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_0102a122 @ 0x0102a122
  * public-name: FUN_0102a122
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  */
 /* net-core FUN_0102a122 @ 0x102a122  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
 extern void *FUN_01021ac0(void);
 extern int FUN_010219c4(char *a);
-extern int FUN_010231c8(unsigned char a, void *b);
+extern int sdc_conn_window_admit(unsigned char a, void *b);
 extern void FUN_010256dc(unsigned int a, unsigned int b);
 
 unsigned int FUN_0102a122(unsigned int param_1, char *param_2)
@@ -54,7 +56,7 @@ unsigned int FUN_0102a122(unsigned int param_1, char *param_2)
         *(volatile unsigned int *)(puVar1 + 0x10) = *(unsigned int *)(param_2 + 0xc);
         uVar5 = 3;
         puVar1[0x26] = uVar5;
-        iVar2 = FUN_010231c8(puVar1[0x27], puVar1);
+        iVar2 = sdc_conn_window_admit(puVar1[0x27], puVar1);
         if (iVar2 == 0) {
             FUN_010256dc(0x6a, 0x2b1);
             goto AFTER_PANIC;
@@ -96,7 +98,7 @@ BVAR7_2_BLOCK:
         }
         uVar5 = 4;
         puVar1[0x26] = uVar5;
-        iVar2 = FUN_010231c8(puVar1[0x27], puVar1);
+        iVar2 = sdc_conn_window_admit(puVar1[0x27], puVar1);
         if (iVar2 == 0) {
             FUN_010256dc(0x6a, 0x2b1);
             goto BVAR7_2_BLOCK;

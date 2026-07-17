@@ -1,18 +1,24 @@
 /* readable reconstruction; identity: FUN_0101b088 @ 0x0101b088
  * public-name: FUN_0101b088
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_state_get               <= FUN_01019204 @ 0x01019204
+ *   radio_slot_margin_get                    <= FUN_0101a130 @ 0x0101a130
+ *   controller_timing_snapshot_build         <= FUN_0101a38c @ 0x0101a38c
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  * address symbols (name @ address):
  *   rodata_101b321                           @ 0x0101b321
  *   g_net_session_state_block                @ 0x210010a0
  */
 /* net-core FUN_0101b088 @ 0x101b088  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int a, unsigned int b);
-extern void *FUN_01019204(void);
-extern unsigned int FUN_0101a130(void);
+extern void sdc_assertion_fail(unsigned int a, unsigned int b);
+extern void *controller_radio_state_get(void);
+extern unsigned int radio_slot_margin_get(void);
 extern unsigned int FUN_01022e34(unsigned int a, unsigned int b);
-extern unsigned int FUN_0101a38c(void *a, unsigned int b, unsigned int c, unsigned int d);
-extern unsigned int FUN_010231c8(unsigned int a, void *b);
+extern unsigned int controller_timing_snapshot_build(void *a, unsigned int b, unsigned int c, unsigned int d);
+extern unsigned int sdc_conn_window_admit(unsigned int a, void *b);
 
 unsigned int FUN_0101b088(unsigned int param_1, int param_2)
 {
@@ -29,12 +35,12 @@ unsigned int FUN_0101b088(unsigned int param_1, int param_2)
   if (*pcVar1 != 0) {
     return 0xc;
   }
-  puVar3 = FUN_01019204();
+  puVar3 = controller_radio_state_get();
   pcVar1[1] = 0;
   *pcVar1 = 4;
   pcVar1[0x2e] = 0;
   *(volatile unsigned short *)(pcVar1 + 0x74) = 0;
-  iVar4 = FUN_0101a130();
+  iVar4 = radio_slot_margin_get();
   uVar6 = 0;
   iVar7 = 0;
   uVar8 = 0;
@@ -48,16 +54,16 @@ unsigned int FUN_0101b088(unsigned int param_1, int param_2)
   iVar7 = FUN_01022e34(uVar2, 0);
   *(unsigned char *)puVar3 = (unsigned char)iVar7;
   if (iVar7 == 0x20) {
-    FUN_01008d00(0x21, 0x366);
+    sdc_assertion_fail(0x21, 0x366);
   }
-  iVar7 = FUN_0101a38c(auStack_30, 1, 0, param_1);
+  iVar7 = controller_timing_snapshot_build(auStack_30, 1, 0, param_1);
   if (iVar7 == 0) {
-    FUN_01008d00(0x21, 0x368);
+    sdc_assertion_fail(0x21, 0x368);
   }
-  iVar7 = FUN_010231c8(*(unsigned char *)puVar3, auStack_30);
+  iVar7 = sdc_conn_window_admit(*(unsigned char *)puVar3, auStack_30);
   if (iVar7 != 0) {
     return 0;
   }
-  FUN_01008d00(0x21, 0x369);
+  sdc_assertion_fail(0x21, 0x369);
   return 0;
 }

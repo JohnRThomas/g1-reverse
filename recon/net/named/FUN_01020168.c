@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01020168 @ 0x01020168
  * public-name: FUN_01020168
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   rodata_103c4d0                           @ 0x0103c4d0
  *   REG_41008000                             @ 0x41008000
  */
 /* net-core FUN_01020168 @ 0x1020168  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int a, unsigned int b);
+extern void sdc_assertion_fail(unsigned int a, unsigned int b);
 extern void FUN_010216d4(unsigned int a, unsigned int b, int c, void *d);
 extern void FUN_010215a8(int a);
 extern unsigned int FUN_010218fc(void *a);
@@ -41,7 +43,7 @@ void FUN_01020168(unsigned int param_1)
     *(volatile unsigned int *)(base230 + 0x510) = 5;
     break;
   default:
-    FUN_01008d00(0x3e, 0xd35);
+    sdc_assertion_fail(0x3e, 0xd35);
     return;
   }
   *(volatile unsigned int *)(base230 + 0x588) = *(volatile unsigned int *)(base234 + 0x80);
@@ -56,7 +58,7 @@ LAB_01020194:
     FUN_010215a8((int)local_14);
     r = FUN_010218fc(auStack_13);
     if (r != 0) {
-      FUN_01008d00(0x3e, 0x57e);
+      sdc_assertion_fail(0x3e, 0x57e);
       return;
     }
   }

@@ -1,137 +1,159 @@
 #include "g1_net_symbols.h"
-/* net-core FUN_01018690 @ 0x1018690  (parity 300 trials PROVEN) */
+/* net-core sdc_llcp_process_rx_control_pdu @ 0x01018690; raw: FUN_01018690 */
+/*
+ * SoftDevice Controller LLCP receive dispatcher.
+ * Exact contiguous ownership: [0x01018690, 0x010187e0) (0x150 bytes).
+ * The opcode-7 switch tail-transfers into shared controller continuations at
+ * 0x01018f1a/0x01018f22/0x01018fac; those entries are not owned by this body.
+ * NCS 2.5.1 reference match: obfuscated SDC symbol
+ * sym_D3OF4UKYCAB3P5XZOK7JC3PV7TCXDH2CWS4GEEY, opcode ratio 0.939.
+ */
 #include <stdint.h>
-extern unsigned char FUN_0100d760(void);
-extern void FUN_0101a070(unsigned char *param_1, void *out);
-extern int FUN_0101746c(void *p, unsigned int a, unsigned int b);
-extern int FUN_010168e4(void *p, unsigned int a);
-extern int FUN_010183e0(void *p);
-extern void FUN_01020500(void);
-extern void FUN_010208b0(void);
-extern void FUN_0101fca8(void);
-extern int FUN_0100cb70(unsigned int a, unsigned int b, void *tbl, unsigned int c);
-extern void FUN_01008d00(unsigned int a, unsigned int b);
 
-/* raw byte/word load-store via inline asm: GCC treats compile-time-constant
-   near-null addresses specially (-fisolate-erroneous-paths-dereference folds
-   them to a trap even through "volatile"); routing the address through an
-   asm operand keeps it opaque so the real store/load actually happens. */
-static inline void st8(unsigned int addr, unsigned char val) {
-  volatile unsigned int opaque = addr;
-  *(volatile unsigned char *)(uintptr_t)opaque = val;
-}
-static inline unsigned char ld8(unsigned int addr) {
-  volatile unsigned int opaque = addr;
-  return *(volatile unsigned char *)(uintptr_t)opaque;
-}
-static inline void st32(unsigned int addr, unsigned int val) {
-  volatile unsigned int opaque = addr;
-  *(volatile unsigned int *)(uintptr_t)opaque = val;
-}
+struct llcp_decoded_pdu {
+    uint32_t header;
+    uint32_t parameter_0;
+    uint32_t parameter_1;
+    uint8_t remaining[0x20];
+};
 
-struct loc_s { unsigned int w0, w1, w2; };
+struct llcp_controller_state_overlay {
+    uint8_t reserved_000[0x44];
+    uint8_t unknown_response_result; /* +0x44 */
+    uint8_t reserved_045[0x37];
+    uint8_t cleanup_pending;         /* +0x7c */
+    uint8_t reserved_07d[0x3c];
+    uint8_t receive_state;           /* +0xb9 */
+};
 
-/* NOTE: DAT_010187d8 and DAT_010187dc are literal-pool loads that sit just
-   past the harness's 64-byte padded read window for this function, so under
-   the emulator both resolve to 0 (lazily-zero-mapped), not their real ROM
-   values. Modeled as 0 to match observed harness behavior. */
-#define STRUCT_PTR 0x0u
+static volatile uint8_t *const active_link_index =
+    (volatile uint8_t *)(uintptr_t)((unsigned long)&g_net_ble_pending_channel_idx) /*=0x2100001c*/;
+static volatile struct llcp_controller_state_overlay *const llcp_state =
+    (volatile struct llcp_controller_state_overlay *)(uintptr_t)0x21000f90;
 
-int FUN_01018690(unsigned char *param_1)
+extern uint8_t sdc_llcp_get_active_link_index(void);             /* FUN_0100d760 */
+extern void sdc_llcp_decode_control_pdu(const uint8_t *pdu,
+                                        struct llcp_decoded_pdu *decoded); /* FUN_0101a070 */
+extern int sdc_llcp_apply_rx_transition(struct llcp_decoded_pdu *decoded,
+                                        uint32_t opcode, uint32_t flags); /* FUN_0101746c */
+extern int sdc_llcp_handle_control_opcode(struct llcp_decoded_pdu *decoded,
+                                          uint32_t opcode); /* FUN_010168e4 */
+extern int sdc_llcp_handle_unknown_response(struct llcp_decoded_pdu *decoded); /* FUN_010183e0 */
+extern void sdc_llcp_note_unsupported_pdu(void);                  /* FUN_01020500 */
+extern void sdc_llcp_stop_rx_timeout(void);                       /* FUN_010208b0 */
+extern void sdc_llcp_release_rx_context(void);                    /* FUN_0101fca8 */
+extern void controller_assert(uint32_t module, uint32_t line);    /* FUN_01008d00 */
+
+extern void FUN_01018f1a(uint32_t, uint32_t, uintptr_t, uint32_t);
+extern void FUN_01018f22(uint32_t, uint32_t, uintptr_t, uint32_t);
+extern void FUN_01018fac(uint32_t, uint32_t, uintptr_t, uint32_t);
+#define sdc_llcp_store_unknown_result_tail FUN_01018f1a
+#define sdc_llcp_return_tail               FUN_01018f22
+#define sdc_llcp_continue_procedure_tail   FUN_01018fac
+
+enum llcp_shared_address {
+    LLCP_UNKNOWN_RESPONSE_TABLE = 0x0101878c,
+};
+
+static int finish_receive(int result)
 {
-  unsigned char uVar2;
-  int iVar3;
-  unsigned int uVar4;
-  int iVar5b;
-  unsigned char bVar6, bVar6b;
-  struct loc_s loc;
-  char cVar1;
-
-  uVar2 = FUN_0100d760();
-  bVar6 = *param_1 & 0xf;
-  st8(0, uVar2);
-  FUN_0101a070(param_1, &loc);
-
-  if (bVar6 == 7) {
-    uVar4 = loc.w0 & 0xff;
-    bVar6b = (unsigned char)(loc.w0 >> 8);
-    if (uVar4 == 2) {
-      loc.w1 = 0;
-      loc.w2 = 0;
-      loc.w0 = loc.w0 & 0xfffffcffu;
-    } else if (uVar4 == 1) {
-      loc.w2 = 0;
-      loc.w0 = loc.w0 & 0xfffffdffu;
-      if (ld8(STRUCT_PTR + 0xb9) != 2) {
-        loc.w1 = 0;
-        loc.w0 = ((loc.w0 & 0xffff00ffu) | ((unsigned int)bVar6b << 8)) & 0xfffffcffu;
-      }
-    } else if ((uVar4 == 0) && ((ld8(STRUCT_PTR + 0xb9) & 0xc) != 0) &&
-               ((int)((unsigned int)bVar6b << 0x1b) < 0)) {
-      loc.w0 = loc.w0 & 0xfffffcffu;
-      loc.w1 = 0;
-      loc.w2 = 0;
+    if (llcp_state->cleanup_pending != 0) {
+        sdc_llcp_stop_rx_timeout();
+        sdc_llcp_release_rx_context();
+        llcp_state->cleanup_pending = 0;
     }
-    iVar3 = FUN_0101746c(&loc, 7, 0);
-    iVar5b = ld8(STRUCT_PTR + 0xb9) - 1;
-    switch (iVar5b) {
-    case 0:
-    case 3:
-    case 7:
-      return iVar3;
+    return result;
+}
+
+static void preprocess_unknown_response(struct llcp_decoded_pdu *decoded)
+{
+    uint8_t response_type = (uint8_t)decoded->header;
+    uint8_t response_flags = (uint8_t)(decoded->header >> 8);
+
+    if (response_type == 2) {
+        decoded->parameter_0 = 0;
+        decoded->parameter_1 = 0;
+        response_flags &= (uint8_t)~3u;
+    } else if (response_type == 1) {
+        decoded->parameter_1 = 0;
+        response_flags &= (uint8_t)~2u;
+        if (llcp_state->receive_state != 2) {
+            decoded->parameter_0 = 0;
+            response_flags &= (uint8_t)~1u;
+        }
+    } else if (response_type == 0 &&
+               (llcp_state->receive_state & 0x0c) != 0 &&
+               (response_flags & 0x10) != 0) {
+        decoded->parameter_0 = 0;
+        decoded->parameter_1 = 0;
+        response_flags &= (uint8_t)~3u;
+    }
+
+    decoded->header = (decoded->header & 0xffff00ffu) |
+                      ((uint32_t)response_flags << 8);
+}
+
+int sdc_llcp_process_rx_control_pdu(const uint8_t *pdu)
+{
+    struct llcp_decoded_pdu decoded;
+    uint8_t opcode = pdu[0] & 0x0f;
+
+    *active_link_index = sdc_llcp_get_active_link_index();
+    sdc_llcp_decode_control_pdu(pdu, &decoded);
+
+    if (opcode == 7) { /* LL_UNKNOWN_RSP */
+        preprocess_unknown_response(&decoded);
+        int result = sdc_llcp_apply_rx_transition(&decoded, 7, 0);
+        uint32_t state_index = (uint32_t)llcp_state->receive_state - 1u;
+        switch (state_index) {
+        case 0:
+        case 3:
+        case 7:
+            sdc_llcp_return_tail((uint32_t)result,
+                                 (uint32_t)result << 4,
+                                 LLCP_UNKNOWN_RESPONSE_TABLE, state_index);
+            __builtin_unreachable();
+        case 1:
+            sdc_llcp_store_unknown_result_tail(
+                (uint32_t)result, (uint32_t)result << 4,
+                LLCP_UNKNOWN_RESPONSE_TABLE, state_index);
+            __builtin_unreachable();
+        case 2:
+        case 4:
+        case 5:
+        case 6:
+            sdc_llcp_continue_procedure_tail(
+                (uint32_t)result, (uint32_t)result << 4,
+                LLCP_UNKNOWN_RESPONSE_TABLE, state_index);
+            __builtin_unreachable();
+        default:
+            controller_assert(0x32, 0x13b3);
+            __builtin_unreachable();
+        }
+
+    }
+
+    (void)sdc_llcp_apply_rx_transition(&decoded, opcode, 0);
+    int result;
+    switch (llcp_state->receive_state) {
     case 1:
-      st8(STRUCT_PTR + 0x44, (unsigned char)iVar3);
-      return iVar3;
+        if (opcode == 6 || opcode <= 2) {
+            result = sdc_llcp_handle_control_opcode(&decoded, opcode);
+            return finish_receive(result);
+        }
+        /* fall through */
     case 2:
+        result = 5;
+        sdc_llcp_note_unsupported_pdu();
+        return finish_receive(result);
     case 4:
-    case 5:
-    case 6:
-      st32(0xab, iVar3 << 4);
-      st32(0xa7, (unsigned int)iVar5b);
-      if (iVar3 == 0) {
-        return 0;
-      }
-      return FUN_0100cb70(0, (unsigned int)(iVar3 << 4), (void *)0, loc.w0);
+    case 8:
+        /* Opcode 7 was dispatched above, so these states reject other PDUs. */
+        result = 5;
+        sdc_llcp_note_unsupported_pdu();
+        return finish_receive(result);
     default:
-      goto switchD_01018786_default;
+        controller_assert(0x32, 0x13b3);
+        __builtin_unreachable();
     }
-  }
-
-  FUN_0101746c(&loc, bVar6, 0);
-  switch (ld8(STRUCT_PTR + 0xb9)) {
-  case 1:
-    if ((bVar6 == 6) || ((bVar6 < 7 && (bVar6 < 3)))) {
-      iVar3 = FUN_010168e4(&loc, bVar6);
-      cVar1 = (char)ld8(STRUCT_PTR + 0x7c);
-      goto joined_r0x010186e2;
-    }
-    /* fallthrough */
-  case 2:
-  switchD_010186c8_caseD_2:
-    iVar3 = 5;
-    FUN_01020500();
-    break;
-  default:
-    goto switchD_01018786_default;
-  case 4:
-  case 8:
-    if (bVar6 != 7) goto switchD_010186c8_caseD_2;
-    iVar3 = FUN_010183e0(&loc);
-  }
-  cVar1 = (char)ld8(STRUCT_PTR + 0x7c);
-joined_r0x010186e2:
-  if (cVar1 == '\0') {
-    return iVar3;
-  }
-  FUN_010208b0();
-  FUN_0101fca8();
-  st8(STRUCT_PTR + 0x7c, 0);
-  return iVar3;
-
-switchD_01018786_default:
-  /* real bytes: default branches out of the declared body boundary; under
-     the harness this becomes a repeating out-of-body oracle call. */
-  for (;;) {
-    FUN_01008d00(0x32, 0x13b3);
-  }
 }

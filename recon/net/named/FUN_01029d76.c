@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01029d76 @ 0x01029d76
  * public-name: FUN_01029d76
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  */
 /* net-core FUN_01029d76 @ 0x1029d76  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
 extern int FUN_010219c4(unsigned char *a);
 extern void FUN_01021a1c(void);
-extern int FUN_010231c8(unsigned char a, void *b);
+extern int sdc_conn_window_admit(unsigned char a, void *b);
 extern int FUN_01023ea8(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern void FUN_010256dc(unsigned int a, unsigned int b);
 extern void FUN_01029d68(unsigned char *a, unsigned int b);
@@ -101,7 +103,7 @@ unsigned char FUN_01029d76(unsigned char *param_1, unsigned char *param_2, unsig
                         }
                     }
                     param_1[0x26] = 4;
-                    iVar1 = FUN_010231c8(param_1[0x27], param_1);
+                    iVar1 = sdc_conn_window_admit(param_1[0x27], param_1);
                     if (iVar1 == 0) {
                         return (unsigned char)PHANTOM_BOUNDARY();
                     }

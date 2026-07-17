@@ -1,10 +1,12 @@
 /* readable reconstruction; identity: FUN_01019750 @ 0x01019750
  * public-name: FUN_01019750
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  */
 /* net-core FUN_01019750 @ 0x1019750 */
 #include <stdint.h>
-extern void FUN_01008d00(uint32_t, uint32_t);
+extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern uint32_t FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
 extern int FUN_0100ca98(uint8_t, void *);
@@ -44,7 +46,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
     case 2: entry[0x1c] |= 0x10; break;
     case 6: entry[0x1c] = (entry[0x1c] & 0xed) | 0x12; break;
     default:
-        FUN_01008d00(0x33, 0x314);
+        sdc_assertion_fail(0x33, 0x314);
         entry[0x1c] = (entry[0x1c] & 0xed) | 0x12;
         break;
     }
@@ -54,7 +56,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
         copy_six(entry + 0x14, *(const uint8_t *const *)(owner + 4));
     } else {
         if (FUN_0100ca98(identity, entry + 0x13) == 0)
-            FUN_01008d00(0x33, 0xe6);
+            sdc_assertion_fail(0x33, 0xe6);
         entry[0x13] |= 2;
     }
 
@@ -75,7 +77,7 @@ void FUN_01019750(const uint8_t *owner, uint32_t kind,
 
     token = FUN_0100a5a0();
     if (FUN_01026f32(token, (uint16_t)FUN_0100a5b4(), 1) == 0)
-        FUN_01008d00(0x33, 0x334);
+        sdc_assertion_fail(0x33, 0x334);
     entry[8] = 0;
     FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
 }

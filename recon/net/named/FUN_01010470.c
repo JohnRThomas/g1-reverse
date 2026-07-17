@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01010470 @ 0x01010470
  * public-name: FUN_01010470
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_sdc_rssi_filter_cfg                    @ 0x21000f04
  */
@@ -9,7 +11,7 @@ extern signed char FUN_0101e2cc(unsigned char);
 extern unsigned long long thunk_FUN_01025034(void);
 extern int FUN_0100cfc0(unsigned short, void *);
 extern int FUN_0101e2fc(void *, int, int, int);
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 
 #define DAT_01010574 0x21000f04
 
@@ -67,7 +69,7 @@ void FUN_01010470(int param_1)
     if (uVar7 < uVar9 || uVar9 - uVar7 < (unsigned int)bVar10) {
       iVar6 = FUN_0100cfc0(*(unsigned short *)(long)(param_1 + -600), packet);
       if (iVar6 != 0) {
-        FUN_01008d00(0x7a, 0x85);
+        sdc_assertion_fail(0x7a, 0x85);
         return;
       }
       iVar4 = FUN_0101e2fc(packet, cVar3 + 1, cVar4, 2);

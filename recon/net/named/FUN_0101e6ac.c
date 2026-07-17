@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0101e6ac @ 0x0101e6ac
  * public-name: FUN_0101e6ac
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   rodata_103ec0a                           @ 0x0103ec0a
  *   g_net_ble_conn_create_ctx                @ 0x21000eac
@@ -12,7 +14,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
 
-extern void FUN_01008d00(int,int);
+extern void sdc_assertion_fail(int,int);
 extern int FUN_01009f58(u16,u16,u16,u8,u8);
 extern int FUN_0100d14c(void*,int);
 extern u32 FUN_0100d600(u16);
@@ -85,7 +87,7 @@ unsigned int FUN_0101e6ac(unsigned short *param_1, unsigned short param_2, int p
     int iVar5 = FUN_01009f58(*param_1, *(volatile u16*)(puVar2+2), *(volatile u16*)(puVar2+4),
                               puVar2[0], puVar2[1]);
     if (iVar5 != 0) {
-        FUN_01008d00(0x39, 0xffb);
+        sdc_assertion_fail(0x39, 0xffb);
         return 0;
     }
 

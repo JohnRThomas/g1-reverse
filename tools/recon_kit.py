@@ -23,6 +23,67 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    # gui_utf_draw_align_right continues through its callback/logger tail;
+    # live code ends at 0x451ce before alignment and the literal pool.
+    0x00044ec4: 0x30a,
+    # Final invalid-state return branch ends at the next entry 0x809f6.
+    0x000809b0: 0x46,
+    # clear_event_registrations' final reacquire tail ends at 0x7552c.
+    0x000753ec: 0x140,
+    # Final poll assertion tail and shared unlock/loop end before 0x753a0.
+    0x000751d0: 0x1ce,
+    # process_for_new_task's catalog extent ends at 0x2e038 inside the live
+    # state-zero polling loop.  The remaining switch/default and shared
+    # status-return tail run through the branch at 0x2e2be; literals begin at
+    # 0x2e2c4 (0x2e2c2 is alignment) and 0x2e300 is a new prologue.
+    0x0002c99c: 0x1924,
+    # The unknown-address-type path rejoins the shared final formatter via the
+    # branch at 0x18390; literals begin at 0x18394.
+    0x00018334: 0x5e,
+    # Final retry back-branch and read-exhaustion return end at 0x32e68;
+    # literals begin at 0x32e6c.
+    0x00032c28: 0x242,
+    # lc3_spec_encode's catalog stops at 0x6ffcc inside two branch-reachable
+    # noise-estimation setup islands.  Both rejoin the shared body; the final
+    # branch ends at 0x6ffd8, where the next independent prologue begins.
+    0x0006f9c0: 0x618,
+    # display_thread_handler's catalog stops at 0x495a2 inside its live
+    # missing-message shutdown arm.  Logger and forced-display-reset islands
+    # rejoin the worker through 0x49630; 0x49632 is alignment, 0x49634 is its
+    # final literal, and FUN_00049638 is the next independent prologue.
+    0x00049090: 0x5a2,
+    # display_dispatch_thread's catalog stops at 0x29498 inside the final
+    # mode-notification logger.  Its live notification/delay islands rejoin
+    # through the branch at 0x29500; 0x29502 is alignment and literals occupy
+    # 0x29504..0x2953b before FUN_0002953c.
+    0x00028bec: 0x916,
+    # The catalog stops at 0x285e4 inside the final inner switch.  Its four
+    # live handlers end with the branch at 0x286c0..0x286c3; literals occupy
+    # 0x286c4..0x286f7
+    # and the next independent thread prologue is FUN_000286f8.
+    0x00027cfe: 0x9fa,
+    # proxy_thread_handler's catalog stops at 0x486f8 inside the language/
+    # work-mode switch.  Live retry and atomic-flag tails continue through the
+    # branch at 0x48812..0x48815; literals occupy 0x48818..0x4883f and the
+    # independent requestAudioInfoToApp entry starts at 0x48840.
+    0x00047c48: 0xbf8,
+    # gui_utf_Wordwrap_draw's catalog stops at 0x45590 inside its live
+    # callback/logger tail.  Executable ownership continues through 0x455b6;
+    # its final literals occupy 0x455b8..0x455cb and gui_string_draw begins
+    # independently at 0x455cc.
+    0x000451e0: 0x3ec,
+    # Live body/package formatting and word-wrap tail continue through
+    # 0x35f1a; the catalog stops early at 0x35ef0 and literals start 0x35f1c.
+    0x00035afc: 0x41e,
+    # Refgraph stops at 0x2144c in the default status-response arm.  The live
+    # tail ends after the branch at 0x21454; literals begin at 0x21458.
+    0x00021334: 0x122,
+    # Switch-owned continuations run through 0x429f2; 0x429f4 is a literal
+    # and FUN_000429f8 is the next independent function.
+    0x000417f8: 0x11fa,
+    # Catalog ends before the ordinary shared return. POP is at 0x430aa and
+    # the literal pool begins at 0x430ac.
+    0x00042fb0: 0xfc,
     # Live calibration loop and final delay/return continue through 0x1080e;
     # the catalog stops at the loop's first VFP load at 0x10764.
     0x0000fe88: 0x988,
@@ -51,12 +112,24 @@ TRUE_SIZE_OVERRIDES = {
     0x0000e53c: 0x3fc,
     0x0000fcf0: 0x178,
     0x000113a8: 0xecc,
+    # local_esbs_ipc_service_recv's catalog stops inside the late command
+    # switch.  Cases 0xf..default continue through 0x15dd4; literals begin at
+    # 0x15dd8 and the next independent function starts at 0x15df4.
+    0x00015960: 0x478,
     0x00016eb8: 0x7ac,
     0x0001a064: 0x6e4,
     0x0001a75c: 0x6bae,
     0x00021460: 0x59c,
     0x00023844: 0x1d0,
+    # sync_to_slave's catalog ends at 0x273ee, before the final validation
+    # branch/logger tail.  Live CFG continues through 0x2741a; literals begin
+    # at 0x2741c and the next independent function starts at 0x27448.
+    0x00026f74: 0x4a8,
     0x00028a1c: 0x198,
+    # key_event_thread's catalog stops in the state-5 arm at 0x29fea.  The
+    # complete state-5/state-6 tails and shared loopback continue through the
+    # unconditional branch ending at 0x2a096; literals begin at 0x2a098.
+    0x0002955c: 0xb3a,
     0x0002a8d8: 0x3f4,
     # The 0x4a..0x4f command islands live after the embedded literal pool at
     # 0x2baa0.  They rejoin the shared epilogue and end before literals at
@@ -78,8 +151,14 @@ TRUE_SIZE_OVERRIDES = {
     0x0004b4fc: 0x394,
     0x0004bc8c: 0x166,
     0x0004beb8: 0x110,
+    # mpsc_pbuf_free tail-branches at 0x4c08c; its assertion literals begin
+    # at 0x4c090 and the next independent function starts at 0x4c0a8.
+    0x0004bfc8: 0xc8,
     0x0004d100: 0x70,
     0x0004d578: 0x0e,
+    # Two-instruction scheduler-state tail wrapper.  The literal at 0x4d590
+    # is data; FUN_0004d594 starts the next independent body.
+    0x0004d588: 0x06,
     0x0004e98c: 0x10,
     0x00050b8c: 0x24,
     0x000531cc: 0x08,
@@ -91,6 +170,9 @@ TRUE_SIZE_OVERRIDES = {
     # Include the default-state arm's final branch at 0x599c0; literals start
     # at 0x599c4 after an alignment NOP.
     0x00059920: 0xa2,
+    # Service Changed persistence diagnostic returns at 0x5a11e; its two-word
+    # literal pool begins at 0x5a120 before FUN_0005a128.
+    0x0005a0e8: 0x38,
     0x0005b9cc: 0x1e0,
     # Two CBZ arms enter the shared FUN_0005f638 call at 0x5f948 and rejoin
     # through the branch at 0x5f94e; literals begin at 0x5f950.
@@ -108,6 +190,9 @@ TRUE_SIZE_OVERRIDES = {
     0x00075d5c: 0x5e,
     0x0007712c: 0x466,
     0x00077594: 0x254,
+    # Stream-format helper's final reachable branch is at 0x778c0.  The NOP
+    # at 0x778c2 is alignment and literals occupy 0x778c4..0x778d4.
+    0x00077820: 0xa2,
     # scanf conversion handlers and shared epilogue continue through 0x79272.
     0x00078f88: 0x2ea,
     0x000778d4: 0x0a,

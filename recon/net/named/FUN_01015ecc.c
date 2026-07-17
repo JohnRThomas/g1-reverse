@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_01015ecc @ 0x01015ecc
  * public-name: FUN_01015ecc
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   sdc_conn_event_process                   <= FUN_01014b18 @ 0x01014b18
  * address symbols (name @ address):
  *   g_net_link_ctx_a                         @ 0x21000f68
  */
@@ -20,9 +23,9 @@ extern int FUN_0100d3c0(u32,u32,u32,u32);
 extern void FUN_0100cff4(u32,u32);
 extern int FUN_01014748(void);
 extern int FUN_010144e4(u32);
-extern void FUN_01014b18(u32);
+extern void sdc_conn_event_process(u32);
 extern void FUN_0100b170(void);
-extern void FUN_01008d00(u32,u32);
+extern void sdc_assertion_fail(u32,u32);
 extern void FUN_01014884(void);
 
 void FUN_01015ecc(u32 param_1)
@@ -178,7 +181,7 @@ void FUN_01015ecc(u32 param_1)
   r1 = r0;
   if (r0 != 0) goto L1015fa0;
  L10160bc:
-  FUN_01014b18(r1);
+  sdc_conn_event_process(r1);
   return;
  L10160c6:
   RB(r0 + 0xc6) = (u8)r5;
@@ -209,9 +212,9 @@ void FUN_01015ecc(u32 param_1)
   RB(r3 + 0x16c) = (u8)r0;
   goto L10160bc;
  L101611a:
-  FUN_01008d00(0x31, 0xa20);
+  sdc_assertion_fail(0x31, 0xa20);
  L1016124:
-  FUN_01008d00(0x31, 0x9d9);
+  sdc_assertion_fail(0x31, 0x9d9);
  L101612e:
   for(;;) FUN_01014884();
 }

@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01029e64 @ 0x01029e64
  * public-name: FUN_01029e64
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_conn_window_admit                    <= FUN_010231c8 @ 0x010231c8
  */
 /* net-core FUN_01029e64 @ 0x1029e64  (parity 3 trials PROVEN) */
 typedef int (*fp_t)(int, int);
 
 extern void FUN_01021a1c(void);
 extern unsigned long long FUN_01022f0c(int a);
-extern int FUN_010231c8(int a, void *b);
+extern int sdc_conn_window_admit(int a, void *b);
 extern int FUN_01023ac4(void);
 extern unsigned long long FUN_010256dc(int a, int b);
 extern void FUN_01029d34(int a, void *b);
@@ -108,7 +110,7 @@ BODY:
           uVar4 = 0x214; goto ERR;
         } else {
           p[0x25] = 0;
-          iVar3 = FUN_010231c8(*(unsigned char *)(p + 0x27), p);
+          iVar3 = sdc_conn_window_admit(*(unsigned char *)(p + 0x27), p);
           if (iVar3 != 0) return;
           uVar4 = 0x20d; goto ERR;
         }

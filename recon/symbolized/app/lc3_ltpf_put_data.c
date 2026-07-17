@@ -3,12 +3,12 @@
  * public-name: lc3_ltpf_put_data
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  *   lc3_ltpf_put_data                        <= FUN_0006b378 @ 0x0006b378
  */
 /* Reconstructed FUN_0006b378 @ 0x6b378  (parity: 300/300 trials, PROVEN) */
 
-extern void lc3_bits_accu_flush(int a, unsigned int b, unsigned int c, unsigned int d);
+extern void lc3_put_bits_generic(int a, unsigned int b, unsigned int c, unsigned int d);
 
 void lc3_ltpf_put_data(int param_1, unsigned char *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -27,7 +27,7 @@ void lc3_ltpf_put_data(int param_1, unsigned char *param_2, unsigned int param_3
     iVar2 = uVar4 + 10;
     iVar3 = *(int *)(param_2 + 4);
   } else {
-    lc3_bits_accu_flush(param_1,(unsigned int)bVar1,1,0);
+    lc3_put_bits_generic(param_1,(unsigned int)bVar1,1,0);
     uVar5 = *(unsigned int *)(param_1 + 0x20);
     iVar3 = *(int *)(param_2 + 4);
     iVar2 = uVar5 + 9;
@@ -37,5 +37,5 @@ void lc3_ltpf_put_data(int param_1, unsigned char *param_2, unsigned int param_3
     *(int *)(param_1 + 0x20) = iVar2;
     return;
   }
-  lc3_bits_accu_flush(param_1,iVar3,9,param_4);
+  lc3_put_bits_generic(param_1,iVar3,9,param_4);
 }

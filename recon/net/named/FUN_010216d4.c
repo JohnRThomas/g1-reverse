@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_010216d4 @ 0x010216d4
  * public-name: FUN_010216d4
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_net_clk_conv_cache_key                 @ 0x2100003c
  *   g_net_clk_conv_cache_ext                 @ 0x21000040
  */
 /* net-core FUN_010216d4 @ 0x10216d4  (parity 300 trials PROVEN) */
 
-extern void FUN_01008d00(unsigned int, unsigned int);
+extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern unsigned int FUN_0102028c(unsigned int);
 extern int FUN_01021920(int, void *, unsigned int, unsigned int);
 extern unsigned int FUN_01021934(void);
@@ -34,15 +36,15 @@ int FUN_010216d4(unsigned int param_1, unsigned int param_2, int param_3, volati
     case 4: uVar5 = 3; break;
     case 8: uVar5 = 2; break;
     default:
-      FUN_01008d00(6, 0x405);
-      for (;;) { FUN_01008d00(6, 0x405); }
+      sdc_assertion_fail(6, 0x405);
+      for (;;) { sdc_assertion_fail(6, 0x405); }
   }
 
   char local_29[8];
   int iVar6 = FUN_01021940(uVar5, param_2, param_3, local_29);
   if (iVar6 != 0) {
-    FUN_01008d00(0x75, 0x3d);
-    for (;;) { FUN_01008d00(0x75, 0x3d); }
+    sdc_assertion_fail(0x75, 0x3d);
+    for (;;) { sdc_assertion_fail(0x75, 0x3d); }
   }
 
   unsigned int uVar5b = FUN_0102028c(param_2);

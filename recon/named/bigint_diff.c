@@ -2,7 +2,7 @@
  * public-name: bigint_diff
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   Balloc                                   <= FUN_000785d4 @ 0x000785d4
  *   bigint_diff                              <= FUN_00078ac8 @ 0x00078ac8
  *   bignum_compare_abs                       <= FUN_000875ae @ 0x000875ae
@@ -13,7 +13,7 @@
  */
 /* Reconstructed FUN_00078ac8 @ 0x78ac8  (parity: 1/300 trials, PROVEN) */
 #include <stdint.h>
-extern int libc_fatal_error_and_abort(unsigned a, unsigned b, int c, unsigned d);
+extern int __assert_func(unsigned a, unsigned b, int c, unsigned d);
 extern int Balloc(int a, unsigned b);
 extern int bignum_compare_abs(int,int,int,int,int,int,int);
 
@@ -103,7 +103,7 @@ int bigint_diff(int param_1,int param_2,int param_3,int param_4)
     uVar4 = 0x240;
     iVar3 = 0;
   }
-  iVar2 = libc_fatal_error_and_abort(0x000f8cd5,uVar4,iVar3,0x000f8c42);
+  iVar2 = __assert_func(0x000f8cd5,uVar4,iVar3,0x000f8c42);
 LAB_00078af6:
   *(int *)(iVar2 + 0x10) = 1;
   *(int *)(iVar2 + 0x14) = iVar1;

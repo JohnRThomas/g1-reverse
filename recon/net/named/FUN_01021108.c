@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01021108 @ 0x01021108
  * public-name: FUN_01021108
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   rodata_103c4d0                           @ 0x0103c4d0
  *   rodata_103c578                           @ 0x0103c578
@@ -16,7 +18,7 @@ typedef unsigned char u8;
 #define W8(a)  (*(volatile u8*)(u32)(a))
 #define S8(a)  (*(volatile signed char*)(u32)(a))
 
-extern void FUN_01008d00(unsigned,unsigned,...);
+extern void sdc_assertion_fail(unsigned,unsigned,...);
 extern void FUN_01020168(unsigned);
 extern void FUN_01020a00(unsigned);
 extern void FUN_010215a8(int);
@@ -39,7 +41,7 @@ extern void FUN_01025c9c(void*);
 void FUN_01021108(unsigned param_1, unsigned param_2)
 {
   if ((W8(IVAR3+0x35) & 1u) == 0) {
-    FUN_01008d00(0x3e,0x716);
+    sdc_assertion_fail(0x3e,0x716);
     __builtin_unreachable();
   }
 
@@ -55,7 +57,7 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
   if (uVar7 > 1) local_2b = 0;
 
   u32 iVar8 = FUN_01025bb0(&local_2c);
-  if (iVar8 != 0) { FUN_01008d00(0x3e,0xa69); __builtin_unreachable(); }
+  if (iVar8 != 0) { sdc_assertion_fail(0x3e,0xa69); __builtin_unreachable(); }
 
   W8(IVAR3+0x45) = 1;
   W8(IVAR3+0x35) = (u8)(W8(IVAR3+0x35) | 2u);
@@ -70,7 +72,7 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
     FUN_010216d4(param_2, uVar7b, cVar2, &local_2c);
     FUN_010215a8((int)(signed char)local_2c);
     u32 iVar9 = FUN_010218fc(&local_2b);
-    if (iVar9 != 0) { FUN_01008d00(0x3e,0x57e); __builtin_unreachable(); }
+    if (iVar9 != 0) { sdc_assertion_fail(0x3e,0x57e); __builtin_unreachable(); }
     u16 uVar1 = W16(IVAR3+0x1c);
     W32(PUVAR4) = 1;
     W8(IVAR3+9) = 1;
@@ -80,7 +82,7 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
       W32(DAT_010212e4+8) = iVar8b;
       W32(DAT_010212e4+0xc) = iVar8b + 0x28u;
       int r = FUN_010218c0(DAT_010212e4, DAT_010212e0 + 0xa8u);
-      if ((unsigned)(r+1) > 1u) { FUN_01008d00(0x3e,0x6e9); __builtin_unreachable(); }
+      if ((unsigned)(r+1) > 1u) { sdc_assertion_fail(0x3e,0x6e9); __builtin_unreachable(); }
     }
   } else if (param_1 == 1) {
     FUN_01020168(param_2);
@@ -93,14 +95,14 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
       W32(DAT_010212e4+8) = iVar8c;
       W32(DAT_010212e4+0xc) = iVar8c + 0x29u;
       int r = FUN_010218cc(DAT_010212e4, DAT_010212e8);
-      if ((unsigned)(r+1) > 1u) { FUN_01008d00(0x3e,0x6f6); __builtin_unreachable(); }
+      if ((unsigned)(r+1) > 1u) { sdc_assertion_fail(0x3e,0x6f6); __builtin_unreachable(); }
     }
   } else {
     u16 uVar1 = W16(IVAR3+0x1c);
     W32(DAT_010212dc+0x4c) = 1;
     u32 r3 = W32(DAT_010212dc+0x54c);
     if (uVar1 > 0x95) {
-      FUN_01008d00(0x3e,0x6fa,(unsigned)uVar1,r3);
+      sdc_assertion_fail(0x3e,0x6fa,(unsigned)uVar1,r3);
       __builtin_unreachable();
     }
   }
@@ -109,7 +111,7 @@ void FUN_01021108(unsigned param_1, unsigned param_2)
   local_2c = 2;
   FUN_01025c9c(&local_2c);
   u32 iv = FUN_01025bc8(&local_2d);
-  if (iv != 0) { FUN_01008d00(0x3e,0xa8b); __builtin_unreachable(); }
+  if (iv != 0) { sdc_assertion_fail(0x3e,0xa8b); __builtin_unreachable(); }
 
   if (W8(IVAR3+9) == 1) {
     int iVar8f = (int)((unsigned)(local_2d ^ 4) << 29);

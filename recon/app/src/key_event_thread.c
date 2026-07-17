@@ -1,41 +1,42 @@
-/* Reconstructed key_event_thread @ 0x2955c  (parity: 2/2 trials, PROVEN) */
+/* Reconstructed key_event_thread @ 0x2955c (CFG parity: 7/7 cases, PROVEN) */
+#include <stdint.h>
 typedef unsigned char u8;
 
 /* callees (opaque oracles; order-keyed) */
-extern void f2953c(void);
-extern int  f167a8(void);
-extern void thunk74844(void);
-extern int  thunk72908(void);
-extern void fun19c70(void);
-extern void dbg_print(void);
-extern void f276ec(void);
-extern int  f42c8c(void);
-extern int  f370b0(void);
-extern void f37060(void);
-extern void f370bc(void);
-extern void f3719c(void);
+extern void FUN_0002953c(void);
+extern u8  *get_device_info(void);
+extern void wait_for_event(uint32_t timeout, uint32_t flags);
+extern int  update_sync_buffer(void *object, uint64_t timeout);
+extern void debug_print(void);
+extern void log_message(void);
+extern void send_event(unsigned int event);
+extern int  onboarding_sync_data(void);
+extern int  FUN_000370b0(void);
+extern void FUN_00037060(void);
+extern void getStocksIndex(void);
+extern void getNewsIndex(void);
 extern int  sync_to_slave(void);
-extern void f49938(void);
-extern void thunk745c8(void);
-extern int  f33cdc(void);
-extern void f7cb8e(void);
-extern int  f2c3dc(void);
-extern int  f23eec(void);
-extern void f1694c(void);
-extern int  f27448(void);
-extern void f3441c(void);
-extern void f3443c(void);
-extern void f7cb54(void);
-extern void f7cbfe(void);
-extern void f2c0e8(void);
-extern void f498c0(void);
-extern void f7d2f8(void);
-extern void f7cb4c(void);
-extern int  f26c28(void);
-extern int  f7ce00(void);
-extern void f7ce60(void);
-extern void f7cdb6(void);
-extern void f2bef4(void);
+extern void display_inputEvent(void);
+extern void process_touch_event(void);
+extern int  FUN_00033cdc(void);
+extern void FUN_0007cb8e(void);
+extern int  FUN_0002c3dc(void);
+extern int  FUN_00023eec(void);
+extern void change_work_mode_to(void);
+extern int  FUN_00027448(void);
+extern void FUN_0003441c(void);
+extern void FUN_0003443c(void);
+extern void FUN_0007cb54(void);
+extern void set_shutdown_flag(void);
+extern void update_persist_task_status_to_idle(void);
+extern void display_DelayClose(void);
+extern void FUN_0007d2f8(void);
+extern void process_sync_buffer(void);
+extern int  FUN_00026c28(void);
+extern int  FUN_0007ce00(void);
+extern void FUN_0007ce60(void);
+extern void prepare_quick_note_mode(void);
+extern void update_persist_task_status(void);
 
 #define SINK  (*(volatile int*)0x20007554)
 #define DBG   (*(volatile int*)0x2000230c)
@@ -45,7 +46,7 @@ extern void f2bef4(void);
 #define G_D98 (*(volatile u8*)0x20018d98)
 #define G_D89 (*(volatile u8*)0x20018d89)
 
-#define LOG() do { if (SINK==0) dbg_print(); else fun19c70(); } while (0)
+#define LOG() do { if (SINK==0) log_message(); else debug_print(); } while (0)
 
 void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
 {
@@ -53,14 +54,19 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     u8 *q, *A, *B, b;
     (void)a2; (void)a3;
 
-    f2953c();
+    FUN_0002953c();
 
  L2956e:
-    A = (u8*)f167a8();
-    if (*(volatile u8*)(A+1) == 1) { L29578: thunk74844(); goto L2956e; }
-    B = (u8*)f167a8();
+    A = get_device_info();
+    if (*(volatile u8*)(A+1) == 1) {
+L29578:
+        wait_for_event(0x28000, 0);
+        goto L2956e;
+    }
+    B = get_device_info();
     if (*(volatile u8*)(B+1) == 8) goto L29578;
-    if (thunk72908() != 0) goto L297ea;
+    if (update_sync_buffer((void *)(uintptr_t)0x20007b1c,
+                           UINT64_MAX) != 0) goto L297ea;
     if (DBG > 0) LOG();
     state = ST;
     if (state != 1) goto L297f2;
@@ -68,19 +74,19 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     /* ---- state == 1 ---- */
     q = *(u8**)(p+0x1014);
     if (*(volatile u8*)q == 0) goto L2963e;
-    f276ec();
+    send_event(1);
     q = *(u8**)(p+0x1014);
     b = *(volatile u8*)(q+2);
     if (b == 5) {
-        A = (u8*)f167a8();
+        A = get_device_info();
         if (*(volatile u8*)A != 2) goto L2956e;
         r8val = 0x13; goto L295f2;
     } else if (b == 0x13) {
-        A = (u8*)f167a8();
+        A = get_device_info();
         if (*(volatile u8*)A != 2) goto L2956e;
         r8val = 0x14; goto L295f2;
     } else if (b == 0x14) {
-        A = (u8*)f167a8();
+        A = get_device_info();
         if (*(volatile u8*)A != 1) goto L2956e;
         q = *(u8**)(p+0x1014);
         *(volatile u8*)(q+2) = 0x15;
@@ -90,7 +96,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     }
 
  L295f2:
-    if (f42c8c() == 0) {
+    if (onboarding_sync_data() == 0) {
         q = *(u8**)(p+0x1014);
         *(volatile u8*)(q+2) = (u8)r8val;
     }
@@ -102,21 +108,21 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     b = *(volatile u8*)(*(u8**)(p+0x101c));
     if (b == 0) {
         b = *(volatile u8*)(*(u8**)(p+0xffc) + 1);
-        if (b != 0) f276ec();
+        if (b != 0) send_event(1);
         goto L29668;
     }
  L29652:
-    f276ec();
+    send_event(1);
     goto L2956e;
 
  L29668:
     if (*(volatile u8*)p != 1) goto L29796;
     if (*(volatile u8*)(p+0xd5) != 6) goto L297ea;
     if (DBG > 2) LOG();
-    d = f370b0();
-    if (d == 0) { if (DBG > 3) LOG(); f37060(); goto L296c8; }
-    if (d == 1) { if (DBG > 3) LOG(); f370bc(); goto L296c8; }
-    if (d == 2) { if (DBG > 3) LOG(); f3719c(); goto L296c8; }
+    d = FUN_000370b0();
+    if (d == 0) { if (DBG > 3) LOG(); FUN_00037060(); goto L296c8; }
+    if (d == 1) { if (DBG > 3) LOG(); getStocksIndex(); goto L296c8; }
+    if (d == 2) { if (DBG > 3) LOG(); getNewsIndex(); goto L296c8; }
     goto L296c8;
  L296c8:
     s = sync_to_slave();
@@ -125,14 +131,14 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     goto L297ea;
  L29766:
     if (DBG > 3) LOG();
-    f49938();
+    display_inputEvent();
  L29786:
-    thunk745c8();
+    process_touch_event();
     goto L297ea;
 
  L29796:
     if (*(volatile u8*)p != 2) goto L297ea;
-    if (f33cdc() == 0) goto L297ea;
+    if (FUN_00033cdc() == 0) goto L297ea;
     {
         u8 pf = *(volatile u8*)(p+0x108f);
         u8 dd = *(volatile u8*)(p+0xd5);
@@ -143,7 +149,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     /* L297be wait-loop */
     goto L297cc;
  L297c4:
-    f7cb8e();
+    FUN_0007cb8e();
     r7 = r7 + 1;
  L297cc:
     if (*(volatile u8*)(p+0x108f) != 0) goto L297e2;
@@ -151,7 +157,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     if (r7 <= 0x63) goto L297c4;
     r7 = r7 + 1;
  L297e2:
-    if (f2c3dc() < 0) goto L297cc;
+    if (FUN_0002c3dc() < 0) goto L297cc;
     goto L297ea;
 
  L297ea:
@@ -170,19 +176,19 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
 
     /* ================= case 0 : state == 2 ================= */
  L29834:
-    if (*(volatile u8*)(*(u8**)(p+0x1014)) != 0) { f276ec(); goto L2956e; }
+    if (*(volatile u8*)(*(u8**)(p+0x1014)) != 0) { send_event(1); goto L2956e; }
     if (*(volatile u8*)(p+0xd5) == 7) goto L2956e;
-    if (f23eec() != 1) goto L29912;
+    if (FUN_00023eec() != 1) goto L29912;
     if (*(volatile u8*)(p+0xd5) != 0) goto L29912;
     if (*(volatile u8*)p != 1) goto L298dc;
-    A = (u8*)f167a8(); *(volatile u8*)(A+0xfe6) = 5;
-    B = (u8*)f167a8();
-    A = (u8*)f167a8();
+    A = (u8*)get_device_info(); *(volatile u8*)(A+0xfe6) = 5;
+    B = (u8*)get_device_info();
+    A = (u8*)get_device_info();
     b = *(volatile u8*)(B+0xed5);
     *(volatile u8*)(A+0xcb) = b;
-    f167a8();
+    get_device_info();
     sync_to_slave();
-    f1694c();
+    change_work_mode_to();
     {
         int r6 = *(volatile u8*)p;   /* == 1 */
         for (;;) {
@@ -196,7 +202,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     }
  L29a02:
     if (DBG > 0) LOG();
-    f7cb54();
+    FUN_0007cb54();
     goto L2956e;
 
  L298dc:
@@ -205,34 +211,34 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
         for (;;) {
             r6--;
             if (r6 == 0) goto L2956e;
-            if ((unsigned)f27448() < 500u) { if (DBG > 0) LOG(); goto L2956e; }
+            if ((unsigned)FUN_00027448() < 500u) { if (DBG > 0) LOG(); goto L2956e; }
         }
     }
 
  L29912:
-    if (f23eec() == 1 && *(volatile u8*)(p+0xd5) == 6) goto L299b8;
+    if (FUN_00023eec() == 1 && *(volatile u8*)(p+0xd5) == 6) goto L299b8;
  L29922:
     {
         int cnt = 0x65;
         while (*(volatile u8*)(p+0xfe6) > 1) {
             cnt--;
             if (cnt == 0) break;
-            f7cb8e();
+            FUN_0007cb8e();
         }
     }
  L29936:
     if (*(volatile u8*)(p+0xd5) == 0xc) goto L29c1c;
-    f276ec();
+    send_event(1);
     if (*(volatile u8*)p != 1) goto L29b30;
     if (*(volatile u8*)(p+0xd5) == 4) {
-        f3441c();
-        A = (u8*)f167a8();
+        FUN_0003441c();
+        A = (u8*)get_device_info();
         (void)(*(volatile u8*)(A+0xdd));
-        f3443c();
+        FUN_0003443c();
     }
  L2996a:
     if (*(volatile u8*)(p+0xd5) == 6) goto L29a8e;
-    f7cb54();
+    FUN_0007cb54();
     {
         int r6 = 1;
         for (;;) {
@@ -246,7 +252,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
  L29a5c:
     if (DBG > 0) LOG();
  L29a6e:
-    f7cbfe();
+    set_shutdown_flag();
  L29a76:
     if (DBG > 2) LOG();
     goto L297ea;
@@ -270,19 +276,19 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
         for (;;) {
             r6--;
             if (r6 == 0) goto L2956e;
-            if ((unsigned)f27448() < 500u) { if (DBG > 0) LOG(); goto L2956e; }
+            if ((unsigned)FUN_00027448() < 500u) { if (DBG > 0) LOG(); goto L2956e; }
         }
     }
 
  L29a8e:
     {
-        int e = f23eec();
+        int e = FUN_00023eec();
         if (e == 0 && *(volatile u8*)(p+0xd5) == 6) {
             sync_to_slave();
             goto L29aac;
         }
     }
-    if (f23eec() != 2) goto L29a76;
+    if (FUN_00023eec() != 2) goto L29a76;
     if (*(volatile u8*)(p+0xd5) != 6) goto L29a76;
     {
         int r6 = 1;
@@ -296,48 +302,48 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     }
  L29b10:
     if (DBG > 2) LOG();
-    f7cb54();
+    FUN_0007cb54();
     goto L29a76;
 
  L29aac:
-    f7cbfe();
-    f2c0e8();
+    set_shutdown_flag();
+    update_persist_task_status_to_idle();
     goto L29a76;
 
  L29b30:
     if (*(volatile u8*)(p+0xd5) == 6) goto L29b90;
-    f27448();
-    A = (u8*)f167a8();
+    FUN_00027448();
+    A = (u8*)get_device_info();
     if (*(volatile u8*)(A+0xd5) != 4) goto L29a6e;
-    f3441c();
-    B = (u8*)f167a8();
+    FUN_0003441c();
+    B = (u8*)get_device_info();
     (void)(*(volatile u8*)(B+0xdd));
-    f3443c();
+    FUN_0003443c();
     goto L29a6e;
 
  L29b90:
     {
-        int e = f23eec();
+        int e = FUN_00023eec();
         if (e == 0 && *(volatile u8*)(p+0xd5) == 6) {
-            f27448();
-            A = (u8*)f167a8();
+            FUN_00027448();
+            A = (u8*)get_device_info();
             if (*(volatile u8*)(A+0xd5) == 4) {
-                f3441c();
-                B = (u8*)f167a8();
+                FUN_0003441c();
+                B = (u8*)get_device_info();
                 (void)(*(volatile u8*)(B+0xdd));
-                f3443c();
+                FUN_0003443c();
             }
             goto L29aac;
         }
     }
-    if (f23eec() != 2) goto L29a76;
+    if (FUN_00023eec() != 2) goto L29a76;
     if (*(volatile u8*)(p+0xd5) != 6) goto L29a76;
     {
         int r6 = 4;
         for (;;) {
             r6--;
             if (r6 == 0) goto L29a76;
-            if ((unsigned)f27448() < 500u) {
+            if ((unsigned)FUN_00027448() < 500u) {
                 if (DBG <= 2) goto L297ea;
                 LOG();
                 goto L29a76;
@@ -360,8 +366,8 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
  L29c78:
     if (DBG > 2) LOG();
  L29c8a:
-    f498c0();
-    thunk745c8();
+    display_DelayClose();
+    process_touch_event();
  L29c96:
     if (DBG > 1) LOG();
     goto L297ea;
@@ -370,30 +376,30 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
  L29cae:
     if (*(volatile u8*)(*(u8**)(p+0x1014)) != 0) goto L2956e;
     if (*(volatile u8*)(p+0xfea) != 0xc) goto L29d18;
-    f276ec();
+    send_event(1);
     if (*(volatile u8*)p == 1) sync_to_slave();
-    else f27448();
+    else FUN_00027448();
  L29cde:
     *(volatile u8*)(p+0xfea) = 0xa;
-    f7d2f8();
+    FUN_0007d2f8();
     if (DBG > 0) LOG();
  L29cfe:
     *(volatile int*)(p+0x104c) = 3;
-    f7cb4c();
+    process_sync_buffer();
     goto L297ea;
 
  L29d18:
-    f276ec();
+    send_event(1);
     if (*(volatile u8*)p == 1) {
         sync_to_slave();
-        f7cbfe();
+        set_shutdown_flag();
     } else {
-        f27448();
+        FUN_00027448();
     }
  L29d38:
     *(volatile u8*)(p+0xfea) = 0xc;
-    f7cbfe();
-    f7d2f8();
+    set_shutdown_flag();
+    FUN_0007d2f8();
     if (DBG > 0) LOG();
     goto L29cfe;
 
@@ -413,7 +419,7 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
     }
     /* L29dda */
     if (G_D96 != 0) goto L29e62;
-    if (f7ce00() == 0 && *(volatile u8*)(p+0xd5) != 6) goto L29e62;
+    if (FUN_0007ce00() == 0 && *(volatile u8*)(p+0xd5) != 6) goto L29e62;
     s = sync_to_slave();
     if (s > 4999) {
         if (DBG <= 1) goto L297ea;
@@ -421,12 +427,12 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
         goto L297ea;
     }
  L29e20:
-    f7cdb6();
+    prepare_quick_note_mode();
     if (DBG > 2) LOG();
  L29e3e:
     *(volatile u8*)(p+0xec) = 0xc;
     *(volatile u8*)(*(u8**)(p+0x1020)) = 1;
-    f2bef4();
+    update_persist_task_status();
     q = *(u8**)(p+0x1020);
     b = *(volatile u8*)(q+2);
     *(volatile u8*)(q+2) = (u8)(b + 1);
@@ -438,18 +444,18 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
 
  L29ec0:
     if (G_D96 != 0) goto L29efe;
-    if (f26c28() == 0) goto L29efe;
-    if (f7ce00() == 0 && *(volatile u8*)(p+0xd5) != 6 && *(volatile u8*)(p+0xd5) != 1) goto L29efe;
-    f7ce60();
-    A = (u8*)f167a8();
+    if (FUN_00026c28() == 0) goto L29efe;
+    if (FUN_0007ce00() == 0 && *(volatile u8*)(p+0xd5) != 6 && *(volatile u8*)(p+0xd5) != 1) goto L29efe;
+    FUN_0007ce60();
+    A = (u8*)get_device_info();
     q = *(u8**)(A+0x100c);
     *(volatile u8*)q = 1;
-    f276ec();
+    send_event(1);
     goto L297ea;
 
  L29efe:
     if (DBG <= 1) goto L297ea;
-    f7ce00();
+    FUN_0007ce00();
     LOG();
     goto L297ea;
 
@@ -493,18 +499,17 @@ void key_event_thread(u8 *p, unsigned int a2, unsigned int a3)
  L2a04c:
     if (DBG > 2) LOG();
  L29fcc:
-    f498c0();
+    display_DelayClose();
     goto L29786;
 
  L2a062:
     if (*(volatile u8*)p != 2) goto L297ea;
     if (*(volatile u8*)(p+0xd5) != 0x10) goto L297ea;
-    A = (u8*)f167a8();
+    A = (u8*)get_device_info();
     q = *(u8**)(A+0x100c);
     if (*(volatile u8*)q != 4) goto L297ea;
-    B = (u8*)f167a8();
+    B = (u8*)get_device_info();
     q = *(u8**)(B+0x100c);
     *(volatile u8*)q = 5;
     goto L297ea;
 }
-

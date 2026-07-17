@@ -6,7 +6,7 @@
  *   get_current_work_mode                    <= FUN_00016940 @ 0x00016940
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   esb_send_command_and_wait_ack            <= FUN_00027448 @ 0x00027448
- *   check_battery_critical                   <= FUN_0002bed0 @ 0x0002bed0
+ *   display_panel_is_secondary               <= FUN_0002bed0 @ 0x0002bed0
  *   debounce_read_pending_flag_2             <= FUN_0002eba0 @ 0x0002eba0
  *   flash_get_ready_status_bit               <= FUN_000304f0 @ 0x000304f0
  *   pt_nfc_eeprom_link_start                 <= FUN_00030c90 @ 0x00030c90
@@ -117,7 +117,7 @@ extern long long get_device_info(void);
 extern long long get_current_work_mode(void);
 extern long long debug_print(void);
 extern long long esb_send_command_and_wait_ack(long long,long long,long long,long long);
-extern long long check_battery_critical(void);
+extern long long display_panel_is_secondary(void);
 extern long long debounce_read_pending_flag_2(void);
 extern long long flash_get_ready_status_bit(void);
 extern long long pt_nfc_eeprom_link_start(void);
@@ -229,7 +229,7 @@ void check_work_mode(int param_1,int param_2,int param_3)
     if (*DAT_00027a6c < 0x28) {
       *DAT_00027a90 = 0;
       get_device_info();
-      iVar5 = check_battery_critical();
+      iVar5 = display_panel_is_secondary();
       if (iVar5 == 0) {
         bVar8 = 3;
       }
@@ -298,7 +298,7 @@ LAB_00027964:
     enter_wear_burial_point();
     if (uVar4 - 2 < 2) {
       get_device_info();
-      iVar5 = check_battery_critical();
+      iVar5 = display_panel_is_secondary();
       if ((iVar5 != 0) && (change_work_mode_to(2), 0 < *DAT_00027a74)) {
         iVar5 = *DAT_00027a78;
         _event_id2 = DAT_00027a8c;

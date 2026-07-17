@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_010127f8 @ 0x010127f8
  * public-name: FUN_010127f8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
  *   rodata_1011add                           @ 0x01011add
  *   g_net_own_addr_info                      @ 0x21000f20
@@ -14,8 +17,8 @@
 extern void FUN_0100ef88(void *, uint32_t, uint32_t, uint32_t);
 extern void FUN_010140ec(void *, uint32_t);
 extern int FUN_0101f888(void);
-extern void FUN_0101fca8(void);
-extern void FUN_010208b0(void);
+extern void sdc_llcp_release_rx_context(void);
+extern void sdc_llcp_stop_rx_timeout(void);
 
 void FUN_010127f8(uint8_t *state)
 {
@@ -23,8 +26,8 @@ void FUN_010127f8(uint8_t *state)
 
     *(uint16_t *)(state + 0x40) = (uint16_t)(*(uint16_t *)(state + 0x40) + 1);
     if (RADIO_STATE[0x12] != 0) {
-        FUN_010208b0();
-        FUN_0101fca8();
+        sdc_llcp_stop_rx_timeout();
+        sdc_llcp_release_rx_context();
         RADIO_STATE[0x12] = 0;
     }
     RADIO_STATE[4] = 0;

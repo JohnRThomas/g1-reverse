@@ -132,7 +132,7 @@ class Runner:
             stop_events=0,
             memory_overrides=None, absolute_memory_overrides=None,
             stack_initial_words=None,
-            pointer_read_transitions=None,
+            pointer_read_transitions=None, absolute_read_transitions=None,
             terminal_targets=None, terminal_ordinal=None,
             detect_repeated_terminal=False, oracle_overrides=None,
             call_arities=None, call_arity_by_target=None,
@@ -144,7 +144,7 @@ class Runner:
             oracle_target_map=None,
             normalized_stack_pointer_calls=None,
             stack_objects=None,
-            fp_arg_overrides=None, initial_xpsr=0,
+            fp_arg_overrides=None, initial_xpsr=0, initial_primask=0,
             initial_exclusive_monitor=None):
         """Run one trial. Returns dict(state) or {'error':...}.
         stop_events>0: stop after that many side-effect events (for non-returning
@@ -210,6 +210,7 @@ class Runner:
         # Reviewed architectural-mode fixture. IPSR is the low exception-number
         # field of xPSR: zero is thread mode, nonzero is handler mode.
         uc.reg_write(UC_ARM_REG_XPSR, int(initial_xpsr) & 0xffffffff)
+        uc.reg_write(UC_ARM_REG_PRIMASK, int(initial_primask) & 1)
         # CFG-directed pointee inputs. Each item is (arg_index, byte_offset,
         # bytes); applying it before hooks means test setup is not an observed
         # side effect. Both original and candidate receive identical memory.
@@ -231,6 +232,15 @@ class Runner:
                 ((args[ai] & 0xffffffff) + pointer_off) & 0xffffffff, 4), "little")
             read_transitions.append({"address": (owner + target_off) & 0xffffffff,
                                      "ordinal": ordinal, "value": value & 0xffffffff,
+                                     "count": 0})
+        # Hardware-owned status registers are not reachable through an ABI
+        # pointer.  Reviewed fixtures may advance one absolute word on an
+        # exact read ordinal, modeling a peripheral event without globally
+        # teaching the harness device-specific side effects.
+        for address, ordinal, value in (absolute_read_transitions or ()):
+            read_transitions.append({"address": int(address) & 0xffffffff,
+                                     "ordinal": int(ordinal),
+                                     "value": int(value) & 0xffffffff,
                                      "count": 0})
         # seed VFP s0..s15 identically (float args + float-return coverage)
         fseed = _prng_fill(b"vfp" + struct.pack("<I", scratch_seed), 64)
@@ -822,6 +832,7 @@ class Runner:
 
         r0 = uc.reg_read(UC_ARM_REG_R0)
         r1 = uc.reg_read(UC_ARM_REG_R1)
+        primask = uc.reg_read(UC_ARM_REG_PRIMASK) & 1
         try:
             s0 = uc.reg_read(SREG[0]); s1 = uc.reg_read(SREG[1])
         except UcError:
@@ -832,6 +843,7 @@ class Runner:
         eh = hashlib.sha256(repr(ev).encode()).hexdigest()
         ph = hashlib.sha256(repr(ev[:stop_events] if stop_events else ev).encode()).hexdigest()
         return {"r0": r0, "r1": r1, "s0": s0, "s1": s1,
+                "primask": primask,
                 "returned": state["returned"], "prefix_hash": ph,
                 "events_hash": eh, "ncalls": state["ncalls"],
                 # Keep diagnostics bounded for runaway oracle loops; complete
@@ -893,7 +905,7 @@ def compare(orig_bytes, orig_va, orig_size,
             code_base=CODE_BASE, trials=64, nptr=2, verbose=False,
             ret_kind="i32", no_return=False, prefix_k=200, arg_overrides=None,
             memory_overrides=None, absolute_memory_overrides=None,
-            pointer_read_transitions=None,
+            pointer_read_transitions=None, absolute_read_transitions=None,
             terminal_targets=None, oracle_overrides=None, call_arities=None,
             call_arity_by_target=None, call_arity_by_format=None,
             call_argument_indices_by_target=None,
@@ -905,7 +917,9 @@ def compare(orig_bytes, orig_va, orig_size,
             oracle_memory_copies=None,
             paired_stack_initial_words=None, candidate_direct_target_map=None,
             paired_stack_objects=None,
-            initial_xpsr_overrides=None, orig_internal_code_regions=None,
+            initial_xpsr_overrides=None, initial_primask_overrides=None,
+            compare_primask=False,
+            orig_internal_code_regions=None,
             candidate_internal_code_regions=None, max_insns=200000,
             max_resumes=5000, initial_exclusive_monitors=None):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
@@ -960,6 +974,8 @@ def compare(orig_bytes, orig_va, orig_size,
                 if absolute_memory_overrides and t < len(absolute_memory_overrides) else None)
         prt = (pointer_read_transitions[t]
                if pointer_read_transitions and t < len(pointer_read_transitions) else None)
+        art = (absolute_read_transitions[t]
+               if absolute_read_transitions and t < len(absolute_read_transitions) else None)
         run_cap = 5000 if no_return else int(max_insns)
         trial_oracles = (oracle_overrides[t]
                          if isinstance(oracle_overrides, (list, tuple)) and t < len(oracle_overrides)
@@ -970,6 +986,9 @@ def compare(orig_bytes, orig_va, orig_size,
         trial_xpsr = (initial_xpsr_overrides[t]
                       if initial_xpsr_overrides and t < len(initial_xpsr_overrides)
                       else 0)
+        trial_primask = (initial_primask_overrides[t]
+                         if initial_primask_overrides and t < len(initial_primask_overrides)
+                         else 0)
         trial_exclusive_monitor = (
             initial_exclusive_monitors[t]
             if initial_exclusive_monitors and t < len(initial_exclusive_monitors)
@@ -1009,6 +1028,7 @@ def compare(orig_bytes, orig_va, orig_size,
                    stack_initial_words=orig_stack_words,
                    stack_objects=orig_stack_objects,
                    pointer_read_transitions=prt,
+                   absolute_read_transitions=art,
                    terminal_targets=terminal_targets, oracle_overrides=trial_oracles,
                    call_arities=call_arities,
                    call_arity_by_target=call_arity_by_target,
@@ -1024,6 +1044,7 @@ def compare(orig_bytes, orig_va, orig_size,
                    oracle_memory_copies=oracle_memory_copies,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
+                   initial_primask=trial_primask,
                    initial_exclusive_monitor=trial_exclusive_monitor)
         # candidate emulated at its own VA but identical inputs/scratch
         b = rc.run(t, args, t, max_insns=run_cap, max_resumes=max_resumes,
@@ -1032,6 +1053,7 @@ def compare(orig_bytes, orig_va, orig_size,
                    stack_initial_words=cand_stack_words,
                    stack_objects=cand_stack_objects,
                    pointer_read_transitions=prt,
+                   absolute_read_transitions=art,
                    terminal_ordinal=(a.get("terminal_call_ordinal")
                                      if a.get("terminal") else None),
                    detect_repeated_terminal=False, oracle_overrides=trial_oracles,
@@ -1046,6 +1068,7 @@ def compare(orig_bytes, orig_va, orig_size,
                    oracle_target_map=candidate_direct_target_map,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr,
+                   initial_primask=trial_primask,
                    initial_exclusive_monitor=trial_exclusive_monitor)
         matched_orig_stack_objects.update(a.get("matched_stack_objects", ()))
         matched_cand_stack_objects.update(b.get("matched_stack_objects", ()))
@@ -1134,8 +1157,12 @@ def compare(orig_bytes, orig_va, orig_size,
         if not a["returned"] and not b["returned"]:
             continue
         checked += 1
-        key_a = (_retkey(a), a["returned"], a["ncalls"], a["events_hash"])
-        key_b = (_retkey(b), b["returned"], b["ncalls"], b["events_hash"])
+        architectural_a = (a.get("primask"),) if compare_primask else ()
+        architectural_b = (b.get("primask"),) if compare_primask else ()
+        key_a = (_retkey(a), a["returned"], a["ncalls"], a["events_hash"],
+                 architectural_a)
+        key_b = (_retkey(b), b["returned"], b["ncalls"], b["events_hash"],
+                 architectural_b)
         if key_a != key_b:
             mism.append((t, "state", a, b))
             if verbose:

@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01022a84 @ 0x01022a84
  * public-name: FUN_01022a84
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_timing_scale                         <= FUN_01024678 @ 0x01024678
  * address symbols (name @ address):
  *   g_libc_tz_calc_state                     @ 0x210016f0
  */
@@ -22,7 +24,7 @@ extern void FUN_010244cc(short, void *, void *);
 extern void FUN_0102460c(void);
 extern unsigned char FUN_01024644(void);
 extern undefined1 FUN_01024650(void);
-extern unsigned int FUN_01024678(unsigned int, unsigned int);
+extern unsigned int sdc_timing_scale(unsigned int, unsigned int);
 extern int FUN_010245d8(void);
 extern int FUN_010246d8(void);
 extern void FUN_01024778(void);
@@ -75,7 +77,7 @@ void FUN_01022a84(void)
     puVar8[3] = 0xffffffff;
   }
   if ((*(volatile char *)((int)puVar8 + 0x2a) == '\0') &&
-      (uVar17 = FUN_01024678(puVar8[6], 0x230), uVar10 = puVar8[6] + puVar8[4],
+      (uVar17 = sdc_timing_scale(puVar8[6], 0x230), uVar10 = puVar8[6] + puVar8[4],
        uVar18 = puVar8[5] + (uint)CARRY4(puVar8[6], puVar8[4]) + (uint)CARRY4(uVar10, uVar17),
        uVar18 < uVar13 || uVar13 - uVar18 < (uint)(uVar10 + uVar17 <= (uint)lVar19))) {
     uint cbidx = (uint)*(volatile byte *)((int)puVar8 + 0x4a);

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
+ *   log_gatt_sc_store_failure                <= FUN_0005a0e8 @ 0x0005a0e8
  *   sc_save                                  <= FUN_0005a128 @ 0x0005a128
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
  * address symbols (name @ address):
@@ -16,7 +17,7 @@ extern void* find_sc_cfg_59bcc(int,int);
 extern void FUN_000828da(void*,unsigned);
 extern void FUN_00082a42(int,int,void*);
 extern int bt_addr_le_is_bonded(int,void*);
-extern void FUN_0005a0e8(void *entry);
+extern void log_gatt_sc_store_failure(void *entry);
 
 void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned param_4){
     unsigned char *puVar1 = (unsigned char*)find_sc_cfg_59bcc(param_1,param_2);
@@ -45,7 +46,7 @@ void sc_save(unsigned char param_1, unsigned param_2, unsigned param_3, unsigned
     {
         int iVar2 = bt_addr_le_is_bonded(*puVar1, puVar1+1);
         if (iVar2 == 0) return;
-        FUN_0005a0e8(puVar1);
+        log_gatt_sc_store_failure(puVar1);
         return;
     }
   L196:

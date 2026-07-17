@@ -2,7 +2,7 @@
  * public-name: FUN_000640e8
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   libc_fatal_error_and_abort               <= FUN_00076a94 @ 0x00076a94
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   flash_calc_prev_ate_offset               <= FUN_00084d64 @ 0x00084d64
  *   flash_write_padded_entry                 <= FUN_00084dea @ 0x00084dea
  * address symbols (name @ address):
@@ -13,14 +13,14 @@
  */
 /* Full reconstruction FUN_000640e8 @ 0x640e8, exact extent 60 bytes. */
 #include <stdint.h>
-extern uint64_t libc_fatal_error_and_abort(uintptr_t,uint32_t,uintptr_t,uintptr_t,uint32_t,uint32_t);
+extern uint64_t __assert_func(uintptr_t,uint32_t,uintptr_t,uintptr_t,uint32_t,uint32_t);
 extern uintptr_t flash_calc_prev_ate_offset(void);
 extern void flash_write_padded_entry(uintptr_t,uintptr_t,const uint8_t*,uint32_t);
 void FUN_000640e8(uintptr_t object,uint32_t low,uint32_t high){
  if(high>14){
-  uint64_t result=libc_fatal_error_and_abort(0x000f68d7u,0x182,0x000f693au,0x000f68c5u,object,low);
+  uint64_t result=__assert_func(0x000f68d7u,0x182,0x000f693au,0x000f68c5u,object,low);
   low=(uint32_t)(result>>32);high=0x000f693au;
-  while(low>14){result=libc_fatal_error_and_abort(0x000f68d7u,0x182,0x000f693au,0x000f691au,object,low);low=(uint32_t)(result>>32);}
+  while(low>14){result=__assert_func(0x000f68d7u,0x182,0x000f693au,0x000f691au,object,low);low=(uint32_t)(result>>32);}
  }
  uint8_t packed=(uint8_t)(low|(high<<4));
  flash_write_padded_entry(object,flash_calc_prev_ate_offset(),&packed,1);

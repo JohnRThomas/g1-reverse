@@ -1,29 +1,41 @@
 /* readable reconstruction; identity: FUN_0007d70a @ 0x0007d70a
  * public-name: projector_write_pixel_data
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   projector_write_pixel_data               <= FUN_0007d70a @ 0x0007d70a
- *   delay_ms                                 <= FUN_0007d772 @ 0x0007d772
- *   projector_send_cmd_immediate             <= FUN_0007d77c @ 0x0007d77c
- * address symbols (name @ address):
- *   rodata_f000                              @ 0x0000f000
  */
-/* Reconstructed FUN_0007d70a @ 0x7d70a  (parity: 165/300 trials, PROVEN) */
+/* Reconstructed projector_write_pixel_data @ 0x7d70a (raw FUN_0007d70a).
+ * Reviewed executable extent: 0x44 bytes, ending before FUN_0007d74e. */
+#include <stdint.h>
 
-extern void FUN_000476b4(unsigned short,unsigned short,int,int);
-extern void delay_ms(int);
-extern void projector_send_cmd_immediate(int);
+/* Custom projector transport, not an SDK routine.  Raw identity:
+ * FUN_000476b4 @ 0x000476b4. */
+extern void projector_transfer_pixel_chunk(uint16_t x, uint16_t y,
+                                           uint32_t transfer_value,
+                                           int32_t byte_count);
+extern void projector_send_cmd_immediate(uint8_t command);
+extern void delay_ms(uint32_t milliseconds);
 
-void projector_write_pixel_data(unsigned short param_1, short param_2, int param_3, int param_4)
+enum {
+    PROJECTOR_MAX_TRANSFER_BYTES = (0xf0u << 8),
+    PROJECTOR_ROWS_PER_TRANSFER = 0xc0,
+    PROJECTOR_DISPLAY_UPDATE_COMMAND = 0x97,
+};
+
+void projector_write_pixel_data(uint32_t x_argument, uint32_t first_row,
+                                uint32_t transfer_value, int32_t byte_count)
 {
-    unsigned short p1 = param_1;
-    unsigned short p2 = (unsigned short)param_2;
-    while (param_4 > 0xf000) {
-        FUN_000476b4(p1, p2, param_3, 0xf000);
-        p2 = (unsigned short)(p2 + 0xc0);
-        param_4 = param_4 - 0xf000;
+    uint16_t x = (uint16_t)x_argument;
+    uint16_t row = first_row;
+
+    /* The signed comparison is intentional.  Zero and negative counts still
+     * reach the transport once, exactly as in the firmware. */
+    while (byte_count > PROJECTOR_MAX_TRANSFER_BYTES) {
+        projector_transfer_pixel_chunk(x, row, transfer_value,
+                                       PROJECTOR_MAX_TRANSFER_BYTES);
+        row = (uint16_t)(row + PROJECTOR_ROWS_PER_TRANSFER);
+        byte_count -= PROJECTOR_MAX_TRANSFER_BYTES;
     }
-    FUN_000476b4(p1, p2, param_3, param_4);
-    projector_send_cmd_immediate(0x97);
+
+    projector_transfer_pixel_chunk(x, row, transfer_value, byte_count);
+    projector_send_cmd_immediate(PROJECTOR_DISPLAY_UPDATE_COMMAND);
     delay_ms(1);
 }

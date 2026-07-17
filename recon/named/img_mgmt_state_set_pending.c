@@ -6,6 +6,7 @@
  *   img_mgmt_state_set_pending               <= FUN_00051d8c @ 0x00051d8c
  *   boot_set_next                            <= FUN_000641e4 @ 0x000641e4
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   img_mgmt_get_next_boot_slot              <= FUN_000809b0 @ 0x000809b0
  * address symbols (name @ address):
  *   rodata_88208                             @ 0x00088208
  *   rodata_f2772                             @ 0x000f2772
@@ -20,7 +21,7 @@ extern unsigned int FUN_0005169c(unsigned int request);
 extern unsigned int FUN_00051c68(void);
 extern int boot_set_next(uint32_t handle, unsigned int is_selected, int mode);
 extern void nullsub_3(uint32_t handle);
-extern unsigned int FUN_000809b0(int group, uint8_t *state);
+extern unsigned int img_mgmt_get_next_boot_slot(int group, uint8_t *state);
 extern unsigned int FUN_00080a46(int group);
 extern int FUN_00080a4a(void);
 
@@ -42,7 +43,7 @@ int img_mgmt_state_set_pending(unsigned int request, int mode)
     int group = (int)selected >> 1;
     unsigned int primary = FUN_00080a46(group);
     uint8_t state = 0;
-    unsigned int secondary = FUN_000809b0(group, &state);
+    unsigned int secondary = img_mgmt_get_next_boot_slot(group, &state);
 
     if (mode == 0) {
         if (primary == request)

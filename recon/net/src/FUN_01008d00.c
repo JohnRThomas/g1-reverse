@@ -1,29 +1,53 @@
-/* net-core FUN_01008d00 @ 0x1008d00 */
+/* net-core FUN_01008d00 @ 0x01008d00
+ *
+ * Internal controller assertion endpoint.  The closed controller passes a
+ * compact numeric module id in r0 and the source line in r1.  Before invoking
+ * the registered two-argument fault handler, it expands the module id to the
+ * decimal "file" string expected by sdc_fault_handler_t.  The raw FUN name is
+ * retained as the address-stable back mapping.
+ */
 #include <stdint.h>
+#include <cmsis_gcc.h>
 
-typedef void (*panic_print_fn)(const char *);
+typedef void (*controller_fault_handler_t)(const char *module,
+                                           uint32_t line);
 
-__attribute__((noreturn)) void FUN_01008d00(uint32_t reason)
+__attribute__((noreturn))
+void FUN_01008d00(uint32_t module_id, uint32_t line)
 {
-    panic_print_fn print = *(panic_print_fn volatile *)0x21000a58U;
-    if (print != 0) {
-        char text[12];
-        unsigned length = 0;
-        uint32_t n = reason;
-        do {
-            ++length;
-            n /= 10U;
-        } while (n != 0);
-        text[length] = '\0';
-        n = reason;
-        while (length != 0) {
-            text[--length] = (char)('0' + n % 10U);
-            n /= 10U;
+    controller_fault_handler_t fault_handler =
+        *(controller_fault_handler_t volatile *)0x21000a58U;
+
+    __disable_irq();
+
+    if (fault_handler != 0) {
+        char module_text[12];
+        uint8_t digit_count = 0;
+        uint32_t quotient = module_id;
+
+        /* The controller's zero id intentionally produces an empty string.
+         * For nonzero ids, count first so digits can be emitted backwards. */
+        while (quotient != 0U) {
+            quotient /= 10U;
+            ++digit_count;
         }
-        print(text);
+        module_text[digit_count] = '\0';
+
+        quotient = module_id;
+        while (digit_count != 0U) {
+            --digit_count;
+            module_text[digit_count] =
+                (char)('0' + ((uint8_t)quotient % 10U));
+            quotient /= 10U;
+        }
+
+        fault_handler(module_text, line);
     }
 
-    volatile uint32_t *aircr = (volatile uint32_t *)0xe000ed0cU;
-    *aircr = 0x05fa0004U | (*aircr & 0x700U);
+    __DSB();
+    volatile uint32_t *const aircr = (volatile uint32_t *)0xe000ed0cU;
+    *aircr = UINT32_C(0x05fa0004) | (*aircr & UINT32_C(0x00000700));
+    __DSB();
+
     for (;;) { }
 }

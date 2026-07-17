@@ -150,11 +150,13 @@
   "0x01008d00": {
    "address": "0x01008d00",
    "raw_name": "FUN_01008d00",
-   "name": "FUN_01008d00",
-   "display_name": "FUN_01008d00",
-   "human": false,
-   "source": "recon/net/src/FUN_01008d00.c",
-   "aliases": []
+   "name": "sdc_assertion_fail",
+   "display_name": "sdc_assertion_fail",
+   "human": true,
+   "source": "function_name_overrides.json: Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00.",
+   "aliases": [
+    "FUN_01008d00"
+   ]
   },
   "0x01008d7c": {
    "address": "0x01008d7c",
@@ -342,7 +344,7 @@
    "name": "FUN_01009224",
    "display_name": "FUN_01009224",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100930c": {
@@ -360,7 +362,7 @@
    "name": "FUN_0100938c",
    "display_name": "FUN_0100938c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010093ac": {
@@ -378,7 +380,7 @@
    "name": "FUN_0100951c",
    "display_name": "FUN_0100951c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010095c0": {
@@ -387,7 +389,7 @@
    "name": "FUN_010095c0",
    "display_name": "FUN_010095c0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01009668": {
@@ -468,7 +470,7 @@
    "name": "FUN_01009dd8",
    "display_name": "FUN_01009dd8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01009e5c": {
@@ -477,7 +479,7 @@
    "name": "FUN_01009e5c",
    "display_name": "FUN_01009e5c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01009ea4": {
@@ -495,7 +497,7 @@
    "name": "FUN_01009f58",
    "display_name": "FUN_01009f58",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a048": {
@@ -504,7 +506,7 @@
    "name": "FUN_0100a048",
    "display_name": "FUN_0100a048",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a0dc": {
@@ -513,7 +515,7 @@
    "name": "FUN_0100a0dc",
    "display_name": "FUN_0100a0dc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a118": {
@@ -612,7 +614,7 @@
    "name": "FUN_0100a5c8",
    "display_name": "FUN_0100a5c8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a664": {
@@ -675,17 +677,19 @@
    "name": "FUN_0100a7cc",
    "display_name": "FUN_0100a7cc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a7e8": {
    "address": "0x0100a7e8",
    "raw_name": "FUN_0100a7e8",
-   "name": "FUN_0100a7e8",
-   "display_name": "FUN_0100a7e8",
-   "human": false,
-   "source": "recon/net/src/FUN_0100a7e8.c",
-   "aliases": []
+   "name": "sdc_ecb_run_blocking",
+   "display_name": "sdc_ecb_run_blocking",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NRF_ECB_NS register layout and 48-byte AES ECB callers identify the SDC-internal blocking hardware transaction runner. Raw identity remains FUN_0100a7e8.",
+   "aliases": [
+    "FUN_0100a7e8"
+   ]
   },
   "0x0100a8c4": {
    "address": "0x0100a8c4",
@@ -729,7 +733,7 @@
    "name": "FUN_0100a934",
    "display_name": "FUN_0100a934",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a954": {
@@ -747,7 +751,7 @@
    "name": "FUN_0100a960",
    "display_name": "FUN_0100a960",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100a984": {
@@ -792,7 +796,7 @@
    "name": "FUN_0100aa3c",
    "display_name": "FUN_0100aa3c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100aaac": {
@@ -801,7 +805,7 @@
    "name": "FUN_0100aaac",
    "display_name": "FUN_0100aaac",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ab14": {
@@ -810,7 +814,7 @@
    "name": "FUN_0100ab14",
    "display_name": "FUN_0100ab14",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100aba4": {
@@ -819,7 +823,7 @@
    "name": "FUN_0100aba4",
    "display_name": "FUN_0100aba4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ac34": {
@@ -846,7 +850,7 @@
    "name": "FUN_0100aeac",
    "display_name": "FUN_0100aeac",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100af3c": {
@@ -855,7 +859,7 @@
    "name": "FUN_0100af3c",
    "display_name": "FUN_0100af3c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100aff4": {
@@ -894,6 +898,15 @@
    "source": "recon/net/src/FUN_0100b180.c",
    "aliases": []
   },
+  "0x0100b594": {
+   "address": "0x0100b594",
+   "raw_name": "FUN_0100b594",
+   "name": "controller_radio_idle_event_finish",
+   "display_name": "controller_radio_idle_event_finish",
+   "human": true,
+   "source": "function_name_overrides.json: Event-one fallback when no active link is present. The body validates controller radio ownership, releases the active radio context when needed, and invokes the installed completion callback. Raw identity remains FUN_0100b594.",
+   "aliases": []
+  },
   "0x0100b608": {
    "address": "0x0100b608",
    "raw_name": "FUN_0100b608",
@@ -927,7 +940,7 @@
    "name": "FUN_0100b630",
    "display_name": "FUN_0100b630",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100b6b4": {
@@ -945,7 +958,7 @@
    "name": "FUN_0100bbec",
    "display_name": "FUN_0100bbec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100bc04": {
@@ -954,7 +967,7 @@
    "name": "FUN_0100bc04",
    "display_name": "FUN_0100bc04",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100bc1c": {
@@ -963,7 +976,7 @@
    "name": "FUN_0100bc1c",
    "display_name": "FUN_0100bc1c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100bc44": {
@@ -999,7 +1012,7 @@
    "name": "FUN_0100bfb8",
    "display_name": "FUN_0100bfb8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100c738": {
@@ -1026,7 +1039,7 @@
    "name": "FUN_0100ca68",
    "display_name": "FUN_0100ca68",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ca80": {
@@ -1035,7 +1048,7 @@
    "name": "FUN_0100ca80",
    "display_name": "FUN_0100ca80",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ca98": {
@@ -1053,7 +1066,7 @@
    "name": "FUN_0100cad4",
    "display_name": "FUN_0100cad4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100cb10": {
@@ -1089,7 +1102,7 @@
    "name": "FUN_0100cb4c",
    "display_name": "FUN_0100cb4c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100cb70": {
@@ -1116,7 +1129,7 @@
    "name": "FUN_0100cbe4",
    "display_name": "FUN_0100cbe4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100cc00": {
@@ -1143,7 +1156,7 @@
    "name": "FUN_0100cfa4",
    "display_name": "FUN_0100cfa4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100cfc0": {
@@ -1152,7 +1165,7 @@
    "name": "FUN_0100cfc0",
    "display_name": "FUN_0100cfc0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100cff4": {
@@ -1179,7 +1192,7 @@
    "name": "FUN_0100d2c8",
    "display_name": "FUN_0100d2c8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d3a0": {
@@ -1188,7 +1201,7 @@
    "name": "FUN_0100d3a0",
    "display_name": "FUN_0100d3a0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d3c0": {
@@ -1203,11 +1216,13 @@
   "0x0100d4d0": {
    "address": "0x0100d4d0",
    "raw_name": "FUN_0100d4d0",
-   "name": "FUN_0100d4d0",
-   "display_name": "FUN_0100d4d0",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "controller_timing_request_schedule",
+   "display_name": "controller_timing_request_schedule",
+   "human": true,
+   "source": "function_name_overrides.json: Consumes the timing request plus interval, submits it, and normalizes the resulting target time to an interval multiple. Raw identity remains FUN_0100d4d0.",
+   "aliases": [
+    "FUN_0100d4d0"
+   ]
   },
   "0x0100d538": {
    "address": "0x0100d538",
@@ -1215,7 +1230,7 @@
    "name": "FUN_0100d538",
    "display_name": "FUN_0100d538",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d584": {
@@ -1230,11 +1245,13 @@
   "0x0100d58c": {
    "address": "0x0100d58c",
    "raw_name": "FUN_0100d58c",
-   "name": "FUN_0100d58c",
-   "display_name": "FUN_0100d58c",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_phy_timing_offset_get",
+   "display_name": "sdc_phy_timing_offset_get",
+   "human": true,
+   "source": "function_name_overrides.json: The connection-event timing planner passes its PHY/config bytes and adds the returned signed correction before timing scaling. Raw identity remains FUN_0100d58c.",
+   "aliases": [
+    "FUN_0100d58c"
+   ]
   },
   "0x0100d5c8": {
    "address": "0x0100d5c8",
@@ -1260,7 +1277,7 @@
    "name": "FUN_0100d600",
    "display_name": "FUN_0100d600",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d624": {
@@ -1269,7 +1286,7 @@
    "name": "FUN_0100d624",
    "display_name": "FUN_0100d624",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d64c": {
@@ -1287,7 +1304,7 @@
    "name": "FUN_0100d674",
    "display_name": "FUN_0100d674",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d688": {
@@ -1311,11 +1328,13 @@
   "0x0100d6e8": {
    "address": "0x0100d6e8",
    "raw_name": "FUN_0100d6e8",
-   "name": "FUN_0100d6e8",
-   "display_name": "FUN_0100d6e8",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_conn_recovery_window_update",
+   "display_name": "sdc_conn_recovery_window_update",
+   "human": true,
+   "source": "function_name_overrides.json: Called only by the recovery-mode arm with interval timing, the published controller timing word, and the local window accumulator; its byte result becomes recovery-pending state. Raw identity remains FUN_0100d6e8.",
+   "aliases": [
+    "FUN_0100d6e8"
+   ]
   },
   "0x0100d738": {
    "address": "0x0100d738",
@@ -1329,11 +1348,13 @@
   "0x0100d760": {
    "address": "0x0100d760",
    "raw_name": "FUN_0100d760",
-   "name": "FUN_0100d760",
-   "display_name": "FUN_0100d760",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_llcp_get_active_link_index",
+   "display_name": "sdc_llcp_get_active_link_index",
+   "human": true,
+   "source": "function_name_overrides.json: The LLCP receive dispatcher stores this byte as the active controller link index before decoding each control PDU. Raw identity remains FUN_0100d760.",
+   "aliases": [
+    "FUN_0100d760"
+   ]
   },
   "0x0100d7ac": {
    "address": "0x0100d7ac",
@@ -1359,7 +1380,7 @@
    "name": "FUN_0100d808",
    "display_name": "FUN_0100d808",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d840": {
@@ -1368,7 +1389,7 @@
    "name": "FUN_0100d840",
    "display_name": "FUN_0100d840",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100d878": {
@@ -1431,7 +1452,7 @@
    "name": "FUN_0100e038",
    "display_name": "FUN_0100e038",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e04c": {
@@ -1467,7 +1488,7 @@
    "name": "FUN_0100e06c",
    "display_name": "FUN_0100e06c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e08c": {
@@ -1476,7 +1497,7 @@
    "name": "FUN_0100e08c",
    "display_name": "FUN_0100e08c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e0ac": {
@@ -1485,7 +1506,7 @@
    "name": "FUN_0100e0ac",
    "display_name": "FUN_0100e0ac",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e164": {
@@ -1494,7 +1515,7 @@
    "name": "FUN_0100e164",
    "display_name": "FUN_0100e164",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e294": {
@@ -1503,7 +1524,7 @@
    "name": "FUN_0100e294",
    "display_name": "FUN_0100e294",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e410": {
@@ -1512,7 +1533,7 @@
    "name": "FUN_0100e410",
    "display_name": "FUN_0100e410",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e448": {
@@ -1521,7 +1542,7 @@
    "name": "FUN_0100e448",
    "display_name": "FUN_0100e448",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e5d8": {
@@ -1539,7 +1560,7 @@
    "name": "FUN_0100e5dc",
    "display_name": "FUN_0100e5dc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e5ec": {
@@ -1557,7 +1578,7 @@
    "name": "FUN_0100e5f4",
    "display_name": "FUN_0100e5f4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e608": {
@@ -1575,7 +1596,7 @@
    "name": "FUN_0100e610",
    "display_name": "FUN_0100e610",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e634": {
@@ -1584,7 +1605,7 @@
    "name": "FUN_0100e634",
    "display_name": "FUN_0100e634",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e65c": {
@@ -1593,7 +1614,7 @@
    "name": "FUN_0100e65c",
    "display_name": "FUN_0100e65c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e67c": {
@@ -1638,7 +1659,7 @@
    "name": "FUN_0100e69c",
    "display_name": "FUN_0100e69c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e708": {
@@ -1827,7 +1848,7 @@
    "name": "FUN_0100e7e0",
    "display_name": "FUN_0100e7e0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e808": {
@@ -1836,7 +1857,7 @@
    "name": "FUN_0100e808",
    "display_name": "FUN_0100e808",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e83c": {
@@ -1845,7 +1866,7 @@
    "name": "FUN_0100e83c",
    "display_name": "FUN_0100e83c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e87c": {
@@ -1854,7 +1875,7 @@
    "name": "FUN_0100e87c",
    "display_name": "FUN_0100e87c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e8ac": {
@@ -1917,7 +1938,7 @@
    "name": "FUN_0100e8c8",
    "display_name": "FUN_0100e8c8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e8e8": {
@@ -1944,7 +1965,7 @@
    "name": "FUN_0100e8f8",
    "display_name": "FUN_0100e8f8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100e924": {
@@ -2031,11 +2052,13 @@
   "0x0100ec88": {
    "address": "0x0100ec88",
    "raw_name": "FUN_0100ec88",
-   "name": "FUN_0100ec88",
-   "display_name": "FUN_0100ec88",
-   "human": false,
-   "source": "recon/net/src/FUN_0100ec88.c",
-   "aliases": []
+   "name": "controller_packet_build_next",
+   "display_name": "controller_packet_build_next",
+   "human": true,
+   "source": "function_name_overrides.json: The sole caller repeatedly consumes return classes 0/2/4/8 and passes the produced packet to controller encoders; this function dequeues typed work nodes and fills that packet. Raw identity remains FUN_0100ec88.",
+   "aliases": [
+    "FUN_0100ec88"
+   ]
   },
   "0x0100ef48": {
    "address": "0x0100ef48",
@@ -2043,7 +2066,7 @@
    "name": "FUN_0100ef48",
    "display_name": "FUN_0100ef48",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ef88": {
@@ -2052,7 +2075,7 @@
    "name": "FUN_0100ef88",
    "display_name": "FUN_0100ef88",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100efc8": {
@@ -2061,7 +2084,7 @@
    "name": "FUN_0100efc8",
    "display_name": "FUN_0100efc8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f004": {
@@ -2070,7 +2093,7 @@
    "name": "FUN_0100f004",
    "display_name": "FUN_0100f004",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f0a4": {
@@ -2079,17 +2102,19 @@
    "name": "FUN_0100f0a4",
    "display_name": "FUN_0100f0a4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f0fc": {
    "address": "0x0100f0fc",
    "raw_name": "FUN_0100f0fc",
-   "name": "FUN_0100f0fc",
-   "display_name": "FUN_0100f0fc",
-   "human": false,
-   "source": "recon/net/src/FUN_0100f0fc.c",
-   "aliases": []
+   "name": "sdc_radio_context_fixed_time_get",
+   "display_name": "sdc_radio_context_fixed_time_get",
+   "human": true,
+   "source": "function_name_overrides.json: Consumes the radio subcontext at connection+0x30 and contributes its fixed duration to the prepared event budget. Raw identity remains FUN_0100f0fc.",
+   "aliases": [
+    "FUN_0100f0fc"
+   ]
   },
   "0x0100f100": {
    "address": "0x0100f100",
@@ -2106,7 +2131,7 @@
    "name": "FUN_0100f110",
    "display_name": "FUN_0100f110",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f198": {
@@ -2115,7 +2140,7 @@
    "name": "FUN_0100f198",
    "display_name": "FUN_0100f198",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f1a8": {
@@ -2133,7 +2158,7 @@
    "name": "FUN_0100f1f8",
    "display_name": "FUN_0100f1f8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f2d0": {
@@ -2142,7 +2167,7 @@
    "name": "FUN_0100f2d0",
    "display_name": "FUN_0100f2d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f300": {
@@ -2151,7 +2176,7 @@
    "name": "FUN_0100f300",
    "display_name": "FUN_0100f300",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f368": {
@@ -2160,17 +2185,19 @@
    "name": "FUN_0100f368",
    "display_name": "FUN_0100f368",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f48c": {
    "address": "0x0100f48c",
    "raw_name": "FUN_0100f48c",
-   "name": "FUN_0100f48c",
-   "display_name": "FUN_0100f48c",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_conn_radio_overhead_set",
+   "display_name": "sdc_conn_radio_overhead_set",
+   "human": true,
+   "source": "function_name_overrides.json: The initial and established timing arms pass the connection context plus a PHY-derived fixed overhead before publishing their event window. Raw identity remains FUN_0100f48c.",
+   "aliases": [
+    "FUN_0100f48c"
+   ]
   },
   "0x0100f5b4": {
    "address": "0x0100f5b4",
@@ -2178,7 +2205,7 @@
    "name": "FUN_0100f5b4",
    "display_name": "FUN_0100f5b4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f5cc": {
@@ -2202,11 +2229,13 @@
   "0x0100f63c": {
    "address": "0x0100f63c",
    "raw_name": "FUN_0100f63c",
-   "name": "FUN_0100f63c",
-   "display_name": "FUN_0100f63c",
-   "human": false,
-   "source": "recon/net/src/FUN_0100f63c.c",
-   "aliases": []
+   "name": "sdc_controller_random_get",
+   "display_name": "sdc_controller_random_get",
+   "human": true,
+   "source": "function_name_overrides.json: Zero-argument controller PRNG helper; this caller masks its low three bits to choose the next timing-retry divisor. Raw identity remains FUN_0100f63c.",
+   "aliases": [
+    "FUN_0100f63c"
+   ]
   },
   "0x0100f66c": {
    "address": "0x0100f66c",
@@ -2220,11 +2249,13 @@
   "0x0100f69c": {
    "address": "0x0100f69c",
    "raw_name": "FUN_0100f69c",
-   "name": "FUN_0100f69c",
-   "display_name": "FUN_0100f69c",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "signed_drift_clamp",
+   "display_name": "signed_drift_clamp",
+   "human": true,
+   "source": "function_name_overrides.json: Leaf clamps a signed drift value to the symmetric magnitude supplied in r1. Raw identity remains FUN_0100f69c.",
+   "aliases": [
+    "FUN_0100f69c"
+   ]
   },
   "0x0100f6b0": {
    "address": "0x0100f6b0",
@@ -2232,7 +2263,7 @@
    "name": "FUN_0100f6b0",
    "display_name": "FUN_0100f6b0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f6e8": {
@@ -2241,7 +2272,7 @@
    "name": "FUN_0100f6e8",
    "display_name": "FUN_0100f6e8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f70c": {
@@ -2250,7 +2281,7 @@
    "name": "FUN_0100f70c",
    "display_name": "FUN_0100f70c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f748": {
@@ -2259,7 +2290,7 @@
    "name": "FUN_0100f748",
    "display_name": "FUN_0100f748",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f784": {
@@ -2268,7 +2299,7 @@
    "name": "FUN_0100f784",
    "display_name": "FUN_0100f784",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f798": {
@@ -2277,7 +2308,7 @@
    "name": "FUN_0100f798",
    "display_name": "FUN_0100f798",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f7b0": {
@@ -2286,7 +2317,7 @@
    "name": "FUN_0100f7b0",
    "display_name": "FUN_0100f7b0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f7d0": {
@@ -2304,7 +2335,7 @@
    "name": "FUN_0100f7e0",
    "display_name": "FUN_0100f7e0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f800": {
@@ -2313,7 +2344,7 @@
    "name": "FUN_0100f800",
    "display_name": "FUN_0100f800",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f834": {
@@ -2322,7 +2353,7 @@
    "name": "FUN_0100f834",
    "display_name": "FUN_0100f834",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f86c": {
@@ -2331,7 +2362,7 @@
    "name": "FUN_0100f86c",
    "display_name": "FUN_0100f86c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f95c": {
@@ -2340,7 +2371,7 @@
    "name": "FUN_0100f95c",
    "display_name": "FUN_0100f95c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100f9fc": {
@@ -2349,7 +2380,7 @@
    "name": "FUN_0100f9fc",
    "display_name": "FUN_0100f9fc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fac0": {
@@ -2358,7 +2389,7 @@
    "name": "FUN_0100fac0",
    "display_name": "FUN_0100fac0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fae4": {
@@ -2367,7 +2398,7 @@
    "name": "FUN_0100fae4",
    "display_name": "FUN_0100fae4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fb04": {
@@ -2376,7 +2407,7 @@
    "name": "FUN_0100fb04",
    "display_name": "FUN_0100fb04",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fbbc": {
@@ -2385,7 +2416,7 @@
    "name": "FUN_0100fbbc",
    "display_name": "FUN_0100fbbc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fcdc": {
@@ -2394,7 +2425,7 @@
    "name": "FUN_0100fcdc",
    "display_name": "FUN_0100fcdc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100fd1c": {
@@ -2403,7 +2434,7 @@
    "name": "FUN_0100fd1c",
    "display_name": "FUN_0100fd1c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0100ff4a": {
@@ -2421,7 +2452,7 @@
    "name": "FUN_010100f4",
    "display_name": "FUN_010100f4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010110": {
@@ -2430,7 +2461,7 @@
    "name": "FUN_01010110",
    "display_name": "FUN_01010110",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010148": {
@@ -2439,7 +2470,7 @@
    "name": "FUN_01010148",
    "display_name": "FUN_01010148",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010101dc": {
@@ -2448,7 +2479,7 @@
    "name": "FUN_010101dc",
    "display_name": "FUN_010101dc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010200": {
@@ -2457,7 +2488,7 @@
    "name": "FUN_01010200",
    "display_name": "FUN_01010200",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010274": {
@@ -2466,7 +2497,7 @@
    "name": "FUN_01010274",
    "display_name": "FUN_01010274",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010102c4": {
@@ -2475,7 +2506,7 @@
    "name": "FUN_010102c4",
    "display_name": "FUN_010102c4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010470": {
@@ -2538,7 +2569,7 @@
    "name": "FUN_01010890",
    "display_name": "FUN_01010890",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010108b8": {
@@ -2547,7 +2578,7 @@
    "name": "FUN_010108b8",
    "display_name": "FUN_010108b8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010990": {
@@ -2565,7 +2596,7 @@
    "name": "FUN_010109ec",
    "display_name": "FUN_010109ec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010f34": {
@@ -2574,7 +2605,7 @@
    "name": "FUN_01010f34",
    "display_name": "FUN_01010f34",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01010ff0": {
@@ -2592,7 +2623,7 @@
    "name": "FUN_01011188",
    "display_name": "FUN_01011188",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101124c": {
@@ -2619,7 +2650,7 @@
    "name": "FUN_01011540",
    "display_name": "FUN_01011540",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010119ac": {
@@ -2646,7 +2677,7 @@
    "name": "FUN_01012150",
    "display_name": "FUN_01012150",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012178": {
@@ -2655,7 +2686,7 @@
    "name": "FUN_01012178",
    "display_name": "FUN_01012178",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010121e4": {
@@ -2664,7 +2695,7 @@
    "name": "FUN_010121e4",
    "display_name": "FUN_010121e4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010122a8": {
@@ -2682,7 +2713,7 @@
    "name": "FUN_010122b4",
    "display_name": "FUN_010122b4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010122fc": {
@@ -2691,7 +2722,7 @@
    "name": "FUN_010122fc",
    "display_name": "FUN_010122fc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012308": {
@@ -2700,7 +2731,7 @@
    "name": "FUN_01012308",
    "display_name": "FUN_01012308",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101232c": {
@@ -2727,7 +2758,7 @@
    "name": "FUN_0101233c",
    "display_name": "FUN_0101233c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012424": {
@@ -2736,7 +2767,7 @@
    "name": "FUN_01012424",
    "display_name": "FUN_01012424",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012438": {
@@ -2754,7 +2785,7 @@
    "name": "FUN_01012644",
    "display_name": "FUN_01012644",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012668": {
@@ -2763,7 +2794,7 @@
    "name": "FUN_01012668",
    "display_name": "FUN_01012668",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012694": {
@@ -2772,7 +2803,7 @@
    "name": "FUN_01012694",
    "display_name": "FUN_01012694",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010126b0": {
@@ -2808,7 +2839,7 @@
    "name": "FUN_010126c8",
    "display_name": "FUN_010126c8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010126e8": {
@@ -2853,7 +2884,7 @@
    "name": "FUN_01012714",
    "display_name": "FUN_01012714",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101272c": {
@@ -2934,7 +2965,7 @@
    "name": "FUN_010129b8",
    "display_name": "FUN_010129b8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010129e8": {
@@ -2952,7 +2983,7 @@
    "name": "FUN_010129f4",
    "display_name": "FUN_010129f4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012ad4": {
@@ -2961,7 +2992,7 @@
    "name": "FUN_01012ad4",
    "display_name": "FUN_01012ad4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012b24": {
@@ -2970,7 +3001,7 @@
    "name": "FUN_01012b24",
    "display_name": "FUN_01012b24",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012b48": {
@@ -2988,7 +3019,7 @@
    "name": "FUN_01012b50",
    "display_name": "FUN_01012b50",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012b98": {
@@ -3012,11 +3043,13 @@
   "0x01012c08": {
    "address": "0x01012c08",
    "raw_name": "FUN_01012c08",
-   "name": "FUN_01012c08",
-   "display_name": "FUN_01012c08",
-   "human": false,
-   "source": "recon/net/src/FUN_01012c08.c",
-   "aliases": []
+   "name": "sdc_conn_timing_fault",
+   "display_name": "sdc_conn_timing_fault",
+   "human": true,
+   "source": "function_name_overrides.json: No-return timing fault helper reached immediately before the planner's source-line 0x571 assertion tail. Raw identity remains FUN_01012c08.",
+   "aliases": [
+    "FUN_01012c08"
+   ]
   },
   "0x01012c14": {
    "address": "0x01012c14",
@@ -3024,7 +3057,7 @@
    "name": "FUN_01012c14",
    "display_name": "FUN_01012c14",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01012c84": {
@@ -3039,11 +3072,13 @@
   "0x01012f18": {
    "address": "0x01012f18",
    "raw_name": "FUN_01012f18",
-   "name": "FUN_01012f18",
-   "display_name": "FUN_01012f18",
-   "human": false,
-   "source": "recon/net/src/FUN_01012f18.c",
-   "aliases": []
+   "name": "sdc_conn_event_timing_prepare",
+   "display_name": "sdc_conn_event_timing_prepare",
+   "human": true,
+   "source": "function_name_overrides.json: Exact 0x738-byte NCS 2.5.1 SDC archive match (obfuscated symbol sym_RGPKJ26QV7SQW5X3WYCPY4K6NKRUE6OJNP7M2PA, normalized Thumb opcode ratio 0.997). Four timing modes prepare and publish a connection-event window; return one supplies an event skip count. Raw identity remains FUN_01012f18.",
+   "aliases": [
+    "FUN_01012f18"
+   ]
   },
   "0x01013650": {
    "address": "0x01013650",
@@ -3060,7 +3095,7 @@
    "name": "FUN_010139a4",
    "display_name": "FUN_010139a4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013a40": {
@@ -3078,7 +3113,7 @@
    "name": "FUN_01013a48",
    "display_name": "FUN_01013a48",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013b4c": {
@@ -3096,7 +3131,7 @@
    "name": "FUN_01013cd8",
    "display_name": "FUN_01013cd8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013d28": {
@@ -3114,7 +3149,7 @@
    "name": "FUN_01013d34",
    "display_name": "FUN_01013d34",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013d64": {
@@ -3132,7 +3167,7 @@
    "name": "FUN_01013d90",
    "display_name": "FUN_01013d90",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013da8": {
@@ -3141,7 +3176,7 @@
    "name": "FUN_01013da8",
    "display_name": "FUN_01013da8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01013e98": {
@@ -3159,7 +3194,7 @@
    "name": "FUN_010140ec",
    "display_name": "FUN_010140ec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010141d4": {
@@ -3204,7 +3239,7 @@
    "name": "FUN_0101481c",
    "display_name": "FUN_0101481c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101483c": {
@@ -3213,7 +3248,7 @@
    "name": "FUN_0101483c",
    "display_name": "FUN_0101483c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01014884": {
@@ -3234,6 +3269,15 @@
    "source": "recon/net/src/FUN_01014a50.c",
    "aliases": []
   },
+  "0x01014b18": {
+   "address": "0x01014b18",
+   "raw_name": "FUN_01014b18",
+   "name": "sdc_conn_event_process",
+   "display_name": "sdc_conn_event_process",
+   "human": true,
+   "source": "function_name_overrides.json: Large connection-event processor selected by controller_radio_event1_dispatch when owner+0x2ee marks an active link; it consumes the current connection record and event flags. Raw identity remains FUN_01014b18.",
+   "aliases": []
+  },
   "0x01015ecc": {
    "address": "0x01015ecc",
    "raw_name": "FUN_01015ecc",
@@ -3246,20 +3290,24 @@
   "0x01016144": {
    "address": "0x01016144",
    "raw_name": "FUN_01016144",
-   "name": "FUN_01016144",
-   "display_name": "FUN_01016144",
-   "human": false,
-   "source": "recon/net/src/FUN_01016144.c",
-   "aliases": []
+   "name": "controller_radio_event1_dispatch",
+   "display_name": "controller_radio_event1_dispatch",
+   "human": true,
+   "source": "function_name_overrides.json: First-class tail target of FUN_01013650 event case one. It reads the active-link byte at owner+0x2ee, forwards context/event to the idle-radio completion path when clear, or dispatches the connection-event processor with (0,0) when set. Raw identity remains FUN_01016144.",
+   "aliases": [
+    "FUN_01016144"
+   ]
   },
   "0x01016160": {
    "address": "0x01016160",
    "raw_name": "FUN_01016160",
-   "name": "FUN_01016160",
-   "display_name": "FUN_01016160",
-   "human": false,
-   "source": "recon/net/src/FUN_01016160.c",
-   "aliases": []
+   "name": "sdc_conn_timing_guard_enabled",
+   "display_name": "sdc_conn_timing_guard_enabled",
+   "human": true,
+   "source": "function_name_overrides.json: Boolean feature gate that adds the controller's fixed 30-unit guard to the prepared connection-event budget. Raw identity remains FUN_01016160.",
+   "aliases": [
+    "FUN_01016160"
+   ]
   },
   "0x01016170": {
    "address": "0x01016170",
@@ -3267,17 +3315,19 @@
    "name": "FUN_01016170",
    "display_name": "FUN_01016170",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101618c": {
    "address": "0x0101618c",
    "raw_name": "FUN_0101618c",
-   "name": "FUN_0101618c",
-   "display_name": "FUN_0101618c",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_conn_recovery_state_restore",
+   "display_name": "sdc_conn_recovery_state_restore",
+   "human": true,
+   "source": "function_name_overrides.json: Called in the event-counter recovery path between restoring saved timing fields and switching the planner from recovery to established mode. Raw identity remains FUN_0101618c.",
+   "aliases": [
+    "FUN_0101618c"
+   ]
   },
   "0x010161e8": {
    "address": "0x010161e8",
@@ -3303,7 +3353,7 @@
    "name": "FUN_01016250",
    "display_name": "FUN_01016250",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010162e0": {
@@ -3321,7 +3371,7 @@
    "name": "FUN_01016430",
    "display_name": "FUN_01016430",
    "human": false,
-   "source": "recon/net/src/FUN_01016430.c",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01016628": {
@@ -3348,17 +3398,19 @@
    "name": "FUN_01016828",
    "display_name": "FUN_01016828",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010168e4": {
    "address": "0x010168e4",
    "raw_name": "FUN_010168e4",
-   "name": "FUN_010168e4",
-   "display_name": "FUN_010168e4",
-   "human": false,
-   "source": "recon/net/src/FUN_010168e4.c",
-   "aliases": []
+   "name": "sdc_llcp_handle_control_opcode",
+   "display_name": "sdc_llcp_handle_control_opcode",
+   "human": true,
+   "source": "function_name_overrides.json: Called for ordinary admitted control opcodes 0,1,2,6 with the decoded LLCP record and opcode. Raw identity remains FUN_010168e4.",
+   "aliases": [
+    "FUN_010168e4"
+   ]
   },
   "0x01016cc8": {
    "address": "0x01016cc8",
@@ -3384,7 +3436,7 @@
    "name": "FUN_01017018",
    "display_name": "FUN_01017018",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101709c": {
@@ -3402,7 +3454,7 @@
    "name": "FUN_01017154",
    "display_name": "FUN_01017154",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010171c8": {
@@ -3426,11 +3478,13 @@
   "0x0101746c": {
    "address": "0x0101746c",
    "raw_name": "FUN_0101746c",
-   "name": "FUN_0101746c",
-   "display_name": "FUN_0101746c",
-   "human": false,
-   "source": "recon/net/src/FUN_0101746c.c",
-   "aliases": []
+   "name": "sdc_llcp_apply_rx_transition",
+   "display_name": "sdc_llcp_apply_rx_transition",
+   "human": true,
+   "source": "function_name_overrides.json: The receive dispatcher passes the decoded LLCP record, opcode and flags before state-specific handling; related controller paths use the same transition helper. Raw identity remains FUN_0101746c.",
+   "aliases": [
+    "FUN_0101746c"
+   ]
   },
   "0x01017658": {
    "address": "0x01017658",
@@ -3453,20 +3507,24 @@
   "0x010183e0": {
    "address": "0x010183e0",
    "raw_name": "FUN_010183e0",
-   "name": "FUN_010183e0",
-   "display_name": "FUN_010183e0",
-   "human": false,
-   "source": "recon/net/src/FUN_010183e0.c",
-   "aliases": []
+   "name": "sdc_llcp_handle_unknown_response",
+   "display_name": "sdc_llcp_handle_unknown_response",
+   "human": true,
+   "source": "function_name_overrides.json: The sole caller selects it from the LL_UNKNOWN_RSP path after decoding and state admission. Raw identity remains FUN_010183e0.",
+   "aliases": [
+    "FUN_010183e0"
+   ]
   },
   "0x01018690": {
    "address": "0x01018690",
    "raw_name": "FUN_01018690",
-   "name": "FUN_01018690",
-   "display_name": "FUN_01018690",
-   "human": false,
-   "source": "recon/net/src/FUN_01018690.c",
-   "aliases": []
+   "name": "sdc_llcp_process_rx_control_pdu",
+   "display_name": "sdc_llcp_process_rx_control_pdu",
+   "human": true,
+   "source": "function_name_overrides.json: The PDU low-nibble dispatch and opcode 7 special case identify BLE LL_UNKNOWN_RSP processing; complete 0x150-byte body matches the NCS 2.5.1 obfuscated SoftDevice Controller symbol sym_D3OF4UKYCAB3P5XZOK7JC3PV7TCXDH2CWS4GEEY at opcode ratio 0.939. Raw identity remains FUN_01018690.",
+   "aliases": [
+    "FUN_01018690"
+   ]
   },
   "0x010187e0": {
    "address": "0x010187e0",
@@ -3528,7 +3586,7 @@
    "name": "FUN_01019088",
    "display_name": "FUN_01019088",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010190c4": {
@@ -3570,11 +3628,13 @@
   "0x01019204": {
    "address": "0x01019204",
    "raw_name": "FUN_01019204",
-   "name": "FUN_01019204",
-   "display_name": "FUN_01019204",
-   "human": false,
-   "source": "recon/net/src/FUN_01019204.c",
-   "aliases": []
+   "name": "controller_radio_state_get",
+   "display_name": "controller_radio_state_get",
+   "human": true,
+   "source": "function_name_overrides.json: Leaf accessor returns the fixed controller radio-state record at 0x21001048; snapshot builder and event dispatcher consume its PHY/status bytes. Raw identity remains FUN_01019204.",
+   "aliases": [
+    "FUN_01019204"
+   ]
   },
   "0x0101920c": {
    "address": "0x0101920c",
@@ -3582,7 +3642,7 @@
    "name": "FUN_0101920c",
    "display_name": "FUN_0101920c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01019254": {
@@ -3600,7 +3660,7 @@
    "name": "FUN_01019560",
    "display_name": "FUN_01019560",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01019588": {
@@ -3609,7 +3669,7 @@
    "name": "FUN_01019588",
    "display_name": "FUN_01019588",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010195f8": {
@@ -3627,7 +3687,7 @@
    "name": "FUN_01019660",
    "display_name": "FUN_01019660",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010196e0": {
@@ -3663,7 +3723,7 @@
    "name": "FUN_010199cc",
    "display_name": "FUN_010199cc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010199f4": {
@@ -3672,7 +3732,7 @@
    "name": "FUN_010199f4",
    "display_name": "FUN_010199f4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01019aa0": {
@@ -3690,7 +3750,7 @@
    "name": "FUN_01019eb4",
    "display_name": "FUN_01019eb4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01019ef8": {
@@ -3699,7 +3759,7 @@
    "name": "FUN_01019ef8",
    "display_name": "FUN_01019ef8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01019f34": {
@@ -3717,35 +3777,41 @@
    "name": "FUN_01019f9c",
    "display_name": "FUN_01019f9c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101a070": {
    "address": "0x0101a070",
    "raw_name": "FUN_0101a070",
-   "name": "FUN_0101a070",
-   "display_name": "FUN_0101a070",
-   "human": false,
-   "source": "recon/net/src/FUN_0101a070.c",
-   "aliases": []
+   "name": "sdc_llcp_decode_control_pdu",
+   "display_name": "sdc_llcp_decode_control_pdu",
+   "human": true,
+   "source": "function_name_overrides.json: All callers pass an on-air LL control PDU and a stack output record subsequently inspected by opcode/response fields. Raw identity remains FUN_0101a070.",
+   "aliases": [
+    "FUN_0101a070"
+   ]
   },
   "0x0101a0e8": {
    "address": "0x0101a0e8",
    "raw_name": "FUN_0101a0e8",
-   "name": "FUN_0101a0e8",
-   "display_name": "FUN_0101a0e8",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "radio_transition_overhead_get",
+   "display_name": "radio_transition_overhead_get",
+   "human": true,
+   "source": "function_name_overrides.json: Returns the selected radio transition overhead used in request descriptors and final snapshots. Raw identity remains FUN_0101a0e8.",
+   "aliases": [
+    "FUN_0101a0e8"
+   ]
   },
   "0x0101a130": {
    "address": "0x0101a130",
    "raw_name": "FUN_0101a130",
-   "name": "FUN_0101a130",
-   "display_name": "FUN_0101a130",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "radio_slot_margin_get",
+   "display_name": "radio_slot_margin_get",
+   "human": true,
+   "source": "function_name_overrides.json: Returns the controller slot margin selected from radio mode/feature state; snapshot code adds it once per scheduled slot. Raw identity remains FUN_0101a130.",
+   "aliases": [
+    "FUN_0101a130"
+   ]
   },
   "0x0101a184": {
    "address": "0x0101a184",
@@ -3753,7 +3819,7 @@
    "name": "FUN_0101a184",
    "display_name": "FUN_0101a184",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101a218": {
@@ -3762,7 +3828,7 @@
    "name": "FUN_0101a218",
    "display_name": "FUN_0101a218",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101a2e0": {
@@ -3777,11 +3843,13 @@
   "0x0101a38c": {
    "address": "0x0101a38c",
    "raw_name": "FUN_0101a38c",
-   "name": "FUN_0101a38c",
-   "display_name": "FUN_0101a38c",
-   "human": false,
-   "source": "recon/net/src/FUN_0101a38c.c",
-   "aliases": []
+   "name": "controller_timing_snapshot_build",
+   "display_name": "controller_timing_snapshot_build",
+   "human": true,
+   "source": "function_name_overrides.json: Both callers provide a 24-byte current-radio-state output consumed by the controller scheduler. The complete body advances interval slots, selects BLE PHY airtime for encoded PHY values 1/2/4/8, maintains the schedule-node list, applies drift correction, and emits the timing snapshot. Raw identity remains FUN_0101a38c.",
+   "aliases": [
+    "FUN_0101a38c"
+   ]
   },
   "0x0101ab20": {
    "address": "0x0101ab20",
@@ -3807,7 +3875,7 @@
    "name": "FUN_0101ae50",
    "display_name": "FUN_0101ae50",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101ae9c": {
@@ -3816,7 +3884,7 @@
    "name": "FUN_0101ae9c",
    "display_name": "FUN_0101ae9c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101aee0": {
@@ -3834,7 +3902,7 @@
    "name": "FUN_0101afa8",
    "display_name": "FUN_0101afa8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101b088": {
@@ -3897,7 +3965,7 @@
    "name": "FUN_0101b7e4",
    "display_name": "FUN_0101b7e4",
    "human": false,
-   "source": "recon/net/src/FUN_0101b7e4.c",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101ba58": {
@@ -3933,7 +4001,7 @@
    "name": "FUN_0101bbc8",
    "display_name": "FUN_0101bbc8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101bc3c": {
@@ -3969,7 +4037,7 @@
    "name": "FUN_0101c150",
    "display_name": "FUN_0101c150",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101c420": {
@@ -3987,7 +4055,7 @@
    "name": "FUN_0101c6d0",
    "display_name": "FUN_0101c6d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101d404": {
@@ -4005,7 +4073,7 @@
    "name": "FUN_0101d8e8",
    "display_name": "FUN_0101d8e8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101da18": {
@@ -4041,7 +4109,7 @@
    "name": "FUN_0101dc50",
    "display_name": "FUN_0101dc50",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101dcec": {
@@ -4050,7 +4118,7 @@
    "name": "FUN_0101dcec",
    "display_name": "FUN_0101dcec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101dd0c": {
@@ -4065,11 +4133,13 @@
   "0x0101dd48": {
    "address": "0x0101dd48",
    "raw_name": "FUN_0101dd48",
-   "name": "FUN_0101dd48",
-   "display_name": "FUN_0101dd48",
-   "human": false,
-   "source": "recon/net/src/FUN_0101dd48.c",
-   "aliases": []
+   "name": "schedule_node_insert_after",
+   "display_name": "schedule_node_insert_after",
+   "human": true,
+   "source": "function_name_overrides.json: Links a schedule node after the supplied predecessor while maintaining adjacent next/previous links. Raw identity remains FUN_0101dd48.",
+   "aliases": [
+    "FUN_0101dd48"
+   ]
   },
   "0x0101dd9c": {
    "address": "0x0101dd9c",
@@ -4083,29 +4153,35 @@
   "0x0101dda8": {
    "address": "0x0101dda8",
    "raw_name": "FUN_0101dda8",
-   "name": "FUN_0101dda8",
-   "display_name": "FUN_0101dda8",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "schedule_node_tail_get",
+   "display_name": "schedule_node_tail_get",
+   "human": true,
+   "source": "function_name_overrides.json: Traverses next links at +0x18 and returns the final schedule node. Raw identity remains FUN_0101dda8.",
+   "aliases": [
+    "FUN_0101dda8"
+   ]
   },
   "0x0101ddc0": {
    "address": "0x0101ddc0",
    "raw_name": "FUN_0101ddc0",
-   "name": "FUN_0101ddc0",
-   "display_name": "FUN_0101ddc0",
-   "human": false,
-   "source": "recon/net/src/FUN_0101ddc0.c",
-   "aliases": []
+   "name": "schedule_node_find_at_or_after",
+   "display_name": "schedule_node_find_at_or_after",
+   "human": true,
+   "source": "function_name_overrides.json: Searches schedule nodes for the smallest timestamp at or above the requested value, with a fallback-tail mode. Raw identity remains FUN_0101ddc0.",
+   "aliases": [
+    "FUN_0101ddc0"
+   ]
   },
   "0x0101de10": {
    "address": "0x0101de10",
    "raw_name": "FUN_0101de10",
-   "name": "FUN_0101de10",
-   "display_name": "FUN_0101de10",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "schedule_phase_offset_get",
+   "display_name": "schedule_phase_offset_get",
+   "human": true,
+   "source": "function_name_overrides.json: Computes a bounded phase offset modulo the supplied interval from two 64-bit timestamps. Raw identity remains FUN_0101de10.",
+   "aliases": [
+    "FUN_0101de10"
+   ]
   },
   "0x0101de60": {
    "address": "0x0101de60",
@@ -4113,35 +4189,41 @@
    "name": "FUN_0101de60",
    "display_name": "FUN_0101de60",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101deac": {
    "address": "0x0101deac",
    "raw_name": "FUN_0101deac",
-   "name": "FUN_0101deac",
-   "display_name": "FUN_0101deac",
-   "human": false,
-   "source": "recon/net/src/FUN_0101deac.c",
-   "aliases": []
+   "name": "schedule_node_list_lock",
+   "display_name": "schedule_node_list_lock",
+   "human": true,
+   "source": "function_name_overrides.json: Sets the schedule-list lock byte before traversal/update. Raw identity remains FUN_0101deac.",
+   "aliases": [
+    "FUN_0101deac"
+   ]
   },
   "0x0101deb8": {
    "address": "0x0101deb8",
    "raw_name": "FUN_0101deb8",
-   "name": "FUN_0101deb8",
-   "display_name": "FUN_0101deb8",
-   "human": false,
-   "source": "recon/net/src/FUN_0101deb8.c",
-   "aliases": []
+   "name": "schedule_node_list_unlock",
+   "display_name": "schedule_node_list_unlock",
+   "human": true,
+   "source": "function_name_overrides.json: Clears the schedule-list lock byte after traversal/update. Raw identity remains FUN_0101deb8.",
+   "aliases": [
+    "FUN_0101deb8"
+   ]
   },
   "0x0101dec4": {
    "address": "0x0101dec4",
    "raw_name": "FUN_0101dec4",
-   "name": "FUN_0101dec4",
-   "display_name": "FUN_0101dec4",
-   "human": false,
-   "source": "recon/net/src/FUN_0101dec4.c",
-   "aliases": []
+   "name": "schedule_node_list_is_locked",
+   "display_name": "schedule_node_list_is_locked",
+   "human": true,
+   "source": "function_name_overrides.json: Returns the schedule-list lock byte read by the mode-five update path. Raw identity remains FUN_0101dec4.",
+   "aliases": [
+    "FUN_0101dec4"
+   ]
   },
   "0x0101ded0": {
    "address": "0x0101ded0",
@@ -4149,7 +4231,7 @@
    "name": "FUN_0101ded0",
    "display_name": "FUN_0101ded0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101df84": {
@@ -4158,7 +4240,7 @@
    "name": "FUN_0101df84",
    "display_name": "FUN_0101df84",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e078": {
@@ -4167,7 +4249,7 @@
    "name": "FUN_0101e078",
    "display_name": "FUN_0101e078",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e090": {
@@ -4176,7 +4258,7 @@
    "name": "FUN_0101e090",
    "display_name": "FUN_0101e090",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e160": {
@@ -4185,7 +4267,7 @@
    "name": "FUN_0101e160",
    "display_name": "FUN_0101e160",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e1e4": {
@@ -4194,7 +4276,7 @@
    "name": "FUN_0101e1e4",
    "display_name": "FUN_0101e1e4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e274": {
@@ -4203,7 +4285,7 @@
    "name": "FUN_0101e274",
    "display_name": "FUN_0101e274",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e2cc": {
@@ -4221,7 +4303,7 @@
    "name": "FUN_0101e2fc",
    "display_name": "FUN_0101e2fc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e398": {
@@ -4239,7 +4321,7 @@
    "name": "FUN_0101e404",
    "display_name": "FUN_0101e404",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e62c": {
@@ -4248,7 +4330,7 @@
    "name": "FUN_0101e62c",
    "display_name": "FUN_0101e62c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101e660": {
@@ -4329,7 +4411,7 @@
    "name": "FUN_0101f624",
    "display_name": "FUN_0101f624",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101f650": {
@@ -4596,11 +4678,13 @@
   "0x0101fca8": {
    "address": "0x0101fca8",
    "raw_name": "FUN_0101fca8",
-   "name": "FUN_0101fca8",
-   "display_name": "FUN_0101fca8",
-   "human": false,
-   "source": "recon/net/src/FUN_0101fca8.c",
-   "aliases": []
+   "name": "sdc_llcp_release_rx_context",
+   "display_name": "sdc_llcp_release_rx_context",
+   "human": true,
+   "source": "function_name_overrides.json: Second operation in the cleanup_pending tail shared by LLCP receive handlers, followed by clearing the pending byte. Raw identity remains FUN_0101fca8.",
+   "aliases": [
+    "FUN_0101fca8"
+   ]
   },
   "0x0101fcf4": {
    "address": "0x0101fcf4",
@@ -4620,13 +4704,31 @@
    "source": "recon/net/src/FUN_0101fd20.c",
    "aliases": []
   },
+  "0x0101fd8c": {
+   "address": "0x0101fd8c",
+   "raw_name": "FUN_0101fd8c",
+   "name": "FUN_0101fd8c",
+   "display_name": "FUN_0101fd8c",
+   "human": false,
+   "source": "recon/net/src/FUN_0101fd8c.c",
+   "aliases": []
+  },
+  "0x0101fdc0": {
+   "address": "0x0101fdc0",
+   "raw_name": "FUN_0101fdc0",
+   "name": "controller_radio_request_state_clear",
+   "display_name": "controller_radio_request_state_clear",
+   "human": true,
+   "source": "function_name_overrides.json: Tail target of the controller radio shutdown sequence at 0x0101fc14. It clears active+mode as one halfword transaction and the pending byte separately while preserving request_kind/channel. Reachable code is 0x0101fdc0..0x0101fdc9; raw identity remains FUN_0101fdc0.",
+   "aliases": []
+  },
   "0x0101fdd0": {
    "address": "0x0101fdd0",
    "raw_name": "FUN_0101fdd0",
    "name": "FUN_0101fdd0",
    "display_name": "FUN_0101fdd0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0101fe98": {
@@ -4821,11 +4923,13 @@
   "0x01020500": {
    "address": "0x01020500",
    "raw_name": "FUN_01020500",
-   "name": "FUN_01020500",
-   "display_name": "FUN_01020500",
-   "human": false,
-   "source": "recon/net/src/FUN_01020500.c",
-   "aliases": []
+   "name": "sdc_llcp_note_unsupported_pdu",
+   "display_name": "sdc_llcp_note_unsupported_pdu",
+   "human": true,
+   "source": "function_name_overrides.json: Called when the LLCP receive-state/opcode combination is rejected and the dispatcher returns controller status 5. Raw identity remains FUN_01020500.",
+   "aliases": [
+    "FUN_01020500"
+   ]
   },
   "0x01020634": {
    "address": "0x01020634",
@@ -4833,7 +4937,7 @@
    "name": "FUN_01020634",
    "display_name": "FUN_01020634",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102072c": {
@@ -4869,7 +4973,7 @@
    "name": "FUN_010207cc",
    "display_name": "FUN_010207cc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01020820": {
@@ -4878,7 +4982,7 @@
    "name": "FUN_01020820",
    "display_name": "FUN_01020820",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01020864": {
@@ -4902,11 +5006,13 @@
   "0x010208b0": {
    "address": "0x010208b0",
    "raw_name": "FUN_010208b0",
-   "name": "FUN_010208b0",
-   "display_name": "FUN_010208b0",
-   "human": false,
-   "source": "recon/net/src/FUN_010208b0.c",
-   "aliases": []
+   "name": "sdc_llcp_stop_rx_timeout",
+   "display_name": "sdc_llcp_stop_rx_timeout",
+   "human": true,
+   "source": "function_name_overrides.json: First operation in the cleanup_pending tail shared by LLCP receive handlers, immediately before releasing the receive context. Raw identity remains FUN_010208b0.",
+   "aliases": [
+    "FUN_010208b0"
+   ]
   },
   "0x010208cc": {
    "address": "0x010208cc",
@@ -4947,29 +5053,35 @@
   "0x010209c8": {
    "address": "0x010209c8",
    "raw_name": "FUN_010209c8",
-   "name": "FUN_010209c8",
-   "display_name": "FUN_010209c8",
-   "human": false,
-   "source": "recon/net/src/FUN_010209c8.c",
-   "aliases": []
+   "name": "mpsl_timeslot_window_get",
+   "display_name": "mpsl_timeslot_window_get",
+   "human": true,
+   "source": "function_name_overrides.json: Writes the two-word-plus-tail timing tuple consumed immediately by mpsl_timeslot_distance_get in the initial planner arm. Raw identity remains FUN_010209c8.",
+   "aliases": [
+    "FUN_010209c8"
+   ]
   },
   "0x010209e0": {
    "address": "0x010209e0",
    "raw_name": "FUN_010209e0",
-   "name": "FUN_010209e0",
-   "display_name": "FUN_010209e0",
-   "human": false,
-   "source": "recon/net/src/FUN_010209e0.c",
-   "aliases": []
+   "name": "radio_phy_airtime_tail_get",
+   "display_name": "radio_phy_airtime_tail_get",
+   "human": true,
+   "source": "function_name_overrides.json: Unary PHY timing-table leaf paired throughout the connection planner with radio_phy_airtime_base_get to form complete radio event durations. Raw identity remains FUN_010209e0.",
+   "aliases": [
+    "FUN_010209e0"
+   ]
   },
   "0x010209f0": {
    "address": "0x010209f0",
    "raw_name": "FUN_010209f0",
-   "name": "FUN_010209f0",
-   "display_name": "FUN_010209f0",
-   "human": false,
-   "source": "recon/net/src/FUN_010209f0.c",
-   "aliases": []
+   "name": "radio_phy_airtime_base_get",
+   "display_name": "radio_phy_airtime_base_get",
+   "human": true,
+   "source": "function_name_overrides.json: Unary leaf indexes the controller timing table by encoded PHY value; all three snapshot-builder PHY dispatches pass values 1/2/4/8 and combine its result with packet-airtime constants. Raw identity remains FUN_010209f0.",
+   "aliases": [
+    "FUN_010209f0"
+   ]
   },
   "0x01020a00": {
    "address": "0x01020a00",
@@ -4983,20 +5095,24 @@
   "0x01020a6c": {
    "address": "0x01020a6c",
    "raw_name": "FUN_01020a6c",
-   "name": "FUN_01020a6c",
-   "display_name": "FUN_01020a6c",
-   "human": false,
-   "source": "recon/net/src/FUN_01020a6c.c",
-   "aliases": []
+   "name": "controller_radio_transition_schedule",
+   "display_name": "controller_radio_transition_schedule",
+   "human": true,
+   "source": "function_name_overrides.json: Consumes transition direction, absolute radio time and controller selector after the mode-specific time calculation; success is required before the new radio state is published. Raw identity remains FUN_01020a6c.",
+   "aliases": [
+    "FUN_01020a6c"
+   ]
   },
   "0x01020d1c": {
    "address": "0x01020d1c",
    "raw_name": "FUN_01020d1c",
-   "name": "FUN_01020d1c",
-   "display_name": "FUN_01020d1c",
-   "human": false,
-   "source": "recon/net/src/FUN_01020d1c.c",
-   "aliases": []
+   "name": "controller_radio_transition_apply",
+   "display_name": "controller_radio_transition_apply",
+   "human": true,
+   "source": "function_name_overrides.json: Complete fixed-state radio transition owner: captures controller time, resets RADIO event state, derives transition flags from current/pending modes, updates the fixed radio-state record, invokes mode callbacks, publishes RADIO timing registers, and completes pending work. Raw identity remains FUN_01020d1c.",
+   "aliases": [
+    "FUN_01020d1c"
+   ]
   },
   "0x01021108": {
    "address": "0x01021108",
@@ -5028,38 +5144,46 @@
   "0x010215d8": {
    "address": "0x010215d8",
    "raw_name": "FUN_010215d8",
-   "name": "FUN_010215d8",
-   "display_name": "FUN_010215d8",
-   "human": false,
-   "source": "recon/net/src/FUN_010215d8.c",
-   "aliases": []
+   "name": "controller_radio_time_mode2_to_mode1",
+   "display_name": "controller_radio_time_mode2_to_mode1",
+   "human": true,
+   "source": "function_name_overrides.json: Selected when current radio mode is not one and requested mode is one; subtracts the selected PHY airtime term. Raw identity remains FUN_010215d8.",
+   "aliases": [
+    "FUN_010215d8"
+   ]
   },
   "0x010215f4": {
    "address": "0x010215f4",
    "raw_name": "FUN_010215f4",
-   "name": "FUN_010215f4",
-   "display_name": "FUN_010215f4",
-   "human": false,
-   "source": "recon/net/src/FUN_010215f4.c",
-   "aliases": []
+   "name": "controller_radio_time_mode1_to_mode2",
+   "display_name": "controller_radio_time_mode1_to_mode2",
+   "human": true,
+   "source": "function_name_overrides.json: Selected when current radio mode is one and requested mode is not one; advances by the complementary PHY-indexed timing term. Raw identity remains FUN_010215f4.",
+   "aliases": [
+    "FUN_010215f4"
+   ]
   },
   "0x01021614": {
    "address": "0x01021614",
    "raw_name": "FUN_01021614",
-   "name": "FUN_01021614",
-   "display_name": "FUN_01021614",
-   "human": false,
-   "source": "recon/net/src/FUN_01021614.c",
-   "aliases": []
+   "name": "controller_radio_time_mode1_to_mode1",
+   "display_name": "controller_radio_time_mode1_to_mode1",
+   "human": true,
+   "source": "function_name_overrides.json: Selected only when both current and requested radio mode are one; advances the interval value by the PHY-indexed timing term. Raw identity remains FUN_01021614.",
+   "aliases": [
+    "FUN_01021614"
+   ]
   },
   "0x01021634": {
    "address": "0x01021634",
    "raw_name": "FUN_01021634",
-   "name": "FUN_01021634",
-   "display_name": "FUN_01021634",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "controller_radio_time_mode2_to_mode2",
+   "display_name": "controller_radio_time_mode2_to_mode2",
+   "human": true,
+   "source": "function_name_overrides.json: Selected when neither current nor requested radio mode is one; subtracts the complementary selected-PHY airtime term. Raw identity remains FUN_01021634.",
+   "aliases": [
+    "FUN_01021634"
+   ]
   },
   "0x01021654": {
    "address": "0x01021654",
@@ -5094,7 +5218,7 @@
    "name": "FUN_01021790",
    "display_name": "FUN_01021790",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010217ac": {
@@ -5112,7 +5236,7 @@
    "name": "FUN_01021800",
    "display_name": "FUN_01021800",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01021820": {
@@ -5181,20 +5305,24 @@
   "0x010218d8": {
    "address": "0x010218d8",
    "raw_name": "FUN_010218d8",
-   "name": "FUN_010218d8",
-   "display_name": "FUN_010218d8",
-   "human": false,
-   "source": "recon/net/src/FUN_010218d8.c",
-   "aliases": []
+   "name": "controller_mode1_state_validate",
+   "display_name": "controller_mode1_state_validate",
+   "human": true,
+   "source": "function_name_overrides.json: Mode-one validation thunk dispatching vtable slot +0x10; controller_radio_transition_apply treats values outside {-1,0} as an assertion. Raw identity remains FUN_010218d8.",
+   "aliases": [
+    "FUN_010218d8"
+   ]
   },
   "0x010218e4": {
    "address": "0x010218e4",
    "raw_name": "FUN_010218e4",
-   "name": "FUN_010218e4",
-   "display_name": "FUN_010218e4",
-   "human": false,
-   "source": "recon/net/src/FUN_010218e4.c",
-   "aliases": []
+   "name": "controller_mode2_state_validate",
+   "display_name": "controller_mode2_state_validate",
+   "human": true,
+   "source": "function_name_overrides.json: Mode-two validation thunk dispatching vtable slot +0x14; controller_radio_transition_apply treats values outside {-1,0} as an assertion. Raw identity remains FUN_010218e4.",
+   "aliases": [
+    "FUN_010218e4"
+   ]
   },
   "0x010218f0": {
    "address": "0x010218f0",
@@ -5256,7 +5384,7 @@
    "name": "FUN_01021940",
    "display_name": "FUN_01021940",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010219c4": {
@@ -5301,7 +5429,7 @@
    "name": "FUN_01021ac0",
    "display_name": "FUN_01021ac0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01021b04": {
@@ -5310,7 +5438,7 @@
    "name": "FUN_01021b04",
    "display_name": "FUN_01021b04",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01021b7c": {
@@ -5319,7 +5447,7 @@
    "name": "FUN_01021b7c",
    "display_name": "FUN_01021b7c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01021cec": {
@@ -5391,7 +5519,7 @@
    "name": "FUN_01022a30",
    "display_name": "FUN_01022a30",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01022a50": {
@@ -5400,7 +5528,7 @@
    "name": "FUN_01022a50",
    "display_name": "FUN_01022a50",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01022a84": {
@@ -5418,7 +5546,7 @@
    "name": "FUN_01022e34",
    "display_name": "FUN_01022e34",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01022ea8": {
@@ -5427,7 +5555,7 @@
    "name": "FUN_01022ea8",
    "display_name": "FUN_01022ea8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01022ebc": {
@@ -5442,11 +5570,13 @@
   "0x01022f08": {
    "address": "0x01022f08",
    "raw_name": "FUN_01022f08",
-   "name": "thunk_FUN_01025034",
-   "display_name": "thunk_FUN_01025034",
+   "name": "controller_time_now",
+   "display_name": "controller_time_now",
    "human": true,
-   "source": "recon/net/src/thunk_FUN_01025034.c",
-   "aliases": []
+   "source": "function_name_overrides.json: Thunk to the network-core extended RTC time reader at 0x01025034; the timing snapshot builder consumes its r1:r0 64-bit result. Raw identity remains thunk_FUN_01025034/FUN_01022f08.",
+   "aliases": [
+    "thunk_FUN_01025034"
+   ]
   },
   "0x01022f0c": {
    "address": "0x01022f0c",
@@ -5454,26 +5584,30 @@
    "name": "FUN_01022f0c",
    "display_name": "FUN_01022f0c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01022f3c": {
    "address": "0x01022f3c",
    "raw_name": "FUN_01022f3c",
-   "name": "FUN_01022f3c",
-   "display_name": "FUN_01022f3c",
-   "human": false,
-   "source": "recon/net/src/FUN_01022f3c.c",
-   "aliases": []
+   "name": "controller_timing_request_submit",
+   "display_name": "controller_timing_request_submit",
+   "human": true,
+   "source": "function_name_overrides.json: Consumes the complete 24-byte timing request built by controller_timing_snapshot_build and returns success/failure. Raw identity remains FUN_01022f3c.",
+   "aliases": [
+    "FUN_01022f3c"
+   ]
   },
   "0x010231c8": {
    "address": "0x010231c8",
    "raw_name": "FUN_010231c8",
-   "name": "FUN_010231c8",
-   "display_name": "FUN_010231c8",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_conn_window_admit",
+   "display_name": "sdc_conn_window_admit",
+   "human": true,
+   "source": "function_name_overrides.json: Final planner admission check consumes the scheduler slot byte and complete timing request at context+0x338; success publishes prepared state. Raw identity remains FUN_010231c8.",
+   "aliases": [
+    "FUN_010231c8"
+   ]
   },
   "0x010237b0": {
    "address": "0x010237b0",
@@ -5490,7 +5624,7 @@
    "name": "FUN_01023ac4",
    "display_name": "FUN_01023ac4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01023ad8": {
@@ -5508,17 +5642,19 @@
    "name": "FUN_01023d38",
    "display_name": "FUN_01023d38",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01023de8": {
    "address": "0x01023de8",
    "raw_name": "FUN_01023de8",
-   "name": "thunk_FUN_01025028",
-   "display_name": "thunk_FUN_01025028",
+   "name": "controller_radio_timer_capture_get",
+   "display_name": "controller_radio_timer_capture_get",
    "human": true,
-   "source": "recon/net/src/thunk_FUN_01025028.c",
-   "aliases": []
+   "source": "function_name_overrides.json: Four-byte thunk to 0x01025028, which returns the fixed controller timer/capture word at peripheral offset 0x504. Raw identity remains FUN_01023de8.",
+   "aliases": [
+    "thunk_FUN_01025028"
+   ]
   },
   "0x01023dec": {
    "address": "0x01023dec",
@@ -5535,7 +5671,7 @@
    "name": "FUN_01023e88",
    "display_name": "FUN_01023e88",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01023ea8": {
@@ -5559,11 +5695,13 @@
   "0x010243c0": {
    "address": "0x010243c0",
    "raw_name": "FUN_010243c0",
-   "name": "FUN_010243c0",
-   "display_name": "FUN_010243c0",
-   "human": false,
-   "source": "recon/net/src/FUN_010243c0.c",
-   "aliases": []
+   "name": "mpsl_timeslot_distance_get",
+   "display_name": "mpsl_timeslot_distance_get",
+   "human": true,
+   "source": "function_name_overrides.json: Consumes the saved 64-bit connection anchor and complete tuple returned by mpsl_timeslot_window_get to calculate the initial event-window distance. Raw identity remains FUN_010243c0.",
+   "aliases": [
+    "FUN_010243c0"
+   ]
   },
   "0x01024440": {
    "address": "0x01024440",
@@ -5571,7 +5709,7 @@
    "name": "FUN_01024440",
    "display_name": "FUN_01024440",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102445c": {
@@ -5580,7 +5718,7 @@
    "name": "FUN_0102445c",
    "display_name": "FUN_0102445c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010244cc": {
@@ -5607,7 +5745,7 @@
    "name": "FUN_010245d8",
    "display_name": "FUN_010245d8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102460c": {
@@ -5649,11 +5787,13 @@
   "0x01024678": {
    "address": "0x01024678",
    "raw_name": "FUN_01024678",
-   "name": "FUN_01024678",
-   "display_name": "FUN_01024678",
-   "human": false,
-   "source": "recon/net/src/FUN_01024678.c",
-   "aliases": []
+   "name": "sdc_timing_scale",
+   "display_name": "sdc_timing_scale",
+   "human": true,
+   "source": "function_name_overrides.json: Repeatedly scales interval and anchor timing values by the signed compensation selected from the controller table. Raw identity remains FUN_01024678.",
+   "aliases": [
+    "FUN_01024678"
+   ]
   },
   "0x010246cc": {
    "address": "0x010246cc",
@@ -5712,11 +5852,13 @@
   "0x010247cc": {
    "address": "0x010247cc",
    "raw_name": "FUN_010247cc",
-   "name": "FUN_010247cc",
-   "display_name": "FUN_010247cc",
-   "human": false,
-   "source": "recon/net/src/FUN_010247cc.c",
-   "aliases": []
+   "name": "sdc_timing_compensation_enabled",
+   "display_name": "sdc_timing_compensation_enabled",
+   "human": true,
+   "source": "function_name_overrides.json: Boolean gate for the planner's timing-compensation update block, after the global enable flag is checked. Raw identity remains FUN_010247cc.",
+   "aliases": [
+    "FUN_010247cc"
+   ]
   },
   "0x010247dc": {
    "address": "0x010247dc",
@@ -5778,7 +5920,7 @@
    "name": "FUN_01024c6c",
    "display_name": "FUN_01024c6c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01024e1c": {
@@ -5877,7 +6019,7 @@
    "name": "FUN_0102524c",
    "display_name": "FUN_0102524c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025344": {
@@ -5904,7 +6046,7 @@
    "name": "FUN_010256c8",
    "display_name": "FUN_010256c8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010256dc": {
@@ -5913,7 +6055,7 @@
    "name": "FUN_010256dc",
    "display_name": "FUN_010256dc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102575c": {
@@ -5931,7 +6073,7 @@
    "name": "FUN_010257e4",
    "display_name": "FUN_010257e4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102581c": {
@@ -5949,7 +6091,7 @@
    "name": "FUN_0102583c",
    "display_name": "FUN_0102583c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010258cc": {
@@ -5958,7 +6100,7 @@
    "name": "FUN_010258cc",
    "display_name": "FUN_010258cc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102590c": {
@@ -5967,7 +6109,7 @@
    "name": "FUN_0102590c",
    "display_name": "FUN_0102590c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025998": {
@@ -5976,7 +6118,7 @@
    "name": "FUN_01025998",
    "display_name": "FUN_01025998",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025a84": {
@@ -5985,7 +6127,7 @@
    "name": "FUN_01025a84",
    "display_name": "FUN_01025a84",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025b5c": {
@@ -6045,11 +6187,13 @@
   "0x01025be0": {
    "address": "0x01025be0",
    "raw_name": "FUN_01025be0",
-   "name": "FUN_01025be0",
-   "display_name": "FUN_01025be0",
-   "human": false,
-   "source": "recon/net/src/FUN_01025be0.c",
-   "aliases": []
+   "name": "controller_radio_work_pending",
+   "display_name": "controller_radio_work_pending",
+   "human": true,
+   "source": "function_name_overrides.json: Boolean leaf comparing the controller work cursor and end pointer; radio-transition completion uses it to decide whether a pending RADIO state must be drained. Raw identity remains FUN_01025be0.",
+   "aliases": [
+    "FUN_01025be0"
+   ]
   },
   "0x01025bf8": {
    "address": "0x01025bf8",
@@ -6057,7 +6201,7 @@
    "name": "FUN_01025bf8",
    "display_name": "FUN_01025bf8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025c38": {
@@ -6075,7 +6219,7 @@
    "name": "FUN_01025c44",
    "display_name": "FUN_01025c44",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025c9c": {
@@ -6084,7 +6228,7 @@
    "name": "FUN_01025c9c",
    "display_name": "FUN_01025c9c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025cc8": {
@@ -6093,17 +6237,19 @@
    "name": "FUN_01025cc8",
    "display_name": "FUN_01025cc8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025cf0": {
    "address": "0x01025cf0",
    "raw_name": "FUN_01025cf0",
-   "name": "FUN_01025cf0",
-   "display_name": "FUN_01025cf0",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "controller_transition_pending_check",
+   "display_name": "controller_transition_pending_check",
+   "human": true,
+   "source": "function_name_overrides.json: Returns zero outside controller states 2/3 and otherwise dispatches the installed +0x10 transition query; its result supplies the transition-pending flag. Raw identity remains FUN_01025cf0.",
+   "aliases": [
+    "FUN_01025cf0"
+   ]
   },
   "0x01025d0c": {
    "address": "0x01025d0c",
@@ -6111,7 +6257,7 @@
    "name": "FUN_01025d0c",
    "display_name": "FUN_01025d0c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025d28": {
@@ -6129,7 +6275,7 @@
    "name": "FUN_01025d38",
    "display_name": "FUN_01025d38",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025fd4": {
@@ -6138,7 +6284,7 @@
    "name": "FUN_01025fd4",
    "display_name": "FUN_01025fd4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01025ff0": {
@@ -6147,7 +6293,7 @@
    "name": "FUN_01025ff0",
    "display_name": "FUN_01025ff0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026006": {
@@ -6156,7 +6302,7 @@
    "name": "FUN_01026006",
    "display_name": "FUN_01026006",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102602e": {
@@ -6165,7 +6311,7 @@
    "name": "FUN_0102602e",
    "display_name": "FUN_0102602e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102609e": {
@@ -6174,7 +6320,7 @@
    "name": "FUN_0102609e",
    "display_name": "FUN_0102609e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026122": {
@@ -6237,7 +6383,7 @@
    "name": "FUN_01026856",
    "display_name": "FUN_01026856",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026872": {
@@ -6246,7 +6392,7 @@
    "name": "FUN_01026872",
    "display_name": "FUN_01026872",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102689c": {
@@ -6255,7 +6401,7 @@
    "name": "FUN_0102689c",
    "display_name": "FUN_0102689c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010268ce": {
@@ -6264,7 +6410,7 @@
    "name": "FUN_010268ce",
    "display_name": "FUN_010268ce",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026912": {
@@ -6273,7 +6419,7 @@
    "name": "FUN_01026912",
    "display_name": "FUN_01026912",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102693a": {
@@ -6282,7 +6428,7 @@
    "name": "FUN_0102693a",
    "display_name": "FUN_0102693a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010269ce": {
@@ -6291,7 +6437,7 @@
    "name": "FUN_010269ce",
    "display_name": "FUN_010269ce",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026a7e": {
@@ -6300,7 +6446,7 @@
    "name": "FUN_01026a7e",
    "display_name": "FUN_01026a7e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026acc": {
@@ -6309,7 +6455,7 @@
    "name": "FUN_01026acc",
    "display_name": "FUN_01026acc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026b58": {
@@ -6318,7 +6464,7 @@
    "name": "FUN_01026b58",
    "display_name": "FUN_01026b58",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026bfe": {
@@ -6327,7 +6473,7 @@
    "name": "FUN_01026bfe",
    "display_name": "FUN_01026bfe",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026c94": {
@@ -6336,7 +6482,7 @@
    "name": "FUN_01026c94",
    "display_name": "FUN_01026c94",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026d16": {
@@ -6345,7 +6491,7 @@
    "name": "FUN_01026d16",
    "display_name": "FUN_01026d16",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026d3e": {
@@ -6354,7 +6500,7 @@
    "name": "FUN_01026d3e",
    "display_name": "FUN_01026d3e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026dae": {
@@ -6363,7 +6509,7 @@
    "name": "FUN_01026dae",
    "display_name": "FUN_01026dae",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026e48": {
@@ -6372,7 +6518,7 @@
    "name": "FUN_01026e48",
    "display_name": "FUN_01026e48",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01026f32": {
@@ -6381,7 +6527,7 @@
    "name": "FUN_01026f32",
    "display_name": "FUN_01026f32",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027044": {
@@ -6390,7 +6536,7 @@
    "name": "FUN_01027044",
    "display_name": "FUN_01027044",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102709e": {
@@ -6399,7 +6545,7 @@
    "name": "FUN_0102709e",
    "display_name": "FUN_0102709e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010270d2": {
@@ -6408,7 +6554,7 @@
    "name": "FUN_010270d2",
    "display_name": "FUN_010270d2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010270e8": {
@@ -6417,7 +6563,7 @@
    "name": "FUN_010270e8",
    "display_name": "FUN_010270e8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102714a": {
@@ -6426,7 +6572,7 @@
    "name": "FUN_0102714a",
    "display_name": "FUN_0102714a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027196": {
@@ -6435,7 +6581,7 @@
    "name": "FUN_01027196",
    "display_name": "FUN_01027196",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010271b8": {
@@ -6444,7 +6590,7 @@
    "name": "FUN_010271b8",
    "display_name": "FUN_010271b8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010271da": {
@@ -6453,7 +6599,7 @@
    "name": "FUN_010271da",
    "display_name": "FUN_010271da",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010271f6": {
@@ -6462,7 +6608,7 @@
    "name": "FUN_010271f6",
    "display_name": "FUN_010271f6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102722c": {
@@ -6471,7 +6617,7 @@
    "name": "FUN_0102722c",
    "display_name": "FUN_0102722c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027258": {
@@ -6480,7 +6626,7 @@
    "name": "FUN_01027258",
    "display_name": "FUN_01027258",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010272c2": {
@@ -6489,7 +6635,7 @@
    "name": "FUN_010272c2",
    "display_name": "FUN_010272c2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027302": {
@@ -6498,7 +6644,7 @@
    "name": "FUN_01027302",
    "display_name": "FUN_01027302",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010273c6": {
@@ -6507,7 +6653,7 @@
    "name": "FUN_010273c6",
    "display_name": "FUN_010273c6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010273f8": {
@@ -6516,7 +6662,7 @@
    "name": "FUN_010273f8",
    "display_name": "FUN_010273f8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102741e": {
@@ -6525,7 +6671,7 @@
    "name": "FUN_0102741e",
    "display_name": "FUN_0102741e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027470": {
@@ -6534,7 +6680,7 @@
    "name": "FUN_01027470",
    "display_name": "FUN_01027470",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010274d0": {
@@ -6543,7 +6689,7 @@
    "name": "FUN_010274d0",
    "display_name": "FUN_010274d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010274ea": {
@@ -6552,7 +6698,7 @@
    "name": "FUN_010274ea",
    "display_name": "FUN_010274ea",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102751a": {
@@ -6561,7 +6707,7 @@
    "name": "FUN_0102751a",
    "display_name": "FUN_0102751a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102754c": {
@@ -6570,7 +6716,7 @@
    "name": "FUN_0102754c",
    "display_name": "FUN_0102754c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102759e": {
@@ -6579,7 +6725,7 @@
    "name": "FUN_0102759e",
    "display_name": "FUN_0102759e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010275d2": {
@@ -6588,7 +6734,7 @@
    "name": "FUN_010275d2",
    "display_name": "FUN_010275d2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027606": {
@@ -6597,7 +6743,7 @@
    "name": "FUN_01027606",
    "display_name": "FUN_01027606",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102763a": {
@@ -6606,7 +6752,7 @@
    "name": "FUN_0102763a",
    "display_name": "FUN_0102763a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027662": {
@@ -6615,7 +6761,7 @@
    "name": "FUN_01027662",
    "display_name": "FUN_01027662",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102768a": {
@@ -6624,7 +6770,7 @@
    "name": "FUN_0102768a",
    "display_name": "FUN_0102768a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010276b2": {
@@ -6633,7 +6779,7 @@
    "name": "FUN_010276b2",
    "display_name": "FUN_010276b2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010276e6": {
@@ -6642,7 +6788,7 @@
    "name": "FUN_010276e6",
    "display_name": "FUN_010276e6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102771a": {
@@ -6651,7 +6797,7 @@
    "name": "FUN_0102771a",
    "display_name": "FUN_0102771a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027742": {
@@ -6660,7 +6806,7 @@
    "name": "FUN_01027742",
    "display_name": "FUN_01027742",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102776a": {
@@ -6669,7 +6815,7 @@
    "name": "FUN_0102776a",
    "display_name": "FUN_0102776a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027790": {
@@ -6678,7 +6824,7 @@
    "name": "FUN_01027790",
    "display_name": "FUN_01027790",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010277a6": {
@@ -6687,7 +6833,7 @@
    "name": "FUN_010277a6",
    "display_name": "FUN_010277a6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010277c2": {
@@ -6696,7 +6842,7 @@
    "name": "FUN_010277c2",
    "display_name": "FUN_010277c2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010277f2": {
@@ -6705,7 +6851,7 @@
    "name": "FUN_010277f2",
    "display_name": "FUN_010277f2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027822": {
@@ -6714,7 +6860,7 @@
    "name": "FUN_01027822",
    "display_name": "FUN_01027822",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027846": {
@@ -6723,7 +6869,7 @@
    "name": "FUN_01027846",
    "display_name": "FUN_01027846",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027894": {
@@ -6732,7 +6878,7 @@
    "name": "FUN_01027894",
    "display_name": "FUN_01027894",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010278bc": {
@@ -6741,7 +6887,7 @@
    "name": "FUN_010278bc",
    "display_name": "FUN_010278bc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010278e4": {
@@ -6750,7 +6896,7 @@
    "name": "FUN_010278e4",
    "display_name": "FUN_010278e4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027974": {
@@ -6759,7 +6905,7 @@
    "name": "FUN_01027974",
    "display_name": "FUN_01027974",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010279e6": {
@@ -6768,7 +6914,7 @@
    "name": "FUN_010279e6",
    "display_name": "FUN_010279e6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027a4a": {
@@ -6777,7 +6923,7 @@
    "name": "FUN_01027a4a",
    "display_name": "FUN_01027a4a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027a94": {
@@ -6786,7 +6932,7 @@
    "name": "FUN_01027a94",
    "display_name": "FUN_01027a94",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027ad2": {
@@ -6795,7 +6941,7 @@
    "name": "FUN_01027ad2",
    "display_name": "FUN_01027ad2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027af2": {
@@ -6804,7 +6950,7 @@
    "name": "FUN_01027af2",
    "display_name": "FUN_01027af2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027b0c": {
@@ -6813,7 +6959,7 @@
    "name": "FUN_01027b0c",
    "display_name": "FUN_01027b0c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027b32": {
@@ -6822,7 +6968,7 @@
    "name": "FUN_01027b32",
    "display_name": "FUN_01027b32",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027b84": {
@@ -6831,7 +6977,7 @@
    "name": "FUN_01027b84",
    "display_name": "FUN_01027b84",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027c98": {
@@ -6840,7 +6986,7 @@
    "name": "FUN_01027c98",
    "display_name": "FUN_01027c98",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027d80": {
@@ -6849,7 +6995,7 @@
    "name": "FUN_01027d80",
    "display_name": "FUN_01027d80",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027e1c": {
@@ -6858,7 +7004,7 @@
    "name": "FUN_01027e1c",
    "display_name": "FUN_01027e1c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027ed4": {
@@ -6867,7 +7013,7 @@
    "name": "FUN_01027ed4",
    "display_name": "FUN_01027ed4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027ef2": {
@@ -6876,7 +7022,7 @@
    "name": "FUN_01027ef2",
    "display_name": "FUN_01027ef2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027f10": {
@@ -6885,7 +7031,7 @@
    "name": "FUN_01027f10",
    "display_name": "FUN_01027f10",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027f6e": {
@@ -6894,7 +7040,7 @@
    "name": "FUN_01027f6e",
    "display_name": "FUN_01027f6e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027f8a": {
@@ -6903,7 +7049,7 @@
    "name": "FUN_01027f8a",
    "display_name": "FUN_01027f8a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027fa6": {
@@ -6912,7 +7058,7 @@
    "name": "FUN_01027fa6",
    "display_name": "FUN_01027fa6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01027fec": {
@@ -6921,7 +7067,7 @@
    "name": "FUN_01027fec",
    "display_name": "FUN_01027fec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028010": {
@@ -6930,7 +7076,7 @@
    "name": "FUN_01028010",
    "display_name": "FUN_01028010",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028034": {
@@ -6939,7 +7085,7 @@
    "name": "FUN_01028034",
    "display_name": "FUN_01028034",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010280be": {
@@ -6948,7 +7094,7 @@
    "name": "FUN_010280be",
    "display_name": "FUN_010280be",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010280d8": {
@@ -6957,7 +7103,7 @@
    "name": "FUN_010280d8",
    "display_name": "FUN_010280d8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010280f2": {
@@ -6966,7 +7112,7 @@
    "name": "FUN_010280f2",
    "display_name": "FUN_010280f2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028112": {
@@ -6975,7 +7121,7 @@
    "name": "FUN_01028112",
    "display_name": "FUN_01028112",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028134": {
@@ -6984,7 +7130,7 @@
    "name": "FUN_01028134",
    "display_name": "FUN_01028134",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028256": {
@@ -6993,7 +7139,7 @@
    "name": "FUN_01028256",
    "display_name": "FUN_01028256",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028296": {
@@ -7029,7 +7175,7 @@
    "name": "FUN_010282fc",
    "display_name": "FUN_010282fc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010283a4": {
@@ -7038,7 +7184,7 @@
    "name": "FUN_010283a4",
    "display_name": "FUN_010283a4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010283b8": {
@@ -7047,7 +7193,7 @@
    "name": "FUN_010283b8",
    "display_name": "FUN_010283b8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010283fe": {
@@ -7056,7 +7202,7 @@
    "name": "FUN_010283fe",
    "display_name": "FUN_010283fe",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028412": {
@@ -7065,7 +7211,7 @@
    "name": "FUN_01028412",
    "display_name": "FUN_01028412",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028464": {
@@ -7092,7 +7238,7 @@
    "name": "FUN_010284a8",
    "display_name": "FUN_010284a8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010285c0": {
@@ -7101,7 +7247,7 @@
    "name": "FUN_010285c0",
    "display_name": "FUN_010285c0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028608": {
@@ -7110,7 +7256,7 @@
    "name": "FUN_01028608",
    "display_name": "FUN_01028608",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028656": {
@@ -7119,7 +7265,7 @@
    "name": "FUN_01028656",
    "display_name": "FUN_01028656",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102878a": {
@@ -7128,7 +7274,7 @@
    "name": "FUN_0102878a",
    "display_name": "FUN_0102878a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102894a": {
@@ -7137,7 +7283,7 @@
    "name": "FUN_0102894a",
    "display_name": "FUN_0102894a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028b38": {
@@ -7155,7 +7301,7 @@
    "name": "FUN_01028b3c",
    "display_name": "FUN_01028b3c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028b7c": {
@@ -7164,7 +7310,7 @@
    "name": "FUN_01028b7c",
    "display_name": "FUN_01028b7c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01028fa4": {
@@ -7173,7 +7319,7 @@
    "name": "FUN_01028fa4",
    "display_name": "FUN_01028fa4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010290d0": {
@@ -7182,7 +7328,7 @@
    "name": "FUN_010290d0",
    "display_name": "FUN_010290d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010291aa": {
@@ -7191,7 +7337,7 @@
    "name": "FUN_010291aa",
    "display_name": "FUN_010291aa",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010291d4": {
@@ -7200,7 +7346,7 @@
    "name": "FUN_010291d4",
    "display_name": "FUN_010291d4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029212": {
@@ -7209,7 +7355,7 @@
    "name": "FUN_01029212",
    "display_name": "FUN_01029212",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102923c": {
@@ -7218,7 +7364,7 @@
    "name": "FUN_0102923c",
    "display_name": "FUN_0102923c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102931a": {
@@ -7227,7 +7373,7 @@
    "name": "FUN_0102931a",
    "display_name": "FUN_0102931a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029342": {
@@ -7236,7 +7382,7 @@
    "name": "FUN_01029342",
    "display_name": "FUN_01029342",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010293b2": {
@@ -7245,7 +7391,7 @@
    "name": "FUN_010293b2",
    "display_name": "FUN_010293b2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010293ee": {
@@ -7254,7 +7400,7 @@
    "name": "FUN_010293ee",
    "display_name": "FUN_010293ee",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102941c": {
@@ -7263,7 +7409,7 @@
    "name": "FUN_0102941c",
    "display_name": "FUN_0102941c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102943c": {
@@ -7272,7 +7418,16 @@
    "name": "FUN_0102943c",
    "display_name": "FUN_0102943c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
+   "aliases": []
+  },
+  "0x0102946c": {
+   "address": "0x0102946c",
+   "raw_name": "FUN_0102946c",
+   "name": "FUN_0102946c",
+   "display_name": "FUN_0102946c",
+   "human": false,
+   "source": "recon/net/src/FUN_0102946c.c",
    "aliases": []
   },
   "0x010294a2": {
@@ -7326,7 +7481,7 @@
    "name": "FUN_010294c2",
    "display_name": "FUN_010294c2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010294d2": {
@@ -7335,7 +7490,7 @@
    "name": "FUN_010294d2",
    "display_name": "FUN_010294d2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010294ee": {
@@ -7344,7 +7499,7 @@
    "name": "FUN_010294ee",
    "display_name": "FUN_010294ee",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029516": {
@@ -7353,7 +7508,7 @@
    "name": "FUN_01029516",
    "display_name": "FUN_01029516",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010295d6": {
@@ -7362,7 +7517,7 @@
    "name": "FUN_010295d6",
    "display_name": "FUN_010295d6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102961a": {
@@ -7371,17 +7526,19 @@
    "name": "FUN_0102961a",
    "display_name": "FUN_0102961a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029638": {
    "address": "0x01029638",
    "raw_name": "FUN_01029638",
-   "name": "thunk_FUN_010246cc",
-   "display_name": "thunk_FUN_010246cc",
+   "name": "sdc_timing_compensation_get",
+   "display_name": "sdc_timing_compensation_get",
    "human": true,
-   "source": "recon/net/src/thunk_FUN_010246cc.c",
-   "aliases": []
+   "source": "function_name_overrides.json: Thumb thunk used at planner entry to fetch the signed base timing compensation before adding the indexed controller coefficient. Raw identity remains thunk_FUN_010246cc at 0x01029638.",
+   "aliases": [
+    "thunk_FUN_010246cc"
+   ]
   },
   "0x01029652": {
    "address": "0x01029652",
@@ -7389,7 +7546,7 @@
    "name": "FUN_01029652",
    "display_name": "FUN_01029652",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029674": {
@@ -7398,7 +7555,7 @@
    "name": "FUN_01029674",
    "display_name": "FUN_01029674",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010296f8": {
@@ -7407,7 +7564,7 @@
    "name": "FUN_010296f8",
    "display_name": "FUN_010296f8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102971e": {
@@ -7416,7 +7573,7 @@
    "name": "FUN_0102971e",
    "display_name": "FUN_0102971e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029738": {
@@ -7425,7 +7582,7 @@
    "name": "FUN_01029738",
    "display_name": "FUN_01029738",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010297b4": {
@@ -7434,7 +7591,7 @@
    "name": "FUN_010297b4",
    "display_name": "FUN_010297b4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029882": {
@@ -7443,7 +7600,7 @@
    "name": "FUN_01029882",
    "display_name": "FUN_01029882",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010298a8": {
@@ -7452,7 +7609,7 @@
    "name": "FUN_010298a8",
    "display_name": "FUN_010298a8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010298ba": {
@@ -7461,7 +7618,7 @@
    "name": "FUN_010298ba",
    "display_name": "FUN_010298ba",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010298f0": {
@@ -7470,7 +7627,7 @@
    "name": "FUN_010298f0",
    "display_name": "FUN_010298f0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010299be": {
@@ -7479,7 +7636,7 @@
    "name": "FUN_010299be",
    "display_name": "FUN_010299be",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029aea": {
@@ -7488,7 +7645,7 @@
    "name": "FUN_01029aea",
    "display_name": "FUN_01029aea",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029b12": {
@@ -7497,7 +7654,7 @@
    "name": "FUN_01029b12",
    "display_name": "FUN_01029b12",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029b24": {
@@ -7506,7 +7663,7 @@
    "name": "FUN_01029b24",
    "display_name": "FUN_01029b24",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029b38": {
@@ -7515,7 +7672,7 @@
    "name": "FUN_01029b38",
    "display_name": "FUN_01029b38",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029b4e": {
@@ -7524,7 +7681,7 @@
    "name": "FUN_01029b4e",
    "display_name": "FUN_01029b4e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029b88": {
@@ -7533,7 +7690,7 @@
    "name": "FUN_01029b88",
    "display_name": "FUN_01029b88",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029bda": {
@@ -7542,7 +7699,7 @@
    "name": "FUN_01029bda",
    "display_name": "FUN_01029bda",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029bea": {
@@ -7551,7 +7708,7 @@
    "name": "FUN_01029bea",
    "display_name": "FUN_01029bea",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029bfa": {
@@ -7560,7 +7717,7 @@
    "name": "FUN_01029bfa",
    "display_name": "FUN_01029bfa",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029c22": {
@@ -7569,7 +7726,7 @@
    "name": "FUN_01029c22",
    "display_name": "FUN_01029c22",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029c3a": {
@@ -7578,7 +7735,7 @@
    "name": "FUN_01029c3a",
    "display_name": "FUN_01029c3a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029c6c": {
@@ -7587,7 +7744,7 @@
    "name": "FUN_01029c6c",
    "display_name": "FUN_01029c6c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029c7c": {
@@ -7596,7 +7753,7 @@
    "name": "FUN_01029c7c",
    "display_name": "FUN_01029c7c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01029d34": {
@@ -7656,29 +7813,35 @@
   "0x0102a1ea": {
    "address": "0x0102a1ea",
    "raw_name": "FUN_0102a1ea",
-   "name": "FUN_0102a1ea",
-   "display_name": "FUN_0102a1ea",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_byte_lock_try_acquire",
+   "display_name": "sdc_byte_lock_try_acquire",
+   "human": true,
+   "source": "function_name_overrides.json: Sole caller is sdc_ecb_run_blocking; the helper atomically replaces the byte lock with one and returns -35 when it was already owned.",
+   "aliases": [
+    "FUN_0102a1ea"
+   ]
   },
   "0x0102a208": {
    "address": "0x0102a208",
    "raw_name": "FUN_0102a208",
-   "name": "FUN_0102a208",
-   "display_name": "FUN_0102a208",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "sdc_byte_lock_release",
+   "display_name": "sdc_byte_lock_release",
+   "human": true,
+   "source": "function_name_overrides.json: Sole caller is sdc_ecb_run_blocking; the helper atomically clears the same ownership byte.",
+   "aliases": [
+    "FUN_0102a208"
+   ]
   },
   "0x0102a21e": {
    "address": "0x0102a21e",
    "raw_name": "FUN_0102a21e",
-   "name": "FUN_0102a21e",
-   "display_name": "FUN_0102a21e",
-   "human": false,
-   "source": "recon/net/src/FUN_0102a21e.c",
-   "aliases": []
+   "name": "sdc_cpu_relax",
+   "display_name": "sdc_cpu_relax",
+   "human": true,
+   "source": "function_name_overrides.json: Two SDC-owned polling loops call this empty weak hook while waiting for hardware or scheduler-owned state; the ECB runner calls it only inside its bounded SEVONPEND polling section.",
+   "aliases": [
+    "FUN_0102a21e"
+   ]
   },
   "0x0102a244": {
    "address": "0x0102a244",
@@ -7686,7 +7849,7 @@
    "name": "FUN_0102a244",
    "display_name": "FUN_0102a244",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102a258": {
@@ -7785,7 +7948,7 @@
    "name": "FUN_0102a720",
    "display_name": "FUN_0102a720",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102ac0c": {
@@ -8064,7 +8227,7 @@
    "name": "FUN_0102d5b4",
    "display_name": "FUN_0102d5b4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102d618": {
@@ -8073,7 +8236,7 @@
    "name": "FUN_0102d618",
    "display_name": "FUN_0102d618",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102d6e0": {
@@ -8082,17 +8245,19 @@
    "name": "FUN_0102d6e0",
    "display_name": "FUN_0102d6e0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102d708": {
    "address": "0x0102d708",
    "raw_name": "FUN_0102d708",
-   "name": "FUN_0102d708",
-   "display_name": "FUN_0102d708",
-   "human": false,
-   "source": "recon/net/src/FUN_0102d708.c",
-   "aliases": []
+   "name": "ipc_rpmsg_static_vrings_open",
+   "display_name": "ipc_rpmsg_static_vrings_open",
+   "human": true,
+   "source": "function_name_overrides.json: Normalized Thumb opcode sequence matches NCS 2.5.1 ipc_rpmsg_static_vrings.c:open at 0.931, with the same vring layout, mailbox setup, RPMsg initialization, callbacks, errno paths, and state machine. Raw identity remains FUN_0102d708.",
+   "aliases": [
+    "FUN_0102d708"
+   ]
   },
   "0x0102d938": {
    "address": "0x0102d938",
@@ -8101,6 +8266,24 @@
    "display_name": "FUN_0102d938",
    "human": false,
    "source": "recon/net/src/FUN_0102d938.c",
+   "aliases": []
+  },
+  "0x0102dac0": {
+   "address": "0x0102dac0",
+   "raw_name": "FUN_0102dac0",
+   "name": "ipc_rpmsg_init",
+   "display_name": "ipc_rpmsg_init",
+   "human": true,
+   "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; argument layout and downstream rpmsg_virtio initialization agree. Raw identity remains FUN_0102dac0.",
+   "aliases": []
+  },
+  "0x0102db30": {
+   "address": "0x0102db30",
+   "raw_name": "FUN_0102db30",
+   "name": "ipc_static_vrings_init",
+   "display_name": "ipc_static_vrings_init",
+   "human": true,
+   "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation and exact role/vrings argument ABI. Raw identity remains FUN_0102db30.",
    "aliases": []
   },
   "0x0102dc90": {
@@ -8217,7 +8400,7 @@
    "name": "FUN_0102e284",
    "display_name": "FUN_0102e284",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102e3a8": {
@@ -8226,7 +8409,7 @@
    "name": "FUN_0102e3a8",
    "display_name": "FUN_0102e3a8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102e460": {
@@ -8235,7 +8418,7 @@
    "name": "FUN_0102e460",
    "display_name": "FUN_0102e460",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102e484": {
@@ -8253,7 +8436,7 @@
    "name": "FUN_0102e4f4",
    "display_name": "FUN_0102e4f4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102e7e0": {
@@ -8298,7 +8481,7 @@
    "name": "FUN_0102eb2c",
    "display_name": "FUN_0102eb2c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102eb48": {
@@ -8379,7 +8562,7 @@
    "name": "FUN_0102ef58",
    "display_name": "FUN_0102ef58",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102f080": {
@@ -8424,7 +8607,7 @@
    "name": "FUN_0102fa84",
    "display_name": "FUN_0102fa84",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102fbac": {
@@ -8433,7 +8616,7 @@
    "name": "FUN_0102fbac",
    "display_name": "FUN_0102fbac",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102fbd0": {
@@ -8469,7 +8652,7 @@
    "name": "FUN_0102fcec",
    "display_name": "FUN_0102fcec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102ff54": {
@@ -8478,7 +8661,7 @@
    "name": "FUN_0102ff54",
    "display_name": "FUN_0102ff54",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0102ff94": {
@@ -8487,7 +8670,7 @@
    "name": "FUN_0102ff94",
    "display_name": "FUN_0102ff94",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01030014": {
@@ -8577,7 +8760,7 @@
    "name": "FUN_01031078",
    "display_name": "FUN_01031078",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01031248": {
@@ -8586,7 +8769,7 @@
    "name": "FUN_01031248",
    "display_name": "FUN_01031248",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010312d0": {
@@ -8601,11 +8784,13 @@
   "0x010313a8": {
    "address": "0x010313a8",
    "raw_name": "FUN_010313a8",
-   "name": "FUN_010313a8",
-   "display_name": "FUN_010313a8",
-   "human": false,
-   "source": "recon/net/src/FUN_010313a8.c",
-   "aliases": []
+   "name": "z_nrf_rtc_timer_read",
+   "display_name": "z_nrf_rtc_timer_read",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 system RTC timer implementation: combines overflow_cnt with the 24-bit RTC1 counter and corrects a pending overflow using the 64-bit anchor. Raw identity remains FUN_010313a8.",
+   "aliases": [
+    "FUN_010313a8"
+   ]
   },
   "0x010313ec": {
    "address": "0x010313ec",
@@ -8619,11 +8804,13 @@
   "0x010315f0": {
    "address": "0x010315f0",
    "raw_name": "FUN_010315f0",
-   "name": "FUN_010315f0",
-   "display_name": "FUN_010315f0",
-   "human": false,
-   "source": "recon/net/src/FUN_010315f0.c",
-   "aliases": []
+   "name": "rtc_nrf_isr",
+   "display_name": "rtc_nrf_isr",
+   "human": true,
+   "source": "function_name_overrides.json: Exact match to NCS 2.5.1 Zephyr drivers/timer/nrf_rtc_timer.c rtc_nrf_isr: RTC1 pretick hook, overflow accounting, force_isr_mask atomic clear, two compare channels, 64-bit target comparison, event disable/clear, and the aligned callback ABI. Raw identity remains FUN_010315f0.",
+   "aliases": [
+    "FUN_010315f0"
+   ]
   },
   "0x0103175c": {
    "address": "0x0103175c",
@@ -8631,7 +8818,7 @@
    "name": "FUN_0103175c",
    "display_name": "FUN_0103175c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010317d4": {
@@ -8667,7 +8854,7 @@
    "name": "FUN_01031820",
    "display_name": "FUN_01031820",
    "human": false,
-   "source": "recon/net/src/FUN_01031820.c",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010318d8": {
@@ -8703,7 +8890,7 @@
    "name": "FUN_01031b88",
    "display_name": "FUN_01031b88",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010323cc": {
@@ -8730,7 +8917,7 @@
    "name": "FUN_01032680",
    "display_name": "FUN_01032680",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01032764": {
@@ -8829,7 +9016,7 @@
    "name": "FUN_010333e4",
    "display_name": "FUN_010333e4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01033660": {
@@ -9297,7 +9484,7 @@
    "name": "FUN_0103510c",
    "display_name": "FUN_0103510c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103533c": {
@@ -9324,7 +9511,7 @@
    "name": "FUN_010353ec",
    "display_name": "FUN_010353ec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01035424": {
@@ -9333,7 +9520,7 @@
    "name": "FUN_01035424",
    "display_name": "FUN_01035424",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103547c": {
@@ -9342,7 +9529,7 @@
    "name": "FUN_0103547c",
    "display_name": "FUN_0103547c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010354bc": {
@@ -9384,11 +9571,13 @@
   "0x010357ec": {
    "address": "0x010357ec",
    "raw_name": "FUN_010357ec",
-   "name": "FUN_010357ec",
-   "display_name": "FUN_010357ec",
-   "human": false,
-   "source": "recon/net/src/FUN_010357ec.c",
-   "aliases": []
+   "name": "rpmsg_virtio_get_buffer_size",
+   "display_name": "rpmsg_virtio_get_buffer_size",
+   "human": true,
+   "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; its nonnegative result is stored as tx_buffer_size. Raw identity remains FUN_010357ec.",
+   "aliases": [
+    "FUN_010357ec"
+   ]
   },
   "0x01035830": {
    "address": "0x01035830",
@@ -9555,11 +9744,13 @@
   "0x01036bec": {
    "address": "0x01036bec",
    "raw_name": "FUN_01036bec",
-   "name": "FUN_01036bec",
-   "display_name": "FUN_01036bec",
-   "human": false,
-   "source": "recon/net/src/FUN_01036bec.c",
-   "aliases": []
+   "name": "k_work_init",
+   "display_name": "k_work_init",
+   "human": true,
+   "source": "function_name_overrides.json: Body zeroes a Zephyr k_work object and installs the handler; direct matched-open call initializes mbox_work with mbox_callback_process. Raw identity remains FUN_01036bec.",
+   "aliases": [
+    "FUN_01036bec"
+   ]
   },
   "0x01036c2c": {
    "address": "0x01036c2c",
@@ -9568,6 +9759,24 @@
    "display_name": "FUN_01036c2c",
    "human": false,
    "source": "recon/net/src/FUN_01036c2c.c",
+   "aliases": []
+  },
+  "0x01036cb8": {
+   "address": "0x01036cb8",
+   "raw_name": "FUN_01036cb8",
+   "name": "k_work_queue_init",
+   "display_name": "k_work_queue_init",
+   "human": true,
+   "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence; body zero-initializes the complete work queue object. Raw identity remains FUN_01036cb8.",
+   "aliases": []
+  },
+  "0x01036ce4": {
+   "address": "0x01036ce4",
+   "raw_name": "FUN_01036ce4",
+   "name": "k_work_queue_start",
+   "display_name": "k_work_queue_start",
+   "human": true,
+   "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence, including queue, stack, stack-size, priority and null config arguments. Raw identity remains FUN_01036ce4.",
    "aliases": []
   },
   "0x01036e90": {
@@ -9666,7 +9875,7 @@
    "name": "FUN_010374dc",
    "display_name": "FUN_010374dc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01037514": {
@@ -9684,7 +9893,7 @@
    "name": "FUN_01037588",
    "display_name": "FUN_01037588",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010375b8": {
@@ -9918,7 +10127,7 @@
    "name": "FUN_01038a90",
    "display_name": "FUN_01038a90",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038ac8": {
@@ -9927,7 +10136,7 @@
    "name": "FUN_01038ac8",
    "display_name": "FUN_01038ac8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038b1c": {
@@ -9936,7 +10145,7 @@
    "name": "FUN_01038b1c",
    "display_name": "FUN_01038b1c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038bd4": {
@@ -9945,7 +10154,7 @@
    "name": "FUN_01038bd4",
    "display_name": "FUN_01038bd4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038ca0": {
@@ -9954,7 +10163,7 @@
    "name": "FUN_01038ca0",
    "display_name": "FUN_01038ca0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038d38": {
@@ -9963,7 +10172,7 @@
    "name": "FUN_01038d38",
    "display_name": "FUN_01038d38",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038d9c": {
@@ -9981,7 +10190,7 @@
    "name": "FUN_01038da0",
    "display_name": "FUN_01038da0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038dbc": {
@@ -9990,7 +10199,7 @@
    "name": "FUN_01038dbc",
    "display_name": "FUN_01038dbc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038f34": {
@@ -9999,7 +10208,7 @@
    "name": "FUN_01038f34",
    "display_name": "FUN_01038f34",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038f70": {
@@ -10008,7 +10217,7 @@
    "name": "FUN_01038f70",
    "display_name": "FUN_01038f70",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038fa4": {
@@ -10017,7 +10226,7 @@
    "name": "FUN_01038fa4",
    "display_name": "FUN_01038fa4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01038fd8": {
@@ -10026,7 +10235,7 @@
    "name": "FUN_01038fd8",
    "display_name": "FUN_01038fd8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039138": {
@@ -10071,7 +10280,7 @@
    "name": "FUN_0103966e",
    "display_name": "FUN_0103966e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x010396d0": {
@@ -10080,7 +10289,7 @@
    "name": "FUN_010396d0",
    "display_name": "FUN_010396d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103971e": {
@@ -10098,7 +10307,7 @@
    "name": "FUN_01039722",
    "display_name": "FUN_01039722",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103973c": {
@@ -10242,7 +10451,7 @@
    "name": "FUN_01039ade",
    "display_name": "FUN_01039ade",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039b16": {
@@ -10251,7 +10460,7 @@
    "name": "FUN_01039b16",
    "display_name": "FUN_01039b16",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039b36": {
@@ -10260,7 +10469,7 @@
    "name": "FUN_01039b36",
    "display_name": "FUN_01039b36",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039b62": {
@@ -10269,7 +10478,7 @@
    "name": "FUN_01039b62",
    "display_name": "FUN_01039b62",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039b88": {
@@ -10278,7 +10487,7 @@
    "name": "FUN_01039b88",
    "display_name": "FUN_01039b88",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039bb0": {
@@ -10296,7 +10505,7 @@
    "name": "FUN_01039bbe",
    "display_name": "FUN_01039bbe",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039bd8": {
@@ -10377,17 +10586,19 @@
    "name": "FUN_01039dec",
    "display_name": "FUN_01039dec",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039e4e": {
    "address": "0x01039e4e",
    "raw_name": "FUN_01039e4e",
-   "name": "thunk_FUN_0102cfec",
-   "display_name": "thunk_FUN_0102cfec",
+   "name": "rtc_pretick_rtc1_isr_hook",
+   "display_name": "rtc_pretick_rtc1_isr_hook",
    "human": true,
-   "source": "recon/net/src/thunk_FUN_0102cfec.c",
-   "aliases": []
+   "source": "function_name_overrides.json: Linker thunk called at the start of rtc_nrf_isr and tail-branching to the nRF53 SoC rtc_pretick_rtc1_isr_hook implementation at 0x0102cfec. Raw identity remains FUN_01039e4e/thunk_FUN_0102cfec.",
+   "aliases": [
+    "thunk_FUN_0102cfec"
+   ]
   },
   "0x01039e52": {
    "address": "0x01039e52",
@@ -10404,7 +10615,7 @@
    "name": "FUN_01039f4c",
    "display_name": "FUN_01039f4c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039fb2": {
@@ -10419,11 +10630,13 @@
   "0x01039fb6": {
    "address": "0x01039fb6",
    "raw_name": "FUN_01039fb6",
-   "name": "FUN_01039fb6",
-   "display_name": "FUN_01039fb6",
-   "human": false,
-   "source": "recon/net/src/FUN_01039fb6.c",
-   "aliases": []
+   "name": "atomic_set",
+   "display_name": "atomic_set",
+   "human": true,
+   "source": "function_name_overrides.json: Body is Zephyr's atomic exchange loop and the matched backend open uses it for READY/INITED state publication. Raw identity remains FUN_01039fb6.",
+   "aliases": [
+    "FUN_01039fb6"
+   ]
   },
   "0x01039fc4": {
    "address": "0x01039fc4",
@@ -10431,7 +10644,7 @@
    "name": "FUN_01039fc4",
    "display_name": "FUN_01039fc4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x01039fe6": {
@@ -10441,6 +10654,15 @@
    "display_name": "FUN_01039fe6",
    "human": false,
    "source": "recon/net/src/FUN_01039fe6.c",
+   "aliases": []
+  },
+  "0x0103a056": {
+   "address": "0x0103a056",
+   "raw_name": "FUN_0103a056",
+   "name": "ipc_static_vrings_shm_size",
+   "display_name": "ipc_static_vrings_shm_size",
+   "human": true,
+   "source": "function_name_overrides.json: Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056.",
    "aliases": []
   },
   "0x0103a076": {
@@ -10557,7 +10779,7 @@
    "name": "FUN_0103a44c",
    "display_name": "FUN_0103a44c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a468": {
@@ -10566,7 +10788,7 @@
    "name": "FUN_0103a468",
    "display_name": "FUN_0103a468",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a478": {
@@ -10575,7 +10797,7 @@
    "name": "FUN_0103a478",
    "display_name": "FUN_0103a478",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a490": {
@@ -10584,7 +10806,7 @@
    "name": "FUN_0103a490",
    "display_name": "FUN_0103a490",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a4b6": {
@@ -10593,7 +10815,7 @@
    "name": "FUN_0103a4b6",
    "display_name": "FUN_0103a4b6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a5b0": {
@@ -10602,7 +10824,7 @@
    "name": "FUN_0103a5b0",
    "display_name": "FUN_0103a5b0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a61c": {
@@ -10611,17 +10833,19 @@
    "name": "FUN_0103a61c",
    "display_name": "FUN_0103a61c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103a6ae": {
    "address": "0x0103a6ae",
    "raw_name": "FUN_0103a6ae",
-   "name": "FUN_0103a6ae",
-   "display_name": "FUN_0103a6ae",
-   "human": false,
-   "source": "net_funcs.json:name",
-   "aliases": []
+   "name": "rtc_compare_event_clear",
+   "display_name": "rtc_compare_event_clear",
+   "human": true,
+   "source": "function_name_overrides.json: Compiler-outlined nrf_rtc event_clear helper used by rtc_nrf_isr; channel n selects RTC1 EVENTS_COMPARE[n], writes zero, and performs the required readback. Raw identity remains FUN_0103a6ae.",
+   "aliases": [
+    "FUN_0103a6ae"
+   ]
   },
   "0x0103a6c6": {
    "address": "0x0103a6c6",
@@ -10701,7 +10925,7 @@
    "name": "FUN_0103a9be",
    "display_name": "FUN_0103a9be",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103aa9c": {
@@ -10710,7 +10934,7 @@
    "name": "FUN_0103aa9c",
    "display_name": "FUN_0103aa9c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ab0e": {
@@ -10719,7 +10943,7 @@
    "name": "FUN_0103ab0e",
    "display_name": "FUN_0103ab0e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ab86": {
@@ -10728,7 +10952,7 @@
    "name": "FUN_0103ab86",
    "display_name": "FUN_0103ab86",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103abbe": {
@@ -10737,7 +10961,7 @@
    "name": "FUN_0103abbe",
    "display_name": "FUN_0103abbe",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ac0c": {
@@ -10764,7 +10988,7 @@
    "name": "FUN_0103ac50",
    "display_name": "FUN_0103ac50",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ac98": {
@@ -10791,7 +11015,7 @@
    "name": "FUN_0103ad1a",
    "display_name": "FUN_0103ad1a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ad4a": {
@@ -10809,7 +11033,7 @@
    "name": "FUN_0103ad56",
    "display_name": "FUN_0103ad56",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ada8": {
@@ -10818,7 +11042,7 @@
    "name": "FUN_0103ada8",
    "display_name": "FUN_0103ada8",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ae10": {
@@ -10827,7 +11051,7 @@
    "name": "FUN_0103ae10",
    "display_name": "FUN_0103ae10",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103ae84": {
@@ -10836,7 +11060,7 @@
    "name": "FUN_0103ae84",
    "display_name": "FUN_0103ae84",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103aec2": {
@@ -10863,7 +11087,7 @@
    "name": "FUN_0103aed2",
    "display_name": "FUN_0103aed2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103af14": {
@@ -10872,7 +11096,7 @@
    "name": "FUN_0103af14",
    "display_name": "FUN_0103af14",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103afac": {
@@ -10899,7 +11123,7 @@
    "name": "FUN_0103b0cc",
    "display_name": "FUN_0103b0cc",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b0e8": {
@@ -10917,7 +11141,7 @@
    "name": "FUN_0103b0f0",
    "display_name": "FUN_0103b0f0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b14a": {
@@ -10953,7 +11177,7 @@
    "name": "FUN_0103b164",
    "display_name": "FUN_0103b164",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b18c": {
@@ -10962,7 +11186,7 @@
    "name": "FUN_0103b18c",
    "display_name": "FUN_0103b18c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b1c4": {
@@ -10989,7 +11213,7 @@
    "name": "FUN_0103b1e2",
    "display_name": "FUN_0103b1e2",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b210": {
@@ -10998,7 +11222,7 @@
    "name": "FUN_0103b210",
    "display_name": "FUN_0103b210",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b224": {
@@ -11007,7 +11231,7 @@
    "name": "FUN_0103b224",
    "display_name": "FUN_0103b224",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b244": {
@@ -11016,7 +11240,7 @@
    "name": "FUN_0103b244",
    "display_name": "FUN_0103b244",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b25a": {
@@ -11034,7 +11258,7 @@
    "name": "FUN_0103b268",
    "display_name": "FUN_0103b268",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b28a": {
@@ -11043,7 +11267,7 @@
    "name": "FUN_0103b28a",
    "display_name": "FUN_0103b28a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b29c": {
@@ -11052,7 +11276,7 @@
    "name": "FUN_0103b29c",
    "display_name": "FUN_0103b29c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b2d0": {
@@ -11061,7 +11285,7 @@
    "name": "FUN_0103b2d0",
    "display_name": "FUN_0103b2d0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b2f0": {
@@ -11097,7 +11321,7 @@
    "name": "FUN_0103b304",
    "display_name": "FUN_0103b304",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b34c": {
@@ -11106,7 +11330,7 @@
    "name": "FUN_0103b34c",
    "display_name": "FUN_0103b34c",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b38e": {
@@ -11115,7 +11339,7 @@
    "name": "FUN_0103b38e",
    "display_name": "FUN_0103b38e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b3a6": {
@@ -11124,7 +11348,7 @@
    "name": "FUN_0103b3a6",
    "display_name": "FUN_0103b3a6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b3e0": {
@@ -11133,7 +11357,7 @@
    "name": "FUN_0103b3e0",
    "display_name": "FUN_0103b3e0",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b442": {
@@ -11142,7 +11366,7 @@
    "name": "FUN_0103b442",
    "display_name": "FUN_0103b442",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b4f6": {
@@ -11151,7 +11375,7 @@
    "name": "FUN_0103b4f6",
    "display_name": "FUN_0103b4f6",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b512": {
@@ -11187,7 +11411,7 @@
    "name": "FUN_0103b53a",
    "display_name": "FUN_0103b53a",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b580": {
@@ -11196,7 +11420,7 @@
    "name": "FUN_0103b580",
    "display_name": "FUN_0103b580",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b5a4": {
@@ -11205,7 +11429,7 @@
    "name": "FUN_0103b5a4",
    "display_name": "FUN_0103b5a4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b5c4": {
@@ -11214,7 +11438,7 @@
    "name": "FUN_0103b5c4",
    "display_name": "FUN_0103b5c4",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b5dc": {
@@ -11232,7 +11456,7 @@
    "name": "FUN_0103b614",
    "display_name": "FUN_0103b614",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b62e": {
@@ -11241,7 +11465,7 @@
    "name": "FUN_0103b62e",
    "display_name": "FUN_0103b62e",
    "human": false,
-   "source": "net_funcs.json:name",
+   "source": "committed durable map",
    "aliases": []
   },
   "0x0103b650": {
@@ -11271,7 +11495,6 @@
   "FUN_010089f8": "0x010089f8",
   "FUN_01008a28": "0x01008a28",
   "FUN_01008a58": "0x01008a58",
-  "FUN_01008d00": "0x01008d00",
   "FUN_01008d7c": "0x01008d7c",
   "FUN_01008ddc": "0x01008ddc",
   "FUN_01008e74": "0x01008e74",
@@ -11330,7 +11553,6 @@
   "FUN_0100a790": "0x0100a790",
   "FUN_0100a7b0": "0x0100a7b0",
   "FUN_0100a7cc": "0x0100a7cc",
-  "FUN_0100a7e8": "0x0100a7e8",
   "FUN_0100a8c4": "0x0100a8c4",
   "FUN_0100a8dc": "0x0100a8dc",
   "FUN_0100a8f8": "0x0100a8f8",
@@ -11387,10 +11609,8 @@
   "FUN_0100d2c8": "0x0100d2c8",
   "FUN_0100d3a0": "0x0100d3a0",
   "FUN_0100d3c0": "0x0100d3c0",
-  "FUN_0100d4d0": "0x0100d4d0",
   "FUN_0100d538": "0x0100d538",
   "FUN_0100d584": "0x0100d584",
-  "FUN_0100d58c": "0x0100d58c",
   "FUN_0100d5c8": "0x0100d5c8",
   "FUN_0100d5d0": "0x0100d5d0",
   "FUN_0100d600": "0x0100d600",
@@ -11399,9 +11619,7 @@
   "FUN_0100d674": "0x0100d674",
   "FUN_0100d688": "0x0100d688",
   "FUN_0100d6b0": "0x0100d6b0",
-  "FUN_0100d6e8": "0x0100d6e8",
   "FUN_0100d738": "0x0100d738",
-  "FUN_0100d760": "0x0100d760",
   "FUN_0100d7ac": "0x0100d7ac",
   "FUN_0100d7bc": "0x0100d7bc",
   "FUN_0100d808": "0x0100d808",
@@ -11479,13 +11697,11 @@
   "FUN_0100ebc4": "0x0100ebc4",
   "FUN_0100ebf4": "0x0100ebf4",
   "FUN_0100ec40": "0x0100ec40",
-  "FUN_0100ec88": "0x0100ec88",
   "FUN_0100ef48": "0x0100ef48",
   "FUN_0100ef88": "0x0100ef88",
   "FUN_0100efc8": "0x0100efc8",
   "FUN_0100f004": "0x0100f004",
   "FUN_0100f0a4": "0x0100f0a4",
-  "FUN_0100f0fc": "0x0100f0fc",
   "FUN_0100f100": "0x0100f100",
   "FUN_0100f110": "0x0100f110",
   "FUN_0100f198": "0x0100f198",
@@ -11494,13 +11710,10 @@
   "FUN_0100f2d0": "0x0100f2d0",
   "FUN_0100f300": "0x0100f300",
   "FUN_0100f368": "0x0100f368",
-  "FUN_0100f48c": "0x0100f48c",
   "FUN_0100f5b4": "0x0100f5b4",
   "FUN_0100f5cc": "0x0100f5cc",
   "FUN_0100f5d8": "0x0100f5d8",
-  "FUN_0100f63c": "0x0100f63c",
   "FUN_0100f66c": "0x0100f66c",
-  "FUN_0100f69c": "0x0100f69c",
   "FUN_0100f6b0": "0x0100f6b0",
   "FUN_0100f6e8": "0x0100f6e8",
   "FUN_0100f70c": "0x0100f70c",
@@ -11588,10 +11801,8 @@
   "FUN_01012b50": "0x01012b50",
   "FUN_01012b98": "0x01012b98",
   "FUN_01012ba4": "0x01012ba4",
-  "FUN_01012c08": "0x01012c08",
   "FUN_01012c14": "0x01012c14",
   "FUN_01012c84": "0x01012c84",
-  "FUN_01012f18": "0x01012f18",
   "FUN_01013650": "0x01013650",
   "FUN_010139a4": "0x010139a4",
   "FUN_01013a40": "0x01013a40",
@@ -11614,10 +11825,7 @@
   "FUN_01014884": "0x01014884",
   "FUN_01014a50": "0x01014a50",
   "FUN_01015ecc": "0x01015ecc",
-  "FUN_01016144": "0x01016144",
-  "FUN_01016160": "0x01016160",
   "FUN_01016170": "0x01016170",
-  "FUN_0101618c": "0x0101618c",
   "FUN_010161e8": "0x010161e8",
   "FUN_0101621c": "0x0101621c",
   "FUN_01016250": "0x01016250",
@@ -11626,7 +11834,6 @@
   "FUN_01016628": "0x01016628",
   "FUN_010166c0": "0x010166c0",
   "FUN_01016828": "0x01016828",
-  "FUN_010168e4": "0x010168e4",
   "FUN_01016cc8": "0x01016cc8",
   "FUN_01016e6c": "0x01016e6c",
   "FUN_01017018": "0x01017018",
@@ -11634,11 +11841,8 @@
   "FUN_01017154": "0x01017154",
   "FUN_010171c8": "0x010171c8",
   "FUN_01017344": "0x01017344",
-  "FUN_0101746c": "0x0101746c",
   "FUN_01017658": "0x01017658",
   "FUN_01017f7c": "0x01017f7c",
-  "FUN_010183e0": "0x010183e0",
-  "FUN_01018690": "0x01018690",
   "FUN_010187e0": "0x010187e0",
   "FUN_01018bf8": "0x01018bf8",
   "FUN_01018c28": "0x01018c28",
@@ -11650,7 +11854,6 @@
   "FUN_010190d0": "0x010190d0",
   "FUN_01019128": "0x01019128",
   "FUN_01019160": "0x01019160",
-  "FUN_01019204": "0x01019204",
   "FUN_0101920c": "0x0101920c",
   "FUN_01019254": "0x01019254",
   "FUN_01019560": "0x01019560",
@@ -11667,13 +11870,9 @@
   "FUN_01019ef8": "0x01019ef8",
   "FUN_01019f34": "0x01019f34",
   "FUN_01019f9c": "0x01019f9c",
-  "FUN_0101a070": "0x0101a070",
-  "FUN_0101a0e8": "0x0101a0e8",
-  "FUN_0101a130": "0x0101a130",
   "FUN_0101a184": "0x0101a184",
   "FUN_0101a218": "0x0101a218",
   "FUN_0101a2e0": "0x0101a2e0",
-  "FUN_0101a38c": "0x0101a38c",
   "FUN_0101ab20": "0x0101ab20",
   "FUN_0101ad38": "0x0101ad38",
   "FUN_0101ae50": "0x0101ae50",
@@ -11705,15 +11904,8 @@
   "FUN_0101dc50": "0x0101dc50",
   "FUN_0101dcec": "0x0101dcec",
   "FUN_0101dd0c": "0x0101dd0c",
-  "FUN_0101dd48": "0x0101dd48",
   "FUN_0101dd9c": "0x0101dd9c",
-  "FUN_0101dda8": "0x0101dda8",
-  "FUN_0101ddc0": "0x0101ddc0",
-  "FUN_0101de10": "0x0101de10",
   "FUN_0101de60": "0x0101de60",
-  "FUN_0101deac": "0x0101deac",
-  "FUN_0101deb8": "0x0101deb8",
-  "FUN_0101dec4": "0x0101dec4",
   "FUN_0101ded0": "0x0101ded0",
   "FUN_0101df84": "0x0101df84",
   "FUN_0101e078": "0x0101e078",
@@ -11764,9 +11956,9 @@
   "FUN_0101fc2c": "0x0101fc2c",
   "FUN_0101fc40": "0x0101fc40",
   "FUN_0101fc70": "0x0101fc70",
-  "FUN_0101fca8": "0x0101fca8",
   "FUN_0101fcf4": "0x0101fcf4",
   "FUN_0101fd20": "0x0101fd20",
+  "FUN_0101fd8c": "0x0101fd8c",
   "FUN_0101fdd0": "0x0101fdd0",
   "FUN_0101fe98": "0x0101fe98",
   "FUN_0101ff4c": "0x0101ff4c",
@@ -11789,7 +11981,6 @@
   "FUN_010204d4": "0x010204d4",
   "FUN_010204e0": "0x010204e0",
   "FUN_010204f4": "0x010204f4",
-  "FUN_01020500": "0x01020500",
   "FUN_01020634": "0x01020634",
   "FUN_0102072c": "0x0102072c",
   "FUN_01020738": "0x01020738",
@@ -11798,24 +11989,14 @@
   "FUN_01020820": "0x01020820",
   "FUN_01020864": "0x01020864",
   "FUN_01020898": "0x01020898",
-  "FUN_010208b0": "0x010208b0",
   "FUN_010208cc": "0x010208cc",
   "FUN_010208e4": "0x010208e4",
   "FUN_010208f0": "0x010208f0",
   "FUN_010209b8": "0x010209b8",
-  "FUN_010209c8": "0x010209c8",
-  "FUN_010209e0": "0x010209e0",
-  "FUN_010209f0": "0x010209f0",
   "FUN_01020a00": "0x01020a00",
-  "FUN_01020a6c": "0x01020a6c",
-  "FUN_01020d1c": "0x01020d1c",
   "FUN_01021108": "0x01021108",
   "FUN_010212ec": "0x010212ec",
   "FUN_010215a8": "0x010215a8",
-  "FUN_010215d8": "0x010215d8",
-  "FUN_010215f4": "0x010215f4",
-  "FUN_01021614": "0x01021614",
-  "FUN_01021634": "0x01021634",
   "FUN_01021654": "0x01021654",
   "FUN_01021694": "0x01021694",
   "FUN_010216d4": "0x010216d4",
@@ -11829,8 +12010,6 @@
   "FUN_010218b4": "0x010218b4",
   "FUN_010218c0": "0x010218c0",
   "FUN_010218cc": "0x010218cc",
-  "FUN_010218d8": "0x010218d8",
-  "FUN_010218e4": "0x010218e4",
   "FUN_010218f0": "0x010218f0",
   "FUN_010218fc": "0x010218fc",
   "FUN_01021908": "0x01021908",
@@ -11858,8 +12037,6 @@
   "FUN_01022ea8": "0x01022ea8",
   "FUN_01022ebc": "0x01022ebc",
   "FUN_01022f0c": "0x01022f0c",
-  "FUN_01022f3c": "0x01022f3c",
-  "FUN_010231c8": "0x010231c8",
   "FUN_010237b0": "0x010237b0",
   "FUN_01023ac4": "0x01023ac4",
   "FUN_01023ad8": "0x01023ad8",
@@ -11868,7 +12045,6 @@
   "FUN_01023e88": "0x01023e88",
   "FUN_01023ea8": "0x01023ea8",
   "FUN_0102411c": "0x0102411c",
-  "FUN_010243c0": "0x010243c0",
   "FUN_01024440": "0x01024440",
   "FUN_0102445c": "0x0102445c",
   "FUN_010244cc": "0x010244cc",
@@ -11878,14 +12054,12 @@
   "FUN_01024644": "0x01024644",
   "FUN_01024650": "0x01024650",
   "FUN_01024664": "0x01024664",
-  "FUN_01024678": "0x01024678",
   "FUN_010246cc": "0x010246cc",
   "FUN_010246d8": "0x010246d8",
   "FUN_010246e4": "0x010246e4",
   "FUN_0102470c": "0x0102470c",
   "FUN_01024744": "0x01024744",
   "FUN_01024778": "0x01024778",
-  "FUN_010247cc": "0x010247cc",
   "FUN_010247dc": "0x010247dc",
   "FUN_010248d0": "0x010248d0",
   "FUN_01024a9c": "0x01024a9c",
@@ -11922,13 +12096,11 @@
   "FUN_01025bbc": "0x01025bbc",
   "FUN_01025bc8": "0x01025bc8",
   "FUN_01025bd4": "0x01025bd4",
-  "FUN_01025be0": "0x01025be0",
   "FUN_01025bf8": "0x01025bf8",
   "FUN_01025c38": "0x01025c38",
   "FUN_01025c44": "0x01025c44",
   "FUN_01025c9c": "0x01025c9c",
   "FUN_01025cc8": "0x01025cc8",
-  "FUN_01025cf0": "0x01025cf0",
   "FUN_01025d0c": "0x01025d0c",
   "FUN_01025d28": "0x01025d28",
   "FUN_01025d38": "0x01025d38",
@@ -12054,6 +12226,7 @@
   "FUN_010293ee": "0x010293ee",
   "FUN_0102941c": "0x0102941c",
   "FUN_0102943c": "0x0102943c",
+  "FUN_0102946c": "0x0102946c",
   "FUN_010294a2": "0x010294a2",
   "FUN_010294ae": "0x010294ae",
   "FUN_010294b4": "0x010294b4",
@@ -12093,9 +12266,6 @@
   "FUN_01029e64": "0x01029e64",
   "FUN_0102a122": "0x0102a122",
   "FUN_0102a1e2": "0x0102a1e2",
-  "FUN_0102a1ea": "0x0102a1ea",
-  "FUN_0102a208": "0x0102a208",
-  "FUN_0102a21e": "0x0102a21e",
   "FUN_0102a244": "0x0102a244",
   "FUN_0102a258": "0x0102a258",
   "FUN_0102a268": "0x0102a268",
@@ -12141,7 +12311,6 @@
   "FUN_0102d5b4": "0x0102d5b4",
   "FUN_0102d618": "0x0102d618",
   "FUN_0102d6e0": "0x0102d6e0",
-  "FUN_0102d708": "0x0102d708",
   "FUN_0102d938": "0x0102d938",
   "FUN_0102dc90": "0x0102dc90",
   "FUN_0102dcf4": "0x0102dcf4",
@@ -12198,9 +12367,7 @@
   "FUN_01031078": "0x01031078",
   "FUN_01031248": "0x01031248",
   "FUN_010312d0": "0x010312d0",
-  "FUN_010313a8": "0x010313a8",
   "FUN_010313ec": "0x010313ec",
-  "FUN_010315f0": "0x010315f0",
   "FUN_0103175c": "0x0103175c",
   "FUN_010317d4": "0x010317d4",
   "FUN_01031804": "0x01031804",
@@ -12285,7 +12452,6 @@
   "FUN_010355bc": "0x010355bc",
   "FUN_0103566c": "0x0103566c",
   "FUN_0103576c": "0x0103576c",
-  "FUN_010357ec": "0x010357ec",
   "FUN_01035830": "0x01035830",
   "FUN_010359b8": "0x010359b8",
   "FUN_01035d18": "0x01035d18",
@@ -12304,7 +12470,6 @@
   "FUN_0103689c": "0x0103689c",
   "FUN_0103695c": "0x0103695c",
   "FUN_01036b18": "0x01036b18",
-  "FUN_01036bec": "0x01036bec",
   "FUN_01036c2c": "0x01036c2c",
   "FUN_01036e90": "0x01036e90",
   "FUN_01036f24": "0x01036f24",
@@ -12397,7 +12562,6 @@
   "FUN_01039e52": "0x01039e52",
   "FUN_01039f4c": "0x01039f4c",
   "FUN_01039fb2": "0x01039fb2",
-  "FUN_01039fb6": "0x01039fb6",
   "FUN_01039fc4": "0x01039fc4",
   "FUN_01039fe6": "0x01039fe6",
   "FUN_0103a076": "0x0103a076",
@@ -12419,7 +12583,6 @@
   "FUN_0103a4b6": "0x0103a4b6",
   "FUN_0103a5b0": "0x0103a5b0",
   "FUN_0103a61c": "0x0103a61c",
-  "FUN_0103a6ae": "0x0103a6ae",
   "FUN_0103a6c6": "0x0103a6c6",
   "FUN_0103a80c": "0x0103a80c",
   "FUN_0103a83e": "0x0103a83e",
@@ -12487,24 +12650,95 @@
   "FUN_0103b614": "0x0103b614",
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
+  "atomic_set": "0x01039fb6",
+  "controller_mode1_state_validate": "0x010218d8",
+  "controller_mode2_state_validate": "0x010218e4",
+  "controller_packet_build_next": "0x0100ec88",
+  "controller_radio_event1_dispatch": "0x01016144",
+  "controller_radio_idle_event_finish": "0x0100b594",
+  "controller_radio_request_state_clear": "0x0101fdc0",
+  "controller_radio_state_get": "0x01019204",
+  "controller_radio_time_mode1_to_mode1": "0x01021614",
+  "controller_radio_time_mode1_to_mode2": "0x010215f4",
+  "controller_radio_time_mode2_to_mode1": "0x010215d8",
+  "controller_radio_time_mode2_to_mode2": "0x01021634",
+  "controller_radio_timer_capture_get": "0x01023de8",
+  "controller_radio_transition_apply": "0x01020d1c",
+  "controller_radio_transition_schedule": "0x01020a6c",
+  "controller_radio_work_pending": "0x01025be0",
+  "controller_time_now": "0x01022f08",
+  "controller_timing_request_schedule": "0x0100d4d0",
+  "controller_timing_request_submit": "0x01022f3c",
+  "controller_timing_snapshot_build": "0x0101a38c",
+  "controller_transition_pending_check": "0x01025cf0",
+  "ipc_rpmsg_init": "0x0102dac0",
+  "ipc_rpmsg_static_vrings_open": "0x0102d708",
+  "ipc_static_vrings_init": "0x0102db30",
+  "ipc_static_vrings_shm_size": "0x0103a056",
+  "k_work_init": "0x01036bec",
+  "k_work_queue_init": "0x01036cb8",
+  "k_work_queue_start": "0x01036ce4",
+  "mpsl_timeslot_distance_get": "0x010243c0",
+  "mpsl_timeslot_window_get": "0x010209c8",
+  "radio_phy_airtime_base_get": "0x010209f0",
+  "radio_phy_airtime_tail_get": "0x010209e0",
+  "radio_slot_margin_get": "0x0101a130",
+  "radio_transition_overhead_get": "0x0101a0e8",
+  "rpmsg_virtio_get_buffer_size": "0x010357ec",
+  "rtc_compare_event_clear": "0x0103a6ae",
+  "rtc_nrf_isr": "0x010315f0",
+  "rtc_pretick_rtc1_isr_hook": "0x01039e4e",
+  "schedule_node_find_at_or_after": "0x0101ddc0",
+  "schedule_node_insert_after": "0x0101dd48",
+  "schedule_node_list_is_locked": "0x0101dec4",
+  "schedule_node_list_lock": "0x0101deac",
+  "schedule_node_list_unlock": "0x0101deb8",
+  "schedule_node_tail_get": "0x0101dda8",
+  "schedule_phase_offset_get": "0x0101de10",
+  "sdc_assertion_fail": "0x01008d00",
+  "sdc_byte_lock_release": "0x0102a208",
+  "sdc_byte_lock_try_acquire": "0x0102a1ea",
+  "sdc_conn_event_process": "0x01014b18",
+  "sdc_conn_event_timing_prepare": "0x01012f18",
+  "sdc_conn_radio_overhead_set": "0x0100f48c",
+  "sdc_conn_recovery_state_restore": "0x0101618c",
+  "sdc_conn_recovery_window_update": "0x0100d6e8",
+  "sdc_conn_timing_fault": "0x01012c08",
+  "sdc_conn_timing_guard_enabled": "0x01016160",
+  "sdc_conn_window_admit": "0x010231c8",
+  "sdc_controller_random_get": "0x0100f63c",
+  "sdc_cpu_relax": "0x0102a21e",
+  "sdc_ecb_run_blocking": "0x0100a7e8",
+  "sdc_llcp_apply_rx_transition": "0x0101746c",
+  "sdc_llcp_decode_control_pdu": "0x0101a070",
+  "sdc_llcp_get_active_link_index": "0x0100d760",
+  "sdc_llcp_handle_control_opcode": "0x010168e4",
+  "sdc_llcp_handle_unknown_response": "0x010183e0",
+  "sdc_llcp_note_unsupported_pdu": "0x01020500",
+  "sdc_llcp_process_rx_control_pdu": "0x01018690",
+  "sdc_llcp_release_rx_context": "0x0101fca8",
+  "sdc_llcp_stop_rx_timeout": "0x010208b0",
+  "sdc_phy_timing_offset_get": "0x0100d58c",
+  "sdc_radio_context_fixed_time_get": "0x0100f0fc",
+  "sdc_timing_compensation_enabled": "0x010247cc",
+  "sdc_timing_compensation_get": "0x01029638",
+  "sdc_timing_scale": "0x01024678",
+  "signed_drift_clamp": "0x0100f69c",
   "thunk_FUN_0101621c": "0x010294be",
   "thunk_FUN_0101dc1c": "0x010294ba",
   "thunk_FUN_0101e96c": "0x0102679e",
   "thunk_FUN_0101f650": "0x0102677c",
   "thunk_FUN_0101fd20": "0x0100cb24",
-  "thunk_FUN_010246cc": "0x01029638",
-  "thunk_FUN_01025028": "0x01023de8",
-  "thunk_FUN_01025034": "0x01022f08",
   "thunk_FUN_010251e8": "0x010229a4",
   "thunk_FUN_01028656": "0x01028b38",
   "thunk_FUN_0102894a": "0x010267d6",
   "thunk_FUN_010294a2": "0x01026842",
-  "thunk_FUN_0102cfec": "0x01039e4e",
   "thunk_FUN_01036824": "0x0103aec2",
   "thunk_FUN_01038284": "0x0103b300",
   "thunk_FUN_01038fa4": "0x01038d9c",
   "thunk_FUN_0103a2a6": "0x0103971e",
-  "thunk_FUN_0103b0e8": "0x0103a8cc"
+  "thunk_FUN_0103b0e8": "0x0103a8cc",
+  "z_nrf_rtc_timer_read": "0x010313a8"
  },
  "conflicts": {}
 }

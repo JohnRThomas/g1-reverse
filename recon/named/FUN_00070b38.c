@@ -2,7 +2,7 @@
  * public-name: FUN_00070b38
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_bits_accu_flush                      <= FUN_00068908 @ 0x00068908
+ *   lc3_put_bits_generic                     <= FUN_00068908 @ 0x00068908
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_8fe60                             @ 0x0008fe60
@@ -20,7 +20,7 @@
 #include <stdint.h>
 typedef unsigned int uint;
 typedef unsigned short ushort;
-extern void lc3_bits_accu_flush(int,uint,int,int,uint);
+extern void lc3_put_bits_generic(int,uint,int,int,uint);
 extern void FUN_0006897c(int);
 #define U32(a) (*(volatile uint32_t*)(uintptr_t)(a))
 #define U16(a) (*(volatile uint16_t*)(uintptr_t)(a))
@@ -44,7 +44,7 @@ void FUN_00070b38(int param_1,int *param_2,uint param_3,uint param_4)
         U32(param_1 + 0x20) = iVar5;
         U32(param_1 + 0x1c) = U32(param_1 + 0x1c) | (uint)(0 < iVar7) << (uVar3 & 0xff);
       } else {
-        lc3_bits_accu_flush(param_1,(uint)(0 < iVar7),1,iVar5,param_4);
+        lc3_put_bits_generic(param_1,(uint)(0 < iVar7),1,iVar5,param_4);
       }
       if (0 < iVar7) {
         iVar5 = iVar1 + (uint)*(uint8_t *)((char*)param_2 + 4) * 0x44;

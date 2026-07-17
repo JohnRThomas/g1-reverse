@@ -9,7 +9,7 @@
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   sys_slist_find_and_remove                <= FUN_0008137e @ 0x0008137e
- *   thunk_FUN_000727ac                       <= FUN_000836e8 @ 0x000836e8
+ *   net_buf_get                              <= FUN_000836e8 @ 0x000836e8
  *   net_buf_simple_tailroom                  <= FUN_00083730 @ 0x00083730
  * address symbols (name @ address):
  *   g_ble_dev_state                          @ 0x20002000
@@ -28,7 +28,7 @@ extern void sys_slist_find_and_remove(void);
 extern void FUN_000813ca(void);
 extern int net_buf_simple_tailroom(void);
 extern void FUN_00083740(void);
-extern int thunk_FUN_000727ac(void);
+extern int net_buf_get(void);
 
 #define S16(a) (*(volatile int16_t*)(a))
 #define U16(a) (*(volatile uint16_t*)(a))
@@ -49,7 +49,7 @@ unsigned FUN_000560cc(int param_1, int param_2, int param_3, unsigned param_4)
         return 0xffffff97;
     }
     if (param_3 == 0) {
-        param_3 = thunk_FUN_000727ac();
+        param_3 = net_buf_get();
     } else {
         unsigned local_2c = U16(iVar2 + 0x104);
         int iVar4b = param_3 + 0xc;

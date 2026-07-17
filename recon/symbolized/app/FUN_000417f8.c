@@ -2,19 +2,6 @@
 /* readable reconstruction; identity: FUN_000417f8 @ 0x000417f8
  * public-name: FUN_000417f8
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
- *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
- *   gui_reset_dynamic_bitmap_frame_state     <= FUN_00043308 @ 0x00043308
- *   gui_bmp_dynamic_bitmap_draw              <= FUN_0004334c @ 0x0004334c
- *   gui_bmp_bitmap_draw                      <= FUN_00043484 @ 0x00043484
- *   gui_bmp_bitmap_draw_ex                   <= FUN_000435d4 @ 0x000435d4
- *   gui_utf_draw                             <= FUN_00043e90 @ 0x00043e90
- *   k_uptime_get_8                           <= FUN_0007d382 @ 0x0007d382
- *   device_info_text_width_get               <= FUN_0007d3ee @ 0x0007d3ee
- *   device_info_text_height_get_clamped      <= FUN_0007d446 @ 0x0007d446
- *   get_localized_weekday_name               <= FUN_0007d4b2 @ 0x0007d4b2
- *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_aa600                             @ 0x000aa600
  *   rodata_aa604                             @ 0x000aa604
@@ -29,15 +16,32 @@
  *   onboarding_retry_counter                 @ 0x2001cdd1
  *   onboarding_attempt_counter               @ 0x2001cdd2
  */
-/* Reconstructed FUN_000417f8 @ 0x417f8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_000417f8 @ 0x417f8.
+ * Semantic role: render the current onboarding/dashboard state.
+ * Raw entry and every renamed callee/address remain back-mapped below.
+ */
 typedef unsigned char      undefined1;
 typedef unsigned int       undefined4;
 typedef unsigned long long undefined8;
 typedef unsigned int       uint;
 typedef unsigned char      byte;
 typedef unsigned long long ulonglong;
+typedef unsigned char      fw_bool;
 
-/* external callee oracles (order-keyed by the parity harness) */
+/* Known callees (readable name <= raw symbol @ firmware address):
+ * k_uptime_get_8 <= FUN_0007d382 @ 0x0007d382
+ * get_device_info <= FUN_000167a8 @ 0x000167a8
+ * device_info_text_width_get <= FUN_0007d3ee @ 0x0007d3ee
+ * device_info_text_height_get_clamped <= FUN_0007d446 @ 0x0007d446
+ * get_localized_weekday_name <= FUN_0007d4b2 @ 0x0007d4b2
+ * strlen <= FUN_0000ef12 @ 0x0000ef12
+ * memset_bytes <= FUN_00086c78 @ 0x00086c78
+ * gui_reset_dynamic_bitmap_frame_state <= FUN_00043308 @ 0x00043308
+ * gui_bmp_dynamic_bitmap_draw <= FUN_0004334c @ 0x0004334c
+ * gui_bmp_bitmap_draw <= FUN_00043484 @ 0x00043484
+ * gui_bmp_bitmap_draw_ex <= FUN_000435d4 @ 0x000435d4
+ * gui_utf_draw <= FUN_00043e90 @ 0x00043e90
+ */
 extern unsigned long long k_uptime_get_8(void);
 extern int  get_device_info(void);
 extern int  FUN_00023ee0(void);
@@ -53,31 +57,21 @@ extern void gui_bmp_bitmap_draw_ex(int,int,int,void*,int);
 extern void gui_utf_draw(int,int,int,int,int,int,int,int,int,int,int,int);
 extern void send_event_status(int);
 
-/* dereferenced byte globals (absolute RAM addresses) */
-#define DAT_00041a70 ((volatile unsigned char *)((unsigned long)&g_2001cdd0) /*=0x2001cdd0*/)
-#define DAT_00041a74 ((volatile unsigned char *)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/)
-#define DAT_00041a78 ((volatile unsigned char *)((unsigned long)&onboarding_retry_counter) /*=0x2001cdd1*/)
-#define DAT_00041db0 ((volatile unsigned char *)((unsigned long)&onboarding_retry_counter) /*=0x2001cdd1*/)
-#define DAT_00041db4 ((volatile unsigned char *)((unsigned long)&onboarding_attempt_counter) /*=0x2001cdd2*/)
-#define DAT_000421f4 ((volatile unsigned char *)((unsigned long)&onboarding_retry_counter) /*=0x2001cdd1*/)
-#define DAT_00042480 ((volatile unsigned char *)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/)
-#define DAT_00042484 ((volatile unsigned char *)((unsigned long)&onboarding_attempt_counter) /*=0x2001cdd2*/)
-#define DAT_000427b0 ((volatile unsigned char *)((unsigned long)&onboarding_retry_counter) /*=0x2001cdd1*/)
-#define DAT_000427b4 ((volatile unsigned char *)((unsigned long)&onboarding_attempt_counter) /*=0x2001cdd2*/)
-#define DAT_000429f4 ((volatile unsigned char *)((unsigned long)&g_2001cdd0) /*=0x2001cdd0*/)
+/* Onboarding globals; each definition retains its raw address. */
+#define onboarding_render_retry_counter ((volatile unsigned char *)((unsigned long)&g_2001cdd0) /*=0x2001cdd0*/)
+#define onboarding_secondary_reset_flag ((volatile unsigned char *)((unsigned long)&onboarding_secondary_reset_flag) /*=0x2001cdce*/)
+#define onboarding_retry_counter ((volatile unsigned char *)((unsigned long)&onboarding_retry_counter) /*=0x2001cdd1*/)
+#define onboarding_attempt_counter ((volatile unsigned char *)((unsigned long)&onboarding_attempt_counter) /*=0x2001cdd2*/)
 
-/* rodata pointer constants passed as arguments */
-#define DAT_00041db8 ((unsigned int)((unsigned long)&rodata_aa608) /*=0xaa608*/)
-#define DAT_00041dbc ((unsigned int)((unsigned long)&rodata_aa60e) /*=0xaa60e*/)
-#define DAT_00041dc0 ((unsigned int)((unsigned long)&rodata_f212c) /*=0xf212c*/)
-#define DAT_00041dc4 ((unsigned int)((unsigned long)&rodata_f341d) /*=0xf341d*/)
-#define DAT_00041dc8 ((unsigned int)((unsigned long)&rodata_aa604) /*=0xaa604*/)
-#define DAT_000421f0 ((unsigned int)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
-#define DAT_000421f8 ((unsigned int)((unsigned long)&rodata_f7a30) /*=0xf7a30*/)
-#define DAT_000421fc ((unsigned int)((unsigned long)&rodata_aa604) /*=0xaa604*/)
-#define DAT_00042200 ((unsigned int)((unsigned long)&rodata_aa600) /*=0xaa600*/)
-#define DAT_000427b8 ((unsigned int)((unsigned long)&rodata_f341d) /*=0xf341d*/)
-#define DAT_000427bc ((unsigned int)((unsigned long)&rodata_f7a30) /*=0xf7a30*/)
+/* Onboarding text/assets; each definition retains its raw address. */
+#define onboarding_text_aa608 ((unsigned int)((unsigned long)&rodata_aa608) /*=0xaa608*/)
+#define onboarding_text_aa60e ((unsigned int)((unsigned long)&rodata_aa60e) /*=0xaa60e*/)
+#define onboarding_text_f212c ((unsigned int)((unsigned long)&rodata_f212c) /*=0xf212c*/)
+#define onboarding_text_f341d ((unsigned int)((unsigned long)&rodata_f341d) /*=0xf341d*/)
+#define onboarding_text_aa604 ((unsigned int)((unsigned long)&rodata_aa604) /*=0xaa604*/)
+#define onboarding_text_f7b6f ((unsigned int)((unsigned long)&rodata_f7b6f) /*=0xf7b6f*/)
+#define onboarding_text_f7a30 ((unsigned int)((unsigned long)&rodata_f7a30) /*=0xf7a30*/)
+#define onboarding_text_aa600 ((unsigned int)((unsigned long)&rodata_aa600) /*=0xaa600*/)
 
 void FUN_000417f8(void)
 
@@ -96,7 +90,7 @@ void FUN_000417f8(void)
   undefined4 uVar12;
   undefined1 uVar13;
   uint uVar14;
-  bool bVar15;
+  fw_bool bVar15;
   undefined8 uVar16;
   undefined4 local_428;
   undefined1 auStack_424 [1024];
@@ -104,7 +98,7 @@ void FUN_000417f8(void)
   local_428 = 0;
   memset_bytes(auStack_424,0,0x3fc);
   iVar4 = get_device_info();
-  pbVar3 = DAT_000429f4;
+  pbVar3 = onboarding_render_retry_counter;
   switch(*(undefined1 *)(*(int *)(iVar4 + 0x1014) + 2)) {
   case 0:
     uVar16 = k_uptime_get_8();
@@ -128,7 +122,7 @@ void FUN_000417f8(void)
   case 3:
     iVar4 = get_device_info();
     iVar5 = get_device_info();
-    pbVar3 = DAT_00041a70;
+    pbVar3 = onboarding_render_retry_counter;
     *(undefined1 *)(*(int *)(iVar5 + 0x1014) + 3) = *(undefined1 *)(iVar4 + 0xee4);
     if (5 < *pbVar3) {
       return;
@@ -158,9 +152,9 @@ void FUN_000417f8(void)
     iVar4 = get_device_info();
     iVar5 = get_device_info();
     *(undefined1 *)(*(int *)(iVar5 + 0x1014) + 3) = *(undefined1 *)(iVar4 + 0xee4);
-    if (*DAT_00041a74 == '\x01') {
+    if (*onboarding_secondary_reset_flag == '\x01') {
       iVar4 = get_device_info();
-      if ((*(char *)(*(int *)(iVar4 + 0x1014) + 2) == '\x05') && (*DAT_00041a78 == '\0')) {
+      if ((*(char *)(*(int *)(iVar4 + 0x1014) + 2) == '\x05') && (*onboarding_retry_counter == '\0')) {
         uVar16 = k_uptime_get_8();
         iVar4 = get_device_info();
         uVar14 = *(uint *)(*(int *)(iVar4 + 0x1014) + 4);
@@ -196,7 +190,7 @@ void FUN_000417f8(void)
       gui_utf_draw(0,uVar12,0,iVar4,iVar6 + 0x6d,iVar5 + 0x240,iVar7 + 0x88,1,0,0,0,0);
       return;
     }
-    if (*DAT_00041a74 != '\x02') {
+    if (*onboarding_secondary_reset_flag != '\x02') {
       return;
     }
     uVar16 = k_uptime_get_8();
@@ -205,9 +199,9 @@ void FUN_000417f8(void)
     uVar1 = (int)((ulonglong)uVar16 >> 0x20) - *(int *)(*(int *)(iVar4 + 0x1014) + 8);
     uVar2 = (uint)((uint)uVar16 < uVar14);
     if ((uVar1 != uVar2 || uVar1 - uVar2 < (uint)(2000 < (uint)uVar16 - uVar14)) ||
-       (*DAT_00041db0 != '\0')) {
-      if (*DAT_00041db4 == '\0') {
-        *DAT_00041db4 = '\x01';
+       (*onboarding_retry_counter != '\0')) {
+      if (*onboarding_attempt_counter == '\0') {
+        *onboarding_attempt_counter = '\x01';
         uVar12 = get_localized_weekday_name(0x14);
         uVar8 = device_info_text_width_get();
         uVar9 = device_info_text_height_get_clamped();
@@ -220,7 +214,7 @@ void FUN_000417f8(void)
         iVar4 = device_info_text_height_get_clamped();
         iVar5 = device_info_text_width_get();
         iVar6 = device_info_text_height_get_clamped();
-        gui_utf_draw(0,DAT_00041db8,1,uVar12,iVar4 + 0x1b,iVar5 + 0x68,iVar6 + 0x42,1,5,0,0,0);
+        gui_utf_draw(0,onboarding_text_aa608,1,uVar12,iVar4 + 0x1b,iVar5 + 0x68,iVar6 + 0x42,1,5,0,0,0);
         iVar4 = device_info_text_width_get();
         iVar5 = device_info_text_height_get_clamped();
         gui_bmp_bitmap_draw_ex(0x29,iVar4 + 0xa6,iVar5 + 4,&local_428,0x55);
@@ -228,12 +222,12 @@ void FUN_000417f8(void)
         iVar5 = device_info_text_height_get_clamped();
         iVar6 = device_info_text_width_get();
         iVar7 = device_info_text_height_get_clamped();
-        gui_utf_draw(0,DAT_00041dbc,3,iVar4 + 0xc2,iVar5 + 3,iVar6 + 0xea,iVar7 + 0x1e,1,2,0,0,0);
+        gui_utf_draw(0,onboarding_text_aa60e,3,iVar4 + 0xc2,iVar5 + 3,iVar6 + 0xea,iVar7 + 0x1e,1,2,0,0,0);
         iVar4 = device_info_text_width_get();
         iVar5 = device_info_text_height_get_clamped();
         iVar6 = device_info_text_width_get();
         iVar7 = device_info_text_height_get_clamped();
-        gui_utf_draw(0,DAT_00041dc0,3,iVar4 + 0xde,iVar5 + 3,iVar6 + 0xec,iVar7 + 0x1e,1,1,0,0,0);
+        gui_utf_draw(0,onboarding_text_f212c,3,iVar4 + 0xde,iVar5 + 3,iVar6 + 0xec,iVar7 + 0x1e,1,1,0,0,0);
         iVar4 = get_device_info();
         bVar15 = *(char *)(*(int *)(iVar4 + 0x1014) + 2) != '\x05';
         if (bVar15) {
@@ -244,7 +238,7 @@ void FUN_000417f8(void)
           iVar7 = device_info_text_height_get_clamped();
           iVar4 = device_info_text_width_get();
           iVar5 = device_info_text_height_get_clamped();
-          uVar12 = DAT_000421f8;
+          uVar12 = onboarding_text_f7a30;
         }
         else {
           iVar4 = device_info_text_width_get();
@@ -254,7 +248,7 @@ void FUN_000417f8(void)
           iVar7 = device_info_text_height_get_clamped();
           iVar4 = device_info_text_width_get();
           iVar5 = device_info_text_height_get_clamped();
-          uVar12 = DAT_00041dc4;
+          uVar12 = onboarding_text_f341d;
         }
         gui_utf_draw(0,uVar12,3,iVar6 + 0xc2,iVar7 + 0x23,iVar4 + 0xd6,iVar5 + 0x3e,1,bVar15,0,0,0);
         uVar12 = device_info_text_width_get();
@@ -292,7 +286,7 @@ void FUN_000417f8(void)
           iVar5 = device_info_text_width_get();
           iVar4 = device_info_text_height_get_clamped();
           uVar8 = 0;
-          uVar12 = DAT_00041dc8;
+          uVar12 = onboarding_text_aa604;
         }
         else {
           iVar4 = device_info_text_width_get();
@@ -307,9 +301,9 @@ void FUN_000417f8(void)
           uVar9 = strlen();
           gui_utf_draw(0,uVar12,0,iVar4 + 0x126,uVar8,iVar5 + 0x202,iVar6 + 0x1b,1,uVar9,0,0,0);
           iVar4 = get_device_info();
-          uVar12 = DAT_000421fc;
+          uVar12 = onboarding_text_aa604;
           if (*(char *)(*(int *)(iVar4 + 0x1014) + 2) == '\x15') {
-            uVar12 = DAT_00042200;
+            uVar12 = onboarding_text_aa600;
           }
           iVar7 = device_info_text_width_get();
           iVar6 = device_info_text_height_get_clamped();
@@ -351,7 +345,7 @@ void FUN_000417f8(void)
         iVar4 = device_info_text_height_get_clamped();
         iVar5 = device_info_text_width_get();
         iVar6 = device_info_text_height_get_clamped();
-        gui_utf_draw(0,DAT_000421f0,0,uVar12,iVar4 + 0x6d,iVar5 + 0x240,iVar6 + 0x88,1,0,0,0,0);
+        gui_utf_draw(0,onboarding_text_f7b6f,0,uVar12,iVar4 + 0x6d,iVar5 + 0x240,iVar6 + 0x88,1,0,0,0,0);
         iVar4 = get_device_info();
         if (*(char *)(*(int *)(iVar4 + 0x1014) + 2) == '\x05') {
           iVar4 = FUN_00023ee0();
@@ -476,7 +470,7 @@ LAB_00041f72:
 LAB_00041f76:
     iVar4 = get_device_info();
     if (*(char *)(*(int *)(iVar4 + 0x1014) + 3) == '\x01') {
-      *DAT_000421f4 = 1;
+      *onboarding_retry_counter = 1;
     }
     break;
   case 6:
@@ -484,8 +478,8 @@ LAB_00041f76:
     iVar4 = get_device_info();
     iVar5 = get_device_info();
     *(undefined1 *)(*(int *)(iVar5 + 0x1014) + 3) = *(undefined1 *)(iVar4 + 0xee4);
-    if (*DAT_00042480 != '\x01') {
-      if (*DAT_00042480 != '\x02') {
+    if (*onboarding_secondary_reset_flag != '\x01') {
+      if (*onboarding_secondary_reset_flag != '\x02') {
         return;
       }
       uVar16 = k_uptime_get_8();
@@ -494,9 +488,9 @@ LAB_00041f76:
       uVar1 = (int)((ulonglong)uVar16 >> 0x20) - *(int *)(*(int *)(iVar4 + 0x1014) + 8);
       uVar2 = (uint)((uint)uVar16 < uVar14);
       if ((uVar1 == uVar2 && (uint)(2000 < (uint)uVar16 - uVar14) <= uVar1 - uVar2) &&
-         (*DAT_000427b0 == '\0')) goto LAB_00041f76;
-      if (*DAT_000427b4 == '\0') {
-        *DAT_000427b4 = '\x01';
+         (*onboarding_retry_counter == '\0')) goto LAB_00041f76;
+      if (*onboarding_attempt_counter == '\0') {
+        *onboarding_attempt_counter = '\x01';
         iVar4 = get_device_info();
         if (-1 < (int)((uint)*(byte *)(*(int *)(iVar4 + 0x1014) + 0x1f) << 0x1d)) {
           send_event_status(0x15);
@@ -514,7 +508,7 @@ LAB_00041f76:
           iVar6 = device_info_text_width_get();
           iVar7 = device_info_text_height_get_clamped();
           uVar8 = 1;
-          uVar12 = DAT_000427b8;
+          uVar12 = onboarding_text_f341d;
 LAB_00042560:
           gui_utf_draw(0,uVar12,3,iVar4 + 0x22e,iVar5 + 3,iVar6 + 0x23e,iVar7 + 0x1e,1,uVar8,0,0,0);
         }
@@ -529,7 +523,7 @@ LAB_00042560:
             iVar6 = device_info_text_width_get();
             iVar7 = device_info_text_height_get_clamped();
             uVar8 = 0;
-            uVar12 = DAT_000427bc;
+            uVar12 = onboarding_text_f7a30;
             goto LAB_00042560;
           }
         }
@@ -670,8 +664,8 @@ LAB_000422ba:
       if (uVar1 == uVar2 && (uint)(2000 < (uint)uVar16 - uVar14) <= uVar1 - uVar2) {
         return;
       }
-      if (*DAT_00042484 == '\0') {
-        *DAT_00042484 = '\x01';
+      if (*onboarding_attempt_counter == '\0') {
+        *onboarding_attempt_counter = '\x01';
         gui_reset_dynamic_bitmap_frame_state();
         uVar12 = device_info_text_width_get();
         iVar4 = device_info_text_height_get_clamped();
@@ -770,10 +764,10 @@ LAB_000418a6:
     }
     break;
   case 0x17:
-    if (5 < *DAT_000429f4) {
+    if (5 < *onboarding_render_retry_counter) {
       return;
     }
-    if (*DAT_000429f4 != 0) {
+    if (*onboarding_render_retry_counter != 0) {
       uVar16 = k_uptime_get_8();
       iVar4 = get_device_info();
       uVar14 = *(uint *)(*(int *)(iVar4 + 0x1014) + 4);

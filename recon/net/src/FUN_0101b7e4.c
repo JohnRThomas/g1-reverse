@@ -1,195 +1,202 @@
-/* net-core FUN_0101b7e4 @ 0x101b7e4  (parity 5 trials PROVEN) */
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef short i16;
-typedef unsigned int u32;
-typedef int i32;
-typedef unsigned long long u64;
-typedef signed char i8;
+/* net-core timing-record construction @ 0x0101b7e4.
+ *
+ * Raw provenance: the TBB at 0x0101b810 owns states 0..3 and the three
+ * controller-fault tails at 0x0101ba30, 0x0101ba3a and 0x0101ba44.  The last
+ * BL completes at 0x0101ba4e; 0x0101ba4e is alignment, 0x0101ba50/54 are
+ * literals, and FUN_0101ba58 begins with an independent prologue.
+ */
+#include <stdint.h>
 
-extern void FUN_01008d00(u32, u32);
-extern u32 FUN_0100d4d0(void *, u32);
-extern u32 FUN_0100f0fc(int);
-extern u32 FUN_0100f69c(i32, u32);
-extern u16 FUN_0101a0e8(void);
-extern void FUN_0101da18(int, u32);
-extern u32 FUN_0101dc50(int);
-extern i32 FUN_0101dec4(void);
-extern i32 FUN_010209f0(u8);
-extern void FUN_0100f48c(int, u32);
+extern __attribute__((noreturn)) void FUN_01008d00(uint32_t module,
+                                                   uint32_t line);
+extern uint32_t FUN_0100d4d0(void *record, uint32_t timeline_unit);
+extern uint32_t FUN_0100f0fc(const void *source);
+extern void FUN_0100f48c(void *context, uint32_t delay);
+extern uint32_t FUN_0100f69c(int32_t budget, uint32_t requested);
+extern uint16_t FUN_0101a0e8(void);
+extern void FUN_0101da18(void *context, uint32_t count);
+extern uint32_t FUN_0101dc50(void *context);
+extern int32_t FUN_0101dec4(void);
+extern int32_t FUN_010209f0(uint8_t channel_flags);
 
-#define DAT_0101ba50 0x0103c290u
-#define DAT_0101ba54 0x10624dd3ull
+#define controller_fault           FUN_01008d00
+#define measure_record_count       FUN_0100d4d0
+#define read_record_source         FUN_0100f0fc
+#define schedule_controller_delay  FUN_0100f48c
+#define consume_timing_budget      FUN_0100f69c
+#define read_controller_timestamp  FUN_0101a0e8
+#define publish_record_count       FUN_0101da18
+#define read_controller_capacity   FUN_0101dc50
+#define timing_budget_is_blocked   FUN_0101dec4
+#define channel_timing_offset      FUN_010209f0
 
-static inline int CARRY4(u32 a, u32 b) {
-  u32 r;
-  return __builtin_add_overflow(a, b, &r);
-}
+#define CONTEXT_U8(offset)  (*(volatile uint8_t *)(context + (offset)))
+#define CONTEXT_U16(offset) (*(volatile uint16_t *)(context + (offset)))
+#define CONTEXT_U32(offset) (*(volatile uint32_t *)(context + (offset)))
+#define RECORD_U8(offset)   (*(volatile uint8_t *)(record + (offset)))
+#define RECORD_U16(offset)  (*(volatile uint16_t *)(record + (offset)))
+#define RECORD_U32(offset)  (*(volatile uint32_t *)(record + (offset)))
 
-/* All of the "does not return" panics in this function are reached by a
-   plain conditional/unconditional branch (no bl) at a point where LR still
-   holds the return address of the earlier FUN_0101da18 call (that call
-   happens virtually every trial, since param_4 is essentially always
-   nonzero). That return address is itself just a branch back into the
-   switch dispatch, so once the harness treats the out-of-range panic PC as
-   an external call and resumes at LR, it re-enters the switch, takes the
-   same branch again, and bounces forever until the harness's own iteration
-   cap kicks in. Model that as a real infinite external-call loop so both
-   sides hit the same cap and land on the same final oracle value. */
-__attribute__((always_inline)) static inline void panic_bounce(void) {
-  for (;;) {
-    FUN_01008d00(0x35, 0x264);
-  }
-}
+#define CHANNEL_DELAY_TABLE ((const uint16_t *)UINT32_C(0x0103c290))
+#define DELAY_SCALE UINT64_C(0x10624dd3)
 
-void FUN_0101b7e4(u8 *param_1, int param_2, int param_3, int param_4)
+static uint32_t add_carry_u32(uint32_t left, uint32_t right)
 {
-  u16 uVar3;
-  u8 bVar10;
-  u8 bVar1;
-  u16 uVar2;
-  i32 iVar4;
-  u32 uVar5;
-  u32 uVar6;
-  i8 cVar7;
-  u32 uVar8;
-  i32 iVar9;
-  u32 uVar11;
+    uint32_t result;
+    return __builtin_add_overflow(left, right, &result);
+}
 
-  uVar3 = FUN_0101a0e8();
-  bVar10 = (u8)(*(volatile i8 *)(param_2 + 0xc5) - 0xe);
-  if (param_4 != 0) {
-    FUN_0101da18(param_2, 1);
-  }
-  switch (*(volatile u8 *)(param_2 + 0x300)) {
-  case 0: {
-    if (param_3 == 0) {
-      panic_bounce();
+void FUN_0101b7e4(uint8_t *record, uint8_t *context,
+                  uint32_t allow_state_initialization,
+                  uint32_t update_controller_state)
+{
+    uint16_t timestamp = read_controller_timestamp();
+    uint8_t controller_age = (uint8_t)(CONTEXT_U8(0xc5) - 0x0e);
+    uint32_t timeline_unit;
+    uint32_t base_timeline;
+    uint32_t adjustment;
+    uint32_t record_low;
+    uint32_t record_high;
+    uint32_t submitted_count;
+    int32_t final_status;
+
+    if (update_controller_state != 0)
+        publish_record_count(context, 1);
+
+    switch (CONTEXT_U8(0x300)) {
+    case 0: {
+        uint8_t channel_flags;
+        uint16_t delay_seed;
+        uint32_t scaled_delay;
+        int32_t timing_offset;
+
+        if (allow_state_initialization == 0)
+            controller_fault(0x35, 0x22c);
+
+        channel_flags = CONTEXT_U8(0x6f);
+        delay_seed = CHANNEL_DELAY_TABLE[CONTEXT_U8(0x6e)];
+        CONTEXT_U8(0x300) = 1;
+        timing_offset = channel_timing_offset(channel_flags);
+        scaled_delay = (uint32_t)((DELAY_SCALE *
+            (uint32_t)(delay_seed + 0x79d + timing_offset)) >> 38);
+        schedule_controller_delay(context, scaled_delay + 199 +
+                                  ((channel_flags & 0x0c) != 0 ? 0x28 : 0));
+        timeline_unit = 0;
+        break;
     }
-    bVar1 = *(volatile u8 *)(param_2 + 0x6f);
-    uVar2 = *(volatile u16 *)(DAT_0101ba50 + (u32)*(volatile u8 *)(param_2 + 0x6e) * 2);
-    *(volatile u8 *)(param_2 + 0x300) = 1;
-    iVar4 = FUN_010209f0(bVar1);
+    case 1:
+    case 3:
+        timeline_unit = CONTEXT_U32(0x14);
+        break;
+    case 2:
+        timeline_unit = CONTEXT_U32(0x308);
+        CONTEXT_U8(0x300) = 3;
+        break;
+    default:
+        controller_fault(0x35, 0x264);
+    }
+
+    base_timeline = timeline_unit;
+    if (timing_budget_is_blocked() == 0) {
+        adjustment = consume_timing_budget(
+            (int16_t)CONTEXT_U16(0x2fc), 2);
+        CONTEXT_U16(0x2fc) =
+            (uint16_t)(CONTEXT_U16(0x2fc) - (uint16_t)adjustment);
+    } else {
+        adjustment = 0;
+    }
+
     {
-      i32 iVar9b;
-      if ((bVar1 & 0xc) == 0) {
-        iVar9b = 0;
-      } else {
-        iVar9b = 0x28;
-      }
-      uVar11 = 0;
-      uVar8 = 0;
-      FUN_0100f48c(param_2, iVar9b + (u32)((DAT_0101ba54 * (u64)(u32)(uVar2 + 0x79d + iVar4)) >> 0x26) + 199);
+        uint32_t partial = base_timeline + CONTEXT_U32(0x2d8);
+        record_low = partial + adjustment;
+        record_high = CONTEXT_U32(0x2dc) +
+                      add_carry_u32(base_timeline, CONTEXT_U32(0x2d8)) +
+                      ((int32_t)adjustment >> 31) +
+                      add_carry_u32(partial, adjustment);
     }
-    iVar4 = FUN_0101dec4();
-    if (iVar4 != 0) goto LAB_0101b828;
-    goto LAB_0101b96e;
-  }
-  case 1:
-  case 3:
-    uVar11 = *(volatile u32 *)(param_2 + 0x14);
-    break;
-  case 2:
-    uVar11 = *(volatile u32 *)(param_2 + 0x308);
-    *(volatile u8 *)(param_2 + 0x300) = 3;
-    break;
-  default:
-    panic_bounce();
-  }
-  iVar4 = FUN_0101dec4();
-  uVar8 = uVar11;
-  if (iVar4 == 0) {
-LAB_0101b96e:
-    uVar5 = FUN_0100f69c((i32)*(volatile i16 *)(param_2 + 0x2fc), 2);
-    *(volatile i16 *)(param_2 + 0x2fc) = (i16)(*(volatile i16 *)(param_2 + 0x2fc) - (i16)uVar5);
-    iVar4 = (i32)uVar5 >> 0x1f;
-  } else {
-LAB_0101b828:
-    uVar5 = 0;
-    iVar4 = 0;
-    uVar8 = uVar11;
-  }
-  uVar11 = uVar8 + *(volatile u32 *)(param_2 + 0x2d8);
-  iVar9 = (i32)(uVar11 + uVar5);
-  iVar4 = iVar4 + *(volatile i32 *)(param_2 + 0x2dc) +
-          (u32)CARRY4(uVar8, *(volatile u32 *)(param_2 + 0x2d8)) + (u32)CARRY4(uVar11, uVar5);
-  *(volatile i32 *)(param_2 + 0x2d8) = iVar9;
-  *(volatile i32 *)(param_2 + 0x2dc) = iVar4;
-  *(volatile i32 *)(param_1 + 0x10) = iVar9;
-  *(volatile i32 *)(param_1 + 0x14) = iVar4;
-  *(volatile u16 *)(param_1 + 8) = uVar3;
-  *(volatile u8 *)param_1 = 0;
-  if (((*(volatile u8 *)(param_2 + 0xc5) & 0xfd) == 0xc) || (*(volatile u8 *)(param_2 + 0xc5) == 0x26)) {
-    FUN_0101dc50(param_2);
-    *(volatile u16 *)(param_1 + 10) = 0x100;
-    uVar6 = FUN_0100f0fc(param_2 + 0x30);
-    *(volatile u32 *)(param_1 + 4) = uVar6;
-    if (bVar10 < 2) return;
-    if (param_4 == 0) return;
-    uVar11 = FUN_0100d4d0(param_1, uVar8);
-    uVar11 = uVar11 & 0xffff;
-    FUN_0101dc50(param_2);
-    FUN_0101da18(param_2, uVar11);
-    iVar4 = FUN_0101dec4();
-  } else {
-    iVar4 = (i32)FUN_0101dc50(param_2);
-    if (iVar4 == 0) {
-      *(volatile u16 *)(param_1 + 10) = 0x100;
-      uVar6 = FUN_0100f0fc(param_2 + 0x30);
-      *(volatile u32 *)(param_1 + 4) = uVar6;
+    CONTEXT_U32(0x2d8) = record_low;
+    CONTEXT_U32(0x2dc) = record_high;
+    RECORD_U32(0x10) = record_low;
+    RECORD_U32(0x14) = record_high;
+    RECORD_U16(8) = timestamp;
+    RECORD_U8(0) = 0;
+
+    if (((CONTEXT_U8(0xc5) & 0xfd) == 0x0c) ||
+        (CONTEXT_U8(0xc5) == 0x26)) {
+        (void)read_controller_capacity(context);
+        RECORD_U16(10) = 0x100;
+        RECORD_U32(4) = read_record_source(context + 0x30);
+        if (controller_age < 2 || update_controller_state == 0)
+            return;
+
+        submitted_count = measure_record_count(record, base_timeline) & 0xffff;
+        (void)read_controller_capacity(context);
+        publish_record_count(context, submitted_count);
+        final_status = timing_budget_is_blocked();
     } else {
-      cVar7 = *(volatile i8 *)(param_2 + 0x300);
-      if (cVar7 != 1) cVar7 = 2;
-      *(volatile u8 *)(param_1 + 10) = (u8)cVar7;
-      *(volatile u8 *)(param_1 + 0xb) = 1;
-      uVar6 = FUN_0100f0fc(param_2 + 0x30);
-      *(volatile u32 *)(param_1 + 4) = uVar6;
+        uint32_t capacity = read_controller_capacity(context);
+
+        if (capacity == 0) {
+            RECORD_U16(10) = 0x100;
+        } else {
+            RECORD_U8(10) = CONTEXT_U8(0x300) == 1 ? 1 : 2;
+            RECORD_U8(11) = 1;
+        }
+        RECORD_U32(4) = read_record_source(context + 0x30);
+        if (controller_age < 2 || update_controller_state == 0)
+            return;
+
+        submitted_count = measure_record_count(record, base_timeline) & 0xffff;
+        capacity = read_controller_capacity(context);
+        if (capacity <= submitted_count) {
+            uint32_t product;
+            uint32_t current_low;
+
+            RECORD_U8(10) = 0;
+            product = base_timeline * capacity;
+            current_low = CONTEXT_U32(0x2d8);
+            RECORD_U32(0x10) = current_low + product;
+            RECORD_U32(0x14) = CONTEXT_U32(0x2dc) +
+                               add_carry_u32(current_low, product);
+            if (base_timeline == 0)
+                controller_fault(0x35, 0x2a6);
+            submitted_count = (capacity +
+                measure_record_count(record, base_timeline)) & 0xffff;
+        }
+        publish_record_count(context, submitted_count);
+        final_status = timing_budget_is_blocked();
     }
-    if (bVar10 < 2) return;
-    if (param_4 == 0) return;
-    uVar11 = FUN_0100d4d0(param_1, uVar8);
-    uVar5 = FUN_0101dc50(param_2);
-    uVar11 = uVar11 & 0xffff;
-    if (uVar5 <= uVar11) {
-      *(volatile u8 *)(param_1 + 10) = 0;
-      uVar11 = *(volatile u32 *)(param_2 + 0x2d8);
-      iVar4 = *(volatile i32 *)(param_2 + 0x2dc);
-      *(volatile u32 *)(param_1 + 0x10) = uVar11 + uVar8 * uVar5;
-      *(volatile u32 *)(param_1 + 0x14) = (u32)iVar4 + (u32)CARRY4(uVar11, uVar8 * uVar5);
-      if (uVar8 == 0) {
-        panic_bounce();
-      }
-      iVar4 = (i32)FUN_0100d4d0(param_1, uVar8);
-      uVar11 = (uVar5 + (u32)iVar4) & 0xffff;
+
+    if (final_status == 0) {
+        uint32_t requested = submitted_count * 2;
+        uint32_t current_low;
+
+        if (requested >= 0x10000)
+            requested = 0xffff;
+        else
+            requested &= 0xffff;
+        adjustment = consume_timing_budget(
+            (int16_t)CONTEXT_U16(0x2fc), requested);
+        CONTEXT_U16(0x2fc) =
+            (uint16_t)(CONTEXT_U16(0x2fc) - (uint16_t)adjustment);
+        current_low = RECORD_U32(0x10);
+        RECORD_U32(0x10) = current_low + adjustment;
+        RECORD_U32(0x14) = RECORD_U32(0x14) +
+                           ((int32_t)adjustment >> 31) +
+                           add_carry_u32(adjustment, current_low);
     }
-    FUN_0101da18(param_2, uVar11);
-    iVar4 = FUN_0101dec4();
-  }
-  if (iVar4 == 0) {
-    if (uVar11 * 2 < 0x10000) {
-      uVar11 = (uVar11 * 2) & 0xffff;
-    } else {
-      uVar11 = 0xffff;
+
+    CONTEXT_U32(0x2d8) = RECORD_U32(0x10);
+    CONTEXT_U32(0x2dc) = RECORD_U32(0x14);
+    if (CONTEXT_U32(0x74) != 0) {
+        int16_t distance =
+            (int16_t)(CONTEXT_U16(0xbc) - CONTEXT_U16(0xf2));
+        if (distance > 0) {
+            uint16_t quantum = CONTEXT_U16(0x78);
+            uint16_t previous = CONTEXT_U16(0xf2);
+            CONTEXT_U16(0xf2) = (uint16_t)(
+                (((uint32_t)distance + quantum - 1) / quantum) * quantum +
+                previous);
+        }
     }
-    uVar11 = FUN_0100f69c((i32)*(volatile i16 *)(param_2 + 0x2fc), uVar11);
-    uVar8 = *(volatile u32 *)(param_1 + 0x10);
-    iVar9 = (i32)(uVar11 + uVar8);
-    *(volatile i16 *)(param_2 + 0x2fc) = (i16)(*(volatile i16 *)(param_2 + 0x2fc) - (i16)uVar11);
-    *(volatile i32 *)(param_1 + 0x10) = iVar9;
-    iVar4 = *(volatile i32 *)(param_1 + 0x14) + ((i32)uVar11 >> 0x1f) + (u32)CARRY4(uVar11, uVar8);
-    *(volatile i32 *)(param_1 + 0x14) = iVar4;
-  } else {
-    iVar9 = *(volatile i32 *)(param_1 + 0x10);
-    iVar4 = *(volatile i32 *)(param_1 + 0x14);
-  }
-  *(volatile i32 *)(param_2 + 0x2d8) = iVar9;
-  *(volatile i32 *)(param_2 + 0x2dc) = iVar4;
-  if (*(volatile i32 *)(param_2 + 0x74) != 0) {
-    i16 d = (i16)(*(volatile i16 *)(param_2 + 0xbc) - *(volatile i16 *)(param_2 + 0xf2));
-    if (0 < d) {
-      u16 uVar2b = *(volatile u16 *)(param_2 + 0x78);
-      u16 old_f2 = *(volatile u16 *)(param_2 + 0xf2);
-      *(volatile u16 *)(param_2 + 0xf2) = (u16)((((u32)d + (u32)uVar2b - 1) / (u32)uVar2b) * uVar2b) + old_f2;
-    }
-  }
 }

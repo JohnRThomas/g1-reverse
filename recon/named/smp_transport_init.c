@@ -8,7 +8,7 @@
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
- *   ADDR_FUN_00080ab4_THUMB                  @ 0x00080ab5
+ *   ADDR_smp_handle_reqs_THUMB               @ 0x00080ab5
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f2901                             @ 0x000f2901
  *   rodata_f293b                             @ 0x000f293b

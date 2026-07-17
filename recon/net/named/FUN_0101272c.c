@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_0101272c @ 0x0101272c
  * public-name: FUN_0101272c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
  * address symbols (name @ address):
  *   rodata_1011add                           @ 0x01011add
  *   g_net_own_addr_info                      @ 0x21000f20
@@ -11,8 +14,8 @@
 extern void FUN_0100ef88(void *a, unsigned int b, int c);
 extern void FUN_010140ec(unsigned char *a, int b, ...);
 extern int FUN_0101f888(void);
-extern void FUN_0101fca8(void);
-extern void FUN_010208b0(void);
+extern void sdc_llcp_release_rx_context(void);
+extern void sdc_llcp_stop_rx_timeout(void);
 
 #define DAT_7f0 0x21000f20u
 #define LIT_7f4 0x01011addu
@@ -32,8 +35,8 @@ unsigned int FUN_0101272c(unsigned char *param_1, unsigned int param_2, unsigned
     cVar4 = *(volatile unsigned char *)(DAT_7f0 + 0x12);
     *(volatile unsigned short *)(param_1 + 0x40) = *(volatile unsigned short *)(param_1 + 0x40) + 1;
     if (cVar4 != 0) {
-        FUN_010208b0();
-        FUN_0101fca8();
+        sdc_llcp_stop_rx_timeout();
+        sdc_llcp_release_rx_context();
         *(volatile unsigned char *)(iVar3 + 0x12) = 0;
     }
     *(volatile unsigned char *)(iVar3 + 4) = 0;

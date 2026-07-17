@@ -1,13 +1,15 @@
 /* readable reconstruction; identity: FUN_01019660 @ 0x01019660
  * public-name: FUN_01019660
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  * address symbols (name @ address):
  *   g_2100109c                               @ 0x2100109c
  */
 /* Reconstructed net-core setup routine @ 0x01019660. */
 #include <stdint.h>
 
-extern void FUN_01008d00(uint32_t, uint32_t);
+extern void sdc_assertion_fail(uint32_t, uint32_t);
 extern void *FUN_0100a5a0(void);
 extern uint32_t FUN_0100a5b4(void);
 extern void FUN_0100ef88(void *, const void *, uint32_t);
@@ -32,19 +34,19 @@ void FUN_01019660(void)
         if (FUN_01026d3e(controller) == 1)
             return;
         if (FUN_01026f32(controller, (uint16_t)FUN_0100a5b4(), 1) == 0) {
-            FUN_01008d00(0x33, 0x2ba);
+            sdc_assertion_fail(0x33, 0x2ba);
             return;
         }
         if (FUN_01026d3e(controller) == 0) {
-            FUN_01008d00(0x33, 0x2be);
-            FUN_01008d00(0x33, 0x2ba);
+            sdc_assertion_fail(0x33, 0x2be);
+            sdc_assertion_fail(0x33, 0x2ba);
             return;
         }
         entry[8] = initial_flag;
         FUN_0100ef88(entry, (const void *)0x01019a9d, 6);
     } else if (FUN_01026d3e(controller) == 0) {
-        FUN_01008d00(0x33, 0x2be);
-        FUN_01008d00(0x33, 0x2ba);
+        sdc_assertion_fail(0x33, 0x2be);
+        sdc_assertion_fail(0x33, 0x2ba);
         return;
     }
 

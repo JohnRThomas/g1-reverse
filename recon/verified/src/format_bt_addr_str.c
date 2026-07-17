@@ -1,0 +1,59 @@
+/* Reconstructed format_bt_addr_str @ 0x18334 (raw FUN_00018334).
+ * Reviewed executable extent: 0x5e bytes; literals begin at 0x18394. */
+#include <stdint.h>
+
+typedef struct {
+    uint8_t type;
+    uint8_t address[6];
+} bt_addr_le_wire_t;
+
+enum {
+    BT_ADDR_LE_PUBLIC = 0,
+    BT_ADDR_LE_RANDOM = 1,
+    BT_ADDR_LE_PUBLIC_ID = 2,
+    BT_ADDR_LE_RANDOM_ID = 3,
+};
+
+#define BT_ADDR_PUBLIC_NAME    ((const char *)0x0009a1c8u) /* "public" */
+#define BT_ADDR_RANDOM_NAME    ((const char *)0x0009a1cfu) /* "random" */
+#define BT_ADDR_PUBLIC_ID_NAME ((const char *)0x0009a1d6u) /* "public-id" */
+#define BT_ADDR_RANDOM_ID_NAME ((const char *)0x0009a1e0u) /* "random-id" */
+#define BT_ADDR_STRING_FORMAT  ((const char *)0x0009a1eau)
+#define BT_ADDR_UNKNOWN_FORMAT ((const char *)0x000f5071u)
+
+extern int snprintk(char *destination, uint32_t capacity,
+                    const char *format, ...);
+extern char *copy_c_string(char *destination, const char *source)
+    __asm__("FUN_00086fee");
+
+void format_bt_addr_str(const bt_addr_le_wire_t *address, char output[30])
+{
+    const char *type_name;
+    char type_description[12];
+
+    switch (address->type) {
+    case BT_ADDR_LE_PUBLIC:
+        type_name = BT_ADDR_PUBLIC_NAME;
+        break;
+    case BT_ADDR_LE_RANDOM:
+        type_name = BT_ADDR_RANDOM_NAME;
+        break;
+    case BT_ADDR_LE_PUBLIC_ID:
+        type_name = BT_ADDR_PUBLIC_ID_NAME;
+        break;
+    case BT_ADDR_LE_RANDOM_ID:
+        type_name = BT_ADDR_RANDOM_ID_NAME;
+        break;
+    default:
+        snprintk(type_description, 10, BT_ADDR_UNKNOWN_FORMAT, address->type);
+        goto format_address;
+    }
+
+    copy_c_string(type_description, type_name);
+
+format_address:
+    snprintk(output, 30, BT_ADDR_STRING_FORMAT,
+             address->address[5], address->address[4], address->address[3],
+             address->address[2], address->address[1], address->address[0],
+             type_description);
+}
