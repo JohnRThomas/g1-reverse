@@ -44,8 +44,9 @@
       "symbol": "display_debug_log_boundary",
       "classification": "reconstruction_artifact_for_omitted_real_logging",
       "owner": "display_dispatch_thread@0x00028bec",
-      "resolution": "blocked_pending_exact_mapping_of_each_machine_log_path_to_readable_C",
-      "blocker": "The placeholder is neither a no-op nor one callable symbol. Each machine site tests g_log_use_alt_sink@0x20007554 and selects debug_print@0x00019c70 or log_message@0x0007dda4 with site-specific format/module/varargs. Removing it or defining a generic zero-argument helper would erase observable calls and arguments.",
+      "resolution": "recovered_exact_per_site_sink_format_module_payload_and_call_order_in_display_dispatch_thread",
+      "verification": "cfg_verify_PASS_cases_25_including_both_sink_values_and_2_3_4_register_logging_ABIs",
+      "residue": "display_debug_log_boundary_absent_from_canonical_verified_named_and_symbolized_app_trees",
       "shared_operands": {
         "sink_global": "0x20007554",
         "module_string": "0x000a1a13",
@@ -68,6 +69,7 @@
         {"alternate_call":"0x000293e6","default_call":"0x000293f4","format":"0x000a0e3d","text":"%s(): screen id was changed, g->master_sync_pkg.new_screen_id %d pkg->screen_id %d","payload_registers":["r2=previous screen id","r3=current screen id"]},
         {"alternate_call":"0x00029416","default_call":"0x0002943c","format":"0x000a0e91","text":"%s(): task was closed!!!","payload_registers":[]},
         {"alternate_call":"0x00029416","default_call":"0x0002943c","format":"0x000a0eab","text":"%s(): screen is closed","payload_registers":[],"note":"shared call-selector block; format is loaded at 0x00029438 and execution branches to the call test at 0x00029414"},
+        {"alternate_call":"0x00029416","default_call":"0x0002943c","format":"0x000a0ec3","text":"%s(): trigger_on_screen is closed","payload_registers":[],"note":"shared call-selector block; format is loaded at 0x00029456 and execution branches to the call test at 0x00029414; omitted from the initial audit"},
         {"alternate_call":"0x00029484","default_call":"0x000294ce","format":"0x000a0ee6","text":"%s(): imu->attitude changed ....","payload_registers":[]},
         {"alternate_call":"0x000294a6","default_call":"0x000294d8","format":"0x000a0f08","text":"%s(): display_reflash_screen %d done","payload_registers":["r2=display[0xd5]"]}
       ]
