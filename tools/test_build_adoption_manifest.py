@@ -27,7 +27,8 @@ class AdoptionManifestTest(unittest.TestCase):
         root = self.temp.name
         app_addresses = (0x1000, 0x1010, 0x2000, 0x2010, 0x2020,
                          0x3000, 0x3010, 0x4000)
-        net_addresses = (0x01001000, 0x01002000, 0x01003000, 0x01004000)
+        net_addresses = (0x01001000, 0x01002000, 0x01003000, 0x01004000,
+                         0x01005000)
 
         def name_map(core, values):
             return {"schema": 1, "core": core,
@@ -88,6 +89,16 @@ class AdoptionManifestTest(unittest.TestCase):
                              "object": "timer.c.obj"},
                 "required_config": {"CONFIG_SYS_CLOCK_TICKS_PER_SEC": 32768},
                 "functions": []}),
+            "net_sdk_public": write_json(root, "net_sdk_public.json", {
+                "upstream": {"zephyr_commit": "1" * 40},
+                "required_config": {"CONFIG_ASSERT": True},
+                "functions": [{
+                    "va": "0x01005000", "upstream_symbol": "k_work_init",
+                    "source": "kernel/work.c", "object": "libkernel.a(work.c.obj)",
+                    "abi": "void k_work_init(void *, void *)",
+                    "firmware_code_size": 54, "reference_code_size": 54,
+                    "match": "relocation-normalized instruction-exact",
+                    "match_score": 1.0, "exclude_reconstruction": True}]}),
         }
         benchmark = os.path.join(root, "sdc.md")
         with open(benchmark, "w") as stream:
@@ -142,6 +153,9 @@ class AdoptionManifestTest(unittest.TestCase):
         self.assertTrue(rows[("net", "0x01002000")]["exclude_reconstruction"])
         self.assertEqual(rows[("net", "0x01003000")]["kind"], "glue")
         self.assertFalse(rows[("net", "0x01003000")]["exclude_reconstruction"])
+        self.assertTrue(rows[("net", "0x01005000")]["exclude_reconstruction"])
+        self.assertEqual(rows[("net", "0x01005000")]["upstream_symbol"],
+                         "k_work_init")
         self.assertFalse(first["sdc_benchmark"]["machine_exclusion_authority"])
 
     def test_validator_rejects_private_sdc_exclusion(self):

@@ -32,7 +32,11 @@
   },
   {
    "path": "recon/catalogs/net_rtc_timer_ownership.json",
-   "sha256": "fb6f8184b17a277f1b77eaefeed3c2fe7b6cbab0e3e60ec6c4bc5d61e6879fbd"
+   "sha256": "8e6b2ba21510fc09add227f828f832cd81fb84079d9b35e510b4aa8e12582bb2"
+  },
+  {
+   "path": "recon/catalogs/net_sdk_public_ownership.json",
+   "sha256": "9edcbba8ec996da127b59498bddd3b507b82bb3ed19c9daa1f6b4cc5ddfb9473"
   },
   {
    "path": "recon/ownership/net_sdc_archive_benchmark.md",
@@ -4457,11 +4461,11 @@
   },
   "net": {
    "summary": {
-    "entries": 464,
-    "exclude_reconstruction": 80,
+    "entries": 467,
+    "exclude_reconstruction": 83,
     "retain_reconstruction": 384,
     "by_kind": {
-     "source": 0,
+     "source": 3,
      "archive": 316,
      "static_helper": 1,
      "table": 0,
@@ -16446,6 +16450,38 @@
     },
     {
      "core": "net",
+     "va": "0x010313a8",
+     "raw_symbol": "FUN_010313a8",
+     "current_symbol": "z_nrf_rtc_timer_read",
+     "kind": "source",
+     "component": "zephyr_nrf_rtc_timer",
+     "upstream_symbol": "z_nrf_rtc_timer_read",
+     "upstream_unit": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned Zephyr timer object is exact for this VA and is selected by the recorded net-core configuration.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/net_rtc_timer_ownership.json",
+       "type": "net_rtc_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "source_sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "uint64_t z_nrf_rtc_timer_read(void)",
+       "config": {
+        "CONFIG_SOC_NRF53_RTC_PRETICK": true,
+        "CONFIG_NRF_RTC_TIMER_LOCK_ZERO_LATENCY_IRQS": true,
+        "CONFIG_NRF_RTC_TIMER_USER_CHAN_COUNT": 1,
+        "derived_CHAN_COUNT": 2
+       },
+       "object": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x010315f0",
      "raw_symbol": "FUN_010315f0",
      "current_symbol": "rtc_nrf_isr",
@@ -16641,6 +16677,72 @@
        "ratio": 1.0,
        "threshold": 0.9,
        "provenance": "0x000000000102610c       0x40 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010357ec",
+     "raw_symbol": "FUN_010357ec",
+     "current_symbol": "rpmsg_virtio_get_buffer_size",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "rpmsg_virtio_get_buffer_size",
+     "upstream_unit": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "int rpmsg_virtio_get_buffer_size(struct rpmsg_device *rdev)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
+       "object": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036bec",
+     "raw_symbol": "FUN_01036bec",
+     "current_symbol": "k_work_init",
+     "kind": "source",
+     "component": "net_sdk_public",
+     "upstream_symbol": "k_work_init",
+     "upstream_unit": "zephyr/kernel/libkernel.a(work.c.obj)",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
+     "evidence": [
+      {
+       "source": "recon/catalogs/net_sdk_public_ownership.json",
+       "type": "net_sdk_public_exact_owner",
+       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "match": "relocation-normalized instruction-exact",
+       "match_score": 1.0,
+       "abi": "void k_work_init(struct k_work *work, k_work_handler_t handler)",
+       "config": {
+        "CONFIG_ASSERT": true,
+        "CONFIG_ASSERT_NO_COND_INFO": true,
+        "CONFIG_OPENAMP_MASTER": false,
+        "CONFIG_OPENAMP_SLAVE": true,
+        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+       },
+       "source_unit": "zephyr/kernel/work.c",
+       "object": "zephyr/kernel/libkernel.a(work.c.obj)"
       }
      ]
     },

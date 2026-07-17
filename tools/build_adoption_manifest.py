@@ -23,6 +23,7 @@ DEFAULTS = {
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
+    "net_sdk_public": "recon/catalogs/net_sdk_public_ownership.json",
     "sdc_benchmark": "recon/ownership/net_sdc_archive_benchmark.md",
     "sdc_catalog": "recon/ownership/net_sdc_archive_ownership.json",
     "app_names": "recon/catalogs/function_names_app.json",
@@ -360,6 +361,30 @@ def _net_rtc_entries(data, source, names):
     return output
 
 
+def _net_sdk_public_entries(data, source, names):
+    output = []
+    upstream = data["upstream"]
+    config = data["required_config"]
+    for row in data.get("functions", []):
+        eligible = (row.get("exclude_reconstruction") is True and
+                    row.get("match_score") == 1.0 and
+                    row.get("firmware_code_size") ==
+                    row.get("reference_code_size"))
+        output.append(_entry(
+            "net", row["va"], names, "source", "net_sdk_public",
+            row["upstream_symbol"], row["object"], eligible,
+            ("Pinned public SDK owner is instruction-exact under the recorded "
+             "configuration." if eligible else
+             "Public SDK ownership evidence is incomplete; retain fail-closed."),
+            [_evidence(source, "net_sdk_public_exact_owner",
+                       zephyr_commit=upstream.get("zephyr_commit"),
+                       match=row.get("match"), match_score=row.get("match_score"),
+                       abi=row.get("abi"), config=config,
+                       source_unit=row.get("source"), object=row.get("object"))],
+            "high" if eligible else "medium"))
+    return output
+
+
 def validate_manifest(data):
     errors = []
     if data.get("schema") != 1:
@@ -416,6 +441,8 @@ def build(paths):
                      paths["sdc_benchmark"], benchmark, names,
                      machine_sdc_addresses),
         _net_rtc_entries(_load_json(resolved["net_rtc"]), paths["net_rtc"], names),
+        _net_sdk_public_entries(_load_json(resolved["net_sdk_public"]),
+                                paths["net_sdk_public"], names),
         _sdc_entries(sdc_catalog, paths["sdc_catalog"], names),
     )
     for rows in producers:
@@ -438,6 +465,7 @@ def build(paths):
             "entries": rows,
         }
     input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "net", "net_rtc",
+                  "net_sdk_public",
                   "sdc_benchmark", "sdc_catalog")
     result = {
         "schema": 1,
