@@ -30,8 +30,8 @@
     "FUN_0101a38c", "FUN_0102d708"
   ],
   "direct_recheck": {
-    "pass": ["app:FUN_0002316c"],
-    "fail": ["app:FUN_00058a54"],
+    "pass": ["app:FUN_0002316c", "app:FUN_00058a54", "app:spec_ble_command_hook"],
+    "fail": [],
     "timeouts": [
       "app:FUN_00018334", "app:FUN_00033f24", "app:FUN_00035f28",
       "app:FUN_00052760", "app:FUN_00076a94", "app:FUN_00080ab4",

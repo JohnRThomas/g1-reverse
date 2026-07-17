@@ -113,6 +113,7 @@
  */
 /* Full reconstruction spec_ble_command_hook @ 0xef28. */
 #include <stdint.h>
+#include <stdbool.h>
 typedef uint8_t undefined; typedef uint8_t undefined1; typedef uint16_t undefined2;
 typedef uint32_t undefined4; typedef uint64_t undefined8; typedef uint8_t byte;
 typedef uint32_t uint; typedef uint64_t ulonglong; typedef uint32_t code(uintptr_t,...);

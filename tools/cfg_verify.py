@@ -15219,6 +15219,59 @@ REVIEWED_ORACLE_CASES[("app", 0x0002a65c)] = [
 ]
 
 
+def _att_create_pdu_case(flags, first_byte, auth_result=None,
+                         headroom=3, opcode=0, create_result=0):
+    """Production-shaped nested connection/net_buf state for FUN_00058a54."""
+    context = emu.SCRATCH + 0xb000
+    connection_slot = emu.SCRATCH + 0xb200
+    packet = emu.SCRATCH + 0xb400
+    cursor = emu.SCRATCH + 0xb600
+    owner_slot = emu.SCRATCH + 0xb800
+    connection = emu.SCRATCH + 0xba00
+    context_image = bytearray(0x124)
+    context_image[0:4] = connection_slot.to_bytes(4, "little")
+    context_image[0x120:0x124] = int(flags).to_bytes(4, "little")
+    packet_image = bytearray(0x1c)
+    packet_image[0x0c:0x10] = cursor.to_bytes(4, "little")
+    packet_image[0x10:0x12] = (0x1357).to_bytes(2, "little")
+    packet_image[0x14:0x18] = (cursor - headroom).to_bytes(4, "little")
+    packet_image[0x18:0x1c] = owner_slot.to_bytes(4, "little")
+    moves = [
+        (context, bytes(context_image)),
+        (connection_slot, connection.to_bytes(4, "little")),
+        (packet, bytes(packet_image)),
+        (cursor, bytes((first_byte,)) + bytes(15)),
+        (owner_slot, (0x2468ace0).to_bytes(4, "little")),
+    ]
+    oracle_returns = {}
+    if flags & 4:
+        ordinal = 0
+        if first_byte == 0xd2:
+            oracle_returns[ordinal] = {0: int(auth_result or 0) & 0xffffffff}
+            ordinal += 1
+            if auth_result:
+                return ({0: context, 1: packet}, moves, oracle_returns)
+        oracle_returns[ordinal] = {0: int(headroom) & 0xffffffff}
+        ordinal += 1
+        oracle_returns[ordinal] = {0: int(opcode) & 0xffffffff}
+        ordinal += 1
+        if opcode <= 5:
+            oracle_returns[ordinal] = {0: int(create_result) & 0xffffffff}
+    return ({0: context, 1: packet}, moves, oracle_returns)
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00058a54)] = [
+    _att_create_pdu_case(0, 0x02),
+    _att_create_pdu_case(4, 0xd2, auth_result=7),
+    _att_create_pdu_case(4, 0xd2, auth_result=0, opcode=0,
+                         create_result=0),
+    _att_create_pdu_case(4, 0x02, opcode=5, create_result=0),
+    _att_create_pdu_case(4, 0x02, opcode=2, create_result=-105),
+    _att_create_pdu_case(4, 0x02, opcode=3, create_result=-7),
+    _att_create_pdu_case(4, 0x02, opcode=6),
+]
+
+
 def verify(core, name, trials_random=40, source_override=None):
     ctx = core_ctx(core)
     p = ctx["srcdir"] + "/" + name + ".c"
@@ -15718,6 +15771,11 @@ def self_test():
         "opt3007_chip_init": (
             "frame.transfer.type = 2;",
             "frame.transfer.type = 3;"),
+        # The hook copies the complete 256-byte command window before parsing;
+        # the call trace keeps that reviewed boundary observable.
+        "spec_ble_command_hook": (
+            "FUN_00086c1e((uintptr_t)&local_520,param_1,param_2,0x100);",
+            "FUN_00086c1e((uintptr_t)&local_520,param_1,param_2,0xff);"),
         # A live direct logger sink compares the recovered format token.
         "FUN_0002eb40": (
             "DEBUG_PRINT(0xa3e80,",
