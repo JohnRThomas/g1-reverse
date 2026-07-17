@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  * address symbols (name @ address):
  *   g_21000050                               @ 0x21000050
  *   g_net_radio_drv_ctx                      @ 0x21000c48
@@ -37,7 +38,7 @@ extern unsigned int FUN_01022a50(unsigned int, unsigned int, int);
 extern unsigned int FUN_0100d538(unsigned int, unsigned int);
 extern unsigned int FUN_0100f100(volatile unsigned char *, unsigned int);
 extern unsigned int FUN_0100f5cc(void);
-extern unsigned int FUN_0101fdd0(unsigned int, unsigned int, unsigned int, unsigned int, int);
+extern unsigned int controller_radio_request_configure(unsigned int, unsigned int, unsigned int, unsigned int, int);
 extern unsigned int FUN_0100ac98(int);
 extern unsigned int FUN_0100af3c(int);
 
@@ -227,7 +228,7 @@ L2c6:
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
-            FUN_0101fdd0(uVar10, 0x21000cd0u, 0xfb, uVar17, 0);
+            controller_radio_request_configure(uVar10, 0x21000cd0u, 0xfb, uVar17, 0);
         }
         FUN_0100ac98(1);
     } else {
@@ -244,7 +245,7 @@ L2c6:
             case 4: uVar17 = 3; break;
             case 8: uVar17 = 2; break;
             }
-            FUN_0101fdd0(1, 0x21000cd0u, uVar11, uVar17, 0);
+            controller_radio_request_configure(1, 0x21000cd0u, uVar11, uVar17, 0);
         }
         FUN_0100af3c(1);
     }

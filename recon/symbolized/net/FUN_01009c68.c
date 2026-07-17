@@ -4,13 +4,15 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_handle_slot_find              <= FUN_01027470 @ 0x01027470
+ *   controller_handle_slot_value_ptr         <= FUN_010274ea @ 0x010274ea
  */
 /* net-core FUN_01009c68 @ 0x1009c68  (parity 300 trials PROVEN) */
 
 extern void sdc_assertion_fail(unsigned int, unsigned int);
 extern signed char FUN_0102741e(void *, unsigned int, signed char);
-extern signed char FUN_01027470(void *, unsigned short);
-extern unsigned int FUN_010274ea(void *, signed char);
+extern signed char controller_handle_slot_find(void *, unsigned short);
+extern unsigned int controller_handle_slot_value_ptr(void *, signed char);
 extern unsigned int FUN_0102751a(void *, unsigned short, signed char);
 
 unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
@@ -23,9 +25,9 @@ unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
   if (param_1 > 0xeff) {
     sdc_assertion_fail(0x17, 0x27e);
   }
-  signed char cVar1 = FUN_01027470((void *)iVar3, param_1);
+  signed char cVar1 = controller_handle_slot_find((void *)iVar3, param_1);
   if (cVar1 != -1) {
-    return FUN_010274ea((void *)iVar3, cVar1);
+    return controller_handle_slot_value_ptr((void *)iVar3, cVar1);
   }
   signed char divv = *(volatile unsigned char *)(iVar3 + 2);
   signed char cVar1b = (signed char)param_1 - (signed char)((short)param_1 / divv) * divv;

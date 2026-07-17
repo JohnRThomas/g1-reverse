@@ -811,6 +811,10 @@
    "name": "rpmsg_virtio_get_buffer_size",
    "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; its nonnegative result is stored as tx_buffer_size. Raw identity remains FUN_010357ec."
   },
+  "0x0103657c": {
+   "name": "z_impl_k_mutex_unlock",
+   "evidence": "Recovered body is the configured Zephyr kernel mutex-unlock implementation, including owner validation, recursive lock-count handling, waiter transfer, priority inheritance update, and reschedule. Raw identity remains FUN_0103657c at 0x0103657c."
+  },
   "0x01036bec": {
    "name": "k_work_init",
    "evidence": "Body zeroes a Zephyr k_work object and installs the handler; direct matched-open call initializes mbox_work with mbox_callback_process. Raw identity remains FUN_01036bec."

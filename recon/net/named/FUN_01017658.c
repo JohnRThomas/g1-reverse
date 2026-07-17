@@ -2,13 +2,15 @@
  * public-name: FUN_01017658
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_resolved_address_matches      <= FUN_0100aaac @ 0x0100aaac
+ *   controller_indexed_state_byte_get        <= FUN_0100bc04 @ 0x0100bc04
  *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  */
 /* net-core FUN_01017658 @ 0x1017658  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern unsigned int FUN_0100aaac(unsigned int a, unsigned int b);
-extern unsigned int FUN_0100bc04(int a);
+extern unsigned int controller_resolved_address_matches(unsigned int a, unsigned int b);
+extern unsigned int controller_indexed_state_byte_get(int a);
 extern unsigned int sdc_llcp_procedure_slot_get(unsigned int a);
 extern unsigned int FUN_0100cad4(unsigned int a);
 extern unsigned int FUN_0100cb10(void);
@@ -60,7 +62,7 @@ LAB_90:
     if (cVar3 == -1 || cVar3 == 8) {
         goto LAB_dc;
     }
-    uVar4 = FUN_0100bc04(cVar3);
+    uVar4 = controller_indexed_state_byte_get(cVar3);
     if (uVar4 != 0) {
         uVar8 = uVar4;
     }
@@ -68,7 +70,7 @@ LAB_90:
     if (bVar1) {
         if (*(volatile signed char *)(iVar2 + 0x81) == 0) {
             unsigned int uVar6 = sdc_llcp_procedure_slot_get((unsigned char)cVar3);
-            cVar3 = (signed char)FUN_0100aaac(uVar6, *(volatile unsigned int *)(param_1 + 8));
+            cVar3 = (signed char)controller_resolved_address_matches(uVar6, *(volatile unsigned int *)(param_1 + 8));
         } else {
             cVar3 = (signed char)thunk_FUN_0101fd20();
             *(volatile unsigned char *)(iVar2 + 0x81) = 0;

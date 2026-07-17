@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_descriptor_octet_product      <= FUN_01012b24 @ 0x01012b24
  *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
  * address symbols (name @ address):
  *   g_net_own_addr_info                      @ 0x21000f20
@@ -19,7 +20,7 @@ extern int FUN_0100e06c(void*,unsigned int,int);
 extern int FUN_010129e8(void*);
 extern int FUN_010129f4(void*);
 extern int FUN_01012ad4(void*);
-extern int FUN_01012b24(void*);
+extern int controller_descriptor_octet_product(void*);
 extern int FUN_01012b48(void);
 extern int FUN_01012b98(int);
 extern int FUN_01012ba4(int,int,int);
@@ -50,7 +51,7 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
                 FUN_01011664(param_1);
                 return;
             }
-            cVar3 = (char)FUN_01012b24(puVar10);
+            cVar3 = (char)controller_descriptor_octet_product(puVar10);
             cVar4 = (char)FUN_01012ad4(puVar10);
             iVar8 = FUN_01012b98((unsigned char)(cVar3 - cVar4));
             puVar9[2] = puVar9[2] + iVar8;
@@ -111,7 +112,7 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
             FUN_01021108(0, param_1[4]);
         } else {
             iVar7 = (int)puVar9[3];
-            cVar3 = (char)FUN_01012b24(param_1 + 0x28);
+            cVar3 = (char)controller_descriptor_octet_product(param_1 + 0x28);
             cVar4 = (char)FUN_01012ad4(param_1 + 0x28);
             iVar8 = FUN_01012ba4((unsigned char)((cVar3 - 1) - cVar4),
                                  *(unsigned short *)(param_1 + 2), 0x28);

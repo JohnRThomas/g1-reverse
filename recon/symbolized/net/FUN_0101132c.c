@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
+ *   controller_packet_config_apply_if_active <= FUN_0100cb4c @ 0x0100cb4c
  *   sdc_controller_random_get                <= FUN_0100f63c @ 0x0100f63c
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
@@ -35,7 +36,7 @@ extern int FUN_01027ef2(int,int);
 extern unsigned long long controller_time_now(void);
 extern unsigned int FUN_0100c738(void);
 extern int FUN_0101124c(int,int);
-extern int FUN_0100cb4c(int);
+extern int controller_packet_config_apply_if_active(int);
 extern int FUN_01009dd8(int*);
 extern int sdc_ble_address_equal(int,int,int,int);
 extern unsigned int sdc_controller_random_get(void);
@@ -138,7 +139,7 @@ int FUN_0101132c(int param_1)
     }
 
     {
-        unsigned int uVar4 = (unsigned int)FUN_0100cb4c((int)(PW(0) + 3));
+        unsigned int uVar4 = (unsigned int)controller_packet_config_apply_if_active((int)(PW(0) + 3));
         unsigned short uVar1 = *(volatile unsigned short*)(param_1+2);
         PB[0x12] = (unsigned char)uVar4;
         if ((int)((unsigned int)uVar1 << 0x1f) < 0) {

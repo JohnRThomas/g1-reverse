@@ -2,6 +2,7 @@
  * public-name: FUN_0101124c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   controller_indexed_state_byte_get        <= FUN_0100bc04 @ 0x0100bc04
  *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  * address symbols (name @ address):
  *   g_net_own_addr_info                      @ 0x21000f20
@@ -10,7 +11,7 @@
 #define P_010112d8 0x21000f20
 
 extern int sdc_llcp_procedure_slot_get(unsigned char);
-extern int FUN_0100bc04(unsigned char);
+extern int controller_indexed_state_byte_get(unsigned char);
 extern void FUN_0100ab14(int, int, unsigned int);
 extern void FUN_0100cbe4(int, unsigned char);
 extern int FUN_0100ca80(unsigned char);
@@ -26,7 +27,7 @@ void FUN_0101124c(int param_1, unsigned int param_2)
 
   iVar2 = sdc_llcp_procedure_slot_get(*(unsigned char *)(param_1 + 0x1b));
   if ((*(signed char *)(param_1 + 0x1a) != 0) && (iVar2 != 0) &&
-      ((iVar3 = FUN_0100bc04(*(unsigned char *)(param_1 + 0x1b))) == 0)) {
+      ((iVar3 = controller_indexed_state_byte_get(*(unsigned char *)(param_1 + 0x1b))) == 0)) {
     *(unsigned char *)(param_1 + 0x60) = 1;
     FUN_0100ab14(iVar2, param_1 + 0x61, param_2);
     FUN_0100cbe4(param_1 + 0x61, *(unsigned char *)(param_1 + 0x1b));

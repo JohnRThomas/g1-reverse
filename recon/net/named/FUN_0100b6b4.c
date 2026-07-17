@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
+ *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
+ *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
  *   sdc_buffer_payload_get                   <= FUN_010270d2 @ 0x010270d2
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
@@ -31,13 +33,13 @@ extern void FUN_0100b630(unsigned,void*);
 extern void sdc_work_submit(unsigned,unsigned,unsigned);
 extern int FUN_0100f5cc(void);
 extern void FUN_01010578(unsigned);
-extern void FUN_0101fdd0(unsigned,unsigned,unsigned,unsigned,unsigned);
+extern void controller_radio_request_configure(unsigned,unsigned,unsigned,unsigned,unsigned);
 extern int FUN_0101ff9c(void);
 extern void FUN_0101ffd4(void);
 extern void FUN_01020048(void);
 extern void FUN_010209b8(void);
 extern int FUN_01026bfe(unsigned,void*);
-extern unsigned FUN_01026e48(unsigned);
+extern unsigned controller_packet_payload_reserve(unsigned);
 extern unsigned sdc_buffer_payload_get(void);
 
 #define IV4  0x21000c48u
@@ -111,7 +113,7 @@ LAB_b710:
 
 LAB_b948:
   {
-    u32 r = FUN_01026e48(W32(iVar4+200));
+    u32 r = controller_packet_payload_reserve(W32(iVar4+200));
     pbVar11 = W32(iVar4+0x2c);
     W32(iVar4+0x38) = r;
   }
@@ -196,7 +198,7 @@ LAB_b7d8:
       default:
         for(;;) sdc_assertion_fail(6,0x3c5);
     }
-    FUN_0101fdd0(uVar7, DAT_0100b964, 0xfb, uVar14, 0);
+    controller_radio_request_configure(uVar7, DAT_0100b964, 0xfb, uVar14, 0);
   }
 
   int bVar3;

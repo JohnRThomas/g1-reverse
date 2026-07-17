@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_config_apply_if_active <= FUN_0100cb4c @ 0x0100cb4c
  *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
  * address symbols (name @ address):
  *   rodata_103c24c                           @ 0x0103c24c
@@ -10,7 +11,7 @@
 /* net-core FUN_01016e6c @ 0x1016e6c  (parity 300 trials PROVEN) */
 
 extern void sdc_assertion_fail(unsigned int, unsigned int);
-extern int FUN_0100cb4c(int);
+extern int controller_packet_config_apply_if_active(int);
 extern void FUN_0101fc70(void);
 extern void FUN_010202fc(unsigned int, unsigned int);
 extern void FUN_010204f4(unsigned int);
@@ -64,7 +65,7 @@ unsigned int FUN_01016e6c(int param_1, int param_2)
     goto L_final;
   }
 
-  iVar3 = FUN_0100cb4c(param_2 + 5);
+  iVar3 = controller_packet_config_apply_if_active(param_2 + 5);
   base[0x7c] = (unsigned char)iVar3;
   if (iVar3 != 0) {
     if ((bVar5 & 0xc) == 0) {

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
+ *   controller_resolved_address_matches      <= FUN_0100aaac @ 0x0100aaac
  *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
@@ -13,7 +14,7 @@
  */
 /* net-core FUN_01017344 @ 0x1017344  (parity 300 trials PROVEN) */
 extern int sdc_ble_address_equal(unsigned char, unsigned int, unsigned char, unsigned int);
-extern int FUN_0100aaac(int, int);
+extern int controller_resolved_address_matches(int, int);
 extern int sdc_llcp_procedure_slot_get(unsigned int);
 extern unsigned int FUN_0100cb10(void);
 extern int FUN_0100cbbc(unsigned int);
@@ -92,7 +93,7 @@ unsigned char FUN_01017344(unsigned char *param_1)
       if (iVar5 == 0) {
         return 1;
       }
-      iVar5 = FUN_0100aaac(iVar5, L.local_38);
+      iVar5 = controller_resolved_address_matches(iVar5, L.local_38);
     } else {
       iVar5 = sdc_ble_address_equal(L.local_2e, L.local_38, uVar4, iVar5);
     }

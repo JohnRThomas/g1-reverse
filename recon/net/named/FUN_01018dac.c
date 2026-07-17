@@ -3,18 +3,19 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
  */
 /* net-core FUN_01018dac @ 0x1018dac  (parity 300 trials PROVEN) */
 
 extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
-extern unsigned int FUN_01026e48(unsigned int, unsigned short);
+extern unsigned int controller_packet_payload_reserve(unsigned int, unsigned short);
 extern void sdc_assertion_fail(int,int) __attribute__((noreturn));
 void FUN_01018dac(unsigned int param_1)
 {
   unsigned int uVar2 = FUN_0100a5a0();
   unsigned short uVar1 = (unsigned short)FUN_0100a5b4();
-  unsigned int iVar3 = FUN_01026e48(uVar2, uVar1);
+  unsigned int iVar3 = controller_packet_payload_reserve(uVar2, uVar1);
   if (iVar3 != 0) {
     void **p = *(void***)(0x21000f90 + 0xc4);
     void (*fn)(unsigned int, unsigned int) = (void(*)(unsigned int,unsigned int))*p;

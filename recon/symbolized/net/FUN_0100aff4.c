@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_radio_request_configure       <= FUN_0101fdd0 @ 0x0101fdd0
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
  *   g_ll_conn_trace_ctx_addr                 @ 0x21000cd0
@@ -13,7 +14,7 @@ extern void sdc_assertion_fail(unsigned int, unsigned int, ...);
 extern void FUN_0100ac34(void);
 extern int FUN_0100aeac(int);
 extern void FUN_0100af3c(void);
-extern void FUN_0101fdd0(int, unsigned int, unsigned char, unsigned char, int);
+extern void controller_radio_request_configure(int, unsigned int, unsigned char, unsigned char, int);
 
 #define DAT_0100b10c ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
 #define DAT_0100b110 ((unsigned long)&g_ll_conn_trace_ctx_addr) /*=0x21000cd0*/
@@ -92,7 +93,7 @@ LAB_0100b03e:
       sdc_assertion_fail(6, 0x3c5, *(volatile unsigned char *)(iVar3 + 0x7a));
       return;
     }
-    FUN_0101fdd0(1, DAT_0100b110, *(volatile unsigned char *)(iVar3 + 0x7a), uVar8, 0);
+    controller_radio_request_configure(1, DAT_0100b110, *(volatile unsigned char *)(iVar3 + 0x7a), uVar8, 0);
   }
   if ((((param_2 == 1) && (param_1 == 0)) &&
        (iVar7 = ((fp2_t)(*(volatile unsigned int *)(iVar3 + 0xc0)))(0), iVar7 != 0)) &&

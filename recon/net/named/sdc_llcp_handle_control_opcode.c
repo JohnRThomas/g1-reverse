@@ -4,6 +4,8 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_ble_address_equal                    <= FUN_0100aa3c @ 0x0100aa3c
+ *   controller_resolved_address_matches      <= FUN_0100aaac @ 0x0100aaac
+ *   controller_indexed_state_byte_get        <= FUN_0100bc04 @ 0x0100bc04
  *   sdc_llcp_procedure_slot_get              <= FUN_0100ca68 @ 0x0100ca68
  *   sdc_llcp_handle_control_opcode           <= FUN_010168e4 @ 0x010168e4
  *   sdc_llcp_note_unsupported_pdu            <= FUN_01020500 @ 0x01020500
@@ -13,8 +15,8 @@
 /* net-core FUN_010168e4 @ 0x10168e4  (parity 300 trials PROVEN) */
 extern int sdc_assertion_fail(int,int);
 extern int sdc_ble_address_equal(int,int,int,int);
-extern int FUN_0100aaac(int,int);
-extern int FUN_0100bc04(int);
+extern int controller_resolved_address_matches(int,int);
+extern int controller_indexed_state_byte_get(int);
 extern int sdc_llcp_procedure_slot_get(int);
 extern int FUN_01016828(void);
 extern int FUN_01019750(int,int,int,int,int,int,int);
@@ -84,14 +86,14 @@ int sdc_llcp_handle_control_opcode(int param_1, int param_2)
             bVar7 = G(0x45);
             bVar12 = bVar7;
         } else {
-            unsigned int uVar5 = (unsigned int)FUN_0100bc04(0);
+            unsigned int uVar5 = (unsigned int)controller_indexed_state_byte_get(0);
             if (uVar5 != 0) uVar11 = uVar5;
             if (!bVar13) {
                 iVar8 = 0;
                 bVar7 = G(0x45);
                 bVar12 = bVar7;
             } else {
-                iVar8 = FUN_0100aaac(0,0);
+                iVar8 = controller_resolved_address_matches(0,0);
                 bVar7 = G(0x45);
                 bVar12 = bVar7;
                 if (iVar8 != 0) bVar12 = bVar7 | 2;

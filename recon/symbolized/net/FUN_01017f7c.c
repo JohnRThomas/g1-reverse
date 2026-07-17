@@ -4,8 +4,10 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_config_apply_if_active <= FUN_0100cb4c @ 0x0100cb4c
  *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
  *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
  * address symbols (name @ address):
  *   g_net_radio_pending_proc_flag            @ 0x2100104a
  */
@@ -14,10 +16,10 @@
 
 extern unsigned int FUN_0100a5a0(void);
 extern unsigned int FUN_0100a5b4(void);
-extern unsigned int FUN_01026e48(unsigned int a, unsigned short b);
+extern unsigned int controller_packet_payload_reserve(unsigned int a, unsigned short b);
 extern void FUN_010195f8(void);
 extern int FUN_0101b15c(unsigned int a);
-extern unsigned int FUN_0100cb4c(unsigned int a);
+extern unsigned int controller_packet_config_apply_if_active(unsigned int a);
 extern void FUN_01016430(unsigned int a, unsigned int b);
 extern void FUN_0101fc70(void);
 extern void FUN_01020898(unsigned int a);
@@ -42,7 +44,7 @@ void FUN_01017f7c(void)
 
     uVar4 = FUN_0100a5a0();
     uVar3 = FUN_0100a5b4();
-    iVar5 = FUN_01026e48(uVar4, (unsigned short)uVar3);
+    iVar5 = controller_packet_payload_reserve(uVar4, (unsigned short)uVar3);
     if (iVar5 == 0) {
         /* 0x01018078 is the function's fatal assertion island. */
         sdc_assertion_fail(0x32, 0x509);
@@ -84,7 +86,7 @@ void FUN_01017f7c(void)
     }
 
 LAB_fc4:
-    iVar5 = FUN_0100cb4c(r5 + 3);
+    iVar5 = controller_packet_config_apply_if_active(r5 + 3);
     *(volatile signed char *)(iVar2 + 0x7c) = (signed char)iVar5;
     if (iVar5 == 0) {
         goto LAB_tail;
@@ -93,7 +95,7 @@ LAB_fc4:
     goto LAB_fc70;
 
 LAB_8006:
-    iVar5 = FUN_0100cb4c(r5 + 5);
+    iVar5 = controller_packet_config_apply_if_active(r5 + 5);
     *(volatile signed char *)(iVar2 + 0x7c) = (signed char)iVar5;
     if (iVar5 == 0) {
         goto LAB_tail;
