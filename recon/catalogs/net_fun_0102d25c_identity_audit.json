@@ -1,0 +1,53 @@
+{
+  "schema": "g1.net.identity_audit.v1",
+  "function": {
+    "raw_name": "FUN_0102d25c",
+    "entry": "0x0102d25c",
+    "status": "report_only",
+    "source_emitted": false,
+    "automatic_sdc_removal": false
+  },
+  "reason": "The only non-return path branches directly to a Thumb target inside confirmed IPC log-string data. No executable owner or relocation explains that target, so assigning SDK identity or emitting C would invent semantics.",
+  "firmware_evidence": {
+    "entry_bytes_hex": "20b1034b800143f001031847704700bfa0c80301",
+    "instructions": [
+      "0x0102d25c: cbz r0, 0x0102d268",
+      "0x0102d25e: ldr r3, [pc, #0x0c]",
+      "0x0102d260: lsls r0, r0, #6",
+      "0x0102d262: orr r3, r3, #1",
+      "0x0102d266: bx r3",
+      "0x0102d268: bx lr",
+      "0x0102d26a: nop"
+    ],
+    "literal": {
+      "address": "0x0102d26c",
+      "value": "0x0103c8a0",
+      "effective_thumb_target": "0x0103c8a1"
+    },
+    "target_bytes_hex": "5800495043207365727669636520696e6974206661696c65642025640a0a004950432072656720656e64706f696e74206661696c65642025640a00253032583a",
+    "target_bytes_ascii": "X\\0IPC service init failed %d\\n\\n\\0IPC reg endpoint failed %d\\n\\0%02X:"
+  },
+  "reference_evidence": {
+    "known_recovered_caller": {
+      "raw_name": "FUN_0103b0e8",
+      "entry": "0x0103b0e8",
+      "instructions": [
+        "0x0103b0e8: cbz r0, 0x0103b0ee",
+        "0x0103b0ea: b.w 0x0102d25c",
+        "0x0103b0ee: bx lr"
+      ]
+    },
+    "regenerated_net_funcs_catalog": {
+      "FUN_0102d25c_entry_present": false,
+      "0x0103c8a0_entry_present": false,
+      "FUN_0103b0e8_entry_present": true
+    },
+    "regenerated_refgraph": "FUN_0103b0e8 records a data reference to the literal at 0x0102d26c; the missing d25c entry prevents Ghidra from classifying the direct branch as a call."
+  },
+  "safe_next_steps": [
+    "Keep FUN_0102d25c in the unresolved/report-only residue.",
+    "Do not emit C, a blob, an alias, or an SDK identity from the current evidence.",
+    "Resolve only if a linker map, relocation record, or exact-version binary proves an executable owner for 0x0103c8a1 or proves that the literal is intentionally faulting data.",
+    "Retain all SDC-related report-only entries; perform no automatic SDC removal."
+  ]
+}
