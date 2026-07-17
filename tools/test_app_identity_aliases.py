@@ -45,8 +45,35 @@ class AppIdentityAliasTests(unittest.TestCase):
                 ROOT, "recon/catalogs/function_names_app.json")) as stream:
             manifest = json.load(stream)
         aliases = gen_function_aliases.load_link_aliases("app", manifest)
-        self.assertEqual(28, len(aliases))
+        self.assertEqual(29, len(aliases))
         self.assertEqual("0x00034808", aliases["can_begin_task_transition"])
+        self.assertEqual("0x000431a8", aliases["get_display_atomic_state"])
+
+    def test_display_accessor_alias_targets_the_only_retained_owner(self):
+        with open(os.path.join(
+                ROOT, "recon/catalogs/function_names_app.json")) as stream:
+            manifest = json.load(stream)
+        aliases = gen_function_aliases.load_link_aliases("app", manifest)
+        address = aliases["get_display_atomic_state"]
+        record = manifest["by_address"][address]
+        self.assertEqual("FUN_000431a8", record["raw_name"])
+        self.assertEqual("atomic_get_3_0", record["name"])
+        self.assertEqual("recon/app/src/atomic_get_3_0.c", record["source"])
+
+        planned, rejected = gen_function_aliases.plan_aliases(
+            manifest, {"atomic_get_3_0"}, {"get_display_atomic_state"},
+            aliases)
+        self.assertIn(("get_display_atomic_state", "atomic_get_3_0",
+                       "0x000431a8"), planned)
+        self.assertFalse(rejected["both_defined"])
+
+        with open(os.path.join(
+                ROOT, "recon/symbols/g1_app_function_aliases.ld")) as stream:
+            fragment = stream.read()
+        expected = ("PROVIDE(get_display_atomic_state = atomic_get_3_0); "
+                    "/* 0x000431a8 */")
+        self.assertEqual(1, fragment.count(expected))
+        self.assertNotIn("atomic_get_3_0 = get_display_atomic_state", fragment)
 
 
 if __name__ == "__main__":

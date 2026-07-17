@@ -36,6 +36,7 @@ PROVIDE(FUN_00037154 = cleanStocksIndex); /* 0x00037154 */
 PROVIDE(FUN_00037234 = cleanNewsIndex); /* 0x00037234 */
 PROVIDE(finish_task_audio = clear_notification_display_buffer); /* 0x0003cf34 */
 PROVIDE(FUN_00042a64 = onboarding_ble_process); /* 0x00042a64 */
+PROVIDE(get_display_atomic_state = atomic_get_3_0); /* 0x000431a8 */
 PROVIDE(get_glyph_pair_spacing = count_chars_in_default_font_table); /* 0x00043e58 */
 PROVIDE(FUN_00047b1c = send_response_data_to_msgqueue); /* 0x00047b1c */
 PROVIDE(FUN_00047bf8 = sendAudioStreamFileToApp); /* 0x00047bf8 */
