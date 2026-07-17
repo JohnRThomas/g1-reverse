@@ -17,6 +17,33 @@
   "warning": "firmware_extent is entry-to-entry allocation unless extent_basis says code. Large optimized functions may contain inlined stages or literal islands; do not truncate them from CFG reachability alone.",
   "bulk_followup": "Normalize Thumb basic blocks by opcode class, immediates, branch labels, register SSA and referenced table-content hashes; seed exact-size matches, propagate through refgraph caller/callee edges, then verify candidate reconstructions with cfg_verify."
  },
+ "version_selection": {
+  "method": "Measured normalized opcode-sequence similarity for the same 41 firmware functions after compiling both source revisions with the identical arm-zephyr-eabi GCC 12.2 Cortex-M33 hard-float configuration and the libLC3 optimization flags -O3 and -ffast-math.",
+  "identical_compile_options": ["arm-zephyr-eabi GCC 12.2", "-mcpu=cortex-m33", "-mthumb", "-mfpu=fpv5-sp-d16", "-mfloat-abi=hard", "-O3", "-ffast-math"],
+  "candidates": [
+   {
+    "label": "ncs_2_5_1_pinned",
+    "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+    "functions_compared": 41,
+    "opcode_similarity_median": 0.984,
+    "opcode_similarity_mean": 0.858,
+    "functions_at_or_above_0_90": 30,
+    "functions_at_or_above_0_98": 21,
+    "selected": true
+   },
+   {
+    "label": "newer_google_checkout",
+    "commit": "ce2e41faf8c06d038df9f32504c61109a14130be",
+    "functions_compared": 41,
+    "opcode_similarity_median": 0.349,
+    "opcode_similarity_mean": 0.515,
+    "functions_at_or_above_0_90": 13,
+    "functions_at_or_above_0_98": 10,
+    "selected": false
+   }
+  ],
+  "conclusion": "The NCS 2.5.1 pinned revision wins decisively under controlled, identical code-generation settings: its median similarity is 0.984 versus 0.349, and it produces substantially more near-exact matches at both thresholds. This rules out compiler flags as the cause of the difference and makes commit 448f3de31f49a838988a162ef1e23a89ddf2d2ed the evidence-backed ownership baseline for this firmware."
+ },
  "proof_policy": {
   "default": "existing_parity_claim_not_rerun_for_naming",
   "meaning": "This catalog changes names only. It records existing canonical proof claims but does not upgrade them to a new CFG-directed proof.",
