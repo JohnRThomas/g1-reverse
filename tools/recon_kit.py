@@ -6,8 +6,8 @@ whose recompilation can be PROVEN byte-for-behavior identical to the firmware:
 
   info(va)  -> {decompiled, disasm(annotated with literal-pool VALUES),
                 callees, size, name}
-  prove(va, size, name, csrc, nptr, trials) -> parity verdict, appended to a
-                shared JSON ledger (recon_ledger.json).
+  prove(va, size, name, csrc, nptr, trials) -> CFG-directed parity verdict,
+                appended to a shared JSON ledger (recon_ledger.json).
 
 CLI:
   python recon_kit.py info 0x327c4        # dump everything for one function
@@ -17,21 +17,62 @@ CLI:
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract
-from parity import recon
 from capstone import *
 
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
-    # Full 39-entry PUT dispatcher extent through the final handler return.
+    0x0000e53c: 0x3fc,
+    0x0000fcf0: 0x178,
+    0x000113a8: 0xecc,
+    0x00016eb8: 0x7ac,
+    0x0001a064: 0x6e4,
     0x0001a75c: 0x6bae,
-    # CFG-reviewed wrapper; catalog folded following utility functions.
-    0x00050b8c: 36,
-    0x000566a4: 0x50,
+    0x00021460: 0x59c,
+    0x00023844: 0x1d0,
+    0x00028a1c: 0x198,
+    0x0002a8d8: 0x3f4,
     0x00030cd0: 0x3a,
+    0x0003727c: 0x3bdc,
+    0x0003af78: 0x7e6,
+    0x0003b824: 0x5ba,
+    0x0003bfe0: 0xb4c,
+    0x0003e7f8: 0xc80,
+    0x000442bc: 0x266,
+    0x0004588c: 0x110c,
+    0x0004abc0: 0x444,
+    0x0004b4fc: 0x394,
+    0x0004bc8c: 0x166,
+    0x0004beb8: 0x110,
+    0x0004d100: 0x70,
+    0x0004d578: 0x0e,
+    0x0004e98c: 0x10,
+    0x00050b8c: 0x24,
+    0x000531cc: 0x08,
     0x0005505c: 0x34,
-    0x000531cc: 0x8,
-    0x0004d578: 0xe,
+    0x000566a4: 0x50,
+    0x00056704: 0x1e0,
+    0x00059834: 0xe6,
+    0x0005b9cc: 0x1e0,
+    0x0005fb8c: 0xda,
+    0x00068240: 0x3a,
+    0x000698d0: 0xc82,
+    0x0006b3c8: 0x5ea,
+    0x0006bfc8: 0x7ae,
+    0x0006c778: 0x2860,
+    0x0006f4a0: 0x47c,
+    0x00075d5c: 0x5e,
+    0x0007712c: 0x466,
+    0x00077594: 0x254,
+    0x000778d4: 0x0a,
+    0x00078110: 0x45a,
+    0x0007d1d6: 0x40,
+    0x0007d3dc: 0x12,
+    0x0007ee74: 0x32,
+    0x00084e58: 0x0e,
+    0x00085df6: 0x24,
+    0x0008633e: 0x06,
+    0x00086378: 0x08,
 }
 # Each reconstruction agent sets RECON_LEDGER to its own file to avoid races;
 # merge later. Defaults to the shared ledger.
@@ -140,40 +181,43 @@ def _ret_kind(va):
     return "i32"
 
 def prove(va, size, name, csrc, nptr=2, trials=300, save_src=True):
-    rk = _ret_kind(va)
-    # Correct Ghidra's occasionally-underestimated size so the harness's in-body
-    # range [va, va+size) covers tail blocks / switch handlers the function
-    # branches into (otherwise they look like spurious external calls).
-    try:
-        from truesize import true_extent
-        eff = max(size, true_extent(va, size))
-    except Exception:
-        eff = size
-    eff = TRUE_SIZE_OVERRIDES.get(va, eff)
-    v = recon.prove(va, eff, csrc, name, trials=trials, nptr=nptr, ret_kind=rk)
-    # Non-returning supervisor loop (main / *_thread): every trial ran to the
-    # cap without returning, so nothing was checked. Retry comparing the ordered
-    # side-effect prefix instead of a return value.
-    if not v.get("pass") and v.get("checked") == 0:
-        v2 = recon.prove(va, eff, csrc, name, trials=trials, nptr=nptr,
-                         ret_kind=rk, no_return=True)
-        if v2.get("checked"):
-            v = v2
-    rec = {"name": name, "entry_hex": hex(va), "size": eff, "ghidra_size": size,
-           "pass": bool(v.get("pass")), "checked": v.get("checked"),
-           "mismatches": v.get("mismatches"), "cand_size": v.get("cand_size"),
-           "stage": v.get("stage"), "error": str(v.get("error"))[:300] if v.get("error") else None}
+    meta = None if va & 1 else info(va)
+    if not meta or meta["entry"] != va or meta["name"] != name:
+        rec = {"name": name, "entry_hex": hex(va), "size": size,
+               "ghidra_size": None, "pass": False, "stage": "identity",
+               "error": "name/address does not match app catalog"}
+    else:
+        eff = meta["size"]
+        import cfg_verify
+        canonical_header = "/* Reconstructed %s @ %s  (CFG-directed candidate) */" % (
+            name, hex(va))
+        first_line, separator, remainder = csrc.partition("\n")
+        if re.search(r'@\s+0x[0-9a-fA-F]+', first_line) and "*/" in first_line:
+            after_header = first_line.split("*/", 1)[1]
+            candidate = (canonical_header + after_header +
+                         (separator + remainder if separator else "\n"))
+        else:
+            candidate = canonical_header + "\n" + csrc.rstrip() + "\n"
+        candidate = re.sub(r'\bCFG_VERIFY_PREFIX_FIRST\b', '', candidate)
+        candidate = re.sub(r'\bCFG_VERIFY_PREFIX_K=\d+\b', '', candidate)
+        verdict = cfg_verify.verify("app", name, trials_random=trials,
+                                    source_override=candidate)
+        checked = verdict.get("checked")
+        passed = verdict.get("status") == "PASS" and type(checked) is int and checked > 0
+        rec = {"name": name, "entry_hex": hex(va), "size": eff,
+               "ghidra_size": meta["size"], "pass": passed,
+               "checked": checked, "mismatches": verdict.get("mismatches"),
+               "stage": "cfg_verify", "cfg_status": verdict.get("status"),
+               "detail": verdict.get("detail")}
     led = []
     if os.path.exists(LEDGER):
         led = json.load(open(LEDGER))
     led = [x for x in led if x["entry_hex"] != rec["entry_hex"]]
     led.append(rec)
     json.dump(led, open(LEDGER, "w"), indent=1)
-    if save_src and v.get("pass"):
+    if save_src and rec.get("pass"):
         os.makedirs(RECON_SRC, exist_ok=True)
-        open(os.path.join(RECON_SRC, name + ".c"), "w").write(
-            "/* Reconstructed %s @ %s  (parity: %d/%d trials, PROVEN) */\n%s\n"
-            % (name, hex(va), v.get("checked"), trials, csrc))
+        open(os.path.join(RECON_SRC, name + ".c"), "w").write(candidate)
     return rec
 
 def list_app(named_only=True, max_size=100000):

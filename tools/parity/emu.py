@@ -100,11 +100,25 @@ def _terminal_key(state):
 
 
 class Runner:
-    def __init__(self, func_va, func_size, func_bytes, code_base=CODE_BASE):
+    def __init__(self, func_va, func_size, func_bytes, code_base=CODE_BASE,
+                 internal_code_regions=None):
         self.va = func_va
         self.size = func_size
         self.body = bytes(func_bytes)
         self.code_base = code_base
+        self.internal_code_regions = tuple(
+            (int(address), bytes(data))
+            for address, data in (internal_code_regions or ()))
+        main_range = (self.va, self.va + self.size)
+        regions = sorted((address, address + len(data))
+                         for address, data in self.internal_code_regions)
+        for index, (start, end) in enumerate(regions):
+            if start < 0 or end > 0x100000000 or start >= end:
+                raise ValueError("internal code regions must be non-empty 32-bit ranges")
+            if start < main_range[1] and main_range[0] < end:
+                raise ValueError("internal code region overlaps the main function body")
+            if index and start < regions[index - 1][1]:
+                raise ValueError("internal code regions overlap each other")
 
     def _new_uc(self):
         uc = Uc(UC_ARCH_ARM, UC_MODE_THUMB | UC_MODE_MCLASS)
@@ -114,16 +128,20 @@ class Runner:
         uc.mem_map(RAM_BASE, RAM_SIZE)
         return uc
 
-    def run(self, seed, args, scratch_seed, max_insns=200000, stop_events=0,
+    def run(self, seed, args, scratch_seed, max_insns=200000, max_resumes=5000,
+            stop_events=0,
             memory_overrides=None, absolute_memory_overrides=None,
             stack_initial_words=None,
             pointer_read_transitions=None,
             terminal_targets=None, terminal_ordinal=None,
             detect_repeated_terminal=False, oracle_overrides=None,
             call_arities=None, call_arity_by_target=None,
+            call_arity_by_format=None,
             call_float_arities=None, call_float_arity_by_target=None,
             call_return_kinds=None, call_return_kind_by_target=None,
+            call_stack_arity_by_target=None, call_stack_arity_by_format=None,
             oracle_memory_writes=None, oracle_memory_copies=None,
+            oracle_target_map=None,
             normalized_stack_pointer_calls=None,
             stack_objects=None,
             fp_arg_overrides=None, initial_xpsr=0):
@@ -131,9 +149,50 @@ class Runner:
         stop_events>0: stop after that many side-effect events (for non-returning
         supervisor loops — we compare the ordered event-trace prefix instead of a
         return value, which is robust to GCC-vs-original instructions-per-loop)."""
+        for override in (oracle_overrides or {}).values():
+            if "lr" in override:
+                lr_spec = override["lr"]
+                if (type(lr_spec) is not tuple or len(lr_spec) != 2 or
+                        any(type(value) is not int for value in lr_spec)):
+                    raise ValueError(
+                        "oracle LR continuation must be an exact integer "
+                        "(value, semantic_target) tuple")
+        for stack_object in (stack_objects or ()):
+            if len(stack_object) < 3:
+                raise ValueError("stack object requires identity, offset, and payload")
+            size = len(stack_object[2])
+            content_ranges = stack_object[3] if len(stack_object) > 3 else None
+            content_length_argument = (stack_object[7]
+                                       if len(stack_object) > 7 else None)
+            if content_ranges is not None:
+                previous_end = 0
+                for content_range in content_ranges:
+                    if (not isinstance(content_range, (tuple, list)) or
+                            len(content_range) != 2 or
+                            any(type(value) is not int for value in content_range)):
+                        raise ValueError("stack object content ranges must be integer pairs")
+                    start, end = content_range
+                    if not (0 <= start < end <= size):
+                        raise ValueError("stack object content range is outside its payload")
+                    if start < previous_end:
+                        raise ValueError("stack object content ranges overlap or are unordered")
+                    previous_end = end
+            if content_length_argument is not None:
+                if type(content_length_argument) is not int or content_length_argument < 0:
+                    raise ValueError("stack object length argument must be a nonnegative integer")
+                if content_ranges is not None:
+                    raise ValueError(
+                        "stack object cannot declare both content ranges and a length argument")
         uc = self._new_uc()
         # place function body at its VA
         uc.mem_write(self.va, self.body)
+        # Some firmware leaf workers use a private result convention spanning
+        # r0-r11 and caller-reserved stack words.  A reviewed caller can only
+        # be verified meaningfully by executing those worker bytes as part of
+        # the unit, rather than replacing the call with an r0:r1 oracle.  The
+        # regions are explicit and remain subject to the normal write trace.
+        for address, data in self.internal_code_regions:
+            uc.mem_write(address, data)
         # External calls return through a real Thumb BX LR instruction inside
         # the same emulation run.  Stopping/restarting Unicorn at every oracle
         # boundary can corrupt hidden Thumb execution state (notably ITSTATE)
@@ -192,14 +251,16 @@ class Runner:
         for offset, value in (stack_initial_words or ()):
             uc.mem_write(STACK_TOP + offset,
                          (int(value) & 0xffffffff).to_bytes(4, "little"))
-        for _object_id, offset, payload in (stack_objects or ()):
+        for stack_object in (stack_objects or ()):
+            _object_id, offset, payload = stack_object[:3]
             uc.mem_write(STACK_TOP + int(offset), bytes(payload))
 
         state = {"ncalls": 0, "returned": False, "events": [],
                  "call_targets": [], "call_event_positions": [],
                  "call_arities_used": [], "call_float_arities_used": [],
                  "call_return_kinds_used": [],
-                 "next_call_indirect": False}
+                 "next_call_indirect": False,
+                 "matched_stack_objects": set()}
         if read_transitions:
             def _reviewed_read_transition(uc, access, address, size, value, ud):
                 for transition in read_transitions:
@@ -209,6 +270,9 @@ class Runner:
                             uc.mem_write(address, transition["value"].to_bytes(4, "little"))
             uc.hook_add(UC_HOOK_MEM_READ, _reviewed_read_transition)
         fstart, fend = self.va, self.va + self.size
+        internal_ranges = tuple(
+            (address, address + len(data))
+            for address, data in self.internal_code_regions)
 
         class _ExternalBoundary(Exception):
             """Abort Unicorn before it executes an oracle-boundary opcode."""
@@ -220,7 +284,9 @@ class Runner:
         stack_lo = STACK_TOP - 0x9000
         stack_hi = STACK_TOP + 0x100
 
-        def _stack_object_pointer(value, include_content=False, content_limit=None):
+        def _stack_object_pointer(value, include_content=False,
+                                  call_index=None, call_target=None,
+                                  argument_values=None):
             """Return reviewed object identity for a pointer, never generic stack.
 
             The half-open object ranges are declared by the caller relative to
@@ -228,16 +294,100 @@ class Runner:
             before an interior pointer are outside that call's pointee region
             (notably response+4 passed to memset).
             """
-            for object_id, offset, payload in (stack_objects or ()):
+            for object_index, stack_object in enumerate(stack_objects or ()):
+                object_id, offset, payload = stack_object[:3]
+                content_ranges = (stack_object[3]
+                                  if len(stack_object) > 3 else None)
+                call_ordinals = (stack_object[4]
+                                 if len(stack_object) > 4 else None)
+                call_targets = (stack_object[5]
+                                if len(stack_object) > 5 else None)
+                embedded_pointer_offsets = (stack_object[6]
+                                            if len(stack_object) > 6 else ())
+                content_length_argument = (stack_object[7]
+                                           if len(stack_object) > 7 else None)
+                if (call_ordinals is not None and
+                        (call_index is None or call_index not in call_ordinals)):
+                    continue
+                if (call_targets is not None and
+                        (call_target is None or
+                         (call_target & ~1) not in call_targets)):
+                    continue
                 base = STACK_TOP + int(offset)
                 size = len(payload)
                 if base <= value < base + size:
+                    # Coverage is semantic call-boundary recognition, not a
+                    # generic observation of stack-looking words in writes.
+                    # Recursive embedded pointers retain the call index and
+                    # therefore prove that their declaration was active too.
+                    if call_index is not None:
+                        state["matched_stack_objects"].add(object_index)
                     key = ("SO", object_id, value - base, size)
                     if include_content:
-                        count = size - (value - base)
-                        if content_limit is not None and 0 < content_limit < count:
-                            count = content_limit
-                        key += (bytes(uc.mem_read(value, count)),)
+                        interior = value - base
+                        if content_ranges is None:
+                            count = size - interior
+                            # Never infer a pointee length from the following
+                            # scalar ABI word.  A shorter extent must name its
+                            # length argument explicitly in the reviewed object
+                            # declaration; otherwise the declared allocation
+                            # extent is the semantic content range.
+                            if content_length_argument is not None:
+                                if (argument_values is None or
+                                        content_length_argument not in argument_values):
+                                    raise ValueError(
+                                        "stack object length argument is unavailable")
+                                count = min(count, max(0, int(argument_values[
+                                    content_length_argument])))
+                            content = bytes(uc.mem_read(value, count))
+                        else:
+                            # Some ABI records contain unwritten alignment
+                            # holes.  Reviewed ranges enumerate every byte the
+                            # consumer can observe, while retaining one object
+                            # identity and its complete allocation extent.
+                            selected = []
+                            for start, end in content_ranges:
+                                start = max(int(start), interior)
+                                end = min(int(end), size)
+                                if start < end:
+                                    selected.append(bytes(uc.mem_read(
+                                        base + start, end - start)))
+                            content = b"".join(selected)
+                            key += (tuple((int(start), int(end))
+                                          for start, end in content_ranges),)
+                        if embedded_pointer_offsets:
+                            # Normalize reviewed pointer words inside a local
+                            # input record to the identity/interior offset of
+                            # the local object they reference.  All surrounding
+                            # bytes remain exact, and a pointer redirected to a
+                            # different field/object remains observable.
+                            raw = bytes(uc.mem_read(base, size))
+                            pieces = []
+                            cursor = interior
+                            end = interior + len(content)
+                            for pointer_offset in embedded_pointer_offsets:
+                                pointer_offset = int(pointer_offset)
+                                if not (cursor <= pointer_offset and
+                                        pointer_offset + 4 <= end):
+                                    continue
+                                if cursor < pointer_offset:
+                                    pieces.append(("B", raw[cursor:pointer_offset]))
+                                pointer_value = int.from_bytes(
+                                    raw[pointer_offset:pointer_offset + 4],
+                                    "little")
+                                pointer_identity = _stack_object_pointer(
+                                    pointer_value, call_index=call_index,
+                                    call_target=call_target)
+                                if pointer_identity is None:
+                                    pieces.append(("B", raw[pointer_offset:
+                                                            pointer_offset + 4]))
+                                else:
+                                    pieces.append(("P", pointer_identity))
+                                cursor = pointer_offset + 4
+                            if cursor < end:
+                                pieces.append(("B", raw[cursor:end]))
+                            content = tuple(pieces)
+                        key += (content,)
                     return key
             return None
 
@@ -249,22 +399,53 @@ class Runner:
             r0-r3 are the fixed AAPCS argument registers and are independent
             of compiler-specific stack-frame layout, so compare them exactly.
             """
+            semantic_target = (oracle_target_map or {}).get(
+                target & ~1, target & ~1)
             if call_arities and index < len(call_arities):
                 arity = call_arities[index]
+            elif call_arity_by_format is not None:
+                format_address = int(uc.reg_read(REG[0])) & 0xffffffff
+                arity = call_arity_by_format.get(
+                    (semantic_target, format_address),
+                    ((call_arity_by_target or {}).get(semantic_target, 4)))
             elif call_arity_by_target is not None:
-                arity = call_arity_by_target.get(target & ~1, 4)
+                arity = call_arity_by_target.get(semantic_target, 4)
             else:
                 arity = 4
             state["call_arities_used"].append(arity)
-            values = [int(uc.reg_read(REG[i])) & 0xffffffff for i in range(arity)]
+            values = []
+            call_sp = int(uc.reg_read(UC_ARM_REG_SP)) & 0xffffffff
+            for argument_index in range(arity):
+                if argument_index < 4:
+                    value = int(uc.reg_read(REG[argument_index])) & 0xffffffff
+                else:
+                    value = int.from_bytes(uc.mem_read(
+                        call_sp + 4 * (argument_index - 4), 4), "little")
+                values.append(value)
+            format_address = int(uc.reg_read(REG[0])) & 0xffffffff
+            format_key = (semantic_target, format_address)
+            if (call_stack_arity_by_format is not None and
+                    format_key in call_stack_arity_by_format):
+                stack_arity = call_stack_arity_by_format[format_key]
+            else:
+                stack_arity = ((call_stack_arity_by_target or {}).get(
+                    semantic_target, 0))
+            stack_values = [int.from_bytes(uc.mem_read(call_sp + 4 * i, 4),
+                                           "little")
+                            for i in range(stack_arity)]
+            argument_values = {i: value for i, value in enumerate(values)}
+            argument_values.update({4 + i: value
+                                    for i, value in enumerate(stack_values)})
             for ai, value in enumerate(values):
-                limit = values[ai + 1] if ai + 1 < len(values) else None
                 identity = _stack_object_pointer(value, include_content=True,
-                                                   content_limit=limit)
+                                                   call_index=index,
+                                                   call_target=semantic_target,
+                                                   argument_values=argument_values)
                 if identity is not None:
                     values[ai] = identity
             for ai in ((normalized_stack_pointer_calls or {}).get(index, ())):
-                if ai < len(values) and stack_lo <= values[ai] < stack_hi:
+                if (ai < len(values) and isinstance(values[ai], int) and
+                        stack_lo <= values[ai] < stack_hi):
                     values[ai] = 0xffff0000 | ai
             if call_float_arities and index < len(call_float_arities):
                 float_arity = call_float_arities[index]
@@ -284,7 +465,14 @@ class Runner:
                             for i in range(float_arity)]
             indirect_target = ((target & ~1) if state.pop("next_call_indirect", False)
                                else None)
-            return ("C", index, *values, "F", *float_values,
+            for stack_index, value in enumerate(stack_values):
+                identity = _stack_object_pointer(
+                    value, include_content=True, call_index=index,
+                    call_target=semantic_target,
+                    argument_values=argument_values)
+                if identity is not None:
+                    stack_values[stack_index] = identity
+            return ("C", index, *values, "S", *stack_values, "F", *float_values,
                     "T", indirect_target)
         def _mw(uc, access, address, size, value, ud):
             if not (stack_lo <= address < stack_hi):
@@ -319,7 +507,8 @@ class Runner:
             if RETURN_MAGIC <= pc < RETURN_MAGIC + 0x10:
                 state["returned"] = True
                 uc.emu_stop(); return
-            if fstart <= pc < fend:
+            if (fstart <= pc < fend or
+                    any(start <= pc < end for start, end in internal_ranges)):
                 # Unicorn inconsistently enforces alignment for M-profile
                 # exclusive instructions depending on the encoded Rt register.
                 # Cortex-M word/halfword exclusives architecturally fault on
@@ -452,14 +641,52 @@ class Runner:
             if stop_events and len(state["events"]) >= stop_events:
                 state["capped_events"] = True; uc.emu_stop(); return
             o0, o1 = _oracle(idx)
+            continuation_lr = None
             if oracle_overrides and idx in oracle_overrides:
                 ov = oracle_overrides[idx]
                 if 0 in ov: o0 = ov[0] & 0xffffffff
                 if 1 in ov: o1 = ov[1] & 0xffffffff
-            for ai, off, data in ((oracle_memory_writes or {}).get(idx, ())):
-                base = int(uc.reg_read(REG[ai])) & 0xffffffff
+                # Reviewed context-switch helpers can resume a split
+                # continuation with the caller's LR restored, rather than the
+                # ordinary BL return LR.  Keep this explicit and order-keyed;
+                # ordinary calls never alter LR here.
+                if "lr" in ov:
+                    lr_value, lr_target = ov["lr"]
+                    semantic_target = (oracle_target_map or {}).get(
+                        pc & ~1, pc & ~1)
+                    if semantic_target == (int(lr_target) & ~1):
+                        continuation_lr = int(lr_value) & 0xffffffff
+            for write in (oracle_memory_writes or {}).get(idx, ()):
+                ai, off, data = write[:3]
+                # Optional fourth field binds an out-parameter effect to the
+                # reviewed callee identity.  Ordinal-only replay is unsafe
+                # when earlier branches can put a different function at the
+                # same call index.
+                semantic_target = (oracle_target_map or {}).get(
+                    pc & ~1, pc & ~1)
+                if (len(write) > 3 and
+                        semantic_target != (int(write[3]) & ~1)):
+                    continue
+                if ai is None:
+                    base = int(off) & 0xffffffff
+                    off = 0
+                elif ai < 4:
+                    base = int(uc.reg_read(REG[ai])) & 0xffffffff
+                else:
+                    # AAPCS stack-passed arguments begin at the callee-entry
+                    # SP.  At the intercepted BL/BLX boundary the caller has
+                    # already materialized them at the current SP.
+                    call_sp = int(uc.reg_read(UC_ARM_REG_SP)) & 0xffffffff
+                    base = int.from_bytes(uc.mem_read(
+                        call_sp + 4 * (int(ai) - 4), 4), "little")
                 uc.mem_write(base + off, bytes(data))
-            for dst_ai, src_ai, len_ai in ((oracle_memory_copies or {}).get(idx, ())):
+            for copy in ((oracle_memory_copies or {}).get(idx, ())):
+                dst_ai, src_ai, len_ai = copy[:3]
+                semantic_target = (oracle_target_map or {}).get(
+                    pc & ~1, pc & ~1)
+                if (len(copy) > 3 and
+                        semantic_target != (int(copy[3]) & ~1)):
+                    continue
                 dst = int(uc.reg_read(REG[dst_ai])) & 0xffffffff
                 src = int(uc.reg_read(REG[src_ai])) & 0xffffffff
                 length = int(uc.reg_read(REG[len_ai])) & 0xffffffff
@@ -486,6 +713,13 @@ class Runner:
                     uc.reg_write(SREG[0], o0)
                     uc.reg_write(SREG[1], 0x3fe00000 | (o1 & 0x000fffff))
             # return to caller (LR). If LR is the sentinel this ends the function.
+            if continuation_lr is not None:
+                # Resume at the ordinary BL return PC while publishing the
+                # context-restored caller LR to the split continuation.  A
+                # BX-LR trampoline cannot represent these as distinct values.
+                uc.reg_write(UC_ARM_REG_LR, continuation_lr)
+                uc.reg_write(UC_ARM_REG_PC, lr | 1)
+                return
             if (lr & ~1) == (RETURN_MAGIC & ~1):
                 state["returned"] = True
                 uc.emu_stop(); return
@@ -516,7 +750,7 @@ class Runner:
                 if resume is None:
                     break  # stopped w/o call/return (count limit)
                 pc = resume
-                if total > 5000:
+                if total > int(max_resumes):
                     break
         except UcError as e:
             # A deterministic fault is itself observable behavior. Capture a
@@ -537,6 +771,7 @@ class Runner:
                     "call_float_arities_used_full": list(state["call_float_arities_used"]),
                     "events_hash": hashlib.sha256(repr(ev).encode()).hexdigest(),
                     "events": list(ev),
+                    "matched_stack_objects": sorted(state["matched_stack_objects"]),
                     "fault_off": (uc.reg_read(UC_ARM_REG_PC) - self.va) & 0xffffffff}
 
         if state.get("alignment_fault"):
@@ -551,6 +786,7 @@ class Runner:
                     "call_float_arities_used_full": list(state["call_float_arities_used"]),
                     "events_hash": hashlib.sha256(repr(ev).encode()).hexdigest(),
                     "events": list(ev),
+                    "matched_stack_objects": sorted(state["matched_stack_objects"]),
                     "fault_off": (state["fault_pc"] - self.va) & 0xffffffff}
 
         r0 = uc.reg_read(UC_ARM_REG_R0)
@@ -581,6 +817,7 @@ class Runner:
                 "call_return_kinds_used_full": list(state["call_return_kinds_used"]),
                 "call_arities_used_full": list(state["call_arities_used"]),
                 "call_float_arities_used_full": list(state["call_float_arities_used"]),
+                "matched_stack_objects": sorted(state["matched_stack_objects"]),
                 "nevents": len(ev), "terminal": bool(state.get("terminal")),
                 "terminal_call_ordinal": state.get("terminal_call_ordinal"),
                 "terminal_event_count": terminal_count,
@@ -627,14 +864,18 @@ def compare(orig_bytes, orig_va, orig_size,
             memory_overrides=None, absolute_memory_overrides=None,
             pointer_read_transitions=None,
             terminal_targets=None, oracle_overrides=None, call_arities=None,
-            call_arity_by_target=None, call_float_arities=None,
+            call_arity_by_target=None, call_arity_by_format=None,
+            call_float_arities=None,
             call_float_arity_by_target=None, oracle_memory_writes=None,
             call_return_kinds=None, call_return_kind_by_target=None,
+            call_stack_arity_by_target=None, call_stack_arity_by_format=None,
             normalized_stack_pointer_calls=None, fp_arg_overrides=None,
             oracle_memory_copies=None,
             paired_stack_initial_words=None, candidate_direct_target_map=None,
             paired_stack_objects=None,
-            initial_xpsr_overrides=None):
+            initial_xpsr_overrides=None, orig_internal_code_regions=None,
+            candidate_internal_code_regions=None, max_insns=200000,
+            max_resumes=5000):
     """arg_overrides: optional list of {arg_index: value} dicts. When given, the
     first len(arg_overrides) trials pin those argument registers to the specified
     values (control-flow-derived, to guarantee every branch/switch-case is
@@ -667,10 +908,14 @@ def compare(orig_bytes, orig_va, orig_size,
             return _cf64(x["s0"], x["s1"])
         return (x["r0"],)  # i32 default
     """Run both functions over `trials` randomized inputs; return verdict dict."""
-    ro = Runner(orig_va, orig_size, orig_bytes, code_base)
-    rc = Runner(cand_va, cand_size, cand_bytes, code_base)
+    ro = Runner(orig_va, orig_size, orig_bytes, code_base,
+                internal_code_regions=orig_internal_code_regions)
+    rc = Runner(cand_va, cand_size, cand_bytes, code_base,
+                internal_code_regions=candidate_internal_code_regions)
     mism = []
     checked = 0
+    matched_orig_stack_objects = set()
+    matched_cand_stack_objects = set()
     se = prefix_k if no_return else 0
     for t in range(trials):
         args = make_args(t, nptr)
@@ -683,12 +928,12 @@ def compare(orig_bytes, orig_va, orig_size,
                 if absolute_memory_overrides and t < len(absolute_memory_overrides) else None)
         prt = (pointer_read_transitions[t]
                if pointer_read_transitions and t < len(pointer_read_transitions) else None)
-        run_cap = 5000 if no_return else 200000
+        run_cap = 5000 if no_return else int(max_insns)
         trial_oracles = (oracle_overrides[t]
                          if isinstance(oracle_overrides, (list, tuple)) and t < len(oracle_overrides)
                          else oracle_overrides)
-        trial_fp = (fp_arg_overrides[t]
-                    if isinstance(fp_arg_overrides, (list, tuple)) and t < len(fp_arg_overrides)
+        trial_fp = ((fp_arg_overrides[t] if t < len(fp_arg_overrides) else None)
+                    if isinstance(fp_arg_overrides, (list, tuple))
                     else fp_arg_overrides)
         trial_xpsr = (initial_xpsr_overrides[t]
                       if initial_xpsr_overrides and t < len(initial_xpsr_overrides)
@@ -696,11 +941,17 @@ def compare(orig_bytes, orig_va, orig_size,
         trial_oracle_writes = (oracle_memory_writes[t]
                                if isinstance(oracle_memory_writes, (list, tuple)) and t < len(oracle_memory_writes)
                                else oracle_memory_writes)
-        symbolic_stack_words = [
-            int.from_bytes(_prng_fill(
-                b"local" + struct.pack("<II", t, i), 4), "little")
-            for i in range(len(paired_stack_initial_words or ()))
-        ]
+        symbolic_stack_words = []
+        for i, pair in enumerate(paired_stack_initial_words or ()):
+            if len(pair) > 2:
+                fixed = pair[2]
+                if isinstance(fixed, (tuple, list)):
+                    fixed = fixed[t % len(fixed)]
+                value = int(fixed) & 0xffffffff
+            else:
+                value = int.from_bytes(_prng_fill(
+                    b"local" + struct.pack("<II", t, i), 4), "little")
+            symbolic_stack_words.append(value)
         orig_stack_words = [
             (pair[0], symbolic_stack_words[i])
             for i, pair in enumerate(paired_stack_initial_words or ())]
@@ -711,12 +962,13 @@ def compare(orig_bytes, orig_va, orig_size,
             _prng_fill(b"stack-object" + struct.pack("<II", t, i), int(pair[3]))
             for i, pair in enumerate(paired_stack_objects or ())]
         orig_stack_objects = [
-            (pair[0], pair[1], symbolic_stack_objects[i])
+            (pair[0], pair[1], symbolic_stack_objects[i], *pair[4:])
             for i, pair in enumerate(paired_stack_objects or ())]
         cand_stack_objects = [
-            (pair[0], pair[2], symbolic_stack_objects[i])
+            (pair[0], pair[2], symbolic_stack_objects[i], *pair[4:])
             for i, pair in enumerate(paired_stack_objects or ())]
-        a = ro.run(t, args, t, max_insns=run_cap, stop_events=se, memory_overrides=mov,
+        a = ro.run(t, args, t, max_insns=run_cap, max_resumes=max_resumes,
+                   stop_events=se, memory_overrides=mov,
                    absolute_memory_overrides=amov,
                    stack_initial_words=orig_stack_words,
                    stack_objects=orig_stack_objects,
@@ -724,16 +976,20 @@ def compare(orig_bytes, orig_va, orig_size,
                    terminal_targets=terminal_targets, oracle_overrides=trial_oracles,
                    call_arities=call_arities,
                    call_arity_by_target=call_arity_by_target,
+                   call_arity_by_format=call_arity_by_format,
                    call_float_arities=call_float_arities,
                    call_float_arity_by_target=call_float_arity_by_target,
                    call_return_kinds=call_return_kinds,
                    call_return_kind_by_target=call_return_kind_by_target,
+                   call_stack_arity_by_target=call_stack_arity_by_target,
+                   call_stack_arity_by_format=call_stack_arity_by_format,
                    oracle_memory_writes=trial_oracle_writes,
                    oracle_memory_copies=oracle_memory_copies,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr)
         # candidate emulated at its own VA but identical inputs/scratch
-        b = rc.run(t, args, t, max_insns=run_cap, stop_events=se, memory_overrides=mov,
+        b = rc.run(t, args, t, max_insns=run_cap, max_resumes=max_resumes,
+                   stop_events=se, memory_overrides=mov,
                    absolute_memory_overrides=amov,
                    stack_initial_words=cand_stack_words,
                    stack_objects=cand_stack_objects,
@@ -744,10 +1000,15 @@ def compare(orig_bytes, orig_va, orig_size,
                    call_arities=a.get("call_arities_used_full", call_arities),
                    call_float_arities=a.get("call_float_arities_used_full", call_float_arities),
                    call_return_kinds=a.get("call_return_kinds_used_full", call_return_kinds),
+                   call_stack_arity_by_target=call_stack_arity_by_target,
+                   call_stack_arity_by_format=call_stack_arity_by_format,
                    oracle_memory_writes=trial_oracle_writes,
                    oracle_memory_copies=oracle_memory_copies,
+                   oracle_target_map=candidate_direct_target_map,
                    normalized_stack_pointer_calls=normalized_stack_pointer_calls,
                    fp_arg_overrides=trial_fp, initial_xpsr=trial_xpsr)
+        matched_orig_stack_objects.update(a.get("matched_stack_objects", ()))
+        matched_cand_stack_objects.update(b.get("matched_stack_objects", ()))
         # Generated direct-call stubs move with candidate code layout.  When
         # the compiler exposed an original-VA symbol, compare that semantic
         # identity by call ordinal so swapping same-ABI callees is observable.
@@ -781,7 +1042,11 @@ def compare(orig_bytes, orig_va, orig_size,
             ka = _terminal_key(a)
             kb = _terminal_key(b)
             if not b.get("terminal") or ka != kb:
-                mism.append((t, "terminal-prefix", ka, kb, b.get("returned")))
+                first = next(((i, x, y) for i, (x, y) in
+                              enumerate(zip(a.get("events", ()), b.get("events", ())))
+                              if x != y), None)
+                mism.append((t, "terminal-prefix", ka, kb,
+                             b.get("returned"), first))
             continue
         if no_return and "error" not in a and "error" not in b:
             # Non-returning supervisor loop: compare the ordered side-effect
@@ -835,6 +1100,11 @@ def compare(orig_bytes, orig_va, orig_size,
             mism.append((t, "state", a, b))
             if verbose:
                 print("trial", t, "MISMATCH\n  orig", key_a, "\n  cand", key_b)
+    expected_stack_objects = set(range(len(paired_stack_objects or ())))
+    missing_orig = sorted(expected_stack_objects - matched_orig_stack_objects)
+    missing_cand = sorted(expected_stack_objects - matched_cand_stack_objects)
+    if missing_orig or missing_cand:
+        mism.append(("stack-object-coverage", missing_orig, missing_cand))
     return {"pass": len(mism) == 0 and checked > 0,
             "trials": trials, "checked": checked,
             "mismatches": len(mism), "detail": mism[:5]}
@@ -918,6 +1188,41 @@ if __name__ == "__main__":
     assert ext_run["returned"] and ext_run["ncalls"] == 1, ext_run
     assert ext_run["call_targets"] == [va + 0x10], ext_run
     assert not any(e[0] == "W" for e in ext_run["events"]), ext_run
+    # Reviewed internal regions execute a private-ABI leaf as part of the
+    # caller's semantic unit.  The same BL is no longer an oracle event, and
+    # its complete register result must equal an ordinary inlined candidate.
+    internal_caller = bytes.fromhex("00b500f005f800bd")
+    internal_leaf = bytes.fromhex("08447047")  # add r0,r1; bx lr
+    internal_run = Runner(
+        va, len(internal_caller), internal_caller,
+        internal_code_regions=[(va + 0x10, internal_leaf)]).run(
+            0, [7, 9, 0, 0], 0)
+    assert internal_run["returned"] and internal_run["ncalls"] == 0, internal_run
+    assert internal_run["r0"] == 16, internal_run
+    internal_cmp = compare(
+        internal_caller, va, len(internal_caller),
+        internal_leaf, va, len(internal_leaf), trials=4, nptr=0,
+        orig_internal_code_regions=[(va + 0x10, internal_leaf)])
+    assert internal_cmp["pass"], internal_cmp
+    internal_bad = bytes.fromhex("01307047")  # adds r0,#1; bx lr
+    internal_cmp = compare(
+        internal_caller, va, len(internal_caller),
+        internal_bad, va, len(internal_bad), trials=4, nptr=0,
+        orig_internal_code_regions=[(va + 0x10, internal_leaf)])
+    assert not internal_cmp["pass"], internal_cmp
+    try:
+        Runner(va, len(internal_caller), internal_caller,
+               internal_code_regions=[(va + 2, internal_leaf)])
+        assert False, "main-body/internal overlap was accepted"
+    except ValueError:
+        pass
+    try:
+        Runner(va, len(internal_caller), internal_caller,
+               internal_code_regions=[(va + 0x10, internal_leaf),
+                                      (va + 0x11, internal_leaf)])
+        assert False, "overlapping internal regions were accepted"
+    except ValueError:
+        pass
     # Negative control for continuation folding: two legitimate BL sites call
     # distinct adjacent two-byte helpers.  Their caller LRs differ, so both
     # boundaries must remain observable even though targets are only +2 apart.
@@ -970,6 +1275,72 @@ if __name__ == "__main__":
                  trials=1, nptr=0, arg_overrides=local_args,
                  paired_stack_initial_words=local_contract)
     assert vl["pass"], vl
+    # Optional third fields pin reviewed incoming stack arguments to exact
+    # full words instead of generating symbolic uninitialized-local content.
+    vl = compare(local_orig, va, len(local_orig), local_cand, va, len(local_cand),
+                 trials=1, nptr=0, arg_overrides=local_args,
+                 paired_stack_initial_words=[(-8, -12, 0xa5c3f00d)])
+    assert vl["pass"], vl
+    # A reviewed case sequence selects one exact incoming word per trial.
+    vl = compare(local_orig, va, len(local_orig), local_cand, va, len(local_cand),
+                 trials=2, nptr=0, arg_overrides=local_args * 2,
+                 paired_stack_initial_words=[
+                     (-8, -12, (0xa5c3f00d, 0x12345678))])
+    assert vl["pass"], vl
+    vl = compare(local_orig, va, len(local_orig), local_upper_bad, va,
+                 len(local_upper_bad), trials=1, nptr=0,
+                 arg_overrides=local_args,
+                 paired_stack_initial_words=[(-8, -12, 0xa5c3f00d)])
+    assert not vl["pass"], vl
+    # Split context-switch continuations restore the caller LR rather than the
+    # ordinary BL return address.  The override is bound to the exact semantic
+    # helper target; an unrelated target must not receive it.
+    split = bytes.fromhex("00b500f005f810b510bd")
+    split_runner = Runner(va, len(split), split)
+    split_args = [0, 0, 0, 0]
+    resumed = split_runner.run(
+        0, split_args, 0,
+        oracle_overrides={0: {"lr": (RETURN_MAGIC | 1, va + 0x10)}},
+        max_insns=100)
+    assert resumed.get("returned"), resumed
+    wrong_resume = split_runner.run(
+        0, split_args, 0,
+        oracle_overrides={0: {"lr": (RETURN_MAGIC | 1, va + 0x20)}},
+        max_insns=100)
+    assert not wrong_resume.get("returned"), wrong_resume
+    try:
+        split_runner.run(0, split_args, 0,
+                         oracle_overrides={0: {"lr": RETURN_MAGIC | 1}},
+                         max_insns=100)
+        assert False, "target-free scalar LR continuation was accepted"
+    except ValueError:
+        pass
+    for bad_lr in ([RETURN_MAGIC | 1, va + 0x10],
+                   (str(RETURN_MAGIC | 1), va + 0x10)):
+        try:
+            split_runner.run(0, split_args, 0,
+                             oracle_overrides={0: {"lr": bad_lr}},
+                             max_insns=100)
+            assert False, "non-exact LR continuation tuple was accepted"
+        except ValueError:
+            pass
+    # Reviewed content ranges are exact, ordered half-open payload intervals.
+    # None retains complete-content behavior and () remains the intentional
+    # output-only contract, while malformed/overlapping ranges fail closed.
+    for valid_ranges in (None, ()):
+        valid = Runner(va, len(leaf), leaf).run(
+            0, [0, 0, 0, 0], 0,
+            stack_objects=[("valid-range", -8, bytes(4), valid_ranges)])
+        assert valid.get("returned"), valid
+    for bad_ranges in (((1, 1),), ((0, 5),),
+                       ((0, 3), (2, 4)), ((2, 4), (0, 1))):
+        try:
+            Runner(va, len(leaf), leaf).run(
+                0, [0, 0, 0, 0], 0,
+                stack_objects=[("bad-range", -8, bytes(4), bad_ranges)])
+            assert False, "invalid stack-object content range was accepted"
+        except ValueError:
+            pass
     vl = compare(local_orig, va, len(local_orig), local_low_bad, va,
                  len(local_low_bad), trials=1, nptr=0,
                  arg_overrides=local_args,

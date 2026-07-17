@@ -1,11 +1,11 @@
-"""Net-core reconstruction kit — mirrors recon_kit but for the network core
-(base 0x01008000, bytes from netcore_image.bin). Reuses the FROZEN harness
-(parity/recon.compile_func + parity/emu.compare) unchanged; only the original
-bytes come from net_extract and emulation uses code_base=NET_CODE_BASE."""
+"""Net-core reconstruction kit for the network-core firmware image.
+
+Candidate persistence is gated by cfg_verify's CFG-directed side-effect proof;
+this helper only supplies catalog/disassembly metadata and the proof ledger.
+"""
 import sys, os, json, re
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import net_extract as nx
-from parity import recon, emu
 from capstone import *
 
 SCR = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
@@ -14,6 +14,51 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    0x0100ac98: 0x202,
+    0x0100b180: 0x402,
+    0x0100cb10: 0x14,
+    0x0100dfbc: 0x4c,
+    0x01013e98: 0x1cc,
+    0x0101b15c: 0xce,
+    0x0101e2cc: 0x30,
+    0x0101fc14: 0x16,
+    0x0102bbec: 0x3f0,  # late copy loop and aligned-error return precede literals
+    0x0101ba58: 0x13c,  # renderer diagnostics end before independent helpers
+    0x01021838: 30,     # wrapper ends at tail call; following code is separate
+    0x0101bdd4: 0x10e,  # owned default diagnostic ends before literals
+    0x01020a00: 0x60,   # owned default diagnostic ends before literals
+    # printf-like late formatting islands rejoin through 0x01039618; the
+    # catalog's 0x448-byte extent stops inside the sign-emission path.
+    0x01039190: 0x48a,
+    0x01020168: 0xc2,
+    0x01021cec: 0xf8,
+    0x01031248: 0x38,
+    0x010312d0: 0x3c,
+    0x010122fc: 0x30,
+    0x0102d938: 0xdc,
+    0x0103a076: 0xb6,
+    0x01028464: 0x22,
+    0x01028486: 0x22,
+    0x01032764: 0x2e,
+    0x0100d58c: 0x3c,
+    0x010333b4: 0x22c,
+    0x010294a2: 0x0c,
+    0x0102de38: 0x14,
+    0x0102e23c: 0x3a,
+    0x0103038c: 0x10c,
+    0x010323cc: 0x26,
+    0x01034368: 0x30,
+    0x0103601c: 0xda,
+    0x01037f00: 0x0e,
+    0x01038654: 0x100,
+    0x01039fb6: 0x0e,
+    0x01039fe6: 0x70,
+    0x0103a294: 0x12,
+    0x0103a3ce: 0x08,
+    0x0103a8d0: 0x16,
+    0x0103b0e8: 0x08,
+    0x0103b1c4: 0x10,
+    0x0103b530: 0x08,
     0x010119ac: 0x1d8,
     # CFG-reviewed TBH handlers and fatal tails through 0x101d87c.
     0x0101d404: 0x478,
@@ -74,29 +119,45 @@ def _ret_kind(va):
     return "i32"
 
 def prove(va, size, name, csrc, nptr=2, trials=300, save_src=True):
-    size = TRUE_SIZE_OVERRIDES.get(va, size)
-    rk = _ret_kind(va)
-    orig = nx.func_bytes_padded(va, size, pad=64)
-    comp, err = recon.compile_func(csrc, name, va)
-    if err:
+    # Entry points in the catalogs are canonical even Thumb addresses.  An odd
+    # alias must not select a different override/ledger key while verification
+    # silently normalizes it to the same code.
+    meta = None if va & 1 else info(va)
+    if not meta or meta["entry"] != va or meta["name"] != name:
         rec = {"name": name, "entry_hex": hex(va), "size": size, "pass": False,
-               "stage": "compile", "error": str(err)[:300]}
+               "stage": "identity", "error": "name/address does not match net catalog"}
     else:
-        body, tail, csize, cva = comp
-        v = emu.compare(orig, va, size, body + tail, cva, csize,
-                        code_base=emu.NET_CODE_BASE, trials=trials, nptr=nptr, ret_kind=rk)
-        if not v.get("pass") and v.get("checked") == 0:
-            v = emu.compare(orig, va, size, body + tail, cva, csize,
-                            code_base=emu.NET_CODE_BASE, trials=trials, nptr=nptr,
-                            ret_kind=rk, no_return=True)
+        # Ignore caller-supplied bounds. info() applies the synchronized,
+        # CFG-reviewed override when one exists and catalog metadata otherwise.
+        size = meta["size"]
+        # Import lazily: cfg_verify imports this module for net-core metadata.
+        # The source override lets CFG verification gate a candidate before it
+        # is persisted, rather than re-reading the previous on-disk source.
+        import cfg_verify
+        canonical_header = "/* net-core %s @ %s  (CFG-directed candidate) */" % (
+            name, hex(va))
+        first_line, separator, remainder = csrc.partition("\n")
+        if re.search(r'@\s+0x[0-9a-fA-F]+', first_line) and "*/" in first_line:
+            after_header = first_line.split("*/", 1)[1]
+            candidate = (canonical_header + after_header +
+                         (separator + remainder if separator else "\n"))
+        else:
+            candidate = canonical_header + "\n" + csrc.rstrip() + "\n"
+        candidate = re.sub(r'\bCFG_VERIFY_PREFIX_FIRST\b', '', candidate)
+        candidate = re.sub(r'\bCFG_VERIFY_PREFIX_K=\d+\b', '', candidate)
+        verdict = cfg_verify.verify("net", name, trials_random=trials,
+                                    source_override=candidate)
+        checked = verdict.get("checked")
+        passed = verdict.get("status") == "PASS" and type(checked) is int and checked > 0
         rec = {"name": name, "entry_hex": hex(va), "size": size,
-               "pass": bool(v.get("pass")), "checked": v.get("checked"),
-               "mismatches": v.get("mismatches")}
-        if v.get("pass") and save_src:
+               "pass": passed, "stage": "cfg_verify",
+               "checked": checked,
+               "mismatches": verdict.get("mismatches"),
+               "cfg_status": verdict.get("status"),
+               "detail": verdict.get("detail")}
+        if passed and save_src:
             os.makedirs(NET_SRC, exist_ok=True)
-            open(os.path.join(NET_SRC, name + ".c"), "w").write(
-                "/* net-core %s @ %s  (parity %d trials PROVEN) */\n%s\n"
-                % (name, hex(va), v.get("checked"), csrc))
+            open(os.path.join(NET_SRC, name + ".c"), "w").write(candidate)
     led = json.load(open(LEDGER)) if os.path.exists(LEDGER) else []
     led = [x for x in led if x["entry_hex"] != rec["entry_hex"]] + [rec]
     json.dump(led, open(LEDGER, "w"), indent=1)
