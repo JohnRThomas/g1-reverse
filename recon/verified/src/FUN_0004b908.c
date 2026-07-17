@@ -1,17 +1,21 @@
 /* Reconstructed FUN_0004b908 @ 0x4b908  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int FUN_0004b4fc(int,...);
-extern int FUN_00072040(int,...);
-extern int FUN_0007205c(int,...);
-extern int FUN_00072078(int,...);
-extern int FUN_0007e1c6(int,...);
-extern int FUN_0007e1e6(int,...);
+#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
+extern int FUN_0004b4fc(int,int,unsigned int);
+extern int FUN_00072040(int);
+extern int FUN_0007205c(int);
+extern int FUN_00072078(int);
+extern int FUN_0007e1c6(int,int);
+extern int FUN_0007e1e6(int,int,unsigned int,int);
 extern int FUN_0007e2ec(int,...);
 extern int FUN_0007e2fa(int,...);
 unsigned int FUN_0004b908(int *param_1, int *param_2)
 {
-  unsigned int uVar3 = (unsigned int)FUN_0007e1c6(0);
+  unsigned int uVar3 = (unsigned int)FUN_0007e1c6((int)param_1,(int)param_2);
   if ((int)uVar3 < 0) return uVar3;
+  unsigned int saved_basepri = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x20);
+  __ISB();
   int *puVar8 = param_1 + 5;
   int iVar4 = FUN_00072040((int)puVar8);
   if (iVar4 == 0) {
@@ -35,7 +39,7 @@ unsigned int FUN_0004b908(int *param_1, int *param_2)
           *param_2 = 0;
           if (param_1[1] == 0) { *param_1 = (int)param_2; param_1[1] = (int)param_2; }
           else { *(int*)param_1[1] = (int)param_2; param_1[1] = (int)param_2; }
-          if ((uVar1 & 7) == 0) { FUN_0004b4fc((int)param_1, 2, 0); return uVar3; }
+          if ((uVar1 & 7) == 0) { FUN_0004b4fc((int)param_1, 2, saved_basepri); return uVar3; }
           break;
         case 1: uVar7 = 0xfffffffb; break;
         case 5: uVar7 = 0xffffff7a; break;
@@ -52,6 +56,8 @@ unsigned int FUN_0004b908(int *param_1, int *param_2)
 LAB_b9a6:;
   int iVar5 = FUN_0007205c((int)puVar8);
   if (iVar5 != 0) {
+    __set_BASEPRI(saved_basepri);
+    __ISB();
     if (iVar4 != 0) FUN_0007e1e6((int)param_1, (int)param_2, uVar3, 0);
     return uVar7;
   }
@@ -60,4 +66,3 @@ LAB_b9a6:;
   FUN_0007e2ec(0xf08c7,0xf0);
   return 0;
 }
-

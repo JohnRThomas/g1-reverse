@@ -27,7 +27,7 @@ undefined4 FUN_00035050(void)
     iVar4 = FUN_0008500c();
     if (iVar4 == 0) {
         if (*dbgp == 0) DEBUG_PRINT(0xa8762);
-        else FUN_00019c70(0);
+        else FUN_00019c70(0xa8762);
         return 0;
     }
     iVar5 = FUN_0008503c(iVar4, 0xa862c);
@@ -36,7 +36,7 @@ undefined4 FUN_00035050(void)
         uVar8 = 0xa8638;
 LAB_00035088:
         if (iVar5 == 0) DEBUG_PRINT(uVar8);
-        else FUN_00019c70(0);
+        else FUN_00019c70(uVar8);
     } else {
         if ((int)((*pbVar2 & 1)) != (*(volatile int *)(iVar5 + 0xc) == 2)) {
             iVar5 = *dbgp;
@@ -117,7 +117,7 @@ LAB_00035088:
                     uVar8 = 0xa870b;
 LAB_000351c4:
                     if (iVar6 == 0) DEBUG_PRINT(uVar8);
-                    else FUN_00019c70(0);
+                    else FUN_00019c70(uVar8);
                 } else {
                     iVar7 = FUN_0008503c(iVar6, 0x9a1dd);
                     if (iVar7 == 0) {
@@ -142,7 +142,7 @@ LAB_000351c4:
             }
             if (uVar11 == uVar9) {
                 if (*dbgp == 0) DEBUG_PRINT(0xa886d);
-                else FUN_00019c70(0);
+                else FUN_00019c70(0xa886d);
                 uVar8 = 1;
                 goto LAB_0003523e;
             }
@@ -152,7 +152,6 @@ LAB_000351c4:
 LAB_0003523e:
     FUN_00064b1c(iVar4);
     if (*dbgp == 0) DEBUG_PRINT(0xa8884, uVar8);
-    else FUN_00019c70(0);
+    else FUN_00019c70(0xa8884, uVar8);
     return uVar8;
 }
-

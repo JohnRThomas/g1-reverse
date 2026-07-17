@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002eb40 @ 0x2eb40  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned int, unsigned int, unsigned int, unsigned int);
 
 unsigned int FUN_0002eb40(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -14,10 +14,10 @@ unsigned int FUN_0002eb40(unsigned int param_1, unsigned int param_2, unsigned i
     if (*(volatile unsigned int*)0x20007554UL == 0) {
       DEBUG_PRINT(0xa3e80, uVar3, param_3, 0, param_4);
     } else {
-      FUN_00019c70();
+      FUN_00019c70(0x000a3e80UL, uVar3, param_3,
+                    *(volatile unsigned int*)0x20007554UL);
     }
   }
   *p6c = bVar1;
   return uVar3;
 }
-

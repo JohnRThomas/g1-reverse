@@ -1,5 +1,4 @@
 /* Reconstructed FUN_000456fc @ 0x456fc  (parity: 300/300 trials, PROVEN) */
-/* Reconstructed FUN_000456fc @ 0x456fc  (parity: 300/300 trials, PROVEN) */
 typedef unsigned int u32;
 
 u32 FUN_000456fc(u32 param_1, u32 param_2)
@@ -37,5 +36,4 @@ u32 FUN_000456fc(u32 param_1, u32 param_2)
   }
   return 0x000bb220UL;
 }
-
 

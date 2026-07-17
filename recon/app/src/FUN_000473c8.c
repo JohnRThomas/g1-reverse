@@ -20,7 +20,7 @@ unsigned FUN_000473c8(int param_1,int param_2,int param_3,int param_4,int param_
     if(*(int*)(iVar2+0x35c) == 0){
         if(0 < *(volatile int*)0x2000230c){
             if(*(volatile int*)0x20007554 == 0){ DEBUG_PRINT(0x000aa891,0x000d7426); }
-            else { FUN_00019c70(0); }
+            else { FUN_00019c70(0x000aa891, 0x000d7426); }
         }
         uVar3 = 0xffffffff;
     } else {
@@ -33,15 +33,16 @@ unsigned FUN_000473c8(int param_1,int param_2,int param_3,int param_4,int param_
             iVar10 = *(int*)(iVar2+0x344);
             iVar8 = param_4*0x140 + param_7*0x140 + param_3/2 - 5;
             iVar7 = iVar10 + iVar8;
+            volatile unsigned char *pixel = (volatile unsigned char *)iVar7;
             local_2c = *(unsigned char*)(iVar7+4);
             local_30 = *(unsigned*)(iVar10+iVar8);
             uVar6 = 0x0007fc00 & (unsigned)((param_4+param_2)*0x400);
             local_34 = uVar6 | uVar5;
-            *(unsigned char*)(iVar10+iVar8) = 2;
-            *(char*)(iVar7+1) = (char)(uVar6>>0x10);
-            *(char*)(iVar7+2) = (char)(local_34>>8);
-            *(char*)(iVar7+3) = (char)uVar5;
-            *(unsigned char*)(iVar7+4) = 0xff;
+            pixel[0] = 2;
+            pixel[1] = (unsigned char)(uVar6>>0x10);
+            pixel[2] = (unsigned char)(local_34>>8);
+            pixel[3] = (unsigned char)uVar5;
+            pixel[4] = 0xff;
             uVar1 = *(unsigned char*)(iVar7+iVar9);
             *(unsigned char*)(iVar7+iVar9) = 0;
             FUN_000723b8(0x2000a060, uVar3, 0xffffffff, 0xffffffff);
@@ -53,7 +54,7 @@ unsigned FUN_000473c8(int param_1,int param_2,int param_3,int param_4,int param_
                 if(*(volatile int*)0x20007554 == 0){
                     uVar3 = (unsigned)((u64)DEBUG_PRINT(0x000d7383,0x000d7426) >> 32);
                 } else {
-                    uVar3 = (unsigned)((u64)FUN_00019c70(0) >> 32);
+                    uVar3 = (unsigned)((u64)FUN_00019c70(0x000d7383, 0x000d7426) >> 32);
                 }
             }
             *(unsigned char*)(iVar7+iVar9) = uVar1;
@@ -66,4 +67,3 @@ unsigned FUN_000473c8(int param_1,int param_2,int param_3,int param_4,int param_
     }
     return uVar3;
 }
-

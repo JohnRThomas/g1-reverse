@@ -143,11 +143,10 @@ LAB_0004f296:
         break;
     case 7:
         uVar5 = U16(0x910);
-        if (uVar5 < U16(0x91c)) {
-            uVar5 = uVar5 + 1;
-            U16(0x910) = uVar5;
-            uVar9 = uVar9 + 1;
-        }
+        bVar10 = uVar5 < U16(0x91c);
+        if (bVar10) uVar5 = uVar5 + 1;
+        if (bVar10) U16(0x910) = uVar5;
+        if (bVar10) uVar9 = uVar9 + 1;
         if (U16(0x910) == U16(0x91c)) {
 LAB_0004f3be:
             if (*(volatile char *)(I32(0x8fc) + I32(0x920) * 0x10) != '\0') {

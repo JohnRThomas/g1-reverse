@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00049acc @ 0x49acc  (parity: 300/300 trials, PROVEN) */
 typedef unsigned int uint;
-extern int* FUN_0007d8c4(unsigned char*, void*, int);
+extern void FUN_0007d8c4(unsigned char*, void*, int);
 
 void FUN_00049acc(volatile uint *param_1, void *param_2)
 {
@@ -13,7 +13,8 @@ void FUN_00049acc(volatile uint *param_1, void *param_2)
   uVar7 = param_1[1];
   uVar22 = param_1[2];
   uVar8 = param_1[3];
-  piVar1 = FUN_0007d8c4(auStack_128,param_2,0x40);
+  FUN_0007d8c4(auStack_128,param_2,0x40);
+  piVar1 = (int *)auStack_128;
   iVar9 = *piVar1;
   iVar24 = piVar1[7];
   uVar10 = ((uVar22 ^ uVar8) & uVar7 ^ uVar8) + 0xd76aa478 + iVar9 + iVar6;
@@ -163,4 +164,3 @@ void FUN_00049acc(volatile uint *param_1, void *param_2)
   param_1[3] = uVar11 + uVar8;
   return;
 }
-

@@ -1,7 +1,7 @@
 /* Reconstructed FUN_0002e440 @ 0x2e440  (parity: 300/300 trials, PROVEN) */
 
 extern void DEBUG_PRINT(unsigned a, unsigned b);
-extern void FUN_00019c70(void);
+extern void FUN_00019c70(unsigned a, unsigned b);
 extern void FUN_000723b8(unsigned a, int b, unsigned c, unsigned d);
 extern void FUN_00072558(unsigned a);
 extern void FUN_0007c080(void);
@@ -27,8 +27,10 @@ int FUN_0002e440(int param_1, unsigned param_2, unsigned param_3, unsigned param
     if (t2 >= 0) FUN_0007c082();
     if (res == 0) return 0;
     if (*(volatile int*)0x2000230c < 1) return res;
-    if (*(volatile int*)0x20007554 != 0){ FUN_00019c70(); return res; }
-    DEBUG_PRINT(0, 0);
+    if (*(volatile int*)0x20007554 != 0){
+        FUN_00019c70(0x000a3a72UL, 0x000a3ac5UL);
+        return res;
+    }
+    DEBUG_PRINT(0x000a3a72UL, 0x000a3ac5UL);
     return res;
 }
-

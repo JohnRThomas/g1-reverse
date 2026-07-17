@@ -1,26 +1,106 @@
-/* Reconstructed FUN_0004a5b0 @ 0x4a5b0  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_0004a5b0 @ 0x4a5b0. */
 #include <stdint.h>
-typedef uint32_t undefined4; typedef unsigned int uint;
-extern int DEBUG_PRINT(int,...); extern int FUN_00019c70(int,...);
-extern int FUN_0004a1b8(int,...); extern int FUN_0007d216(int,...);
 
-undefined4 FUN_0004a5b0(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
+extern void DEBUG_PRINT(int,...);
+extern void FUN_00019c70(void);
+extern void FUN_0004a1b8(uint32_t,void *);
+extern uint32_t FUN_0007d216(void);
+extern uintptr_t FUN_000167a8(void);
+
+#define STATE() ((volatile uint8_t *)FUN_000167a8())
+
+static inline uint8_t state_index(volatile uint8_t *state)
 {
-  undefined4 uVar2; uint local_24, local_20, local_1c;
-  local_24 = param_2; local_20 = param_3; local_1c = param_4;
-  uVar2 = FUN_0007d216(0);
-  local_24 = 0; local_20 = 0; local_1c = 0;
-  FUN_0004a1b8(uVar2,(int)&local_24);
-  if ((local_24 & 0xffff) < 0x7e9) {
-    if ((((local_24 >> 16) & 0xffff) | (local_20 & 0xffff)) < 2) {
-      if (1 < *(volatile int*)0x2000230c) {
-        if (*(volatile int*)0x20007554 == 0) DEBUG_PRINT(0xf0310,0xf04c1,local_20 & 0xffff,0,param_1);
-        else FUN_00019c70(0);
-      }
-      return 0xffffffff;
-    }
-  }
-  (void)local_1c;
-  return 0;
+  return state[0x10db];
 }
 
+int FUN_0004a5b0(uint32_t context,uint32_t unused_2,
+                 uint32_t unused_3,uint32_t unused_4)
+{
+  uint16_t calendar[6] = {0};
+  uint32_t now = FUN_0007d216();
+  (void)unused_2; (void)unused_3; (void)unused_4;
+  FUN_0004a1b8(now,calendar);
+
+  uint16_t year = calendar[0];
+  uint16_t month = calendar[1];
+  uint16_t day = calendar[2];
+  if (year < 2025 && ((uint16_t)(month | day) < 2)) {
+    if (*(volatile int *)0x2000230c > 1) {
+      if (*(volatile int *)0x20007554 == 0)
+        DEBUG_PRINT(0xf0310,0xf04c1,day,0,context);
+      else
+        FUN_00019c70();
+    }
+    return -1;
+  }
+
+  volatile uint8_t *state = STATE();
+  if (state_index(state) > 6)
+    STATE()[0x10db] = 0;
+
+  state = STATE();
+  volatile uint8_t *index_state = STATE();
+  unsigned index = state_index(index_state);
+  if (*(volatile int16_t *)(state + 0x10de + index * 12) == (int16_t)year) {
+    state = STATE(); index_state = STATE(); index = state_index(index_state);
+    if (state[0x10e0 + index * 12] == (uint8_t)month) {
+      state = STATE(); index_state = STATE(); index = state_index(index_state);
+      if (state[0x10e1 + index * 12] == (uint8_t)day)
+        return 0;
+    }
+  }
+
+  unsigned selected;
+  for (selected = 0; selected < 7; ++selected) {
+    state = STATE();
+    if (state_index(state) == (uint8_t)selected)
+      continue;
+    state = STATE();
+    unsigned offset = selected * 12;
+    if (*(volatile int16_t *)(state + 0x10de + offset) != (int16_t)year)
+      continue;
+    state = STATE();
+    if (state[0x10e0 + offset] != (uint8_t)month)
+      continue;
+    state = STATE();
+    if (state[0x10e1 + offset] != (uint8_t)day)
+      continue;
+    STATE()[0x10db] = (uint8_t)selected;
+    goto publish;
+  }
+
+  state = STATE();
+  state[0x10db] = (uint8_t)(state[0x10db] + 1);
+  state = STATE();
+  if (state_index(state) > 6)
+    STATE()[0x10db] = 0;
+
+publish:
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile int16_t *)(state + 0x10de + index * 12) = (int16_t)year;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  state[0x10e0 + index * 12] = (uint8_t)month;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  state[0x10e1 + index * 12] = (uint8_t)day;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile uint16_t *)(state + 0x10e2 + index * 12) = 0;
+  *(volatile uint16_t *)(state + 0x10e4 + index * 12) = 0;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile uint16_t *)(state + 0x10e6 + index * 12) = 0;
+  *(volatile uint16_t *)(state + 0x10e8 + index * 12) = 0;
+
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile int16_t *)(state + 0x1132 + index * 12) = (int16_t)year;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  state[0x1134 + index * 12] = (uint8_t)month;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  state[0x1135 + index * 12] = (uint8_t)day;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile uint16_t *)(state + 0x1136 + index * 12) = 0;
+  *(volatile uint16_t *)(state + 0x1138 + index * 12) = 0;
+  state = STATE(); index_state = STATE(); index = state_index(index_state);
+  *(volatile uint16_t *)(state + 0x113a + index * 12) = 0;
+  *(volatile uint16_t *)(state + 0x113c + index * 12) = 0;
+  return 0;
+}

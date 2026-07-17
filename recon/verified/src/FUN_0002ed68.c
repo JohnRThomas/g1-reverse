@@ -28,7 +28,7 @@ void FUN_0002ed68(int param_1, int param_2)
     unsigned uVar3;
     uint uVar4;
     int iVar5, iVar6, iVar7, iVar8, iVar9, iVar10, iVar11;
-    unsigned local_30, uStack_2c;
+    struct codec_statistics { unsigned first, second; } local_stats;
 
     uVar3 = FUN_00068ecc(10000, 16000);
     uVar4 = FUN_00068e40(10000, 16000);
@@ -40,7 +40,7 @@ void FUN_0002ed68(int param_1, int param_2)
     if (iVar5 == 0) {
         if (0 < *v) {
             if (*dbg == 0) DEBUG_PRINT(0xa3f7f, 0xa41c2);
-            else FUN_00019c70(0);
+            else FUN_00019c70(0x000a3f7fUL, 0x000a41c2UL);
         }
 LAB_0002edf8:
         iVar5 = iVar6;
@@ -57,7 +57,7 @@ LAB_0002edf8:
                         uVar3 = 0x9e9ea;
 LAB_0002ee5a:
                         if (iVar10 == 0) DEBUG_PRINT(uVar3, 0xa41c2, iVar9);
-                        else FUN_00019c70(0);
+                        else FUN_00019c70(uVar3, 0x000a41c2UL, iVar9);
                     }
                 } else {
                     uVar3 = FUN_00068f94(10000, 16000, 0, iVar5);
@@ -70,19 +70,30 @@ LAB_0002ee5a:
                                 if (*(volatile int *)0x20007b78 == 0) {
                                     FUN_0002ec5c(iVar7);
                                 } else {
-                                    local_30 = 0;
-                                    uStack_2c = 0;
-                                    FUN_0004a4d0(&local_30);
+                                    local_stats.first = 0;
+                                    local_stats.second = 0;
+                                    FUN_0004a4d0(&local_stats);
                                     if (2 < *v) {
-                                        if (*dbg == 0) DEBUG_PRINT(0xa3fdf, 0xa41c2, local_30, uStack_2c);
-                                        else FUN_00019c70(0xa3fdf, 0xa41c2);
+                                        if (*dbg == 0) {
+                                            DEBUG_PRINT(0xa3fdf, 0xa41c2,
+                                                        local_stats.first,
+                                                        local_stats.second);
+                                        }
+                                        else FUN_00019c70(0x000a3fdfUL, 0x000a41c2UL,
+                                                         local_stats.first,
+                                                         local_stats.second);
                                     }
                                     FUN_0002f6b0(iVar7);
                                 }
                                 goto LAB_0002eeb6;
                             }
                             if (0x40ffff < *puVar2v) goto LAB_0002eeb6;
-                            iVar9 = (**(int (***)(int, uint, int, int))(*(volatile int *)(0x87bf0 + 8) + 4))(0x87bf0, *puVar2v, iVar7, iVar10);
+                            typedef int (*codec_write_fn)(int, uint, int, int);
+                            codec_write_fn write_frame =
+                                *(volatile codec_write_fn*)(
+                                    *(volatile uint32_t*)0x00087bf8UL + 4);
+                            iVar9 = write_frame(0x00087bf0, *puVar2v,
+                                               iVar7, iVar10);
                             if (iVar9 != 0) {
                                 if (*v < 1) goto LAB_0002eeb6;
                                 iVar10 = *dbg;
@@ -91,7 +102,8 @@ LAB_0002ee5a:
                             }
                             if (0 < *v) {
                                 if (*dbg == 0) DEBUG_PRINT(0xa3fbe, 0xa41c2, *puVar2);
-                                else FUN_00019c70(0);
+                                else FUN_00019c70(0x000a3fbeUL, 0x000a41c2UL,
+                                                 *puVar2);
                             }
                             *puVar2 = *puVar2 + iVar10;
                             goto LAB_0002eeb6;
@@ -118,7 +130,7 @@ LAB_0002eeb6:
             }
 LAB_0002ee16:
             if (*dbg == 0) DEBUG_PRINT(0xa3f7f, 0xa41c2);
-            else FUN_00019c70(0);
+            else FUN_00019c70(0x000a3f7fUL, 0x000a41c2UL);
             FUN_00076d7c(iVar5);
             goto LAB_0002edf8;
         }
@@ -131,4 +143,3 @@ LAB_0002edce:
     FUN_00076d7c(iVar7);
     return;
 }
-
