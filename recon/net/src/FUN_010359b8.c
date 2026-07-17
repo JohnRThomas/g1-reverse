@@ -1,11 +1,6 @@
 /* net-core FUN_010359b8 @ 0x10359b8  (parity 300 trials PROVEN) */
-/* The original enters a BASEPRI critical section around the body.  Interrupt
- * masking is an execution-context concern rather than part of this routine's
- * data trace, so the portable reconstruction names the boundary explicitly.
- * The final Zephyr wiring must replace these two parity-build shims with
- * arch_irq_lock()/arch_irq_unlock(). */
-static inline unsigned int g1_critical_section_enter(void) { return 0; }
-static inline void g1_critical_section_exit(unsigned int key) { (void)key; }
+#include <stdint.h>
+#include <cmsis_gcc.h>
 
 extern void FUN_0102e284(unsigned int, unsigned int, void*, int);
 extern void FUN_0102f580(int);
@@ -40,7 +35,9 @@ void FUN_010359b8(unsigned int param_1, int param_2)
 
   /* Compiled image uses the BASEPRI_MAX critical-section sequence directly;
      there is no CONTROL privilege test in this build. */
-  uVar4 = g1_critical_section_enter();
+  uVar4 = __get_BASEPRI();
+  __set_BASEPRI_MAX(0x40u);
+  __ISB();
   iVar3 = FUN_0103b650();
   iVar3 = *(int *)(DAT_01035aa8 + (unsigned int)iVar3);
   local_44 = (char *)DAT_01035ab0;
@@ -79,7 +76,8 @@ void FUN_010359b8(unsigned int param_1, int param_2)
     FUN_01039bbe(DAT_01035ad4, DAT_01035ad0, 0x93);
     FUN_01039bb0(DAT_01035ad0, 0x93);
   }
-  g1_critical_section_exit(uVar4);
+  __set_BASEPRI(uVar4);
+  __ISB();
   FUN_0102f580(iVar3);
   return;
 }
