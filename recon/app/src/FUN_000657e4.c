@@ -1,7 +1,7 @@
 /* Reconstructed FUN_000657e4 @ 0x657e4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 typedef unsigned long long u64;
-extern u64 FUN_00065434(void);
+extern u64 FUN_00065434(unsigned);
 extern int FUN_00065460(unsigned);
 extern u64 FUN_00065478(unsigned);
 extern int FUN_00065494(unsigned);
@@ -13,8 +13,8 @@ unsigned FUN_000657e4(unsigned param_1, unsigned param_2, unsigned char *param_3
   unsigned uVar5;
   unsigned short uVar8;
   u64 uVar9, uVar10;
-  unsigned char local_19[5];
-  uVar9 = FUN_00065434();
+  unsigned char enable = 1;
+  uVar9 = FUN_00065434(param_1);
   if ((int)(uVar9 >> 0x20) != 0) {
     iVar4 = FUN_00065494(param_1);
     if ((iVar4 == 0) && (iVar4 = FUN_00065460(param_1), iVar4 != 0)) {
@@ -25,8 +25,7 @@ unsigned FUN_000657e4(unsigned param_1, unsigned param_2, unsigned char *param_3
     if (((int)uVar10 != 0) && (*(char*)(iVar4 + 1) == 1)) {
       return 0x0bad0004;
     }
-    local_19[0] = 1;
-    FUN_00085130(param_1, local_19, iVar4 + 1, iVar4 + 2, iVar4, 0);
+    FUN_00085130(param_1, &enable, iVar4 + 1, iVar4 + 2, iVar4, 0);
     iVar4 = (int)uVar9 + 8;
     *(volatile unsigned short*)(0x20002bc0 + iVar4 * 2) =
         *(volatile unsigned short*)(0x20002bc0 + iVar4 * 2) | 3;
@@ -55,4 +54,3 @@ unsigned FUN_000657e4(unsigned param_1, unsigned param_2, unsigned char *param_3
   }
   return uVar5;
 }
-
