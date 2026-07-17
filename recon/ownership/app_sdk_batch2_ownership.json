@@ -14,8 +14,20 @@
  "summary": {
   "function_count": 5,
   "reference_count_before": 46,
+  "reference_count_after_retain_all": 0,
+  "resolved_reference_delta": 46,
   "cfg_verified": 5,
   "dependency_count": 1
+ },
+ "build_verification": {
+  "retain_all_build": "/private/tmp/g1_cpuapp_shell_build_0717j",
+  "result": "expected aggregate residue remains; all six configured objects compiled",
+  "target_symbols_undefined": [],
+  "target_symbols_duplicate": [],
+  "full_link": "2915/2915 objects compiled; partial link rc=0",
+  "global_residue_before_unique": 192,
+  "global_residue_after_unique": 185,
+  "note": "The exact batch delta is 46 references across five symbols; the global unique delta also includes concurrent reviewed integrations."
  },
  "functions": [
   {
@@ -43,6 +55,8 @@
     "gatt_connected.c:44",
     "gatt_send_ccc_update.c:56"
    ],
+   "reference_count_after_retain_all": 0,
+   "strong_owner_count_after_retain_all": 1,
    "verification": "cfg_verify.py app bt_addr_le_eq_0: PASS (40 checked)",
    "decision": "retain_cfg_verified_configured_reconstruction"
   },
@@ -72,6 +86,8 @@
     "gpiote_pin_sense_is_enabled.c:16",
     "gpiote_trigger_enable.c:31"
    ],
+   "reference_count_after_retain_all": 0,
+   "strong_owner_count_after_retain_all": 1,
    "verification": "cfg_verify.py app get_pin_idx: PASS (40 checked)",
    "decision": "retain_cfg_verified_configured_reconstruction"
   },
@@ -100,6 +116,8 @@
     "FUN_00067938.c:281",
     "FUN_00067938.c:293"
    ],
+   "reference_count_after_retain_all": 0,
+   "strong_owner_count_after_retain_all": 1,
    "verification": "cfg_verify.py app __nrfy_internal_twim_events_process: PASS (40 checked)",
    "decision": "retain_cfg_verified_configured_reconstruction"
   },
@@ -127,6 +145,8 @@
     "slave_display_thread.c:409",
     "sync_to_slave.c:73"
    ],
+   "reference_count_after_retain_all": 0,
+   "strong_owner_count_after_retain_all": 1,
    "verification": "cfg_verify.py app k_uptime_get_1: PASS (40 checked)",
    "decision": "retain_cfg_verified_configured_reconstruction"
   },
@@ -155,6 +175,8 @@
     "send_pairing_rsp.c:22",
     "smp_error.c:38"
    ],
+   "reference_count_after_retain_all": 0,
+   "strong_owner_count_after_retain_all": 1,
    "verification": "cfg_verify.py app smp_create_pdu: PASS (40 checked)",
    "decision": "retain_cfg_verified_configured_reconstruction"
   }

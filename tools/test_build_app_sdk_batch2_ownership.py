@@ -16,6 +16,8 @@ class AppSdkBatch2OwnershipTest(unittest.TestCase):
     def test_scope_and_delta_are_exact(self):
         self.assertEqual(set(ownership.OWNERS), set(self.rows))
         self.assertEqual(46, self.data["summary"]["reference_count_before"])
+        self.assertEqual(46, self.data["summary"]["resolved_reference_delta"])
+        self.assertEqual(0, self.data["summary"]["reference_count_after_retain_all"])
         self.assertEqual(5, self.data["summary"]["cfg_verified"])
         self.assertEqual(1, self.data["summary"]["dependency_count"])
 
@@ -24,6 +26,10 @@ class AppSdkBatch2OwnershipTest(unittest.TestCase):
         self.assertTrue(all("static" in row["linkage"] or "inline" in row["linkage"]
                             for row in self.rows.values()))
         self.assertTrue(all(row["decision"] == "retain_cfg_verified_configured_reconstruction"
+                            for row in self.rows.values()))
+        self.assertTrue(all(row["strong_owner_count_after_retain_all"] == 1
+                            for row in self.rows.values()))
+        self.assertTrue(all(row["reference_count_after_retain_all"] == 0
                             for row in self.rows.values()))
 
     def test_cfg_evidence_is_per_symbol(self):

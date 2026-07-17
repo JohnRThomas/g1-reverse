@@ -16,4 +16,4 @@ Configured dependency:
 
 - `__nrfy_internal_twim_event_handle` at `0x00085378` (34 bytes): `modules/hal/nordic/nrfx/haly/nrfy_twim.h:__nrfy_internal_twim_event_handle`; `retain_cfg_verified_configured_dependency`.
 
-Prior unresolved references covered: **46**.
+Retain-all result: **46 -> 0** target references; one strong owner per target, no target duplicates.
