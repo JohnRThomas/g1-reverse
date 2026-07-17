@@ -1,0 +1,2312 @@
+{
+  "schema": 1,
+  "core": "app",
+  "scope": "interior_or_tail_alias entries from app_link_residue.json",
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "policy": {
+    "fail_closed": true,
+    "guessed_aliases": false,
+    "ambiguous_entries_blocked": true,
+    "sdk_or_config_candidates_touched": false,
+    "pseudo_ops_touched": false,
+    "raw_address_backmap_preserved": true
+  },
+  "summary": {
+    "residue_symbols": 119,
+    "unique_vas": 117,
+    "resolved_symbols": 26,
+    "resolved_unique_vas": 24,
+    "materialized_symbols": 20,
+    "materialized_unique_vas": 20,
+    "already_strong_symbols": 6,
+    "blocked_symbols": 93
+  },
+  "entries": [
+    {
+      "va": "0x00016574",
+      "symbol": "FUN_00016574",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007d1d6.c:28"
+      ],
+      "evidence": {
+        "bytes": "014b1860",
+        "decode": "ldr r3, [pc, #4]",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00016834",
+      "symbol": "FUN_00016834",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:56"
+      ],
+      "evidence": {
+        "bytes": "012803d0",
+        "decode": "cmp r0, #1",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000179f8",
+      "symbol": "FUN_000179f8",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:46"
+      ],
+      "evidence": {
+        "bytes": "01210148",
+        "decode": "movs r1, #1",
+        "catalog_entry": false,
+        "containing_owner": "0x000179ec",
+        "containing_owner_name": "FUN_000179ec",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00017a04",
+      "symbol": "FUN_00017a04",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:46"
+      ],
+      "evidence": {
+        "bytes": "00210148",
+        "decode": "movs r1, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00017a10",
+      "symbol": "FUN_00017a10",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:66"
+      ],
+      "evidence": {
+        "bytes": "01210148",
+        "decode": "movs r1, #1",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00017a1c",
+      "symbol": "FUN_00017a1c",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:65"
+      ],
+      "evidence": {
+        "bytes": "00210148",
+        "decode": "movs r1, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00017a28",
+      "symbol": "touch_pmic_reset_assert",
+      "reference_count": 1,
+      "reference_sites": [
+        "touch_key_thread.c:283"
+      ],
+      "evidence": {
+        "bytes": "01210148",
+        "decode": "movs r1, #1",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00017a34",
+      "symbol": "touch_pmic_reset_deassert",
+      "reference_count": 1,
+      "reference_sites": [
+        "touch_key_thread.c:292"
+      ],
+      "evidence": {
+        "bytes": "00210148",
+        "decode": "movs r1, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00024e60",
+      "symbol": "FUN_00024e60",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007c3d0.c:13"
+      ],
+      "evidence": {
+        "bytes": "fe232de9",
+        "decode": "movs r3, #0xfe",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0002538c",
+      "symbol": "FUN_0002538c",
+      "reference_count": 1,
+      "reference_sites": [
+        "process_box_event.c:25"
+      ],
+      "evidence": {
+        "bytes": "38b50323",
+        "decode": "push {r3, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000258b4",
+      "symbol": "FUN_000258b4",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007d0e8.c:17"
+      ],
+      "evidence": {
+        "bytes": "73b50d46",
+        "decode": "push {r0, r1, r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00025950",
+      "symbol": "FUN_00025950",
+      "reference_count": 1,
+      "reference_sites": [
+        "pt_comm_transport_write.c:25"
+      ],
+      "evidence": {
+        "bytes": "73b50d46",
+        "decode": "push {r0, r1, r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0002893c",
+      "symbol": "FUN_0002893c",
+      "reference_count": 1,
+      "reference_sites": [
+        "click_event_dispatch_loop.c:132"
+      ],
+      "evidence": {
+        "bytes": "08b5074b",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00028964",
+      "symbol": "FUN_00028964",
+      "reference_count": 2,
+      "reference_sites": [
+        "click_event_dispatch_loop.c:150",
+        "on_triple_click.c:21"
+      ],
+      "evidence": {
+        "bytes": "08b5104b",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0002bdf0",
+      "symbol": "FUN_0002bdf0",
+      "reference_count": 1,
+      "reference_sites": [
+        "global_system_resume.c:51"
+      ],
+      "evidence": {
+        "bytes": "38b590f8",
+        "decode": "push {r3, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00032fdc",
+      "symbol": "FUN_00032fdc",
+      "reference_count": 1,
+      "reference_sites": [
+        "click_event_dispatch_loop.c:56"
+      ],
+      "evidence": {
+        "bytes": "014b1878",
+        "decode": "ldr r3, [pc, #4]",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00033554",
+      "symbol": "FUN_00033554",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007d0e8.c:19"
+      ],
+      "evidence": {
+        "bytes": "2de9f047",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0003364c",
+      "symbol": "FUN_0003364c",
+      "reference_count": 1,
+      "reference_sites": [
+        "pt_comm_transport_write.c:27"
+      ],
+      "evidence": {
+        "bytes": "70b50e46",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00033730",
+      "symbol": "FUN_00033730",
+      "reference_count": 1,
+      "reference_sites": [
+        "send_data_in_ble_chunks.c:50"
+      ],
+      "evidence": {
+        "bytes": "2de9f047",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00033a5c",
+      "symbol": "FUN_00033a5c",
+      "reference_count": 1,
+      "reference_sites": [
+        "master_process_audio_fw_load_req.c:575"
+      ],
+      "evidence": {
+        "bytes": "08b5124b",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00035744",
+      "symbol": "FUN_00035744",
+      "reference_count": 1,
+      "reference_sites": [
+        "notification_system_init.c:28"
+      ],
+      "evidence": {
+        "bytes": "08b541f2",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0003603c",
+      "symbol": "FUN_0003603c",
+      "reference_count": 1,
+      "reference_sites": [
+        "ui_refalsh_warp.c:75"
+      ],
+      "evidence": {
+        "bytes": "00232de9",
+        "decode": "movs r3, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00036b3c",
+      "symbol": "FUN_00036b3c",
+      "reference_count": 1,
+      "reference_sites": [
+        "ui_refalsh_warp.c:76"
+      ],
+      "evidence": {
+        "bytes": "2de9f04f",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0003cebc",
+      "symbol": "ext3cebc",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007cbae.c:30"
+      ],
+      "evidence": {
+        "bytes": "37b58df8",
+        "decode": "push {r0, r1, r2, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0003f410",
+      "symbol": "FUN_0003f410",
+      "reference_count": 1,
+      "reference_sites": [
+        "ui_refalsh_warp.c:77"
+      ],
+      "evidence": {
+        "bytes": "2de9f04f",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0003fecc",
+      "symbol": "FUN_0003fecc",
+      "reference_count": 1,
+      "reference_sites": [
+        "ui_refalsh_warp.c:78"
+      ],
+      "evidence": {
+        "bytes": "2de9f04f",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004372c",
+      "symbol": "FUN_0004372c",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007d3dc.c:12"
+      ],
+      "evidence": {
+        "bytes": "1fb504ab",
+        "decode": "push {r0, r1, r2, r3, r4, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004b3c8",
+      "symbol": "FUN_0004b3c8",
+      "reference_count": 1,
+      "reference_sites": [
+        "sys_heap_init.c:16"
+      ],
+      "evidence": {
+        "bytes": "b2f5802f",
+        "decode": "cmp.w r2, #0x40000",
+        "catalog_entry": false,
+        "containing_owner": "0x0004b2b0",
+        "containing_owner_name": "FUN_0004b2b0",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x0004c254",
+      "symbol": "FUN_0004c254",
+      "reference_count": 1,
+      "reference_sites": [
+        "delay_scaled_busy_wait.c:15"
+      ],
+      "evidence": {
+        "bytes": "48b1054b",
+        "decode": "cbz r0, #0x4c26a",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004d44c",
+      "symbol": "FUN_0004d44c",
+      "reference_count": 1,
+      "reference_sites": [
+        "log_msg_commit.c:42"
+      ],
+      "evidence": {
+        "bytes": "10b5044c",
+        "decode": "push {r4, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004d468",
+      "symbol": "FUN_0004d468",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007ee74.c:15"
+      ],
+      "evidence": {
+        "bytes": "10b50446",
+        "decode": "push {r4, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004d8b8",
+      "symbol": "FUN_0004d8b8",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0007ee74.c:22"
+      ],
+      "evidence": {
+        "bytes": "10b5064b",
+        "decode": "push {r4, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004de68",
+      "symbol": "FUN_0004de68",
+      "reference_count": 1,
+      "reference_sites": [
+        "log_output_dropped_process.c:16"
+      ],
+      "evidence": {
+        "bytes": "42f20f73",
+        "decode": "movw r3, #0x270f",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004e3e8",
+      "symbol": "FUN_0004e3e8",
+      "reference_count": 1,
+      "reference_sites": [
+        "settings_load.c:14"
+      ],
+      "evidence": {
+        "bytes": "002330b5",
+        "decode": "movs r3, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004e474",
+      "symbol": "FUN_0004e474",
+      "reference_count": 1,
+      "reference_sites": [
+        "settings_lists_init.c:21"
+      ],
+      "evidence": {
+        "bytes": "0022024b",
+        "decode": "movs r2, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004e8c0",
+      "symbol": "FUN_0004e8c0",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0004e98c.c:19"
+      ],
+      "evidence": {
+        "bytes": "7fb5074b",
+        "decode": "push {r0, r1, r2, r3, r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0004f500",
+      "symbol": "FUN_0004f500",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000181f0.c:12"
+      ],
+      "evidence": {
+        "bytes": "30b1044b",
+        "decode": "cbz r0, #0x4f510",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00052fbc",
+      "symbol": "FUN_00052fbc",
+      "reference_count": 3,
+      "reference_sites": [
+        "FUN_00053024.c:13",
+        "FUN_0005306c.c:13",
+        "bt_settings_save_or_delete_key.c:16"
+      ],
+      "evidence": {
+        "bytes": "30b50446",
+        "decode": "push {r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000534a8",
+      "symbol": "FUN_000534a8",
+      "reference_count": 1,
+      "reference_sites": [
+        "le_conn_param_neg_reply.c:23"
+      ],
+      "evidence": {
+        "bytes": "7fb5064b",
+        "decode": "push {r0, r1, r2, r3, r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005463e",
+      "symbol": "FUN_0005463e",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000545f0.c:82"
+      ],
+      "evidence": {
+        "bytes": "02df4ff0",
+        "decode": "svc #2",
+        "catalog_entry": false,
+        "containing_owner": "0x000545f0",
+        "containing_owner_name": "FUN_000545f0",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00054688",
+      "symbol": "FUN_00054688",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000545f0.c:100"
+      ],
+      "evidence": {
+        "bytes": "02dfdff8",
+        "decode": "svc #2",
+        "catalog_entry": false,
+        "containing_owner": "0x000545f0",
+        "containing_owner_name": "FUN_000545f0",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00054d88",
+      "symbol": "tail_54d88",
+      "reference_count": 1,
+      "reference_sites": [
+        "set_random_address.c:12"
+      ],
+      "evidence": {
+        "bytes": "38b50622",
+        "decode": "push {r3, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00054ea8",
+      "symbol": "FUN_00054ea8",
+      "reference_count": 1,
+      "reference_sites": [
+        "ble_privacy_id_add.c:22"
+      ],
+      "evidence": {
+        "bytes": "0021f0b5",
+        "decode": "movs r1, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00055aac",
+      "symbol": "FUN_00055aac",
+      "reference_count": 1,
+      "reference_sites": [
+        "ble_conn_unref.c:35"
+      ],
+      "evidence": {
+        "bytes": "f0b583b0",
+        "decode": "push {r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000564cc",
+      "symbol": "FUN_000564cc",
+      "reference_count": 1,
+      "reference_sites": [
+        "bt_conn_create_pdu.c:20"
+      ],
+      "evidence": {
+        "bytes": "2de9f043",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000573c8",
+      "symbol": "FUN_000573c8",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000573f4.c:19"
+      ],
+      "evidence": {
+        "bytes": "80b500af",
+        "decode": "push {r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00058568",
+      "symbol": "FUN_00058568",
+      "reference_count": 1,
+      "reference_sites": [
+        "att_send_error_rsp.c:26"
+      ],
+      "evidence": {
+        "bytes": "7fb5064b",
+        "decode": "push {r0, r1, r2, r3, r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005a954",
+      "symbol": "FUN_0005a954",
+      "reference_count": 1,
+      "reference_sites": [
+        "bt_gatt_init.c:29"
+      ],
+      "evidence": {
+        "bytes": "012110b5",
+        "decode": "movs r1, #1",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005ad38",
+      "symbol": "FUN_0005ad38",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00052b48.c:14"
+      ],
+      "evidence": {
+        "bytes": "2de9f04f",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005c310",
+      "symbol": "FUN_0005c310",
+      "reference_count": 1,
+      "reference_sites": [
+        "l2cap_reassemble_frag.c:15"
+      ],
+      "evidence": {
+        "bytes": "2de9f043",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005c6c8",
+      "symbol": "ext5c6c8",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00058bfc.c:22"
+      ],
+      "evidence": {
+        "bytes": "b0b58eb0",
+        "decode": "push {r4, r5, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005c76c",
+      "symbol": "FUN_0005c76c",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00081c22.c:46"
+      ],
+      "evidence": {
+        "bytes": "f8b50546",
+        "decode": "push {r3, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005c9a4",
+      "symbol": "FUN_0005c9a4",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00059834.c:90"
+      ],
+      "evidence": {
+        "bytes": "2de9f74f",
+        "decode": "push.w {r0, r1, r2, r4, r5, r6, r7, r8, sb, sl, fp, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0005ce6c",
+      "symbol": "FUN_0005ce6c",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0005cff0.c:57"
+      ],
+      "evidence": {
+        "bytes": "2de9f041",
+        "decode": "push.w {r4, r5, r6, r7, r8, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00061200",
+      "symbol": "tail_61200",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000839fe.c:16"
+      ],
+      "evidence": {
+        "bytes": "80b500af",
+        "decode": "push {r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0006446c",
+      "symbol": "FUN_0006446c",
+      "reference_count": 1,
+      "reference_sites": [
+        "cjson_parse_string.c:133"
+      ],
+      "evidence": {
+        "bytes": "002c7ff4",
+        "decode": "cmp r4, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0006447c",
+      "symbol": "FUN_0006447c",
+      "reference_count": 1,
+      "reference_sites": [
+        "sllist_find_by_name_ci.c:11"
+      ],
+      "evidence": {
+        "bytes": "f8b50d46",
+        "decode": "push {r3, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00065000",
+      "symbol": "FUN_00065000",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00065324.c:26"
+      ],
+      "evidence": {
+        "bytes": "4ff05023",
+        "decode": "mov.w r3, #0x50005000",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00066524",
+      "symbol": "FUN_00066524",
+      "reference_count": 2,
+      "reference_sites": [
+        "audio_i2s_stream0_trigger_start.c:12",
+        "audio_i2s_stream1_trigger_start.c:13"
+      ],
+      "evidence": {
+        "bytes": "70b53d4c",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000680f8",
+      "symbol": "FUN_000680f8",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000682a8.c:14"
+      ],
+      "evidence": {
+        "bytes": "10b5d0e9",
+        "decode": "push {r4, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00068298",
+      "symbol": "FUN_00068298",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00068240.c:29"
+      ],
+      "evidence": {
+        "bytes": "08b50248",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00071560",
+      "symbol": "FUN_00071560",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0004d100.c:21"
+      ],
+      "evidence": {
+        "bytes": "f0b50546",
+        "decode": "push {r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000715b8",
+      "symbol": "FUN_000715b8",
+      "reference_count": 1,
+      "reference_sites": [
+        "cbor_encode_length_header.c:15"
+      ],
+      "evidence": {
+        "bytes": "70b51c46",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00071b2c",
+      "symbol": "FUN_00071b2c",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000868b4.c:13"
+      ],
+      "evidence": {
+        "bytes": "f8b50546",
+        "decode": "push {r3, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000723b8",
+      "symbol": "thunk_FUN_000723b8",
+      "reference_count": 4,
+      "reference_sites": [
+        "ipc_ept_op_a_locked_retry.c:26",
+        "ipc_send_len_prefixed_packet_locked_retry.c:27",
+        "lock_device_mutex.c:15",
+        "navigation_panoramic_map_display.c:481"
+      ],
+      "evidence": {
+        "bytes": "2de9f341",
+        "decode": "push.w {r0, r1, r4, r5, r6, r7, r8, lr}",
+        "catalog_entry": true,
+        "containing_owner": "0x000723b8",
+        "containing_owner_name": "FUN_000723b8",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_same_entry_alias",
+      "target_va": "0x000723b8",
+      "target_symbol": "k_mutex_lock",
+      "reason": "historical spelling shares the exact catalog entry"
+    },
+    {
+      "va": "0x00072558",
+      "symbol": "thunk_FUN_00072558",
+      "reference_count": 5,
+      "reference_sites": [
+        "fd_table_dispatch_op1.c:36",
+        "fd_table_dispatch_op2.c:37",
+        "ipc_ept_op_a_locked_retry.c:28",
+        "ipc_send_len_prefixed_packet_locked_retry.c:29",
+        "unlock_device_mutex.c:15"
+      ],
+      "evidence": {
+        "bytes": "70b50446",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": true,
+        "containing_owner": "0x00072558",
+        "containing_owner_name": "FUN_00072558",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_same_entry_alias",
+      "target_va": "0x00072558",
+      "target_symbol": "k_mutex_unlock",
+      "reason": "historical spelling shares the exact catalog entry"
+    },
+    {
+      "va": "0x00072908",
+      "symbol": "k_sem_take",
+      "reference_count": 1,
+      "reference_sites": [
+        "touch_key_thread.c:79"
+      ],
+      "evidence": {
+        "bytes": "f7b50446",
+        "decode": "push {r0, r1, r2, r4, r5, r6, r7, lr}",
+        "catalog_entry": true,
+        "containing_owner": "0x00072908",
+        "containing_owner_name": "FUN_00072908",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "SDK/config public owner is outside this interior-alias pass"
+    },
+    {
+      "va": "0x0007332c",
+      "symbol": "FUN_0007332c",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_00073418.c:13",
+        "k_work_schedule_at_ticks.c:15"
+      ],
+      "evidence": {
+        "bytes": "f7b51646",
+        "decode": "push {r0, r1, r2, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00073424",
+      "symbol": "FUN_00073424",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_000531d8.c:13",
+        "FUN_0007350c.c:13"
+      ],
+      "evidence": {
+        "bytes": "f7b51646",
+        "decode": "push {r0, r1, r2, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00074184",
+      "symbol": "FUN_00074184",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00074554.c:25"
+      ],
+      "evidence": {
+        "bytes": "08b5fff7",
+        "decode": "push {r3, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000748b8",
+      "symbol": "FUN_000748b8",
+      "reference_count": 1,
+      "reference_sites": [
+        "arm_mpu_configure_partition_region.c:24"
+      ],
+      "evidence": {
+        "bytes": "2de9f041",
+        "decode": "push.w {r4, r5, r6, r7, r8, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00075864",
+      "symbol": "FUN_00075864",
+      "reference_count": 1,
+      "reference_sites": [
+        "k_aligned_alloc.c:25"
+      ],
+      "evidence": {
+        "bytes": "04322de9",
+        "decode": "adds r2, #4",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000758cc",
+      "symbol": "FUN_000758cc",
+      "reference_count": 1,
+      "reference_sites": [
+        "malloc_impl.c:12"
+      ],
+      "evidence": {
+        "bytes": "03280a46",
+        "decode": "cmp r0, #3",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00075e14",
+      "symbol": "FUN_00075e14",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000133f8.c:196"
+      ],
+      "evidence": {
+        "bytes": "5b4a2de9",
+        "decode": "ldr r2, [pc, #0x16c]",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00076a88",
+      "symbol": "FUN_00076a88",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_00075c2c.c:26",
+        "logf.c:24"
+      ],
+      "evidence": {
+        "bytes": "9fed010a",
+        "decode": "vldr s0, [pc, #4]",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00076bc0",
+      "symbol": "FUN_00076bc0",
+      "reference_count": 1,
+      "reference_sites": [
+        "__sinit.c:37"
+      ],
+      "evidence": {
+        "bytes": "0148daf7",
+        "decode": "ldr r0, [pc, #4]",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00077b24",
+      "symbol": "FUN_00077b24",
+      "reference_count": 1,
+      "reference_sites": [
+        "check_is_release_mode.c:11"
+      ],
+      "evidence": {
+        "bytes": "13460a46",
+        "decode": "mov r3, r2",
+        "catalog_entry": false,
+        "containing_owner": "0x00077a10",
+        "containing_owner_name": "FUN_00077a10",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00077b38",
+      "symbol": "FUN_00077b38",
+      "reference_count": 1,
+      "reference_sites": [
+        "strtol_ascii_scan.c:15"
+      ],
+      "evidence": {
+        "bytes": "2de9f043",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x00077a10",
+        "containing_owner_name": "FUN_00077a10",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00077c4c",
+      "symbol": "FUN_00077c4c",
+      "reference_count": 1,
+      "reference_sites": [
+        "vsprintf_impl.c:17"
+      ],
+      "evidence": {
+        "bytes": "00b59bb0",
+        "decode": "push {lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x00077c1c",
+        "containing_owner_name": "FUN_00077c1c",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00077c8c",
+      "symbol": "ext77c8c",
+      "reference_count": 1,
+      "reference_sites": [
+        "libc_putc_buffered.c:19"
+      ],
+      "evidence": {
+        "bytes": "f8b50e46",
+        "decode": "push {r3, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x00077c78",
+        "containing_owner_name": "FUN_00077c78",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00077d30",
+      "symbol": "tail_77d30",
+      "reference_count": 1,
+      "reference_sites": [
+        "libc_stream_write_syscall.c:20"
+      ],
+      "evidence": {
+        "bytes": "38b50446",
+        "decode": "push {r3, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x00077a10",
+        "containing_owner_name": "FUN_00077a10",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x0007c010",
+      "symbol": "FUN_0007c010",
+      "reference_count": 1,
+      "reference_sites": [
+        "local_esbs_ipc_service_recv.c:220"
+      ],
+      "evidence": {
+        "bytes": "f6f736bc",
+        "decode": "b.w #0x72880",
+        "catalog_entry": true,
+        "containing_owner": "0x0007c010",
+        "containing_owner_name": "thunk_FUN_00072880",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00072880",
+      "target_symbol": "k_sem_give",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007c058",
+      "symbol": "send_touch_click_event",
+      "reference_count": 2,
+      "reference_sites": [
+        "global_system_resume.c:61",
+        "touch_key_thread.c:263"
+      ],
+      "evidence": {
+        "bytes": "002110b5",
+        "decode": "movs r1, #0",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0007c084",
+      "symbol": "FUN_0007c084",
+      "reference_count": 2,
+      "reference_sites": [
+        "gpio_dt_spec_activate.c:19",
+        "panel_pwr_gpio_deassert.c:19"
+      ],
+      "evidence": {
+        "bytes": "0a460179",
+        "decode": "mov r2, r1",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0007c0a4",
+      "symbol": "FUN_0007c0a4",
+      "reference_count": 2,
+      "reference_sites": [
+        "request_ancs_attr_ext.c:42",
+        "request_ancs_attr_ext.c:71"
+      ],
+      "evidence": {
+        "bytes": "f8f7cebb",
+        "decode": "b.w #0x74844",
+        "catalog_entry": true,
+        "containing_owner": "0x0007c0a4",
+        "containing_owner_name": "thunk_FUN_00074844",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00074844",
+      "target_symbol": "FUN_00074844",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007c872",
+      "symbol": "FUN_0007c872",
+      "reference_count": 2,
+      "reference_sites": [
+        "ipc_ept_op_b_locked_retry.c:27",
+        "ipc_ept_op_c_locked_retry.c:27"
+      ],
+      "evidence": {
+        "bytes": "f5f7a1bd",
+        "decode": "b.w #0x723b8",
+        "catalog_entry": true,
+        "containing_owner": "0x0007c872",
+        "containing_owner_name": "thunk_FUN_000723b8",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x000723b8",
+      "target_symbol": "k_mutex_lock",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007c876",
+      "symbol": "FUN_0007c876",
+      "reference_count": 2,
+      "reference_sites": [
+        "ipc_ept_op_b_locked_retry.c:29",
+        "ipc_ept_op_c_locked_retry.c:29"
+      ],
+      "evidence": {
+        "bytes": "f5f76fbe",
+        "decode": "b.w #0x72558",
+        "catalog_entry": true,
+        "containing_owner": "0x0007c876",
+        "containing_owner_name": "thunk_FUN_00072558",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00072558",
+      "target_symbol": "k_mutex_unlock",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007ca72",
+      "symbol": "FUN_0007ca72",
+      "reference_count": 3,
+      "reference_sites": [
+        "imu_fusion_thread.c:130",
+        "imu_fusion_thread.c:311",
+        "imu_fusion_thread.c:436"
+      ],
+      "evidence": {
+        "bytes": "f7f7e7be",
+        "decode": "b.w #0x74844",
+        "catalog_entry": true,
+        "containing_owner": "0x0007ca72",
+        "containing_owner_name": "thunk_FUN_00074844",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00074844",
+      "target_symbol": "FUN_00074844",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb48",
+      "symbol": "thunk_FUN_00072908",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_0002a4f4.c:87",
+        "check_work_mode.c:363"
+      ],
+      "evidence": {
+        "bytes": "f5f7debe",
+        "decode": "b.w #0x72908",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb48",
+        "containing_owner_name": "update_sync_buffer",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00072908",
+      "target_symbol": "z_impl_k_sem_take",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb48",
+      "symbol": "update_sync_buffer",
+      "reference_count": 3,
+      "reference_sites": [
+        "click_event_dispatch_loop.c:60",
+        "key_event_thread.c:94",
+        "slave_display_thread.c:216"
+      ],
+      "evidence": {
+        "bytes": "f5f7debe",
+        "decode": "b.w #0x72908",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb48",
+        "containing_owner_name": "update_sync_buffer",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00072908",
+      "target_symbol": "z_impl_k_sem_take",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb4c",
+      "symbol": "process_sync_buffer",
+      "reference_count": 5,
+      "reference_sites": [
+        "key_event_thread.c:414",
+        "send_event.c:46",
+        "slave_display_thread.c:262",
+        "slave_display_thread.c:290",
+        "slave_display_thread.c:548"
+      ],
+      "evidence": {
+        "bytes": "f5f798be",
+        "decode": "b.w #0x72880",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb4c",
+        "containing_owner_name": "process_sync_buffer",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00072880",
+      "target_symbol": "k_sem_give",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb50",
+      "symbol": "process_touch_event",
+      "reference_count": 5,
+      "reference_sites": [
+        "key_event_thread.c:162",
+        "key_event_thread.c:396",
+        "slave_display_thread.c:351",
+        "slave_display_thread.c:363",
+        "slave_display_thread.c:459"
+      ],
+      "evidence": {
+        "bytes": "f7f73abd",
+        "decode": "b.w #0x745c8",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb50",
+        "containing_owner_name": "process_touch_event",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x000745c8",
+      "target_symbol": "mutex_unlock_syscall_handler",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb8a",
+      "symbol": "thunk_FUN_00074844",
+      "reference_count": 13,
+      "reference_sites": [
+        "FUN_00019718.c:39",
+        "FUN_00019718.c:40",
+        "FUN_0002685c.c:79",
+        "FUN_0002a4f4.c:71",
+        "FUN_0002a4f4.c:80",
+        "FUN_0002a8d8.c:192",
+        "FUN_0002a8d8.c:231",
+        "FUN_0007c0a8.c:15",
+        "k_msleep.c:23",
+        "process_for_message_show.c:119",
+        "process_for_message_show.c:145",
+        "process_for_message_show.c:60",
+        "process_task_sync_event.c:65"
+      ],
+      "evidence": {
+        "bytes": "f7f75bbe",
+        "decode": "b.w #0x74844",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb8a",
+        "containing_owner_name": "wait_for_event",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00074844",
+      "target_symbol": "FUN_00074844",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007cb8a",
+      "symbol": "wait_for_event",
+      "reference_count": 4,
+      "reference_sites": [
+        "display_dispatch_thread.c:504",
+        "key_event_thread.c:89",
+        "slave_display_thread.c:219",
+        "slave_display_thread.c:264"
+      ],
+      "evidence": {
+        "bytes": "f7f75bbe",
+        "decode": "b.w #0x74844",
+        "catalog_entry": true,
+        "containing_owner": "0x0007cb8a",
+        "containing_owner_name": "wait_for_event",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00074844",
+      "target_symbol": "FUN_00074844",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007ce5c",
+      "symbol": "FUN_0007ce5c",
+      "reference_count": 23,
+      "reference_sites": [
+        "handle_touch_key_press_event.c:41",
+        "handle_touch_key_press_event.c:57",
+        "process_for_new_message_come_on.c:125",
+        "process_for_new_task.c:1002",
+        "process_for_new_task.c:1049",
+        "process_for_new_task.c:1098",
+        "process_for_new_task.c:1149",
+        "process_for_new_task.c:1178",
+        "process_for_new_task.c:1195",
+        "process_for_new_task.c:1217",
+        "process_for_new_task.c:1265",
+        "process_for_new_task.c:323",
+        "process_for_new_task.c:448",
+        "process_for_new_task.c:465",
+        "process_for_new_task.c:490",
+        "process_for_new_task.c:531",
+        "process_for_new_task.c:547",
+        "process_for_new_task.c:659",
+        "process_for_new_task.c:676",
+        "process_for_new_task.c:707",
+        "process_for_new_task.c:842",
+        "process_for_new_task.c:915",
+        "process_for_new_task.c:954"
+      ],
+      "evidence": {
+        "bytes": "f7f7f2bc",
+        "decode": "b.w #0x74844",
+        "catalog_entry": true,
+        "containing_owner": "0x0007ce5c",
+        "containing_owner_name": "thunk_FUN_00074844",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00074844",
+      "target_symbol": "FUN_00074844",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007d376",
+      "symbol": "FUN_0007d376",
+      "reference_count": 5,
+      "reference_sites": [
+        "navigation_overview_map_display.c:124",
+        "navigation_overview_map_display.c:134",
+        "navigation_overview_map_display.c:258",
+        "navigation_overview_map_display.c:268",
+        "navigation_panoramic_map_display.c:468"
+      ],
+      "evidence": {
+        "bytes": "f5f71fb8",
+        "decode": "b.w #0x723b8",
+        "catalog_entry": true,
+        "containing_owner": "0x0007d376",
+        "containing_owner_name": "thunk_FUN_000723b8",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x000723b8",
+      "target_symbol": "k_mutex_lock",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007d37a",
+      "symbol": "FUN_0007d37a",
+      "reference_count": 3,
+      "reference_sites": [
+        "navigation_overview_map_display.c:138",
+        "navigation_overview_map_display.c:272",
+        "navigation_panoramic_map_display.c:486"
+      ],
+      "evidence": {
+        "bytes": "f5f7edb8",
+        "decode": "b.w #0x72558",
+        "catalog_entry": true,
+        "containing_owner": "0x0007d37a",
+        "containing_owner_name": "thunk_FUN_00072558",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00072558",
+      "target_symbol": "k_mutex_unlock",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007d3be",
+      "symbol": "thunk_FUN_00043308",
+      "reference_count": 3,
+      "reference_sites": [
+        "onboarding_ble_process.c:166",
+        "slave_display_thread.c:407",
+        "ui_onboarding_task.c:139"
+      ],
+      "evidence": {
+        "bytes": "c5f7a3bf",
+        "decode": "b.w #0x43308",
+        "catalog_entry": true,
+        "containing_owner": "0x0007d3be",
+        "containing_owner_name": "thunk_FUN_00043308",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00043308",
+      "target_symbol": "gui_reset_dynamic_bitmap_frame_state",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007d63e",
+      "symbol": "thunk_FUN_0007d77c",
+      "reference_count": 6,
+      "reference_sites": [
+        "set_brightness_to_panel_reg.c:45",
+        "set_brightness_to_panel_reg.c:46",
+        "set_brightness_to_panel_reg.c:71",
+        "set_brightness_to_panel_reg.c:72",
+        "set_brightness_to_panel_reg_in_running.c:60",
+        "set_brightness_to_panel_reg_in_running.c:62"
+      ],
+      "evidence": {
+        "bytes": "00f09db8",
+        "decode": "b.w #0x7d77c",
+        "catalog_entry": true,
+        "containing_owner": "0x0007d63e",
+        "containing_owner_name": "thunk_FUN_0007d77c",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x0007d77c",
+      "target_symbol": "projector_send_cmd_immediate",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0007e12a",
+      "symbol": "FUN_0007e12a",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0004b2b0.c:51"
+      ],
+      "evidence": {
+        "bytes": "70b50668",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x0007ef56",
+      "symbol": "FUN_0007ef56",
+      "reference_count": 1,
+      "reference_sites": [
+        "audio_i2s_start_channels.c:23"
+      ],
+      "evidence": {
+        "bytes": "436943b1",
+        "decode": "ldr r3, [r0, #0x14]",
+        "catalog_entry": false,
+        "containing_owner": "0x0007ee74",
+        "containing_owner_name": "FUN_0007ee74",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x0007f7c4",
+      "symbol": "thunk_FUN_0007f7d2",
+      "reference_count": 1,
+      "reference_sites": [
+        "request_ancs_attr_ext.c:69"
+      ],
+      "evidence": {
+        "bytes": "00f005b8",
+        "decode": "b.w #0x7f7d2",
+        "catalog_entry": true,
+        "containing_owner": "0x0007f7c4",
+        "containing_owner_name": "thunk_FUN_0007f7d2",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "target_va": "0x0007f7d2",
+      "reason": "exact tail target has no retained or adopted owner"
+    },
+    {
+      "va": "0x0007f978",
+      "symbol": "thunk_FUN_000868b4",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_0004f5b0.c:116"
+      ],
+      "evidence": {
+        "bytes": "06f09cbf",
+        "decode": "b.w #0x868b4",
+        "catalog_entry": true,
+        "containing_owner": "0x0007f978",
+        "containing_owner_name": "thunk_FUN_000868b4",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x000868b4",
+      "target_symbol": "FUN_000868b4",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x00080294",
+      "symbol": "FUN_00080294_i",
+      "reference_count": 1,
+      "reference_sites": [
+        "gatt_db_hash_gen.c:39"
+      ],
+      "evidence": {
+        "bytes": "70b50c46",
+        "decode": "push {r4, r5, r6, lr}",
+        "catalog_entry": true,
+        "containing_owner": "0x00080294",
+        "containing_owner_name": "tc_cmac_final",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_same_entry_alias",
+      "target_va": "0x00080294",
+      "target_symbol": "tc_cmac_final",
+      "reason": "historical spelling shares the exact catalog entry"
+    },
+    {
+      "va": "0x0008131c",
+      "symbol": "FUN_0008131c",
+      "reference_count": 1,
+      "reference_sites": [
+        "bt_le_adv_clear_pending_flag.c:18"
+      ],
+      "evidence": {
+        "bytes": "fff7d9bf",
+        "decode": "b.w #0x812d2",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "target_va": "0x000812d2",
+      "reason": "exact tail target has no retained or adopted owner"
+    },
+    {
+      "va": "0x000836e8",
+      "symbol": "thunk_FUN_000727ac",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_00056300.c:33",
+        "att_send_with_retry.c:25"
+      ],
+      "evidence": {
+        "bytes": "eff760b8",
+        "decode": "b.w #0x727ac",
+        "catalog_entry": true,
+        "containing_owner": "0x000836e8",
+        "containing_owner_name": "thunk_FUN_000727ac",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x000727ac",
+      "target_symbol": "FUN_000727ac",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x00083a2c",
+      "symbol": "FUN_00083a2c",
+      "reference_count": 1,
+      "reference_sites": [
+        "flash_get_page_info_by_offs.c:12"
+      ],
+      "evidence": {
+        "bytes": "2de9f341",
+        "decode": "push.w {r0, r1, r4, r5, r6, r7, r8, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x000839fe",
+        "containing_owner_name": "FUN_000839fe",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00084e44",
+      "symbol": "FUN_00084e44",
+      "reference_count": 1,
+      "reference_sites": [
+        "flash_write_close_ate_marker.c:17"
+      ],
+      "evidence": {
+        "bytes": "07b50123",
+        "decode": "push {r0, r1, r2, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00084f06",
+      "symbol": "FUN_00084f06",
+      "reference_count": 1,
+      "reference_sites": [
+        "sllist_node_at_index.c:18"
+      ],
+      "evidence": {
+        "bytes": "10b18068",
+        "decode": "cbz r0, #0x84f0e",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000859b2",
+      "symbol": "FUN_000859b2",
+      "reference_count": 7,
+      "reference_sites": [
+        "FUN_000710b4.c:59",
+        "FUN_0007118c.c:27",
+        "FUN_0007118c.c:28",
+        "FUN_0007118c.c:31",
+        "FUN_0007118c.c:46",
+        "FUN_0007118c.c:49",
+        "FUN_00085a9c.c:34"
+      ],
+      "evidence": {
+        "bytes": "ecf765bf",
+        "decode": "b.w #0x72880",
+        "catalog_entry": true,
+        "containing_owner": "0x000859b2",
+        "containing_owner_name": "thunk_FUN_00072880",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00072880",
+      "target_symbol": "k_sem_give",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x00085c86",
+      "symbol": "FUN_00085c86",
+      "reference_count": 1,
+      "reference_sites": [
+        "cbor_decode_leave_container.c:31"
+      ],
+      "evidence": {
+        "bytes": "f8b54669",
+        "decode": "push {r3, r4, r5, r6, r7, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00085cf2",
+      "symbol": "thunk_FUN_00085cf2",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_00080830.c:26"
+      ],
+      "evidence": {
+        "bytes": "10b50260",
+        "decode": "push {r4, lr}",
+        "catalog_entry": true,
+        "containing_owner": "0x00085cf2",
+        "containing_owner_name": "FUN_00085cf2",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_same_entry_alias",
+      "target_va": "0x00085cf2",
+      "target_symbol": "FUN_00085cf2",
+      "reason": "historical spelling shares the exact catalog entry"
+    },
+    {
+      "va": "0x00085ef0",
+      "symbol": "FUN_00085ef0",
+      "reference_count": 1,
+      "reference_sites": [
+        "cbor_decode_tstr.c:20"
+      ],
+      "evidence": {
+        "bytes": "38b50446",
+        "decode": "push {r3, r4, r5, lr}",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x000861aa",
+      "symbol": "FUN_000861aa",
+      "reference_count": 1,
+      "reference_sites": [
+        "smp_process_request_packet.c:124"
+      ],
+      "evidence": {
+        "bytes": "fff7a2bd",
+        "decode": "b.w #0x85cf2",
+        "catalog_entry": true,
+        "containing_owner": "0x000861aa",
+        "containing_owner_name": "thunk_FUN_00085cf2",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00085cf2",
+      "target_symbol": "FUN_00085cf2",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x00086228",
+      "symbol": "FUN_00086228",
+      "reference_count": 2,
+      "reference_sites": [
+        "FUN_00086338.c:7",
+        "cbor_encode_bstr.c:15"
+      ],
+      "evidence": {
+        "bytes": "2de9f047",
+        "decode": "push.w {r4, r5, r6, r7, r8, sb, sl, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x00086208",
+        "containing_owner_name": "FUN_00086208",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x00086360",
+      "symbol": "FUN_00086360",
+      "reference_count": 1,
+      "reference_sites": [
+        "cbor_encode_simple.c:15"
+      ],
+      "evidence": {
+        "bytes": "07b50123",
+        "decode": "push {r0, r1, r2, lr}",
+        "catalog_entry": false,
+        "containing_owner": "0x0008633e",
+        "containing_owner_name": "FUN_0008633e",
+        "sequential_owner_boundary": true
+      },
+      "decision": "blocked",
+      "reason": "interior instruction or split entry has no exact alias/ABI proof"
+    },
+    {
+      "va": "0x0008641c",
+      "symbol": "FUN_0008641c",
+      "reference_count": 1,
+      "reference_sites": [
+        "k_work_queue_start.c:48"
+      ],
+      "evidence": {
+        "bytes": "edf72cbb",
+        "decode": "b.w #0x73a78",
+        "catalog_entry": false,
+        "containing_owner": "0x000863aa",
+        "containing_owner_name": "FUN_000863aa",
+        "sequential_owner_boundary": true
+      },
+      "decision": "materialize_reviewed_tail_alias",
+      "target_va": "0x00073a78",
+      "target_symbol": "sched_thread_ready",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    },
+    {
+      "va": "0x0008664c",
+      "symbol": "FUN_0008664c",
+      "reference_count": 1,
+      "reference_sites": [
+        "FUN_000741a4.c:57"
+      ],
+      "evidence": {
+        "bytes": "4ff02003",
+        "decode": "mov.w r3, #0x20",
+        "catalog_entry": false,
+        "containing_owner": null,
+        "containing_owner_name": null,
+        "sequential_owner_boundary": false
+      },
+      "decision": "blocked",
+      "reason": "uncatalogued candidate entry; proximity or a prologue is not ABI evidence"
+    },
+    {
+      "va": "0x00086698",
+      "symbol": "uptime_ticks_get",
+      "reference_count": 1,
+      "reference_sites": [
+        "ui_QuickNote_task.c:199"
+      ],
+      "evidence": {
+        "bytes": "eef766bc",
+        "decode": "b.w #0x74f68",
+        "catalog_entry": true,
+        "containing_owner": "0x00086698",
+        "containing_owner_name": "thunk_FUN_00074f68",
+        "sequential_owner_boundary": true
+      },
+      "decision": "already_resolved_by_strong_owner",
+      "target_va": "0x00074f68",
+      "target_symbol": "k_uptime_ticks_impl",
+      "reason": "exact four-byte unconditional Thumb tail branch"
+    }
+  ]
+}

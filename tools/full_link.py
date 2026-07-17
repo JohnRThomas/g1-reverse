@@ -79,12 +79,25 @@ def link_and_report():
                     defsym += ["--defsym", "%s=%s" % (alias, target)]
                 elif alias in defined and target not in defined:
                     defsym += ["--defsym", "%s=%s" % (target, alias)]
+    # Reviewed veneer aliases are directional: their source VA is an exact
+    # tail branch to a different function entry.  Unlike readable/raw identity
+    # aliases, reversing one would change ownership and is never valid.
+    reviewed_veneers = BASE + "/recon/symbols/g1_%s_veneer_aliases.ld" % CORE
+    if os.path.exists(reviewed_veneers):
+        for line in open(reviewed_veneers):
+            match = re.search(r'PROVIDE\(([^\s=]+)\s*=\s*([^\s;)]+)', line)
+            if not match:
+                continue
+            alias, target = match.groups()
+            if target in defined and alias not in defined:
+                defsym += ["--defsym", "%s=%s" % (alias, target)]
     r = subprocess.run([LD, "-r", "-o", out] + defsym + objs,
                        capture_output=True, text=True)
     undef = [l.split()[-1] for l in subprocess.run([NM, "-u", out], capture_output=True, text=True).stdout.splitlines() if l.strip()]
     provided = set()
     for frag in ("g1_%s_globals.ld" % CORE, "g1_%s_aliases.ld" % CORE,
-                 "g1_%s_function_aliases.ld" % CORE):
+                 "g1_%s_function_aliases.ld" % CORE,
+                 "g1_%s_veneer_aliases.ld" % CORE):
         p = BASE + "/recon/symbols/" + frag
         if os.path.exists(p):
             for l in open(p):
