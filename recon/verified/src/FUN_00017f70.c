@@ -17,6 +17,21 @@ extern void FUN_00086c78(void *a, int b, int c);
 extern void FUN_00086fee(void *a, unsigned b);
 extern long long thunk_FUN_00074f68(void);
 
+struct request_name_record {
+    unsigned word;
+    unsigned char tail[16];
+};
+
+struct request_log_record {
+    unsigned header;
+    unsigned char text[26];
+};
+
+struct forwarding_packet {
+    unsigned char length;
+    unsigned char payload[256];
+};
+
 void FUN_00017f70(unsigned param_1, unsigned char *param_2, uint param_3)
 {
     volatile int *piVar1;
@@ -26,18 +41,15 @@ void FUN_00017f70(unsigned param_1, unsigned char *param_2, uint param_3)
     uint uVar5, uVar6, uVar7, uVar8, uVar9;
     int iVar10, iVar12;
     long long lVar13;
-    unsigned local_158;
-    undefined1 auStack_154[16];
-    unsigned local_144;
-    undefined1 auStack_140[28];
-    undefined1 local_124;
-    undefined1 auStack_123[259];
+    struct request_name_record request_name;
+    struct request_log_record log_record;
+    struct forwarding_packet forwarding;
     volatile int *dbg = (volatile int *)0x20007554;
     unsigned *puVar11;
 
-    local_144 = 0;
-    FUN_00086c78(auStack_140, 0, 0x1a);
-    FUN_00086c78(&local_124, 0, 0x101);
+    log_record.header = 0;
+    FUN_00086c78(log_record.text, 0, sizeof(log_record.text));
+    FUN_00086c78(&forwarding, 0, sizeof(forwarding));
     puVar3 = FUN_00081526(param_1);
     switch (*puVar3) {
     case 0: uVar4 = 0x9a1c8; break;
@@ -45,10 +57,10 @@ void FUN_00017f70(unsigned param_1, unsigned char *param_2, uint param_3)
     case 2: uVar4 = 0x9a1d6; break;
     case 3: uVar4 = 0x9a1e0; break;
     default:
-        FUN_0007ddbe(&local_158, 10, 0xf5071);
+        FUN_0007ddbe(&request_name, 10, 0xf5071);
         goto LAB_00017fb6;
     }
-    FUN_00086fee(&local_158, uVar4);
+    FUN_00086fee(&request_name, uVar4);
 LAB_00017fb6:
     piVar2 = (volatile int *)0x2000230c;
     piVar1 = (volatile int *)0x20006a30;
@@ -57,8 +69,8 @@ LAB_00017fb6:
     uVar7 = (uint)(unsigned char)puVar3[3];
     uVar8 = (uint)(unsigned char)puVar3[4];
     uVar9 = (uint)(unsigned char)puVar3[5];
-    puVar11 = &local_158;
-    FUN_0007ddbe(&local_144, 0x1e, 0x9a1ea, puVar3[6], uVar9, uVar8, uVar7, uVar6, uVar5, &local_158);
+    puVar11 = &request_name.word;
+    FUN_0007ddbe(&log_record, 0x1e, 0x9a1ea, puVar3[6], uVar9, uVar8, uVar7, uVar6, uVar5, &request_name);
     if (0 < *piVar2) {
         uVar9 = (uint)*param_2;
         uVar8 = (uint)param_2[1];
@@ -67,7 +79,7 @@ LAB_00017fb6:
         uVar5 = (uint)param_2[4];
         puVar11 = (unsigned *)(uint)param_2[5];
         if (*dbg == 0) {
-            DEBUG_PRINT(0x9a20d, 0x9a2bf, &local_144, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
+            DEBUG_PRINT(0x9a20d, 0x9a2bf, &log_record, param_3, uVar9, uVar8, uVar7, uVar6, uVar5, puVar11,
                         (uint)*(unsigned char *)(*piVar1 + 0x248));
         } else {
             FUN_00019c70(0);
@@ -100,20 +112,20 @@ LAB_00017fb6:
         *(volatile unsigned *)(iVar10 + 0x35c) = 1;
         FUN_00072880(iVar10 + 0x218);
     } else {
-        local_158 = 0;
-        FUN_00086c78(auStack_154, 0, 0x10);
+        request_name.word = 0;
+        FUN_00086c78(request_name.tail, 0, sizeof(request_name.tail));
         if (*param_2 == 0x18) {
             uVar4 = FUN_000167a8();
             FUN_0007cbfe(uVar4, 0);
-            *((unsigned char *)&local_158 + 1) = 0xc9;
-            (*(void (**)(void *, int))(*piVar1 + 0xc))(&local_158, 0x14);
+            ((unsigned char *)&request_name)[1] = 0xc9;
+            (*(void (**)(void *, int))(*piVar1 + 0xc))(&request_name, sizeof(request_name));
             return;
         }
         if (param_3 < 0x101) {
-            local_124 = (undefined1)param_3;
-            FUN_00086c78(auStack_123, 0, 0x100);
-            FUN_00086c04(auStack_123, param_2, param_3);
-            FUN_00017eec(auStack_123, param_3 & 0xff);
+            forwarding.length = (undefined1)param_3;
+            FUN_00086c78(forwarding.payload, 0, sizeof(forwarding.payload));
+            FUN_00086c04(forwarding.payload, param_2, param_3);
+            FUN_00017eec(forwarding.payload, param_3 & 0xff);
             if (*piVar2 < 1) return;
             if (*dbg != 0) {
                 FUN_00019c70(0);
@@ -134,4 +146,3 @@ LAB_000180d4:
     }
     return;
 }
-

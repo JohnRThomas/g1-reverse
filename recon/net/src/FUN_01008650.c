@@ -2,14 +2,16 @@
 #include <stdint.h>
 
 /* Adapter for the firmware's private multi-register return convention.
- * The original arithmetic worker returns sixteen limbs in r0-r7 plus an
- * eight-word stack result area.  Express the same operation with an ordinary
- * C output buffer so it remains valid under the Zephyr ABI. */
+ * The arithmetic worker returns eight limbs in r0-r7, one in r11, and seven
+ * through caller-reserved stack words.  The adapter's public contract is an
+ * ordinary three-pointer 256x256 -> 512-bit multiply, so no custom C ABI is
+ * needed. */
 void FUN_01008650(uint32_t result[16], const uint32_t left[8],
-                  const uint32_t right[8], uint32_t ignored)
+                  const uint32_t right[8])
 {
-    (void)ignored;
-    uint32_t product[16] = {0};
+    uint32_t product[16];
+    for (unsigned i = 0; i < 16; ++i)
+        product[i] = 0;
 
     for (unsigned i = 0; i < 8; ++i) {
         uint64_t carry = 0;
