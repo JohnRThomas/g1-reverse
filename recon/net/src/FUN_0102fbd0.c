@@ -16,13 +16,13 @@ int32_t FUN_0102fbd0(uint32_t param_1)
             *(volatile int8_t *)(iVar1 + 0x18) = (int8_t)param_1;
         }
     } else {
-        uint32_t local_20 = 3;
-        uint32_t local_1c = 0x0103ddb9;
-        uint32_t uStack_18 = param_1;
-        FUN_0102e284(0x0103c024, 0x1840, &local_20, 0);
-        (void)local_1c; (void)uStack_18;
+        struct {
+            uint32_t type;
+            uint32_t format;
+            uint32_t argument;
+        } record = {3, 0x0103ddb9, param_1};
+        FUN_0102e284(0x0103c024, 0x1840, &record, 0);
         iVar1 = 0;
     }
     return iVar1;
 }
-
