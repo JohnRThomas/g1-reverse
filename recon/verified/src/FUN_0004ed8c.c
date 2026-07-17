@@ -34,8 +34,10 @@ int FUN_0004ed8c(uint32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t
             *(volatile uint8_t*)0x2000a16cUL = 0;
             iVar3 = FUN_0005b9cc(param_1, 0x2000a15cUL);
             if (iVar3 != 0) {
-                volatile uint32_t local_28=3, local_24=0x000f1574; volatile int iStack_20=iVar3;
-                FUN_0007f406(0x00088130UL, 0x1840, (void*)&local_28);
+                struct { uint32_t level, message; int error; } log = {
+                    3, 0x000f1574, iVar3
+                };
+                FUN_0007f406(0x00088130UL, 0x1840, &log);
                 FUN_0007f3f0(0x2000a28cUL, 0xfffffffe);
             }
         } else { iVar3 = -0x78; }

@@ -12,13 +12,22 @@ extern int FUN_00086c78(int,...);
 extern int thunk_FUN_0005f24c(int,...);
 unsigned int FUN_00052880(int param_1)
 {
-  unsigned char buf68[0x18];
+  struct {
+    uint32_t reserved0;
+    uint32_t endpoint;
+    uint32_t cursor;
+    uint16_t chunk_length;
+    uint16_t reserved_e;
+    uint32_t completion;
+    uint32_t reserved14;
+  } request;
   unsigned char buf50[0x28];
-  int local_60;
   unsigned int uVar6, uVar4;
-  FUN_00086c78((int)buf68, 0, 0x18);
+  FUN_00086c78((int)&request, 0, sizeof(request));
+  request.endpoint = 0x200028ecU;
   int iVar8 = *(int*)(param_1+0x18);
-  local_60 = *(int*)(param_1+0xc);
+  request.cursor = *(uint32_t*)(param_1+0xc);
+  request.completion = 0x00080c8dU;
   if ((iVar8 != 0) && (FUN_00056f4c(iVar8, (int)buf50) == 0) && (buf50[0x24] == 2)) {
     uVar4 = (unsigned int)FUN_00080c7c(param_1);
     if (uVar4 == 0) { uVar6 = 1; goto DONE; }
@@ -31,7 +40,8 @@ unsigned int FUN_00052880(int param_1)
         if ((*(unsigned char*)(iVar3+0x69) == 0) ||
             (*(unsigned char*)(param_1+0x1c) != *(unsigned char*)(iVar3+0x69))) goto LAB_528a8;
         if ((int)uVar5 < (int)(uVar7 + uVar4)) uVar4 = (uVar5 - uVar7) & 0xffff;
-        int r9 = FUN_0005b754(iVar8, (int)buf68);
+        request.chunk_length = (uint16_t)uVar4;
+        int r9 = FUN_0005b754(iVar8, (int)&request);
         if (r9 == -0xc) {
           if (!bVar2) {
             if (uVar4 < 0x14) { uVar6 = 2; break; }
@@ -42,7 +52,7 @@ unsigned int FUN_00052880(int param_1)
           if (r9 != 0) { uVar6 = 1; goto DONE; }
           unsigned short uVar1 = (unsigned short)((short)uVar7 + (short)uVar4);
           uVar7 = uVar1;
-          local_60 = *(int*)(param_1+0xc) + uVar1;
+          request.cursor = *(uint32_t*)(param_1+0xc) + uVar1;
           FUN_00072908(iVar3+0x6c, 0, 0xffffffff, 0xffffffff);
           bVar2 = 1;
         }
@@ -57,4 +67,3 @@ DONE:
   thunk_FUN_0005f24c(param_1);
   return uVar6;
 }
-
