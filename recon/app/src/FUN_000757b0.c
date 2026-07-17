@@ -7,7 +7,7 @@ extern void FUN_0007e2ec(u32,u32);
 extern int FUN_00072040(u32);
 extern void FUN_00072078(u32);
 extern int FUN_0007205c(u32);
-extern u32 FUN_000867da(void);
+extern u32 FUN_000867da(void*,u32);
 extern void FUN_000739f0(u32,u32);
 static inline u32 rd_basepri(void){return __get_BASEPRI();}
 static inline void wr_basepri_max(u32 v){__set_BASEPRI_MAX(v);}
@@ -42,7 +42,7 @@ u32 FUN_000757b0(int* param_1, int param_2){
             *(int**)(iVar3b+4) = piVar5;
             piVar4[0] = 0;
             piVar4[1] = 0;
-            uVar6 = FUN_000867da();
+            uVar6 = FUN_000867da(piVar4, 1);
             FUN_000739f0(0x2000b4a0, uVar7);
         }
         return uVar6;
