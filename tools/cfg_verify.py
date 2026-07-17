@@ -1055,6 +1055,33 @@ RETURN_KIND_OVERRIDES = {
 # never rewrite selected input functions merely to obtain a passing verdict.
 ORIGINAL_BYTE_PATCHES = {}
 
+
+# tx_notify@0x00056020 contains Zephyr's inlined BASEPRI irq_lock/irq_unlock.
+# Unicorn does not implement MSR BASEPRI_MAX and faults before the queue is
+# observed.  These exact four-byte Cortex-M33 encodings have no modeled memory
+# side effects, so this VA alone normalizes them to two 16-bit NOPs in both
+# images.  Requiring the reviewed multiplicities for the firmware prevents the
+# normalization from drifting onto a different compiler sequence.
+_TX_NOTIFY_IRQ_PATTERNS = (
+    (bytes.fromhex("eff31183"), 1, "mrs r3, basepri"),
+    (bytes.fromhex("82f31288"), 1, "msr basepri_max, r2"),
+    (bytes.fromhex("83f31188"), 2, "msr basepri, r3"),
+    (bytes.fromhex("bff36f8f"), 3, "isb sy"),
+)
+
+
+def _normalize_tx_notify_irq_masking(body, require_reviewed_pattern=False):
+    """Normalize only tx_notify's reviewed register-only IRQ instructions."""
+    normalized = bytes(body)
+    for pattern, expected_count, description in _TX_NOTIFY_IRQ_PATTERNS:
+        count = normalized.count(pattern)
+        if require_reviewed_pattern and count != expected_count:
+            raise AssertionError(
+                "tx_notify IRQ pattern %s count %d != %d" %
+                (description, count, expected_count))
+        normalized = normalized.replace(pattern, bytes.fromhex("00bf00bf"))
+    return normalized
+
 # Full-width fuzz values are not useful for caller-supplied iteration counts:
 # they only spend the instruction budget repeating an already-covered body.
 # Keep these reviewed loop counts small while the remaining arguments and RAM
@@ -3436,6 +3463,11 @@ REVIEWED_TARGET_CALL_ARITIES = {
 # The endpoint table stores a three-argument callback and the receive routine
 # tail-calls it with endpoint context, payload, and payload size.
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x00025a48)] = {0x00080000: 3}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00056020)] = {
+    0x00086502: 2,  # k_fifo_put(&free_tx, tx)
+    0x00080000: 3,  # first bt_conn_tx callback
+    0x00080010: 3,  # second bt_conn_tx callback
+}
 
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005a0e8)] = {
     0x00053008: 4,
@@ -4431,7 +4463,37 @@ def _net_controller_assert_case(module_id, line, callback=True):
     )
 
 
+def _tx_notify_case(entries):
+    """One production-shaped tx_complete queue with stable callback targets."""
+    connection = emu.SCRATCH + 0x1000
+    records = [emu.SCRATCH + 0x1100 + 0x40 * index
+               for index in range(entries)]
+    connection_image = bytearray(0x100)
+    if records:
+        connection_image[0x20:0x24] = records[0].to_bytes(4, "little")
+        connection_image[0x24:0x28] = records[-1].to_bytes(4, "little")
+    memory = [(connection, bytes(connection_image))]
+    for index, record in enumerate(records):
+        record_image = bytearray(16)
+        next_record = records[index + 1] if index + 1 < len(records) else 0
+        callback = 0x00080001 + 0x10 * index
+        record_image[0:4] = next_record.to_bytes(4, "little")
+        record_image[4:8] = callback.to_bytes(4, "little")
+        record_image[8:12] = (0x11223344 + index).to_bytes(4, "little")
+        record_image[12:16] = (7 + index).to_bytes(4, "little")
+        memory.append((record, bytes(record_image)))
+    return ({0: connection}, memory)
+
+
 REVIEWED_STATE_CASES = {
+    # Empty, single-entry and two-entry completion queues cover the return,
+    # tail replacement, head advance, record clearing, free-list call and
+    # ordered callback paths after the register-only IRQ normalization.
+    ("app", 0x00056020): [
+        _tx_notify_case(0),
+        _tx_notify_case(1),
+        _tx_notify_case(2),
+    ],
     # The subtract-and-TBB mode selector is hidden behind a varargs register
     # save prologue.  Drive every owned arm plus both logger implementations
     # explicitly so the global publication matrix is CFG-covered.
@@ -21233,6 +21295,12 @@ def verify(core, name, trials_random=40, source_override=None):
     if (core, va) == ("app", 0x0001a75c) and os.environ.get("BLE_TRACE_DIAG"):
         candidate_direct_target_map = {}
     cb, ct, cs, cva = comp
+    if (core, va) == ("app", 0x00056020):
+        # Apply the same exact-pattern normalization to the candidate.  An
+        # honest portable C reconstruction contains none of these encodings;
+        # this still makes the transform symmetric and future-proof if codegen
+        # changes while remaining strictly scoped to tx_notify's VA.
+        cb = _normalize_tx_notify_irq_masking(cb)
     # PC-relative Thumb literal loads can reach 1020 bytes beyond the current
     # instruction (LDR.W/VLDR immediate).  The executable extent deliberately
     # excludes trailing literal pools, but the emulator must still map those
@@ -21244,6 +21312,9 @@ def verify(core, name, trials_random=40, source_override=None):
     for off, replacement in ORIGINAL_BYTE_PATCHES.get((core, va), ()):
         orig[off:off + len(replacement)] = replacement
     orig = bytes(orig)
+    if (core, va) == ("app", 0x00056020):
+        orig = (_normalize_tx_notify_irq_masking(
+                    orig[:size], require_reviewed_pattern=True) + orig[size:])
     rk = RETURN_KIND_OVERRIDES.get((core, va), ctx["ret"](va))
     trials = len(ovs) if (reviewed_state_cases or reviewed_oracles or combined_cases) else len(ovs) + trials_random
     bounded = BOUNDED_RANDOM_ARGS.get((core, va))
