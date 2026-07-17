@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01036198 @ 0x01036198
  * public-name: FUN_01036198
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -23,7 +25,7 @@ extern void FUN_01037130(int, unsigned int);
 extern unsigned int FUN_010375b8(int, unsigned int, int, int, unsigned int, unsigned int);
 extern int FUN_010379d4(int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int, ...);
+extern void assert_print(unsigned int, unsigned int, unsigned int, ...);
 extern void FUN_0103b4f6(int, int);
 extern void FUN_0103b614(unsigned int, unsigned int, unsigned int);
 
@@ -70,7 +72,7 @@ unsigned int FUN_01036198(int param_1, unsigned int param_2, unsigned int param_
     uVar4 = param_3;
     iVar1 = FUN_0103610c(iVar7);
     if (iVar1 == 0) {
-      FUN_01039bbe(DAT_010362c4, DAT_010362c8, 0x72);
+      assert_print(DAT_010362c4, DAT_010362c8, 0x72);
       uVar3 = 0x72;
       uVar8 = DAT_010362c8;
     } else {
@@ -87,7 +89,7 @@ unsigned int FUN_01036198(int param_1, unsigned int param_2, unsigned int param_
         uVar2 = *(volatile unsigned int *)(param_1 + 0x20);
         uVar5 = *(volatile unsigned int *)(param_1 + 0x14);
         if ((uVar2 < uVar5) || (uVar5 = *(volatile unsigned int *)(param_1 + 0x18), uVar5 <= uVar2)) {
-          FUN_01039bbe(DAT_010362c4, DAT_010362c0, 0x90, uVar5, iVar6, uVar3, uVar4);
+          assert_print(DAT_010362c4, DAT_010362c0, 0x90, uVar5, iVar6, uVar3, uVar4);
           uVar3 = 0x90;
           uVar8 = DAT_010362c0;
           goto LAB_010361ea;
@@ -123,12 +125,12 @@ unsigned int FUN_01036198(int param_1, unsigned int param_2, unsigned int param_
         InstructionSynchronizationBarrier(0xf);
         return uVar3;
       }
-      FUN_01039bbe(DAT_010362c4, DAT_010362c8, 0xf0);
+      assert_print(DAT_010362c4, DAT_010362c8, 0xf0);
       uVar3 = 0xf0;
       uVar8 = DAT_010362c8;
     }
   } else {
-    FUN_01039bbe(DAT_010362c4, DAT_010362c0, 0x76, param_3 | param_4, param_1, param_2, param_3);
+    assert_print(DAT_010362c4, DAT_010362c0, 0x76, param_3 | param_4, param_1, param_2, param_3);
     uVar3 = 0x76;
     uVar8 = DAT_010362c0;
   }

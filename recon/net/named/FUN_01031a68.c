@@ -2,6 +2,7 @@
  * public-name: FUN_01031a68
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  *   k_work_init                              <= FUN_01036bec @ 0x01036bec
  * address symbols (name @ address):
  *   rodata_10320d9                           @ 0x010320d9
@@ -19,7 +20,7 @@
 extern void k_work_init(unsigned int a, unsigned int b);
 extern void FUN_01032680(void);
 extern void FUN_01009054(void *a);
-extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, void *d);
+extern void z_impl_z_log_msg_static_create(unsigned int a, unsigned int b, void *c, void *d);
 extern int FUN_0103b0f0(unsigned int a);
 extern int FUN_010091e8(void *a);
 extern int FUN_01031804(unsigned int a, unsigned int b);
@@ -83,14 +84,14 @@ int FUN_01031a68(void)
     workspace.startup.message = DAT_b58;
     workspace.startup.status = (int)DAT_b5c;
     workspace.startup.tag = 0x200;
-    FUN_0102e284(DAT_b68, DAT_b64, &workspace.startup,
+    z_impl_z_log_msg_static_create(DAT_b68, DAT_b64, &workspace.startup,
                  workspace.frame.startup_context);
 
     iVar1 = FUN_0103b0f0(DAT_b6c);
     if (iVar1 == 0) {
         workspace.frame.missing_service.code = 2;
         workspace.frame.missing_service.message = DAT_b70;
-        FUN_0102e284(DAT_b68, 0x1040,
+        z_impl_z_log_msg_static_create(DAT_b68, 0x1040,
                      &workspace.frame.missing_service, 0);
         return -0x13;
     }
@@ -106,7 +107,7 @@ int FUN_01031a68(void)
         workspace.startup.code = 3;
         workspace.startup.message = DAT_b78;
         workspace.startup.status = iVar1;
-        FUN_0102e284(DAT_b68, 0x1840, &workspace.startup, 0);
+        z_impl_z_log_msg_static_create(DAT_b68, 0x1840, &workspace.startup, 0);
         return -0x16;
     }
 

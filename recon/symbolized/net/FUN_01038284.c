@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01038284 @ 0x01038284
  * public-name: FUN_01038284
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -13,7 +15,7 @@ extern int FUN_0103610c(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern unsigned int FUN_01037f00(void);
 extern int FUN_01036128(unsigned int);
-extern int FUN_01039bbe(int, int, int);
+extern int assert_print(int, int, int);
 extern void FUN_01039bb0(int, int) __attribute__((noreturn));
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
@@ -27,7 +29,7 @@ unsigned long long FUN_01038284(void)
 
     int iVar2 = FUN_0103610c(0x21004b70);
     if (iVar2 == 0) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
     }
     FUN_01036144(0x21004b70);
@@ -40,7 +42,7 @@ unsigned long long FUN_01038284(void)
     unsigned int r5 = uVar5 + ((unsigned int)((int)uVar3 >> 31)) + carry;
     iVar2 = FUN_01036128(0x21004b70);
     if (iVar2 == 0) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
     }
     __set_BASEPRI(basepri_save);

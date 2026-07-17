@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01033df0 @ 0x01033df0
  * public-name: FUN_01033df0
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_103c05c                           @ 0x0103c05c
  *   rodata_103e4af                           @ 0x0103e4af
@@ -20,7 +22,7 @@
 
 extern int FUN_01034458(unsigned int a);
 extern int FUN_01034480(unsigned int a);
-extern void FUN_0102e284(unsigned int a, unsigned int b, void *c, unsigned int d);
+extern void z_impl_z_log_msg_static_create(unsigned int a, unsigned int b, void *c, unsigned int d);
 
 #define DAT_eb0 ((unsigned long)&g_esb_ppi_ch_id_6) /*=0x21006460*/
 #define DAT_eb4 0x0bad0000
@@ -84,7 +86,7 @@ unsigned int FUN_01033df0(void)
             local.severity = 3;
             local.message = DAT_ed0;
             local.status = rv;
-            FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
+            z_impl_z_log_msg_static_create(DAT_ed4, 0x1840, &local, 0);
             return 0xffffffed;
         }
     } else {
@@ -92,7 +94,7 @@ unsigned int FUN_01033df0(void)
         local.severity = 3;
         local.message = DAT_ee0;
         local.status = iStack_20;
-        FUN_0102e284(DAT_ed4, 0x1840, &local, 0);
+        z_impl_z_log_msg_static_create(DAT_ed4, 0x1840, &local, 0);
         return 0xffffffed;
     }
 }

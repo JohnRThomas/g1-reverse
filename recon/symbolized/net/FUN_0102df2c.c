@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0102df2c @ 0x0102df2c
  * public-name: FUN_0102df2c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
  *   rodata_103c0fc                           @ 0x0103c0fc
@@ -26,7 +28,7 @@ extern int FUN_0102df04(void);
 extern void FUN_0102de50(unsigned int a, int b);
 extern longlong thunk_FUN_01038284(void);
 extern void FUN_0102cf00(unsigned int a, int b);
-extern void FUN_01039bbe(void *a, void *b, int c);
+extern void assert_print(void *a, void *b, int c);
 extern void FUN_01039bb0(void *a, int b);
 extern int FUN_01039dd0(unsigned int *p);
 
@@ -66,7 +68,7 @@ int FUN_0102df2c(void)
     node = ((unsigned long)&rodata_103c0ec) /*=0x103c0ec*/;
     for (;;) {
       if (node > ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/) {
-        FUN_01039bbe(STR_A, STR_B, 0x1c5);
+        assert_print(STR_A, STR_B, 0x1c5);
         FUN_01039bb0(STR_B, 0x1c5);
         for(;;) {}
       }

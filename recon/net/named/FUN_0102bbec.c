@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102bbec @ 0x0102bbec
  * public-name: FUN_0102bbec
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d279                           @ 0x0103d279
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -13,7 +15,7 @@ typedef uint32_t undefined4;
 
 extern int  FUN_0102a268(uint);
 extern void FUN_0103b614(void*, uint);
-extern void FUN_01039bbe(uint, uint, uint);
+extern void assert_print(uint, uint, uint);
 extern void FUN_01039bb0(uint, uint);
 
 #define DAT_0102beb0 0x0103be64u
@@ -173,7 +175,7 @@ switchD_0102bcaa_caseD_4c:
                   pbVar4 = pbVar4 + 1;
                 } while (1);
               }
-              FUN_01039bbe(DAT_0102bfe0, DAT_0102bfdc, 0x2d1);
+              assert_print(DAT_0102bfe0, DAT_0102bfdc, 0x2d1);
               uVar6 = 0x2d1;
               goto LAB_0102be2e;
             }
@@ -216,7 +218,7 @@ switchD_0102bcaa_caseD_4c:
     bVar2 = (byte)(uVar19 >> 2);
 LAB_0102be18:
     if (0x1ff < uVar19) {
-      FUN_01039bbe(DAT_0102bebc, DAT_0102beb8, 0x27b);
+      assert_print(DAT_0102bebc, DAT_0102beb8, 0x27b);
       uVar6 = 0x27b;
       goto LAB_0102be2e;
     }
@@ -235,7 +237,7 @@ LAB_0102be18:
       goto LAB_0102be94;
     }
   }
-  FUN_01039bbe(DAT_0102bebc, DAT_0102beb8, 0x280);
+  assert_print(DAT_0102bebc, DAT_0102beb8, 0x280);
   uVar6 = 0x280;
 LAB_0102be2e:
   FUN_01039bb0(DAT_0102beb8, uVar6);
@@ -324,7 +326,7 @@ LAB_0102bd08:
     if (uVar10 != 4) {
       if (uVar10 != 8) {
 LAB_0102beda:
-        FUN_01039bbe(DAT_0102bfe0, DAT_0102bfdc, 0x2c5);
+        assert_print(DAT_0102bfe0, DAT_0102bfdc, 0x2c5);
         uVar6 = 0x2c5;
         goto LAB_0102be2e;
       }

@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0103814c @ 0x0103814c
  * public-name: FUN_0103814c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -28,7 +30,7 @@ extern void FUN_01037f54(int *node);
 extern u32 FUN_01037f14(void);
 extern void FUN_0103175c(u32, int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 /* The real bytes end with a tail branch (pop then b.w) to a shared handler
    far below our own address range, so the harness treats that whole
    second logical half of the Ghidra decompile as a single external call. */
@@ -80,7 +82,7 @@ void FUN_0103814c(u32 param_1)
   puVar4 = (volatile u32 *)DAT_0103827c;
   piVar3 = (volatile int *)DAT_01038278;
   if (iVar6 == 0) {
-    FUN_01039bbe(DAT_01038274, DAT_01038270, 0x72);
+    assert_print(DAT_01038274, DAT_01038270, 0x72);
     uVar14 = 0x72;
     FUN_01039bb0(DAT_01038270, uVar14);
     /* real hardware never returns from this call; but the compiled bytes
@@ -115,7 +117,7 @@ void FUN_0103814c(u32 param_1)
     FUN_01037f54(piVar12);
     iVar6 = FUN_01036128(DAT_0103826c);
     if (iVar6 == 0) {
-      FUN_01039bbe(DAT_01038274, DAT_01038270, 0xf0);
+      assert_print(DAT_01038274, DAT_01038270, 0xf0);
       uVar14 = 0xf0;
       FUN_01039bb0(DAT_01038270, uVar14);
       /* real fallthrough: nothing physically follows here in-body, this is
@@ -144,7 +146,7 @@ void FUN_0103814c(u32 param_1)
     InstructionSynchronizationBarrier(0xf);
     iVar6 = FUN_0103610c(DAT_0103826c);
     if (iVar6 == 0) {
-      FUN_01039bbe(DAT_01038274, DAT_01038270, 0x72);
+      assert_print(DAT_01038274, DAT_01038270, 0x72);
       uVar14 = 0x72;
       FUN_01039bb0(DAT_01038270, uVar14);
       return;
@@ -166,7 +168,7 @@ LAB_01038236:
   }
   iVar6 = FUN_01036128(DAT_0103826c);
   if (iVar6 == 0) {
-    FUN_01039bbe(DAT_01038274, DAT_01038270, 0xf0);
+    assert_print(DAT_01038274, DAT_01038270, 0xf0);
     uVar14 = 0xf0;
     FUN_01039bb0(DAT_01038270, uVar14);
     return;

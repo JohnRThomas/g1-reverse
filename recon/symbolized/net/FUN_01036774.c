@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01036774 @ 0x01036774
  * public-name: FUN_01036774
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -18,7 +20,7 @@ extern int FUN_01036128(void *);
 extern void FUN_01036144(void *);
 extern int FUN_010375b8(void*, unsigned int, void*, unsigned int, unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern unsigned int FUN_0103b1e2(void*, unsigned int, void*, unsigned int, void*, unsigned int);
 
 unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -38,7 +40,7 @@ unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned 
 
     int iVar2 = FUN_0103610c(puVar7);
     if (iVar2 == 0) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         uVar8 = 0x72;
         FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, uVar8);
         __builtin_unreachable();
@@ -76,7 +78,7 @@ unsigned int FUN_01036774(unsigned int *param_1, unsigned int param_2, unsigned 
         InstructionSynchronizationBarrier(0xf);
         return uVar3;
     }
-    FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+    assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
     uVar8 = 0xf0;
     FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, uVar8);
     __builtin_unreachable();

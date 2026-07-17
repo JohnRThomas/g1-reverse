@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01034d8c @ 0x01034d8c
  * public-name: FUN_01034d8c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e700                           @ 0x0103e700
@@ -9,12 +11,12 @@
 /* net-core FUN_01034d8c @ 0x1034d8c  (parity 300 trials PROVEN) */
 
 extern void FUN_0102eb2c(int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 unsigned int FUN_01034d8c(unsigned int param_1, int param_2, int param_3)
 {
   if (param_2 == 0) {
-    FUN_01039bbe(0x0103d2a7, 0x0103e700, 0x34);
+    assert_print(0x0103d2a7, 0x0103e700, 0x34);
     FUN_01039bb0(0x0103e700, 0x34);
   }
   int *piVar1 = (int*)0x21004aec;

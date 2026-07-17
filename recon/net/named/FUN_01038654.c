@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01038654 @ 0x01038654
  * public-name: FUN_01038654
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -18,7 +20,7 @@ extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 
 #define DAT_01038754 0x21004b78u
 #define PTR_DAT_01038758 0x0103eb7fu
@@ -47,7 +49,7 @@ void FUN_01038654(int param_1, int param_2, unsigned int param_3)
       goto switchD_01038680_caseD_0;
     case 1:
       if (*(int *)(long)(iVar3 + -4) == 0) {
-        FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xbe);
+        assert_print(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xbe);
         uVar5 = 0xbe;
         puVar4 = PTR_DAT_01038758;
         goto LAB_010386a2;
@@ -55,20 +57,20 @@ void FUN_01038654(int param_1, int param_2, unsigned int param_3)
       break;
     case 2:
       if (*(int *)(long)(iVar3 + -4) == 0) {
-        FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xb6);
+        assert_print(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xb6);
         uVar5 = 0xb6;
         puVar4 = PTR_DAT_01038758;
         goto LAB_010386a2;
       }
       break;
     default:
-      FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xcf);
+      assert_print(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xcf);
       uVar5 = 0xcf;
       puVar4 = PTR_DAT_01038758;
       goto LAB_010386a2;
     case 4:
       if (*(int *)(long)(iVar3 + -4) == 0) {
-        FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xba);
+        assert_print(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xba);
         uVar5 = 0xba;
         puVar4 = PTR_DAT_01038758;
         goto LAB_010386a2;
@@ -76,7 +78,7 @@ void FUN_01038654(int param_1, int param_2, unsigned int param_3)
       break;
     case 8:
       if (*(int *)(long)(iVar3 + -4) == 0) {
-        FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xc2);
+        assert_print(PTR_s_acking_error__context_area_might_0103875c, PTR_DAT_01038758, 0xc2);
         uVar5 = 0xc2;
         puVar4 = PTR_DAT_01038758;
         goto LAB_010386a2;
@@ -93,7 +95,7 @@ void FUN_01038654(int param_1, int param_2, unsigned int param_3)
 switchD_01038680_caseD_0:
     iVar7 = FUN_01036128(uVar5);
     if (iVar7 == 0) {
-      FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c,
+      assert_print(PTR_s_acking_error__context_area_might_0103875c,
                    PTR_s_______HARD_FAULT_______01038760, 0xf0);
       uVar5 = 0xf0;
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
@@ -122,7 +124,7 @@ LAB_010386a2:
     iVar7 = FUN_0103610c(uVar5);
     param_2 = param_2 - 1;
     if (iVar7 == 0) {
-      FUN_01039bbe(PTR_s_acking_error__context_area_might_0103875c,
+      assert_print(PTR_s_acking_error__context_area_might_0103875c,
                    PTR_s_______HARD_FAULT_______01038760, 0x72);
       uVar5 = 0x72;
       puVar4 = PTR_s_______HARD_FAULT_______01038760;

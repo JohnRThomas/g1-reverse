@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0103038c @ 0x0103038c
  * public-name: FUN_0103038c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   REG_41005000                             @ 0x41005000
@@ -11,7 +13,7 @@
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
 extern int32_t FUN_0102ca80(uint32_t object, uint32_t state);
-extern void FUN_01039bbe(uint32_t source, uint32_t message, uint32_t line);
+extern void assert_print(uint32_t source, uint32_t message, uint32_t line);
 extern void FUN_01039bb0(uint32_t message, uint32_t line)
     __attribute__((noreturn));
 extern uint32_t FUN_0103b14a(void);
@@ -37,7 +39,7 @@ uint32_t FUN_0103038c(uint32_t mode)
         state[3] = 0u;
         state[2] = 1u;
         if (FUN_0102ca80(0x21004834u, 0x21004800u) < 0) {
-            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
+            assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
             FUN_01039bb0(0x0103dea5u, 0x230u);
         }
     }
@@ -45,7 +47,7 @@ uint32_t FUN_0103038c(uint32_t mode)
     if (mode == 0u)
         return 0u;
     if (mode > 2u) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x242u);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x242u);
         FUN_01039bb0(0x0103dea5u, 0x242u);
     }
 

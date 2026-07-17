@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102e000 @ 0x0102e000
  * public-name: FUN_0102e000
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
  *   rodata_103c0fc                           @ 0x0103c0fc
@@ -20,12 +22,12 @@
 extern uint32_t FUN_0102dcf4(uint32_t wait_until_ready,
                              uint32_t delay_between_retries);
 extern int32_t FUN_0102df2c(void);
-extern void FUN_01039bbe(uint32_t condition, uint32_t source, uint32_t line);
+extern void assert_print(uint32_t condition, uint32_t source, uint32_t line);
 extern void FUN_01039bb0(uint32_t source, uint32_t line);
 
 #define controller_participants_start FUN_0102dcf4
 #define controller_process_one_event  FUN_0102df2c
-#define assert_print                  FUN_01039bbe
+#define assert_print                  assert_print
 #define arch_raise_kernel_oops        FUN_01039bb0
 
 struct controller_participant;

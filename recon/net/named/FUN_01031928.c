@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01031928 @ 0x01031928
  * public-name: FUN_01031928
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_103c044                           @ 0x0103c044
  *   rodata_103cad0                           @ 0x0103cad0
@@ -26,7 +28,7 @@ extern int FUN_0100913c(void);
 extern int FUN_01009160(void);
 extern int FUN_01009184(void);
 extern int FUN_010091a8(void);
-extern void FUN_0102e284(unsigned int, unsigned int, void*, int);
+extern void z_impl_z_log_msg_static_create(unsigned int, unsigned int, void*, int);
 extern void FUN_0102fbac(unsigned int);
 
 #define DAT_01031a54 0x0103cad0u
@@ -82,7 +84,7 @@ int FUN_01031928(void)
                     local_24 = DAT_01031a60;
                     uStack_20 = 0x16c3;
                     local_28 = 4;
-                    FUN_0102e284(DAT_01031a64, 0x2040, &local_28, 0);
+                    z_impl_z_log_msg_static_create(DAT_01031a64, 0x2040, &local_28, 0);
                     G1_ARCH_RUNTIME_EXCEPTION(4);
                     local_1c = -12;
                   }

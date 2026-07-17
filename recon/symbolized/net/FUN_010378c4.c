@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_010378c4 @ 0x010378c4
  * public-name: FUN_010378c4
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -20,7 +22,7 @@ static inline void isb(void){ __ISB(); }
 extern int FUN_0103610c(int);
 extern void FUN_01036144(int);
 extern int FUN_01036128(int);
-extern void FUN_01039bbe(int, int, unsigned int);
+extern void assert_print(int, int, unsigned int);
 extern void FUN_01039bb0(int, unsigned int);
 extern void FUN_01037814(int);
 extern void FUN_01036fcc(int);
@@ -40,7 +42,7 @@ void FUN_010378c4(int param_1, int param_2)
   if (r0 != 0) goto L8f4;
 
   r1 = C_01037958;
-  FUN_01039bbe(C_0103795c, r1, 0x72);
+  assert_print(C_0103795c, r1, 0x72);
   r1 = 0x72;
   r0 = C_01037958;
 L_abortcall:
@@ -70,7 +72,7 @@ L8f4:
     return;
   }
   r1 = C_01037958;
-  FUN_01039bbe(C_0103795c, r1, 0xf0);
+  assert_print(C_0103795c, r1, 0xf0);
   r1 = 0xf0;
   r0 = C_01037958;
   goto L_abortcall;

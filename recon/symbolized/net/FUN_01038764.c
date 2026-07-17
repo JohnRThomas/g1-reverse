@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01038764 @ 0x01038764
  * public-name: FUN_01038764
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -20,19 +22,19 @@ extern void FUN_01038654(void *work, uint32_t token, uint32_t irq_key);
 extern int FUN_010375b8(void *lock, uint32_t irq_key, void *wait_queue,
                         uint32_t has_timeout,
                         uint32_t ticks_low, uint32_t ticks_high);
-extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void assert_print(const void *module, const void *file, unsigned line);
 extern void FUN_01039bb0(const void *file, unsigned line);
 
 static __attribute__((always_inline)) inline void scheduler_fatal(unsigned line)
 {
-    FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+    assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                  (const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
     FUN_01039bb0((const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
 }
 
 static __attribute__((always_inline)) inline void scheduler_lock_fatal(unsigned line)
 {
-    FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+    assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                  (const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
     FUN_01039bb0((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
 }

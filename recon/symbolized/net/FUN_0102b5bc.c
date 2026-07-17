@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0102b5bc @ 0x0102b5bc
  * public-name: FUN_0102b5bc
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103d18c                           @ 0x0103d18c
  *   rodata_103d19e                           @ 0x0103d19e
@@ -25,7 +27,7 @@
 
 extern int FUN_0103037c(int);
 extern int FUN_0102ca80(int, void *);
-extern void FUN_01039722(int, int);
+extern void printk(int, int);
 extern void FUN_0102bba8(int);
 
 int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
@@ -51,7 +53,7 @@ int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_
   iVar2 = FUN_0103037c(0);
   if (iVar2 == 0) {
     if (0 < *(volatile int *)P_0102b650) {
-      FUN_01039722(P_0102b654, 0);
+      printk(P_0102b654, 0);
     }
     iVar3 = -6;
   } else {
@@ -62,13 +64,13 @@ int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_
     iVar2 = local_c;
     if (iVar3 < 0) {
       if (0 < *(volatile int *)P_0102b650) {
-        FUN_01039722(P_0102b658, iVar3);
+        printk(P_0102b658, iVar3);
       }
     } else {
       while ((local_10 & 3) != 0) { }
       if (local_c != 0) {
         if (0 < *(volatile int *)P_0102b650) {
-          FUN_01039722(P_0102b65c, local_c);
+          printk(P_0102b65c, local_c);
         }
         if (iVar2 < 0) {
           return iVar2;

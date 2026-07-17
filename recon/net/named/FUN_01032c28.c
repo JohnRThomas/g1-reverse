@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01032c28 @ 0x01032c28
  * public-name: FUN_01032c28
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_10335e5                           @ 0x010335e5
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -30,7 +32,7 @@ extern void FUN_01032860(unsigned);
 extern void FUN_01032ad8(void);
 extern void FUN_01033b18(unsigned,unsigned);
 extern void FUN_01039bb0(unsigned,unsigned);
-extern void FUN_01039bbe(unsigned,unsigned,unsigned);
+extern void assert_print(unsigned,unsigned,unsigned);
 extern void FUN_0103b53a(unsigned,unsigned,unsigned,unsigned);
 
 void FUN_01032c28(void)
@@ -96,7 +98,7 @@ tail:
     W32(0x41008000u+0x530) = (1u << W8(iVar12+1)) & 0xffu;
     u32 sz = (u32)W8(0x21000684u+0x13) + 0x960u;
     if (sz > 0x9c4u) {
-      FUN_01039bbe(0x0103d2a7u, 0x0103e3e0u, 0x6b7u);
+      assert_print(0x0103d2a7u, 0x0103e3e0u, 0x6b7u);
       FUN_01039bb0(0x0103e3e0u, 0x6b7u);
       __builtin_unreachable();
     }

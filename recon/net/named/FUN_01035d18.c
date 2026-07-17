@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01035d18 @ 0x01035d18
  * public-name: FUN_01035d18
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -21,7 +23,7 @@ extern int FUN_01036128(int);
 extern void FUN_01036144(int);
 extern void FUN_010375b8(int, unsigned int, int, int, int, int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b304(int*);
 extern void FUN_0103b34c(int*, int, int, int);
 
@@ -65,7 +67,7 @@ int FUN_01035d18(int param_1, unsigned int param_2, unsigned int param_3, unsign
   uVar9 = 0;
   if (iVar3 == 0) {
 LAB_01035d56:
-    FUN_01039bbe(DAT_01035e14, DAT_01035e10, 0x72);
+    assert_print(DAT_01035e14, DAT_01035e10, 0x72);
     uVar5 = 0x72;
     uVar7 = DAT_01035e10;
   } else {
@@ -110,11 +112,11 @@ LAB_01035d56:
         InstructionSynchronizationBarrier(0xf);
         return (int)uVar9;
       }
-      FUN_01039bbe(DAT_01035e14, DAT_01035e10, 0xf0);
+      assert_print(DAT_01035e14, DAT_01035e10, 0xf0);
       uVar5 = 0xf0;
       uVar7 = DAT_01035e10;
     } else {
-      FUN_01039bbe(DAT_01035e14, DAT_01035e18, 0x4a);
+      assert_print(DAT_01035e14, DAT_01035e18, 0x4a);
       uVar5 = 0x4a;
       uVar7 = DAT_01035e18;
     }

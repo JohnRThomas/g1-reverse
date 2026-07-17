@@ -663,6 +663,10 @@
    "name": "ipc_rpmsg_init",
    "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation; argument layout and downstream rpmsg_virtio initialization agree. Raw identity remains FUN_0102dac0."
   },
+  "0x0102e284": {
+   "name": "z_impl_z_log_msg_static_create",
+   "evidence": "Exact NCS 2.5.1 Zephyr subsys/logging/log_msg.c control flow and signature: descriptor package/data bitfields, cbprintf_package_convert flags 10 with four string lengths, 0x7ff package limit warning, aligned word allocation, copy callback, assertion, and z_log_msg_finalize. Raw identity remains FUN_0102e284 at 0x0102e284."
+  },
   "0x0102db30": {
    "name": "ipc_static_vrings_init",
    "evidence": "Direct callee correspondence from the matched NCS 2.5.1 ipc_rpmsg_static_vrings open implementation and exact role/vrings argument ABI. Raw identity remains FUN_0102db30."
@@ -682,6 +686,14 @@
   "0x01036ce4": {
    "name": "k_work_queue_start",
    "evidence": "Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence, including queue, stack, stack-size, priority and null config arguments. Raw identity remains FUN_01036ce4."
+  },
+  "0x01039722": {
+   "name": "printk",
+   "evidence": "Exact 26-byte Zephyr printk varargs wrapper from lib/os/printk.c: builds the va_list after fmt and calls the local vprintk implementation at 0x0103a2a6. Raw identity remains FUN_01039722 at 0x01039722."
+  },
+  "0x01039bbe": {
+   "name": "assert_print",
+   "evidence": "Exact 26-byte Zephyr lib/os/assert.c assert_print varargs wrapper: builds the va_list after fmt and calls vprintk through the 0x0103971e thunk. Raw identity remains FUN_01039bbe at 0x01039bbe."
   },
   "0x01039fb6": {
    "name": "atomic_set",

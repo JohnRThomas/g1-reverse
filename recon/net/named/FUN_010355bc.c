@@ -2,6 +2,7 @@
  * public-name: FUN_010355bc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   thunk_FUN_01036824                       <= FUN_0103aec2 @ 0x0103aec2
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +12,7 @@
 
 extern int FUN_010353ec(unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern int FUN_0103ab0e(void *, unsigned int, void *, unsigned int);
 extern unsigned int FUN_0103ac46(unsigned int, unsigned int);
 extern void FUN_0103acca(unsigned int);
@@ -48,7 +49,7 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
 
     if (iVar2 == 0x10) goto L_612;
 
-    FUN_01039bbe(0x0103d2a7, 0x0103e889, 0x1af);
+    assert_print(0x0103d2a7, 0x0103e889, 0x1af);
     panic_code = 0x1af;
     goto L_term;
 
@@ -65,7 +66,7 @@ L_612:
     iVar2b = FUN_010353ec(*(volatile unsigned int *)(param_1 + 0xa8), uVar5, uVar4);
     if (iVar2b == 0) goto L_success;
 
-    FUN_01039bbe(0x0103d2a7, 0x0103e889, 0x1bc);
+    assert_print(0x0103d2a7, 0x0103e889, 0x1bc);
     panic_code = 0x1bc;
     goto L_term;
 

@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0102afbc @ 0x0102afbc
  * public-name: FUN_0102afbc
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_102b4f5                           @ 0x0102b4f5
  *   rodata_102b5ad                           @ 0x0102b5ad
@@ -18,7 +20,7 @@ extern void FUN_01035fa0(int, int, int, int, int, int, int, int, int);
 extern void FUN_0103b156(int, int);
 extern int FUN_0102d558(int);
 extern int FUN_0102d5b4(int, int, int);
-extern void FUN_01039722(int, ...);
+extern void printk(int, ...);
 
 #define C_0102b058 0x2100095c
 #define C_0102b05c ((unsigned long)&rodata_102b5ad) /*=0x102b5ad*/
@@ -47,11 +49,11 @@ int FUN_0102afbc(void)
   FUN_0103b156(C_0102b074, C_0102b078);
   iVar1 = FUN_0102d558(C_0102b07c);
   if (iVar1 < 0 && iVar1 != -0x78 && 0 < *(volatile int *)P_0102b080) {
-    FUN_01039722(C_0102b084, 0);
+    printk(C_0102b084, 0);
   }
   iVar1 = FUN_0102d5b4(C_0102b07c, C_0102b088, C_0102b08c);
   if (iVar1 != 0 && 0 < *(volatile int *)P_0102b080) {
-    FUN_01039722(C_0102b090, iVar1);
+    printk(C_0102b090, iVar1);
   }
   return 0;
 }

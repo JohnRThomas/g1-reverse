@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01037b5c @ 0x01037b5c
  * public-name: FUN_01037b5c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103bac9                           @ 0x0103bac9
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -25,7 +27,7 @@ extern void FUN_010374dc(void);
 extern void FUN_01037a60(void);
 extern void FUN_01037f8c(i32,u32,u32,u32);
 extern u32  FUN_01039bb0(u32,u32);
-extern void FUN_01039bbe(u32,u32,u32);
+extern void assert_print(u32,u32,u32);
 extern u32  FUN_0103b2f8(u32,u32,u32);
 
 #define DAT_01037c48 ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/
@@ -45,7 +47,7 @@ i32 FUN_01037b5c(u32 param_1, i32 param_2)
   {
     u32 ipsr = __get_IPSR();
     if (ipsr != 0) {
-      FUN_01039bbe(DAT_01037c4c, DAT_01037c48, 0x596);
+      assert_print(DAT_01037c4c, DAT_01037c48, 0x596);
       r1v = 0x596;
       r0v = DAT_01037c48;
       goto FINAL_CALL;
@@ -76,7 +78,7 @@ COMMON: ;
     i32 res = FUN_0103610c(DAT_01037c50);
     if (res == 0) {
       u32 rv;
-      FUN_01039bbe(DAT_01037c4c, DAT_01037c54, 0x72);
+      assert_print(DAT_01037c4c, DAT_01037c54, 0x72);
       r1v = 0x72;
       r0v = DAT_01037c54;
 FINAL_CALL:
@@ -99,7 +101,7 @@ FINAL_CALL:
       iVar3 = FUN_01036128(uVar5);
       if (iVar3 == 0) {
         u32 rv;
-        FUN_01039bbe(DAT_01037c4c, DAT_01037c54, 0x111);
+        assert_print(DAT_01037c4c, DAT_01037c54, 0x111);
         r1v = 0x111;
         r0v = DAT_01037c54;
         rv = FUN_01039bb0(r0v, r1v);
@@ -116,7 +118,7 @@ FINAL_CALL:
         }
         {
           u32 rv;
-          FUN_01039bbe(DAT_01037c4c, DAT_01037c48, 0x5b2);
+          assert_print(DAT_01037c4c, DAT_01037c48, 0x5b2);
           r1v = 0x5b2;
           r0v = DAT_01037c48;
           rv = FUN_01039bb0(r0v, r1v);

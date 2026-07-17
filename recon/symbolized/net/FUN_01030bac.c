@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01030bac @ 0x01030bac
  * public-name: FUN_01030bac
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_1031555                           @ 0x01031555
  *   rodata_103c094                           @ 0x0103c094
@@ -13,7 +15,7 @@
 extern void FUN_01034d8c(unsigned int, unsigned int);
 extern void FUN_0102eb8c(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b62e(void *, unsigned int, unsigned int);
-extern void FUN_0102e284(unsigned int, unsigned int, void *, unsigned int);
+extern void z_impl_z_log_msg_static_create(unsigned int, unsigned int, void *, unsigned int);
 extern void FUN_01034dd8(void *);
 
 unsigned int FUN_01030bac(int param_1)
@@ -35,11 +37,11 @@ unsigned int FUN_01030bac(int param_1)
 
   if (puVar4[1] > 0xffff) {
     unsigned int tmp[2]; tmp[0] = 2; tmp[1] = ((unsigned long)&rodata_103e004) /*=0x103e004*/;
-    FUN_0102e284(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
+    z_impl_z_log_msg_static_create(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
   }
   if (puVar4[0] > 0xffff) {
     unsigned int tmp[2]; tmp[0] = 2; tmp[1] = ((unsigned long)&rodata_103e030) /*=0x103e030*/;
-    FUN_0102e284(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
+    z_impl_z_log_msg_static_create(((unsigned long)&rodata_103c094) /*=0x103c094*/, 0x1080, tmp, 0);
   }
 
   local_buf.reserved = 0;

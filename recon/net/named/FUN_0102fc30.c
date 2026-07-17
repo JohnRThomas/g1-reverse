@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102fc30 @ 0x0102fc30
  * public-name: FUN_0102fc30
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_103c024                           @ 0x0103c024
  *   rodata_103ddcd                           @ 0x0103ddcd
@@ -16,7 +18,7 @@ extern void FUN_01030014(int, int);
 extern unsigned int FUN_0103a468(int);
 extern void FUN_0103a478(int, int, unsigned int);
 extern void FUN_0102ff94(int);
-extern void FUN_0102e284(int, int, void *, int);
+extern void z_impl_z_log_msg_static_create(int, int, void *, int);
 
 int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4,
                   int param_5, unsigned int param_6)
@@ -57,7 +59,7 @@ int FUN_0102fc30(int param_1, unsigned int param_2, unsigned int param_3, unsign
     diagnostic.kind = 3;
     diagnostic.descriptor = C_0102fcb4;
     diagnostic.value = param_1;
-    FUN_0102e284(C_0102fcb8, 0x1840, &diagnostic, 0);
+    z_impl_z_log_msg_static_create(C_0102fcb8, 0x1840, &diagnostic, 0);
   }
   return 0;
 }

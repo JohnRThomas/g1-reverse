@@ -8449,11 +8449,13 @@
   "0x0102e284": {
    "address": "0x0102e284",
    "raw_name": "FUN_0102e284",
-   "name": "FUN_0102e284",
-   "display_name": "FUN_0102e284",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_impl_z_log_msg_static_create",
+   "display_name": "z_impl_z_log_msg_static_create",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 Zephyr subsys/logging/log_msg.c control flow and signature: descriptor package/data bitfields, cbprintf_package_convert flags 10 with four string lengths, 0x7ff package limit warning, aligned word allocation, copy callback, assertion, and z_log_msg_finalize. Raw identity remains FUN_0102e284 at 0x0102e284.",
+   "aliases": [
+    "FUN_0102e284"
+   ]
   },
   "0x0102e3a8": {
    "address": "0x0102e3a8",
@@ -10356,11 +10358,13 @@
   "0x01039722": {
    "address": "0x01039722",
    "raw_name": "FUN_01039722",
-   "name": "FUN_01039722",
-   "display_name": "FUN_01039722",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "printk",
+   "display_name": "printk",
+   "human": true,
+   "source": "function_name_overrides.json: Exact 26-byte Zephyr printk varargs wrapper from lib/os/printk.c: builds the va_list after fmt and calls the local vprintk implementation at 0x0103a2a6. Raw identity remains FUN_01039722 at 0x01039722.",
+   "aliases": [
+    "FUN_01039722"
+   ]
   },
   "0x0103973c": {
    "address": "0x0103973c",
@@ -10554,11 +10558,13 @@
   "0x01039bbe": {
    "address": "0x01039bbe",
    "raw_name": "FUN_01039bbe",
-   "name": "FUN_01039bbe",
-   "display_name": "FUN_01039bbe",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "assert_print",
+   "display_name": "assert_print",
+   "human": true,
+   "source": "function_name_overrides.json: Exact 26-byte Zephyr lib/os/assert.c assert_print varargs wrapper: builds the va_list after fmt and calls vprintk through the 0x0103971e thunk. Raw identity remains FUN_01039bbe at 0x01039bbe.",
+   "aliases": [
+    "FUN_01039bbe"
+   ]
   },
   "0x01039bd8": {
    "address": "0x01039bd8",
@@ -12367,7 +12373,6 @@
   "FUN_0102e064": "0x0102e064",
   "FUN_0102e220": "0x0102e220",
   "FUN_0102e23c": "0x0102e23c",
-  "FUN_0102e284": "0x0102e284",
   "FUN_0102e3a8": "0x0102e3a8",
   "FUN_0102e460": "0x0102e460",
   "FUN_0102e484": "0x0102e484",
@@ -12570,7 +12575,6 @@
   "FUN_0103963c": "0x0103963c",
   "FUN_0103966e": "0x0103966e",
   "FUN_010396d0": "0x010396d0",
-  "FUN_01039722": "0x01039722",
   "FUN_0103973c": "0x0103973c",
   "FUN_01039752": "0x01039752",
   "FUN_01039768": "0x01039768",
@@ -12592,7 +12596,6 @@
   "FUN_01039b62": "0x01039b62",
   "FUN_01039b88": "0x01039b88",
   "FUN_01039bb0": "0x01039bb0",
-  "FUN_01039bbe": "0x01039bbe",
   "FUN_01039bd8": "0x01039bd8",
   "FUN_01039bfe": "0x01039bfe",
   "FUN_01039c20": "0x01039c20",
@@ -12693,6 +12696,7 @@
   "FUN_0103b614": "0x0103b614",
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
+  "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
   "controller_deferred_event_raise": "0x0102583c",
   "controller_entry_links_release": "0x0101df84",
@@ -12729,6 +12733,7 @@
   "k_work_queue_start": "0x01036ce4",
   "mpsl_timeslot_distance_get": "0x010243c0",
   "mpsl_timeslot_window_get": "0x010209c8",
+  "printk": "0x01039722",
   "radio_phy_airtime_base_get": "0x010209f0",
   "radio_phy_airtime_tail_get": "0x010209e0",
   "radio_slot_margin_get": "0x0101a130",
@@ -12794,6 +12799,7 @@
   "thunk_FUN_01038fa4": "0x01038d9c",
   "thunk_FUN_0103a2a6": "0x0103971e",
   "thunk_FUN_0103b0e8": "0x0103a8cc",
+  "z_impl_z_log_msg_static_create": "0x0102e284",
   "z_nrf_rtc_timer_read": "0x010313a8"
  },
  "conflicts": {}

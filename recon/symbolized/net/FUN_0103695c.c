@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0103695c @ 0x0103695c
  * public-name: FUN_0103695c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -23,7 +25,7 @@ extern int FUN_01037a60(void);
 extern int FUN_01037e10(int,int,int);
 extern int FUN_01037ea8(int,int,int,int,int,int,int);
 extern void FUN_01039bb0(int,int);
-extern void FUN_01039bbe(int,int,int);
+extern void assert_print(int,int,int);
 extern int FUN_0103b244(int,int);
 
 typedef int (*fpv_t)(unsigned int);
@@ -132,15 +134,15 @@ void FUN_0103695c(int param_1)
         }
 
     ASSERT_A:
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         goto L_CONT;
     ASSERT_B:
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         goto L_CONT;
     ASSERT_C:
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
         FUN_01039bb0(((unsigned long)&rodata_103eaed) /*=0x103eaed*/, 0x29b);
         goto L_CONT;
     }

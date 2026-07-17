@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0103566c @ 0x0103566c
  * public-name: FUN_0103566c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e889                           @ 0x0103e889
@@ -8,7 +10,7 @@
 /* net-core FUN_0103566c @ 0x103566c  (parity 300 trials PROVEN) */
 extern void FUN_010353ec(unsigned int, unsigned short, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 #include <stdint.h>
 
 extern int *FUN_0103ac50(unsigned int, uint16_t *, uint32_t *);
@@ -71,7 +73,7 @@ void FUN_0103566c(int *param_1, unsigned int param_2, unsigned int param_3, unsi
                     *(unsigned int *)(uintptr_t)(iVar2 + 0x3c));
       }
       if (iVar2 < 0) {
-        FUN_01039bbe(DAT_01035768, DAT_01035764, 0x245);
+        assert_print(DAT_01035768, DAT_01035764, 0x245);
         FUN_01039bb0(DAT_01035764, 0x245);
         __builtin_unreachable();
       }

@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01031820 @ 0x01031820
  * public-name: FUN_01031820
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_103c064                           @ 0x0103c064
  *   rodata_103e16a                           @ 0x0103e16a
@@ -15,12 +17,12 @@
 #include <stdint.h>
 
 extern void FUN_0102e000(void);
-extern void FUN_0102e284(uint32_t channel, uint32_t format,
+extern void z_impl_z_log_msg_static_create(uint32_t channel, uint32_t format,
                          const void *record, uint32_t flags);
 extern __attribute__((noreturn)) void FUN_0102f4ec(uint32_t reboot_type);
 
 #define controller_participants_initialize FUN_0102e000
-#define publish_controller_diagnostic       FUN_0102e284
+#define publish_controller_diagnostic       z_impl_z_log_msg_static_create
 #define sys_reboot                          FUN_0102f4ec
 
 typedef struct {

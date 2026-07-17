@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01037f8c @ 0x01037f8c
  * public-name: FUN_01037f8c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -26,7 +28,7 @@ extern int FUN_01036128(void *lock);
 extern uint32_t FUN_01037f00(void);
 extern uint32_t FUN_01037f14(void);
 extern void FUN_0103175c(uint32_t event, int flags);
-extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void assert_print(const void *module, const void *file, unsigned line);
 extern void FUN_01039bb0(const void *file, unsigned line);
 
 void FUN_01037f8c(struct timeout_node *node, void *handler,
@@ -42,7 +44,7 @@ void FUN_01037f8c(struct timeout_node *node, void *handler,
     if (requested == UINT64_MAX)
         return;
     if (node->next != 0) {
-        FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+        assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                      (const void *)((unsigned long)&rodata_103eb5b) /*=0x103eb5b*/, 0x6e);
         FUN_01039bb0((const void *)((unsigned long)&rodata_103eb5b) /*=0x103eb5b*/, 0x6e);
         return;
@@ -50,7 +52,7 @@ void FUN_01037f8c(struct timeout_node *node, void *handler,
 
     node->handler = handler;
     if (FUN_0103610c(lock) == 0) {
-        FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+        assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                      (const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         FUN_01039bb0((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
         return;
@@ -93,7 +95,7 @@ inserted:
         FUN_0103175c(FUN_01037f14(), 0);
 
     if (FUN_01036128(lock) == 0) {
-        FUN_01039bbe((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
+        assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                      (const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
         FUN_01039bb0((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0xf0);
     }

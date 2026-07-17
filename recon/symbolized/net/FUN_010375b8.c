@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_010375b8 @ 0x010375b8
  * public-name: FUN_010375b8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -23,7 +25,7 @@ extern int FUN_01036128(int);
 extern void FUN_01036144(int);
 extern void FUN_01037588(unsigned int,unsigned int,unsigned int,unsigned int);
 extern void FUN_01039bb0(unsigned int,unsigned int);
-extern void FUN_01039bbe(unsigned int,unsigned int,unsigned int);
+extern void assert_print(unsigned int,unsigned int,unsigned int);
 
 void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4,
                    unsigned int param_5, unsigned int param_6)
@@ -37,7 +39,7 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
     *p_1037660 = *(volatile int *)(iVar4 + 8);
     unsigned int uVar6;
     if (bVar7) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
         FUN_01039bb0(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x35f);
         __builtin_unreachable();
     } else {
@@ -54,7 +56,7 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
         InstructionSynchronizationBarrier(0xf);
         int iVar3 = FUN_0103610c(iVar2, param_2, 0x40, uVar6);
         if (iVar3 == 0) {
-            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+            assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
             FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
             __builtin_unreachable();
         } else {
@@ -65,7 +67,7 @@ void FUN_010375b8(int param_1, unsigned int param_2, unsigned int param_3, unsig
                 FUN_0102ec10(param_2);
                 return;
             }
-            FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x111);
+            assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x111);
             FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x111);
             __builtin_unreachable();
         }

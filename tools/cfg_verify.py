@@ -19277,6 +19277,80 @@ REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x0102e064)] = {
 }
 
 
+def _net_log_static_create_case(descriptor, converted_len=0,
+                                allocation=0, copy_result=None):
+    """Bound one z_impl_z_log_msg_static_create allocation/conversion arm."""
+    source = emu.SCRATCH + 0x1000
+    package = emu.SCRATCH + 0x2000
+    data = emu.SCRATCH + 0x3000
+    memory = [
+        (source, bytes(32)),
+        (package, bytes(range(64))),
+        (data, bytes(range(32))),
+    ]
+    package_len = (int(descriptor) >> 9) & 0x7ff
+    oracles = {}
+    ordinal = 0
+    if package_len:
+        oracles[ordinal] = {0: int(converted_len) & 0xffffffff}
+        ordinal += 1
+        if int(converted_len) > 0x7ff:
+            # The oversize warning re-enters the same static-create body with
+            # its fixed 18-byte diagnostic package.  Bound that inner
+            # conversion and allocation failure explicitly.
+            oracles[ordinal] = {0: 12}
+            oracles[ordinal + 1] = {0: 0}
+            oracles[ordinal + 2] = {0: 0}
+            return ({0: source, 1: int(descriptor),
+                     2: package, 3: data}, memory, oracles)
+    oracles[ordinal] = {0: int(allocation)}
+    ordinal += 1
+    if package_len and allocation:
+        oracles[ordinal] = {
+            0: int(converted_len if copy_result is None
+                   else copy_result) & 0xffffffff
+        }
+        ordinal += 1
+    # Finalization is void.  The negative-copy assertion arm terminates at
+    # assert_post_action and therefore deliberately has no finalizer ordinal.
+    if copy_result is not None and int(copy_result) < 0:
+        oracles[ordinal] = {0: 0}
+        oracles[ordinal + 1] = {0: 0}
+    else:
+        oracles[ordinal] = {0: 0}
+    return ({0: source, 1: int(descriptor),
+             2: package, 3: data}, memory, oracles)
+
+
+# Complete descriptor families: empty package, conversion with allocation
+# failure/success, conversion failure assertion, and the oversize warning.
+REVIEWED_ORACLE_CASES[("net", 0x0102e284)] = [
+    _net_log_static_create_case(0x00000000),
+    _net_log_static_create_case(0x00300000),
+    _net_log_static_create_case(0x00000200, 12, 0),
+    _net_log_static_create_case(0x00300200, 12, emu.SCRATCH + 0x4000),
+    _net_log_static_create_case(0x00300200, 12,
+                                emu.SCRATCH + 0x4000, -1),
+    _net_log_static_create_case(0x00000200, 0x800, 0),
+]
+REVIEWED_NPTR_COUNTS[("net", 0x0102e284)] = 3
+REVIEWED_PAIRED_STACK_OBJECTS[("net", 0x0102e284)] = [
+    ("conversion-descriptor", -52, -72, 12),
+    ("conversion-string-lengths", -60, -80, 8),
+    ("oversize-warning-package", -104, -60, 20),
+    ("nested-conversion-descriptor", -188, -184, 12),
+    ("nested-conversion-string-lengths", -196, -192, 8),
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102e284)] = {
+    0x0102bfe4: 7,
+    0x0102def4: 1,
+    0x0102e284: 4,
+    0x01039bb0: 2,
+    0x01039bbe: 3,
+    0x0103a2f8: 4,
+}
+
+
 def _ipc_static_vrings_open_case(stage):
     """Complete one-device fixture for ipc_rpmsg_static_vrings_open.
 

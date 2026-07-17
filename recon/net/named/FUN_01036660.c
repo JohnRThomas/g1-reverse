@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01036660 @ 0x01036660
  * public-name: FUN_01036660
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -21,7 +23,7 @@ extern void FUN_01037130(unsigned int*, unsigned int);
 extern int FUN_010379d4(unsigned int*);
 extern unsigned int *FUN_010389f8(int, int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b4f6(unsigned int*, int);
 
 #define DAT_0103676c 0x0103d3b6u
@@ -52,7 +54,7 @@ unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned
   InstructionSynchronizationBarrier(0xf);
   iVar2 = FUN_0103610c(puVar5);
   if (iVar2 == 0) {
-    FUN_01039bbe(DAT_01036770, DAT_0103676c, 0x72);
+    assert_print(DAT_01036770, DAT_0103676c, 0x72);
     uVar6 = 0x72;
     FUN_01039bb0(DAT_0103676c, uVar6);
     __builtin_unreachable();
@@ -82,7 +84,7 @@ unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned
         InstructionSynchronizationBarrier(0xf);
         return 0xfffffff4;
       }
-      FUN_01039bbe(DAT_01036770, DAT_0103676c, 0xf0);
+      assert_print(DAT_01036770, DAT_0103676c, 0xf0);
       uVar6 = 0xf0;
       FUN_01039bb0(DAT_0103676c, uVar6);
       __builtin_unreachable();

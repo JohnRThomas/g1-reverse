@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0102e23c @ 0x0102e23c
  * public-name: FUN_0102e23c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +13,7 @@
 #include <stdint.h>
 
 extern uint64_t FUN_01039bb0(uint32_t a, uint32_t b);
-extern void FUN_01039bbe(uint32_t a, uint32_t b, uint32_t c);
+extern void assert_print(uint32_t a, uint32_t b, uint32_t c);
 extern void FUN_0102ddf4(void);
 
 void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
@@ -27,7 +29,7 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
     r3 = (uint8_t)t;
 
     if (param_1 == 0) {
-        FUN_01039bbe(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d635) /*=0x103d635*/, 0xdf);
+        assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d635) /*=0x103d635*/, 0xdf);
         /* Fatal in production. If the reporter returns, its ABI r0/r1 pair
            becomes the physical fall-through object/value arguments; r2
            remains the previously loaded 0xdf reason code. */

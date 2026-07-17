@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102cb84 @ 0x0102cb84
  * public-name: FUN_0102cb84
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3e3                           @ 0x0103d3e3
@@ -9,7 +11,7 @@
 #include <stdint.h>
 
 extern void FUN_010388c8(uint32_t object, uint32_t completion);
-extern void FUN_01039bbe(const void *module, const void *file, unsigned line);
+extern void assert_print(const void *module, const void *file, unsigned line);
 extern void FUN_01039bb0(const void *file, unsigned line);
 
 int FUN_0102cb84(uint32_t state[3], uint32_t completion)
@@ -33,7 +35,7 @@ int FUN_0102cb84(uint32_t state[3], uint32_t completion)
         state[1] = 0;
         return (int)object;
     default:
-        FUN_01039bbe((const void *)0x0103d2a7u,
+        assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103d3e3u, 0x45);
         FUN_01039bb0((const void *)0x0103d3e3u, 0x45);
         return 0;

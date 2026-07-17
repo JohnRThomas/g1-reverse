@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_0102bfe4 @ 0x0102bfe4
  * public-name: FUN_0102bfe4
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c04c                           @ 0x0103c04c
  *   rodata_103d279                           @ 0x0103d279
@@ -13,11 +16,11 @@ typedef unsigned int uint;
 typedef unsigned long long u64;
 typedef int (*codefn)(uint, uint, uint);
 
-extern void FUN_01039bbe(uint a, uint b, uint c);
+extern void assert_print(uint a, uint b, uint c);
 extern void FUN_01039bb0(uint a, uint b);
 extern int  FUN_0102a268(uint p);
 extern u64  FUN_010396d0(uint a, uint b);
-extern void FUN_0102e284(uint a, uint b, void *c, int d);
+extern void z_impl_z_log_msg_static_create(uint a, uint b, void *c, int d);
 extern void FUN_0103b614(void *d, void *s, uint n);
 
 int FUN_0102bfe4(byte *param_1, int param_2, codefn param_3, uint param_4,
@@ -41,7 +44,7 @@ int FUN_0102bfe4(byte *param_1, int param_2, codefn param_3, uint param_4,
   local_5c = param_4;
   local_54 = param_3;
   if (param_1 == (byte *)0) {
-    FUN_01039bbe(0x0103d2a7, 0x0103d279, 0x394);
+    assert_print(0x0103d2a7, 0x0103d279, 0x394);
     uVar10 = 0x394;
 LAB_0102c006:
     FUN_01039bb0(0x0103d279, uVar10);
@@ -146,7 +149,7 @@ LAB_0102c100:
             blk.m8 = local_58;
             blk.mc = uVar10;
             blk.m10 = 0x200;
-            FUN_0102e284(0x0103c04c, 0x2480, &blk, 0);
+            z_impl_z_log_msg_static_create(0x0103c04c, 0x2480, &blk, 0);
           }
           param_2 = param_2 + -2;
           pbVar6 = pbVar14;
@@ -227,12 +230,12 @@ LAB_0102c1dc:
   }
   if (local_74 != 0) {
     if (uVar12 < 0x10) goto LAB_0102c366;
-    FUN_01039bbe(0x0103d2a7, 0x0103d279, 0x448);
+    assert_print(0x0103d2a7, 0x0103d279, 0x448);
     uVar10 = 0x448;
     goto LAB_0102c006;
   }
   if (0xf < uVar13) {
-    FUN_01039bbe(0x0103d2a7, 0x0103d279, 1099);
+    assert_print(0x0103d2a7, 0x0103d279, 1099);
     uVar10 = 1099;
     goto LAB_0102c006;
   }
@@ -254,7 +257,7 @@ LAB_0102c2fc:
     if (push_ok) {
       if ((int)(param_5 << 0x1f) < 0) {
         if (0xf < uVar12) {
-          FUN_01039bbe(0x0103d2a7, 0x0103d279, 0x43e);
+          assert_print(0x0103d2a7, 0x0103d279, 0x43e);
           uVar10 = 0x43e;
           goto LAB_0102c006;
         }
@@ -263,7 +266,7 @@ LAB_0102c366:
         uVar12 = uVar12 + 1 & 0xff;
       } else if ((int)(param_5 << 0x1d) < 0) {
         if (0xf < uVar13) {
-          FUN_01039bbe(0x0103d2a7, 0x0103d279, 0x441);
+          assert_print(0x0103d2a7, 0x0103d279, 0x441);
           uVar10 = 0x441;
           goto LAB_0102c006;
         }

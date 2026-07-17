@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01034fa8 @ 0x01034fa8
  * public-name: FUN_01034fa8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e73b                           @ 0x0103e73b
@@ -9,7 +11,7 @@
 /* net-core FUN_01034fa8 @ 0x1034fa8  (parity 300 trials PROVEN) */
 
 extern int FUN_01034f24(void);
-extern int FUN_01039bbe(int, int, int);
+extern int assert_print(int, int, int);
 extern void FUN_01039bb0(int, int) __attribute__((noreturn));
 
 int FUN_01034fa8(unsigned int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
@@ -26,7 +28,7 @@ int FUN_01034fa8(unsigned int *param_1, int param_2, unsigned int param_3, unsig
             unsigned int uVar3c = 0x4100c000;
             int matched = (uVar6 == uVar3c) || (uVar6 == uVar3c + 0xc000) || (uVar6 == uVar3c + 0xd000);
             if (!matched || (*((unsigned char*)param_2 + 5) > 3)) {
-                FUN_01039bbe(0x103d2a7, 0x103e73b, 0x8e);
+                assert_print(0x103d2a7, 0x103e73b, 0x8e);
                 FUN_01039bb0(0x103e73b, 0x8e);
             }
             iVar4 = FUN_01034f24();

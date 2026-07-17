@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01037850 @ 0x01037850
  * public-name: FUN_01037850
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -13,7 +15,7 @@ extern int FUN_0103610c(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern void FUN_01037814(int);
 extern int FUN_01036128(unsigned int);
-extern int FUN_01039bbe(int, int, int);
+extern int assert_print(int, int, int);
 extern void FUN_01039bb0(int, int) __attribute__((noreturn));
 extern void FUN_010380d8(int);
 
@@ -25,7 +27,7 @@ void FUN_01037850(int param_1)
 
     int iVar3 = FUN_0103610c(0x21004b68);
     if (iVar3 == 0) {
-        FUN_01039bbe(0x103d2a7, 0x103d3b6, 0x72);
+        assert_print(0x103d2a7, 0x103d3b6, 0x72);
         FUN_01039bb0(0x103d3b6, 0x72);
     }
     FUN_01036144(0x21004b68);
@@ -34,7 +36,7 @@ void FUN_01037850(int param_1)
     }
     iVar3 = FUN_01036128(0x21004b68);
     if (iVar3 == 0) {
-        FUN_01039bbe(0x103d2a7, 0x103d3b6, 0xf0);
+        assert_print(0x103d2a7, 0x103d3b6, 0xf0);
         FUN_01039bb0(0x103d3b6, 0xf0);
     }
     __set_BASEPRI(basepri_save);

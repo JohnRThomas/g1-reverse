@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01033f38 @ 0x01033f38
  * public-name: FUN_01033f38
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e4f5                           @ 0x0103e4f5
@@ -16,7 +18,7 @@
 /* net-core FUN_01033f38 @ 0x1033f38  (parity 300 trials PROVEN) */
 extern int FUN_01034464(unsigned char);
 extern int FUN_0103448c(unsigned char);
-extern void FUN_01039bbe(int, int, unsigned int);
+extern void assert_print(int, int, unsigned int);
 extern void FUN_01039bb0(int, unsigned int);
 
 void FUN_01033f38(void)
@@ -51,7 +53,7 @@ L_chain2:
   return;
 
 L_abort:
-  FUN_01039bbe(0x0103d2a7, 0x0103e4f5, 0x13b);
+  assert_print(0x0103d2a7, 0x0103e4f5, 0x13b);
   FUN_01039bb0(0x0103e4f5, 0x13b);
   goto L_chain2;
 }

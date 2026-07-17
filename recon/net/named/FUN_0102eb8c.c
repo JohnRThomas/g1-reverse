@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102eb8c @ 0x0102eb8c
  * public-name: FUN_0102eb8c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d8c5                           @ 0x0103d8c5
@@ -8,7 +10,7 @@
 /* net-core FUN_0102eb8c @ 0x102eb8c */
 #include <stdint.h>
 
-extern void FUN_01039bbe(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+extern void assert_print(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 extern int32_t FUN_01039bb0(uint32_t, uint32_t);
 
 void FUN_0102eb8c(int8_t irq, uint32_t priority, uint32_t flags, uint32_t unused)
@@ -19,7 +21,7 @@ void FUN_0102eb8c(int8_t irq, uint32_t priority, uint32_t flags, uint32_t unused
     } else {
         encoded = priority + 2u;
         if (encoded > 7u) {
-            FUN_01039bbe(0x0103d2a7u, 0x0103d8c5u, 0x5cu, flags << 31, unused);
+            assert_print(0x0103d2a7u, 0x0103d8c5u, 0x5cu, flags << 31, unused);
             irq = (int8_t)FUN_01039bb0(0x0103d8c5u, 0x5cu);
             encoded = 0; /* physical fall-through of the fatal-report path */
         }

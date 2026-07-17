@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102b094 @ 0x0102b094
  * public-name: FUN_0102b094
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103d0db                           @ 0x0103d0db
  *   rodata_103d0f9                           @ 0x0103d0f9
@@ -9,7 +11,7 @@
 
 extern void FUN_01039138(void *a, unsigned int b, unsigned int c, unsigned int d, unsigned int e,
                           unsigned int f, unsigned int g, unsigned int h, unsigned int i);
-extern void FUN_01039722(unsigned int a, void *b);
+extern void printk(unsigned int a, void *b);
 
 unsigned int FUN_0102b094(unsigned char *param_1)
 {
@@ -34,7 +36,7 @@ unsigned int FUN_0102b094(unsigned char *param_1)
       param_1[4] = (unsigned char)uVar2;
       FUN_01039138(auStack_2c, 0x12, 0x0103d0db, uVar3, uVar2 & 0xff, uVar1 >> 0x18,
                    (uVar1 << 8) >> 0x18, (uVar1 << 0x10) >> 0x18, uVar1 & 0xff);
-      FUN_01039722(0x0103d0f9, auStack_2c);
+      printk(0x0103d0f9, auStack_2c);
       uVar1 = 1;
     }
   }

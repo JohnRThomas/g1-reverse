@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0103689c @ 0x0103689c
  * public-name: FUN_0103689c
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -21,7 +23,7 @@ extern int FUN_01036128(void *);
 extern void FUN_01036144(void *);
 extern int FUN_010375b8(void*, unsigned int, void*, unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 
 int FUN_0103689c(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -42,7 +44,7 @@ int FUN_0103689c(int param_1, unsigned int param_2, unsigned int param_3, unsign
         volatile int * const p54 = (volatile int *)0x21004b4c;
         int iVar2 = FUN_0103610c((void*)p54);
         if (iVar2 == 0) {
-            FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0x72);
+            assert_print(0x0103d2a7, 0x0103d3b6, 0x72);
             FUN_01039bb0(0x0103d3b6, 0x72);
             __builtin_unreachable();
         }
@@ -73,11 +75,11 @@ int FUN_0103689c(int param_1, unsigned int param_2, unsigned int param_3, unsign
             }
         }
 
-        FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);
+        assert_print(0x0103d2a7, 0x0103d3b6, 0xf0);
         FUN_01039bb0(0x0103d3b6, 0xf0);
         __builtin_unreachable();
     } else {
-        FUN_01039bbe(0x0103d2a7, 0x0103eacd, 0x80);
+        assert_print(0x0103d2a7, 0x0103eacd, 0x80);
         FUN_01039bb0(0x0103eacd, 0x80);
         __builtin_unreachable();
     }

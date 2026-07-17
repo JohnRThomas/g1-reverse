@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_010333b4 @ 0x010333b4
  * public-name: FUN_010333b4
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_1032fbd                           @ 0x01032fbd
  *   rodata_1032fd9                           @ 0x01032fd9
@@ -44,7 +46,7 @@ extern void FUN_0103a83e(void);
 extern void FUN_0102eb8c(uint32_t, uint32_t, uint32_t);
 extern void FUN_0103a38a(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
 extern void FUN_0102eb2c(uint32_t);
-extern void FUN_0102e284(uint32_t, uint32_t, void *, uint32_t);
+extern void z_impl_z_log_msg_static_create(uint32_t, uint32_t, void *, uint32_t);
 
 #define reset_radio_owner             FUN_01033354
 #define clear_radio_storage           FUN_0103b62e
@@ -57,7 +59,7 @@ extern void FUN_0102e284(uint32_t, uint32_t, void *, uint32_t);
 #define configure_radio_irq           FUN_0102eb8c
 #define connect_radio_irq_handler     FUN_0103a38a
 #define enable_radio_irq              FUN_0102eb2c
-#define publish_radio_diagnostic      FUN_0102e284
+#define publish_radio_diagnostic      z_impl_z_log_msg_static_create
 
 struct timer_init {
     uint32_t period;

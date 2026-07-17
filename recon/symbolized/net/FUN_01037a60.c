@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_01037a60 @ 0x01037a60
  * public-name: FUN_01037a60
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -18,7 +20,7 @@ extern void FUN_01036144(unsigned int a);
 extern void FUN_01036f74(int a);
 extern void FUN_0103735c(void *list_head, void *node);
 extern void FUN_01039bb0(unsigned int a, unsigned int b);
-extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void assert_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
 #define DAT_37b44 ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/
 #define DAT_37b48 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
@@ -36,7 +38,7 @@ void FUN_01037a60(void)
 
     unsigned int exception = __get_IPSR() & 0x1fU;
     if (exception != 0) {
-        FUN_01039bbe(DAT_37b48, DAT_37b44, 0x57a, exception, 0);
+        assert_print(DAT_37b48, DAT_37b44, 0x57a, exception, 0);
         FUN_01039bb0(DAT_37b44, 0x57a);
     }
 
@@ -46,7 +48,7 @@ void FUN_01037a60(void)
 
     iVar2 = FUN_0103610c(DAT_37b4c);
     if (iVar2 == 0) {
-        FUN_01039bbe(DAT_37b48, DAT_37b50, 0x72, 0, 0);
+        assert_print(DAT_37b48, DAT_37b50, 0x72, 0, 0);
         FUN_01039bb0(DAT_37b50, 0x72);
     }
 
@@ -61,7 +63,7 @@ SHARED:
     *(volatile unsigned char *)((int)piVar8 + 0xd) =
         *(volatile unsigned char *)((int)piVar8 + 0xd) | 0x80;
     if (piVar8 == (int *)DAT_37b58) {
-        FUN_01039bbe(DAT_37b48, DAT_37b44, 0xc1, (unsigned int)(intptr_t)piVar8, 0);
+        assert_print(DAT_37b48, DAT_37b44, 0xc1, (unsigned int)(intptr_t)piVar8, 0);
         FUN_01039bb0(DAT_37b44, 0xc1);
         goto SHARED;
     }
@@ -96,7 +98,7 @@ LAB_b10:
         FUN_0102ec10(uVar10);
         return;
     }
-    FUN_01039bbe(DAT_37b48, DAT_37b50, 0x111, 0, 0);
+    assert_print(DAT_37b48, DAT_37b50, 0x111, 0, 0);
     FUN_01039bb0(DAT_37b50, 0x111);
     goto SHARED;
 }

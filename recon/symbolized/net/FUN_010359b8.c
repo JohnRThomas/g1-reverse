@@ -2,6 +2,9 @@
 /* readable reconstruction; identity: FUN_010359b8 @ 0x010359b8
  * public-name: FUN_010359b8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0c4                           @ 0x0103c0c4
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -15,11 +18,11 @@
 #include <stdint.h>
 #include <cmsis_gcc.h>
 
-extern void FUN_0102e284(unsigned int, unsigned int, void*, int);
+extern void z_impl_z_log_msg_static_create(unsigned int, unsigned int, void*, int);
 extern void FUN_0102f580(int);
 extern void FUN_01031820(unsigned int, int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern char *FUN_0103b15c(int);
 extern int FUN_0103b650(void);
 
@@ -64,12 +67,12 @@ void FUN_010359b8(unsigned int param_1, int param_2)
   *(unsigned int *)(frameA + 0x20) = 0;
   *(char **)(frameA + 0x1c) = local_44;
   *(unsigned int *)(frameA + 0x10) = DAT_01035ab8;
-  FUN_0102e284(DAT_01035abc, 0x2c40, frameA + 0x10, 0);
+  z_impl_z_log_msg_static_create(DAT_01035abc, 0x2c40, frameA + 0x10, 0);
 
   if ((param_2 != 0) && ((*(unsigned int *)(param_2 + 0x1c) & 0x1ff) != 0)) {
     *(unsigned int *)(frameB + 0x14) = DAT_01035ac0;
     *(unsigned int *)(frameB + 0x10) = 2;
-    FUN_0102e284(DAT_01035abc, 0x1040, frameB + 0x10, 0);
+    z_impl_z_log_msg_static_create(DAT_01035abc, 0x1040, frameB + 0x10, 0);
   }
 
   if (((iVar3 == 0) || (local_44 = FUN_0103b15c(iVar3), local_44 == (char *)0)) ||
@@ -82,11 +85,11 @@ void FUN_010359b8(unsigned int param_1, int param_2)
   *(unsigned short *)(frameA + 0x20) = 0x301;
   *(unsigned int *)(frameA + 0x18) = (unsigned int)iVar3;
   *(unsigned int *)(frameA + 0x10) = DAT_01035acc;
-  FUN_0102e284(DAT_01035abc, 0x2440, frameA + 0x10, 0);
+  z_impl_z_log_msg_static_create(DAT_01035abc, 0x2440, frameA + 0x10, 0);
 
   FUN_01031820(param_1, param_2);
   if (param_1 == 4) {
-    FUN_01039bbe(DAT_01035ad4, DAT_01035ad0, 0x93);
+    assert_print(DAT_01035ad4, DAT_01035ad0, 0x93);
     FUN_01039bb0(DAT_01035ad0, 0x93);
   }
   __set_BASEPRI(uVar4);

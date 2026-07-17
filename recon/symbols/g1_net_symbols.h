@@ -37,7 +37,7 @@
 #define ADDR_FUN_01012438_THUMB              0x1012439 /* FUN_01012438 */
 #define ADDR_FUN_010333e4_THUMB              0x10333e5 /* FUN_010333e4 */
 
-/* ---- RAM globals / kernel objects (223) ---- */
+/* ---- RAM globals / kernel objects (225) ---- */
 extern volatile unsigned int g_net_fault_canary_flag; /* @0x20070000 */
 extern volatile unsigned int g_net_esb_own_addr; /* @0x21000010 */
 extern volatile char g_net_ble_pending_channel_idx; /* @0x2100001c */
@@ -90,6 +90,7 @@ extern volatile unsigned int g_net_periodic_work_obj; /* @0x2100086c */
 extern volatile unsigned int g_net_layout_count_table; /* @0x21000a30 */
 extern volatile unsigned int g_net_mac_pib_ext; /* @0x21000a40 */
 extern volatile unsigned int g_21000a58; /* @0x21000a58 */
+extern volatile unsigned char g_21000a5c; /* @0x21000a5c */
 extern volatile unsigned int g_net_addr_record; /* @0x21000a60 */
 extern volatile unsigned int g_21000a64; /* @0x21000a64 */
 extern volatile unsigned int g_21000a68; /* @0x21000a68 */
@@ -119,6 +120,7 @@ extern volatile unsigned int g_ll_conn_trace_ctx_addr; /* @0x21000cd0 */
 extern volatile unsigned int g_ll_conn_pdu_hdr_ptr; /* @0x21000cfc */
 extern volatile unsigned int g_net_radio_addr_match_tbl; /* @0x21000d18 */
 extern volatile unsigned int g_net_rssi_cal_offset; /* @0x21000ea6 */
+extern volatile unsigned char g_21000ea7; /* @0x21000ea7 */
 extern volatile unsigned int g_net_esb_own_addr_valid; /* @0x21000ea8 */
 extern volatile unsigned int g_net_ble_conn_create_ctx; /* @0x21000eac */
 extern volatile unsigned short g_sdc_max_frag_len; /* @0x21000eae */
@@ -262,7 +264,7 @@ extern volatile unsigned char g_net_radio_trx_ppi_ch_e; /* @0x2100645e */
 extern volatile unsigned char g_esb_ppi_ch_id_5; /* @0x2100645f */
 extern volatile unsigned char g_esb_ppi_ch_id_6; /* @0x21006460 */
 
-/* ---- rodata table externs (190) ---- */
+/* ---- rodata table externs (194) ---- */
 extern const unsigned char rodata_10100a1[]; /* @0x10100a1 */
 extern const unsigned char rodata_10101cd[]; /* @0x10101cd */
 extern const unsigned char rodata_10102c1[]; /* @0x10102c1 */
@@ -310,6 +312,7 @@ extern const unsigned char rodata_103704c[]; /* @0x103704c */
 extern const unsigned char rodata_1037050[]; /* @0x1037050 */
 extern const unsigned char rodata_1037054[]; /* @0x1037054 */
 extern const unsigned char rodata_1037058[]; /* @0x1037058 */
+extern const unsigned char rodata_103aacd[]; /* @0x103aacd */
 extern const unsigned char rodata_103b6b3[]; /* @0x103b6b3 */
 extern const unsigned char rodata_103b6c1[]; /* @0x103b6c1 */
 extern const unsigned char rodata_103b6d3[]; /* @0x103b6d3 */
@@ -326,6 +329,7 @@ extern const unsigned char rodata_103c044[]; /* @0x103c044 */
 extern const unsigned char rodata_103c04c[]; /* @0x103c04c */
 extern const unsigned char rodata_103c05c[]; /* @0x103c05c */
 extern const unsigned char rodata_103c064[]; /* @0x103c064 */
+extern const unsigned char rodata_103c07c[]; /* @0x103c07c */
 extern const unsigned char rodata_103c094[]; /* @0x103c094 */
 extern const unsigned char rodata_103c0c4[]; /* @0x103c0c4 */
 extern const unsigned char rodata_103c0ec[]; /* @0x103c0ec */
@@ -381,6 +385,8 @@ extern const unsigned char rodata_103d406[]; /* @0x103d406 */
 extern const unsigned char rodata_103d42c[]; /* @0x103d42c */
 extern const unsigned char rodata_103d5d7[]; /* @0x103d5d7 */
 extern const unsigned char rodata_103d635[]; /* @0x103d635 */
+extern const unsigned char rodata_103d676[]; /* @0x103d676 */
+extern const unsigned char rodata_103d6b5[]; /* @0x103d6b5 */
 extern const unsigned char rodata_103d73e[]; /* @0x103d73e */
 extern const unsigned char rodata_103d7fb[]; /* @0x103d7fb */
 extern const unsigned char rodata_103d82a[]; /* @0x103d82a */
@@ -453,5 +459,9 @@ extern const unsigned char rodata_103ebf5[]; /* @0x103ebf5 */
 extern const unsigned char rodata_103ec0a[]; /* @0x103ec0a */
 extern const unsigned char rodata_103ed11[]; /* @0x103ed11 */
 extern const unsigned char rodata_103ed18[]; /* @0x103ed18 */
+
+/* Generic fallbacks for sources not including liblc3 tables.h. */
+#ifndef G1_APP_USE_LIBLC3_TABLE_DECLS
+#endif
 
 #endif

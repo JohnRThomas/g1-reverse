@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_010362d0 @ 0x010362d0
  * public-name: FUN_010362d0
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -20,7 +22,7 @@ extern int FUN_010375b8(void *lock, uint32_t key, void *queue, void *item,
 extern void *FUN_010379d4(void *queue);
 extern __attribute__((noreturn)) void FUN_01039bb0(uint32_t source,
                                                    uint32_t line);
-extern void FUN_01039bbe(uint32_t module, uint32_t source, uint32_t line, ...);
+extern void assert_print(uint32_t module, uint32_t source, uint32_t line, ...);
 extern void FUN_0103b614(void *destination, const void *source, uint32_t size);
 
 typedef struct {
@@ -53,7 +55,7 @@ int FUN_010362d0(queue_t *queue, void *destination,
     /* Zephyr callers enter this API from thread context.  Timed queue writes
      * from an ISR are forbidden by the kernel contract. */
     if ((__get_IPSR() & 0x1fu) != 0 && (timeout_low | timeout_high) != 0) {
-        FUN_01039bbe(0x0103d2a7, 0x0103ea89, 0xd2,
+        assert_print(0x0103d2a7, 0x0103ea89, 0xd2,
                      timeout_low | timeout_high, queue, destination, timeout_low);
         queue_fatal(0x0103ea89, 0xd2);
     }
@@ -64,7 +66,7 @@ int FUN_010362d0(queue_t *queue, void *destination,
     __ISB();
 
     if (FUN_0103610c(lock) == 0) {
-        FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0x72);
+        assert_print(0x0103d2a7, 0x0103d3b6, 0x72);
         queue_fatal(0x0103d3b6, 0x72);
     }
 
@@ -90,7 +92,7 @@ int FUN_010362d0(queue_t *queue, void *destination,
         if (item != 0) {
             if (queue->read_cursor < queue->buffer_begin ||
                 queue->read_cursor >= queue->buffer_end) {
-                FUN_01039bbe(0x0103d2a7, 0x0103ea89, 0xeb,
+                assert_print(0x0103d2a7, 0x0103ea89, 0xeb,
                              queue->buffer_begin, queue->read_cursor, destination,
                              timeout_low);
                 queue_fatal(0x0103ea89, 0xeb);
@@ -111,7 +113,7 @@ int FUN_010362d0(queue_t *queue, void *destination,
 
     result = FUN_01036128(lock) ? result : 0;
     if (result == 0) {
-        FUN_01039bbe(0x0103d2a7, 0x0103d3b6, 0xf0);
+        assert_print(0x0103d2a7, 0x0103d3b6, 0xf0);
         queue_fatal(0x0103d3b6, 0xf0);
     }
     __set_BASEPRI(key);

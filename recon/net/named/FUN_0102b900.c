@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102b900 @ 0x0102b900
  * public-name: FUN_0102b900
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103d23b                           @ 0x0103d23b
  *   g_zephyr_log_level                       @ 0x21000580
@@ -10,7 +12,7 @@
 
 extern int FUN_01036198(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
-extern void FUN_01039722(const void *message, int status);
+extern void printk(const void *message, int status);
 
 #define G1_ARCH_RUNTIME_EXCEPTION(reason) do { \
     __asm__ volatile("eors.n r0, r0\n\t" \
@@ -30,7 +32,7 @@ int FUN_0102b900(uint32_t value)
         return 0;
 
     if (*(volatile int *)0x21000580u > 0)
-        FUN_01039722((const void *)0x0103d23bu, status);
+        printk((const void *)0x0103d23bu, status);
 
     exception_r1 = (unsigned int)status;
     __asm__ volatile("" : : "r"(exception_r1));

@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01036b18 @ 0x01036b18
  * public-name: FUN_01036b18
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103eaed                           @ 0x0103eaed
@@ -9,7 +11,7 @@
 #include <stdint.h>
 
 extern void FUN_01039bb0(unsigned int a, unsigned int b);
-extern void FUN_01039bbe(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
+extern void assert_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern int FUN_0103b14a(void);
 extern void FUN_0103b25a(int a);
 
@@ -36,7 +38,7 @@ unsigned int FUN_01036b18(unsigned int *param_1, int *param_2, unsigned int para
     }
     if ((int)(param_1[3] << 0x1f) < 0) {
         if (param_1[2] == 0) {
-            FUN_01039bbe(DAT_be4, DAT_be0, 0x14e, 0, param_4);
+            assert_print(DAT_be4, DAT_be0, 0x14e, 0, param_4);
             FUN_01039bb0(DAT_be0, 0x14e);
             /* real hardware: falls through with r3 still == param_1[2] (==0 here) */
         }

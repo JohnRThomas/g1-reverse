@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01037130 @ 0x01037130
  * public-name: FUN_01037130
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -9,7 +11,7 @@
 extern int FUN_01036128(int a);
 extern void FUN_0102ec10(int a);
 extern void FUN_01039bb0(int a, int b);
-extern void FUN_01039bbe(int a, int b, int c);
+extern void assert_print(int a, int b, int c);
 
 static inline unsigned int read_ipsr(void)
 {
@@ -43,7 +45,7 @@ void FUN_01037130(unsigned int param_1, unsigned int param_2)
                     FUN_0102ec10((int)r5);
                     return;
                 }
-                FUN_01039bbe(0x103d2a7, 0x103d3b6, 0x111);
+                assert_print(0x103d2a7, 0x103d3b6, 0x111);
                 r1val = 0x111;
                 FUN_01039bb0(0x103d3b6, r1val);
                 FUN_0102ec10((int)r5);
@@ -58,7 +60,7 @@ void FUN_01037130(unsigned int param_1, unsigned int param_2)
         isb_sy();
         return;
     }
-    FUN_01039bbe(0x103d2a7, 0x103d3b6, 0xf0);
+    assert_print(0x103d2a7, 0x103d3b6, 0xf0);
     r1val = 0xf0;
     FUN_01039bb0(0x103d3b6, r1val);
     FUN_0102ec10((int)r5);

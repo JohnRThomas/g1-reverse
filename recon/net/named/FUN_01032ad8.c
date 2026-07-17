@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01032ad8 @ 0x01032ad8
  * public-name: FUN_01032ad8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e3bf                           @ 0x0103e3bf
@@ -10,7 +12,7 @@
 /* net-core FUN_01032ad8 @ 0x1032ad8  (parity 300 trials PROVEN) */
 extern void FUN_01021920(int a, void *b, int c, int d, int e);
 extern int FUN_010218fc(int a);
-extern int FUN_01039bbe(int a, int b, int c);
+extern int assert_print(int a, int b, int c);
 extern int FUN_01039bb0(int a, int b);
 
 void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param_3)
@@ -29,7 +31,7 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
     int iVar3 = FUN_010218fc((int)&local_c + 1);
     int r0carry;
     if (iVar3 != 0) {
-        FUN_01039bbe(0x103d2a7, 0x103e3bf, 0x242);
+        assert_print(0x103d2a7, 0x103e3bf, 0x242);
         r0carry = FUN_01039bb0(0x103e3bf, 0x242);
     } else {
         r0carry = 0;

@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_010384a8 @ 0x010384a8
  * public-name: FUN_010384a8
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -19,7 +21,7 @@ extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void FUN_0103b3e0(int, int, char*);
 
 int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
@@ -42,7 +44,7 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
     InstructionSynchronizationBarrier(0xf);
     iVar2 = FUN_0103610c(uVar3);
     if (iVar2 == 0) {
-      FUN_01039bbe(0x0103d2a7u, 0x0103d3b6u, 0x72u);
+      assert_print(0x0103d2a7u, 0x0103d3b6u, 0x72u);
       uVar8 = 0x72; uVar3 = 0x0103d3b6u;
       goto LAB_010385aa;
     }
@@ -64,7 +66,7 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
         if (*(volatile int*)(*(volatile int*)(param_1+0x10)+0x24) != 0) { uVar5 = 0x10; goto LAB_0103851c; }
         break;
       default:
-        FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 99u);
+        assert_print(0x0103d2a7u, 0x0103eb7fu, 99u);
         uVar8 = 99; uVar3 = 0x0103eb7fu;
         goto LAB_010385aa;
     }
@@ -87,14 +89,14 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
         case 1:
           iVar2 = *(volatile int*)(param_1+0x10);
           if (iVar2 == 0) {
-            FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 0x95u);
+            assert_print(0x0103d2a7u, 0x0103eb7fu, 0x95u);
             uVar8 = 0x95; uVar3 = 0x0103eb7fu;
             goto LAB_010385aa;
           }
           break;
         case 2:
           if (*(volatile int*)(param_1+0x10) == 0) {
-            FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 0x8du);
+            assert_print(0x0103d2a7u, 0x0103eb7fu, 0x8du);
             uVar8 = 0x8d; uVar3 = 0x0103eb7fu;
             goto LAB_010385aa;
           }
@@ -102,7 +104,7 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
           break;
         case 4:
           if (*(volatile int*)(param_1+0x10) == 0) {
-            FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 0x91u);
+            assert_print(0x0103d2a7u, 0x0103eb7fu, 0x91u);
             uVar8 = 0x91; uVar3 = 0x0103eb7fu;
             goto LAB_010385aa;
           }
@@ -110,14 +112,14 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
           break;
         case 8:
           if (*(volatile int*)(param_1+0x10) == 0) {
-            FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 0x99u);
+            assert_print(0x0103d2a7u, 0x0103eb7fu, 0x99u);
             uVar8 = 0x99; uVar3 = 0x0103eb7fu;
             goto LAB_010385aa;
           }
           iVar2 = *(volatile int*)(param_1+0x10) + 0x28;
           break;
         default:
-          FUN_01039bbe(0x0103d2a7u, 0x0103eb7fu, 0xa6u);
+          assert_print(0x0103d2a7u, 0x0103eb7fu, 0xa6u);
           uVar8 = 0xa6; uVar3 = 0x0103eb7fu;
           goto LAB_010385aa;
       }
@@ -130,7 +132,7 @@ int FUN_010384a8(int param_1,int param_2,char *param_3,int param_4)
     iVar2 = FUN_01036128(uVar3);
     param_1 = param_1 + 0x14;
     if (iVar2 == 0) {
-      FUN_01039bbe(0x0103d2a7u, 0x0103d3b6u, 0xf0u);
+      assert_print(0x0103d2a7u, 0x0103d3b6u, 0xf0u);
       uVar8 = 0xf0; uVar3 = 0x0103d3b6u;
     LAB_010385aa:
       /* Shared abort trampoline: real hardware never returns from this call

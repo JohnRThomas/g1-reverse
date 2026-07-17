@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01034578 @ 0x01034578
  * public-name: FUN_01034578
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e66f                           @ 0x0103e66f
@@ -11,7 +13,7 @@
 
 extern unsigned int FUN_010344a8(void);
 extern int FUN_01034368(unsigned int);
-extern void FUN_01039bbe(unsigned int, unsigned int, unsigned int);
+extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void FUN_01039bb0(unsigned int, unsigned int) __attribute__((noreturn));
 
 void FUN_01034578(void)
@@ -36,7 +38,7 @@ void FUN_01034578(void)
         *(volatile unsigned int*)((char*)base + uVar5 * 8) = 0;
         int iVar4 = FUN_01034368(uVar2);
         if (iVar4 != (int)0x0bad0000) {
-            FUN_01039bbe(0x103d2a7, 0x103e66f, 0x15f);
+            assert_print(0x103d2a7, 0x103e66f, 0x15f);
             FUN_01039bb0(0x103e66f, 0x15f);
         }
     }

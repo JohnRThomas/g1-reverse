@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_01036410 @ 0x01036410
  * public-name: FUN_01036410
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -21,7 +23,7 @@ extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
 extern int FUN_010375b8(unsigned int, int, void*, int, int, int);
 extern int FUN_01037130(unsigned int, int);
-extern void FUN_01039bbe(int,int,int);
+extern void assert_print(int,int,int);
 extern void FUN_01039bb0(int,int);
 extern int FUN_0103b1c4(int,int);
 
@@ -38,7 +40,7 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
 {
     unsigned int ipsr = readIPSR();
     if (ipsr != 0) {
-        FUN_01039bbe(STRA, STR65, 0x65);
+        assert_print(STRA, STR65, 0x65);
         panic(STR65, 0x65);
     }
 
@@ -52,7 +54,7 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
 
     int iVar3 = FUN_0103610c(OBJ);
     if (iVar3 == 0) {
-        FUN_01039bbe(STRA, STR72, 0x72);
+        assert_print(STRA, STR72, 0x72);
         panic(STR72, 0x72);
     }
     FUN_01036144(OBJ);
@@ -89,7 +91,7 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
             isb_();
             return 0xfffffff0u;
         }
-        FUN_01039bbe(STRA, STR72, 0xf0);
+        assert_print(STRA, STR72, 0xf0);
         panic(STR72, 0xf0);
     } else {
         signed char cVar5 = *(volatile signed char*)(tab8 + 0xe);
@@ -113,7 +115,7 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
 
         iVar4 = FUN_0103610c(OBJ);
         if (iVar4 == 0) {
-            FUN_01039bbe(STRA, STR72, 0x72);
+            assert_print(STRA, STR72, 0x72);
             panic(STR72, 0x72);
         }
         FUN_01036144(OBJ);
@@ -145,6 +147,6 @@ unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int p
         }
     }
 
-    FUN_01039bbe(STRA, STR72, 0xf0);
+    assert_print(STRA, STR72, 0xf0);
     panic(STR72, 0xf0);
 }
