@@ -53,6 +53,38 @@
    "name": "rpmsg_send_offchannel_raw",
    "evidence": "Instruction-exact pinned OpenAMP public export: the firmware and rpmsg.c object share the six-argument ABI and the send_offchannel_raw operation at rdev->ops + 0x78. The nearby five-argument nocopy routine was an approximate-signature false label. Raw identity remains FUN_00070f1c."
   },
+  "0x00071560": {
+   "name": "rpmsg_init_vdev",
+   "evidence": "Pinned OpenAMP rpmsg_virtio default-config wrapper. Raw identity remains FUN_00071560 at 0x00071560."
+  },
+  "0x000715b8": {
+   "name": "value_encode_len",
+   "evidence": "Pinned zcbor v0.7.0 length encoder with reviewed capacity, header, and byte-order cases. Raw identity remains FUN_000715b8 at 0x000715b8."
+  },
+  "0x00071b2c": {
+   "name": "k_heap_free",
+   "evidence": "Configured Zephyr 3.4.99 kernel heap release path. Raw identity remains FUN_00071b2c at 0x00071b2c."
+  },
+  "0x00074184": {
+   "name": "z_thread_priority_set",
+   "evidence": "Configured Zephyr 3.4.99 thread-priority setter. Raw identity remains FUN_00074184 at 0x00074184."
+  },
+  "0x000748b8": {
+   "name": "z_thread_abort",
+   "evidence": "Configured non-SMP Zephyr 3.4.99 abort/end-thread path with reviewed thread, IRQ, queue, and terminal cases. Raw identity remains FUN_000748b8 at 0x000748b8."
+  },
+  "0x00075864": {
+   "name": "z_heap_aligned_alloc",
+   "evidence": "Configured Zephyr aligned allocation metadata wrapper. Raw identity remains FUN_00075864 at 0x00075864."
+  },
+  "0x000758cc": {
+   "name": "k_aligned_alloc",
+   "evidence": "Configured Zephyr public aligned allocator validation wrapper. Raw identity remains FUN_000758cc at 0x000758cc."
+  },
+  "0x00075e14": {
+   "name": "__ieee754_sqrt",
+   "evidence": "Pinned newlib 3.3.0 fdlibm binary64 square-root implementation, hard-float d0 ABI. Raw identity remains FUN_00075e14 at 0x00075e14."
+  },
   "0x0007e212": {
    "name": "onoff_manager_init",
    "evidence": "Instruction-exact public owner in pinned Zephyr lib/os/onoff.c. Raw identity remains FUN_0007e212."
