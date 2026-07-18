@@ -71,6 +71,22 @@ class NetCurrentCfgOverlayTest(unittest.TestCase):
         self.assertEqual(self.data["latest_proof_receipt"]["integration_commit"],
                          "c0fe95af")
 
+    def test_size_tightening_hashes_are_reverified(self):
+        rows = {row["name"]: row
+                for row in self.data["size_tightening_proofs"]}
+        self.assertEqual(
+            set(rows),
+            {"FUN_010333b4", "FUN_0103689c", "FUN_01035fa0",
+             "FUN_01033b18", "FUN_01036128", "FUN_010250d0",
+             "FUN_0102a122", "FUN_0102ff54"},
+        )
+        self.assertEqual(sum(row["checked"] for row in rows.values()), 299)
+        self.assertEqual(
+            {row["integration_commit"] for row in rows.values()},
+            {"127c0f4c", "2ebf5e43", "144e82d9"},
+        )
+        self.assertTrue(all(row["status"] == "PASS" for row in rows.values()))
+
 
 if __name__ == "__main__":
     unittest.main()

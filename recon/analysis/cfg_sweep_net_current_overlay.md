@@ -4,13 +4,14 @@ This exact-hash layer preserves the frozen 1,090-source sweep and all 33 previou
 
 - Previous covered inventory: **1,131 PASS; 0 unresolved**
 - Current covered inventory: **1,142 PASS; 0 unresolved**
-- Inventory digest: `3c01f787b6baf94d637e82d5b2afda0be4f60a4cb97c9ed515e1ff783cf1a802`
+- Inventory digest: `12aaa76929d40ebf8d73c9c59dd9f3835900361a0fbc9680bbf7090ce17d863c`
 - New proof: `FUN_0101b4f4` / `sdc_event_publish`, extent `88`, CFG **PASS 5/5**
 - Source: `recon/net/src/FUN_0101b4f4.c` (`9aef41538769aca5e3715fd52eee3e80669110008bcf6febeb9a869b69113778`)
 - Receipt: `recon/ownership/net_sdc_event_publish_recovery.json` (`6153a508f8e75686af4249d349152a62a6644c6ef3aa0bb85017e31c826b024e`)
 - ESB main: `FUN_0102a720` / `g1_cpunet_main`, extent `1000`, CFG **PASS 5/5**, prefix 512 events
 - ESB clock/start closure: 6 new PASS roots; `FUN_0102b31c` freshly reverified
 - Latest callback closure: 11 new PASS roots, 6 changed-source PASS rechecks, 376 checks
+- Size tightening: 8 changed-source PASS rechecks, 299 checks; commits `127c0f4c`, `2ebf5e43`, `144e82d9`
 - Cohesive integration commit: `c0fe95af`
 
 ## Current verifier tool hashes

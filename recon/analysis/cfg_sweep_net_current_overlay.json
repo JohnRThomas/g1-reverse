@@ -108,7 +108,7 @@
   }
  ],
  "current_inventory_count": 1142,
- "current_source_inventory_digest": "3c01f787b6baf94d637e82d5b2afda0be4f60a4cb97c9ed515e1ff783cf1a802",
+ "current_source_inventory_digest": "12aaa76929d40ebf8d73c9c59dd9f3835900361a0fbc9680bbf7090ce17d863c",
  "current_source_tree_fully_covered": true,
  "frozen_parent": {
   "inventory_count": 1090,
@@ -666,6 +666,112 @@
   }
  ],
  "schema": 1,
+ "size_tightening_proofs": [
+  {
+   "analysis_address": "0x010250d0",
+   "checked": 43,
+   "cover_cases": 3,
+   "integration_commit": "144e82d9",
+   "name": "FUN_010250d0",
+   "previous_source_sha256": "506dd0a98a48a79a47866b3634476fce0a7b434efbf1b6f465c74df074c3b4b1",
+   "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+   "receipt_sha256": "2a7bd7a67f40821f24c6e1c4744c2cf4d22f5b86571b65f73543e6c63139e30a",
+   "source": "recon/net/src/FUN_010250d0.c",
+   "source_sha256": "85acee14bae7cc20b0df5ed7ea87c2fa35b8b11585996336036cd3a8f0c49f30",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102a122",
+   "checked": 42,
+   "cover_cases": 2,
+   "integration_commit": "144e82d9",
+   "name": "FUN_0102a122",
+   "previous_source_sha256": "342f800ac21020202c27752dfa380ed709d2687dee96e55e12a939482fe4ed30",
+   "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+   "receipt_sha256": "2a7bd7a67f40821f24c6e1c4744c2cf4d22f5b86571b65f73543e6c63139e30a",
+   "source": "recon/net/src/FUN_0102a122.c",
+   "source_sha256": "5948596958dff3f769083bbf2aaf83dd20f8cb0278b7051f565886e76d1ba526",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102ff54",
+   "checked": 42,
+   "cover_cases": 2,
+   "integration_commit": "144e82d9",
+   "name": "FUN_0102ff54",
+   "previous_source_sha256": "17e9cc573eaf51c161676dacebab755e69f78d83da7ec4f4038b81ae6ac68393",
+   "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+   "receipt_sha256": "2a7bd7a67f40821f24c6e1c4744c2cf4d22f5b86571b65f73543e6c63139e30a",
+   "source": "recon/net/src/FUN_0102ff54.c",
+   "source_sha256": "b6c1cc9bb4ad8fa8ac73a348c9b28fae63193e40219a3afcc23b13c497bbae91",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010333b4",
+   "checked": 8,
+   "cover_cases": 8,
+   "integration_commit": "127c0f4c",
+   "name": "FUN_010333b4",
+   "previous_source_sha256": "bf784344a4d4586dbd6d5b807e5468aab20499493c6d4d2b73677f3b9a25c4c2",
+   "receipt": "recon/analysis/net_fun_010333b4_codegen_receipt.md",
+   "receipt_sha256": "9b375abe621259312affecb8ce54296540ecd0a62a4231f7d305678ec74de7e3",
+   "source": "recon/net/src/FUN_010333b4.c",
+   "source_sha256": "8945b8de37bae5d9d471d16597c976dc5cd6f47268678c333a8fa36d7c973145",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01033b18",
+   "checked": 40,
+   "cover_cases": 0,
+   "integration_commit": "2ebf5e43",
+   "name": "FUN_01033b18",
+   "previous_source_sha256": "25a90642d480097ce0746918b8455cdfc0d2783d462c77a3b86f9e3bb963cd2a",
+   "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+   "receipt_sha256": "af9220ffd39fa4ac64b35d9011f0ff395bac7bb12ffed2c8e21db5b8cc4622a6",
+   "source": "recon/net/src/FUN_01033b18.c",
+   "source_sha256": "93b6f579d8005fcc9ca08ffdafd503825da2a60a8c1aba63a9bc130626017a9f",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01035fa0",
+   "checked": 42,
+   "cover_cases": 2,
+   "integration_commit": "2ebf5e43",
+   "name": "FUN_01035fa0",
+   "previous_source_sha256": "88a568c0fcff8fb4d9fe10c70fc93dc1b3f8c1a73ed96275f5d732be034360fb",
+   "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+   "receipt_sha256": "af9220ffd39fa4ac64b35d9011f0ff395bac7bb12ffed2c8e21db5b8cc4622a6",
+   "source": "recon/net/src/FUN_01035fa0.c",
+   "source_sha256": "756fb9b57f558e4c22458763e8122412ef9e4e1d4ed8264962b9208256c91458",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01036128",
+   "checked": 40,
+   "cover_cases": 0,
+   "integration_commit": "2ebf5e43",
+   "name": "FUN_01036128",
+   "previous_source_sha256": "61c708ff0836b97e261e8a6d3c625fd3bc5a5e41d4122b5eea90f81c94ecde45",
+   "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+   "receipt_sha256": "af9220ffd39fa4ac64b35d9011f0ff395bac7bb12ffed2c8e21db5b8cc4622a6",
+   "source": "recon/net/src/FUN_01036128.c",
+   "source_sha256": "901cd5548e77d43cb20e8d2de1c554ea6747b75ad972f4626b45ca8b67df7567",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0103689c",
+   "checked": 42,
+   "cover_cases": 2,
+   "integration_commit": "2ebf5e43",
+   "name": "FUN_0103689c",
+   "previous_source_sha256": "0f9d946248fa5d93d10457c74138ced9fb92a476716e586a60028a2ce7a6b9d5",
+   "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+   "receipt_sha256": "af9220ffd39fa4ac64b35d9011f0ff395bac7bb12ffed2c8e21db5b8cc4622a6",
+   "source": "recon/net/src/FUN_0103689c.c",
+   "source_sha256": "70a468cdd0738a30ca40b898c8cb99621a37c45a49f2a0544d2af8735d5d0fd9",
+   "status": "PASS"
+  }
+ ],
  "source_drift": [],
  "tool_hashes": {
   "tools/cfg_verify.py": "b9507f5c35130fccba6be686418b42972285aeb6f83aeb804d9541520aea1b90",

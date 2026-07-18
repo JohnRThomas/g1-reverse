@@ -29,6 +29,9 @@ INPUT_HASHES = {
     "recon/ownership/net_esb_clock_start_closure.json": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
     "recon/ownership/net_esb_boot_root.json": "a569b54e5f32a6bd9fa6bf53c89d94e8a80adcf4f9789527a23c1cb9dabb67d4",
     "recon/ownership/net_current_callback_recovery.json": "b51685e0493bfb9b38318c0e4c96e90e2236815275549cf57b5e0fb74cd0b116",
+    "recon/analysis/net_fun_010333b4_codegen_receipt.md": "9b375abe621259312affecb8ce54296540ecd0a62a4231f7d305678ec74de7e3",
+    "recon/analysis/net_size_shrink_lane_b.json": "af9220ffd39fa4ac64b35d9011f0ff395bac7bb12ffed2c8e21db5b8cc4622a6",
+    "recon/analysis/net_codegen_shrink_lane_c.json": "2a7bd7a67f40821f24c6e1c4744c2cf4d22f5b86571b65f73543e6c63139e30a",
 }
 TOOL_HASHES = {
     "tools/cfg_verify.py": "b9507f5c35130fccba6be686418b42972285aeb6f83aeb804d9541520aea1b90",
@@ -235,6 +238,109 @@ def callback_recovery():
     return added, changed
 
 
+SIZE_TIGHTENING = {
+    "FUN_010333b4": {
+        "previous_source_sha256": "bf784344a4d4586dbd6d5b807e5468aab20499493c6d4d2b73677f3b9a25c4c2",
+        "source_sha256": "8945b8de37bae5d9d471d16597c976dc5cd6f47268678c333a8fa36d7c973145",
+        "checked": 8, "cover_cases": 8,
+        "receipt": "recon/analysis/net_fun_010333b4_codegen_receipt.md",
+        "commit": "127c0f4c",
+    },
+    "FUN_0103689c": {
+        "previous_source_sha256": "0f9d946248fa5d93d10457c74138ced9fb92a476716e586a60028a2ce7a6b9d5",
+        "source_sha256": "70a468cdd0738a30ca40b898c8cb99621a37c45a49f2a0544d2af8735d5d0fd9",
+        "checked": 42, "cover_cases": 2,
+        "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+        "commit": "2ebf5e43",
+    },
+    "FUN_01035fa0": {
+        "previous_source_sha256": "88a568c0fcff8fb4d9fe10c70fc93dc1b3f8c1a73ed96275f5d732be034360fb",
+        "source_sha256": "756fb9b57f558e4c22458763e8122412ef9e4e1d4ed8264962b9208256c91458",
+        "checked": 42, "cover_cases": 2,
+        "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+        "commit": "2ebf5e43",
+    },
+    "FUN_01033b18": {
+        "previous_source_sha256": "25a90642d480097ce0746918b8455cdfc0d2783d462c77a3b86f9e3bb963cd2a",
+        "source_sha256": "93b6f579d8005fcc9ca08ffdafd503825da2a60a8c1aba63a9bc130626017a9f",
+        "checked": 40, "cover_cases": 0,
+        "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+        "commit": "2ebf5e43",
+    },
+    "FUN_01036128": {
+        "previous_source_sha256": "61c708ff0836b97e261e8a6d3c625fd3bc5a5e41d4122b5eea90f81c94ecde45",
+        "source_sha256": "901cd5548e77d43cb20e8d2de1c554ea6747b75ad972f4626b45ca8b67df7567",
+        "checked": 40, "cover_cases": 0,
+        "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+        "commit": "2ebf5e43",
+    },
+    "FUN_010250d0": {
+        "previous_source_sha256": "506dd0a98a48a79a47866b3634476fce0a7b434efbf1b6f465c74df074c3b4b1",
+        "source_sha256": "85acee14bae7cc20b0df5ed7ea87c2fa35b8b11585996336036cd3a8f0c49f30",
+        "checked": 43, "cover_cases": 3,
+        "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+        "commit": "144e82d9",
+    },
+    "FUN_0102a122": {
+        "previous_source_sha256": "342f800ac21020202c27752dfa380ed709d2687dee96e55e12a939482fe4ed30",
+        "source_sha256": "5948596958dff3f769083bbf2aaf83dd20f8cb0278b7051f565886e76d1ba526",
+        "checked": 42, "cover_cases": 2,
+        "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+        "commit": "144e82d9",
+    },
+    "FUN_0102ff54": {
+        "previous_source_sha256": "17e9cc573eaf51c161676dacebab755e69f78d83da7ec4f4038b81ae6ac68393",
+        "source_sha256": "b6c1cc9bb4ad8fa8ac73a348c9b28fae63193e40219a3afcc23b13c497bbae91",
+        "checked": 42, "cover_cases": 2,
+        "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+        "commit": "144e82d9",
+    },
+}
+
+
+def size_tightening_recovery():
+    lane_b = json.loads((ROOT / "recon/analysis/net_size_shrink_lane_b.json").read_text())
+    lane_c = json.loads((ROOT / "recon/analysis/net_codegen_shrink_lane_c.json").read_text())
+    radio = (ROOT / "recon/analysis/net_fun_010333b4_codegen_receipt.md").read_text()
+    if ({row["name"] for row in lane_b.get("functions", [])} !=
+            {"FUN_0103689c", "FUN_01035fa0", "FUN_01033b18", "FUN_01036128"} or
+            {row["raw_symbol"] for row in lane_c.get("proofs", [])} !=
+            {"FUN_010250d0", "FUN_0102a122", "FUN_0102ff54"} or
+            "`PASS`, 8 CFG-directed cases" not in radio or
+            "Mutation gate" not in radio):
+        raise ValueError("size-tightening receipt identity/proof drift")
+    lane_b_rows = {row["name"]: row for row in lane_b["functions"]}
+    lane_c_rows = {row["raw_symbol"]: row for row in lane_c["proofs"]}
+    result = []
+    for name, expected in SIZE_TIGHTENING.items():
+        source = "recon/net/src/%s.c" % name
+        if sha256(ROOT / source) != expected["source_sha256"]:
+            raise ValueError("size-tightened source hash drift: %s" % name)
+        if name in lane_b_rows:
+            if not lane_b_rows[name]["cfg_verify"].startswith("PASS ") or not lane_b_rows[name]["mutation_gate"]:
+                raise ValueError("lane-B proof drift: %s" % name)
+        elif name in lane_c_rows:
+            row = lane_c_rows[name]
+            if (row["source_sha256"] != expected["source_sha256"] or
+                    row["cfg_result"]["status"] != "PASS" or
+                    row["mutation"]["result"]["status"] != "FAIL"):
+                raise ValueError("lane-C proof drift: %s" % name)
+        result.append({
+            "name": name,
+            "analysis_address": "0x" + name.removeprefix("FUN_"),
+            "status": "PASS",
+            "checked": expected["checked"],
+            "cover_cases": expected["cover_cases"],
+            "source": source,
+            "previous_source_sha256": expected["previous_source_sha256"],
+            "source_sha256": expected["source_sha256"],
+            "receipt": expected["receipt"],
+            "receipt_sha256": INPUT_HASHES[expected["receipt"]],
+            "integration_commit": expected["commit"],
+        })
+    return sorted(result, key=lambda row: row["name"])
+
+
 def build():
     pinned_inputs()
     expected = prior_inventory()
@@ -278,6 +384,13 @@ def build():
             raise ValueError("changed callback parent hash drift: %s" % name)
         expected[name] = row["source_sha256"]
 
+    size_tightening = size_tightening_recovery()
+    for row in size_tightening:
+        name = row["name"]
+        if expected.get(name) != row["previous_source_sha256"]:
+            raise ValueError("size-tightening parent hash drift: %s" % name)
+        expected[name] = row["source_sha256"]
+
     current = {path.stem: sha256(path)
                for path in (ROOT / "recon/net/src").glob("*.c")}
     if set(current) != set(expected):
@@ -302,6 +415,7 @@ def build():
         "reverified_existing": existing,
         "latest_added_proofs": callback_additions,
         "latest_changed_proofs": callback_changes,
+        "size_tightening_proofs": size_tightening,
         "latest_proof_receipt": {
             "path": str(CALLBACK_RECEIPT.relative_to(ROOT)),
             "sha256": INPUT_HASHES[str(CALLBACK_RECEIPT.relative_to(ROOT))],
@@ -343,6 +457,7 @@ def markdown(data):
             boot["checked"], boot["cover_cases"], boot["prefix_events"]),
         "- ESB clock/start closure: 6 new PASS roots; `FUN_0102b31c` freshly reverified",
         "- Latest callback closure: 11 new PASS roots, 6 changed-source PASS rechecks, 376 checks",
+        "- Size tightening: 8 changed-source PASS rechecks, 299 checks; commits `127c0f4c`, `2ebf5e43`, `144e82d9`",
         "- Cohesive integration commit: `c0fe95af`",
         "", "## Current verifier tool hashes", "",
         *["- `%s`: `%s`" % item for item in sorted(data["tool_hashes"].items())],
