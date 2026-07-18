@@ -1,0 +1,351 @@
+{
+  "functions": [
+    {
+      "analysis_address": "0x0100ef08",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "primary_symbol": "FUN_0100ef08",
+      "raw_symbol": "FUN_0100ef08",
+      "required_spellings": [
+        "FUN_0100ef08"
+      ],
+      "runtime_address": "0x0100f708",
+      "source": "recon/net/src/FUN_0100ef08.c",
+      "source_sha256": "8686430535efc4878ba4d863720714116bf8e53dba521d975faefca27e5f179c",
+      "true_executable_extent": 60
+    },
+    {
+      "analysis_address": "0x0100f86c",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [
+          [
+            0,
+            4
+          ]
+        ],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0100f86c",
+      "raw_symbol": "FUN_0100f86c",
+      "required_spellings": [
+        "FUN_0100f86c"
+      ],
+      "runtime_address": "0x0101006c",
+      "source": "recon/net/src/FUN_0100f86c.c",
+      "source_sha256": "acce95c1babb86be41b16fe9adca69573b908951f67a49731613a72dacc54613",
+      "true_executable_extent": 50
+    },
+    {
+      "analysis_address": "0x0101233c",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0101233c",
+      "raw_symbol": "FUN_0101233c",
+      "required_spellings": [
+        "FUN_0101233c"
+      ],
+      "runtime_address": "0x01012b3c",
+      "source": "recon/net/src/FUN_0101233c.c",
+      "source_sha256": "7ded5125335b083603c853ec11a8badad51a210d7c2d110e88b8f59eeac59e83",
+      "true_executable_extent": 230
+    },
+    {
+      "analysis_address": "0x01012694",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01012694",
+      "raw_symbol": "FUN_01012694",
+      "required_spellings": [
+        "FUN_01012694"
+      ],
+      "runtime_address": "0x01012e94",
+      "source": "recon/net/src/FUN_01012694.c",
+      "source_sha256": "c448591ed10116e14cb9f6b017e0adcf5550a56bf37551d8d07f3d0a3274008f",
+      "true_executable_extent": 18
+    },
+    {
+      "analysis_address": "0x0101e1e4",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "controller_timing_defaults_apply",
+      "raw_symbol": "FUN_0101e1e4",
+      "required_spellings": [
+        "FUN_0101e1e4",
+        "controller_timing_defaults_apply"
+      ],
+      "runtime_address": "0x0101e9e4",
+      "source": "recon/net/src/controller_timing_defaults_apply.c",
+      "source_sha256": "2a2050224a16e01548b1ec26121105f4ccc20830e30038beaa8251c5057f751f",
+      "true_executable_extent": 144
+    },
+    {
+      "analysis_address": "0x01022e34",
+      "archive_family": "mpsl",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01022e34",
+      "raw_symbol": "FUN_01022e34",
+      "required_spellings": [
+        "FUN_01022e34"
+      ],
+      "runtime_address": "0x01023634",
+      "source": "recon/net/src/FUN_01022e34.c",
+      "source_sha256": "ed0f7c61b191c80a8a133570cb9c8505a9a49751e2d261d756e4267630ec5b12",
+      "true_executable_extent": 80
+    },
+    {
+      "analysis_address": "0x0102665c",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 44,
+        "cover_cases": 4,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {
+          "0": [
+            0,
+            1
+          ],
+          "1": [
+            0,
+            1
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "primary_symbol": "FUN_0102665c",
+      "raw_symbol": "FUN_0102665c",
+      "required_spellings": [
+        "FUN_0102665c"
+      ],
+      "runtime_address": "0x01026e5c",
+      "source": "recon/net/src/FUN_0102665c.c",
+      "source_sha256": "e149c68bf805f62667dc9b8445108a2755b0da29f3204e51a7f883eab389d9eb",
+      "true_executable_extent": 32
+    },
+    {
+      "analysis_address": "0x01027044",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01027044",
+      "raw_symbol": "FUN_01027044",
+      "required_spellings": [
+        "FUN_01027044"
+      ],
+      "runtime_address": "0x01027844",
+      "source": "recon/net/src/FUN_01027044.c",
+      "source_sha256": "c56645bb75d8e3b60d81ee905788437d9c47b3dd1c362b98fac2c4858a120d07",
+      "true_executable_extent": 90
+    },
+    {
+      "analysis_address": "0x01027302",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01027302",
+      "raw_symbol": "FUN_01027302",
+      "required_spellings": [
+        "FUN_01027302"
+      ],
+      "runtime_address": "0x01027b02",
+      "source": "recon/net/src/FUN_01027302.c",
+      "source_sha256": "d97977ad1dea21f056e68ac90dd29861635b9f01bd952949f7c0cb08db2c9379",
+      "true_executable_extent": 196
+    },
+    {
+      "analysis_address": "0x010292ec",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "primary_symbol": "FUN_010292ec",
+      "raw_symbol": "FUN_010292ec",
+      "required_spellings": [
+        "FUN_010292ec"
+      ],
+      "runtime_address": "0x01029aec",
+      "source": "recon/net/src/FUN_010292ec.c",
+      "source_sha256": "d3dee6c076123b33316a5d50b8889b1c81eded6788fa651a6127e3112e5a1540",
+      "true_executable_extent": 46
+    },
+    {
+      "analysis_address": "0x01029b38",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01029b38",
+      "raw_symbol": "FUN_01029b38",
+      "required_spellings": [
+        "FUN_01029b38"
+      ],
+      "runtime_address": "0x0102a338",
+      "source": "recon/net/src/FUN_01029b38.c",
+      "source_sha256": "78e7762a5898a4145343dd66afad7ea1d98ffaf0d035622d1b1836eb93f5d858",
+      "true_executable_extent": 22
+    },
+    {
+      "analysis_address": "0x0102a1e0",
+      "archive_family": "softdevice_controller",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "primary_symbol": "FUN_0102a1e0",
+      "raw_symbol": "FUN_0102a1e0",
+      "required_spellings": [
+        "FUN_0102a1e0"
+      ],
+      "runtime_address": "0x0102a9e0",
+      "source": "recon/net/src/FUN_0102a1e0.c",
+      "source_sha256": "6b621f59f5b147fcb0244c2f1b6706ba04ddcfd0329c44ff2b2006a35f2c9dc0",
+      "true_executable_extent": 2
+    },
+    {
+      "analysis_address": "0x0102a1ea",
+      "archive_family": "mpsl",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "sdc_byte_lock_try_acquire",
+      "raw_symbol": "FUN_0102a1ea",
+      "required_spellings": [
+        "FUN_0102a1ea",
+        "sdc_byte_lock_try_acquire"
+      ],
+      "runtime_address": "0x0102a9ea",
+      "source": "recon/net/src/sdc_byte_lock_try_acquire.c",
+      "source_sha256": "4562333b7f397d4c595aa91cf7ab8614fa7377f2354626e94d9a380cf5eaa38a",
+      "true_executable_extent": 30
+    }
+  ],
+  "policy": {
+    "archive_replacement_forbidden": true,
+    "canonical_c_required": true,
+    "catalog_missed_extent_strategy": "process-local reviewed true-size injection",
+    "cfg_verifier": "tools/cfg_verify.py",
+    "no_blobs": true,
+    "private_sdc_mpsl": "report_only_unchanged"
+  },
+  "schema": "g1.net.private_shard_recovery_receipt.v1",
+  "shard": "net-private-8",
+  "summary": {
+    "cfg_checked_trials": 524,
+    "cfg_directed_cover_cases": 4,
+    "cfg_pass_count": 13,
+    "function_count": 13,
+    "total_true_executable_extent": 1000
+  },
+  "worklist": "recon/catalogs/net_private_recovery_worklist.json",
+  "worklist_sha256": "46eb1470a40beb97dddf6c3542c8ef89e73726fa03ebb1d1f67c17c6158e16b9"
+}
