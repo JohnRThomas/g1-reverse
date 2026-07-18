@@ -41,19 +41,26 @@ class MmioParityInventoryTest(unittest.TestCase):
 
     def test_reverify_results_are_complete_and_failures_classified(self):
         reverify = self.current["targeted_reverify"]
-        self.assertEqual({"PASS": 82, "FAIL": 7},
+        self.assertEqual({"PASS": 89},
                          reverify["summary"]["status_counts"])
-        self.assertEqual({
-            "pass": 82,
-            "ordered_mmio_read_divergence": 6,
-            "preexisting_non_mmio_verifier_gate": 1,
-        }, reverify["summary"]["classification_counts"])
-        for row in reverify["functions"]:
-            if row["classification"] != "ordered_mmio_read_divergence":
-                continue
-            divergence = row["first_event_divergence"]
-            self.assertTrue(divergence["original"][0] == "R" or
-                            divergence["candidate"][0] == "R")
+        self.assertEqual({"pass": 89},
+                         reverify["summary"]["classification_counts"])
+
+    def test_all_six_mmio_repairs_and_assertion_fixture_now_pass(self):
+        rows = {(row["core"], row["va"]): row for row in
+                self.current["targeted_reverify"]["functions"]}
+        repaired = {
+            ("app", "0x00050558"), ("app", "0x00066050"),
+            ("net", "0x010313ec"), ("net", "0x01033888"),
+            ("net", "0x01033b18"), ("net", "0x0103499c"),
+        }
+        for key in repaired:
+            self.assertEqual("PASS", rows[key]["status"], key)
+            self.assertEqual("pass", rows[key]["classification"], key)
+        assertion = rows[("net", "0x01008d00")]
+        self.assertEqual("PASS", assertion["status"])
+        self.assertEqual(6, assertion["cover_cases"])
+        self.assertEqual(6, assertion["checked"])
 
     def test_rtc_counter_false_proof_is_in_static_and_dynamic_evidence(self):
         static = next(row for row in self.current["functions"]
@@ -68,11 +75,8 @@ class MmioParityInventoryTest(unittest.TestCase):
                       self.current["targeted_reverify"]["functions"]
                       if row["core"] == "net" and
                       row["va"] == "0x010313ec")
-        self.assertEqual("FAIL", result["status"])
-        self.assertEqual("ordered_mmio_read_divergence",
-                         result["classification"])
-        self.assertEqual(["R", 0x41016504, 4, 0],
-                         result["first_event_divergence"]["original"])
+        self.assertEqual("PASS", result["status"])
+        self.assertEqual("pass", result["classification"])
 
 
 if __name__ == "__main__":

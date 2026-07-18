@@ -62,10 +62,26 @@ class ParityMmioTest(unittest.TestCase):
         unknown = runner.run(0, [0x60000000, 0, 0, 0], 0)
         self.assertEqual("Invalid memory read", unknown["error"])
 
-    def test_rtc_compare_set_retained_false_proof_is_rejected(self):
-        verdict = cfg_verify.verify("net", "rtc_compare_set", trials_random=0)
+    def test_rtc_compare_set_passes_and_omitted_read_mutation_fails(self):
+        repaired = cfg_verify.verify("net", "rtc_compare_set", trials_random=0)
+        self.assertEqual("PASS", repaired["status"], repaired)
+        self.assertEqual(1, repaired["cover_cases"])
+
+        source_path = (cfg_verify.BASE +
+                       "/recon/net/src/FUN_010313ec.c")
+        source = open(source_path).read()
+        live_read = ("unsigned int iVar5 = rtc[0x504u/4u]; "
+                     "/* COUNTER @ 0x41016504 */")
+        self.assertEqual(1, source.count(live_read))
+        omitted = source.replace(
+            live_read,
+            "unsigned int iVar5 = 0; /* negative control: MMIO read omitted */",
+            1,
+        )
+        verdict = cfg_verify.verify(
+            "net", "rtc_compare_set", trials_random=0,
+            source_override=omitted)
         self.assertEqual("FAIL", verdict["status"], verdict)
-        self.assertEqual(1, verdict["cover_cases"])
         mismatch = verdict["detail"][0]
         self.assertEqual("state", mismatch[1])
         original, candidate = mismatch[2], mismatch[3]

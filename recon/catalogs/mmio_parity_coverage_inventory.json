@@ -171,7 +171,7 @@
     "0xe000ed28",
     "0xe000ed38"
    ],
-   "source_sha256": "c09038c0cd31ae319664c332b9b474edc08d61f11f18748802871fb765e0e375",
+   "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
    "true_executable_extent": 298,
    "verify_name": "FUN_00050558"
   },
@@ -610,7 +610,7 @@
     "0x50026544",
     "0x5002654c"
    ],
-   "source_sha256": "e74ff1ee517348a411ff0b583ded028e02be9337a0628d802292b4ec801dc2e8",
+   "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
    "true_executable_extent": 214,
    "verify_name": "FUN_00066050"
   },
@@ -3150,7 +3150,7 @@
    "refgraph_mmio_refs": [
     "0x41016348"
    ],
-   "source_sha256": "edd7f7339cdcd8093e6af35f1cc6b1dd6bb3b1f3f7120aeab7f50b111b3db6fb",
+   "source_sha256": "604e7914b0d31c10cd0be2ad09f2673a5c3f955ee3526973635b02120142e947",
    "true_executable_extent": 292,
    "verify_name": "FUN_010313ec"
   },
@@ -3387,7 +3387,7 @@
     "0xe000e100",
     "0xe000e280"
    ],
-   "source_sha256": "18c69fe383b4369c923ad626777b2c5c7e5446dc5df3314cada2ea618ffc0b6b",
+   "source_sha256": "b60bd5d9182914fb56b37f8302c24b669c52dd83ac213f88afbc598e3665b23e",
    "true_executable_extent": 182,
    "verify_name": "FUN_01033888"
   },
@@ -3461,7 +3461,7 @@
     "0x4101419c",
     "0x41019080"
    ],
-   "source_sha256": "9d885e98bdb6e3aced14a80c8d05d40a24988d1b5caae7a90ab6bf74351b9a56",
+   "source_sha256": "25a90642d480097ce0746918b8455cdfc0d2783d462c77a3b86f9e3bb963cd2a",
    "true_executable_extent": 172,
    "verify_name": "FUN_01033b18"
   },
@@ -3509,7 +3509,7 @@
     "0x4100a17c",
     "0x4100a304"
    ],
-   "source_sha256": "21b610da9f234b370cfafb27e39457d88f0151ae5a547bab5333b26159fa2013",
+   "source_sha256": "63b09e427d47bab0a2062d172004eb74b5f2d68b955764a919dc68d57a86d2e0",
    "true_executable_extent": 104,
    "verify_name": "FUN_0103499c"
   },
@@ -3712,31 +3712,15 @@
    },
    {
     "checked": 9,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "app",
     "cover_cases": 9,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "R",
-      3758157096,
-      4,
-      512
-     ],
-     "ordinal": 5,
-     "original": [
-      "R",
-      3758157112,
-      4,
-      305419896
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 3,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_00050558",
     "source": "recon/app/src/FUN_00050558.c",
-    "source_sha256": "c09038c0cd31ae319664c332b9b474edc08d61f11f18748802871fb765e0e375",
-    "status": "FAIL",
+    "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
+    "status": "PASS",
     "va": "0x00050558"
    },
    {
@@ -3923,31 +3907,15 @@
    },
    {
     "checked": 1,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "app",
     "cover_cases": 0,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "W",
-      1342333188,
-      4,
-      0
-     ],
-     "ordinal": 7,
-     "original": [
-      "R",
-      1342333184,
-      4,
-      0
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_00066050",
     "source": "recon/app/src/FUN_00066050.c",
-    "source_sha256": "e74ff1ee517348a411ff0b583ded028e02be9337a0628d802292b4ec801dc2e8",
-    "status": "FAIL",
+    "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
+    "status": "PASS",
     "va": "0x00066050"
    },
    {
@@ -4056,19 +4024,15 @@
    },
    {
     "checked": 6,
-    "classification": "preexisting_non_mmio_verifier_gate",
+    "classification": "pass",
     "core": "net",
     "cover_cases": 6,
-    "detail_kind": "stack-object-coverage",
-    "first_event_divergence": null,
-    "first_mismatch": [
-     0
-    ],
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_01008d00",
     "source": "recon/net/src/FUN_01008d00.c",
     "source_sha256": "570ed51e6a48ea1db5bbe988dde3d12c0799894fda61e29e37faafeeea7e9f02",
-    "status": "FAIL",
+    "status": "PASS",
     "va": "0x01008d00"
    },
    {
@@ -4697,31 +4661,15 @@
    },
    {
     "checked": 1,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "net",
     "cover_cases": 1,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "W",
-      553659232,
-      4,
-      3372400294
-     ],
-     "ordinal": 6,
-     "original": [
-      "R",
-      1090610436,
-      4,
-      0
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_010313ec",
     "source": "recon/net/src/FUN_010313ec.c",
-    "source_sha256": "edd7f7339cdcd8093e6af35f1cc6b1dd6bb3b1f3f7120aeab7f50b111b3db6fb",
-    "status": "FAIL",
+    "source_sha256": "604e7914b0d31c10cd0be2ad09f2673a5c3f955ee3526973635b02120142e947",
+    "status": "PASS",
     "va": "0x010313ec"
    },
    {
@@ -4778,31 +4726,15 @@
    },
    {
     "checked": 1,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "net",
     "cover_cases": 0,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "W",
-      553666976,
-      4,
-      16987733
-     ],
-     "ordinal": 2,
-     "original": [
-      "R",
-      1090552080,
-      4,
-      0
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_01033888",
     "source": "recon/net/src/FUN_01033888.c",
-    "source_sha256": "18c69fe383b4369c923ad626777b2c5c7e5446dc5df3314cada2ea618ffc0b6b",
-    "status": "FAIL",
+    "source_sha256": "b60bd5d9182914fb56b37f8302c24b669c52dd83ac213f88afbc598e3665b23e",
+    "status": "PASS",
     "va": "0x01033888"
    },
    {
@@ -4820,31 +4752,15 @@
    },
    {
     "checked": 1,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "net",
     "cover_cases": 0,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "W",
-      1090601244,
-      4,
-      0
-     ],
-     "ordinal": 1,
-     "original": [
-      "R",
-      1090601240,
-      4,
-      0
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_01033b18",
     "source": "recon/net/src/FUN_01033b18.c",
-    "source_sha256": "9d885e98bdb6e3aced14a80c8d05d40a24988d1b5caae7a90ab6bf74351b9a56",
-    "status": "FAIL",
+    "source_sha256": "25a90642d480097ce0746918b8455cdfc0d2783d462c77a3b86f9e3bb963cd2a",
+    "status": "PASS",
     "va": "0x01033b18"
    },
    {
@@ -4862,34 +4778,15 @@
    },
    {
     "checked": 1,
-    "classification": "ordered_mmio_read_divergence",
+    "classification": "pass",
     "core": "net",
     "cover_cases": 0,
-    "detail_kind": "state",
-    "first_event_divergence": {
-     "candidate": [
-      "C",
-      9,
-      10,
-      "S",
-      "F",
-      "T",
-      null
-     ],
-     "ordinal": 10,
-     "original": [
-      "R",
-      1090560380,
-      4,
-      0
-     ]
-    },
-    "first_mismatch": "state",
-    "mismatches": 1,
+    "first_mismatch": null,
+    "mismatches": null,
     "name": "FUN_0103499c",
     "source": "recon/net/src/FUN_0103499c.c",
-    "source_sha256": "21b610da9f234b370cfafb27e39457d88f0151ae5a547bab5333b26159fa2013",
-    "status": "FAIL",
+    "source_sha256": "63b09e427d47bab0a2062d172004eb74b5f2d68b955764a919dc68d57a86d2e0",
+    "status": "PASS",
     "va": "0x0103499c"
    },
    {
@@ -4921,13 +4818,10 @@
   ],
   "summary": {
    "classification_counts": {
-    "ordered_mmio_read_divergence": 6,
-    "pass": 82,
-    "preexisting_non_mmio_verifier_gate": 1
+    "pass": 89
    },
    "status_counts": {
-    "FAIL": 7,
-    "PASS": 82
+    "PASS": 89
    },
    "targets": 89
   },
