@@ -57,7 +57,7 @@ class NetLinkResidueTest(unittest.TestCase):
         self.assertNotIn("FUN_01008fc0", by_symbol)
         self.assertNotIn("controller_assert", by_symbol)
 
-    def test_all_true_missing_entries_have_explicit_closeout(self):
+    def test_all_former_missing_entries_have_exact_recovery_closure(self):
         report = json.loads(
             (ROOT / "recon/catalogs/net_link_function_residue.json").read_text()
         )
@@ -65,39 +65,16 @@ class NetLinkResidueTest(unittest.TestCase):
             entry for entry in report["entries"]
             if entry["category"] == "true_missing_reconstructed_entry"
         ]
-        self.assertTrue(missing)
-        self.assertTrue(all(entry["closeout_disposition"] for entry in missing))
-        self.assertTrue(all(entry["closeout_actionable"] is not None for entry in missing))
-        self.assertEqual(
-            report["summary"]["actionable_net_reconstruction_count"], 2
-        )
-        actionable = {
-            entry["symbol"]: entry["closeout_disposition"]
-            for entry in missing if entry["closeout_actionable"] is True
-        }
-        self.assertEqual(actionable, {
-            "FUN_01025734": "hidden_entry_reconstruction_required",
-            "FUN_01025bf8": "retained_reconstruction_required",
-        })
-        explicit = {
-            "FUN_0100ef08": "private_sdc_report_only",
-            "FUN_01011664": "private_sdc_report_only",
-            "FUN_01018df8": "private_sdc_report_only",
-            "FUN_0101d890": "private_sdc_report_only",
-            "FUN_0102665c": "private_sdc_report_only",
-            "FUN_010292ec": "private_sdc_report_only",
-            "FUN_0102a1e0": "private_sdc_report_only",
-            "controller_entry_links_release": "private_sdc_report_only",
-            "sdc_conn_event_process": "private_sdc_report_only",
-            "FUN_0102fa84": "blocked_c_unexpressible",
-            "FUN_0102d25c": "anomalous_non_executable_target",
-        }
-        by_symbol = {entry["symbol"]: entry for entry in missing}
-        present = {symbol: disposition for symbol, disposition in explicit.items()
-                   if symbol in by_symbol}
-        self.assertEqual(
-            {symbol: by_symbol[symbol]["closeout_disposition"]
-             for symbol in present}, present)
+        self.assertEqual(missing, [])
+        self.assertEqual(report["summary"]["actionable_net_reconstruction_count"], 0)
+        self.assertEqual(report["summary"]["expected_unknown_count"], 0)
+        self.assertEqual(len(report["recovered_link_gaps"]), 20)
+        self.assertEqual(len(report["recovered_descendants"]), 13)
+        recovered = report["recovered_link_gaps"] + report["recovered_descendants"]
+        self.assertEqual(len({row["symbol"] for row in recovered}), 33)
+        self.assertTrue(all(row["cfg_status"] == "PASS" for row in recovered))
+        self.assertTrue(all(len(row["source_sha256"]) == 64 for row in recovered))
+        self.assertTrue(all(len(row["receipt_sha256"]) == 64 for row in recovered))
 
 
 if __name__ == "__main__":

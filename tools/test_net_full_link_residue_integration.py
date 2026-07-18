@@ -27,12 +27,9 @@ class NetFullLinkResidueIntegrationTest(unittest.TestCase):
             row["symbol"] for row in audit["entries"]
             if row["category"] == "true_missing_reconstructed_entry")
         self.assertEqual(report["unknown"], expected_missing)
-        self.assertEqual(len(report["unknown"]), 20)
-        self.assertEqual(report["unknown_by_disposition"], {
-            "hidden_entry_reconstruction_required": 1,
-            "private_sdc_report_only": 18,
-            "retained_reconstruction_required": 1,
-        })
+        self.assertEqual(report["unknown"], [])
+        self.assertEqual(report["unknown_by_disposition"], {})
+        self.assertEqual(report["library"], 39)
         self.assertEqual(report["reviewed_by_category"], {
             "compiler_or_ghidra_pseudo": 1,
         })

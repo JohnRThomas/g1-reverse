@@ -28,6 +28,33 @@ NM = Path(
     "arm-zephyr-eabi-nm"
 )
 
+PRIMARY_RECOVERY_RECEIPTS = (
+    "recon/ownership/net_link_gap_recovery.json",
+    "recon/analysis/net_link_gap2_recovery_receipt.json",
+    "recon/ownership/net_link_gap3_recovery.json",
+    "recon/ownership/net_link_gap4_recovery.json",
+    "recon/ownership/net_link_gap5_recovery.json",
+)
+DESCENDANT_RECOVERY_RECEIPTS = (
+    "recon/ownership/net_link_gap6_recovery.json",
+    "recon/ownership/net_link_gap7_recovery.json",
+    "recon/ownership/net_link_gap8_recovery.json",
+    "recon/ownership/net_link_gap9_recovery.json",
+)
+EXPECTED_RECOVERED_GAPS = {
+    "FUN_01009224", "FUN_0100f110", "FUN_0100f7e0", "FUN_0100fae4",
+    "FUN_010108b8", "FUN_01013d90", "FUN_01016250", "FUN_0101bbc8",
+    "FUN_0101e404", "FUN_01025734", "FUN_01025bf8", "FUN_0102689c",
+    "FUN_010271da", "FUN_0102722c", "FUN_010278e4", "FUN_01027e1c",
+    "FUN_01028010", "FUN_01028034", "FUN_01028134", "FUN_010283b8",
+}
+EXPECTED_RECOVERED_DESCENDANTS = {
+    "FUN_0100d3a0", "FUN_0100f5b4", "FUN_01019088", "FUN_01025fd4",
+    "FUN_0102602e", "FUN_0102609e", "FUN_01027894", "FUN_010278bc",
+    "FUN_01027ad2", "FUN_01027fa6", "FUN_01028112", "FUN_010283a4",
+    "FUN_0100f6b0",
+}
+
 CATEGORIES = (
     "true_missing_reconstructed_entry",
     "interior_or_tail_alias",
@@ -160,6 +187,48 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def recovery_rows(receipt_paths: tuple[str, ...]) -> list[dict]:
+    """Load exact source/receipt evidence and reject stale recovery claims."""
+    rows = []
+    seen = set()
+    for relative in receipt_paths:
+        receipt = ROOT / relative
+        data = json.loads(receipt.read_text())
+        functions = data.get("functions", data.get("proofs", []))
+        if not functions:
+            raise ValueError("recovery receipt has no functions: %s" % relative)
+        receipt_hash = sha256(receipt)
+        for function in functions:
+            symbol = function.get("raw_symbol")
+            source = function.get("source", function.get("source_path"))
+            expected_hash = function.get("source_sha256")
+            if not symbol or not source or not expected_hash:
+                raise ValueError("incomplete recovery row in %s" % relative)
+            if symbol in seen:
+                raise ValueError("duplicate recovery owner: %s" % symbol)
+            seen.add(symbol)
+            source_path = ROOT / source
+            if not source_path.is_file():
+                raise ValueError("recovered source missing: %s" % source)
+            actual_hash = sha256(source_path)
+            if actual_hash != expected_hash:
+                raise ValueError("recovered source hash drift: %s" % source)
+            cfg = function.get("cfg_verify", function.get("cfg_result", {}))
+            if cfg and cfg.get("status") != "PASS":
+                raise ValueError("recovery CFG proof is not PASS: %s" % symbol)
+            rows.append({
+                "symbol": symbol,
+                "va": function.get("analysis_address"),
+                "source": source,
+                "source_sha256": actual_hash,
+                "receipt": relative,
+                "receipt_sha256": receipt_hash,
+                "cfg_status": cfg.get("status", "PASS"),
+                "true_executable_extent": function.get("true_executable_extent"),
+            })
+    return sorted(rows, key=lambda row: row["symbol"])
 
 
 def nm_undefined(path: Path) -> list[str]:
@@ -300,6 +369,23 @@ def generate(elf: Path) -> dict:
     all_undefined = nm_undefined(elf)
     pins = provided_symbols()
     residue = sorted(symbol for symbol in all_undefined if symbol not in pins)
+    recovered = recovery_rows(PRIMARY_RECOVERY_RECEIPTS)
+    descendants = recovery_rows(DESCENDANT_RECOVERY_RECEIPTS)
+    recovered_symbols = {row["symbol"] for row in recovered}
+    descendant_symbols = {row["symbol"] for row in descendants}
+    if recovered_symbols != EXPECTED_RECOVERED_GAPS:
+        raise ValueError("primary recovery closure drift: missing=%s extra=%s" % (
+            sorted(EXPECTED_RECOVERED_GAPS - recovered_symbols),
+            sorted(recovered_symbols - EXPECTED_RECOVERED_GAPS)))
+    if descendant_symbols != EXPECTED_RECOVERED_DESCENDANTS:
+        raise ValueError("descendant recovery closure drift: missing=%s extra=%s" % (
+            sorted(EXPECTED_RECOVERED_DESCENDANTS - descendant_symbols),
+            sorted(descendant_symbols - EXPECTED_RECOVERED_DESCENDANTS)))
+    still_undefined = sorted((recovered_symbols | descendant_symbols) &
+                             set(all_undefined))
+    if still_undefined:
+        raise ValueError("recovered link closure remains undefined: %s" %
+                         still_undefined)
     owners = reference_owners(set(residue))
 
     entries = []
@@ -353,7 +439,7 @@ def generate(elf: Path) -> dict:
         if entry["closeout_disposition"] is not None
     )
     return {
-        "schema": 2,
+        "schema": 3,
         "core": "net",
         "scope": "all non-pinned undefined symbols in build/net_full.elf",
         "policy": {
@@ -361,6 +447,8 @@ def generate(elf: Path) -> dict:
             "default_without_retained_body_or_adopted_owner":
                 "true_missing_reconstructed_entry",
             "canonical_function_semantics_mutated": False,
+            "recovered_gap_requires_exact_source_and_receipt_hash": True,
+            "expected_unknown_count": 0,
         },
         "inputs": [
             {"path": str(elf.relative_to(ROOT)), "sha256": sha256(elf)},
@@ -373,6 +461,9 @@ def generate(elf: Path) -> dict:
                 "path": str(readable_path.relative_to(ROOT)),
                 "sha256": sha256(readable_path),
             },
+        ] + [
+            {"path": path, "sha256": sha256(ROOT / path)}
+            for path in PRIMARY_RECOVERY_RECEIPTS + DESCENDANT_RECOVERY_RECEIPTS
         ],
         "summary": {
             "undefined_total": len(all_undefined),
@@ -384,8 +475,14 @@ def generate(elf: Path) -> dict:
             "actionable_net_reconstruction_count": sum(
                 entry["closeout_actionable"] is True for entry in entries
             ),
+            "recovered_link_gap_count": len(recovered),
+            "recovered_descendant_count": len(descendants),
+            "expected_unknown_count": counts[
+                "true_missing_reconstructed_entry"],
         },
         "entries": entries,
+        "recovered_link_gaps": recovered,
+        "recovered_descendants": descendants,
     }
 
 
@@ -394,14 +491,16 @@ def render_markdown(report: dict) -> str:
     lines = [
         "# CPUNET undefined function residue",
         "",
-        "Generated by `tools/classify_net_link_residue.py` from the retain-all ",
-        "reconstruction partial link. SDC report-only matches remain missing code; ",
-        "only reviewed `exclude_reconstruction` decisions count as SDK owners.",
+        "Generated by `tools/classify_net_link_residue.py` from the retain-all",
+        "reconstruction partial link. Private SDC ownership remains report-only;",
+        "all formerly missing retained bodies are now independently recovered C.",
         "",
         f"- Undefined symbols in partial link: **{summary['undefined_total']}**",
         f"- Already covered by address pins/aliases: **{summary['already_pinned_or_aliased']}**",
         f"- Function/pseudo residue classified here: **{summary['classified_residue']}**",
         f"- Actionable net reconstructions after closeout: **{summary['actionable_net_reconstruction_count']}**",
+        f"- Recovered former link gaps: **{summary['recovered_link_gap_count']}**",
+        f"- Recovered dependency descendants: **{summary['recovered_descendant_count']}**",
         "",
         "| Category | Count |",
         "|---|---:|",
@@ -419,6 +518,15 @@ def render_markdown(report: dict) -> str:
             f"`{entry['category']}` | `{entry['closeout_disposition'] or ''}` | "
             f"{entry['reference_count']} | {reason} |"
         )
+    for title, key in (("Recovered former UNKNOWNs", "recovered_link_gaps"),
+                       ("Recovered closure descendants", "recovered_descendants")):
+        lines.extend(["", "## " + title, "", "| Symbol | VA | Source | Receipt |",
+                      "|---|---:|---|---|"])
+        for entry in report[key]:
+            lines.append("| `%s` | %s | `%s` (`%s`) | `%s` (`%s`) |" % (
+                entry["symbol"], entry["va"] or "", entry["source"],
+                entry["source_sha256"], entry["receipt"],
+                entry["receipt_sha256"]))
     return "\n".join(lines) + "\n"
 
 
