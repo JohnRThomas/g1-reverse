@@ -1,8 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0004bc8c @ 0x0004bc8c
- * public-name: FUN_0004bc8c
+ * public-name: mpsc_pbuf_alloc
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   mpsc_pbuf_alloc                          <= FUN_0004bc8c @ 0x0004bc8c
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
@@ -35,7 +36,7 @@ extern int k_is_in_isr(void); extern int z_impl_k_sem_take(void*,uint64_t);
 extern int drop_item_locked(mpsc_buffer*,uint32_t,void**,uint32_t*);
 __attribute__((always_inline)) static inline uint32_t checked_lock(mpsc_buffer *b){ uint32_t k=__get_BASEPRI(); __set_BASEPRI_MAX(0x20); __ISB(); if(!z_spin_lock_valid(&b->lock)){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); } z_spin_lock_set_owner(&b->lock); return k; }
 __attribute__((always_inline)) static inline void checked_unlock(mpsc_buffer *b,uint32_t k){ if(!z_spin_unlock_valid(&b->lock)){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,&b->lock); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); } __set_BASEPRI(k); __ISB(); }
-void *FUN_0004bc8c(mpsc_buffer *b,uint32_t wlen,uint32_t to_lo,uint32_t to_hi){
+void *mpsc_pbuf_alloc(mpsc_buffer *b,uint32_t wlen,uint32_t to_lo,uint32_t to_hi){
  struct { uint32_t pad0,to_lo,to_hi,saved,pad10; void *dropped; uint32_t free_wlen,shift; } l;
  l.to_lo=to_lo; l.to_hi=to_hi; l.dropped=0; l.shift=0;
  void *item=0; uint32_t cont=1,prev=0;

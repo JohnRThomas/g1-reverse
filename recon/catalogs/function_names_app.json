@@ -7140,11 +7140,13 @@
   "0x0004bc8c": {
    "address": "0x0004bc8c",
    "raw_name": "FUN_0004bc8c",
-   "name": "FUN_0004bc8c",
-   "display_name": "FUN_0004bc8c",
-   "human": false,
-   "source": "recon/app/src/FUN_0004bc8c.c",
-   "aliases": []
+   "name": "mpsc_pbuf_alloc",
+   "display_name": "mpsc_pbuf_alloc",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c allocator, including the spin-validated allocation, wrap, drop and timeout paths. Raw identity remains the interior recovered owner FUN_0004bc8c.",
+   "aliases": [
+    "FUN_0004bc8c"
+   ]
   },
   "0x0004be0c": {
    "address": "0x0004be0c",
@@ -7160,11 +7162,13 @@
   "0x0004beb8": {
    "address": "0x0004beb8",
    "raw_name": "FUN_0004beb8",
-   "name": "FUN_0004beb8",
-   "display_name": "FUN_0004beb8",
-   "human": false,
-   "source": "recon/app/src/FUN_0004beb8.c",
-   "aliases": []
+   "name": "mpsc_pbuf_claim",
+   "display_name": "mpsc_pbuf_claim",
+   "human": true,
+   "source": "function_name_overrides.json: Corrected exact configured NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c claim owner. The former public-name assignment at 0x0004d56c belongs to z_log_msg_local_claim; the true MPSC body starts here. Raw identity remains the interior recovered owner FUN_0004beb8.",
+   "aliases": [
+    "FUN_0004beb8"
+   ]
   },
   "0x0004bfc8": {
    "address": "0x0004bfc8",
@@ -7489,21 +7493,24 @@
   "0x0004d55c": {
    "address": "0x0004d55c",
    "raw_name": "FUN_0004d55c",
-   "name": "FUN_0004d55c",
-   "display_name": "FUN_0004d55c",
-   "human": false,
-   "source": "recon/app/src/FUN_0004d55c.c",
-   "aliases": []
+   "name": "g1_recon_z_log_msg_alloc",
+   "display_name": "g1_recon_z_log_msg_alloc",
+   "human": true,
+   "source": "function_name_overrides.json: Readable namespaced identity for the recovered NCS 2.5.1 Zephyr logging allocator wrapper. It tail-calls the adopted public mpsc_pbuf_alloc at 0x0004bc8c with K_NO_WAIT. The namespace deliberately retains this log_core body for its later source-unit decision without colliding with the stock z_log_msg_alloc owner. Raw identity remains FUN_0004d55c.",
+   "aliases": [
+    "FUN_0004d55c"
+   ]
   },
   "0x0004d56c": {
    "address": "0x0004d56c",
    "raw_name": "FUN_0004d56c",
-   "name": "mpsc_pbuf_claim",
-   "display_name": "mpsc_pbuf_claim",
+   "name": "z_log_msg_local_claim",
+   "display_name": "z_log_msg_local_claim",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 Zephyr subsys/logging/log_core.c identity: this 12-byte wrapper loads the fixed log buffer at 0x20003648 and tail-calls the true mpsc_pbuf_claim at 0x0004beb8. The former mpsc_pbuf_claim label incorrectly assigned the callee's identity to its logging wrapper. Raw identity remains FUN_0004d56c.",
    "aliases": [
-    "FUN_0004d56c"
+    "FUN_0004d56c",
+    "mpsc_pbuf_claim"
    ]
   },
   "0x0004d578": {
@@ -7569,11 +7576,13 @@
   "0x0004d8b8": {
    "address": "0x0004d8b8",
    "raw_name": "FUN_0004d8b8",
-   "name": "FUN_0004d8b8",
-   "display_name": "FUN_0004d8b8",
-   "human": false,
-   "source": "recon/app/src/FUN_0004d8b8.c",
-   "aliases": []
+   "name": "g1_recon_z_log_msg_commit",
+   "display_name": "g1_recon_z_log_msg_commit",
+   "human": true,
+   "source": "function_name_overrides.json: Readable namespaced identity for the retained NCS 2.5.1 Zephyr logging commit path. It obtains the configured timestamp, stores it in the message header, commits through the adopted public mpsc_pbuf_commit and finalizes the log message. The namespace leaves the broader log_core source-unit decision for its own batch. Raw identity remains FUN_0004d8b8.",
+   "aliases": [
+    "FUN_0004d8b8"
+   ]
   },
   "0x0004d8dc": {
    "address": "0x0004d8dc",
@@ -7778,8 +7787,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; appends a settings_store to settings_load_srcs. Raw identity remains FUN_0004e3c0.",
    "aliases": [
-    "FUN_0004e3c0",
-    "sys_slist_append"
+    "FUN_0004e3c0"
    ]
   },
   "0x0004e3dc": {
@@ -7790,8 +7798,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; stores settings_save_dst. Raw identity remains FUN_0004e3dc.",
    "aliases": [
-    "FUN_0004e3dc",
-    "settings_backend_ptr_store"
+    "FUN_0004e3dc"
    ]
   },
   "0x0004e3e8": {
@@ -7835,8 +7842,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings.c owner; initializes dynamic handlers and the settings store. Raw identity remains FUN_0004e484.",
    "aliases": [
-    "FUN_0004e484",
-    "settings_lists_init"
+    "FUN_0004e484"
    ]
   },
   "0x0004e494": {
@@ -26202,8 +26208,6 @@
   "FUN_0004b908": "0x0004b908",
   "FUN_0004ba38": "0x0004ba38",
   "FUN_0004bb0c": "0x0004bb0c",
-  "FUN_0004bc8c": "0x0004bc8c",
-  "FUN_0004beb8": "0x0004beb8",
   "FUN_0004c254": "0x0004c254",
   "FUN_0004c418": "0x0004c418",
   "FUN_0004c4d0": "0x0004c4d0",
@@ -26219,10 +26223,8 @@
   "FUN_0004d420": "0x0004d420",
   "FUN_0004d44c": "0x0004d44c",
   "FUN_0004d468": "0x0004d468",
-  "FUN_0004d55c": "0x0004d55c",
   "FUN_0004d6ec": "0x0004d6ec",
   "FUN_0004d7d8": "0x0004d7d8",
-  "FUN_0004d8b8": "0x0004d8b8",
   "FUN_0004d944": "0x0004d944",
   "FUN_0004da90": "0x0004da90",
   "FUN_0004db04": "0x0004db04",
@@ -27500,6 +27502,8 @@
   "g1_recon_retarget_lock_acquire_recursive": "0x000510fc",
   "g1_recon_retarget_lock_release_recursive": "0x00051134",
   "g1_recon_tagged_heap_node_release": "0x000864d0",
+  "g1_recon_z_log_msg_alloc": "0x0004d55c",
+  "g1_recon_z_log_msg_commit": "0x0004d8b8",
   "gatt_cancel_encode": "0x0008278a",
   "gatt_ccc_changed": "0x000825c0",
   "gatt_ccc_settings_set": "0x0005af8c",
@@ -27897,7 +27901,8 @@
   "mgmt_find_group": "0x0005139c",
   "mgmt_find_handler": "0x00051354",
   "mobile_send_notification_to_ble_device_test": "0x00021c04",
-  "mpsc_pbuf_claim": "0x0004d56c",
+  "mpsc_pbuf_alloc": "0x0004bc8c",
+  "mpsc_pbuf_claim": "0x0004beb8",
   "mpsc_pbuf_commit": "0x0004be0c",
   "mpsc_pbuf_free": "0x0004bfc8",
   "mpsc_pbuf_init": "0x0004bc28",
@@ -28547,6 +28552,7 @@
   "z_log_dropped_read_and_clear": "0x0002f928",
   "z_log_dropped_read_and_clear_0": "0x0004d490",
   "z_log_msg_free": "0x0004d578",
+  "z_log_msg_local_claim": "0x0004d56c",
   "z_log_msg_pending": "0x0004d588",
   "z_ready_thread_locked": "0x000738d4",
   "z_reschedule": "0x000739f0",

@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 415,
-    "exclude_reconstruction": 390,
-    "retain_reconstruction": 25,
+    "entries": 425,
+    "exclude_reconstruction": 404,
+    "retain_reconstruction": 21,
     "by_kind": {
-     "source": 265,
+     "source": 275,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -210,16 +210,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -250,7 +250,143 @@
         "owner_input": "zephyr/libzephyr.a(mpsc_pbuf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:30",
         "reconstruction_input": "app/libapp.a(mpsc_pbuf_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:30: multiple definition of `mpsc_pbuf_init'; app/libapp.a(mpsc_pbuf_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_init.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:30: multiple definition of `mpsc_pbuf_init'; app/libapp.a(mpsc_pbuf_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_init.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f09261c9616d430ede1ac504c7ff4ba0ab95693dc15d50f9705b1129289ddf7d",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004bc8c",
+     "raw_symbol": "FUN_0004bc8c",
+     "current_symbol": "mpsc_pbuf_alloc",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "mpsc_pbuf_alloc",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1a1c79c8cef799319ae9cf1dc678fdcf8ced4d428a12ae4296d4d600da537a4a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "mpsc_pbuf_alloc",
+        "corrected_upstream_symbol": "mpsc_pbuf_alloc",
+        "corrected_readable_identity": "mpsc_pbuf_alloc",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -263,16 +399,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_commit",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -303,7 +439,143 @@
         "owner_input": "zephyr/libzephyr.a(mpsc_pbuf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:409",
         "reconstruction_input": "app/libapp.a(mpsc_pbuf_commit.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:409: multiple definition of `mpsc_pbuf_commit'; app/libapp.a(mpsc_pbuf_commit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_commit.c:34: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:409: multiple definition of `mpsc_pbuf_commit'; app/libapp.a(mpsc_pbuf_commit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_commit.c:34: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9f39e137012b81a413676ee1ec72eb7eea0e97b851848bae600c3700fef598b5",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004beb8",
+     "raw_symbol": "FUN_0004beb8",
+     "current_symbol": "mpsc_pbuf_claim",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "mpsc_pbuf_claim",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "79c1ef18600f751f68111e8ec9be44b1e1eb96274e71d5200c77a96c7bb5d5e4",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "mpsc_pbuf_claim",
+        "corrected_upstream_symbol": "mpsc_pbuf_claim",
+        "corrected_readable_identity": "mpsc_pbuf_claim",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -316,16 +588,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_free",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -356,7 +628,69 @@
         "owner_input": "zephyr/libzephyr.a(mpsc_pbuf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:576",
         "reconstruction_input": "app/libapp.a(mpsc_pbuf_free.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:576: multiple definition of `mpsc_pbuf_free'; app/libapp.a(mpsc_pbuf_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_free.c:79: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:576: multiple definition of `mpsc_pbuf_free'; app/libapp.a(mpsc_pbuf_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_free.c:79: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "90186869e071812581be3fb95824733616f3d92bd5fef442abc22afc8b4795f3",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -635,20 +969,20 @@
      "core": "app",
      "va": "0x0004d56c",
      "raw_symbol": "FUN_0004d56c",
-     "current_symbol": "mpsc_pbuf_claim",
+     "current_symbol": "z_log_msg_local_claim",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "mpsc_pbuf_claim",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "z_log_msg_local_claim",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -678,7 +1012,76 @@
         "owner_input": "zephyr/libzephyr.a(mpsc_pbuf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:529",
         "reconstruction_input": "app/libapp.a(mpsc_pbuf_claim.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:529: multiple definition of `mpsc_pbuf_claim'; app/libapp.a(mpsc_pbuf_claim.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_claim.c:15: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/mpsc_pbuf.c:529: multiple definition of `mpsc_pbuf_claim'; app/libapp.a(mpsc_pbuf_claim.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mpsc_pbuf_claim.c:15: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "mpsc_pbuf_claim",
+        "corrected_upstream_symbol": "z_log_msg_local_claim",
+        "corrected_readable_identity": "z_log_msg_local_claim",
+        "corrected_upstream_source": "zephyr/subsys/logging/log_core.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -18146,6 +18549,598 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/printk.c:204",
         "reconstruction_input": "app/libapp.a(printk.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/printk.c:204: multiple definition of `printk'; app/libapp.a(printk.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/printk.c:14: first defined here"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e314",
+     "raw_symbol": "FUN_0007e314",
+     "current_symbol": "free_space",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "free_space",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f232701655b5bc9d3a5077e3a5a3fe436386cdf40c1a354c069f104ad685773e",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "free_space",
+        "corrected_upstream_symbol": "free_space",
+        "corrected_readable_identity": "free_space",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e33a",
+     "raw_symbol": "FUN_0007e33a",
+     "current_symbol": "get_usage",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "get_usage",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "d766f0cc73e9cb785082471c8e8936eaa2eb1e2c36ab9d6483ecb07c98498eec",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "get_usage",
+        "corrected_upstream_symbol": "get_usage",
+        "corrected_readable_identity": "get_usage",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e35c",
+     "raw_symbol": "FUN_0007e35c",
+     "current_symbol": "idx_inc",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "idx_inc",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1b9ee23dce294d556d6c38c08e707f1ed74e3cdc50926192f778502685378d07",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "idx_inc",
+        "corrected_upstream_symbol": "idx_inc",
+        "corrected_readable_identity": "idx_inc",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e378",
+     "raw_symbol": "FUN_0007e378",
+     "current_symbol": "rd_idx_inc",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "rd_idx_inc",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "33fd6800c7606b65999c602604d9b9f95f28a7d1a2026f7246184497c8988bfe",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "rd_idx_inc",
+        "corrected_upstream_symbol": "rd_idx_inc",
+        "corrected_readable_identity": "rd_idx_inc",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e390",
+     "raw_symbol": "FUN_0007e390",
+     "current_symbol": "add_skip_item",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "add_skip_item",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a3c1ff1f56cd822cb07a609469eb03ef35ecfa4eeb57b5da927bfd0483377dd3",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "add_skip_item",
+        "corrected_upstream_symbol": "add_skip_item",
+        "corrected_readable_identity": "add_skip_item",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e3ce",
+     "raw_symbol": "FUN_0007e3ce",
+     "current_symbol": "drop_item_locked",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "drop_item_locked",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2de55b31f4029effb6b03121dfbd452a06cb61dd2e60d4a1da1c882fc835702c",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "drop_item_locked",
+        "corrected_upstream_symbol": "drop_item_locked",
+        "corrected_readable_identity": "drop_item_locked",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e4bc",
+     "raw_symbol": "FUN_0007e4bc",
+     "current_symbol": "post_drop_action",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "post_drop_action",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4e88371a3ada8e9c0e683d7e622d858e37ac27f16fe563688e8785f3702ff43b",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "post_drop_action",
+        "corrected_upstream_symbol": "post_drop_action",
+        "corrected_readable_identity": "post_drop_action",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007e4f2",
+     "raw_symbol": "FUN_0007e4f2",
+     "current_symbol": "max_utilization_update",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "max_utilization_update",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-23",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4d4b459cbf5167cdd378bfd99545697b555abba68b0d3b0b2b915955ba908737",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "max_utilization_update",
+        "corrected_upstream_symbol": "max_utilization_update",
+        "corrected_readable_identity": "max_utilization_update",
+        "corrected_upstream_source": "zephyr/lib/os/mpsc_pbuf.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0004bc28",
+        "0x0004bc8c",
+        "0x0004be0c",
+        "0x0004beb8",
+        "0x0004bfc8",
+        "0x0004d56c",
+        "0x0007e314",
+        "0x0007e33a",
+        "0x0007e35c",
+        "0x0007e378",
+        "0x0007e390",
+        "0x0007e3ce",
+        "0x0007e4bc",
+        "0x0007e4f2"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "mpsc_pbuf_claim",
+         "mpsc_pbuf_commit",
+         "mpsc_pbuf_free",
+         "mpsc_pbuf_init"
+        ],
+        "exclude_only": [
+         "0x0004bc28",
+         "0x0004bc8c",
+         "0x0004be0c",
+         "0x0004beb8",
+         "0x0004bfc8",
+         "0x0004d56c",
+         "0x0007e314",
+         "0x0007e33a",
+         "0x0007e35c",
+         "0x0007e378",
+         "0x0007e390",
+         "0x0007e3ce",
+         "0x0007e4bc",
+         "0x0007e4f2"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -37429,7 +38424,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "5a2fd867cd612013b44d11c727cab30fff4eefbfd2bc3da5284ec2dd729daf6e"
+   "sha256": "07961cfb1451a07d685f9cbaa5436cf46c054a3ef29f2bacc4bdcc1dc90c9540"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",

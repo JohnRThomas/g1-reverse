@@ -438,6 +438,26 @@
    "name": "z_log_msg_pending",
    "evidence": "Exact NCS 2.5.1 Zephyr subsys/logging/log_core.c wrapper for the single CONFIG_MPSC_PBUF log_buffer: the six-byte body loads the fixed log buffer at 0x20003648 and tail-branches to mpsc_pbuf_is_pending at 0x0007e50c. Raw identity remains FUN_0004d588."
   },
+  "0x0004d55c": {
+   "name": "g1_recon_z_log_msg_alloc",
+   "evidence": "Readable namespaced identity for the recovered NCS 2.5.1 Zephyr logging allocator wrapper. It tail-calls the adopted public mpsc_pbuf_alloc at 0x0004bc8c with K_NO_WAIT. The namespace deliberately retains this log_core body for its later source-unit decision without colliding with the stock z_log_msg_alloc owner. Raw identity remains FUN_0004d55c."
+  },
+  "0x0004d56c": {
+   "name": "z_log_msg_local_claim",
+   "evidence": "Corrected exact NCS 2.5.1 Zephyr subsys/logging/log_core.c identity: this 12-byte wrapper loads the fixed log buffer at 0x20003648 and tail-calls the true mpsc_pbuf_claim at 0x0004beb8. The former mpsc_pbuf_claim label incorrectly assigned the callee's identity to its logging wrapper. Raw identity remains FUN_0004d56c."
+  },
+  "0x0004d8b8": {
+   "name": "g1_recon_z_log_msg_commit",
+   "evidence": "Readable namespaced identity for the retained NCS 2.5.1 Zephyr logging commit path. It obtains the configured timestamp, stores it in the message header, commits through the adopted public mpsc_pbuf_commit and finalizes the log message. The namespace leaves the broader log_core source-unit decision for its own batch. Raw identity remains FUN_0004d8b8."
+  },
+  "0x0004bc8c": {
+   "name": "mpsc_pbuf_alloc",
+   "evidence": "Exact configured NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c allocator, including the spin-validated allocation, wrap, drop and timeout paths. Raw identity remains the interior recovered owner FUN_0004bc8c."
+  },
+  "0x0004beb8": {
+   "name": "mpsc_pbuf_claim",
+   "evidence": "Corrected exact configured NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c claim owner. The former public-name assignment at 0x0004d56c belongs to z_log_msg_local_claim; the true MPSC body starts here. Raw identity remains the interior recovered owner FUN_0004beb8."
+  },
   "0x0007e50c": {
    "name": "mpsc_pbuf_is_pending",
    "evidence": "Exact NCS 2.5.1 Zephyr lib/os/mpsc_pbuf.c implementation: computes available words from flags/read/write indices and normalizes the result to bool. It is the tail target of z_log_msg_pending at 0x0004d588. Raw identity remains FUN_0007e50c."

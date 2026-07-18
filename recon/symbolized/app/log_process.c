@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   log_dropped                              <= FUN_0004d4a8 @ 0x0004d4a8
- *   mpsc_pbuf_claim                          <= FUN_0004d56c @ 0x0004d56c
+ *   z_log_msg_local_claim                    <= FUN_0004d56c @ 0x0004d56c
  *   z_log_msg_free                           <= FUN_0004d578 @ 0x0004d578
  *   z_log_msg_pending                        <= FUN_0004d588 @ 0x0004d588
  *   log_process                              <= FUN_0004d594 @ 0x0004d594
@@ -25,7 +25,7 @@
 /* Full ABI-faithful reconstruction of FUN_0004d594 @ 0x4d594 (220 bytes). */
 #include <stdint.h>
 
-extern uint32_t mpsc_pbuf_claim(void);
+extern uint32_t z_log_msg_local_claim(void);
 extern void z_log_msg_free(uint32_t item);
 extern void printk(uintptr_t, ...);
 extern void assert_post_action(uintptr_t, uint32_t);
@@ -44,7 +44,7 @@ int log_process(void)
     if (*(volatile uint8_t *)((unsigned long)&log_process_active) /*=0x2001d44b*/ == 0)
         return 0;
 
-    uint32_t item = mpsc_pbuf_claim();
+    uint32_t item = z_log_msg_local_claim();
     if (item != 0) {
         __atomic_sub_fetch((uint32_t *)((unsigned long)&log_buffered_cnt) /*=0x2000a0d8*/, 1, __ATOMIC_ACQ_REL);
 

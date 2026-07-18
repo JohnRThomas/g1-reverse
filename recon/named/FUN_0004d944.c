@@ -2,6 +2,7 @@
  * public-name: FUN_0004d944
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   g1_recon_z_log_msg_alloc                 <= FUN_0004d55c @ 0x0004d55c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
 /* Full reconstruction of FUN_0004d944 @ 0x4d944 (268 bytes). */
 #include <stdint.h>
 
-extern uintptr_t FUN_0004d55c(uint32_t words);
+extern uintptr_t g1_recon_z_log_msg_alloc(uint32_t words);
 extern int32_t FUN_0004abc0(uintptr_t source, uint32_t count, uintptr_t callback,
                            void *state, uint32_t type, void *buffer, uint32_t width);
 extern void FUN_0007ee74(uintptr_t, uintptr_t, uint32_t, uintptr_t);
@@ -36,7 +37,7 @@ void FUN_0004d944(uintptr_t owner, uint32_t descriptor, uintptr_t source, uintpt
     uintptr_t allocation;
 
     if (!encoded) {
-        allocation = FUN_0004d55c(((upper + 0x17u) & ~7u) >> 2);
+        allocation = g1_recon_z_log_msg_alloc(((upper + 0x17u) & ~7u) >> 2);
     } else {
         struct format_state state = {0, 0, 0};
         uint8_t scratch[8];
@@ -59,7 +60,7 @@ void FUN_0004d944(uintptr_t owner, uint32_t descriptor, uintptr_t source, uintpt
             return;
         }
         encoded = (uint32_t)length & 0x7ffu;
-        allocation = FUN_0004d55c(((upper + 0x17u + (uint32_t)length) & ~7u) >> 2);
+        allocation = g1_recon_z_log_msg_alloc(((upper + 0x17u + (uint32_t)length) & ~7u) >> 2);
         descriptor &= 0xfff001ffu;
         if (allocation) {
             state.destination = allocation + 0x10u;
