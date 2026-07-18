@@ -14,8 +14,8 @@ class NetCurrentCfgOverlayTest(unittest.TestCase):
 
     def test_serialization_and_complete_inventory_are_exact(self):
         self.assertEqual(self.data, build())
-        self.assertEqual(self.data["previous_current_inventory_count"], 1123)
-        self.assertEqual(self.data["current_inventory_count"], 1131)
+        self.assertEqual(self.data["previous_current_inventory_count"], 1131)
+        self.assertEqual(self.data["current_inventory_count"], 1142)
         self.assertEqual(len(self.data["prior_added_proofs"]), 33)
         self.assertEqual(self.data["unresolved_count"], 0)
         self.assertEqual(self.data["source_drift"], [])
@@ -51,6 +51,25 @@ class NetCurrentCfgOverlayTest(unittest.TestCase):
         )
         self.assertEqual(self.data["frozen_parent"]["inventory_count"], 1090)
         self.assertEqual(self.data["frozen_parent"]["unresolved_count"], 0)
+
+    def test_latest_callback_receipt_closes_all_current_drift(self):
+        added = {row["name"] for row in self.data["latest_added_proofs"]}
+        changed = {row["name"] for row in self.data["latest_changed_proofs"]}
+        self.assertEqual(len(added), 11)
+        self.assertEqual(len(changed), 6)
+        self.assertEqual(
+            changed,
+            {"FUN_0102a720", "FUN_0102ac0c", "FUN_0102acb4",
+             "FUN_0102afbc", "FUN_0102b2ac", "FUN_0102b900"},
+        )
+        self.assertEqual(
+            sum(row["checked"] for row in
+                self.data["latest_added_proofs"] +
+                self.data["latest_changed_proofs"]),
+            376,
+        )
+        self.assertEqual(self.data["latest_proof_receipt"]["integration_commit"],
+                         "c0fe95af")
 
 
 if __name__ == "__main__":

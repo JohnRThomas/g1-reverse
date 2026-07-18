@@ -1,0 +1,42 @@
+{
+ "schema": 1,
+ "kind": "cpunet_current_callback_cfg_proof_receipt",
+ "status": "complete",
+ "integration_commit": "c0fe95af",
+ "proof_policy": "tools/cfg_verify.py is authoritative; G1_COHESIVE_BUILD is undefined during parity compilation, so the fixed-address raw path remains the compared path",
+ "verifier_tools": {
+  "tools/cfg_verify.py": "b9507f5c35130fccba6be686418b42972285aeb6f83aeb804d9541520aea1b90",
+  "tools/net_recon_kit.py": "c254d28ebef6bd9a4851ba2c7dfea17333d08bff44b807dae2b1147681f2f1d4",
+  "tools/net_extract.py": "ec80c6ed622adce759db81b78a874dc70d9338215800e1d25c023ca08403a6d9",
+  "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+  "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+ },
+ "summary": {
+  "added_sources": 11,
+  "changed_existing_sources": 6,
+  "cfg_pass": 17,
+  "checked": 376,
+  "unresolved": 0
+ },
+ "added_proofs": [
+  {"name":"FUN_0102a4c8","analysis_address":"0x0102a4c8","source":"recon/net/src/FUN_0102a4c8.c","source_sha256":"d94c2d79bd8f0dd220c961c91faa5826ce1fbb796e8914aa1ca9eee4dc3859cd","status":"PASS","checked":14,"cover_cases":14,"recovery_commit":"e6bea805","mutation_gate":"event-dispatch mutation rejected"},
+  {"name":"FUN_0102ab14","analysis_address":"0x0102ab14","source":"recon/net/src/FUN_0102ab14.c","source_sha256":"ec0a6e1169bb66c0436061797b2f35085a095e9f6c53b48d3439e4d4d1ae09fb","status":"PASS","checked":4,"cover_cases":4,"recovery_commit":"d01f038b","mutation_gate":null},
+  {"name":"FUN_0102ab50","analysis_address":"0x0102ab50","source":"recon/net/src/FUN_0102ab50.c","source_sha256":"1006db467664afd1d3af6a865425687ee527506ee4388ca9da65e8a3e6e54147","status":"PASS","checked":5,"cover_cases":5,"recovery_commit":"791238aa","mutation_gate":"endpoint-register mutation rejected"},
+  {"name":"FUN_0102abac","analysis_address":"0x0102abac","source":"recon/net/src/FUN_0102abac.c","source_sha256":"620e17af2de5d8329a653f1a9d55e5451853e01d041f10e4278f3d95750af821","status":"PASS","checked":5,"cover_cases":5,"recovery_commit":"791238aa","mutation_gate":"endpoint-send mutation rejected"},
+  {"name":"FUN_0102ac00","analysis_address":"0x0102ac00","source":"recon/net/src/FUN_0102ac00.c","source_sha256":"eff14be7d6057f6c7cc385c6144fae11c359349e51528a38879a000c0629904b","status":"PASS","checked":40,"cover_cases":0,"recovery_commit":"835e2aa1","mutation_gate":null},
+  {"name":"FUN_0102ace8","analysis_address":"0x0102ace8","source":"recon/net/src/FUN_0102ace8.c","source_sha256":"98c6b8e1a1ca8061f203edf722a2f30a80f4aaa94456337ef53869306b7afe1f","status":"PASS","checked":40,"cover_cases":0,"recovery_commit":"835e2aa1","mutation_gate":null},
+  {"name":"FUN_0102acf4","analysis_address":"0x0102acf4","source":"recon/net/src/FUN_0102acf4.c","source_sha256":"d298a903698c005f82b20add8b8127587a715507d924b325b80eb65eca568a92","status":"PASS","checked":7,"cover_cases":7,"prefix_events":30,"recovery_commit":"03240c39","mutation_gate":"worker-behavior mutation rejected"},
+  {"name":"FUN_0102adac","analysis_address":"0x0102adac","source":"recon/net/src/FUN_0102adac.c","source_sha256":"a837b1bfae96aeec4c02842440add0ab40fe145b6940d701cb567cba19256eb3","status":"PASS","checked":3,"cover_cases":3,"prefix_events":5,"recovery_commit":"03240c39","mutation_gate":"worker-behavior mutation rejected"},
+  {"name":"FUN_0102adf0","analysis_address":"0x0102adf0","source":"recon/net/src/FUN_0102adf0.c","source_sha256":"a3ce887775de55e11405db07e1e16651e66f326ca40cfbda5371507d80217fd4","status":"PASS","checked":17,"cover_cases":17,"recovery_commit":"343d3f0e","mutation_gate":"ISO-path mutation rejected"},
+  {"name":"FUN_0102b810","analysis_address":"0x0102b810","source":"recon/net/src/FUN_0102b810.c","source_sha256":"76f4eb9011f279d00a9fddae667b1eaae35a65f593bcfc5b5c0ab12f9c0c3184","status":"PASS","checked":10,"cover_cases":10,"recovery_commit":"3c8a9002","mutation_gate":null},
+  {"name":"FUN_0102b944","analysis_address":"0x0102b944","source":"recon/net/src/FUN_0102b944.c","source_sha256":"30ed2e8cf27d9f5a862c060fe1a543dbabbd45280b183c09c73dc167f6d60fec","status":"PASS","checked":24,"cover_cases":24,"recovery_commit":"f95614f9","mutation_gate":null}
+ ],
+ "changed_existing_proofs": [
+  {"name":"FUN_0102a720","analysis_address":"0x0102a720","source":"recon/net/src/FUN_0102a720.c","previous_source_sha256":"98639e8e9ebf1f48c0b8dae11463f3ef758e0261d236e419a15f82247e9b1c6f","source_sha256":"79d65cd3953a061de6b41ceb5b4c1fa274881ae49d5f943d1a8c8d4cc732b1c0","status":"PASS","checked":5,"cover_cases":5},
+  {"name":"FUN_0102ac0c","analysis_address":"0x0102ac0c","source":"recon/net/src/FUN_0102ac0c.c","previous_source_sha256":"64410d086373f55492dc60c0e7d382d3716e830c75d1416c97bbe6c846326809","source_sha256":"c8aa65e3c8f42af5bdad595720ad1a6140899b33d9b805e0300353f7cffd65f5","status":"PASS","checked":40,"cover_cases":0},
+  {"name":"FUN_0102acb4","analysis_address":"0x0102acb4","source":"recon/net/src/FUN_0102acb4.c","previous_source_sha256":"67f2ced2f295b4c2fa54aeb29ebe4d3072c8f0faad8a5efa0d0ec535d1c0853b","source_sha256":"e607e6b888c300c63871a5e878d5100fcb50764138c1918756fa79781a5e2b0a","status":"PASS","checked":40,"cover_cases":0},
+  {"name":"FUN_0102afbc","analysis_address":"0x0102afbc","source":"recon/net/src/FUN_0102afbc.c","previous_source_sha256":"1e67836738b0a48697a8fbc8290720dee3d5c0dacb215933400b6ed71b372671","source_sha256":"faf4620815cf82838659e0cee002c93fb335b38fb29984c0042e7170ba2bff47","status":"PASS","checked":40,"cover_cases":0},
+  {"name":"FUN_0102b2ac","analysis_address":"0x0102b2ac","source":"recon/net/src/FUN_0102b2ac.c","previous_source_sha256":"cd52fae0e9937eb710dc125a3deca34de8cc5a3e91191b5316d36777cdf52080","source_sha256":"fee335a71714654aa4cd2eadaa5ba5e4455e41fbac3e8503632e7fda1330653a","status":"PASS","checked":42,"cover_cases":2},
+  {"name":"FUN_0102b900","analysis_address":"0x0102b900","source":"recon/net/src/FUN_0102b900.c","previous_source_sha256":"3fe8dd26a1297525b420aaa68d5995562a71172edd64c9560681f335e5eeea5a","source_sha256":"28a423d8b1f79791a9fed466cc8b480ae89f015e864e909f2ca75d3e65986130","status":"PASS","checked":40,"cover_cases":0}
+ ]
+}

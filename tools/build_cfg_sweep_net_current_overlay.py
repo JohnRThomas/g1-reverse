@@ -11,6 +11,7 @@ BASELINE = ROOT / "recon/analysis/cfg_sweep_authoritative_net.json"
 PREVIOUS = ROOT / "recon/analysis/cfg_sweep_net_recheck_overlay.json"
 OUT_JSON = ROOT / "recon/analysis/cfg_sweep_net_current_overlay.json"
 OUT_MD = ROOT / "recon/analysis/cfg_sweep_net_current_overlay.md"
+CALLBACK_RECEIPT = ROOT / "recon/ownership/net_current_callback_recovery.json"
 
 INPUT_HASHES = {
     "recon/analysis/cfg_sweep_authoritative_net.json": "fea47af658122b8fc4dd3364bbc6e94ec348611b1168ee175e6d84e727275db4",
@@ -27,10 +28,11 @@ INPUT_HASHES = {
     "recon/ownership/net_sdc_event_publish_recovery.json": "6153a508f8e75686af4249d349152a62a6644c6ef3aa0bb85017e31c826b024e",
     "recon/ownership/net_esb_clock_start_closure.json": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
     "recon/ownership/net_esb_boot_root.json": "a569b54e5f32a6bd9fa6bf53c89d94e8a80adcf4f9789527a23c1cb9dabb67d4",
+    "recon/ownership/net_current_callback_recovery.json": "b51685e0493bfb9b38318c0e4c96e90e2236815275549cf57b5e0fb74cd0b116",
 }
 TOOL_HASHES = {
-    "tools/cfg_verify.py": "56a51d52bdb25fce73454ff47d836220464518defc66b42c56f965f1eda9b2a7",
-    "tools/net_recon_kit.py": "9fde04632cdc6ba306352b83a75f3d8fe0ab453da8524fff060d17832aedfef0",
+    "tools/cfg_verify.py": "b9507f5c35130fccba6be686418b42972285aeb6f83aeb804d9541520aea1b90",
+    "tools/net_recon_kit.py": "c254d28ebef6bd9a4851ba2c7dfea17333d08bff44b807dae2b1147681f2f1d4",
     "tools/net_extract.py": "ec80c6ed622adce759db81b78a874dc70d9338215800e1d25c023ca08403a6d9",
     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2",
@@ -189,7 +191,8 @@ def esb_boot_addition():
             row["cfg_status"] != "PASS" or row["directed_cases"] != 5 or
             row["prefix_events"] != 512 or
             len(row["families"]) != 5 or
-            sha256(ROOT / source) != row["source_sha256"]):
+            row["source_sha256"] !=
+            "98639e8e9ebf1f48c0b8dae11463f3ef758e0261d236e419a15f82247e9b1c6f"):
         raise ValueError("ESB boot-root proof drift")
     return {
         "name": row["raw_identity"],
@@ -205,6 +208,31 @@ def esb_boot_addition():
         "receipt": relative,
         "receipt_sha256": INPUT_HASHES[relative],
     }
+
+
+def callback_recovery():
+    receipt = json.loads(CALLBACK_RECEIPT.read_text())
+    if (receipt.get("status") != "complete" or
+            receipt.get("integration_commit") != "c0fe95af" or
+            receipt.get("verifier_tools") != TOOL_HASHES or
+            receipt.get("summary") != {
+                "added_sources": 11, "changed_existing_sources": 6,
+                "cfg_pass": 17, "checked": 376, "unresolved": 0}):
+        raise ValueError("current callback proof receipt summary drift")
+    added = receipt.get("added_proofs", [])
+    changed = receipt.get("changed_existing_proofs", [])
+    if (len(added) != 11 or len(changed) != 6 or
+            len({row["name"] for row in added + changed}) != 17):
+        raise ValueError("current callback proof receipt identity drift")
+    for row in added + changed:
+        source = row["source"]
+        if (row.get("status") != "PASS" or row.get("checked", 0) <= 0 or
+                Path(source).stem != row["name"] or
+                sha256(ROOT / source) != row["source_sha256"]):
+            raise ValueError("invalid current callback CFG proof: %s" % row["name"])
+    if sum(row["checked"] for row in added + changed) != 376:
+        raise ValueError("current callback checked-count drift")
+    return added, changed
 
 
 def build():
@@ -237,6 +265,19 @@ def build():
         raise ValueError("ESB boot root already covered")
     expected[boot["name"]] = boot["source_sha256"]
 
+    callback_additions, callback_changes = callback_recovery()
+    if len(expected) != 1131:
+        raise ValueError("committed current-overlay count drift")
+    for row in callback_additions:
+        if row["name"] in expected:
+            raise ValueError("callback addition already covered: %s" % row["name"])
+        expected[row["name"]] = row["source_sha256"]
+    for row in callback_changes:
+        name = row["name"]
+        if expected.get(name) != row["previous_source_sha256"]:
+            raise ValueError("changed callback parent hash drift: %s" % name)
+        expected[name] = row["source_sha256"]
+
     current = {path.stem: sha256(path)
                for path in (ROOT / "recon/net/src").glob("*.c")}
     if set(current) != set(expected):
@@ -255,17 +296,24 @@ def build():
             "inventory_count": 1090,
             "unresolved_count": 0,
         },
-        "previous_current_inventory_count": 1123,
+        "previous_current_inventory_count": 1131,
         "prior_added_proofs": additions,
         "current_additions": [latest, boot] + added_closure,
         "reverified_existing": existing,
-        "current_inventory_count": 1131,
+        "latest_added_proofs": callback_additions,
+        "latest_changed_proofs": callback_changes,
+        "latest_proof_receipt": {
+            "path": str(CALLBACK_RECEIPT.relative_to(ROOT)),
+            "sha256": INPUT_HASHES[str(CALLBACK_RECEIPT.relative_to(ROOT))],
+            "integration_commit": "c0fe95af",
+        },
+        "current_inventory_count": 1142,
         "current_source_inventory_digest": digest_json(inventory),
         "current_source_tree_fully_covered": True,
         "source_drift": [],
         "tool_hashes": TOOL_HASHES,
         "overlay_counts": {
-            "PASS": 1131, "FAIL": 0, "compile_error": 0,
+            "PASS": 1142, "FAIL": 0, "compile_error": 0,
             "other": 0, "timeout": 0, "source_changed": 0,
         },
         "unresolved_count": 0,
@@ -278,11 +326,12 @@ def markdown(data):
     return "\n".join([
         "# CPUNET current-corpus CFG overlay", "",
         "This exact-hash layer preserves the frozen 1,090-source sweep and "
-        "all 33 previously proven link-gap roots (1,123 sources), then adds "
-        "the catalog-missed `sdc_event_publish` root and the seven recovered "
-        "ESB production roots.", "",
-        "- Previous covered inventory: **1,123 PASS; 0 unresolved**",
-        "- Current covered inventory: **1,131 PASS; 0 unresolved**",
+        "all 33 previously proven link-gap roots, `sdc_event_publish`, and the "
+        "seven recovered ESB production roots (1,131 sources). It then adds "
+        "eleven recovered product callbacks and rebinds six cohesive-only "
+        "source hashes after fresh default-path CFG verification.", "",
+        "- Previous covered inventory: **1,131 PASS; 0 unresolved**",
+        "- Current covered inventory: **1,142 PASS; 0 unresolved**",
         "- Inventory digest: `%s`" % data["current_source_inventory_digest"],
         "- New proof: `%s` / `%s`, extent `%d`, CFG **PASS %d/%d**" % (
             row["name"], row["readable_name"], row["true_executable_extent"],
@@ -293,6 +342,8 @@ def markdown(data):
             boot["name"], boot["readable_name"], boot["true_executable_extent"],
             boot["checked"], boot["cover_cases"], boot["prefix_events"]),
         "- ESB clock/start closure: 6 new PASS roots; `FUN_0102b31c` freshly reverified",
+        "- Latest callback closure: 11 new PASS roots, 6 changed-source PASS rechecks, 376 checks",
+        "- Cohesive integration commit: `c0fe95af`",
         "", "## Current verifier tool hashes", "",
         *["- `%s`: `%s`" % item for item in sorted(data["tool_hashes"].items())],
         "",
@@ -303,7 +354,7 @@ def main():
     data = build()
     OUT_JSON.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n")
     OUT_MD.write_text(markdown(data))
-    print("CPUNET current CFG overlay valid: 1131 PASS, unresolved=0")
+    print("CPUNET current CFG overlay valid: 1142 PASS, unresolved=0")
 
 
 if __name__ == "__main__":
