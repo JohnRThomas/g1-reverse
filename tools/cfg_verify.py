@@ -101,6 +101,8 @@ REVIEWED_PREFIX_PROOFS = {
 # scratch and must not create false mismatches merely because GCC leaves a
 # different stale value in them.
 CALL_ARITY_OVERRIDES = {
+    # MPSL timeslot close consumes only the one-byte session identifier.
+    ("net", 0x0102a0e6): 1,
     # Zephyr sys_reboot consumes the reboot mode in r0 even though this arch
     # implementation ignores the value before its AIRCR reset request.
     ("net", 0x0102f4ec): 1,
@@ -405,6 +407,9 @@ TRUE_SIZE_OVERRIDES = {
     # Custom ipc0 endpoint receive dispatcher.  Its matched-record path
     # tail-calls the registered handler; the registry-root literal follows.
     ("net", 0x0102ab14): 0x38,
+    # Catalog-missing non-preemptible MPSL API worker.  Its four-entry TBB and
+    # all error/fatal tails end at 0x0102b8d8; the literal pool starts there.
+    ("net", 0x0102b810): 0xc8,
     # Catalog-missing SDC event-publication bridge.  The body owns its
     # state-base literal at 0x0101b548 and ends before the independent entry
     # at 0x0101b54c.
@@ -20828,6 +20833,59 @@ REVIEWED_ORACLE_CASES[("net", 0x0102e064)] = [
     _net_controller_supervisor_case(event_results=(7, 0),
                                     drained_callback=False),
 ]
+
+
+def _net_timeslot_api_worker_case(api_call, api_result=0,
+                                  timeout_steps=0, log_level=1):
+    """Drive one complete non-preemptible MPSL queue dispatch.
+
+    k_msgq_get publishes the one-byte opcode through its compiler-local output
+    pointer.  The following oracle is the selected MPSL API (except for the
+    invalid-opcode case); later queue gets return nonzero, bounding the worker
+    in a stable polling loop after the selected dispatch has completed.
+    """
+    memory = [
+        (0x21000580, int(log_level).to_bytes(4, "little", signed=True)),
+        (0x21004638, int(timeout_steps).to_bytes(4, "little")),
+        (0x210005b8, bytes(4)),
+        (0x210005c0, bytes(4)),
+    ]
+    oracles = {0: {0: 0}}
+    if api_call <= 3:
+        oracles[1] = {0: int(api_result)}
+    for ordinal in range(2, 20):
+        oracles[ordinal] = {0: 1}
+    writes = {
+        0: [(1, 0, bytes((api_call,)), 0x010362d0)],
+    }
+    if api_call == 0:
+        writes[1] = [(1, 0, b"\x07", 0x01021a38)]
+    return ({}, memory, oracles, writes)
+
+
+# The worker deliberately never returns.  Six ordered events cross the chosen
+# queue dispatch and enter the following stable poll; the concrete cases cover
+# all four TBB arms, both normal-request descriptors, every API error tail, and
+# the invalid-opcode fatal path.
+REVIEWED_PREFIX_PROOFS[("net", 0x0102b810)] = 6
+REVIEWED_ORACLE_CASES[("net", 0x0102b810)] = [
+    _net_timeslot_api_worker_case(0),
+    _net_timeslot_api_worker_case(0, api_result=5),
+    _net_timeslot_api_worker_case(1),
+    _net_timeslot_api_worker_case(1, api_result=5),
+    _net_timeslot_api_worker_case(2, timeout_steps=0),
+    _net_timeslot_api_worker_case(2, timeout_steps=2),
+    _net_timeslot_api_worker_case(2, api_result=5, timeout_steps=2),
+    _net_timeslot_api_worker_case(3),
+    _net_timeslot_api_worker_case(3, api_result=5),
+    _net_timeslot_api_worker_case(4),
+]
+REVIEWED_STACK_POINTER_CALLS[("net", 0x0102b810)] = {
+    **{ordinal: {1} for ordinal in range(20)},
+}
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102b810)] = {
+    2: 1,  # Normalized SVC #2 target consumes only r0=reason.
+}
 REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102e064)] = {
     0x01040000: 2,
 }
