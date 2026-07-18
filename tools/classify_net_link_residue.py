@@ -92,6 +92,65 @@ TAIL_ALIASES = {
     "FUN_0100b5f8": "single b.w tail veneer to 0x0100ac34",
 }
 
+# Final audit of the thirteen missing entries that are not already explained by
+# the manifest's softdevice_controller component.  These dispositions are
+# intentionally non-resolving: private SDC bodies remain report-only, and the
+# two malformed/C-unexpressible entries do not acquire invented C semantics.
+NON_COMPONENT_CLOSEOUT = {
+    "FUN_0100ef08": (
+        "private_sdc_report_only",
+        "internal controller entry at 0x0100ef08 remains a private SDC report-only body",
+    ),
+    "FUN_01011664": (
+        "private_sdc_report_only",
+        "private controller entry at 0x01011664 remains report-only",
+    ),
+    "FUN_01018df8": (
+        "private_sdc_report_only",
+        "private controller entry at 0x01018df8 remains report-only",
+    ),
+    "FUN_0101d890": (
+        "private_sdc_report_only",
+        "private controller entry at 0x0101d890 remains report-only",
+    ),
+    "FUN_0102665c": (
+        "private_sdc_report_only",
+        "private controller entry at 0x0102665c remains report-only",
+    ),
+    "FUN_010292ec": (
+        "private_sdc_report_only",
+        "private controller entry at 0x010292ec remains report-only",
+    ),
+    "FUN_0102a1e0": (
+        "private_sdc_report_only",
+        "private controller entry at 0x0102a1e0 remains report-only",
+    ),
+    "controller_entry_links_release": (
+        "private_sdc_report_only",
+        "0x0101df84 is an exact unique private SDC archive match with unpublished ABI",
+    ),
+    "controller_timing_defaults_apply": (
+        "private_sdc_report_only",
+        "0x0101e1e4 is an exact unique private SDC archive match with unpublished ABI",
+    ),
+    "sdc_conn_event_process": (
+        "private_sdc_report_only",
+        "private SDC connection-event entry at 0x01014b18 remains report-only",
+    ),
+    "FUN_0102fa84": (
+        "blocked_c_unexpressible",
+        "entry performs a BASEPRI reset followed by SVC 2; its exception-mediated continuation cannot be represented as an ordinary C call/return body",
+    ),
+    "FUN_0102d25c": (
+        "anomalous_non_executable_target",
+        "conditional path branches through literal 0x0103c8a1 into confirmed IPC log-string data; no executable owner or relocation is known",
+    ),
+    "controller_default_bounds_build": (
+        "private_sdc_report_only",
+        "0x010282fc is the 126-byte FUN_010282fc body and an exact unique private SDC archive match with unpublished ABI",
+    ),
+}
+
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
@@ -146,13 +205,19 @@ def load_identity_maps():
     }
     readable = json.loads(readable_path.read_text())
     sdk_readable = {row["symbol"]: row for row in readable["sdk_owners"]}
+    unresolved_readable = {
+        row["symbol"]: row for row in readable["unresolved"]
+    }
     return (names_path, manifest_path, readable_path, by_va, by_name,
-            adoption, sdk_readable)
+            adoption, sdk_readable, unresolved_readable)
 
 
-def symbol_va(symbol: str, by_name: dict[str, str]) -> str | None:
+def symbol_va(symbol: str, by_name: dict[str, str],
+              unresolved_readable: dict) -> str | None:
     if symbol in by_name:
         return by_name[symbol].lower()
+    if symbol in unresolved_readable:
+        return unresolved_readable[symbol]["va"].lower()
     match = re.fullmatch(r"FUN_([0-9a-fA-F]{8})(?:_after)?", symbol)
     if match:
         return "0x" + match.group(1).lower()
@@ -192,9 +257,25 @@ def classify(symbol: str, va: str | None, adoption: dict, sdk_readable: dict):
     )
 
 
+def closeout_disposition(symbol: str, category: str,
+                         adoption_component: str | None):
+    if category != "true_missing_reconstructed_entry":
+        return None, None, None
+    if symbol in NON_COMPONENT_CLOSEOUT:
+        disposition, evidence = NON_COMPONENT_CLOSEOUT[symbol]
+        return disposition, False, evidence
+    if adoption_component == "softdevice_controller":
+        return (
+            "private_sdc_report_only",
+            False,
+            "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized",
+        )
+    raise ValueError("true-missing CPUNET symbol lacks closeout disposition: %s" % symbol)
+
+
 def generate(elf: Path) -> dict:
     (names_path, manifest_path, readable_path, by_va, by_name, adoption,
-     sdk_readable) = load_identity_maps()
+     sdk_readable, unresolved_readable) = load_identity_maps()
     all_undefined = nm_undefined(elf)
     pins = provided_symbols()
     residue = sorted(symbol for symbol in all_undefined if symbol not in pins)
@@ -202,10 +283,15 @@ def generate(elf: Path) -> dict:
 
     entries = []
     for symbol in residue:
-        va = symbol_va(symbol, by_name)
+        va = symbol_va(symbol, by_name, unresolved_readable)
         identity = by_va.get(va) if va else None
         adoption_record = adoption.get(va) if va else None
         category, reason = classify(symbol, va, adoption, sdk_readable)
+        disposition, actionable, disposition_evidence = closeout_disposition(
+            symbol,
+            category,
+            adoption_record.get("component") if adoption_record else None,
+        )
         expected_source = None
         source_exists = False
         if identity:
@@ -228,6 +314,9 @@ def generate(elf: Path) -> dict:
                 "adoption_decision": (
                     adoption_record.get("decision") if adoption_record else None
                 ),
+                "closeout_disposition": disposition,
+                "closeout_actionable": actionable,
+                "closeout_evidence": disposition_evidence,
             }
         )
 
@@ -237,8 +326,13 @@ def generate(elf: Path) -> dict:
         for entry in entries
         if entry["category"] == "true_missing_reconstructed_entry"
     )
+    by_disposition = Counter(
+        entry["closeout_disposition"]
+        for entry in entries
+        if entry["closeout_disposition"] is not None
+    )
     return {
-        "schema": 1,
+        "schema": 2,
         "core": "net",
         "scope": "all non-pinned undefined symbols in build/net_full.elf",
         "policy": {
@@ -265,6 +359,10 @@ def generate(elf: Path) -> dict:
             "classified_residue": len(residue),
             "by_category": {category: counts[category] for category in CATEGORIES},
             "missing_by_adoption_component": dict(sorted(by_component.items())),
+            "missing_by_closeout_disposition": dict(sorted(by_disposition.items())),
+            "actionable_net_reconstruction_count": sum(
+                entry["closeout_actionable"] is True for entry in entries
+            ),
         },
         "entries": entries,
     }
@@ -282,18 +380,23 @@ def render_markdown(report: dict) -> str:
         f"- Undefined symbols in partial link: **{summary['undefined_total']}**",
         f"- Already covered by address pins/aliases: **{summary['already_pinned_or_aliased']}**",
         f"- Function/pseudo residue classified here: **{summary['classified_residue']}**",
+        f"- Actionable net reconstructions after closeout: **{summary['actionable_net_reconstruction_count']}**",
         "",
         "| Category | Count |",
         "|---|---:|",
     ]
     for category in CATEGORIES:
         lines.append(f"| `{category}` | {summary['by_category'][category]} |")
-    lines.extend(["", "## Per-symbol classification", "", "| Symbol | VA | Category | Refs | Evidence |", "|---|---:|---|---:|---|"])
+    lines.extend(["", "## Missing-entry closeout", "", "| Disposition | Count |", "|---|---:|"])
+    for disposition, count in summary["missing_by_closeout_disposition"].items():
+        lines.append(f"| `{disposition}` | {count} |")
+    lines.extend(["", "## Per-symbol classification", "", "| Symbol | VA | Category | Disposition | Refs | Evidence |", "|---|---:|---|---|---:|---|"])
     for entry in report["entries"]:
-        reason = entry["reason"].replace("|", "\\|")
+        reason = (entry["closeout_evidence"] or entry["reason"]).replace("|", "\\|")
         lines.append(
             f"| `{entry['symbol']}` | {entry['va'] or ''} | "
-            f"`{entry['category']}` | {entry['reference_count']} | {reason} |"
+            f"`{entry['category']}` | `{entry['closeout_disposition'] or ''}` | "
+            f"{entry['reference_count']} | {reason} |"
         )
     return "\n".join(lines) + "\n"
 

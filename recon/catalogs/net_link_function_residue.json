@@ -1,5 +1,5 @@
 {
- "schema": 1,
+ "schema": 2,
  "core": "net",
  "scope": "all non-pinned undefined symbols in build/net_full.elf",
  "policy": {
@@ -22,7 +22,7 @@
   },
   {
    "path": "recon/catalogs/net_readable_alias_resolutions.json",
-   "sha256": "f9e795fd86d827b1918bb5e0530e564e96c01fc631afee537918a481dab8478a"
+   "sha256": "16ef3805cb5f28d680803f92feab9db7f93cbb72ecd714d3ef2e6b36612697a1"
   }
  ],
  "summary": {
@@ -38,10 +38,16 @@
    "data_or_global_alias_gap": 0
   },
   "missing_by_adoption_component": {
-   "net_sdk_or_glue": 2,
-   "softdevice_controller": 53,
-   "unmapped": 11
-  }
+   "net_sdk_or_glue": 3,
+   "softdevice_controller": 54,
+   "unmapped": 9
+  },
+  "missing_by_closeout_disposition": {
+   "anomalous_non_executable_target": 1,
+   "blocked_c_unexpressible": 1,
+   "private_sdc_report_only": 64
+  },
+  "actionable_net_reconstruction_count": 0
  },
  "entries": [
   {
@@ -57,7 +63,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "internal controller entry at 0x0100ef08 remains a private SDC report-only body"
   },
   {
    "symbol": "FUN_0100f86c",
@@ -72,7 +81,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0100f86c",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01010890",
@@ -87,7 +99,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01010890",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01011664",
@@ -102,7 +117,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x01011664 remains report-only"
   },
   {
    "symbol": "FUN_01012150",
@@ -117,7 +135,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01012150",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101233c",
@@ -132,7 +153,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101233c",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01012694",
@@ -147,7 +171,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01012694",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010126c8",
@@ -162,7 +189,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010126c8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01012714",
@@ -177,7 +207,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01012714",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010129b8",
@@ -192,7 +225,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010129b8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01012ad4",
@@ -207,7 +243,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01012ad4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01013da8",
@@ -222,7 +261,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01013da8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01016170",
@@ -237,7 +279,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01016170",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01018df8",
@@ -252,7 +297,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x01018df8 remains report-only"
   },
   {
    "symbol": "FUN_010199f4",
@@ -267,7 +315,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010199f4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01019eb4",
@@ -282,7 +333,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01019eb4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01019ef8",
@@ -297,7 +351,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01019ef8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101d890",
@@ -312,7 +369,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x0101d890 remains report-only"
   },
   {
    "symbol": "FUN_0101ded0",
@@ -327,7 +387,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101ded0",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101e090",
@@ -342,7 +405,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101e090",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101e1e4",
@@ -357,7 +423,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101e1e4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101e2fc",
@@ -372,7 +441,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101e2fc",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0101f624",
@@ -387,7 +459,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0101f624",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010207cc",
@@ -402,7 +477,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010207cc",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01020820",
@@ -417,7 +495,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01020820",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01021940",
@@ -432,7 +513,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01021940",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01021ac0",
@@ -448,7 +532,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01021ac0",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01022a30",
@@ -464,7 +551,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01022a30",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01022a50",
@@ -482,7 +572,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01022a50",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01022e34",
@@ -500,7 +593,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01022e34",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01022ea8",
@@ -517,7 +613,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01022ea8",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01022f0c",
@@ -533,7 +632,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01022f0c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01023ac4",
@@ -551,7 +653,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01023ac4",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01023d38",
@@ -572,7 +677,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01023d38",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01023e88",
@@ -592,7 +700,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01023e88",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01024440",
@@ -612,7 +723,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01024440",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102445c",
@@ -628,7 +742,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102445c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_010245d8",
@@ -646,7 +763,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010245d8",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01024c6c",
@@ -663,7 +783,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01024c6c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102524c",
@@ -681,7 +804,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102524c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_010256dc",
@@ -718,7 +844,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010256dc",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_010257e4",
@@ -733,7 +862,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010257e4",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102590c",
@@ -748,7 +880,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102590c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025998",
@@ -770,7 +905,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025998",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025a84",
@@ -796,7 +934,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025a84",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025c44",
@@ -813,7 +954,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025c44",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025c9c",
@@ -831,7 +975,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025c9c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025cc8",
@@ -846,7 +993,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025cc8",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025d0c",
@@ -861,7 +1011,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025d0c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01025d38",
@@ -876,7 +1029,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01025d38",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102665c",
@@ -891,7 +1047,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x0102665c remains report-only"
   },
   {
    "symbol": "FUN_0102693a",
@@ -909,7 +1068,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102693a",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010269ce",
@@ -924,7 +1086,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010269ce",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026a7e",
@@ -942,7 +1107,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026a7e",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026acc",
@@ -957,7 +1125,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026acc",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026b58",
@@ -972,7 +1143,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026b58",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026bfe",
@@ -987,7 +1161,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026bfe",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026d16",
@@ -1002,7 +1179,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026d16",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01026dae",
@@ -1017,7 +1197,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01026dae",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027044",
@@ -1032,7 +1215,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027044",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010270e8",
@@ -1047,7 +1233,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010270e8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027302",
@@ -1062,7 +1251,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027302",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010273c6",
@@ -1077,7 +1269,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010273c6",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027846",
@@ -1092,7 +1287,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027846",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027a4a",
@@ -1107,7 +1305,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027a4a",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027a94",
@@ -1122,7 +1323,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027a94",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027ed4",
@@ -1137,7 +1341,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027ed4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01027ef2",
@@ -1152,7 +1359,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01027ef2",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010280be",
@@ -1167,7 +1377,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010280be",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010280d8",
@@ -1182,7 +1395,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010280d8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01028256",
@@ -1197,7 +1413,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01028256",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0102894a",
@@ -1212,7 +1431,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102894a",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010292ec",
@@ -1227,7 +1449,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x010292ec remains report-only"
   },
   {
    "symbol": "FUN_0102941c",
@@ -1242,7 +1467,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102941c",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0102961a",
@@ -1257,7 +1485,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102961a",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0102971e",
@@ -1272,7 +1503,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102971e",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010297b4",
@@ -1287,7 +1521,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010297b4",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01029882",
@@ -1302,7 +1539,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01029882",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_010298a8",
@@ -1317,7 +1557,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010298a8",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_01029b38",
@@ -1332,7 +1575,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01029b38",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "FUN_0102a1e0",
@@ -1347,7 +1593,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private controller entry at 0x0102a1e0 remains report-only"
   },
   {
    "symbol": "FUN_0102a244",
@@ -1362,7 +1611,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102a244",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102d25c",
@@ -1377,7 +1629,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "anomalous_non_executable_target",
+   "closeout_actionable": false,
+   "closeout_evidence": "conditional path branches through literal 0x0103c8a1 into confirmed IPC log-string data; no executable owner or relocation is known"
   },
   {
    "symbol": "FUN_0102eb2c",
@@ -1397,7 +1652,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102eb2c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0102fa84",
@@ -1412,7 +1670,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102fa84",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "blocked_c_unexpressible",
+   "closeout_actionable": false,
+   "closeout_evidence": "entry performs a BASEPRI reset followed by SVC 2; its exception-mediated continuation cannot be represented as an ordinary C call/return body"
   },
   {
    "symbol": "FUN_0102fbac",
@@ -1427,7 +1688,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0102fbac",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103175c",
@@ -1443,7 +1707,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103175c",
    "adoption_component": "zephyr_nrf_rtc_timer",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_010353ec",
@@ -1460,7 +1727,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010353ec",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01038fa4",
@@ -1475,7 +1745,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01038fa4",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_01039b88",
@@ -1490,7 +1763,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_01039b88",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103ab0e",
@@ -1506,7 +1782,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103ab0e",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103ac50",
@@ -1522,7 +1801,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103ac50",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103ad1a",
@@ -1537,7 +1819,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103ad1a",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103ada8",
@@ -1552,7 +1837,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103ada8",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103ae10",
@@ -1567,7 +1855,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103ae10",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b1e2",
@@ -1582,7 +1873,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b1e2",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b210",
@@ -1597,7 +1891,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b210",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b268",
@@ -1612,7 +1909,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b268",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b304",
@@ -1627,7 +1927,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b304",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b34c",
@@ -1642,7 +1945,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b34c",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b4f6",
@@ -1659,7 +1965,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b4f6",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b5c4",
@@ -1674,7 +1983,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b5c4",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b614",
@@ -1702,7 +2014,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b614",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_0103b62e",
@@ -1733,7 +2048,10 @@
    "expected_source_exists": false,
    "identity_name": "FUN_0103b62e",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "FUN_shadow_default",
@@ -1748,22 +2066,28 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "controller_default_bounds_build",
-   "va": null,
+   "va": "0x010282fc",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
     "FUN_01028656.o"
    ],
-   "expected_source": null,
+   "expected_source": "recon/symbolized/net/FUN_010282fc.c",
    "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
+   "identity_name": "FUN_010282fc",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "0x010282fc is the 126-byte FUN_010282fc body and an exact unique private SDC archive match with unpublished ABI"
   },
   {
    "symbol": "controller_deferred_event_raise",
@@ -1784,7 +2108,10 @@
    "expected_source_exists": false,
    "identity_name": "controller_deferred_event_raise",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "controller_entry_links_release",
@@ -1799,7 +2126,10 @@
    "expected_source_exists": false,
    "identity_name": "controller_entry_links_release",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "0x0101df84 is an exact unique private SDC archive match with unpublished ABI"
   },
   {
    "symbol": "controller_radio_time_mode2_to_mode2",
@@ -1814,22 +2144,28 @@
    "expected_source_exists": false,
    "identity_name": "controller_radio_time_mode2_to_mode2",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "controller_timing_defaults_apply",
-   "va": null,
+   "va": "0x0101e1e4",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
     "controller_timing_state_reset.o"
    ],
-   "expected_source": null,
+   "expected_source": "recon/symbolized/net/FUN_0101e1e4.c",
    "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
+   "identity_name": "FUN_0101e1e4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "0x0101e1e4 is an exact unique private SDC archive match with unpublished ABI"
   },
   {
    "symbol": "controller_transition_pending_check",
@@ -1844,7 +2180,10 @@
    "expected_source_exists": false,
    "identity_name": "controller_transition_pending_check",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "ipc_rpmsg_init",
@@ -1859,7 +2198,10 @@
    "expected_source_exists": false,
    "identity_name": "ipc_rpmsg_init",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "ipc_static_vrings_init",
@@ -1874,7 +2216,10 @@
    "expected_source_exists": false,
    "identity_name": "ipc_static_vrings_init",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "ipc_static_vrings_shm_size",
@@ -1889,7 +2234,10 @@
    "expected_source_exists": false,
    "identity_name": "ipc_static_vrings_shm_size",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "k_timer_stop",
@@ -1904,7 +2252,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "k_work_queue_init",
@@ -1919,7 +2270,10 @@
    "expected_source_exists": false,
    "identity_name": "k_work_queue_init",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "k_work_queue_start",
@@ -1934,7 +2288,10 @@
    "expected_source_exists": false,
    "identity_name": "k_work_queue_start",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "net_buf_destroy_from_pool",
@@ -1949,7 +2306,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "rtc_compare_event_clear",
@@ -1965,7 +2325,10 @@
    "expected_source_exists": false,
    "identity_name": "rtc_compare_event_clear",
    "adoption_component": "zephyr_nrf_rtc_timer",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "schedule_node_tail_get",
@@ -1980,7 +2343,10 @@
    "expected_source_exists": false,
    "identity_name": "schedule_node_tail_get",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "scheduler_priority_compare",
@@ -1995,7 +2361,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "scheduler_reschedule_restore",
@@ -2010,7 +2379,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sdc_byte_lock_release",
@@ -2025,7 +2397,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_byte_lock_release",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sdc_byte_lock_try_acquire",
@@ -2040,7 +2415,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_byte_lock_try_acquire",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sdc_conn_event_process",
@@ -2056,7 +2434,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_conn_event_process",
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "private SDC connection-event entry at 0x01014b18 remains report-only"
   },
   {
    "symbol": "sdc_conn_recovery_state_restore",
@@ -2071,7 +2452,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_conn_recovery_state_restore",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "sdc_conn_recovery_window_update",
@@ -2086,7 +2470,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_conn_recovery_window_update",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
    "symbol": "sdc_conn_window_admit",
@@ -2114,7 +2501,10 @@
    "expected_source_exists": false,
    "identity_name": "sdc_conn_window_admit",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction"
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sys_rand_get",
@@ -2129,7 +2519,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sys_timepoint_calc",
@@ -2144,7 +2537,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "sys_timepoint_timeout",
@@ -2159,7 +2555,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "z_except_reason",
@@ -2174,7 +2573,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "z_impl_k_thread_abort",
@@ -2189,7 +2591,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
    "symbol": "z_unpend_all",
@@ -2204,7 +2609,10 @@
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
-   "adoption_decision": null
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   }
  ]
 }

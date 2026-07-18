@@ -7,6 +7,7 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 - Undefined symbols in partial link: **571**
 - Already covered by address pins/aliases: **437**
 - Function/pseudo residue classified here: **134**
+- Actionable net reconstructions after closeout: **0**
 
 | Category | Count |
 |---|---:|
@@ -17,141 +18,149 @@ only reviewed `exclude_reconstruction` decisions count as SDK owners.
 | `naming_or_symbolization_defect` | 0 |
 | `data_or_global_alias_gap` | 0 |
 
+## Missing-entry closeout
+
+| Disposition | Count |
+|---|---:|
+| `anomalous_non_executable_target` | 1 |
+| `blocked_c_unexpressible` | 1 |
+| `private_sdc_report_only` | 64 |
+
 ## Per-symbol classification
 
-| Symbol | VA | Category | Refs | Evidence |
-|---|---:|---|---:|---|
-| `FUN_0100ef08` | 0x0100ef08 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0100f86c` | 0x0100f86c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01010890` | 0x01010890 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01011664` | 0x01011664 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01012150` | 0x01012150 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101233c` | 0x0101233c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01012694` | 0x01012694 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010126c8` | 0x010126c8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01012714` | 0x01012714 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010129b8` | 0x010129b8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01012ad4` | 0x01012ad4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01013da8` | 0x01013da8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01016170` | 0x01016170 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01018df8` | 0x01018df8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010199f4` | 0x010199f4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01019eb4` | 0x01019eb4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01019ef8` | 0x01019ef8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101d890` | 0x0101d890 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101ded0` | 0x0101ded0 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101e090` | 0x0101e090 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101e1e4` | 0x0101e1e4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101e2fc` | 0x0101e2fc | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0101f624` | 0x0101f624 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010207cc` | 0x010207cc | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01020820` | 0x01020820 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01021940` | 0x01021940 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01021ac0` | 0x01021ac0 | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01022a30` | 0x01022a30 | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01022a50` | 0x01022a50 | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01022e34` | 0x01022e34 | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01022ea8` | 0x01022ea8 | `sdk_or_config_symbol` | 3 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01022f0c` | 0x01022f0c | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01023ac4` | 0x01023ac4 | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01023d38` | 0x01023d38 | `sdk_or_config_symbol` | 7 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01023e88` | 0x01023e88 | `sdk_or_config_symbol` | 6 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01024440` | 0x01024440 | `sdk_or_config_symbol` | 6 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102445c` | 0x0102445c | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_010245d8` | 0x010245d8 | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01024c6c` | 0x01024c6c | `sdk_or_config_symbol` | 3 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102524c` | 0x0102524c | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_010256dc` | 0x010256dc | `sdk_or_config_symbol` | 23 | reviewed adoption manifest selects the upstream owner |
-| `FUN_010257e4` | 0x010257e4 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102590c` | 0x0102590c | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025998` | 0x01025998 | `sdk_or_config_symbol` | 8 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025a84` | 0x01025a84 | `sdk_or_config_symbol` | 12 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025c44` | 0x01025c44 | `sdk_or_config_symbol` | 3 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025c9c` | 0x01025c9c | `sdk_or_config_symbol` | 4 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025cc8` | 0x01025cc8 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025d0c` | 0x01025d0c | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01025d38` | 0x01025d38 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102665c` | 0x0102665c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102693a` | 0x0102693a | `true_missing_reconstructed_entry` | 4 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010269ce` | 0x010269ce | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026a7e` | 0x01026a7e | `true_missing_reconstructed_entry` | 4 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026acc` | 0x01026acc | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026b58` | 0x01026b58 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026bfe` | 0x01026bfe | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026d16` | 0x01026d16 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01026dae` | 0x01026dae | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027044` | 0x01027044 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010270e8` | 0x010270e8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027302` | 0x01027302 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010273c6` | 0x010273c6 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027846` | 0x01027846 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027a4a` | 0x01027a4a | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027a94` | 0x01027a94 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027ed4` | 0x01027ed4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01027ef2` | 0x01027ef2 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010280be` | 0x010280be | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010280d8` | 0x010280d8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01028256` | 0x01028256 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102894a` | 0x0102894a | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010292ec` | 0x010292ec | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102941c` | 0x0102941c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102961a` | 0x0102961a | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102971e` | 0x0102971e | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010297b4` | 0x010297b4 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01029882` | 0x01029882 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_010298a8` | 0x010298a8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_01029b38` | 0x01029b38 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102a1e0` | 0x0102a1e0 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102a244` | 0x0102a244 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102d25c` | 0x0102d25c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102eb2c` | 0x0102eb2c | `sdk_or_config_symbol` | 6 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0102fa84` | 0x0102fa84 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `FUN_0102fbac` | 0x0102fbac | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103175c` | 0x0103175c | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_010353ec` | 0x010353ec | `sdk_or_config_symbol` | 3 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01038fa4` | 0x01038fa4 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_01039b88` | 0x01039b88 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103ab0e` | 0x0103ab0e | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103ac50` | 0x0103ac50 | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103ad1a` | 0x0103ad1a | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103ada8` | 0x0103ada8 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103ae10` | 0x0103ae10 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b1e2` | 0x0103b1e2 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b210` | 0x0103b210 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b268` | 0x0103b268 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b304` | 0x0103b304 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b34c` | 0x0103b34c | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b4f6` | 0x0103b4f6 | `sdk_or_config_symbol` | 3 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b5c4` | 0x0103b5c4 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b614` | 0x0103b614 | `sdk_or_config_symbol` | 14 | reviewed adoption manifest selects the upstream owner |
-| `FUN_0103b62e` | 0x0103b62e | `sdk_or_config_symbol` | 17 | reviewed adoption manifest selects the upstream owner |
-| `FUN_shadow_default` |  | `compiler_or_ghidra_pseudo` | 1 | synthetic decompiler default-path oracle |
-| `controller_default_bounds_build` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `controller_deferred_event_raise` | 0x0102583c | `sdk_or_config_symbol` | 7 | reviewed adoption manifest selects the upstream owner |
-| `controller_entry_links_release` | 0x0101df84 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `controller_radio_time_mode2_to_mode2` | 0x01021634 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `controller_timing_defaults_apply` |  | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `controller_transition_pending_check` | 0x01025cf0 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `ipc_rpmsg_init` | 0x0102dac0 | `sdk_or_config_symbol` | 1 | NCS IPC-service RPMsg backend |
-| `ipc_static_vrings_init` | 0x0102db30 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
-| `ipc_static_vrings_shm_size` | 0x0103a056 | `sdk_or_config_symbol` | 1 | NCS IPC-service static-vrings backend |
-| `k_timer_stop` |  | `sdk_or_config_symbol` | 1 | Zephyr public timer API; exact z_impl_k_timer_stop signature owner |
-| `k_work_queue_init` | 0x01036cb8 | `sdk_or_config_symbol` | 1 | Zephyr kernel work queue API |
-| `k_work_queue_start` | 0x01036ce4 | `sdk_or_config_symbol` | 1 | Zephyr kernel work queue API |
-| `net_buf_destroy_from_pool` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved k_queue_prepend @ 0x0103b210 |
-| `rtc_compare_event_clear` | 0x0103a6ae | `sdk_or_config_symbol` | 2 | reviewed adoption manifest selects the upstream owner |
-| `schedule_node_tail_get` | 0x0101dda8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `scheduler_priority_compare` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved z_sched_prio_cmp @ 0x0103b28a |
-| `scheduler_reschedule_restore` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved z_reschedule_irqlock @ 0x0103b29c |
-| `sdc_byte_lock_release` | 0x0102a208 | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `sdc_byte_lock_try_acquire` | 0x0102a1ea | `sdk_or_config_symbol` | 1 | reviewed adoption manifest selects the upstream owner |
-| `sdc_conn_event_process` | 0x01014b18 | `true_missing_reconstructed_entry` | 2 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `sdc_conn_recovery_state_restore` | 0x0101618c | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `sdc_conn_recovery_window_update` | 0x0100d6e8 | `true_missing_reconstructed_entry` | 1 | referenced entry has neither a retained symbolized body nor an adopted owner |
-| `sdc_conn_window_admit` | 0x010231c8 | `sdk_or_config_symbol` | 14 | reviewed adoption manifest selects the upstream owner |
-| `sys_rand_get` |  | `sdk_or_config_symbol` | 1 | Zephyr random API |
-| `sys_timepoint_calc` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved sys_timepoint_calc @ 0x0103b304 |
-| `sys_timepoint_timeout` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved sys_timepoint_timeout @ 0x0103b34c |
-| `z_except_reason` |  | `sdk_or_config_symbol` | 1 | Zephyr architecture exception API |
-| `z_impl_k_thread_abort` |  | `sdk_or_config_symbol` | 1 | Zephyr kernel thread API |
-| `z_unpend_all` |  | `sdk_or_config_symbol` | 1 | canonical readable spelling maps to manifest-approved z_unpend_all @ 0x0103b2d0 |
+| Symbol | VA | Category | Disposition | Refs | Evidence |
+|---|---:|---|---|---:|---|
+| `FUN_0100ef08` | 0x0100ef08 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | internal controller entry at 0x0100ef08 remains a private SDC report-only body |
+| `FUN_0100f86c` | 0x0100f86c | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01010890` | 0x01010890 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01011664` | 0x01011664 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x01011664 remains report-only |
+| `FUN_01012150` | 0x01012150 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101233c` | 0x0101233c | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01012694` | 0x01012694 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010126c8` | 0x010126c8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01012714` | 0x01012714 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010129b8` | 0x010129b8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01012ad4` | 0x01012ad4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01013da8` | 0x01013da8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01016170` | 0x01016170 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01018df8` | 0x01018df8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x01018df8 remains report-only |
+| `FUN_010199f4` | 0x010199f4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01019eb4` | 0x01019eb4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01019ef8` | 0x01019ef8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101d890` | 0x0101d890 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x0101d890 remains report-only |
+| `FUN_0101ded0` | 0x0101ded0 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101e090` | 0x0101e090 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101e1e4` | 0x0101e1e4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101e2fc` | 0x0101e2fc | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0101f624` | 0x0101f624 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010207cc` | 0x010207cc | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01020820` | 0x01020820 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01021940` | 0x01021940 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01021ac0` | 0x01021ac0 | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01022a30` | 0x01022a30 | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01022a50` | 0x01022a50 | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01022e34` | 0x01022e34 | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01022ea8` | 0x01022ea8 | `sdk_or_config_symbol` | `` | 3 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01022f0c` | 0x01022f0c | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01023ac4` | 0x01023ac4 | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01023d38` | 0x01023d38 | `sdk_or_config_symbol` | `` | 7 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01023e88` | 0x01023e88 | `sdk_or_config_symbol` | `` | 6 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01024440` | 0x01024440 | `sdk_or_config_symbol` | `` | 6 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102445c` | 0x0102445c | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_010245d8` | 0x010245d8 | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01024c6c` | 0x01024c6c | `sdk_or_config_symbol` | `` | 3 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102524c` | 0x0102524c | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_010256dc` | 0x010256dc | `sdk_or_config_symbol` | `` | 23 | reviewed adoption manifest selects the upstream owner |
+| `FUN_010257e4` | 0x010257e4 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102590c` | 0x0102590c | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025998` | 0x01025998 | `sdk_or_config_symbol` | `` | 8 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025a84` | 0x01025a84 | `sdk_or_config_symbol` | `` | 12 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025c44` | 0x01025c44 | `sdk_or_config_symbol` | `` | 3 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025c9c` | 0x01025c9c | `sdk_or_config_symbol` | `` | 4 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025cc8` | 0x01025cc8 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025d0c` | 0x01025d0c | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01025d38` | 0x01025d38 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102665c` | 0x0102665c | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x0102665c remains report-only |
+| `FUN_0102693a` | 0x0102693a | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 4 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010269ce` | 0x010269ce | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026a7e` | 0x01026a7e | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 4 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026acc` | 0x01026acc | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026b58` | 0x01026b58 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026bfe` | 0x01026bfe | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026d16` | 0x01026d16 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01026dae` | 0x01026dae | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027044` | 0x01027044 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010270e8` | 0x010270e8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027302` | 0x01027302 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010273c6` | 0x010273c6 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027846` | 0x01027846 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027a4a` | 0x01027a4a | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027a94` | 0x01027a94 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027ed4` | 0x01027ed4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01027ef2` | 0x01027ef2 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010280be` | 0x010280be | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010280d8` | 0x010280d8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01028256` | 0x01028256 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0102894a` | 0x0102894a | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010292ec` | 0x010292ec | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x010292ec remains report-only |
+| `FUN_0102941c` | 0x0102941c | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0102961a` | 0x0102961a | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0102971e` | 0x0102971e | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010297b4` | 0x010297b4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01029882` | 0x01029882 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_010298a8` | 0x010298a8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_01029b38` | 0x01029b38 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `FUN_0102a1e0` | 0x0102a1e0 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | private controller entry at 0x0102a1e0 remains report-only |
+| `FUN_0102a244` | 0x0102a244 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102d25c` | 0x0102d25c | `true_missing_reconstructed_entry` | `anomalous_non_executable_target` | 1 | conditional path branches through literal 0x0103c8a1 into confirmed IPC log-string data; no executable owner or relocation is known |
+| `FUN_0102eb2c` | 0x0102eb2c | `sdk_or_config_symbol` | `` | 6 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0102fa84` | 0x0102fa84 | `true_missing_reconstructed_entry` | `blocked_c_unexpressible` | 1 | entry performs a BASEPRI reset followed by SVC 2; its exception-mediated continuation cannot be represented as an ordinary C call/return body |
+| `FUN_0102fbac` | 0x0102fbac | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103175c` | 0x0103175c | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_010353ec` | 0x010353ec | `sdk_or_config_symbol` | `` | 3 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01038fa4` | 0x01038fa4 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_01039b88` | 0x01039b88 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103ab0e` | 0x0103ab0e | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103ac50` | 0x0103ac50 | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103ad1a` | 0x0103ad1a | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103ada8` | 0x0103ada8 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103ae10` | 0x0103ae10 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b1e2` | 0x0103b1e2 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b210` | 0x0103b210 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b268` | 0x0103b268 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b304` | 0x0103b304 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b34c` | 0x0103b34c | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b4f6` | 0x0103b4f6 | `sdk_or_config_symbol` | `` | 3 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b5c4` | 0x0103b5c4 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b614` | 0x0103b614 | `sdk_or_config_symbol` | `` | 14 | reviewed adoption manifest selects the upstream owner |
+| `FUN_0103b62e` | 0x0103b62e | `sdk_or_config_symbol` | `` | 17 | reviewed adoption manifest selects the upstream owner |
+| `FUN_shadow_default` |  | `compiler_or_ghidra_pseudo` | `` | 1 | synthetic decompiler default-path oracle |
+| `controller_default_bounds_build` | 0x010282fc | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | 0x010282fc is the 126-byte FUN_010282fc body and an exact unique private SDC archive match with unpublished ABI |
+| `controller_deferred_event_raise` | 0x0102583c | `sdk_or_config_symbol` | `` | 7 | reviewed adoption manifest selects the upstream owner |
+| `controller_entry_links_release` | 0x0101df84 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | 0x0101df84 is an exact unique private SDC archive match with unpublished ABI |
+| `controller_radio_time_mode2_to_mode2` | 0x01021634 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `controller_timing_defaults_apply` | 0x0101e1e4 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | 0x0101e1e4 is an exact unique private SDC archive match with unpublished ABI |
+| `controller_transition_pending_check` | 0x01025cf0 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `ipc_rpmsg_init` | 0x0102dac0 | `sdk_or_config_symbol` | `` | 1 | NCS IPC-service RPMsg backend |
+| `ipc_static_vrings_init` | 0x0102db30 | `sdk_or_config_symbol` | `` | 1 | NCS IPC-service static-vrings backend |
+| `ipc_static_vrings_shm_size` | 0x0103a056 | `sdk_or_config_symbol` | `` | 1 | NCS IPC-service static-vrings backend |
+| `k_timer_stop` |  | `sdk_or_config_symbol` | `` | 1 | Zephyr public timer API; exact z_impl_k_timer_stop signature owner |
+| `k_work_queue_init` | 0x01036cb8 | `sdk_or_config_symbol` | `` | 1 | Zephyr kernel work queue API |
+| `k_work_queue_start` | 0x01036ce4 | `sdk_or_config_symbol` | `` | 1 | Zephyr kernel work queue API |
+| `net_buf_destroy_from_pool` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved k_queue_prepend @ 0x0103b210 |
+| `rtc_compare_event_clear` | 0x0103a6ae | `sdk_or_config_symbol` | `` | 2 | reviewed adoption manifest selects the upstream owner |
+| `schedule_node_tail_get` | 0x0101dda8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `scheduler_priority_compare` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved z_sched_prio_cmp @ 0x0103b28a |
+| `scheduler_reschedule_restore` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved z_reschedule_irqlock @ 0x0103b29c |
+| `sdc_byte_lock_release` | 0x0102a208 | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `sdc_byte_lock_try_acquire` | 0x0102a1ea | `sdk_or_config_symbol` | `` | 1 | reviewed adoption manifest selects the upstream owner |
+| `sdc_conn_event_process` | 0x01014b18 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 2 | private SDC connection-event entry at 0x01014b18 remains report-only |
+| `sdc_conn_recovery_state_restore` | 0x0101618c | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `sdc_conn_recovery_window_update` | 0x0100d6e8 | `true_missing_reconstructed_entry` | `private_sdc_report_only` | 1 | reviewed SDC ownership remains report-only; no automatic SDC removal is authorized |
+| `sdc_conn_window_admit` | 0x010231c8 | `sdk_or_config_symbol` | `` | 14 | reviewed adoption manifest selects the upstream owner |
+| `sys_rand_get` |  | `sdk_or_config_symbol` | `` | 1 | Zephyr random API |
+| `sys_timepoint_calc` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved sys_timepoint_calc @ 0x0103b304 |
+| `sys_timepoint_timeout` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved sys_timepoint_timeout @ 0x0103b34c |
+| `z_except_reason` |  | `sdk_or_config_symbol` | `` | 1 | Zephyr architecture exception API |
+| `z_impl_k_thread_abort` |  | `sdk_or_config_symbol` | `` | 1 | Zephyr kernel thread API |
+| `z_unpend_all` |  | `sdk_or_config_symbol` | `` | 1 | canonical readable spelling maps to manifest-approved z_unpend_all @ 0x0103b2d0 |

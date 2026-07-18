@@ -66,5 +66,5 @@ exclusion; the private controller row remains report-only.
 
 | Symbol | VA | Reason |
 |---|---:|---|
-| `controller_default_bounds_build` | 0x010282fc | unowned net SDK/glue entry has no retained body |
-| `controller_timing_defaults_apply` | 0x0101e1e4 | private controller entry remains report-only |
+| `controller_default_bounds_build` | 0x010282fc | exact identity: 126-byte FUN_010282fc; unique private SDC archive match remains report-only |
+| `controller_timing_defaults_apply` | 0x0101e1e4 | exact unique private SDC archive match remains report-only |
