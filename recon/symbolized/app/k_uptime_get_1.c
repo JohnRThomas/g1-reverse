@@ -5,7 +5,7 @@
  */
 /* Reconstructed k_uptime_get_1 @ 0x7cb2c  (CFG-directed candidate) */
 #include <stdint.h>
-extern uint64_t uptime_ticks_get(void);
+extern uint64_t thunk_FUN_00074f68(void);
 uint64_t k_uptime_get_1(void) {
-    return (uptime_ticks_get() * UINT64_C(1000)) >> 15;
+    return (thunk_FUN_00074f68() * UINT64_C(1000)) >> 15;
 }

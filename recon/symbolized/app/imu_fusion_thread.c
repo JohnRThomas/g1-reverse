@@ -78,7 +78,7 @@ extern int log_message(void);
 extern int debug_print(void);
 extern int memset_bytes(int,int,int);
 extern int FUN_0007ca72(int,int);
-extern i64 uptime_ticks_get(void);
+extern i64 thunk_FUN_00074f68(void);
 extern int is_battery_critical(void);
 extern int set_shutdown_flag(void*,int);
 extern int sync_to_slave(void*,int,int,int);
@@ -134,7 +134,7 @@ void imu_fusion_thread(char *p)
             if (p[0x106] == 0x0b) { p[0] = 2; }
             else if (p[0x106] != 0x0c) {
                 if ((int)((unsigned)(u16)(*(u16*)(p+0x178)) << 0x1a) < 0) {
-                    i64 v = uptime_ticks_get();
+                    i64 v = thunk_FUN_00074f68();
                     local_a4 = (unsigned)(((u64)v * 1000ULL) >> 15);
                     if (1000u < (unsigned)(local_a4 - U(((unsigned long)&g_20007a94) /*=0x20007a94*/))) FUN_000265b8(p+0x28);
                     goto Lffb4;
@@ -293,7 +293,7 @@ void imu_fusion_thread(char *p)
         }
 
         if (*(int*)(p+8) < iVar27 || iVar27 < *(int*)(p+0xc)) goto L10734;
-        uptime_ticks_get();
+        thunk_FUN_00074f68();
         iVar6 = I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) + 1;
         if (iVar6 < 2) { I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) = iVar6; goto L1027a; }
         I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) = -3;
@@ -366,7 +366,7 @@ void imu_fusion_thread(char *p)
         /* fallthrough */
     L1027a:
         if (p[0] == 1 && I(((unsigned long)&g_20007a8c) /*=0x20007a8c*/) <= 0) {
-            uptime_ticks_get();
+            thunk_FUN_00074f68();
             I(((unsigned long)&g_20007a88) /*=0x20007a88*/) = iVar27;
         }
         /* fallthrough */

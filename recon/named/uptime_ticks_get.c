@@ -5,4 +5,4 @@
  *   k_uptime_ticks_impl                      <= FUN_00074f68 @ 0x00074f68
  */
 /* Tail thunk @ 0x86698. */
-extern int k_uptime_ticks_impl(int,int,int,int); int uptime_ticks_get(int a,int b,int c,int d){return k_uptime_ticks_impl(a,b,c,d);}
+extern int k_uptime_ticks_impl(int,int,int,int); int thunk_FUN_00074f68(int a,int b,int c,int d){return k_uptime_ticks_impl(a,b,c,d);}

@@ -96,6 +96,12 @@ def substitute(text, core, provenance=False):
     """
     records = records_by_address(core)
     aliases = records_by_alias(core)
+    # A repaired identity may reuse a historical alias that is now the
+    # canonical name of a different address (for example the swapped L2CAP
+    # RX/TX CID lookups).  Never cascade that stale alias over the new owner.
+    current_names = {record.get("name") for record in records.values()}
+    aliases = {alias: record for alias, record in aliases.items()
+               if alias not in current_names}
     alias_pattern = (re.compile(r"\b(?:%s)\b" % "|".join(
         re.escape(alias) for alias in sorted(aliases, key=len, reverse=True)))
         if aliases else None)

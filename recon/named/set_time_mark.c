@@ -8,9 +8,9 @@
  */
 /* Reconstructed FUN_00024d40 @ 0x24d40  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int uptime_ticks_get(void);
+extern unsigned int thunk_FUN_00074f68(void);
 void set_time_mark(void)
 {
-  unsigned int uVar1 = uptime_ticks_get();
+  unsigned int uVar1 = thunk_FUN_00074f68();
   *(volatile unsigned int *)0x20007a28UL = uVar1;
 }

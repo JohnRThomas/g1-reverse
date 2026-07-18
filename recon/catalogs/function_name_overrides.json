@@ -81,6 +81,10 @@
    "name": "set_random_address",
    "evidence": "Recovered Bluetooth random-address programming body. Raw identity remains tail_54d88 at 0x00054d88."
   },
+  "0x00054a44": {
+   "name": "bt_enable",
+   "evidence": "Relocation-normalized instruction-exact configured Zephyr Bluetooth host initializer; the former bt_send label was an identity mismatch. Raw identity remains FUN_00054a44 at 0x00054a44."
+  },
   "0x00054ea8": {
    "name": "bt_id_add",
    "evidence": "Recovered configured Zephyr Bluetooth identity-add implementation. Raw identity remains FUN_00054ea8 at 0x00054ea8."
@@ -108,6 +112,14 @@
   "0x0005c310": {
    "name": "gatt_prepare_write_rsp",
    "evidence": "Exact configured Zephyr GATT prepare-write response validator and continuation. Raw identity remains FUN_0005c310 at 0x0005c310."
+  },
+  "0x0005c22c": {
+   "name": "bt_gatt_write",
+   "evidence": "Relocation-normalized instruction-exact configured Zephyr bt_gatt_write; the former bt_gatt_read label contradicted the write opcodes and params layout. Raw identity remains FUN_0005c22c at 0x0005c22c."
+  },
+  "0x0005c4f0": {
+   "name": "bt_gatt_unsubscribe",
+   "evidence": "Relocation-normalized instruction-exact configured Zephyr bt_gatt_unsubscribe; the former bt_gatt_subscribe label described the inverse operation. Raw identity remains FUN_0005c4f0 at 0x0005c4f0."
   },
   "0x0005c6c8": {
    "name": "bt_gatt_connected",
@@ -250,6 +262,19 @@
   "0x000813e8": {
    "name": "conn_lookup_handle",
    "evidence": "Instruction-exact public owner in the configured Zephyr Bluetooth host. Raw identity remains FUN_000813e8."
+  },
+  "0x0008149a": {
+   "name": "g1_recon_bt_conn_set_security",
+   "raw_name": "FUN_0008149a",
+   "evidence": "Retained firmware security starter: unlike every stock Zephyr candidate it deliberately omits the two early sec_level/required_sec_level no-op guards. Namespaced fail-closed while preserving the raw address backmap."
+  },
+  "0x00081a4e": {
+   "name": "bt_l2cap_le_lookup_tx_cid",
+   "evidence": "Exact configured Zephyr L2CAP TX-CID lookup; it reads the channel TX CID field. Raw identity remains FUN_00081a4e at 0x00081a4e."
+  },
+  "0x00081aca": {
+   "name": "bt_l2cap_le_lookup_rx_cid",
+   "evidence": "Exact configured Zephyr L2CAP RX-CID lookup; the former TX label contradicted the recovered field offset. Raw identity remains FUN_00081aca at 0x00081aca."
   },
   "0x000817ea": {
    "name": "bt_l2cap_disconnected",

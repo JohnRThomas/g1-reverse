@@ -4,12 +4,13 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   conn_ctx_cleanup_if_pending              <= FUN_00081720 @ 0x00081720
+ *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081a4e @ 0x00081a4e
  */
 /* Reconstructed FUN_00081a76 @ 0x81a76  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int FUN_000573ac(int);
 extern int conn_ctx_cleanup_if_pending(int);
-extern int FUN_00081a4e(int,int);
+extern int bt_l2cap_le_lookup_tx_cid(int,int);
 int FUN_00081a76(int param_1, int param_2, int param_3){
   uint32_t r6 = *(volatile uint32_t*)(param_2+8);
   uint32_t r7 = *(volatile uint32_t*)(param_2+0xc);
@@ -21,7 +22,7 @@ int FUN_00081a76(int param_1, int param_2, int param_3){
     }
     return ret573;
   }
-  int iVar2 = FUN_00081a4e(param_1, u1);
+  int iVar2 = bt_l2cap_le_lookup_tx_cid(param_1, u1);
   if(iVar2 == 0) return 0;
   uint32_t p = *(volatile uint32_t*)(*(volatile uint32_t*)(iVar2+4)+0x18);
   if(p != 0){

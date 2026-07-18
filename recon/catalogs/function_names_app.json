@@ -9284,12 +9284,13 @@
   "0x00054a44": {
    "address": "0x00054a44",
    "raw_name": "FUN_00054a44",
-   "name": "bt_send",
-   "display_name": "bt_send",
+   "name": "bt_enable",
+   "display_name": "bt_enable",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr Bluetooth host initializer; the former bt_send label was an identity mismatch. Raw identity remains FUN_00054a44 at 0x00054a44.",
    "aliases": [
-    "FUN_00054a44"
+    "FUN_00054a44",
+    "bt_send"
    ]
   },
   "0x00054b70": {
@@ -11075,12 +11076,13 @@
   "0x0005c22c": {
    "address": "0x0005c22c",
    "raw_name": "FUN_0005c22c",
-   "name": "bt_gatt_read",
-   "display_name": "bt_gatt_read",
+   "name": "bt_gatt_write",
+   "display_name": "bt_gatt_write",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr bt_gatt_write; the former bt_gatt_read label contradicted the write opcodes and params layout. Raw identity remains FUN_0005c22c at 0x0005c22c.",
    "aliases": [
-    "FUN_0005c22c"
+    "FUN_0005c22c",
+    "bt_gatt_read"
    ]
   },
   "0x0005c310": {
@@ -11106,12 +11108,13 @@
   "0x0005c4f0": {
    "address": "0x0005c4f0",
    "raw_name": "FUN_0005c4f0",
-   "name": "bt_gatt_subscribe",
-   "display_name": "bt_gatt_subscribe",
+   "name": "bt_gatt_unsubscribe",
+   "display_name": "bt_gatt_unsubscribe",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr bt_gatt_unsubscribe; the former bt_gatt_subscribe label described the inverse operation. Raw identity remains FUN_0005c4f0 at 0x0005c4f0.",
    "aliases": [
-    "FUN_0005c4f0"
+    "FUN_0005c4f0",
+    "bt_gatt_subscribe"
    ]
   },
   "0x0005c5f0": {
@@ -15346,8 +15349,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c stdio-pool recursive-lock veneer; raw identity remains FUN_00076b9c.",
    "aliases": [
-    "FUN_00076b9c",
-    "malloc_lock_acquire"
+    "FUN_00076b9c"
    ]
   },
   "0x00076ba8": {
@@ -15358,8 +15360,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c stdio-pool recursive-unlock veneer; raw identity remains FUN_00076ba8.",
    "aliases": [
-    "FUN_00076ba8",
-    "malloc_lock_release"
+    "FUN_00076ba8"
    ]
   },
   "0x00076bb4": {
@@ -15370,8 +15371,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c initialization-lock veneer; raw identity remains FUN_00076bb4.",
    "aliases": [
-    "FUN_00076bb4",
-    "env_lock_acquire"
+    "FUN_00076bb4"
    ]
   },
   "0x00076bc0": {
@@ -15446,8 +15446,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib-nano free wrapper; raw identity remains FUN_00076d7c.",
    "aliases": [
-    "FUN_00076d7c",
-    "heap_free"
+    "FUN_00076d7c"
    ]
   },
   "0x00076d8c": {
@@ -15458,8 +15457,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant free sharing __malloc_free_list; raw identity remains FUN_00076d8c.",
    "aliases": [
-    "FUN_00076d8c",
-    "heap_free_core"
+    "FUN_00076d8c"
    ]
   },
   "0x00076e20": {
@@ -15623,8 +15621,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib strtoul wrapper in the same object closure as _strtoul_r; raw identity remains FUN_00077c1c.",
    "aliases": [
-    "FUN_00077c1c",
-    "strtol_ascii_scan"
+    "FUN_00077c1c"
    ]
   },
   "0x00077c30": {
@@ -21328,12 +21325,13 @@
   "0x0008149a": {
    "address": "0x0008149a",
    "raw_name": "FUN_0008149a",
-   "name": "bt_conn_set_security",
-   "display_name": "bt_conn_set_security",
+   "name": "g1_recon_bt_conn_set_security",
+   "display_name": "g1_recon_bt_conn_set_security",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained firmware security starter: unlike every stock Zephyr candidate it deliberately omits the two early sec_level/required_sec_level no-op guards. Namespaced fail-closed while preserving the raw address backmap.",
    "aliases": [
-    "FUN_0008149a"
+    "FUN_0008149a",
+    "bt_conn_set_security"
    ]
   },
   "0x000814e2": {
@@ -21587,11 +21585,13 @@
   "0x00081a4e": {
    "address": "0x00081a4e",
    "raw_name": "FUN_00081a4e",
-   "name": "FUN_00081a4e",
-   "display_name": "FUN_00081a4e",
-   "human": false,
-   "source": "recon/app/src/FUN_00081a4e.c",
-   "aliases": []
+   "name": "bt_l2cap_le_lookup_tx_cid",
+   "display_name": "bt_l2cap_le_lookup_tx_cid",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr L2CAP TX-CID lookup; it reads the channel TX CID field. Raw identity remains FUN_00081a4e at 0x00081a4e.",
+   "aliases": [
+    "FUN_00081a4e"
+   ]
   },
   "0x00081a60": {
    "address": "0x00081a60",
@@ -21614,12 +21614,13 @@
   "0x00081aca": {
    "address": "0x00081aca",
    "raw_name": "FUN_00081aca",
-   "name": "bt_l2cap_le_lookup_tx_cid",
-   "display_name": "bt_l2cap_le_lookup_tx_cid",
+   "name": "bt_l2cap_le_lookup_rx_cid",
+   "display_name": "bt_l2cap_le_lookup_rx_cid",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact configured Zephyr L2CAP RX-CID lookup; the former TX label contradicted the recovered field offset. Raw identity remains FUN_00081aca at 0x00081aca.",
    "aliases": [
-    "FUN_00081aca"
+    "FUN_00081aca",
+    "bt_l2cap_le_lookup_tx_cid"
    ]
   },
   "0x00081adc": {
@@ -25994,8 +25995,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant calloc in the allocator state closure; raw identity remains FUN_000876d0.",
    "aliases": [
-    "FUN_000876d0",
-    "heap_calloc"
+    "FUN_000876d0"
    ]
   },
   "0x000876ec": {
@@ -26006,8 +26006,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant realloc in the allocator state closure; raw identity remains FUN_000876ec.",
    "aliases": [
-    "FUN_000876ec",
-    "heap_realloc_grow"
+    "FUN_000876ec"
    ]
   },
   "0x00087736": {
@@ -26062,8 +26061,7 @@
    "human": true,
    "source": "function_name_overrides.json: Instruction-exact Newlib-nano allocation-size helper in the allocator closure; raw identity remains FUN_00087996.",
    "aliases": [
-    "FUN_00087996",
-    "heap_block_usable_size"
+    "FUN_00087996"
    ]
   }
  },
@@ -26665,7 +26663,6 @@
   "FUN_0008181a": "0x0008181a",
   "FUN_00081852": "0x00081852",
   "FUN_000819ea": "0x000819ea",
-  "FUN_00081a4e": "0x00081a4e",
   "FUN_00081a60": "0x00081a60",
   "FUN_00081a76": "0x00081a76",
   "FUN_00081adc": "0x00081adc",
@@ -27082,12 +27079,12 @@
   "bt_conn_ltk_present": "0x0008145c",
   "bt_conn_reset_rx_state": "0x000813d6",
   "bt_conn_send_cb": "0x000564cc",
-  "bt_conn_set_security": "0x0008149a",
   "bt_crypto_aes_cmac": "0x000835ae",
   "bt_crypto_f4": "0x000835ea",
   "bt_crypto_f5": "0x0005ecdc",
   "bt_crypto_f6": "0x00083634",
   "bt_dev_get": "0x00054ce0",
+  "bt_enable": "0x00054a44",
   "bt_encrypt_le": "0x00081326",
   "bt_foreach_bond": "0x0005e6d4",
   "bt_gatt_att_max_mtu_changed": "0x0005c76c",
@@ -27121,13 +27118,13 @@
   "bt_gatt_init": "0x0005a954",
   "bt_gatt_notify_cb": "0x0005b754",
   "bt_gatt_pairing_complete": "0x00082fd2",
-  "bt_gatt_read": "0x0005c22c",
   "bt_gatt_service_init": "0x00059cb4",
   "bt_gatt_service_register": "0x0005ad38",
   "bt_gatt_store_ccc": "0x0005c80c",
   "bt_gatt_store_cf": "0x0005a8bc",
   "bt_gatt_store_hash": "0x0005a250",
-  "bt_gatt_subscribe": "0x0005c4f0",
+  "bt_gatt_unsubscribe": "0x0005c4f0",
+  "bt_gatt_write": "0x0005c22c",
   "bt_hci_cmd_create": "0x00053cd4",
   "bt_hci_cmd_send_or_create": "0x000543d8",
   "bt_hci_cmd_state_set_init": "0x00053cb0",
@@ -27155,7 +27152,8 @@
   "bt_l2cap_connected": "0x0005791c",
   "bt_l2cap_disconnected": "0x000817ea",
   "bt_l2cap_init": "0x000579d0",
-  "bt_l2cap_le_lookup_tx_cid": "0x00081aca",
+  "bt_l2cap_le_lookup_rx_cid": "0x00081aca",
+  "bt_l2cap_le_lookup_tx_cid": "0x00081a4e",
   "bt_l2cap_recv": "0x00057cc4",
   "bt_le_adv_clear_pending_flag": "0x00081080",
   "bt_le_adv_set_enable_legacy": "0x000812d2",
@@ -27167,7 +27165,6 @@
   "bt_pub_key_is_debug": "0x00055cf0",
   "bt_rand": "0x00055cb4",
   "bt_security_err_lookup": "0x00054250",
-  "bt_send": "0x00054a44",
   "bt_send_enabled": "0x00017e3c",
   "bt_set_name_internal": "0x00054c74",
   "bt_settings_decode_key": "0x00080cf2",
@@ -27495,6 +27492,7 @@
   "g1_nrfx_clock_stop_hfaudio": "0x00083874",
   "g1_nrfx_clock_stop_hfclk192m": "0x0008387a",
   "g1_nrfx_clock_stop_lfclk": "0x00083880",
+  "g1_recon_bt_conn_set_security": "0x0008149a",
   "g1_recon_crc16_ansi_seeded": "0x0007da4a",
   "g1_recon_crc16_configurable": "0x0007d9c0",
   "g1_recon_k_free": "0x000868b4",

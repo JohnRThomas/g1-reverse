@@ -3,7 +3,7 @@
  * public-name: FUN_0005c5f0
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   bt_gatt_subscribe                        <= FUN_0005c4f0 @ 0x0005c4f0
+ *   bt_gatt_unsubscribe                      <= FUN_0005c4f0 @ 0x0005c4f0
  *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
  *   net_buf_simple_init_with_data            <= FUN_000836ec @ 0x000836ec
  * address symbols (name @ address):
@@ -17,7 +17,7 @@ extern uint8_t *FUN_00059c70(void);
 extern void net_buf_simple_init_with_data(void *, const void *, uint32_t);
 extern void *net_buf_simple_pull_5f594(void *, uint32_t);
 extern void FUN_00082a42(uintptr_t, uint32_t, const void *);
-extern void bt_gatt_subscribe(void *, void *);
+extern void bt_gatt_unsubscribe(void *, void *);
 
 struct cursor_5c5f0 { uint8_t opaque[4]; uint16_t remaining; };
 struct handler_5c5f0 {
@@ -54,7 +54,7 @@ void FUN_0005c5f0(uint8_t *context, const void *data, uint32_t length)
             for (;;) {
                 if (node->type == type && node->minimum <= context[9] &&
                     node->invoke(context, node, header + 2, payload_length) == 0)
-                    bt_gatt_subscribe(context, node);
+                    bt_gatt_unsubscribe(context, node);
                 if (next == 0) break;
                 node = next;
                 next = node->next;

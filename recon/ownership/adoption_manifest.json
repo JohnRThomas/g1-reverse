@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 403,
-    "exclude_reconstruction": 344,
-    "retain_reconstruction": 59,
+    "entries": 410,
+    "exclude_reconstruction": 377,
+    "retain_reconstruction": 33,
     "by_kind": {
-     "source": 253,
+     "source": 260,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -2148,16 +2148,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_state_set_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold"
@@ -2190,7 +2190,60 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:128",
         "reconstruction_input": "app/libapp.a(bt_hci_cmd_state_set_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:128: multiple definition of `bt_hci_cmd_state_set_init'; app/libapp.a(bt_hci_cmd_state_set_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_state_set_init.c:16: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:128: multiple definition of `bt_hci_cmd_state_set_init'; app/libapp.a(bt_hci_cmd_state_set_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_state_set_init.c:16: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "cc0d51edd4f9cb8e1ac6ca83dfa81a71783d8736766a76234fc349acff92b251",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x00053cb0",
+        "0x00053cd4",
+        "0x00054a44"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00053cb0",
+         "0x00053cd4",
+         "0x00054a44"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_hci_cmd_state_set_init",
+         "bt_hci_cmd_create",
+         "bt_send"
+        ]
        }
       }
      ]
@@ -2203,16 +2256,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_create",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -2241,7 +2294,60 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:259",
         "reconstruction_input": "app/libapp.a(bt_hci_cmd_create.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:259: multiple definition of `bt_hci_cmd_create'; app/libapp.a(bt_hci_cmd_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_create.c:28: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:259: multiple definition of `bt_hci_cmd_create'; app/libapp.a(bt_hci_cmd_create.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_hci_cmd_create.c:28: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "57ec776e659587d9906eed702f2ba8eda36c891388d12c617f79dabd64fb95f3",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x00053cb0",
+        "0x00053cd4",
+        "0x00054a44"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00053cb0",
+         "0x00053cd4",
+         "0x00054a44"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_hci_cmd_state_set_init",
+         "bt_hci_cmd_create",
+         "bt_send"
+        ]
        }
       }
      ]
@@ -2273,20 +2379,20 @@
      "core": "app",
      "va": "0x00054a44",
      "raw_symbol": "FUN_00054a44",
-     "current_symbol": "bt_send",
+     "current_symbol": "bt_enable",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "bt_send",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "bt_enable",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -2316,7 +2422,67 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_core.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:3687",
         "reconstruction_input": "app/libapp.a(bt_send.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:3687: multiple definition of `bt_send'; app/libapp.a(bt_send.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_send.c:45: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/hci_core.c:3687: multiple definition of `bt_send'; app/libapp.a(bt_send.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_send.c:45: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "15da38f098f09d4d14f35311b780e16c11df6b3604664947eeece25b12a48271",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_send",
+        "corrected_readable_identity": "bt_enable",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/hci_core.c",
+        "corrected_upstream_symbol": "bt_enable",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00053cb0",
+        "0x00053cd4",
+        "0x00054a44"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00053cb0",
+         "0x00053cd4",
+         "0x00054a44"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_hci_cmd_state_set_init",
+         "bt_hci_cmd_create",
+         "bt_send"
+        ]
        }
       }
      ]
@@ -2341,6 +2507,107 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "App-side call context and pinned host signature int bt_rand(void *, size_t)."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000564cc",
+     "raw_symbol": "FUN_000564cc",
+     "current_symbol": "bt_conn_send_cb",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_conn_send_cb",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.930481,
+        "shape": 0.930481,
+        "length": 0.87,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "int",
+        "params": [
+         "bt_conn*",
+         "net_buf*",
+         "bt_conn_tx_cb_t",
+         "void*"
+        ],
+        "variadic": false,
+        "decl_line": 440
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/conn.c",
+        "sha256": "569441e7b2b9761763895868dbf805c9e7ae5ae0e79426d88bef8c75af5e2b95",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(conn.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:442",
+        "reconstruction_input": "app/libapp.a(bt_conn_send_cb.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:442: multiple definition of `bt_conn_send_cb'; app/libapp.a(bt_conn_send_cb.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_send_cb.c:38: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "411677a79e4c3150473ac111716bc8eac6d0da62f1bf99b483242c0edfdb36f7",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x000564cc",
+        "0x0008157a"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x000564cc",
+         "0x0008157a"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_conn_send_cb",
+         "bt_conn_le_param_update"
+        ]
+       }
       }
      ]
     },
@@ -2400,16 +2667,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_connected",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -2438,7 +2705,64 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:380",
         "reconstruction_input": "app/libapp.a(bt_l2cap_connected.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:380: multiple definition of `bt_l2cap_connected'; app/libapp.a(bt_l2cap_connected.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_connected.c:24: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:380: multiple definition of `bt_l2cap_connected'; app/libapp.a(bt_l2cap_connected.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_connected.c:24: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "e2c396c288da88b80b673f98126ca32264b1bf594261b7dd1cd4c30872a9cbd1",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005791c",
+        "0x000579d0",
+        "0x00057cc4",
+        "0x00081a4e",
+        "0x00081aca"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005791c",
+         "0x000579d0",
+         "0x00057cc4",
+         "0x00081a4e",
+         "0x00081aca"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_l2cap_connected",
+         "bt_l2cap_init",
+         "bt_l2cap_recv"
+        ]
        }
       }
      ]
@@ -2451,16 +2775,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -2488,7 +2812,64 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2850",
         "reconstruction_input": "app/libapp.a(bt_l2cap_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2850: multiple definition of `bt_l2cap_init'; app/libapp.a(bt_l2cap_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_init.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2850: multiple definition of `bt_l2cap_init'; app/libapp.a(bt_l2cap_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_init.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c4305ae70fc0065f3ba40d51fcedf30cb46b75947d8e5747767ea6266c708bfb",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005791c",
+        "0x000579d0",
+        "0x00057cc4",
+        "0x00081a4e",
+        "0x00081aca"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005791c",
+         "0x000579d0",
+         "0x00057cc4",
+         "0x00081a4e",
+         "0x00081aca"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_l2cap_connected",
+         "bt_l2cap_init",
+         "bt_l2cap_recv"
+        ]
        }
       }
      ]
@@ -2501,16 +2882,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_recv",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -2542,7 +2923,64 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2725",
         "reconstruction_input": "app/libapp.a(bt_l2cap_recv.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2725: multiple definition of `bt_l2cap_recv'; app/libapp.a(bt_l2cap_recv.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_recv.c:28: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/l2cap.c:2725: multiple definition of `bt_l2cap_recv'; app/libapp.a(bt_l2cap_recv.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_recv.c:28: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "df4812d3efbdeac087eae8fb0dd4cfd0d390eac7f40640b8340a776128704c5e",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005791c",
+        "0x000579d0",
+        "0x00057cc4",
+        "0x00081a4e",
+        "0x00081aca"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005791c",
+         "0x000579d0",
+         "0x00057cc4",
+         "0x00081a4e",
+         "0x00081aca"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_l2cap_connected",
+         "bt_l2cap_init",
+         "bt_l2cap_recv"
+        ]
        }
       }
      ]
@@ -2555,16 +2993,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_create_pdu",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -2594,7 +3032,57 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(att.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:2981",
         "reconstruction_input": "app/libapp.a(bt_att_create_pdu.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:2981: multiple definition of `bt_att_create_pdu'; app/libapp.a(bt_att_create_pdu.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_att_create_pdu.c:19: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:2981: multiple definition of `bt_att_create_pdu'; app/libapp.a(bt_att_create_pdu.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_att_create_pdu.c:19: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c52a80a069d7ed3813bdbb9b34ef1dd3ec07fa3cf2652f0773dcc96a1c088101",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x00058eb0",
+        "0x00059a90"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00058eb0",
+         "0x00059a90"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_att_create_pdu",
+         "bt_att_req_send"
+        ]
        }
       }
      ]
@@ -2803,16 +3291,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_req_send",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -2843,7 +3331,186 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(att.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:3891",
         "reconstruction_input": "app/libapp.a(bt_att_req_send.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:3891: multiple definition of `bt_att_req_send'; app/libapp.a(bt_att_req_send.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_att_req_send.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/att.c:3891: multiple definition of `bt_att_req_send'; app/libapp.a(bt_att_req_send.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_att_req_send.c:23: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "05ac0408ba36f1bfdf8fa6b19a6b910b0f371c1fe45c1ee06b037e223187849e",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x00058eb0",
+        "0x00059a90"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00058eb0",
+         "0x00059a90"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_att_create_pdu",
+         "bt_att_req_send"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005a954",
+     "raw_symbol": "FUN_0005a954",
+     "current_symbol": "bt_gatt_init",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_gatt_init",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.738095,
+        "shape": 0.738095,
+        "length": 0.584906,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [],
+        "variadic": false,
+        "decl_line": 1458
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/gatt.c",
+        "sha256": "37f2f91592e2ab1b3c9785062e5059f720dc05b1f0e6af25de441e237d33dcc4",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/atomic.h:181",
+        "reconstruction_input": "app/libapp.a(bt_gatt_init.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/atomic.h:181: multiple definition of `bt_gatt_init'; app/libapp.a(bt_gatt_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_init.c:34: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a12e4ec731d2d11ab3ebb2332495ae3250781ab1915eec113df063dbacf5b5d6",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -2904,16 +3571,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_attr_get_handle",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -2941,7 +3608,87 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1803",
         "reconstruction_input": "app/libapp.a(bt_gatt_attr_get_handle.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1803: multiple definition of `bt_gatt_attr_get_handle'; app/libapp.a(bt_gatt_attr_get_handle.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_attr_get_handle.c:24: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1803: multiple definition of `bt_gatt_attr_get_handle'; app/libapp.a(bt_gatt_attr_get_handle.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_attr_get_handle.c:24: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8e94c7614e3f0d9f513efccc38ac00db8ee8bb0ecea3ddf24efcbfb8142e30ce",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -2954,16 +3701,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_foreach_attr_type",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -2997,7 +3744,217 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1997",
         "reconstruction_input": "app/libapp.a(bt_gatt_foreach_attr_type.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1997: multiple definition of `bt_gatt_foreach_attr_type'; app/libapp.a(bt_gatt_foreach_attr_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_foreach_attr_type.c:26: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1997: multiple definition of `bt_gatt_foreach_attr_type'; app/libapp.a(bt_gatt_foreach_attr_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_foreach_attr_type.c:26: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9c672b7183cdb472a69b3c6442af110829ef29cff8a00608b95588e9e62cd17f",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005ad38",
+     "raw_symbol": "FUN_0005ad38",
+     "current_symbol": "bt_gatt_service_register",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_gatt_service_register",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "opcode_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.875318,
+        "shape": 0.875318,
+        "length": 0.917073,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "int",
+        "params": [
+         "bt_gatt_service*"
+        ],
+        "variadic": false,
+        "decl_line": 1644
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/gatt.c",
+        "sha256": "37f2f91592e2ab1b3c9785062e5059f720dc05b1f0e6af25de441e237d33dcc4",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1645",
+        "reconstruction_input": "app/libapp.a(bt_gatt_service_register.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:1645: multiple definition of `bt_gatt_service_register'; app/libapp.a(bt_gatt_service_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_service_register.c:64: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8a127c646a697d6b6c006742dd095e2cbf6c7583f67f3f1b60ca3b78d2ad6f0b",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3010,16 +3967,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_indicate",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -3048,7 +4005,87 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:3009",
         "reconstruction_input": "app/libapp.a(bt_gatt_indicate.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:3009: multiple definition of `bt_gatt_indicate'; app/libapp.a(bt_gatt_indicate.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_indicate.c:35: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:3009: multiple definition of `bt_gatt_indicate'; app/libapp.a(bt_gatt_indicate.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_indicate.c:35: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "de6ae9c55a734d1077625231e104e8c1bf841b2e767ec33eaa40fb10a6a86a15",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3061,16 +4098,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_notify_cb",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -3099,7 +4136,87 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:2784",
         "reconstruction_input": "app/libapp.a(bt_gatt_notify_cb.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:2784: multiple definition of `bt_gatt_notify_cb'; app/libapp.a(bt_gatt_notify_cb.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_notify_cb.c:36: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:2784: multiple definition of `bt_gatt_notify_cb'; app/libapp.a(bt_gatt_notify_cb.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_notify_cb.c:36: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "063f0983c5b5051e74b4c7fbb0d59599e532093fa20ac57bc58f0659e277505c",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3112,16 +4229,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_discover",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -3150,7 +4267,87 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4494",
         "reconstruction_input": "app/libapp.a(bt_gatt_discover.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4494: multiple definition of `bt_gatt_discover'; app/libapp.a(bt_gatt_discover.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_discover.c:46: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4494: multiple definition of `bt_gatt_discover'; app/libapp.a(bt_gatt_discover.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_discover.c:46: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b40ce9153fff444d22d6c8247c47f4cb463ea994b92e4e29f74dd0366f7dc239",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3159,20 +4356,20 @@
      "core": "app",
      "va": "0x0005c22c",
      "raw_symbol": "FUN_0005c22c",
-     "current_symbol": "bt_gatt_read",
+     "current_symbol": "bt_gatt_write",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "bt_gatt_read",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "bt_gatt_write",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -3202,7 +4399,94 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4830",
         "reconstruction_input": "app/libapp.a(bt_gatt_read.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4830: multiple definition of `bt_gatt_read'; app/libapp.a(bt_gatt_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_read.c:27: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:4830: multiple definition of `bt_gatt_read'; app/libapp.a(bt_gatt_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_read.c:28: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "667a544512a47986586329e42eb9890f2660a2636c22f49d93d0ebadf969718e",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_gatt_read",
+        "corrected_readable_identity": "bt_gatt_write",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/gatt.c",
+        "corrected_upstream_symbol": "bt_gatt_write",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3211,20 +4495,20 @@
      "core": "app",
      "va": "0x0005c4f0",
      "raw_symbol": "FUN_0005c4f0",
-     "current_symbol": "bt_gatt_subscribe",
+     "current_symbol": "bt_gatt_unsubscribe",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "bt_gatt_subscribe",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "bt_gatt_unsubscribe",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3255,7 +4539,352 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5240",
         "reconstruction_input": "app/libapp.a(bt_gatt_subscribe.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5240: multiple definition of `bt_gatt_subscribe'; app/libapp.a(bt_gatt_subscribe.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_subscribe.c:31: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5240: multiple definition of `bt_gatt_subscribe'; app/libapp.a(bt_gatt_subscribe.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_subscribe.c:32: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8c8dd642cedb8062dc05a7a9bcb5d7d796048fce7576aa66274ac49e8a5167ee",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_gatt_subscribe",
+        "corrected_readable_identity": "bt_gatt_unsubscribe",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/gatt.c",
+        "corrected_upstream_symbol": "bt_gatt_unsubscribe",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005c6c8",
+     "raw_symbol": "FUN_0005c6c8",
+     "current_symbol": "bt_gatt_connected",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_gatt_connected",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.910569,
+        "shape": 0.910569,
+        "length": 0.835821,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "bt_conn*"
+        ],
+        "variadic": false,
+        "decl_line": 5662
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/gatt.c",
+        "sha256": "37f2f91592e2ab1b3c9785062e5059f720dc05b1f0e6af25de441e237d33dcc4",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5663",
+        "reconstruction_input": "app/libapp.a(bt_gatt_connected.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5663: multiple definition of `bt_gatt_connected'; app/libapp.a(bt_gatt_connected.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_connected.c:37: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7696c7075d933484fafa0303a42b79c05df9186ec94cb4790ff941b7947c3b72",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005c76c",
+     "raw_symbol": "FUN_0005c76c",
+     "current_symbol": "bt_gatt_att_max_mtu_changed",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_gatt_att_max_mtu_changed",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.944444,
+        "shape": 0.944444,
+        "length": 0.894737,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "bt_conn*",
+         "uint16_t",
+         "uint16_t"
+        ],
+        "variadic": false,
+        "decl_line": 5729
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/gatt.c",
+        "sha256": "37f2f91592e2ab1b3c9785062e5059f720dc05b1f0e6af25de441e237d33dcc4",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5730",
+        "reconstruction_input": "app/libapp.a(bt_gatt_att_max_mtu_changed.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:5730: multiple definition of `bt_gatt_att_max_mtu_changed'; app/libapp.a(bt_gatt_att_max_mtu_changed.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_att_max_mtu_changed.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "57c7ed54cae5dd5aa411c57c1b54f85706593b938c668a2be5c3c6a7def21b73",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
        }
       }
      ]
@@ -3311,22 +4940,150 @@
     },
     {
      "core": "app",
+     "va": "0x0005c9a4",
+     "raw_symbol": "FUN_0005c9a4",
+     "current_symbol": "bt_gatt_disconnected",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_gatt_disconnected",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.973262,
+        "shape": 0.973262,
+        "length": 0.947917,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "bt_conn*"
+        ],
+        "variadic": false,
+        "decl_line": 6243
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/gatt.c",
+        "sha256": "37f2f91592e2ab1b3c9785062e5059f720dc05b1f0e6af25de441e237d33dcc4",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(gatt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:6244",
+        "reconstruction_input": "app/libapp.a(bt_gatt_disconnected.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/gatt.c:6244: multiple definition of `bt_gatt_disconnected'; app/libapp.a(bt_gatt_disconnected.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_gatt_disconnected.c:47: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "bedfc0cea2e2b653729dc6bf31356c36a972878455a5877a81add37e70240e3b",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005a954",
+        "0x0005a9f4",
+        "0x0005aa84",
+        "0x0005ad38",
+        "0x0005b378",
+        "0x0005b754",
+        "0x0005b9cc",
+        "0x0005c22c",
+        "0x0005c4f0",
+        "0x0005c6c8",
+        "0x0005c76c",
+        "0x0005c9a4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005a954",
+         "0x0005a9f4",
+         "0x0005aa84",
+         "0x0005ad38",
+         "0x0005b378",
+         "0x0005b754",
+         "0x0005b9cc",
+         "0x0005c22c",
+         "0x0005c4f0",
+         "0x0005c6c8",
+         "0x0005c76c",
+         "0x0005c9a4"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_gatt_init",
+         "bt_gatt_attr_get_handle",
+         "bt_gatt_foreach_attr_type",
+         "bt_gatt_service_register",
+         "bt_gatt_indicate",
+         "bt_gatt_notify_cb",
+         "bt_gatt_discover",
+         "bt_gatt_read",
+         "bt_gatt_subscribe",
+         "bt_gatt_connected",
+         "bt_gatt_att_max_mtu_changed",
+         "bt_gatt_disconnected"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0005e6a8",
      "raw_symbol": "FUN_0005e6a8",
      "current_symbol": "bt_keys_get_addr",
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_addr",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3357,7 +5114,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:84",
         "reconstruction_input": "app/libapp.a(bt_keys_get_addr.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:84: multiple definition of `bt_keys_get_addr'; app/libapp.a(bt_keys_get_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_get_addr.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:84: multiple definition of `bt_keys_get_addr'; app/libapp.a(bt_keys_get_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_get_addr.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "0af02584e2595bcd1a7a4c130e7f323d0a942084faf1a6746af055d7884055ad",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3370,16 +5201,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_foreach_bond",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3411,7 +5242,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:157",
         "reconstruction_input": "app/libapp.a(bt_foreach_bond.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:157: multiple definition of `bt_foreach_bond'; app/libapp.a(bt_foreach_bond.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_foreach_bond.c:19: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:157: multiple definition of `bt_foreach_bond'; app/libapp.a(bt_foreach_bond.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_foreach_bond.c:19: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8a636e86119814622b8cace815504b1552152850b22218be585c71571de5d4f3",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3424,16 +5329,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_foreach_type",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3465,7 +5370,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:176",
         "reconstruction_input": "app/libapp.a(bt_keys_foreach_type.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:176: multiple definition of `bt_keys_foreach_type'; app/libapp.a(bt_keys_foreach_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_foreach_type.c:23: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:176: multiple definition of `bt_keys_foreach_type'; app/libapp.a(bt_keys_foreach_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_foreach_type.c:23: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1064011690d372081d58d8e67f629de472db58e94226294c4db354aa73da2950",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3478,16 +5457,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3519,7 +5498,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:189",
         "reconstruction_input": "app/libapp.a(bt_keys_find.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:189: multiple definition of `bt_keys_find'; app/libapp.a(bt_keys_find.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:189: multiple definition of `bt_keys_find'; app/libapp.a(bt_keys_find.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "633a152b53aae9feb3580d40d4f7208ee140505d5e12124de73a74e8ddaa6750",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3532,16 +5585,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_irk",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3572,7 +5625,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:230",
         "reconstruction_input": "app/libapp.a(bt_keys_find_irk.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:230: multiple definition of `bt_keys_find_irk'; app/libapp.a(bt_keys_find_irk.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find_irk.c:26: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:230: multiple definition of `bt_keys_find_irk'; app/libapp.a(bt_keys_find_irk.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find_irk.c:27: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6555f6e474ae157dfe69ca81826b27e80c5f24ae63e400d164f2ccec39a2407d",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3585,16 +5712,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_addr",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3625,7 +5752,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:279",
         "reconstruction_input": "app/libapp.a(bt_keys_find_addr.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:279: multiple definition of `bt_keys_find_addr'; app/libapp.a(bt_keys_find_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find_addr.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:279: multiple definition of `bt_keys_find_addr'; app/libapp.a(bt_keys_find_addr.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_find_addr.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "11e0d4986f548cedc9410a5114d0ff17411a2b9042eb8b0dfd714e4a8421c1ae",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3638,16 +5839,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_add_type",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3678,7 +5879,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:300",
         "reconstruction_input": "app/libapp.a(bt_keys_add_type.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:300: multiple definition of `bt_keys_add_type'; app/libapp.a(bt_keys_add_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_add_type.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:300: multiple definition of `bt_keys_add_type'; app/libapp.a(bt_keys_add_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_add_type.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "47486ce05114c11810973c30811c24f20598554e1617858018617adeaf32cba8",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3691,16 +5966,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_type",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3732,7 +6007,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:207",
         "reconstruction_input": "app/libapp.a(bt_keys_get_type.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:207: multiple definition of `bt_keys_get_type'; app/libapp.a(bt_keys_get_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_get_type.c:25: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:207: multiple definition of `bt_keys_get_type'; app/libapp.a(bt_keys_get_type.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_get_type.c:25: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "e36da69ead936815baec330a4cc2e5fef1604ab82fc77f4310b132be053aadaa",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3745,16 +6094,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_clear",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold"
@@ -3783,7 +6132,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:304",
         "reconstruction_input": "app/libapp.a(bt_keys_clear.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:304: multiple definition of `bt_keys_clear'; app/libapp.a(bt_keys_clear.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_clear.c:26: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:304: multiple definition of `bt_keys_clear'; app/libapp.a(bt_keys_clear.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_clear.c:26: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "00fc50cb61704a1df4fca97503ba3c870bf89400cf5b41a28712df491d89b6bf",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -3796,16 +6219,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_store",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -3834,7 +6257,81 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(keys.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:323",
         "reconstruction_input": "app/libapp.a(bt_keys_store.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:323: multiple definition of `bt_keys_store'; app/libapp.a(bt_keys_store.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_store.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/keys.c:323: multiple definition of `bt_keys_store'; app/libapp.a(bt_keys_store.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_keys_store.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "75c9edf5200fd9f94b18bc5e88cd3c1a8cd8ceb0e6c9c5c6bc68228563a0214a",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x0005e6a8",
+        "0x0005e6d4",
+        "0x0005e758",
+        "0x0005e7c8",
+        "0x0005e83c",
+        "0x0005e938",
+        "0x0005e9a0",
+        "0x0005e9d0",
+        "0x0005ea18",
+        "0x0005ec18"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005e6a8",
+         "0x0005e6d4",
+         "0x0005e758",
+         "0x0005e7c8",
+         "0x0005e83c",
+         "0x0005e938",
+         "0x0005e9a0",
+         "0x0005e9d0",
+         "0x0005ea18",
+         "0x0005ec18"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_keys_get_addr",
+         "bt_foreach_bond",
+         "bt_keys_foreach_type",
+         "bt_keys_find",
+         "bt_keys_find_irk",
+         "bt_keys_find_addr",
+         "bt_keys_add_type",
+         "bt_keys_get_type",
+         "bt_keys_clear",
+         "bt_keys_store"
+        ]
        }
       }
      ]
@@ -16675,16 +19172,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_conn_le_param_update",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -16713,7 +19210,57 @@
         "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(conn.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2642",
         "reconstruction_input": "app/libapp.a(bt_conn_le_param_update.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2642: multiple definition of `bt_conn_le_param_update'; app/libapp.a(bt_conn_le_param_update.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_le_param_update.c:14: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/conn.c:2642: multiple definition of `bt_conn_le_param_update'; app/libapp.a(bt_conn_le_param_update.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_conn_le_param_update.c:15: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8e278d5f6b0f8c7fc5c37f076552b3db822c6239111ed7e04ab76122278e44c8",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+        "CONFIG_BT_CENTRAL": "n",
+        "CONFIG_BT_CONN_TX_MAX": "10",
+        "CONFIG_BT_GATT_CLIENT": "y",
+        "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+        "CONFIG_BT_L2CAP_SEG_RECV": "n",
+        "CONFIG_BT_MAX_PAIRED": "2",
+        "CONFIG_BT_PERIPHERAL": "y",
+        "CONFIG_BT_PRIVACY": "n",
+        "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING_QUEUE": "y"
+       },
+       "atomic_group": [
+        "0x000564cc",
+        "0x0008157a"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x000564cc",
+         "0x0008157a"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_conn_send_cb",
+         "bt_conn_le_param_update"
+        ]
        }
       }
      ]
@@ -16753,49 +19300,112 @@
     },
     {
      "core": "app",
-     "va": "0x00081aca",
-     "raw_symbol": "FUN_00081aca",
+     "va": "0x00081a4e",
+     "raw_symbol": "FUN_00081a4e",
      "current_symbol": "bt_l2cap_le_lookup_tx_cid",
      "kind": "source",
-     "component": "zephyr",
+     "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
      "evidence": [
       {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 1.0,
-        "shape": 0.888889,
-        "length": 1.0,
-        "normalized_exact": false
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "234711241b4524a7f7face3ff2c7394532b4417ce0fb5970d355748aa5d30508",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_l2cap_le_lookup_tx_cid",
+        "corrected_readable_identity": "bt_l2cap_le_lookup_tx_cid",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
+        "corrected_upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
+        "upstream_linkage": "public"
        },
-       "abi": {
-        "return": "bt_l2cap_chan*",
-        "params": [
-         "bt_conn*",
-         "uint16_t"
+       "atomic_group": [
+        "0x0005791c",
+        "0x000579d0",
+        "0x00057cc4",
+        "0x00081a4e",
+        "0x00081aca"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005791c",
+         "0x000579d0",
+         "0x00057cc4",
+         "0x00081a4e",
+         "0x00081aca"
         ],
-        "variadic": false,
-        "decl_line": 753
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_l2cap_connected",
+         "bt_l2cap_init",
+         "bt_l2cap_recv"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00081aca",
+     "raw_symbol": "FUN_00081aca",
+     "current_symbol": "bt_l2cap_le_lookup_rx_cid",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "cd5a32573f3aaa3f45387b8bb9d640ae05c606e93e5077da275b7cd505f4ea7b",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_l2cap_le_lookup_rx_cid",
+        "corrected_readable_identity": "bt_l2cap_le_lookup_rx_cid",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
+        "corrected_upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
+        "upstream_linkage": "public"
        },
-       "upstream_source": {
-        "path": "zephyr/subsys/bluetooth/host/l2cap.c",
-        "sha256": "46ea0b8573d70141b6ddf538fc70b5b429d9d2258300e7050a90779a5e019ed3",
-        "repository": "zephyr",
-        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
-       },
-       "link_provenance": {
-        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(l2cap.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/slist.h:240",
-        "reconstruction_input": "app/libapp.a(bt_l2cap_le_lookup_tx_cid.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/slist.h:240: multiple definition of `bt_l2cap_le_lookup_tx_cid'; app/libapp.a(bt_l2cap_le_lookup_tx_cid.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_l2cap_le_lookup_tx_cid.c:13: first defined here"
+       "atomic_group": [
+        "0x0005791c",
+        "0x000579d0",
+        "0x00057cc4",
+        "0x00081a4e",
+        "0x00081aca"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005791c",
+         "0x000579d0",
+         "0x00057cc4",
+         "0x00081a4e",
+         "0x00081aca"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_l2cap_connected",
+         "bt_l2cap_init",
+         "bt_l2cap_recv"
+        ]
        }
       }
      ]
@@ -33772,6 +36382,10 @@
   {
    "path": "recon/ownership/app_nrfx_stock_atomic_adoption.json",
    "sha256": "06beae17257ffefcb400b8f5dc629dc6ce056d0e03e2aa99051b643fe7a84553"
+  },
+  {
+   "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
+   "sha256": "bff29ea31de4c5cb5898e6313c2480f25067c0fd09d06f8c40f207d1afe5a6b4"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

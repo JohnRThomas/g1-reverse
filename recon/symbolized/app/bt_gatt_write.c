@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0005c22c @ 0x0005c22c
- * public-name: bt_gatt_read
+ * public-name: bt_gatt_write
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   bt_gatt_read                             <= FUN_0005c22c @ 0x0005c22c
+ *   bt_gatt_write                            <= FUN_0005c22c @ 0x0005c22c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   bt_att_get_mtu                           <= FUN_000823fa @ 0x000823fa
@@ -25,7 +25,7 @@ extern void assert_post_action(int,...);
 extern void printk(int,...);
 extern int bt_att_get_mtu(int);
 extern int gatt_req_send(int,int,int*,int,int,unsigned);
-int bt_gatt_read(int param_1, int *param_2){
+int bt_gatt_write(int param_1, int *param_2){
   short sVar1; int iVar2; int uVar3; unsigned short uVar4; unsigned uVar5; int uVar6; int uVar7;
   if (param_1==0){
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f3ebd) /*=0xf3ebd*/,((unsigned long)&rodata_f46b8) /*=0xf46b8*/,0x13de,0,(int)param_2);

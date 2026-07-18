@@ -46,7 +46,7 @@ extern void FUN_00074844(uint32_t,uint32_t);
 extern void change_work_mode_to(uint32_t);
 extern void set_shutdown_flag(uintptr_t,uint32_t);
 extern void rproc_virtio_negotiate_features(uintptr_t,uint32_t);
-extern uint64_t uptime_ticks_get(void);
+extern uint64_t thunk_FUN_00074f68(void);
 extern void log_message(uintptr_t,...);
 extern void debug_print(uintptr_t,...);
 
@@ -140,9 +140,9 @@ void brightness_level(uintptr_t context)
 
 wait_for_frame:
         do {
-            uint64_t before=uptime_ticks_get();
+            uint64_t before=thunk_FUN_00074f68();
             z_impl_k_sem_take(context+0x80,0,((unsigned long)&rodata_28000) /*=0x28000*/,0);
-            uint64_t after=uptime_ticks_get();
+            uint64_t after=thunk_FUN_00074f68();
             before=(before*1000u)>>15;
             after=(after*1000u)>>15;
             if ((int64_t)(after-before)>=5000)

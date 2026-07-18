@@ -128,7 +128,7 @@ extern uint32_t check_dashboard_device_status_range(void);
 extern void *memset_bytes(void *, int, uint32_t);
 extern int send_event(uint32_t);
 extern int sync_to_slave(uintptr_t, uint32_t, const void *, uint32_t);
-extern uint64_t uptime_ticks_get(void);
+extern uint64_t thunk_FUN_00074f68(void);
 
 #define DAT_0003b254 ((volatile char*)((unsigned long)&g_dashboard_widget_state) /*=0x20004950*/)
 #define DAT_0003b258 ((volatile int*)((unsigned long)&g_log_level) /*=0x2000230c*/)
@@ -400,7 +400,7 @@ LAB_0003b116:
       reflash_fb_data_to_lcd(uVar16,*(undefined4 *)(iVar14 + 0xeb8),0,0,0x280,199);
     }
     gui_canvas_flags_set_bit1();
-    lVar23 = uptime_ticks_get();
+    lVar23 = thunk_FUN_00074f68();
     uVar13 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
     *(uint *)(pcVar4 + 0x10) = (uint)(lVar23 * 1000) >> 0xf | uVar13 * 0x20000;
     *(uint *)(pcVar4 + 0x14) = uVar13 >> 0xf;
@@ -600,7 +600,7 @@ LAB_0003b512:
         return 0;
       }
       iVar12 = check_dashboard_device_status_range();
-      lVar23 = uptime_ticks_get();
+      lVar23 = thunk_FUN_00074f68();
       uVar20 = (uint)((ulonglong)(lVar23 * 1000) >> 0x20);
       uVar13 = (uint)(lVar23 * 1000) >> 0xf | uVar20 * 0x20000;
       uVar20 = uVar20 >> 0xf;

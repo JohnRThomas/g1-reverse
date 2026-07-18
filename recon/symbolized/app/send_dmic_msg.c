@@ -38,7 +38,7 @@ extern int get_dmic_msgq_count(void);
 extern int dequeue_dmic(void *payload);
 extern void set_shutdown_flag(void *state, int enabled);
 extern void memset_bytes(void *destination, int value, unsigned int length);
-extern unsigned long long uptime_ticks_get(void);
+extern unsigned long long thunk_FUN_00074f68(void);
 
 int send_dmic_msg(uint8_t *transport)
 {
@@ -87,7 +87,7 @@ int send_dmic_msg(uint8_t *transport)
             int report_count;
 
             *(volatile int *)((unsigned long)&g_dmic_send_pos_cnt) /*=0x2000755c*/ = 0;
-            timestamp = uptime_ticks_get();
+            timestamp = thunk_FUN_00074f68();
             report_count = *(volatile int *)((unsigned long)&g_dmic_send_hundreds_cnt) /*=0x20007560*/;
             *(volatile int *)((unsigned long)&g_dmic_send_hundreds_cnt) /*=0x20007560*/ = report_count + 1;
             if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {

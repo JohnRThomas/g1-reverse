@@ -34,7 +34,7 @@ extern int bt_start(void);                              /* FUN_00019308 @ 0x0001
 extern void start_ancs_work_thread(uintptr_t context);  /* FUN_000198cc @ 0x000198cc */
 extern void debug_print(void);                          /* FUN_00019c70 @ 0x00019c70 */
 extern void sys_reboot(int type);                       /* FUN_0004c0a8 @ 0x0004c0a8 */
-extern int bt_send(int mode);                           /* FUN_00054a44 @ 0x00054a44 */
+extern int bt_enable(int mode);                           /* FUN_00054a44 @ 0x00054a44 */
 extern void bt_hci_driver_close(void);                  /* FUN_00054b70 @ 0x00054b70 */
 extern int bt_conn_auth_info_cb_register(const void *); /* FUN_00057330 @ 0x00057330 */
 extern void bt_gatt_cb_register(const void *);          /* FUN_0005a9d8 @ 0x0005a9d8 */
@@ -122,7 +122,7 @@ int ancs_main(uintptr_t context)
             ancs_sleep_ms(100);
         }
 
-        error = bt_send(0);
+        error = bt_enable(0);
         if (error == 0) {
             break;
         }

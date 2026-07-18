@@ -15,7 +15,7 @@
 #include <stdint.h>
 
 extern void FUN_0007c842(void *context);
-extern uint64_t uptime_ticks_get(void);
+extern uint64_t thunk_FUN_00074f68(void);
 
 void transport_state_update(uint8_t *context, uint8_t *state)
 {
@@ -36,7 +36,7 @@ void transport_state_update(uint8_t *context, uint8_t *state)
             *active = 1U;
         }
     } else if (phase == 2U) {
-        uint64_t now = uptime_ticks_get();
+        uint64_t now = thunk_FUN_00074f68();
         if (now - *timestamp >= 3001U) {
             if (state[5] == 10U) {
                 if (state[0] == 0U)
@@ -44,7 +44,7 @@ void transport_state_update(uint8_t *context, uint8_t *state)
                 state[1] = 1U;
             }
             state[3] = 1U;
-            *timestamp = uptime_ticks_get();
+            *timestamp = thunk_FUN_00074f68();
         }
     } else if (phase == 4U) {
         if (state[5] == 10U) {
@@ -54,8 +54,8 @@ void transport_state_update(uint8_t *context, uint8_t *state)
         }
         if (state[2] == 0U)
             state[2] = 1U;
-        *timestamp = uptime_ticks_get();
+        *timestamp = thunk_FUN_00074f68();
     } else {
-        *timestamp = uptime_ticks_get();
+        *timestamp = thunk_FUN_00074f68();
     }
 }

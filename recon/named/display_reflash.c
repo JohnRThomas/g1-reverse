@@ -27,14 +27,14 @@ extern void submit_display_reflash_work(void);
 extern int k_msgq_put(unsigned,void*,int,int);
 extern void memcpy(void*,int,unsigned);
 extern void memset_bytes(void*,int,unsigned);
-extern long long uptime_ticks_get(void);
+extern long long thunk_FUN_00074f68(void);
 
 unsigned display_reflash(int param_1, unsigned param_2){
   unsigned char packet[24];
   volatile int *piVar1 = (volatile int*)0x2000230cUL;
   memset_bytes(packet,0,24);
   if(param_2 < 0xb){
-    long long lVar7 = uptime_ticks_get();
+    long long lVar7 = thunk_FUN_00074f68();
     if(*piVar1 > 2){
       if(*(volatile int*)0x20007554UL == 0)
         log_message(0x000effd2,0x000f019a,0,0);
@@ -56,7 +56,7 @@ unsigned display_reflash(int param_1, unsigned param_2){
         else
           debug_print(0x000efff4,0x000f019a);
       }
-      long long lVar8 = uptime_ticks_get();
+      long long lVar8 = thunk_FUN_00074f68();
       if(*piVar1 > 2){
         unsigned uVar5 = (unsigned)(((uint64_t)lVar8 * UINT64_C(1000)) >> 0x20);
         unsigned uVar3 = (unsigned)(((uint64_t)lVar7 * UINT64_C(1000)) >> 0x20);

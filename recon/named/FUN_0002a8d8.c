@@ -24,7 +24,7 @@
  *   k_uptime_get_1                           <= FUN_0007cb2c @ 0x0007cb2c
  *   k_msleep                                 <= FUN_0007cb8e @ 0x0007cb8e
  *   set_shutdown_flag                        <= FUN_0007cbfe @ 0x0007cbfe
- *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
+ *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  * address symbols (name @ address):
  *   rodata_28000                             @ 0x00028000
  *   rodata_87d70                             @ 0x00087d70
@@ -51,7 +51,7 @@ extern void log_message(uintptr_t, ...);
 extern void debug_print(uintptr_t, ...);
 extern int sync_to_slave(uint8_t *, uint32_t, uint32_t);
 extern int FUN_00019b2c(void);
-extern int bt_conn_set_security(int, uint32_t);
+extern int g1_recon_bt_conn_set_security(int, uint32_t);
 extern void fuel_gauge_update(uintptr_t, uint32_t);
 extern uint32_t check_ancs_inbox_flag_change(void);
 extern uint32_t debounce_read_pending_flag_1(void);
@@ -114,7 +114,7 @@ void low_speed_peripheral_dispatch_thread(uint8_t *ctx)
                 rd8(ctx, 0xae3) == 0 || rd32(ctx, 0x9b4) == 0) {
                 connected_runs = 0;
             } else if (++connected_runs > 4) {
-                int error = bt_conn_set_security(connection, 2);
+                int error = g1_recon_bt_conn_set_security(connection, 2);
                 if (error != 0 && *log_level > 2) {
                     if (*(volatile int *)0x20007554u == 0)
                         log_message(0x000a1914u, 0x000a19c0u, error);

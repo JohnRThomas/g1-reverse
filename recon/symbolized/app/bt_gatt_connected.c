@@ -7,7 +7,7 @@
  *   bt_settings_encode_key                   <= FUN_00052e7c @ 0x00052e7c
  *   u8_to_dec                                <= FUN_0007dc4a @ 0x0007dc4a
  *   bt_addr_le_is_bonded                     <= FUN_00080f92 @ 0x00080f92
- *   bt_conn_set_security                     <= FUN_0008149a @ 0x0008149a
+ *   g1_recon_bt_conn_set_security            <= FUN_0008149a @ 0x0008149a
  *   bt_conn_get_security                     <= FUN_000814e2 @ 0x000814e2
  *   bt_gatt_foreach_attr_0                   <= FUN_00082c9c @ 0x00082c9c
  * address symbols (name @ address):
@@ -27,7 +27,7 @@ extern int bt_settings_encode_key(char *, uint32_t, const char *, const void *, 
 extern int settings_load_subtree_direct(const char *, void *, void *); /* settings_load_subtree_direct */
 extern void bt_gatt_foreach_attr_0(uint16_t, uint16_t, void *, void *); /* bt_gatt_foreach_attr */
 extern uint8_t bt_conn_get_security(void *); /* bt_conn_get_security */
-extern int bt_conn_set_security(void *, uint8_t); /* bt_conn_set_security */
+extern int g1_recon_bt_conn_set_security(void *, uint8_t); /* bt_conn_set_security */
 extern void FUN_00082a42(uint32_t, uint32_t, const void *); /* logger */
 
 struct conn_data_recovered { void *connection; uint8_t security; };
@@ -50,7 +50,7 @@ void bt_gatt_connected(uint8_t *connection)
     }
     bt_gatt_foreach_attr_0(1U, 0xffffU, (void *)ADDR_sc_restore_THUMB /*=0x5b555*/, &data);
     if (bt_conn_get_security(connection) < data.security) {
-        int error = bt_conn_set_security(connection, data.security);
+        int error = g1_recon_bt_conn_set_security(connection, data.security);
         if (error != 0) {
             const uint32_t package[3] = { 3U, ((unsigned long)&rodata_f4d88) /*=0xf4d88*/, (uint32_t)error };
             FUN_00082a42(((unsigned long)&rodata_88128) /*=0x88128*/, 0x1880U, package);

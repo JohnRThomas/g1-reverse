@@ -3,7 +3,7 @@
  * public-name: gatt_prepare_write_rsp
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   bt_gatt_read                             <= FUN_0005c22c @ 0x0005c22c
+ *   bt_gatt_write                            <= FUN_0005c22c @ 0x0005c22c
  *   gatt_prepare_write_rsp                   <= FUN_0005c310 @ 0x0005c310
  *   gatt_req_send                            <= FUN_00082aee @ 0x00082aee
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
@@ -22,7 +22,7 @@
 extern void FUN_00082a42(uint32_t, uint32_t, const void *); /* logger */
 extern int gatt_req_send(void *, void *, void *, void *, uint32_t, uint32_t);
 extern int memcmp(const void *, const void *, uint32_t); /* memcmp */
-extern int bt_gatt_read(void *, void *); /* bt_gatt_write */
+extern int bt_gatt_write(void *, void *); /* bt_gatt_write */
 
 struct write_params_recovered {
     void (*callback)(void *, uint8_t, void *);
@@ -62,7 +62,7 @@ void gatt_prepare_write_rsp(void *connection, const uint8_t *response,
         error = gatt_req_send(connection, (void *)((unsigned long)&rodata_82603) /*=0x82603*/, params,
                              (void *)ADDR_gatt_exec_encode_THUMB /*=0x8279d*/, 0x18U, 1U);
     else
-        error = bt_gatt_read(connection, params);
+        error = bt_gatt_write(connection, params);
     if (error != 0)
         params->callback(connection, 0x0eU, params);
 }

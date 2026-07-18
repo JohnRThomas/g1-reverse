@@ -1,9 +1,9 @@
 /* readable reconstruction; identity: FUN_00054a44 @ 0x00054a44
- * public-name: bt_send
+ * public-name: bt_enable
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   hci_vs_init                              <= FUN_00012080 @ 0x00012080
- *   bt_send                                  <= FUN_00054a44 @ 0x00054a44
+ *   bt_enable                                <= FUN_00054a44 @ 0x00054a44
  *   k_work_queue_init                        <= FUN_000730b4 @ 0x000730b4
  *   k_work_queue_start                       <= FUN_000730e8 @ 0x000730e8
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
@@ -41,7 +41,7 @@ extern void posix_stub_enosys(unsigned,unsigned);
 extern void z_impl_k_queue_init(void *queue);
 extern void z_impl_k_sem_init(int,int);
 typedef int (*cf)(void);
-int bt_send(int param_1)
+int bt_enable(int param_1)
 {
   int iVar1 = 0x20002000, iVar3; unsigned uVar2;
   int local_40, local_38; unsigned local_3c, uStack_34, local_20, local_1c;

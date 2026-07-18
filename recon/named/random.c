@@ -45,7 +45,7 @@ extern unsigned char *FUN_00081526(unsigned a);
 extern void memcpy(void *a, void *b, uint c);
 extern void memset_bytes(void *a, int b, int c);
 extern void strcpy(void *a, unsigned b);
-extern long long uptime_ticks_get(void);
+extern long long thunk_FUN_00074f68(void);
 
 struct request_name_record {
     unsigned word;
@@ -116,7 +116,7 @@ LAB_00017fb6:
         }
     }
     iVar12 = *piVar1;
-    lVar13 = uptime_ticks_get();
+    lVar13 = thunk_FUN_00074f68();
     iVar10 = *piVar1;
     *(volatile uint *)(iVar12 + 0x368) =
         (uint)(lVar13 * 1000) >> 0xf | (int)((unsigned long long)(lVar13 * 1000) >> 0x20) * 0x20000;

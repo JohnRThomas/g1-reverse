@@ -33,6 +33,8 @@ DEFAULTS = {
         "recon/ownership/app_kernel_config_atomic_adoption.json",
     "app_nrfx_stock":
         "recon/ownership/app_nrfx_stock_atomic_adoption.json",
+    "app_bluetooth_stock":
+        "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
     "library_provenance":
@@ -504,6 +506,15 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         nrfx.get("configured_build_receipts", [])))
+    bluetooth_path = resolved["app_bluetooth_stock"]
+    bluetooth = _load_json(bluetooth_path)
+    if (bluetooth.get("schema") != 1 or bluetooth.get("core") != "app" or
+            bluetooth.get("status") != "authorized_atomic"):
+        raise ValueError("invalid Bluetooth stock atomic adoption catalog")
+    authorizations["authorizations"].extend(bluetooth.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        bluetooth.get("configured_build_receipts", [])))
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -534,6 +545,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(kernel_path)},
         {"path": paths["app_nrfx_stock"],
          "sha256": _sha256(nrfx_path)},
+        {"path": paths["app_bluetooth_stock"],
+         "sha256": _sha256(bluetooth_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],
