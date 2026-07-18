@@ -1,0 +1,103 @@
+{
+  "functions": [
+    {
+      "analysis_address": "0x0102602e",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "POP return ends at 0x0102609e; FUN_0102609e starts there",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 5,
+        "cover_cases": 5,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "firmware_extent_sha256": "43ab95da4c5d0bb023bd12d575422f3875d61ca117219c70f1f88e3286114597",
+      "raw_symbol": "FUN_0102602e",
+      "readable_identity": "sdc_legacy_adv_report_encode",
+      "source": "recon/net/src/FUN_0102602e.c",
+      "source_sha256": "15e999ea2edbaa1dc96760f92186741f638bd834f918a4937a4c288d9320be4e",
+      "true_executable_extent": 112
+    },
+    {
+      "analysis_address": "0x0102609e",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "BX LR ends at 0x01026122; FUN_01026122 starts there",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 5,
+        "cover_cases": 5,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "firmware_extent_sha256": "b62739df2124c1aaa988ec2ee0f2e48c8850bcb03f27e51f7b4763d60e56f5df",
+      "raw_symbol": "FUN_0102609e",
+      "readable_identity": "sdc_extended_adv_report_encode",
+      "source": "recon/net/src/FUN_0102609e.c",
+      "source_sha256": "ebb0d2eda7627dd4fa57114735af468d6add4a5322a416015b89c5109a93e23b",
+      "true_executable_extent": 132
+    },
+    {
+      "analysis_address": "0x01027894",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "BX LR ends at 0x010278bc; FUN_010278bc starts there",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 2,
+        "cover_cases": 2,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "firmware_extent_sha256": "7c877bab6acebde5d89cf80fd96b08e396ecaebe1f7b459bd5aedc3d8b5a9089",
+      "raw_symbol": "FUN_01027894",
+      "readable_identity": "sdc_intrusive_list_pop_head",
+      "source": "recon/net/src/FUN_01027894.c",
+      "source_sha256": "50d9ebeb1c1707ec94ea1afb335e05e720b2f8e187c676b29463ab255f62043c",
+      "true_executable_extent": 40
+    },
+    {
+      "analysis_address": "0x010278bc",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "BX LR ends at 0x010278e4; FUN_010278e4 starts there",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 2,
+        "cover_cases": 2,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "selectors": {},
+        "status": "PASS"
+      },
+      "firmware_extent_sha256": "7c877bab6acebde5d89cf80fd96b08e396ecaebe1f7b459bd5aedc3d8b5a9089",
+      "raw_symbol": "FUN_010278bc",
+      "readable_identity": "sdc_intrusive_list_unlink_after",
+      "source": "recon/net/src/FUN_010278bc.c",
+      "source_sha256": "d8d17a2ed2b1ad8559b01c8f77b0419a5f0103349c95e0d5bbd34f2611ba4ce0",
+      "true_executable_extent": 40
+    }
+  ],
+  "policy": {
+    "archive_substitution_used": false,
+    "blobs_used": false,
+    "canonical_readable_c_only": true,
+    "private_sdc_retained_report_only": true,
+    "shared_cfg_tool_modified": false
+  },
+  "schema": "g1.net.link_gap7_recovery.v1",
+  "summary": {
+    "cfg_checked_trials": 14,
+    "cfg_directed_cover_cases": 14,
+    "cfg_pass_count": 4,
+    "function_count": 4,
+    "total_true_executable_extent": 324
+  }
+}
