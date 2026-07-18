@@ -32,9 +32,9 @@
     }
   },
   "summary": {
-    "function_identities": 1288,
-    "analysis_runtime_numeric_overlaps": 28,
-    "runtime_function_pointer_references": 62
+    "function_identities": 1303,
+    "analysis_runtime_numeric_overlaps": 31,
+    "runtime_function_pointer_references": 64
   },
   "functions": [
     {
@@ -89,13 +89,13 @@
       "analysis_address": "0x01008810",
       "runtime_address": "0x01009010",
       "raw_name": "FUN_01008810",
-      "name": "FUN_01008810"
+      "name": "ocrypto_constant_time_equal"
     },
     {
       "analysis_address": "0x01008838",
       "runtime_address": "0x01009038",
       "raw_name": "FUN_01008838",
-      "name": "FUN_01008838"
+      "name": "ocrypto_constant_time_is_zero"
     },
     {
       "analysis_address": "0x0100886c",
@@ -251,7 +251,7 @@
       "analysis_address": "0x01009204",
       "runtime_address": "0x01009a04",
       "raw_name": "FUN_01009204",
-      "name": "FUN_01009204"
+      "name": "sdc_rand_poll"
     },
     {
       "analysis_address": "0x01009210",
@@ -1406,6 +1406,12 @@
       "name": "controller_work_enqueue_packet_result"
     },
     {
+      "analysis_address": "0x0100ef08",
+      "runtime_address": "0x0100f708",
+      "raw_name": "FUN_0100ef08",
+      "name": "FUN_0100ef08"
+    },
+    {
       "analysis_address": "0x0100ef48",
       "runtime_address": "0x0100f748",
       "raw_name": "FUN_0100ef48",
@@ -1511,7 +1517,7 @@
       "analysis_address": "0x0100f5d8",
       "runtime_address": "0x0100fdd8",
       "raw_name": "FUN_0100f5d8",
-      "name": "FUN_0100f5d8"
+      "name": "sdc_controller_random_init"
     },
     {
       "analysis_address": "0x0100f63c",
@@ -1794,6 +1800,12 @@
       "runtime_address": "0x01011d40",
       "raw_name": "FUN_01011540",
       "name": "FUN_01011540"
+    },
+    {
+      "analysis_address": "0x01011664",
+      "runtime_address": "0x01011e64",
+      "raw_name": "FUN_01011664",
+      "name": "FUN_01011664"
     },
     {
       "analysis_address": "0x010119ac",
@@ -2402,6 +2414,12 @@
       "name": "FUN_01018de8"
     },
     {
+      "analysis_address": "0x01018df8",
+      "runtime_address": "0x010195f8",
+      "raw_name": "FUN_01018df8",
+      "name": "FUN_01018df8"
+    },
+    {
       "analysis_address": "0x01019088",
       "runtime_address": "0x01019888",
       "raw_name": "FUN_01019088",
@@ -2720,6 +2738,12 @@
       "name": "FUN_0101d404"
     },
     {
+      "analysis_address": "0x0101d890",
+      "runtime_address": "0x0101e090",
+      "raw_name": "FUN_0101d890",
+      "name": "FUN_0101d890"
+    },
+    {
       "analysis_address": "0x0101d8e8",
       "runtime_address": "0x0101e0e8",
       "raw_name": "FUN_0101d8e8",
@@ -2861,7 +2885,7 @@
       "analysis_address": "0x0101e1e4",
       "runtime_address": "0x0101e9e4",
       "raw_name": "FUN_0101e1e4",
-      "name": "FUN_0101e1e4"
+      "name": "controller_timing_defaults_apply"
     },
     {
       "analysis_address": "0x0101e274",
@@ -4034,6 +4058,12 @@
       "name": "FUN_010256dc"
     },
     {
+      "analysis_address": "0x01025734",
+      "runtime_address": "0x01025f34",
+      "raw_name": "FUN_01025734",
+      "name": "FUN_01025734"
+    },
+    {
       "analysis_address": "0x0102575c",
       "runtime_address": "0x01025f5c",
       "raw_name": "FUN_0102575c",
@@ -4214,6 +4244,12 @@
       "name": "FUN_01026122"
     },
     {
+      "analysis_address": "0x0102665c",
+      "runtime_address": "0x01026e5c",
+      "raw_name": "FUN_0102665c",
+      "name": "FUN_0102665c"
+    },
+    {
       "analysis_address": "0x0102677c",
       "runtime_address": "0x01026f7c",
       "raw_name": "FUN_0102677c",
@@ -4283,7 +4319,7 @@
       "analysis_address": "0x010269ce",
       "runtime_address": "0x010271ce",
       "raw_name": "FUN_010269ce",
-      "name": "FUN_010269ce"
+      "name": "controller_packet_payload_claim_begin"
     },
     {
       "analysis_address": "0x01026a7e",
@@ -4775,7 +4811,7 @@
       "analysis_address": "0x010282fc",
       "runtime_address": "0x01028afc",
       "raw_name": "FUN_010282fc",
-      "name": "FUN_010282fc"
+      "name": "controller_default_bounds_build"
     },
     {
       "analysis_address": "0x010283a4",
@@ -4902,6 +4938,12 @@
       "runtime_address": "0x01029a3c",
       "raw_name": "FUN_0102923c",
       "name": "FUN_0102923c"
+    },
+    {
+      "analysis_address": "0x010292ec",
+      "runtime_address": "0x01029aec",
+      "raw_name": "FUN_010292ec",
+      "name": "FUN_010292ec"
     },
     {
       "analysis_address": "0x0102931a",
@@ -5192,6 +5234,12 @@
       "name": "FUN_0102a122"
     },
     {
+      "analysis_address": "0x0102a1e0",
+      "runtime_address": "0x0102a9e0",
+      "raw_name": "FUN_0102a1e0",
+      "name": "FUN_0102a1e0"
+    },
+    {
       "analysis_address": "0x0102a1e2",
       "runtime_address": "0x0102a9e2",
       "raw_name": "FUN_0102a1e2",
@@ -5399,13 +5447,19 @@
       "analysis_address": "0x0102c6f8",
       "runtime_address": "0x0102cef8",
       "raw_name": "FUN_0102c6f8",
-      "name": "FUN_0102c6f8"
+      "name": "process_event"
+    },
+    {
+      "analysis_address": "0x0102ca2c",
+      "runtime_address": "0x0102d22c",
+      "raw_name": "FUN_0102ca2c",
+      "name": "transition_complete"
     },
     {
       "analysis_address": "0x0102ca80",
       "runtime_address": "0x0102d280",
       "raw_name": "FUN_0102ca80",
-      "name": "FUN_0102ca80"
+      "name": "onoff_request"
     },
     {
       "analysis_address": "0x0102cb84",
@@ -5468,6 +5522,12 @@
       "name": "FUN_0102d1c0"
     },
     {
+      "analysis_address": "0x0102d25c",
+      "runtime_address": "0x0102da5c",
+      "raw_name": "FUN_0102d25c",
+      "name": "arch_busy_wait"
+    },
+    {
       "analysis_address": "0x0102d548",
       "runtime_address": "0x0102dd48",
       "raw_name": "FUN_0102d548",
@@ -5519,7 +5579,7 @@
       "analysis_address": "0x0102da84",
       "runtime_address": "0x0102e284",
       "raw_name": "FUN_0102da84",
-      "name": "ipc_rpmsg_register_ept"
+      "name": "g1_ipc_rpmsg_register_ept"
     },
     {
       "analysis_address": "0x0102dac0",
@@ -5549,7 +5609,7 @@
       "analysis_address": "0x0102ddf4",
       "runtime_address": "0x0102e5f4",
       "raw_name": "FUN_0102ddf4",
-      "name": "z_log_msg_init"
+      "name": "z_log_notify_backend_enabled"
     },
     {
       "analysis_address": "0x0102de10",
@@ -5573,7 +5633,7 @@
       "analysis_address": "0x0102dea0",
       "runtime_address": "0x0102e6a0",
       "raw_name": "FUN_0102dea0",
-      "name": "FUN_0102dea0"
+      "name": "z_log_msg_init"
     },
     {
       "analysis_address": "0x0102def4",
@@ -5693,7 +5753,7 @@
       "analysis_address": "0x0102eb2c",
       "runtime_address": "0x0102f32c",
       "raw_name": "FUN_0102eb2c",
-      "name": "FUN_0102eb2c"
+      "name": "arch_irq_enable"
     },
     {
       "analysis_address": "0x0102eb48",
@@ -5777,13 +5837,13 @@
       "analysis_address": "0x0102fa84",
       "runtime_address": "0x01030284",
       "raw_name": "FUN_0102fa84",
-      "name": "FUN_0102fa84"
+      "name": "__chk_fail"
     },
     {
       "analysis_address": "0x0102fbac",
       "runtime_address": "0x010303ac",
       "raw_name": "FUN_0102fbac",
-      "name": "FUN_0102fbac"
+      "name": "bt_hci_driver_register"
     },
     {
       "analysis_address": "0x0102fbd0",
@@ -5831,13 +5891,19 @@
       "analysis_address": "0x01030014",
       "runtime_address": "0x01030814",
       "raw_name": "FUN_01030014",
-      "name": "FUN_01030014"
+      "name": "net_buf_simple_reserve"
+    },
+    {
+      "analysis_address": "0x0103004c",
+      "runtime_address": "0x0103084c",
+      "raw_name": "FUN_0103004c",
+      "name": "net_buf_simple_push"
     },
     {
       "analysis_address": "0x01030084",
       "runtime_address": "0x01030884",
       "raw_name": "FUN_01030084",
-      "name": "FUN_01030084"
+      "name": "net_buf_simple_add"
     },
     {
       "analysis_address": "0x0103037c",
@@ -5891,13 +5957,13 @@
       "analysis_address": "0x01031248",
       "runtime_address": "0x01031a48",
       "raw_name": "FUN_01031248",
-      "name": "FUN_01031248"
+      "name": "rtc_compare_int_lock"
     },
     {
       "analysis_address": "0x010312d0",
       "runtime_address": "0x01031ad0",
       "raw_name": "FUN_010312d0",
-      "name": "FUN_010312d0"
+      "name": "rtc_compare_int_unlock"
     },
     {
       "analysis_address": "0x010313a8",
@@ -5909,7 +5975,7 @@
       "analysis_address": "0x010313ec",
       "runtime_address": "0x01031bec",
       "raw_name": "FUN_010313ec",
-      "name": "FUN_010313ec"
+      "name": "rtc_compare_set"
     },
     {
       "analysis_address": "0x010315f0",
@@ -6395,13 +6461,13 @@
       "analysis_address": "0x010353ec",
       "runtime_address": "0x01035bec",
       "raw_name": "FUN_010353ec",
-      "name": "FUN_010353ec"
+      "name": "virtqueue_add_consumed_buffer"
     },
     {
       "analysis_address": "0x01035424",
       "runtime_address": "0x01035c24",
       "raw_name": "FUN_01035424",
-      "name": "FUN_01035424"
+      "name": "rpmsg_send_offchannel_raw"
     },
     {
       "analysis_address": "0x0103547c",
@@ -6413,7 +6479,7 @@
       "analysis_address": "0x010354bc",
       "runtime_address": "0x01035cbc",
       "raw_name": "FUN_010354bc",
-      "name": "FUN_010354bc"
+      "name": "rpmsg_create_ept"
     },
     {
       "analysis_address": "0x010355bc",
@@ -6503,13 +6569,13 @@
       "analysis_address": "0x01036198",
       "runtime_address": "0x01036998",
       "raw_name": "FUN_01036198",
-      "name": "FUN_01036198"
+      "name": "z_impl_k_msgq_put"
     },
     {
       "analysis_address": "0x010362d0",
       "runtime_address": "0x01036ad0",
       "raw_name": "FUN_010362d0",
-      "name": "FUN_010362d0"
+      "name": "z_impl_k_msgq_get"
     },
     {
       "analysis_address": "0x01036410",
@@ -6551,13 +6617,13 @@
       "analysis_address": "0x0103695c",
       "runtime_address": "0x0103715c",
       "raw_name": "FUN_0103695c",
-      "name": "FUN_0103695c"
+      "name": "work_queue_main"
     },
     {
       "analysis_address": "0x01036b18",
       "runtime_address": "0x01037318",
       "raw_name": "FUN_01036b18",
-      "name": "FUN_01036b18"
+      "name": "submit_to_queue_locked"
     },
     {
       "analysis_address": "0x01036bec",
@@ -6569,7 +6635,7 @@
       "analysis_address": "0x01036c2c",
       "runtime_address": "0x0103742c",
       "raw_name": "FUN_01036c2c",
-      "name": "FUN_01036c2c"
+      "name": "z_work_submit_to_queue"
     },
     {
       "analysis_address": "0x01036cb8",
@@ -6582,6 +6648,12 @@
       "runtime_address": "0x010374e4",
       "raw_name": "FUN_01036ce4",
       "name": "k_work_queue_start"
+    },
+    {
+      "analysis_address": "0x01036da4",
+      "runtime_address": "0x010375a4",
+      "raw_name": "FUN_01036da4",
+      "name": "k_work_queue_drain"
     },
     {
       "analysis_address": "0x01036e90",
@@ -6794,34 +6866,40 @@
       "name": "FUN_01038284"
     },
     {
+      "analysis_address": "0x010382fc",
+      "runtime_address": "0x01038afc",
+      "raw_name": "FUN_010382fc",
+      "name": "z_timer_expiration_handler"
+    },
+    {
       "analysis_address": "0x01038448",
       "runtime_address": "0x01038c48",
       "raw_name": "FUN_01038448",
-      "name": "FUN_01038448"
+      "name": "z_impl_k_timer_start"
     },
     {
       "analysis_address": "0x010384a8",
       "runtime_address": "0x01038ca8",
       "raw_name": "FUN_010384a8",
-      "name": "FUN_010384a8"
+      "name": "register_events"
     },
     {
       "analysis_address": "0x01038654",
       "runtime_address": "0x01038e54",
       "raw_name": "FUN_01038654",
-      "name": "FUN_01038654"
+      "name": "clear_event_registrations"
     },
     {
       "analysis_address": "0x01038764",
       "runtime_address": "0x01038f64",
       "raw_name": "FUN_01038764",
-      "name": "FUN_01038764"
+      "name": "z_impl_k_poll"
     },
     {
       "analysis_address": "0x010388c8",
       "runtime_address": "0x010390c8",
       "raw_name": "FUN_010388c8",
-      "name": "FUN_010388c8"
+      "name": "z_impl_k_poll_signal_raise"
     },
     {
       "analysis_address": "0x01038958",
@@ -6911,7 +6989,7 @@
       "analysis_address": "0x01038fa4",
       "runtime_address": "0x010397a4",
       "raw_name": "FUN_01038fa4",
-      "name": "FUN_01038fa4"
+      "name": "ocrypto_mod_p256_to_bytes"
     },
     {
       "analysis_address": "0x01038fd8",
@@ -7067,25 +7145,25 @@
       "analysis_address": "0x01039ade",
       "runtime_address": "0x0103a2de",
       "raw_name": "FUN_01039ade",
-      "name": "FUN_01039ade"
+      "name": "process_recheck"
     },
     {
       "analysis_address": "0x01039b16",
       "runtime_address": "0x0103a316",
       "raw_name": "FUN_01039b16",
-      "name": "FUN_01039b16"
+      "name": "validate_args"
     },
     {
       "analysis_address": "0x01039b36",
       "runtime_address": "0x0103a336",
       "raw_name": "FUN_01039b36",
-      "name": "FUN_01039b36"
+      "name": "notify_one"
     },
     {
       "analysis_address": "0x01039b62",
       "runtime_address": "0x0103a362",
       "raw_name": "FUN_01039b62",
-      "name": "FUN_01039b62"
+      "name": "onoff_manager_init"
     },
     {
       "analysis_address": "0x01039b88",
@@ -7097,7 +7175,7 @@
       "analysis_address": "0x01039bb0",
       "runtime_address": "0x0103a3b0",
       "raw_name": "FUN_01039bb0",
-      "name": "FUN_01039bb0"
+      "name": "assert_post_action"
     },
     {
       "analysis_address": "0x01039bbe",
@@ -7292,6 +7370,12 @@
       "name": "FUN_0103a44c"
     },
     {
+      "analysis_address": "0x0103a45a",
+      "runtime_address": "0x0103ac5a",
+      "raw_name": "FUN_0103a45a",
+      "name": "net_buf_simple_push_u8"
+    },
+    {
       "analysis_address": "0x0103a468",
       "runtime_address": "0x0103ac68",
       "raw_name": "FUN_0103a468",
@@ -7301,7 +7385,7 @@
       "analysis_address": "0x0103a478",
       "runtime_address": "0x0103ac78",
       "raw_name": "FUN_0103a478",
-      "name": "FUN_0103a478"
+      "name": "net_buf_simple_add_mem"
     },
     {
       "analysis_address": "0x0103a490",
@@ -7397,7 +7481,7 @@
       "analysis_address": "0x0103ab0e",
       "runtime_address": "0x0103b30e",
       "raw_name": "FUN_0103ab0e",
-      "name": "FUN_0103ab0e"
+      "name": "metal_io_block_write"
     },
     {
       "analysis_address": "0x0103ab86",
@@ -7427,7 +7511,7 @@
       "analysis_address": "0x0103ac50",
       "runtime_address": "0x0103b450",
       "raw_name": "FUN_0103ac50",
-      "name": "FUN_0103ac50"
+      "name": "virtqueue_get_available_buffer"
     },
     {
       "analysis_address": "0x0103ac98",
@@ -7451,31 +7535,31 @@
       "analysis_address": "0x0103ad4a",
       "runtime_address": "0x0103b54a",
       "raw_name": "FUN_0103ad4a",
-      "name": "FUN_0103ad4a"
+      "name": "__metal_mutex_acquire"
     },
     {
       "analysis_address": "0x0103ad56",
       "runtime_address": "0x0103b556",
       "raw_name": "FUN_0103ad56",
-      "name": "FUN_0103ad56"
+      "name": "rpmsg_unregister_endpoint"
     },
     {
       "analysis_address": "0x0103ada8",
       "runtime_address": "0x0103b5a8",
       "raw_name": "FUN_0103ada8",
-      "name": "FUN_0103ada8"
+      "name": "rpmsg_send_ns_message"
     },
     {
       "analysis_address": "0x0103ae10",
       "runtime_address": "0x0103b610",
       "raw_name": "FUN_0103ae10",
-      "name": "FUN_0103ae10"
+      "name": "rpmsg_get_endpoint"
     },
     {
       "analysis_address": "0x0103ae84",
       "runtime_address": "0x0103b684",
       "raw_name": "FUN_0103ae84",
-      "name": "FUN_0103ae84"
+      "name": "rpmsg_destroy_ept"
     },
     {
       "analysis_address": "0x0103aec2",
@@ -7523,7 +7607,7 @@
       "analysis_address": "0x0103b0e8",
       "runtime_address": "0x0103b8e8",
       "raw_name": "FUN_0103b0e8",
-      "name": "FUN_0103b0e8"
+      "name": "z_impl_k_busy_wait"
     },
     {
       "analysis_address": "0x0103b0f0",
@@ -7553,13 +7637,13 @@
       "analysis_address": "0x0103b164",
       "runtime_address": "0x0103b964",
       "raw_name": "FUN_0103b164",
-      "name": "FUN_0103b164"
+      "name": "k_msgq_init"
     },
     {
       "analysis_address": "0x0103b18c",
       "runtime_address": "0x0103b98c",
       "raw_name": "FUN_0103b18c",
-      "name": "FUN_0103b18c"
+      "name": "z_impl_k_msgq_alloc_init"
     },
     {
       "analysis_address": "0x0103b1c4",
@@ -7601,19 +7685,19 @@
       "analysis_address": "0x0103b244",
       "runtime_address": "0x0103ba44",
       "raw_name": "FUN_0103b244",
-      "name": "FUN_0103b244"
+      "name": "flag_test_and_clear"
     },
     {
       "analysis_address": "0x0103b25a",
       "runtime_address": "0x0103ba5a",
       "raw_name": "FUN_0103b25a",
-      "name": "FUN_0103b25a"
+      "name": "notify_queue_locked_isra_0"
     },
     {
       "analysis_address": "0x0103b268",
       "runtime_address": "0x0103ba68",
       "raw_name": "FUN_0103b268",
-      "name": "FUN_0103b268"
+      "name": "k_work_submit_to_queue"
     },
     {
       "analysis_address": "0x0103b28a",
@@ -7661,49 +7745,55 @@
       "analysis_address": "0x0103b304",
       "runtime_address": "0x0103bb04",
       "raw_name": "FUN_0103b304",
-      "name": "FUN_0103b304"
+      "name": "sys_timepoint_calc"
     },
     {
       "analysis_address": "0x0103b34c",
       "runtime_address": "0x0103bb4c",
       "raw_name": "FUN_0103b34c",
-      "name": "FUN_0103b34c"
+      "name": "sys_timepoint_timeout"
     },
     {
       "analysis_address": "0x0103b38e",
       "runtime_address": "0x0103bb8e",
       "raw_name": "FUN_0103b38e",
-      "name": "FUN_0103b38e"
+      "name": "k_timer_init"
     },
     {
       "analysis_address": "0x0103b3a6",
       "runtime_address": "0x0103bba6",
       "raw_name": "FUN_0103b3a6",
-      "name": "FUN_0103b3a6"
+      "name": "z_impl_k_timer_stop"
     },
     {
       "analysis_address": "0x0103b3e0",
       "runtime_address": "0x0103bbe0",
       "raw_name": "FUN_0103b3e0",
-      "name": "FUN_0103b3e0"
+      "name": "add_event"
     },
     {
       "analysis_address": "0x0103b442",
       "runtime_address": "0x0103bc42",
       "raw_name": "FUN_0103b442",
-      "name": "FUN_0103b442"
+      "name": "signal_poll_event"
     },
     {
       "analysis_address": "0x0103b4f6",
       "runtime_address": "0x0103bcf6",
       "raw_name": "FUN_0103b4f6",
-      "name": "FUN_0103b4f6"
+      "name": "z_handle_obj_poll_events"
     },
     {
       "analysis_address": "0x0103b512",
       "runtime_address": "0x0103bd12",
       "raw_name": "FUN_0103b512",
-      "name": "FUN_0103b512"
+      "name": "z_impl_k_poll_signal_init"
+    },
+    {
+      "analysis_address": "0x0103b51c",
+      "runtime_address": "0x0103bd1c",
+      "raw_name": "FUN_0103b51c",
+      "name": "z_impl_k_poll_signal_reset"
     },
     {
       "analysis_address": "0x0103b522",
@@ -7721,7 +7811,7 @@
       "analysis_address": "0x0103b53a",
       "runtime_address": "0x0103bd3a",
       "raw_name": "FUN_0103b53a",
-      "name": "FUN_0103b53a"
+      "name": "__memcpy_chk"
     },
     {
       "analysis_address": "0x0103b580",
@@ -7810,6 +7900,13 @@
       "analysis_owner": "FUN_0100e8ac"
     },
     {
+      "runtime_of_analysis_address": "0x0100e708",
+      "runtime_address": "0x0100ef08",
+      "colliding_analysis_address": "0x0100ef08",
+      "runtime_owner": "FUN_0100e708",
+      "analysis_owner": "FUN_0100ef08"
+    },
+    {
       "runtime_of_analysis_address": "0x0100e7c8",
       "runtime_address": "0x0100efc8",
       "colliding_analysis_address": "0x0100efc8",
@@ -7822,6 +7919,20 @@
       "colliding_analysis_address": "0x0100f748",
       "runtime_owner": "controller_work_enqueue_state4",
       "analysis_owner": "controller_halfword_transition_count"
+    },
+    {
+      "runtime_of_analysis_address": "0x01018df8",
+      "runtime_address": "0x010195f8",
+      "colliding_analysis_address": "0x010195f8",
+      "runtime_owner": "FUN_01018df8",
+      "analysis_owner": "FUN_010195f8"
+    },
+    {
+      "runtime_of_analysis_address": "0x0101d890",
+      "runtime_address": "0x0101e090",
+      "colliding_analysis_address": "0x0101e090",
+      "runtime_owner": "FUN_0101d890",
+      "analysis_owner": "FUN_0101e090"
     },
     {
       "runtime_of_analysis_address": "0x0101de60",
@@ -7904,7 +8015,7 @@
       "runtime_of_analysis_address": "0x0102da84",
       "runtime_address": "0x0102e284",
       "colliding_analysis_address": "0x0102e284",
-      "runtime_owner": "ipc_rpmsg_register_ept",
+      "runtime_owner": "g1_ipc_rpmsg_register_ept",
       "analysis_owner": "z_impl_z_log_msg_static_create"
     },
     {
@@ -7939,7 +8050,7 @@
       "runtime_of_analysis_address": "0x01038fa4",
       "runtime_address": "0x010397a4",
       "colliding_analysis_address": "0x010397a4",
-      "runtime_owner": "FUN_01038fa4",
+      "runtime_owner": "ocrypto_mod_p256_to_bytes",
       "analysis_owner": "FUN_010397a4"
     },
     {
@@ -8278,6 +8389,16 @@
       ]
     },
     {
+      "runtime_address": "0x0102a9e0",
+      "analysis_address": "0x0102a1e0",
+      "thumb": false,
+      "raw_name": "FUN_0102a1e0",
+      "name": "FUN_0102a1e0",
+      "referring_analysis_functions": [
+        "0x0102a720"
+      ]
+    },
+    {
       "runtime_address": "0x0102aa08",
       "analysis_address": "0x0102a208",
       "thumb": false,
@@ -8332,9 +8453,19 @@
       "analysis_address": "0x0102c6f8",
       "thumb": false,
       "raw_name": "FUN_0102c6f8",
-      "name": "FUN_0102c6f8",
+      "name": "process_event",
       "referring_analysis_functions": [
         "0x0102df04"
+      ]
+    },
+    {
+      "runtime_address": "0x0102d22d",
+      "analysis_address": "0x0102ca2c",
+      "thumb": true,
+      "raw_name": "FUN_0102ca2c",
+      "name": "transition_complete",
+      "referring_analysis_functions": [
+        "0x0102c6f8"
       ]
     },
     {
@@ -8502,7 +8633,7 @@
       "analysis_address": "0x01036c2c",
       "thumb": false,
       "raw_name": "FUN_01036c2c",
-      "name": "FUN_01036c2c",
+      "name": "z_work_submit_to_queue",
       "referring_analysis_functions": [
         "0x01037398"
       ]

@@ -44,10 +44,20 @@ def build():
 
     functions = []
     analysis_entries = set()
+    runtime_entries = set()
     for address, record in sorted(names.items(), key=lambda item: int(item[0], 16)):
         analysis = AnalysisAddress(int(address, 16))
         runtime = analysis.to_runtime()
+        if record.get("address") != address:
+            raise ValueError(
+                "name-catalog address mismatch: key %s, record %r" %
+                (address, record.get("address")))
+        if analysis.value in analysis_entries:
+            raise ValueError("duplicate analysis identity %s" % address)
+        if runtime.value in runtime_entries:
+            raise ValueError("duplicate runtime identity %s" % _hex(runtime.value))
         analysis_entries.add(analysis.value)
+        runtime_entries.add(runtime.value)
         functions.append({
             "analysis_address": _hex(analysis.value),
             "runtime_address": _hex(runtime.value),
