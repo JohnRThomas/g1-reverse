@@ -1,5 +1,6 @@
-/* Reconstructed nrfx clock_stop @ 0x00065000.
+/* Reconstructed private nrfx clock_stop implementation @ 0x00065000.
  * Raw/address back-map: FUN_00065000 / 0x00065000.
+ * Readable namespace target: g1_clock_stop_impl (not SDK nrfx_clock_stop).
  */
 #include <stdint.h>
 
@@ -29,8 +30,8 @@ static void clock_domain_assert(uint32_t header, uint32_t line)
     nrfx_assert_abort(header, line);
 }
 
-#define clock_stop FUN_00065000
-void clock_stop(enum clock_domain_raw domain)
+#define g1_clock_stop_impl FUN_00065000
+void g1_clock_stop_impl(enum clock_domain_raw domain)
 {
     switch (domain) {
     case CLOCK_DOMAIN_LFCLK:

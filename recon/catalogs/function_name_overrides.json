@@ -705,6 +705,11 @@
    "name": "smp_public_key_periph",
    "evidence": "Exact configured NCS 2.5.1 Bluetooth SMP peripheral public-key handler, including all six pairing methods, passkey paths, and DHKey generation. Raw identity remains FUN_0005ce6c at 0x0005ce6c."
   },
+  "0x00060744": {
+   "name": "g1_clock_release_hfclk_checked",
+   "raw_name": "FUN_00060744",
+   "evidence": "Recovered BASEPRI-guarded HFCLK release caller in the COLLISION-03 closure; it invokes the checked stop wrapper only on the final release. Raw identity remains FUN_00060744 at 0x00060744."
+  },
   "0x00061200": {
    "name": "flash_nrf_read_invalid_address",
    "raw_name": "tail_61200",
@@ -723,8 +728,24 @@
    "evidence": "Exact cJSON 1.7.14 get_object_item implementation with sensitive and inlined ASCII case-insensitive traversal. Raw identity remains FUN_0006447c at 0x0006447c."
   },
   "0x00065000": {
-   "name": "nrfx_clock_stop",
-   "evidence": "Exact configured NCS 2.5.1 nrfx clock_stop helper for LFCLK, HFCLK, HFCLK192M, and HFCLKAUDIO domains. Raw identity remains FUN_00065000 at 0x00065000."
+   "name": "g1_clock_stop_impl",
+   "raw_name": "FUN_00065000",
+   "evidence": "Firmware-private four-domain clock stop implementation; it differs from the configured NRFX public owner and is deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065000 at 0x00065000."
+  },
+  "0x00065190": {
+   "name": "g1_nrfx_clock_init_checked",
+   "raw_name": "FUN_00065190",
+   "evidence": "Firmware checked clock initializer with active null-handler assertion and pinned initialization state; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065190 at 0x00065190."
+  },
+  "0x0006522c": {
+   "name": "g1_nrfx_clock_start_checked",
+   "raw_name": "FUN_0006522c",
+   "evidence": "Recovered firmware checked clock-domain starter in the COLLISION-03 caller closure. Raw identity remains FUN_0006522c at 0x0006522c."
+  },
+  "0x00065324": {
+   "name": "g1_nrfx_clock_stop_checked",
+   "raw_name": "FUN_00065324",
+   "evidence": "Firmware checked public-style stop wrapper which asserts initialization before calling the private stop implementation; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065324 at 0x00065324."
   },
   "0x00065f1c": {
    "name": "g1_recon_nrfx_nvmc_page_erase",
@@ -745,6 +766,21 @@
   "0x000867da": {
    "name": "signal_poll_event",
    "evidence": "Exact Zephyr 3.4.99 kernel/poll.c poll-event signaling helper. Raw identity remains FUN_000867da at 0x000867da."
+  },
+  "0x00083874": {
+   "name": "g1_nrfx_clock_stop_hfaudio",
+   "raw_name": "FUN_00083874",
+   "evidence": "Recovered HFAUDIO-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_00083874 at 0x00083874."
+  },
+  "0x0008387a": {
+   "name": "g1_nrfx_clock_stop_hfclk192m",
+   "raw_name": "FUN_0008387a",
+   "evidence": "Recovered HFCLK192M-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_0008387a at 0x0008387a."
+  },
+  "0x00083880": {
+   "name": "g1_nrfx_clock_stop_lfclk",
+   "raw_name": "FUN_00083880",
+   "evidence": "Recovered LFCLK-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_00083880 at 0x00083880."
   },
   "0x00083a2c": {
    "name": "flash_get_page_info",
