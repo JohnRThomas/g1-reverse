@@ -122,7 +122,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmak
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_fixed_verified_rodata.cmake)
 
 option(G1_ENABLE_FIXED_VERIFIED_RODATA
-  "Place the collision-free verified suffix at original firmware addresses" ON)
+  "Place the reviewed verified suffix at original firmware addresses" OFF)
 
 # Only complete, byte-exact tables above the recorded normal-GC ROM end are
 # emitted by the fixed-address assembly.  Remove those C owners before adding

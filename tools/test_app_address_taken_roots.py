@@ -74,7 +74,7 @@ class AppAddressTakenRootsTest(unittest.TestCase):
         app_cmake = (ROOT / "recon/application/app/CMakeLists.txt").read_text()
         self.assertIn("app_address_taken_roots.cmake", app_cmake)
         self.assertRegex(app_cmake, r"option\(G1_ENABLE_ADDRESS_TAKEN_ROOTS[\s\S]*?OFF\)")
-        self.assertRegex(app_cmake, r"option\(G1_ENABLE_FIXED_VERIFIED_RODATA[\s\S]*?ON\)")
+        self.assertRegex(app_cmake, r"option\(G1_ENABLE_FIXED_VERIFIED_RODATA[\s\S]*?OFF\)")
         self.assertNotIn("--no-gc-sections", self.cmake)
         self.assertNotIn("KEEP(", self.cmake)
         self.assertNotRegex(self.cmake, r"--undefined=0x")

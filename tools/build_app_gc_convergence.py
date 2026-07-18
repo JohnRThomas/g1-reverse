@@ -87,9 +87,11 @@ def build(before, after):
     fixed_catalog = json.loads(FIXED_DATA.read_text())
     fixed_sections = {row["symbol"]: row["fixed_output_section"]
                       for row in fixed_catalog["tables"]}
+    fixed_enabled = "G1_ENABLE_FIXED_VERIFIED_RODATA:BOOL=ON" in cache
     wrong_sections = sorted(
         name for name in expected if name in symbols and
-        symbols[name]["section"] != fixed_sections.get(name, "rodata"))
+        symbols[name]["section"] != (fixed_sections.get(name, "rodata")
+                                     if fixed_enabled else "rodata"))
     if missing_data or wrong_sections:
         raise ValueError("verified rodata retention drift: missing=%d wrong_section=%d" %
                          (len(missing_data), len(wrong_sections)))
@@ -115,7 +117,7 @@ def build(before, after):
         rows[name] = {"retain_all": b, "normal_gc": a, "delta": a - b}
     return {
         "schema": 2, "core": "app", "status": "normal_gc_complete_roots",
-        "policy": "complete named evidence roots; byte-verified rodata KEEP and safe fixed suffix; SDC report-only",
+        "policy": "complete named evidence roots; byte-verified ordinary rodata; fixed placement opt-in; SDC report-only",
         "builds": {
             "retain_all": {"path": str(before), "elf_sha256": sha(before_elf)},
             "normal_gc": {"path": str(after), "elf_sha256": sha(after_elf)},
@@ -128,9 +130,13 @@ def build(before, after):
         "verified_rodata": {
             "symbols": expected_count, "all_present": True,
             "all_in_expected_sections": True,
-            "normal_rodata_symbols": expected_count - len(fixed_sections),
-            "fixed_address_symbols": len(fixed_sections),
-            "fixed_address_bytes": fixed_catalog["selected_bytes"],
+            "normal_rodata_symbols": (expected_count - len(fixed_sections)
+                                       if fixed_enabled else expected_count),
+            "fixed_address_symbols": (len(fixed_sections)
+                                      if fixed_enabled else 0),
+            "fixed_address_bytes": (fixed_catalog["selected_bytes"]
+                                    if fixed_enabled else 0),
+            "fixed_address_enabled": fixed_enabled,
             "verified_payload_bytes": verified_payload_bytes,
             "emitted_symbol_bytes": emitted_data_bytes,
         },
@@ -154,8 +160,8 @@ def markdown(data):
         "# CPUAPP normal-GC convergence", "",
         "The cohesive CPUAPP links with normal Zephyr section GC. Only named "
         "binary-derived roots and byte-verified standalone rodata are retained "
-        "explicitly; the collision-free verified suffix is fixed at original "
-        "addresses. No numeric function root, code deletion, or SDC adoption "
+        "explicitly. Fixed-address placement is opt-in because the current "
+        "layout crosses the old suffix boundary. No numeric function root, code deletion, or SDC adoption "
         "is used.", "",
         f"- Named recovered roots present: **{data['roots']['named']}/{data['roots']['named']}**",
         f"- Unresolved root candidates: **{len(data['roots']['unresolved_candidates'])}**" +

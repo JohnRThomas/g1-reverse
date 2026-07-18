@@ -23,6 +23,16 @@ The integration probe retains the verified payloads to expose symbol/content
 collisions, but does not claim their final VAs: interleaving them at original
 addresses requires the later whole-image section-layout linker script.
 
+Fixed-address placement is deliberately **opt-in**. The recovered text/rodata
+closure has grown across the old 81-table selection boundary, so enabling that
+historical suffix now produces honest linker overlap errors. The default keeps
+all 993 byte-verified tables in ordinary garbage-collected rodata and completes
+the multi-image build. Re-enable the placement experiment only for layout work:
+
+```sh
+west build -- -DG1_ENABLE_FIXED_VERIFIED_RODATA=ON
+```
+
 `../../wiring/app_objects.c` remains an evidence inventory rather than a build
 input.  It contains explicitly unrecovered queue depths and thread arguments;
 compiling guessed `K_*_DEFINE` objects would hide those real wiring gaps.

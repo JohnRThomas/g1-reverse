@@ -1,8 +1,8 @@
 {
  "builds": {
   "normal_gc": {
-   "elf_sha256": "6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b",
-   "path": "/private/tmp/g1-cohesive-app-head-f49a3b86"
+   "elf_sha256": "bfd9b68013cf24c564fdc5817e9d992c9b365773d52a494406edac0dc55a7c8b",
+   "path": "/tmp/g1-cohesive-app-dmic-edge-default"
   },
   "retain_all": {
    "elf_sha256": "73f8a2c4a9e1e61ac47623774302439ee0abd9352762cb4c74a4ad1c4c74d5ab",
@@ -10,8 +10,8 @@
   }
  },
  "comparison": {
-  "normal_gc_bin_bytes": 603461,
-  "normal_gc_text_delta_from_original_pre_init_span": -73532,
+  "normal_gc_bin_bytes": 622256,
+  "normal_gc_text_delta_from_original_pre_init_span": -34996,
   "original_pre_init_span_bytes": 505432,
   "original_unsigned_payload_bytes": 977293,
   "retain_all_bin_bytes": 866900,
@@ -27,8 +27,8 @@
     "retain_all": 16976
    },
    "datas": {
-    "delta": -1048,
-    "normal_gc": 2534,
+    "delta": -900,
+    "normal_gc": 2682,
     "retain_all": 3582
    },
    "device_area": {
@@ -47,8 +47,8 @@
     "retain_all": 60461
    },
    "rodata": {
-    "delta": -82256,
-    "normal_gc": 77676,
+    "delta": -14540,
+    "normal_gc": 145392,
     "retain_all": 159932
    },
    "rom_start": {
@@ -62,14 +62,14 @@
     "retain_all": 552
    },
    "text": {
-    "delta": -267448,
-    "normal_gc": 431900,
+    "delta": -228912,
+    "normal_gc": 470436,
     "retain_all": 699348
    }
   }
  },
  "core": "app",
- "policy": "complete named evidence roots; byte-verified rodata KEEP and safe fixed suffix; SDC report-only",
+ "policy": "complete named evidence roots; byte-verified ordinary rodata; fixed placement opt-in; SDC report-only",
  "roots": {
   "all_present": true,
   "complete": true,
@@ -92,9 +92,10 @@
   "all_in_expected_sections": true,
   "all_present": true,
   "emitted_symbol_bytes": 50598,
-  "fixed_address_bytes": 15694,
-  "fixed_address_symbols": 81,
-  "normal_rodata_symbols": 912,
+  "fixed_address_bytes": 0,
+  "fixed_address_enabled": false,
+  "fixed_address_symbols": 0,
+  "normal_rodata_symbols": 993,
   "symbols": 993,
   "verified_payload_bytes": 50583
  }

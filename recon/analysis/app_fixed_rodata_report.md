@@ -2,9 +2,9 @@
 
 Date: 2026-07-18
 
-## Outcome
+## Historical outcome and current gate
 
-The normal-GC cohesive CPUAPP build now places 81 complete verified tables
+An earlier normal-GC cohesive CPUAPP build placed 81 complete verified tables
 (15,694 bytes) at their original firmware addresses.  The section comparator
 improved from 0 to 81 byte-exact non-executable sections.  Every generated
 fixed section is exact; there are no load-range overlaps and no sections beyond
@@ -24,6 +24,20 @@ The fixed image remains within the 982,528-byte application FLASH region
 (61.42% used).  The wrapper build linked with zero undefined symbols and
 completed MCUboot signing, `app_update.bin`, DFU zip, and merged-image
 packaging.
+
+That receipt remains valid for its recorded ELF, but the placement is no
+longer safe as the default after the recovered application closure grew. A
+clean roots-OFF build on 2026-07-18 now fails closed with two linker overlaps:
+
+- `.g1_verified_rodata_0008b264` overlaps ordinary `rodata`;
+- `.g1_verified_rodata_0009f6c6` overlaps the `datas` load range.
+
+`G1_ENABLE_FIXED_VERIFIED_RODATA` therefore defaults to `OFF`. With fixed
+placement disabled, the current multi-image build succeeds, retains the
+verified tables as ordinary C/rodata owners, and has no file-backed overlaps or
+out-of-range sections. Fixed placement remains an explicit layout experiment;
+its selection boundary must be regenerated from the final text/rodata layout
+before it can become the default again.
 
 ## Selection rule
 
@@ -82,3 +96,10 @@ Authoritative receipts:
 
 The clean wrapper ELF SHA-256 is
 `6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b`.
+
+Current safe default reproduction:
+
+```sh
+/Users/freedomcoder/Projects/G1disasm2/recon/application/build_cohesive.sh \
+  app /tmp/g1-cohesive-app-dmic-edge-default
+```
