@@ -17,8 +17,9 @@ extern void FUN_01035edc(uint32_t, uint32_t, uint32_t, uint32_t,
                          uint32_t, uint32_t);
 extern void FUN_0103719c(uint32_t);
 extern void FUN_01037f8c(void *, uint32_t, uint32_t, uint32_t);
-extern void assert_post_action(uint32_t, uint32_t);
-extern void assert_print(uint32_t, uint32_t, uint32_t);
+extern void assert_post_action(uint32_t, uint32_t) /* FUN_01039bb0 */
+    __attribute__((noreturn));
+extern void assert_print(uint32_t, uint32_t, uint32_t); /* FUN_01039bbe */
 
 uint32_t FUN_01035fa0(uint32_t object, uint32_t arg2, uint32_t arg3,
                       uint32_t arg4, uint32_t arg5, uint32_t arg6,

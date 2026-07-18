@@ -5,10 +5,20 @@
  */
 /* net-core FUN_01036128 @ 0x1036128  (parity 300 trials PROVEN) */
 
-int FUN_01036128(unsigned int *param_1) {
-  volatile unsigned char *base = (volatile unsigned char *)0x21004b28;
-  unsigned int v = *(volatile unsigned int *)(0x21004b28 + 8) | (unsigned int)base[0x10];
-  int bVar1 = (*param_1 == v);
-  if (bVar1) *param_1 = 0;
-  return bVar1;
+struct kernel_lock_state {
+  unsigned int reserved[2];
+  unsigned int owner;
+  unsigned char padding[4];
+  unsigned char nested;
+};
+
+int FUN_01036128(unsigned int *lock) {
+  volatile struct kernel_lock_state *state =
+      (volatile struct kernel_lock_state *)0x21004b28u;
+  unsigned int expected = state->owner | state->nested;
+  int released = (*lock == expected);
+  if (released) {
+    *lock = 0;
+  }
+  return released;
 }

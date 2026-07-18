@@ -13,7 +13,7 @@
  */
 /* net-core FUN_01033b18 @ 0x1033b18  (parity 300 trials PROVEN) */
 
-extern void assert_post_action(unsigned int, unsigned int); /* FUN_01039bb0 */
+extern __attribute__((noreturn)) void assert_post_action(unsigned int, unsigned int); /* FUN_01039bb0 */
 extern void assert_print(unsigned int, unsigned int, unsigned int); /* FUN_01039bbe */
 
 void FUN_01033b18(unsigned int param_1, int param_2)

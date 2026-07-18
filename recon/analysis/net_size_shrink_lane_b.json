@@ -1,0 +1,61 @@
+{
+  "core": "net",
+  "scope": "safe code-generation tightening; no root, config, SDC, or verifier changes",
+  "functions": [
+    {
+      "name": "FUN_0103689c",
+      "address": "0x0103689c",
+      "original_extent": 174,
+      "standalone_before": 236,
+      "standalone_after": 192,
+      "production_object_before": 236,
+      "production_object_after": 200,
+      "cfg_verify": "PASS 62/62",
+      "mutation_gate": "removing FUN_0103610c call FAIL 21/22"
+    },
+    {
+      "name": "FUN_01035fa0",
+      "address": "0x01035fa0",
+      "original_extent": 110,
+      "standalone_before": 140,
+      "standalone_after": 120,
+      "production_object_before": 144,
+      "production_object_after": 120,
+      "cfg_verify": "PASS 62/62",
+      "mutation_gate": "removing FUN_01035edc call FAIL 21/22"
+    },
+    {
+      "name": "FUN_01033b18",
+      "address": "0x01033b18",
+      "original_extent": 172,
+      "standalone_before": 220,
+      "standalone_after": 212,
+      "production_object_before": 228,
+      "production_object_after": 220,
+      "cfg_verify": "PASS 60/60",
+      "mutation_gate": "changing first mandatory MMIO write FAIL 20/20"
+    },
+    {
+      "name": "FUN_01036128",
+      "address": "0x01036128",
+      "original_extent": 24,
+      "standalone_before": 40,
+      "standalone_after": 32,
+      "production_object_before": 40,
+      "production_object_after": 32,
+      "cfg_verify": "PASS 60/60",
+      "mutation_gate": "adding owner-state write FAIL 20/20"
+    }
+  ],
+  "standalone_text_reduction": 80,
+  "production_object_text_reduction": 76,
+  "rejected_artifacts": [
+    "FUN_01033888 apparent +50 is a next-entry/literal-gap artifact",
+    "FUN_01033a60 had no safe smaller C form under the pinned compiler"
+  ],
+  "production_build": {
+    "directory": "/private/tmp/g1-net-shrink-b",
+    "compile_status": "all four production symbolized objects compiled",
+    "link_status": "prelink overflowed FLASH by 633 bytes while concurrent lanes were present; no lane-only whole-link attribution made"
+  }
+}
