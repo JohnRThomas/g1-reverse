@@ -4,6 +4,7 @@
 import os
 import sys
 import unittest
+import json
 
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
@@ -54,6 +55,24 @@ Attribute Section: aeabi
             "PASS good\nFAIL bad expected='a' actual='b' (fixture)\n"
             "SUMMARY checks=2 passed=1 failed=1",
         )
+
+    def test_durable_catalog_separates_private_zephyr_from_public_baseline(self):
+        with open(preflight.PROVENANCE_CATALOG) as stream:
+            catalog = json.load(stream)
+        firmware = catalog["firmware_manifest"]
+        self.assertEqual(firmware["ncs_release"], "v2.5.1")
+        self.assertNotEqual(firmware["zephyr_base_commit"],
+                            firmware["zephyr_public_ncs_baseline"])
+        self.assertIn("private_dirty", firmware["zephyr_identity_status"])
+        self.assertTrue(catalog["policy"]["private_sdc_report_only"])
+        self.assertEqual(
+            set(catalog["prebuilt_archives"]),
+            {"cc312_platform", "oberon_net", "mpsl_net",
+             "softdevice_controller"})
+        corrections = catalog["provenance_corrections"]
+        self.assertEqual(len(corrections), 3)
+        self.assertTrue(all(row["to_component"] == "open_amp"
+                            for row in corrections))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "scope": "dual-core stock library and toolchain provenance",
+  "firmware_manifest": {
+    "path": "manifest.json",
+    "ncs_reported_revision": "87355af5914e498f449b7a68bb5641031a7b8885-dirty",
+    "ncs_base_commit": "87355af5914e498f449b7a68bb5641031a7b8885",
+    "ncs_release": "v2.5.1",
+    "zephyr_reported_revision": "1b8581519f7aaeef086c6a3d3df59479b2a337d2-dirty",
+    "zephyr_base_commit": "1b8581519f7aaeef086c6a3d3df59479b2a337d2",
+    "zephyr_public_ncs_baseline": "83980fe1679441be9b0e1db556a353f6118fe14f",
+    "zephyr_public_ncs_revision": "v3.4.99-ncs1-1",
+    "zephyr_identity_status": "private_dirty_firmware_commit_not_available_in_public_sdk_zephyr",
+    "policy": "The public NCS Zephyr revision is a comparison baseline, not blanket source-exact firmware authority."
+  },
+  "source_projects": {
+    "liblc3": {
+      "path": "modules/lib/liblc3",
+      "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+      "version": "west commit",
+      "evidence": "41-function controlled comparison: pinned median 0.984 versus newer checkout 0.349; 22 tables cataloged."
+    },
+    "tinycrypt": {
+      "path": "modules/crypto/tinycrypt",
+      "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+      "version": "west commit",
+      "evidence": "27 pinned source/static-helper matches in the adoption manifest."
+    },
+    "openamp": {
+      "path": "modules/lib/open-amp",
+      "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+      "version": "1.4.0; v2023.04.0 lineage plus Zephyr cache integration patch",
+      "upstream_sync": "5891cb4b2e81",
+      "evidence": "Firmware embeds the WEST_TOPDIR OpenAMP path; selected owners have relocation-normalized exact matches."
+    },
+    "libmetal": {
+      "path": "modules/hal/libmetal",
+      "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+      "version": "1.4.0; upstream release v2023.04.0",
+      "upstream_commit": "28fa2351d6a8121ce6c1c2ac5ee43ce08d38dbae",
+      "evidence": "Firmware embeds the WEST_TOPDIR libmetal path; selected owners have relocation-normalized exact matches."
+    },
+    "hal_nordic": {
+      "path": "modules/hal/nordic",
+      "commit": "9784731461018d3e983604698fbbed6af2bea801",
+      "version": "west commit",
+      "evidence": "Firmware embeds nrfx source paths; individual configuration-dependent functions retain per-unit proof requirements."
+    },
+    "mbedtls": {
+      "path": "modules/crypto/mbedtls",
+      "revision": "v3.3.0-ncs2-1",
+      "tag_object": "40fbf20133b2943cd19ca7f2725ec588fb44cbd2",
+      "commit": "acea48fc8a5eb227033b55e6ec012731218e257f",
+      "evidence": "API/configuration context; Nordic ALT/archive objects own the recovered implementations."
+    },
+    "nrfxlib": {
+      "path": "nrfxlib",
+      "revision": "v2.5.1",
+      "tag_object": "fd77d02ef285522c2361207d500b0758f423ca04",
+      "commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
+      "evidence": "Parent revision for the hash-pinned proprietary archives below."
+    }
+  },
+  "prebuilt_archives": {
+    "cc312_platform": {
+      "core": "app",
+      "path": "nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/hard-float/no-interrupts/libnrf_cc312_platform_0.9.18.a",
+      "version": "0.9.18",
+      "sha256": "80a253291ae78f26b2d38cdccac20c8420f1545b85a476c3029eb92286d9159e",
+      "abi": "cortex-m33 hard-float no-interrupts",
+      "evidence": "Firmware 0x0007954c..0x0007c00c: 89 sections, 31 members and all 9564 unmasked bytes exact after 345 relocation normalizations."
+    },
+    "oberon_net": {
+      "core": "net",
+      "path": "nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/liboberon_3.0.13.a",
+      "version": "3.0.13",
+      "sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+      "abi": "cortex-m33 no-DSP soft-float",
+      "evidence": "Nine P-256 matches in the CPUNET ownership ledger; seven normalized exact and two above 0.97."
+    },
+    "mpsl_net": {
+      "core": "net",
+      "path": "nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a",
+      "version": "nrfxlib v2.5.1",
+      "sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+      "abi": "cortex-m33 no-DSP soft-float; one obfuscated ELF",
+      "evidence": "31 CPUNET signature matches against the configured NCS reference image."
+    },
+    "softdevice_controller": {
+      "core": "net",
+      "path": "nrfxlib/softdevice_controller/lib/cortex-m33+nodsp/soft-float/libsoftdevice_controller_multirole.a",
+      "version": "nrfxlib v2.5.1 multirole",
+      "sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+      "abi": "cortex-m33 no-DSP soft-float; one obfuscated ELF",
+      "evidence": "325 archive-family firmware matches. Private SDC identities remain report-only and are never authorized here."
+    }
+  },
+  "toolchain": {
+    "sdk": "Zephyr SDK 0.16.5-1",
+    "target": "arm-zephyr-eabi",
+    "gcc_version": "12.2.0",
+    "gcc_path": "arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+    "gcc_sha256": "02e918545c3140228310548946b09f89f691e86234a42df6198cc2903e1b0adb",
+    "libc": "newlib-nano",
+    "newlib_version": "3.3.0",
+    "libc_nano_path": "arm-zephyr-eabi/arm-zephyr-eabi/lib/libc_nano.a",
+    "libc_nano_sha256": "2e4e2fd53e37dcbd3b97b2ef3d52135297e9092af9be1b5696a5d898279a3e92",
+    "firmware_evidence": "Firmware includes newlib-nano source paths; Picolibc reference builds are not libc ownership evidence."
+  },
+  "provenance_corrections": [
+    {
+      "core": "app",
+      "va": "0x00085898",
+      "raw_symbol": "FUN_00085898",
+      "from_component": "external_toolchain",
+      "to_component": "open_amp",
+      "repository": "open_amp",
+      "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+      "source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c"
+    },
+    {
+      "core": "app",
+      "va": "0x000858da",
+      "raw_symbol": "FUN_000858da",
+      "from_component": "external_toolchain",
+      "to_component": "open_amp",
+      "repository": "open_amp",
+      "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+      "source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c"
+    },
+    {
+      "core": "app",
+      "va": "0x000858ec",
+      "raw_symbol": "FUN_000858ec",
+      "from_component": "external_toolchain",
+      "to_component": "open_amp",
+      "repository": "open_amp",
+      "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+      "source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c"
+    }
+  ],
+  "policy": {
+    "source_project_pin_is_not_blanket_zephyr_equivalence": true,
+    "private_sdc_report_only": true,
+    "provenance_corrections_change_ownership_decisions": false,
+    "archive_adoption_requires_selected_link_member": true
+  }
+}

@@ -14584,7 +14584,7 @@
      "raw_symbol": "FUN_00085898",
      "current_symbol": "rpmsg_send_ns_message",
      "kind": "source",
-     "component": "external_toolchain",
+     "component": "open_amp",
      "upstream_symbol": "rpmsg_send_ns_message",
      "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg.c.obj",
      "confidence": "high",
@@ -14613,10 +14613,10 @@
         "decl_line": 118
        },
        "upstream_source": {
-        "path": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+        "path": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
         "sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-        "repository": "external_toolchain",
-        "commit": null
+        "repository": "open_amp",
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
        },
        "link_provenance": {
         "owner_input": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
@@ -14624,6 +14624,16 @@
         "reconstruction_input": "app/libapp.a(rpmsg_send_ns_message.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c:119: multiple definition of `rpmsg_send_ns_message'; app/libapp.a(rpmsg_send_ns_message.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/rpmsg_send_ns_message.c:15: first defined here"
        }
+      },
+      {
+       "source": "recon/catalogs/upstream_library_provenance.json",
+       "type": "metadata_only_provenance_correction",
+       "from_component": "external_toolchain",
+       "to_component": "open_amp",
+       "repository": "open_amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+       "ownership_decision_changed": false
       }
      ]
     },
@@ -14633,7 +14643,7 @@
      "raw_symbol": "FUN_000858da",
      "current_symbol": "rpmsg_release_rx_buffer",
      "kind": "source",
-     "component": "external_toolchain",
+     "component": "open_amp",
      "upstream_symbol": "rpmsg_release_rx_buffer",
      "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg.c.obj",
      "confidence": "high",
@@ -14662,10 +14672,10 @@
         "decl_line": 148
        },
        "upstream_source": {
-        "path": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+        "path": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
         "sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-        "repository": "external_toolchain",
-        "commit": null
+        "repository": "open_amp",
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
        },
        "link_provenance": {
         "owner_input": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
@@ -14673,6 +14683,16 @@
         "reconstruction_input": "app/libapp.a(rpmsg_release_rx_buffer.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c:152: multiple definition of `rpmsg_release_rx_buffer'; app/libapp.a(rpmsg_release_rx_buffer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/rpmsg_release_rx_buffer.c:14: first defined here"
        }
+      },
+      {
+       "source": "recon/catalogs/upstream_library_provenance.json",
+       "type": "metadata_only_provenance_correction",
+       "from_component": "external_toolchain",
+       "to_component": "open_amp",
+       "repository": "open_amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+       "ownership_decision_changed": false
       }
      ]
     },
@@ -14682,7 +14702,7 @@
      "raw_symbol": "FUN_000858ec",
      "current_symbol": "rpmsg_get_tx_payload_buffer",
      "kind": "source",
-     "component": "external_toolchain",
+     "component": "open_amp",
      "upstream_symbol": "rpmsg_get_tx_payload_buffer",
      "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg.c.obj",
      "confidence": "high",
@@ -14712,10 +14732,10 @@
         "decl_line": 176
        },
        "upstream_source": {
-        "path": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+        "path": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
         "sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-        "repository": "external_toolchain",
-        "commit": null
+        "repository": "open_amp",
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
        },
        "link_provenance": {
         "owner_input": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
@@ -14723,6 +14743,16 @@
         "reconstruction_input": "app/libapp.a(rpmsg_get_tx_payload_buffer.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c:181: multiple definition of `rpmsg_get_tx_payload_buffer'; app/libapp.a(rpmsg_get_tx_payload_buffer.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/rpmsg_get_tx_payload_buffer.c:14: first defined here"
        }
+      },
+      {
+       "source": "recon/catalogs/upstream_library_provenance.json",
+       "type": "metadata_only_provenance_correction",
+       "from_component": "external_toolchain",
+       "to_component": "open_amp",
+       "repository": "open_amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+       "ownership_decision_changed": false
       }
      ]
     },
@@ -30157,6 +30187,10 @@
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",
    "sha256": "14fe68a9caffa5400c747352a49cc1c25485dd6729b87a79c0c45021faaeec9b"
+  },
+  {
+   "path": "recon/catalogs/upstream_library_provenance.json",
+   "sha256": "68c39f3e0cfa4545e024854d66d834146151fcf47fbf70061431182f5ec3cd4c"
   }
  ]
 }

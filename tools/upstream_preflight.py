@@ -20,6 +20,8 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_NCS_ROOT = Path("/Users/freedomcoder/ncs251")
+DEFAULT_SDK_ROOT = Path("/Users/freedomcoder/zephyr-sdk-0.16.5-1")
+PROVENANCE_CATALOG = REPO_ROOT / "recon/catalogs/upstream_library_provenance.json"
 DEFAULT_READELF = Path(
     "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
     "arm-zephyr-eabi-readelf"
@@ -39,6 +41,26 @@ EXPECTED_PROJECTS = {
         "path": "modules/lib/liblc3",
         "revision": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
         "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+        "manifest": "zephyr",
+    },
+    "libmetal": {
+        "path": "modules/hal/libmetal",
+        "revision": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+        "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+        "manifest": "zephyr",
+        "manifest_project": "libmetal",
+    },
+    "openamp": {
+        "path": "modules/lib/open-amp",
+        "revision": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+        "manifest": "zephyr",
+        "manifest_project": "open-amp",
+    },
+    "hal_nordic": {
+        "path": "modules/hal/nordic",
+        "revision": "9784731461018d3e983604698fbbed6af2bea801",
+        "commit": "9784731461018d3e983604698fbbed6af2bea801",
         "manifest": "zephyr",
     },
     "tinycrypt": {
@@ -92,6 +114,24 @@ ARCHIVES = {
         "catalog_component": "softdevice_controller",
         "member_count": 1,
         "abi": "cortex-m33-soft-float-nodsp-multirole",
+    },
+    "oberon_net": {
+        "relative_path": (
+            "nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/"
+            "liboberon_3.0.13.a"
+        ),
+        "sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+        "member_count": None,
+        "abi": "cortex-m33-soft-float-nodsp",
+        "check_nodsp_attributes": False,
+    },
+    "mpsl_net": {
+        "relative_path": (
+            "nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a"
+        ),
+        "sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+        "member_count": 1,
+        "abi": "cortex-m33-soft-float-nodsp",
     },
 }
 
@@ -168,9 +208,32 @@ def load_catalog_archive(component: str, spec: dict[str, Any]) -> tuple[str, str
     return component_data["archive"], component_data["sha256"]
 
 
-def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
+def perform_checks(ncs_root: Path, readelf: Path,
+                   sdk_root: Path = DEFAULT_SDK_ROOT) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
     nrf = ncs_root / "nrf"
+
+    try:
+        provenance = json.loads(PROVENANCE_CATALOG.read_text())
+        ota = json.loads((REPO_ROOT / "manifest.json").read_text())
+        firmware = provenance["firmware_manifest"]
+        check_item(checks, "provenance.schema", 1, provenance.get("schema"))
+        check_item(checks, "ota.ncs.reported_revision",
+                   firmware["ncs_reported_revision"],
+                   ota["firmware"]["nrf"]["revision"])
+        check_item(checks, "ota.zephyr.reported_revision",
+                   firmware["zephyr_reported_revision"],
+                   ota["firmware"]["zephyr"]["revision"])
+        check_item(checks, "ota.zephyr.public_baseline_is_not_firmware_commit",
+                   True,
+                   firmware["zephyr_base_commit"] !=
+                   firmware["zephyr_public_ncs_baseline"])
+        check_item(checks, "policy.private_sdc_report_only", True,
+                   provenance["policy"].get("private_sdc_report_only"))
+    except (OSError, KeyError, json.JSONDecodeError) as error:
+        provenance = {}
+        checks.append({"name": "provenance.load", "status": "fail",
+                       "detail": str(error)})
 
     try:
         local_pin = project_revision((REPO_ROOT / "recon/west.yml").read_text(), "sdk-nrf")
@@ -194,8 +257,9 @@ def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
     for name, spec in EXPECTED_PROJECTS.items():
         repo = ncs_root / spec["path"]
         manifest = nrf_manifest if spec["manifest"] == "nrf" else zephyr_manifest
+        manifest_project = spec.get("manifest_project", name)
         check_item(checks, f"manifest.{name}.revision", spec["revision"],
-                   project_revision(manifest, name))
+                   project_revision(manifest, manifest_project))
         if not repo.is_dir():
             checks.append({"name": f"repo.{name}.exists", "status": "fail",
                            "expected": True, "actual": False, "detail": str(repo)})
@@ -215,16 +279,38 @@ def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
         except RuntimeError as error:
             checks.append({"name": f"repo.{name}.git", "status": "fail",
                            "detail": str(error)})
+        catalog_name = {"openamp": "openamp"}.get(name, name)
+        if catalog_name in {"liblc3", "libmetal", "openamp", "hal_nordic",
+                            "tinycrypt", "mbedtls", "nrfxlib"}:
+            try:
+                catalog_project = provenance["source_projects"][catalog_name]
+                check_item(checks, f"provenance.{name}.path", spec["path"],
+                           catalog_project["path"])
+                check_item(checks, f"provenance.{name}.commit", spec["commit"],
+                           catalog_project["commit"])
+            except (KeyError, TypeError) as error:
+                checks.append({"name": f"provenance.{name}", "status": "fail",
+                               "detail": str(error)})
 
     for component, spec in ARCHIVES.items():
         archive = ncs_root / spec["relative_path"]
+        if "catalog" in spec:
+            try:
+                catalog_path, catalog_sha = load_catalog_archive(component, spec)
+                check_item(checks, f"archive.{component}.catalog_path", str(archive), catalog_path)
+                check_item(checks, f"archive.{component}.catalog_sha256", spec["sha256"], catalog_sha)
+            except (OSError, KeyError, json.JSONDecodeError) as error:
+                checks.append({"name": f"archive.{component}.catalog", "status": "fail",
+                               "detail": str(error)})
         try:
-            catalog_path, catalog_sha = load_catalog_archive(component, spec)
-            check_item(checks, f"archive.{component}.catalog_path", str(archive), catalog_path)
-            check_item(checks, f"archive.{component}.catalog_sha256", spec["sha256"], catalog_sha)
-        except (OSError, KeyError, json.JSONDecodeError) as error:
-            checks.append({"name": f"archive.{component}.catalog", "status": "fail",
-                           "detail": str(error)})
+            catalog_archive = provenance["prebuilt_archives"][component]
+            check_item(checks, f"archive.{component}.provenance_path",
+                       spec["relative_path"], catalog_archive["path"])
+            check_item(checks, f"archive.{component}.provenance_sha256",
+                       spec["sha256"], catalog_archive["sha256"])
+        except (KeyError, TypeError) as error:
+            checks.append({"name": f"archive.{component}.provenance",
+                           "status": "fail", "detail": str(error)})
         if not archive.is_file():
             checks.append({"name": f"archive.{component}.exists", "status": "fail",
                            "expected": True, "actual": False, "detail": str(archive)})
@@ -232,15 +318,16 @@ def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
         check_item(checks, f"archive.{component}.sha256", spec["sha256"], sha256(archive))
         try:
             blocks = attribute_blocks(run(str(readelf), "-A", str(archive)))
-            check_item(checks, f"archive.{component}.member_count",
-                       spec["member_count"], len(blocks))
+            if spec.get("member_count") is not None:
+                check_item(checks, f"archive.{component}.member_count",
+                           spec["member_count"], len(blocks))
             cpu_ok = bool(blocks) and all(
                 block.get("Tag_CPU_arch") == "v8-M.mainline" and
                 block.get("Tag_CPU_arch_profile") == "Microcontroller"
                 for block in blocks
             )
             check_item(checks, f"archive.{component}.cortex_m33_attributes", True, cpu_ok)
-            if component == "cc312_platform":
+            if "hard-float" in spec["abi"]:
                 hard_float = bool(blocks) and all(
                     block.get("Tag_ABI_VFP_args") == "VFP registers" and
                     "FPv5/FP-D16" in block.get("Tag_FP_arch", "")
@@ -256,13 +343,37 @@ def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
                 )
                 nodsp = bool(blocks) and all("Tag_DSP_extension" not in block for block in blocks)
                 check_item(checks, f"archive.{component}.soft_float_abi", True, soft_float)
-                check_item(checks, f"archive.{component}.nodsp_attributes", True, nodsp)
-                check_item(checks, f"archive.{component}.multirole_variant_path", True,
-                           "/cortex-m33+nodsp/soft-float/" in archive.as_posix() and
-                           archive.name.endswith("_multirole.a"))
+                if spec.get("check_nodsp_attributes", True):
+                    check_item(checks, f"archive.{component}.nodsp_attributes", True, nodsp)
+                check_item(checks, f"archive.{component}.nodsp_variant_path", True,
+                           "/cortex-m33+nodsp/soft-float/" in archive.as_posix())
+                if component == "softdevice_controller":
+                    check_item(checks, f"archive.{component}.multirole_variant_path", True,
+                               archive.name.endswith("_multirole.a"))
         except (OSError, RuntimeError) as error:
             checks.append({"name": f"archive.{component}.attributes", "status": "fail",
                            "detail": str(error)})
+
+    try:
+        toolchain = provenance["toolchain"]
+        gcc = sdk_root / toolchain["gcc_path"]
+        libc = sdk_root / toolchain["libc_nano_path"]
+        check_item(checks, "toolchain.gcc.sha256", toolchain["gcc_sha256"],
+                   sha256(gcc))
+        check_item(checks, "toolchain.libc_nano.sha256",
+                   toolchain["libc_nano_sha256"], sha256(libc))
+        version_header = (sdk_root / "arm-zephyr-eabi/arm-zephyr-eabi/include/"
+                          "_newlib_version.h").read_text()
+        match = re.search(r'#define\s+_NEWLIB_VERSION\s+"([^"]+)"',
+                          version_header)
+        check_item(checks, "toolchain.newlib.version",
+                   toolchain["newlib_version"], match.group(1) if match else None)
+        gcc_version = run(str(gcc), "-dumpfullversion")
+        check_item(checks, "toolchain.gcc.version",
+                   toolchain["gcc_version"], gcc_version)
+    except (OSError, KeyError, RuntimeError) as error:
+        checks.append({"name": "toolchain.identity", "status": "fail",
+                       "detail": str(error)})
 
     failed = sum(check["status"] == "fail" for check in checks)
     return {
@@ -270,6 +381,7 @@ def perform_checks(ncs_root: Path, readelf: Path) -> dict[str, Any]:
         "tool": "tools/upstream_preflight.py",
         "mode": "read-only",
         "ncs_root": str(ncs_root),
+        "provenance_catalog": str(PROVENANCE_CATALOG),
         "summary": {"checks": len(checks), "passed": len(checks) - failed, "failed": failed},
         "checks": checks,
     }
@@ -312,13 +424,15 @@ def self_test() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ncs-root", type=Path, default=DEFAULT_NCS_ROOT)
+    parser.add_argument("--sdk-root", type=Path, default=DEFAULT_SDK_ROOT)
     parser.add_argument("--readelf", type=Path, default=DEFAULT_READELF)
     parser.add_argument("--json", action="store_true", help="emit deterministic JSON")
     parser.add_argument("--self-test", action="store_true", help="run parser self-tests first")
     args = parser.parse_args()
     if args.self_test:
         self_test()
-    report = perform_checks(args.ncs_root.resolve(), args.readelf.resolve())
+    report = perform_checks(args.ncs_root.resolve(), args.readelf.resolve(),
+                            args.sdk_root.resolve())
     if args.json:
         print(json.dumps(report, indent=2, sort_keys=True))
     else:

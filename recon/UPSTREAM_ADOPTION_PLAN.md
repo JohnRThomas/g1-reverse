@@ -30,11 +30,20 @@ NCS manifest, which in turn imports the required projects:
 | Component | Revision | Checkout/integration |
 |---|---|---|
 | NCS | `87355af5914e498f449b7a68bb5641031a7b8885` | `recon/west.yml` |
-| Zephyr | `v3.4.99-ncs1-1` / `83980fe1679441be9b0e1db556a353f6118fe14f` | `/Users/freedomcoder/ncs251/zephyr` |
+| Zephyr comparison baseline | `v3.4.99-ncs1-1` / `83980fe1679441be9b0e1db556a353f6118fe14f` | `/Users/freedomcoder/ncs251/zephyr` |
 | liblc3 | `448f3de31f49a838988a162ef1e23a89ddf2d2ed` | `/Users/freedomcoder/ncs251/modules/lib/liblc3` |
 | TinyCrypt | `3e9a49d2672ec01435ffbf0d788db6d95ef28de0` | `/Users/freedomcoder/ncs251/modules/crypto/tinycrypt` |
 | Mbed TLS | `v3.3.0-ncs2-1` (dereferenced commit `acea48fc8a5eb227033b55e6ec012731218e257f`) | `/Users/freedomcoder/ncs251/modules/crypto/mbedtls` |
 | nrfxlib | `v2.5.1` (dereferenced commit `ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7`) | `/Users/freedomcoder/ncs251/nrfxlib` |
+
+The OTA manifest records the firmware's Zephyr checkout separately as
+`1b8581519f7aaeef086c6a3d3df59479b2a337d2-dirty`.  That object is not
+available in the public Nordic `sdk-zephyr` repository.  Therefore the clean
+NCS Zephyr pin above is a reproducible comparison baseline, not blanket
+source-exact ownership authority.  Continue to prove Zephyr kernel, Bluetooth,
+logging, settings, and driver units individually.  Separately versioned west
+modules and hash-pinned nrfxlib archives use the identities in
+`recon/catalogs/upstream_library_provenance.json`.
 
 Before every reproducible build, verify these revisions with `west manifest
 --freeze` and `git rev-parse HEAD`. Also verify the archive SHA-256 values

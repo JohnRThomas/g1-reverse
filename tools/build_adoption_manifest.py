@@ -32,6 +32,8 @@ DEFAULTS = {
         "recon/ownership/app_kernel_config_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
+    "library_provenance":
+        "recon/catalogs/upstream_library_provenance.json",
     "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
@@ -511,6 +513,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(kernel_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
+        {"path": paths["library_provenance"],
+         "sha256": _sha256(resolved["library_provenance"])},
     ]
     app_rows = {row["va"]: row for row in result["cores"]["app"]["entries"]}
     authorized_by_va = {_hex(row["va"]): row for row in authorized_rows}
@@ -650,6 +654,16 @@ def _build_from_baseline(paths, resolved, names):
             identity_evidence=retention.get("identity_evidence"),
             cfg_verify=retention.get("cfg_verify")))
 
+    # Provenance corrections are metadata-only.  They may repair a repository
+    # classification inherited from the pinned baseline, but can never change
+    # source ownership, exclusion state, symbol identity, or decision text.
+    provenance = _load_json(resolved["library_provenance"])
+    if provenance.get("schema") != 1:
+        raise ValueError("invalid upstream library provenance catalog")
+    _apply_provenance_corrections(
+        app_rows, provenance, paths["library_provenance"],
+        "/Users/freedomcoder/ncs251")
+
     result["cores"]["app"]["entries"] = sorted(
         app_rows.values(), key=lambda row: int(row["va"], 16))
     for core in ("app", "net"):
@@ -665,6 +679,49 @@ def _build_from_baseline(paths, resolved, names):
         }
     validate_manifest(result)
     return result
+
+
+def _apply_provenance_corrections(app_rows, provenance, source_label,
+                                  ncs_root):
+    """Apply fail-closed metadata repairs without changing ownership."""
+    for correction in provenance.get("provenance_corrections", []):
+        if correction.get("core") != "app":
+            raise ValueError("unsupported provenance correction core")
+        va = _hex(correction["va"])
+        row = app_rows.get(va)
+        if row is None or row.get("raw_symbol") != correction.get("raw_symbol"):
+            raise ValueError("provenance correction identity mismatch: %s" % va)
+        if row.get("component") != correction.get("from_component"):
+            raise ValueError("provenance correction source drift: %s" % va)
+        immutable = (row.get("exclude_reconstruction"), row.get("decision"),
+                     row.get("upstream_symbol"), row.get("upstream_unit"))
+        source_path = os.path.join(ncs_root, correction["source"])
+        if not os.path.isfile(source_path):
+            raise ValueError("provenance correction source absent: %s" % va)
+        row["component"] = correction["to_component"]
+        repaired = False
+        for evidence in row.get("evidence", []):
+            source = evidence.get("upstream_source")
+            if not isinstance(source, dict):
+                continue
+            if source.get("sha256") != _sha256(source_path):
+                continue
+            source["path"] = correction["source"]
+            source["repository"] = correction["repository"]
+            source["commit"] = correction["commit"]
+            repaired = True
+        if not repaired:
+            raise ValueError("provenance correction evidence absent: %s" % va)
+        row.setdefault("evidence", []).append(_evidence(
+            source_label, "metadata_only_provenance_correction",
+            from_component=correction["from_component"],
+            to_component=correction["to_component"],
+            repository=correction["repository"],
+            commit=correction["commit"], upstream_source=correction["source"],
+            ownership_decision_changed=False))
+        if immutable != (row.get("exclude_reconstruction"), row.get("decision"),
+                         row.get("upstream_symbol"), row.get("upstream_unit")):
+            raise ValueError("provenance correction changed ownership: %s" % va)
 
 
 def _app_sdk_public_entries(data, source, names):

@@ -7,6 +7,7 @@ import os
 import sys
 import tempfile
 import unittest
+import hashlib
 
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
@@ -240,6 +241,38 @@ class AdoptionManifestTest(unittest.TestCase):
         row["exclude_reconstruction"] = True
         with self.assertRaisesRegex(ValueError, "unsafe private SDC exclusion"):
             adoption.validate_manifest(data)
+
+    def test_provenance_correction_is_metadata_only(self):
+        source = os.path.join(self.temp.name, "modules/lib/open-amp/rpmsg.c")
+        os.makedirs(os.path.dirname(source))
+        with open(source, "wb") as stream:
+            stream.write(b"pinned openamp source\n")
+        with open(source, "rb") as stream:
+            digest = hashlib.sha256(stream.read()).hexdigest()
+        row = {
+            "core": "app", "va": "0x00001000", "raw_symbol": "FUN_00001000",
+            "component": "external_toolchain", "exclude_reconstruction": True,
+            "decision": "adopt_upstream_exclude_reconstruction",
+            "upstream_symbol": "rpmsg_test", "upstream_unit": "rpmsg.c.obj",
+            "evidence": [{"upstream_source": {
+                "path": source, "sha256": digest,
+                "repository": "external_toolchain", "commit": None}}],
+        }
+        rows = {row["va"]: row}
+        provenance = {"provenance_corrections": [{
+            "core": "app", "va": row["va"], "raw_symbol": row["raw_symbol"],
+            "from_component": "external_toolchain", "to_component": "open_amp",
+            "repository": "open_amp", "commit": "4" * 40,
+            "source": "modules/lib/open-amp/rpmsg.c"}]}
+        ownership = (row["exclude_reconstruction"], row["decision"],
+                     row["upstream_symbol"], row["upstream_unit"])
+        adoption._apply_provenance_corrections(
+            rows, provenance, "fixture.json", self.temp.name)
+        self.assertEqual(row["component"], "open_amp")
+        self.assertEqual(ownership, (row["exclude_reconstruction"], row["decision"],
+                                    row["upstream_symbol"], row["upstream_unit"]))
+        self.assertEqual(row["evidence"][0]["upstream_source"]["commit"], "4" * 40)
+        self.assertFalse(row["evidence"][-1]["ownership_decision_changed"])
 
 
 if __name__ == "__main__":
