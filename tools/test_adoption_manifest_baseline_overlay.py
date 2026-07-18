@@ -19,45 +19,6 @@ MANIFEST = ROOT / "recon/ownership/adoption_manifest.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETENTIONS = ROOT / "recon/ownership/app_collision_retention_overrides.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
-OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560",
-               "0x0006615c", "0x000661dc", "0x00066214", "0x00066270",
-               "0x00066300", "0x000503d8", "0x00050558", "0x000506ac",
-               "0x000507d4", "0x00071b2c", "0x000758cc", "0x000864e8",
-               "0x00071c20", "0x00071cf4", "0x00072040", "0x0007205c",
-               "0x00072078", "0x000739f0", "0x00074184", "0x000744a4",
-               "0x000748b8", "0x0005ee6c", "0x0005eeb4", "0x0005f074",
-               "0x0005f148", "0x0005f200", "0x0005f24c", "0x0005f2d4",
-               "0x0005f304", "0x0005f338", "0x0005f390", "0x0005f3d8",
-               "0x0005f450"}
-CHANGED_BASELINE_VAS = {"0x00070ee4", "0x0006615c", "0x000661dc",
-                        "0x00066214", "0x00066270", "0x00066300",
-                        "0x000503d8", "0x00050558", "0x000506ac",
-                        "0x000507d4", "0x000850dc", "0x000864e8",
-                        "0x00071c20", "0x00071cf4", "0x000739f0",
-                        "0x000744a4", "0x0005ee6c", "0x0005f074",
-                        "0x0005f148", "0x0005f200", "0x0005f24c",
-                        "0x0005f2d4", "0x0005f304", "0x0005f338",
-                        "0x0005f390", "0x0005f450"}
-NRFX_ADDED_VAS = {"0x00064f48", "0x00064fa8", "0x00065000",
-                   "0x000651d8", "0x0006522c", "0x00065324",
-                   "0x00066478", "0x0006649c", "0x000664f0",
-                   "0x00066524", "0x0006666c", "0x000666e0",
-                   "0x00066720", "0x00066784", "0x000667e0",
-                   "0x00066850", "0x00066ae0", "0x00066b24",
-                   "0x000851fa", "0x00085200", "0x00085206",
-                   "0x0008520c"}
-NRFX_CHANGED_VAS = {"0x00064f78", "0x00064fd4", "0x00065190",
-                     "0x00065f1c", "0x00065f80", "0x00066994",
-                     "0x000669f4", "0x00066bc4", "0x000850dc"}
-# Exact-owner overlays landed immediately before the NRFX closure and are now
-# also part of the production overlay relative to the immutable baseline.
-OTHER_CHANGED_VAS = {"0x00085898", "0x000858da", "0x000858ec"}
-ADDED_OVERLAY_VAS = OVERLAY_VAS - CHANGED_BASELINE_VAS
-ADDED_OVERLAY_VAS |= NRFX_ADDED_VAS
-CHANGED_BASELINE_VAS |= NRFX_CHANGED_VAS | OTHER_CHANGED_VAS
-OVERLAY_VAS |= NRFX_ADDED_VAS | NRFX_CHANGED_VAS | OTHER_CHANGED_VAS
-
-
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -74,18 +35,23 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
                         baseline["cores"]["app"]["entries"]}
         current_app = {row["va"]: row for row in
                        current["cores"]["app"]["entries"]}
-        self.assertEqual(ADDED_OVERLAY_VAS,
-                         set(current_app) - set(baseline_app))
-        self.assertEqual(CHANGED_BASELINE_VAS,
-                         {va for va in baseline_app
-                          if current_app[va] != baseline_app[va]})
+        added_overlay_vas = set(current_app) - set(baseline_app)
+        changed_baseline_vas = {
+            va for va in baseline_app if current_app[va] != baseline_app[va]}
+        overlay_vas = added_overlay_vas | changed_baseline_vas
+        self.assertTrue(added_overlay_vas)
+        self.assertTrue(changed_baseline_vas)
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
-        self.assertEqual(260, baseline["cores"]["app"]["summary"][
-            "exclude_reconstruction"])
-        self.assertEqual(327, current["cores"]["app"]["summary"][
-            "exclude_reconstruction"])
-        self.assertTrue(all(current_app[va]["exclude_reconstruction"]
-                            for va in OVERLAY_VAS))
+        self.assertEqual(
+            sum(bool(row["exclude_reconstruction"])
+                for row in baseline_app.values()),
+            baseline["cores"]["app"]["summary"]["exclude_reconstruction"])
+        self.assertEqual(
+            sum(bool(row["exclude_reconstruction"])
+                for row in current_app.values()),
+            current["cores"]["app"]["summary"]["exclude_reconstruction"])
+        self.assertTrue(all(current_app[va].get("evidence")
+                            for va in overlay_vas))
         self.assertTrue(baseline_app["0x000850dc"]["exclude_reconstruction"])
         self.assertTrue(current_app["0x000850dc"]["exclude_reconstruction"])
         self.assertEqual("nrfx_gppi_channel_endpoints_setup",

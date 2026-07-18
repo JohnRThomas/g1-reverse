@@ -4323,6 +4323,275 @@
    ],
    "normalized_code_sha256": "0ef40e1932db5bca13832119ccc0d895f15085fbadbd3c2d983da04722e17322",
    "archive_member_sha256": "9d7dae148ac2037c6d4ed9c0f3a84a6ae40ccd50749a589f4bc1a5ab4c186ee7"
+  },
+  {
+   "batch": "COLLISION-35",
+   "va": "0x0005f4d4",
+   "raw_symbol": "FUN_0005f4d4",
+   "symbol": "net_buf_simple_reserve",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_ASSERT_VERBOSE": "y",
+    "CONFIG_NET_BUF": "y"
+   },
+   "atomic_group": [
+    "0x0005f4d4",
+    "0x0005f518",
+    "0x0005f5d0"
+   ],
+   "upstream_source": "zephyr/subsys/net/buf_simple.c",
+   "upstream_source_sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+   "upstream_object_sha256": "6e2493d18a782cfc49c9d87ab117dfaf23d115fef9a32b4f52158fb578da47bf",
+   "configured_link_owner": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "reconstruction_source_sha256": "b63013a8c74096741e27c6608966a95d621eb2e9f7bcd24765f8aeb6255daaa6",
+   "abi": "void net_buf_simple_reserve(struct net_buf_simple *, size_t)",
+   "instruction_exact": true,
+   "cfg_verify_cases": 2,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 2
+   },
+   "callers": [
+    "0x00053cd4",
+    "0x000569ec",
+    "0x0005757c",
+    "0x000585f0"
+   ],
+   "collision_receipt_sha256": "14f091d5594e39ab1f3837859648696300384a0087370ac6f41642d1362e90c3",
+   "baseline_upstream_object_sha256": "817f19aa8704e3ec8c156e848178e5fcef9b75c264e4fc88758f95bffd299105",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "stale_baseline_variant": {
+    "reason": "collision catalog predates CONFIG_ASSERT rebuild",
+    "baseline_symbol_size": 8,
+    "configured_assert_enabled": true
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": [
+     "net_buf_simple_add",
+     "net_buf_simple_push",
+     "net_buf_simple_reserve"
+    ],
+    "exclude_only": [
+     "0x0005f4d4",
+     "0x0005f518",
+     "0x0005f5d0"
+    ],
+    "new_undefined_symbols": []
+   },
+   "upstream_symbol_size": 68,
+   "firmware_code_size": 52,
+   "upstream_code_size": 52,
+   "literal_pool_tail_size": 16,
+   "relocation_offsets": [
+    12,
+    20,
+    36
+   ],
+   "normalized_code_sha256": "1786a4e3a868226c321fa8388a5d6ab0b289e83a0dedc86b25463a29345ff183",
+   "relocation_masked_byte_exact": true
+  },
+  {
+   "batch": "COLLISION-35",
+   "va": "0x0005f518",
+   "raw_symbol": "FUN_0005f518",
+   "symbol": "net_buf_simple_push",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_ASSERT_VERBOSE": "y",
+    "CONFIG_NET_BUF": "y"
+   },
+   "atomic_group": [
+    "0x0005f4d4",
+    "0x0005f518",
+    "0x0005f5d0"
+   ],
+   "upstream_source": "zephyr/subsys/net/buf_simple.c",
+   "upstream_source_sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+   "upstream_object_sha256": "6e2493d18a782cfc49c9d87ab117dfaf23d115fef9a32b4f52158fb578da47bf",
+   "configured_link_owner": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "reconstruction_source_sha256": "727386990b7155932e4ac3b139398c7b6af122487cc41a7c91cfba6357a6fe47",
+   "abi": "void *net_buf_simple_push(struct net_buf_simple *, size_t)",
+   "instruction_exact": true,
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 0
+   },
+   "callers": [
+    "0x000560cc",
+    "0x00081820",
+    "0x000836f8",
+    "0x0008370a"
+   ],
+   "collision_receipt_sha256": "75470500a06c7a1ea92a8380417e173cd6e1eea88459b4e0efecb032be647f41",
+   "baseline_upstream_object_sha256": "817f19aa8704e3ec8c156e848178e5fcef9b75c264e4fc88758f95bffd299105",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "stale_baseline_variant": {
+    "reason": "collision catalog predates CONFIG_ASSERT rebuild",
+    "baseline_symbol_size": 16,
+    "configured_assert_enabled": true
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": [
+     "net_buf_simple_add",
+     "net_buf_simple_push",
+     "net_buf_simple_reserve"
+    ],
+    "exclude_only": [
+     "0x0005f4d4",
+     "0x0005f518",
+     "0x0005f5d0"
+    ],
+    "new_undefined_symbols": []
+   },
+   "upstream_symbol_size": 64,
+   "firmware_code_size": 50,
+   "upstream_code_size": 50,
+   "literal_pool_tail_size": 14,
+   "relocation_offsets": [
+    24,
+    34
+   ],
+   "normalized_code_sha256": "b8ecc97c6730af307d10a31871441f22818847c771df81f264f4a02b5b07a423",
+   "relocation_masked_byte_exact": true
+  },
+  {
+   "batch": "COLLISION-35",
+   "va": "0x0005f5d0",
+   "raw_symbol": "FUN_0005f5d0",
+   "symbol": "net_buf_simple_add",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_ASSERT_VERBOSE": "y",
+    "CONFIG_NET_BUF": "y"
+   },
+   "atomic_group": [
+    "0x0005f4d4",
+    "0x0005f518",
+    "0x0005f5d0"
+   ],
+   "upstream_source": "zephyr/subsys/net/buf_simple.c",
+   "upstream_source_sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
+   "upstream_object": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+   "upstream_object_sha256": "6e2493d18a782cfc49c9d87ab117dfaf23d115fef9a32b4f52158fb578da47bf",
+   "configured_link_owner": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
+   "configured_build": "/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "reconstruction_source_sha256": "634c0907da3dcfdc2d6fa51b6f9f63646c5c25b0a4ea2c67820a70a6c7b71966",
+   "abi": "void *net_buf_simple_add(struct net_buf_simple *, size_t)",
+   "instruction_exact": true,
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 0
+   },
+   "callers": [
+    "0x00012080",
+    "0x00053cd4",
+    "0x00054444",
+    "0x00054528",
+    "0x00055094",
+    "0x00055534",
+    "0x00055e74",
+    "0x000573f4",
+    "0x0005774c",
+    "0x00057db0",
+    "0x000583d0",
+    "0x000585f0",
+    "0x00058750",
+    "0x00058808",
+    "0x000590bc",
+    "0x000591a0",
+    "0x00059488",
+    "0x0005b270",
+    "0x0005b680",
+    "0x0005cdc4",
+    "0x0005cff0",
+    "0x0005d0ac",
+    "0x0005d964",
+    "0x0005dc2c",
+    "0x0005e1a8",
+    "0x00080ed8",
+    "0x00080f56",
+    "0x00080fd2",
+    "0x0008152a",
+    "0x0008199a",
+    "0x00081adc",
+    "0x00081b30",
+    "0x00081d24",
+    "0x00081e2a",
+    "0x00081fbe",
+    "0x000821f4",
+    "0x00082396",
+    "0x0008275e",
+    "0x00082772",
+    "0x0008278a",
+    "0x0008279c",
+    "0x000827ae",
+    "0x000827de",
+    "0x0008281a",
+    "0x00082856",
+    "0x00082b6e",
+    "0x000830b0",
+    "0x000830ee",
+    "0x000832f0",
+    "0x00083740",
+    "0x00083758",
+    "0x00083766"
+   ],
+   "collision_receipt_sha256": "b880e106152e69ee67af8643b956dae39da2fa5ca9328514b9843fdf569a95c1",
+   "baseline_upstream_object_sha256": "817f19aa8704e3ec8c156e848178e5fcef9b75c264e4fc88758f95bffd299105",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "stale_baseline_variant": {
+    "reason": "collision catalog predates CONFIG_ASSERT rebuild",
+    "baseline_symbol_size": 12,
+    "configured_assert_enabled": true
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": [
+     "net_buf_simple_add",
+     "net_buf_simple_push",
+     "net_buf_simple_reserve"
+    ],
+    "exclude_only": [
+     "0x0005f4d4",
+     "0x0005f518",
+     "0x0005f5d0"
+    ],
+    "new_undefined_symbols": []
+   },
+   "upstream_symbol_size": 60,
+   "firmware_code_size": 48,
+   "upstream_code_size": 48,
+   "literal_pool_tail_size": 12,
+   "relocation_offsets": [
+    12,
+    28,
+    36
+   ],
+   "normalized_code_sha256": "edd3b04537f28550ea3ac3567dfb0ce5e90126f5e6f4da0f9a1bfdf4411e750f",
+   "relocation_masked_byte_exact": true
   }
  ]
 }

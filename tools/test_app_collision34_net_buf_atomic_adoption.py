@@ -114,8 +114,10 @@ class AppCollision34NetBufAtomicAdoptionTest(unittest.TestCase):
         self.assertEqual("namespaced_correction_unchanged",
                          self.audit["gppi_0x000850dc_policy"])
         names = json.loads(NAMES.read_text())["by_address"]
-        self.assertEqual("g1_recon_nrfx_gppi_channel_endpoints_setup",
+        self.assertEqual("nrfx_gppi_channel_endpoints_setup",
                          names["0x000850dc"]["name"])
+        self.assertIn("g1_recon_nrfx_gppi_channel_endpoints_setup",
+                      names["0x000850dc"]["aliases"])
 
 
 if __name__ == "__main__":

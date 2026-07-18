@@ -73,8 +73,8 @@
   "app": {
    "summary": {
     "entries": 415,
-    "exclude_reconstruction": 387,
-    "retain_reconstruction": 28,
+    "exclude_reconstruction": 390,
+    "retain_reconstruction": 25,
     "by_kind": {
      "source": 265,
      "archive": 107,
@@ -8873,16 +8873,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_simple_reserve",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -8913,7 +8913,51 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:47",
         "reconstruction_input": "app/libapp.a(net_buf_simple_reserve.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:47: multiple definition of `net_buf_simple_reserve'; app/libapp.a(net_buf_simple_reserve.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_reserve.c:31: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:47: multiple definition of `net_buf_simple_reserve'; app/libapp.a(net_buf_simple_reserve.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_reserve.c:31: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-35",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1786a4e3a868226c321fa8388a5d6ab0b289e83a0dedc86b25463a29345ff183",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x00053cd4",
+        "0x000569ec",
+        "0x0005757c",
+        "0x000585f0"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_NET_BUF": "y"
+       },
+       "atomic_group": [
+        "0x0005f4d4",
+        "0x0005f518",
+        "0x0005f5d0"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_simple_add",
+         "net_buf_simple_push",
+         "net_buf_simple_reserve"
+        ],
+        "exclude_only": [
+         "0x0005f4d4",
+         "0x0005f518",
+         "0x0005f5d0"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -8926,16 +8970,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_simple_push",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -8966,7 +9010,51 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:298",
         "reconstruction_input": "app/libapp.a(net_buf_simple_push.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:298: multiple definition of `net_buf_simple_push'; app/libapp.a(net_buf_simple_push.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_push.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:298: multiple definition of `net_buf_simple_push'; app/libapp.a(net_buf_simple_push.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_push.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-35",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b8ecc97c6730af307d10a31871441f22818847c771df81f264f4a02b5b07a423",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x000560cc",
+        "0x00081820",
+        "0x000836f8",
+        "0x0008370a"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_NET_BUF": "y"
+       },
+       "atomic_group": [
+        "0x0005f4d4",
+        "0x0005f518",
+        "0x0005f5d0"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_simple_add",
+         "net_buf_simple_push",
+         "net_buf_simple_reserve"
+        ],
+        "exclude_only": [
+         "0x0005f4d4",
+         "0x0005f518",
+         "0x0005f5d0"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -8979,16 +9067,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_simple_add",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -9019,7 +9107,99 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:807",
         "reconstruction_input": "app/libapp.a(net_buf_simple_add.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:807: multiple definition of `net_buf_simple_add'; app/libapp.a(net_buf_simple_add.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_add.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:807: multiple definition of `net_buf_simple_add'; app/libapp.a(net_buf_simple_add.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_add.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-35",
+       "instruction_exact": true,
+       "normalized_code_sha256": "edd3b04537f28550ea3ac3567dfb0ce5e90126f5e6f4da0f9a1bfdf4411e750f",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00012080",
+        "0x00053cd4",
+        "0x00054444",
+        "0x00054528",
+        "0x00055094",
+        "0x00055534",
+        "0x00055e74",
+        "0x000573f4",
+        "0x0005774c",
+        "0x00057db0",
+        "0x000583d0",
+        "0x000585f0",
+        "0x00058750",
+        "0x00058808",
+        "0x000590bc",
+        "0x000591a0",
+        "0x00059488",
+        "0x0005b270",
+        "0x0005b680",
+        "0x0005cdc4",
+        "0x0005cff0",
+        "0x0005d0ac",
+        "0x0005d964",
+        "0x0005dc2c",
+        "0x0005e1a8",
+        "0x00080ed8",
+        "0x00080f56",
+        "0x00080fd2",
+        "0x0008152a",
+        "0x0008199a",
+        "0x00081adc",
+        "0x00081b30",
+        "0x00081d24",
+        "0x00081e2a",
+        "0x00081fbe",
+        "0x000821f4",
+        "0x00082396",
+        "0x0008275e",
+        "0x00082772",
+        "0x0008278a",
+        "0x0008279c",
+        "0x000827ae",
+        "0x000827de",
+        "0x0008281a",
+        "0x00082856",
+        "0x00082b6e",
+        "0x000830b0",
+        "0x000830ee",
+        "0x000832f0",
+        "0x00083740",
+        "0x00083758",
+        "0x00083766"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_VERBOSE": "y",
+        "CONFIG_NET_BUF": "y"
+       },
+       "atomic_group": [
+        "0x0005f4d4",
+        "0x0005f518",
+        "0x0005f5d0"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_simple_add",
+         "net_buf_simple_push",
+         "net_buf_simple_reserve"
+        ],
+        "exclude_only": [
+         "0x0005f4d4",
+         "0x0005f518",
+         "0x0005f5d0"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -37249,7 +37429,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "745686850b26408bfafe90766342a6e33ec86ac2b7050253aa2383eeb66843e8"
+   "sha256": "5a2fd867cd612013b44d11c727cab30fff4eefbfd2bc3da5284ec2dd729daf6e"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
