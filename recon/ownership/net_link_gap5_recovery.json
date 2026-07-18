@@ -1,0 +1,82 @@
+{
+  "cluster": "net-link-gap-5",
+  "functions": [
+    {
+      "analysis_address": "0x01028010",
+      "cfg_verify": {
+        "checked": 2,
+        "cover_cases": 2,
+        "directed_cases": 2,
+        "status": "PASS"
+      },
+      "extent_basis": "catalog boundary confirmed by terminal return and next entry",
+      "raw_symbol": "FUN_01028010",
+      "readable_symbol": "controller_primary_slot_is_configured",
+      "source": "recon/net/src/FUN_01028010.c",
+      "source_sha256": "edaa4c01372e21ba5e23a695484183b707fb922af3c048d6c11ecf2bd52cac98",
+      "true_executable_extent": 36
+    },
+    {
+      "analysis_address": "0x01028034",
+      "cfg_verify": {
+        "checked": 5,
+        "cover_cases": 5,
+        "directed_cases": 5,
+        "status": "PASS"
+      },
+      "extent_basis": "catalog boundary confirmed by terminal return and next entry",
+      "raw_symbol": "FUN_01028034",
+      "readable_symbol": "controller_active_slot_value_get",
+      "source": "recon/net/src/FUN_01028034.c",
+      "source_sha256": "2aac00000a5a707e83211ab895b4e520ffb3db96fdb81912dbc3dcf33b034578",
+      "true_executable_extent": 138
+    },
+    {
+      "analysis_address": "0x01028134",
+      "cfg_verify": {
+        "checked": 3,
+        "cover_cases": 3,
+        "directed_cases": 3,
+        "status": "PASS"
+      },
+      "extent_basis": "catalog boundary confirmed by terminal return and next entry",
+      "raw_symbol": "FUN_01028134",
+      "readable_symbol": "controller_access_address_conflicts",
+      "source": "recon/net/src/FUN_01028134.c",
+      "source_sha256": "880ee591d42458b377bf8869c8436ae0a9c7efe9610e879da8bbe3a41256cd15",
+      "true_executable_extent": 290
+    },
+    {
+      "analysis_address": "0x010283b8",
+      "cfg_verify": {
+        "checked": 6,
+        "cover_cases": 6,
+        "directed_cases": 6,
+        "status": "PASS"
+      },
+      "extent_basis": "catalog boundary confirmed by terminal return and next entry",
+      "raw_symbol": "FUN_010283b8",
+      "readable_symbol": "controller_group2_activity_busy",
+      "source": "recon/net/src/FUN_010283b8.c",
+      "source_sha256": "42d3152a845576be2471da78cab51220042a09dec81025e4c86e83a224225931",
+      "true_executable_extent": 70
+    }
+  ],
+  "policy": {
+    "archive_or_stock_substitution_forbidden": true,
+    "authoritative_verifier": "tools/cfg_verify.py",
+    "canonical_readable_c_only": true,
+    "directed_cases_are_process_local": true,
+    "private_controller_sdc": "retained_report_only",
+    "raw_address_backmaps_required": true,
+    "shared_generated_and_cfg_outputs_untouched": true
+  },
+  "schema": "g1.net.link_gap_recovery.v1",
+  "summary": {
+    "cfg_pass_count": 4,
+    "checked_case_count": 16,
+    "directed_case_count": 16,
+    "function_count": 4,
+    "total_true_executable_extent": 534
+  }
+}
