@@ -12,6 +12,8 @@ PROVIDE(FUN_0102def4 = z_log_msg_alloc);
 PROVIDE(FUN_0102e000 = z_impl_log_panic);
 PROVIDE(FUN_0102e9bc = arch_cpu_idle);
 PROVIDE(FUN_0103175c = sys_clock_set_timeout);
+PROVIDE(FUN_01039722 = printk);
+PROVIDE(FUN_0103b224 = z_impl_k_sem_init);
 PROVIDE(FUN_01036fcc = z_ready_thread);
 PROVIDE(FUN_0103705c = z_ready_thread);
 PROVIDE(FUN_01037130 = z_reschedule);
@@ -30,6 +32,7 @@ PROVIDE(FUN_0103b1fa = k_queue_append);
 PROVIDE(FUN_0103b210 = k_queue_prepend);
 PROVIDE(FUN_0103b522 = k_free);
 PROVIDE(FUN_0103b530 = k_malloc);
+PROVIDE(FUN_0103b53a = __memcpy_chk);
 PROVIDE(FUN_0103b5c4 = strnlen);
 PROVIDE(FUN_0103b614 = __aeabi_memcpy4);
 PROVIDE(FUN_0103b62e = memset);
@@ -43,3 +46,7 @@ PROVIDE(net_buf_free_get = z_impl_k_queue_get);
 PROVIDE(spinlock_validate = z_spin_lock_valid);
 PROVIDE(spinlock_acquire = z_spin_lock_set_owner);
 PROVIDE(spinlock_release = z_spin_unlock_valid);
+
+/* The recovered product main emits its reversible raw identity.  Assign the
+ * Zephyr ABI entry directly, avoiding a synthetic wrapper function. */
+main = FUN_0102a720;

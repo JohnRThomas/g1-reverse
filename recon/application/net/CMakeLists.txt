@@ -99,15 +99,21 @@ set(G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_010339d0.c"
 )
 
-# This is only the Zephyr application entry. Firmware/controller functions are
-# selected explicitly by the generated manifest above; upstream controller and
-# crypto objects remain under their normal NCS module CMake integration.
+# The recovered product main deliberately emits its reversible raw identity
+# FUN_0102a720.  Bind Zephyr's public `main` entry directly to that body (with
+# no wrapper instructions) and make the raw symbol a production GC root.
+zephyr_ld_options(
+  -Wl,-u,FUN_0102a720
+  # Address-taken clock callback stored as runtime Thumb pointer 0x0102bf59;
+  # the original literal has no ELF relocation for section GC to follow.
+  -Wl,-u,FUN_0102b758
+)
+
+# Firmware/controller functions are selected explicitly by the generated
+# manifest above; upstream controller and crypto objects remain under their
+# normal NCS module CMake integration.
 target_sources(app PRIVATE
-  # The shipped CPUNET image is the NCS 2.5.1 HCI-RPMsg child image.  Use its
-  # pinned entrypoint so section GC follows the real endpoint/TX-thread roots;
-  # the local empty main is retained only as documentation of the earlier
-  # structural-link probe.
-  "${ZEPHYR_BASE}/samples/bluetooth/hci_rpmsg/src/main.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102a720.c"
   src/cfg_boundary_lowerings.c
   ${G1_RETAINED_SOURCES}
   ${G1_PRIVATE_REPORT_ONLY_SOURCES}

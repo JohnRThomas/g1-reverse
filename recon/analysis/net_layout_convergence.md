@@ -1,42 +1,39 @@
 # CPUNET layout convergence
 
-The production-root build now uses the pinned NCS 2.5.1 HCI-RPMsg entrypoint
-from `${ZEPHYR_BASE}/samples/bluetooth/hci_rpmsg/src/main.c`.  The previous
-local `src/main.c` is intentionally empty and was only suitable for the first
-structural-link probe.  Letting section garbage collection start there omitted
-the firmware's RPMsg endpoint, TX thread, queues, and synchronization objects.
+The cohesive build now starts from recovered production entrypoint
+`FUN_0102a720`, with the public Zephyr `main` symbol assigned directly to the
+same address by the linker.  This adds no wrapper instructions.  The recovered
+address-taken ESB clock callback `FUN_0102b758` is also an explicit link root,
+so its six-function closure survives section garbage collection.  No SDC
+section is retained artificially.
 
-This root selection is independently present in `netcore_image.bin`: its
-payload contains `HCI rpmsg TX`, `HCI rpmsg RX`, `nrf_bt_hci`, `IPC send blocked
-1.5 seconds`, `Unable to send, err %d`, `No available command buffers`, and
-`Unknown HCI type %u`.  Those strings match the pinned SDK source rather than a
-project-local implementation.
+## Final production-root measurement
 
-## Measured effect
+The clean build at runtime base `0x01008800` has zero undefined symbols and
+uses 215,165 bytes of FLASH (94.65% of 222 KiB) and 51,368 bytes of RAM (78.38%
+of 64 KiB).  The recovered entrypoint and callback closure are live in the ELF:
 
-Both measurements use the correct runtime link base `0x01008800` and the same
-fail-closed section comparator.
-
-| Metric | Empty probe main | HCI-RPMsg root |
+| Symbol | Runtime address | Size |
 | --- | ---: | ---: |
-| FLASH used | 203,752 B | 206,344 B |
-| RAM used | 51,008 B | 52,808 B |
-| Compared file-backed bytes | 203,746 | 206,342 |
-| Equal bytes | 4,600 | 4,679 |
-| Loadable file-backed sections | 18 | 19 |
-| Exact non-executable sections | 0 | 0 |
+| `main` / `FUN_0102a720` | `0x0102a30c` | `0x408` recovered body |
+| `FUN_0102b31c` | `0x0102aaec` | `0xd4` |
+| `FUN_0102b3f0` | `0x0102c898` | `0xe0` |
+| `FUN_0102b664` | `0x0102c978` | `0xbc` |
+| `FUN_0102b718` | `0x0102ca34` | `0x38` |
+| `FUN_0102b758` | `0x0102ca6c` | `0x40` |
+| `FUN_01033858` | `0x0102caac` | `0x34` |
+| `FUN_010339d0` | `0x0102cae0` | `0x14` |
 
-The new `k_queue_area` section and the enlarged semaphore/data regions are the
-expected consequence of restoring the HCI-RPMsg roots.  The physical build has
-no undefined symbols and remains below both FLASH and RAM limits.
+Current text is `0x31b78` bytes and ends at `0x0103a430`.  Original text ends
+at runtime address `0x0103be58`, leaving a `0x1a28` (6,696-byte) pre-data gap.
+The fail-closed comparator covers 215,159 file-backed bytes: 5,348 are currently
+equal, including 4,645 text bytes.  It reports 19 file-backed sections, zero
+exact sections, and zero exact non-executable sections, so structural placement
+passes but the exact-data gate remains open.
 
-The exact-data gate still fails.  The remaining differences begin before
-`.rodata` and shift later section addresses through changed reachable code and
-object ordering.  There is no evidence for a safe padding-only linker fix:
-forcing individual addresses now would conceal missing or differently sized
-owners and would need to be undone as those owners converge.  The next safe
-step is to restore and validate remaining production roots/configuration, then
-re-run section comparison before introducing any explicit ordering fragment.
+The remaining differences shift later section addresses through missing or
+differently sized code and object ordering.  There is no evidence for a safe
+padding-only linker fix: forcing addresses now would conceal those owners.
 
 In particular, zero exact non-executable sections does **not** yet measure the
 contents of like-for-like sections.  The original text reaches analysis address
@@ -61,7 +58,7 @@ content check, searching at the recovered original data boundary finds a
 byte-exact `0x218`-byte prefix of the current `datas` section at original file
 offset `0x36524`; the current address-aligned score hides that convergence.
 
-## ESB and nRF-RPC configuration evidence
+## Log-owner and configuration evidence
 
 The original log-constant iterable is independently decodable as 32 consecutive
 eight-byte `{name pointer, level}` records at file offsets
@@ -85,15 +82,15 @@ measured build as follows:
 | Equal bytes | 4,679 | 4,698 |
 | Log-constant bytes / owners | 192 / 24 | 240 / 30 |
 
-Only 88 bytes of text become reachable from configuration alone.  The two
-remaining original log owners, `app_esb` and `timeslot`, are project-local
-roots and are still explicitly missing.  Raw disassembly also exposes missing
-catalogued caller boundaries: a function at analysis address `0x01035b20`
-calls the absent-source `FUN_0102a720`, and a function at `0x0102b718` calls
-the recovered `FUN_0102b31c`.  These roots and their stock ESB/nRF-RPC closure,
-not report-only SDC `KEEP()` directives, are the next convergence step.
+The final recovered-root build emits 232 log-constant bytes, or 29 owners.  The
+original has 32.  The three original-only owner names are `app_esb`,
+`hci_rpmsg`, and `timeslot`.  Removing the pinned SDK sample entrypoint exposes
+`hci_rpmsg` as a still-missing cohesive owner; the recovered raw production
+sources currently emit none of those three `LOG_MODULE_REGISTER` records.
+Their proper source/object ownership must be restored rather than synthesizing
+records or retaining report-only SDC sections.
 
 The current machine-readable result is
-`recon/analysis/net_binary_section_comparison.json`; executable text remains
-diagnostic, while CFG-directed side-effect verification remains authoritative
-for reconstructed function semantics.
+`recon/analysis/net_binary_section_comparison.json`; executable byte equality
+remains diagnostic, while CFG-directed side-effect verification remains
+authoritative for reconstructed function semantics.
