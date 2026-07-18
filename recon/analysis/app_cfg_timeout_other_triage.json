@@ -1,0 +1,463 @@
+{
+  "inputs": [
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L0.json",
+      "sha256": "8588cbb88e7b7f6fdb8409326998c57bfed21c1ad135fb2c7959352bc0404a21"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L1.json",
+      "sha256": "cd0eec430f86db219d6ff77b2a3424fcc8e228d63a7095d9c4eb1853925420f6"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L2.json",
+      "sha256": "ab4a4a1138d060026df311bd3f3b7a52f0cb22d52bdef25c297e4570f72f543e"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L3.json",
+      "sha256": "4ec2d3092111616cf5ee4338e6b8d267340f433d7e817624813b9ee8ece9a5a0"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L4.json",
+      "sha256": "019821cd900a69aca88e9c4ff22478c96055dce281f9e8d79eb19629ecaab16d"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L5.json",
+      "sha256": "cf4f4ba38a0df1ff13c6a5f0fae287fc4aae3a45eaf2b97b09c8dba628587aa5"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L6.json",
+      "sha256": "809e6f5df5dc7e8690c23bf7b66ca9a17fea8961ec0e1ca56cbefdbde4b6f4d1"
+    },
+    {
+      "path": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/reverify_app_L7.json",
+      "sha256": "c44560a4658bcbe81beab42e3382d6650106e2ed9c56463dbc7fda400ebcaa82"
+    }
+  ],
+  "policy": {
+    "app_sources_modified": false,
+    "parity_or_mmio_tools_modified": false,
+    "report_only": true,
+    "shared_verifier_modified": false
+  },
+  "records": [
+    {
+      "address": "0x000184f0",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L7.json",
+      "name": "FUN_000184f0",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 2,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_000184f0.c",
+      "source_sha256": "42c61481e485e6dd1f79570f450720924d5db50fb169eacdf0caa7ec922cbba8"
+    },
+    {
+      "address": "0x0002316c",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L1.json",
+      "name": "FUN_0002316c",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 1,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0002316c.c",
+      "source_sha256": "e17b0de5ba9e89873bcd3d6bf56fb4569dfca79c5010b9734bfecd4c864f3997"
+    },
+    {
+      "address": "0x0002360c",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L2.json",
+      "name": "FUN_0002360c",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 1,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0002360c.c",
+      "source_sha256": "2647522a76f95fbf0c1eaf9db96ba5661fa46135baeb12853f041ea417c5d3f2"
+    },
+    {
+      "address": "0x00023acc",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L4.json",
+      "name": "FUN_00023acc",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 1,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00023acc.c",
+      "source_sha256": "c3cb824e77a5e4626cf97b79d16f1f96106189580070874e56dbb1abf1aefd2f"
+    },
+    {
+      "address": "0x000243fc",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "FUN_000243fc",
+      "reason": "zero work-queue count at 0x20003984",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_000243fc.c",
+      "source_sha256": "ad852266021b43fa74db3b85b1e37def5137071046be8e82b7044ea94d856286"
+    },
+    {
+      "address": "0x00035f28",
+      "classification": "finite_workload_sweep_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L7.json",
+      "name": "FUN_00035f28",
+      "reason": "eight 199x320 notification reveal scans; verifier cap is 8,000,000 instructions",
+      "recheck": {
+        "checked": 6,
+        "method": "directed disabled-display cases cover the diagnostic return",
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00035f28.c",
+      "source_sha256": "3c4287b7eca7a614dacd9d776b66e8ae796624dc69fd1ee7d2936e2b7c536750"
+    },
+    {
+      "address": "0x00036030",
+      "classification": "transient_other_recheck_pass",
+      "initial_outcome": "OTHER",
+      "lane_receipt": "reverify_app_L1.json",
+      "name": "FUN_00036030",
+      "reason": "fresh bounded authoritative invocation completed normally",
+      "recheck": {
+        "checked": 1,
+        "status": "PASS",
+        "trials_random": 1
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00036030.c",
+      "source_sha256": "b75e5fa0a5fc1ec04d74870dd32f83cd58c429a9514270804a930022cb2a0287"
+    },
+    {
+      "address": "0x000361d8",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L3.json",
+      "name": "FUN_000361d8",
+      "reason": "catalog oracle publishes decoded count zero",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_000361d8.c",
+      "source_sha256": "f46ab76ce34b5656664c151f1452a092fc9801f2c615b4042a482d83887b45c7"
+    },
+    {
+      "address": "0x00040794",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L7.json",
+      "name": "FUN_00040794",
+      "reason": "inactive UI state byte selects immediate return",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00040794.c",
+      "source_sha256": "700321890c470bbe06112a03abe6f4aa9cff4698a04e476967b40c6c241af86c"
+    },
+    {
+      "address": "0x0004382c",
+      "classification": "finite_workload_sweep_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L4.json",
+      "name": "FUN_0004382c",
+      "reason": "eight 199x320 framebuffer-mask scans",
+      "recheck": {
+        "checked": 1,
+        "method": "reviewed one-event prefix crossing the first complete frame scan",
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0004382c.c",
+      "source_sha256": "58536256c27c035049c908d0a4241cdcedcbeaf1d8ad8ab9df8bcfa1203a7c4c"
+    },
+    {
+      "address": "0x0004d6ec",
+      "classification": "intentional_nonreturning_worker",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L7.json",
+      "name": "FUN_0004d6ec",
+      "reason": "source and original CFG contain the service worker's unconditional backedge",
+      "recheck": {
+        "checked": 1,
+        "method": "reviewed three-event prefix crosses setup into service loop",
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0004d6ec.c",
+      "source_sha256": "6b428758b9620ca582e201f2ee5697797e75a56f589078784207e15c7653d921"
+    },
+    {
+      "address": "0x00060a5c",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L4.json",
+      "name": "FUN_00060a5c",
+      "reason": "QSPI busy oracle returns completion sentinel",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00060a5c.c",
+      "source_sha256": "f5cbc97d11205af3feed8ada0fd9d2665ace7523fb685bab31ac26d432f13a2a"
+    },
+    {
+      "address": "0x00086668",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "FUN_00086668",
+      "reason": "null-terminated one-word list fixture",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00086668.c",
+      "source_sha256": "e0a35016aa36f10a5306b70500ed5a92e0cb5c24f9926f2dfa66be4040a3ba86"
+    },
+    {
+      "address": "0x00086c04",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "FUN_00086c04",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 1,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_00086c04.c",
+      "source_sha256": "f41eb615e01c0ac634a593433f8d35cd3d74bda587475cb95ab887451eeeae9b"
+    },
+    {
+      "address": "0x0008705a",
+      "classification": "transient_budget_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L3.json",
+      "name": "FUN_0008705a",
+      "reason": "one-trial bounded authoritative recheck completed under 25 seconds",
+      "recheck": {
+        "checked": 2,
+        "status": "PASS",
+        "trials_random": 1,
+        "wall_limit_seconds": 25
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0008705a.c",
+      "source_sha256": "c3cfb61ab3901b340286b128bf1c153031507d45cfe237576be0eeeeae5e0250"
+    },
+    {
+      "address": "0x0008768e",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L2.json",
+      "name": "FUN_0008768e",
+      "reason": "zero-length mapped bit-vector",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/FUN_0008768e.c",
+      "source_sha256": "0263ac58902dafbe1ab64827213269adf9158e77c58b2017bd023c58a909dfd9"
+    },
+    {
+      "address": "0x0001a75c",
+      "classification": "harness_fixture_schema_error",
+      "initial_outcome": "OTHER",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "ble_process_put_req",
+      "reason": "reviewed oracle fixture shape is rejected before candidate execution",
+      "recheck": {
+        "exception": "AttributeError: 'list' object has no attribute 'values'",
+        "site": "tools/parity/emu.py:153 oracle_overrides.values()",
+        "status": "EXCEPTION",
+        "trials_random": 1
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/ble_process_put_req.c",
+      "source_sha256": "c55c6c57b09b9b7e4eca58740b526308ed13161bdf69f4418a76079961dc677b"
+    },
+    {
+      "address": "0x0002bed0",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "check_battery_critical",
+      "reason": "unlocked persistence byte and mapped context",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/check_battery_critical.c",
+      "source_sha256": "1ecd8027fe441947eb8eeb65fdd67b2977cb30e2a64f17379214057c40f23953"
+    },
+    {
+      "address": "0x000455cc",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L0.json",
+      "name": "gui_string_draw",
+      "reason": "empty-string length oracle and disabled logging",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/gui_string_draw.c",
+      "source_sha256": "d95962cc4f21d6e44892871df11da7a7c7cb15b2023482650ae73cfda37177f9"
+    },
+    {
+      "address": "0x0002be64",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L2.json",
+      "name": "now_has_persist_task",
+      "reason": "unlocked mapped persistence record",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/now_has_persist_task.c",
+      "source_sha256": "88493883cd6a21c369c9fbf8437dbaff6d3684d8c69705854acfd5917b023f97"
+    },
+    {
+      "address": "0x0003bfe0",
+      "classification": "finite_workload_sweep_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L6.json",
+      "name": "ui_even_ai_task",
+      "reason": "multiple eight-frame 199x320 render families; verifier cap is 7,000,000 instructions",
+      "recheck": {
+        "checked": 1,
+        "method": "inactive invalid-phase production state returns before raster work",
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/ui_even_ai_task.c",
+      "source_sha256": "18d00777d591ad0197875e081b2af0dd3c7eb80de449eb0444e39dcc07fa6a1e"
+    },
+    {
+      "address": "0x0002c0e8",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L3.json",
+      "name": "update_persist_task_status_to_idle",
+      "reason": "unlocked mapped persistence record",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/update_persist_task_status_to_idle.c",
+      "source_sha256": "cc32fca32723fd17ccafd878e5fa1e3f1af390b097a317d8d4236bd5dcea4af7"
+    },
+    {
+      "address": "0x0002c180",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L4.json",
+      "name": "update_persist_task_status_to_wait_blow_head",
+      "reason": "unlocked mapped persistence record",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/update_persist_task_status_to_wait_blow_head.c",
+      "source_sha256": "1c5f7b53f902f2610e774d96b56db2d3a9b6ab8933c7bddfe9e5cd77685041aa"
+    },
+    {
+      "address": "0x0002bffc",
+      "classification": "synthetic_input_domain_timeout_recheck_pass",
+      "initial_outcome": "TIMEOUT",
+      "lane_receipt": "reverify_app_L6.json",
+      "name": "update_temp_task_status",
+      "reason": "unlocked mapped task record",
+      "recheck": {
+        "checked": 1,
+        "directed_cases": 1,
+        "status": "PASS",
+        "trials_random": 0
+      },
+      "source_defect": false,
+      "source_path": "recon/app/src/update_temp_task_status.c",
+      "source_sha256": "4fa30e7b1dd24da0ba2720a27d4bc6eee179a9a4f297e2e11abe5dd9e9cc76a1"
+    }
+  ],
+  "schema": "g1.app.cfg_timeout_other_triage.v1",
+  "scope": {
+    "other": 2,
+    "timeout": 22
+  },
+  "summary": {
+    "bounded_cfg_pass": 23,
+    "finite_workload_timeout_recheck_pass": 3,
+    "harness_fixture_error": 1,
+    "intentional_nonreturning_prefix_pass": 1,
+    "source_defects_proven": 0
+  }
+}
