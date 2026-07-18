@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Fail-closed gates for lseek and progressive stream-flash adoption."""
+"""Fail-closed gates for fdtable and progressive stream-flash adoption."""
 
 import importlib.util
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -28,7 +29,7 @@ class AppLseekStreamFlashAdoptionTest(unittest.TestCase):
 
     def test_receipt_is_deterministic_and_exact(self):
         self.assertEqual(self.receipt, builder.build())
-        expected = set(builder.LSEEK_GROUP + builder.FLASH_GROUP)
+        expected = set(builder.FDTABLE_GROUP + builder.FLASH_GROUP)
         self.assertEqual(expected, set(self.rows))
         for row in self.rows.values():
             self.assertTrue(row["instruction_exact"])
@@ -39,15 +40,49 @@ class AppLseekStreamFlashAdoptionTest(unittest.TestCase):
             self.assertTrue(row["whole_unit_closure"]["raw_aliases_preserved"])
 
     def test_atomic_groups_are_complete(self):
-        for va in builder.LSEEK_GROUP:
-            self.assertEqual(set(builder.LSEEK_GROUP), set(self.rows[va]["atomic_group"]))
+        for va in builder.FDTABLE_GROUP:
+            self.assertEqual(set(builder.FDTABLE_GROUP),
+                             set(self.rows[va]["atomic_group"]))
         for va in builder.FLASH_GROUP:
             row = self.rows[va]
             self.assertEqual(set(builder.FLASH_GROUP), set(row["atomic_group"]))
             self.assertEqual(set(builder.FLASH_GROUP),
                              set(row["whole_unit_closure"]["exclude_only"]))
-        self.assertEqual({"0x0004e0f8", "0x0007f070"},
+        self.assertEqual({"0x0004b130", "0x0004e0f8", "0x0007f070"},
                          {row["va"] for row in self.receipt["hidden_exact_source_sections"]})
+
+    def test_fdtable_data_layout_and_owner_are_exact(self):
+        table = self.receipt["stock_data_objects"]["fdtable"]
+        self.assertEqual("0x20002548", table["firmware_address"])
+        self.assertEqual((16, 0x28, 0x280),
+                         (table["entry_count"], table["entry_size"],
+                          table["size"]))
+        self.assertEqual({"g_fdtable_entries": 0,
+                          "g_fdtable_refcount_field": 8},
+                         table["field_aliases"])
+        state = (ROOT / "recon/symbols/g1_app_sdk_state.ld").read_text()
+        self.assertIn("g_fdtable_entries = fdtable;", state)
+        self.assertIn("g_fdtable_refcount_field = fdtable + 8;", state)
+        cmake = (ROOT / "recon/application/app/CMakeLists.txt").read_text()
+        self.assertIn("--globalize-symbol=fdtable", cmake)
+
+    def test_cohesive_probe_has_one_shared_stock_owner(self):
+        probe = self.receipt["cohesive_link_probe"]
+        self.assertEqual(0x330, probe["remaining_section_layout_delta"])
+        self.assertEqual("pending_whole_image_section_convergence",
+                         probe["absolute_placement_status"])
+        nm = "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-nm"
+        symbols = subprocess.check_output(
+            [nm, "-a", "-S", probe["elf"]], text=True)
+        rows = [line.split() for line in symbols.splitlines()]
+        by_name = {row[-1]: row for row in rows if row}
+        self.assertEqual("20002218", by_name["fdtable"][0])
+        self.assertEqual(by_name["fdtable"][0],
+                         by_name["g_fdtable_entries"][0])
+        self.assertEqual("20002220", by_name["g_fdtable_refcount_field"][0])
+        for displaced in ("fd_table_lookup", "fdtable_entry_unref",
+                          "fd_table_dispatch_op1", "fd_table_dispatch_op2"):
+            self.assertNotIn(displaced, by_name)
 
     def test_config_and_source_units_are_pinned(self):
         self.assertEqual({"CONFIG_IMG_ERASE_PROGRESSIVELY": "y"},
@@ -59,7 +94,7 @@ class AppLseekStreamFlashAdoptionTest(unittest.TestCase):
             "zephyr/subsys/dfu/img_util/flash_img.c",
         }, sources)
         for row in self.rows.values():
-            if row["va"] != "0x0004b17c":
+            if row["va"] not in builder.FDTABLE_GROUP:
                 self.assertEqual("y", row["required_config"][
                     "CONFIG_IMG_ERASE_PROGRESSIVELY"])
                 self.assertEqual("y", row["required_config"][

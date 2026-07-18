@@ -20,6 +20,19 @@ set(DTC_OVERLAY_FILE
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(g1_cpuapp_reconstruction)
 
+# fdtable.c deliberately keeps its stock source and code generation.  Its
+# initialized fdtable array is translation-unit-local upstream, while several
+# recovered application callers address fields in that same object directly.
+# Export only the archive symbol after compilation so the linker aliases can
+# converge both caller sets on one owner without copying or patching Zephyr.
+add_custom_target(g1_export_fdtable_owner
+  COMMAND ${CMAKE_OBJCOPY} --globalize-symbol=fdtable $<TARGET_FILE:zephyr>
+  DEPENDS zephyr
+  COMMENT "Expose pinned stock fdtable data owner for recovered aliases"
+  VERBATIM
+)
+add_dependencies(app g1_export_fdtable_owner)
+
 # Rejoin compiler-outlined SDK/header helpers with their retained owning
 # callers.  The canonical parity path leaves this undefined so each historical
 # BL remains an oracle boundary; the cohesive build inlines the exact pinned

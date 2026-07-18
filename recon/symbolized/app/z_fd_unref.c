@@ -1,10 +1,11 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0004b048 @ 0x0004b048
- * public-name: fdtable_entry_unref
+ * public-name: z_fd_unref
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   fdtable_entry_unref                      <= FUN_0004b048 @ 0x0004b048
+ *   z_fd_unref                               <= FUN_0004b048 @ 0x0004b048
  * address symbols (name @ address):
- *   g_posix_fd_table                         @ 0x20002548
+ *   g_fdtable_entries                        @ 0x20002548
  */
 /* Full reconstruction of FUN_0004b048 @ 0x4b048 (58-byte extent). */
 #include <stdint.h>
@@ -16,7 +17,7 @@ struct dispatch_slot {
     uint8_t lock_storage[0x1c];
 };
 
-void fdtable_entry_unref(uint32_t slot_index)
+void z_fd_unref(uint32_t slot_index)
 {
     volatile struct dispatch_slot *slot =
         (volatile struct dispatch_slot *)(uintptr_t)

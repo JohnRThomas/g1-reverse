@@ -8,6 +8,14 @@ settings_save_dst = 0x2000a100;
 settings_load_srcs = 0x2000a104;
 settings_handlers = 0x2000a10c;
 
+/* The pinned fdtable.c owns one initialized 16-entry array.  The cohesive
+ * build globalizes only this otherwise-local ELF symbol after archiving, so
+ * retained non-stock callers and the selected stock functions share one
+ * object.  Final absolute placement remains a section-layout gate; these are
+ * ownership aliases, not guessed duplicate storage. */
+g_fdtable_entries = fdtable;
+g_fdtable_refcount_field = fdtable + 8;
+
 /* The recovered veneer at 0x00086698 predates readable-owner generation and
  * still exports its durable thunk spelling. Keep current readable callers on
  * the same owner until that canonical veneer is mechanically renamed. */

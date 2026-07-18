@@ -6973,55 +6973,61 @@
   "0x0004b01c": {
    "address": "0x0004b01c",
    "raw_name": "FUN_0004b01c",
-   "name": "fd_table_lookup",
-   "display_name": "fd_table_lookup",
+   "name": "_check_fd",
+   "display_name": "_check_fd",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c private descriptor validator; CONFIG_POSIX_MAX_FDS=16 and the refcount load identifies fdtable+8. Raw identity remains FUN_0004b01c.",
    "aliases": [
-    "FUN_0004b01c"
+    "FUN_0004b01c",
+    "fd_table_lookup"
    ]
   },
   "0x0004b048": {
    "address": "0x0004b048",
    "raw_name": "FUN_0004b048",
-   "name": "fdtable_entry_unref",
-   "display_name": "fdtable_entry_unref",
+   "name": "z_fd_unref",
+   "display_name": "z_fd_unref",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c private reference drop, including exclusive decrement and final object/vtable clear. Raw identity remains FUN_0004b048.",
    "aliases": [
-    "FUN_0004b048"
+    "FUN_0004b048",
+    "fdtable_entry_unref"
    ]
   },
   "0x0004b088": {
    "address": "0x0004b088",
    "raw_name": "FUN_0004b088",
-   "name": "fd_table_dispatch_op1",
-   "display_name": "fd_table_dispatch_op1",
+   "name": "read",
+   "display_name": "read",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX read owner over the 0x28-byte fd_entry layout. Raw identity remains FUN_0004b088.",
    "aliases": [
-    "FUN_0004b088"
+    "FUN_0004b088",
+    "fd_table_dispatch_op1"
    ]
   },
   "0x0004b0dc": {
    "address": "0x0004b0dc",
    "raw_name": "FUN_0004b0dc",
-   "name": "fd_table_dispatch_op2",
-   "display_name": "fd_table_dispatch_op2",
+   "name": "write",
+   "display_name": "write",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX write owner over the 0x28-byte fd_entry layout. Raw identity remains FUN_0004b0dc.",
    "aliases": [
-    "FUN_0004b0dc"
+    "FUN_0004b0dc",
+    "fd_table_dispatch_op2"
    ]
   },
   "0x0004b130": {
    "address": "0x0004b130",
    "raw_name": "FUN_0004b130",
-   "name": "FUN_0004b130",
-   "display_name": "FUN_0004b130",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "close",
+   "display_name": "close",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX close owner. This function had no standalone recovered C file; the selected stock source supplies the missing owner. Raw identity remains FUN_0004b130.",
+   "aliases": [
+    "FUN_0004b130"
+   ]
   },
   "0x0004b17c": {
    "address": "0x0004b17c",
@@ -26962,6 +26968,7 @@
   "__truncdfsf2": "0x0000dee8",
   "__udivmoddi4": "0x0000ec62",
   "_calloc_r": "0x000876d0",
+  "_check_fd": "0x0004b01c",
   "_copy": "0x0007feaa",
   "_double_byte": "0x0007fec8",
   "_fflush_r": "0x00076ad0",
@@ -27397,6 +27404,7 @@
   "clear_timeout_message": "0x00033d58",
   "click_event_dispatch_loop": "0x00028a1c",
   "clock_stop": "0x00065000",
+  "close": "0x0004b130",
   "clz32": "0x00087510",
   "commit_default_config_record": "0x00030710",
   "compare_int_lock": "0x0006349c",
@@ -27538,10 +27546,6 @@
   "fb_blit_rows_halved": "0x0007d5f2",
   "fb_blit_rows_or": "0x0007d586",
   "fb_blit_rows_wrap320": "0x0007d4f8",
-  "fd_table_dispatch_op1": "0x0004b088",
-  "fd_table_dispatch_op2": "0x0004b0dc",
-  "fd_table_lookup": "0x0004b01c",
-  "fdtable_entry_unref": "0x0004b048",
   "file_subsystem_queue_init": "0x000234e8",
   "find_cf_cfg": "0x00059c04",
   "find_cf_cfg_by_addr": "0x00059b5c",
@@ -28302,6 +28306,7 @@
   "random": "0x00017f70",
   "rate_limited_elapsed_seconds_tick": "0x0004a46c",
   "rd_idx_inc": "0x0007e378",
+  "read": "0x0004b088",
   "read_appearance": "0x00082a1a",
   "read_bool_attr_0x2004": "0x0007ca24",
   "read_group_cb": "0x00058750",
@@ -28682,6 +28687,7 @@
   "wdt_nrf_feed": "0x00084cda",
   "wdt_nrf_setup": "0x00084cfa",
   "whitelist_contains_app": "0x00034ff0",
+  "write": "0x0004b0dc",
   "write_font_to_flash_with_verify": "0x00022834",
   "write_invalid_key": "0x0007b644",
   "write_r_capture_errno": "0x00079528",
@@ -28692,6 +28698,7 @@
   "z_cbvprintf_impl": "0x000113a8",
   "z_device_is_ready": "0x0008638c",
   "z_fatal_error": "0x00071684",
+  "z_fd_unref": "0x0004b048",
   "z_fdtable_call_ioctl": "0x0007dcb8",
   "z_handle_obj_poll_events": "0x0008688e",
   "z_heap_aligned_alloc": "0x00075864",

@@ -108,12 +108,23 @@ def link_and_report():
                  "g1_%s_function_aliases.ld" % CORE,
                  "g1_%s_veneer_aliases.ld" % CORE,
                  "g1_%s_public_sdk_aliases.ld" % CORE,
-                 "g1_%s_readable_aliases.ld" % CORE):
+                 "g1_%s_readable_aliases.ld" % CORE,
+                 "g1_%s_sdk_state.ld" % CORE):
         p = BASE + "/recon/symbols/" + frag
         if os.path.exists(p):
             for l in open(p):
                 m = re.search(r'PROVIDE\((\w+)', l)
-                if m: provided.add(m.group(1))
+                if m:
+                    provided.add(m.group(1))
+                    continue
+                # Cohesive state aliases use strong linker assignments so a
+                # selected SDK object's storage wins over fixed-address
+                # reconstruction fallbacks.  The standalone partial link has
+                # no SDK objects, but these names are still reviewed/resolved
+                # by the production linker fragment rather than unknowns.
+                m = re.match(r'\s*([A-Za-z_$][\w$]*)\s*=', l)
+                if m:
+                    provided.add(m.group(1))
     real = [s for s in undef if s not in provided]
     lib = [s for s in real if LIBPAT.match(s)]
     unknown = [s for s in real if not LIBPAT.match(s)]

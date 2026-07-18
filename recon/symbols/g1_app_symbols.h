@@ -200,8 +200,8 @@ extern volatile unsigned int g_translate_lang_string_table; /* @0x200024f4 */
 extern volatile unsigned int g_display_canvas_y_cache; /* @0x2000253c */
 extern volatile unsigned int g_display_canvas_x_cache; /* @0x20002540 */
 extern volatile signed int g_dashboard_display_level; /* @0x20002544 */
-extern volatile unsigned int g_posix_fd_table; /* @0x20002548 */
-extern volatile unsigned int g_fd_table; /* @0x20002550 */
+extern volatile unsigned int g_fdtable_entries; /* @0x20002548 */
+extern volatile unsigned int g_fdtable_refcount_field; /* @0x20002550 */
 extern volatile unsigned int g_misc_val_27c8; /* @0x200027c8 */
 extern volatile unsigned int g_200027f8; /* @0x200027f8 */
 extern volatile unsigned int g_settings_nvs_backend_list_next; /* @0x200027fc */

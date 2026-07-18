@@ -1,29 +1,30 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0004b0dc @ 0x0004b0dc
- * public-name: fd_table_dispatch_op2
+ * public-name: write
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   fd_table_lookup                          <= FUN_0004b01c @ 0x0004b01c
- *   fd_table_dispatch_op2                    <= FUN_0004b0dc @ 0x0004b0dc
+ *   _check_fd                                <= FUN_0004b01c @ 0x0004b01c
+ *   write                                    <= FUN_0004b0dc @ 0x0004b0dc
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  * address symbols (name @ address):
- *   g_posix_fd_table                         @ 0x20002548
+ *   g_fdtable_entries                        @ 0x20002548
  */
 /* Reconstructed FUN_0004b0dc @ 0x4b0dc  (parity: 300/300 trials, PROVEN) */
 
-extern long long fd_table_lookup(void);
+extern long long _check_fd(void);
 extern void k_mutex_lock(int a, int b, int c, int d);
 extern void thunk_FUN_00072558(int a);
 typedef unsigned int (*fnptr4b0dc)(unsigned int, unsigned int, unsigned int);
 
-unsigned int fd_table_dispatch_op2(int param_1, unsigned int param_2, unsigned int param_3)
+unsigned int write(int param_1, unsigned int param_2, unsigned int param_3)
 {
   long long uVar4;
   int iVar1;
   unsigned int uVar2;
   int iVar3;
 
-  uVar4 = fd_table_lookup();
-  iVar1 = 0x20002548;
+  uVar4 = _check_fd();
+  iVar1 = ((unsigned long)&g_fdtable_entries) /*=0x20002548*/;
   if ((int)uVar4 < 0) {
     uVar2 = 0xffffffff;
   } else {

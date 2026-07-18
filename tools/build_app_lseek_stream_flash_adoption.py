@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build exact atomic-adoption evidence for lseek and stream/flash_img."""
+"""Build exact atomic-adoption evidence for fdtable and stream/flash_img."""
 
 import hashlib
 import json
@@ -31,7 +31,10 @@ SOURCE_SHA256 = {
     "zephyr/subsys/dfu/img_util/flash_img.c": "3e8b14ad6f9312313525cf44e63d8f72040353eb6f00cbb77265aabbef7c0be2",
 }
 
-LSEEK_GROUP = ["0x0004b17c"]
+FDTABLE_GROUP = [
+    "0x0004b01c", "0x0004b048", "0x0004b088", "0x0004b0dc",
+    "0x0004b17c",
+]
 FLASH_GROUP = [
     "0x0004e124", "0x0004e1ac", "0x0004e2b4", "0x0007f064",
     "0x0007f088", "0x0007f110", "0x0007f150",
@@ -40,6 +43,19 @@ FLASH_GROUP = [
 # VA, raw owner, corrected upstream symbol, selected object, section, true code
 # extent, source, linkage, cfg-directed checks, direct callers.
 OWNERS = [
+    (0x4B01C, "fd_table_lookup", "_check_fd", FDTABLE,
+     ".text._check_fd", 40, "zephyr/lib/os/fdtable.c",
+     "translation_unit_local", 3,
+     ["0x0004b088", "0x0004b0dc", "0x0004b130", "0x0004b17c"]),
+    (0x4B048, "fdtable_entry_unref", "z_fd_unref", FDTABLE,
+     ".text.z_fd_unref.isra.0", 58, "zephyr/lib/os/fdtable.c",
+     "translation_unit_local", 1, ["0x0004b130"]),
+    (0x4B088, "fd_table_dispatch_op1", "read", FDTABLE,
+     ".text.read", 78, "zephyr/lib/os/fdtable.c", "public", 1,
+     ["0x00079528"]),
+    (0x4B0DC, "fd_table_dispatch_op2", "write", FDTABLE,
+     ".text.write", 78, "zephyr/lib/os/fdtable.c", "public", 1,
+     ["0x00051164", "0x00086f5a"]),
     (0x4B17C, "lseek", "lseek", FDTABLE, ".text.lseek", 52,
      "zephyr/lib/os/fdtable.c", "public", 1, ["0x00078598"]),
     (0x4E124, "FUN_0004e124", "stream_flash_erase_page", STREAM,
@@ -73,6 +89,7 @@ OWNERS = [
 ]
 
 HIDDEN_EXACT = [
+    (0x4B130, "close", FDTABLE, ".text.close"),
     (0x4E0F8, "find_flash_total_size.part.0", STREAM,
      ".text.find_flash_total_size.part.0"),
     (0x7F070, "find_flash_total_size", STREAM,
@@ -111,7 +128,7 @@ def normalized_section(va, obj_path, section_name):
 def authorization(owner):
     (va, baseline, symbol, obj, section, extent, source, linkage,
      cases, callers) = owner
-    group = LSEEK_GROUP if va == 0x4B17C else FLASH_GROUP
+    group = FDTABLE_GROUP if obj == FDTABLE else FLASH_GROUP
     raw = "FUN_%08x" % va
     canonical = ROOT / "recon/app/src" / (raw + ".c")
     normalized = normalized_section(va, obj, section)
@@ -121,7 +138,7 @@ def authorization(owner):
                  "CONFIG_STREAM_FLASH": "y", "CONFIG_STREAM_FLASH_ERASE": "y"})
     return {
         "status": "authorized",
-        "batch": "ROOT-LSEEK" if va == 0x4B17C else "ROOT-STREAM-FLASH",
+        "batch": "ROOT-FDTABLE" if obj == FDTABLE else "ROOT-STREAM-FLASH",
         "va": "0x%08x" % va,
         "raw_symbol": raw,
         "symbol": baseline,
@@ -157,6 +174,14 @@ def authorization(owner):
             "new_undefined_symbols": [],
             "raw_aliases_preserved": True,
             "normal_gc_required_for_dead_sdk_helpers": True,
+            "stock_data_object": ({
+                "symbol": "fdtable",
+                "firmware_address": "0x20002548",
+                "size": 0x280,
+                "entry_count": 16,
+                "entry_size": 0x28,
+                "refcount_offset": 8,
+            } if obj == FDTABLE else None),
         },
         **normalized,
     }
@@ -178,19 +203,49 @@ def build():
             "va": "0x%08x" % va,
             "symbol": symbol,
             "upstream_object": str(obj),
-            "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+            "upstream_source": ("zephyr/lib/os/fdtable.c" if obj == FDTABLE else
+                                "zephyr/subsys/storage/stream/stream_flash.c"),
             **normalized_section(va, obj, section),
         })
     return {
         "schema": 1,
         "core": "app",
         "status": "authorized_atomic",
-        "decision": "adopt_exact_lseek_and_progressive_stream_flash_closure",
+        "decision": "adopt_exact_fdtable_and_progressive_stream_flash_closure",
         "configured_build_receipts": [str(CONFIG)],
         "required_project_config": {"CONFIG_IMG_ERASE_PROGRESSIVELY": "y"},
-        "atomic_groups": {"lseek": LSEEK_GROUP, "stream_flash_and_flash_img": FLASH_GROUP},
+        "atomic_groups": {"fdtable": FDTABLE_GROUP,
+                          "stream_flash_and_flash_img": FLASH_GROUP},
         "authorizations": authorizations,
         "hidden_exact_source_sections": hidden,
+        "stock_data_objects": {
+            "fdtable": {
+                "firmware_address": "0x20002548",
+                "size": 0x280,
+                "entry_count": 16,
+                "entry_size": 0x28,
+                "field_aliases": {
+                    "g_fdtable_entries": 0,
+                    "g_fdtable_refcount_field": 8,
+                },
+                "configured_section": ".data.fdtable",
+                "configured_section_size": 0x280,
+                "ownership": "zephyr/lib/os/fdtable.c",
+            }
+        },
+        "cohesive_link_probe": {
+            "build": str(BUILD),
+            "elf": str(BUILD / "zephyr/zephyr_pre0.elf"),
+            "map": str(BUILD / "zephyr/zephyr_pre0.map"),
+            "single_stock_owner": True,
+            "archive_symbol_globalized_without_source_patch": True,
+            "linked_fdtable_address": "0x20002218",
+            "firmware_fdtable_address": "0x20002548",
+            "remaining_section_layout_delta": 0x330,
+            "absolute_placement_status": "pending_whole_image_section_convergence",
+            "undefined_fdtable_aliases": [],
+            "duplicate_recovered_fdtable_functions": [],
+        },
         "caller_retarget": {
             "0x00051870": ["flash_img_init_id", "flash_img_buffered_write"],
             "preserve_raw_backmap": ["FUN_0007f150", "FUN_0007f110"],

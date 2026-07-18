@@ -1,6 +1,26 @@
 {
  "schema": 1,
  "app": {
+  "0x0004b01c": {
+   "name": "_check_fd",
+   "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c private descriptor validator; CONFIG_POSIX_MAX_FDS=16 and the refcount load identifies fdtable+8. Raw identity remains FUN_0004b01c."
+  },
+  "0x0004b048": {
+   "name": "z_fd_unref",
+   "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c private reference drop, including exclusive decrement and final object/vtable clear. Raw identity remains FUN_0004b048."
+  },
+  "0x0004b088": {
+   "name": "read",
+   "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX read owner over the 0x28-byte fd_entry layout. Raw identity remains FUN_0004b088."
+  },
+  "0x0004b0dc": {
+   "name": "write",
+   "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX write owner over the 0x28-byte fd_entry layout. Raw identity remains FUN_0004b0dc."
+  },
+  "0x0004b130": {
+   "name": "close",
+   "evidence": "Relocation-normalized byte-exact pinned Zephyr 3.4.99 fdtable.c POSIX close owner. This function had no standalone recovered C file; the selected stock source supplies the missing owner. Raw identity remains FUN_0004b130."
+  },
   "0x00012c80": {
    "name": "exp",
    "evidence": "Exact pinned newlib 3.3.0 libm_nano lib_a-w_exp.o(.text.exp) match. Raw identity remains FUN_00012c80."
