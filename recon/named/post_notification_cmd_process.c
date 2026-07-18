@@ -8,7 +8,7 @@
  *   post_notification_cmd_process            <= FUN_000338ec @ 0x000338ec
  *   parse_ncs_notification                   <= FUN_00034980 @ 0x00034980
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -31,7 +31,7 @@ extern int debug_print(int,...);
 extern int parse_receiver_msg_pack_pkcs7(int,...);
 extern int parse_ncs_notification(int,...);
 extern int malloc(int,...);
-extern int heap_free(int,...);
+extern int free(int,...);
 extern int memcpy(int,...);
 extern int memset_bytes(int,...);
 
@@ -92,7 +92,7 @@ void post_notification_cmd_process(int param_1, unsigned char *param_2, int para
                     *(unsigned short*)(puVar4+2) = 0x1b4;
                     audio_fw_load_get_wrapper(param_1, (int)auStack_a0, 8);
                     *((unsigned char*)&local_b4 + 1) = 0xc9;
-                    heap_free(*piVar1);
+                    free(*piVar1);
                     *piVar1 = 0;
                 }
             }

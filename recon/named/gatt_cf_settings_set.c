@@ -5,7 +5,7 @@
  *   find_cf_cfg_by_addr                      <= FUN_00059b5c @ 0x00059b5c
  *   find_cf_cfg                              <= FUN_00059c04 @ 0x00059c04
  *   gatt_cf_settings_set                     <= FUN_0005a724 @ 0x0005a724
- *   strtol_ascii_scan                        <= FUN_00077c1c @ 0x00077c1c
+ *   strtoul                                  <= FUN_00077c1c @ 0x00077c1c
  *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
  *   bt_settings_decode_key                   <= FUN_00080cf2 @ 0x00080cf2
  *   set_change_aware_no_store                <= FUN_00082b98 @ 0x00082b98
@@ -24,7 +24,7 @@
 extern int  find_cf_cfg_by_addr(int,void*);
 extern int  find_cf_cfg(void);
 extern int  FUN_0005a39c(int);
-extern int  strtol_ascii_scan(int,int,int);
+extern int  strtoul(int,int,int);
 extern void settings_name_next(int,int*);
 extern int  bt_settings_decode_key(int,void*);
 extern void FUN_000828da(int,void*);
@@ -60,7 +60,7 @@ int gatt_cf_settings_set(int param_1,int param_2,int param_3,int param_4){
     return -0x16;
   }
   settings_name_next(param_1, &frame.identity);
-  if (frame.identity != 0 && (iVar1 = strtol_ascii_scan(frame.identity, 0, 10)) != 0) {
+  if (frame.identity != 0 && (iVar1 = strtoul(frame.identity, 0, 10)) != 0) {
     struct { unsigned level, message; int error; } log = { 3, 0x000f4746, iVar1 };
     FUN_00082a42(0x00088128, 0x1840, &log);
     return -0x16;

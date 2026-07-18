@@ -1,0 +1,27 @@
+{
+ "added": [],
+ "adoption_receipt_sha256": "9f045ccbcb6a9e61e6037932f5fcf4c90282f2f7b71fad568b260a9976d626f0",
+ "baseline_receipt_sha256": "347fca898495413c2f0afe40b3a6dc9bc4b1b9c2822129a96e3cf818ebbadec1",
+ "build": "/private/tmp/g1-fwconfig-shadow",
+ "collision_count_after": 61,
+ "collision_count_before": 66,
+ "core": "app",
+ "expected_terminal_link_failure": true,
+ "removed": [
+  "__sinit",
+  "__sinit_lock_release",
+  "_malloc_r",
+  "_strtoul_r",
+  "malloc"
+ ],
+ "schema": 1,
+ "unresolved_after": [
+  "FUN_0005463e",
+  "FUN_00054688"
+ ],
+ "unresolved_before": [
+  "FUN_0005463e",
+  "FUN_00054688"
+ ],
+ "unresolved_link_diagnostics_after": []
+}

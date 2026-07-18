@@ -21,10 +21,10 @@ typedef unsigned int uint;
 extern int qspi_nor_acquire(int);
 extern void FUN_00060a5c(int);
 extern int qspi_nor_send_cinstr(int,void*,int,int,int);
-#define nrfx_qspi_init nrfx_qspi_init
-extern int nrfx_qspi_init(int,int,int);
-#define nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
-extern int nrfx_qspi_mem_busy_check(void);
+#define g1_recon_nrfx_qspi_init nrfx_qspi_init
+extern int g1_recon_nrfx_qspi_init(int,int,int);
+#define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
+extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void nrfx_qspi_uninit(void);
 extern int audio_hw_lock_is_busy(void);
 extern int FUN_000838dc(int,int);
@@ -43,7 +43,7 @@ uint qspi_nor_pm_action(int param_1, int param_2, unsigned param_3, unsigned par
             if (param_2 != 1) return 0xffffff7a;
             uVar2 = FUN_000838dc(*(int*)(iVar4+0x34), 0);
             if ((int)uVar2 < 0) return uVar2;
-            iVar3 = nrfx_qspi_init(iVar4, ((unsigned long)&rodata_838cb) /*=0x838cb*/, iVar5);
+            iVar3 = g1_recon_nrfx_qspi_init(iVar4, ((unsigned long)&rodata_838cb) /*=0x838cb*/, iVar5);
             if (iVar3 != 0x0bad0000) return 0xfffffffb;
             uVar2 = audio_apply_config_cmd_0xab(param_1);
             if ((int)uVar2 < 0) return uVar2;
@@ -54,7 +54,7 @@ uint qspi_nor_pm_action(int param_1, int param_2, unsigned param_3, unsigned par
         if ((int)uVar2 < 0) return uVar2;
         uVar2 = *(uint8_t*)(iVar5+0x60);
         if (uVar2==0){
-            iVar1 = nrfx_qspi_mem_busy_check();
+            iVar1 = g1_recon_nrfx_qspi_mem_busy_check();
             if (iVar1 == 0x0bad0000){
                 local[0]=0xb9; local[1]=uVar2; local[2]=uVar2;
                 uVar2 = qspi_nor_send_cinstr(param_1, (void*)local, 0, 0xb9, iVar3);

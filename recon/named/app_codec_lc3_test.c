@@ -14,7 +14,7 @@
  *   lc3_setup_encoder                        <= FUN_00068f94 @ 0x00068f94
  *   lc3_encode                               <= FUN_00069238 @ 0x00069238
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  * address symbols (name @ address):
  *   rodata_87bf0                             @ 0x00087bf0
@@ -46,7 +46,7 @@ extern unsigned lc3_encoder_size(int a, int b);
 extern unsigned lc3_setup_encoder(int a, int b, int c, int d);
 extern int lc3_encode(unsigned a, int b, int c, int d, int e, int f, unsigned g, int h);
 extern int malloc(unsigned a);
-extern void heap_free(int a);
+extern void free(int a);
 extern int z_device_is_ready(int a);
 
 void app_codec_lc3_test(int param_1, int param_2)
@@ -151,27 +151,27 @@ LAB_0002ee5a:
                     }
                 }
 LAB_0002eeb6:
-                heap_free(iVar5);
-                heap_free(iVar6);
+                free(iVar5);
+                free(iVar6);
                 goto LAB_0002edce;
             }
             if (*v < 1) {
-                heap_free(iVar5);
+                free(iVar5);
                 iVar7 = iVar6;
                 goto LAB_0002edce;
             }
 LAB_0002ee16:
             if (*dbg == 0) log_message(0xa3f7f, 0xa41c2);
             else debug_print(0x000a3f7fUL, 0x000a41c2UL);
-            heap_free(iVar5);
+            free(iVar5);
             goto LAB_0002edf8;
         }
         if (0 < *v) goto LAB_0002ee16;
 LAB_0002ede2:
-        heap_free(iVar5);
+        free(iVar5);
     }
     if (iVar7 == 0) return;
 LAB_0002edce:
-    heap_free(iVar7);
+    free(iVar7);
     return;
 }

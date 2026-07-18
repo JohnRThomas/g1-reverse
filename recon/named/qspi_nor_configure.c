@@ -26,8 +26,8 @@ extern int qspi_get_zephyr_ret_code(int registration_result);
 extern int qspi_nor_acquire(void *context);
 extern void FUN_00060a5c(void *context);
 extern int qspi_nor_send_cinstr(void *context, uint8_t *command, uint8_t mode);
-#define nrfx_qspi_init nrfx_qspi_init
-extern int nrfx_qspi_init(void *device, uintptr_t callback,
+#define g1_recon_nrfx_qspi_init nrfx_qspi_init
+extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,
                                    void *callback_context);
 extern void FUN_000838d6(uintptr_t source, uint32_t level, const void *record);
 extern int FUN_000838dc(uintptr_t transport, void *result,
@@ -102,7 +102,7 @@ int qspi_nor_configure(struct driver_context *context)
 
     FUN_0005010c(0x2bu, 1, 0);
     *(volatile uint32_t *)0x500055b8u = 0;
-    int registration = nrfx_qspi_init(configuration, 0x000838cbu,
+    int registration = g1_recon_nrfx_qspi_init(configuration, 0x000838cbu,
                                                context->callback_context);
     *(volatile uint32_t *)0x500055b8u = 2;
 

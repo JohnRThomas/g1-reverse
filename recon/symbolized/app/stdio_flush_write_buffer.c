@@ -3,12 +3,12 @@
  * public-name: stdio_flush_write_buffer
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _free_r                                  <= FUN_00076d8c @ 0x00076d8c
  *   stdio_flush_write_buffer                 <= FUN_00086a0e @ 0x00086a0e
  */
 /* Reconstructed FUN_00086a0e @ 0x86a0e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern int heap_free_core(int,...);
+extern int _free_r(int,...);
 typedef int (*codeptr)(int,...);
 unsigned int stdio_flush_write_buffer(int *param_1,int *param_2)
 {
@@ -85,7 +85,7 @@ LAB_00086a70:
   piVar2 = (int *)param_2[0xd];
   *param_1 = iVar7;
   if (piVar2 != (int *)0) {
-    if (piVar2 != param_2 + 0x11) heap_free_core((int)param_1);
+    if (piVar2 != param_2 + 0x11) _free_r((int)param_1);
     param_2[0xd] = 0;
   }
   return 0;

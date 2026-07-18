@@ -4,21 +4,21 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   _fflush_r                                <= FUN_00076ad0 @ 0x00076ad0
- *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _free_r                                  <= FUN_00076d8c @ 0x00076d8c
  *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
  *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
  *   __sfvwrite_r                             <= FUN_00077e70 @ 0x00077e70
  *   mem_find_byte                            <= FUN_00086bc8 @ 0x00086bc8
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memmove                                  <= FUN_00086c44 @ 0x00086c44
- *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ *   _realloc_r                               <= FUN_000876ec @ 0x000876ec
  */
 /* Reconstructed FUN_00077e70 @ 0x77e70  (parity: 159/300 trials, PROVEN) */
 #include <stdint.h>
 typedef uint32_t undefined4; typedef unsigned int uint; typedef unsigned short ushort;
-extern int _fflush_r(int,...); extern int heap_free_core(int,...); extern int _malloc_r(int,...);
+extern int _fflush_r(int,...); extern int _free_r(int,...); extern int _malloc_r(int,...);
 extern int stdio_fclose(int,...); extern int mem_find_byte(int,...); extern int memcpy(int,...);
-extern int memmove(int,...); extern int heap_realloc_grow(int,...);
+extern int memmove(int,...); extern int _realloc_r(int,...);
 typedef uint (*codeptr)(int,...);
 #define PH(p) (*(volatile ushort*)((char*)(p)+0xc))
 
@@ -62,9 +62,9 @@ LAB_fec:
                   uVar9 = uVar4; goto LAB_ffc;
                 }
               } else {
-                uVar3 = heap_realloc_grow((int)param_1,param_2[4],uVar9);
+                uVar3 = _realloc_r((int)param_1,param_2[4],uVar9);
                 if (uVar3 != 0) goto LAB_fec;
-                heap_free_core((int)param_1,param_2[4]);
+                _free_r((int)param_1,param_2[4]);
                 PH(param_2) = (ushort)param_2[3] & 0xff7f;
               }
               *param_1 = 0xc;

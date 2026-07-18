@@ -46,8 +46,8 @@ static void clock_domain_assert(uint32_t header, uint32_t line)
     nrfx_assert_abort(header, line);
 }
 
-#define clock_stop clock_stop
-void clock_stop(enum clock_domain_raw domain)
+#define g1_clock_stop_impl clock_stop
+void g1_clock_stop_impl(enum clock_domain_raw domain)
 {
     switch (domain) {
     case CLOCK_DOMAIN_LFCLK:

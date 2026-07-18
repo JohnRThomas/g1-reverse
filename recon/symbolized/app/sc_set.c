@@ -5,7 +5,7 @@
  * callees (readable <= raw @ address):
  *   find_sc_cfg_59bcc                        <= FUN_00059bcc @ 0x00059bcc
  *   sc_set                                   <= FUN_00059f04 @ 0x00059f04
- *   strtol_ascii_scan                        <= FUN_00077c1c @ 0x00077c1c
+ *   strtoul                                  <= FUN_00077c1c @ 0x00077c1c
  *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
  *   bt_settings_decode_key                   <= FUN_00080cf2 @ 0x00080cf2
  * address symbols (name @ address):
@@ -21,7 +21,7 @@
 
 typedef int (*codeptr)(int,...);
 extern int find_sc_cfg_59bcc(int,void*);
-extern int strtol_ascii_scan(int,int,int);
+extern int strtoul(int,int,int);
 extern int settings_name_next(int,int*);
 extern int bt_settings_decode_key(int,void*);
 extern int FUN_000828da(void*,void*);
@@ -50,7 +50,7 @@ int sc_set(int param_1, int param_2, codeptr param_3, int param_4)
     iVar1 = bt_settings_decode_key(param_1, auStack_40);
     if (iVar1 == 0) {
       settings_name_next(param_1, &local_44);
-      if (local_44 == 0 || (iStack_50 = strtol_ascii_scan(local_44, 0, 10), iStack_50 == 0)) {
+      if (local_44 == 0 || (iStack_50 = strtoul(local_44, 0, 10), iStack_50 == 0)) {
         puVar2 = (unsigned int*)find_sc_cfg_59bcc(0, auStack_40);
         if (puVar2 == 0) {
           if (param_2 == 0) return 0;

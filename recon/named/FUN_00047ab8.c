@@ -2,20 +2,20 @@
  * public-name: FUN_00047ab8
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  * address symbols (name @ address):
  *   g_pixel4bit_row_buf                      @ 0x20009fcc
  */
 /* Reconstructed FUN_00047ab8 @ 0x47ab8  (parity: 300/300 trials, PROVEN) */
 
-extern void heap_free(unsigned int);
+extern void free(unsigned int);
 
 void FUN_00047ab8(void)
 {
   volatile int *piVar1 = (volatile int *)0x20009fccUL;
   int value = *piVar1;
   if (value != 0) {
-    heap_free((unsigned int)value);
+    free((unsigned int)value);
     *piVar1 = 0;
   }
 }

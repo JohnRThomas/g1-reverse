@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 
 from elftools.elf.elffile import ELFFile
@@ -55,6 +56,8 @@ BASELINE_PROVENANCE = {
 KINDS = ("source", "archive", "static_helper", "table", "glue")
 KIND_RANK = {"source": 1, "archive": 2, "table": 3,
              "static_helper": 4, "glue": 5}
+AR = ("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
+      "arm-zephyr-eabi-ar")
 
 
 def _path(value):
@@ -80,6 +83,11 @@ def _sha256(path):
         for block in iter(lambda: stream.read(1 << 16), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def _archive_member_sha256(archive, member):
+    content = subprocess.check_output([AR, "p", archive, member])
+    return hashlib.sha256(content).hexdigest()
 
 
 def _alloc_content_sha256(path):
@@ -560,8 +568,13 @@ def _build_from_baseline(paths, resolved, names):
         source = upstream.get("source", {})
         configured = (collision or {}).get("configured_inclusion", {})
         identity_correction = authorization.get("identity_correction", {})
+        archive_member_exact = authorization.get(
+            "archive_member_exact") is True
         if hidden_owner:
             receipts = ()
+        elif archive_member_exact:
+            receipts = (("baseline_configured_build_sha256",
+                         configured.get("zephyr_config_sha256")),)
         elif identity_correction:
             receipts = (
                 ("baseline_upstream_source_sha256", source.get("sha256")),
@@ -594,14 +607,28 @@ def _build_from_baseline(paths, resolved, names):
                 (not content_digest or
                  _alloc_content_sha256(object_path) != content_digest)):
             raise ValueError("upstream object changed: %s" % va)
-        expected_source = (identity_correction.get("corrected_upstream_source")
-                           if identity_correction else source.get("path"))
-        if authorization.get("upstream_source") != expected_source:
-            raise ValueError("upstream source identity changed: %s" % va)
-        source_path = os.path.join("/Users/freedomcoder/ncs251",
-                                   authorization["upstream_source"])
-        if _sha256(source_path) != authorization["upstream_source_sha256"]:
-            raise ValueError("upstream source changed: %s" % va)
+        if archive_member_exact:
+            if (authorization.get("upstream_archive_sha256") !=
+                    authorization.get("upstream_object_sha256") or
+                    not authorization.get("archive_member") or
+                    _archive_member_sha256(
+                        object_path, authorization["archive_member"]) !=
+                    authorization.get("archive_member_sha256")):
+                raise ValueError("exact archive-member receipt mismatch: %s" % va)
+            if not (authorization.get("newlib_release") and
+                    authorization.get("newlib_commit") and
+                    authorization.get("upstream_source")):
+                raise ValueError("archive source provenance incomplete: %s" % va)
+        else:
+            expected_source = (
+                identity_correction.get("corrected_upstream_source")
+                if identity_correction else source.get("path"))
+            if authorization.get("upstream_source") != expected_source:
+                raise ValueError("upstream source identity changed: %s" % va)
+            source_path = os.path.join("/Users/freedomcoder/ncs251",
+                                       authorization["upstream_source"])
+            if _sha256(source_path) != authorization["upstream_source_sha256"]:
+                raise ValueError("upstream source changed: %s" % va)
         config_paths = ([authorization.get("configured_build")] +
                         authorizations.get("configured_build_receipts", []))
         valid_config_paths = [

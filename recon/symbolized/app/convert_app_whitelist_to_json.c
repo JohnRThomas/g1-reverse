@@ -8,7 +8,7 @@
  *   cjson_delete                             <= FUN_00064b1c @ 0x00064b1c
  *   cjson_create_array                       <= FUN_00064c8c @ 0x00064c8c
  *   cjson_create_object                      <= FUN_00064ca4 @ 0x00064ca4
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   strcpy                                   <= FUN_00086fee @ 0x00086fee
  * address symbols (name @ address):
  *   rodata_9a1dd                             @ 0x0009a1dd
@@ -35,7 +35,7 @@ extern int  strlen(int);
 extern int  cjson_delete(int);
 extern int  cjson_create_array(void);
 extern int  cjson_create_object(void);
-extern void heap_free(int);
+extern void free(int);
 extern int  FUN_0008501a(int);
 extern void FUN_00085046(int,int,int);
 extern void FUN_0008504c(int,int,int);
@@ -70,7 +70,7 @@ int convert_app_whitelist_to_json(int param_1,int param_2,int param_3){
       if (*g50==0) log_message(((unsigned long)&rodata_a892b) /*=0xa892b*/,uVar6); else debug_print(((unsigned long)&rodata_a892b) /*=0xa892b*/,uVar6);
       strcpy(param_1,uVar6);
       uVar2 = strlen(uVar6);
-      heap_free(uVar6);
+      free(uVar6);
       cjson_delete(iVar9);
       return (unsigned short)uVar2;
     }

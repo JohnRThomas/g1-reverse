@@ -5,7 +5,7 @@
  *   get_device_info                          <= FUN_000167a8 @ 0x000167a8
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
@@ -28,7 +28,7 @@
 #include <stdint.h>
 #include <stddef.h>
 extern void *malloc(size_t);
-extern void heap_free(void *);
+extern void free(void *);
 extern int z_device_is_ready(const void *);
 extern void memset_bytes(void *, int, size_t);
 extern int memcmp(const void *, const void *, size_t);
@@ -116,6 +116,6 @@ int flash_settings_write_and_verify(uint32_t address, const void *source,
     log_message(0x0009e3afu);
     result = 0;
 out:
-    heap_free(buffer);
+    free(buffer);
     return result;
 }

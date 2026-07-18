@@ -16,8 +16,8 @@
 
 extern uint64_t audio_i2s_stop_and_reset_channels(void *device);
 extern void z_impl_k_sem_take(void *object, uint32_t inherited_r1, uint32_t, uint32_t);
-#define nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
-extern uintptr_t nrfx_qspi_mem_busy_check(void);
+#define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
+extern uintptr_t g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void FUN_00074844(uint32_t, uint32_t);
 extern void nrfx_qspi_uninit(void);
 extern void audio_i2s_start_channels(void *device);
@@ -31,7 +31,7 @@ void FUN_00060a5c(uint8_t *device)
     uint64_t inherited = audio_i2s_stop_and_reset_channels(device);
     z_impl_k_sem_take(state + 0x48, (uint32_t)(inherited >> 32), 0, 0);
     if (*(volatile uint32_t *)(state + 0x50) == 0) {
-        while (nrfx_qspi_mem_busy_check() != 0x0bad0000u)
+        while (g1_recon_nrfx_qspi_mem_busy_check() != 0x0bad0000u)
             FUN_00074844(0x667u, 0);
         nrfx_qspi_uninit();
         *(volatile uint8_t *)((unsigned long)&g_qspi_nor_initialized) /*=0x2001d535*/ = 0;

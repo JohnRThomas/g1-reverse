@@ -6,7 +6,7 @@
  *   convert_app_whitelist_to_json            <= FUN_000352e8 @ 0x000352e8
  *   send_whitelist_json_chunked              <= FUN_00035498 @ 0x00035498
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -21,7 +21,7 @@ extern int log_message(int,...);
 extern int debug_print(int,...);
 extern int convert_app_whitelist_to_json(int,...);
 extern int malloc(int,...);
-extern int heap_free(int,...);
+extern int free(int,...);
 extern int memcpy(int,...);
 extern int memset_bytes(int,...);
 typedef int (*codeptr)(int,...);
@@ -68,7 +68,7 @@ void send_whitelist_json_chunked(int param_1,int param_2)
       pcVar7 = (codeptr)(*(int*)(param_1+0xc));
     }
     pcVar7(param_2,iVar4);
-    heap_free(iVar1);
+    free(iVar1);
     return;
   }
   if (*E != 0) { debug_print(0xa8952,0xa8a33,0x23f,0); return; }

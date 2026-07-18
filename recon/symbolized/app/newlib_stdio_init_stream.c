@@ -1,8 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00076b48 @ 0x00076b48
- * public-name: FUN_00076b48
+ * public-name: newlib_stdio_init_stream
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   newlib_stdio_init_stream                 <= FUN_00076b48 @ 0x00076b48
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_86f35                             @ 0x00086f35
@@ -14,7 +15,7 @@
 
 extern void memset_bytes(unsigned int *, unsigned int, unsigned int);
 
-void FUN_00076b48(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
+void newlib_stdio_init_stream(unsigned int *param_1, unsigned int param_2, unsigned int param_3)
 {
   volatile unsigned int *vp = (volatile unsigned int *)param_1;
   vp[2] = 0;

@@ -32,8 +32,8 @@ extern void qspi_workaround_apply(void);
 extern void nrf_qspi_cinstrdata_set(uint32_t,uint32_t);
 extern void nrf_qspi_cinstrdata_get(uint32_t,uint32_t);
 
-#define nrfx_qspi_cinstr_xfer nrfx_qspi_cinstr_xfer
-int nrfx_qspi_cinstr_xfer(uint8_t *param_1, uint32_t param_2,
+#define g1_recon_nrfx_qspi_cinstr_xfer nrfx_qspi_cinstr_xfer
+int g1_recon_nrfx_qspi_cinstr_xfer(uint8_t *param_1, uint32_t param_2,
                                    uint32_t param_3, uint32_t param_4){
     volatile uint8_t *sb = (volatile uint8_t*)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;
     uint32_t r0v;

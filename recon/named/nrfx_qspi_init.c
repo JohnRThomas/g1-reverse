@@ -20,8 +20,8 @@ extern int qspi_configure_pins_and_interface(void);
 extern void assert_post_action(void*, int);
 extern void printk(void*, void*, void*, int, unsigned int);
 
-#define nrfx_qspi_init nrfx_qspi_init
-int nrfx_qspi_init(int param_1, unsigned int param_2,
+#define g1_recon_nrfx_qspi_init nrfx_qspi_init
+int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
                             unsigned int param_3, unsigned int param_4)
 {
   volatile int *puVar1 = (volatile int*)0x2000b348UL;

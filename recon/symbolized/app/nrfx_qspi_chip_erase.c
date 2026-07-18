@@ -8,10 +8,10 @@
  */
 /* Reconstructed FUN_0008520c @ 0x8520c  (parity: 300/300 trials, PROVEN) */
 
-#define nrfx_qspi_erase nrfx_qspi_erase
-extern void nrfx_qspi_erase(unsigned int, unsigned int);
-#define nrfx_qspi_chip_erase nrfx_qspi_chip_erase
-void nrfx_qspi_chip_erase(void)
+#define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
+extern void g1_recon_nrfx_qspi_erase(unsigned int, unsigned int);
+#define g1_recon_nrfx_qspi_chip_erase nrfx_qspi_chip_erase
+void g1_recon_nrfx_qspi_chip_erase(void)
 {
-    nrfx_qspi_erase(2, 0);
+    g1_recon_nrfx_qspi_erase(2, 0);
 }

@@ -8,7 +8,7 @@
  *   attr_store_get                           <= FUN_000302f8 @ 0x000302f8
  *   flash_firmware_update_transfer           <= FUN_00030754 @ 0x00030754
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   attr_configure_mode3_readback            <= FUN_0007d05e @ 0x0007d05e
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -28,7 +28,7 @@ extern int verify_image_checksum(void);
 extern int attr_store_get(uint32_t, void *);
 extern int FUN_00030340(uint32_t, uint32_t, void *, uint32_t);
 extern void *malloc(uint32_t);
-extern void heap_free(void *);
+extern void free(void *);
 extern uint32_t FUN_0007cf34(uint32_t, uint32_t, uint32_t);
 extern int attr_configure_mode3_readback(void *, uint32_t);
 extern void memcpy(void *, const void *, uint32_t);
@@ -142,10 +142,10 @@ program_ranges:
                          0x100);
             rc = FUN_00030340(1, 2, packet, 0x108);
             if (rc != 0) {
-                heap_free(packet);
+                free(packet);
                 goto cleanup;
             }
-            heap_free(packet);
+            free(packet);
             address += 0x100;
             ++sequence;
         } while (address != UINT32_C(0x10003b00));
@@ -161,10 +161,10 @@ program_ranges:
                 memcpy(packet + 8, (const void *)UINT32_C(0x000a64ed), 0x9c);
                 rc = FUN_00030340(1, 2, packet, 0xa4);
                 if (rc != 0) {
-                    heap_free(packet);
+                    free(packet);
                     goto cleanup;
                 }
-                heap_free(packet);
+                free(packet);
                 PHASE = 6;
                 attr_store_set(0x4444, 0x10000);
                 attr_store_set(0xff20, UINT32_C(0x3c00ffff));

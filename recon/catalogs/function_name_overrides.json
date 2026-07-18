@@ -163,6 +163,74 @@
    "name": "__ieee754_sqrt",
    "evidence": "Pinned newlib 3.3.0 fdlibm binary64 square-root implementation, hard-float d0 ABI. Raw identity remains FUN_00075e14 at 0x00075e14."
   },
+  "0x00076b48": {
+   "name": "newlib_stdio_init_stream",
+   "evidence": "Instruction-exact static std helper in Zephyr SDK Newlib findfp.c; raw identity remains FUN_00076b48."
+  },
+  "0x00076b9c": {
+   "name": "__sfp_lock_acquire",
+   "evidence": "Instruction-exact Newlib findfp.c stdio-pool recursive-lock veneer; raw identity remains FUN_00076b9c."
+  },
+  "0x00076ba8": {
+   "name": "__sfp_lock_release",
+   "evidence": "Instruction-exact Newlib findfp.c stdio-pool recursive-unlock veneer; raw identity remains FUN_00076ba8."
+  },
+  "0x00076bb4": {
+   "name": "__sinit_lock_acquire",
+   "evidence": "Instruction-exact Newlib findfp.c initialization-lock veneer; raw identity remains FUN_00076bb4."
+  },
+  "0x00076bc0": {
+   "name": "__sinit_lock_release",
+   "evidence": "Instruction-exact Newlib findfp.c initialization-unlock veneer; raw identity remains FUN_00076bc0."
+  },
+  "0x00076bcc": {
+   "name": "__sinit",
+   "evidence": "Instruction-exact Newlib findfp.c reentrant stdio initializer; raw identity remains FUN_00076bcc."
+  },
+  "0x00076c3c": {
+   "name": "__sfp",
+   "evidence": "Instruction-exact Newlib findfp.c FILE allocator sharing the stdio pool and locks; raw identity remains FUN_00076c3c."
+  },
+  "0x00076d6c": {
+   "name": "malloc",
+   "evidence": "Instruction-exact Newlib-nano malloc wrapper; raw identity remains FUN_00076d6c."
+  },
+  "0x00076d7c": {
+   "name": "free",
+   "evidence": "Instruction-exact Newlib-nano free wrapper; raw identity remains FUN_00076d7c."
+  },
+  "0x00076d8c": {
+   "name": "_free_r",
+   "evidence": "Instruction-exact Newlib-nano reentrant free sharing __malloc_free_list; raw identity remains FUN_00076d8c."
+  },
+  "0x00076e20": {
+   "name": "_malloc_r",
+   "evidence": "Instruction-exact Newlib-nano allocator sharing __malloc_free_list and __malloc_sbrk_start; raw identity remains FUN_00076e20."
+  },
+  "0x00077b38": {
+   "name": "_strtoul_r",
+   "evidence": "Firmware public entry is byte-exact to Newlib strtoul.o's _strtoul_l.constprop.0 body; the archive _strtoul_r adds a four-byte veneer. Raw identity remains FUN_00077b38."
+  },
+  "0x00077c1c": {
+   "name": "strtoul",
+   "evidence": "Instruction-exact Newlib strtoul wrapper in the same object closure as _strtoul_r; raw identity remains FUN_00077c1c."
+  },
+  "0x00086b14": {
+   "name": "__sfmoreglue",
+   "evidence": "Instruction-exact Newlib findfp.c FILE-pool growth helper; raw identity remains FUN_00086b14."
+  },
+  "0x000876d0": {
+   "name": "_calloc_r",
+   "evidence": "Instruction-exact Newlib-nano reentrant calloc in the allocator state closure; raw identity remains FUN_000876d0."
+  },
+  "0x000876ec": {
+   "name": "_realloc_r",
+   "evidence": "Instruction-exact Newlib-nano reentrant realloc in the allocator state closure; raw identity remains FUN_000876ec."
+  },
+  "0x00087996": {
+   "name": "_malloc_usable_size_r",
+   "evidence": "Instruction-exact Newlib-nano allocation-size helper in the allocator closure; raw identity remains FUN_00087996."
+  },
   "0x0007e212": {
    "name": "onoff_manager_init",
    "evidence": "Instruction-exact public owner in pinned Zephyr lib/os/onoff.c. Raw identity remains FUN_0007e212."
@@ -292,10 +360,6 @@
    "name": "g1_recon_retarget_lock_release_recursive",
    "raw_name": "FUN_00051134",
    "evidence": "Retained firmware recursive-lock release hook with the active libc-hooks.c null-lock assertion before mutex unlock; deliberately namespaced after COLLISION-21 because the configured SDK owner omits the assertion path. Raw identity remains FUN_00051134 at 0x00051134."
-  },
-  "0x00076bcc": {
-   "name": "__sinit",
-   "evidence": "Newlib stdio initializer for struct _reent: allocates/configures stdin, stdout and stderr and sets __sdidinit under the environment lock. Raw identity remains FUN_00076bcc."
   },
   "0x00077e70": {
    "name": "__sfvwrite_r",
@@ -910,17 +974,9 @@
    "name": "z_reschedule_unlocked",
    "evidence": "Exact Zephyr inline z_reschedule_unlocked: arch_irq_lock with BASEPRI 0x20 followed by z_reschedule_irqlock. Raw identity remains FUN_0008664c at 0x0008664c."
   },
-  "0x00076bc0": {
-   "name": "__sinit_lock_release",
-   "evidence": "Exact newlib initialization-lock release veneer; it releases recursive lock 0x20003818 through __retarget_lock_release_recursive. Raw identity remains FUN_00076bc0."
-  },
   "0x00077b24": {
    "name": "strtol",
    "evidence": "Exact newlib strtol wrapper around the reentrant parser entry at 0x00077a28. Raw identity remains FUN_00077b24."
-  },
-  "0x00077b38": {
-   "name": "_strtoul_r",
-   "evidence": "Exact newlib reentrant unsigned-long parser, including base detection, overflow/errno, sign, and end-pointer behavior. Raw identity remains FUN_00077b38."
   },
   "0x00077c4c": {
    "name": "_vsprintf_r",

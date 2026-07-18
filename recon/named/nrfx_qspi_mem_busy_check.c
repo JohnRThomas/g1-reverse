@@ -16,19 +16,19 @@ struct g1_qspi_cinstr_config {
     uint16_t reserved;
 };
 
-#define nrfx_qspi_cinstr_xfer nrfx_qspi_cinstr_xfer
-extern uint32_t nrfx_qspi_cinstr_xfer(
+#define g1_recon_nrfx_qspi_cinstr_xfer nrfx_qspi_cinstr_xfer
+extern uint32_t g1_recon_nrfx_qspi_cinstr_xfer(
     const struct g1_qspi_cinstr_config *, const void *, void *, uint32_t);
 
-#define nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
-uint32_t nrfx_qspi_mem_busy_check(void)
+#define g1_recon_nrfx_qspi_mem_busy_check nrfx_qspi_mem_busy_check
+uint32_t g1_recon_nrfx_qspi_mem_busy_check(void)
 {
     uint8_t status = 0;
     const struct g1_qspi_cinstr_config config = {
         .command = 0x01000205u,
         .reserved = 0,
     };
-    uint32_t result = nrfx_qspi_cinstr_xfer(
+    uint32_t result = g1_recon_nrfx_qspi_cinstr_xfer(
         &config, &status, &status, 0);
     if (result == 0x0bad0000u && (status & 1u) != 0u)
         result = 0x0bad000bu;

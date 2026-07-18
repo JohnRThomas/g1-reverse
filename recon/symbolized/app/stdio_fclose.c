@@ -5,7 +5,7 @@
  * callees (readable <= raw @ address):
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   smakebuf_r                               <= FUN_00076cec @ 0x00076cec
- *   heap_free_core                           <= FUN_00076d8c @ 0x00076d8c
+ *   _free_r                                  <= FUN_00076d8c @ 0x00076d8c
  *   stdio_fclose                             <= FUN_00077d54 @ 0x00077d54
  * address symbols (name @ address):
  *   g_libc_heap_ctrl                         @ 0x20002d20
@@ -13,7 +13,7 @@
 /* Reconstructed FUN_00077d54 @ 0x77d54  (parity: 300/300 trials, PROVEN) */
 extern void __sinit(int);
 extern void smakebuf_r(void*,void*);
-extern void heap_free_core(void*);
+extern void _free_r(void*);
 int stdio_fclose(int *param_1, int *param_2){
   int iVar4 = *(volatile int*)((unsigned long)&g_libc_heap_ctrl) /*=0x20002d20*/;
   if (iVar4 != 0 && *(int*)(iVar4+0x18) == 0) __sinit(iVar4);
@@ -31,7 +31,7 @@ int stdio_fclose(int *param_1, int *param_2){
     }
     if (s & 4){
       if (param_2[0xd] != 0){
-        if ((int*)param_2[0xd] != param_2 + 0x11) heap_free_core(param_1);
+        if ((int*)param_2[0xd] != param_2 + 0x11) _free_r(param_1);
         pv[0xd] = 0;
       }
       *P0c = *P0c & 0xffdb;

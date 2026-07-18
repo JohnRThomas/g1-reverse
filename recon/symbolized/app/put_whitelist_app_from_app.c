@@ -9,7 +9,7 @@
  *   verify_whitelist_json                    <= FUN_00035050 @ 0x00035050
  *   store_whitelist                          <= FUN_00035608 @ 0x00035608
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a7c9c                             @ 0x000a7c9c
@@ -31,7 +31,7 @@ extern uint32_t parse_whitelist_json(uint32_t a);
 extern uint32_t verify_whitelist_json(uint32_t a);
 extern uint32_t store_whitelist(void);
 extern uint32_t malloc(uint32_t a);
-extern void heap_free(uint32_t a);
+extern void free(uint32_t a);
 extern void memset_bytes(uint32_t a, uint32_t b, uint32_t c);
 
 void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4, uint32_t param_5)
@@ -80,7 +80,7 @@ void put_whitelist_app_from_app(uint32_t param_1, uint32_t param_2, uint32_t par
     }
 
 LAB_cleanup:
-    heap_free(*piVar1);
+    free(*piVar1);
     *piVar1 = 0;
 LAB_call:
     ((fn2_t)(*(uint32_t*)(param_1 + 0xc)))(param_5, 2);

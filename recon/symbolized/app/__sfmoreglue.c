@@ -1,9 +1,10 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00086b14 @ 0x00086b14
- * public-name: FUN_00086b14
+ * public-name: __sfmoreglue
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
+ *   __sfmoreglue                             <= FUN_00086b14 @ 0x00086b14
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  */
 /* Reconstructed FUN_00086b14 @ 0x86b14  (parity: 300/300 trials, PROVEN) */
@@ -11,7 +12,7 @@
 extern unsigned int* _malloc_r(unsigned int, int);
 extern void memset_bytes(unsigned int*, int, int);
 
-unsigned int* FUN_00086b14(unsigned int param_1, int param_2)
+unsigned int* __sfmoreglue(unsigned int param_1, int param_2)
 {
     unsigned int *puVar1;
     int iVar2;

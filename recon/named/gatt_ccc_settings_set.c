@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   ccc_set_direct                           <= FUN_00059edc @ 0x00059edc
  *   gatt_ccc_settings_set                    <= FUN_0005af8c @ 0x0005af8c
- *   strtol_ascii_scan                        <= FUN_00077c1c @ 0x00077c1c
+ *   strtoul                                  <= FUN_00077c1c @ 0x00077c1c
  *   settings_name_steq                       <= FUN_0007f1a0 @ 0x0007f1a0
  *   settings_name_next                       <= FUN_0007f1e8 @ 0x0007f1e8
  *   bt_settings_decode_key                   <= FUN_00080cf2 @ 0x00080cf2
@@ -21,7 +21,7 @@
 /* Reconstructed FUN_0005af8c @ 0x5af8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int ccc_set_direct(void);
-extern int strtol_ascii_scan(int,...);
+extern int strtoul(int,...);
 extern int settings_name_steq(int,...);
 extern int settings_name_next(int,...);
 extern int bt_settings_decode_key(int,...);
@@ -55,7 +55,7 @@ unsigned int gatt_ccc_settings_set(int param_1,int param_2,codeptr param_3,int p
       FUN_00082a42(0x88128, 0x1040, &log);
     } else {
       if ((frame.identity == 0) ||
-          (lookup_result = strtol_ascii_scan(frame.identity,0,10), lookup_result == 0)) {
+          (lookup_result = strtoul(frame.identity,0,10), lookup_result == 0)) {
         frame.kind = 0;
         iVar1 = bt_settings_decode_key(frame.object, frame.address);
         if (iVar1 == 0) {

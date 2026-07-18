@@ -7,7 +7,7 @@
  *   attr_store_set                           <= FUN_00030178 @ 0x00030178
  *   attr_store_get                           <= FUN_000302f8 @ 0x000302f8
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   g_20000800                               @ 0x20000800
@@ -18,7 +18,7 @@
 #include <stdint.h>
 
 extern void *malloc(uint32_t);
-extern void heap_free(void *);
+extern void free(void *);
 extern void memcpy(void *, const void *, uint32_t, uint32_t, uint32_t);
 extern int attr_store_set(uint32_t, uint32_t);
 extern void attr_store_retry_delay(uint32_t);
@@ -53,7 +53,7 @@ int FUN_00030340(uint32_t first, uint32_t second,
     int attempt = 5, result;
     do result = ((int (*)(void *, uint32_t))*(uintptr_t *)(driver + 4))((void *)packet, packet_size);
     while (result < 0 && attempt-- != -1);
-    heap_free((void *)packet);
+    free((void *)packet);
     if (attempt == -1) return -1;
     if (attr_store_set(0x1c10, ((unsigned long)&g_20000800) /*=0x20000800*/) || attr_store_set(0x4408, 0x15)) return -1;
 
@@ -77,7 +77,7 @@ int FUN_00030340(uint32_t first, uint32_t second,
     attempt = 5;
     while ((result = ((int (*)(uint32_t *, uint32_t, void *, uint32_t))*(uintptr_t *)driver)
                     (&status, 2, response, response_size)) < 0) {
-        if (attempt-- == -1) { heap_free(response); return -1; }
+        if (attempt-- == -1) { free(response); return -1; }
     }
     response[0] = __builtin_bswap16(response[0]);
     response[1] = __builtin_bswap16(response[1]);
@@ -85,6 +85,6 @@ int FUN_00030340(uint32_t first, uint32_t second,
     *(uint32_t *)(response + 2) = bswap32(*(uint32_t *)(response + 2));
     if ((uint8_t)response[4] != first || *((uint8_t *)response + 9) != second ||
         *(uint32_t *)(response + 6) != 0) return -1;
-    heap_free(response);
+    free(response);
     return 0;
 }

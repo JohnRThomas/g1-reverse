@@ -15,8 +15,8 @@
 /* Reconstructed FUN_00060a10 @ 0x60a10  (parity: 300/300 trials, PROVEN) */
 
 extern int qspi_get_zephyr_ret_code(void);
-#define nrfx_qspi_init nrfx_qspi_init
-extern void nrfx_qspi_init(int,int,int,int,int);
+#define g1_recon_nrfx_qspi_init nrfx_qspi_init
+extern void g1_recon_nrfx_qspi_init(int,int,int,int,int);
 extern void k_sem_give(int);
 extern void audio_i2s_stop_and_reset_channels(void);
 extern void audio_i2s_start_channels(int);
@@ -31,7 +31,7 @@ int qspi_nor_acquire(int param_1, int param_2, int param_3, int param_4)
         k_sem_give(iVar3+0x48);
         iVar2 = 0;
         if (*pcVar1 == 0) {
-            nrfx_qspi_init(*(volatile int*)(param_1+4), 0x000838cb,
+            g1_recon_nrfx_qspi_init(*(volatile int*)(param_1+4), 0x000838cb,
                                     iVar3, 0, param_4);
             iVar2 = qspi_get_zephyr_ret_code();
             *pcVar1 = (iVar2==0);

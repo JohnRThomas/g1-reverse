@@ -12759,8 +12759,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact translation-unit-local four-domain clock stop implementation from stock hal_nordic 9784731 with the shipped assertion configuration. Raw identity remains FUN_00065000 at 0x00065000.",
    "aliases": [
-    "FUN_00065000",
-    "g1_clock_stop_impl"
+    "FUN_00065000"
    ]
   },
   "0x00065190": {
@@ -12771,8 +12770,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock asserted clock initializer from hal_nordic 9784731. Raw identity remains FUN_00065190 at 0x00065190.",
    "aliases": [
-    "FUN_00065190",
-    "g1_nrfx_clock_init_checked"
+    "FUN_00065190"
    ]
   },
   "0x000651d8": {
@@ -12783,8 +12781,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock asserted clock enable routine from hal_nordic 9784731. Raw identity remains FUN_000651d8 at 0x000651d8.",
    "aliases": [
-    "FUN_000651d8",
-    "nrfx_clock_irq_enable"
+    "FUN_000651d8"
    ]
   },
   "0x0006522c": {
@@ -12795,8 +12792,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock asserted clock-domain starter from hal_nordic 9784731. Raw identity remains FUN_0006522c at 0x0006522c.",
    "aliases": [
-    "FUN_0006522c",
-    "g1_nrfx_clock_start_checked"
+    "FUN_0006522c"
    ]
   },
   "0x00065324": {
@@ -12807,8 +12803,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock asserted public clock stop wrapper from hal_nordic 9784731. Raw identity remains FUN_00065324 at 0x00065324.",
    "aliases": [
-    "FUN_00065324",
-    "g1_nrfx_clock_stop_checked"
+    "FUN_00065324"
    ]
   },
   "0x0006540c": {
@@ -13146,8 +13141,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock NVMC page eraser from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f1c at 0x00065f1c.",
    "aliases": [
-    "FUN_00065f1c",
-    "g1_recon_nrfx_nvmc_page_erase"
+    "FUN_00065f1c"
    ]
   },
   "0x00065f80": {
@@ -13158,8 +13152,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock NVMC word writer from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f80 at 0x00065f80.",
    "aliases": [
-    "FUN_00065f80",
-    "g1_recon_nrfx_nvmc_word_write"
+    "FUN_00065f80"
    ]
   },
   "0x00065ff4": {
@@ -13377,8 +13370,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock nrfx_qspi_init from hal_nordic 9784731 with the shipped verbose assertion configuration. Raw identity remains FUN_00066994 at 0x00066994.",
    "aliases": [
-    "FUN_00066994",
-    "g1_recon_nrfx_qspi_init"
+    "FUN_00066994"
    ]
   },
   "0x000669f4": {
@@ -13389,8 +13381,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected exact stock custom-instruction transfer identity from hal_nordic 9784731. Raw identity remains FUN_000669f4 at 0x000669f4.",
    "aliases": [
-    "FUN_000669f4",
-    "g1_recon_nrfx_qspi_cinstr_xfer"
+    "FUN_000669f4"
    ]
   },
   "0x00066ae0": {
@@ -13401,8 +13392,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock RDSR status helper from hal_nordic 9784731. Raw identity remains FUN_00066ae0 at 0x00066ae0.",
    "aliases": [
-    "FUN_00066ae0",
-    "g1_recon_nrfx_qspi_mem_busy_check"
+    "FUN_00066ae0"
    ]
   },
   "0x00066b24": {
@@ -13424,8 +13414,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_read label; this is the exact stock erase owner from hal_nordic 9784731. Raw identity remains FUN_00066bc4 at 0x00066bc4.",
    "aliases": [
-    "FUN_00066bc4",
-    "g1_recon_nrfx_qspi_erase"
+    "FUN_00066bc4"
    ]
   },
   "0x00066c88": {
@@ -15341,43 +15330,48 @@
   "0x00076b48": {
    "address": "0x00076b48",
    "raw_name": "FUN_00076b48",
-   "name": "FUN_00076b48",
-   "display_name": "FUN_00076b48",
-   "human": false,
-   "source": "recon/app/src/FUN_00076b48.c",
-   "aliases": []
+   "name": "newlib_stdio_init_stream",
+   "display_name": "newlib_stdio_init_stream",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact static std helper in Zephyr SDK Newlib findfp.c; raw identity remains FUN_00076b48.",
+   "aliases": [
+    "FUN_00076b48"
+   ]
   },
   "0x00076b9c": {
    "address": "0x00076b9c",
    "raw_name": "FUN_00076b9c",
-   "name": "malloc_lock_acquire",
-   "display_name": "malloc_lock_acquire",
+   "name": "__sfp_lock_acquire",
+   "display_name": "__sfp_lock_acquire",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c stdio-pool recursive-lock veneer; raw identity remains FUN_00076b9c.",
    "aliases": [
-    "FUN_00076b9c"
+    "FUN_00076b9c",
+    "malloc_lock_acquire"
    ]
   },
   "0x00076ba8": {
    "address": "0x00076ba8",
    "raw_name": "FUN_00076ba8",
-   "name": "malloc_lock_release",
-   "display_name": "malloc_lock_release",
+   "name": "__sfp_lock_release",
+   "display_name": "__sfp_lock_release",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c stdio-pool recursive-unlock veneer; raw identity remains FUN_00076ba8.",
    "aliases": [
-    "FUN_00076ba8"
+    "FUN_00076ba8",
+    "malloc_lock_release"
    ]
   },
   "0x00076bb4": {
    "address": "0x00076bb4",
    "raw_name": "FUN_00076bb4",
-   "name": "env_lock_acquire",
-   "display_name": "env_lock_acquire",
+   "name": "__sinit_lock_acquire",
+   "display_name": "__sinit_lock_acquire",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c initialization-lock veneer; raw identity remains FUN_00076bb4.",
    "aliases": [
-    "FUN_00076bb4"
+    "FUN_00076bb4",
+    "env_lock_acquire"
    ]
   },
   "0x00076bc0": {
@@ -15386,7 +15380,7 @@
    "name": "__sinit_lock_release",
    "display_name": "__sinit_lock_release",
    "human": true,
-   "source": "function_name_overrides.json: Exact newlib initialization-lock release veneer; it releases recursive lock 0x20003818 through __retarget_lock_release_recursive. Raw identity remains FUN_00076bc0.",
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c initialization-unlock veneer; raw identity remains FUN_00076bc0.",
    "aliases": []
   },
   "0x00076bcc": {
@@ -15395,7 +15389,7 @@
    "name": "__sinit",
    "display_name": "__sinit",
    "human": true,
-   "source": "function_name_overrides.json: Newlib stdio initializer for struct _reent: allocates/configures stdin, stdout and stderr and sets __sdidinit under the environment lock. Raw identity remains FUN_00076bcc.",
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c reentrant stdio initializer; raw identity remains FUN_00076bcc.",
    "aliases": [
     "FUN_00076bcc"
    ]
@@ -15403,11 +15397,13 @@
   "0x00076c3c": {
    "address": "0x00076c3c",
    "raw_name": "FUN_00076c3c",
-   "name": "FUN_00076c3c",
-   "display_name": "FUN_00076c3c",
-   "human": false,
-   "source": "recon/app/src/FUN_00076c3c.c",
-   "aliases": []
+   "name": "__sfp",
+   "display_name": "__sfp",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c FILE allocator sharing the stdio pool and locks; raw identity remains FUN_00076c3c.",
+   "aliases": [
+    "FUN_00076c3c"
+   ]
   },
   "0x00076cc8": {
    "address": "0x00076cc8",
@@ -15437,7 +15433,7 @@
    "name": "malloc",
    "display_name": "malloc",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano malloc wrapper; raw identity remains FUN_00076d6c.",
    "aliases": [
     "FUN_00076d6c"
    ]
@@ -15445,23 +15441,25 @@
   "0x00076d7c": {
    "address": "0x00076d7c",
    "raw_name": "FUN_00076d7c",
-   "name": "heap_free",
-   "display_name": "heap_free",
+   "name": "free",
+   "display_name": "free",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano free wrapper; raw identity remains FUN_00076d7c.",
    "aliases": [
-    "FUN_00076d7c"
+    "FUN_00076d7c",
+    "heap_free"
    ]
   },
   "0x00076d8c": {
    "address": "0x00076d8c",
    "raw_name": "FUN_00076d8c",
-   "name": "heap_free_core",
-   "display_name": "heap_free_core",
+   "name": "_free_r",
+   "display_name": "_free_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant free sharing __malloc_free_list; raw identity remains FUN_00076d8c.",
    "aliases": [
-    "FUN_00076d8c"
+    "FUN_00076d8c",
+    "heap_free_core"
    ]
   },
   "0x00076e20": {
@@ -15470,7 +15468,7 @@
    "name": "_malloc_r",
    "display_name": "_malloc_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano allocator sharing __malloc_free_list and __malloc_sbrk_start; raw identity remains FUN_00076e20.",
    "aliases": [
     "FUN_00076e20"
    ]
@@ -15614,18 +15612,19 @@
    "name": "_strtoul_r",
    "display_name": "_strtoul_r",
    "human": true,
-   "source": "function_name_overrides.json: Exact newlib reentrant unsigned-long parser, including base detection, overflow/errno, sign, and end-pointer behavior. Raw identity remains FUN_00077b38.",
+   "source": "function_name_overrides.json: Firmware public entry is byte-exact to Newlib strtoul.o's _strtoul_l.constprop.0 body; the archive _strtoul_r adds a four-byte veneer. Raw identity remains FUN_00077b38.",
    "aliases": []
   },
   "0x00077c1c": {
    "address": "0x00077c1c",
    "raw_name": "FUN_00077c1c",
-   "name": "strtol_ascii_scan",
-   "display_name": "strtol_ascii_scan",
+   "name": "strtoul",
+   "display_name": "strtoul",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib strtoul wrapper in the same object closure as _strtoul_r; raw identity remains FUN_00077c1c.",
    "aliases": [
-    "FUN_00077c1c"
+    "FUN_00077c1c",
+    "strtol_ascii_scan"
    ]
   },
   "0x00077c30": {
@@ -24129,8 +24128,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock QSPI write tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085200 at 0x00085200.",
    "aliases": [
-    "FUN_00085200",
-    "audio_i2s_stream0_trigger_start"
+    "FUN_00085200"
    ]
   },
   "0x00085206": {
@@ -24141,8 +24139,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock QSPI read tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085206 at 0x00085206.",
    "aliases": [
-    "FUN_00085206",
-    "audio_i2s_stream1_trigger_start"
+    "FUN_00085206"
    ]
   },
   "0x0008520c": {
@@ -24153,8 +24150,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact stock chip-erase tail wrapper from hal_nordic 9784731. Raw identity remains FUN_0008520c at 0x0008520c.",
    "aliases": [
-    "FUN_0008520c",
-    "g1_recon_nrfx_qspi_chip_erase"
+    "FUN_0008520c"
    ]
   },
   "0x00085214": {
@@ -25578,11 +25574,13 @@
   "0x00086b14": {
    "address": "0x00086b14",
    "raw_name": "FUN_00086b14",
-   "name": "FUN_00086b14",
-   "display_name": "FUN_00086b14",
-   "human": false,
-   "source": "recon/app/src/FUN_00086b14.c",
-   "aliases": []
+   "name": "__sfmoreglue",
+   "display_name": "__sfmoreglue",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact Newlib findfp.c FILE-pool growth helper; raw identity remains FUN_00086b14.",
+   "aliases": [
+    "FUN_00086b14"
+   ]
   },
   "0x00086b40": {
    "address": "0x00086b40",
@@ -25991,23 +25989,25 @@
   "0x000876d0": {
    "address": "0x000876d0",
    "raw_name": "FUN_000876d0",
-   "name": "heap_calloc",
-   "display_name": "heap_calloc",
+   "name": "_calloc_r",
+   "display_name": "_calloc_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant calloc in the allocator state closure; raw identity remains FUN_000876d0.",
    "aliases": [
-    "FUN_000876d0"
+    "FUN_000876d0",
+    "heap_calloc"
    ]
   },
   "0x000876ec": {
    "address": "0x000876ec",
    "raw_name": "FUN_000876ec",
-   "name": "heap_realloc_grow",
-   "display_name": "heap_realloc_grow",
+   "name": "_realloc_r",
+   "display_name": "_realloc_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano reentrant realloc in the allocator state closure; raw identity remains FUN_000876ec.",
    "aliases": [
-    "FUN_000876ec"
+    "FUN_000876ec",
+    "heap_realloc_grow"
    ]
   },
   "0x00087736": {
@@ -26057,12 +26057,13 @@
   "0x00087996": {
    "address": "0x00087996",
    "raw_name": "FUN_00087996",
-   "name": "heap_block_usable_size",
-   "display_name": "heap_block_usable_size",
+   "name": "_malloc_usable_size_r",
+   "display_name": "_malloc_usable_size_r",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Instruction-exact Newlib-nano allocation-size helper in the allocator closure; raw identity remains FUN_00087996.",
    "aliases": [
-    "FUN_00087996"
+    "FUN_00087996",
+    "heap_block_usable_size"
    ]
   }
  },
@@ -26487,8 +26488,6 @@
   "FUN_00076290": "0x00076290",
   "FUN_000767c8": "0x000767c8",
   "FUN_000768e0": "0x000768e0",
-  "FUN_00076b48": "0x00076b48",
-  "FUN_00076c3c": "0x00076c3c",
   "FUN_0007712c": "0x0007712c",
   "FUN_00077914": "0x00077914",
   "FUN_00077a10": "0x00077a10",
@@ -26771,7 +26770,6 @@
   "FUN_000869c6": "0x000869c6",
   "FUN_000869cc": "0x000869cc",
   "FUN_000869dc": "0x000869dc",
-  "FUN_00086b14": "0x00086b14",
   "FUN_00086b40": "0x00086b40",
   "FUN_00086b7e": "0x00086b7e",
   "FUN_00086c1e": "0x00086c1e",
@@ -26837,17 +26835,24 @@
   "__nrfy_internal_spim_events_process": "0x0008523e",
   "__nrfy_internal_twim_event_handle": "0x00085378",
   "__nrfy_internal_twim_events_process": "0x0008539a",
+  "__sfmoreglue": "0x00086b14",
+  "__sfp": "0x00076c3c",
+  "__sfp_lock_acquire": "0x00076b9c",
+  "__sfp_lock_release": "0x00076ba8",
   "__sfvwrite_r": "0x00077e70",
   "__sinit": "0x00076bcc",
+  "__sinit_lock_acquire": "0x00076bb4",
   "__sinit_lock_release": "0x00076bc0",
   "__strcat_chk": "0x00086fbe",
   "__strcpy_chk": "0x00086ffe",
   "__swbuf_r": "0x00077c8c",
   "__truncdfsf2": "0x0000dee8",
   "__udivmoddi4": "0x0000ec62",
+  "_calloc_r": "0x000876d0",
   "_copy": "0x0007feaa",
   "_double_byte": "0x0007fec8",
   "_fflush_r": "0x00076ad0",
+  "_free_r": "0x00076d8c",
   "_fstat": "0x000807e8",
   "_fstat_r": "0x00077e4c",
   "_get_digit": "0x0007e290",
@@ -26855,7 +26860,9 @@
   "_isatty_r": "0x00078570",
   "_ldiv5": "0x0007e260",
   "_malloc_r": "0x00076e20",
+  "_malloc_usable_size_r": "0x00087996",
   "_puts_r": "0x00077820",
+  "_realloc_r": "0x000876ec",
   "_sbrk_r": "0x000778f4",
   "_strtoul_r": "0x00077b38",
   "_vfprintf_r": "0x00076ed4",
@@ -27397,7 +27404,6 @@
   "entropy_gather_internal_part_0": "0x00079f50",
   "entropy_get_entropy_isr_call": "0x00052bf8",
   "entropy_update": "0x00079ed4",
-  "env_lock_acquire": "0x00076bb4",
   "ept_cb": "0x0007ecc4",
   "erase_audio_buffer": "0x0002f008",
   "esb_pairing_sync_step": "0x000275fc",
@@ -27473,6 +27479,7 @@
   "format_string_to_buffer": "0x0007797c",
   "fprintf_stream": "0x00076cc8",
   "framed_serial_receive_parser": "0x00033554",
+  "free": "0x00076d7c",
   "free_chunk": "0x0007e0a6",
   "free_list_add": "0x0007e022",
   "free_list_remove_bidx": "0x0007de9a",
@@ -27656,11 +27663,6 @@
   "hci_event_prio": "0x00054784",
   "hci_set_ad": "0x00055534",
   "hci_vs_init": "0x00012080",
-  "heap_block_usable_size": "0x00087996",
-  "heap_calloc": "0x000876d0",
-  "heap_free": "0x00076d7c",
-  "heap_free_core": "0x00076d8c",
-  "heap_realloc_grow": "0x000876ec",
   "hex2bin": "0x0007dd0a",
   "hex4_to_uint": "0x00084e9a",
   "hex_nibble_from_ascii": "0x00087340",
@@ -27867,8 +27869,6 @@
   "main": "0x00016eb8",
   "malloc": "0x00076d6c",
   "malloc_impl": "0x000868c2",
-  "malloc_lock_acquire": "0x00076b9c",
-  "malloc_lock_release": "0x00076ba8",
   "mark_master_or_low_battery_flag": "0x0002efc0",
   "master_process_audio_fw_load_req": "0x0002af4c",
   "max_utilization_update": "0x0007e4f2",
@@ -27961,6 +27961,7 @@
   "net_buf_unref": "0x0005f24c",
   "net_pkt_skip": "0x00086502",
   "net_pkt_write_be16": "0x0007d696",
+  "newlib_stdio_init_stream": "0x00076b48",
   "next_timeout": "0x00074b7c",
   "nfc_eeprom_comm_lock": "0x00030cb8",
   "nfc_eeprom_comm_unlock": "0x00030cc4",
@@ -28367,7 +28368,7 @@
   "strtod_match_token": "0x0008738e",
   "strtod_scan_int_prefix": "0x0000ea18",
   "strtol": "0x00077b24",
-  "strtol_ascii_scan": "0x00077c1c",
+  "strtoul": "0x00077c1c",
   "subcontracing_send_data_pkcs7": "0x00021a40",
   "submit_display_reflash_work": "0x0004904c",
   "subsystem_enable_gpio_pin_set_adapter": "0x000179f8",

@@ -6,7 +6,7 @@
  *   convert_app_whitelist_to_json            <= FUN_000352e8 @ 0x000352e8
  *   revalidate_whitelist_json                <= FUN_000355b4 @ 0x000355b4
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_a7c9c                             @ 0x000a7c9c
@@ -19,7 +19,7 @@ extern void log_message(const char *msg, const char *file, unsigned int line);
 extern int debug_print(void);
 extern int convert_app_whitelist_to_json(int);
 extern int malloc(int);
-extern int heap_free(int);
+extern int free(int);
 extern int memset_bytes(int, int, int);
 
 void revalidate_whitelist_json(void)
@@ -30,7 +30,7 @@ void revalidate_whitelist_json(void)
   if (iVar1 != 0) {
     memset_bytes(iVar1,0,0x15e3);
     convert_app_whitelist_to_json(iVar1);
-    heap_free(iVar1);
+    free(iVar1);
     return;
   }
   if (*(volatile unsigned int*)0x20007554UL != 0) {

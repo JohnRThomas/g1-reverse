@@ -24,8 +24,8 @@ extern int qspi_activate(int);
 extern void assert_post_action(uint32_t,int);
 extern void printk(uint32_t,uint32_t,uint32_t,int,uint32_t);
 
-#define nrfx_qspi_erase nrfx_qspi_erase
-int nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,
+#define g1_recon_nrfx_qspi_erase nrfx_qspi_erase
+int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,
                              uint32_t param_3, uint32_t param_4){
   uint8_t r4 = *(volatile uint8_t*)0x2000b378UL;
   if (r4 == 0){

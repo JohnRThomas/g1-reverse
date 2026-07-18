@@ -6,7 +6,7 @@
  *   pixelto4bithex                           <= FUN_0003678c @ 0x0003678c
  *   get_demo_image_source                    <= FUN_00036820 @ 0x00036820
  *   malloc                                   <= FUN_00076d6c @ 0x00076d6c
- *   heap_free                                <= FUN_00076d7c @ 0x00076d7c
+ *   free                                     <= FUN_00076d7c @ 0x00076d7c
  *   printf                                   <= FUN_000777f0 @ 0x000777f0
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
@@ -30,7 +30,7 @@ extern void log_message(uint32_t format, ...);
 extern uintptr_t get_device_info(void);
 extern void pixelto4bithex(unsigned int inverted_byte, int glyph_width);
 extern void *malloc(unsigned int size);
-extern void heap_free(void *allocation);
+extern void free(void *allocation);
 extern void printf(uint32_t message);
 extern int FUN_0007d1c8(const void *field);
 extern void memcpy(uintptr_t destination, int source, unsigned int size);
@@ -69,7 +69,7 @@ void get_demo_image_source(unsigned int mode)
     uint32_t address = mode * 0x3ebeu + 0x00180000u;
     if (read(context, address, buffer, 0x50u) != 0) {
         log_message(0x000a8d7fu, 0x000a8e02u, 0xdfu);
-        heap_free(buffer);
+        free(buffer);
         return;
     }
 
@@ -79,7 +79,7 @@ void get_demo_image_source(unsigned int mode)
 
     if (strncmp(header, 0x000a8da5u, 2u) != 0) {
         log_message(0x000a8da8u);
-        heap_free(buffer);
+        free(buffer);
         return;
     }
 
@@ -95,7 +95,7 @@ void get_demo_image_source(unsigned int mode)
 
     if (format != 1u) {
         printf(0x000a8dc1u);
-        heap_free(buffer);
+        free(buffer);
         return;
     }
 
@@ -121,7 +121,7 @@ void get_demo_image_source(unsigned int mode)
         context = get_read_context();
         if (read(context, address, buffer, (unsigned int)row_bytes) != 0) {
             log_message(0x000a8d7fu, 0x000a8e02u, 0x103u);
-            heap_free(buffer);
+            free(buffer);
             return;
         }
 
@@ -139,5 +139,5 @@ void get_demo_image_source(unsigned int mode)
         address -= (uint32_t)(row_words * 4);
     }
 
-    heap_free(buffer);
+    free(buffer);
 }

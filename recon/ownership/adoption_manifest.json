@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 388,
-    "exclude_reconstruction": 327,
-    "retain_reconstruction": 61,
+    "entries": 403,
+    "exclude_reconstruction": 344,
+    "retain_reconstruction": 59,
     "by_kind": {
-     "source": 238,
+     "source": 253,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -11303,22 +11303,666 @@
     },
     {
      "core": "app",
+     "va": "0x00076b48",
+     "raw_symbol": "FUN_00076b48",
+     "current_symbol": "newlib_stdio_init_stream",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "newlib_stdio_init_stream",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7eae7181574e2726733929d2b8bc633915c6900fb77981da9338370999d150bf",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "newlib_stdio_init_stream",
+        "corrected_readable_identity": "newlib_stdio_init_stream",
+        "corrected_upstream_symbol": "newlib_stdio_init_stream",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076b9c",
+     "raw_symbol": "FUN_00076b9c",
+     "current_symbol": "__sfp_lock_acquire",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sfp_lock_acquire",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "__sfp_lock_acquire",
+        "corrected_readable_identity": "__sfp_lock_acquire",
+        "corrected_upstream_symbol": "__sfp_lock_acquire",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076ba8",
+     "raw_symbol": "FUN_00076ba8",
+     "current_symbol": "__sfp_lock_release",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sfp_lock_release",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "__sfp_lock_release",
+        "corrected_readable_identity": "__sfp_lock_release",
+        "corrected_upstream_symbol": "__sfp_lock_release",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076bb4",
+     "raw_symbol": "FUN_00076bb4",
+     "current_symbol": "__sinit_lock_acquire",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sinit_lock_acquire",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "__sinit_lock_acquire",
+        "corrected_readable_identity": "__sinit_lock_acquire",
+        "corrected_upstream_symbol": "__sinit_lock_acquire",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076bc0",
+     "raw_symbol": "FUN_00076bc0",
+     "current_symbol": "__sinit_lock_release",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sinit_lock_release",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "selected_owner_not_indexed"
+       ],
+       "signature_match": {
+        "opcode": 0.0,
+        "shape": 0.0,
+        "length": 0.0,
+        "normalized_exact": false
+       },
+       "upstream_source": {
+        "path": null,
+        "sha256": null,
+        "repository": null,
+        "commit": null
+       },
+       "link_provenance": {
+        "owner_input": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-findfp.o)",
+        "owner_source_line": "findfp.c:(.text.__sinit_lock_release+0x0)",
+        "reconstruction_input": "app/libapp.a(__sinit_lock_release.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "findfp.c:(.text.__sinit_lock_release+0x0): multiple definition of `__sinit_lock_release'; app/libapp.a(__sinit_lock_release.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/__sinit_lock_release.c:15: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2968f47d25b465ead553d46a3b6fbb93ae815c2e509819579d5659b4c9592ef3",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076bcc",
+     "raw_symbol": "FUN_00076bcc",
+     "current_symbol": "__sinit",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sinit",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "selected_owner_not_indexed"
+       ],
+       "signature_match": {
+        "opcode": 0.0,
+        "shape": 0.0,
+        "length": 0.0,
+        "normalized_exact": false
+       },
+       "upstream_source": {
+        "path": null,
+        "sha256": null,
+        "repository": null,
+        "commit": null
+       },
+       "link_provenance": {
+        "owner_input": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-findfp.o)",
+        "owner_source_line": "findfp.c:(.text.__sinit+0x0)",
+        "reconstruction_input": "app/libapp.a(__sinit.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "findfp.c:(.text.__sinit+0x0): multiple definition of `__sinit'; app/libapp.a(__sinit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/__sinit.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9dba134c63c44b722e6407d3e7f8b1bce0fb745cffb0e385f442110a5f73f304",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076c3c",
+     "raw_symbol": "FUN_00076c3c",
+     "current_symbol": "__sfp",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sfp",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "97f4cbd25af876b328e0b9aaa3b15cc3b6967f093f9c6612c54247704e0cc668",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "__sfp",
+        "corrected_readable_identity": "__sfp",
+        "corrected_upstream_symbol": "__sfp",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00076d6c",
      "raw_symbol": "FUN_00076d6c",
      "current_symbol": "malloc",
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "malloc",
-     "upstream_unit": null,
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "selected_owner_not_indexed"
        ],
@@ -11338,7 +11982,245 @@
         "owner_input": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-malloc.o)",
         "owner_source_line": "malloc.c:(.text.malloc+0x0)",
         "reconstruction_input": "app/libapp.a(malloc.c.obj)",
-        "diagnostic": "malloc.c:(.text.malloc+0x0): multiple definition of `malloc'; app/libapp.a(malloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/malloc.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "malloc.c:(.text.malloc+0x0): multiple definition of `malloc'; app/libapp.a(malloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/malloc.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5072c0b3187fcf199c0278266ecdb45544d4f923492cea68a9136b1bea3db679",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076d7c",
+     "raw_symbol": "FUN_00076d7c",
+     "current_symbol": "free",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "free",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5072c0b3187fcf199c0278266ecdb45544d4f923492cea68a9136b1bea3db679",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "free",
+        "corrected_readable_identity": "free",
+        "corrected_upstream_symbol": "free",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00076d8c",
+     "raw_symbol": "FUN_00076d8c",
+     "current_symbol": "_free_r",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_free_r",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2dd8a981cbfb47db241681bf70cf4c621424ab157a11011fdd089c1e4d72bd11",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "_free_r",
+        "corrected_readable_identity": "_free_r",
+        "corrected_upstream_symbol": "_free_r",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
        }
       }
      ]
@@ -11351,16 +12233,16 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "_malloc_r",
-     "upstream_unit": null,
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "selected_owner_not_indexed"
        ],
@@ -11380,7 +12262,267 @@
         "owner_input": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-nano-mallocr.o)",
         "owner_source_line": "nano-mallocr.c:(.text._malloc_r+0x0)",
         "reconstruction_input": "app/libapp.a(_malloc_r.c.obj)",
-        "diagnostic": "nano-mallocr.c:(.text._malloc_r+0x0): multiple definition of `_malloc_r'; app/libapp.a(_malloc_r.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/_malloc_r.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "nano-mallocr.c:(.text._malloc_r+0x0): multiple definition of `_malloc_r'; app/libapp.a(_malloc_r.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/_malloc_r.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "625f41e891884b572cea0faf0c8d8f43878b0c101fcb140983a6eb6231d5e654",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00077b38",
+     "raw_symbol": "FUN_00077b38",
+     "current_symbol": "_strtoul_r",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_strtoul_r",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "selected_owner_not_indexed"
+       ],
+       "signature_match": {
+        "opcode": 0.0,
+        "shape": 0.0,
+        "length": 0.0,
+        "normalized_exact": false
+       },
+       "upstream_source": {
+        "path": null,
+        "sha256": null,
+        "repository": null,
+        "commit": null
+       },
+       "link_provenance": {
+        "owner_input": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a(lib_a-strtoul.o)",
+        "owner_source_line": "strtoul.c:(.text._strtoul_r+0x0)",
+        "reconstruction_input": "app/libapp.a(_strtoul_r.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "strtoul.c:(.text._strtoul_r+0x0): multiple definition of `_strtoul_r'; app/libapp.a(_strtoul_r.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/_strtoul_r.c:12: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "173da23d946983580b4133c2cb1c672a7a4cc1e771ccaa459cf7881bf1f7f85d",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_NEWLIB_LIBC": "y",
+        "CONFIG_NEWLIB_LIBC_NANO": "y"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00077c1c",
+     "raw_symbol": "FUN_00077c1c",
+     "current_symbol": "strtoul",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "strtoul",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "0ef40e1932db5bca13832119ccc0d895f15085fbadbd3c2d983da04722e17322",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "strtoul",
+        "corrected_readable_identity": "strtoul",
+        "corrected_upstream_symbol": "strtoul",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": []
        }
       }
      ]
@@ -17460,6 +18602,90 @@
     },
     {
      "core": "app",
+     "va": "0x00086b14",
+     "raw_symbol": "FUN_00086b14",
+     "current_symbol": "__sfmoreglue",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "__sfmoreglue",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2205d66c468ffed995ee001cc1db0d2f7dc7be4007abb4687099da663257ea1e",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "__sfmoreglue",
+        "corrected_readable_identity": "__sfmoreglue",
+        "corrected_upstream_symbol": "__sfmoreglue",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "stdio FILE pool",
+         "recursive stdio/init locks"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00086be4",
      "raw_symbol": "FUN_00086be4",
      "current_symbol": "memcmp",
@@ -17659,6 +18885,258 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000876d0",
+     "raw_symbol": "FUN_000876d0",
+     "current_symbol": "_calloc_r",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_calloc_r",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "eaabbf5bae1bfb7f6546abcad2cf35b6e7b5a60b685522e6bd08fd5530ca2e91",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "_calloc_r",
+        "corrected_readable_identity": "_calloc_r",
+        "corrected_upstream_symbol": "_calloc_r",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000876ec",
+     "raw_symbol": "FUN_000876ec",
+     "current_symbol": "_realloc_r",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_realloc_r",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2ae31a7f3e8d0aeb70c327922403186b7deede4b36e0a8d4d4b7d78cb8ef612f",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "_realloc_r",
+        "corrected_readable_identity": "_realloc_r",
+        "corrected_upstream_symbol": "_realloc_r",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00087996",
+     "raw_symbol": "FUN_00087996",
+     "current_symbol": "_malloc_usable_size_r",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_malloc_usable_size_r",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a87c3c162c67b6208bf18848025d36bab69705cc467f8a5a20602e847749ded6",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "_malloc_usable_size_r",
+        "corrected_readable_identity": "_malloc_usable_size_r",
+        "corrected_upstream_symbol": "_malloc_usable_size_r",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "__malloc_free_list",
+         "__malloc_sbrk_start"
+        ]
+       }
       }
      ]
     },
@@ -32285,7 +33763,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "9a793b2c41b08849a2e3dc0b8407e326d1a063717c3fe85b96e275c75233f2b0"
+   "sha256": "745686850b26408bfafe90766342a6e33ec86ac2b7050253aa2383eeb66843e8"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",

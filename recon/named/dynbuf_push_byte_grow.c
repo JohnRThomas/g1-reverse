@@ -4,14 +4,14 @@
  * callees (readable <= raw @ address):
  *   _malloc_r                                <= FUN_00076e20 @ 0x00076e20
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
- *   heap_realloc_grow                        <= FUN_000876ec @ 0x000876ec
+ *   _realloc_r                               <= FUN_000876ec @ 0x000876ec
  *   dynbuf_push_byte_grow                    <= FUN_0008790e @ 0x0008790e
  */
 /* Reconstructed FUN_0008790e @ 0x8790e  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
 extern int _malloc_r(uint32_t,int);
 extern void memcpy(int,int,int);
-extern int heap_realloc_grow(uint32_t,int,int);
+extern int _realloc_r(uint32_t,int,int);
 uint32_t dynbuf_push_byte_grow(uint32_t param_1,volatile int* param_2){
   int iVar1,iVar2;
   if((int*)param_2[0xd]==(int*)(param_2+0x11)){
@@ -27,7 +27,7 @@ uint32_t dynbuf_push_byte_grow(uint32_t param_1,volatile int* param_2){
     }
   } else {
     iVar2=param_2[0xe];
-    iVar1=heap_realloc_grow(param_1,param_2[0xd],iVar2<<1);
+    iVar1=_realloc_r(param_1,param_2[0xd],iVar2<<1);
     if(iVar1!=0){
       memcpy(iVar1+iVar2,iVar1,iVar2);
       *param_2=iVar1+iVar2;
