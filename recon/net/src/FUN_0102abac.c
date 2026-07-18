@@ -6,7 +6,13 @@
 
 #define g1_ipc_endpoint_send FUN_0102abac
 
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/ipc/ipc_service.h>
+#define FUN_0102d618(endpoint, data, size) \
+    ipc_service_send((struct ipc_ept *)(endpoint), (data), (size))
+#else
 extern int FUN_0102d618(void *queue, const void *data, uint32_t size);
+#endif
 extern void FUN_01039722(const char *format, ...);
 
 int g1_ipc_endpoint_send(const void *data, uint32_t size)

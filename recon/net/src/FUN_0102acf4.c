@@ -4,14 +4,27 @@
  */
 #include <stdint.h>
 
-#define g1_hci_rpmsg_tx_thread FUN_0102acf4
-
-extern int FUN_0103689c(void *sem, int64_t timeout);
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/ipc/ipc_service.h>
+#include <zephyr/kernel.h>
+#include <zephyr/net/buf.h>
+#define FUN_0103a456(fifo, timeout) net_buf_get((struct k_fifo *)(fifo), K_FOREVER)
+#define FUN_0103a45a(simple, byte) \
+    net_buf_simple_push_u8((struct net_buf_simple *)(simple), (byte))
+#define FUN_0102d618(endpoint, data, size) \
+    ipc_service_send((struct ipc_ept *)(endpoint), (data), (size))
+#define FUN_01037a60() k_yield()
+#else
 extern void *FUN_0103a456(void *fifo, int64_t timeout);
 extern void FUN_0103a45a(void *simple, uint32_t byte);
 extern int FUN_0102d618(void *endpoint, const void *data, uint32_t size);
-extern void FUN_0102ff94(void *buffer);
 extern void FUN_01037a60(void);
+#endif
+
+#define g1_hci_rpmsg_tx_thread FUN_0102acf4
+
+extern int FUN_0103689c(void *sem, int64_t timeout);
+extern void FUN_0102ff94(void *buffer);
 extern void FUN_01039722(const char *format, ...);
 
 struct g1_net_buf {

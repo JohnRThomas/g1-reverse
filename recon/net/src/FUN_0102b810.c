@@ -18,6 +18,24 @@ extern int FUN_0102a122(uint8_t, void *);
 extern int FUN_0102a0e6(uint8_t);
 extern void FUN_01039722(const void *, ...);
 
+#ifdef G1_COHESIVE_BUILD
+#include <mpsl_timeslot.h>
+struct k_msgq;
+extern struct k_msgq g1_timeslot_api_msgq;
+extern mpsl_timeslot_request_t g1_timeslot_request_earliest;
+extern mpsl_timeslot_request_t g1_timeslot_request_normal;
+extern void *FUN_0102b944(uint8_t, uint32_t, uint32_t);
+#define TIMESLOT_API_QUEUE ((const void *)&g1_timeslot_api_msgq) /*=0x210008e0*/
+#define TIMESLOT_EARLIEST_REQUEST ((void *)&g1_timeslot_request_earliest) /*=0x210005d8*/
+#define TIMESLOT_NORMAL_REQUEST ((volatile uint32_t *)&g1_timeslot_request_normal) /*=0x210005b8*/
+#define TIMESLOT_SIGNAL_CALLBACK ((const void *)FUN_0102b944) /*=0x0102c145 runtime Thumb*/
+#else
+#define TIMESLOT_API_QUEUE ((const void *)0x210008e0)
+#define TIMESLOT_EARLIEST_REQUEST ((void *)0x210005d8)
+#define TIMESLOT_NORMAL_REQUEST ((volatile uint32_t *)0x210005b8)
+#define TIMESLOT_SIGNAL_CALLBACK ((const void *)0x0102c145)
+#endif
+
 static inline __attribute__((always_inline)) void
 timeslot_api_fatal(const void *message, int error)
 {
@@ -38,28 +56,28 @@ void g1_timeslot_api_worker(void)
   uint8_t session_id = 0xff;
 
   for (;;) {
-    if (FUN_010362d0((const void *)0x210008e0, &api_call, -1, -1) != 0) {
+    if (FUN_010362d0(TIMESLOT_API_QUEUE, &api_call, -1, -1) != 0) {
       continue;
     }
 
     int error = 0;
     switch (api_call) {
     case 0:
-      error = FUN_01021a38((const void *)0x0102c145, &session_id);
+      error = FUN_01021a38(TIMESLOT_SIGNAL_CALLBACK, &session_id);
       if (error != 0) {
         timeslot_api_fatal((const void *)0x0103d1d9, error);
       }
       break;
 
     case 1:
-      error = FUN_0102a122(session_id, (void *)0x210005d8);
+      error = FUN_0102a122(session_id, TIMESLOT_EARLIEST_REQUEST);
       if (error != 0) {
         timeslot_api_fatal((const void *)0x0103d1f2, error);
       }
       break;
 
     case 2: {
-      volatile uint32_t *normal_request = (volatile uint32_t *)0x210005b8;
+      volatile uint32_t *normal_request = TIMESLOT_NORMAL_REQUEST;
       uint32_t timeout_steps = *(volatile uint32_t *)0x21004638;
       if (timeout_steps != 0) {
         normal_request[2] = 50000u + 5000u * timeout_steps;

@@ -5,6 +5,14 @@ extern int FUN_01036198(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
 extern void FUN_01039722(const void *message, int status);
 
+#ifdef G1_COHESIVE_BUILD
+struct k_msgq;
+extern struct k_msgq g1_timeslot_api_msgq;
+#define TIMESLOT_API_QUEUE ((void *)&g1_timeslot_api_msgq) /*=0x210008e0*/
+#else
+#define TIMESLOT_API_QUEUE ((void *)0x210008e0u)
+#endif
+
 #define G1_ARCH_RUNTIME_EXCEPTION(reason) do { \
     __asm__ volatile("eors.n r0, r0\n\t" \
                      "msr basepri, r0\n\t" \
@@ -16,7 +24,7 @@ extern void FUN_01039722(const void *message, int status);
 int FUN_0102b900(uint32_t value)
 {
     uint8_t byte = (uint8_t)value;
-    int status = FUN_01036198((void *)0x210008e0u, &byte, 0, 0);
+    int status = FUN_01036198(TIMESLOT_API_QUEUE, &byte, 0, 0);
     register unsigned int exception_r1 __asm__("r1");
 
     if (status == 0)

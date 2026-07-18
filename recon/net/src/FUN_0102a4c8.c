@@ -4,6 +4,11 @@
  */
 #include <stdint.h>
 
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/logging/log.h>
+LOG_MODULE_REGISTER(app_esb, LOG_LEVEL_INF);
+#endif
+
 #define g1_esb_event_handler FUN_0102a4c8
 
 extern void FUN_01039722(const char *format, ...);

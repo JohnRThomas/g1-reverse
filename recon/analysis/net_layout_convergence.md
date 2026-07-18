@@ -154,3 +154,58 @@ The current machine-readable result is
 `recon/analysis/net_binary_section_comparison.json`; executable byte equality
 remains diagnostic, while CFG-directed side-effect verification remains
 authoritative for reconstructed function semantics.
+
+## Cohesive product-timeslot owner
+
+The missing custom timeslot ownership unit is now live without section
+retention.  Its production build uses the recovered `FUN_0102b810` worker,
+`FUN_0102b944` MPSL signal callback, and the recovered `FUN_0102b7d0` /
+`FUN_0102b900` state/queue leaves.  `G1_COHESIVE_BUILD` replaces only the
+reviewed fixed queue, request, and callback references with relocations; the
+canonical fixed-address parity path and every `/*=VA*/` back-map remain.
+
+The object initializers come directly from the original image:
+
+- the normal request is type 1, no-guarantee HFCLK, priority 0, 50,000 us
+  distance, and 5,000 us length;
+- the earliest request is type 0, no-guarantee HFCLK, priority 0, 5,000 us
+  length, and 1,000,000 us timeout;
+- the message queue has one-byte messages and four slots;
+- `mpsl_nonpreemptible_thread_id` has a `0x400`-byte stack, priority `-16`,
+  zero options/delay, and the recovered worker entry;
+- `LOG_MODULE_REGISTER(timeslot, 3)` reproduces the original level-3 owner.
+
+A clean normal-GC production build (`G1_INTEGRATION_PROBE_RETAIN_ALL=OFF`)
+links with zero undefined symbols.  The recovered four functions, one
+44-byte static-thread record, the 52-byte message queue, both 16-byte request
+objects, the `0x400`-byte stack, and `log_const_timeslot` are all live.  No
+`KEEP`, new `-u` root, padding, or automatic SDC removal was introduced.
+
+Measured result after this closure:
+
+| Metric | Timeslot-owner build |
+| --- | ---: |
+| FLASH used | 225,877 B / 222 KiB (99.36%) |
+| RAM used | 54,028 B / 64 KiB (82.44%) |
+| text | `0x341a8` bytes; end `0x0103cbe4` |
+| original text-end delta | +`0xd8c` (3,468-byte overshoot) |
+| log bytes / owners | 256 / 32 |
+| compared / equal bytes | 225,602 / 8,566 |
+| equal text bytes | 7,199 |
+
+This table is the last successful production measurement before the complete
+product-endpoint closure was made live.  That closure restores the `app_esb`
+and `hci_rpmsg` owners, so the intended owner set is all 32 original names.
+
+The fail-closed normal-GC integration probe at
+`/private/tmp/g1-product-owners-final-v6` compiles the complete endpoint and
+timeslot ownership set and reports no undefined-symbol diagnostics, but it
+does not produce a final ELF: the load image overflows the 222 KiB FLASH region
+by 761 bytes.  Relative to the preceding near-fitting endpoint probe, the
+reviewed stock API resolutions add 332 text bytes and 132 rodata bytes (plus
+alignment).  No proven root was removed, no hardware region was enlarged, and
+no padding, `KEEP`, new `-u`, or automatic report-only SDC removal was used to
+hide this result.  Consequently the machine-readable comparator remains the
+last successful timeslot-owner measurement; it is not presented as a final
+measurement of the now-live endpoint closure.  Code-size/layout reconciliation
+is the remaining gate before a fresh comparator can be authoritative.

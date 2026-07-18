@@ -43,6 +43,40 @@ if(NOT DEFINED G1_RETAINED_SOURCES)
     "${G1_RETAINED_SOURCE_MANIFEST} must define G1_RETAINED_SOURCES")
 endif()
 
+# The timeslot closure uses its canonical raw sources because the worker and
+# producer need cohesive-build relocations to the same real Zephyr message
+# queue.  Remove the two older symbolized copies before adding the complete
+# four-function ownership unit below.
+list(FILTER G1_RETAINED_SOURCES EXCLUDE
+  REGEX "/FUN_0102(a4c8|ab14|ab50|abac|ac00|ac0c|acb4|ace8|acf4|adac|adf0|afbc|b15c|b1c8|b2ac|b7d0|b900)\\.c$")
+
+set(G1_PRODUCT_ENDPOINT_SOURCES
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102a4c8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102ab14.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102ab50.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102abac.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102ac00.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102ac0c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102acb4.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102ace8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102acf4.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102adac.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102adf0.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102afbc.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b15c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b1c8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b2ac.c"
+  "${CMAKE_CURRENT_LIST_DIR}/src/g1_product_endpoints.c"
+)
+
+set(G1_TIMESLOT_OWNER_SOURCES
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b7d0.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b810.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b900.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../net/src/FUN_0102b944.c"
+  "${CMAKE_CURRENT_LIST_DIR}/src/timeslot_owner.c"
+)
+
 # The durable adoption manifest still records 29 private MPSL/SDC functions as
 # archive-owned, and three readable private dependencies are absent from the
 # generated list.  Those decisions are report-only: the obfuscated archive
@@ -118,6 +152,8 @@ target_sources(app PRIVATE
   ${G1_RETAINED_SOURCES}
   ${G1_PRIVATE_REPORT_ONLY_SOURCES}
   ${G1_ESB_CLOCK_CALLBACK_CLOSURE_SOURCES}
+  ${G1_PRODUCT_ENDPOINT_SOURCES}
+  ${G1_TIMESLOT_OWNER_SOURCES}
   # Byte-exact literal/data pools split from CFG-inflated net functions.
   # These are reviewed reconstruction artifacts, not synthesized link stubs.
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x100ef04.c"
@@ -127,6 +163,10 @@ target_sources(app PRIVATE
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x10237a4.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x103c190.c"
 )
+
+# Canonical parity sources retain their fixed-address form by default.  The
+# cohesive firmware build selects only reviewed object/callback relocations.
+target_compile_definitions(app PRIVATE G1_COHESIVE_BUILD=1)
 
 # Symbolized reconstruction inputs include the generated reversible VA/name
 # declarations from this directory.

@@ -47,6 +47,12 @@ extern uint64_t net_uptime_ticks(void);
 extern void net_sleep_ms(uint32_t delay);
 extern void net_printk(const char *format, ...);
 extern void copy_c_string(char *dst, const char *src);
+#ifdef G1_COHESIVE_BUILD
+extern void FUN_0102a4c8(const void *event);
+#define G1_ESB_EVENT_HANDLER ((const void *)(uintptr_t)&FUN_0102a4c8) /*=0x0102acc9*/
+#else
+#define G1_ESB_EVENT_HANDLER ((const void *)UINT32_C(0x0102acc9))
+#endif
 
 typedef int (*ipc_send_fn)(const void *message, uint32_t size);
 typedef void (*ipc_register_fn)(const void *configuration);
@@ -206,7 +212,7 @@ int main(void)
         state->ready();
     }
     uint32_t primary_role = state->role == 1 ? 0 : 1;
-    int error = esb_service_init(primary_role, (const void *)0x0102acc9u);
+    int error = esb_service_init(primary_role, G1_ESB_EVENT_HANDLER);
     if ((uint8_t)error != 0) {
         if (*net_log_level > 0) {
             net_printk((const char *)0x0103cdf5u);

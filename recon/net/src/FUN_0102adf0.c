@@ -4,6 +4,19 @@
  */
 #include <stdint.h>
 
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/logging/log.h>
+#include <zephyr/net/buf.h>
+LOG_MODULE_REGISTER(hci_rpmsg, LOG_LEVEL_INF);
+#define FUN_0103a468(simple) \
+    net_buf_simple_tailroom((struct net_buf_simple *)(simple))
+#define FUN_0103a478(simple, data, size) \
+    net_buf_simple_add_mem((struct net_buf_simple *)(simple), (data), (size))
+#else
+extern uint32_t FUN_0103a468(void *buffer_simple);
+extern void FUN_0103a478(void *buffer_simple, const void *data, uint32_t size);
+#endif
+
 #define hci_rpmsg_rx FUN_0102adf0
 
 extern void *FUN_0102fc30(uint32_t type, uint32_t aligned_pad,
@@ -11,8 +24,6 @@ extern void *FUN_0102fc30(uint32_t type, uint32_t aligned_pad,
                           const void *header, uint32_t header_size);
 extern void FUN_0102ff94(void *buffer);
 extern void FUN_0102ff54(void *queue, void *buffer);
-extern uint32_t FUN_0103a468(void *buffer_simple);
-extern void FUN_0103a478(void *buffer_simple, const void *data, uint32_t size);
 extern void FUN_01039722(const char *format, ...);
 
 static volatile int32_t *const log_level = (volatile int32_t *)0x21000580u;

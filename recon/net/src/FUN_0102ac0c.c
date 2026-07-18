@@ -3,8 +3,24 @@
 
 extern void FUN_01039722(const void *message);
 extern int FUN_0102d558(const void *path);
+#ifdef G1_COHESIVE_BUILD
+#include <zephyr/device.h>
+#include <zephyr/ipc/ipc_service.h>
+#define FUN_0102d5b4(instance, endpoint, config) \
+    ipc_service_register_endpoint((const struct device *)(instance), \
+                                  (struct ipc_ept *)(endpoint), \
+                                  (const struct ipc_ept_cfg *)(config))
+#else
 extern int FUN_0102d5b4(const void *path, void *destination, void *metadata);
+#endif
 extern void FUN_0103689c(void *object, int ignored, int first, int second);
+
+#ifdef G1_COHESIVE_BUILD
+extern unsigned char g1_ipc0_endpoint_config;
+#define G1_IPC0_ENDPOINT_CONFIG ((void *)&g1_ipc0_endpoint_config) /*=0x21000584*/
+#else
+#define G1_IPC0_ENDPOINT_CONFIG ((void *)UINT32_C(0x21000584))
+#endif
 
 int FUN_0102ac0c(void)
 {
@@ -25,7 +41,7 @@ int FUN_0102ac0c(void)
 
     status = FUN_0102d5b4((const void *)UINT32_C(0x0103bfac),
                           (void *)UINT32_C(0x210045f8),
-                          (void *)UINT32_C(0x21000584));
+                          G1_IPC0_ENDPOINT_CONFIG);
     if (status < 0) {
         if (*log_level > 0)
             FUN_01039722((const void *)UINT32_C(0x0103ced0));
