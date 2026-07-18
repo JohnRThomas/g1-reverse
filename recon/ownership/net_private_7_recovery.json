@@ -1,0 +1,328 @@
+{
+  "functions": [
+    {
+      "analysis_address": "0x01010890",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 83,
+        "cover_cases": 3,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {
+          "0": [
+            0,
+            1,
+            2
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01010890",
+      "runtime_address": "0x01011090",
+      "source": "recon/net/src/FUN_01010890.c",
+      "source_sha256": "a837c5ea96fe96ddd648a5bc49afb7bcb74f2698b468f094ec6e2b0a371a56bc",
+      "true_executable_extent": 40,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01010890"
+    },
+    {
+      "analysis_address": "0x01011664",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [
+          [
+            0,
+            28
+          ]
+        ],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "raw_backmap": "FUN_01011664",
+      "runtime_address": "0x01011e64",
+      "source": "recon/net/src/FUN_01011664.c",
+      "source_sha256": "ac3ce6b8bb69d82d67430d8c3e124967df4b8e74dceab973aafa564024cc03c0",
+      "true_executable_extent": 186,
+      "verifier_extent_injection": true,
+      "worklist_primary_symbol": "FUN_01011664"
+    },
+    {
+      "analysis_address": "0x01018df8",
+      "catalogued_start": false,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "reviewed_catalog_missed_boundary",
+      "raw_backmap": "FUN_01018df8",
+      "runtime_address": "0x010195f8",
+      "source": "recon/net/src/FUN_01018df8.c",
+      "source_sha256": "71ab98c5d7462370a2a071a11dd79adbf7f1141cbd67c9dedff26cc0a52daec3",
+      "true_executable_extent": 50,
+      "verifier_extent_injection": true,
+      "worklist_primary_symbol": "FUN_01018df8"
+    },
+    {
+      "analysis_address": "0x01021634",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01021634",
+      "runtime_address": "0x01021e34",
+      "source": "recon/net/src/FUN_01021634.c",
+      "source_sha256": "f265bb73181b880505458491cd916c3c8b462a682b830e12060f7640c59c7cf9",
+      "true_executable_extent": 28,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "controller_radio_time_mode2_to_mode2"
+    },
+    {
+      "analysis_address": "0x01025d0c",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01025d0c",
+      "runtime_address": "0x0102650c",
+      "source": "recon/net/src/FUN_01025d0c.c",
+      "source_sha256": "2df36d3589e17ce8e800dd3e7140703480c379d2375c1d67c9a7d4d2ae89bd96",
+      "true_executable_extent": 24,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01025d0c"
+    },
+    {
+      "analysis_address": "0x01026bfe",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01026bfe",
+      "runtime_address": "0x010273fe",
+      "source": "recon/net/src/FUN_01026bfe.c",
+      "source_sha256": "e1b1d5991cf5ac7da9f8cb33a68bca192b2b8f7def8dc8a2a40d4ae4d50bff04",
+      "true_executable_extent": 150,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01026bfe"
+    },
+    {
+      "analysis_address": "0x010270e8",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_010270e8",
+      "runtime_address": "0x010278e8",
+      "source": "recon/net/src/FUN_010270e8.c",
+      "source_sha256": "8ed469ac9c5ed0eba0d1f9cd036336ed7b6d5703325b82df2a15b3b5410e8a93",
+      "true_executable_extent": 98,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_010270e8"
+    },
+    {
+      "analysis_address": "0x01027a4a",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01027a4a",
+      "runtime_address": "0x0102824a",
+      "source": "recon/net/src/FUN_01027a4a.c",
+      "source_sha256": "a121ba9374686fb1249ee61af1bc703f45ace5faae68e96e853bd67d41b8fbce",
+      "true_executable_extent": 74,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01027a4a"
+    },
+    {
+      "analysis_address": "0x01027a94",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01027a94",
+      "runtime_address": "0x01028294",
+      "source": "recon/net/src/FUN_01027a94.c",
+      "source_sha256": "dd07f5fad270b93cbe77b3154203b9f90a3bf75cdf338dcbca4eff719732c0ff",
+      "true_executable_extent": 62,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01027a94"
+    },
+    {
+      "analysis_address": "0x0102961a",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_0102961a",
+      "runtime_address": "0x01029e1a",
+      "source": "recon/net/src/FUN_0102961a.c",
+      "source_sha256": "d76df6f9f03f54a7906a086827b047036ea177dc6bc61129c09737f837c7686e",
+      "true_executable_extent": 18,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_0102961a"
+    },
+    {
+      "analysis_address": "0x0102971e",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_0102971e",
+      "runtime_address": "0x01029f1e",
+      "source": "recon/net/src/FUN_0102971e.c",
+      "source_sha256": "99d4129f62d23556d267701a46213fba48d43e7616da45cb2d89e9b505d2e08c",
+      "true_executable_extent": 26,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_0102971e"
+    },
+    {
+      "analysis_address": "0x010297b4",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 80,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_010297b4",
+      "runtime_address": "0x01029fb4",
+      "source": "recon/net/src/FUN_010297b4.c",
+      "source_sha256": "d8fb9207f010cc4d84e01e96e09a305980f974dbf486c20a81b19fdeaf16c52c",
+      "true_executable_extent": 206,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_010297b4"
+    },
+    {
+      "analysis_address": "0x01029882",
+      "catalogued_start": true,
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 86,
+        "cover_cases": 6,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 80,
+        "selectors": {
+          "0": [
+            0,
+            1,
+            2
+          ],
+          "1": [
+            7,
+            8,
+            9
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "raw_backmap": "FUN_01029882",
+      "runtime_address": "0x0102a082",
+      "source": "recon/net/src/FUN_01029882.c",
+      "source_sha256": "1845ac556efab8bc105a5d4c11bfadf33cdf1a79709c2afd2aa62e1c2c239403",
+      "true_executable_extent": 38,
+      "verifier_extent_injection": false,
+      "worklist_primary_symbol": "FUN_01029882"
+    }
+  ],
+  "policy": {
+    "archive_or_blob_substitution_forbidden": true,
+    "authoritative_verifier": "tools/cfg_verify.py",
+    "canonical_readable_c_only": true,
+    "raw_address_headers_and_backmaps_required": true,
+    "shared_generated_or_name_outputs_untouched": true
+  },
+  "schema_version": 1,
+  "shard": "net-private-7",
+  "summary": {
+    "all_cfg_pass": true,
+    "catalog_missed_extent_injections": 2,
+    "function_count": 13,
+    "minimum_checked_per_function": 80,
+    "total_true_executable_extent": 1000
+  }
+}
