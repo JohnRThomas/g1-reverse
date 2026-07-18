@@ -15,6 +15,15 @@ LOG_CONST_START = 0x337EC
 LOG_CONST_COUNT = 32
 STATIC_TIMESLOT_THREAD_START = 0x337C0
 TIMESLOT_CALLBACK_LITERAL = 0x238E4
+INIT_TABLE_START = 0x33664
+MISSING_STOCK_INIT_ROWS = {
+    0x3366C: 0x010302C1,  # pthread_barrier_pool_init
+    0x33674: 0x01030311,  # pthread_cond_pool_init
+    0x3367C: 0x01030349,  # pthread_mutex_pool_init
+    0x33684: 0x01030385,  # posix_thread_pool_init
+    0x3369C: 0x0103669D,  # init_mem_slab_module
+    0x3372C: 0x01034935,  # check_ext_api_requests
+}
 EXPECTED_MODULES = [
     "NRFX_DPPI", "NRFX_GPIOTE", "NRFX_TIMER", "NRF_RPC",
     "NRF_RPC_CBOR", "NRF_RPC_OS", "app_esb", "bt_hci_raw", "bt_rpa",
@@ -83,6 +92,17 @@ class NetEsbRpcConfigTest(unittest.TestCase):
             b"mpsl_nonpreemptible_thread_id", image[name_offset:name_end]
         )
 
+    def test_original_init_table_proves_posix_fw_info_and_slab_owners(self):
+        image = IMAGE.read_bytes()
+        self.assertEqual(0, (0x33734 - INIT_TABLE_START) % 8)
+        self.assertEqual(26, (0x33734 - INIT_TABLE_START) // 8)
+        for offset, function_pointer in MISSING_STOCK_INIT_ROWS.items():
+            self.assertEqual(
+                (function_pointer, 0),
+                struct.unpack_from("<II", image, offset),
+                f"original init record at file offset {offset:#x}",
+            )
+
     def test_canonical_config_selects_proven_stock_owners(self):
         assignments = {
             line.split("=", 1)[0]: line.split("=", 1)[1]
@@ -95,6 +115,8 @@ class NetEsbRpcConfigTest(unittest.TestCase):
             "CONFIG_ESB",
             "CONFIG_ESB_DYNAMIC_INTERRUPTS",
             "CONFIG_NRF_RPC",
+            "CONFIG_POSIX_API",
+            "CONFIG_FW_INFO",
         ):
             self.assertEqual("y", assignments.get(symbol), symbol)
         self.assertEqual(

@@ -10,24 +10,24 @@ section is retained artificially.
 ## Final production-root measurement
 
 The clean build at runtime base `0x01008800` has zero undefined symbols and
-uses 215,293 bytes of FLASH (94.71% of 222 KiB) and 51,416 bytes of RAM (78.45%
+uses 216,553 bytes of FLASH (95.26% of 222 KiB) and 52,744 bytes of RAM (80.48%
 of 64 KiB).  The recovered entrypoint and callback closure are live in the ELF:
 
 | Symbol | Runtime address | Size |
 | --- | ---: | ---: |
-| `main` / `FUN_0102a720` | `0x0102a37c` | `0x408` recovered body |
-| `FUN_0102b31c` | `0x0102ab5c` | `0xd4` |
-| `FUN_0102b3f0` | `0x0102c908` | `0xe0` |
-| `FUN_0102b664` | `0x0102c9e8` | `0xbc` |
-| `FUN_0102b718` | `0x0102caa4` | `0x38` |
-| `FUN_0102b758` | `0x0102cadc` | `0x40` |
-| `FUN_01033858` | `0x0102cb1c` | `0x34` |
-| `FUN_010339d0` | `0x0102cb50` | `0x14` |
+| `main` / `FUN_0102a720` | `0x0102a500` | `0x408` recovered body |
+| `FUN_0102b31c` | `0x0102ace0` | `0xd4` |
+| `FUN_0102b3f0` | `0x0102ca8c` | `0xe0` |
+| `FUN_0102b664` | `0x0102cb6c` | `0xbc` |
+| `FUN_0102b718` | `0x0102cc28` | `0x38` |
+| `FUN_0102b758` | `0x0102cc60` | `0x40` |
+| `FUN_01033858` | `0x0102cca0` | `0x34` |
+| `FUN_010339d0` | `0x0102ccd4` | `0x14` |
 
-Current text is `0x31bf8` bytes and ends at `0x0103a4b0`.  Original text ends
-at runtime address `0x0103be58`, leaving a `0x19a8` (6,568-byte) pre-data gap.
-The fail-closed comparator covers 215,287 file-backed bytes: 5,272 are currently
-equal, including 4,677 text bytes.  It reports 19 file-backed sections, zero
+Current text is `0x31e0c` bytes and ends at `0x0103a848`.  Original text ends
+at runtime address `0x0103be58`, leaving a `0x1610` (5,648-byte) pre-data gap.
+The fail-closed comparator covers 216,539 file-backed bytes: 7,742 are currently
+equal, including 7,045 text bytes.  It reports 19 file-backed sections, zero
 exact sections, and zero exact non-executable sections, so structural placement
 passes but the exact-data gate remains open.
 
@@ -45,7 +45,9 @@ bytes that are original Thumb text.  Recovered original boundaries are:
 | Original area | File offsets |
 | --- | --- |
 | vectors | `0x00000..0x000b8` |
-| text | `0x000b8..0x33658` |
+| early text | `0x000b8..0x00200` |
+| firmware-info metadata | `0x00200..0x0023c` |
+| resumed text | `0x0023c..0x33658` |
 | `.ARM.exidx` | `0x33658..0x33660` |
 | init/device/ISR/log iterable areas | `0x33660..0x33904` |
 | inferred `.rodata` (including the final runtime-base word) | `0x33904..0x36524` |
@@ -57,6 +59,52 @@ for meaningful address-aligned non-executable comparison.  As an independent
 content check, searching at the recovered original data boundary finds a
 byte-exact `0x218`-byte prefix of the current `datas` section at original file
 offset `0x36524`; the current address-aligned score hides that convergence.
+
+## Stock init-root Kconfig closure
+
+The original init table at file offsets `0x33664..0x33734` contains 26
+eight-byte records. The prior production build emitted 20. All six absent
+records have exact NCS 2.5.1 source owners and can be restored without a
+synthetic record or linker `KEEP`:
+
+| Original record | Original function | NCS 2.5.1 owner | Proven selection |
+| --- | --- | --- | --- |
+| `0x3366c` | `pthread_barrier_pool_init` | `zephyr/lib/posix/barrier.c` | `CONFIG_POSIX_API=y` |
+| `0x33674` | `pthread_cond_pool_init` | `zephyr/lib/posix/cond.c` | `CONFIG_POSIX_API=y` |
+| `0x3367c` | `pthread_mutex_pool_init` | `zephyr/lib/posix/mutex.c` | `CONFIG_POSIX_API=y` |
+| `0x33684` | `posix_thread_pool_init` | `zephyr/lib/posix/pthread.c` | `CONFIG_POSIX_API=y` |
+| `0x3369c` | `init_mem_slab_module` | `zephyr/kernel/mem_slab.c` | archive-pulled by real POSIX pool/slab ownership |
+| `0x3372c` | `check_ext_api_requests` | `nrf/subsys/fw_info/fw_info.c` | `CONFIG_FW_INFO=y` |
+
+The four original POSIX initializers each traverse five objects. That matches
+the NCS 2.5.1 `CONFIG_MAX_PTHREAD_{BARRIER,COND,MUTEX}_COUNT=5` and
+`CONFIG_MAX_PTHREAD_COUNT=5` defaults selected by `CONFIG_POSIX_API`. The
+firmware-info function references runtime address `0x01008a00`, exactly image
+base `0x01008800` plus the stock `CONFIG_FW_INFO_OFFSET=0x200`. These two
+independent constants make the selections stronger than a name-only match.
+
+`init_mem_slab_module` has no standalone Kconfig gate: `mem_slab.c` is always
+offered to the kernel archive and becomes live only when a real slab owner
+references it. In this build the POSIX pool closure provides that ownership,
+so no custom static object or forced retention is needed for this record.
+
+The tested batch changes the authoritative session-1 production build as
+follows:
+
+| Metric | Before | POSIX + FW info | Delta |
+| --- | ---: | ---: | ---: |
+| FLASH used | 215,293 B | 216,553 B | +1,260 B |
+| RAM used | 51,416 B | 52,744 B | +1,328 B |
+| text payload | 203,768 B | 204,300 B | +532 B |
+| pre-data text gap | 6,568 B | 5,648 B | -920 B |
+| init bytes / records | 160 / 20 | 208 / 26 | +48 / +6 |
+| compared equal bytes | 5,272 | 7,742 | +2,470 |
+| equal text bytes | 4,677 | 7,045 | +2,368 |
+| log bytes / owners | 232 / 29 | 232 / 29 | unchanged |
+
+All six stock symbols and exactly 26 init records are now live. The static
+thread iterable remains empty, as expected: its missing timeslot worker is a
+custom source owner and is not implied by either safe Kconfig selection.
 
 ## Log-owner and configuration evidence
 
