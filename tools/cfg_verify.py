@@ -447,6 +447,14 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x0004f500): 0x14,  # fixed three-word configuration setter
     ("app", 0x000573c8): 0x24,  # allocation-failure logging helper
     ("app", 0x00068298): 0x0c,  # libmetal Zephyr metal_sys_init
+    ("app", 0x0004b3c8): 0x11c, # sys_heap_init
+    ("app", 0x0004de68): 0x4a,  # log_output_dropped_process
+    ("app", 0x0004e3e8): 0x44,  # settings_load_subtree
+    ("app", 0x0004e8c0): 0x1e,  # invalid settings index logger
+    ("app", 0x000534a8): 0x1c,  # HCI allocation failure logger
+    ("app", 0x00054d88): 0x4c,  # set_random_address body
+    ("app", 0x00054ea8): 0x13c, # bt_id_add
+    ("app", 0x00055aac): 0xe2,  # legacy advertising restart helper
     # lc3_tns_analyze owns the complete floating-point analysis/filter body
     # through 0x709c6; trailing threshold literals begin at 0x709c8.
     ("app", 0x0006ffd8): 0x9ee,
@@ -5662,6 +5670,13 @@ REVIEWED_STATE_CASES = {
           (0x20030028, (0).to_bytes(4, "little"))]),
     ],
 }
+
+# settings_load_subtree permits an empty backend list.  This complete state is
+# production-valid and avoids interpreting arbitrary fuzz bytes as a linked
+# store/interface/callback graph before such a graph has been initialized.
+REVIEWED_STATE_CASES[("app", 0x0004e3e8)] = [
+    ({0: 0}, [(0x2000a104, (0).to_bytes(4, "little"))]),
+]
 
 
 def _cbprintf_complete_case(fmt, argv=b"", *, flags=0,

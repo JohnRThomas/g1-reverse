@@ -59,6 +59,14 @@ TRUE_SIZE_OVERRIDES = {
     0x0004f500: 0x14,  # fixed three-word configuration setter
     0x000573c8: 0x24,  # allocation-failure logging helper
     0x00068298: 0x0c,  # libmetal Zephyr metal_sys_init
+    0x0004b3c8: 0x11c, # sys_heap_init; literals at 0x4b4e4
+    0x0004de68: 0x4a,  # log_output_dropped_process; alignment at 0x4deb2
+    0x0004e3e8: 0x44,  # settings_load_subtree; literals at 0x4e42c
+    0x0004e8c0: 0x1e,  # invalid settings index logger; literals at 0x4e8e0
+    0x000534a8: 0x1c,  # HCI allocation failure logger; literals at 0x534c4
+    0x00054d88: 0x4c,  # set_random_address body; literal at 0x54dd4
+    0x00054ea8: 0x13c, # bt_id_add; literals at 0x54fe4
+    0x00055aac: 0xe2,  # legacy advertising restart helper; alignment at 0x55b8e
     0x00016574: 0x06,  # fixed-word setter
     0x00016834: 0x1a,  # state-normalizing tail adapter
     0x00017a04: 0x08,  # GPIO descriptor tail adapters

@@ -9,9 +9,41 @@
    "name": "__fixdfdi",
    "evidence": "Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000ec34."
   },
+  "0x0004b3c8": {
+   "name": "sys_heap_init",
+   "evidence": "Recovered configured Zephyr 3.4.99 system-heap initializer, CFG-verified across footer-width and size boundaries. Raw identity remains FUN_0004b3c8 at 0x0004b3c8."
+  },
+  "0x0004de68": {
+   "name": "log_output_dropped_process",
+   "evidence": "Recovered configured Zephyr logging dropped-message output helper. Raw identity remains FUN_0004de68 at 0x0004de68."
+  },
+  "0x0004e3e8": {
+   "name": "settings_load_subtree",
+   "evidence": "Recovered configured Zephyr settings subtree loader with a reviewed empty-backend production state. Raw identity remains FUN_0004e3e8 at 0x0004e3e8."
+  },
+  "0x0004e8c0": {
+   "name": "settings_invalid_index_log",
+   "evidence": "Recovered settings index-validation logging helper. Raw identity remains FUN_0004e8c0 at 0x0004e8c0."
+  },
   "0x0004cc50": {
    "name": "ipc_service_send",
    "evidence": "Pinned Zephyr 3.4.99 public IPC service export. The three-register ABI (struct ipc_ept *, const void *, size_t) was independently checked for this approximate signature. Raw identity remains FUN_0004cc50."
+  },
+  "0x000534a8": {
+   "name": "hci_cmd_alloc_failure_log",
+   "evidence": "Recovered Bluetooth HCI command-allocation failure logging helper. Raw identity remains FUN_000534a8 at 0x000534a8."
+  },
+  "0x00054d88": {
+   "name": "set_random_address",
+   "evidence": "Recovered Bluetooth random-address programming body. Raw identity remains tail_54d88 at 0x00054d88."
+  },
+  "0x00054ea8": {
+   "name": "bt_id_add",
+   "evidence": "Recovered configured Zephyr Bluetooth identity-add implementation. Raw identity remains FUN_00054ea8 at 0x00054ea8."
+  },
+  "0x00055aac": {
+   "name": "legacy_advertising_connection_restart",
+   "evidence": "Recovered legacy advertising connection-restart helper. Raw identity remains FUN_00055aac at 0x00055aac."
   },
   "0x000638dc": {
    "name": "sys_clock_set_timeout",
