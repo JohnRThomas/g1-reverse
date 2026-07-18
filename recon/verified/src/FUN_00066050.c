@@ -3,6 +3,10 @@
 extern int FUN_000500ac(int,uint32_t,uint32_t,uint32_t,void*);
 extern int FUN_00065ff4(uint32_t*);
 void FUN_00066050(uint8_t* param_1, uint32_t param_2){
+    volatile uint32_t *const pdm_events_started =
+        (volatile uint32_t *)0x50026100; /* PDM EVENTS_STARTED; raw: 0x50026000 + 0x100 */
+    volatile uint32_t *const pdm_events_stopped =
+        (volatile uint32_t *)0x50026104; /* PDM EVENTS_STOPPED; raw: 0x50026000 + 0x104 */
     (void)param_2;
     uint32_t local_1c; int iVar8;
     if(param_1[0x15]==0){
@@ -42,9 +46,11 @@ void FUN_00066050(uint8_t* param_1, uint32_t param_2){
         *(volatile uint32_t*)(0x50026000+0x540) = uVar10;
         *(volatile uint32_t*)(0x50026000+0x544) = uVar9;
     }
-    *(volatile uint32_t*)(0x50026000+0x100) = 0;
-    *(volatile uint32_t*)(0x50026000+0x104) = 0;
-    FUN_000500ac(0x26, uVar9, *(volatile uint32_t*)(0x50026000+0x100), *(volatile uint32_t*)(0x50026000+0x104), param_1);
+    /* Preserve the peripheral's exact write/read acknowledgement order. */
+    *pdm_events_started = 0;
+    uint32_t events_started = *pdm_events_started;
+    *pdm_events_stopped = 0;
+    uint32_t events_stopped = *pdm_events_stopped;
+    FUN_000500ac(0x26, uVar9, events_started, events_stopped, param_1);
     *(volatile uint32_t*)(0x50026000+0x304) = 3;
 }
-

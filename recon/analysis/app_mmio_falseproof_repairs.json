@@ -1,0 +1,64 @@
+{
+  "schema": "g1.app-mmio-falseproof-repairs.v1",
+  "verifier_commit": "30340066",
+  "source_of_failure_inventory": "recon/catalogs/mmio_parity_coverage_inventory.json",
+  "policy": {
+    "ordered_mmio_reads_are_observable": true,
+    "source_drift_is_failure": true,
+    "canonical_verified_mirror_must_match": true,
+    "sequence_regression_must_be_rejected": true
+  },
+  "repairs": [
+    {
+      "core": "app",
+      "va": "0x00050558",
+      "raw_symbol": "FUN_00050558",
+      "readable_name": "arm_bus_fault_helper",
+      "canonical_source": "recon/app/src/FUN_00050558.c",
+      "verified_mirror": "recon/verified/src/FUN_00050558.c",
+      "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
+      "original_instruction_evidence": [
+        {"pc": "0x000505d8", "operation": "read", "address": "0xe000ed38", "name": "SCB_BFAR"},
+        {"pc": "0x000505da", "operation": "read", "address": "0xe000ed28", "name": "SCB_CFSR"}
+      ],
+      "required_order": ["read SCB_BFAR", "read SCB_CFSR.BFARVALID"],
+      "pre_repair_first_divergence": {
+        "ordinal": 5,
+        "original": ["R", 3758157112, 4, 305419896],
+        "candidate": ["R", 3758157096, 4, 512]
+      },
+      "repair": "Sample BFAR unconditionally after the precise-bus diagnostic and before re-reading CFSR.BFARVALID; retain the sampled value for the detail record.",
+      "cfg_verify": {"status": "PASS", "cases": 9, "random_trials": 40},
+      "focused_regression": "Moving the BFAR read back inside/after the BFARVALID test is rejected by cfg_verify."
+    },
+    {
+      "core": "app",
+      "va": "0x00066050",
+      "raw_symbol": "FUN_00066050",
+      "readable_name": "pdm_configure_pins",
+      "canonical_source": "recon/app/src/FUN_00066050.c",
+      "verified_mirror": "recon/verified/src/FUN_00066050.c",
+      "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
+      "original_instruction_evidence": [
+        {"pc": "0x00066104", "operation": "write", "address": "0x50026100", "name": "PDM_EVENTS_STARTED"},
+        {"pc": "0x00066108", "operation": "read", "address": "0x50026100", "name": "PDM_EVENTS_STARTED"},
+        {"pc": "0x0006610e", "operation": "write", "address": "0x50026104", "name": "PDM_EVENTS_STOPPED"},
+        {"pc": "0x00066112", "operation": "read", "address": "0x50026104", "name": "PDM_EVENTS_STOPPED"}
+      ],
+      "required_order": [
+        "write PDM_EVENTS_STARTED",
+        "read PDM_EVENTS_STARTED",
+        "write PDM_EVENTS_STOPPED",
+        "read PDM_EVENTS_STOPPED"
+      ],
+      "pre_repair_first_divergence": {
+        "ordinal": 7,
+        "original": ["R", 1342333184, 4, 0],
+        "candidate": ["W", 1342333188, 4, 0]
+      },
+      "repair": "Interleave each event-register clear with its immediate readback before clearing the next event register.",
+      "cfg_verify": {"status": "PASS", "cases": 0, "random_trials": 40},
+      "focused_regression": "Grouping both writes ahead of both readbacks is rejected by cfg_verify."
+    }
+  ]
+}
