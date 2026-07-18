@@ -722,6 +722,12 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00061200): 0x2a,  # flash_nrf_read invalid-address cold path
     ("app", 0x0006447c): 0x78,  # cJSON get_object_item
     ("app", 0x00065000): 0x180,  # nrfx clock_stop
+    ("app", 0x00060744): 0x34,   # BASEPRI caller plus pinned state literal
+    ("app", 0x0006522c): 0xf8,   # checked nrfx_clock_start plus literals
+    ("app", 0x00065324): 0x38,   # checked nrfx_clock_stop plus literals
+    ("app", 0x00083874): 0x06,   # HFAUDIO stop tail veneer
+    ("app", 0x0008387a): 0x06,   # HFCLK192M stop tail veneer
+    ("app", 0x00083880): 0x06,   # LFCLK stop tail veneer
     ("app", 0x000680f8): 0x34,  # libmetal metal_bus_unregister
     # Independently audited catalog-missing SDK/static entries. Each bound
     # ends at its return/tail and excludes the following independent entry.
@@ -13789,6 +13795,16 @@ REVIEWED_ORACLE_CASES[("app", 0x00064b1c)] = [_tree_release_case()]
 REVIEWED_ORACLE_CASES[("app", 0x00065324)] = [
     ({0: 2, 1: 0x55667788}, [(0x2000b320, b"\x01")], {}),
 ]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00065324)] = {
+    0x00065000: 1, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00060744)] = {0x00065324: 1}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0006522c)] = {
+    0x00065000: 1, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00083874)] = {0x00065324: 1}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0008387a)] = {0x00065324: 1}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00083880)] = {0x00065324: 1}
 REVIEWED_ORACLE_CASES[("app", 0x00065620)] = [
     _irq_clear_case(0x05, {0, 2}, True),
     _irq_clear_case(0xff, {1, 3, 7}, False),

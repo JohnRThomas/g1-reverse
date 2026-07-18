@@ -316,6 +316,12 @@ TRUE_SIZE_OVERRIDES = {
     0x00061200: 0x2a,  # flash_nrf_read invalid-address cold path
     0x0006447c: 0x78,  # cJSON get_object_item; ctype literal follows
     0x00065000: 0x180,  # nrfx_clock clock_stop; literal pool follows
+    0x00060744: 0x34,   # BASEPRI-guarded caller plus pinned state literal
+    0x0006522c: 0xf8,   # checked nrfx_clock_start plus assertion literals
+    0x00065324: 0x38,   # checked nrfx_clock_stop plus assertion literals
+    0x00083874: 0x06,   # HFAUDIO stop tail veneer
+    0x0008387a: 0x06,   # HFCLK192M stop tail veneer
+    0x00083880: 0x06,   # LFCLK stop tail veneer
     0x000680f8: 0x34,  # libmetal metal_bus_unregister; literals follow
     # Independently audited catalog-missing SDK/static entries.
     0x00083a2c: 0x66,
