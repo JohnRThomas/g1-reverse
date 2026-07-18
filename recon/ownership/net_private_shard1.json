@@ -1,0 +1,187 @@
+{
+ "call_state_closure": {
+  "covered_state_families": [
+   "argument bits and global event flags",
+   "all c6 TBB arms plus default",
+   "all valid outer/inner PHY switch combinations",
+   "both PHY update outcomes",
+   "event callback with and without descriptor publication",
+   "packet handler-table indirect dispatch"
+  ],
+  "direct_callsite_count": 63,
+  "direct_targets": {
+   "0x01008d00": 7,
+   "0x010091f8": 2,
+   "0x0100a17c": 1,
+   "0x0100b608": 1,
+   "0x0100b614": 1,
+   "0x0100b624": 1,
+   "0x0100b630": 1,
+   "0x0100d3c0": 19,
+   "0x0100d5d0": 1,
+   "0x0100e5d8": 1,
+   "0x0100e610": 1,
+   "0x0100ef88": 2,
+   "0x0100efc8": 1,
+   "0x0100f110": 2,
+   "0x0100f1f8": 1,
+   "0x0100f784": 2,
+   "0x0100f7b0": 1,
+   "0x0100f7d0": 1,
+   "0x0100f7e0": 1,
+   "0x0100f834": 1,
+   "0x0100fae4": 1,
+   "0x010108b8": 1,
+   "0x01013e98": 5,
+   "0x01014884": 1,
+   "0x01016250": 2,
+   "0x0101f934": 1,
+   "0x010209e0": 1,
+   "0x010209f0": 1,
+   "0x01026d16": 1,
+   "0x01029882": 1
+  },
+  "event_callback_stack_record_bytes": 20,
+  "global_controller_record": "0x21000f68",
+  "indirect_callsites": [
+   "0x01014c5c",
+   "0x01014dd4",
+   "0x01014f6c",
+   "0x0101533e",
+   "0x01015416",
+   "0x010157f2",
+   "0x01015b8e"
+  ],
+  "terminal_tail_target": "FUN_0100a984@0x0100a984"
+ },
+ "cfg_verification": {
+  "engine": "tools/cfg_verify.py",
+  "generic_checked": 44,
+  "generic_selectors": {
+   "0": [
+    0,
+    1
+   ],
+   "1": [
+    0,
+    1
+   ]
+  },
+  "generic_status": "PASS",
+  "reviewed_case_counts": {
+   "argument_and_global_flag_cases": 29,
+   "c6_tbb_cases": 13,
+   "event_callback_cases": 2,
+   "nested_phy_cases": 32,
+   "packet_table_callback_cases": 1
+  },
+  "reviewed_checked": 77,
+  "reviewed_status": "PASS",
+  "total_checked": 121
+ },
+ "core": "net",
+ "function": {
+  "analysis_address": "0x01014b18",
+  "blob_or_archive_substitution": false,
+  "body_ranges": [
+   [
+    "0x01014b18",
+    "0x01014de8"
+   ],
+   [
+    "0x01014dfc",
+    "0x010151c4"
+   ],
+   [
+    "0x010151d0",
+    "0x010154a8"
+   ],
+   [
+    "0x010154b4",
+    "0x01015618"
+   ],
+   [
+    "0x01015624",
+    "0x01015a30"
+   ],
+   [
+    "0x01015a38",
+    "0x01015a6e"
+   ],
+   [
+    "0x01015a76",
+    "0x01015a86"
+   ],
+   [
+    "0x01015a8e",
+    "0x01015a9e"
+   ],
+   [
+    "0x01015ab0",
+    "0x01015ca0"
+   ]
+  ],
+  "dispatch_table_islands": [
+   [
+    "0x010154a8",
+    "0x010154b4"
+   ],
+   [
+    "0x01015a30",
+    "0x01015a38"
+   ],
+   [
+    "0x01015a6e",
+    "0x01015a76"
+   ],
+   [
+    "0x01015a86",
+    "0x01015a8e"
+   ],
+   [
+    "0x01015a9e",
+    "0x01015aa8"
+   ]
+  ],
+  "literal_islands": [
+   [
+    "0x01014de8",
+    "0x01014dfc"
+   ],
+   [
+    "0x010151c4",
+    "0x010151d0"
+   ],
+   [
+    "0x01015618",
+    "0x01015624"
+   ],
+   [
+    "0x01015aa8",
+    "0x01015ab0"
+   ],
+   [
+    "0x01015ca0",
+    "0x01015ca8"
+   ]
+  ],
+  "raw_backmap_preserved": true,
+  "raw_symbol": "FUN_01014b18",
+  "readable_identity": "sdc_conn_event_process",
+  "runtime_address": "0x01015318",
+  "source": "recon/net/src/FUN_01014b18.c",
+  "source_sha256": "57610ac78b12df132c8ae2c14e6ee587d02b4c236d3287e9bd52e446191ecaf2",
+  "true_executable_extent": 4488
+ },
+ "inputs": {
+  "firmware": "netcore_image.bin",
+  "firmware_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4"
+ },
+ "policy": {
+  "sdc_library_removal": "report_only_unchanged",
+  "shared_catalogs_or_cfg_modified": false
+ },
+ "schema": 1,
+ "shard": "net-private-1",
+ "status": "cfg_verified"
+}
