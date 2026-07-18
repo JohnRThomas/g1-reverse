@@ -88,10 +88,20 @@ int FUN_010333b4(const uint32_t *configuration)
         reset_radio_owner();
 
     *saved_word = configuration[1];
-    for (unsigned i = 0; i < 4; ++i) {
-        *(volatile uint32_t *)(saved + i * 4U) = configuration[i];
+    {
+        const uint32_t *source = configuration;
+        volatile uint32_t *destination = (volatile uint32_t *)saved;
+        const uint32_t *const paired_end = configuration + 4;
+        __asm__ volatile ("" : "+r" (destination));
+        do {
+            uint32_t first = source[0];
+            uint32_t second = source[1];
+            source += 2;
+            *destination++ = first;
+            *destination++ = second;
+        } while (source != paired_end);
+        *destination = *source;
     }
-    *(volatile uint32_t *)(saved + 16) = configuration[4];
 
     *control = 0;
     value = clear_radio_storage(0x21004b7cU, 0, 0x20);
@@ -130,10 +140,11 @@ int FUN_010333b4(const uint32_t *configuration)
     for (unsigned i = 0; i < 8; ++i, value += 0x100U)
         table[i] = value;
 
-    table = (uint32_t *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
+    table = (volatile uint32_t *)((unsigned long)&g_net_queue_stats_block_b) /*=0x21004a34*/;
     value = 0x21005256U;
+    __asm__ volatile ("" : "+r" (table));
     for (unsigned i = 0; i < 8; ++i, value += 0x100U)
-        *(volatile uint32_t *)&table[i] = value;
+        *table++ = value;
 
     value = 0x21005a56U;
     for (unsigned i = 0; i < 8; ++i, value += 0x100U) {
