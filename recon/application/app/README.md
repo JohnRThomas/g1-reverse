@@ -35,6 +35,13 @@ private path from `zephyr_interface` and adds it back privately to `liblc3`.
 The public liblc3 include directory remains global, and the pinned SDK checkout
 is not modified.
 
+`discovery_callback.c` is the sole retained source that uses GCC's named
+register syntax (`register ... asm("r9")`) to preserve an observed ABI register.
+Zephyr compiles application sources as strict C99, where `asm` is unavailable,
+so CMake enables GNU C99 for that file only.  The canonical proven source is not
+rewritten and every other recovered source remains under Zephyr's default
+dialect and flags.
+
 This shell defaults `G1_INTEGRATION_PROBE_RETAIN_ALL=ON`.  Its temporary entry
 point does not yet reach every reconstructed function, so the mode adds the
 linker's `--no-gc-sections` option and keeps every recovered section visible to

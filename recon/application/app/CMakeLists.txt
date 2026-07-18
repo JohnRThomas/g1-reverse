@@ -92,6 +92,17 @@ endif()
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_retained_sources.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmake)
 
+# One retained, parity-proven translation unit records the original r9-bound
+# local with GCC's ``register ... asm("r9")`` spelling.  Zephyr's application
+# interface otherwise forces strict C99, where ``asm`` is not a keyword.  Keep
+# that canonical body untouched and enable GNU C99 only for its owning source;
+# this changes no optimization or ABI option and avoids broadening the dialect
+# for the rest of the recovered corpus.
+set_source_files_properties(
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/app/discovery_callback.c"
+  PROPERTIES COMPILE_OPTIONS "-std=gnu99"
+)
+
 target_sources(app PRIVATE
   ${G1_RETAINED_SOURCES}
   # The firmware uses the pinned stock LSM6DSO implementation and data/API
