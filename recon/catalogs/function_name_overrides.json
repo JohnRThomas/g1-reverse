@@ -2154,8 +2154,8 @@
    "evidence": "Firmware-specific Zephyr IPC RPMsg registration variant: its non-relocation bytes match ipc_rpmsg_register_ept, but both live owner paths use the shipped 0x0103a98f unbind callback literal rather than the pinned stock rpmsg_service_unbind relocation. Raw identity remains FUN_0102da84 at 0x0102da84."
   },
   "0x0102ddf4": {
-   "name": "z_log_msg_init",
-   "evidence": "Recovered configured Zephyr logging message-buffer initializer. Raw identity remains FUN_0102ddf4 at 0x0102ddf4."
+   "name": "z_log_notify_backend_enabled",
+   "evidence": "Corrected relocation-masked byte-exact Zephyr log_core.c identity. The call at +0x0a resolves to z_impl_k_sem_give and the literals resolve to backend_attached/log_process_thread_sem, disproving the former z_log_msg_init label. Raw identity remains FUN_0102ddf4."
   },
   "0x0102de10": {
    "name": "z_log_dropped",
@@ -2165,6 +2165,7 @@
    "name": "z_log_msg_commit",
    "evidence": "Recovered configured Zephyr logging message commit implementation: timestamp publication, MPSC commit, and post-finalize notification. Raw identity remains FUN_0102e1fc at 0x0102e1fc."
   },
+  "0x0102dea0": {"name": "z_log_msg_init", "evidence": "Correct relocation-masked byte-exact configured Zephyr log message-buffer initializer, distinct from backend notification at 0x0102ddf4; raw FUN_0102dea0."},
   "0x0102ea00": {
    "name": "arch_cpu_atomic_idle",
    "evidence": "Recovered configured Zephyr Cortex-M atomic-idle implementation with tracing/prepare hook, BASEPRI release, WFE policy gate, and interrupt-key restoration. Raw identity remains FUN_0102ea00 at 0x0102ea00."

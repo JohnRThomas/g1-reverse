@@ -28,11 +28,72 @@ OUTPUT = ROOT / "recon/ownership/net_zephyr_stock_atomic_adoption.json"
 REPORT = ROOT / "recon/analysis/net_zephyr_stock_atomic_adoption.md"
 BASE = 0x01008000
 ZEPHYR_COMMIT = "83980fe1679441be9b0e1db556a353f6118fe14f"
-SUPPORTED_RELOCATIONS = {2, 10, 30}
+SUPPORTED_RELOCATIONS = {2, 10, 30, 108}
 
-# These are the complete live closures selected from the six configured
+# These are the complete live closures selected from the configured
 # objects.  Hidden entries omitted by Ghidra are intentionally present.
 UNITS = {
+    "mpsc_pbuf": {
+        "source": "zephyr/lib/os/mpsc_pbuf.c",
+        "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+        "sections": {
+            "free_space": 0x01039BD8, "get_usage": 0x01039BFE,
+            "idx_inc": 0x01039C20, "rd_idx_inc": 0x01039C3C,
+            "add_skip_item": 0x01039C54,
+            "drop_item_locked": 0x01039C92,
+            "post_drop_action": 0x01039D80,
+            "max_utilization_update": 0x01039DB6,
+            "mpsc_pbuf_init": 0x0102CBD8,
+            "mpsc_pbuf_alloc": 0x0102CC34,
+            "mpsc_pbuf_commit": 0x0102CD8C,
+            "mpsc_pbuf_claim": 0x0102CE14,
+            "mpsc_pbuf_free": 0x0102CF00,
+        },
+    },
+    "log_core": {
+        "source": "zephyr/subsys/logging/log_core.c",
+        "object": "zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj",
+        "sections": {
+            "log_msg_generic_get_wlen": 0x0103A26C,
+            "dummy_timestamp": 0x0103A28C,
+            "default_get_timestamp": 0x0103A290,
+            "atomic_inc": 0x0103A294,
+            "z_log_vprintk": 0x0103A2A6,
+            "z_log_notify_drop": 0x0103A2C2,
+            "z_log_get_tag": 0x0103A2C8,
+            "enable_logger": 0x0102DC34,
+            "activate_foreach_backend": 0x0102DC90,
+            "z_log_init": 0x0102DCF4,
+            "log_process_thread_timer_expiry_fn": 0x0102DDBC,
+            "log_format_func_t_get": 0x0102DDC8,
+            "log_set_timestamp_func": 0x0102DDD4,
+            "z_log_notify_backend_enabled": 0x0102DDF4,
+            "z_log_dropped": 0x0102DE10,
+            "z_log_dropped_read_and_clear": 0x0102DE38,
+            "dropped_notify": 0x0102DE50,
+            "z_log_msg_init": 0x0102DEA0,
+            "log_core_init": 0x0102DEC0,
+            "z_log_msg_alloc": 0x0102DEF4,
+            "z_log_msg_local_claim": 0x0102DF04,
+            "z_log_msg_free": 0x0102DF10,
+            "z_log_msg_pending": 0x0102DF20,
+            "z_impl_log_process": 0x0102DF2C,
+            "z_impl_log_panic": 0x0102E000,
+            "log_process_thread_func": 0x0102E064,
+            "z_log_msg_post_finalize": 0x0102E140,
+            "z_log_msg_commit": 0x0102E1FC,
+        },
+    },
+    "cpu_idle": {
+        "source": "zephyr/arch/arm/core/aarch32/cpu_idle.S",
+        "object": ("zephyr/arch/arch/arm/core/aarch32/CMakeFiles/"
+                   "arch__arm__core__aarch32.dir/cpu_idle.S.obj"),
+        "sections": {
+            "z_arm_cpu_idle_init": 0x0102E9B0,
+            "arch_cpu_idle": 0x0102E9BC,
+            "arch_cpu_atomic_idle": 0x0102EA00,
+        },
+    },
     "onoff": {
         "source": "zephyr/lib/os/onoff.c",
         "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/onoff.c.obj",
@@ -164,6 +225,88 @@ CALL_TARGETS = {
     "z_work_submit_to_queue": 0x01036C2C,
 }
 
+CALL_TARGETS.update({
+    "__aeabi_read_tp": 0x0103B650,
+    "activate_foreach_backend": 0x0102DC90,
+    "add_skip_item": 0x01039C54,
+    "atomic_inc": 0x0103A294,
+    "drop_item_locked": 0x01039C92,
+    "dropped_notify": 0x0102DE50,
+    "free_space": 0x01039BD8,
+    "get_usage": 0x01039BFE,
+    "idx_inc": 0x01039C20,
+    "k_timer_init": 0x0103B38E,
+    "log_backend_enable": 0x0102E23C,
+    "log_output_timestamp_freq_set": 0x0102E8A8,
+    "log_set_timestamp_func": 0x0102DDD4,
+    "max_utilization_update": 0x01039DB6,
+    "mpsc_pbuf_alloc": 0x0102CC34,
+    "mpsc_pbuf_claim": 0x0102CE14,
+    "mpsc_pbuf_commit": 0x0102CD8C,
+    "mpsc_pbuf_free": 0x0102CF00,
+    "mpsc_pbuf_init": 0x0102CBD8,
+    "mpsc_pbuf_is_pending": 0x01039DD0,
+    "post_drop_action": 0x01039D80,
+    "rd_idx_inc": 0x01039C3C,
+    "sys_clock_cycle_get_32": 0x0103A6C6,
+    "z_arm_on_enter_cpu_idle": 0x0102D1C0,
+    "z_arm_on_enter_cpu_idle_prepare": 0x0102D0C4,
+    "z_impl_k_sem_init": 0x0103B224,
+    "z_impl_k_sem_take": 0x0103689C,
+    "z_impl_k_sleep": 0x01037C64,
+    "z_impl_k_timer_stop": 0x0103B3A6,
+    "z_impl_k_timer_start": 0x01038448,
+    "z_impl_log_process": 0x0102DF2C,
+    "z_impl_z_log_msg_runtime_vcreate": 0x0102E3A8,
+    "z_log_dropped": 0x0102DE10,
+    "z_log_dropped_read_and_clear": 0x0102DE38,
+    "z_log_init": 0x0102DCF4,
+    "z_log_msg_free": 0x0102DF10,
+    "z_log_msg_init": 0x0102DEA0,
+    "z_log_msg_local_claim": 0x0102DF04,
+    "z_log_msg_pending": 0x0102DF20,
+    "z_log_msg_post_finalize": 0x0102E140,
+})
+
+# Absolute relocations are masked for instruction comparison only after their
+# linked firmware values have been checked.  This closes the mutable logging
+# state and the source-owned constant/string references, rather than proving a
+# body while silently accepting a different private layout.
+ABSOLUTE_TARGETS = {
+    ("mpsc_pbuf", ".rodata.mpsc_pbuf_init.str1.1"):
+        {0x0103D2A7, 0x0103D406},
+    ("mpsc_pbuf", ".rodata.mpsc_pbuf_put_word.str1.1"):
+        {0x0103D3B6},
+    ("log_core", "log_process_thread_timer_expiry_fn"): {0x0102E5BD},
+    ("log_core", ".bss.log_process_thread_timer"): {0x21002790},
+    ("log_core", "logging_thread"): {0x210022F0},
+    ("log_core", "log_process_thread_func"): {0x0102E865},
+    ("log_core", "logging_stack"): {0x210081C0},
+    ("log_core", ".rodata.enable_logger.str1.1"): {0x0103D5CF},
+    ("log_core", "_log_backend_list_start"): {0x0103C0EC},
+    ("log_core", "_log_backend_list_end"): {0x0103C0FC},
+    ("log_core", ".rodata.z_log_init.str1.1"):
+        {0x0103D2A7, 0x0103D5D7},
+    ("log_core", ".bss.initialized"): {0x2100466C},
+    ("log_core", "log_process_thread_sem"): {0x21000944},
+    ("log_core", ".rodata.format_table"): {0x0103C914},
+    ("log_core", ".data.timestamp_func"): {0x2100061C},
+    ("log_core", ".bss.backend_attached"): {0x21004FAC},
+    ("log_core", ".bss.dropped_cnt"): {0x21004664},
+    ("log_core", ".bss.buffered_cnt"): {0x21004668},
+    ("log_core", "._log_mpsc_pbuf.static.log_buffer_"): {0x2100086C},
+    ("log_core", ".rodata.mpsc_config"): {0x0103C900},
+    ("log_core", ".bss.curr_log_buffer"): {0x2100465C},
+    ("log_core", ".bss.panic_mode"): {0x21004FAD},
+    ("log_core", "default_get_timestamp"): {0x0103AA91},
+    ("log_core", ".bss.last_failure_report"): {0x21002788},
+    ("log_core", ".bss.proc_tid"): {0x21004660},
+    ("log_core", ".bss.process_lock.0"): {0x21004658},
+    ("log_core", "z_tls_current"): {8},
+    ("log_core", ".rodata.z_log_msg_post_finalize.str1.1"):
+        {0x0103D3B6},
+}
+
 PRIVATE_STATE = {
     ("work", ".bss.pending_cancels"): {
         "runtime_address": 0x21004B50, "size": 8,
@@ -248,6 +391,7 @@ def build() -> dict:
     section_matches = []
     call_checks = []
     state_observed = {}
+    absolute_observed = {}
     unit_receipts = []
     manifest_functions = []
 
@@ -298,10 +442,13 @@ def build() -> dict:
                                 "target_symbol": target,
                                 "target_va": f"0x{actual:08x}",
                             })
-                        elif target in {key[1] for key in PRIVATE_STATE}:
+                        elif kind in (2, 108):
                             actual = struct.unpack("<I", linked)[0]
-                            state_observed.setdefault((unit, target), []).append(
+                            absolute_observed.setdefault((unit, target), []).append(
                                 (symbol, offset, actual))
+                            if target in {key[1] for key in PRIVATE_STATE}:
+                                state_observed.setdefault((unit, target), []).append(
+                                    (symbol, offset, actual))
                         candidate[offset:offset + 4] = b"\0" * 4
                         original[offset:offset + 4] = b"\0" * 4
                 if candidate != original:
@@ -336,6 +483,13 @@ def build() -> dict:
                         "work_queue_main", "submit_to_queue_locked",
                         "add_event", "register_events", "signal_poll_event",
                         "clear_event_registrations",
+                        "free_space", "get_usage", "idx_inc", "rd_idx_inc",
+                        "add_skip_item", "drop_item_locked",
+                        "post_drop_action", "max_utilization_update",
+                        "dummy_timestamp", "default_get_timestamp",
+                        "atomic_inc", "enable_logger",
+                        "activate_foreach_backend", "dropped_notify",
+                        "log_core_init", "log_process_thread_func",
                     } else "public"),
                     "whole_source_unit_selected": True,
                     "call_targets_checked": True,
@@ -368,8 +522,25 @@ def build() -> dict:
             ],
         })
 
-    if len(section_matches) != 40:
-        raise ValueError("expected complete 40-section closure")
+    absolute_rows = []
+    for key, expected_addresses in ABSOLUTE_TARGETS.items():
+        observed = absolute_observed.get(key, [])
+        addresses = {address for _, _, address in observed}
+        if not observed or addresses != expected_addresses:
+            raise ValueError(f"absolute closure mismatch: {key}")
+        absolute_rows.append({
+            "unit": key[0], "target": key[1],
+            "runtime_addresses": [f"0x{address:08x}"
+                                  for address in sorted(addresses)],
+            "relocation_references": [
+                {"symbol": symbol, "offset": offset,
+                 "runtime_address": f"0x{address:08x}"}
+                for symbol, offset, address in sorted(observed)
+            ],
+        })
+
+    if len(section_matches) != 84:
+        raise ValueError("expected complete 84-section closure")
     recovered = sorted(row["va"] for row in manifest_functions
                        if row["reconstruction_present"])
     return {
@@ -379,7 +550,7 @@ def build() -> dict:
         "status": "authorized_atomic",
         "safe": True,
         "policy": {
-            "adoption_unit": "six_complete_live_source_unit_closures",
+            "adoption_unit": "nine_complete_live_source_unit_closures",
             "proof": "relocation-masked bytes plus every resolved call target",
             "private_state_is_atomic": True,
             "sdc_policy": "report_only_unchanged",
@@ -391,11 +562,23 @@ def build() -> dict:
             "configured_build_sha256": sha256(CONFIG),
             "required_config": required,
             "abi": "Cortex-M33, Thumb-2, soft-float, -Os",
+            "version_precision": {
+                "binary_selected_family": "Zephyr 3.4.99-ncs1",
+                "manifest_selected_tag": "v3.4.99-ncs1-1",
+                "indistinguishable_source_tags": [
+                    "v3.4.99-ncs1", "v3.4.99-ncs1-1",
+                    "v3.4.99-ncs1-2", "v3.4.99-ncs1-3",
+                ],
+                "neighbor_rejection": (
+                    "log_core.c differs at v3.3.99-ncs1 and "
+                    "v3.5.99-ncs1; cpu_idle.S differs at v3.3.99-ncs1"),
+            },
         },
         "source_units": unit_receipts,
         "section_matches": section_matches,
         "call_target_checks": call_checks,
         "private_state_sections": state_rows,
+        "resolved_absolute_targets": absolute_rows,
         "manifest_functions": manifest_functions,
         "recovered_atomic_group": recovered,
         "atomic_group": [row["va"] for row in manifest_functions],
@@ -417,8 +600,8 @@ def write_report(data: dict) -> None:
     lines = [
         "# CPUNET exact Zephyr source closures", "",
         "The corrected stock build at Zephyr commit `83980fe` uses "
-        "`CONFIG_SPIN_VALIDATE=y` and `CONFIG_SMP=n`. All 40 live sections "
-        "from the six units below are relocation-masked byte-exact, and every "
+        "`CONFIG_SPIN_VALIDATE=y` and `CONFIG_SMP=n`. All 84 live sections "
+        "from the nine units below are relocation-masked byte-exact, and every "
         "Thumb call target is checked against the firmware.", "",
         "| unit | live functions | private state |", "|---|---:|---:|",
     ]
@@ -445,7 +628,8 @@ def main() -> int:
     else:
         OUTPUT.write_text(encoded)
         write_report(data)
-    print("CPUNET Zephyr stock adoption: 40 functions, 5 private states exact")
+    print("CPUNET Zephyr stock adoption: 84 functions, 5 kernel private states "
+          "and 28 absolute targets exact")
     return 0
 
 

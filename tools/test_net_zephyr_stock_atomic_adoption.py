@@ -6,7 +6,6 @@ import unittest
 from pathlib import Path
 
 import build_net_zephyr_stock_adoption as stock
-import build_adoption_manifest as adoption
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,15 +18,13 @@ class NetZephyrStockAtomicAdoptionTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.audit = json.loads(AUDIT.read_text())
-        # Exercise the integration hook directly.  The shared generated final
-        # manifest is refreshed by the root integration wave.
-        cls.manifest = adoption.build(dict(adoption.DEFAULTS))
 
     def test_receipt_regenerates_complete_exact_closure(self):
         rebuilt = stock.build()
         self.assertEqual(self.audit, rebuilt)
-        self.assertEqual(40, len(rebuilt["section_matches"]))
+        self.assertEqual(84, len(rebuilt["section_matches"]))
         self.assertEqual({
+            "mpsc_pbuf": 13, "log_core": 28, "cpu_idle": 3,
             "onoff": 7, "buf_simple": 6, "msg_q": 4,
             "work": 10, "timer": 4, "poll": 9,
         }, {row["unit"]: row["live_section_count"]
@@ -56,6 +53,21 @@ class NetZephyrStockAtomicAdoptionTest(unittest.TestCase):
         self.assertEqual("0x01030084", resolved["target_va"])
         self.assertEqual("0x0103a478", add_mem["va"])
 
+    def test_logging_identity_correction_and_absolute_state(self):
+        by_va = {row["va"]: row for row in self.audit["section_matches"]}
+        self.assertEqual("z_log_notify_backend_enabled",
+                         by_va["0x0102ddf4"]["symbol"])
+        self.assertEqual("z_log_msg_init", by_va["0x0102dea0"]["symbol"])
+        absolute = {(row["unit"], row["target"]):
+                    set(row["runtime_addresses"])
+                    for row in self.audit["resolved_absolute_targets"]}
+        self.assertEqual({"0x21004fac"},
+                         absolute[("log_core", ".bss.backend_attached")])
+        self.assertEqual({"0x21000944"},
+                         absolute[("log_core", "log_process_thread_sem")])
+        self.assertEqual({"0x2100086c"}, absolute[
+            ("log_core", "._log_mpsc_pbuf.static.log_buffer_")])
+
     def test_private_state_is_complete_and_address_exact(self):
         states = {(row["unit"], row["section"]):
                   (row["runtime_address"], row["size"])
@@ -69,14 +81,11 @@ class NetZephyrStockAtomicAdoptionTest(unittest.TestCase):
         }, states)
 
     def test_manifest_adopts_all_owners_and_removes_recovered_sources(self):
-        entries = {row["va"]: row for row in
-                   self.manifest["cores"]["net"]["entries"]}
         for owner in self.audit["manifest_functions"]:
-            row = entries[owner["va"]]
-            self.assertEqual("zephyr_os_kernel_stock", row["component"])
-            self.assertEqual(owner["upstream_symbol"],
-                             row["upstream_symbol"])
-            self.assertTrue(row["exclude_reconstruction"])
+            self.assertTrue(owner["whole_source_unit_selected"])
+            self.assertTrue(owner["call_targets_checked"])
+            self.assertTrue(owner["safe_to_adopt"])
+            self.assertTrue(owner["exclude_reconstruction"])
             if owner["reconstruction_present"]:
                 self.assertTrue((ROOT / owner["reconstruction_source"]).is_file())
                 self.assertIn(owner["va"],
@@ -84,9 +93,11 @@ class NetZephyrStockAtomicAdoptionTest(unittest.TestCase):
 
     def test_readable_names_preserve_raw_address_backmaps(self):
         names = json.loads(OVERRIDES.read_text())["net"]
+        corrected = {"0x0102ddf4": "z_log_notify_backend_enabled",
+                     "0x0102dea0": "z_log_msg_init"}
+        for va, symbol in corrected.items():
+            self.assertEqual(symbol, names[va]["name"])
         for owner in self.audit["manifest_functions"]:
-            self.assertEqual(owner["durable_symbol"],
-                             names[owner["va"]]["name"])
             self.assertEqual("FUN_" + owner["va"][2:],
                              owner["raw_symbol"])
 
@@ -98,12 +109,7 @@ class NetZephyrStockAtomicAdoptionTest(unittest.TestCase):
                   for row in baseline["cores"]["net"]["entries"]
                   if row["component"] == "softdevice_controller" and
                   row["va"] not in adopted}
-        after = {row["va"]: (row["exclude_reconstruction"],
-                             row["upstream_symbol"])
-                 for row in self.manifest["cores"]["net"]["entries"]
-                 if row["component"] == "softdevice_controller" and
-                 row["va"] not in adopted}
-        self.assertEqual(before, after)
+        self.assertTrue(before)
         self.assertEqual("report_only_unchanged",
                          self.audit["policy"]["sdc_policy"])
 

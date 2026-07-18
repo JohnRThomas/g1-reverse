@@ -1,9 +1,12 @@
 # CPUNET exact Zephyr source closures
 
-The corrected stock build at Zephyr commit `83980fe` uses `CONFIG_SPIN_VALIDATE=y` and `CONFIG_SMP=n`. All 40 live sections from the six units below are relocation-masked byte-exact, and every Thumb call target is checked against the firmware.
+The corrected stock build at Zephyr commit `83980fe` uses `CONFIG_SPIN_VALIDATE=y` and `CONFIG_SMP=n`. All 84 live sections from the nine units below are relocation-masked byte-exact, and every Thumb call target is checked against the firmware.
 
 | unit | live functions | private state |
 |---|---:|---:|
+| `zephyr/lib/os/mpsc_pbuf.c` | 13 | 0 |
+| `zephyr/subsys/logging/log_core.c` | 28 | 0 |
+| `zephyr/arch/arm/core/aarch32/cpu_idle.S` | 3 | 0 |
 | `zephyr/lib/os/onoff.c` | 7 | 0 |
 | `zephyr/subsys/net/buf_simple.c` | 6 | 0 |
 | `zephyr/kernel/msg_q.c` | 4 | 0 |
