@@ -19,7 +19,27 @@
 #include <stdint.h>
 
 extern int snprintk(char *, uint32_t, const char *, ...); /* snprintk */
+#ifdef G1_APP_SDK_INLINE_COHESION
+typedef int (*g1_log_output_func_t)(const void *, uint32_t, void *);
+/* Exact Zephyr 3.4.99 log_output.c local owner (receipt c6f068f2..., line 150). */
+static __attribute__((always_inline)) inline void
+g1_buffer_write_inline(g1_log_output_func_t output, const void *data,
+                       uint32_t length, void *context)
+{
+    const uint8_t *cursor = (const uint8_t *)data;
+    int processed;
+    do {
+        processed = output(cursor, length, context);
+        length -= (uint32_t)processed;
+        cursor += processed;
+    } while (length != 0U);
+}
+#define buffer_write(output_, data_, length_, context_) \
+    g1_buffer_write_inline((g1_log_output_func_t)(output_), (data_), \
+                           (length_), (context_))
+#else
 extern void buffer_write(void *, const void *, uint32_t, void *); /* buffer_write */
+#endif
 
 void log_output_dropped_process(const uint32_t *output, uint32_t count)
 {

@@ -7,6 +7,7 @@
  *   bt_id_add                                <= FUN_00054ea8 @ 0x00054ea8
  *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
  *   bt_conn_lookup_state_le                  <= FUN_00056f08 @ 0x00056f08
+ *   net_buf_simple_add                       <= FUN_0005f5d0 @ 0x0005f5d0
  *   addr_res_enable                          <= FUN_00081050 @ 0x00081050
  * address symbols (name @ address):
  *   ADDR_bt_le_adv_clear_pending_flag_THUMB  @ 0x00081081
@@ -33,9 +34,33 @@ extern void FUN_00055710(void *, void *); /* bt_le_ext_adv_foreach */
 extern int addr_res_enable(uint32_t); /* addr_res_enable */
 extern void FUN_0008104a(uint32_t, uint32_t, const void *); /* log frontend */
 extern int FUN_00053d70(uint32_t, void *, void *); /* bt_hci_cmd_send_sync */
-extern int FUN_00080fd2(uint8_t, const void *, const void *); /* hci_id_add */
 extern void *FUN_00080fc4(void *, const void *); /* bt_addr_le_copy */
 extern uint8_t *bt_hci_cmd_create(uint32_t, uint32_t); /* bt_hci_cmd_create */
+#ifdef G1_APP_SDK_INLINE_COHESION
+extern uintptr_t net_buf_simple_add(void *, uint32_t); /* net_buf_simple_add */
+/* Exact configured NCS 2.5.1 id.c local owner (receipt 781199a9..., line 797).
+ * CONFIG_BT_ID_MAX=1 and CONFIG_BT_PRIVACY=n in the shipped CPUAPP build. */
+static __attribute__((always_inline)) inline int
+g1_hci_id_add_inline(uint8_t id, const void *address, const void *peer_irk)
+{
+    uint8_t *packet;
+    uint8_t *command;
+
+    if (id != 0U)
+        return -22;
+    packet = bt_hci_cmd_create(0x2027U, 0x27U);
+    if (packet == 0)
+        return -105;
+    command = (uint8_t *)net_buf_simple_add(packet + 12, 0x27U);
+    FUN_00080fc4(command, address);
+    __builtin_memcpy(command + 7, peer_irk, 16U);
+    __builtin_memset(command + 0x17, 0, 16U);
+    return FUN_00053d70(0x2027U, packet, 0);
+}
+#define FUN_00080fd2 g1_hci_id_add_inline
+#else
+extern int FUN_00080fd2(uint8_t, const void *, const void *); /* hci_id_add */
+#endif
 extern void *FUN_00083740(void *, const void *, uint32_t); /* memcpy */
 
 #define ID_LOG(mode_, text_) do {                                      \
