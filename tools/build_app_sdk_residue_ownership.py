@@ -29,6 +29,7 @@ CC312 = os.path.join(
     NCS, "nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/hard-float/"
          "libnrf_cc312_platform_0.9.18.a")
 ORIGIN_RESIDUE = "git:5acb8d8f:recon/analysis/app_link_residue.json"
+CURRENT_RESIDUE = os.path.join(ROOT, "recon/analysis/app_link_residue.json")
 EXPECTED_TAIL = {
     "FUN_0007def6", "FUN_00080fd2", "__nrfy_internal_spim_event_handle",
     "buffer_write", "compare_int_lock", "event_clear",
@@ -331,10 +332,18 @@ def source_receipt(source, owner):
     definition_line = None
     pattern = re.compile(r"\b%s\s*\(" % re.escape(owner))
     with open(path, encoding="utf-8", errors="replace") as stream:
-        for number, line in enumerate(stream, 1):
-            if pattern.search(line):
-                definition_line = number
-                break
+        lines = stream.readlines()
+    for index, line in enumerate(lines):
+        stripped = line.lstrip()
+        if (stripped.startswith(("*", "//", "/*", "#")) or
+                not pattern.search(line)):
+            continue
+        declaration = "".join(lines[index:index + 12])
+        opening = declaration.find("{")
+        semicolon = declaration.find(";")
+        if opening >= 0 and (semicolon < 0 or opening < semicolon):
+            definition_line = index + 1
+            break
     if definition_line is None:
         raise ValueError("owner %s not found in %s" % (owner, source))
     return {
@@ -435,6 +444,16 @@ def build(args):
     if actual != EXPECTED_TAIL or len(entries) != len(EXPECTED_TAIL):
         raise ValueError("SDK tail scope drift: expected %s got %s" %
                          (sorted(EXPECTED_TAIL), sorted(actual)))
+    current = load(CURRENT_RESIDUE)
+    remaining = {row["symbol"] for row in current["entries"]
+                 if row["category"] == "sdk_or_config_symbol"}
+    if not remaining <= EXPECTED_TAIL:
+        raise ValueError("unexpected current SDK residue: %s" %
+                         sorted(remaining - EXPECTED_TAIL))
+    for item in entries:
+        item["integration_status"] = (
+            "pending_caller_cohesion" if item["symbol"] in remaining
+            else "integrated_no_undefined_residue")
     counts = collections.Counter(item["action"] for item in entries)
     return {
         "schema": 1,
@@ -473,6 +492,8 @@ def build(args):
                             for item in entries),
             "manual": sum(item["resolution"]["status"] == "manual"
                           for item in entries),
+            "integrated": len(entries) - len(remaining),
+            "pending_in_current_residue": len(remaining),
         },
         "entries": entries,
     }
@@ -496,6 +517,9 @@ def markdown(catalog):
                  catalog["summary"]["source_unit_or_inline"]), "",
               "Resolved: **%d**. Manual: **%d**." %
               (catalog["summary"]["resolved"], catalog["summary"]["manual"]), "",
+              "Integrated: **%d**. Pending in current residue: **%d**." %
+              (catalog["summary"]["integrated"],
+               catalog["summary"]["pending_in_current_residue"]), "",
               "## Public link/adoption candidates (%d)" %
               catalog["summary"]["public_safe_candidates"], "",
               "These have public archive exports. Exact signature hits can be adopted",

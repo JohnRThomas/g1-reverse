@@ -141,7 +141,7 @@
 #define ADDR_z_cbprintf_cpy_THUMB            0x7ee49 /* z_cbprintf_cpy */
 #define ADDR_z_impl_net_if_ipv6_addr_rm_by_index_THUMB 0x80c8d /* z_impl_net_if_ipv6_addr_rm_by_index */
 
-/* ---- RAM globals / kernel objects (734) ---- */
+/* ---- RAM globals / kernel objects (736) ---- */
 extern volatile unsigned int g_sram_base_word; /* @0x20000000 */
 extern volatile unsigned int g_20000800; /* @0x20000800 */
 extern volatile unsigned int g_ble_dev_state; /* @0x20002000 */
@@ -345,6 +345,7 @@ extern volatile unsigned int g_dashboard_dwell_base_hi; /* @0x20004df4 */
 extern volatile unsigned int g_sync_baseline_timestamp; /* @0x20004df8 */
 extern volatile unsigned int g_dashboard_dwell_start_ts_hi; /* @0x20004dfc */
 extern volatile unsigned int log_process_timestamp; /* @0x200056a0 */
+extern volatile unsigned int g_200056a8; /* @0x200056a8 */
 extern volatile unsigned int smp_work_queue; /* @0x20005bb8 */
 extern volatile unsigned int g_active_transfer_conn; /* @0x20005cb0 */
 extern volatile unsigned int g_sys_work_q; /* @0x20005d38 */
@@ -537,6 +538,7 @@ extern volatile unsigned int g_display_thread_id; /* @0x2000a09c */
 extern volatile unsigned int g_progress_tick_ms; /* @0x2000a0a0 */
 extern volatile int g_boot_uptime_s; /* @0x2000a0b0 */
 extern volatile unsigned int g_analytics_evt_tick_buf; /* @0x2000a0b4 */
+extern volatile unsigned int g_2000a0c8; /* @0x2000a0c8 */
 extern volatile unsigned int g_log_msg_pool_ptr; /* @0x2000a0cc */
 extern volatile unsigned long g_2000a0d0; /* @0x2000a0d0 */
 extern volatile signed int log_backend_count; /* @0x2000a0d4 */
@@ -829,7 +831,7 @@ extern volatile unsigned short g_2001d447; /* @0x2001d447 */
 extern volatile unsigned int g_analytics_evt_hist_ready; /* @0x2001d449 */
 extern volatile unsigned int g_analytics_evt_buf_idx; /* @0x2001d44a */
 extern volatile unsigned char log_process_active; /* @0x2001d44b */
-extern volatile unsigned int g_log_initialized_flag; /* @0x2001d44c */
+extern volatile unsigned char g_log_initialized_flag; /* @0x2001d44c */
 extern volatile unsigned char log_output_flush_done; /* @0x2001d44e */
 extern volatile unsigned int g_arm_mpu_static_regions_num; /* @0x2001d450 */
 extern volatile unsigned char g_smp_pairing_event_cnt; /* @0x2001d531 */

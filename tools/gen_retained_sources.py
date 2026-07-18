@@ -34,7 +34,8 @@ DEFAULTS = {
 RAW_FILE = re.compile(r"^FUN_([0-9a-fA-F]{8})$")
 ENTRY_ADDRESS = re.compile(r"@\s*(0x[0-9a-fA-F]{4,8})")
 SYMBOLIZED_IDENTITY = re.compile(
-    r"identity:\s*FUN_([0-9a-fA-F]{8})\s*@\s*(0x[0-9a-fA-F]{8})")
+    r"identity:\s*[A-Za-z_$][A-Za-z0-9_$]*\s*@\s*"
+    r"(0x[0-9a-fA-F]{8})")
 
 
 def _path(value):
@@ -73,8 +74,6 @@ def source_address(path, names, strict_symbolized=False):
         if not identity:
             raise ValueError("missing symbolized identity header for %s" % path)
         identity_va = int(identity.group(1), 16)
-        if int(identity.group(2), 16) != identity_va:
-            raise ValueError("inconsistent symbolized identity header for %s" % path)
         expected = raw_value if raw_value is not None else names.get(stem)
         if expected is None:
             raise ValueError("symbolized filename absent from name catalog: %s" % path)

@@ -1,6 +1,6 @@
 /* Auto-generated: pin reconstructed app-core symbols to their original
  * addresses so &name resolves to the real VA (whole-image byte-match).
- * 3331 symbols. Include via: INSERT or -T with the main linker script. */
+ * 3333 symbols. Include via: INSERT or -T with the main linker script. */
 
 PROVIDE(rodata_f000 = 0x0000f000);
 PROVIDE(rodata_fa08 = 0x0000fa08);
@@ -2802,6 +2802,7 @@ PROVIDE(g_dashboard_dwell_base_hi = 0x20004df4);
 PROVIDE(g_sync_baseline_timestamp = 0x20004df8);
 PROVIDE(g_dashboard_dwell_start_ts_hi = 0x20004dfc);
 PROVIDE(log_process_timestamp = 0x200056a0);
+PROVIDE(g_200056a8 = 0x200056a8);
 PROVIDE(smp_work_queue = 0x20005bb8);
 PROVIDE(g_active_transfer_conn = 0x20005cb0);
 PROVIDE(g_sys_work_q = 0x20005d38);
@@ -2994,6 +2995,7 @@ PROVIDE(g_display_thread_id = 0x2000a09c);
 PROVIDE(g_progress_tick_ms = 0x2000a0a0);
 PROVIDE(g_boot_uptime_s = 0x2000a0b0);
 PROVIDE(g_analytics_evt_tick_buf = 0x2000a0b4);
+PROVIDE(g_2000a0c8 = 0x2000a0c8);
 PROVIDE(g_log_msg_pool_ptr = 0x2000a0cc);
 PROVIDE(g_2000a0d0 = 0x2000a0d0);
 PROVIDE(log_backend_count = 0x2000a0d4);

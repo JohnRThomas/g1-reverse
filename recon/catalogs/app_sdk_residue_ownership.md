@@ -18,6 +18,8 @@ Public safe candidates: **1**. Source-unit/inline cases: **12**.
 
 Resolved: **13**. Manual: **0**.
 
+Integrated: **13**. Pending in current residue: **0**.
+
 ## Public link/adoption candidates (1)
 
 These have public archive exports. Exact signature hits can be adopted

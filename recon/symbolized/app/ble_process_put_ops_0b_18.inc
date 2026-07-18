@@ -17,7 +17,7 @@ static __attribute__((always_inline)) inline uint64_t g1_sdk_uptime_get_0(void)
     return ((uint64_t)z_impl_k_uptime_ticks() * 1000u) >> 15;
 }
 #else
-extern uint64_t k_uptime_get_0(void); /* FUN_0007c18e @ 0x0007c18e */
+extern uint64_t k_uptime_get_0(void); /* k_uptime_get_0 @ 0x0007c18e */
 #define g1_sdk_uptime_get_0() k_uptime_get_0()
 #endif
 extern int FUN_0007c1aa();

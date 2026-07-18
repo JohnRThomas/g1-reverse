@@ -5,7 +5,7 @@
  *   libc_putc_buffered                       <= FUN_00086c88 @ 0x00086c88
  */
 /* Reconstructed FUN_00086c88 @ 0x86c88  (parity: 300/300 trials, PROVEN) */
-extern unsigned ext77c8c(int,unsigned,int*);
+extern unsigned __swbuf_r(int,unsigned,int*);
 unsigned libc_putc_buffered(int param_1, unsigned param_2, int *param_3){
   int iVar4 = param_3[2] - 1;
   *(volatile int*)(param_3 + 2) = iVar4;
@@ -15,5 +15,5 @@ unsigned libc_putc_buffered(int param_1, unsigned param_2, int *param_3){
     *(volatile unsigned char*)p = (unsigned char)param_2;
     return param_2;
   }
-  return ext77c8c(param_1, param_2, param_3);
+  return __swbuf_r(param_1, param_2, param_3);
 }

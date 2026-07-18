@@ -109,7 +109,7 @@ class OwnershipCatalogTest(unittest.TestCase):
         for row in self.entries:
             owner = row["semantic_owner"]
             definition = re.compile(
-                r"^[A-Za-z_][^\n;{}]*\b%s\s*\([^;{}]*\)\s*\{" %
+                r"^(?!static\s)[A-Za-z_][^\n;{}]*\b%s\s*\([^;{}]*\)\s*\{" %
                 re.escape(owner), re.M)
             self.assertIsNone(definition.search(text), row["symbol"])
         for filename in os.listdir(os.path.join(ROOT, "recon/symbols")):
@@ -119,11 +119,22 @@ class OwnershipCatalogTest(unittest.TestCase):
             ld_text = Path(path).read_text(encoding="utf-8")
             self.assertNotIn("net_buf_tailroom", ld_text, filename)
 
-    def test_current_residue_drops_repaired_public_spelling_only(self):
+    def test_current_residue_is_fail_closed_subset_of_original_tail(self):
         current = {row["symbol"] for row in self.residue["entries"]
                    if row["category"] == "sdk_or_config_symbol"}
+        original = {row["symbol"] for row in self.entries}
+        self.assertLessEqual(current, original)
         self.assertNotIn("net_buf_tailroom", current)
-        self.assertEqual(12, len(current))
+        self.assertNotIn("__nrfy_internal_spim_event_handle", current)
+        self.assertNotIn("flag_test_and_clear", current)
+        self.assertEqual(len(original) - len(current),
+                         self.catalog["summary"]["integrated"])
+        self.assertEqual(len(current),
+                         self.catalog["summary"]["pending_in_current_residue"])
+        for row in self.entries:
+            expected = ("pending_caller_cohesion" if row["symbol"] in current
+                        else "integrated_no_undefined_residue")
+            self.assertEqual(expected, row["integration_status"])
 
 
 if __name__ == "__main__":

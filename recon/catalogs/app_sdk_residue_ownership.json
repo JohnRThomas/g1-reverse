@@ -32,7 +32,9 @@
   "public_safe_candidates": 1,
   "source_unit_or_inline": 12,
   "resolved": 13,
-  "manual": 0
+  "manual": 0,
+  "integrated": 13,
+  "pending_in_current_residue": 0
  },
  "entries": [
   {
@@ -67,7 +69,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "FUN_00080fd2",
@@ -101,7 +104,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "__nrfy_internal_spim_event_handle",
@@ -128,14 +132,15 @@
    "source_receipt": {
     "path": "modules/hal/nordic/nrfx/haly/nrfy_spim.h",
     "sha256": "199f90bcd9d38967738ea6da972f235ae0d6cd2e8c8e77f545d65b49e35c09a7",
-    "definition_line": 46
+    "definition_line": 811
    },
    "resolution": {
     "status": "resolved",
     "strategy": "header_inline_at_owning_callsite",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "buffer_write",
@@ -169,7 +174,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "compare_int_lock",
@@ -203,7 +209,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "event_clear",
@@ -237,7 +244,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "flag_test_and_clear",
@@ -271,7 +279,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "free_list_remove_bidx",
@@ -305,7 +314,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "k_uptime_get_0",
@@ -328,14 +338,15 @@
    "source_receipt": {
     "path": "zephyr/include/zephyr/kernel.h",
     "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
-    "definition_line": 1038
+    "definition_line": 1736
    },
    "resolution": {
     "status": "resolved",
     "strategy": "header_inline_at_owning_callsite",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "k_uptime_get_4",
@@ -358,14 +369,15 @@
    "source_receipt": {
     "path": "zephyr/include/zephyr/kernel.h",
     "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
-    "definition_line": 1038
+    "definition_line": 1736
    },
    "resolution": {
     "status": "resolved",
     "strategy": "header_inline_at_owning_callsite",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "k_uptime_get_7",
@@ -388,14 +400,15 @@
    "source_receipt": {
     "path": "zephyr/include/zephyr/kernel.h",
     "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
-    "definition_line": 1038
+    "definition_line": 1736
    },
    "resolution": {
     "status": "resolved",
     "strategy": "header_inline_at_owning_callsite",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "merge_chunks",
@@ -429,7 +442,8 @@
     "strategy": "complete_source_unit_static_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   },
   {
    "symbol": "net_buf_tailroom",
@@ -456,14 +470,15 @@
    "source_receipt": {
     "path": "zephyr/subsys/net/buf_simple.c",
     "sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
-    "definition_line": 62
+    "definition_line": 540
    },
    "resolution": {
     "status": "resolved",
     "strategy": "exact_public_owner",
     "weak_alias_allowed": false,
     "duplicate_body_allowed": false
-   }
+   },
+   "integration_status": "integrated_no_undefined_residue"
   }
  ]
 }

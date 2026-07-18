@@ -108,10 +108,12 @@ class RetainedSourcesTest(unittest.TestCase):
                                      ("readable.c", 0x1010, "readable"),
                                      ("legacy.c", 0x1020, "legacy")):
             path = os.path.join(self.configs["app"]["source_dir"], filename)
+            identity = ("tail_1010" if filename == "readable.c" else
+                        "FUN_%08x" % va)
             with open(path, "w") as stream:
                 stream.write("/* readable reconstruction; identity: "
-                             "FUN_%08x @ 0x%08x\n * public-name: %s\n */\n" %
-                             (va, va, public))
+                             "%s @ 0x%08x\n * public-name: %s\n */\n" %
+                             (identity, va, public))
         # legacy is not in by_name, so strict symbolized mode rejects it.
         with self.assertRaisesRegex(ValueError, "absent from name catalog"):
             retained.build(self.manifest_path, self.configs)

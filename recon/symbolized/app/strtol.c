@@ -8,10 +8,10 @@
 /* strtol @ 0x00077b24; raw FUN_00077b24 */
 #include <stdint.h>
 
-extern long strtol_reentrant(void *reent, const char *text, char **end, int base); /* FUN_00077a28 */
+extern long FUN_00077a28(int *reent, const char *text, char **end, int base); /* _strtol_r */
 
 long strtol(const char *text, char **end, int base)
 {
-    void *reent = *(void * volatile *)((unsigned long)&g_libc_heap_ctrl) /*=0x20002d20*/;
-    return strtol_reentrant(reent, text, end, base);
+    int *reent = *(int * volatile *)((unsigned long)&g_libc_heap_ctrl) /*=0x20002d20*/;
+    return FUN_00077a28(reent, text, end, base);
 }
