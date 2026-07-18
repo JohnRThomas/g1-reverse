@@ -1,9 +1,8 @@
 /* Reconstructed FUN_0007f192 @ 0x7f192  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int FUN_0004e3e8(unsigned int);
+extern int FUN_0004e3e8(const char *);
 
-unsigned int FUN_0007f192(unsigned int param_1, unsigned int param_2)
+int FUN_0007f192(void)
 {
   return FUN_0004e3e8(0);
 }
-

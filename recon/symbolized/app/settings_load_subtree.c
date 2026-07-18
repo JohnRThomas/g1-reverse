@@ -18,7 +18,7 @@
  */
 #include <stdint.h>
 
-extern void k_mutex_lock(void *, int32_t, int32_t, int32_t); /* k_mutex_lock */
+extern int k_mutex_lock(void *, int64_t); /* k_mutex_lock */
 extern int settings_commit_subtree(const char *); /* settings_commit_subtree */
 extern void k_mutex_unlock(void *); /* k_mutex_unlock */
 
@@ -33,13 +33,13 @@ struct settings_store_recon {
     const void **interface;
 };
 
-int settings_load_subtree(const char *subtree, uint32_t abi_padding)
+int settings_load_subtree(const char *subtree)
 {
     struct settings_load_arg_recon argument = { subtree, 0, 0 };
     struct settings_store_recon *store;
     int result;
 
-    k_mutex_lock((void *)((unsigned long)&g_settings_lock) /*=0x20003868*/, (int32_t)abi_padding, -1, -1);
+    k_mutex_lock((void *)((unsigned long)&g_settings_lock) /*=0x20003868*/, INT64_C(-1));
     store = *(struct settings_store_recon * volatile *)((unsigned long)&g_settings_stores) /*=0x2000a104*/;
     while (store != 0) {
         void (*load)(struct settings_store_recon *, const void *) =

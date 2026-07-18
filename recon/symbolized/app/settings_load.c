@@ -8,9 +8,9 @@
  */
 /* Reconstructed FUN_0007f192 @ 0x7f192  (parity: 300/300 trials, PROVEN) */
 
-extern unsigned int settings_load_subtree(unsigned int);
+extern int settings_load_subtree(const char *);
 
-unsigned int settings_load(unsigned int param_1, unsigned int param_2)
+int settings_load(void)
 {
   return settings_load_subtree(0);
 }

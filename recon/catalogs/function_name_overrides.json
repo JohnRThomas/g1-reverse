@@ -630,6 +630,22 @@
    "name": "settings_load_subtree_direct",
    "evidence": "Body and ABI match NCS 2.5.1 settings_store.c; legacy settings_save_one assignment belongs to 0x0004e374."
   },
+  "0x0004e3c0": {
+   "name": "settings_src_register",
+   "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; appends a settings_store to settings_load_srcs. Raw identity remains FUN_0004e3c0."
+  },
+  "0x0004e3dc": {
+   "name": "settings_dst_register",
+   "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; stores settings_save_dst. Raw identity remains FUN_0004e3dc."
+  },
+  "0x0004e474": {
+   "name": "settings_store_init",
+   "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; initializes settings_load_srcs. Raw identity remains FUN_0004e474."
+  },
+  "0x0004e484": {
+   "name": "settings_init",
+   "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings.c owner; initializes dynamic handlers and the settings store. Raw identity remains FUN_0004e484."
+  },
  "0x00061624": {
    "name": "gpio_nrfx_pin_configure",
    "evidence": "Firmware gpio_driver_api at 0x8b748 points pin_configure slot to 0x61625; body and NCS reference match."

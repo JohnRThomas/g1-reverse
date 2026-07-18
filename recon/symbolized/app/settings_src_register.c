@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0004e3c0 @ 0x0004e3c0
- * public-name: sys_slist_append
+ * public-name: settings_src_register
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   sys_slist_append                         <= FUN_0004e3c0 @ 0x0004e3c0
+ *   settings_src_register                    <= FUN_0004e3c0 @ 0x0004e3c0
  * address symbols (name @ address):
  *   g_settings_stores                        @ 0x2000a104
  */
@@ -12,7 +12,7 @@
 #include <stdint.h>
 typedef struct { void *a; void *b; } S;
 
-void sys_slist_append(unsigned int *param_1)
+void settings_src_register(unsigned int *param_1)
 {
     *param_1 = 0;
     volatile S *r3 = (volatile S *)((unsigned long)&g_settings_stores) /*=0x2000a104*/;

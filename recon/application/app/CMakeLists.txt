@@ -107,6 +107,7 @@ target_include_directories(app PRIVATE
 # does not turn missing ownership into guessed storage.
 zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_globals.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_sdk_state.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_function_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"

@@ -12,25 +12,37 @@
  */
 /* Reconstructed FUN_0004e434 @ 0x4e434  (parity: 300/300 trials, PROVEN) */
 
-extern void k_mutex_lock(unsigned int, unsigned int, int, int, unsigned int);
-extern void k_mutex_unlock(unsigned int);
-typedef void (*fnptr)(int *, void *);
+extern int k_mutex_lock(void *, long long);
+extern void k_mutex_unlock(void *);
+typedef int (*settings_load_direct_cb)(const char *, unsigned int,
+                                      void *, void *, void *);
+struct settings_load_arg_recon {
+  const char *subtree;
+  settings_load_direct_cb callback;
+  void *parameter;
+};
+struct settings_store_recon {
+  struct settings_store_recon *next;
+  const void **interface;
+};
+typedef int (*fnptr)(struct settings_store_recon *,
+                     const struct settings_load_arg_recon *);
 
-unsigned int settings_load_subtree_direct(unsigned int param_1, unsigned int param_2, unsigned int param_3)
+int settings_load_subtree_direct(const char *subtree, settings_load_direct_cb callback,
+                 void *parameter)
 {
-  int *piVar1;
-  unsigned int local_14;
-  unsigned int uStack_10;
-  unsigned int local_c;
+  struct settings_store_recon *store;
+  struct settings_load_arg_recon argument;
   fnptr fp;
-  local_14 = param_1;
-  uStack_10 = param_2;
-  local_c = param_3;
-  k_mutex_lock(((unsigned long)&g_settings_lock) /*=0x20003868*/, param_2, -1, -1, param_1);
-  for (piVar1 = *(int * volatile *)((unsigned long)&g_settings_stores) /*=0x2000a104*/; piVar1 != 0; piVar1 = *(int **)piVar1) {
-    fp = *(fnptr *)(piVar1[1]);
-    fp(piVar1, &local_14);
+  argument.subtree = subtree;
+  argument.callback = callback;
+  argument.parameter = parameter;
+  k_mutex_lock((void *)((unsigned long)&g_settings_lock) /*=0x20003868*/, -1LL);
+  for (store = *(struct settings_store_recon * volatile *)((unsigned long)&g_settings_stores) /*=0x2000a104*/;
+       store != 0; store = store->next) {
+    fp = (fnptr)store->interface[0];
+    fp(store, &argument);
   }
-  k_mutex_unlock(((unsigned long)&g_settings_lock) /*=0x20003868*/);
+  k_mutex_unlock((void *)((unsigned long)&g_settings_lock) /*=0x20003868*/);
   return 0;
 }

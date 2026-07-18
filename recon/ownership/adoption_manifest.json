@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 410,
-    "exclude_reconstruction": 377,
-    "retain_reconstruction": 33,
+    "entries": 415,
+    "exclude_reconstruction": 387,
+    "retain_reconstruction": 28,
     "by_kind": {
-     "source": 260,
+     "source": 265,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -948,22 +948,306 @@
     },
     {
      "core": "app",
+     "va": "0x0004e3c0",
+     "raw_symbol": "FUN_0004e3c0",
+     "current_symbol": "settings_src_register",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "settings_src_register",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6c208ac2f470787bf33afe61dc823c0f69d3a06769f5ef4ba3bdb4f216e723ce",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_src_register",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+        "corrected_upstream_symbol": "settings_src_register",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e3dc",
+     "raw_symbol": "FUN_0004e3dc",
+     "current_symbol": "settings_dst_register",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "settings_dst_register",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "d04ff37d6f657233d8f414da02df357dbcc8ee33be36e9f1ef35f81b38bac427",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_dst_register",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+        "corrected_upstream_symbol": "settings_dst_register",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e3e8",
+     "raw_symbol": "FUN_0004e3e8",
+     "current_symbol": "settings_load_subtree",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "settings_load_subtree",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.933333,
+        "shape": 0.933333,
+        "length": 0.875,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "int",
+        "params": [
+         "char*"
+        ],
+        "variadic": false,
+        "decl_line": 42
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/settings/src/settings_store.c",
+        "sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/libzephyr.a(settings_store.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:46",
+        "reconstruction_input": "app/libapp.a(settings_load_subtree.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:46: multiple definition of `settings_load_subtree'; app/libapp.a(settings_load_subtree.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_load_subtree.c:38: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "50cdc375e3fcb114edf073537ca551725972ea0111d990499099809d5a6305f5",
+       "cfg_verify_cases": 1,
+       "callers": [],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0004e434",
      "raw_symbol": "FUN_0004e434",
      "current_symbol": "settings_load_subtree_direct",
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "settings_load_subtree_direct",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -993,7 +1277,245 @@
         "owner_input": "zephyr/libzephyr.a(settings_store.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:69",
         "reconstruction_input": "app/libapp.a(settings_load_subtree_direct.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:69: multiple definition of `settings_load_subtree_direct'; app/libapp.a(settings_load_subtree_direct.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_load_subtree_direct.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:69: multiple definition of `settings_load_subtree_direct'; app/libapp.a(settings_load_subtree_direct.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_load_subtree_direct.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "506ce08637daa6bb9bba28f671cf05bac3b2e91b0df7cacecb67812e21b39c92",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00058bfc"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e474",
+     "raw_symbol": "FUN_0004e474",
+     "current_symbol": "settings_store_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "settings_store_init",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "60855d7b322407431c0f62b52ab7bca1282c310127d4b744e563162601604b7e",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_store_init",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+        "corrected_upstream_symbol": "settings_store_init",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e484",
+     "raw_symbol": "FUN_0004e484",
+     "current_symbol": "settings_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "settings_init",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5a36b0e2a9fc6df804014b5df97464b0102dbcef792e57eac00a6ab64af7df7a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_init",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings.c",
+        "corrected_upstream_symbol": "settings_init",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -1006,16 +1528,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "settings_register",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -1043,7 +1565,79 @@
         "owner_input": "zephyr/libzephyr.a(settings.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:40",
         "reconstruction_input": "app/libapp.a(settings_register.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:40: multiple definition of `settings_register'; app/libapp.a(settings_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_register.c:29: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:40: multiple definition of `settings_register'; app/libapp.a(settings_register.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_register.c:29: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b04bfbe917c3923db660a58bcc29a86bf02b2bdc4334e499f8983fabd43d0ab9",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00022518"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -1056,16 +1650,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "settings_parse_and_lookup",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -1095,7 +1689,79 @@
         "owner_input": "zephyr/libzephyr.a(settings.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:139",
         "reconstruction_input": "app/libapp.a(settings_parse_and_lookup.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:139: multiple definition of `settings_parse_and_lookup'; app/libapp.a(settings_parse_and_lookup.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_parse_and_lookup.c:25: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:139: multiple definition of `settings_parse_and_lookup'; app/libapp.a(settings_parse_and_lookup.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_parse_and_lookup.c:25: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "262b5a9f28d3c08195244b2148b55c5d6898e390fbc3d701369c7d36f88be7a1",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x0004e604"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -1106,48 +1772,79 @@
      "raw_symbol": "FUN_0004e604",
      "current_symbol": "settings_call_set_handler",
      "kind": "source",
-     "component": "zephyr",
+     "component": "cpuapp_selected_sdk",
      "upstream_symbol": "settings_call_set_handler",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
      "evidence": [
       {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 0.944,
-        "shape": 0.944,
-        "length": 0.893939,
-        "normalized_exact": false
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5b2de719a20505afbe9accf7419abdf56981b8b6a07d51214f53f6d8289e090a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_call_set_handler",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings.c",
+        "corrected_upstream_symbol": "settings_call_set_handler",
+        "upstream_linkage": "public"
        },
-       "abi": {
-        "return": "int",
-        "params": [
-         "char*",
-         "size_t",
-         "settings_read_cb",
-         "void*",
-         "settings_load_arg*"
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
         ],
-        "variadic": false,
-        "decl_line": 192
-       },
-       "upstream_source": {
-        "path": "zephyr/subsys/settings/src/settings.c",
-        "sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
-        "repository": "zephyr",
-        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
-       },
-       "link_provenance": {
-        "owner_input": "zephyr/libzephyr.a(settings.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:197",
-        "reconstruction_input": "app/libapp.a(settings_call_set_handler.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:197: multiple definition of `settings_call_set_handler'; app/libapp.a(settings_call_set_handler.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_call_set_handler.c:21: first defined here"
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -1160,16 +1857,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "settings_commit_subtree",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -1198,7 +1895,79 @@
         "owner_input": "zephyr/libzephyr.a(settings.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:238",
         "reconstruction_input": "app/libapp.a(settings_commit_subtree.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:238: multiple definition of `settings_commit_subtree'; app/libapp.a(settings_commit_subtree.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_commit_subtree.c:25: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings.c:238: multiple definition of `settings_commit_subtree'; app/libapp.a(settings_commit_subtree.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_commit_subtree.c:25: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ec71e6afcdd4138917930cb11105721c1707b37d1b7148d3cc76bef3443c99f9",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x0007f192"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -17258,16 +18027,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "settings_load",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -17295,7 +18064,79 @@
         "owner_input": "zephyr/libzephyr.a(settings_store.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:39",
         "reconstruction_input": "app/libapp.a(settings_load.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:39: multiple definition of `settings_load'; app/libapp.a(settings_load.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_load.c:14: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:39: multiple definition of `settings_load'; app/libapp.a(settings_load.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_load.c:15: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f82a5214ade2a9bc18b4945c84ebc6d3fb6b63b2def224050a92b4f6141c2b13",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00019950"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_SETTINGS": "y",
+        "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+        "CONFIG_SETTINGS_LOG_LEVEL": "3"
+       },
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -17306,44 +18147,79 @@
      "raw_symbol": "FUN_0007f198",
      "current_symbol": "settings_delete",
      "kind": "source",
-     "component": "zephyr",
+     "component": "cpuapp_selected_sdk",
      "upstream_symbol": "settings_delete",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
      "evidence": [
       {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 1.0,
-        "shape": 1.0,
-        "length": 1.0,
-        "normalized_exact": true
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-SETTINGS-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "483eb94681d589b331798b1c0dce8b646b8985033812c18051b3db230f9f5875",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "settings_delete",
+        "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+        "corrected_upstream_symbol": "settings_delete",
+        "upstream_linkage": "public"
        },
-       "abi": {
-        "return": "int",
-        "params": [
-         "char*"
+       "atomic_group": [
+        "0x0004e3c0",
+        "0x0004e3dc",
+        "0x0004e3e8",
+        "0x0004e434",
+        "0x0004e474",
+        "0x0004e484",
+        "0x0004e494",
+        "0x0004e540",
+        "0x0004e604",
+        "0x0004e6a8",
+        "0x0007f192",
+        "0x0007f198"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004e3c0",
+         "0x0004e3dc",
+         "0x0004e3e8",
+         "0x0004e434",
+         "0x0004e474",
+         "0x0004e484",
+         "0x0004e494",
+         "0x0004e540",
+         "0x0004e604",
+         "0x0004e6a8",
+         "0x0007f192",
+         "0x0007f198"
         ],
-        "variadic": false,
-        "decl_line": 113
-       },
-       "upstream_source": {
-        "path": "zephyr/subsys/settings/src/settings_store.c",
-        "sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
-        "repository": "zephyr",
-        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
-       },
-       "link_provenance": {
-        "owner_input": "zephyr/libzephyr.a(settings_store.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:115",
-        "reconstruction_input": "app/libapp.a(settings_delete.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/settings/src/settings_store.c:115: multiple definition of `settings_delete'; app/libapp.a(settings_delete.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/settings_delete.c:15: first defined here"
+        "new_undefined_symbols": [],
+        "private_state": {
+         "settings_handlers": "0x2000a10c",
+         "settings_load_srcs": "0x2000a104",
+         "settings_lock": "0x20003868",
+         "settings_save_dst": "0x2000a100"
+        },
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "settings_commit_subtree",
+         "settings_load",
+         "settings_load_subtree",
+         "settings_load_subtree_direct",
+         "settings_parse_and_lookup",
+         "settings_register"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "settings_save_one",
+         "settings_name_steq",
+         "settings_name_next"
+        ]
        }
       }
      ]
@@ -36386,6 +37262,10 @@
   {
    "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
    "sha256": "bff29ea31de4c5cb5898e6313c2480f25067c0fd09d06f8c40f207d1afe5a6b4"
+  },
+  {
+   "path": "recon/ownership/app_settings_stock_atomic_adoption.json",
+   "sha256": "8cf3310996b07a72093613805e56525490ad364dd662dbd3b0380d2e7730e03e"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

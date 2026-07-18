@@ -5,8 +5,8 @@
  * callees (readable <= raw @ address):
  *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
  *   flash_area_get_sectors                   <= FUN_0004e098 @ 0x0004e098
- *   sys_slist_append                         <= FUN_0004e3c0 @ 0x0004e3c0
- *   settings_backend_ptr_store               <= FUN_0004e3dc @ 0x0004e3dc
+ *   settings_src_register                    <= FUN_0004e3c0 @ 0x0004e3c0
+ *   settings_dst_register                    <= FUN_0004e3dc @ 0x0004e3dc
  *   settings_nvs_backend_mount               <= FUN_0004e83c @ 0x0004e83c
  *   settings_nvs_backend_init                <= FUN_0007f344 @ 0x0007f344
  * address symbols (name @ address):
@@ -19,8 +19,8 @@
 #include <stdint.h>
 extern int flash_area_open(int,void*);
 extern int flash_area_get_sectors(int,void*,void*);
-extern int sys_slist_append(void*);
-extern int settings_backend_ptr_store(void*);
+extern int settings_src_register(void*);
+extern int settings_dst_register(void*);
 extern int settings_nvs_backend_init(void*);
 int settings_nvs_backend_mount(int param_1,int param_2,int param_3,unsigned int param_4){
   unsigned int args[4];
@@ -46,9 +46,9 @@ int settings_nvs_backend_mount(int param_1,int param_2,int param_3,unsigned int 
         uVar2=((unsigned long)&g_settings_nvs_backend_list_next) /*=0x200027fc*/;
         if(iVar3==0){
           *(int*)(iVar1+4)=((unsigned long)&g_settings_nvs_backend_list_next) /*=0x200027fc*/;
-          sys_slist_append((void*)iVar1);
+          settings_src_register((void*)iVar1);
           *(int*)(iVar1+4)=uVar2;
-          settings_backend_ptr_store((void*)iVar1);
+          settings_dst_register((void*)iVar1);
         }
       } else { iVar3=-0x21; }
     }

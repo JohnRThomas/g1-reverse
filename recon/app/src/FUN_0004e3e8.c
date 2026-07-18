@@ -5,7 +5,7 @@
  */
 #include <stdint.h>
 
-extern void FUN_000723b8(void *, int32_t, int32_t, int32_t); /* k_mutex_lock */
+extern int FUN_000723b8(void *, int64_t); /* k_mutex_lock */
 extern int FUN_0004e6a8(const char *); /* settings_commit_subtree */
 extern void FUN_00072558(void *); /* k_mutex_unlock */
 
@@ -20,13 +20,13 @@ struct settings_store_recon {
     const void **interface;
 };
 
-int FUN_0004e3e8(const char *subtree, uint32_t abi_padding)
+int FUN_0004e3e8(const char *subtree)
 {
     struct settings_load_arg_recon argument = { subtree, 0, 0 };
     struct settings_store_recon *store;
     int result;
 
-    FUN_000723b8((void *)0x20003868UL, (int32_t)abi_padding, -1, -1);
+    FUN_000723b8((void *)0x20003868UL, INT64_C(-1));
     store = *(struct settings_store_recon * volatile *)0x2000a104UL;
     while (store != 0) {
         void (*load)(struct settings_store_recon *, const void *) =

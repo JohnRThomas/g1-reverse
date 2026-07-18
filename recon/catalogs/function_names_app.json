@@ -7773,23 +7773,25 @@
   "0x0004e3c0": {
    "address": "0x0004e3c0",
    "raw_name": "FUN_0004e3c0",
-   "name": "sys_slist_append",
-   "display_name": "sys_slist_append",
+   "name": "settings_src_register",
+   "display_name": "settings_src_register",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; appends a settings_store to settings_load_srcs. Raw identity remains FUN_0004e3c0.",
    "aliases": [
-    "FUN_0004e3c0"
+    "FUN_0004e3c0",
+    "sys_slist_append"
    ]
   },
   "0x0004e3dc": {
    "address": "0x0004e3dc",
    "raw_name": "FUN_0004e3dc",
-   "name": "settings_backend_ptr_store",
-   "display_name": "settings_backend_ptr_store",
+   "name": "settings_dst_register",
+   "display_name": "settings_dst_register",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; stores settings_save_dst. Raw identity remains FUN_0004e3dc.",
    "aliases": [
-    "FUN_0004e3dc"
+    "FUN_0004e3dc",
+    "settings_backend_ptr_store"
    ]
   },
   "0x0004e3e8": {
@@ -7817,21 +7819,24 @@
   "0x0004e474": {
    "address": "0x0004e474",
    "raw_name": "FUN_0004e474",
-   "name": "FUN_0004e474",
-   "display_name": "FUN_0004e474",
-   "human": false,
-   "source": "recon/app/src/FUN_0004e474.c",
-   "aliases": []
+   "name": "settings_store_init",
+   "display_name": "settings_store_init",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings_store.c owner; initializes settings_load_srcs. Raw identity remains FUN_0004e474.",
+   "aliases": [
+    "FUN_0004e474"
+   ]
   },
   "0x0004e484": {
    "address": "0x0004e484",
    "raw_name": "FUN_0004e484",
-   "name": "settings_lists_init",
-   "display_name": "settings_lists_init",
+   "name": "settings_init",
+   "display_name": "settings_init",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-masked byte-exact NCS 2.5.1 settings.c owner; initializes dynamic handlers and the settings store. Raw identity remains FUN_0004e484.",
    "aliases": [
-    "FUN_0004e484"
+    "FUN_0004e484",
+    "settings_lists_init"
    ]
   },
   "0x0004e494": {
@@ -9289,8 +9294,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr Bluetooth host initializer; the former bt_send label was an identity mismatch. Raw identity remains FUN_00054a44 at 0x00054a44.",
    "aliases": [
-    "FUN_00054a44",
-    "bt_send"
+    "FUN_00054a44"
    ]
   },
   "0x00054b70": {
@@ -11081,8 +11085,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr bt_gatt_write; the former bt_gatt_read label contradicted the write opcodes and params layout. Raw identity remains FUN_0005c22c at 0x0005c22c.",
    "aliases": [
-    "FUN_0005c22c",
-    "bt_gatt_read"
+    "FUN_0005c22c"
    ]
   },
   "0x0005c310": {
@@ -11113,8 +11116,7 @@
    "human": true,
    "source": "function_name_overrides.json: Relocation-normalized instruction-exact configured Zephyr bt_gatt_unsubscribe; the former bt_gatt_subscribe label described the inverse operation. Raw identity remains FUN_0005c4f0 at 0x0005c4f0.",
    "aliases": [
-    "FUN_0005c4f0",
-    "bt_gatt_subscribe"
+    "FUN_0005c4f0"
    ]
   },
   "0x0005c5f0": {
@@ -21330,8 +21332,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware security starter: unlike every stock Zephyr candidate it deliberately omits the two early sec_level/required_sec_level no-op guards. Namespaced fail-closed while preserving the raw address backmap.",
    "aliases": [
-    "FUN_0008149a",
-    "bt_conn_set_security"
+    "FUN_0008149a"
    ]
   },
   "0x000814e2": {
@@ -21619,8 +21620,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact configured Zephyr L2CAP RX-CID lookup; the former TX label contradicted the recovered field offset. Raw identity remains FUN_00081aca at 0x00081aca.",
    "aliases": [
-    "FUN_00081aca",
-    "bt_l2cap_le_lookup_tx_cid"
+    "FUN_00081aca"
    ]
   },
   "0x00081adc": {
@@ -26230,7 +26230,6 @@
   "FUN_0004df88": "0x0004df88",
   "FUN_0004dfb8": "0x0004dfb8",
   "FUN_0004e124": "0x0004e124",
-  "FUN_0004e474": "0x0004e474",
   "FUN_0004e964": "0x0004e964",
   "FUN_0004e98c": "0x0004e98c",
   "FUN_0004ea78": "0x0004ea78",
@@ -28265,12 +28264,12 @@
   "set_time_mark": "0x00024d40",
   "set_uart_line_ctrl_dtr": "0x0007c882",
   "sett_init": "0x00022518",
-  "settings_backend_ptr_store": "0x0004e3dc",
   "settings_call_set_handler": "0x0004e604",
   "settings_commit_subtree": "0x0004e6a8",
   "settings_delete": "0x0007f198",
+  "settings_dst_register": "0x0004e3dc",
+  "settings_init": "0x0004e484",
   "settings_invalid_index_log": "0x0004e8c0",
-  "settings_lists_init": "0x0004e484",
   "settings_load": "0x0007f192",
   "settings_load_subtree": "0x0004e3e8",
   "settings_load_subtree_direct": "0x0004e434",
@@ -28285,6 +28284,8 @@
   "settings_parse_and_lookup": "0x0004e540",
   "settings_register": "0x0004e494",
   "settings_save_one": "0x0004e374",
+  "settings_src_register": "0x0004e3c0",
+  "settings_store_init": "0x0004e474",
   "settings_subsys_init": "0x0004e744",
   "shift_rows": "0x0007ff64",
   "shm_size": "0x0007ebee",
@@ -28386,7 +28387,6 @@
   "sys_put_le64": "0x00080eb8",
   "sys_rand32_get": "0x00052c40",
   "sys_reboot": "0x0004c0a8",
-  "sys_slist_append": "0x0004e3c0",
   "sys_slist_find_and_remove": "0x0008137e",
   "sys_slist_find_and_remove_0": "0x00082ab8",
   "sys_slist_find_and_remove_2": "0x00081de2",

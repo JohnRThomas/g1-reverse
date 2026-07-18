@@ -1,0 +1,1271 @@
+{
+ "atomic_group": [
+  "0x0004e3c0",
+  "0x0004e3dc",
+  "0x0004e3e8",
+  "0x0004e434",
+  "0x0004e474",
+  "0x0004e484",
+  "0x0004e494",
+  "0x0004e540",
+  "0x0004e604",
+  "0x0004e6a8",
+  "0x0007f192",
+  "0x0007f198"
+ ],
+ "authorizations": [
+  {
+   "abi": "void settings_src_register(struct settings_store *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0004e83c"
+   ],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 28,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_src_register",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+    "corrected_upstream_symbol": "settings_src_register",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "6c208ac2f470787bf33afe61dc823c0f69d3a06769f5ef4ba3bdb4f216e723ce",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e3c0",
+   "reconstruction_source": "recon/app/src/FUN_0004e3c0.c",
+   "reconstruction_source_sha256": "2e4bc8f767f97094f0ea652fb6a0a10cae18c74cbceef10c4ea4692e1328e901",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    24
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_src_register",
+   "upstream_code_size": 28,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0004e3c0",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "void settings_dst_register(struct settings_store *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0004e83c"
+   ],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 12,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_dst_register",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+    "corrected_upstream_symbol": "settings_dst_register",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "d04ff37d6f657233d8f414da02df357dbcc8ee33be36e9f1ef35f81b38bac427",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e3dc",
+   "reconstruction_source": "recon/app/src/FUN_0004e3dc.c",
+   "reconstruction_source_sha256": "1b25642023ec28f2df138a0899b5ce65a9cdf0014d0cd68d9e319050e2c09cf6",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    8
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_dst_register",
+   "upstream_code_size": 12,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0004e3dc",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_load_subtree(const char *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "5c1e90eac516586c3caa159216b19c796cd4462248f37700628401b2c6947f3d",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "4febe317fcd90da7064d6f19307f61b58cc2b573f08f0fe27a6ab2a7ca4004d0",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 76,
+   "instruction_exact": true,
+   "normalized_code_sha256": "50cdc375e3fcb114edf073537ca551725972ea0111d990499099809d5a6305f5",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e3e8",
+   "reconstruction_source": "recon/app/src/FUN_0004e3e8.c",
+   "reconstruction_source_sha256": "4d5f216d6486ca29ac08b810ce4c6255230a5c65f250c11270442642746a8360",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    24,
+    36,
+    44,
+    68,
+    72
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_load_subtree",
+   "upstream_code_size": 76,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0004e3e8",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_load_subtree_direct(const char *, settings_load_direct_cb, void *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "5c1e90eac516586c3caa159216b19c796cd4462248f37700628401b2c6947f3d",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x00058bfc"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "d3cdaa0688bd197a3554fb07bf85d15dcd6899e011bf227fd1664f97a8b95318",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 64,
+   "instruction_exact": true,
+   "normalized_code_sha256": "506ce08637daa6bb9bba28f671cf05bac3b2e91b0df7cacecb67812e21b39c92",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e434",
+   "reconstruction_source": "recon/app/src/FUN_0004e434.c",
+   "reconstruction_source_sha256": "6e4f7ac5852c1e6305ea9eb1c88ed2e3f2807c84de524f7be6e99dac22dc043b",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    18,
+    30,
+    56,
+    60
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_load_subtree_direct",
+   "upstream_code_size": 64,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0004e434",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "void settings_store_init(void)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 16,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_store_init",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+    "corrected_upstream_symbol": "settings_store_init",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "60855d7b322407431c0f62b52ab7bca1282c310127d4b744e563162601604b7e",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e474",
+   "reconstruction_source": "recon/app/src/FUN_0004e474.c",
+   "reconstruction_source_sha256": "b03a3b089914380db7236ff736e820daea4d51a64aee465c68ea00426137f62c",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    12
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_store_init",
+   "upstream_code_size": 16,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0004e474",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "void settings_init(void)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0004e744"
+   ],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings.c.obj)",
+   "firmware_code_size": 16,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_init",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings.c",
+    "corrected_upstream_symbol": "settings_init",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "5a36b0e2a9fc6df804014b5df97464b0102dbcef792e57eac00a6ab64af7df7a",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e484",
+   "reconstruction_source": "recon/app/src/FUN_0004e484.c",
+   "reconstruction_source_sha256": "6e55701c266dee470e97d42f5d6d5e3a89ca538c36551f2fcf521172acb6de23",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    12,
+    8
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_init",
+   "upstream_code_size": 16,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+   "upstream_object_sha256": "ed18ff679ffe9f4168bb3f6075c89280247d9275a13ba1d1046e4a08cd681bb8",
+   "upstream_source": "zephyr/subsys/settings/src/settings.c",
+   "upstream_source_sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
+   "va": "0x0004e484",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_register(struct settings_handler *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "077bbe24ecfd49bdb018a2556beb5ae450b68ccdb6b06793c0cf922b3010d9ac",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x00022518"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "057c31224b4b2ca6a8ae40f5eb6e6f562b5964e178979b29b52e6860f3e85450",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings.c.obj)",
+   "firmware_code_size": 172,
+   "instruction_exact": true,
+   "normalized_code_sha256": "b04bfbe917c3923db660a58bcc29a86bf02b2bdc4334e499f8983fabd43d0ab9",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e494",
+   "reconstruction_source": "recon/app/src/FUN_0004e494.c",
+   "reconstruction_source_sha256": "31a7d0be1caf990669254013ef3d1a2bfc6869042bc03ec5e8b02665b9a66f12",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    20,
+    26,
+    34,
+    42,
+    66,
+    82,
+    112,
+    140,
+    144,
+    148,
+    152,
+    156,
+    160,
+    164,
+    168
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_register",
+   "upstream_code_size": 172,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+   "upstream_object_sha256": "ed18ff679ffe9f4168bb3f6075c89280247d9275a13ba1d1046e4a08cd681bb8",
+   "upstream_source": "zephyr/subsys/settings/src/settings.c",
+   "upstream_source_sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
+   "va": "0x0004e494",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "struct settings_handler_static *settings_parse_and_lookup(const char *, const char **)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "077bbe24ecfd49bdb018a2556beb5ae450b68ccdb6b06793c0cf922b3010d9ac",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0004e604"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "0c385b211fe2326199ef4895d5311426fe5b70d0db3b7dfad1da5f69de666e00",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings.c.obj)",
+   "firmware_code_size": 196,
+   "instruction_exact": true,
+   "normalized_code_sha256": "262b5a9f28d3c08195244b2148b55c5d6898e390fbc3d701369c7d36f88be7a1",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e540",
+   "reconstruction_source": "recon/app/src/FUN_0004e540.c",
+   "reconstruction_source_sha256": "7ce71c436de778900f821ff07f0c2cd3667199d05e5055fab1465e679bb13a6a",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    34,
+    40,
+    48,
+    62,
+    82,
+    120,
+    140,
+    168,
+    172,
+    176,
+    180,
+    184,
+    188,
+    192
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_parse_and_lookup",
+   "upstream_code_size": 196,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+   "upstream_object_sha256": "ed18ff679ffe9f4168bb3f6075c89280247d9275a13ba1d1046e4a08cd681bb8",
+   "upstream_source": "zephyr/subsys/settings/src/settings.c",
+   "upstream_source_sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
+   "va": "0x0004e540",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_call_set_handler(const char *, size_t, settings_read_cb, void *, const struct settings_load_arg *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0004e780"
+   ],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings.c.obj)",
+   "firmware_code_size": 164,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_call_set_handler",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings.c",
+    "corrected_upstream_symbol": "settings_call_set_handler",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "5b2de719a20505afbe9accf7419abdf56981b8b6a07d51214f53f6d8289e090a",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e604",
+   "reconstruction_source": "recon/app/src/FUN_0004e604.c",
+   "reconstruction_source_sha256": "be9dace6f8df8c95f77c53a3e244f54700861d7050118fcfaff0a4a906c35251",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    48,
+    104,
+    114,
+    152,
+    160
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_call_set_handler",
+   "upstream_code_size": 164,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+   "upstream_object_sha256": "ed18ff679ffe9f4168bb3f6075c89280247d9275a13ba1d1046e4a08cd681bb8",
+   "upstream_source": "zephyr/subsys/settings/src/settings.c",
+   "upstream_source_sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
+   "va": "0x0004e604",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_commit_subtree(const char *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "077bbe24ecfd49bdb018a2556beb5ae450b68ccdb6b06793c0cf922b3010d9ac",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x0007f192"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "9e743ed690b3bc3a5e0cee8d031448b70ee3aadf9fe7ac0fd5265601554850ac",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings.c.obj)",
+   "firmware_code_size": 156,
+   "instruction_exact": true,
+   "normalized_code_sha256": "ec71e6afcdd4138917930cb11105721c1707b37d1b7148d3cc76bef3443c99f9",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0004e6a8",
+   "reconstruction_source": "recon/app/src/FUN_0004e6a8.c",
+   "reconstruction_source_sha256": "2c1494a627ade551b3e94ec4fbfe73e9aa7ee1493e072ee58810f2bfe721c90b",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    22,
+    28,
+    36,
+    60,
+    104,
+    128,
+    132,
+    136,
+    140,
+    144,
+    148,
+    152
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_commit_subtree",
+   "upstream_code_size": 156,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings.c.obj",
+   "upstream_object_sha256": "ed18ff679ffe9f4168bb3f6075c89280247d9275a13ba1d1046e4a08cd681bb8",
+   "upstream_source": "zephyr/subsys/settings/src/settings.c",
+   "upstream_source_sha256": "75ed72b10d4e539b46f9457cfb744f75db8dfff11c94b62910374ebca579aa35",
+   "va": "0x0004e6a8",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_load(void)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "baseline_upstream_object_sha256": "5c1e90eac516586c3caa159216b19c796cd4462248f37700628401b2c6947f3d",
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x00019950"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "ef75f272b5af666bd04e9cde43fe557f13bc63974c7b2bd44aecb735db7205ed",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 6,
+   "instruction_exact": true,
+   "normalized_code_sha256": "f82a5214ade2a9bc18b4945c84ebc6d3fb6b63b2def224050a92b4f6141c2b13",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0007f192",
+   "reconstruction_source": "recon/app/src/FUN_0007f192.c",
+   "reconstruction_source_sha256": "41903ec2ae7983d90ea27970b84ca677a72643dde3250c94a88dc46dd2a6832a",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    2
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_load",
+   "upstream_code_size": 6,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0007f192",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  },
+  {
+   "abi": "int settings_delete(const char *)",
+   "atomic_group": [
+    "0x0004e3c0",
+    "0x0004e3dc",
+    "0x0004e3e8",
+    "0x0004e434",
+    "0x0004e474",
+    "0x0004e484",
+    "0x0004e494",
+    "0x0004e540",
+    "0x0004e604",
+    "0x0004e6a8",
+    "0x0007f192",
+    "0x0007f198"
+   ],
+   "batch": "COLLISION-SETTINGS-STOCK",
+   "callers": [
+    "0x00053184"
+   ],
+   "cfg_verify_cases": 1,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1",
+   "configured_link_owner": "zephyr/libzephyr.a(settings_store.c.obj)",
+   "firmware_code_size": 8,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "settings_delete",
+    "corrected_upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+    "corrected_upstream_symbol": "settings_delete",
+    "upstream_linkage": "public"
+   },
+   "instruction_exact": true,
+   "normalized_code_sha256": "483eb94681d589b331798b1c0dce8b646b8985033812c18051b3db230f9f5875",
+   "owner_cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "raw_symbol": "FUN_0007f198",
+   "reconstruction_source": "recon/app/src/FUN_0007f198.c",
+   "reconstruction_source_sha256": "d68d4a3819fe540977c0c5300e65d2d3bdc9b68a5a7acef0cd3edda8f6ccd239",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    4
+   ],
+   "required_config": {
+    "CONFIG_SETTINGS": "y",
+    "CONFIG_SETTINGS_DYNAMIC_HANDLERS": "y",
+    "CONFIG_SETTINGS_LOG_LEVEL": "3"
+   },
+   "status": "authorized",
+   "symbol": "settings_delete",
+   "upstream_code_size": 8,
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/settings/src/settings_store.c.obj",
+   "upstream_object_sha256": "1fe9a888fea20465bebbba2075a438fbda7058bcc7d39a00668b11be20f28da0",
+   "upstream_source": "zephyr/subsys/settings/src/settings_store.c",
+   "upstream_source_sha256": "a9fc1b8c0effdc8400419d8c5e915307d329ee5453afc32be928c3e73cc08f16",
+   "va": "0x0007f198",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004e3c0",
+     "0x0004e3dc",
+     "0x0004e3e8",
+     "0x0004e434",
+     "0x0004e474",
+     "0x0004e484",
+     "0x0004e494",
+     "0x0004e540",
+     "0x0004e604",
+     "0x0004e6a8",
+     "0x0007f192",
+     "0x0007f198"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": {
+     "settings_handlers": "0x2000a10c",
+     "settings_load_srcs": "0x2000a104",
+     "settings_lock": "0x20003868",
+     "settings_save_dst": "0x2000a100"
+    },
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "settings_commit_subtree",
+     "settings_load",
+     "settings_load_subtree",
+     "settings_load_subtree_direct",
+     "settings_parse_and_lookup",
+     "settings_register"
+    ],
+    "same_source_unit_sdk_only_exact_symbols": [
+     "settings_save_one",
+     "settings_name_steq",
+     "settings_name_next"
+    ]
+   }
+  }
+ ],
+ "configured_build_receipts": [
+  "/private/tmp/g1-app-residue-current-0718/zephyr/.config"
+ ],
+ "core": "app",
+ "decision": "adopt_exact_configured_zephyr_settings_source_units",
+ "expected_link_delta": {
+  "added": [],
+  "after": 22,
+  "before": 28,
+  "removed": [
+   "settings_commit_subtree",
+   "settings_load",
+   "settings_load_subtree",
+   "settings_load_subtree_direct",
+   "settings_parse_and_lookup",
+   "settings_register"
+  ],
+  "unresolved": [
+   "FUN_0005463e",
+   "FUN_00054688"
+  ]
+ },
+ "private_state_pins": {
+  "settings_handlers": "0x2000a10c",
+  "settings_load_srcs": "0x2000a104",
+  "settings_lock": "0x20003868",
+  "settings_save_dst": "0x2000a100"
+ },
+ "schema": 1,
+ "sdc_policy": "report_only_unchanged",
+ "sdk_only_exact_owners": {
+  "0x0004e374": [
+   "settings_save_one",
+   76
+  ],
+  "0x0007f1a0": [
+   "settings_name_steq",
+   72
+  ],
+  "0x0007f1e8": [
+   "settings_name_next",
+   36
+  ]
+ },
+ "selected_source_units": [
+  "zephyr/subsys/settings/src/settings.c",
+  "zephyr/subsys/settings/src/settings_store.c"
+ ],
+ "status": "authorized_atomic"
+}
