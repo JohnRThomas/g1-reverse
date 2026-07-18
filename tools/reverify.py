@@ -20,6 +20,39 @@ BASE = "/Users/freedomcoder/Projects/G1disasm2"
 _HDR = re.compile(r'@\s+(0x[0-9a-fA-F]+)')
 _CACHE = {}
 
+
+def _sha256_path(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as fp:
+        for chunk in iter(lambda: fp.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _canonical_inventory():
+    """Return the canonical function list and its exact source-byte hashes."""
+    todo = {}
+    source_hashes = {}
+    for core in ("app", "net"):
+        srcdir = (BASE + "/recon/app/src" if core == "app"
+                  else BASE + "/recon/net/src")
+        names = sorted(
+            os.path.basename(path)[:-2]
+            for path in glob.glob(srcdir + "/*.c")
+        )
+        todo[core] = names
+        source_hashes[core] = {
+            name: _sha256_path(os.path.join(srcdir, name + ".c"))
+            for name in names
+        }
+    return todo, source_hashes
+
+
+def _digest_json(value):
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
 def core_ctx(core):
     if core in _CACHE:
         return _CACHE[core]
@@ -116,14 +149,7 @@ def run_sweeplist():
     # whenever functions were added, removed, or renamed.  Merely checking for
     # file existence previously left 239 app and 193 net sources outside the
     # saved July-16 inventory.
-    todo = {}
-    for todo_core in ("app", "net"):
-        srcdir = (BASE + "/recon/app/src" if todo_core == "app"
-                  else BASE + "/recon/net/src")
-        todo[todo_core] = sorted(
-            os.path.basename(path)[:-2]
-            for path in glob.glob(srcdir + "/*.c")
-        )
+    todo, inventory_source_hashes = _canonical_inventory()
     cached_todo = None
     if os.path.exists(todo_path):
         try:
@@ -137,35 +163,71 @@ def run_sweeplist():
             json.dump(todo, fp, indent=2)
             fp.write("\n")
         os.replace(tmp, todo_path)
-    todo_digest = hashlib.sha256(
-        json.dumps(todo, sort_keys=True, separators=(",", ":")).encode()
-    ).hexdigest()
+    todo_digest = _digest_json(todo)
+    inventory_digest = _digest_json({
+        todo_core: [
+            [name, inventory_source_hashes[todo_core][name]]
+            for name in todo[todo_core]
+        ]
+        for todo_core in ("app", "net")
+    })
+    core_inventory_digest = _digest_json([
+        [name, inventory_source_hashes[core][name]] for name in todo[core]
+    ])
     names = todo[core][si::ns]
     outp = SCR + "/reverify_%s_L%d.json" % (core, si)
     recheck = os.environ.get("CFG_VERIFY_RECHECK") == "1"
     if os.path.exists(outp) and not recheck:
         old = json.load(open(outp))
         if (old.get("_todo_digest") == todo_digest and
+                old.get("_inventory_digest") == inventory_digest and
                 old.get("_shard_count") == ns and
                 old.get("_shard_index") == si):
             res = {k: list(old.get(k, []))
-                   for k in ("PASS", "FAIL", "other", "timeout")}
+                   for k in ("PASS", "FAIL", "compile_error", "other",
+                             "timeout", "source_changed")}
+            res["_source_hashes"] = dict(old.get("_source_hashes", {}))
+            res["_source_change_detail"] = dict(
+                old.get("_source_change_detail", {}))
         else:
             # Lane membership changes when the sorted inventory changes.  A
             # receipt without the exact inventory/shard identity cannot prove
             # this lane and must be discarded fail-closed.
-            res = {"PASS": [], "FAIL": [], "other": [], "timeout": []}
+            res = {"PASS": [], "FAIL": [], "compile_error": [],
+                   "other": [], "timeout": [], "source_changed": [],
+                   "_source_hashes": {}, "_source_change_detail": {}}
     else:
-        res = {"PASS": [], "FAIL": [], "other": [], "timeout": []}
+        res = {"PASS": [], "FAIL": [], "compile_error": [],
+               "other": [], "timeout": [], "source_changed": [],
+               "_source_hashes": {}, "_source_change_detail": {}}
     res.update({"_todo_digest": todo_digest,
-                "_shard_count": ns, "_shard_index": si})
-    done = set(sum((res[k] for k in ("PASS", "FAIL", "other", "timeout")), []))
+                "_inventory_digest": inventory_digest,
+                "_core_inventory_digest": core_inventory_digest,
+                "_inventory_count": len(todo[core]),
+                "_shard_count": ns, "_shard_index": si,
+                "_tool_hashes": {
+                    "tools/reverify.py": _sha256_path(__file__),
+                    "tools/cfg_verify.py": _sha256_path(
+                        BASE + "/tools/cfg_verify.py"),
+                    "tools/parity/emu.py": _sha256_path(
+                        BASE + "/tools/parity/emu.py"),
+                    "tools/parity/recon.py": _sha256_path(
+                        BASE + "/tools/parity/recon.py"),
+                }})
+    done = set(sum((res[k] for k in (
+        "PASS", "FAIL", "compile_error", "other", "timeout",
+        "source_changed")), []))
     timeout_s = int(os.environ.get("CFG_VERIFY_TIMEOUT", "120"))
     t0 = time.time()
     processed = 0
     for i, nm in enumerate(names, 1):
         if nm in done:
             continue
+        source_path = os.path.join(
+            BASE, "recon", "app" if core == "app" else "net", "src",
+            nm + ".c")
+        before_hash = (_sha256_path(source_path)
+                       if os.path.exists(source_path) else None)
         try:
             env = dict(os.environ, PYTHONSAFEPATH="1")
             cp = subprocess.run([sys.executable, BASE + "/tools/cfg_verify.py", core, nm],
@@ -177,19 +239,38 @@ def run_sweeplist():
             st = "timeout"
         except Exception:
             st = "other-exc"
-        bucket = "PASS" if st == "PASS" else "FAIL" if st == "FAIL" else "timeout" if st == "timeout" else "other"
+        after_hash = (_sha256_path(source_path)
+                      if os.path.exists(source_path) else None)
+        expected_hash = inventory_source_hashes[core][nm]
+        if (before_hash != expected_hash or after_hash != expected_hash or
+                before_hash is None):
+            bucket = "source_changed"
+            res["_source_change_detail"][nm] = {
+                "inventory_sha256": expected_hash,
+                "before_sha256": before_hash, "after_sha256": after_hash,
+            }
+        else:
+            res["_source_hashes"][nm] = before_hash
+            bucket = ("PASS" if st == "PASS" else
+                      "FAIL" if st == "FAIL" else
+                      "compile_error" if st == "compile-fail" else
+                      "timeout" if st == "timeout" else "other")
         res[bucket].append(nm)
         done.add(nm)
         processed += 1
         if processed % 20 == 0:
-            print("[%s L%d] %d/%d fail=%d timeout=%d (%.0fs)" % (core, si, len(done), len(names),
-                  len(res["FAIL"]), len(res["timeout"]), time.time() - t0), flush=True)
+            print("[%s L%d] %d/%d fail=%d compile=%d timeout=%d changed=%d (%.0fs)" % (
+                  core, si, len(done), len(names), len(res["FAIL"]),
+                  len(res["compile_error"]), len(res["timeout"]),
+                  len(res["source_changed"]), time.time() - t0), flush=True)
         tmp = outp + ".tmp.%d" % os.getpid()
         with open(tmp, "w") as fp:
             json.dump(res, fp)
         os.replace(tmp, outp)
-    print("[%s L%d] DONE pass=%d FAIL=%d other=%d timeout=%d" % (core, si, len(res["PASS"]),
-          len(res["FAIL"]), len(res["other"]), len(res["timeout"])), flush=True)
+    print("[%s L%d] DONE pass=%d FAIL=%d compile=%d other=%d timeout=%d changed=%d" % (
+          core, si, len(res["PASS"]), len(res["FAIL"]),
+          len(res["compile_error"]), len(res["other"]),
+          len(res["timeout"]), len(res["source_changed"])), flush=True)
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "sweep"
