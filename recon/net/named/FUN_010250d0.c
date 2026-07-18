@@ -20,21 +20,31 @@ static __attribute__((noreturn)) void panic_forever(uint32_t first_reason)
 
 bool FUN_010250d0(uint32_t channel, uint32_t unused, uint32_t timestamp)
 {
-    volatile uint8_t *const state = (volatile uint8_t *)UINT32_C(0x21001bf8);
+    struct controller_channel_state {
+        uint8_t mode;
+        uint8_t active_channel;
+        uint8_t reserved_02[6];
+        int32_t compare_a;
+        int32_t compare_b;
+        uint8_t reserved_10[4];
+        uint8_t radio_pending;
+    };
+    volatile struct controller_channel_state *const state =
+        (volatile struct controller_channel_state *)UINT32_C(0x21001bf8);
     timestamp &= UINT32_C(0x00ffffff);
 
     if (channel < 4) {
         volatile uint32_t *const radio =
             (volatile uint32_t *)UINT32_C(0x4100c000);
 
-        if (*(volatile int32_t *)(state + 8) == -1 &&
-            *(volatile int32_t *)(state + 12) == -1 && state[0x14] == 0)
+        if (state->compare_a == -1 && state->compare_b == -1 &&
+            state->radio_pending == 0)
             FUN_010256dc(0x6c, 0x384);
 
-        if (state[0] == 2 && state[1] > 3) {
+        if (state->mode == 2 && state->active_channel > 3) {
             volatile uint32_t *ready =
                 (volatile uint32_t *)(UINT32_C(0x41011140) +
-                                      (uint8_t)(state[1] - 4) * 4);
+                                      (uint8_t)(state->active_channel - 4) * 4);
             while (*ready == 0) { }
         }
 
@@ -57,7 +67,7 @@ bool FUN_010250d0(uint32_t channel, uint32_t unused, uint32_t timestamp)
     uint32_t index = (uint8_t)(channel - 4);
     if (index > 1)
         panic_forever(0x3a7);
-    if (state[0] != 0 && state[1] == channel)
+    if (state->mode != 0 && state->active_channel == channel)
         panic_forever(0x3a3);
 
     volatile uint32_t *const timer =

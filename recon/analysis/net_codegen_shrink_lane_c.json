@@ -1,0 +1,160 @@
+{
+  "schema": "g1.net.codegen_shrink_lane_c.v1",
+  "summary": {
+    "changed_function_count": 3,
+    "cfg_pass_count": 3,
+    "production_function_bytes_delta": -44
+  },
+  "reviewed_without_change": [
+    {
+      "raw_symbol": "FUN_010225ac",
+      "reason": "No smaller human-readable lowering was established without weakening proof."
+    },
+    {
+      "raw_symbol": "FUN_0102524c",
+      "reason": "A CFG-equivalent struct lowering saved four parity-object bytes but zero production bytes."
+    }
+  ],
+  "policy": {
+    "sdc_functions_retained_report_only": true,
+    "automatic_sdc_removal": false,
+    "archive_or_stock_substitution": false,
+    "raw_address_backmaps_retained": true,
+    "symbolized_production_sources_updated": true
+  },
+  "combined_build_observation": {
+    "build_dir": "/private/tmp/g1-net-shrink-lane-c",
+    "retain_all": false,
+    "flash_used": 227961,
+    "flash_capacity": 227328,
+    "overflow": 633,
+    "attribution": "combined shared-tree result; not attributed solely to lane C"
+  },
+  "proofs": [
+    {
+      "analysis_address": "0x010250d0",
+      "raw_symbol": "FUN_010250d0",
+      "true_firmware_extent": 258,
+      "extent_basis": "catalog entry through next entry/literal-aware boundary",
+      "canonical_source": "recon/net/src/FUN_010250d0.c",
+      "named_source": "recon/net/named/FUN_010250d0.c",
+      "production_symbolized_source": "recon/symbolized/net/FUN_010250d0.c",
+      "source_sha256": "85acee14bae7cc20b0df5ed7ea87c2fa35b8b11585996336036cd3a8f0c49f30",
+      "named_sha256": "4cd7f878bb996bebb1fd690a679633f52cb95bf65fc015cc0a35e754e12ee589",
+      "symbolized_sha256": "b964caf5d3f76bec62b121b9492749ea35da6daa22c810d52eaaa051b4e35fbd",
+      "cfg_result": {
+        "status": "PASS",
+        "checked": 43,
+        "cover_cases": 3,
+        "selectors": {
+          "0": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "mutation": {
+        "from": "radio[0x308 / 4] = mask;",
+        "to": "(void)mask;",
+        "result": {
+          "status": "FAIL",
+          "checked": 43,
+          "cover_cases": 3,
+          "selectors": {
+            "0": [
+              2,
+              3,
+              4
+            ]
+          }
+        }
+      },
+      "production_function_bytes_before": 300,
+      "production_function_bytes_after": 292,
+      "production_function_bytes_delta": -8
+    },
+    {
+      "analysis_address": "0x0102a122",
+      "raw_symbol": "FUN_0102a122",
+      "true_firmware_extent": 190,
+      "extent_basis": "catalog entry through next entry/literal-aware boundary",
+      "canonical_source": "recon/net/src/FUN_0102a122.c",
+      "named_source": "recon/net/named/FUN_0102a122.c",
+      "production_symbolized_source": "recon/symbolized/net/FUN_0102a122.c",
+      "source_sha256": "5948596958dff3f769083bbf2aaf83dd20f8cb0278b7051f565886e76d1ba526",
+      "named_sha256": "d2683c166542cf2abfb4ffa630c28e0b31bf555ee01c1b66e286a511122f7f98",
+      "symbolized_sha256": "39c405e73bd656ac318eabcf25d11c1ebb1adf8117dd73ee28a079a416ef2c5d",
+      "cfg_result": {
+        "status": "PASS",
+        "checked": 42,
+        "cover_cases": 2,
+        "selectors": {
+          "1": [
+            0,
+            1
+          ]
+        }
+      },
+      "mutation": {
+        "from": "puVar1 = (unsigned char *)FUN_01021ac0();",
+        "to": "puVar1 = (unsigned char *)0;",
+        "result": {
+          "status": "FAIL",
+          "checked": 0,
+          "cover_cases": 2,
+          "selectors": {
+            "1": [
+              0,
+              1
+            ]
+          }
+        }
+      },
+      "production_function_bytes_before": 234,
+      "production_function_bytes_after": 218,
+      "production_function_bytes_delta": -16
+    },
+    {
+      "analysis_address": "0x0102ff54",
+      "raw_symbol": "FUN_0102ff54",
+      "true_firmware_extent": 76,
+      "extent_basis": "catalog entry through next entry/literal-aware boundary",
+      "canonical_source": "recon/net/src/FUN_0102ff54.c",
+      "named_source": "recon/net/named/FUN_0102ff54.c",
+      "production_symbolized_source": "recon/symbolized/net/FUN_0102ff54.c",
+      "source_sha256": "b6c1cc9bb4ad8fa8ac73a348c9b28fae63193e40219a3afcc23b13c497bbae91",
+      "named_sha256": "a971fc700562e6fbb18c396447b70d7d3830f268cf47155187e359affd67efe6",
+      "symbolized_sha256": "769f057ebfe48796fe2862a2dcc8ea91803b01172fe3367c6492d5b69b092bd8",
+      "cfg_result": {
+        "status": "PASS",
+        "checked": 42,
+        "cover_cases": 2,
+        "selectors": {
+          "0": [
+            0,
+            1
+          ]
+        }
+      },
+      "mutation": {
+        "from": "recovered_k_queue_append(queue, buffer);",
+        "to": "(void)queue; (void)buffer;",
+        "result": {
+          "status": "FAIL",
+          "checked": 42,
+          "cover_cases": 2,
+          "selectors": {
+            "0": [
+              0,
+              1
+            ]
+          }
+        }
+      },
+      "production_function_bytes_before": 84,
+      "production_function_bytes_after": 64,
+      "production_function_bytes_delta": -20
+    }
+  ]
+}

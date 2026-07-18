@@ -85,13 +85,15 @@ BVAR7_2_BLOCK:
         uVar4 = *(unsigned int *)(param_2 + 8);
         *(volatile int *)(puVar1 + 4) = *(int *)(param_2 + 0xc) + 0x73;
         {
-            int64_t base = *(volatile int64_t *)(puVar1 + 0x18);
-            int64_t addend = (int64_t)(int32_t)uVar4;
-            int64_t sum = base + addend;
-            *(volatile int64_t *)(puVar1 + 0x10) = sum;
+            uint32_t low = *(volatile uint32_t *)(puVar1 + 0x18);
+            int32_t high = *(volatile int32_t *)(puVar1 + 0x1c);
+            uint32_t sum = low + uVar4;
+            high += (int32_t)uVar4 >> 31;
+            high += sum < low;
+            *(volatile uint32_t *)(puVar1 + 0x10) = sum;
+            *(volatile int32_t *)(puVar1 + 0x14) = high;
         }
-        uVar5 = 4;
-        puVar1[0x26] = uVar5;
+        puVar1[0x26] = (unsigned char)(bVar7 + 2);
         iVar2 = FUN_010231c8(puVar1[0x27], puVar1);
         if (iVar2 == 0) {
             FUN_010256dc(0x6a, 0x2b1);
@@ -100,4 +102,3 @@ BVAR7_2_BLOCK:
         return 0;
     }
 }
-

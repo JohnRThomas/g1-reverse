@@ -13,13 +13,13 @@
 #include <stdint.h>
 
 extern void assert_print(const void *, const void *, uint32_t);
-extern void assert_post_action(const void *, uint32_t);
-extern void FUN_0103b1fa(uint32_t, uint32_t, uint32_t, uint32_t);
+extern __attribute__((noreturn)) void assert_post_action(const void *, uint32_t); /* FUN_01039bb0 */
+extern void FUN_0103b1fa(uint32_t, uint32_t);
+#define recovered_k_queue_append FUN_0103b1fa
 
-void FUN_0102ff54(uint32_t pool, uint32_t buffer, uint32_t data,
-                  uint32_t caller_context)
+void FUN_0102ff54(uint32_t queue, uint32_t buffer)
 {
-    if (pool == 0) {
+    if (queue == 0) {
         assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103de3fu, 0x1c7);
         assert_post_action((const void *)0x0103de3fu, 0x1c7);
@@ -29,5 +29,5 @@ void FUN_0102ff54(uint32_t pool, uint32_t buffer, uint32_t data,
                      (const void *)0x0103de3fu, 0x1c8);
         assert_post_action((const void *)0x0103de3fu, 0x1c8);
     }
-    FUN_0103b1fa(pool, buffer, data, caller_context);
+    recovered_k_queue_append(queue, buffer);
 }
