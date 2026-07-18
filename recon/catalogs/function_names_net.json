@@ -78,20 +78,24 @@
   "0x01008810": {
    "address": "0x01008810",
    "raw_name": "FUN_01008810",
-   "name": "FUN_01008810",
-   "display_name": "FUN_01008810",
-   "human": false,
-   "source": "recon/net/src/FUN_01008810.c",
-   "aliases": []
+   "name": "ocrypto_constant_time_equal",
+   "display_name": "ocrypto_constant_time_equal",
+   "human": true,
+   "source": "function_name_overrides.json: Byte-exact pinned nrfxlib Oberon 3.0.13 owner: liboberon_3.0.13.a(ocrypto_constant_time.s.obj) offset 0x00. The only firmware caller compares two 32-byte P-256 field encodings. Raw identity remains FUN_01008810.",
+   "aliases": [
+    "FUN_01008810"
+   ]
   },
   "0x01008838": {
    "address": "0x01008838",
    "raw_name": "FUN_01008838",
-   "name": "FUN_01008838",
-   "display_name": "FUN_01008838",
-   "human": false,
-   "source": "recon/net/src/FUN_01008838.c",
-   "aliases": []
+   "name": "ocrypto_constant_time_is_zero",
+   "display_name": "ocrypto_constant_time_is_zero",
+   "human": true,
+   "source": "function_name_overrides.json: Byte-exact pinned nrfxlib Oberon 3.0.13 owner: liboberon_3.0.13.a(ocrypto_constant_time.s.obj) offset 0x28. The only firmware caller tests one 32-byte P-256 field encoding. Raw identity remains FUN_01008838.",
+   "aliases": [
+    "FUN_01008838"
+   ]
   },
   "0x0100886c": {
    "address": "0x0100886c",
@@ -325,11 +329,13 @@
   "0x01009204": {
    "address": "0x01009204",
    "raw_name": "FUN_01009204",
-   "name": "FUN_01009204",
-   "display_name": "FUN_01009204",
-   "human": false,
-   "source": "recon/net/src/FUN_01009204.c",
-   "aliases": []
+   "name": "sdc_rand_poll",
+   "display_name": "sdc_rand_poll",
+   "human": true,
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 sdc_rand_source_t layout: this two-argument tail veneer loads the callback at registered random-source offset +8, which is the blocking rand_poll(uint8_t *p_buff, uint8_t length) slot. Raw identity remains FUN_01009204 at 0x01009204.",
+   "aliases": [
+    "FUN_01009204"
+   ]
   },
   "0x01009210": {
    "address": "0x01009210",
@@ -2311,11 +2317,13 @@
   "0x0100f5d8": {
    "address": "0x0100f5d8",
    "raw_name": "FUN_0100f5d8",
-   "name": "FUN_0100f5d8",
-   "display_name": "FUN_0100f5d8",
-   "human": false,
-   "source": "recon/net/src/FUN_0100f5d8.c",
-   "aliases": []
+   "name": "sdc_controller_random_init",
+   "display_name": "sdc_controller_random_init",
+   "human": true,
+   "source": "function_name_overrides.json: The exact xoroshiro64** multiplier and rotations identify two consecutive generator advances: an entropy-provider seed is rejected when all zero, the twice-advanced pair initializes the first controller stream, and the two nonzero-checked outputs initialize the second. The sole caller invokes it during controller startup; companion FUN_0100f63c consumes the second stream as sdc_controller_random_get. Raw identity remains FUN_0100f5d8 at 0x0100f5d8.",
+   "aliases": [
+    "FUN_0100f5d8"
+   ]
   },
   "0x0100f63c": {
    "address": "0x0100f63c",
@@ -8333,20 +8341,33 @@
   "0x0102c6f8": {
    "address": "0x0102c6f8",
    "raw_name": "FUN_0102c6f8",
-   "name": "FUN_0102c6f8",
-   "display_name": "FUN_0102c6f8",
-   "human": false,
-   "source": "recon/net/src/FUN_0102c6f8.c",
+   "name": "process_event",
+   "display_name": "process_event",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_0102c6f8 at 0x0102c6f8.",
+   "aliases": [
+    "FUN_0102c6f8"
+   ]
+  },
+  "0x0102ca2c": {
+   "address": "0x0102ca2c",
+   "raw_name": "FUN_0102ca2c",
+   "name": "transition_complete",
+   "display_name": "transition_complete",
+   "human": true,
+   "source": "function_name_overrides.json: Hidden live entry recovered from the exact configured Zephyr lib/os/onoff.c section closure. Raw identity remains FUN_0102ca2c at 0x0102ca2c.",
    "aliases": []
   },
   "0x0102ca80": {
    "address": "0x0102ca80",
    "raw_name": "FUN_0102ca80",
-   "name": "FUN_0102ca80",
-   "display_name": "FUN_0102ca80",
-   "human": false,
-   "source": "recon/net/src/FUN_0102ca80.c",
-   "aliases": []
+   "name": "onoff_request",
+   "display_name": "onoff_request",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c public owner with resolved call-target closure. Raw identity remains FUN_0102ca80 at 0x0102ca80.",
+   "aliases": [
+    "FUN_0102ca80"
+   ]
   },
   "0x0102cb84": {
    "address": "0x0102cb84",
@@ -8987,20 +9008,33 @@
   "0x01030014": {
    "address": "0x01030014",
    "raw_name": "FUN_01030014",
-   "name": "FUN_01030014",
-   "display_name": "FUN_01030014",
-   "human": false,
-   "source": "recon/net/src/FUN_01030014.c",
+   "name": "net_buf_simple_reserve",
+   "display_name": "net_buf_simple_reserve",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr subsys/net/buf_simple.c owner. Raw identity remains FUN_01030014 at 0x01030014.",
+   "aliases": [
+    "FUN_01030014"
+   ]
+  },
+  "0x0103004c": {
+   "address": "0x0103004c",
+   "raw_name": "FUN_0103004c",
+   "name": "net_buf_simple_push",
+   "display_name": "net_buf_simple_push",
+   "human": true,
+   "source": "function_name_overrides.json: Hidden live entry recovered from the exact configured Zephyr subsys/net/buf_simple.c section closure. Raw identity remains FUN_0103004c at 0x0103004c.",
    "aliases": []
   },
   "0x01030084": {
    "address": "0x01030084",
    "raw_name": "FUN_01030084",
-   "name": "FUN_01030084",
-   "display_name": "FUN_01030084",
-   "human": false,
-   "source": "recon/net/src/FUN_01030084.c",
-   "aliases": []
+   "name": "net_buf_simple_add",
+   "display_name": "net_buf_simple_add",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr subsys/net/buf_simple.c owner. Raw identity remains FUN_01030084 at 0x01030084.",
+   "aliases": [
+    "FUN_01030084"
+   ]
   },
   "0x0103037c": {
    "address": "0x0103037c",
@@ -10007,20 +10041,24 @@
   "0x01036198": {
    "address": "0x01036198",
    "raw_name": "FUN_01036198",
-   "name": "FUN_01036198",
-   "display_name": "FUN_01036198",
-   "human": false,
-   "source": "recon/net/src/FUN_01036198.c",
-   "aliases": []
+   "name": "z_impl_k_msgq_put",
+   "display_name": "z_impl_k_msgq_put",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with resolved call-target closure. Raw identity remains FUN_01036198.",
+   "aliases": [
+    "FUN_01036198"
+   ]
   },
   "0x010362d0": {
    "address": "0x010362d0",
    "raw_name": "FUN_010362d0",
-   "name": "FUN_010362d0",
-   "display_name": "FUN_010362d0",
-   "human": false,
-   "source": "recon/net/src/FUN_010362d0.c",
-   "aliases": []
+   "name": "z_impl_k_msgq_get",
+   "display_name": "z_impl_k_msgq_get",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with resolved call-target closure. Raw identity remains FUN_010362d0.",
+   "aliases": [
+    "FUN_010362d0"
+   ]
   },
   "0x01036410": {
    "address": "0x01036410",
@@ -10079,20 +10117,24 @@
   "0x0103695c": {
    "address": "0x0103695c",
    "raw_name": "FUN_0103695c",
-   "name": "FUN_0103695c",
-   "display_name": "FUN_0103695c",
-   "human": false,
-   "source": "recon/net/src/FUN_0103695c.c",
-   "aliases": []
+   "name": "work_queue_main",
+   "display_name": "work_queue_main",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c static owner including private lock and pending-cancel references. Raw identity remains FUN_0103695c.",
+   "aliases": [
+    "FUN_0103695c"
+   ]
   },
   "0x01036b18": {
    "address": "0x01036b18",
    "raw_name": "FUN_01036b18",
-   "name": "FUN_01036b18",
-   "display_name": "FUN_01036b18",
-   "human": false,
-   "source": "recon/net/src/FUN_01036b18.c",
-   "aliases": []
+   "name": "submit_to_queue_locked",
+   "display_name": "submit_to_queue_locked",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c static helper with resolved call-target closure. Raw identity remains FUN_01036b18.",
+   "aliases": [
+    "FUN_01036b18"
+   ]
   },
   "0x01036bec": {
    "address": "0x01036bec",
@@ -10108,11 +10150,13 @@
   "0x01036c2c": {
    "address": "0x01036c2c",
    "raw_name": "FUN_01036c2c",
-   "name": "FUN_01036c2c",
-   "display_name": "FUN_01036c2c",
-   "human": false,
-   "source": "recon/net/src/FUN_01036c2c.c",
-   "aliases": []
+   "name": "z_work_submit_to_queue",
+   "display_name": "z_work_submit_to_queue",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c owner including its private lock relocation. Raw identity remains FUN_01036c2c.",
+   "aliases": [
+    "FUN_01036c2c"
+   ]
   },
   "0x01036cb8": {
    "address": "0x01036cb8",
@@ -10130,6 +10174,15 @@
    "display_name": "k_work_queue_start",
    "human": true,
    "source": "function_name_overrides.json: Direct callee correspondence from the matched NCS 2.5.1 mbox_init inline sequence, including queue, stack, stack-size, priority and null config arguments. Raw identity remains FUN_01036ce4.",
+   "aliases": []
+  },
+  "0x01036da4": {
+   "address": "0x01036da4",
+   "raw_name": "FUN_01036da4",
+   "name": "k_work_queue_drain",
+   "display_name": "k_work_queue_drain",
+   "human": true,
+   "source": "function_name_overrides.json: Hidden live entry recovered from the exact configured Zephyr kernel/work.c closure, including its private lock relocation. Raw identity remains FUN_01036da4.",
    "aliases": []
   },
   "0x01036e90": {
@@ -10447,50 +10500,69 @@
    "source": "recon/net/src/FUN_01038284.c",
    "aliases": []
   },
+  "0x010382fc": {
+   "address": "0x010382fc",
+   "raw_name": "FUN_010382fc",
+   "name": "z_timer_expiration_handler",
+   "display_name": "z_timer_expiration_handler",
+   "human": true,
+   "source": "function_name_overrides.json: Hidden live entry recovered from exact configured Zephyr kernel/timer.c, including the source-local timer lock. Raw identity remains FUN_010382fc.",
+   "aliases": []
+  },
   "0x01038448": {
    "address": "0x01038448",
    "raw_name": "FUN_01038448",
-   "name": "FUN_01038448",
-   "display_name": "FUN_01038448",
-   "human": false,
-   "source": "recon/net/src/FUN_01038448.c",
-   "aliases": []
+   "name": "z_impl_k_timer_start",
+   "display_name": "z_impl_k_timer_start",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner with checked timeout-handler closure. Raw identity remains FUN_01038448.",
+   "aliases": [
+    "FUN_01038448"
+   ]
   },
   "0x010384a8": {
    "address": "0x010384a8",
    "raw_name": "FUN_010384a8",
-   "name": "FUN_010384a8",
-   "display_name": "FUN_010384a8",
-   "human": false,
-   "source": "recon/net/src/FUN_010384a8.c",
-   "aliases": []
+   "name": "register_events",
+   "display_name": "register_events",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper including the private poll lock. Raw identity remains FUN_010384a8.",
+   "aliases": [
+    "FUN_010384a8"
+   ]
   },
   "0x01038654": {
    "address": "0x01038654",
    "raw_name": "FUN_01038654",
-   "name": "FUN_01038654",
-   "display_name": "FUN_01038654",
-   "human": false,
-   "source": "recon/net/src/FUN_01038654.c",
-   "aliases": []
+   "name": "clear_event_registrations",
+   "display_name": "clear_event_registrations",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper including the private poll lock. Raw identity remains FUN_01038654.",
+   "aliases": [
+    "FUN_01038654"
+   ]
   },
   "0x01038764": {
    "address": "0x01038764",
    "raw_name": "FUN_01038764",
-   "name": "FUN_01038764",
-   "display_name": "FUN_01038764",
-   "human": false,
-   "source": "recon/net/src/FUN_01038764.c",
-   "aliases": []
+   "name": "z_impl_k_poll",
+   "display_name": "z_impl_k_poll",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner including private lock and wait_q closure. Raw identity remains FUN_01038764.",
+   "aliases": [
+    "FUN_01038764"
+   ]
   },
   "0x010388c8": {
    "address": "0x010388c8",
    "raw_name": "FUN_010388c8",
-   "name": "FUN_010388c8",
-   "display_name": "FUN_010388c8",
-   "human": false,
-   "source": "recon/net/src/FUN_010388c8.c",
-   "aliases": []
+   "name": "z_impl_k_poll_signal_raise",
+   "display_name": "z_impl_k_poll_signal_raise",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner including private lock and resolved signal/scheduler targets. Raw identity remains FUN_010388c8.",
+   "aliases": [
+    "FUN_010388c8"
+   ]
   },
   "0x01038958": {
    "address": "0x01038958",
@@ -10857,38 +10929,46 @@
   "0x01039ade": {
    "address": "0x01039ade",
    "raw_name": "FUN_01039ade",
-   "name": "FUN_01039ade",
-   "display_name": "FUN_01039ade",
-   "human": false,
-   "source": "recon/net/src/FUN_01039ade.c",
-   "aliases": []
+   "name": "process_recheck",
+   "display_name": "process_recheck",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039ade at 0x01039ade.",
+   "aliases": [
+    "FUN_01039ade"
+   ]
   },
   "0x01039b16": {
    "address": "0x01039b16",
    "raw_name": "FUN_01039b16",
-   "name": "FUN_01039b16",
-   "display_name": "FUN_01039b16",
-   "human": false,
-   "source": "recon/net/src/FUN_01039b16.c",
-   "aliases": []
+   "name": "validate_args",
+   "display_name": "validate_args",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039b16 at 0x01039b16.",
+   "aliases": [
+    "FUN_01039b16"
+   ]
   },
   "0x01039b36": {
    "address": "0x01039b36",
    "raw_name": "FUN_01039b36",
-   "name": "FUN_01039b36",
-   "display_name": "FUN_01039b36",
-   "human": false,
-   "source": "recon/net/src/FUN_01039b36.c",
-   "aliases": []
+   "name": "notify_one",
+   "display_name": "notify_one",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039b36 at 0x01039b36.",
+   "aliases": [
+    "FUN_01039b36"
+   ]
   },
   "0x01039b62": {
    "address": "0x01039b62",
    "raw_name": "FUN_01039b62",
-   "name": "FUN_01039b62",
-   "display_name": "FUN_01039b62",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "onoff_manager_init",
+   "display_name": "onoff_manager_init",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c public owner. Raw identity remains FUN_01039b62 at 0x01039b62.",
+   "aliases": [
+    "FUN_01039b62"
+   ]
   },
   "0x01039b88": {
    "address": "0x01039b88",
@@ -11204,6 +11284,15 @@
    "source": "recon/net/src/FUN_0103a44c.c",
    "aliases": []
   },
+  "0x0103a45a": {
+   "address": "0x0103a45a",
+   "raw_name": "FUN_0103a45a",
+   "name": "net_buf_simple_push_u8",
+   "display_name": "net_buf_simple_push_u8",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured wrapper calls net_buf_simple_push at 0x0103004c, distinguishing it from the identical add_u8 body. Raw identity remains FUN_0103a45a.",
+   "aliases": []
+  },
   "0x0103a468": {
    "address": "0x0103a468",
    "raw_name": "FUN_0103a468",
@@ -11218,11 +11307,13 @@
   "0x0103a478": {
    "address": "0x0103a478",
    "raw_name": "FUN_0103a478",
-   "name": "FUN_0103a478",
-   "display_name": "FUN_0103a478",
-   "human": false,
-   "source": "recon/net/src/FUN_0103a478.c",
-   "aliases": []
+   "name": "net_buf_simple_add_mem",
+   "display_name": "net_buf_simple_add_mem",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured wrapper calls net_buf_simple_add at 0x01030084, disproving the stale push_mem/SDC fingerprint. Raw identity remains FUN_0103a478.",
+   "aliases": [
+    "FUN_0103a478"
+   ]
   },
   "0x0103a490": {
    "address": "0x0103a490",
@@ -11610,20 +11701,24 @@
   "0x0103b164": {
    "address": "0x0103b164",
    "raw_name": "FUN_0103b164",
-   "name": "FUN_0103b164",
-   "display_name": "FUN_0103b164",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "k_msgq_init",
+   "display_name": "k_msgq_init",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner under CONFIG_SPIN_VALIDATE=y and CONFIG_SMP=n. Raw identity remains FUN_0103b164.",
+   "aliases": [
+    "FUN_0103b164"
+   ]
   },
   "0x0103b18c": {
    "address": "0x0103b18c",
    "raw_name": "FUN_0103b18c",
-   "name": "FUN_0103b18c",
-   "display_name": "FUN_0103b18c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_impl_k_msgq_alloc_init",
+   "display_name": "z_impl_k_msgq_alloc_init",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with checked allocator/init calls. Raw identity remains FUN_0103b18c.",
+   "aliases": [
+    "FUN_0103b18c"
+   ]
   },
   "0x0103b1c4": {
    "address": "0x0103b1c4",
@@ -11684,29 +11779,35 @@
   "0x0103b244": {
    "address": "0x0103b244",
    "raw_name": "FUN_0103b244",
-   "name": "FUN_0103b244",
-   "display_name": "FUN_0103b244",
-   "human": false,
-   "source": "recon/net/src/FUN_0103b244.c",
-   "aliases": []
+   "name": "flag_test_and_clear",
+   "display_name": "flag_test_and_clear",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c static helper. Raw identity remains FUN_0103b244.",
+   "aliases": [
+    "FUN_0103b244"
+   ]
   },
   "0x0103b25a": {
    "address": "0x0103b25a",
    "raw_name": "FUN_0103b25a",
-   "name": "FUN_0103b25a",
-   "display_name": "FUN_0103b25a",
-   "human": false,
-   "source": "recon/net/src/FUN_0103b25a.c",
-   "aliases": []
+   "name": "notify_queue_locked_isra_0",
+   "display_name": "notify_queue_locked_isra_0",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c compiler-local helper with checked wake target. Raw identity remains FUN_0103b25a.",
+   "aliases": [
+    "FUN_0103b25a"
+   ]
   },
   "0x0103b268": {
    "address": "0x0103b268",
    "raw_name": "FUN_0103b268",
-   "name": "FUN_0103b268",
-   "display_name": "FUN_0103b268",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "k_work_submit_to_queue",
+   "display_name": "k_work_submit_to_queue",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/work.c owner with resolved submit and reschedule targets. Raw identity remains FUN_0103b268.",
+   "aliases": [
+    "FUN_0103b268"
+   ]
   },
   "0x0103b28a": {
    "address": "0x0103b28a",
@@ -11792,55 +11893,76 @@
   "0x0103b38e": {
    "address": "0x0103b38e",
    "raw_name": "FUN_0103b38e",
-   "name": "FUN_0103b38e",
-   "display_name": "FUN_0103b38e",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "k_timer_init",
+   "display_name": "k_timer_init",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner. Raw identity remains FUN_0103b38e.",
+   "aliases": [
+    "FUN_0103b38e"
+   ]
   },
   "0x0103b3a6": {
    "address": "0x0103b3a6",
    "raw_name": "FUN_0103b3a6",
-   "name": "FUN_0103b3a6",
-   "display_name": "FUN_0103b3a6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_impl_k_timer_stop",
+   "display_name": "z_impl_k_timer_stop",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner with resolved timeout and scheduler targets. Raw identity remains FUN_0103b3a6.",
+   "aliases": [
+    "FUN_0103b3a6"
+   ]
   },
   "0x0103b3e0": {
    "address": "0x0103b3e0",
    "raw_name": "FUN_0103b3e0",
-   "name": "FUN_0103b3e0",
-   "display_name": "FUN_0103b3e0",
-   "human": false,
-   "source": "recon/net/src/FUN_0103b3e0.c",
-   "aliases": []
+   "name": "add_event",
+   "display_name": "add_event",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper. Raw identity remains FUN_0103b3e0.",
+   "aliases": [
+    "FUN_0103b3e0"
+   ]
   },
   "0x0103b442": {
    "address": "0x0103b442",
    "raw_name": "FUN_0103b442",
-   "name": "FUN_0103b442",
-   "display_name": "FUN_0103b442",
-   "human": false,
-   "source": "recon/net/src/FUN_0103b442.c",
-   "aliases": []
+   "name": "signal_poll_event",
+   "display_name": "signal_poll_event",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper with resolved wake/work targets. Raw identity remains FUN_0103b442.",
+   "aliases": [
+    "FUN_0103b442"
+   ]
   },
   "0x0103b4f6": {
    "address": "0x0103b4f6",
    "raw_name": "FUN_0103b4f6",
-   "name": "FUN_0103b4f6",
-   "display_name": "FUN_0103b4f6",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "z_handle_obj_poll_events",
+   "display_name": "z_handle_obj_poll_events",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner with checked signal_poll_event target. Raw identity remains FUN_0103b4f6.",
+   "aliases": [
+    "FUN_0103b4f6"
+   ]
   },
   "0x0103b512": {
    "address": "0x0103b512",
    "raw_name": "FUN_0103b512",
-   "name": "FUN_0103b512",
-   "display_name": "FUN_0103b512",
-   "human": false,
-   "source": "recon/net/src/FUN_0103b512.c",
+   "name": "z_impl_k_poll_signal_init",
+   "display_name": "z_impl_k_poll_signal_init",
+   "human": true,
+   "source": "function_name_overrides.json: Instruction-exact pinned Zephyr kernel/poll.c owner. Raw identity remains FUN_0103b512.",
+   "aliases": [
+    "FUN_0103b512"
+   ]
+  },
+  "0x0103b51c": {
+   "address": "0x0103b51c",
+   "raw_name": "FUN_0103b51c",
+   "name": "z_impl_k_poll_signal_reset",
+   "display_name": "z_impl_k_poll_signal_reset",
+   "human": true,
+   "source": "function_name_overrides.json: Hidden instruction-exact entry recovered from the configured Zephyr kernel/poll.c closure. Raw identity remains FUN_0103b51c.",
    "aliases": []
   },
   "0x0103b522": {
@@ -11945,8 +12067,6 @@
   "FUN_01008650": "0x01008650",
   "FUN_01008670": "0x01008670",
   "FUN_010087f0": "0x010087f0",
-  "FUN_01008810": "0x01008810",
-  "FUN_01008838": "0x01008838",
   "FUN_0100886c": "0x0100886c",
   "FUN_010088e8": "0x010088e8",
   "FUN_01008940": "0x01008940",
@@ -11970,7 +12090,6 @@
   "FUN_010091a8": "0x010091a8",
   "FUN_010091e8": "0x010091e8",
   "FUN_010091f8": "0x010091f8",
-  "FUN_01009204": "0x01009204",
   "FUN_01009210": "0x01009210",
   "FUN_01009224": "0x01009224",
   "FUN_0100930c": "0x0100930c",
@@ -12129,7 +12248,6 @@
   "FUN_0100f1a8": "0x0100f1a8",
   "FUN_0100f5b4": "0x0100f5b4",
   "FUN_0100f5cc": "0x0100f5cc",
-  "FUN_0100f5d8": "0x0100f5d8",
   "FUN_0100f66c": "0x0100f66c",
   "FUN_0100f6b0": "0x0100f6b0",
   "FUN_0100f7d0": "0x0100f7d0",
@@ -12668,8 +12786,6 @@
   "FUN_0102c470": "0x0102c470",
   "FUN_0102c4e4": "0x0102c4e4",
   "FUN_0102c5ec": "0x0102c5ec",
-  "FUN_0102c6f8": "0x0102c6f8",
-  "FUN_0102ca80": "0x0102ca80",
   "FUN_0102cb84": "0x0102cb84",
   "FUN_0102cbd8": "0x0102cbd8",
   "FUN_0102cd8c": "0x0102cd8c",
@@ -12728,8 +12844,6 @@
   "FUN_0102fdd0": "0x0102fdd0",
   "FUN_0102ff54": "0x0102ff54",
   "FUN_0102ff94": "0x0102ff94",
-  "FUN_01030014": "0x01030014",
-  "FUN_01030084": "0x01030084",
   "FUN_0103037c": "0x0103037c",
   "FUN_0103038c": "0x0103038c",
   "FUN_01030a50": "0x01030a50",
@@ -12834,16 +12948,11 @@
   "FUN_0103610c": "0x0103610c",
   "FUN_01036128": "0x01036128",
   "FUN_01036144": "0x01036144",
-  "FUN_01036198": "0x01036198",
-  "FUN_010362d0": "0x010362d0",
   "FUN_01036410": "0x01036410",
   "FUN_01036660": "0x01036660",
   "FUN_01036774": "0x01036774",
   "FUN_01036824": "0x01036824",
   "FUN_0103689c": "0x0103689c",
-  "FUN_0103695c": "0x0103695c",
-  "FUN_01036b18": "0x01036b18",
-  "FUN_01036c2c": "0x01036c2c",
   "FUN_01036e90": "0x01036e90",
   "FUN_01036f24": "0x01036f24",
   "FUN_01036f74": "0x01036f74",
@@ -12879,11 +12988,6 @@
   "FUN_010380d8": "0x010380d8",
   "FUN_0103814c": "0x0103814c",
   "FUN_01038284": "0x01038284",
-  "FUN_01038448": "0x01038448",
-  "FUN_010384a8": "0x010384a8",
-  "FUN_01038654": "0x01038654",
-  "FUN_01038764": "0x01038764",
-  "FUN_010388c8": "0x010388c8",
   "FUN_01038958": "0x01038958",
   "FUN_010389a0": "0x010389a0",
   "FUN_010389f8": "0x010389f8",
@@ -12921,10 +13025,6 @@
   "FUN_01039972": "0x01039972",
   "FUN_010399f6": "0x010399f6",
   "FUN_01039a7a": "0x01039a7a",
-  "FUN_01039ade": "0x01039ade",
-  "FUN_01039b16": "0x01039b16",
-  "FUN_01039b36": "0x01039b36",
-  "FUN_01039b62": "0x01039b62",
   "FUN_01039b88": "0x01039b88",
   "FUN_01039bb0": "0x01039bb0",
   "FUN_01039bd8": "0x01039bd8",
@@ -12954,7 +13054,6 @@
   "FUN_0103a3d6": "0x0103a3d6",
   "FUN_0103a444": "0x0103a444",
   "FUN_0103a44c": "0x0103a44c",
-  "FUN_0103a478": "0x0103a478",
   "FUN_0103a490": "0x0103a490",
   "FUN_0103a4b6": "0x0103a4b6",
   "FUN_0103a5b0": "0x0103a5b0",
@@ -12987,16 +13086,11 @@
   "FUN_0103b14a": "0x0103b14a",
   "FUN_0103b156": "0x0103b156",
   "FUN_0103b15c": "0x0103b15c",
-  "FUN_0103b164": "0x0103b164",
-  "FUN_0103b18c": "0x0103b18c",
   "FUN_0103b1c4": "0x0103b1c4",
   "FUN_0103b1d4": "0x0103b1d4",
   "FUN_0103b1e2": "0x0103b1e2",
   "FUN_0103b1fa": "0x0103b1fa",
   "FUN_0103b210": "0x0103b210",
-  "FUN_0103b244": "0x0103b244",
-  "FUN_0103b25a": "0x0103b25a",
-  "FUN_0103b268": "0x0103b268",
   "FUN_0103b28a": "0x0103b28a",
   "FUN_0103b29c": "0x0103b29c",
   "FUN_0103b2b4": "0x0103b2b4",
@@ -13005,12 +13099,6 @@
   "FUN_0103b2f8": "0x0103b2f8",
   "FUN_0103b304": "0x0103b304",
   "FUN_0103b34c": "0x0103b34c",
-  "FUN_0103b38e": "0x0103b38e",
-  "FUN_0103b3a6": "0x0103b3a6",
-  "FUN_0103b3e0": "0x0103b3e0",
-  "FUN_0103b442": "0x0103b442",
-  "FUN_0103b4f6": "0x0103b4f6",
-  "FUN_0103b512": "0x0103b512",
   "FUN_0103b522": "0x0103b522",
   "FUN_0103b530": "0x0103b530",
   "FUN_0103b53a": "0x0103b53a",
@@ -13021,12 +13109,14 @@
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
   "__metal_mutex_acquire": "0x0103ad4a",
+  "add_event": "0x0103b3e0",
   "arch_cpu_atomic_idle": "0x0102ea00",
   "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
   "ble_ext_adv_header_field_get": "0x0100e294",
   "ble_phy_masks_are_one_hot_or_zero": "0x0100e8c8",
   "callback_list_invoke_all": "0x010294c2",
+  "clear_event_registrations": "0x01038654",
   "controller_boot_defaults_load": "0x0100d808",
   "controller_buffer_is_zero": "0x0100d2c8",
   "controller_byte_popcount": "0x0100f6e8",
@@ -13119,6 +13209,7 @@
   "controller_work_enqueue_packet_result": "0x0100eec8",
   "controller_work_enqueue_state4": "0x0100ef48",
   "controller_work_update_or_enqueue": "0x0100efc8",
+  "flag_test_and_clear": "0x0103b244",
   "get_ept_slot_with_name": "0x01039f4c",
   "ipc_rpmsg_init": "0x0102dac0",
   "ipc_rpmsg_register_ept": "0x0102da84",
@@ -13126,19 +13217,37 @@
   "ipc_service_register_endpoint": "0x0102d5b4",
   "ipc_static_vrings_init": "0x0102db30",
   "ipc_static_vrings_shm_size": "0x0103a056",
+  "k_msgq_init": "0x0103b164",
+  "k_timer_init": "0x0103b38e",
   "k_work_init": "0x01036bec",
+  "k_work_queue_drain": "0x01036da4",
   "k_work_queue_init": "0x01036cb8",
   "k_work_queue_start": "0x01036ce4",
+  "k_work_submit_to_queue": "0x0103b268",
   "mpsc_pbuf_alloc": "0x0102cc34",
   "mpsc_pbuf_claim": "0x0102ce14",
   "mpsl_timeslot_distance_get": "0x010243c0",
   "mpsl_timeslot_window_get": "0x010209c8",
+  "net_buf_simple_add": "0x01030084",
+  "net_buf_simple_add_mem": "0x0103a478",
+  "net_buf_simple_push": "0x0103004c",
+  "net_buf_simple_push_u8": "0x0103a45a",
+  "net_buf_simple_reserve": "0x01030014",
   "net_buf_simple_tailroom": "0x0103a468",
+  "notify_one": "0x01039b36",
+  "notify_queue_locked_isra_0": "0x0103b25a",
+  "ocrypto_constant_time_equal": "0x01008810",
+  "ocrypto_constant_time_is_zero": "0x01008838",
+  "onoff_manager_init": "0x01039b62",
+  "onoff_request": "0x0102ca80",
   "printk": "0x01039722",
+  "process_event": "0x0102c6f8",
+  "process_recheck": "0x01039ade",
   "radio_phy_airtime_base_get": "0x010209f0",
   "radio_phy_airtime_tail_get": "0x010209e0",
   "radio_slot_margin_get": "0x0101a130",
   "radio_transition_overhead_get": "0x0101a0e8",
+  "register_events": "0x010384a8",
   "rpmsg_create_ept": "0x010354bc",
   "rpmsg_destroy_ept": "0x0103ae84",
   "rpmsg_get_endpoint": "0x0103ae10",
@@ -13177,6 +13286,7 @@
   "sdc_conn_timing_guard_enabled": "0x01016160",
   "sdc_conn_window_admit": "0x010231c8",
   "sdc_controller_random_get": "0x0100f63c",
+  "sdc_controller_random_init": "0x0100f5d8",
   "sdc_cpu_relax": "0x0102a21e",
   "sdc_default_tx_power_set": "0x010091cc",
   "sdc_ecb_run_blocking": "0x0100a7e8",
@@ -13197,12 +13307,15 @@
   "sdc_pdu_type_bits_set": "0x0100e5dc",
   "sdc_phy_timing_offset_get": "0x0100d58c",
   "sdc_radio_context_fixed_time_get": "0x0100f0fc",
+  "sdc_rand_poll": "0x01009204",
   "sdc_timing_compensation_enabled": "0x010247cc",
   "sdc_timing_compensation_get": "0x01029638",
   "sdc_timing_scale": "0x01024678",
   "sdc_work_submit": "0x0100ef88",
+  "signal_poll_event": "0x0103b442",
   "signed_drift_clamp": "0x0100f69c",
   "strncpy": "0x0103b5a4",
+  "submit_to_queue_locked": "0x01036b18",
   "thunk_FUN_0101621c": "0x010294be",
   "thunk_FUN_0101dc1c": "0x010294ba",
   "thunk_FUN_0101e96c": "0x0102679e",
@@ -13217,14 +13330,29 @@
   "thunk_FUN_01038fa4": "0x01038d9c",
   "thunk_FUN_0103a2a6": "0x0103971e",
   "thunk_FUN_0103b0e8": "0x0103a8cc",
+  "transition_complete": "0x0102ca2c",
+  "validate_args": "0x01039b16",
+  "work_queue_main": "0x0103695c",
   "z_device_is_ready": "0x0103b0f0",
+  "z_handle_obj_poll_events": "0x0103b4f6",
+  "z_impl_k_msgq_alloc_init": "0x0103b18c",
+  "z_impl_k_msgq_get": "0x010362d0",
+  "z_impl_k_msgq_put": "0x01036198",
   "z_impl_k_mutex_unlock": "0x0103657c",
+  "z_impl_k_poll": "0x01038764",
+  "z_impl_k_poll_signal_init": "0x0103b512",
+  "z_impl_k_poll_signal_raise": "0x010388c8",
+  "z_impl_k_poll_signal_reset": "0x0103b51c",
   "z_impl_k_sem_init": "0x0103b224",
+  "z_impl_k_timer_start": "0x01038448",
+  "z_impl_k_timer_stop": "0x0103b3a6",
   "z_impl_z_log_msg_static_create": "0x0102e284",
   "z_log_dropped": "0x0102de10",
   "z_log_msg_commit": "0x0102e1fc",
   "z_log_msg_init": "0x0102ddf4",
-  "z_nrf_rtc_timer_read": "0x010313a8"
+  "z_nrf_rtc_timer_read": "0x010313a8",
+  "z_timer_expiration_handler": "0x010382fc",
+  "z_work_submit_to_queue": "0x01036c2c"
  },
  "conflicts": {}
 }

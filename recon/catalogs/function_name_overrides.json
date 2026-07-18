@@ -1449,9 +1449,21 @@
   }
  },
  "net": {
+  "0x01008810": {
+   "name": "ocrypto_constant_time_equal",
+   "evidence": "Byte-exact pinned nrfxlib Oberon 3.0.13 owner: liboberon_3.0.13.a(ocrypto_constant_time.s.obj) offset 0x00. The only firmware caller compares two 32-byte P-256 field encodings. Raw identity remains FUN_01008810."
+  },
+  "0x01008838": {
+   "name": "ocrypto_constant_time_is_zero",
+   "evidence": "Byte-exact pinned nrfxlib Oberon 3.0.13 owner: liboberon_3.0.13.a(ocrypto_constant_time.s.obj) offset 0x28. The only firmware caller tests one 32-byte P-256 field encoding. Raw identity remains FUN_01008838."
+  },
   "0x010091cc": {
    "name": "sdc_default_tx_power_set",
    "evidence": "Exact NCS 2.5.1 public SoftDevice Controller API and ABI: int32_t sdc_default_tx_power_set(int8_t requested_power_level). The firmware wrapper rejects enabled controller state, otherwise forwards the sign-extended requested level to its internal setter. Raw identity remains FUN_010091cc."
+  },
+  "0x01009204": {
+   "name": "sdc_rand_poll",
+   "evidence": "Exact NCS 2.5.1 sdc_rand_source_t layout: this two-argument tail veneer loads the callback at registered random-source offset +8, which is the blocking rand_poll(uint8_t *p_buff, uint8_t length) slot. Raw identity remains FUN_01009204 at 0x01009204."
   },
   "0x0100eec8": {
    "name": "controller_work_enqueue_packet_result",
@@ -1752,6 +1764,10 @@
   "0x0100f48c": {
    "name": "sdc_conn_radio_overhead_set",
    "evidence": "The initial and established timing arms pass the connection context plus a PHY-derived fixed overhead before publishing their event window. Raw identity remains FUN_0100f48c."
+  },
+  "0x0100f5d8": {
+   "name": "sdc_controller_random_init",
+   "evidence": "The exact xoroshiro64** multiplier and rotations identify two consecutive generator advances: an entropy-provider seed is rejected when all zero, the twice-advanced pair initializes the first controller stream, and the two nonzero-checked outputs initialize the second. The sole caller invokes it during controller startup; companion FUN_0100f63c consumes the second stream as sdc_controller_random_get. Raw identity remains FUN_0100f5d8 at 0x0100f5d8."
   },
   "0x0100f63c": {
    "name": "sdc_controller_random_get",

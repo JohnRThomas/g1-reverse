@@ -2,6 +2,7 @@
  * public-name: FUN_0102a698
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   z_impl_k_msgq_put                        <= FUN_01036198 @ 0x01036198
  *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103cd46                           @ 0x0103cd46
@@ -10,7 +11,7 @@
 /* net-core FUN_0102a698 @ 0x102a698  (parity 300 trials PROVEN) */
 
 extern void FUN_0103b614(void *dst, void *src, unsigned int n);
-extern int FUN_01036198(unsigned int a, void *b, int c, int d);
+extern int z_impl_k_msgq_put(unsigned int a, void *b, int c, int d);
 extern void printk(unsigned int a);
 
 int FUN_0102a698(void *param_1)
@@ -21,7 +22,7 @@ int FUN_0102a698(void *param_1)
         iVar1 = 1;
     } else {
         FUN_0103b614(buf, param_1, 0xfb);
-        iVar1 = FUN_01036198(0x210045b0, buf, 0, 0);
+        iVar1 = z_impl_k_msgq_put(0x210045b0, buf, 0, 0);
         if (iVar1 != 0 && 0 < *(volatile int*)0x21000580) {
             printk(0x0103cd46);
         }

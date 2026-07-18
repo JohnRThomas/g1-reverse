@@ -3,13 +3,14 @@
  * public-name: FUN_0100ab14
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   sdc_rand_poll                            <= FUN_01009204 @ 0x01009204
  *   sdc_ecb_run_blocking                     <= FUN_0100a7e8 @ 0x0100a7e8
  */
 /* net-core FUN_0100ab14 @ 0x0100ab14, exact Thumb extent 0x6a bytes. */
 #include <stdint.h>
 
 extern void FUN_010091f8(uint8_t *nonce_tail);
-extern void FUN_01009204(uint8_t *nonce_tail);
+extern void sdc_rand_poll(uint8_t *nonce_tail);
 extern void sdc_ecb_run_blocking(void *request);
 /* Back-maps: FUN_0100a7e8 @ 0x0100a7e8 = sdc_ecb_run_blocking. */
 
@@ -29,7 +30,7 @@ struct ecb_request_image {
 void FUN_0100ab14(const uint32_t key[4], uint8_t packet[6], uint32_t direction)
 {
     if (direction == 0u) {
-        FUN_01009204(packet + 3);
+        sdc_rand_poll(packet + 3);
     } else {
         FUN_010091f8(packet + 3);
     }

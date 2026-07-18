@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   z_handle_obj_poll_events                 <= FUN_0103b4f6 @ 0x0103b4f6
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -25,7 +26,7 @@ extern int FUN_010379d4(unsigned int*);
 extern unsigned int *FUN_010389f8(int, int);
 extern void FUN_01039bb0(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
-extern void FUN_0103b4f6(unsigned int*, int);
+extern void z_handle_obj_poll_events(unsigned int*, int);
 
 #define DAT_0103676c ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
 #define DAT_01036770 ((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/
@@ -115,7 +116,7 @@ unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned
     *param_3 = (*param_2 & 0xfffffffc) | uVar4;
     *param_2 = (unsigned int)param_3 | (*param_2 & 3);
   }
-  FUN_0103b4f6(param_1 + 5, 4);
+  z_handle_obj_poll_events(param_1 + 5, 4);
 LAB_010366c4:
   FUN_01037130(puVar5, uVar6);
   return 0;

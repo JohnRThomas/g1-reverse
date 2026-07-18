@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   z_handle_obj_poll_events                 <= FUN_0103b4f6 @ 0x0103b4f6
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -17,7 +18,7 @@ extern void FUN_01037130(void *lock, unsigned int key);
 extern void *FUN_010379d4(void *queue);
 extern void FUN_01039bb0(uintptr_t message, unsigned line);
 extern void assert_print(uintptr_t file, uintptr_t message, unsigned line);
-extern void FUN_0103b4f6(void *object, int event);
+extern void z_handle_obj_poll_events(void *object, int event);
 
 void FUN_01036824(uint8_t *queue)
 {
@@ -39,7 +40,7 @@ void FUN_01036824(uint8_t *queue)
         if (*(uint32_t *)(queue + 0x0c) != next)
             ++next;
         *(uint32_t *)(queue + 8) = next;
-        FUN_0103b4f6(queue + 0x10, 2);
+        z_handle_obj_poll_events(queue + 0x10, 2);
     }
     FUN_01037130(lock, 0);
 }

@@ -3,6 +3,7 @@
  * public-name: FUN_0102b5bc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   onoff_request                            <= FUN_0102ca80 @ 0x0102ca80
  *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103d18c                           @ 0x0103d18c
@@ -26,7 +27,7 @@
 #define P_0102b660 0x0102bf59
 
 extern int FUN_0103037c(int);
-extern int FUN_0102ca80(int, void *);
+extern int onoff_request(int, void *);
 extern void printk(int, int);
 extern void FUN_0102bba8(int);
 
@@ -60,7 +61,7 @@ int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_
     local_14 = 0;
     local_c = 0;
     local_10 = 1;
-    iVar3 = FUN_0102ca80(iVar2, &uStack_18);
+    iVar3 = onoff_request(iVar2, &uStack_18);
     iVar2 = local_c;
     if (iVar3 < 0) {
       if (0 < *(volatile int *)P_0102b650) {

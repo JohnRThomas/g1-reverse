@@ -2,39 +2,35 @@
  * public-name: FUN_0102e9bc
  * durable-map: recon/catalogs/function_names_net.json
  */
-/* net-core FUN_0102e9bc @ 0x102e9bc  (parity 300 trials PROVEN) */
-
+/* net-core FUN_0102e9bc @ 0x102e9bc
+ *
+ * Exact stock owner: Zephyr 3.4.99-ncs1-1
+ *   arch/arm/core/aarch32/cpu_idle.S:arch_cpu_idle
+ * Raw address back-map remains FUN_0102e9bc / 0x0102e9bc.
+ */
 #include <stdint.h>
-#include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
-static inline int isCurrentModePrivileged(void){return (__get_CONTROL()&1)==0;}
-static inline void setBasePriority(int p){__set_BASEPRI((unsigned)p);}
-static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
-static inline void DataSynchronizationBarrier(int x){(void)x;__DSB();}
-static inline void WaitForInterrupt(void){__WFI();}
-static inline void disableIRQinterrupts(void){__disable_irq();}
-static inline void enableIRQinterrupts(void){__enable_irq();}
+#include <cmsis_gcc.h>
 
-extern void FUN_0102d0c4(void);
-extern int FUN_0102d1c0(void);
+#define arch_cpu_idle FUN_0102e9bc
+#define z_arm_on_enter_cpu_idle_prepare FUN_0102d0c4
+#define z_arm_on_enter_cpu_idle FUN_0102d1c0
 
-unsigned int FUN_0102e9bc(void)
+extern void z_arm_on_enter_cpu_idle_prepare(void);
+extern uint32_t z_arm_on_enter_cpu_idle(void);
+
+void arch_cpu_idle(void)
 {
-    int bVar1;
-    int iVar2;
+    z_arm_on_enter_cpu_idle_prepare();
 
-    FUN_0102d0c4();
-    disableIRQinterrupts();
-    bVar1 = isCurrentModePrivileged();
-    if (bVar1) {
-        setBasePriority(0);
+    __disable_irq();
+    __set_BASEPRI(0u);
+    __ISB();
+
+    if (z_arm_on_enter_cpu_idle() != 0u) {
+        __DSB();
+        __WFI();
     }
-    InstructionSynchronizationBarrier(0xf);
-    iVar2 = FUN_0102d1c0();
-    if (iVar2 != 0) {
-        DataSynchronizationBarrier(0xf);
-        WaitForInterrupt();
-    }
-    enableIRQinterrupts();
-    InstructionSynchronizationBarrier(0xf);
-    return 0;
+
+    __enable_irq();
+    __ISB();
 }

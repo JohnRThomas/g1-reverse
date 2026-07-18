@@ -2,6 +2,7 @@
  * public-name: FUN_0102b900
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   z_impl_k_msgq_put                        <= FUN_01036198 @ 0x01036198
  *   printk                                   <= FUN_01039722 @ 0x01039722
  * address symbols (name @ address):
  *   rodata_103d23b                           @ 0x0103d23b
@@ -10,7 +11,7 @@
 /* net-core FUN_0102b900 @ 0x102b900 */
 #include <stdint.h>
 
-extern int FUN_01036198(void *queue, const uint8_t *value,
+extern int z_impl_k_msgq_put(void *queue, const uint8_t *value,
                         unsigned flags, unsigned timeout);
 extern void printk(const void *message, int status);
 
@@ -25,7 +26,7 @@ extern void printk(const void *message, int status);
 int FUN_0102b900(uint32_t value)
 {
     uint8_t byte = (uint8_t)value;
-    int status = FUN_01036198((void *)0x210008e0u, &byte, 0, 0);
+    int status = z_impl_k_msgq_put((void *)0x210008e0u, &byte, 0, 0);
     register unsigned int exception_r1 __asm__("r1");
 
     if (status == 0)

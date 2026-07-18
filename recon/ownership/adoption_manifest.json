@@ -33618,15 +33618,15 @@
   },
   "net": {
    "summary": {
-    "entries": 471,
-    "exclude_reconstruction": 92,
-    "retain_reconstruction": 379,
+    "entries": 495,
+    "exclude_reconstruction": 127,
+    "retain_reconstruction": 368,
     "by_kind": {
-     "source": 15,
-     "archive": 311,
-     "static_helper": 3,
+     "source": 41,
+     "archive": 307,
+     "static_helper": 16,
      "table": 0,
-     "glue": 142
+     "glue": 131
     }
    },
    "entries": [
@@ -45291,6 +45291,96 @@
     },
     {
      "core": "net",
+     "va": "0x0102c6f8",
+     "raw_symbol": "FUN_0102c6f8",
+     "current_symbol": "process_event",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "process_event",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0102ca2c",
+     "raw_symbol": "FUN_0102ca2c",
+     "current_symbol": "transition_complete",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "transition_complete",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0102ca80",
+     "raw_symbol": "FUN_0102ca80",
+     "current_symbol": "onoff_request",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "onoff_request",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0102d5b4",
      "raw_symbol": "FUN_0102d5b4",
      "current_symbol": "ipc_service_register_endpoint",
@@ -45616,6 +45706,96 @@
       {
        "source": "recon/ownership/net_function_ownership.json",
        "type": "net_signature_match"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01030014",
+     "raw_symbol": "FUN_01030014",
+     "current_symbol": "net_buf_simple_reserve",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "net_buf_simple_reserve",
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103004c",
+     "raw_symbol": "FUN_0103004c",
+     "current_symbol": "net_buf_simple_push",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "net_buf_simple_push",
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01030084",
+     "raw_symbol": "FUN_01030084",
+     "current_symbol": "net_buf_simple_add",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "net_buf_simple_add",
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -45971,6 +46151,66 @@
     },
     {
      "core": "net",
+     "va": "0x01036198",
+     "raw_symbol": "FUN_01036198",
+     "current_symbol": "z_impl_k_msgq_put",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_msgq_put",
+     "upstream_unit": "zephyr/kernel/msg_q.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010362d0",
+     "raw_symbol": "FUN_010362d0",
+     "current_symbol": "z_impl_k_msgq_get",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_msgq_get",
+     "upstream_unit": "zephyr/kernel/msg_q.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0103657c",
      "raw_symbol": "FUN_0103657c",
      "current_symbol": "z_impl_k_mutex_unlock",
@@ -46012,42 +46252,211 @@
     },
     {
      "core": "net",
+     "va": "0x0103695c",
+     "raw_symbol": "FUN_0103695c",
+     "current_symbol": "work_queue_main",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "work_queue_main",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036b18",
+     "raw_symbol": "FUN_01036b18",
+     "current_symbol": "submit_to_queue_locked",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "submit_to_queue_locked",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x01036bec",
      "raw_symbol": "FUN_01036bec",
      "current_symbol": "k_work_init",
      "kind": "source",
-     "component": "net_sdk_public",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "k_work_init",
-     "upstream_unit": "zephyr/kernel/libkernel.a(work.c.obj)",
+     "upstream_unit": "zephyr/kernel/work.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned public SDK owner is instruction-exact under the recorded configuration.",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/catalogs/net_sdk_public_ownership.json",
-       "type": "net_sdk_public_exact_owner",
-       "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
-       "match": "relocation-normalized instruction-exact",
-       "match_score": 1.0,
-       "abi": "void k_work_init(struct k_work *work, k_work_handler_t handler)",
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
        "config": {
-        "CONFIG_ASSERT": true,
-        "CONFIG_ASSERT_NO_COND_INFO": true,
-        "CONFIG_ASSERT_NO_MSG_INFO": true,
-        "CONFIG_THREAD_NAME": true,
-        "CONFIG_THREAD_MAX_NAME_LEN": 20,
-        "CONFIG_USERSPACE": false,
-        "CONFIG_LOG": true,
-        "CONFIG_LOG_MODE_DEFERRED": true,
-        "CONFIG_LOG_FRONTEND": false,
-        "CONFIG_LOG_PRINTK": true,
-        "CONFIG_OPENAMP_MASTER": false,
-        "CONFIG_OPENAMP_SLAVE": true,
-        "openamp_compile_effect": "VIRTIO_DEVICE_ONLY"
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
-       "source_unit": "zephyr/kernel/work.c",
-       "object": "zephyr/kernel/libkernel.a(work.c.obj)"
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036c2c",
+     "raw_symbol": "FUN_01036c2c",
+     "current_symbol": "z_work_submit_to_queue",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_work_submit_to_queue",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036cb8",
+     "raw_symbol": "FUN_01036cb8",
+     "current_symbol": "k_work_queue_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "k_work_queue_init",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036ce4",
+     "raw_symbol": "FUN_01036ce4",
+     "current_symbol": "k_work_queue_start",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "k_work_queue_start",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01036da4",
+     "raw_symbol": "FUN_01036da4",
+     "current_symbol": "k_work_queue_drain",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "k_work_queue_drain",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46072,6 +46481,186 @@
        "ratio": 0.941,
        "threshold": 0.9,
        "provenance": "NCS 2.5.1 netref object index"
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010382fc",
+     "raw_symbol": "FUN_010382fc",
+     "current_symbol": "z_timer_expiration_handler",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_timer_expiration_handler",
+     "upstream_unit": "zephyr/kernel/timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01038448",
+     "raw_symbol": "FUN_01038448",
+     "current_symbol": "z_impl_k_timer_start",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_timer_start",
+     "upstream_unit": "zephyr/kernel/timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010384a8",
+     "raw_symbol": "FUN_010384a8",
+     "current_symbol": "register_events",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "register_events",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01038654",
+     "raw_symbol": "FUN_01038654",
+     "current_symbol": "clear_event_registrations",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "clear_event_registrations",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x01038764",
+     "raw_symbol": "FUN_01038764",
+     "current_symbol": "z_impl_k_poll",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_poll",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010388c8",
+     "raw_symbol": "FUN_010388c8",
+     "current_symbol": "z_impl_k_poll_signal_raise",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_poll_signal_raise",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46456,23 +47045,29 @@
      "core": "net",
      "va": "0x01039ade",
      "raw_symbol": "FUN_01039ade",
-     "current_symbol": "FUN_01039ade",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "process_recheck",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "process_recheck",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "process_recheck",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46480,23 +47075,29 @@
      "core": "net",
      "va": "0x01039b16",
      "raw_symbol": "FUN_01039b16",
-     "current_symbol": "FUN_01039b16",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "validate_args",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "validate_args",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "validate_args",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46504,23 +47105,29 @@
      "core": "net",
      "va": "0x01039b36",
      "raw_symbol": "FUN_01039b36",
-     "current_symbol": "FUN_01039b36",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "notify_one",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "notify_one",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "notify_one",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46528,23 +47135,29 @@
      "core": "net",
      "va": "0x01039b62",
      "raw_symbol": "FUN_01039b62",
-     "current_symbol": "FUN_01039b62",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "onoff_manager_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "onoff_manager_init",
-     "upstream_unit": "0x0000000001028942       0x26 zephyr/libzephyr.a(onoff.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "zephyr/lib/os/onoff.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "onoff_manager_init",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x0000000001028942       0x26 zephyr/libzephyr.a(onoff.c.obj)"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46731,25 +47344,61 @@
     },
     {
      "core": "net",
+     "va": "0x0103a45a",
+     "raw_symbol": "FUN_0103a45a",
+     "current_symbol": "net_buf_simple_push_u8",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "net_buf_simple_push_u8",
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0103a468",
      "raw_symbol": "FUN_0103a468",
      "current_symbol": "net_buf_simple_tailroom",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "net_buf_simple_tailroom",
-     "upstream_unit": "0x0000000001029036       0x10 zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "net_buf_simple_tailroom",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x0000000001029036       0x10 zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -46757,39 +47406,29 @@
      "core": "net",
      "va": "0x0103a478",
      "raw_symbol": "FUN_0103a478",
-     "current_symbol": "FUN_0103a478",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": "net_buf_simple_push_mem",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "SDC identity remains report-only under the per-VA machine policy.",
+     "current_symbol": "net_buf_simple_add_mem",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "net_buf_simple_add_mem",
+     "upstream_unit": "zephyr/subsys/net/buf_simple.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "net_buf_simple_push_mem",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
-      },
-      {
-       "source": "recon/ownership/net_sdc_archive_ownership.json",
-       "type": "sdc_machine_ownership",
-       "archive_sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
-       "match_kind": "approximate",
-       "score": 0.941176,
-       "per_va_unique_identity": false,
-       "public_api": false,
-       "build_extraction_verified": false,
-       "safe_to_exclude": false,
-       "blockers": [
-        "approximate_opcode_match",
-        "duplicate_or_low_gap_identity",
-        "private_abi_unpublished"
-       ]
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47372,23 +48011,29 @@
      "core": "net",
      "va": "0x0103b164",
      "raw_symbol": "FUN_0103b164",
-     "current_symbol": "FUN_0103b164",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "k_msgq_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "k_msgq_init",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/msg_q.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "k_msgq_init",
-       "ratio": 0.96,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47396,23 +48041,29 @@
      "core": "net",
      "va": "0x0103b18c",
      "raw_symbol": "FUN_0103b18c",
-     "current_symbol": "FUN_0103b18c",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "z_impl_k_msgq_alloc_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "z_impl_k_msgq_alloc_init",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/msg_q.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "z_impl_k_msgq_alloc_init",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47492,23 +48143,59 @@
      "core": "net",
      "va": "0x0103b244",
      "raw_symbol": "FUN_0103b244",
-     "current_symbol": "FUN_0103b244",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "flag_test_and_clear",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "flag_test_and_clear",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "flag_test_and_clear",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103b25a",
+     "raw_symbol": "FUN_0103b25a",
+     "current_symbol": "notify_queue_locked_isra_0",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "notify_queue_locked.isra.0",
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47516,23 +48203,29 @@
      "core": "net",
      "va": "0x0103b268",
      "raw_symbol": "FUN_0103b268",
-     "current_symbol": "FUN_0103b268",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "k_work_submit_to_queue",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "k_work_submit_to_queue",
-     "upstream_unit": "0x000000000102a4a0       0x22 zephyr/kernel/libkernel.a(work.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "zephyr/kernel/work.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "k_work_submit_to_queue",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x000000000102a4a0       0x22 zephyr/kernel/libkernel.a(work.c.obj)"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47660,23 +48353,29 @@
      "core": "net",
      "va": "0x0103b38e",
      "raw_symbol": "FUN_0103b38e",
-     "current_symbol": "FUN_0103b38e",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "k_timer_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "k_timer_init",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "k_timer_init",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47684,23 +48383,29 @@
      "core": "net",
      "va": "0x0103b3a6",
      "raw_symbol": "FUN_0103b3a6",
-     "current_symbol": "FUN_0103b3a6",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "z_impl_k_timer_stop",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "z_impl_k_timer_stop",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/timer.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "z_impl_k_timer_stop",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47708,23 +48413,29 @@
      "core": "net",
      "va": "0x0103b3e0",
      "raw_symbol": "FUN_0103b3e0",
-     "current_symbol": "FUN_0103b3e0",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "add_event",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "add_event",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "add_event",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47732,23 +48443,29 @@
      "core": "net",
      "va": "0x0103b442",
      "raw_symbol": "FUN_0103b442",
-     "current_symbol": "FUN_0103b442",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "signal_poll_event",
+     "kind": "static_helper",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "signal_poll_event",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "signal_poll_event",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47756,23 +48473,89 @@
      "core": "net",
      "va": "0x0103b4f6",
      "raw_symbol": "FUN_0103b4f6",
-     "current_symbol": "FUN_0103b4f6",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "z_handle_obj_poll_events",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
      "upstream_symbol": "z_handle_obj_poll_events",
-     "upstream_unit": "0x000000000102a9da       0x1c zephyr/kernel/libkernel.a(poll.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "z_handle_obj_poll_events",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x000000000102a9da       0x1c zephyr/kernel/libkernel.a(poll.c.obj)"
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103b512",
+     "raw_symbol": "FUN_0103b512",
+     "current_symbol": "z_impl_k_poll_signal_init",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_poll_signal_init",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103b51c",
+     "raw_symbol": "FUN_0103b51c",
+     "current_symbol": "z_impl_k_poll_signal_reset",
+     "kind": "source",
+     "component": "zephyr_os_kernel_stock",
+     "upstream_symbol": "z_impl_k_poll_signal_reset",
+     "upstream_unit": "zephyr/kernel/poll.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned configured Zephyr owner is relocation-masked byte-exact with resolved call targets and atomic private state.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+       "type": "net_zephyr_source_unit_exact_owner",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "config": {
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
+       },
+       "upstream_linkage": "public",
+       "call_targets_checked": true,
+       "private_state_sections": 5,
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -47952,6 +48735,10 @@
   {
    "path": "recon/ownership/net_openamp_stock_atomic_adoption.json",
    "sha256": "1b853c3aa9cb401715cb0931078e60a54eb3949f663eb518f64fc6850c1534af"
+  },
+  {
+   "path": "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+   "sha256": "7b84e9e7f3f5b97fe2ee2d933d0a107b38b071d909a5ba788165d1d9a50c68b6"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

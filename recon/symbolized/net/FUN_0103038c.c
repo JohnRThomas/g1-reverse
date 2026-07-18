@@ -3,6 +3,7 @@
  * public-name: FUN_0103038c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   onoff_request                            <= FUN_0102ca80 @ 0x0102ca80
  *   arch_cpu_atomic_idle                     <= FUN_0102ea00 @ 0x0102ea00
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
@@ -13,7 +14,7 @@
 #include <stdint.h>
 #include "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include/cmsis_gcc.h"
 
-extern int32_t FUN_0102ca80(uint32_t object, uint32_t state);
+extern int32_t onoff_request(uint32_t object, uint32_t state);
 extern void assert_print(uint32_t source, uint32_t message, uint32_t line);
 extern void FUN_01039bb0(uint32_t message, uint32_t line)
     __attribute__((noreturn));
@@ -39,7 +40,7 @@ uint32_t FUN_0103038c(uint32_t mode)
         state[1] = 0u;
         state[3] = 0u;
         state[2] = 1u;
-        if (FUN_0102ca80(0x21004834u, 0x21004800u) < 0) {
+        if (onoff_request(0x21004834u, 0x21004800u) < 0) {
             assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
             FUN_01039bb0(0x0103dea5u, 0x230u);
         }
