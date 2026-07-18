@@ -18,7 +18,7 @@ BASELINE = ROOT / "recon/ownership/adoption_manifest_baseline.json"
 MANIFEST = ROOT / "recon/ownership/adoption_manifest.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
-OVERLAY_VAS = {"0x000680f8", "0x00071560"}
+OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00071560"}
 
 
 def digest(path):
@@ -43,11 +43,12 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(262, current["cores"]["app"]["summary"][
+        self.assertEqual(263, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))
         retained = RETAINED.read_text()
+        self.assertNotIn("/bt_settings_delete.c", retained)
         self.assertNotIn("/metal_bus_unregister.c", retained)
         self.assertNotIn("/rpmsg_init_vdev.c", retained)
 

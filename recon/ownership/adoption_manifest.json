@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 356,
-    "exclude_reconstruction": 262,
+    "entries": 357,
+    "exclude_reconstruction": 263,
     "retain_reconstruction": 94,
     "by_kind": {
-     "source": 206,
+     "source": 207,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -1813,6 +1813,110 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:303",
         "reconstruction_input": "app/libapp.a(bt_settings_store.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:303: multiple definition of `bt_settings_store'; app/libapp.a(bt_settings_store.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_store.c:22: first defined here"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052fbc",
+     "raw_symbol": "FUN_00052fbc",
+     "current_symbol": "bt_settings_delete",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_settings_delete",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/settings.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.969697,
+        "shape": 0.969697,
+        "length": 1.0,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "int",
+        "params": [
+         "char*",
+         "uint8_t",
+         "bt_addr_le_t*"
+        ],
+        "variadic": false,
+        "decl_line": 324
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/settings.c",
+        "sha256": "1dbf5205dba8751581a372b30f93d1932160339a50e771aeccf543a7da3b6913",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(settings.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:325",
+        "reconstruction_input": "app/libapp.a(bt_settings_delete.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/settings.c:325: multiple definition of `bt_settings_delete'; app/libapp.a(bt_settings_delete.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_settings_delete.c:31: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-31",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1ba96ac4de798dbdfd6e096d90b3fc315b8c3caae42e7dc2c5b43f52352f5a7d",
+       "cfg_verify_cases": 9,
+       "callers": [
+        {
+         "va": "0x00053024",
+         "raw_symbol": "FUN_00053024",
+         "branch_site": "0x0005302a",
+         "upstream_symbol": "bt_settings_delete_sc",
+         "key": "sc",
+         "cfg_verify": "PASS",
+         "cases": 0,
+         "source_sha256": "2f59b790061250f297b9ea99e827b636cdfd89d76892e355c4966a161646d557"
+        },
+        {
+         "va": "0x0005306c",
+         "raw_symbol": "FUN_0005306c",
+         "branch_site": "0x00053072",
+         "upstream_symbol": "bt_settings_delete_ccc",
+         "key": "ccc",
+         "cfg_verify": "PASS",
+         "cases": 0,
+         "source_sha256": "fe9690a5cb0709c06c32fa15bb2cb279a43e257e767d3cfb592cdb249d222aa8"
+        },
+        {
+         "va": "0x00053184",
+         "raw_symbol": "FUN_00053184",
+         "branch_site": "0x0005318a",
+         "upstream_symbol": "bt_settings_delete_keys",
+         "key": "keys",
+         "cfg_verify": "PASS",
+         "cases": 2,
+         "source_sha256": "4f5ff9cbf7371d88df8d2098b5407f189f9ae096cc58ec6824f5c09e000a27ba"
+        }
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "bt_settings_delete"
+        ],
+        "exclude_only": [
+         "0x00052fbc"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -27407,7 +27511,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "d6fb9a6e47d0a94ef1e397fac28560c587319b485f5b563d39144c153632ade4"
+   "sha256": "01f4499e06b6660c50addad4024472d6d8b5db8b2ec456c7a76a87c260764788"
   }
  ]
 }

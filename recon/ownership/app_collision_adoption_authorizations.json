@@ -88,6 +88,73 @@
     "exclude_only": ["0x00071560"],
     "new_undefined_symbols": []
    }
+  },
+  {
+   "batch": "COLLISION-31",
+   "va": "0x00052fbc",
+   "raw_symbol": "FUN_00052fbc",
+   "symbol": "bt_settings_delete",
+   "status": "authorized",
+   "upstream_source": "zephyr/subsys/bluetooth/host/settings.c",
+   "upstream_source_sha256": "1dbf5205dba8751581a372b30f93d1932160339a50e771aeccf543a7da3b6913",
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/settings.c.obj",
+   "upstream_object_sha256": "16c9f868c65660f831301f89d58e1ad38f09aca4f2b8c283337e718b4514cc48",
+   "collision_receipt_sha256": "060ef8aa8f2f9f15363a4be4afc2a581bb06f1a8355bb268f9ff121a9281e7ac",
+   "reconstruction_source_sha256": "804f4ca8a30a72e72c546c69f1ad8e2b88c22cacb0f25466ce0ba3e9a52dff75",
+   "configured_link_owner": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(settings.c.obj)",
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "abi": "int bt_settings_delete(const char *key, uint8_t id, const bt_addr_le_t *addr)",
+   "firmware_code_size": 76,
+   "upstream_code_size": 76,
+   "literal_relocation_offsets": [72],
+   "call_relocation_offsets": [18, 34, 40, 56],
+   "normalized_code_sha256": "1ba96ac4de798dbdfd6e096d90b3fc315b8c3caae42e7dc2c5b43f52352f5a7d",
+   "instruction_exact": true,
+   "cfg_verify_cases": 9,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 7
+   },
+   "callers": [
+    {
+     "va": "0x00053024",
+     "raw_symbol": "FUN_00053024",
+     "branch_site": "0x0005302a",
+     "upstream_symbol": "bt_settings_delete_sc",
+     "key": "sc",
+     "cfg_verify": "PASS",
+     "cases": 0,
+     "source_sha256": "2f59b790061250f297b9ea99e827b636cdfd89d76892e355c4966a161646d557"
+    },
+    {
+     "va": "0x0005306c",
+     "raw_symbol": "FUN_0005306c",
+     "branch_site": "0x00053072",
+     "upstream_symbol": "bt_settings_delete_ccc",
+     "key": "ccc",
+     "cfg_verify": "PASS",
+     "cases": 0,
+     "source_sha256": "fe9690a5cb0709c06c32fa15bb2cb279a43e257e767d3cfb592cdb249d222aa8"
+    },
+    {
+     "va": "0x00053184",
+     "raw_symbol": "FUN_00053184",
+     "branch_site": "0x0005318a",
+     "upstream_symbol": "bt_settings_delete_keys",
+     "key": "keys",
+     "cfg_verify": "PASS",
+     "cases": 2,
+     "source_sha256": "4f5ff9cbf7371d88df8d2098b5407f189f9ae096cc58ec6824f5c09e000a27ba"
+    }
+   ],
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": ["bt_settings_delete"],
+    "exclude_only": ["0x00052fbc"],
+    "new_undefined_symbols": []
+   }
   }
  ]
 }
