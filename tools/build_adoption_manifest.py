@@ -61,6 +61,18 @@ DEFAULTS = {
         "recon/ownership/net_ipc_rpmsg_variant_ownership.json",
     "net_zephyr_stock":
         "recon/ownership/net_zephyr_stock_atomic_adoption.json",
+    "net_kernel_private_stock":
+        "recon/ownership/net_kernel_private_stock_adoption.json",
+    "net_runtime_stock":
+        "recon/ownership/net_runtime_stock_atomic_adoption.json",
+    "net_toolchain_stock":
+        "recon/ownership/net_toolchain_stock_atomic_adoption.json",
+    "net_ipc_openamp_libmetal_stock":
+        "recon/ownership/net_ipc_openamp_libmetal_stock_adoption.json",
+    "net_oberon_identity":
+        "recon/ownership/net_oberon_mod_p256_to_bytes_exact.json",
+    "net_public_zephyr":
+        "recon/ownership/net_public_zephyr_identities.json",
     "net_alias_resolutions": "recon/catalogs/net_identity_alias_resolutions.json",
     "sdc_benchmark": "recon/ownership/net_sdc_archive_benchmark.md",
     "sdc_catalog": "recon/ownership/net_sdc_archive_ownership.json",
@@ -672,7 +684,7 @@ def _build_from_baseline(paths, resolved, names):
             net_zephyr.get("component") != "zephyr_os_kernel_stock" or
             net_zephyr.get("status") != "authorized_atomic" or
             net_zephyr.get("safe") is not True or
-            len(net_zephyr.get("section_matches", [])) != 40 or
+            len(net_zephyr.get("section_matches", [])) != 84 or
             len(net_zephyr.get("private_state_sections", [])) != 5):
         raise ValueError("invalid net Zephyr OS/kernel atomic adoption catalog")
     if (_sha256(net_zephyr["upstream"]["configured_build"] +
@@ -692,6 +704,160 @@ def _build_from_baseline(paths, resolved, names):
             if _sha256(source_path) != row.get("reconstruction_source_sha256"):
                 raise ValueError("net Zephyr reconstruction changed: %s" %
                                  row["va"])
+    net_kernel_private_path = resolved["net_kernel_private_stock"]
+    net_kernel_private = _load_json(net_kernel_private_path)
+    if (net_kernel_private.get("schema") != 1 or
+            net_kernel_private.get("core") != "net" or
+            net_kernel_private.get("component") !=
+            "zephyr_kernel_private_stock" or
+            net_kernel_private.get("status") != "authorized_atomic" or
+            net_kernel_private.get("safe") is not True or
+            len(net_kernel_private.get("section_matches", [])) != 71 or
+            len(net_kernel_private.get("private_state_sections", [])) != 6 or
+            len(net_kernel_private.get("source_units", [])) != 5):
+        raise ValueError("invalid net kernel-private stock adoption catalog")
+    upstream_kernel_private = net_kernel_private["upstream"]
+    if (_sha256(os.path.join(upstream_kernel_private["configured_build"],
+                             "zephyr/.config")) !=
+            upstream_kernel_private.get("configured_build_sha256")):
+        raise ValueError("net kernel-private configured build changed")
+    for unit in net_kernel_private.get("source_units", []):
+        if (_sha256(os.path.join("/Users/freedomcoder/ncs251",
+                                 unit["source"])) !=
+                unit.get("source_sha256") or
+                _sha256(os.path.join(upstream_kernel_private[
+                    "configured_build"], unit["object"])) !=
+                unit.get("object_sha256")):
+            raise ValueError("net kernel-private source/object changed: %s" %
+                             unit["unit"])
+    for row in net_kernel_private.get("manifest_functions", []):
+        if row.get("reconstruction_present"):
+            source_path = _path(row["reconstruction_source"])
+            if _sha256(source_path) != row.get("reconstruction_source_sha256"):
+                raise ValueError(
+                    "net kernel-private reconstruction changed: %s" %
+                    row["va"])
+    net_runtime_path = resolved["net_runtime_stock"]
+    net_runtime = _load_json(net_runtime_path)
+    if (net_runtime.get("schema") != 1 or
+            net_runtime.get("core") != "net" or
+            net_runtime.get("component") !=
+            "zephyr_picolibc_runtime_stock" or
+            net_runtime.get("status") != "authorized_atomic" or
+            net_runtime.get("safe") is not True or
+            len(net_runtime.get("atomic_group", [])) != 4 or
+            len(net_runtime.get("manifest_functions", [])) != 4 or
+            net_runtime.get("policy", {}).get("no_blob_or_stub") is not True):
+        raise ValueError("invalid net runtime stock adoption catalog")
+    if set(net_runtime["atomic_group"]) != {
+            row["va"] for row in net_runtime["manifest_functions"]}:
+        raise ValueError("net runtime atomic group is incomplete")
+    for row in net_runtime["manifest_functions"]:
+        if (row.get("safe_to_adopt") is not True or
+                row.get("exclude_reconstruction") is not True or
+                row.get("whole_atomic_group_selected") is not True or
+                row.get("raw_mapping_preserved") is not True or
+                row.get("match") != "relocation-masked-byte-exact"):
+            raise ValueError("unsafe net runtime owner: %s" % row["va"])
+        source_path = row.get("source")
+        if (source_path and _sha256(source_path) != row.get("source_sha256")):
+            raise ValueError("net runtime source changed: %s" % row["va"])
+    net_toolchain_path = resolved["net_toolchain_stock"]
+    net_toolchain = _load_json(net_toolchain_path)
+    if (net_toolchain.get("schema") != 1 or
+            net_toolchain.get("core") != "net" or
+            net_toolchain.get("component") !=
+            "cpunet_toolchain_selected_members" or
+            net_toolchain.get("status") !=
+            "authorized_exact_stock_provider" or
+            net_toolchain.get("safe") is not True or
+            len(net_toolchain.get("functions", [])) != 5 or
+            net_toolchain.get("source_exclusion_required") is not False):
+        raise ValueError("invalid net toolchain stock adoption catalog")
+    for row in net_toolchain["functions"]:
+        if (row.get("raw_firmware_byte_exact") is not True or
+                row.get("safe_to_resolve_to_stock_provider") is not True or
+                row.get("preserve_raw_reconstruction_evidence") is not True or
+                row.get("section_size") <= 0 or
+                len(row.get("section_sha256", "")) != 64):
+            raise ValueError("unsafe net toolchain owner: %s" % row["va"])
+    support = net_toolchain.get("supporting_closure", {}).get(
+        "libgcc_unsigned_division_entry", {})
+    if (support.get("non_relocation_bytes_exact") is not True or
+            support.get("section_size") != 48 or
+            support.get("catalog_extent_size") != 50):
+        raise ValueError("invalid __aeabi_uldivmod boundary receipt")
+    net_ipc_openamp_path = resolved["net_ipc_openamp_libmetal_stock"]
+    net_ipc_openamp = _load_json(net_ipc_openamp_path)
+    if (net_ipc_openamp.get("schema_version") != 1 or
+            net_ipc_openamp.get("scope") !=
+            "CPUNET selected public IPC/OpenAMP/libmetal source closure" or
+            len(net_ipc_openamp.get("functions", [])) != 4 or
+            len(net_ipc_openamp.get("manifest_functions", [])) != 4 or
+            net_ipc_openamp.get("policy", {}).get(
+                "selected_sections_only") is not True or
+            net_ipc_openamp.get("policy", {}).get(
+                "no_private_or_sdc_removal") is not True):
+        raise ValueError("invalid net IPC/OpenAMP/libmetal stock catalog")
+    for unit_name, unit in net_ipc_openamp.get("units", {}).items():
+        if (_sha256(unit["source"]) != unit.get("source_sha256") or
+                _sha256(unit["configured_object"]) !=
+                unit.get("configured_object_sha256")):
+            raise ValueError("net IPC/OpenAMP unit changed: %s" % unit_name)
+    for row in net_ipc_openamp["functions"]:
+        if (row.get("relocation_masked_firmware_exact") is not True or
+                row.get("preserve_raw_backmap") is not True or
+                row.get("section_size", 0) <= 0):
+            raise ValueError("unsafe IPC/OpenAMP owner: %s" % row["va"])
+    net_oberon_path = resolved["net_oberon_identity"]
+    net_oberon = _load_json(net_oberon_path)
+    oberon_identity = net_oberon.get("identity", {})
+    oberon_upstream = net_oberon.get("upstream", {})
+    oberon_firmware = net_oberon.get("firmware_proof", {})
+    if (net_oberon.get("schema") != 1 or
+            net_oberon.get("core") != "net" or
+            net_oberon.get("component") != "nrfxlib_oberon" or
+            net_oberon.get("status") != "exact_identity_correction" or
+            oberon_identity.get("upstream_symbol") !=
+            "ocrypto_mod_p256_to_bytes" or
+            oberon_firmware.get("match") !=
+            "complete-section-byte-exact" or
+            oberon_firmware.get("firmware_size") != 52 or
+            oberon_firmware.get("firmware_sha256") !=
+            oberon_upstream.get("section_sha256") or
+            net_oberon.get("policy", {}).get(
+                "raw_backmap_preserved") is not True):
+        raise ValueError("invalid net Oberon identity correction")
+    if _sha256(oberon_upstream["archive"]) != oberon_upstream.get(
+            "archive_sha256"):
+        raise ValueError("net Oberon archive changed")
+    net_public_zephyr_path = resolved["net_public_zephyr"]
+    net_public_zephyr = _load_json(net_public_zephyr_path)
+    if (net_public_zephyr.get("schema") != 1 or
+            net_public_zephyr.get("core") != "net" or
+            net_public_zephyr.get("component") !=
+            "zephyr_public_function_and_macro_owners" or
+            net_public_zephyr.get("status") != "authorized_scoped" or
+            net_public_zephyr.get("safe") is not True or
+            len(net_public_zephyr.get("manifest_functions", [])) != 6 or
+            net_public_zephyr.get("policy", {}).get(
+                "raw_backmaps_preserved") is not True or
+            net_public_zephyr.get("policy", {}).get(
+                "no_linker_aliases") is not True):
+        raise ValueError("invalid net public Zephyr identity catalog")
+    for unit in net_public_zephyr.get("source_units", []):
+        source_path = os.path.join("/Users/freedomcoder/ncs251",
+                                   unit["source"])
+        if _sha256(source_path) != unit.get("source_sha256"):
+            raise ValueError("net public Zephyr source changed: %s" %
+                             unit["source"])
+    for row in net_public_zephyr["manifest_functions"]:
+        if (row.get("match") != "relocation-masked-byte-exact" or
+                row.get("safe_to_adopt") is not True or
+                row.get("exclude_reconstruction") is not True or
+                row.get("raw_mapping_preserved") is not True or
+                row.get("size", 0) <= 0):
+            raise ValueError("unsafe net public Zephyr owner: %s" % row["va"])
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -743,6 +909,18 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(net_ipc_path)},
         {"path": paths["net_zephyr_stock"],
          "sha256": _sha256(net_zephyr_path)},
+        {"path": paths["net_kernel_private_stock"],
+         "sha256": _sha256(net_kernel_private_path)},
+        {"path": paths["net_runtime_stock"],
+         "sha256": _sha256(net_runtime_path)},
+        {"path": paths["net_toolchain_stock"],
+         "sha256": _sha256(net_toolchain_path)},
+        {"path": paths["net_ipc_openamp_libmetal_stock"],
+         "sha256": _sha256(net_ipc_openamp_path)},
+        {"path": paths["net_oberon_identity"],
+         "sha256": _sha256(net_oberon_path)},
+        {"path": paths["net_public_zephyr"],
+         "sha256": _sha256(net_public_zephyr_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],
@@ -987,6 +1165,41 @@ def _build_from_baseline(paths, resolved, names):
             net_zephyr, paths["net_zephyr_stock"], names):
         if row.get("exclude_reconstruction") is not True:
             raise ValueError("incomplete net Zephyr exclusion: %s" % row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_kernel_private_stock_entries(
+            net_kernel_private, paths["net_kernel_private_stock"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net kernel-private exclusion: %s" %
+                             row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_runtime_stock_entries(
+            net_runtime, paths["net_runtime_stock"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net runtime exclusion: %s" %
+                             row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_toolchain_stock_entries(
+            net_toolchain, paths["net_toolchain_stock"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net toolchain adoption: %s" %
+                             row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_ipc_openamp_libmetal_stock_entries(
+            net_ipc_openamp, paths["net_ipc_openamp_libmetal_stock"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net IPC/OpenAMP adoption: %s" %
+                             row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_oberon_identity_entries(
+            net_oberon, paths["net_oberon_identity"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net Oberon adoption: %s" % row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_public_zephyr_entries(
+            net_public_zephyr, paths["net_public_zephyr"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net public Zephyr adoption: %s" %
+                             row["va"])
         net_rows[row["va"]] = row
     result["cores"]["net"]["entries"] = sorted(
         net_rows.values(), key=lambda row: int(row["va"], 16))
@@ -1367,6 +1580,246 @@ def _net_zephyr_stock_entries(data, source, names):
     return output
 
 
+def _net_kernel_private_stock_entries(data, source, names):
+    """Adopt the exact CPUNET scheduler/queue/heap source-unit closure."""
+    output = []
+    upstream = data["upstream"]
+    if (data.get("safe") is not True or
+            len(data.get("section_matches", [])) != 71 or
+            len(data.get("private_state_sections", [])) != 6):
+        raise ValueError("unsafe CPUNET kernel-private source-unit receipt")
+    matched = {row["symbol"] for row in data.get("section_matches", [])
+               if row.get("match") == "relocation-masked-byte-exact"}
+    checked_callers = {row["caller"]
+                       for row in data.get("call_target_checks", [])}
+    for row in data.get("manifest_functions", []):
+        symbol = row.get("upstream_symbol")
+        section = next((item for item in data["section_matches"]
+                        if item["symbol"] == symbol), None)
+        has_calls = bool(section and any(
+            relocation["type"] in (10, 30)
+            for relocation in section.get("relocations", [])))
+        eligible = bool(
+            row.get("safe_to_adopt") is True and
+            row.get("exclude_reconstruction") is True and
+            row.get("whole_source_unit_selected") is True and
+            row.get("call_targets_checked") is True and
+            symbol in matched and
+            (not has_calls or symbol in checked_callers))
+        output.append(_entry(
+            "net", row["va"], names,
+            "static_helper" if row.get("upstream_linkage") == "file_static"
+            else "source",
+            "zephyr_kernel_private_stock", symbol,
+            row.get("upstream_source"), eligible,
+            ("Pinned Zephyr scheduler/queue/heap owner is relocation-masked "
+             "byte-exact with all call targets and private state resolved."
+             if eligible else
+             "Kernel-private source-unit evidence is incomplete; retain "
+             "fail-closed."),
+            [_evidence(
+                source, "net_kernel_private_source_unit_exact_owner",
+                repository=upstream.get("repository"),
+                commit=upstream.get("commit"),
+                manifest_tag=upstream.get("manifest_tag"),
+                config=upstream.get("required_config"),
+                upstream_linkage=row.get("upstream_linkage"),
+                call_targets_checked=row.get("call_targets_checked"),
+                private_state_sections=len(
+                    data.get("private_state_sections", [])),
+                reconstruction_present=row.get("reconstruction_present"),
+                raw_mapping_preserved=True,
+                safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
+def _net_runtime_stock_entries(data, source, names):
+    """Adopt the exact CPUNET Zephyr/Picolibc runtime atomic closure."""
+    output = []
+    for row in data.get("manifest_functions", []):
+        eligible = bool(
+            data.get("safe") is True and
+            row.get("safe_to_adopt") is True and
+            row.get("exclude_reconstruction") is True and
+            row.get("whole_atomic_group_selected") is True and
+            row.get("raw_mapping_preserved") is True and
+            row.get("match") == "relocation-masked-byte-exact")
+        unit = row.get("upstream_unit")
+        component = ("picolibc_runtime_stock"
+                     if "picolibc" in (unit or "").lower()
+                     else "zephyr_runtime_stock")
+        output.append(_entry(
+            "net", row["va"], names, "source", component,
+            row.get("upstream_symbol"), unit, eligible,
+            ("Configured runtime owner is exact, including literal/address "
+             "coordinate proof and its complete caller closure." if eligible
+             else "Runtime stock evidence is incomplete; retain fail-closed."),
+            [_evidence(
+                source, "net_runtime_atomic_exact_owner",
+                normalized_sha256=row.get("normalized_sha256"),
+                true_code_size=row.get("true_code_size"),
+                literal_size=row.get("literal_size"),
+                raw_mapping_preserved=row.get("raw_mapping_preserved"),
+                runtime_minus_analysis=data.get("policy", {}).get(
+                    "runtime_minus_analysis"),
+                cfg_verify=data.get("call_graph_proof", {}).get(
+                    "cfg_verify", {}).get(row.get("raw_symbol")),
+                safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
+def _net_toolchain_stock_entries(data, source, names):
+    """Select exact CPUNET libgcc/Picolibc providers and boundary owner."""
+    output = []
+    rows = list(data.get("functions", []))
+    support = data.get("supporting_closure", {}).get(
+        "libgcc_unsigned_division_entry", {})
+    rows.append({
+        "va": support.get("va"),
+        "raw_identity": _raw("net", support.get("va")),
+        "resolved_identity": support.get("identity"),
+        "archive_family": "libgcc",
+        "archive_member": support.get("archive_member"),
+        "section_size": support.get("section_size"),
+        "section_sha256": support.get("archive_member_sha256"),
+        "raw_firmware_byte_exact": support.get(
+            "non_relocation_bytes_exact"),
+        "safe_to_resolve_to_stock_provider": support.get(
+            "non_relocation_bytes_exact"),
+        "boundary_correction": support.get("catalog_boundary_correction"),
+    })
+    for row in rows:
+        eligible = bool(
+            row.get("raw_firmware_byte_exact") is True and
+            row.get("safe_to_resolve_to_stock_provider") is True and
+            row.get("section_size", 0) > 0)
+        output.append(_entry(
+            "net", row["va"], names, "archive", "cpunet_toolchain_stock",
+            row.get("resolved_identity"),
+            "%s(%s)" % (row.get("archive_path", row.get("archive_family")),
+                         row.get("archive_member")),
+            eligible,
+            ("Selected no-FP toolchain member/section is byte-exact and all "
+             "direct callers were re-decoded." if eligible else
+             "Toolchain provider evidence is incomplete; retain fail-closed."),
+            [_evidence(
+                source, "net_toolchain_selected_member_exact",
+                archive_family=row.get("archive_family"),
+                archive_sha256=row.get("archive_sha256"),
+                archive_member_sha256=row.get("archive_member_sha256"),
+                section_sha256=row.get("section_sha256"),
+                section_size=row.get("section_size"),
+                executable_relocations=len(row.get(
+                    "executable_relocations", [])),
+                caller_count=len(row.get("callers", [])),
+                boundary_correction=row.get("boundary_correction"),
+                raw_evidence_preserved=True,
+                safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
+def _net_ipc_openamp_libmetal_stock_entries(data, source, names):
+    """Adopt four exact configured IPC/OpenAMP/libmetal public providers."""
+    output = []
+    units = data.get("units", {})
+    for row in data.get("functions", []):
+        eligible = bool(
+            row.get("relocation_masked_firmware_exact") is True and
+            row.get("preserve_raw_backmap") is True and
+            row.get("section_size", 0) > 0 and
+            row.get("unit") in units)
+        unit = units.get(row.get("unit"), {})
+        output.append(_entry(
+            "net", row["va"], names, "source",
+            "net_%s_stock" % row.get("unit"),
+            row.get("resolved_identity"), unit.get("source"), eligible,
+            ("Configured stock section and every direct caller/helper "
+             "relocation are exact." if eligible else
+             "IPC/OpenAMP source evidence is incomplete; retain fail-closed."),
+            [_evidence(
+                source, "net_ipc_openamp_libmetal_exact_owner",
+                repository=unit.get("repository"),
+                commit=unit.get("commit"),
+                source_sha256=unit.get("source_sha256"),
+                object_sha256=unit.get("configured_object_sha256"),
+                section_sha256=row.get("section_sha256"),
+                section_size=row.get("section_size"),
+                caller_count=len(row.get("callers", [])),
+                mutable_state_relocations=len(row.get(
+                    "mutable_state_relocations", [])),
+                raw_mapping_preserved=row.get("preserve_raw_backmap"),
+                safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
+def _net_oberon_identity_entries(data, source, names):
+    """Correct the exact selected Oberon P-256 byte-serialization owner."""
+    identity = data["identity"]
+    upstream = data["upstream"]
+    proof = data["firmware_proof"]
+    eligible = bool(
+        proof.get("match") == "complete-section-byte-exact" and
+        proof.get("firmware_size") == upstream.get("section_size") and
+        proof.get("firmware_sha256") == upstream.get("section_sha256") and
+        not upstream.get("relocation_offsets") and
+        data.get("policy", {}).get("raw_backmap_preserved") is True)
+    return [_entry(
+        "net", identity["analysis_va"], names, "archive",
+        "nrfxlib_oberon", identity["upstream_symbol"],
+        "%s(%s)" % (upstream.get("archive"), upstream.get("member")),
+        eligible,
+        ("Selected Oberon section is byte-exact; opposite load/store "
+         "direction rejects the former from_bytes identity." if eligible else
+         "Oberon identity evidence is incomplete; retain fail-closed."),
+        [_evidence(
+            source, "net_oberon_exact_identity_correction",
+            repository_commit=upstream.get("repository_commit"),
+            archive_sha256=upstream.get("archive_sha256"),
+            member_sha256=upstream.get("member_sha256"),
+            section_sha256=upstream.get("section_sha256"),
+            section_size=upstream.get("section_size"),
+            rejected_identity=data.get("rejected_identity", {}).get("symbol"),
+            rejected_identity_va=data.get("rejected_identity", {}).get(
+                "actual_analysis_va"),
+            raw_mapping_preserved=True,
+            safe_to_adopt=eligible)],
+        "high" if eligible else "low")]
+
+
+def _net_public_zephyr_entries(data, source, names):
+    """Adopt six exact CPUNET Zephyr public/static configured owners."""
+    output = []
+    for row in data.get("manifest_functions", []):
+        eligible = bool(
+            row.get("match") == "relocation-masked-byte-exact" and
+            row.get("safe_to_adopt") is True and
+            row.get("exclude_reconstruction") is True and
+            row.get("raw_mapping_preserved") is True and
+            row.get("size", 0) > 0)
+        output.append(_entry(
+            "net", row["va"], names, "source", "zephyr_public_stock",
+            row.get("upstream_symbol"), row.get("upstream_source"), eligible,
+            ("Configured Zephyr owner is exact with every relocation target "
+             "resolved; macro/inline facades are not emitted as false owners."
+             if eligible else
+             "Public Zephyr owner evidence is incomplete; retain fail-closed."),
+            [_evidence(
+                source, "net_public_zephyr_exact_owner",
+                normalized_sha256=row.get("normalized_sha256"),
+                section=row.get("upstream_section"),
+                size=row.get("size"),
+                relocation_count=len(row.get("relocations", [])),
+                required_config=row.get("required_config"),
+                raw_mapping_preserved=row.get("raw_mapping_preserved"),
+                safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
 def _net_alias_resolution_entries(data, source, names):
     """Preserve selected public owners for exact firmware tail veneers."""
     output = []
@@ -1442,6 +1895,9 @@ def build(paths):
                          if "net_openamp_stock" in resolved else None)
     net_zephyr_stock = (_load_json(resolved["net_zephyr_stock"])
                         if "net_zephyr_stock" in resolved else None)
+    net_kernel_private_stock = (
+        _load_json(resolved["net_kernel_private_stock"])
+        if "net_kernel_private_stock" in resolved else None)
     machine_sdc_addresses = {row["address"]
                              for row in sdc_catalog.get("functions", [])}
     machine_public_addresses = {row["va"]
@@ -1452,6 +1908,9 @@ def build(paths):
     machine_zephyr_addresses = {
         row["va"] for row in (net_zephyr_stock or {}).get(
             "manifest_functions", [])}
+    machine_zephyr_addresses.update(
+        row["va"] for row in (net_kernel_private_stock or {}).get(
+            "manifest_functions", []))
     entries = {}
     producers = (
         _lc3_entries(_load_json(resolved["lc3"]), paths["lc3"], names),
@@ -1483,6 +1942,10 @@ def build(paths):
     if net_zephyr_stock is not None:
         producers += (_net_zephyr_stock_entries(
             net_zephyr_stock, paths["net_zephyr_stock"], names),)
+    if net_kernel_private_stock is not None:
+        producers += (_net_kernel_private_stock_entries(
+            net_kernel_private_stock,
+            paths["net_kernel_private_stock"], names),)
     for rows in producers:
         for row in rows:
             _merge(entries, row)
@@ -1507,6 +1970,7 @@ def build(paths):
                   "app_sdk_public",
                   "net", "net_rtc",
                   "net_sdk_public", "net_openamp_stock", "net_zephyr_stock",
+                  "net_kernel_private_stock",
                   "net_alias_resolutions",
                   "sdc_benchmark", "sdc_catalog")
     result = {
