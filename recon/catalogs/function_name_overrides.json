@@ -2353,6 +2353,10 @@
   "0x010388c8": {
    "name": "z_impl_k_poll_signal_raise",
    "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner including private lock and resolved signal/scheduler targets. Raw identity remains FUN_010388c8."
+  },
+  "0x01038fa4": {
+   "name": "ocrypto_mod_p256_to_bytes",
+   "evidence": "Complete 52-byte no-relocation match to pinned nrfxlib Oberon 3.0.13 .text.ocrypto_mod_p256_to_bytes. Load/store direction rejects the prior from_bytes identity (that owner is 0x01038f70). Raw identity remains FUN_01038fa4 at analysis 0x01038fa4 / runtime 0x010397a4."
   }
  }
 }

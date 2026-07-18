@@ -1,0 +1,114 @@
+{
+ "schema": 1,
+ "core": "net",
+ "component": "nrfxlib_oberon",
+ "status": "exact_identity_correction",
+ "decision": "name_as_ocrypto_mod_p256_to_bytes",
+ "identity": {
+  "analysis_va": "0x01038fa4",
+  "runtime_va": "0x010397a4",
+  "raw_symbol": "FUN_01038fa4",
+  "upstream_symbol": "ocrypto_mod_p256_to_bytes",
+  "abi": "void(uint8_t output[32], const ocrypto_mod_p256 *input)",
+  "type_layout": "ocrypto_mod_p256 = uint32_t w[8] (32 bytes)"
+ },
+ "upstream": {
+  "manifest_pin": "NCS/nrfxlib v2.5.1",
+  "repository_commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
+  "oberon_version": "3.0.13",
+  "archive": "/Users/freedomcoder/ncs251/nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/liboberon_3.0.13.a",
+  "archive_sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+  "archive_git_blob": "37fe825f2109ed72192b97dd12d5b21885e0a940",
+  "member": "ocrypto_mod_p256.c.obj",
+  "member_sha256": "20411366c8705d23cc3244fe5d488015b55632a9cf385b33cdb1c8836f0e4c2f",
+  "section": ".text.ocrypto_mod_p256_to_bytes",
+  "section_size": 52,
+  "section_sha256": "bf78370dea870bf907a6e1b433bf5d06742383986fbf9dda14d0611f67e46da1",
+  "relocation_offsets": [],
+  "selected_abi": "cortex-m33+nodsp soft-float"
+ },
+ "firmware_proof": {
+  "match": "complete-section-byte-exact",
+  "firmware_size": 52,
+  "firmware_sha256": "bf78370dea870bf907a6e1b433bf5d06742383986fbf9dda14d0611f67e46da1",
+  "load_store_direction": [
+   "load input words at +0x1c,+0x18,...,+0x00",
+   "REV each word",
+   "store output words at +0x00,+0x04,...,+0x1c"
+  ],
+  "refgraph_callers": [
+   "0x01038da0"
+  ],
+  "code_callers": [
+   {
+    "va": "0x01038d9c",
+    "identity": "ocrypto_curve_p256_to32bytes",
+    "site": "tail B.W 0x01038fa4"
+   },
+   {
+    "va": "0x01038da0",
+    "identity": "ocrypto_curve_p256_to64bytes",
+    "sites": [
+     "BL 0x01038fa4 at 0x01038da6",
+     "tail B.W 0x01038fa4 at 0x01038db6"
+    ]
+   }
+  ],
+  "archive_call_relocations": [
+   {
+    "caller_section": ".text.ocrypto_curve_p256_to32bytes",
+    "offset": 0,
+    "relocation_type": 30,
+    "target": "ocrypto_mod_p256_to_bytes"
+   },
+   {
+    "caller_section": ".text.ocrypto_curve_p256_to64bytes",
+    "offset": 6,
+    "relocation_type": 10,
+    "target": "ocrypto_mod_p256_to_bytes"
+   },
+   {
+    "caller_section": ".text.ocrypto_curve_p256_to64bytes",
+    "offset": 22,
+    "relocation_type": 30,
+    "target": "ocrypto_mod_p256_to_bytes"
+   }
+  ]
+ },
+ "rejected_identity": {
+  "symbol": "ocrypto_mod_p256_from_bytes",
+  "actual_analysis_va": "0x01038f70",
+  "section": ".text.ocrypto_mod_p256_from_bytes",
+  "section_size": 52,
+  "section_sha256": "35a93565bf072982a8fa601d83b5c4fc08d453b1760b659d02f6f493e1f784ea",
+  "reason": "from_bytes loads input at ascending offsets and stores the reversed limbs at descending offsets; 0x01038fa4 does the inverse"
+ },
+ "version_precision": {
+  "archive_blob_identical_tags": [
+   "v2.4.0",
+   "v2.4.0-rc1",
+   "v2.4.0-rc2",
+   "v2.4.1",
+   "v2.4.2",
+   "v2.4.3",
+   "v2.4.4",
+   "v2.5.0",
+   "v2.5.0-NCSDK-29842",
+   "v2.5.0-NCSDK-29842-1",
+   "v2.5.0-rc1",
+   "v2.5.0-rc2",
+   "v2.5.1",
+   "v2.5.1-rc1",
+   "v2.5.2",
+   "v2.5.3"
+  ],
+  "earlier_family": "NCS v2.3.x carries Oberon 3.0.12",
+  "later_family": "NCS v2.6.x carries Oberon 3.0.14",
+  "limitation": "The exact archive proves Oberon 3.0.13 / NCS 2.4.x-2.5.x; the function body cannot distinguish those tags. The west manifest pin establishes exact NCS v2.5.1 provenance."
+ },
+ "policy": {
+  "raw_backmap_preserved": true,
+  "central_manifest_unchanged": true,
+  "sdc_policy": "report_only_unchanged"
+ }
+}
