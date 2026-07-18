@@ -291,6 +291,7 @@ CALL_ARITY_OVERRIDES = {
     ("net", 0x01039c92): 4,
     ("net", 0x01039d80): 3,
     ("net", 0x01036c2c): 2,  # z_work_submit_to_queue(queue, work)
+    ("net", 0x01036660): 5,  # queue_insert(queue, prev, data, alloc, append)
     # The conversion wrapper consumes the low/high words of one 64-bit value.
     # r2/r3 are caller scratch left by the preceding division helper.
     ("net", 0x01037c64): 2,
@@ -931,6 +932,9 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x0102fdd0): 0x170,  # net_buf_alloc_len; literals at 0x0102ff40
     ("net", 0x01039dd0): 0x1a,  # capacity predicate; separate veneer follows
     ("net", 0x0103b2b4): 0x14,  # z_reschedule_unlocked tail
+    ("net", 0x0102e140): 0x09a,  # log post-finalize; literals at e1dc
+    ("net", 0x01039a7a): 0x064,  # sys_heap_alloc; next entry at 39ade
+    ("net", 0x0103b1fa): 0x016,  # k_queue_append; prepend starts at b210
     # The outer switch default handler continues through the terminal BL at
     # 0x101b226; the catalog stops inside the preceding case body.
     ("net", 0x101b15c): 0xce,
@@ -18122,6 +18126,62 @@ REVIEWED_ORACLE_CASES[("net", 0x01021b7c)] = [
     _net_record_window_case(initial=1, request_start=50, request_span=20),
     _net_record_window_case(initial=1, request_start=110, request_flag=1,
                             timing_code=0x356),
+]
+
+
+def _net_log_post_finalize_case(*, panic=False, count=3, processor=True):
+    """Configured log-core globals for every nonfatal scheduling arm."""
+    memory = [
+        (0x21004fad, bytes((1 if panic else 0,))),
+        (0x21004660, (0x21004000 if processor else 0).to_bytes(4, "little")),
+        (0x21004658, bytes(8)),
+        (0x21002790, bytes(0x40)),
+        (0x21000944, bytes(0x40)),
+    ]
+    oracles = {0: {0: int(count)}}
+    if panic:
+        # atomic_inc, lock validation/acquire, log_process, unlock validation.
+        oracles[1] = {0: 1}
+        oracles[4] = {0: 1}
+    return ({}, memory, oracles)
+
+
+REVIEWED_NPTR_COUNTS[("net", 0x0102e140)] = 0
+REVIEWED_ORACLE_CASES[("net", 0x0102e140)] = [
+    _net_log_post_finalize_case(processor=False),
+    _net_log_post_finalize_case(count=0),
+    _net_log_post_finalize_case(count=9),
+    _net_log_post_finalize_case(count=3),
+    _net_log_post_finalize_case(panic=True),
+]
+
+
+def _net_sys_heap_alloc_case(bytes_requested, *, heap_words=64,
+                             chunk_words=2, chunk=3, stored_words=2):
+    heap = emu.SCRATCH + 0x1000
+    state = emu.SCRATCH + 0x2000
+    owner = bytearray(4)
+    owner[:] = state.to_bytes(4, "little")
+    image = bytearray(0x80)
+    image[8:12] = int(heap_words).to_bytes(4, "little")
+    memory = [(heap, bytes(owner)), (state, bytes(image))]
+    if bytes_requested == 0 or heap_words <= (bytes_requested >> 3):
+        return ({0: heap, 1: bytes_requested}, memory, {})
+    oracles = {0: {0: chunk_words}, 1: {0: chunk}}
+    if chunk == 0:
+        return ({0: heap, 1: bytes_requested}, memory, oracles)
+    oracles[2] = {0: stored_words}
+    return ({0: heap, 1: bytes_requested}, memory, oracles)
+
+
+REVIEWED_NPTR_COUNTS[("net", 0x01039a7a)] = 1
+REVIEWED_ORACLE_CASES[("net", 0x01039a7a)] = [
+    _net_sys_heap_alloc_case(0),
+    _net_sys_heap_alloc_case(512),
+    _net_sys_heap_alloc_case(8, chunk=0),
+    _net_sys_heap_alloc_case(8, stored_words=2),
+    _net_sys_heap_alloc_case(8, stored_words=5),
+    _net_sys_heap_alloc_case(8, heap_words=0x8000, stored_words=2),
 ]
 
 

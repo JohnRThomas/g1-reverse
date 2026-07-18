@@ -206,6 +206,12 @@ TRUE_SIZE_OVERRIDES = {
     0x0102fdd0: 0x170,  # net_buf_alloc_len ends before literals at 0x0102ff40
     0x01039dd0: 0x1a,   # capacity predicate; 0x01039dea is a separate veneer
     0x0103b2b4: 0x14,   # z_reschedule_unlocked tail ends at 0x0103b2c8
+    # Refreshed link-residue entries omitted by the Ghidra function catalog.
+    # Each boundary ends at the final owned return/branch before literals or
+    # the next independently referenced Zephyr entry.
+    0x0102e140: 0x09a,  # z_log_msg_post_finalize; literals begin 0x0102e1dc
+    0x01039a7a: 0x064,  # sys_heap_alloc; next entry starts 0x01039ade
+    0x0103b1fa: 0x016,  # k_queue_append; k_queue_prepend starts 0x0103b210
 }
 def _load():
     global _fw
