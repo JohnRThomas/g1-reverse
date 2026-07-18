@@ -403,6 +403,10 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Address-taken IPC service methods installed by FUN_0102acb4.  Their
+    # executable tails end before aligned literal pools at ab9c and abec.
+    ("net", 0x0102ab50): 0x4a,
+    ("net", 0x0102abac): 0x40,
     # Catalog-missing product ESB event callback.  The switch/default and
     # link-state update islands end at 0x0102a5de; its literal pool starts
     # there.  main stores the runtime Thumb pointer 0x0102acc9.
@@ -19353,6 +19357,61 @@ REVIEWED_ORACLE_CASES[("net", 0x0102adf0)] = [
     _net_hci_rpmsg_rx_case(5, allocation="success", tailroom=16,
                            declared=0x4002),
     _net_hci_rpmsg_rx_case(5, allocation="mismatch", declared=0x2002),
+]
+
+
+def _net_ipc_endpoint_register_case(count, level):
+    endpoint = emu.SCRATCH + 0x1000
+    registry = emu.SCRATCH + 0x2000
+    endpoint_image = bytearray(8)
+    endpoint_image[0] = 7
+    endpoint_image[4:8] = (0x0103ce99).to_bytes(4, "little")
+    registry_image = bytearray(0x60)
+    registry_image[4:8] = int(count).to_bytes(4, "little", signed=True)
+    return ({0: endpoint}, [
+        (endpoint, bytes(endpoint_image)),
+        (registry, bytes(registry_image)),
+        (0x21004604, registry.to_bytes(4, "little")),
+        (0x21000580, int(level).to_bytes(4, "little", signed=True)),
+    ])
+
+
+# The literal-pool load is conservatively tainted as an r3 data-pointer slot;
+# reviewed cases provide the real registry graph explicitly.
+REVIEWED_NPTR_COUNTS[("net", 0x0102ab50)] = 4
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102ab50)] = {
+    0x01039722: 4,
+}
+REVIEWED_STATE_CASES[("net", 0x0102ab50)] = [
+    _net_ipc_endpoint_register_case(0, 0),
+    _net_ipc_endpoint_register_case(21, 1),
+    _net_ipc_endpoint_register_case(21, 2),
+    _net_ipc_endpoint_register_case(22, 0),
+    _net_ipc_endpoint_register_case(22, 1),
+]
+
+
+def _net_ipc_endpoint_send_case(ready, level, status=0):
+    data = emu.SCRATCH + 0x1000
+    oracles = {0: {0: int(status)}} if ready else {}
+    return ({0: data, 1: 8}, [
+        (data, bytes(range(8))),
+        (0x21004600, int(ready).to_bytes(4, "little")),
+        (0x21000580, int(level).to_bytes(4, "little", signed=True)),
+    ], oracles)
+
+
+REVIEWED_NPTR_COUNTS[("net", 0x0102abac)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102abac)] = {
+    0x0102d618: 3,
+    0x01039722: 2,
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102abac)] = [
+    _net_ipc_endpoint_send_case(0, 0),
+    _net_ipc_endpoint_send_case(0, 1),
+    _net_ipc_endpoint_send_case(1, 0, 0),
+    _net_ipc_endpoint_send_case(1, 1, -5),
+    _net_ipc_endpoint_send_case(1, 0, -5),
 ]
 
 

@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Address-taken IPC service methods installed by FUN_0102acb4.  Their
+    # executable tails end before aligned literal pools at ab9c and abec.
+    0x0102ab50: 0x4a,
+    0x0102abac: 0x40,
     # Catalog-missing product ESB event callback.  The switch/default and
     # link-state update islands end at 0x0102a5de; its literal pool starts
     # there.  main stores the runtime Thumb pointer 0x0102acc9.
