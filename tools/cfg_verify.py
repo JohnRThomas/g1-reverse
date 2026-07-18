@@ -18216,6 +18216,23 @@ REVIEWED_ORACLE_CASES[("app", 0x00085316)] = [
 ]
 
 
+# The shipped qspi_workaround_apply keeps NRF_QSPI in r1 across its first BL.
+# Exact nrf_qspi_pins_set@0x00066784 never writes r1, whereas the generic
+# oracle normally replaces both r0 and r1.  Preserve that concrete residual
+# register only at call ordinal zero; direct-target checking independently
+# requires the candidate BL to back-map to 0x00066784.  READY is hardware-owned
+# and becomes one on the first poll after ACTIVATE.
+REVIEWED_NPTR_COUNTS[("app", 0x000667e0)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000667e0)] = {0x00066784: 1}
+REVIEWED_STACK_POINTER_CALLS[("app", 0x000667e0)] = {0: {0}, 1: {0}}
+REVIEWED_ORACLE_CASES[("app", 0x000667e0)] = [
+    ({}, [], {0: {1: 0x5002b000}}),
+]
+ABSOLUTE_READ_TRANSITION_CASES[("app", 0x000667e0)] = [
+    [(0x5002b100, 1, 1)],
+]
+
+
 
 
 def _net_buffer_flag_case(flag):
