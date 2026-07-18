@@ -46,11 +46,11 @@ after the cohesive application has real initialization roots:
 west build -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
 ```
 
-Configure a clean build with the NCS v2.5.1 environment, for example:
+Configure a clean build with the pinned NCS v2.5.1 environment through the
+repository wrapper (which also supplies Partition Manager's Python imports):
 
 ```sh
-west build -b nrf5340dk_nrf5340_cpuapp \
-  /absolute/path/to/recon/application/app
+recon/application/build_cohesive.sh app /private/tmp/g1-cohesive-app
 ```
 
 The first milestone is configuration and source-ownership validation.  A
