@@ -3,8 +3,9 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
- *   img_mgmt_impl_write_image_data           <= FUN_000518a8 @ 0x000518a8
- *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
+ *   img_mgmt_write_image_data                <= FUN_00051870 @ 0x00051870
+ *   img_mgmt_upload_inspect                  <= FUN_000518a8 @ 0x000518a8
+ *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
  *   img_mgmt_state_read_521fc                <= FUN_000521fc @ 0x000521fc
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -30,7 +31,7 @@ typedef unsigned char undefined1;
 typedef unsigned undefined4;
 extern void FUN_0004d944(unsigned a, unsigned b, void *c, unsigned d);
 extern int smp_add_cmd_err(uintptr_t a, int b, uint c);
-extern uint FUN_00051870(int a, int b, int c, int d);
+extern uint img_mgmt_write_image_data(int a, int b, int c, int d);
 struct decode_result {
     unsigned words[2];
     int amount;
@@ -40,10 +41,10 @@ struct decode_result {
     unsigned tail;
 };
 _Static_assert(sizeof(struct decode_result) == 24, "decoded result layout");
-extern uint img_mgmt_impl_write_image_data(void *a, struct decode_result *b);
+extern uint img_mgmt_upload_inspect(void *a, struct decode_result *b);
 extern void FUN_00051fe4(void);
 extern unsigned FUN_00052000(unsigned a);
-extern void img_mgmt_read_hash_and_flags(int a, int b, void *c, void *d);
+extern void img_mgmt_read_info(int a, int b, void *c, void *d);
 extern int FUN_00080872(uintptr_t a, void *b, int c, void *d);
 extern void FUN_00086c1e(void *a, unsigned b, int c, int d);
 extern void memset_bytes(void *a, int b, int c);
@@ -96,7 +97,7 @@ unsigned img_mgmt_state_read_521fc(int param_1)
     if (iVar3 != 0) {
         return 3;
     }
-    uVar2 = img_mgmt_impl_write_image_data(parsed.text, &decoded);
+    uVar2 = img_mgmt_upload_inspect(parsed.text, &decoded);
     iVar3 = parsed.values[0];
     puVar1 = (volatile uint32_t *)state_addr;
     uVar4 = 0;
@@ -118,10 +119,10 @@ unsigned img_mgmt_state_read_521fc(int param_1)
         }
         if (parsed.count == 0) {
             if (puVar1[2] == puVar1[1]) {
-                img_mgmt_read_hash_and_flags(1, 0, auStack_b8, (void *)0);
+                img_mgmt_read_info(1, 0, auStack_b8, (void *)0);
             }
         } else {
-            uVar2 = FUN_00051870(
+            uVar2 = img_mgmt_write_image_data(
                 iVar3, parsed.values[2], decoded.amount,
                 (uint32_t)parsed.count + puVar1[1] == puVar1[2]);
             if (uVar2 != 0) {
@@ -136,7 +137,7 @@ unsigned img_mgmt_state_read_521fc(int param_1)
                     puVar1[1] + (uint32_t)decoded.amount;
                 puVar1[1] = next_progress;
                 if (next_progress == puVar1[2]) {
-                    img_mgmt_read_hash_and_flags(1, 0, auStack_b8, 0);
+                    img_mgmt_read_info(1, 0, auStack_b8, 0);
                     FUN_00052000(control_handle);
                     FUN_00051fe4();
                     return 0;
@@ -152,7 +153,7 @@ unsigned img_mgmt_state_read_521fc(int param_1)
 LAB_00052300:
         iVar3 = smp_add_cmd_err((uintptr_t)control_handle + 4u, 1,
                             uVar2 & 0xffff);
-        img_mgmt_read_hash_and_flags(1, 0, auStack_b8, (void *)0);
+        img_mgmt_read_info(1, 0, auStack_b8, (void *)0);
         FUN_00051fe4();
         if (iVar3 == 0) {
             uVar4 = 7;

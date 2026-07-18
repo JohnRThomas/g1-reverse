@@ -1,64 +1,78 @@
-/* readable reconstruction; identity: FUN_00052604 @ 0x00052604
+/* readable reconstruction; identity: FUN_000516ac @ 0x000516ac
  * public-name: img_mgmt_erase_slot
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   flash_area_open                          <= FUN_0004e048 @ 0x0004e048
- *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
- *   img_mgmt_erase_slot                      <= FUN_00052604 @ 0x00052604
+ *   img_mgmt_flash_area_id                   <= FUN_0005169c @ 0x0005169c
+ *   img_mgmt_erase_slot                      <= FUN_000516ac @ 0x000516ac
+ *   __assert_func                            <= FUN_00076a94 @ 0x00076a94
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
+ *   flash_area_read                          <= FUN_0007ef80 @ 0x0007ef80
+ *   flash_area_erased_val                    <= FUN_0007f012 @ 0x0007f012
+ *   z_log_msg_static_create_img_mgmt         <= FUN_0008096a @ 0x0008096a
  * address symbols (name @ address):
- *   rodata_88220                             @ 0x00088220
- *   rodata_f289a                             @ 0x000f289a
- *   rodata_f28b4                             @ 0x000f28b4
- *   rodata_f28d4                             @ 0x000f28d4
+ *   rodata_88208                             @ 0x00088208
+ *   rodata_f261f                             @ 0x000f261f
+ *   rodata_f2634                             @ 0x000f2634
+ *   rodata_f270e                             @ 0x000f270e
  */
-/* Reconstructed FUN_00052604 @ 0x52604  (parity: 300/300 trials, PROVEN) */
-
+/* Reconstructed FUN_000516ac @ 0x516ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_0004d944(uint32_t,int,void*,...);
-extern int flash_area_open(int, void*);
-extern int smp_add_cmd_err(int,int,uint32_t);
-extern void nullsub_3(int);
-extern int FUN_0007efd4(int,int,uint32_t,int);
-extern int FUN_0007f00e(int);
-
-uint32_t img_mgmt_erase_slot(int param_1){
-  int iVar1;
-  uint32_t uVar2;
-  int iVar3;
-  volatile int local_2c[5];
-  volatile uint32_t local_18;
-  void * volatile local_14;
-  iVar3 = *(int*)(param_1+8);
-  iVar1 = flash_area_open(9, (void*)local_2c);
-  if (iVar1 < 0){
-    uVar2 = 2;
-    local_18 = 2;
-    local_14 = (void*)0xf289a;
-    FUN_0004d944(0x88220, 0x1040, (void*)&local_18, 0);
+extern int flash_area_open(int,...);
+extern int img_mgmt_flash_area_id(int);
+extern int __assert_func(int,...);
+extern int nullsub_3(int,...);
+extern int flash_area_read(int,...);
+extern int FUN_0007efd4(int,...);
+extern int flash_area_erased_val(int,...);
+extern int z_log_msg_static_create_img_mgmt(int,...);
+int img_mgmt_erase_slot(int param_1)
+{
+  unsigned int uVar1;
+  int iVar5;
+  int local_6c, local_64;
+  int aiStack_60[17];
+  int dummy[16];
+  uVar1 = (unsigned int)img_mgmt_flash_area_id(param_1);
+  if ((int)uVar1 < 0) {
+    iVar5 = 0xe;
   } else {
-    iVar1 = FUN_0007f00e(local_2c[0]);
-    if (iVar1 == 0){
-      local_14 = (void*)0xf28b4;
-      local_18 = 2;
-      FUN_0004d944(0x88220, 0x1040, (void*)&local_18, 0);
-      nullsub_3(local_2c[0]);
-      uVar2 = 3;
+    local_6c = flash_area_open(uVar1 & 0xff, &local_64);
+    iVar5 = local_64;
+    if (local_6c < 0) {
+      z_log_msg_static_create_img_mgmt(0x88208, 0x2040, dummy);
+      iVar5 = 10;
     } else {
-      uVar2 = (uint32_t)FUN_0007efd4(local_2c[0], 0, *(uint32_t*)(local_2c[0]+8), iVar1);
-      if ((int)uVar2 < 0){
-        local_14 = (void*)0xf28d4;
-        local_18 = 2;
-        FUN_0004d944(0x88220, 0x1040, (void*)&local_18, 0);
-        nullsub_3(local_2c[0]);
-        uVar2 = 4;
-      } else {
-        nullsub_3(local_2c[0]);
-        if (uVar2 == 0) return 0;
+      uVar1 = *(volatile unsigned int*)(local_64 + 8) & 3;
+      if (uVar1 != 0) __assert_func(0xf2634, 0x43, 0xf270e, 0xf261f);
+      int iVar2 = flash_area_erased_val(iVar5);
+      int iVar7 = *(volatile int*)(iVar5 + 8);
+      for (; (int)uVar1 < iVar7; uVar1 = uVar1 + 0x40) {
+        int iVar6 = iVar7 - uVar1;
+        if (0x3f < iVar6) iVar6 = 0x40;
+        int iVar3 = flash_area_read(iVar5, uVar1, aiStack_60, iVar6);
+        if (iVar3 < 0) {
+          z_log_msg_static_create_img_mgmt(0x88208, 0x1840, dummy);
+          iVar5 = 0xb;
+          goto LAB;
+        }
+        int *piVar4 = aiStack_60;
+        for (iVar3 = 0; iVar3 != iVar6 >> 2; iVar3 = iVar3 + 1) {
+          if (*piVar4 != iVar2 * 0x1010101) {
+            iVar5 = FUN_0007efd4(local_64, 0, *(volatile int*)(local_64 + 8));
+            if (iVar5 != 0) {
+              z_log_msg_static_create_img_mgmt(0x88208, 0x1840, dummy);
+              iVar5 = 0xd;
+            }
+            goto LAB;
+          }
+          piVar4 = piVar4 + 1;
+        }
       }
+      iVar5 = 1;
+    LAB:
+      nullsub_3(local_64);
     }
   }
-  iVar1 = smp_add_cmd_err(iVar3+4, 0x3f, uVar2 & 0xffff);
-  if (iVar1 != 0) return 0;
-  return 7;
+  return iVar5;
 }

@@ -43,6 +43,8 @@ DEFAULTS = {
         "recon/ownership/app_lseek_stream_flash_atomic_adoption.json",
     "app_root_stock":
         "recon/ownership/app_root_stock_atomic_adoption.json",
+    "app_img_mgmt_stock":
+        "recon/ownership/app_img_mgmt_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
     "library_provenance":
@@ -562,6 +564,17 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         root_stock.get("configured_build_receipts", [])))
+    img_mgmt_path = resolved["app_img_mgmt_stock"]
+    img_mgmt = _load_json(img_mgmt_path)
+    if (img_mgmt.get("schema") != 1 or img_mgmt.get("core") != "app" or
+            img_mgmt.get("status") != "authorized_atomic"):
+        raise ValueError("invalid img_mgmt exact5 atomic adoption catalog")
+    collisions["functions"].extend(img_mgmt.get("variant_collisions", []))
+    authorizations["authorizations"].extend(
+        img_mgmt.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        img_mgmt.get("configured_build_receipts", [])))
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -603,6 +616,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(lseek_stream_path)},
         {"path": paths["app_root_stock"],
          "sha256": _sha256(root_stock_path)},
+        {"path": paths["app_img_mgmt_stock"],
+         "sha256": _sha256(img_mgmt_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],
@@ -690,7 +705,8 @@ def _build_from_baseline(paths, resolved, names):
                 raise ValueError("archive source provenance incomplete: %s" % va)
         else:
             expected_source = (
-                identity_correction.get("corrected_upstream_source")
+                identity_correction.get("corrected_upstream_source") or
+                authorization.get("upstream_source")
                 if identity_correction else source.get("path"))
             if authorization.get("upstream_source") != expected_source:
                 raise ValueError("upstream source identity changed: %s" % va)

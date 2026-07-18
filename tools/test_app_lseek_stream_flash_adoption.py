@@ -75,10 +75,14 @@ class AppLseekStreamFlashAdoptionTest(unittest.TestCase):
             self.assertNotIn("/" + source_name, retained)
             self.assertNotIn("/" + raw + ".c", retained)
             self.assertNotIn("/" + current + ".c", retained)
-        self.assertIn("/pthread_attr_getstack.c", retained)
+        self.assertIn("/serialization_copy_fields_0c_10.c", retained)
 
     def test_external_caller_uses_stock_public_flash_img_api(self):
-        source = (ROOT / "recon/symbolized/app/FUN_00051870.c").read_text()
+        names = json.loads((ROOT /
+            "recon/catalogs/function_names_app.json").read_text())
+        caller_name = names["by_address"]["0x00051870"]["name"]
+        source = (ROOT / "recon/symbolized/app" /
+                  (caller_name + ".c")).read_text()
         self.assertIn("flash_img_init_id", source)
         self.assertIn("flash_img_buffered_write", source)
         self.assertNotIn("extern int FUN_0007f150", source)

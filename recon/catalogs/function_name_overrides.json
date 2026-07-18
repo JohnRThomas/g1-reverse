@@ -185,6 +185,78 @@
    "name": "arm_usage_fault_helper",
    "evidence": "Exact pinned Zephyr fault.c translation-unit-local usage_fault.constprop.0 body; this is not the public fault_s.S z_arm_usage_fault exception alias. Raw identity remains FUN_000506ac at 0x000506ac."
   },
+  "0x000516ac": {
+   "name": "img_mgmt_erase_slot",
+   "evidence": "Exact NCS 2.5.1 img_mgmt implementation owner identified from the two-image flash-area ABI and caller closure. This corrects the stale flash-check helper label; raw identity remains FUN_000516ac at 0x000516ac."
+  },
+  "0x0005169c": {
+   "name": "img_mgmt_flash_area_id",
+   "evidence": "Relocation-normalized byte-exact public owner in the configured NCS 2.5.1 zephyr_img_mgmt.c two-image closure; raw identity remains FUN_0005169c."
+  },
+  "0x000517d8": {
+   "name": "img_mgmt_read",
+   "evidence": "Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_read label while preserving raw FUN_000517d8."
+  },
+  "0x00051870": {
+   "name": "img_mgmt_write_image_data",
+   "evidence": "Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c with the static flash_img_context at firmware 0x2000a954; raw identity remains FUN_00051870."
+  },
+  "0x000518a8": {
+   "name": "img_mgmt_upload_inspect",
+   "evidence": "Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_write_image_data label while preserving raw FUN_000518a8."
+  },
+  "0x00051a5c": {
+   "name": "img_mgmt_erased_val",
+   "evidence": "Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_erased_val label while preserving raw FUN_00051a5c."
+  },
+  "0x00051ac0": {
+   "name": "img_mgmt_state_encode_slot",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local owner in the configured NCS 2.5.1 img_mgmt_state.c closure; raw identity remains FUN_00051ac0."
+  },
+  "0x00051c38": {
+   "name": "img_mgmt_get_opposite_slot",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local img_mgmt_state.c owner; raw identity remains FUN_00051c38."
+  },
+  "0x00051c68": {
+   "name": "img_mgmt_slot_to_image",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local img_mgmt_state.c owner; raw identity remains FUN_00051c68."
+  },
+  "0x00051c98": {
+   "name": "img_mgmt_state_read",
+   "evidence": "Relocation-normalized byte-exact public img_mgmt_state.c owner; replaces the address-suffixed provisional label while preserving raw FUN_00051c98."
+  },
+  "0x00051d8c": {
+   "name": "img_mgmt_set_next_boot_slot",
+   "evidence": "Exact relocation-normalized NCS 2.5.1 img_mgmt_state.c owner with CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER=2. The former state_set_pending label named its caller-level operation rather than this function; raw identity remains FUN_00051d8c."
+  },
+  "0x00052038": {
+   "name": "img_mgmt_read_info",
+   "evidence": "Exact relocation-normalized NCS 2.5.1 img_mgmt.c owner. This is the true read-info function; raw identity remains FUN_00052038 at 0x00052038."
+  },
+  "0x00052180": {
+   "name": "img_mgmt_erase",
+   "evidence": "Exact relocation-normalized NCS 2.5.1 static img_mgmt.c erase handler. The former img_mgmt_read_info label belongs to 0x00052038; raw identity remains FUN_00052180."
+  },
+  "0x00052604": {
+   "name": "storage_erase_handler",
+   "evidence": "NCS 2.5.1 Zephyr Basic storage erase handler; code matches except the DTS-derived storage partition ID (firmware 9), which remains a board-topology blocker. The former img_mgmt_erase_slot label belongs to 0x000516ac; raw identity remains FUN_00052604."
+  },
+  "0x0008096a": {
+   "name": "z_log_msg_static_create_img_mgmt",
+   "evidence": "Relocation-normalized exact compiler-local logging helper in zephyr_img_mgmt.c; qualified to avoid colliding with identical constprop helpers in other source units. Raw identity remains FUN_0008096a."
+  },
+  "0x00080970": {
+   "name": "img_mgmt_vercmp",
+   "evidence": "Relocation-normalized byte-exact public zephyr_img_mgmt.c owner; raw identity remains FUN_00080970."
+  },
+  "0x0008099e": {
+   "name": "zcbor_tstr_encode_ptr",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local helper emitted by img_mgmt_state.c; corrects the stale k_heap_alloc label while preserving raw FUN_0008099e."
+  },
+  "0x000809f6": {
+   "name": "img_mgmt_slot_in_use",
+   "evidence": "Relocation-normalized byte-exact public img_mgmt_state.c owner; raw identity remains FUN_000809f6."
+  },
   "0x0004cc50": {
    "name": "ipc_service_send",
    "evidence": "Pinned Zephyr 3.4.99 public IPC service export. The three-register ABI (struct ipc_ept *, const void *, size_t) was independently checked for this approximate signature. Raw identity remains FUN_0004cc50."
@@ -464,6 +536,10 @@
    "name": "strstr",
    "evidence": "Instruction-exact public owner in pinned newlib-nano v8-m.main+fp hard-float libc. Raw identity remains FUN_000870be."
   },
+  "0x0007c65c": {
+   "name": "serialization_copy_fields_0c_10",
+   "evidence": "The former pthread_attr_getstack mapping is disproven: firmware has a two-argument serialization ABI, copies source fields +0x0c/+0x10 into one two-word output, and returns 7; stock Zephyr pthread_attr_getstack has three arguments, different offsets, validation, and return 22. The descriptive name stays deliberately scoped while raw identity FUN_0007c65c remains reversible."
+  },
   "0x0007cb48": {
    "name": "k_sem_take",
    "evidence": "Four-byte Zephyr public tail veneer to z_impl_k_sem_take at 0x00072908. touch_key_thread passes its semaphore plus the aligned 64-bit timeout 0x2000. The previous update_sync_buffer label was incompatible with the body and ABI. Raw identity remains FUN_0007cb48."
@@ -525,6 +601,70 @@
   "0x000870a6": {
    "name": "strnlen",
    "evidence": "Bounded string-length leaf used by z_cbvprintf_impl for precision-limited percent-s conversion. Raw identity remains FUN_000870a6."
+  },
+  "0x00051354": {
+   "name": "mgmt_find_handler",
+   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr mgmt.c handler lookup. Raw identity remains FUN_00051354."
+  },
+  "0x0005139c": {
+   "name": "mgmt_find_error_translation_function",
+   "evidence": "Corrected exact NCS 2.5.1 mcumgr mgmt.c error-translation lookup; the former mgmt_find_group label omitted its returned callback semantics. Raw identity remains FUN_0005139c."
+  },
+  "0x0005160c": {
+   "name": "smp_add_cmd_err",
+   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr SMP command-error encoder. Raw identity remains FUN_0005160c."
+  },
+  "0x000526e4": {
+   "name": "smp_packet_alloc",
+   "evidence": "Exact NCS 2.5.1 mcumgr transport packet-pool allocator. Raw identity remains FUN_000526e4."
+  },
+  "0x000526f4": {
+   "name": "smp_transport_init",
+   "evidence": "Exact NCS 2.5.1 mcumgr transport initializer with Bluetooth reassembly enabled. Raw identity remains FUN_000526f4."
+  },
+  "0x00052744": {
+   "name": "smp_rx_req",
+   "evidence": "Exact NCS 2.5.1 mcumgr request enqueue and work-submit function. Raw identity remains FUN_00052744."
+  },
+  "0x000807f6": {
+   "name": "smp_make_rsp_hdr",
+   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr response-header constructor. Raw identity remains FUN_000807f6."
+  },
+  "0x00080830": {
+   "name": "cbor_nb_writer_init",
+   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr net_buf CBOR writer initializer. Raw identity remains FUN_00080830."
+  },
+  "0x00080864": {
+   "name": "smp_write_hdr",
+   "evidence": "Exact compiler-local NCS 2.5.1 mcumgr SMP header writer emitted as smp_write_hdr.isra.0. Raw identity remains FUN_00080864."
+  },
+  "0x00080ae2": {
+   "name": "smp_packet_free",
+   "evidence": "Corrected exact NCS 2.5.1 mcumgr transport packet-free veneer; historical alias thunk_FUN_0005f24c remains reversible. Raw identity remains FUN_00080ae2."
+  },
+  "0x00080ae6": {
+   "name": "smp_alloc_rsp",
+   "evidence": "Exact NCS 2.5.1 mcumgr response-buffer allocator and user-data copier. Raw identity remains FUN_00080ae6."
+  },
+  "0x00080b28": {
+   "name": "smp_reassembly_init",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly-state initializer. Raw identity remains FUN_00080b28."
+  },
+  "0x00080b32": {
+   "name": "smp_reassembly_expected",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly expected-byte query. Raw identity remains FUN_00080b32."
+  },
+  "0x00080b42": {
+   "name": "smp_reassembly_collect",
+   "evidence": "Exact NCS 2.5.1 mcumgr fragment collector configured for the firmware's 2475-byte transport buffer. Raw identity remains FUN_00080b42."
+  },
+  "0x00080bb2": {
+   "name": "smp_reassembly_complete",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly completion and request-enqueue function. Raw identity remains FUN_00080bb2."
+  },
+  "0x00080bfe": {
+   "name": "smp_reassembly_get_ud",
+   "evidence": "Exact NCS 2.5.1 mcumgr reassembly buffer user-data accessor. Raw identity remains FUN_00080bfe."
   },
   "0x00052760": {
    "name": "smp_rx_remove_invalid",
@@ -786,7 +926,7 @@
    "name": "settings_init",
    "evidence": "Relocation-masked byte-exact NCS 2.5.1 settings.c owner; initializes dynamic handlers and the settings store. Raw identity remains FUN_0004e484."
   },
-  "0x00061624": {
+ "0x00061624": {
    "name": "gpio_nrfx_pin_configure",
    "evidence": "Firmware gpio_driver_api at 0x8b748 points pin_configure slot to 0x61625; body and NCS reference match."
   },
@@ -1238,70 +1378,6 @@
   "0x0007ef56": {
    "name": "audio_hw_lock_release",
    "evidence": "Exact counterpart to audio_hw_lock_acquire, atomically clearing state bit zero when the state exists. Raw identity remains FUN_0007ef56."
-  },
-  "0x00051354": {
-   "name": "mgmt_find_handler",
-   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr mgmt.c handler lookup. Raw identity remains FUN_00051354."
-  },
-  "0x0005139c": {
-   "name": "mgmt_find_error_translation_function",
-   "evidence": "Corrected exact NCS 2.5.1 mcumgr mgmt.c error-translation lookup; the former mgmt_find_group label omitted its returned callback semantics. Raw identity remains FUN_0005139c."
-  },
-  "0x0005160c": {
-   "name": "smp_add_cmd_err",
-   "evidence": "Relocation-normalized byte-exact NCS 2.5.1 mcumgr SMP command-error encoder. Raw identity remains FUN_0005160c."
-  },
-  "0x000526e4": {
-   "name": "smp_packet_alloc",
-   "evidence": "Exact NCS 2.5.1 mcumgr transport packet-pool allocator. Raw identity remains FUN_000526e4."
-  },
-  "0x000526f4": {
-   "name": "smp_transport_init",
-   "evidence": "Exact NCS 2.5.1 mcumgr transport initializer with Bluetooth reassembly enabled. Raw identity remains FUN_000526f4."
-  },
-  "0x00052744": {
-   "name": "smp_rx_req",
-   "evidence": "Exact NCS 2.5.1 mcumgr request enqueue and work-submit function. Raw identity remains FUN_00052744."
-  },
-  "0x000807f6": {
-   "name": "smp_make_rsp_hdr",
-   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr response-header constructor. Raw identity remains FUN_000807f6."
-  },
-  "0x00080830": {
-   "name": "cbor_nb_writer_init",
-   "evidence": "Exact translation-unit-local NCS 2.5.1 mcumgr net_buf CBOR writer initializer. Raw identity remains FUN_00080830."
-  },
-  "0x00080864": {
-   "name": "smp_write_hdr",
-   "evidence": "Exact compiler-local NCS 2.5.1 mcumgr SMP header writer emitted as smp_write_hdr.isra.0. Raw identity remains FUN_00080864."
-  },
-  "0x00080ae2": {
-   "name": "smp_packet_free",
-   "evidence": "Corrected exact NCS 2.5.1 mcumgr transport packet-free veneer; historical alias thunk_FUN_0005f24c remains reversible. Raw identity remains FUN_00080ae2."
-  },
-  "0x00080ae6": {
-   "name": "smp_alloc_rsp",
-   "evidence": "Exact NCS 2.5.1 mcumgr response-buffer allocator and user-data copier. Raw identity remains FUN_00080ae6."
-  },
-  "0x00080b28": {
-   "name": "smp_reassembly_init",
-   "evidence": "Exact NCS 2.5.1 mcumgr reassembly-state initializer. Raw identity remains FUN_00080b28."
-  },
-  "0x00080b32": {
-   "name": "smp_reassembly_expected",
-   "evidence": "Exact NCS 2.5.1 mcumgr reassembly expected-byte query. Raw identity remains FUN_00080b32."
-  },
-  "0x00080b42": {
-   "name": "smp_reassembly_collect",
-   "evidence": "Exact NCS 2.5.1 mcumgr fragment collector configured for the firmware's 2475-byte transport buffer. Raw identity remains FUN_00080b42."
-  },
-  "0x00080bb2": {
-   "name": "smp_reassembly_complete",
-   "evidence": "Exact NCS 2.5.1 mcumgr reassembly completion and request-enqueue function. Raw identity remains FUN_00080bb2."
-  },
-  "0x00080bfe": {
-   "name": "smp_reassembly_get_ud",
-   "evidence": "Exact NCS 2.5.1 mcumgr reassembly buffer user-data accessor. Raw identity remains FUN_00080bfe."
   }
  },
  "net": {
@@ -1394,8 +1470,8 @@
    "evidence": "Selected when neither current nor requested radio mode is one; subtracts the complementary selected-PHY airtime term. Raw identity remains FUN_01021634."
   },
   "0x01008d00": {
-   "name": "sdc_assertion_fail",
-   "evidence": "Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00."
+   "name": "controller_assert",
+   "evidence": "Two-argument SDC fatal endpoint: formats the module identifier, invokes the registered assertion callback, then requests SYSRESETREQ. Raw identity remains FUN_01008d00."
   },
   "0x0100a7e8": {
    "name": "sdc_ecb_run_blocking",
@@ -1484,6 +1560,10 @@
   "0x0100f69c": {
    "name": "signed_drift_clamp",
    "evidence": "Leaf clamps a signed drift value to the symmetric magnitude supplied in r1. Raw identity remains FUN_0100f69c."
+  },
+  "0x01008d00": {
+   "name": "sdc_assertion_fail",
+   "evidence": "Shared noreturn SoftDevice Controller assertion boundary; callers supply module and source-line identifiers. Raw identity remains FUN_01008d00."
   },
   "0x0101deac": {
    "name": "schedule_node_list_lock",

@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 449,
-    "exclude_reconstruction": 434,
+    "entries": 497,
+    "exclude_reconstruction": 482,
     "retain_reconstruction": 15,
     "by_kind": {
-     "source": 299,
+     "source": 347,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -204,6 +204,50 @@
     },
     {
      "core": "app",
+     "va": "0x0004b17c",
+     "raw_symbol": "FUN_0004b17c",
+     "current_symbol": "lseek",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "lseek",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-LSEEK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "11ac343918431cac3a83f7168869be89a6edc1ddee3b8e3679d082a340655c29",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "lseek",
+        "corrected_readable_identity": "lseek",
+        "corrected_upstream_symbol": "lseek",
+        "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0004b17c"
+       },
+       "atomic_group": [
+        "0x0004b17c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004b17c"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0004b3c8",
      "raw_symbol": "FUN_0004b3c8",
      "current_symbol": "sys_heap_init",
@@ -303,7 +347,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_init",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -361,8 +405,7 @@
         "CONFIG_ASSERT": "y",
         "CONFIG_ASSERT_LEVEL": "2",
         "CONFIG_SPIN_VALIDATE": "y",
-        "CONFIG_THREAD_LOCAL_STORAGE": "y",
-        "CONFIG_ERRNO_IN_TLS": "n"
+        "CONFIG_THREAD_LOCAL_STORAGE": "n"
        },
        "atomic_group": [
         "0x0004bc28",
@@ -418,7 +461,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "mpsc_pbuf_alloc",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -492,7 +535,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_commit",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -550,8 +593,7 @@
         "CONFIG_ASSERT": "y",
         "CONFIG_ASSERT_LEVEL": "2",
         "CONFIG_SPIN_VALIDATE": "y",
-        "CONFIG_THREAD_LOCAL_STORAGE": "y",
-        "CONFIG_ERRNO_IN_TLS": "n"
+        "CONFIG_THREAD_LOCAL_STORAGE": "n"
        },
        "atomic_group": [
         "0x0004bc28",
@@ -607,7 +649,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "mpsc_pbuf_claim",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -681,7 +723,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "mpsc_pbuf_free",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -739,8 +781,7 @@
         "CONFIG_ASSERT": "y",
         "CONFIG_ASSERT_LEVEL": "2",
         "CONFIG_SPIN_VALIDATE": "y",
-        "CONFIG_THREAD_LOCAL_STORAGE": "y",
-        "CONFIG_ERRNO_IN_TLS": "n"
+        "CONFIG_THREAD_LOCAL_STORAGE": "n"
        },
        "atomic_group": [
         "0x0004bc28",
@@ -1066,7 +1107,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "z_log_msg_local_claim",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/log_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -1123,8 +1164,7 @@
         "CONFIG_ASSERT": "y",
         "CONFIG_ASSERT_LEVEL": "2",
         "CONFIG_SPIN_VALIDATE": "y",
-        "CONFIG_THREAD_LOCAL_STORAGE": "y",
-        "CONFIG_ERRNO_IN_TLS": "n"
+        "CONFIG_THREAD_LOCAL_STORAGE": "n"
        },
        "identity_correction": {
         "baseline_collision_symbol": "mpsc_pbuf_claim",
@@ -1695,6 +1735,174 @@
          "0x0004df34"
         ],
         "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e124",
+     "raw_symbol": "FUN_0004e124",
+     "current_symbol": "FUN_0004e124",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "stream_flash_erase_page",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ee488319d43ccfbe48371d7a3712e4e33039470bafc7e5ac38e10643f2fc95a7",
+       "cfg_verify_cases": 4,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0004e124",
+        "corrected_readable_identity": "stream_flash_erase_page",
+        "corrected_upstream_symbol": "stream_flash_erase_page",
+        "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0004e124"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e1ac",
+     "raw_symbol": "FUN_0004e1ac",
+     "current_symbol": "stream_flash_flush_buffer",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "flash_sync",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ae8219d3bb570cc3c0527861df9957795edd78e49d640ca431dcb4109f48c915",
+       "cfg_verify_cases": 40,
+       "identity_correction": {
+        "baseline_collision_symbol": "stream_flash_flush_buffer",
+        "corrected_readable_identity": "flash_sync",
+        "corrected_upstream_symbol": "flash_sync",
+        "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+        "upstream_linkage": "translation_unit_local",
+        "raw_identity": "FUN_0004e1ac"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004e2b4",
+     "raw_symbol": "FUN_0004e2b4",
+     "current_symbol": "stream_flash_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "stream_flash_init",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8d7997cbb0cbef56bb64b6e469c6cafe2e4b8a46d6fbcd0bee43730d8369d408",
+       "cfg_verify_cases": 9,
+       "identity_correction": {
+        "baseline_collision_symbol": "stream_flash_init",
+        "corrected_readable_identity": "stream_flash_init",
+        "corrected_upstream_symbol": "stream_flash_init",
+        "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0004e2b4"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
        }
       }
      ]
@@ -3456,6 +3664,1978 @@
     },
     {
      "core": "app",
+     "va": "0x00051354",
+     "raw_symbol": "FUN_00051354",
+     "current_symbol": "mgmt_find_handler",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "mgmt_find_handler",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/mgmt/CMakeFiles/subsys__mgmt__mcumgr__mgmt.dir/src/mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a3680beacb68f307e7d19354057e505c0941363a28c85c587327df55235d0796",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "mgmt_find_handler",
+        "corrected_readable_identity": "mgmt_find_handler",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+        "corrected_upstream_symbol": "mgmt_find_handler",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005139c",
+     "raw_symbol": "FUN_0005139c",
+     "current_symbol": "mgmt_find_error_translation_function",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "mgmt_find_error_translation_function",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/mgmt/CMakeFiles/subsys__mgmt__mcumgr__mgmt.dir/src/mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8516ae4a08e7b8e34fb26b819b75acef8f7a1afb5f895590205f21acf46c1896",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "mgmt_find_error_translation_function",
+        "corrected_readable_identity": "mgmt_find_error_translation_function",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+        "corrected_upstream_symbol": "mgmt_find_error_translation_function",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000513e8",
+     "raw_symbol": "FUN_000513e8",
+     "current_symbol": "smp_process_request_packet",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_process_request_packet",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b7191bec45917b4f75e2f9627e55af27ad6195b3d401a943511b0b03cd1f174d",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_process_request_packet",
+        "corrected_readable_identity": "smp_process_request_packet",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+        "corrected_upstream_symbol": "smp_process_request_packet",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005160c",
+     "raw_symbol": "FUN_0005160c",
+     "current_symbol": "smp_add_cmd_err",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_add_cmd_err",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "e17643459b989045e3f8ff4badd50d008bf6f9fb50c500389c76bdfe1a826dbc",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_add_cmd_err",
+        "corrected_readable_identity": "smp_add_cmd_err",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+        "corrected_upstream_symbol": "smp_add_cmd_err",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005169c",
+     "raw_symbol": "FUN_0005169c",
+     "current_symbol": "img_mgmt_flash_area_id",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_flash_area_id",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "dcdada31822cacd19135c560ae48f1de3b19e65beb94ecb4ca145516edf84585",
+       "cfg_verify_cases": 3,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_flash_area_id",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_flash_area_id",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000516ac",
+     "raw_symbol": "FUN_000516ac",
+     "current_symbol": "img_mgmt_erase_slot",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "img_mgmt_erase_slot",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "abi": {
+        "decl_line": 275,
+        "params": [
+         "int"
+        ],
+        "return": "int",
+        "variadic": false
+       },
+       "upstream_source": {
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "repository": "zephyr",
+        "sha256": "b38df621e141abb2d41e81dc449c561fda57f17339cd41d52033539e8dc14088"
+       },
+       "link_provenance": {
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c:276: multiple definition of `img_mgmt_erase_slot'; app/libapp.a(img_mgmt_erase_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_erase_slot.c:29: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(zephyr_img_mgmt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c:276",
+        "reconstruction_input": "app/libapp.a(img_mgmt_erase_slot.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "33baaed2652994cd98b8786bae443de6c26e5c7ed1320766441451035a1afd62",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000517d8",
+     "raw_symbol": "FUN_000517d8",
+     "current_symbol": "img_mgmt_read",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_read",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "623528e6417f6c767df2ba3f43f1068e5bd2bc5aa725c159c44ec63de1bc616f",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_read",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_read",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051870",
+     "raw_symbol": "FUN_00051870",
+     "current_symbol": "img_mgmt_write_image_data",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_write_image_data",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "0c4269b7bd7d77affcdad6153708995d63b8e27595017d32d0362c09689571d6",
+       "cfg_verify_cases": 2,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_write_image_data",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_write_image_data",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000518a8",
+     "raw_symbol": "FUN_000518a8",
+     "current_symbol": "img_mgmt_upload_inspect",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_upload_inspect",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "60b6ad89b3cdf08ef82ff1886e47eeaf1f9c7d17c94058a32b8e4c9c77d8206b",
+       "cfg_verify_cases": 16,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_upload_inspect",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_upload_inspect",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051a5c",
+     "raw_symbol": "FUN_00051a5c",
+     "current_symbol": "img_mgmt_erased_val",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_erased_val",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "41b604a91e4746e13fdd3f6909f26aee40aff7448eb53ead122574ec101473a5",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_erased_val",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_erased_val",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051ac0",
+     "raw_symbol": "FUN_00051ac0",
+     "current_symbol": "img_mgmt_state_encode_slot",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_state_encode_slot",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ca7540f51541b30c08f805109b8504f7384b04d741ce793472f7ed1c8b159eb8",
+       "cfg_verify_cases": 2,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_state_encode_slot",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "img_mgmt_state_encode_slot",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051c38",
+     "raw_symbol": "FUN_00051c38",
+     "current_symbol": "img_mgmt_get_opposite_slot",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_get_opposite_slot.part.0",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "0c84adf3dd803130611c67b24f222fe43a75b44b8c527ec5b4066892c57aa9ec",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_get_opposite_slot.part.0",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "img_mgmt_get_opposite_slot.part.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051c68",
+     "raw_symbol": "FUN_00051c68",
+     "current_symbol": "img_mgmt_slot_to_image",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_slot_to_image.part.0",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7f65c2ac290d7602dee0b0a739cd6563aa37f4ae52959b1c8d9c0c94f9334512",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_slot_to_image.part.0",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "img_mgmt_slot_to_image.part.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051c98",
+     "raw_symbol": "FUN_00051c98",
+     "current_symbol": "img_mgmt_state_read",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_state_read",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "acad4d64d0ba9da4dff86c83f5193c0701d14609de815b723065e0a840b9c412",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_state_read",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "img_mgmt_state_read",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051d8c",
+     "raw_symbol": "FUN_00051d8c",
+     "current_symbol": "img_mgmt_set_next_boot_slot",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "img_mgmt_set_next_boot_slot",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "abi": {
+        "decl_line": 568,
+        "params": [
+         "int",
+         "_Bool"
+        ],
+        "return": "int",
+        "variadic": false
+       },
+       "upstream_source": {
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "repository": "zephyr",
+        "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5"
+       },
+       "link_provenance": {
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:569: multiple definition of `img_mgmt_set_next_boot_slot'; app/libapp.a(img_mgmt_set_next_boot_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_set_next_boot_slot.c:39: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:569",
+        "reconstruction_input": "app/libapp.a(img_mgmt_set_next_boot_slot.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "360cc45b56e5a372a9617b6150f5f68a207d7d566f27ebafb032540e6c0437ca",
+       "cfg_verify_cases": 3,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051e9c",
+     "raw_symbol": "FUN_00051e9c",
+     "current_symbol": "img_mgmt_state_write",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "img_mgmt_state_write",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "abi": {
+        "decl_line": 665,
+        "params": [
+         "smp_streamer*"
+        ],
+        "return": "int",
+        "variadic": false
+       },
+       "upstream_source": {
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "repository": "zephyr",
+        "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5"
+       },
+       "link_provenance": {
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:666: multiple definition of `img_mgmt_state_write'; app/libapp.a(img_mgmt_state_write.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_state_write.c:23: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:666",
+        "reconstruction_input": "app/libapp.a(img_mgmt_state_write.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f2a2828b4247f5c877a1dd357e9279ab392eb02aa957ee7e3b143b268ae77291",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051f88",
+     "raw_symbol": "FUN_00051f88",
+     "current_symbol": "img_mgmt_ver_str",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "img_mgmt_ver_str",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_util.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "abi": {
+        "decl_line": 13,
+        "params": [
+         "image_version*",
+         "char*"
+        ],
+        "return": "int",
+        "variadic": false
+       },
+       "upstream_source": {
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c",
+        "repository": "zephyr",
+        "sha256": "b66d77049985a59773901cbf73f9a5d5edf09c3651d102034997e132ea08ba8b"
+       },
+       "link_provenance": {
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c:14: multiple definition of `img_mgmt_ver_str'; app/libapp.a(img_mgmt_ver_str.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_ver_str.c:16: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_util.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c:14",
+        "reconstruction_input": "app/libapp.a(img_mgmt_ver_str.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8f52bef806fcf9cca8b85517ec4b4321980079fbc33cc785a174692974eb1afd",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000526e4",
+     "raw_symbol": "FUN_000526e4",
+     "current_symbol": "smp_packet_alloc",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_packet_alloc",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8ac09c955d2671315e7aae2a113a8ff3f698e14ec095369e8313ce4a05a7c423",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_packet_alloc",
+        "corrected_readable_identity": "smp_packet_alloc",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_packet_alloc",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000526f4",
+     "raw_symbol": "FUN_000526f4",
+     "current_symbol": "smp_transport_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_transport_init",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "66615810f6239691a912f78ed4a3b38744d5b9efb2a7f3f54ee05836c3f1a5d5",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_transport_init",
+        "corrected_readable_identity": "smp_transport_init",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_transport_init",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052744",
+     "raw_symbol": "FUN_00052744",
+     "current_symbol": "smp_rx_req",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_rx_req",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4100e35bbfe45bfa97a488f3125cd6f23dde7d349f279bb55e438148a9b465db",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_rx_req",
+        "corrected_readable_identity": "smp_rx_req",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_rx_req",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052760",
+     "raw_symbol": "FUN_00052760",
+     "current_symbol": "smp_rx_remove_invalid",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_rx_remove_invalid",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "565b982071cb609026ee8f0ea0e3d3ee75ddf0932354be4cd6223ecb1fb9c694",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_rx_remove_invalid",
+        "corrected_readable_identity": "smp_rx_remove_invalid",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_rx_remove_invalid",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00052e7c",
      "raw_symbol": "FUN_00052e7c",
      "current_symbol": "bt_settings_encode_key",
@@ -3670,7 +5850,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_state_set_init",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3741,8 +5921,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -3778,7 +5960,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_create",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3845,8 +6027,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -3905,7 +6089,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_enable",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3973,8 +6157,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4173,7 +6359,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_conn_send_cb",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4240,8 +6426,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4322,7 +6510,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_connected",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4389,8 +6577,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4430,7 +6620,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_init",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4496,8 +6686,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4537,7 +6729,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_recv",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4607,8 +6799,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4648,7 +6842,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_create_pdu",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4716,8 +6910,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -4946,7 +7142,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_req_send",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5015,8 +7211,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5049,7 +7247,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_init",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5114,8 +7312,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5226,7 +7426,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_attr_get_handle",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5292,8 +7492,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5356,7 +7558,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_foreach_attr_type",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5428,8 +7630,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5492,7 +7696,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_service_register",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5558,8 +7762,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5622,7 +7828,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_indicate",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5689,8 +7895,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5753,7 +7961,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_notify_cb",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5820,8 +8028,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -5884,7 +8094,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_discover",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5951,8 +8161,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6015,7 +8227,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_write",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6083,8 +8295,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6154,7 +8368,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_unsubscribe",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6223,8 +8437,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6294,7 +8510,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_connected",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6358,8 +8574,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6422,7 +8640,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_att_max_mtu_changed",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6488,8 +8706,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6601,7 +8821,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_disconnected",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6665,8 +8885,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6729,7 +8951,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_addr",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6798,8 +9020,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6856,7 +9080,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_foreach_bond",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6926,8 +9150,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -6984,7 +9210,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_foreach_type",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7054,8 +9280,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7112,7 +9340,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7182,8 +9410,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7240,7 +9470,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_irk",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7309,8 +9539,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7367,7 +9599,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_addr",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7436,8 +9668,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7494,7 +9728,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_add_type",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7563,8 +9797,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7621,7 +9857,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_type",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7691,8 +9927,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7749,7 +9987,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_clear",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7816,8 +10054,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -7874,7 +10114,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_store",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7941,8 +10181,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -10120,6 +12362,92 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000641e4",
+     "raw_symbol": "FUN_000641e4",
+     "current_symbol": "boot_set_next",
+     "kind": "source",
+     "component": "mcuboot",
+     "upstream_symbol": "boot_set_next",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/modules/mcuboot/boot/bootutil/zephyr/CMakeFiles/mcuboot_util.dir/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_code_sha256": "37091445279bb0d68e8916052f19f5f9b266f2b3f12bb172a3c2e520367eb497",
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "upstream_source": {
+        "commit": "edfe1e1465dbc698bf9a195816247913490ab391",
+        "path": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+        "repository": "mcuboot",
+        "sha256": "1bf0812387f8e980027d7437f6d02319a923a81e0e72f733ed26619802db9822"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "ROOT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "37091445279bb0d68e8916052f19f5f9b266f2b3f12bb172a3c2e520367eb497",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00051d8c img_mgmt_state_set_pending (BL at 0x00051e36)"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_BOOTLOADER_MCUBOOT": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "n",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x000641e4"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exact_companion_sections": [
+         ".text.boot_write_magic",
+         ".text.boot_read_swap_state",
+         ".text.boot_write_swap_info",
+         ".text.boot_write_image_ok",
+         ".text.boot_read_image_ok",
+         ".text.boot_read_swap_state_by_id"
+        ],
+        "exclude_only": [
+         "0x000641e4"
+        ],
+        "firmware_absent_sections_require_normal_gc": [
+         ".text.boot_swap_type_multi",
+         ".text.boot_write_copy_done",
+         ".text.boot_set_pending_multi",
+         ".text.boot_set_confirmed_multi",
+         ".text.boot_image_load_header"
+        ],
+        "new_undefined_symbols": [],
+        "raw_alias_preserved": "FUN_000641e4",
+        "retain_all_probe_may_keep_absent_sections": true,
+        "safe": true,
+        "selected_exact_section": ".text.boot_set_next",
+        "source_unit": "bootloader/mcuboot/boot/bootutil/src/bootutil_public.c"
+       }
       }
      ]
     },
@@ -20719,7 +23047,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "free_space",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -20793,7 +23121,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "get_usage",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -20867,7 +23195,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "idx_inc",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -20941,7 +23269,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "rd_idx_inc",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -21015,7 +23343,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "add_skip_item",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -21089,7 +23417,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "drop_item_locked",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -21163,7 +23491,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "post_drop_action",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -21237,7 +23565,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "max_utilization_update",
-     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/mpsc_pbuf.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-notrace-notls-evidence/mpsc_pbuf.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -21348,6 +23676,230 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/lib/ipc_rpmsg.c:108",
         "reconstruction_input": "app/libapp.a(ipc_rpmsg_deinit.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/lib/ipc_rpmsg.c:108: multiple definition of `ipc_rpmsg_deinit'; app/libapp.a(ipc_rpmsg_deinit.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/ipc_rpmsg_deinit.c:13: first defined here"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f064",
+     "raw_symbol": "FUN_0007f064",
+     "current_symbol": "FUN_0007f064",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "flash_get_write_block_size",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "72160dea76b3bac7a170a605ca81fc4dd8ecc30f31695ad34e95a7ff7130fba3",
+       "cfg_verify_cases": 40,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0007f064",
+        "corrected_readable_identity": "flash_get_write_block_size",
+        "corrected_upstream_symbol": "flash_get_write_block_size",
+        "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+        "upstream_linkage": "translation_unit_local",
+        "raw_identity": "FUN_0007f064"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f088",
+     "raw_symbol": "FUN_0007f088",
+     "current_symbol": "FUN_0007f088",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "stream_flash_buffered_write",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "799e3c1efb987ea97a234f5f9f5c8a5c498d4afd0e77cd1b90ed26bb9c000e7f",
+       "cfg_verify_cases": 44,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0007f088",
+        "corrected_readable_identity": "stream_flash_buffered_write",
+        "corrected_upstream_symbol": "stream_flash_buffered_write",
+        "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0007f088"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f110",
+     "raw_symbol": "FUN_0007f110",
+     "current_symbol": "FUN_0007f110",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "flash_img_buffered_write",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/dfu/img_util/flash_img.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8c89edd147d85cb4aaff4fddea7fe2456bd9d25e2885d37ef55c731096b76c65",
+       "cfg_verify_cases": 42,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0007f110",
+        "corrected_readable_identity": "flash_img_buffered_write",
+        "corrected_upstream_symbol": "flash_img_buffered_write",
+        "corrected_upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0007f110"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0007f150",
+     "raw_symbol": "FUN_0007f150",
+     "current_symbol": "FUN_0007f150",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "flash_img_init_id",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/dfu/img_util/flash_img.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-STREAM-FLASH",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5ccc78ceb801989019727f20e5ee2eb42affacdbb4a7be40c01ce483536532bd",
+       "cfg_verify_cases": 40,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0007f150",
+        "corrected_readable_identity": "flash_img_init_id",
+        "corrected_upstream_symbol": "flash_img_init_id",
+        "corrected_upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0007f150"
+       },
+       "atomic_group": [
+        "0x0004e124",
+        "0x0004e1ac",
+        "0x0004e2b4",
+        "0x0007f064",
+        "0x0007f088",
+        "0x0007f110",
+        "0x0007f150"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004e124",
+         "0x0004e1ac",
+         "0x0004e2b4",
+         "0x0007f064",
+         "0x0007f088",
+         "0x0007f110",
+         "0x0007f150"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true
        }
       }
      ]
@@ -22989,13 +25541,535 @@
     },
     {
      "core": "app",
+     "va": "0x000807f6",
+     "raw_symbol": "FUN_000807f6",
+     "current_symbol": "smp_make_rsp_hdr",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_make_rsp_hdr",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9243ae252d25a7b581a039541d413aea6fc153b9be4e06b05d1565f62a16551f",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_make_rsp_hdr",
+        "corrected_readable_identity": "smp_make_rsp_hdr",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+        "corrected_upstream_symbol": "smp_make_rsp_hdr",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080830",
+     "raw_symbol": "FUN_00080830",
+     "current_symbol": "cbor_nb_writer_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "cbor_nb_writer_init",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "d9320d1cce1b5ae9b9fcba92824fb3e6c46f56f70717c7a3a8eede2cdf0266ee",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "cbor_nb_writer_init",
+        "corrected_readable_identity": "cbor_nb_writer_init",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+        "corrected_upstream_symbol": "cbor_nb_writer_init",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080864",
+     "raw_symbol": "FUN_00080864",
+     "current_symbol": "smp_write_hdr",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_write_hdr.isra.0",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "63d749c56645d236d833e3ddeaa563bfa6566203b3d592c65f2e296103a3443e",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_write_hdr",
+        "corrected_readable_identity": "smp_write_hdr",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+        "corrected_upstream_symbol": "smp_write_hdr.isra.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008096a",
+     "raw_symbol": "FUN_0008096a",
+     "current_symbol": "z_log_msg_static_create_img_mgmt",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "z_log_msg_static_create.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "70076e66b26c0c09114278cb1e3e19aba738db362a24a3b33823d98a3b5689e4",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "z_log_msg_static_create.constprop.0",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "z_log_msg_static_create.constprop.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080970",
+     "raw_symbol": "FUN_00080970",
+     "current_symbol": "img_mgmt_vercmp",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_vercmp",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ae3ff2a9e93b210e54d2b65fe276e7b46156c8ef8e0e7ecdb86c247b6bde3872",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_vercmp",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_vercmp",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0008099e",
      "raw_symbol": "FUN_0008099e",
-     "current_symbol": "k_heap_alloc",
+     "current_symbol": "zcbor_tstr_encode_ptr",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "zcbor_tstr_encode_ptr",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "dad693a6458cf563192603cdfbc69b956232adf26a35968fcb7485704d69d53d",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "zcbor_tstr_encode_ptr",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "zcbor_tstr_encode_ptr",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000809b0",
+     "raw_symbol": "FUN_000809b0",
+     "current_symbol": "img_mgmt_get_next_boot_slot",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "k_heap_alloc",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj",
+     "upstream_symbol": "img_mgmt_get_next_boot_slot",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23007,32 +26081,1017 @@
        "safe_to_exclude": true,
        "blockers": [],
        "signature_match": {
-        "opcode": 0.923077,
-        "shape": 0.769231,
-        "length": 0.857143,
-        "normalized_exact": false
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
        },
        "abi": {
-        "return": "void*",
+        "decl_line": 152,
         "params": [
-         "k_heap*",
-         "size_t",
-         "k_timeout_t"
+         "int",
+         "img_mgmt_next_boot_type*"
         ],
-        "variadic": false,
-        "decl_line": 107
+        "return": "int",
+        "variadic": false
        },
        "upstream_source": {
-        "path": "zephyr/kernel/kheap.c",
-        "sha256": "8437e89784bcb0c8aa2dee29385b9b47d0bb9359fd2b20ce1bc96feebbffc86d",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
         "repository": "zephyr",
-        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+        "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5"
        },
        "link_provenance": {
-        "owner_input": "zephyr/kernel/libkernel.a(kheap.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:108",
-        "reconstruction_input": "app/libapp.a(k_heap_alloc.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/kernel/kheap.c:108: multiple definition of `k_heap_alloc'; app/libapp.a(k_heap_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/k_heap_alloc.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:153: multiple definition of `img_mgmt_get_next_boot_slot'; app/libapp.a(img_mgmt_get_next_boot_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_get_next_boot_slot.c:30: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:153",
+        "reconstruction_input": "app/libapp.a(img_mgmt_get_next_boot_slot.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8b4c3abb478fa2651d02f87f32618aace3389afa9965316d6e928cca133cd662",
+       "cfg_verify_cases": 10,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000809f6",
+     "raw_symbol": "FUN_000809f6",
+     "current_symbol": "img_mgmt_slot_in_use",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_slot_in_use",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "e9cf5ef8453739f7ac04fd4848ca8e3c5327bbadce3830a7b81ca2dcc4ce741d",
+       "cfg_verify_cases": 6,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_slot_in_use",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+        "corrected_upstream_symbol": "img_mgmt_slot_in_use",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6"
+        ],
+        "img_mgmt_c_retained": true,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080ab4",
+     "raw_symbol": "FUN_00080ab4",
+     "current_symbol": "smp_handle_reqs",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_handle_reqs",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1330fcd993a9cc8c31991fa563cf3a9f720d9b334e4e5e3fb12c7faa1d0bf941",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_handle_reqs",
+        "corrected_readable_identity": "smp_handle_reqs",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_handle_reqs",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080ae2",
+     "raw_symbol": "FUN_00080ae2",
+     "current_symbol": "smp_packet_free",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_packet_free",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_packet_free",
+        "corrected_readable_identity": "smp_packet_free",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_packet_free",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080ae6",
+     "raw_symbol": "FUN_00080ae6",
+     "current_symbol": "smp_alloc_rsp",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_alloc_rsp",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2140b0e8d3d38f82a65461de543e3f5f1e15a0fa3717d1cefef9b04ab7713a31",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_alloc_rsp",
+        "corrected_readable_identity": "smp_alloc_rsp",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_alloc_rsp",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080b0e",
+     "raw_symbol": "FUN_00080b0e",
+     "current_symbol": "smp_free_buf",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_free_buf",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "dec1daa60e6461e5e55331e9b38c273487fb2d8a67bc4a7bf882cc592d2baa36",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_free_buf",
+        "corrected_readable_identity": "smp_free_buf",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+        "corrected_upstream_symbol": "smp_free_buf",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080b28",
+     "raw_symbol": "FUN_00080b28",
+     "current_symbol": "smp_reassembly_init",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_reassembly_init",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp_reassembly.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8807945d1ec49e456f647f5bf17e6997cf8c23b65832055707457206f3115817",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_reassembly_init",
+        "corrected_readable_identity": "smp_reassembly_init",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c",
+        "corrected_upstream_symbol": "smp_reassembly_init",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080b32",
+     "raw_symbol": "FUN_00080b32",
+     "current_symbol": "smp_reassembly_expected",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_reassembly_expected",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp_reassembly.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "19af776b9fb6ffa4b7b3eb7f6f738011fad750bea6807fa75bb6a314b87b3f94",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_reassembly_expected",
+        "corrected_readable_identity": "smp_reassembly_expected",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c",
+        "corrected_upstream_symbol": "smp_reassembly_expected",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080b42",
+     "raw_symbol": "FUN_00080b42",
+     "current_symbol": "smp_reassembly_collect",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_reassembly_collect",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp_reassembly.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8830a80f4928e4cb9299b913700e133d47a477f9920f4bf755f581e67293ec07",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_reassembly_collect",
+        "corrected_readable_identity": "smp_reassembly_collect",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c",
+        "corrected_upstream_symbol": "smp_reassembly_collect",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080bb2",
+     "raw_symbol": "FUN_00080bb2",
+     "current_symbol": "smp_reassembly_complete",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_reassembly_complete",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp_reassembly.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "60466fc3694da352f98b713a0a645148cecc6f6ac210c712c08f97b379563e64",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_reassembly_complete",
+        "corrected_readable_identity": "smp_reassembly_complete",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c",
+        "corrected_upstream_symbol": "smp_reassembly_complete",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080bfe",
+     "raw_symbol": "FUN_00080bfe",
+     "current_symbol": "smp_reassembly_get_ud",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "smp_reassembly_get_ud",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp_reassembly.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "MCUMGR-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "48d811e973e03d1680b45413a704bb3380d18cc1c866f467cd0faaa0169563e9",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "smp_reassembly_get_ud",
+        "corrected_readable_identity": "smp_reassembly_get_ud",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c",
+        "corrected_upstream_symbol": "smp_reassembly_get_ud",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00051354",
+        "0x0005139c",
+        "0x000513e8",
+        "0x0005160c",
+        "0x000526e4",
+        "0x000526f4",
+        "0x00052744",
+        "0x00052760",
+        "0x000807f6",
+        "0x00080830",
+        "0x00080864",
+        "0x00080ab4",
+        "0x00080ae2",
+        "0x00080ae6",
+        "0x00080b0e",
+        "0x00080b28",
+        "0x00080b32",
+        "0x00080b42",
+        "0x00080bb2",
+        "0x00080bfe"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00051354",
+         "0x0005139c",
+         "0x000513e8",
+         "0x0005160c",
+         "0x000526e4",
+         "0x000526f4",
+         "0x00052744",
+         "0x00052760",
+         "0x000807f6",
+         "0x00080830",
+         "0x00080864",
+         "0x00080ab4",
+         "0x00080ae2",
+         "0x00080ae6",
+         "0x00080b0e",
+         "0x00080b28",
+         "0x00080b32",
+         "0x00080b42",
+         "0x00080bb2",
+         "0x00080bfe"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": [
+         "mgmt_group_list@0x2000a94c",
+         "pkt_pool@0x20003be8",
+         "smp_work_queue@0x20005bb8",
+         "smp_work_queue_stack@0x2002ae68"
+        ],
+        "safe": true,
+        "selected_source_units": [
+         "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+         "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+         "zephyr/subsys/mgmt/mcumgr/transport/src/smp_reassembly.c"
+        ]
        }
       }
      ]
@@ -23381,7 +27440,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_conn_le_param_update",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23448,8 +27507,10 @@
         "CONFIG_BT_PERIPHERAL": "y",
         "CONFIG_BT_PRIVACY": "n",
         "CONFIG_BT_SETTINGS": "y",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "n",
         "CONFIG_TRACING": "n"
        },
@@ -23515,7 +27576,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23571,7 +27632,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
-     "upstream_unit": "/private/tmp/g1-bt-notrace-notls/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -24887,6 +28948,182 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085c86",
+     "raw_symbol": "FUN_00085c86",
+     "current_symbol": "zcbor_process_backup",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_process_backup",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_code_sha256": "9de641243cd1bbb8c0b023ee1ad905c3124de64af19ac761fb92e91a4da0e529",
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "upstream_source": {
+        "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+        "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+        "repository": "zcbor",
+        "sha256": "1f5d76ebfa9745c89fa8eb68496edc6cf585803ba48a425a1e7edb00018c3de3"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "ROOT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9de641243cd1bbb8c0b023ee1ad905c3124de64af19ac761fb92e91a4da0e529",
+       "cfg_verify_cases": 9,
+       "callers": [
+        "0x00085df6 cbor_decode_leave_container (tail B.W at 0x00085e14)"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "n",
+        "CONFIG_ZCBOR": "y",
+        "CONFIG_ZCBOR_ASSERT": "y",
+        "CONFIG_ZCBOR_STOP_ON_ERROR": "y"
+       },
+       "atomic_group": [
+        "0x00085c86"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exact_companion_sections": [
+         ".text.zcbor_check_error.isra.0",
+         ".text.zcbor_error",
+         ".text.zcbor_new_backup",
+         ".text.zcbor_new_state",
+         ".text.zcbor_array_at_end"
+        ],
+        "exclude_only": [
+         "0x00085c86"
+        ],
+        "firmware_absent_sections_require_normal_gc": [
+         ".text.zcbor_union_elem_code",
+         ".text.zcbor_union_end_code",
+         ".text.zcbor_update_state",
+         ".text.zcbor_validate_string_fragments",
+         ".text.zcbor_splice_string_fragments",
+         ".text.zcbor_compare_strings",
+         ".text.zcbor_header_len"
+        ],
+        "new_undefined_symbols": [],
+        "raw_alias_preserved": "FUN_00085c86",
+        "retain_all_probe_may_keep_absent_sections": true,
+        "safe": true,
+        "selected_exact_section": ".text.zcbor_process_backup",
+        "source_unit": "modules/lib/zcbor/src/zcbor_common.c"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00086360",
+     "raw_symbol": "FUN_00086360",
+     "current_symbol": "zcbor_simple_put",
+     "kind": "source",
+     "component": "zcbor",
+     "upstream_symbol": "zcbor_simple_put",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_code_sha256": "b790d8a46263492e59564312d082a4ddbf35a4799b998abef9b52393d3989f43",
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "upstream_source": {
+        "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+        "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+        "repository": "zcbor",
+        "sha256": "37d43a080bd3780e93ce0350f5476453e0f49226ed1b183bc4875f0693af2ae3"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "ROOT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b790d8a46263492e59564312d082a4ddbf35a4799b998abef9b52393d3989f43",
+       "cfg_verify_cases": 4,
+       "callers": [
+        "0x00086378 cbor_encode_simple (tail B.W at 0x0008637c)"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_MAIN_STACK_SIZE": "16384",
+        "CONFIG_THREAD_CUSTOM_DATA": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "n",
+        "CONFIG_ZCBOR": "y",
+        "CONFIG_ZCBOR_ASSERT": "y",
+        "CONFIG_ZCBOR_STOP_ON_ERROR": "y"
+       },
+       "atomic_group": [
+        "0x00086360"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exact_companion_sections": [
+         ".text.zcbor_int_encode",
+         ".text.zcbor_uint_encode",
+         ".text.zcbor_list_start_encode",
+         ".text.zcbor_map_start_encode",
+         ".text.zcbor_list_end_encode",
+         ".text.zcbor_bool_put"
+        ],
+        "exclude_only": [
+         "0x00086360"
+        ],
+        "firmware_absent_sections_require_normal_gc": [
+         ".text.zcbor_float64_put",
+         ".text.zcbor_float32_put",
+         ".text.zcbor_float16_put",
+         ".text.zcbor_multi_encode",
+         ".text.zcbor_multi_encode_minmax",
+         ".text.zcbor_present_encode"
+        ],
+        "new_undefined_symbols": [],
+        "raw_alias_preserved": "FUN_00086360",
+        "retain_all_probe_may_keep_absent_sections": true,
+        "safe": true,
+        "selected_exact_section": ".text.zcbor_simple_put",
+        "source_unit": "modules/lib/zcbor/src/zcbor_encode.c"
+       }
       }
      ]
     },
@@ -40953,7 +45190,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "667e6e076c406127ee3644a31ef96f62627d3c9c9f59172ec3216d6a8aaa7361"
+   "sha256": "4b857cad2924fdc4778e6b63821311fde9c1253ab5bd1e561780d4104c545de3"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
@@ -40965,11 +45202,27 @@
   },
   {
    "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
-   "sha256": "63c56e11e82ab8571e783c072b8020ecafeb441550cd197053538dd6f4e01923"
+   "sha256": "bc1fd8c538fca6130677fa8ca17915c7f4b445def7e3dd3867323860feb790b1"
   },
   {
    "path": "recon/ownership/app_settings_stock_atomic_adoption.json",
    "sha256": "82771d43fb2d95be1aae40cf034ceb7a4b7bc4ccdf08bc21a38273a8519ca2be"
+  },
+  {
+   "path": "recon/ownership/app_mcumgr_stock_atomic_adoption.json",
+   "sha256": "3b0f9fa0ab03084848c36a3998658e7b04c9174eef6f3a49eab0ac931a609650"
+  },
+  {
+   "path": "recon/ownership/app_lseek_stream_flash_atomic_adoption.json",
+   "sha256": "c059322f8c1ac6a4b9e2080725f628b2997096ffbc9e04235fa7121926db35cc"
+  },
+  {
+   "path": "recon/ownership/app_root_stock_atomic_adoption.json",
+   "sha256": "28e345f76738d99788607245e76229986588a694e085e84bd24246a38da1cead"
+  },
+  {
+   "path": "recon/ownership/app_img_mgmt_stock_atomic_adoption.json",
+   "sha256": "b450a40b4dfca1ca285bbef68536445f08aaefdf581757e572c9e9c6e1d20530"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

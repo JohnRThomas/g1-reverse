@@ -33,6 +33,39 @@ exact checkout while the bytes prove only the stated family.
 | CPUAPP libc/libm | Zephyr SDK 0.16.5-1, GCC 12.2.0, newlib 3.3.0 nano | SDK 0.16.3, 0.16.4, 0.16.5, and 0.16.5-1 pin the same GCC/newlib commits and identical ARM config, so ARM firmware bytes prove the common 0.16.x toolchain family, not the host-package suffix. `nano.specs` selects `libm_nano.a`, not regular `libm.a`. |
 | CPUNET libc | Zephyr SDK 0.16.5-1, GCC 12.2.0, picolibc | Exact public bodies use Cortex-M33+nodsp, soft-float, `-Os`; CPUAPP's hard-float/newlib-nano assumption must not be applied to CPUNET. |
 
+## Source-history discrimination
+
+Exact object bytes do not always identify an exact patch tag.  The durable
+receipt therefore separates the west-manifest pin from the range of upstream
+commits that have an identical owner body:
+
+- zcbor is the strongest discriminator.  The exact
+  `zcbor_process_backup` body exists from `e01ea4efa176398ab180230567dadba9df30c011`
+  (inclusive) until `c9d2c8d29dff31d52be8157b7156766b968612b2`
+  (exclusive).  The manifest pin `67fd8bb88d3136738661fa8bb5f9989103f4599e`
+  lies inside this untagged 0.7-era interval; tagged 0.6.0 and 0.8.0+ differ.
+  `zcbor_simple_put` alone spans a much wider interval and is not a version
+  fingerprint.
+- the matched mcumgr owner set rejects Zephyr 3.3 and 3.6+, but overlaps both
+  the 3.4.99 and 3.5.99 families.  In particular,
+  `smp_process_request_packet` has the current body from commit `5c88d455`,
+  while the other matched management/transport bodies have broader ranges.
+- `boot_set_next` has its current body from MCUboot commit `4ff95da6f631409e1b3340bb972e91deec0ec924`
+  and remains identical across many later NCS tags.  It proves the two-image,
+  non-Direct-XIP configuration and flash-area mapping, not the MCUboot patch.
+- `lseek` and `stream_flash_init` are unchanged across broad Zephyr release
+  ranges and carry essentially no patch-version information.
+
+Consequently, the firmware evidence selects the NCS 2.5 / Zephyr 3.4.99
+component family, while exact `v3.4.99-ncs1-1` is manifest provenance.  The
+scoped owner bodies do not distinguish `ncs1`, `ncs1-1`, `ncs1-2`, and
+`ncs1-3`; receipts must not claim otherwise.
+
+Each final owner receipt records five independent fields: manifest commit,
+source blob hash, identical-body commit interval, configured section digest,
+and the Kconfig/devicetree/Partition-Manager hash.  Whole-object hashes are not
+used as version identities because DWARF paths and build metadata perturb them.
+
 Crypto/codec precision:
 
 - TinyCrypt has 27 exact executable matches across six translation units (25

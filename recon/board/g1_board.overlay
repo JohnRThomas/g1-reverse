@@ -1,5 +1,11 @@
 #include <dt-bindings/regulator/npm1300.h>
 
+/ {
+	chosen {
+		nordic,pm-ext-flash = &mx25r64;
+	};
+};
+
 /*
  * G1 app-core board overlay (draft) — nrf5340dk_nrf5340_cpuapp
  *

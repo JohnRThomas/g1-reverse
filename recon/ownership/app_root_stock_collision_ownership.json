@@ -1,0 +1,1623 @@
+{
+ "schema": 2,
+ "generated_by": "tools/build_app_collision_ownership.py",
+ "policy": {
+  "strong_collision_alone_is_insufficient": true,
+  "requires_selected_global_object": true,
+  "requires_dwarf_abi": true,
+  "thresholds": {
+   "opcode": 0.9,
+   "shape": 0.7,
+   "length": 0.8
+  },
+  "ambiguity_action": "blocked",
+  "allowed_actions": [
+   "adopt_sdk_whole_public_owner",
+   "blocked",
+   "caller_cohesion",
+   "retain_reconstruction"
+  ],
+  "no_implementation_mutations_authorized": true,
+  "batch_partition": "one non-overlapping batch per selected source unit"
+ },
+ "inputs": {
+  "link_log_sha256": "987695669bd9708ef784f47e78fb746c2cab2ee1cf415db1cdb20dda95bd0c98",
+  "upstream_index_sha256": "4b73cd8c298d76f6165e7a9bcc9da5cdc5e75f0742a100df4b739fce6890845e",
+  "names_sha256": "7833fbebbfc5bb667c2971964820cbc9af80d071ba0c086350e3903a4fa581eb",
+  "classified_sha256": "14a0dd8d0f18a33266e26cfa661cd1587608c94417ee6424840c133d5b29e8ee",
+  "build_root": "/private/tmp/g1-app-root-topology-exact5-0718",
+  "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe"
+ },
+ "summary": {
+  "collisions": 18,
+  "unique_symbols": 18,
+  "diagnostic_occurrences": 18,
+  "identity_threshold_candidates": 17,
+  "safe_to_exclude": 0,
+  "retained_fail_closed": 18,
+  "source_units": 13,
+  "batches": 13,
+  "by_action": {
+   "adopt_sdk_whole_public_owner": 17,
+   "blocked": 0,
+   "caller_cohesion": 0,
+   "retain_reconstruction": 1
+  },
+  "batches_by_risk": {
+   "low": 12,
+   "medium": 1,
+   "high": 0,
+   "blocked": 0
+  }
+ },
+ "functions": [
+  {
+   "core": "app",
+   "va": "0x0004b17c",
+   "raw_symbol": "FUN_0004b17c",
+   "current_symbol": "lseek",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 52,
+   "firmware_instruction_count": 21,
+   "retained_owner": {
+    "va": "0x0004b17c",
+    "symbol": "lseek",
+    "source": "recon/symbolized/app/lseek.c",
+    "archive_or_object": "app/libapp.a(lseek.c.obj)",
+    "definition_line": 18
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/libzephyr.a(fdtable.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/fdtable.c:335",
+    "reconstruction_input": "app/libapp.a(lseek.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/lib/os/fdtable.c:335: multiple definition of `lseek'; app/libapp.a(lseek.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/lseek.c:18: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "lseek",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+    "object_sha256": "c2f630f72d7e4648bcaed7fab3257bb97823522ff7957ece6c0e3e0733f7f153",
+    "archive_or_object": "zephyr/libzephyr.a",
+    "archive_member": "fdtable.c.obj",
+    "section": ".text.lseek",
+    "symbol_size": 56,
+    "code_extent_compared": 52,
+    "trailing_section_bytes": 4,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "off_t",
+     "params": [
+      "int",
+      "off_t",
+      "int"
+     ],
+     "variadic": false,
+     "decl_line": 334
+    },
+    "source": {
+     "path": "zephyr/lib/os/fdtable.c",
+     "sha256": "98dba32ba26cbf283eef344aa42c705b8956b378163287ec1f3016df04c83c95",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/lib/os/fdtable.c"
+  },
+  {
+   "core": "app",
+   "va": "0x0004e2b4",
+   "raw_symbol": "FUN_0004e2b4",
+   "current_symbol": "stream_flash_init",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 174,
+   "firmware_instruction_count": 67,
+   "retained_owner": {
+    "va": "0x0004e2b4",
+    "symbol": "stream_flash_init",
+    "source": "recon/symbolized/app/stream_flash_init.c",
+    "archive_or_object": "app/libapp.a(stream_flash_init.c.obj)",
+    "definition_line": 51
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/libzephyr.a(stream_flash.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/storage/stream/stream_flash.c:251",
+    "reconstruction_input": "app/libapp.a(stream_flash_init.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/storage/stream/stream_flash.c:251: multiple definition of `stream_flash_init'; app/libapp.a(stream_flash_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/stream_flash_init.c:51: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "stream_flash_init",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+    "object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+    "archive_or_object": "zephyr/libzephyr.a",
+    "archive_member": "stream_flash.c.obj",
+    "section": ".text.stream_flash_init",
+    "symbol_size": 192,
+    "code_extent_compared": 174,
+    "trailing_section_bytes": 18,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "stream_flash_ctx*",
+      "device*",
+      "uint8_t*",
+      "size_t",
+      "size_t",
+      "size_t",
+      "stream_flash_callback_t"
+     ],
+     "variadic": false,
+     "decl_line": 248
+    },
+    "source": {
+     "path": "zephyr/subsys/storage/stream/stream_flash.c",
+     "sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/storage/stream/stream_flash.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00051354",
+   "raw_symbol": "FUN_00051354",
+   "current_symbol": "mgmt_find_handler",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 68,
+   "firmware_instruction_count": 34,
+   "retained_owner": {
+    "va": "0x00051354",
+    "symbol": "mgmt_find_handler",
+    "source": "recon/symbolized/app/mgmt_find_handler.c",
+    "archive_or_object": "app/libapp.a(mgmt_find_handler.c.obj)",
+    "definition_line": 13
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/mgmt/libsubsys__mgmt__mcumgr__mgmt.a(mgmt.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c:37",
+    "reconstruction_input": "app/libapp.a(mgmt_find_handler.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c:37: multiple definition of `mgmt_find_handler'; app/libapp.a(mgmt_find_handler.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/mgmt_find_handler.c:13: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "mgmt_find_handler",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/mgmt/CMakeFiles/subsys__mgmt__mcumgr__mgmt.dir/src/mgmt.c.obj",
+    "object_sha256": "0801cecf6a163f1dbd36b7b15539f42d2deaa26e471a81137799a098b8998b6b",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/mgmt/libsubsys__mgmt__mcumgr__mgmt.a",
+    "archive_member": "mgmt.c.obj",
+    "section": ".text.mgmt_find_handler",
+    "symbol_size": 72,
+    "code_extent_compared": 68,
+    "trailing_section_bytes": 4,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "mgmt_handler*",
+     "params": [
+      "uint16_t",
+      "uint16_t"
+     ],
+     "variadic": false,
+     "decl_line": 36
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+     "sha256": "551c641fec35b6303c61f11c104bd3b4b50b193f423ff525341df16b36c87409",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c"
+  },
+  {
+   "core": "app",
+   "va": "0x000513e8",
+   "raw_symbol": "FUN_000513e8",
+   "current_symbol": "smp_process_request_packet",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 542,
+   "firmware_instruction_count": 214,
+   "retained_owner": {
+    "va": "0x000513e8",
+    "symbol": "smp_process_request_packet",
+    "source": "recon/symbolized/app/smp_process_request_packet.c",
+    "archive_or_object": "app/libapp.a(smp_process_request_packet.c.obj)",
+    "definition_line": 38
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/smp/libsubsys__mgmt__mcumgr__smp.a(smp.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/smp/src/smp.c:366",
+    "reconstruction_input": "app/libapp.a(smp_process_request_packet.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/smp/src/smp.c:366: multiple definition of `smp_process_request_packet'; app/libapp.a(smp_process_request_packet.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/smp_process_request_packet.c:38: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "smp_process_request_packet",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+    "object_sha256": "938fe0d56748bb132e3630a03d4b8fd2ee11a0f7e3b95f515914505de3aecbc2",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/smp/libsubsys__mgmt__mcumgr__smp.a",
+    "archive_member": "smp.c.obj",
+    "section": ".text.smp_process_request_packet",
+    "symbol_size": 548,
+    "code_extent_compared": 542,
+    "trailing_section_bytes": 6,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "smp_streamer*",
+      "void*"
+     ],
+     "variadic": false,
+     "decl_line": 365
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+     "sha256": "008da95066a4913566853f0266a4b82ade941e0c831c878dbf133c09e6846b68",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c"
+  },
+  {
+   "core": "app",
+   "va": "0x0005160c",
+   "raw_symbol": "FUN_0005160c",
+   "current_symbol": "smp_add_cmd_err",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 132,
+   "firmware_instruction_count": 58,
+   "retained_owner": {
+    "va": "0x0005160c",
+    "symbol": "smp_add_cmd_err",
+    "source": "recon/symbolized/app/smp_add_cmd_err.c",
+    "archive_or_object": "app/libapp.a(smp_add_cmd_err.c.obj)",
+    "definition_line": 22
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/smp/libsubsys__mgmt__mcumgr__smp.a(smp.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/smp/src/smp.c:477",
+    "reconstruction_input": "app/libapp.a(smp_add_cmd_err.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/smp/src/smp.c:477: multiple definition of `smp_add_cmd_err'; app/libapp.a(smp_add_cmd_err.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/smp_add_cmd_err.c:22: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "smp_add_cmd_err",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/smp/CMakeFiles/subsys__mgmt__mcumgr__smp.dir/src/smp.c.obj",
+    "object_sha256": "938fe0d56748bb132e3630a03d4b8fd2ee11a0f7e3b95f515914505de3aecbc2",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/smp/libsubsys__mgmt__mcumgr__smp.a",
+    "archive_member": "smp.c.obj",
+    "section": ".text.smp_add_cmd_err",
+    "symbol_size": 144,
+    "code_extent_compared": 132,
+    "trailing_section_bytes": 12,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "_Bool",
+     "params": [
+      "zcbor_state_t*",
+      "uint16_t",
+      "uint16_t"
+     ],
+     "variadic": false,
+     "decl_line": 476
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+     "sha256": "008da95066a4913566853f0266a4b82ade941e0c831c878dbf133c09e6846b68",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c"
+  },
+  {
+   "core": "app",
+   "va": "0x000516ac",
+   "raw_symbol": "FUN_000516ac",
+   "current_symbol": "img_mgmt_erase_slot",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 270,
+   "firmware_instruction_count": 106,
+   "retained_owner": {
+    "va": "0x000516ac",
+    "symbol": "img_mgmt_erase_slot",
+    "source": "recon/symbolized/app/img_mgmt_erase_slot.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_erase_slot.c.obj)",
+    "definition_line": 29
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(zephyr_img_mgmt.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c:276",
+    "reconstruction_input": "app/libapp.a(img_mgmt_erase_slot.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c:276: multiple definition of `img_mgmt_erase_slot'; app/libapp.a(img_mgmt_erase_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_erase_slot.c:29: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_erase_slot",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/zephyr_img_mgmt.c.obj",
+    "object_sha256": "5aad92f4ee8e6958d688960bde7824431f3416b7b21d8aeb7a47d5dcb7fdb88b",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "zephyr_img_mgmt.c.obj",
+    "section": ".text.img_mgmt_erase_slot",
+    "symbol_size": 300,
+    "code_extent_compared": 270,
+    "trailing_section_bytes": 30,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "int"
+     ],
+     "variadic": false,
+     "decl_line": 275
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+     "sha256": "b38df621e141abb2d41e81dc449c561fda57f17339cd41d52033539e8dc14088",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00051d8c",
+   "raw_symbol": "FUN_00051d8c",
+   "current_symbol": "img_mgmt_set_next_boot_slot",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 264,
+   "firmware_instruction_count": 114,
+   "retained_owner": {
+    "va": "0x00051d8c",
+    "symbol": "img_mgmt_set_next_boot_slot",
+    "source": "recon/symbolized/app/img_mgmt_set_next_boot_slot.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_set_next_boot_slot.c.obj)",
+    "definition_line": 39
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:569",
+    "reconstruction_input": "app/libapp.a(img_mgmt_set_next_boot_slot.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:569: multiple definition of `img_mgmt_set_next_boot_slot'; app/libapp.a(img_mgmt_set_next_boot_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_set_next_boot_slot.c:39: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_set_next_boot_slot",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+    "object_sha256": "020d1feda52efa7209ff27d9ff4997896c124f65e7292a8ff580fdd3557fe4c4",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "img_mgmt_state.c.obj",
+    "section": ".text.img_mgmt_set_next_boot_slot",
+    "symbol_size": 272,
+    "code_extent_compared": 264,
+    "trailing_section_bytes": 8,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "int",
+      "_Bool"
+     ],
+     "variadic": false,
+     "decl_line": 568
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+     "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00051e9c",
+   "raw_symbol": "FUN_00051e9c",
+   "current_symbol": "img_mgmt_state_write",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 220,
+   "firmware_instruction_count": 89,
+   "retained_owner": {
+    "va": "0x00051e9c",
+    "symbol": "img_mgmt_state_write",
+    "source": "recon/symbolized/app/img_mgmt_state_write.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_state_write.c.obj)",
+    "definition_line": 23
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:666",
+    "reconstruction_input": "app/libapp.a(img_mgmt_state_write.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:666: multiple definition of `img_mgmt_state_write'; app/libapp.a(img_mgmt_state_write.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_state_write.c:23: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_state_write",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+    "object_sha256": "020d1feda52efa7209ff27d9ff4997896c124f65e7292a8ff580fdd3557fe4c4",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "img_mgmt_state.c.obj",
+    "section": ".text.img_mgmt_state_write",
+    "symbol_size": 236,
+    "code_extent_compared": 220,
+    "trailing_section_bytes": 16,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "smp_streamer*"
+     ],
+     "variadic": false,
+     "decl_line": 665
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+     "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00051f88",
+   "raw_symbol": "FUN_00051f88",
+   "current_symbol": "img_mgmt_ver_str",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 52,
+   "firmware_instruction_count": 23,
+   "retained_owner": {
+    "va": "0x00051f88",
+    "symbol": "img_mgmt_ver_str",
+    "source": "recon/symbolized/app/img_mgmt_ver_str.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_ver_str.c.obj)",
+    "definition_line": 16
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_util.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c:14",
+    "reconstruction_input": "app/libapp.a(img_mgmt_ver_str.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c:14: multiple definition of `img_mgmt_ver_str'; app/libapp.a(img_mgmt_ver_str.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_ver_str.c:16: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_ver_str",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_util.c.obj",
+    "object_sha256": "eefe2fca2d1866af1a974b32db297e6b7bcc0f077a19c6d1d81797f5b3589c3c",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "img_mgmt_util.c.obj",
+    "section": ".text.img_mgmt_ver_str",
+    "symbol_size": 60,
+    "code_extent_compared": 52,
+    "trailing_section_bytes": 8,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "image_version*",
+      "char*"
+     ],
+     "variadic": false,
+     "decl_line": 13
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c",
+     "sha256": "b66d77049985a59773901cbf73f9a5d5edf09c3651d102034997e132ea08ba8b",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00052038",
+   "raw_symbol": "FUN_00052038",
+   "current_symbol": "img_mgmt_read_info",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 324,
+   "firmware_instruction_count": 128,
+   "retained_owner": {
+    "va": "0x00052038",
+    "symbol": "img_mgmt_read_info",
+    "source": "recon/symbolized/app/img_mgmt_read_info.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_read_info.c.obj)",
+    "definition_line": 18
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c:183",
+    "reconstruction_input": "app/libapp.a(img_mgmt_read_info.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c:183: multiple definition of `img_mgmt_read_info'; app/libapp.a(img_mgmt_read_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_read_info.c:18: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_read_info",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+    "object_sha256": "09bd56a7f8820e1e1704a103336df47f935eda24005c3f26a8f98faca4104af3",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "img_mgmt.c.obj",
+    "section": ".text.img_mgmt_read_info",
+    "symbol_size": 328,
+    "code_extent_compared": 324,
+    "trailing_section_bytes": 4,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "int",
+      "image_version*",
+      "uint8_t*",
+      "uint32_t*"
+     ],
+     "variadic": false,
+     "decl_line": 181
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+     "sha256": "218e955270c7085bea1f2623fb547ecf94e1045deb2de3cac44500c5b472280e",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c"
+  },
+  {
+   "core": "app",
+   "va": "0x000526f4",
+   "raw_symbol": "FUN_000526f4",
+   "current_symbol": "smp_transport_init",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 58,
+   "firmware_instruction_count": 22,
+   "retained_owner": {
+    "va": "0x000526f4",
+    "symbol": "smp_transport_init",
+    "source": "recon/symbolized/app/smp_transport_init.c",
+    "archive_or_object": "app/libapp.a(smp_transport_init.c.obj)",
+    "definition_line": 28
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a(smp.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:145",
+    "reconstruction_input": "app/libapp.a(smp_transport_init.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:145: multiple definition of `smp_transport_init'; app/libapp.a(smp_transport_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/smp_transport_init.c:28: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "smp_transport_init",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+    "object_sha256": "de06490274437bc236227c805dd156b8ae981b7aff25c0134f119c388af38bbd",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a",
+    "archive_member": "smp.c.obj",
+    "section": ".text.smp_transport_init",
+    "symbol_size": 80,
+    "code_extent_compared": 58,
+    "trailing_section_bytes": 22,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "smp_transport*"
+     ],
+     "variadic": false,
+     "decl_line": 144
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+     "sha256": "dc353c1fa002a0be86fb40453e18787638e9b4975747b42c05c91b18cc0d8210",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00052760",
+   "raw_symbol": "FUN_00052760",
+   "current_symbol": "smp_rx_remove_invalid",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 118,
+   "firmware_instruction_count": 48,
+   "retained_owner": {
+    "va": "0x00052760",
+    "symbol": "smp_rx_remove_invalid",
+    "source": "recon/symbolized/app/smp_rx_remove_invalid.c",
+    "archive_or_object": "app/libapp.a(smp_rx_remove_invalid.c.obj)",
+    "definition_line": 61
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a(smp.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:214",
+    "reconstruction_input": "app/libapp.a(smp_rx_remove_invalid.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:214: multiple definition of `smp_rx_remove_invalid'; app/libapp.a(smp_rx_remove_invalid.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/smp_rx_remove_invalid.c:61: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "smp_rx_remove_invalid",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+    "object_sha256": "de06490274437bc236227c805dd156b8ae981b7aff25c0134f119c388af38bbd",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a",
+    "archive_member": "smp.c.obj",
+    "section": ".text.smp_rx_remove_invalid",
+    "symbol_size": 124,
+    "code_extent_compared": 118,
+    "trailing_section_bytes": 6,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "void",
+     "params": [
+      "smp_transport*",
+      "void*"
+     ],
+     "variadic": false,
+     "decl_line": 213
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+     "sha256": "dc353c1fa002a0be86fb40453e18787638e9b4975747b42c05c91b18cc0d8210",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c"
+  },
+  {
+   "core": "app",
+   "va": "0x000641e4",
+   "raw_symbol": "FUN_000641e4",
+   "current_symbol": "boot_set_next",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 158,
+   "firmware_instruction_count": 69,
+   "retained_owner": {
+    "va": "0x000641e4",
+    "symbol": "boot_set_next",
+    "source": "recon/symbolized/app/boot_set_next.c",
+    "archive_or_object": "app/libapp.a(boot_set_next.c.obj)",
+    "definition_line": 23
+   },
+   "link_provenance": {
+    "owner_input": "modules/mcuboot/boot/bootutil/zephyr/libmcuboot_util.a(bootutil_public.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c:496",
+    "reconstruction_input": "app/libapp.a(boot_set_next.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c:496: multiple definition of `boot_set_next'; app/libapp.a(boot_set_next.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/boot_set_next.c:23: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "boot_set_next",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/mcuboot/boot/bootutil/zephyr/CMakeFiles/mcuboot_util.dir/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c.obj",
+    "object_sha256": "992b0e53e80d96aa1e99954da1979071656d83dd594e87324cca80e7bbfe5d4b",
+    "archive_or_object": "modules/mcuboot/boot/bootutil/zephyr/libmcuboot_util.a",
+    "archive_member": "bootutil_public.c.obj",
+    "section": ".text.boot_set_next",
+    "symbol_size": 172,
+    "code_extent_compared": 158,
+    "trailing_section_bytes": 14,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "flash_area*",
+      "_Bool",
+      "_Bool"
+     ],
+     "variadic": false,
+     "decl_line": 495
+    },
+    "source": {
+     "path": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+     "sha256": "1bf0812387f8e980027d7437f6d02319a923a81e0e72f733ed26619802db9822",
+     "repository": "external_toolchain",
+     "commit": null
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c"
+  },
+  {
+   "core": "app",
+   "va": "0x0007c65c",
+   "raw_symbol": "FUN_0007c65c",
+   "current_symbol": "pthread_attr_getstack",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 20,
+   "firmware_instruction_count": 10,
+   "retained_owner": {
+    "va": "0x0007c65c",
+    "symbol": "pthread_attr_getstack",
+    "source": "recon/symbolized/app/pthread_attr_getstack.c",
+    "archive_or_object": "app/libapp.a(pthread_attr_getstack.c.obj)",
+    "definition_line": 12
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/lib/posix/liblib__posix.a(pthread.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/posix/pthread.c:821",
+    "reconstruction_input": "app/libapp.a(pthread_attr_getstack.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/lib/posix/pthread.c:821: multiple definition of `pthread_attr_getstack'; app/libapp.a(pthread_attr_getstack.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/pthread_attr_getstack.c:12: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "pthread_attr_getstack",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/lib/posix/CMakeFiles/lib__posix.dir/pthread.c.obj",
+    "object_sha256": "4165ac13633d3629d05269b9680bb49b37158388323a74c3e220c34d8d3fe54c",
+    "archive_or_object": "zephyr/lib/posix/liblib__posix.a",
+    "archive_member": "pthread.c.obj",
+    "section": ".text.pthread_attr_getstack",
+    "symbol_size": 22,
+    "code_extent_compared": 20,
+    "trailing_section_bytes": 2,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "pthread_attr_t*",
+      "void**",
+      "size_t*"
+     ],
+     "variadic": false,
+     "decl_line": 817
+    },
+    "source": {
+     "path": "zephyr/lib/posix/pthread.c",
+     "sha256": "1c533797f848e5db19cae0ceefdda584fb34fd2ef9b7fbbc825962aee938e6ed",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 0.9,
+    "shape": 0.6,
+    "length": 1.0,
+    "normalized_exact": false
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": false,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [
+    "operand_shape_score_below_threshold"
+   ],
+   "safe_action": "retain_reconstruction",
+   "decision": "retain_reconstruction",
+   "implementation_source_unit": "zephyr/lib/posix/pthread.c"
+  },
+  {
+   "core": "app",
+   "va": "0x000809b0",
+   "raw_symbol": "FUN_000809b0",
+   "current_symbol": "img_mgmt_get_next_boot_slot",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 70,
+   "firmware_instruction_count": 29,
+   "retained_owner": {
+    "va": "0x000809b0",
+    "symbol": "img_mgmt_get_next_boot_slot",
+    "source": "recon/symbolized/app/img_mgmt_get_next_boot_slot.c",
+    "archive_or_object": "app/libapp.a(img_mgmt_get_next_boot_slot.c.obj)",
+    "definition_line": 30
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt_state.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:153",
+    "reconstruction_input": "app/libapp.a(img_mgmt_get_next_boot_slot.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c:153: multiple definition of `img_mgmt_get_next_boot_slot'; app/libapp.a(img_mgmt_get_next_boot_slot.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_get_next_boot_slot.c:30: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "img_mgmt_get_next_boot_slot",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt_state.c.obj",
+    "object_sha256": "020d1feda52efa7209ff27d9ff4997896c124f65e7292a8ff580fdd3557fe4c4",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a",
+    "archive_member": "img_mgmt_state.c.obj",
+    "section": ".text.img_mgmt_get_next_boot_slot",
+    "symbol_size": 70,
+    "code_extent_compared": 70,
+    "trailing_section_bytes": 0,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "int",
+     "params": [
+      "int",
+      "img_mgmt_next_boot_type*"
+     ],
+     "variadic": false,
+     "decl_line": 152
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+     "sha256": "c80d568566592180e787144f83527aadf577e96511570cbc9bfc384e485869e5",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00080b0e",
+   "raw_symbol": "FUN_00080b0e",
+   "current_symbol": "smp_free_buf",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 26,
+   "firmware_instruction_count": 11,
+   "retained_owner": {
+    "va": "0x00080b0e",
+    "symbol": "smp_free_buf",
+    "source": "recon/symbolized/app/smp_free_buf.c",
+    "archive_or_object": "app/libapp.a(smp_free_buf.c.obj)",
+    "definition_line": 14
+   },
+   "link_provenance": {
+    "owner_input": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a(smp.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:92",
+    "reconstruction_input": "app/libapp.a(smp_free_buf.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/transport/src/smp.c:92: multiple definition of `smp_free_buf'; app/libapp.a(smp_free_buf.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/smp_free_buf.c:14: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "smp_free_buf",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/transport/CMakeFiles/subsys__mgmt__mcumgr__transport.dir/src/smp.c.obj",
+    "object_sha256": "de06490274437bc236227c805dd156b8ae981b7aff25c0134f119c388af38bbd",
+    "archive_or_object": "zephyr/subsys/mgmt/mcumgr/transport/libsubsys__mgmt__mcumgr__transport.a",
+    "archive_member": "smp.c.obj",
+    "section": ".text.smp_free_buf",
+    "symbol_size": 26,
+    "code_extent_compared": 26,
+    "trailing_section_bytes": 0,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "void",
+     "params": [
+      "void*",
+      "void*"
+     ],
+     "variadic": false,
+     "decl_line": 91
+    },
+    "source": {
+     "path": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+     "sha256": "dc353c1fa002a0be86fb40453e18787638e9b4975747b42c05c91b18cc0d8210",
+     "repository": "zephyr",
+     "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00085c86",
+   "raw_symbol": "FUN_00085c86",
+   "current_symbol": "zcbor_process_backup",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 108,
+   "firmware_instruction_count": 46,
+   "retained_owner": {
+    "va": "0x00085c86",
+    "symbol": "zcbor_process_backup",
+    "source": "recon/symbolized/app/zcbor_process_backup.c",
+    "archive_or_object": "app/libapp.a(zcbor_process_backup.c.obj)",
+    "definition_line": 36
+   },
+   "link_provenance": {
+    "owner_input": "modules/zcbor/libmodules__zcbor.a(zcbor_common.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c:47",
+    "reconstruction_input": "app/libapp.a(zcbor_process_backup.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c:47: multiple definition of `zcbor_process_backup'; app/libapp.a(zcbor_process_backup.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/zcbor_process_backup.c:36: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "zcbor_process_backup",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj",
+    "object_sha256": "d5f2596945ae8490a49fe658c265f061fa72fd1e6f1cd0b29ae92880b88b111b",
+    "archive_or_object": "modules/zcbor/libmodules__zcbor.a",
+    "archive_member": "zcbor_common.c.obj",
+    "section": ".text.zcbor_process_backup",
+    "symbol_size": 108,
+    "code_extent_compared": 108,
+    "trailing_section_bytes": 0,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "_Bool",
+     "params": [
+      "zcbor_state_t*",
+      "uint32_t",
+      "size_t"
+     ],
+     "variadic": false,
+     "decl_line": 45
+    },
+    "source": {
+     "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+     "sha256": "1f5d76ebfa9745c89fa8eb68496edc6cf585803ba48a425a1e7edb00018c3de3",
+     "repository": "external_toolchain",
+     "commit": null
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c"
+  },
+  {
+   "core": "app",
+   "va": "0x00086360",
+   "raw_symbol": "FUN_00086360",
+   "current_symbol": "zcbor_simple_put",
+   "diagnostic_occurrences": 1,
+   "firmware_extent": 24,
+   "firmware_instruction_count": 8,
+   "retained_owner": {
+    "va": "0x00086360",
+    "symbol": "zcbor_simple_put",
+    "source": "recon/symbolized/app/zcbor_simple_put.c",
+    "archive_or_object": "app/libapp.a(zcbor_simple_put.c.obj)",
+    "definition_line": 18
+   },
+   "link_provenance": {
+    "owner_input": "modules/zcbor/libmodules__zcbor.a(zcbor_encode.c.obj)",
+    "owner_source_line": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c:493",
+    "reconstruction_input": "app/libapp.a(zcbor_simple_put.c.obj)",
+    "diagnostic_occurrences": 1,
+    "diagnostics": [
+     "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c:493: multiple definition of `zcbor_simple_put'; app/libapp.a(zcbor_simple_put.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/zcbor_simple_put.c:18: first defined here"
+    ]
+   },
+   "upstream": {
+    "symbol": "zcbor_simple_put",
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c.obj",
+    "object_sha256": "1f1795b67af85166a797998108e706962a390ba6e7cfbe68837a2073a03d0d2a",
+    "archive_or_object": "modules/zcbor/libmodules__zcbor.a",
+    "archive_member": "zcbor_encode.c.obj",
+    "section": ".text.zcbor_simple_put",
+    "symbol_size": 24,
+    "code_extent_compared": 24,
+    "trailing_section_bytes": 0,
+    "binding": "STB_GLOBAL",
+    "abi": {
+     "return": "_Bool",
+     "params": [
+      "zcbor_state_t*",
+      "uint8_t"
+     ],
+     "variadic": false,
+     "decl_line": 492
+    },
+    "source": {
+     "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+     "sha256": "37d43a080bd3780e93ce0350f5476453e0f49226ed1b183bc4875f0693af2ae3",
+     "repository": "external_toolchain",
+     "commit": null
+    },
+    "unselected_same_symbol_candidates": []
+   },
+   "configured_inclusion": {
+    "selected_by_real_link": true,
+    "indexed_object_present": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+    "proof": "strong owner named by the configured retain-all linker"
+   },
+   "signature_match": {
+    "opcode": 1.0,
+    "shape": 1.0,
+    "length": 1.0,
+    "normalized_exact": true
+   },
+   "thresholds": {
+    "opcode": 0.9,
+    "shape": 0.7,
+    "length": 0.8
+   },
+   "identity_threshold_candidate": true,
+   "safe_to_exclude": false,
+   "exclusion_blockers": [],
+   "safe_action": "adopt_sdk_whole_public_owner",
+   "decision": "adopt_sdk_whole_public_owner",
+   "implementation_source_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c"
+  }
+ ],
+ "implementation_batches": [
+  {
+   "batch": "COLLISION-01",
+   "source_unit": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "boot_set_next"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-02",
+   "source_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "zcbor_process_backup"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-03",
+   "source_unit": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "zcbor_simple_put"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-04",
+   "source_unit": "zephyr/lib/os/fdtable.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "lseek"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-05",
+   "source_unit": "zephyr/lib/posix/pthread.c",
+   "risk": "medium",
+   "actions": [
+    "retain_reconstruction"
+   ],
+   "symbols": [
+    "pthread_attr_getstack"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-06",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "img_mgmt_read_info"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-07",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_state.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "img_mgmt_set_next_boot_slot",
+    "img_mgmt_state_write",
+    "img_mgmt_get_next_boot_slot"
+   ],
+   "count": 3,
+   "diagnostic_occurrences": 3,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-08",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt_util.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "img_mgmt_ver_str"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-09",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/zephyr_img_mgmt.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "img_mgmt_erase_slot"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-10",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/mgmt/src/mgmt.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "mgmt_find_handler"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-11",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/smp/src/smp.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "smp_process_request_packet",
+    "smp_add_cmd_err"
+   ],
+   "count": 2,
+   "diagnostic_occurrences": 2,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-12",
+   "source_unit": "zephyr/subsys/mgmt/mcumgr/transport/src/smp.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "smp_transport_init",
+    "smp_rx_remove_invalid",
+    "smp_free_buf"
+   ],
+   "count": 3,
+   "diagnostic_occurrences": 3,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  },
+  {
+   "batch": "COLLISION-13",
+   "source_unit": "zephyr/subsys/storage/stream/stream_flash.c",
+   "risk": "low",
+   "actions": [
+    "adopt_sdk_whole_public_owner"
+   ],
+   "symbols": [
+    "stream_flash_init"
+   ],
+   "count": 1,
+   "diagnostic_occurrences": 1,
+   "rule": "one source unit per batch; implement only after explicit ownership review"
+  }
+ ]
+}

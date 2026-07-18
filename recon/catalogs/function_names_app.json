@@ -8560,114 +8560,129 @@
   "0x0005169c": {
    "address": "0x0005169c",
    "raw_name": "FUN_0005169c",
-   "name": "FUN_0005169c",
-   "display_name": "FUN_0005169c",
-   "human": false,
-   "source": "recon/app/src/FUN_0005169c.c",
-   "aliases": []
+   "name": "img_mgmt_flash_area_id",
+   "display_name": "img_mgmt_flash_area_id",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public owner in the configured NCS 2.5.1 zephyr_img_mgmt.c two-image closure; raw identity remains FUN_0005169c.",
+   "aliases": [
+    "FUN_0005169c"
+   ]
   },
   "0x000516ac": {
    "address": "0x000516ac",
    "raw_name": "FUN_000516ac",
-   "name": "img_mgmt_flash_check_empty_inner",
-   "display_name": "img_mgmt_flash_check_empty_inner",
+   "name": "img_mgmt_erase_slot",
+   "display_name": "img_mgmt_erase_slot",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact NCS 2.5.1 img_mgmt implementation owner identified from the two-image flash-area ABI and caller closure. This corrects the stale flash-check helper label; raw identity remains FUN_000516ac at 0x000516ac.",
    "aliases": [
-    "FUN_000516ac"
+    "FUN_000516ac",
+    "img_mgmt_flash_check_empty_inner"
    ]
   },
   "0x000517d8": {
    "address": "0x000517d8",
    "raw_name": "FUN_000517d8",
-   "name": "img_mgmt_impl_read",
-   "display_name": "img_mgmt_impl_read",
+   "name": "img_mgmt_read",
+   "display_name": "img_mgmt_read",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_read label while preserving raw FUN_000517d8.",
    "aliases": [
-    "FUN_000517d8"
+    "FUN_000517d8",
+    "img_mgmt_impl_read"
    ]
   },
   "0x00051870": {
    "address": "0x00051870",
    "raw_name": "FUN_00051870",
-   "name": "FUN_00051870",
-   "display_name": "FUN_00051870",
-   "human": false,
-   "source": "recon/app/src/FUN_00051870.c",
-   "aliases": []
+   "name": "img_mgmt_write_image_data",
+   "display_name": "img_mgmt_write_image_data",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c with the static flash_img_context at firmware 0x2000a954; raw identity remains FUN_00051870.",
+   "aliases": [
+    "FUN_00051870"
+   ]
   },
   "0x000518a8": {
    "address": "0x000518a8",
    "raw_name": "FUN_000518a8",
-   "name": "img_mgmt_impl_write_image_data",
-   "display_name": "img_mgmt_impl_write_image_data",
+   "name": "img_mgmt_upload_inspect",
+   "display_name": "img_mgmt_upload_inspect",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_write_image_data label while preserving raw FUN_000518a8.",
    "aliases": [
-    "FUN_000518a8"
+    "FUN_000518a8",
+    "img_mgmt_impl_write_image_data"
    ]
   },
   "0x00051a5c": {
    "address": "0x00051a5c",
    "raw_name": "FUN_00051a5c",
-   "name": "img_mgmt_impl_erased_val",
-   "display_name": "img_mgmt_impl_erased_val",
+   "name": "img_mgmt_erased_val",
+   "display_name": "img_mgmt_erased_val",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public owner in zephyr_img_mgmt.c; replaces the provisional img_mgmt_impl_erased_val label while preserving raw FUN_00051a5c.",
    "aliases": [
-    "FUN_00051a5c"
+    "FUN_00051a5c",
+    "img_mgmt_impl_erased_val"
    ]
   },
   "0x00051ac0": {
    "address": "0x00051ac0",
    "raw_name": "FUN_00051ac0",
-   "name": "img_mgmt_state_encode_image",
-   "display_name": "img_mgmt_state_encode_image",
+   "name": "img_mgmt_state_encode_slot",
+   "display_name": "img_mgmt_state_encode_slot",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local owner in the configured NCS 2.5.1 img_mgmt_state.c closure; raw identity remains FUN_00051ac0.",
    "aliases": [
-    "FUN_00051ac0"
+    "FUN_00051ac0",
+    "img_mgmt_state_encode_image"
    ]
   },
   "0x00051c38": {
    "address": "0x00051c38",
    "raw_name": "FUN_00051c38",
-   "name": "FUN_00051c38",
-   "display_name": "FUN_00051c38",
-   "human": false,
-   "source": "recon/app/src/FUN_00051c38.c",
-   "aliases": []
+   "name": "img_mgmt_get_opposite_slot",
+   "display_name": "img_mgmt_get_opposite_slot",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local img_mgmt_state.c owner; raw identity remains FUN_00051c38.",
+   "aliases": [
+    "FUN_00051c38"
+   ]
   },
   "0x00051c68": {
    "address": "0x00051c68",
    "raw_name": "FUN_00051c68",
-   "name": "FUN_00051c68",
-   "display_name": "FUN_00051c68",
-   "human": false,
-   "source": "recon/app/src/FUN_00051c68.c",
-   "aliases": []
+   "name": "img_mgmt_slot_to_image",
+   "display_name": "img_mgmt_slot_to_image",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local img_mgmt_state.c owner; raw identity remains FUN_00051c68.",
+   "aliases": [
+    "FUN_00051c68"
+   ]
   },
   "0x00051c98": {
    "address": "0x00051c98",
    "raw_name": "FUN_00051c98",
-   "name": "img_mgmt_state_read_51c98",
-   "display_name": "img_mgmt_state_read_51c98",
+   "name": "img_mgmt_state_read",
+   "display_name": "img_mgmt_state_read",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public img_mgmt_state.c owner; replaces the address-suffixed provisional label while preserving raw FUN_00051c98.",
    "aliases": [
-    "FUN_00051c98"
+    "FUN_00051c98",
+    "img_mgmt_state_read_51c98"
    ]
   },
   "0x00051d8c": {
    "address": "0x00051d8c",
    "raw_name": "FUN_00051d8c",
-   "name": "img_mgmt_state_set_pending",
-   "display_name": "img_mgmt_state_set_pending",
+   "name": "img_mgmt_set_next_boot_slot",
+   "display_name": "img_mgmt_set_next_boot_slot",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact relocation-normalized NCS 2.5.1 img_mgmt_state.c owner with CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER=2. The former state_set_pending label named its caller-level operation rather than this function; raw identity remains FUN_00051d8c.",
    "aliases": [
-    "FUN_00051d8c"
+    "FUN_00051d8c",
+    "img_mgmt_state_set_pending"
    ]
   },
   "0x00051e9c": {
@@ -8713,23 +8728,25 @@
   "0x00052038": {
    "address": "0x00052038",
    "raw_name": "FUN_00052038",
-   "name": "img_mgmt_read_hash_and_flags",
-   "display_name": "img_mgmt_read_hash_and_flags",
+   "name": "img_mgmt_read_info",
+   "display_name": "img_mgmt_read_info",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact relocation-normalized NCS 2.5.1 img_mgmt.c owner. This is the true read-info function; raw identity remains FUN_00052038 at 0x00052038.",
    "aliases": [
-    "FUN_00052038"
+    "FUN_00052038",
+    "img_mgmt_read_hash_and_flags"
    ]
   },
   "0x00052180": {
    "address": "0x00052180",
    "raw_name": "FUN_00052180",
-   "name": "img_mgmt_read_info",
-   "display_name": "img_mgmt_read_info",
+   "name": "img_mgmt_erase",
+   "display_name": "img_mgmt_erase",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact relocation-normalized NCS 2.5.1 static img_mgmt.c erase handler. The former img_mgmt_read_info label belongs to 0x00052038; raw identity remains FUN_00052180.",
    "aliases": [
-    "FUN_00052180"
+    "FUN_00052180",
+    "img_mgmt_read_info"
    ]
   },
   "0x000521fc": {
@@ -8746,12 +8763,13 @@
   "0x00052604": {
    "address": "0x00052604",
    "raw_name": "FUN_00052604",
-   "name": "img_mgmt_erase_slot",
-   "display_name": "img_mgmt_erase_slot",
+   "name": "storage_erase_handler",
+   "display_name": "storage_erase_handler",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: NCS 2.5.1 Zephyr Basic storage erase handler; code matches except the DTS-derived storage partition ID (firmware 9), which remains a board-topology blocker. The former img_mgmt_erase_slot label belongs to 0x000516ac; raw identity remains FUN_00052604.",
    "aliases": [
-    "FUN_00052604"
+    "FUN_00052604",
+    "img_mgmt_erase_slot"
    ]
   },
   "0x000526e4": {
@@ -17313,12 +17331,13 @@
   "0x0007c65c": {
    "address": "0x0007c65c",
    "raw_name": "FUN_0007c65c",
-   "name": "pthread_attr_getstack",
-   "display_name": "pthread_attr_getstack",
+   "name": "serialization_copy_fields_0c_10",
+   "display_name": "serialization_copy_fields_0c_10",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: The former pthread_attr_getstack mapping is disproven: firmware has a two-argument serialization ABI, copies source fields +0x0c/+0x10 into one two-word output, and returns 7; stock Zephyr pthread_attr_getstack has three arguments, different offsets, validation, and return 22. The descriptive name stays deliberately scoped while raw identity FUN_0007c65c remains reversible.",
    "aliases": [
-    "FUN_0007c65c"
+    "FUN_0007c65c",
+    "pthread_attr_getstack"
    ]
   },
   "0x0007c670": {
@@ -20665,30 +20684,35 @@
   "0x0008096a": {
    "address": "0x0008096a",
    "raw_name": "FUN_0008096a",
-   "name": "FUN_0008096a",
-   "display_name": "FUN_0008096a",
-   "human": false,
-   "source": "recon/app/src/FUN_0008096a.c",
-   "aliases": []
+   "name": "z_log_msg_static_create_img_mgmt",
+   "display_name": "z_log_msg_static_create_img_mgmt",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized exact compiler-local logging helper in zephyr_img_mgmt.c; qualified to avoid colliding with identical constprop helpers in other source units. Raw identity remains FUN_0008096a.",
+   "aliases": [
+    "FUN_0008096a"
+   ]
   },
   "0x00080970": {
    "address": "0x00080970",
    "raw_name": "FUN_00080970",
-   "name": "FUN_00080970",
-   "display_name": "FUN_00080970",
-   "human": false,
-   "source": "recon/app/src/FUN_00080970.c",
-   "aliases": []
+   "name": "img_mgmt_vercmp",
+   "display_name": "img_mgmt_vercmp",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public zephyr_img_mgmt.c owner; raw identity remains FUN_00080970.",
+   "aliases": [
+    "FUN_00080970"
+   ]
   },
   "0x0008099e": {
    "address": "0x0008099e",
    "raw_name": "FUN_0008099e",
-   "name": "k_heap_alloc",
-   "display_name": "k_heap_alloc",
+   "name": "zcbor_tstr_encode_ptr",
+   "display_name": "zcbor_tstr_encode_ptr",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local helper emitted by img_mgmt_state.c; corrects the stale k_heap_alloc label while preserving raw FUN_0008099e.",
    "aliases": [
-    "FUN_0008099e"
+    "FUN_0008099e",
+    "k_heap_alloc"
    ]
   },
   "0x000809b0": {
@@ -20705,11 +20729,13 @@
   "0x000809f6": {
    "address": "0x000809f6",
    "raw_name": "FUN_000809f6",
-   "name": "FUN_000809f6",
-   "display_name": "FUN_000809f6",
-   "human": false,
-   "source": "recon/app/src/FUN_000809f6.c",
-   "aliases": []
+   "name": "img_mgmt_slot_in_use",
+   "display_name": "img_mgmt_slot_in_use",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact public img_mgmt_state.c owner; raw identity remains FUN_000809f6.",
+   "aliases": [
+    "FUN_000809f6"
+   ]
   },
   "0x00080a42": {
    "address": "0x00080a42",
@@ -26375,10 +26401,6 @@
   "FUN_00051038": "0x00051038",
   "FUN_0005109c": "0x0005109c",
   "FUN_00051164": "0x00051164",
-  "FUN_0005169c": "0x0005169c",
-  "FUN_00051870": "0x00051870",
-  "FUN_00051c38": "0x00051c38",
-  "FUN_00051c68": "0x00051c68",
   "FUN_00051fe4": "0x00051fe4",
   "FUN_00052000": "0x00052000",
   "FUN_000527dc": "0x000527dc",
@@ -26721,9 +26743,6 @@
   "FUN_00080406": "0x00080406",
   "FUN_00080780": "0x00080780",
   "FUN_00080872": "0x00080872",
-  "FUN_0008096a": "0x0008096a",
-  "FUN_00080970": "0x00080970",
-  "FUN_000809f6": "0x000809f6",
   "FUN_00080a46": "0x00080a46",
   "FUN_00080a4a": "0x00080a4a",
   "FUN_00080a4e": "0x00080a4e",
@@ -27780,20 +27799,25 @@
   "i2c_read_reg16_be": "0x000847d8",
   "id_find": "0x00054ce8",
   "idx_inc": "0x0007e35c",
-  "img_mgmt_erase_slot": "0x00052604",
-  "img_mgmt_flash_check_empty_inner": "0x000516ac",
+  "img_mgmt_erase": "0x00052180",
+  "img_mgmt_erase_slot": "0x000516ac",
+  "img_mgmt_erased_val": "0x00051a5c",
+  "img_mgmt_flash_area_id": "0x0005169c",
   "img_mgmt_get_next_boot_slot": "0x000809b0",
-  "img_mgmt_impl_erased_val": "0x00051a5c",
-  "img_mgmt_impl_read": "0x000517d8",
-  "img_mgmt_impl_write_image_data": "0x000518a8",
-  "img_mgmt_read_hash_and_flags": "0x00052038",
-  "img_mgmt_read_info": "0x00052180",
-  "img_mgmt_state_encode_image": "0x00051ac0",
-  "img_mgmt_state_read_51c98": "0x00051c98",
+  "img_mgmt_get_opposite_slot": "0x00051c38",
+  "img_mgmt_read": "0x000517d8",
+  "img_mgmt_read_info": "0x00052038",
+  "img_mgmt_set_next_boot_slot": "0x00051d8c",
+  "img_mgmt_slot_in_use": "0x000809f6",
+  "img_mgmt_slot_to_image": "0x00051c68",
+  "img_mgmt_state_encode_slot": "0x00051ac0",
+  "img_mgmt_state_read": "0x00051c98",
   "img_mgmt_state_read_521fc": "0x000521fc",
-  "img_mgmt_state_set_pending": "0x00051d8c",
   "img_mgmt_state_write": "0x00051e9c",
+  "img_mgmt_upload_inspect": "0x000518a8",
   "img_mgmt_ver_str": "0x00051f88",
+  "img_mgmt_vercmp": "0x00080970",
+  "img_mgmt_write_image_data": "0x00051870",
   "imu_fusion_thread": "0x0000fe88",
   "imu_pitch_task_reset_render_state": "0x000436f8",
   "imu_set_enabled": "0x0002bd4c",
@@ -27843,7 +27867,6 @@
   "k_calloc": "0x000868ca",
   "k_current_get": "0x000748ac",
   "k_fifo_peek_head_impl": "0x0008652c",
-  "k_heap_alloc": "0x0008099e",
   "k_heap_free": "0x00071b2c",
   "k_is_in_isr": "0x00086406",
   "k_mem_slab_alloc": "0x00071c20",
@@ -28253,7 +28276,6 @@
   "pt_comm_transport_write": "0x00030cd0",
   "pt_nfc_eeprom_link_init": "0x00030b3c",
   "pt_nfc_eeprom_link_start": "0x00030c90",
-  "pthread_attr_getstack": "0x0007c65c",
   "pull_message": "0x000342e0",
   "push_message": "0x00033f54",
   "push_message_3439c": "0x0003439c",
@@ -28360,6 +28382,7 @@
   "send_touch_click_event": "0x0007c058",
   "send_whitelist_json_chunked": "0x00035498",
   "sensor_channel_get_trampoline": "0x0007cef6",
+  "serialization_copy_fields_0c_10": "0x0007c65c",
   "serialization_init": "0x00025c54",
   "serialization_ipc_ept_register": "0x000259d4",
   "setDelayExitValue": "0x00049000",
@@ -28488,6 +28511,7 @@
   "stdio_reset_ungetc_buffer": "0x00087862",
   "stopAudioStreamRecord": "0x0002f80c",
   "stop_some_timer": "0x00048ff4",
+  "storage_erase_handler": "0x00052604",
   "storage_read_with_word_cache": "0x00061070",
   "store_whitelist": "0x00035608",
   "strcmp": "0x0000eefe",
@@ -28683,6 +28707,7 @@
   "z_log_dropped_read_and_clear": "0x0002f928",
   "z_log_dropped_read_and_clear_0": "0x0004d490",
   "z_log_msg_local_claim": "0x0004d56c",
+  "z_log_msg_static_create_img_mgmt": "0x0008096a",
   "z_ready_thread_locked": "0x000738d4",
   "z_reschedule": "0x000739f0",
   "z_reschedule_irqlock": "0x00086634",
@@ -28700,7 +28725,8 @@
   "zcbor_process_backup": "0x00085c86",
   "zcbor_simple_put": "0x00086360",
   "zcbor_str_decode": "0x00085ef0",
-  "zcbor_str_encode": "0x00086228"
+  "zcbor_str_encode": "0x00086228",
+  "zcbor_tstr_encode_ptr": "0x0008099e"
  },
  "conflicts": {
   "thunk_FUN_000723b8": [

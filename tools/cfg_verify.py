@@ -22729,6 +22729,7 @@ def verify(core, name, trials_random=40, source_override=None):
             os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
             "function_names_%s.json" % core)
         record = json.load(open(manifest_path))["by_address"]["0x%08x" % va]
+        raw_name = record.get("raw_name")
         readable_names = [record.get("name")]
         override_path = os.path.join(
             os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
@@ -22752,6 +22753,18 @@ def verify(core, name, trials_random=40, source_override=None):
             if readable_name and definition.search(body):
                 compile_name = readable_name
                 break
+        else:
+            # A caller may request a readable alias while the canonical parity
+            # source intentionally still defines its stable raw/address
+            # identity.  Falling through with the requested alias makes a
+            # successful compilation look like a compile failure because that
+            # symbol is absent from the linked candidate.  Prefer the actual
+            # raw definition; presentation aliases remain a separate layer.
+            raw_definition = re.compile(
+                r"\b%s\s*\([^;{}]*\)\s*\{" % re.escape(raw_name or ""),
+                re.S)
+            if raw_name and raw_definition.search(body):
+                compile_name = raw_name
     except (OSError, ValueError, KeyError, TypeError, re.error):
         pass
     comp, err = recon.compile_func(body, compile_name, va,

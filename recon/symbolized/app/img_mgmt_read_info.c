@@ -1,68 +1,84 @@
 #include "g1_app_symbols.h"
-/* readable reconstruction; identity: FUN_00052180 @ 0x00052180
+/* readable reconstruction; identity: FUN_00052038 @ 0x00052038
  * public-name: img_mgmt_read_info
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
- *   img_mgmt_flash_check_empty_inner         <= FUN_000516ac @ 0x000516ac
- *   img_mgmt_read_hash_and_flags             <= FUN_00052038 @ 0x00052038
- *   img_mgmt_read_info                       <= FUN_00052180 @ 0x00052180
- * address symbols (name @ address):
- *   rodata_85f8d                             @ 0x00085f8d
- *   rodata_f272f                             @ 0x000f272f
+ *   img_mgmt_read                            <= FUN_000517d8 @ 0x000517d8
+ *   img_mgmt_erased_val                      <= FUN_00051a5c @ 0x00051a5c
+ *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  */
-/* Reconstructed FUN_00052180 @ 0x52180. */
+/* Reconstructed FUN_00052038 @ 0x52038  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
+extern int img_mgmt_read(int, int, void*, ...);
+extern int img_mgmt_erased_val(int, void*);
+extern int memset_bytes(void*, int, int);
 
-extern int FUN_00080872(int source, void *descriptor, unsigned int count,
-                        uint32_t *auxiliary);
-extern int img_mgmt_read_hash_and_flags(uint32_t handle, void *scratch,
-                        uint32_t option, uint32_t context);
-extern int FUN_000809f6(uint32_t handle);
-extern unsigned int img_mgmt_flash_check_empty_inner(uint32_t handle);
-extern void FUN_00051fe4(void);
-extern void smp_add_cmd_err(int destination, unsigned int command,
-                         unsigned int status);
-
-struct parse_result {
-    uint32_t handle;
-    uint32_t auxiliary;
-};
-
-struct request_descriptor {
-    uint32_t token;
-    uint32_t token_length;
-    uint32_t callback;
-    struct parse_result *result;
-    uint8_t flags;
-};
-
-uint32_t img_mgmt_read_info(const uint8_t *request)
+int img_mgmt_read_info(int param_1, uint32_t *param_2, int param_3, uint32_t *param_4)
 {
-    int destination = *(const int *)(request + 8);
-    struct parse_result result = {1, 0};
-    uint8_t parse_scratch[8];
-    struct request_descriptor descriptor = {
-        ((unsigned long)&rodata_f272f) /*=0xf272f*/, 4, ((unsigned long)&rodata_85f8d) /*=0x85f8d*/, &result, 0
-    };
+    int iVar1, iVar2;
+    unsigned int uVar3, uVar4, uVar5, uVar6, uVar7;
+    unsigned char local_45;
+    short local_44;
+    unsigned short local_42;
+    int local_40[2];
+    unsigned short local_38;
+    int local_34;
+    uint32_t local_30, local_2c, uStack_28;
 
-    int status = FUN_00080872(*(const int *)(request + 4) + 4,
-                              &descriptor, 1, &result.auxiliary);
-    if (status != 0)
-        return 3;
-
-    status = img_mgmt_read_hash_and_flags(result.handle, parse_scratch, 0, 0);
-    unsigned int response;
-    if (status == 0 && FUN_000809f6(result.handle) != 0) {
-        response = 9;
+    iVar1 = img_mgmt_erased_val(param_1, &local_45);
+    if (iVar1 != 0) return 2;
+    iVar2 = img_mgmt_read(param_1, 0, local_40, 0x20);
+    iVar1 = (int)0x96f3b83d;
+    if (iVar2 != 0) return iVar2;
+    if (param_2 == (uint32_t *)0x0) {
+        if (local_40[0] != (int)0x96f3b83d) {
+LAB_000520f6:
+            if (local_40[0] == (int)((unsigned int)local_45 * 0x1010101)) return 3;
+            return 0x17;
+        }
     } else {
-        response = img_mgmt_flash_check_empty_inner(result.handle);
-        FUN_00051fe4();
-        if (response == 0)
-            return 0;
-        response &= 0xffffu;
+        memset_bytes(param_2, (unsigned int)local_45, 8);
+        if (local_40[0] != iVar1) goto LAB_000520f6;
+        *param_2 = local_2c;
+        param_2[1] = uStack_28;
     }
-
-    smp_add_cmd_err(destination + 4, 1, response);
-    return 0;
+    if (param_4 != (uint32_t *)0x0) {
+        *param_4 = local_30;
+    }
+    iVar2 = (unsigned int)local_38 + local_34;
+    iVar1 = img_mgmt_read(param_1, iVar2, &local_44);
+    if ((iVar1 == 0) && (local_44 == 0x6908)) {
+        iVar2 = iVar2 + (unsigned int)local_42;
+    }
+    iVar1 = img_mgmt_read(param_1, iVar2, &local_44);
+    if ((iVar1 == 0) && (local_44 == 0x6907)) {
+        uVar5 = (unsigned int)local_42 + iVar2 + 4U;
+        uVar7 = 0;
+        uVar4 = iVar2 + 4U;
+        while (uVar6 = uVar4 + 4, uVar6 <= uVar5) {
+            iVar1 = img_mgmt_read(param_1, uVar4, &local_44);
+            if (iVar1 != 0) return iVar1;
+            uVar3 = (unsigned int)local_42;
+            if (local_44 == 0xff) {
+                if (uVar3 == 0xffff) return 5;
+LAB_00052142:
+                uVar4 = uVar3 + 4 + uVar4;
+            } else {
+                if ((local_44 != 0x10) || (uVar3 != 0x20)) goto LAB_00052142;
+                if (uVar7 != 0) return 6;
+                if (param_3 != 0) {
+                    if (uVar5 < uVar4 + 0x24) return 7;
+                    iVar1 = img_mgmt_read(param_1, uVar6, (void*)(intptr_t)param_3);
+                    if (iVar1 != 0) return iVar1;
+                }
+                uVar7 = 1;
+                uVar4 = uVar6;
+            }
+        }
+        iVar1 = (uVar7 ^ 1) << 3;
+    } else {
+        iVar1 = 4;
+    }
+    return iVar1;
 }
