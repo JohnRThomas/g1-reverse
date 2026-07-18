@@ -1,0 +1,163 @@
+{
+ "schema": 1,
+ "batch": "COLLISION-03",
+ "core": "app",
+ "status": "audited_report_only",
+ "decision": "namespaced_reconstruction_retain",
+ "safe_for_sdk_adoption": false,
+ "inputs": {
+  "collision_catalog": "recon/ownership/app_build_collision_ownership.json",
+  "configured_object": "/private/tmp/g1-app-residue-current-0718/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+  "configured_object_sha256": "bb5f3f569c120f2fb15eace0d6dd19db6bdc90f1b677bb49e5b8e46671f3807d",
+  "configured_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+  "configured_source_sha256": "d3829a14a5868033b222c0ef81584409ce6db20f968ae8cb9b1fa27e9c14b073",
+  "configured_source_commit": "9784731461018d3e983604698fbbed6af2bea801",
+  "zephyr_config_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+  "configured_nrfx_assert": "empty_macro"
+ },
+ "shared_state": {
+  "firmware_address": "0x2000b31c",
+  "size": 8,
+  "layout": [
+   {"offset": 0, "field": "event_handler", "width": 4},
+   {"offset": 4, "field": "module_initialized", "width": 1}
+  ],
+  "configured_object_symbol": "m_clock_cb",
+  "configured_object_binding": "STB_LOCAL",
+  "configured_object_section": ".bss.m_clock_cb",
+  "configured_object_size": 8,
+  "identity": "same_layout_different_link_storage",
+  "risk": "Adopting the configured object would bind its private BSS, not the firmware-pinned state at 0x2000b31c."
+ },
+ "functions": [
+  {
+   "va": "0x00065000",
+   "raw_symbol": "FUN_00065000",
+   "current_symbol": "nrfx_clock_stop",
+   "actual_identity": "clock_stop",
+   "actual_linkage": "file_local_in_upstream",
+   "abi": "void clock_stop(nrf_clock_domain_t domain)",
+   "identity_finding": "The current public name is wrong: this is the large private implementation, while the configured public nrfx_clock_stop is a four-byte tail branch.",
+   "collision_receipt_sha256": "15ec74cc3a6b69479e32e8ff213daab60b056d304f3fd693c993dcf6c6484682",
+   "reconstruction_source_sha256": "9135d35af86abd7e78151a0f678dacec682cffc77c510f7104e65edb195b4d3b",
+   "firmware_extent": 384,
+   "firmware_sha256": "2ae9965cfccb5b84fcceeb4b47fbdec6d1dbab8fca0d78fe8cac35ac1c0d8526",
+   "firmware_instruction_count": 139,
+   "upstream_section": ".text.clock_stop",
+   "upstream_size": 354,
+   "upstream_sha256": "691a3e636d640a826780d80f2693a26e7ece7ddf9b0147cba8501b611326ea3b",
+   "upstream_instruction_count": 126,
+   "upstream_relocations": [
+    {"offset": 164, "type": "R_ARM_THM_CALL", "target": "nrfx_busy_wait"},
+    {"offset": 222, "type": "R_ARM_THM_CALL", "target": "nrfx_busy_wait"},
+    {"offset": 280, "type": "R_ARM_THM_CALL", "target": "nrfx_busy_wait"},
+    {"offset": 334, "type": "R_ARM_THM_CALL", "target": "nrfx_busy_wait"}
+   ],
+   "firmware_calls": [
+    {"site": "0x00065084", "target": "0x0007e2fa", "role": "assert_report"},
+    {"site": "0x0006508c", "target": "0x0007e2ec", "role": "assert_abort"},
+    {"site": "0x000650ba", "target": "0x000850d8", "role": "busy_wait"},
+    {"site": "0x000650ec", "target": "0x000850d8", "role": "busy_wait"},
+    {"site": "0x0006511c", "target": "0x000850d8", "role": "busy_wait"},
+    {"site": "0x00065144", "target": "0x0007e2fa", "role": "assert_report"},
+    {"site": "0x0006516c", "target": "0x000850d8", "role": "busy_wait"}
+   ],
+   "comparison": {
+    "relocation_aware_opcode_score": 0.566038,
+    "operand_shape_score": 0.558491,
+    "instruction_length_score": 0.906475,
+    "relocation_masked_exact": false,
+    "semantic_delta": ["firmware assertion paths", "different control-flow layout"]
+   },
+   "cfg_verify": {"status": "PASS", "cases": 9, "selectors": {"arg0": [0, 1, 2, 3, 4]}},
+   "direct_call_sites": [
+    {"site": "0x00065276", "caller_entry": "0x0006522c", "role": "nrfx_clock_start family"},
+    {"site": "0x00065348", "caller_entry": "0x00065324", "role": "firmware checked public wrapper"}
+   ],
+   "recommendation": "Retain and rename to a non-colliding private identity such as g1_clock_stop_impl; never exclude it in favor of configured nrfx_clock_stop."
+  },
+  {
+   "va": "0x00065190",
+   "raw_symbol": "FUN_00065190",
+   "current_symbol": "nrfx_clock_init",
+   "actual_identity": "firmware_checked_nrfx_clock_init",
+   "abi": "nrfx_err_t nrfx_clock_init(nrfx_clock_event_handler_t event_handler)",
+   "collision_receipt_sha256": "466cdd944b60dca0af7aa3aa66d181f81dab1b7e8b822ddd6757c8f4f3f2c81c",
+   "reconstruction_source_sha256": "13902e907117053e0a273c81a122c2fb1676857fc748d235a8e90ed469938b8a",
+   "firmware_extent": 48,
+   "firmware_sha256": "d8a489405ee0b05ebce4fae82360b2041601a555a2eca267a4c834407540ad3a",
+   "firmware_instruction_count": 20,
+   "upstream_section": ".text.nrfx_clock_init",
+   "upstream_size": 32,
+   "upstream_sha256": "19d5b926bd9d80a1368a5ff98a61bcf0ffb1290242b7251022257c291f247493",
+   "upstream_instruction_count": 16,
+   "upstream_relocations": [
+    {"offset": 20, "type": "R_ARM_ABS32", "target": ".bss.m_clock_cb"}
+   ],
+   "firmware_calls": [
+    {"site": "0x0006519e", "target": "0x0007e2fa", "role": "assert_report"},
+    {"site": "0x000651a8", "target": "0x0007e2ec", "role": "assert_abort"}
+   ],
+   "comparison": {
+    "relocation_aware_opcode_score": 0.388889,
+    "operand_shape_score": 0.333333,
+    "instruction_length_score": 0.8,
+    "relocation_masked_exact": false,
+    "matching_non_null_semantics": ["already-initialized return", "event handler store", "module_initialized store", "nrfx result constants"],
+    "semantic_delta": ["firmware rejects a null handler through assert_report/assert_abort", "configured NRFX_ASSERT is compiled out", "configured object owns separate local BSS"]
+   },
+   "cfg_verify": {"status": "PASS", "cases": 2, "selectors": {"arg0": [0, 1]}},
+   "direct_call_sites": [
+    {"site": "0x0006059e", "caller_entry": "0x0006058c", "caller_cfg_verify": "PASS cases=0", "caller_source_sha256": "45ca6cb26d5919338dd830cf32565b996e849d99024ceb2435c5f53dd8e2d849"}
+   ],
+   "recommendation": "Retain under a non-colliding firmware name such as g1_nrfx_clock_init_checked and correct its C prototype to the one-argument ABI."
+  },
+  {
+   "va": "0x00065324",
+   "raw_symbol": "FUN_00065324",
+   "current_symbol": "FUN_00065324",
+   "actual_identity": "firmware_checked_nrfx_clock_stop",
+   "abi": "void nrfx_clock_stop(nrf_clock_domain_t domain)",
+   "reconstruction_source_sha256": "cd0e2d243820e0c97baf121337bb8f09688e8ed9b81f64689f10db86931bdc67",
+   "firmware_extent": 56,
+   "firmware_code_size": 40,
+   "firmware_sha256": "e2a9f7f5ebee5601428512766d1edde84700c2a05f8a61fba0ed8a88ece006a4",
+   "firmware_instruction_count": 14,
+   "upstream_section": ".text.nrfx_clock_stop",
+   "upstream_size": 4,
+   "upstream_sha256": "90a54a1f68a806a1795bd044856908235426b3c0f67be605fb94d3d5344a747f",
+   "upstream_instruction_count": 1,
+   "upstream_relocations": [
+    {"offset": 0, "type": "R_ARM_THM_JUMP24", "target": "clock_stop"}
+   ],
+   "firmware_calls": [
+    {"site": "0x00065336", "target": "0x0007e2fa", "role": "assert_report"},
+    {"site": "0x00065340", "target": "0x0007e2ec", "role": "assert_abort"},
+    {"site": "0x00065348", "target": "0x00065000", "role": "tail_call_private_clock_stop"}
+   ],
+   "comparison": {
+    "relocation_aware_opcode_score": 0.133333,
+    "operand_shape_score": 0.133333,
+    "instruction_length_score": 0.071429,
+    "relocation_masked_exact": false,
+    "semantic_delta": ["firmware asserts module_initialized before tail-calling clock_stop", "configured wrapper contains only the tail branch"]
+   },
+   "cfg_verify": {"status": "PASS", "cases": 1},
+   "direct_call_sites": [
+    {"site": "0x00060766", "caller_entry": "0x00060744", "domain": 1},
+    {"site": "0x00083876", "caller_entry": "0x00083874", "domain": 3, "kind": "tail_veneer"},
+    {"site": "0x0008387c", "caller_entry": "0x0008387a", "domain": 2, "kind": "tail_veneer"},
+    {"site": "0x00083882", "caller_entry": "0x00083880", "domain": 0, "kind": "tail_veneer"}
+   ],
+   "recommendation": "Retain as the namespaced checked public wrapper and route all four firmware call sites to it; correct the current two-argument reconstruction prototype to one argument."
+  }
+ ],
+ "implementation_closure": {
+  "action": "rename_reconstructed_firmware_owners_and_retarget_firmware_callers",
+  "exclude_reconstruction_vas": [],
+  "adopt_configured_sdk_symbols": [],
+  "required_firmware_vas": ["0x00065000", "0x00065190", "0x00065324"],
+  "required_call_sites": ["0x0006059e", "0x00060766", "0x00065276", "0x00065348", "0x00083876", "0x0008387c", "0x00083882"],
+  "do_not": ["do not authorize either collision for exclusion", "do not alias private clock_stop to the configured public nrfx_clock_stop", "do not let firmware callers bind the configured no-assert wrappers", "do not merge the configured object's private m_clock_cb with firmware state without an explicit pinned-storage proof"]
+ }
+}
