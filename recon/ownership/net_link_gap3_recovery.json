@@ -1,0 +1,80 @@
+{
+  "functions": [
+    {
+      "analysis_address": "0x0101e404",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "final branch ends at 0x0101e462; literal 0x003fffe0 starts at 0x0101e464",
+      "catalogued_start": true,
+      "cfg_verify": {"callback_slots": [], "checked": 13, "cover_cases": 13, "data_pointer_slots": [], "pointer_cases": [], "selectors": {}, "status": "PASS"},
+      "raw_symbol": "FUN_0101e404",
+      "recommended_readable_name": "controller_access_address_pattern_is_valid",
+      "runtime_address": "0x0101ec04",
+      "source": "recon/net/src/FUN_0101e404.c",
+      "source_sha256": "02c1eaab5b8af99b493d0bf80183d1f152dfa7795550ef0998a360e7fbf9d466",
+      "true_executable_extent": 94
+    },
+    {
+      "analysis_address": "0x01025734",
+      "archive_family": "mpsl",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "BX LR ends at 0x01025754; aligned global/MMIO literals start there",
+      "catalogued_start": false,
+      "cfg_verify": {"callback_slots": [], "checked": 7, "cover_cases": 7, "data_pointer_slots": [], "pointer_cases": [], "selectors": {}, "status": "PASS"},
+      "raw_symbol": "FUN_01025734",
+      "recommended_readable_name": "controller_deferred_irq_set_pending",
+      "runtime_address": "0x01025f34",
+      "source": "recon/net/src/FUN_01025734.c",
+      "source_sha256": "0b43838de026539ad8eeb22d8238fac5b583e3cf9daed6374ff96dfd3a02e779",
+      "true_executable_extent": 32
+    },
+    {
+      "analysis_address": "0x01025bf8",
+      "archive_family": "mpsl",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "POP return ends at 0x01025c34; state-base literal starts there",
+      "catalogued_start": true,
+      "cfg_verify": {"callback_slots": [], "checked": 40, "cover_cases": 0, "data_pointer_slots": [], "pointer_cases": [], "selectors": {}, "status": "PASS"},
+      "directed_state_callback_parity": {
+        "cases": ["busy", "idle", "start-null", "start-callback", "active", "stop-null", "stop-callback", "start-callback-advances-stop", "stop-replaces-completion"],
+        "checked": 9,
+        "status": "PASS"
+      },
+      "raw_symbol": "FUN_01025bf8",
+      "recommended_readable_name": "controller_apply_pending_transition",
+      "runtime_address": "0x010263f8",
+      "source": "recon/net/src/FUN_01025bf8.c",
+      "source_sha256": "a68ef034cb968166b33824ecc2c5036802adbc8e43c9653288869d4779c636e8",
+      "true_executable_extent": 60
+    },
+    {
+      "analysis_address": "0x0102689c",
+      "archive_family": "softdevice_controller",
+      "archive_identity_is_provenance_only": true,
+      "boundary_evidence": "POP return ends at 0x010268ce; next independent PUSH begins there",
+      "catalogued_start": true,
+      "cfg_verify": {"callback_slots": [], "checked": 6, "cover_cases": 6, "data_pointer_slots": [], "pointer_cases": [], "selectors": {}, "status": "PASS"},
+      "raw_symbol": "FUN_0102689c",
+      "recommended_readable_name": "controller_encoded_stride_scale",
+      "runtime_address": "0x0102709c",
+      "source": "recon/net/src/FUN_0102689c.c",
+      "source_sha256": "a2bf9100d28ee8f93e7137129c37773641dfbdd3df73657ea09e023dfad9b4e5",
+      "true_executable_extent": 50
+    }
+  ],
+  "policy": {
+    "archive_replacement_forbidden": true,
+    "canonical_c_required": true,
+    "catalog_missed_extent_strategy": "process-local reviewed size injection",
+    "no_blobs": true,
+    "private_sdc_mpsl": "report_only_unchanged"
+  },
+  "schema": "g1.net.link_gap_recovery.v1",
+  "summary": {
+    "additional_directed_trials": 9,
+    "cfg_checked_trials": 66,
+    "cfg_pass_count": 4,
+    "function_count": 4,
+    "total_true_executable_extent": 236
+  }
+}
