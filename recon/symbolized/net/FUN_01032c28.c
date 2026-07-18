@@ -3,7 +3,10 @@
  * public-name: FUN_01032c28
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_0102eb2c @ 0x0102eb2c
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   __memcpy_chk                             <= FUN_0103b53a @ 0x0103b53a
  * address symbols (name @ address):
  *   rodata_10335e5                           @ 0x010335e5
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -28,13 +31,13 @@ typedef unsigned char u8;
 #define W16(a) (*(volatile u16*)(u32)(a))
 #define W8(a)  (*(volatile u8*)(u32)(a))
 
-extern void FUN_0102eb2c(unsigned);
+extern void arch_irq_enable(unsigned);
 extern void FUN_01032860(unsigned);
 extern void FUN_01032ad8(void);
 extern void FUN_01033b18(unsigned,unsigned);
-extern void FUN_01039bb0(unsigned,unsigned);
+extern void assert_post_action(unsigned,unsigned);
 extern void assert_print(unsigned,unsigned,unsigned);
-extern void FUN_0103b53a(unsigned,unsigned,unsigned,unsigned);
+extern void __memcpy_chk(unsigned,unsigned,unsigned,unsigned);
 
 void FUN_01032c28(void)
 {
@@ -56,7 +59,7 @@ void FUN_01032c28(void)
     }
     u32 puVar10 = W32(piVar5_addr);
     W8(pbVar3) = (u8)((W8(pbVar3) & 0xfcu) | (W8(puVar10+4) & 3u));
-    FUN_0103b53a(pbVar3+2, puVar10+5, W8(puVar10), 0xfb);
+    __memcpy_chk(pbVar3+2, puVar10+5, W8(puVar10), 0xfb);
     W32(REG_41008000 /*=0x41008000*/ + 0x200) = 0x11b;
     W32(REG_41008000 /*=0x41008000*/ + 0x304) = 0x10;
     W32(((unsigned long)&g_esb_pipe_cfg_field) /*=0x210049ac*/) = W16(pcVar4 + 0xe);
@@ -74,7 +77,7 @@ void FUN_01032c28(void)
     u8 bVar11 = (u8)((W8(pbVar9+4) & 3u) << 1);
     if (bVar2 == 0) bVar11 |= 1;
     W8(pbVar3+1) = (u8)(bVar11 | (W8(pbVar3+1) & 0xf8u));
-    FUN_0103b53a(0x2100635du, pbVar9+5, W8(pbVar9), 0xfb);
+    __memcpy_chk(0x2100635du, pbVar9+5, W8(pbVar9), 0xfb);
     if (bVar14 == 0) {
       W32(REG_41008000 /*=0x41008000*/+0x200) = 0x113;
       W32(((unsigned long)&g_net_radio_irq_continuation_ptr) /*=0x210049a0*/) = ((unsigned long)&rodata_10335e5) /*=0x10335e5*/;
@@ -100,14 +103,14 @@ tail:
     u32 sz = (u32)W8(((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/+0x13) + 0x960u;
     if (sz > 0x9c4u) {
       assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e3e0) /*=0x103e3e0*/, 0x6b7u);
-      FUN_01039bb0(((unsigned long)&rodata_103e3e0) /*=0x103e3e0*/, 0x6b7u);
+      assert_post_action(((unsigned long)&rodata_103e3e0) /*=0x103e3e0*/, 0x6b7u);
       __builtin_unreachable();
     }
     W32(REG_41008000 /*=0x41008000*/+0x508) = (u32)W8(((unsigned long)&g_net_radio_crc_scratch) /*=0x21000684*/+0x13);
     FUN_01032ad8();
     W32(REG_41008000 /*=0x41008000*/+0x504) = pbVar3;
     W32(0xe000e100u+0x180) = 0x100;
-    FUN_0102eb2c(8);
+    arch_irq_enable(8);
     W32(REG_41008000 /*=0x41008000*/+0x104) = 0;
     W32(REG_41008000 /*=0x41008000*/+0x108) = 0;
     W32(REG_41008000 /*=0x41008000*/+0x110) = 0;

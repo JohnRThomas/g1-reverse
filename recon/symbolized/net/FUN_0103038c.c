@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   onoff_request                            <= FUN_0102ca80 @ 0x0102ca80
  *   arch_cpu_atomic_idle                     <= FUN_0102ea00 @ 0x0102ea00
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -16,7 +17,7 @@
 
 extern int32_t onoff_request(uint32_t object, uint32_t state);
 extern void assert_print(uint32_t source, uint32_t message, uint32_t line);
-extern void FUN_01039bb0(uint32_t message, uint32_t line)
+extern void assert_post_action(uint32_t message, uint32_t line)
     __attribute__((noreturn));
 extern uint32_t FUN_0103b14a(void);
 extern void arch_cpu_atomic_idle(uint32_t saved_basepri);
@@ -42,7 +43,7 @@ uint32_t FUN_0103038c(uint32_t mode)
         state[2] = 1u;
         if (onoff_request(0x21004834u, 0x21004800u) < 0) {
             assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x230u);
-            FUN_01039bb0(0x0103dea5u, 0x230u);
+            assert_post_action(0x0103dea5u, 0x230u);
         }
     }
 
@@ -50,7 +51,7 @@ uint32_t FUN_0103038c(uint32_t mode)
         return 0u;
     if (mode > 2u) {
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, 0x0103dea5u, 0x242u);
-        FUN_01039bb0(0x0103dea5u, 0x242u);
+        assert_post_action(0x0103dea5u, 0x242u);
     }
 
     if (mode == 1u && (CLOCK[0x41c / 4] & 3u) == 2u)

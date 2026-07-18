@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_0102e4f4 @ 0x0102e4f4
  * public-name: FUN_0102e4f4
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  * address symbols (name @ address):
  *   rodata_102eca1                           @ 0x0102eca1
  *   rodata_103024d                           @ 0x0103024d
@@ -34,7 +36,7 @@ extern int FUN_0102e460(uint32_t, const char *, ...);
 extern void FUN_0102e484(uint32_t, uint32_t);
 extern int FUN_0103966e(const void *, const void *, uint32_t, const void *);
 extern void assert_print(const void *, const void *, uint32_t);
-extern void FUN_01039bb0(const void *, uint32_t);
+extern void assert_post_action(const void *, uint32_t);
 extern uint32_t FUN_0103a2c8(void);
 extern void FUN_0103a344(uint32_t);
 
@@ -51,7 +53,7 @@ void FUN_0102e4f4(uint32_t output, uint32_t timestamp, int32_t domain,
         if (type > 4) {
             assert_print((const void *)0x0103d2a7u,
                          (const void *)0x0103d6e1u, 0x1bf);
-            FUN_01039bb0((const void *)0x0103d6e1u, 0x1bf);
+            assert_post_action((const void *)0x0103d6e1u, 0x1bf);
         }
 
         uint32_t thread = FUN_0103a2c8();
@@ -115,7 +117,7 @@ void FUN_0102e4f4(uint32_t output, uint32_t timestamp, int32_t domain,
                          output, package) < 0) {
             assert_print((const void *)0x0103d2a7u,
                          (const void *)0x0103d6e1u, 0x219);
-            FUN_01039bb0((const void *)0x0103d6e1u, 0x219);
+            assert_post_action((const void *)0x0103d6e1u, 0x219);
         }
     }
 

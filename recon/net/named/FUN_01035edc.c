@@ -2,6 +2,7 @@
  * public-name: FUN_01035edc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -12,7 +13,7 @@
 typedef unsigned int uint;
 extern void FUN_0102ece0(int,int,int,int,unsigned int,unsigned int,unsigned int);
 extern int FUN_0102edac(int,int);
-extern void FUN_01039bb0(unsigned int,unsigned int);
+extern void assert_post_action(unsigned int,unsigned int);
 extern void assert_print(unsigned int,unsigned int,unsigned int);
 
 int FUN_01035edc(int param_1, int param_2, int param_3, int param_4b, unsigned int param_5,
@@ -21,12 +22,12 @@ int FUN_01035edc(int param_1, int param_2, int param_3, int param_4b, unsigned i
     if (param_8 == 0xf) {
         if (param_4b != 0x01036955) {
             assert_print(0x0103d2a7, 0x0103ea45, 0x21a);
-            FUN_01039bb0(0x0103ea45, 0x21a);
+            assert_post_action(0x0103ea45, 0x21a);
             __builtin_unreachable();
         }
     } else if ((unsigned int)(param_8 + 0x10) > 0x1e) {
         assert_print(0x0103d2a7, 0x0103ea45, 0x21a);
-        FUN_01039bb0(0x0103ea45, 0x21a);
+        assert_post_action(0x0103ea45, 0x21a);
         __builtin_unreachable();
     }
     *(volatile int*)(param_1 + 0x58) = param_1 + 0x58;

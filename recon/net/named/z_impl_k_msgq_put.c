@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_k_msgq_put                        <= FUN_01036198 @ 0x01036198
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   z_handle_obj_poll_events                 <= FUN_0103b4f6 @ 0x0103b4f6
  * address symbols (name @ address):
@@ -26,7 +27,7 @@ extern void FUN_0103705c(int);
 extern void FUN_01037130(int, unsigned int);
 extern unsigned int FUN_010375b8(int, unsigned int, int, int, unsigned int, unsigned int);
 extern int FUN_010379d4(int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int, ...);
 extern void z_handle_obj_poll_events(int, int);
 extern void FUN_0103b614(unsigned int, unsigned int, unsigned int);
@@ -137,6 +138,6 @@ unsigned int z_impl_k_msgq_put(int param_1, unsigned int param_2, unsigned int p
     uVar8 = DAT_010362c0;
   }
 LAB_010361ea:
-  FUN_01039bb0(uVar8, uVar3);
+  assert_post_action(uVar8, uVar3);
   __builtin_unreachable();
 }

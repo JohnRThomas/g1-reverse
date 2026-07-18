@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   arch_irq_enable                          <= FUN_0102eb2c @ 0x0102eb2c
  * address symbols (name @ address):
  *   rodata_1032fbd                           @ 0x01032fbd
  *   rodata_1032fd9                           @ 0x01032fd9
@@ -45,7 +46,7 @@ extern uint8_t FUN_01033de4(void);
 extern void FUN_0103a83e(void);
 extern void FUN_0102eb8c(uint32_t, uint32_t, uint32_t);
 extern void FUN_0103a38a(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
-extern void FUN_0102eb2c(uint32_t);
+extern void arch_irq_enable(uint32_t);
 extern void z_impl_z_log_msg_static_create(uint32_t, uint32_t, void *, uint32_t);
 
 #define reset_radio_owner             FUN_01033354
@@ -58,7 +59,7 @@ extern void z_impl_z_log_msg_static_create(uint32_t, uint32_t, void *, uint32_t)
 #define activate_radio_backend        FUN_0103a83e
 #define configure_radio_irq           FUN_0102eb8c
 #define connect_radio_irq_handler     FUN_0103a38a
-#define enable_radio_irq              FUN_0102eb2c
+#define enable_radio_irq              arch_irq_enable
 #define publish_radio_diagnostic      z_impl_z_log_msg_static_create
 
 struct timer_init {

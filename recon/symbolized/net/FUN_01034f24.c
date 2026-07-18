@@ -2,10 +2,12 @@
 /* readable reconstruction; identity: FUN_01034f24 @ 0x01034f24
  * public-name: FUN_01034f24
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   arch_irq_enable                          <= FUN_0102eb2c @ 0x0102eb2c
  */
 /* net-core FUN_01034f24 @ 0x1034f24 */
 #include <stdint.h>
-extern void FUN_0102eb2c(int32_t, uint32_t);
+extern void arch_irq_enable(int32_t, uint32_t);
 
 uint32_t FUN_01034f24(volatile uint32_t **peripheral_ref,
                       const uint32_t *configuration)
@@ -26,7 +28,7 @@ uint32_t FUN_01034f24(volatile uint32_t **peripheral_ref,
         *(volatile uint32_t *)((uintptr_t)peripheral + offset) = 0;
         (void)*(volatile uint32_t *)((uintptr_t)peripheral + offset);
     }
-    FUN_0102eb2c(((int32_t)(uintptr_t)peripheral << 12) >> 24,
+    arch_irq_enable(((int32_t)(uintptr_t)peripheral << 12) >> 24,
                  *(volatile uint32_t *)((uintptr_t)peripheral + 0x15c));
     return 0x0bad0000;
 }

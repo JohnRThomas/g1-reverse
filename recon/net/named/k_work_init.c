@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   k_work_init                              <= FUN_01036bec @ 0x01036bec
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +12,7 @@
 /* net-core FUN_01036bec @ 0x1036bec  (parity 300 trials PROVEN) */
 
 extern void assert_print(unsigned int, unsigned int, unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void FUN_0103b62e(void*, int, int, unsigned int, unsigned int);
 void k_work_init(int *param_1,int param_2,unsigned int param_3,unsigned int param_4)
 {
@@ -28,5 +29,5 @@ void k_work_init(int *param_1,int param_2,unsigned int param_3,unsigned int para
     assert_print(0x0103d2a7, 0x0103eaed, 0x8a);
     uVar1 = 0x8a;
   }
-  FUN_01039bb0(0x0103eaed, uVar1);
+  assert_post_action(0x0103eaed, uVar1);
 }

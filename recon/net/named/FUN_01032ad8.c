@@ -2,6 +2,7 @@
  * public-name: FUN_01032ad8
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -13,7 +14,7 @@
 extern void FUN_01021920(int a, void *b, int c, int d, int e);
 extern int FUN_010218fc(int a);
 extern int assert_print(int a, int b, int c);
-extern int FUN_01039bb0(int a, int b);
+extern int assert_post_action(int a, int b);
 
 void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param_3)
 {
@@ -32,7 +33,7 @@ void FUN_01032ad8(unsigned int param_1, unsigned int param_2, unsigned int param
     int r0carry;
     if (iVar3 != 0) {
         assert_print(0x103d2a7, 0x103e3bf, 0x242);
-        r0carry = FUN_01039bb0(0x103e3bf, 0x242);
+        r0carry = assert_post_action(0x103e3bf, 0x242);
     } else {
         r0carry = 0;
     }

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   net_buf_simple_reserve                   <= FUN_01030014 @ 0x01030014
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +12,7 @@
 /* net-core FUN_01030014 @ 0x1030014  (parity 300 trials PROVEN) */
 
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c);
-extern unsigned long long FUN_01039bb0(unsigned int a, unsigned int b);
+extern unsigned long long assert_post_action(unsigned int a, unsigned int b);
 
 void net_buf_simple_reserve(int *param_1, int param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -19,14 +20,14 @@ void net_buf_simple_reserve(int *param_1, int param_2, unsigned int param_3, uns
   unsigned int r0v, r1v;
   if (param_1 == 0) {
     assert_print(0x0103d2a7u, 0x0103de6bu, 0x2b);
-    rv = FUN_01039bb0(0x0103de6bu, 0x2b);
+    rv = assert_post_action(0x0103de6bu, 0x2b);
   } else {
     if ((short)param_1[1] == 0) {
       *param_1 = param_1[2] + param_2;
       return;
     }
     assert_print(0x0103d2a7u, 0x0103de6bu, 0x2c);
-    rv = FUN_01039bb0(0x0103de6bu, 0x2c);
+    rv = assert_post_action(0x0103de6bu, 0x2c);
   }
   r0v = (unsigned int)rv;
   r1v = (unsigned int)(rv >> 32);

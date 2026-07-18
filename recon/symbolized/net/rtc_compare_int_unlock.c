@@ -1,0 +1,27 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_010312d0 @ 0x010312d0
+ * public-name: rtc_compare_int_unlock
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   rtc_compare_int_unlock                   <= FUN_010312d0 @ 0x010312d0
+ * address symbols (name @ address):
+ *   REG_41016304                             @ 0x41016304
+ */
+/* net-core FUN_010312d0 @ 0x10312d0 */
+#include <stdint.h>
+
+uint32_t rtc_compare_int_unlock(uint32_t channel, uint32_t enable)
+{
+    if (!enable)
+        return channel;
+    uint32_t shift = channel & 255u;
+    uint32_t bit = shift < 32u ? 1u << shift : 0u;
+    uint32_t *enabled = (uint32_t *)0x2100496cu;
+    (void)__atomic_fetch_or(enabled, bit, __ATOMIC_ACQ_REL);
+    *(volatile uint32_t *)REG_41016304 /*=0x41016304*/ = shift < 16u ? 0x10000u << shift : 0u;
+    uint32_t pending = *(volatile uint32_t *)0x21004964u;
+    if (shift < 32u && ((pending >> shift) & 1u))
+        *(volatile uint32_t *)0xe000e200u = 0x00400000u;
+    /* The machine routine leaves the channel value in r0. */
+    return channel;
+}

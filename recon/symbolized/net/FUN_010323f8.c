@@ -3,6 +3,7 @@
  * public-name: FUN_010323f8
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   z_device_is_ready                        <= FUN_0103b0f0 @ 0x0103b0f0
  * address symbols (name @ address):
@@ -14,7 +15,7 @@
 
 extern int z_device_is_ready(void *a);
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c);
-extern void FUN_01039bb0(unsigned int a, unsigned int b);
+extern void assert_post_action(unsigned int a, unsigned int b);
 
 typedef unsigned int (*fnptr)(void*, unsigned int, unsigned short);
 
@@ -28,7 +29,7 @@ unsigned int FUN_010323f8(unsigned int param_1, unsigned short param_2)
     target = *(unsigned int *)(*(unsigned int *)((char*)iVar1 + 8));
     if (target == 0) {
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e187) /*=0x103e187*/, 0x4d);
-        FUN_01039bb0(((unsigned long)&rodata_103e187) /*=0x103e187*/, 0x4d);
+        assert_post_action(((unsigned long)&rodata_103e187) /*=0x103e187*/, 0x4d);
     }
     f = (fnptr)target;
     return f(iVar1, param_1, param_2);

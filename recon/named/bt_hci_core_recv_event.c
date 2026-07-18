@@ -3,19 +3,11 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   bt_hci_core_recv_event                   <= FUN_000536b8 @ 0x000536b8
- *   ble_conn_unref                           <= FUN_000566a4 @ 0x000566a4
- *   ble_conn_lookup_masked                   <= FUN_00056908 @ 0x00056908
- *   net_buf_id                               <= FUN_0005ee18 @ 0x0005ee18
- *   net_buf_slist_get                        <= FUN_0005f148 @ 0x0005f148
- *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
- *   net_buf_simple_pull_5f594                <= FUN_0005f594 @ 0x0005f594
- *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
- *   bt_hci_evt_get_flags                     <= FUN_00080e14 @ 0x00080e14
- *   k_work_submit_to_queue                   <= FUN_000865fc @ 0x000865fc
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_8b190                             @ 0x0008b190
  *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f2ddb                             @ 0x000f2ddb
  *   rodata_f2e84                             @ 0x000f2e84
  *   rodata_f2eb8                             @ 0x000f2eb8
  *   rodata_f2ef5                             @ 0x000f2ef5
@@ -26,70 +18,105 @@
  *   bt_workqueue                             @ 0x20005f08
  *   g_bt_hci_acl_frag_conn_handle            @ 0x2000ff08
  */
-/* Reconstructed FUN_000536b8 @ 0x536b8  (parity: 300/300 trials, PROVEN) */
-extern void FUN_00053658(int,int,int,int);
-extern void FUN_00056394(int,int,int);
-extern void ble_conn_unref(int);
-extern int  ble_conn_lookup_masked(int,int);
-extern int  net_buf_id(int);
-extern int  net_buf_slist_get(int);
-extern void net_buf_unref(int);
-extern int  net_buf_simple_pull_5f594(int,int);
-extern void printk(int,int,int,int);
-extern int  bt_hci_evt_get_flags(int);
-extern void FUN_00080ea2(int,int,void*);
-extern int  k_work_submit_to_queue(int,int);
-#define VI(a) (*(volatile int*)(a))
-#define VH(a) (*(volatile unsigned short*)(a))
-#define VB(a) (*(volatile unsigned char*)(a))
-#define ASSERT() __builtin_trap()
+/* Reconstructed bt_hci_core_recv_event @ 0x000536b8. */
+#include <stdint.h>
 
-void bt_hci_core_recv_event(void){
-  int iVar4,iVar6,iVar8; unsigned int uVar10; int uVar9;
-  unsigned char *puVar7; unsigned short *puVar5;
-  unsigned short uVar1,uVar2;
-  int st[8];
-  iVar4 = net_buf_slist_get(0x20002144);
-  if (iVar4 == 0) return;
-  uVar10 = VB(iVar4+0x18);
-  if (uVar10 == 1) {
-    if (VH(iVar4+0x10) < 2) { printk(0x99cbd,0xf2eb8,0xf2e84,0xa5d); ASSERT(); }
-    puVar7 = (unsigned char*)net_buf_simple_pull_5f594(iVar4+0xc,2);
-    iVar8 = bt_hci_evt_get_flags(*puVar7);
-    if ((int)(iVar8<<0x1e) >= 0) { printk(0x99cbd,0xf2f17,0xf2e84,0xa61); ASSERT(); }
-    FUN_00053658(*puVar7, iVar4, 0x8b190, 6);
-  } else {
-    uVar9 = 0xf2f45;
-    if (uVar10 == 3) {
-      if (VH(iVar4+0x10) < 4) { printk(0x99cbd,0xf2eb8,0xf2e84,0x200); ASSERT(); }
-      puVar5 = (unsigned short*)net_buf_simple_pull_5f594(iVar4+0xc,4);
-      uVar1 = puVar5[1];
-      uVar2 = puVar5[0];
-      iVar6 = net_buf_id(iVar4);
-      VH(0x2000ff08 + iVar6*2) = (unsigned short)(((unsigned int)uVar2 << 0x14) >> 0x14);
-      if ((unsigned int)uVar1 != (unsigned int)VH(iVar4+0x10)) {
-        FUN_00080ea2(0x88138,0x2040,st);
-        goto LAB_0005373c;
-      }
-      iVar6 = net_buf_id(iVar4);
-      iVar6 = ble_conn_lookup_masked(VH(0x2000ff08 + iVar6*2), 0xf);
-      if (iVar6 != 0) {
-        FUN_00056394(iVar6, iVar4, uVar2 >> 0xc);
-        ble_conn_unref(iVar6);
-        goto LAB_00053792;
-      }
-      iVar6 = net_buf_id(iVar4);
-      uVar10 = VH(0x2000ff08 + iVar6*2);
-      uVar9 = 0xf2ef5;
+extern void dispatch_hci_event(uint32_t event, void *buffer, uint32_t table, uint32_t count); /* FUN_00053658 */
+extern void process_number_completed_packets(void *connection, void *buffer, uint32_t count); /* FUN_00056394 */
+extern void ble_conn_unref(void *connection); /* FUN_000566a4 */
+extern void *ble_conn_lookup_masked(uint32_t handle, uint32_t mask); /* FUN_00056908 */
+extern uint32_t net_buf_id(void *buffer); /* FUN_0005ee18 */
+extern void *net_buf_slist_get(void *list); /* FUN_0005f148 */
+extern void net_buf_unref(void *buffer); /* FUN_0005f24c */
+extern void *net_buf_simple_pull(void *buffer, uint32_t length); /* FUN_0005f594 */
+extern void printk(uint32_t format, uint32_t file, uint32_t function, uint32_t line); /* FUN_0007e2fa */
+extern int bt_hci_evt_get_flags(uint32_t event); /* FUN_00080e14 */
+extern void log_message(uint32_t source, uint32_t descriptor, const void *record); /* FUN_00080ea2 */
+extern int k_work_submit_to_queue(void *queue, void *work); /* FUN_000865fc */
+
+struct log_record3 {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t argument0;
+};
+
+struct log_record4 {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t argument0;
+    uint32_t argument1;
+};
+
+__attribute__((noreturn, always_inline)) static inline void fatal_packet_length(uint32_t line)
+{
+    printk(0x00099cbdu, 0x000f2eb8u, 0x000f2e84u, line);
+    __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
+    __builtin_unreachable();
+}
+
+void bt_hci_core_recv_event(void)
+{
+    void *buffer = net_buf_slist_get((void *)0x20002144u);
+    if (buffer == 0) {
+        return;
     }
-    FUN_00080ea2(0x88138,0x1840,st);
-  }
-LAB_0005373c:
-  net_buf_unref(iVar4);
-LAB_00053792:
-  if (VI(0x20002144) != 0) {
-    if ((int)k_work_submit_to_queue(0x20005f08, 0x20002980) < 0) {
-      FUN_00080ea2(0x88138,0x1840,st);
+
+    uint8_t type = *(uint8_t *)((uint8_t *)buffer + 0x18);
+    if (type == 1) {
+        if (*(uint16_t *)((uint8_t *)buffer + 0x10) < 2) {
+            fatal_packet_length(0x0a5du);
+        }
+        uint8_t *event = net_buf_simple_pull((uint8_t *)buffer + 0x0c, 2);
+        if ((bt_hci_evt_get_flags(*event) & 2) == 0) {
+            printk(0x00099cbdu, 0x000f2f17u, 0x000f2e84u, 0x0a61u);
+            __asm__ volatile("movs r0, #0\n\tmsr basepri, r0\n\tmovs r0, #3\n\tsvc #2" ::: "r0", "memory");
+            __builtin_unreachable();
+        }
+        dispatch_hci_event(*event, buffer, 0x0008b190u, 6);
+        net_buf_unref(buffer);
+    } else if (type == 3) {
+        if (*(uint16_t *)((uint8_t *)buffer + 0x10) < 4) {
+            fatal_packet_length(0x0200u);
+        }
+        const uint16_t *completed = net_buf_simple_pull((uint8_t *)buffer + 0x0c, 4);
+        uint16_t advertised_length = completed[1];
+        uint16_t handle_and_count = completed[0];
+        uint32_t id = net_buf_id(buffer);
+        volatile uint16_t *handles = (volatile uint16_t *)0x2000ff08u;
+        handles[id] = handle_and_count & 0x0fffu;
+
+        uint16_t actual_length = *(uint16_t *)((uint8_t *)buffer + 0x10);
+        if (advertised_length != actual_length) {
+            struct log_record4 mismatch = {
+                4, 0x000f2ed1u, actual_length, advertised_length,
+            };
+            log_message(0x00088138u, 0x2040u, &mismatch);
+            net_buf_unref(buffer);
+        } else {
+            void *connection = ble_conn_lookup_masked(handles[net_buf_id(buffer)], 0x0fu);
+            if (connection != 0) {
+                process_number_completed_packets(connection, buffer, handle_and_count >> 12);
+                ble_conn_unref(connection);
+            } else {
+                struct log_record3 missing = {
+                    3, 0x000f2ef5u, handles[net_buf_id(buffer)],
+                };
+                log_message(0x00088138u, 0x1840u, &missing);
+                net_buf_unref(buffer);
+            }
+        }
+    } else {
+        struct log_record3 unexpected = {3, 0x000f2f45u, type};
+        log_message(0x00088138u, 0x1840u, &unexpected);
+        net_buf_unref(buffer);
     }
-  }
+
+    if (*(volatile uint32_t *)0x20002144u != 0) {
+        int status = k_work_submit_to_queue((void *)0x20005f08u,
+                                            (void *)0x20002980u);
+        if (status < 0) {
+            struct log_record3 failed = {3, 0x000f2ddbu, (uint32_t)status};
+            log_message(0x00088138u, 0x1840u, &failed);
+        }
+    }
 }

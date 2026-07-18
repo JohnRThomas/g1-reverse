@@ -32,13 +32,17 @@ struct fault_message_with_value {
 
 int arm_bus_fault_helper(int param_1, unsigned char *param_2)
 {
+    volatile uint32_t *const scb_cfsr =
+        (volatile uint32_t *)0xe000ed28; /* raw backmap: 0xe000ed00 + 0x28 */
+    volatile uint32_t *const scb_bfar =
+        (volatile uint32_t *)0xe000ed38; /* raw backmap: 0xe000ed00 + 0x38 */
     int uVar2;
     struct fault_message message;
 
     message.severity = 2;
     message.message = ((unsigned long)&rodata_f1df9) /*=0xf1df9*/;
     FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
-    if (*(volatile int *)(0xe000ed00 + 0x28) << 0x13 < 0) {
+    if ((int32_t)(*scb_cfsr << 0x13) < 0) {
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1e0f) /*=0xf1e0f*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
@@ -46,46 +50,55 @@ int arm_bus_fault_helper(int param_1, unsigned char *param_2)
     } else {
         uVar2 = 0x16;
     }
-    if (*(volatile int *)(0xe000ed00 + 0x28) << 0x14 < 0) {
+    if ((int32_t)(*scb_cfsr << 0x14) < 0) {
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1c82) /*=0xf1c82*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
         uVar2 = 0x18;
     }
-    if (*(volatile int *)(0xe000ed00 + 0x28) << 0x16 < 0) {
+    if ((int32_t)(*scb_cfsr << 0x16) < 0) {
+        uint32_t fault_address;
+
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1e20) /*=0xf1e20*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
-        if (*(volatile int *)(0xe000ed00 + 0x28) << 0x10 < 0) {
+
+        /*
+         * The firmware samples BFAR before re-reading CFSR.BFARVALID.  BFAR
+         * is sampled even when BFARVALID is clear; this ordered MMIO read is
+         * architecturally observable and must not be folded into the branch.
+         */
+        fault_address = *scb_bfar;
+        if ((int32_t)(*scb_cfsr << 0x10) < 0) {
             struct fault_message_with_value detail;
             detail.severity = 3;
             detail.message = ((unsigned long)&rodata_f1e39) /*=0xf1e39*/;
-            detail.value = *(volatile uint32_t *)(0xe000ed00 + 0x38);
+            detail.value = fault_address;
             FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1840, &detail);
             if (param_1 != 0) {
-                *(volatile unsigned int *)(0xe000ed00 + 0x28) = *(volatile unsigned int *)(0xe000ed00 + 0x28) & 0xffff7fff;
+                *scb_cfsr = *scb_cfsr & 0xffff7fff;
             }
         }
         uVar2 = 0x19;
     }
-    if (*(volatile int *)(0xe000ed00 + 0x28) << 0x15 < 0) {
+    if ((int32_t)(*scb_cfsr << 0x15) < 0) {
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1e4e) /*=0xf1e4e*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
         uVar2 = 0x1a;
     }
-    if (*(volatile int *)(0xe000ed00 + 0x28) << 0x17 < 0) {
+    if ((int32_t)(*scb_cfsr << 0x17) < 0) {
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1e69) /*=0xf1e69*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
         uVar2 = 0x1b;
-    } else if (*(volatile int *)(0xe000ed00 + 0x28) << 0x12 < 0) {
+    } else if ((int32_t)(*scb_cfsr << 0x12) < 0) {
         message.severity = 2;
         message.message = ((unsigned long)&rodata_f1ce2) /*=0xf1ce2*/;
         FUN_00080780(((unsigned long)&rodata_88258) /*=0x88258*/, 0x1040, &message);
         uVar2 = 0x1c;
     }
-    *(volatile unsigned int *)(0xe000ed00 + 0x28) = *(volatile unsigned int *)(0xe000ed00 + 0x28) | 0xff00;
+    *scb_cfsr = *scb_cfsr | 0xff00;
     *param_2 = 0;
     return uVar2;
 }

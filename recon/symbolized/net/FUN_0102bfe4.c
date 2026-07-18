@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c04c                           @ 0x0103c04c
@@ -18,7 +19,7 @@ typedef unsigned long long u64;
 typedef int (*codefn)(uint, uint, uint);
 
 extern void assert_print(uint a, uint b, uint c);
-extern void FUN_01039bb0(uint a, uint b);
+extern void assert_post_action(uint a, uint b);
 extern int  FUN_0102a268(uint p);
 extern u64  FUN_010396d0(uint a, uint b);
 extern void z_impl_z_log_msg_static_create(uint a, uint b, void *c, int d);
@@ -48,7 +49,7 @@ int FUN_0102bfe4(byte *param_1, int param_2, codefn param_3, uint param_4,
     assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d279) /*=0x103d279*/, 0x394);
     uVar10 = 0x394;
 LAB_0102c006:
-    FUN_01039bb0(((unsigned long)&rodata_103d279) /*=0x103d279*/, uVar10);
+    assert_post_action(((unsigned long)&rodata_103d279) /*=0x103d279*/, uVar10);
     /* FUN_01039bb0 is noreturn on HW; harness oracles it as returning, so
        control falls through into the body just as the original bytes do. */
   }

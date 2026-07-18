@@ -17,22 +17,29 @@ extern signed char controller_handle_slot_find(void *, unsigned short);
 extern unsigned int controller_handle_slot_value_ptr(void *, signed char);
 extern unsigned int controller_handle_slot_value_set(void *, unsigned short, signed char);
 
-unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
+unsigned int FUN_01009c68(unsigned int event_counter_raw,
+                          unsigned int channel_raw)
 {
+  /* Firmware normalizes the incoming register values through STRH/LDRH and
+   * STRB/LDRB.  Do it explicitly rather than relying on narrow-argument ABI
+   * extension, because callers may leave non-semantic upper bits in r0/r1. */
+  const unsigned short event_counter = (unsigned short)event_counter_raw;
+  const unsigned char channel = (unsigned char)channel_raw;
   volatile int * const tbl = (volatile int *)0x21000b7c;
-  int iVar3 = tbl[param_2];
+  int iVar3 = tbl[channel];
   if (iVar3 == 0) {
     return 0;
   }
-  if (param_1 > 0xeff) {
+  if (event_counter > 0xeff) {
     sdc_assertion_fail(0x17, 0x27e);
   }
-  signed char cVar1 = controller_handle_slot_find((void *)iVar3, param_1);
+  signed char cVar1 = controller_handle_slot_find((void *)iVar3, event_counter);
   if (cVar1 != -1) {
     return controller_handle_slot_value_ptr((void *)iVar3, cVar1);
   }
   signed char divv = *(volatile unsigned char *)(iVar3 + 2);
-  signed char cVar1b = (signed char)param_1 - (signed char)((short)param_1 / divv) * divv;
+  signed char cVar1b = (signed char)event_counter -
+                       (signed char)((short)event_counter / divv) * divv;
   signed char cVar2 = controller_handle_slot_find_from((void *)iVar3, 0xfff0, cVar1b);
   if (cVar2 == -1) {
     return 0;
@@ -40,5 +47,5 @@ unsigned int FUN_01009c68(unsigned short param_1, unsigned char param_2)
   if (cVar2 != cVar1b) {
     *(volatile unsigned char *)(iVar3 + 3) = 0;
   }
-  return controller_handle_slot_value_set((void *)iVar3, param_1, cVar2);
+  return controller_handle_slot_value_set((void *)iVar3, event_counter, cVar2);
 }

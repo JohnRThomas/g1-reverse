@@ -2,8 +2,6 @@
 /* readable reconstruction; identity: FUN_01033b18 @ 0x01033b18
  * public-name: FUN_01033b18
  * durable-map: recon/catalogs/function_names_net.json
- * callees (readable <= raw @ address):
- *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e47c                           @ 0x0103e47c
@@ -15,15 +13,17 @@
  */
 /* net-core FUN_01033b18 @ 0x1033b18  (parity 300 trials PROVEN) */
 
-extern void FUN_01039bb0(unsigned int, unsigned int);
-extern void assert_print(unsigned int, unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int); /* FUN_01039bb0 */
+extern void assert_print(unsigned int, unsigned int, unsigned int); /* FUN_01039bbe */
 
 void FUN_01033b18(unsigned int param_1, int param_2)
 {
   volatile unsigned char * const iVar3 = (volatile unsigned char *)0x41014000;
 
   *(volatile unsigned int *)(iVar3 + 0x118) = 0;
+  (void)*(volatile unsigned int *)(iVar3 + 0x118); /* read-back @ 0x41014118, raw 0x01033b28 */
   *(volatile unsigned int *)(iVar3 + 0x11c) = 0;
+  (void)*(volatile unsigned int *)(iVar3 + 0x11c); /* read-back @ 0x4101411c, raw 0x01033b30 */
 
   volatile unsigned char * const pbc8 = (volatile unsigned char *)((unsigned long)&g_154_dppi_channel_ack) /*=0x2100645c*/;
   unsigned char bVar2 = pbc8[0];
@@ -48,7 +48,7 @@ void FUN_01033b18(unsigned int param_1, int param_2)
 
   if (uVar9 > 0x1f) {
     assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103e47c) /*=0x103e47c*/, 0x17d);
-    FUN_01039bb0(((unsigned long)&rodata_103e47c) /*=0x103e47c*/, 0x17d);
+    assert_post_action(((unsigned long)&rodata_103e47c) /*=0x103e47c*/, 0x17d);
   }
 
   volatile unsigned char * const pf080 = (volatile unsigned char *)0x4100f080;

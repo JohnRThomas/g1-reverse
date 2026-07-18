@@ -2,6 +2,7 @@
  * public-name: FUN_0102de50
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
@@ -13,7 +14,7 @@
 
 extern unsigned int FUN_0102de38(void);
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c);
-extern void FUN_01039bb0(unsigned int a, unsigned int b);
+extern void assert_post_action(unsigned int a, unsigned int b);
 
 typedef void (*fnptr)(int*, unsigned int);
 
@@ -25,7 +26,7 @@ void FUN_0102de50(void)
     while (1) {
         if (piVar1 < piVar3) {
             assert_print(0x0103d2a7, 0x0103d5d7, 0x1d1);
-            FUN_01039bb0(0x0103d5d7, 0x1d1);
+            assert_post_action(0x0103d5d7, 0x1d1);
         }
         if (piVar1 <= piVar3) break;
         if ((*(volatile char *)(piVar3[1] + 5) != 0) && (*(volatile unsigned int *)(piVar3[0] + 4) != 0)) {

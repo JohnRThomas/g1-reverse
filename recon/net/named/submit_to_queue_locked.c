@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   submit_to_queue_locked                   <= FUN_01036b18 @ 0x01036b18
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   notify_queue_locked_isra_0               <= FUN_0103b25a @ 0x0103b25a
  * address symbols (name @ address):
@@ -12,7 +13,7 @@
 /* net-core FUN_01036b18 @ 0x1036b18  (parity 300 trials PROVEN) */
 #include <stdint.h>
 
-extern void FUN_01039bb0(unsigned int a, unsigned int b);
+extern void assert_post_action(unsigned int a, unsigned int b);
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 extern int FUN_0103b14a(void);
 extern void notify_queue_locked_isra_0(int a);
@@ -41,7 +42,7 @@ unsigned int submit_to_queue_locked(unsigned int *param_1, int *param_2, unsigne
     if ((int)(param_1[3] << 0x1f) < 0) {
         if (param_1[2] == 0) {
             assert_print(DAT_be4, DAT_be0, 0x14e, 0, param_4);
-            FUN_01039bb0(DAT_be0, 0x14e);
+            assert_post_action(DAT_be0, 0x14e);
             /* real hardware: falls through with r3 still == param_1[2] (==0 here) */
         }
         uVar4 = 2;

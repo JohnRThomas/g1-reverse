@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_k_mutex_unlock                    <= FUN_0103657c @ 0x0103657c
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -22,7 +23,7 @@ extern void FUN_01036144(uint32_t *);
 extern void FUN_0103705c(void *);
 extern void FUN_01037130(uint32_t *, uint32_t);
 extern void *FUN_010379d4(uint32_t *);
-extern void FUN_01039bb0(uint32_t, uint32_t);
+extern void assert_post_action(uint32_t, uint32_t);
 extern void assert_print(uint32_t, uint32_t, uint32_t);
 extern void FUN_0103b1c4(void *, int32_t);
 
@@ -42,7 +43,7 @@ int32_t z_impl_k_mutex_unlock(uint32_t *object)
 
     if (ipsr != 0) {
         assert_print(LOG_MODULE, LOG_STRING, 0xcdu);
-        FUN_01039bb0(LOG_STRING, 0xcdu);
+        assert_post_action(LOG_STRING, 0xcdu);
         __builtin_unreachable();
     }
     owner = (void *)(uintptr_t)object[2];
@@ -55,7 +56,7 @@ int32_t z_impl_k_mutex_unlock(uint32_t *object)
     count = object[3];
     if (count == 0) {
         assert_print(LOG_MODULE, LOG_STRING, 0xe5u);
-        FUN_01039bb0(LOG_STRING, 0xe5u);
+        assert_post_action(LOG_STRING, 0xe5u);
         __builtin_unreachable();
     }
     if (count != 1) {
@@ -68,7 +69,7 @@ int32_t z_impl_k_mutex_unlock(uint32_t *object)
     __ISB();
     if (FUN_0103610c(KERNEL_LOCK) == 0) {
         assert_print(LOG_MODULE, ASSERT_STRING, 0x72u);
-        FUN_01039bb0(ASSERT_STRING, 0x72u);
+        assert_post_action(ASSERT_STRING, 0x72u);
         __builtin_unreachable();
     }
     FUN_01036144(KERNEL_LOCK);
@@ -85,7 +86,7 @@ int32_t z_impl_k_mutex_unlock(uint32_t *object)
     object[3] = 0;
     if (FUN_01036128(KERNEL_LOCK) == 0) {
         assert_print(LOG_MODULE, ASSERT_STRING, 0xf0u);
-        FUN_01039bb0(ASSERT_STRING, 0xf0u);
+        assert_post_action(ASSERT_STRING, 0xf0u);
         __builtin_unreachable();
     }
     __set_BASEPRI(key);

@@ -3,6 +3,7 @@
  * public-name: FUN_0102df2c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
@@ -29,7 +30,7 @@ extern void FUN_0102de50(unsigned int a, int b);
 extern longlong thunk_FUN_01038284(void);
 extern void FUN_0102cf00(unsigned int a, int b);
 extern void assert_print(void *a, void *b, int c);
-extern void FUN_01039bb0(void *a, int b);
+extern void assert_post_action(void *a, int b);
 extern int FUN_01039dd0(unsigned int *p);
 
 #define DAT_flag   (*(volatile unsigned char *)((unsigned long)&g_net_tick_handler_enable_flag) /*=0x21004fac*/)
@@ -69,7 +70,7 @@ int FUN_0102df2c(void)
     for (;;) {
       if (node > ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/) {
         assert_print(STR_A, STR_B, 0x1c5);
-        FUN_01039bb0(STR_B, 0x1c5);
+        assert_post_action(STR_B, 0x1c5);
         for(;;) {}
       }
       if (node == ((unsigned long)&rodata_103c0fc) /*=0x103c0fc*/) break;

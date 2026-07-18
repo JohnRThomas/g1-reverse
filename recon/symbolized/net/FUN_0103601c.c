@@ -3,6 +3,7 @@
  * public-name: FUN_0103601c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103bac9                           @ 0x0103bac9
@@ -21,7 +22,7 @@ extern int FUN_0103719c(int);
 extern ulonglong FUN_0100823c(int,int,int,int);
 extern void FUN_01037f8c(int,unsigned int,int,int);
 extern void assert_print(int,int,int);
-extern void FUN_01039bb0(int,int) __attribute__((noreturn));
+extern void assert_post_action(int,int) __attribute__((noreturn));
 extern void FUN_010372b4(void);
 
 #define START ((int*)((unsigned long)&rodata_103bfc0) /*=0x103bfc0*/)
@@ -38,7 +39,7 @@ void FUN_0103601c(void)
     for (;;) {
         if (piVar4 < piVar9) {
             assert_print(STRA, STR2F3, 0x2f3);
-            FUN_01039bb0(STR2F3, 0x2f3);
+            assert_post_action(STR2F3, 0x2f3);
         }
         if (piVar4 <= piVar9) break;
 
@@ -53,7 +54,7 @@ void FUN_0103601c(void)
     for (piVar9 = START; piVar9 <= piVar4; piVar9 = piVar9 + 0xb) {
         if (piVar4 < piVar9) {
             assert_print(STRA, STR2F3, 0x312);
-            FUN_01039bb0(STR2F3, 0x312);
+            assert_post_action(STR2F3, 0x312);
         }
         if (piVar4 <= piVar9) {
             FUN_010372b4();
@@ -77,5 +78,5 @@ void FUN_0103601c(void)
     }
 
     assert_print(STRA, STR2F3, 0x312);
-    FUN_01039bb0(STR2F3, 0x312);
+    assert_post_action(STR2F3, 0x312);
 }

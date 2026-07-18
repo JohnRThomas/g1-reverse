@@ -2,7 +2,10 @@
  * public-name: FUN_010355bc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   virtqueue_add_consumed_buffer            <= FUN_010353ec @ 0x010353ec
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   metal_io_block_write                     <= FUN_0103ab0e @ 0x0103ab0e
  *   thunk_FUN_01036824                       <= FUN_0103aec2 @ 0x0103aec2
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -10,10 +13,10 @@
  */
 /* net-core FUN_010355bc @ 0x10355bc  (parity 300 trials PROVEN) */
 
-extern int FUN_010353ec(unsigned int, unsigned int, unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern int virtqueue_add_consumed_buffer(unsigned int, unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
-extern int FUN_0103ab0e(void *, unsigned int, void *, unsigned int);
+extern int metal_io_block_write(void *, unsigned int, void *, unsigned int);
 extern unsigned int FUN_0103ac46(unsigned int, unsigned int);
 extern void FUN_0103acca(unsigned int);
 extern void FUN_0103aec6(void *);
@@ -44,7 +47,7 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
     local_buf.reserved = 0;
     local_buf.result = (unsigned short)param_5;
     local_buf.padding = 0;
-    int iVar2 = FUN_0103ab0e((void *)piVar1, uVar3, &local_buf, 0x10);
+    int iVar2 = metal_io_block_write((void *)piVar1, uVar3, &local_buf, 0x10);
     uVar5 = uVar5 & 0xffff;
 
     if (iVar2 == 0x10) goto L_612;
@@ -54,7 +57,7 @@ unsigned int FUN_010355bc(int param_1, unsigned int param_2, unsigned int param_
     goto L_term;
 
 L_term:
-    FUN_01039bb0(0x0103e889, panic_code);
+    assert_post_action(0x0103e889, panic_code);
     /* falls through to success-path code physically */
 
 L_612:
@@ -63,7 +66,7 @@ L_612:
     if (*(volatile int *)(*(volatile int *)(param_1 + 0xa0) + 0x18) != 1) {
         goto L_success;
     }
-    iVar2b = FUN_010353ec(*(volatile unsigned int *)(param_1 + 0xa8), uVar5, uVar4);
+    iVar2b = virtqueue_add_consumed_buffer(*(volatile unsigned int *)(param_1 + 0xa8), uVar5, uVar4);
     if (iVar2b == 0) goto L_success;
 
     assert_print(0x0103d2a7, 0x0103e889, 0x1bc);

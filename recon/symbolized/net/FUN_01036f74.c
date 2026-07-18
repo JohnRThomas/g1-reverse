@@ -3,6 +3,7 @@
  * public-name: FUN_01036f74
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -13,7 +14,7 @@
 
 extern void FUN_01036f24(void *node);
 extern void assert_print(uintptr_t file, uintptr_t message, unsigned line, ...);
-extern void FUN_01039bb0(uintptr_t message, unsigned line);
+extern void assert_post_action(uintptr_t message, unsigned line);
 
 void FUN_01036f74(int force_advance)
 {
@@ -27,7 +28,7 @@ void FUN_01036f74(int force_advance)
     if (force_advance == 0) {
         if (head == 0) {
             assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x8f, 0);
-            FUN_01039bb0(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x8f);
+            assert_post_action(((unsigned long)&rodata_103eb0e) /*=0x103eb0e*/, 0x8f);
         }
         if ((head[0x0d] & 0x1f) == 0 &&
             *(uint32_t *)(candidate + 0x18) == 0 &&

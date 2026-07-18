@@ -3,6 +3,7 @@
  * public-name: FUN_01036824
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   z_handle_obj_poll_events                 <= FUN_0103b4f6 @ 0x0103b4f6
  * address symbols (name @ address):
@@ -17,7 +18,7 @@ extern void FUN_01036144(void *lock);
 extern void FUN_0103705c(void *item);
 extern void FUN_01037130(void *lock, unsigned int key);
 extern void *FUN_010379d4(void *queue);
-extern void FUN_01039bb0(uintptr_t message, unsigned line);
+extern void assert_post_action(uintptr_t message, unsigned line);
 extern void assert_print(uintptr_t file, uintptr_t message, unsigned line);
 extern void z_handle_obj_poll_events(void *object, int event);
 
@@ -29,7 +30,7 @@ void FUN_01036824(uint8_t *queue)
 
     if (!FUN_0103610c(lock)) {
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
-        FUN_01039bb0(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
+        assert_post_action(((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, 0x72);
     }
     FUN_01036144(lock);
     item = FUN_010379d4(queue);

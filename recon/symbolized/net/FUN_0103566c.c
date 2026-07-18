@@ -3,19 +3,22 @@
  * public-name: FUN_0103566c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   virtqueue_add_consumed_buffer            <= FUN_010353ec @ 0x010353ec
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   virtqueue_get_available_buffer           <= FUN_0103ac50 @ 0x0103ac50
  *   rpmsg_get_endpoint                       <= FUN_0103ae10 @ 0x0103ae10
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103e889                           @ 0x0103e889
  */
 /* net-core FUN_0103566c @ 0x103566c  (parity 300 trials PROVEN) */
-extern void FUN_010353ec(unsigned int, unsigned short, unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void virtqueue_add_consumed_buffer(unsigned int, unsigned short, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 #include <stdint.h>
 
-extern int *FUN_0103ac50(unsigned int, uint16_t *, uint32_t *);
+extern int *virtqueue_get_available_buffer(unsigned int, uint16_t *, uint32_t *);
 extern void FUN_0103acca(unsigned int);
 extern int rpmsg_get_endpoint(int, int, int, unsigned int);
 extern void FUN_0103aec6(int);
@@ -48,7 +51,7 @@ void FUN_0103566c(int *param_1, unsigned int param_2, unsigned int param_3, unsi
     thunk_FUN_01036824(iVar5);
     return;
   }
-  piVar1 = FUN_0103ac50(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4),
+  piVar1 = virtqueue_get_available_buffer(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4),
                          &selector.half[1], &local_1c);
   thunk_FUN_01036824(iVar5);
   if (piVar1 == (int *)0) {
@@ -76,7 +79,7 @@ void FUN_0103566c(int *param_1, unsigned int param_2, unsigned int param_3, unsi
       }
       if (iVar2 < 0) {
         assert_print(DAT_01035768, DAT_01035764, 0x245);
-        FUN_01039bb0(DAT_01035764, 0x245);
+        assert_post_action(DAT_01035764, 0x245);
         __builtin_unreachable();
       }
     }
@@ -88,10 +91,10 @@ LAB_01035728:
         thunk_FUN_01036824(iVar5);
         return;
       }
-      FUN_010353ec(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4), selector.half[1], local_1c);
+      virtqueue_add_consumed_buffer(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4), selector.half[1], local_1c);
     }
     if ((*(int *)(uintptr_t)(*(int *)(uintptr_t)(iVar4 + 0xa0) + 0x18) != 1) ||
-        (piVar1 = FUN_0103ac50(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4),
+        (piVar1 = virtqueue_get_available_buffer(*(unsigned int *)(uintptr_t)(iVar4 + 0xa4),
                                 &selector.half[1], &local_1c),
          piVar1 == (int *)0)) {
       goto LAB_01035728;

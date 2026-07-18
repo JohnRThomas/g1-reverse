@@ -3,6 +3,7 @@
  * public-name: FUN_0102dcf4
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
@@ -16,7 +17,7 @@ typedef unsigned int uint;
 extern unsigned int FUN_0102dc90(unsigned int);
 extern void FUN_0102e23c(int*, unsigned int, unsigned int);
 extern void FUN_01037c64(unsigned int, unsigned int);
-extern void FUN_01039bb0(unsigned int,unsigned int);
+extern void assert_post_action(unsigned int,unsigned int);
 extern void assert_print(unsigned int,unsigned int,unsigned int);
 extern int FUN_0103a294(unsigned int);
 
@@ -60,11 +61,11 @@ unsigned int FUN_0102dcf4(int param_1, int param_2)
             }
         }
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x126);
-        FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x126);
+        assert_post_action(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x126);
         __builtin_unreachable();
     } else {
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x119);
-        FUN_01039bb0(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x119);
+        assert_post_action(((unsigned long)&rodata_103d5d7) /*=0x103d5d7*/, 0x119);
         __builtin_unreachable();
     }
 }

@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   printk                                   <= FUN_01039722 @ 0x01039722
+ *   __memcpy_chk                             <= FUN_0103b53a @ 0x0103b53a
  * address symbols (name @ address):
  *   rodata_103d11b                           @ 0x0103d11b
  *   g_zephyr_log_level                       @ 0x21000580
@@ -11,7 +12,7 @@
  */
 /* net-core FUN_0102b15c @ 0x102b15c  (parity 300 trials PROVEN) */
 extern void FUN_0103b62e(void *dst, int val, int len);
-extern void FUN_0103b53a(void *dst, unsigned int a, unsigned int b, int len);
+extern void __memcpy_chk(void *dst, unsigned int a, unsigned int b, int len);
 extern int FUN_0102a498(void);
 extern int FUN_0102a468(void);
 extern void FUN_0102a448(void *a, unsigned int b);
@@ -27,7 +28,7 @@ unsigned int FUN_0102b15c(unsigned int param_1, unsigned int param_2, unsigned i
 
     packet.header = 0;
     FUN_0103b62e(packet.payload, 0, sizeof(packet.payload));
-    FUN_0103b53a(&packet, param_2, param_3, sizeof(packet));
+    __memcpy_chk(&packet, param_2, param_3, sizeof(packet));
     int iVar1 = FUN_0102a498();
     if (iVar1 == 1) {
         return 0;

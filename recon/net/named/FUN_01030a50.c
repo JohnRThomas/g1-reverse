@@ -2,6 +2,7 @@
  * public-name: FUN_01030a50
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -14,7 +15,7 @@ extern void FUN_01034b64(unsigned int);
 extern int FUN_010346d8(unsigned int, void*, void*, unsigned int);
 extern int FUN_01034840(unsigned int, void*, int);
 extern void assert_print(int,int,int);
-extern void FUN_01039bb0(int,int);
+extern void assert_post_action(int,int);
 
 #define BAD 0x0bad0000u
 #define STRA 0x0103d2a7
@@ -45,7 +46,7 @@ unsigned int FUN_01030a50(int param_1, unsigned int param_2, unsigned int param_
             int iVar9b = FUN_01034a28(((unsigned char *)&locals.saved_param2)[3]);
             if (iVar9b != iVar2) {
                 assert_print(STRA, STRB, 0x6c);
-                FUN_01039bb0(STRB, 0x6c);
+                assert_post_action(STRB, 0x6c);
             }
         }
         ret = 0;
@@ -61,7 +62,7 @@ unsigned int FUN_01030a50(int param_1, unsigned int param_2, unsigned int param_
                 int iVar3b = FUN_01034a28(((unsigned char *)&locals.saved_param2)[3]);
                 if (iVar3b != iVar2) {
                     assert_print(STRA, STRB, 0x7f);
-                    FUN_01039bb0(STRB, 0x7f);
+                    assert_post_action(STRB, 0x7f);
                 }
             }
             unsigned int uVar1 = locals.local20;

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   work_queue_main                          <= FUN_0103695c @ 0x0103695c
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   flag_test_and_clear                      <= FUN_0103b244 @ 0x0103b244
  * address symbols (name @ address):
@@ -25,7 +26,7 @@ extern int FUN_01036824(int);
 extern int FUN_01037a60(void);
 extern int FUN_01037e10(int,int,int);
 extern int FUN_01037ea8(int,int,int,int,int,int,int);
-extern void FUN_01039bb0(int,int);
+extern void assert_post_action(int,int);
 extern void assert_print(int,int,int);
 extern int flag_test_and_clear(int,int);
 
@@ -136,15 +137,15 @@ void work_queue_main(int param_1)
 
     ASSERT_A:
         assert_print(0x0103d2a7, 0x0103d3b6, 0x72);
-        FUN_01039bb0(0x0103d3b6, 0x72);
+        assert_post_action(0x0103d3b6, 0x72);
         goto L_CONT;
     ASSERT_B:
         assert_print(0x0103d2a7, 0x0103d3b6, 0xf0);
-        FUN_01039bb0(0x0103d3b6, 0xf0);
+        assert_post_action(0x0103d3b6, 0xf0);
         goto L_CONT;
     ASSERT_C:
         assert_print(0x0103d2a7, 0x0103eaed, 0x29b);
-        FUN_01039bb0(0x0103eaed, 0x29b);
+        assert_post_action(0x0103eaed, 0x29b);
         goto L_CONT;
     }
 }

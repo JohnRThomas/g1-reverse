@@ -3,6 +3,7 @@
  * public-name: FUN_0102cd8c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -22,7 +23,7 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern void FUN_01036144(int);
-extern void FUN_01039bb0(int, unsigned int);
+extern void assert_post_action(int, unsigned int);
 extern void assert_print(int, int, unsigned int);
 extern int FUN_01039c20(int, int, int);
 extern void FUN_01039db6(int);
@@ -75,6 +76,6 @@ unsigned int FUN_0102cd8c(int param_1, unsigned char *param_2)
     assert_print(P_0102ce10, P_0102ce0c, 0xf0);
     uVar3 = 0xf0;
   }
-  FUN_01039bb0(P_0102ce0c, uVar3);
+  assert_post_action(P_0102ce0c, uVar3);
   return uVar3;
 }

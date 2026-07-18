@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0c4                           @ 0x0103c0c4
@@ -21,7 +22,7 @@
 extern void z_impl_z_log_msg_static_create(unsigned int, unsigned int, void*, int);
 extern void FUN_0102f580(int);
 extern void FUN_01031820(unsigned int, int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern char *FUN_0103b15c(int);
 extern int FUN_0103b650(void);
@@ -90,7 +91,7 @@ void FUN_010359b8(unsigned int param_1, int param_2)
   FUN_01031820(param_1, param_2);
   if (param_1 == 4) {
     assert_print(DAT_01035ad4, DAT_01035ad0, 0x93);
-    FUN_01039bb0(DAT_01035ad0, 0x93);
+    assert_post_action(DAT_01035ad0, 0x93);
   }
   __set_BASEPRI(uVar4);
   __ISB();

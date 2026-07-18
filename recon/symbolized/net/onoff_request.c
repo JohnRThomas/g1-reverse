@@ -7,6 +7,7 @@
  *   onoff_request                            <= FUN_0102ca80 @ 0x0102ca80
  *   validate_args                            <= FUN_01039b16 @ 0x01039b16
  *   notify_one                               <= FUN_01039b36 @ 0x01039b36
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -27,7 +28,7 @@ extern void FUN_01036144(int);
 extern void process_event(int, int, unsigned int);
 extern int FUN_01036128(int);
 extern void notify_one(int, int, int, int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 
 #define DAT_0102cb78 ((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/
@@ -66,7 +67,7 @@ unsigned int onoff_request(unsigned int *param_1, unsigned int *param_2)
   iVar4 = FUN_0103610c(puVar8i);
   if (iVar4 == 0) {
     assert_print(DAT_0102cb7c, DAT_0102cb78, 0x72);
-    FUN_01039bb0(DAT_0102cb78, 0x72);
+    assert_post_action(DAT_0102cb78, 0x72);
     __builtin_unreachable();
   }
   FUN_01036144(puVar8i);
@@ -103,7 +104,7 @@ unsigned int onoff_request(unsigned int *param_1, unsigned int *param_2)
         break;
       default:
         assert_print(DAT_0102cb7c, DAT_0102cb80, 0x1c8);
-        FUN_01039bb0(DAT_0102cb80, 0x1c8);
+        assert_post_action(DAT_0102cb80, 0x1c8);
         __builtin_unreachable();
       }
       iVar4 = 0;
@@ -124,6 +125,6 @@ unsigned int onoff_request(unsigned int *param_1, unsigned int *param_2)
     return uVar7;
   }
   assert_print(DAT_0102cb7c, DAT_0102cb78, 0xf0);
-  FUN_01039bb0(DAT_0102cb78, 0xf0);
+  assert_post_action(DAT_0102cb78, 0xf0);
   __builtin_unreachable();
 }

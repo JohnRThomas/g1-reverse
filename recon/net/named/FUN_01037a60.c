@@ -2,6 +2,7 @@
  * public-name: FUN_01037a60
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -18,7 +19,7 @@ extern int FUN_01036128(unsigned int a);
 extern void FUN_01036144(unsigned int a);
 extern void FUN_01036f74(int a);
 extern void FUN_0103735c(void *list_head, void *node);
-extern void FUN_01039bb0(unsigned int a, unsigned int b);
+extern void assert_post_action(unsigned int a, unsigned int b);
 extern void assert_print(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e);
 
 #define DAT_37b44 0x0103eb0eu
@@ -38,7 +39,7 @@ void FUN_01037a60(void)
     unsigned int exception = __get_IPSR() & 0x1fU;
     if (exception != 0) {
         assert_print(DAT_37b48, DAT_37b44, 0x57a, exception, 0);
-        FUN_01039bb0(DAT_37b44, 0x57a);
+        assert_post_action(DAT_37b44, 0x57a);
     }
 
     uVar10 = __get_BASEPRI();
@@ -48,7 +49,7 @@ void FUN_01037a60(void)
     iVar2 = FUN_0103610c(DAT_37b4c);
     if (iVar2 == 0) {
         assert_print(DAT_37b48, DAT_37b50, 0x72, 0, 0);
-        FUN_01039bb0(DAT_37b50, 0x72);
+        assert_post_action(DAT_37b50, 0x72);
     }
 
 SHARED:
@@ -63,7 +64,7 @@ SHARED:
         *(volatile unsigned char *)((int)piVar8 + 0xd) | 0x80;
     if (piVar8 == (int *)DAT_37b58) {
         assert_print(DAT_37b48, DAT_37b44, 0xc1, (unsigned int)(intptr_t)piVar8, 0);
-        FUN_01039bb0(DAT_37b44, 0xc1);
+        assert_post_action(DAT_37b44, 0xc1);
         goto SHARED;
     }
 
@@ -98,6 +99,6 @@ LAB_b10:
         return;
     }
     assert_print(DAT_37b48, DAT_37b50, 0x111, 0, 0);
-    FUN_01039bb0(DAT_37b50, 0x111);
+    assert_post_action(DAT_37b50, 0x111);
     goto SHARED;
 }

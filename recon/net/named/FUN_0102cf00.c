@@ -2,6 +2,7 @@
  * public-name: FUN_0102cf00
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -21,7 +22,7 @@ extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern void FUN_01036144(int);
 extern void FUN_01036824(int);
-extern void FUN_01039bb0(unsigned int,unsigned int);
+extern void assert_post_action(unsigned int,unsigned int);
 extern void assert_print(unsigned int,unsigned int,unsigned int);
 extern unsigned int FUN_01039c20(int,int,int);
 extern void FUN_01039c3c(int,int);
@@ -41,7 +42,7 @@ void FUN_0102cf00(int param_1, unsigned int *param_2)
     int iVar4 = FUN_0103610c(iVar6);
     if (iVar4 == 0) {
         assert_print(0x0103d2a7, 0x0103d3b6, 0x72);
-        FUN_01039bb0(0x0103d3b6, 0x72);
+        assert_post_action(0x0103d3b6, 0x72);
         __builtin_unreachable();
     } else {
         FUN_01036144(iVar6);
@@ -65,7 +66,7 @@ void FUN_0102cf00(int param_1, unsigned int *param_2)
             return;
         }
         assert_print(0x0103d2a7, 0x0103d3b6, 0xf0);
-        FUN_01039bb0(0x0103d3b6, 0xf0);
+        assert_post_action(0x0103d3b6, 0xf0);
         __builtin_unreachable();
     }
 }

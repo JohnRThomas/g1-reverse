@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   register_events                          <= FUN_010384a8 @ 0x010384a8
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   add_event                                <= FUN_0103b3e0 @ 0x0103b3e0
  * address symbols (name @ address):
@@ -23,7 +24,7 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void add_event(int, int, char*);
 
@@ -142,7 +143,7 @@ int register_events(int param_1,int param_2,char *param_3,int param_4)
          (panic), but the parity harness always "returns" a mocked value, so
          execution falls through into the code-layout-adjacent case-4 tail
          (uVar5=4; goto LAB_0103851c) exactly as the compiled binary does. */
-      FUN_01039bb0(uVar3, uVar8);
+      assert_post_action(uVar3, uVar8);
       uVar5 = 4;
       goto LAB_0103851c;
     }

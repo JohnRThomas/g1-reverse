@@ -2,6 +2,7 @@
  * public-name: FUN_0103814c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -29,7 +30,7 @@ extern void FUN_01036144(int);
 extern void FUN_01037f54(int *node);
 extern u32 FUN_01037f14(void);
 extern void FUN_0103175c(u32, int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 /* The real bytes end with a tail branch (pop then b.w) to a shared handler
    far below our own address range, so the harness treats that whole
@@ -84,7 +85,7 @@ void FUN_0103814c(u32 param_1)
   if (iVar6 == 0) {
     assert_print(DAT_01038274, DAT_01038270, 0x72);
     uVar14 = 0x72;
-    FUN_01039bb0(DAT_01038270, uVar14);
+    assert_post_action(DAT_01038270, uVar14);
     /* real hardware never returns from this call; but the compiled bytes
        physically fall through into the same continuation as the success
        path, so faithfully keep going instead of cutting the trace here. */
@@ -119,7 +120,7 @@ void FUN_0103814c(u32 param_1)
     if (iVar6 == 0) {
       assert_print(DAT_01038274, DAT_01038270, 0xf0);
       uVar14 = 0xf0;
-      FUN_01039bb0(DAT_01038270, uVar14);
+      assert_post_action(DAT_01038270, uVar14);
       /* real fallthrough: nothing physically follows here in-body, this is
          the tail exit; the loop below is unreachable on this path but the
          compiler on the original also does not return, so end here. */
@@ -148,7 +149,7 @@ void FUN_0103814c(u32 param_1)
     if (iVar6 == 0) {
       assert_print(DAT_01038274, DAT_01038270, 0x72);
       uVar14 = 0x72;
-      FUN_01039bb0(DAT_01038270, uVar14);
+      assert_post_action(DAT_01038270, uVar14);
       return;
     }
     FUN_01036144(DAT_0103826c);
@@ -170,7 +171,7 @@ LAB_01038236:
   if (iVar6 == 0) {
     assert_print(DAT_01038274, DAT_01038270, 0xf0);
     uVar14 = 0xf0;
-    FUN_01039bb0(DAT_01038270, uVar14);
+    assert_post_action(DAT_01038270, uVar14);
     return;
   }
   bVar2 = isCurrentModePrivileged();

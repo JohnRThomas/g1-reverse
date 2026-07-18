@@ -3,6 +3,7 @@
  * public-name: FUN_01037b5c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103bac9                           @ 0x0103bac9
@@ -26,7 +27,7 @@ extern void FUN_01036144(u32);
 extern void FUN_010374dc(u32);
 extern void FUN_01037a60(void);
 extern void FUN_01037f8c(i32,u32,u32,u32);
-extern u32  FUN_01039bb0(u32,u32);
+extern u32  assert_post_action(u32,u32);
 extern void assert_print(u32,u32,u32);
 extern u32  FUN_0103b2f8(u32,u32,u32);
 
@@ -82,7 +83,7 @@ COMMON: ;
       r1v = 0x72;
       r0v = DAT_01037c54;
 FINAL_CALL:
-      rv = FUN_01039bb0(r0v, r1v);
+      rv = assert_post_action(r0v, r1v);
       r4 = (i32)(0xFFFFFFFEu - rv);
       goto COMMON;
     }
@@ -110,7 +111,7 @@ FINAL_CALL:
         assert_print(DAT_01037c4c, DAT_01037c54, 0x111);
         r1v = 0x111;
         r0v = DAT_01037c54;
-        rv = FUN_01039bb0(r0v, r1v);
+        rv = assert_post_action(r0v, r1v);
         r4 = (i32)(0xFFFFFFFEu - rv);
         goto COMMON;
       } else {
@@ -127,7 +128,7 @@ FINAL_CALL:
           assert_print(DAT_01037c4c, DAT_01037c48, 0x5b2);
           r1v = 0x5b2;
           r0v = DAT_01037c48;
-          rv = FUN_01039bb0(r0v, r1v);
+          rv = assert_post_action(r0v, r1v);
           r4 = (i32)(0xFFFFFFFEu - rv);
           goto COMMON;
         }

@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   mpsc_pbuf_claim                          <= FUN_0102ce14 @ 0x0102ce14
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -27,7 +28,7 @@ extern int FUN_0103610c(void *lock);
 extern int FUN_01036128(void *lock);
 extern void FUN_01036144(void *lock);
 extern void assert_print(const void *, const void *, uint32_t);
-extern void FUN_01039bb0(const void *, uint32_t) __attribute__((noreturn));
+extern void assert_post_action(const void *, uint32_t) __attribute__((noreturn));
 extern uint32_t FUN_01039c20(struct mpsc_pbuf_buffer *, uint32_t, uint32_t);
 extern void FUN_01039c3c(struct mpsc_pbuf_buffer *, uint32_t);
 
@@ -39,7 +40,7 @@ static inline uint32_t claim_lock(struct mpsc_pbuf_buffer *buffer)
     if (FUN_0103610c(&buffer->lock) == 0) {
         assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103d3b6u, 0x72u);
-        FUN_01039bb0((const void *)0x0103d3b6u, 0x72u);
+        assert_post_action((const void *)0x0103d3b6u, 0x72u);
     }
     FUN_01036144(&buffer->lock);
     return key;
@@ -50,7 +51,7 @@ static inline void claim_unlock(struct mpsc_pbuf_buffer *buffer, uint32_t key)
     if (FUN_01036128(&buffer->lock) == 0) {
         assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103d3b6u, 0xf0u);
-        FUN_01039bb0((const void *)0x0103d3b6u, 0xf0u);
+        assert_post_action((const void *)0x0103d3b6u, 0xf0u);
     }
     __set_BASEPRI(key);
     __ISB();

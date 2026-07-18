@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_k_poll_signal_raise               <= FUN_010388c8 @ 0x010388c8
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -14,7 +15,7 @@
 
 extern void z_impl_k_poll_signal_raise(uint32_t object, uint32_t completion);
 extern void assert_print(const void *module, const void *file, unsigned line);
-extern void FUN_01039bb0(const void *file, unsigned line);
+extern void assert_post_action(const void *file, unsigned line);
 
 int FUN_0102cb84(uint32_t state[3], uint32_t completion)
 {
@@ -39,7 +40,7 @@ int FUN_0102cb84(uint32_t state[3], uint32_t completion)
     default:
         assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                      (const void *)((unsigned long)&rodata_103d3e3) /*=0x103d3e3*/, 0x45);
-        FUN_01039bb0((const void *)((unsigned long)&rodata_103d3e3) /*=0x103d3e3*/, 0x45);
+        assert_post_action((const void *)((unsigned long)&rodata_103d3e3) /*=0x103d3e3*/, 0x45);
         return 0;
     }
 }

@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_k_msgq_get                        <= FUN_010362d0 @ 0x010362d0
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -22,7 +23,7 @@ extern void FUN_01037130(void *lock, uint32_t key);
 extern int FUN_010375b8(void *lock, uint32_t key, void *queue, void *item,
                         uint32_t low, uint32_t high);
 extern void *FUN_010379d4(void *queue);
-extern __attribute__((noreturn)) void FUN_01039bb0(uint32_t source,
+extern __attribute__((noreturn)) void assert_post_action(uint32_t source,
                                                    uint32_t line);
 extern void assert_print(uint32_t module, uint32_t source, uint32_t line, ...);
 extern void FUN_0103b614(void *destination, const void *source, uint32_t size);
@@ -48,7 +49,7 @@ typedef struct {
 static __attribute__((noreturn)) void queue_fatal(uint32_t source,
                                                   uint32_t line)
 {
-    FUN_01039bb0(source, line);
+    assert_post_action(source, line);
 }
 
 int z_impl_k_msgq_get(queue_t *queue, void *destination,

@@ -2,6 +2,7 @@
  * public-name: FUN_01036410
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -24,7 +25,7 @@ extern void FUN_01036144(unsigned int);
 extern int FUN_010375b8(unsigned int, int, void*, int, int, int);
 extern int FUN_01037130(unsigned int, int);
 extern void assert_print(int,int,int);
-extern void FUN_01039bb0(int,int);
+extern void assert_post_action(int,int);
 extern int FUN_0103b1c4(int,int);
 
 #define OBJ  0x21004b48u
@@ -34,7 +35,7 @@ extern int FUN_0103b1c4(int,int);
 #define STR72 0x0103d3b6
 
 static void panic(int arg0, int code) __attribute__((noreturn));
-static void panic(int arg0, int code) { FUN_01039bb0(arg0, code); __builtin_unreachable(); }
+static void panic(int arg0, int code) { assert_post_action(arg0, code); __builtin_unreachable(); }
 
 unsigned int FUN_01036410(int *param_1, unsigned int param_2, int param_3, int param_4)
 {

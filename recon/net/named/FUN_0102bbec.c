@@ -2,6 +2,7 @@
  * public-name: FUN_0102bbec
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d279                           @ 0x0103d279
@@ -16,7 +17,7 @@ typedef uint32_t undefined4;
 extern int  FUN_0102a268(uint);
 extern void FUN_0103b614(void*, uint);
 extern void assert_print(uint, uint, uint);
-extern void FUN_01039bb0(uint, uint);
+extern void assert_post_action(uint, uint);
 
 #define DAT_0102beb0 0x0103be64u
 #define DAT_0102beb4 0x0103ed24u
@@ -240,7 +241,7 @@ LAB_0102be18:
   assert_print(DAT_0102bebc, DAT_0102beb8, 0x280);
   uVar6 = 0x280;
 LAB_0102be2e:
-  FUN_01039bb0(DAT_0102beb8, uVar6);
+  assert_post_action(DAT_0102beb8, uVar6);
 switchD_0102bcaa_switchD:
   switch (bVar2) {
   case 0x4c:

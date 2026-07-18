@@ -3,6 +3,7 @@
  * public-name: FUN_0102eb8c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -12,7 +13,7 @@
 #include <stdint.h>
 
 extern void assert_print(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
-extern int32_t FUN_01039bb0(uint32_t, uint32_t);
+extern int32_t assert_post_action(uint32_t, uint32_t);
 
 void FUN_0102eb8c(int8_t irq, uint32_t priority, uint32_t flags, uint32_t unused)
 {
@@ -23,7 +24,7 @@ void FUN_0102eb8c(int8_t irq, uint32_t priority, uint32_t flags, uint32_t unused
         encoded = priority + 2u;
         if (encoded > 7u) {
             assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d8c5) /*=0x103d8c5*/, 0x5cu, flags << 31, unused);
-            irq = (int8_t)FUN_01039bb0(((unsigned long)&rodata_103d8c5) /*=0x103d8c5*/, 0x5cu);
+            irq = (int8_t)assert_post_action(((unsigned long)&rodata_103d8c5) /*=0x103d8c5*/, 0x5cu);
             encoded = 0; /* physical fall-through of the fatal-report path */
         }
     }

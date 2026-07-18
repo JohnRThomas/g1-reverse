@@ -6,6 +6,7 @@
  *   register_events                          <= FUN_010384a8 @ 0x010384a8
  *   clear_event_registrations                <= FUN_01038654 @ 0x01038654
  *   z_impl_k_poll                            <= FUN_01038764 @ 0x01038764
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -26,20 +27,20 @@ extern int FUN_010375b8(void *lock, uint32_t irq_key, void *wait_queue,
                         uint32_t has_timeout,
                         uint32_t ticks_low, uint32_t ticks_high);
 extern void assert_print(const void *module, const void *file, unsigned line);
-extern void FUN_01039bb0(const void *file, unsigned line);
+extern void assert_post_action(const void *file, unsigned line);
 
 static __attribute__((always_inline)) inline void scheduler_fatal(unsigned line)
 {
     assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                  (const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
-    FUN_01039bb0((const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
+    assert_post_action((const void *)((unsigned long)&rodata_103eb7f) /*=0x103eb7f*/, line);
 }
 
 static __attribute__((always_inline)) inline void scheduler_lock_fatal(unsigned line)
 {
     assert_print((const void *)((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/,
                  (const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
-    FUN_01039bb0((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
+    assert_post_action((const void *)((unsigned long)&rodata_103d3b6) /*=0x103d3b6*/, line);
 }
 
 int z_impl_k_poll(void *work, int priority,

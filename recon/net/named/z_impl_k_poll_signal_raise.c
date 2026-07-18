@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_k_poll_signal_raise               <= FUN_010388c8 @ 0x010388c8
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   signal_poll_event                        <= FUN_0103b442 @ 0x0103b442
  * address symbols (name @ address):
@@ -24,7 +25,7 @@ extern int FUN_0103610c(int);
 extern void FUN_01036144(int);
 extern int FUN_01036128(int);
 extern void assert_print(int, int, unsigned int);
-extern void FUN_01039bb0(int, unsigned int);
+extern void assert_post_action(int, unsigned int);
 extern int signal_poll_event(int *item, unsigned int state);
 extern void FUN_01037130(int, unsigned int);
 
@@ -52,7 +53,7 @@ int z_impl_k_poll_signal_raise(int *param_1, int param_2)
 
 L8f2:
   r0 = C_01038950;
-  FUN_01039bb0(r0, (unsigned int)r1);
+  assert_post_action(r0, (unsigned int)r1);
   goto L8f8;
 
 L8f8:

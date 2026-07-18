@@ -2,6 +2,7 @@
  * public-name: FUN_01035028
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +12,7 @@
 /* net-core FUN_01035028 @ 0x1035028  (parity 300 trials PROVEN) */
 
 extern void assert_print(unsigned int, unsigned int, unsigned int);
-extern unsigned int FUN_01039bb0(unsigned int, unsigned int);
+extern unsigned int assert_post_action(unsigned int, unsigned int);
 void FUN_01035028(int *param_1)
 {
   unsigned int base = 0x21004af8;
@@ -21,7 +22,7 @@ void FUN_01035028(int *param_1)
   unsigned int entryAddr = base + idx * 0xc;
   if (*(char*)(unsigned long)(entryAddr + 8) == 0) {
     assert_print(0x0103d2a7, 0x0103e73b, 0xca);
-    r0 = FUN_01039bb0(0x0103e73b, 0xca);
+    r0 = assert_post_action(0x0103e73b, 0xca);
     r1 = 0xca;
   }
   int *r4 = *(int**)(unsigned long)r0;

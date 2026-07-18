@@ -2,6 +2,7 @@
  * public-name: FUN_01036660
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   z_handle_obj_poll_events                 <= FUN_0103b4f6 @ 0x0103b4f6
  * address symbols (name @ address):
@@ -23,7 +24,7 @@ extern void FUN_0103705c(void);
 extern void FUN_01037130(unsigned int*, unsigned int);
 extern int FUN_010379d4(unsigned int*);
 extern unsigned int *FUN_010389f8(int, int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 extern void z_handle_obj_poll_events(unsigned int*, int);
 
@@ -57,7 +58,7 @@ unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned
   if (iVar2 == 0) {
     assert_print(DAT_01036770, DAT_0103676c, 0x72);
     uVar6 = 0x72;
-    FUN_01039bb0(DAT_0103676c, uVar6);
+    assert_post_action(DAT_0103676c, uVar6);
     __builtin_unreachable();
   }
   FUN_01036144(puVar5);
@@ -87,7 +88,7 @@ unsigned int FUN_01036660(unsigned int *param_1, unsigned int *param_2, unsigned
       }
       assert_print(DAT_01036770, DAT_0103676c, 0xf0);
       uVar6 = 0xf0;
-      FUN_01039bb0(DAT_0103676c, uVar6);
+      assert_post_action(DAT_0103676c, uVar6);
       __builtin_unreachable();
     }
     puVar3[1] = (unsigned int)param_3;

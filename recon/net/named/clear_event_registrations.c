@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   clear_event_registrations                <= FUN_01038654 @ 0x01038654
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -20,7 +21,7 @@ static inline void InstructionSynchronizationBarrier(int x){(void)x;__ISB();}
 extern int FUN_0103610c(unsigned int);
 extern int FUN_01036128(unsigned int);
 extern void FUN_01036144(unsigned int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
 
 #define DAT_01038754 0x21004b78u
@@ -101,7 +102,7 @@ switchD_01038680_caseD_0:
       uVar5 = 0xf0;
       puVar4 = PTR_s_______HARD_FAULT_______01038760;
 LAB_010386a2:
-      FUN_01039bb0(puVar4, uVar5);
+      assert_post_action(puVar4, uVar5);
       return;
     }
     bVar1 = isCurrentModePrivileged();

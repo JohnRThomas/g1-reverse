@@ -1,12 +1,14 @@
 /* readable reconstruction; identity: FUN_0103aff2 @ 0x0103aff2
  * public-name: FUN_0103aff2
  * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   virtqueue_get_available_buffer           <= FUN_0103ac50 @ 0x0103ac50
  */
 /* net-core FUN_0103aff2 @ 0x103aff2  (parity 300 trials PROVEN) */
 
 extern int FUN_0103aec6(int a);
 extern void thunk_FUN_01036824(int a);
-extern int *FUN_0103ac50(int a, void *b, int *c, int d, int e);
+extern int *virtqueue_get_available_buffer(int a, void *b, int *c, int d, int e);
 extern int FUN_0103ac46(int a);
 extern void FUN_01037c64(int a, int b);
 
@@ -42,7 +44,7 @@ int *FUN_0103aff2(int param_1, int *param_2, int param_3)
       break;
     }
     if (iVar4 == 1) {
-      piVar5 = FUN_0103ac50(*(int *)(param_1 + 0xa8), &hword, param_2, 1, iVar2);
+      piVar5 = virtqueue_get_available_buffer(*(int *)(param_1 + 0xa8), &hword, param_2, 1, iVar2);
       thunk_FUN_01036824(addrA);
       if (piVar5 != (int *)0) {
         goto LAB_0103b052;

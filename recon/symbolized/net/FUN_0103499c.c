@@ -9,7 +9,7 @@
 
 extern void FUN_0103b62e(void*, int, int);
 extern unsigned int FUN_01034650(unsigned int);
-extern void FUN_0102eb2c(int);
+extern void arch_irq_enable(int); /* FUN_0102eb2c */
 
 unsigned int FUN_0103499c(void)
 {
@@ -22,12 +22,16 @@ unsigned int FUN_0103499c(void)
     for (uVar4 = 0; uVar4 != 8; uVar4++) {
         unsigned int r0 = FUN_01034650(uVar4 & 0xff);
         if (((r0 - 0x100u) >> 2) == 0x1f) {
-            *(volatile unsigned int*)(r0 + 0x4100a000) = 0;
+            volatile unsigned int *channel =
+                (volatile unsigned int*)(r0 + 0x4100a000); /* raw computed MMIO back-map */
+            *channel = 0;
+            (void)*channel; /* conditional read-back, original 0x010349d4 */
         }
     }
     volatile unsigned char *e4 = (volatile unsigned char*)0x4100a000;
     *(volatile unsigned int*)(e4 + 0x17c) = 0;
-    FUN_0102eb2c(10);
+    (void)*(volatile unsigned int*)(e4 + 0x17c); /* read-back @ 0x4100a17c, raw 0x010349e4 */
+    arch_irq_enable(10);
     *(volatile unsigned int*)(e4 + 0x304) = 0x80000000;
     base[0x78] = 1;
     *(volatile unsigned int*)(base + 0x74) = 1;

@@ -2,7 +2,10 @@
  * public-name: FUN_01035d18
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
+ *   sys_timepoint_calc                       <= FUN_0103b304 @ 0x0103b304
+ *   sys_timepoint_timeout                    <= FUN_0103b34c @ 0x0103b34c
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
@@ -22,10 +25,10 @@ extern int FUN_0103610c(int);
 extern int FUN_01036128(int);
 extern void FUN_01036144(int);
 extern void FUN_010375b8(int, unsigned int, int, int, int, int);
-extern void FUN_01039bb0(unsigned int, unsigned int);
+extern void assert_post_action(unsigned int, unsigned int);
 extern void assert_print(unsigned int, unsigned int, unsigned int);
-extern void FUN_0103b304(int*);
-extern void FUN_0103b34c(int*, int, int, int);
+extern void sys_timepoint_calc(int*);
+extern void sys_timepoint_timeout(int*, int, int, int);
 
 #define DAT_01035e10 0x0103d3b6u
 #define DAT_01035e14 0x0103d2a7u
@@ -47,7 +50,7 @@ int FUN_01035d18(int param_1, unsigned int param_2, unsigned int param_3, unsign
   int iStack_2c;
 
   iVar8 = param_1 + 0x14;
-  FUN_0103b304(&local_30);
+  sys_timepoint_calc(&local_30);
   iVar2 = iStack_2c;
   iVar4 = local_30;
   uVar7 = 0;
@@ -82,7 +85,7 @@ LAB_01035d56:
       while (1) {
         uVar9 = FUN_0102c4e4(param_1, param_2, param_3);
         if (((int)uVar9 != 0) || (param_5 == 0 && param_6 == 0)) break;
-        FUN_0103b34c(&local_30, (int)(uVar9 >> 0x20), iVar4, iVar2);
+        sys_timepoint_timeout(&local_30, (int)(uVar9 >> 0x20), iVar4, iVar2);
         param_6 = iStack_2c;
         param_5 = local_30;
         FUN_010375b8(iVar8, uVar7, param_1 + 0xc, iStack_2c, local_30, iStack_2c);
@@ -121,6 +124,6 @@ LAB_01035d56:
       uVar7 = DAT_01035e18;
     }
   }
-  FUN_01039bb0(uVar7, uVar5);
+  assert_post_action(uVar7, uVar5);
   __builtin_unreachable();
 }

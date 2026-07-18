@@ -2,7 +2,8 @@
  * public-name: FUN_0102e23c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
- *   z_log_msg_init                           <= FUN_0102ddf4 @ 0x0102ddf4
+ *   z_log_notify_backend_enabled             <= FUN_0102ddf4 @ 0x0102ddf4
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
@@ -12,9 +13,9 @@
 /* net-core FUN_0102e23c @ 0x102e23c — true CFG extent 58 bytes (ends 0x102e276) */
 #include <stdint.h>
 
-extern uint64_t FUN_01039bb0(uint32_t a, uint32_t b);
+extern uint64_t assert_post_action(uint32_t a, uint32_t b);
 extern void assert_print(uint32_t a, uint32_t b, uint32_t c);
-extern void z_log_msg_init(void);
+extern void z_log_notify_backend_enabled(void);
 
 void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
 {
@@ -33,7 +34,7 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
         /* Fatal in production. If the reporter returns, its ABI r0/r1 pair
            becomes the physical fall-through object/value arguments; r2
            remains the previously loaded 0xdf reason code. */
-        uint64_t fatal_result = FUN_01039bb0(0x0103d635, 0xdf);
+        uint64_t fatal_result = assert_post_action(0x0103d635, 0xdf);
         param_1 = (int32_t)(uint32_t)fatal_result;
         param_2 = (uint32_t)(fatal_result >> 32);
         param_3 = 0xdf;
@@ -48,5 +49,5 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
     r3w = *(volatile int32_t *)(param_1 + 4);
     *(volatile uint8_t *)(r3w + 5) = 1;
 
-    z_log_msg_init();
+    z_log_notify_backend_enabled();
 }

@@ -2,10 +2,6 @@
 /* readable reconstruction; identity: FUN_000548b8 @ 0x000548b8
  * public-name: FUN_000548b8
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
- *   ver_str                                  <= FUN_00053344 @ 0x00053344
- *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
  * address symbols (name @ address):
  *   rodata_88138                             @ 0x00088138
  *   rodata_a8ea0                             @ 0x000a8ea0
@@ -17,43 +13,97 @@
  *   g_ble_dev_state                          @ 0x20002000
  *   g_ble_dev_ncmd_sem                       @ 0x200020d4
  */
-/* Reconstructed FUN_000548b8 @ 0x548b8  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed FUN_000548b8 @ 0x000548b8. */
 #include <stdint.h>
-extern unsigned bt_addr_le_str(int);
-extern unsigned ver_str(unsigned);
-extern void atomic_or(unsigned,int);
-extern void FUN_00080ea2(unsigned,unsigned,void*);
+
+extern uint32_t bt_addr_le_str(const void *address); /* FUN_00052cdc */
+extern uint32_t version_string(uint32_t version); /* FUN_00053344 */
+extern void atomic_or(uint32_t *target, uint32_t bits); /* FUN_00080e6a */
+extern void log_message(uint32_t source, uint32_t descriptor, const void *record); /* FUN_00080ea2 */
+
+struct five_word_log_record {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t argument0;
+    uint32_t argument1;
+    uint32_t argument2;
+};
+
+struct address_log_record {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t index;
+    uint32_t address;
+    uint16_t kind;
+};
+
+struct version_log_record {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t version_string;
+    uint32_t version;
+    uint32_t revision;
+    uint32_t build;
+    uint16_t kind;
+};
+
+struct controller_version_log_record {
+    uint32_t argument_count;
+    uint32_t format;
+    uint32_t version_string;
+    uint32_t version;
+    uint32_t revision;
+    uint16_t kind;
+};
+
 void FUN_000548b8(void)
 {
-  unsigned char bVar1; int iVar2 = ((unsigned long)&g_ble_dev_state) /*=0x20002000*/, iVar6, iVar7;
-  unsigned uVar3, uVar4, uVar5;
-  unsigned local_48, local_44, local_40, local_3c, uStack_38, local_34, local_30; unsigned short local_2c;
-  atomic_or(((unsigned long)&g_ble_dev_ncmd_sem) /*=0x200020d4*/, 4);
-  uStack_38 = ((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/;
-  if (1 < *(unsigned char*)(iVar2 + 7)) uStack_38 = ((unsigned long)&rodata_f31a5) /*=0xf31a5*/;
-  local_34 = bt_addr_le_str(iVar2);
-  local_3c = ((unsigned long)&rodata_f31a9) /*=0xf31a9*/; iVar6 = 1; local_30 = 0x03010200; local_40 = 0x02000004;
-  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x28c0, &local_40);
-  uVar5 = 0x01000004; uVar4 = ((unsigned long)&rodata_f31b8) /*=0xf31b8*/; uVar3 = ((unsigned long)&rodata_88138) /*=0x88138*/;
-  iVar7 = iVar2;
-  while (1) {
-    iVar7 = iVar7 + 7;
-    if ((int)(unsigned)*(unsigned char*)(iVar2 + 7) <= iVar6) break;
-    local_34 = bt_addr_le_str(iVar7);
-    local_3c = uVar4; local_30 = (local_30 & 0xffff0000) | 0x301; local_40 = uVar5; uStack_38 = iVar6;
-    FUN_00080ea2(uVar3, 0x24c0, &local_40);
-    iVar6 = iVar6 + 1;
-  }
-  bVar1 = *(unsigned char*)(iVar2 + 0x70);
-  local_40 = ver_str((unsigned)bVar1);
-  uStack_38 = (unsigned)*(unsigned short*)(iVar2 + 0x72);
-  local_34 = (unsigned)*(unsigned short*)(iVar2 + 0x76);
-  local_44 = ((unsigned long)&rodata_f31c9) /*=0xf31c9*/; local_30 = (local_30 & 0xffff0000) | 0x200; local_48 = 0x01000006; local_3c = bVar1;
-  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x34c0, &local_48);
-  bVar1 = *(unsigned char*)(iVar2 + 0x71);
-  uStack_38 = ver_str((unsigned)bVar1);
-  local_30 = (unsigned)*(unsigned short*)(iVar2 + 0x74);
-  local_3c = ((unsigned long)&rodata_f3207) /*=0xf3207*/; local_2c = 0x200; local_40 = 0x01000005; local_34 = bVar1;
-  FUN_00080ea2(((unsigned long)&rodata_88138) /*=0x88138*/, 0x2cc0, &local_40);
-  return;
+    const uint8_t *const controller = (const uint8_t *)((unsigned long)&g_ble_dev_state) /*=0x20002000*/;
+    uint8_t address_count = controller[7];
+
+    atomic_or((uint32_t *)((unsigned long)&g_ble_dev_ncmd_sem) /*=0x200020d4*/, 4);
+
+    struct five_word_log_record identity = {
+        .argument_count = 0x02000004u,
+        .format = ((unsigned long)&rodata_f31a9) /*=0xf31a9*/,
+        .argument0 = address_count > 1 ? ((unsigned long)&rodata_f31a5) /*=0xf31a5*/ : ((unsigned long)&rodata_a8ea0) /*=0xa8ea0*/,
+        .argument1 = bt_addr_le_str(controller),
+        .argument2 = 0x03010200u,
+    };
+
+    log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x28c0u, &identity);
+
+    for (uint32_t index = 1; index < address_count; ++index) {
+        struct address_log_record address = {
+            .argument_count = 0x01000004u,
+            .format = ((unsigned long)&rodata_f31b8) /*=0xf31b8*/,
+            .index = index,
+            .address = bt_addr_le_str(controller + index * 7u),
+            .kind = 0x0301u,
+        };
+        log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x24c0u, &address);
+    }
+
+    uint8_t host_version = controller[0x70];
+    struct version_log_record host = {
+        .argument_count = 0x01000006u,
+        .format = ((unsigned long)&rodata_f31c9) /*=0xf31c9*/,
+        .version_string = version_string(host_version),
+        .version = host_version,
+        .revision = *(const uint16_t *)(controller + 0x72),
+        .build = *(const uint16_t *)(controller + 0x76),
+        .kind = 0x0200u,
+    };
+    log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x34c0u, &host);
+
+    uint8_t controller_version = controller[0x71];
+    struct controller_version_log_record radio = {
+        .argument_count = 0x01000005u,
+        .format = ((unsigned long)&rodata_f3207) /*=0xf3207*/,
+        .version_string = version_string(controller_version),
+        .version = controller_version,
+        .revision = *(const uint16_t *)(controller + 0x74),
+        .kind = 0x0200u,
+    };
+    log_message(((unsigned long)&rodata_88138) /*=0x88138*/, 0x2cc0u, &radio);
 }

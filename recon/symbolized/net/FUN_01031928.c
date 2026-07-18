@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   bt_hci_driver_register                   <= FUN_0102fbac @ 0x0102fbac
  * address symbols (name @ address):
  *   rodata_103c044                           @ 0x0103c044
  *   rodata_103cad0                           @ 0x0103cad0
@@ -30,7 +31,7 @@ extern int FUN_01009160(void);
 extern int FUN_01009184(void);
 extern int FUN_010091a8(void);
 extern void z_impl_z_log_msg_static_create(unsigned int, unsigned int, void*, int);
-extern void FUN_0102fbac(unsigned int);
+extern void bt_hci_driver_register(unsigned int);
 
 #define DAT_01031a54 ((unsigned long)&rodata_103cad0) /*=0x103cad0*/
 #define DAT_01031a58 0x0103aecfu
@@ -48,7 +49,7 @@ int FUN_01031928(void)
   int local_1c;
   unsigned int local_14;
 
-  FUN_0102fbac(DAT_01031a54);
+  bt_hci_driver_register(DAT_01031a54);
   FUN_01008ddc(DAT_01031a58);
   iVar2 = FUN_01009078();
   if ((((((iVar2 == 0) && (iVar2 = FUN_0100909c(), iVar2 == 0)) &&

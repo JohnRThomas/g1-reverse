@@ -2,6 +2,7 @@
  * public-name: FUN_01037514
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -11,7 +12,7 @@
 
 extern void FUN_010374dc(void);
 extern int assert_print(int,int,int);
-extern void FUN_01039bb0(int,int) __attribute__((noreturn));
+extern void assert_post_action(int,int) __attribute__((noreturn));
 
 void FUN_01037514(int *param_1, int *param_2, unsigned int param_3, unsigned int param_4)
 {
@@ -22,7 +23,7 @@ void FUN_01037514(int *param_1, int *param_2, unsigned int param_3, unsigned int
         param_1[2] = (int)param_2;
         if (param_1 == piVar2) {
             assert_print(0x103d2a7, 0x103eb0e, 0xc1);
-            FUN_01039bb0(0x103eb0e, 0xc1);
+            assert_post_action(0x103eb0e, 0xc1);
         }
         int *p3 = (int*)*param_2;
         if (param_2 != p3) {

@@ -3,6 +3,7 @@
  * public-name: FUN_0102cbd8
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  *   z_impl_k_sem_init                        <= FUN_0103b224 @ 0x0103b224
  * address symbols (name @ address):
@@ -15,7 +16,7 @@
 extern void FUN_0103b62e(void *dst, uint32_t val, uint32_t len, uint32_t d1, uint32_t d2);
 extern int32_t z_impl_k_sem_init(int32_t a, uint32_t b, uint32_t c);
 extern void assert_print(uint32_t a, uint32_t b, uint32_t c);
-extern void FUN_01039bb0(uint32_t a, uint32_t b);
+extern void assert_post_action(uint32_t a, uint32_t b);
 
 void FUN_0102cbd8(int32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t param_4)
 {
@@ -38,6 +39,6 @@ void FUN_0102cbd8(int32_t param_1, uint32_t *param_2, uint32_t param_3, uint32_t
     int32_t iVar1 = z_impl_k_sem_init(param_1 + 0x2c, 0, 1);
     if (iVar1 != 0) {
         assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d406) /*=0x103d406*/, 0x2e);
-        FUN_01039bb0(((unsigned long)&rodata_103d406) /*=0x103d406*/, 0x2e);
+        assert_post_action(((unsigned long)&rodata_103d406) /*=0x103d406*/, 0x2e);
     }
 }

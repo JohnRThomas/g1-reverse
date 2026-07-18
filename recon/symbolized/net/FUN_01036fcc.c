@@ -3,6 +3,7 @@
  * public-name: FUN_01036fcc
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103704c                           @ 0x0103704c
@@ -16,7 +17,7 @@ typedef unsigned char undefined1;
 typedef unsigned int undefined4;
 
 extern void FUN_01036f74(int param);
-extern void FUN_01039bb0(void *a, int b);
+extern void assert_post_action(void *a, int b);
 extern void assert_print(void *a, void *b, int c);
 
 #define DAT_0103704c (*(int * volatile *)((unsigned long)&rodata_103704c) /*=0x103704c*/)
@@ -39,7 +40,7 @@ void FUN_01036fcc(int *param_1)
   iVar1 = DAT_01037058;
   if ((void*)param_1 == (void*)DAT_0103704c) {
     assert_print(DAT_01037054, DAT_01037050, 0xc1);
-    FUN_01039bb0(DAT_01037050, 0xc1);
+    assert_post_action(DAT_01037050, 0xc1);
     for(;;){}
   }
   puVar2 = (undefined4 *)(DAT_01037058 + 0x18);

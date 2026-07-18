@@ -6,6 +6,7 @@
  *   process_event                            <= FUN_0102c6f8 @ 0x0102c6f8
  *   process_recheck                          <= FUN_01039ade @ 0x01039ade
  *   notify_one                               <= FUN_01039b36 @ 0x01039b36
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_102d22d                           @ 0x0102d22d
@@ -18,7 +19,7 @@ extern int  FUN_01036128(int);
 extern int  FUN_0103610c(int);
 extern void FUN_01036144(int);
 extern void notify_one(int*, void*, unsigned, void*);
-extern void FUN_01039bb0(int, unsigned);
+extern void assert_post_action(int, unsigned);
 extern void assert_print(int, int, unsigned);
 
 typedef void (*cb_t)(int*, void*, unsigned, void*);
@@ -198,6 +199,6 @@ L_906:  /* case 5 */
 ASSERTL:
   for (;;) {
       assert_print(((unsigned long)&rodata_103d2a7) /*=0x103d2a7*/, ((unsigned long)&rodata_103d394) /*=0x103d394*/, 0x156);
-      FUN_01039bb0(((unsigned long)&rodata_103d394) /*=0x103d394*/, 0x156);
+      assert_post_action(((unsigned long)&rodata_103d394) /*=0x103d394*/, 0x156);
   }
 }

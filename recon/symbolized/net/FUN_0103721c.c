@@ -3,6 +3,7 @@
  * public-name: FUN_0103721c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -27,7 +28,7 @@ extern int FUN_0103610c(int);
 extern void FUN_01036144(int);
 extern int FUN_01036128(int);
 extern void assert_print(int, int, unsigned int);
-extern void FUN_01039bb0(int, unsigned int);
+extern void assert_post_action(int, unsigned int);
 
 void FUN_0103721c(void)
 {
@@ -97,6 +98,6 @@ L25e:
 L242:
   r0 = C_010372a4;
 L260:
-  FUN_01039bb0(r0, (unsigned int)r1);
+  assert_post_action(r0, (unsigned int)r1);
   goto L264;
 }

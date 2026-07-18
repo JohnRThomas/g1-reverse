@@ -2,6 +2,7 @@
  * public-name: FUN_0102c470
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   assert_post_action                       <= FUN_01039bb0 @ 0x01039bb0
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -16,7 +17,7 @@ extern int FUN_01039768(void *arena, int offset);
 extern void *FUN_01039774(void *arena, int offset);
 extern void FUN_010399f6(void *object, int offset);
 extern void assert_print(const void *module, const void *file, unsigned line);
-extern void FUN_01039bb0(const void *file, unsigned line);
+extern void assert_post_action(const void *file, unsigned line);
 
 void FUN_0102c470(void **arena_slot, int object)
 {
@@ -33,7 +34,7 @@ void FUN_0102c470(void **arena_slot, int object)
     if ((FUN_0103973c(arena, offset, 1) & 1) == 0) {
         assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103d373u, 0xaf);
-        FUN_01039bb0((const void *)0x0103d373u, 0xaf);
+        assert_post_action((const void *)0x0103d373u, 0xaf);
         return;
     }
 
@@ -42,7 +43,7 @@ void FUN_0102c470(void **arena_slot, int object)
     if (span - adjustment != offset) {
         assert_print((const void *)0x0103d2a7u,
                      (const void *)0x0103d373u, 0xb7);
-        FUN_01039bb0((const void *)0x0103d373u, 0xb7);
+        assert_post_action((const void *)0x0103d373u, 0xb7);
         return;
     }
 
