@@ -22,9 +22,10 @@ void FUN_00054444(const void *event)
         FUN_00080ea2(0x00088138u, 0x1840u, &r);
         return;
     }
-    int enhanced = FUN_00083370(connection, *(const uint16_t *)(p + 10),
-                                 *(const uint32_t *)(p + 2), *(const uint32_t *)(p + 6),
-                                 (uint32_t)(uintptr_t)parameters, parameters);
+    uint32_t diversifier = *(const uint16_t *)(p + 10);
+    int enhanced = FUN_00083370(connection, diversifier,
+                                *(const uint32_t *)(p + 2), *(const uint32_t *)(p + 6),
+                                diversifier, parameters);
     void *command;
     uint32_t opcode;
     if (enhanced) {
