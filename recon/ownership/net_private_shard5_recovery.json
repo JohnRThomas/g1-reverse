@@ -1,0 +1,347 @@
+{
+  "build_observations": {
+    "buffer_descriptor_helpers": "GCC optimize(O2) reproduces the firmware stack-frame contract; Os does not",
+    "interpretation": "object-level optimization flags must be matched in addition to SDK version"
+  },
+  "functions": [
+    {
+      "analysis_address": "0x01012150",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01012150",
+      "raw_symbol": "FUN_01012150",
+      "readable_role": "evaluate controller event eligibility",
+      "required_spellings": [
+        "FUN_01012150"
+      ],
+      "runtime_address": "0x01012950",
+      "source": "recon/net/src/FUN_01012150.c",
+      "source_sha256": "6b865e028c5a0f51ca3eb992f3b65dcbd56b33d29f0c2d6142edfaebe0aae2aa",
+      "true_executable_extent": 38
+    },
+    {
+      "analysis_address": "0x01013da8",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01013da8",
+      "raw_symbol": "FUN_01013da8",
+      "readable_role": "catch a connection event cursor up to controller time",
+      "required_spellings": [
+        "FUN_01013da8"
+      ],
+      "runtime_address": "0x010145a8",
+      "source": "recon/net/src/FUN_01013da8.c",
+      "source_sha256": "5b1b481b02460fb49d9bd348a5e0c9d9a66a19bb86393ca4a05ffdb1491d59d6",
+      "true_executable_extent": 238
+    },
+    {
+      "analysis_address": "0x01019eb4",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 45,
+        "cover_cases": 5,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {
+          "1": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01019eb4",
+      "raw_symbol": "FUN_01019eb4",
+      "readable_role": "inspect the resolved controller buffer mode",
+      "required_spellings": [
+        "FUN_01019eb4"
+      ],
+      "runtime_address": "0x0101a6b4",
+      "source": "recon/net/src/FUN_01019eb4.c",
+      "source_sha256": "cb2f7667bb7091a18f47c113e317e90d5c686ea1af57cd638be82c9e94c2a699",
+      "true_executable_extent": 68
+    },
+    {
+      "analysis_address": "0x01019ef8",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01019ef8",
+      "raw_symbol": "FUN_01019ef8",
+      "readable_role": "match resolved controller buffer metadata",
+      "required_spellings": [
+        "FUN_01019ef8"
+      ],
+      "runtime_address": "0x0101a6f8",
+      "source": "recon/net/src/FUN_01019ef8.c",
+      "source_sha256": "1ba929bb163dc20aa9ef85a40e2e9ba6b174e080acde998a56dd90d5c09ecb4f",
+      "true_executable_extent": 58
+    },
+    {
+      "analysis_address": "0x0101e090",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0101e090",
+      "raw_symbol": "FUN_0101e090",
+      "readable_role": "resolve an inactive connection typed handle",
+      "required_spellings": [
+        "FUN_0101e090"
+      ],
+      "runtime_address": "0x0101e890",
+      "source": "recon/net/src/FUN_0101e090.c",
+      "source_sha256": "663108a5b84445a1edc519d656d6be67a1b5571039c4e25283c341a4d6666090",
+      "true_executable_extent": 20
+    },
+    {
+      "analysis_address": "0x01022a50",
+      "archive_family": "mpsl",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 42,
+        "cover_cases": 2,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {
+          "2": [
+            0,
+            1
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01022a50",
+      "raw_symbol": "FUN_01022a50",
+      "readable_role": "program the radio channel mask and descriptor",
+      "required_spellings": [
+        "FUN_01022a50"
+      ],
+      "runtime_address": "0x01023250",
+      "source": "recon/net/src/FUN_01022a50.c",
+      "source_sha256": "69e02c179d7d3d59e8d4def5fffd7d3b3ae28f0a980a1e171aab26c724cefa41",
+      "true_executable_extent": 48
+    },
+    {
+      "analysis_address": "0x0102590c",
+      "archive_family": "mpsl",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 15,
+        "cover_cases": 15,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 13,
+        "selectors": {
+          "2": [
+            0,
+            1
+          ]
+        },
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_0102590c",
+      "raw_symbol": "FUN_0102590c",
+      "readable_role": "perform an overlap-safe private byte move",
+      "required_spellings": [
+        "FUN_0102590c"
+      ],
+      "runtime_address": "0x0102610c",
+      "source": "recon/net/src/FUN_0102590c.c",
+      "source_sha256": "9bd7f763f89e795a91c9992b6e4776ccd1bc2af2ddf190e6f8e7461bcb89ce33",
+      "true_executable_extent": 138
+    },
+    {
+      "analysis_address": "0x010269ce",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_010269ce",
+      "raw_symbol": "FUN_010269ce",
+      "readable_role": "reserve payload space in a packed controller packet",
+      "required_spellings": [
+        "FUN_010269ce"
+      ],
+      "runtime_address": "0x010271ce",
+      "source": "recon/net/src/FUN_010269ce.c",
+      "source_sha256": "741d9c31416e2063aabc34644315abddaf42ee5934ab97df36a99a11bedbb91c",
+      "true_executable_extent": 176
+    },
+    {
+      "analysis_address": "0x01026dae",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01026dae",
+      "raw_symbol": "FUN_01026dae",
+      "readable_role": "test for another packed controller packet item",
+      "required_spellings": [
+        "FUN_01026dae"
+      ],
+      "runtime_address": "0x010275ae",
+      "source": "recon/net/src/FUN_01026dae.c",
+      "source_sha256": "402364d584528cf4ec66153607bf833d7d107481965e49a2c45283e6074e131d",
+      "true_executable_extent": 154
+    },
+    {
+      "analysis_address": "0x01027ed4",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_01027ed4",
+      "raw_symbol": "FUN_01027ed4",
+      "readable_role": "invoke a private helper in fixed mode one",
+      "required_spellings": [
+        "FUN_01027ed4"
+      ],
+      "runtime_address": "0x010286d4",
+      "source": "recon/net/src/FUN_01027ed4.c",
+      "source_sha256": "1f779a0e69adaf3e6ab5e2015d21c4e665c20e353de2b2c7e0efe24a985dcc2a",
+      "true_executable_extent": 30
+    },
+    {
+      "analysis_address": "0x010280d8",
+      "archive_family": "softdevice_controller",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "FUN_010280d8",
+      "raw_symbol": "FUN_010280d8",
+      "readable_role": "invoke a private helper with option zero",
+      "required_spellings": [
+        "FUN_010280d8"
+      ],
+      "runtime_address": "0x010288d8",
+      "source": "recon/net/src/FUN_010280d8.c",
+      "source_sha256": "20f68ddfac92d3780a43efc278f8f8655a79ff5e207775bcd2d8d848d967ac44",
+      "true_executable_extent": 26
+    },
+    {
+      "analysis_address": "0x0102a208",
+      "archive_family": "mpsl",
+      "cfg_verify": {
+        "callback_slots": [],
+        "checked": 40,
+        "cover_cases": 0,
+        "data_pointer_slots": [],
+        "pointer_cases": [],
+        "random_trials_requested": 40,
+        "selectors": {},
+        "status": "PASS"
+      },
+      "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+      "primary_symbol": "sdc_byte_lock_release",
+      "raw_symbol": "FUN_0102a208",
+      "readable_role": "release a byte lock under PRIMASK",
+      "required_spellings": [
+        "FUN_0102a208",
+        "sdc_byte_lock_release"
+      ],
+      "runtime_address": "0x0102aa08",
+      "source": "recon/net/src/FUN_0102a208.c",
+      "source_sha256": "a317d122add6e5e2c85a201ab84ed169b44286d6c8862cbbf17c33de8d56b930",
+      "true_executable_extent": 18
+    }
+  ],
+  "policy": {
+    "archive_or_blob_substitution_forbidden": true,
+    "authoritative_verifier": "tools/cfg_verify.py",
+    "bounded_move_length_strategy": "process-local reviewed argument-2 lengths",
+    "canonical_readable_c_only": true,
+    "private_sdc_mpsl": "report_only_unchanged",
+    "raw_address_headers_and_backmaps_required": true,
+    "shared_generated_name_adoption_cfg_outputs_untouched": true
+  },
+  "schema": "g1.net.private_shard_recovery_receipt.v1",
+  "shard": "net-private-5",
+  "summary": {
+    "cfg_checked_trials": 462,
+    "cfg_directed_cover_cases": 22,
+    "cfg_pass_count": 12,
+    "function_count": 12,
+    "total_true_executable_extent": 1012
+  },
+  "worklist": "recon/catalogs/net_private_recovery_worklist.json",
+  "worklist_sha256": "46eb1470a40beb97dddf6c3542c8ef89e73726fa03ebb1d1f67c17c6158e16b9"
+}
