@@ -2152,6 +2152,150 @@
   "0x0102ea00": {
    "name": "arch_cpu_atomic_idle",
    "evidence": "Recovered configured Zephyr Cortex-M atomic-idle implementation with tracing/prepare hook, BASEPRI release, WFE policy gate, and interrupt-key restoration. Raw identity remains FUN_0102ea00 at 0x0102ea00."
+  },
+  "0x01039ade": {
+   "name": "process_recheck",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039ade at 0x01039ade."
+  },
+  "0x01039b16": {
+   "name": "validate_args",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039b16 at 0x01039b16."
+  },
+  "0x01039b36": {
+   "name": "notify_one",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_01039b36 at 0x01039b36."
+  },
+  "0x0102c6f8": {
+   "name": "process_event",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c static helper with resolved call-target closure. Raw identity remains FUN_0102c6f8 at 0x0102c6f8."
+  },
+  "0x0102ca2c": {
+   "name": "transition_complete",
+   "evidence": "Hidden live entry recovered from the exact configured Zephyr lib/os/onoff.c section closure. Raw identity remains FUN_0102ca2c at 0x0102ca2c."
+  },
+  "0x01039b62": {
+   "name": "onoff_manager_init",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c public owner. Raw identity remains FUN_01039b62 at 0x01039b62."
+  },
+  "0x0102ca80": {
+   "name": "onoff_request",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr lib/os/onoff.c public owner with resolved call-target closure. Raw identity remains FUN_0102ca80 at 0x0102ca80."
+  },
+  "0x01030014": {
+   "name": "net_buf_simple_reserve",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr subsys/net/buf_simple.c owner. Raw identity remains FUN_01030014 at 0x01030014."
+  },
+  "0x0103004c": {
+   "name": "net_buf_simple_push",
+   "evidence": "Hidden live entry recovered from the exact configured Zephyr subsys/net/buf_simple.c section closure. Raw identity remains FUN_0103004c at 0x0103004c."
+  },
+  "0x0103a45a": {
+   "name": "net_buf_simple_push_u8",
+   "evidence": "Exact configured wrapper calls net_buf_simple_push at 0x0103004c, distinguishing it from the identical add_u8 body. Raw identity remains FUN_0103a45a."
+  },
+  "0x01030084": {
+   "name": "net_buf_simple_add",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr subsys/net/buf_simple.c owner. Raw identity remains FUN_01030084 at 0x01030084."
+  },
+  "0x0103a478": {
+   "name": "net_buf_simple_add_mem",
+   "evidence": "Exact configured wrapper calls net_buf_simple_add at 0x01030084, disproving the stale push_mem/SDC fingerprint. Raw identity remains FUN_0103a478."
+  },
+  "0x0103b164": {
+   "name": "k_msgq_init",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner under CONFIG_SPIN_VALIDATE=y and CONFIG_SMP=n. Raw identity remains FUN_0103b164."
+  },
+  "0x0103b18c": {
+   "name": "z_impl_k_msgq_alloc_init",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with checked allocator/init calls. Raw identity remains FUN_0103b18c."
+  },
+  "0x01036198": {
+   "name": "z_impl_k_msgq_put",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with resolved call-target closure. Raw identity remains FUN_01036198."
+  },
+  "0x010362d0": {
+   "name": "z_impl_k_msgq_get",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/msg_q.c owner with resolved call-target closure. Raw identity remains FUN_010362d0."
+  },
+  "0x0103b244": {
+   "name": "flag_test_and_clear",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c static helper. Raw identity remains FUN_0103b244."
+  },
+  "0x0103b25a": {
+   "name": "notify_queue_locked_isra_0",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c compiler-local helper with checked wake target. Raw identity remains FUN_0103b25a."
+  },
+  "0x0103695c": {
+   "name": "work_queue_main",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c static owner including private lock and pending-cancel references. Raw identity remains FUN_0103695c."
+  },
+  "0x01036b18": {
+   "name": "submit_to_queue_locked",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c static helper with resolved call-target closure. Raw identity remains FUN_01036b18."
+  },
+  "0x01036c2c": {
+   "name": "z_work_submit_to_queue",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c owner including its private lock relocation. Raw identity remains FUN_01036c2c."
+  },
+  "0x0103b268": {
+   "name": "k_work_submit_to_queue",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/work.c owner with resolved submit and reschedule targets. Raw identity remains FUN_0103b268."
+  },
+  "0x01036da4": {
+   "name": "k_work_queue_drain",
+   "evidence": "Hidden live entry recovered from the exact configured Zephyr kernel/work.c closure, including its private lock relocation. Raw identity remains FUN_01036da4."
+  },
+  "0x010382fc": {
+   "name": "z_timer_expiration_handler",
+   "evidence": "Hidden live entry recovered from exact configured Zephyr kernel/timer.c, including the source-local timer lock. Raw identity remains FUN_010382fc."
+  },
+  "0x0103b38e": {
+   "name": "k_timer_init",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner. Raw identity remains FUN_0103b38e."
+  },
+  "0x01038448": {
+   "name": "z_impl_k_timer_start",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner with checked timeout-handler closure. Raw identity remains FUN_01038448."
+  },
+  "0x0103b3a6": {
+   "name": "z_impl_k_timer_stop",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/timer.c owner with resolved timeout and scheduler targets. Raw identity remains FUN_0103b3a6."
+  },
+  "0x0103b3e0": {
+   "name": "add_event",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper. Raw identity remains FUN_0103b3e0."
+  },
+  "0x010384a8": {
+   "name": "register_events",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper including the private poll lock. Raw identity remains FUN_010384a8."
+  },
+  "0x0103b442": {
+   "name": "signal_poll_event",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper with resolved wake/work targets. Raw identity remains FUN_0103b442."
+  },
+  "0x01038654": {
+   "name": "clear_event_registrations",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c static helper including the private poll lock. Raw identity remains FUN_01038654."
+  },
+  "0x01038764": {
+   "name": "z_impl_k_poll",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner including private lock and wait_q closure. Raw identity remains FUN_01038764."
+  },
+  "0x0103b4f6": {
+   "name": "z_handle_obj_poll_events",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner with checked signal_poll_event target. Raw identity remains FUN_0103b4f6."
+  },
+  "0x0103b512": {
+   "name": "z_impl_k_poll_signal_init",
+   "evidence": "Instruction-exact pinned Zephyr kernel/poll.c owner. Raw identity remains FUN_0103b512."
+  },
+  "0x0103b51c": {
+   "name": "z_impl_k_poll_signal_reset",
+   "evidence": "Hidden instruction-exact entry recovered from the configured Zephyr kernel/poll.c closure. Raw identity remains FUN_0103b51c."
+  },
+  "0x010388c8": {
+   "name": "z_impl_k_poll_signal_raise",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr kernel/poll.c owner including private lock and resolved signal/scheduler targets. Raw identity remains FUN_010388c8."
   }
  }
 }

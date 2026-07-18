@@ -80,14 +80,19 @@ class NetOpenampStockAtomicAdoptionTest(unittest.TestCase):
 
     def test_private_sdc_decisions_are_unchanged(self):
         baseline = json.loads(BASELINE.read_text())
+        zephyr = json.loads((ROOT / "recon/ownership/"
+                             "net_zephyr_stock_atomic_adoption.json").read_text())
+        corrected_stock = set(zephyr["atomic_group"])
         before = {row["va"]: (row["exclude_reconstruction"],
                               row["upstream_symbol"])
                   for row in baseline["cores"]["net"]["entries"]
-                  if row["component"] == "softdevice_controller"}
+                  if row["component"] == "softdevice_controller" and
+                  row["va"] not in corrected_stock}
         after = {row["va"]: (row["exclude_reconstruction"],
                              row["upstream_symbol"])
                  for row in self.manifest["cores"]["net"]["entries"]
-                 if row["component"] == "softdevice_controller"}
+                 if row["component"] == "softdevice_controller" and
+                 row["va"] not in corrected_stock}
         self.assertEqual(before, after)
         self.assertEqual("report_only_unchanged",
                          self.audit["policy"]["sdc_policy"])
