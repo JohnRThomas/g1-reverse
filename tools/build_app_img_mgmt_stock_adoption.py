@@ -205,8 +205,10 @@ def topology_receipt():
         raise ValueError("RAM-flash-only PM entries unexpectedly emitted in app map")
     return {
         "configured_pm_config": str(PM_CONFIG),
-        "configured_pm_config_sha256": sha(PM_CONFIG),
         "configured_required_values": PM_REQUIRED,
+        "configured_required_values_sha256": hashlib.sha256(json.dumps(
+            PM_REQUIRED, sort_keys=True,
+            separators=(",", ":")).encode()).hexdigest(),
         "firmware_slot_id_table_va": "0x0008bb90",
         "firmware_slot_ids": {"primary0": 4, "secondary0": 2,
                               "primary1": 1, "secondary1": 8},

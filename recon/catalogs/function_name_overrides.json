@@ -1825,6 +1825,34 @@
    "name": "rpmsg_register_endpoint",
    "evidence": "Exact adoption-manifest upstream match to the pinned RPMsg endpoint registration owner, including name copy, callback fields, and endpoint-list linkage. Raw identity remains FUN_0103547c at 0x0103547c."
   },
+  "0x01035424": {
+   "name": "rpmsg_send_offchannel_raw",
+   "evidence": "Relocation-masked byte-exact match to pinned OpenAMP rpmsg.c. Operand-level comparison corrects the old mnemonic-only nocopy misidentification: this body loads rdev->ops at +0x78; nocopy is the adjacent hidden owner at 0x01035450 and loads +0x88. Raw identity remains FUN_01035424."
+  },
+  "0x010354bc": {
+   "name": "rpmsg_create_ept",
+   "evidence": "Complete 0x100-byte pinned OpenAMP rpmsg.c section is relocation-masked byte-exact to firmware, including address allocation, endpoint registration, semaphore handling, and name-service dispatch. Raw identity remains FUN_010354bc."
+  },
+  "0x0103ad4a": {
+   "name": "__metal_mutex_acquire",
+   "evidence": "File-static helper emitted by pinned OpenAMP rpmsg.c; its complete selected section is relocation-masked byte-exact. Raw identity remains FUN_0103ad4a."
+  },
+  "0x0103ad56": {
+   "name": "rpmsg_unregister_endpoint",
+   "evidence": "File-static endpoint removal helper from pinned OpenAMP rpmsg.c; complete selected section is relocation-masked byte-exact. Raw identity remains FUN_0103ad56."
+  },
+  "0x0103ada8": {
+   "name": "rpmsg_send_ns_message",
+   "evidence": "Pinned OpenAMP rpmsg.c name-service sender is relocation-masked byte-exact and calls the corrected raw sender at 0x01035424. Raw identity remains FUN_0103ada8."
+  },
+  "0x0103ae10": {
+   "name": "rpmsg_get_endpoint",
+   "evidence": "Pinned OpenAMP rpmsg.c endpoint lookup is relocation-masked byte-exact across address, name, and destination matching. Raw identity remains FUN_0103ae10."
+  },
+  "0x0103ae84": {
+   "name": "rpmsg_destroy_ept",
+   "evidence": "Pinned OpenAMP rpmsg.c endpoint destruction owner is relocation-masked byte-exact, including name-service removal and file-static unregister tail. Raw identity remains FUN_0103ae84."
+  },
   "0x01039f4c": {
    "name": "get_ept_slot_with_name",
    "evidence": "Exact NCS net-reference object-index match for endpoint-name lookup across the two endpoint slot regions. Raw identity remains FUN_01039f4c at 0x01039f4c."

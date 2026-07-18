@@ -3842,7 +3842,6 @@
  },
  "partition_topology": {
   "configured_pm_config": "/private/tmp/g1-app-root-topology-exact5-0718/pm.config",
-  "configured_pm_config_sha256": "7ffb1e303be8fdfe5043e25d38a4e649a433fa5cc61b2d2c08f91f4480f6ac83",
   "configured_pm_num": 12,
   "configured_required_values": {
    "PM_7_LABEL": "RAM_FLASH",
@@ -3862,6 +3861,7 @@
    "PM_SETTINGS_STORAGE_OFFSET": "0xfc000",
    "PM_SETTINGS_STORAGE_SIZE": "0x2000"
   },
+  "configured_required_values_sha256": "2f9c0bd47770343399d2cd0156c4a78ab192f204e5b163784048c2e4fbfba6e7",
   "filtered_pm_entries": {
    "1": "mcuboot_primary_1 on MCUboot-only flash_sim0, offset 0, size 0x40000",
    "7": "zero-sized RAM_FLASH remainder"

@@ -43242,23 +43242,32 @@
      "core": "net",
      "va": "0x01035424",
      "raw_symbol": "FUN_01035424",
-     "current_symbol": "FUN_01035424",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": "rpmsg_send_offchannel_nocopy",
-     "upstream_unit": "0x00000000010260e0       0x2c modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
-     "confidence": 0.99,
+     "current_symbol": "rpmsg_send_offchannel_raw",
+     "kind": "source",
+     "component": "openamp_rpmsg",
+     "upstream_symbol": "rpmsg_send_offchannel_raw",
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_send_offchannel_nocopy",
-       "ratio": 0.974,
-       "threshold": 0.9,
-       "provenance": "0x00000000010260e0       0x2c modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -43267,22 +43276,64 @@
      "va": "0x0103547c",
      "raw_symbol": "FUN_0103547c",
      "current_symbol": "rpmsg_register_endpoint",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "kind": "source",
+     "component": "openamp_rpmsg",
      "upstream_symbol": "rpmsg_register_endpoint",
-     "upstream_unit": "0x000000000102610c       0x40 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_register_endpoint",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x000000000102610c       0x40 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x010354bc",
+     "raw_symbol": "FUN_010354bc",
+     "current_symbol": "rpmsg_create_ept",
+     "kind": "source",
+     "component": "openamp_rpmsg",
+     "upstream_symbol": "rpmsg_create_ept",
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -44457,25 +44508,67 @@
     },
     {
      "core": "net",
-     "va": "0x0103ad56",
-     "raw_symbol": "FUN_0103ad56",
-     "current_symbol": "FUN_0103ad56",
-     "kind": "glue",
-     "component": "net_sdk_or_glue",
-     "upstream_symbol": "rpmsg_unregister_endpoint",
-     "upstream_unit": "NCS 2.5.1 netref object index",
-     "confidence": 0.99,
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "Generic SDK ownership or missing specific provenance does not identify an adoptable source/archive unit.",
+     "va": "0x0103ad4a",
+     "raw_symbol": "FUN_0103ad4a",
+     "current_symbol": "__metal_mutex_acquire",
+     "kind": "static_helper",
+     "component": "openamp_rpmsg",
+     "upstream_symbol": "__metal_mutex_acquire",
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_unregister_endpoint",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "NCS 2.5.1 netref object index"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "reconstruction_present": true,
+       "safe_to_adopt": true
+      }
+     ]
+    },
+    {
+     "core": "net",
+     "va": "0x0103ad56",
+     "raw_symbol": "FUN_0103ad56",
+     "current_symbol": "rpmsg_unregister_endpoint",
+     "kind": "static_helper",
+     "component": "openamp_rpmsg",
+     "upstream_symbol": "rpmsg_unregister_endpoint",
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "file_static",
+       "reconstruction_present": true,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -44483,23 +44576,32 @@
      "core": "net",
      "va": "0x0103ada8",
      "raw_symbol": "FUN_0103ada8",
-     "current_symbol": "FUN_0103ada8",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "rpmsg_send_ns_message",
+     "kind": "source",
+     "component": "openamp_rpmsg",
      "upstream_symbol": "rpmsg_send_ns_message",
-     "upstream_unit": "0x0000000001029c80       0x32 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_send_ns_message",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x0000000001029c80       0x32 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -44507,23 +44609,32 @@
      "core": "net",
      "va": "0x0103ae10",
      "raw_symbol": "FUN_0103ae10",
-     "current_symbol": "FUN_0103ae10",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "rpmsg_get_endpoint",
+     "kind": "source",
+     "component": "openamp_rpmsg",
      "upstream_symbol": "rpmsg_get_endpoint",
-     "upstream_unit": "0x0000000001029ce8       0x74 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_get_endpoint",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x0000000001029ce8       0x74 modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
@@ -44531,23 +44642,32 @@
      "core": "net",
      "va": "0x0103ae84",
      "raw_symbol": "FUN_0103ae84",
-     "current_symbol": "FUN_0103ae84",
-     "kind": "archive",
-     "component": "net_sdk_or_glue",
+     "current_symbol": "rpmsg_destroy_ept",
+     "kind": "source",
+     "component": "openamp_rpmsg",
      "upstream_symbol": "rpmsg_destroy_ept",
-     "upstream_unit": "0x0000000001029d5c       0x2e modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)",
-     "confidence": 0.99,
+     "upstream_unit": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg.c",
+     "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Explicit threshold-passing archive signature and provenance.",
+     "decision_reason": "Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact inside the complete selected source-unit closure.",
      "evidence": [
       {
-       "source": "recon/ownership/net_function_ownership.json",
-       "type": "net_signature_match",
-       "symbol": "rpmsg_destroy_ept",
-       "ratio": 1.0,
-       "threshold": 0.9,
-       "provenance": "0x0000000001029d5c       0x2e modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg.c.obj)"
+       "source": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+       "type": "net_openamp_source_unit_exact_owner",
+       "repository": "open-amp",
+       "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+       "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
+       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "config": {
+        "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+        "CONFIG_OPENAMP": "y",
+        "CONFIG_OPENAMP_MASTER": "y",
+        "CONFIG_OPENAMP_SLAVE": "y"
+       },
+       "upstream_linkage": "public",
+       "reconstruction_present": false,
+       "safe_to_adopt": true
       }
      ]
     },
