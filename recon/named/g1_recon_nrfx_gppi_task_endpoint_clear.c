@@ -1,9 +1,7 @@
-#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00064fd4 @ 0x00064fd4
- * public-name: nrfx_gppi_task_endpoint_clear
+ * public-name: g1_recon_nrfx_gppi_task_endpoint_clear
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   nrfx_gppi_task_endpoint_clear            <= FUN_00064fd4 @ 0x00064fd4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -11,16 +9,20 @@
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a4a                             @ 0x000f6a4a
  */
-/* Reconstructed FUN_00064fd4 @ 0x64fd4  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed g1_recon_nrfx_gppi_task_endpoint_clear @ 0x64fd4.
+ * Raw identity/back-map: FUN_00064fd4.  Parity: 300/300 trials, PROVEN.
+ */
 
 extern unsigned long long assert_post_action(unsigned int,unsigned int);
 extern void printk(unsigned int,unsigned int,unsigned int,unsigned int);
-void nrfx_gppi_task_endpoint_clear(unsigned int param_1,int param_2,unsigned int param_3,unsigned int param_4)
+void g1_recon_nrfx_gppi_task_endpoint_clear(
+    unsigned int channel, int task_endpoint,
+    unsigned int param_3, unsigned int param_4)
 {
-  if (param_2 == 0) {
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f6a4a) /*=0xf6a4a*/,((unsigned long)&rodata_f6a09) /*=0xf6a09*/,99);
-    param_2 = (int)(assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/,99) >> 32);
+  if (task_endpoint == 0) {
+    printk(0x00099cbdUL,0x000f6a4aUL,0x000f6a09UL,99);
+    task_endpoint = (int)(assert_post_action(0x000f6a09UL,99) >> 32);
   }
-  *(unsigned int *)(param_2 + 0x80) = 0;
+  *(unsigned int *)(task_endpoint + 0x80) = 0;
   return;
 }

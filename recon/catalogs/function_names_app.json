@@ -12704,41 +12704,47 @@
   "0x00064f48": {
    "address": "0x00064f48",
    "raw_name": "FUN_00064f48",
-   "name": "FUN_00064f48",
-   "display_name": "FUN_00064f48",
-   "human": false,
-   "source": "recon/app/src/FUN_00064f48.c",
-   "aliases": []
+   "name": "g1_recon_nrfx_gppi_event_endpoint_setup",
+   "display_name": "g1_recon_nrfx_gppi_event_endpoint_setup",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI event-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064f48.",
+   "aliases": [
+    "FUN_00064f48"
+   ]
   },
   "0x00064f78": {
    "address": "0x00064f78",
    "raw_name": "FUN_00064f78",
-   "name": "nrfx_gppi_task_endpoint_setup",
-   "display_name": "nrfx_gppi_task_endpoint_setup",
+   "name": "g1_recon_nrfx_gppi_task_endpoint_setup",
+   "display_name": "g1_recon_nrfx_gppi_task_endpoint_setup",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064f78.",
    "aliases": [
-    "FUN_00064f78"
+    "FUN_00064f78",
+    "nrfx_gppi_task_endpoint_setup"
    ]
   },
   "0x00064fa8": {
    "address": "0x00064fa8",
    "raw_name": "FUN_00064fa8",
-   "name": "FUN_00064fa8",
-   "display_name": "FUN_00064fa8",
-   "human": false,
-   "source": "recon/app/src/FUN_00064fa8.c",
-   "aliases": []
+   "name": "g1_recon_nrfx_gppi_event_endpoint_clear",
+   "display_name": "g1_recon_nrfx_gppi_event_endpoint_clear",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI event-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064fa8.",
+   "aliases": [
+    "FUN_00064fa8"
+   ]
   },
   "0x00064fd4": {
    "address": "0x00064fd4",
    "raw_name": "FUN_00064fd4",
-   "name": "nrfx_gppi_task_endpoint_clear",
-   "display_name": "nrfx_gppi_task_endpoint_clear",
+   "name": "g1_recon_nrfx_gppi_task_endpoint_clear",
+   "display_name": "g1_recon_nrfx_gppi_task_endpoint_clear",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064fd4.",
    "aliases": [
-    "FUN_00064fd4"
+    "FUN_00064fd4",
+    "nrfx_gppi_task_endpoint_clear"
    ]
   },
   "0x00065000": {
@@ -13360,8 +13366,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware QSPI initializer with active diagnostic behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-08. Raw identity remains FUN_00066994 at 0x00066994.",
    "aliases": [
-    "FUN_00066994",
-    "nrfx_qspi_init"
+    "FUN_00066994"
    ]
   },
   "0x000669f4": {
@@ -13372,8 +13377,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_erase label: the recovered body is the custom-instruction transfer path and is namespaced because the configured NRFX body is not exact. Raw identity remains FUN_000669f4 at 0x000669f4.",
    "aliases": [
-    "FUN_000669f4",
-    "nrfx_qspi_erase"
+    "FUN_000669f4"
    ]
   },
   "0x00066ae0": {
@@ -13405,8 +13409,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_read label: register programming and all callers prove this is the retained QSPI erase implementation. It is namespaced after COLLISION-08; raw identity remains FUN_00066bc4 at 0x00066bc4.",
    "aliases": [
-    "FUN_00066bc4",
-    "nrfx_qspi_read"
+    "FUN_00066bc4"
    ]
   },
   "0x00066c88": {
@@ -24013,12 +24016,13 @@
   "0x000850dc": {
    "address": "0x000850dc",
    "raw_name": "FUN_000850dc",
-   "name": "net_buf_simple_push_mem",
-   "display_name": "net_buf_simple_push_mem",
+   "name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+   "display_name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected identity: this firmware wrapper calls the event endpoint setup at 0x00064f48 and task endpoint setup at 0x00064f78, matching nrfx_gppi_channel_endpoints_setup, not net_buf_simple_push_mem. It is namespaced to retain the active asserted closure. Raw identity remains FUN_000850dc.",
    "aliases": [
-    "FUN_000850dc"
+    "FUN_000850dc",
+    "net_buf_simple_push_mem"
    ]
   },
   "0x000850f6": {
@@ -26384,8 +26388,6 @@
   "FUN_00064134": "0x00064134",
   "FUN_000644f8": "0x000644f8",
   "FUN_00064b64": "0x00064b64",
-  "FUN_00064f48": "0x00064f48",
-  "FUN_00064fa8": "0x00064fa8",
   "FUN_0006540c": "0x0006540c",
   "FUN_00065418": "0x00065418",
   "FUN_00065584": "0x00065584",
@@ -27479,6 +27481,11 @@
   "g1_recon_k_free": "0x000868b4",
   "g1_recon_k_heap_free_validated": "0x00071b2c",
   "g1_recon_nrfx_gpiote_init": "0x00065940",
+  "g1_recon_nrfx_gppi_channel_endpoints_setup": "0x000850dc",
+  "g1_recon_nrfx_gppi_event_endpoint_clear": "0x00064fa8",
+  "g1_recon_nrfx_gppi_event_endpoint_setup": "0x00064f48",
+  "g1_recon_nrfx_gppi_task_endpoint_clear": "0x00064fd4",
+  "g1_recon_nrfx_gppi_task_endpoint_setup": "0x00064f78",
   "g1_recon_nrfx_nvmc_page_erase": "0x00065f1c",
   "g1_recon_nrfx_nvmc_word_write": "0x00065f80",
   "g1_recon_nrfx_qspi_chip_erase": "0x0008520c",
@@ -27946,7 +27953,6 @@
   "net_buf_simple_pull_5f594": "0x0005f594",
   "net_buf_simple_pull_le16": "0x00083718",
   "net_buf_simple_push": "0x0005f518",
-  "net_buf_simple_push_mem": "0x000850dc",
   "net_buf_simple_reserve": "0x0005f4d4",
   "net_buf_simple_tailroom": "0x00083730",
   "net_buf_slist_get": "0x0005f148",
@@ -27985,8 +27991,6 @@
   "nrfx_gpiote_trigger_disable": "0x00065acc",
   "nrfx_gppi_channels_disable": "0x00064f3c",
   "nrfx_gppi_channels_enable": "0x00064f30",
-  "nrfx_gppi_task_endpoint_clear": "0x00064fd4",
-  "nrfx_gppi_task_endpoint_setup": "0x00064f78",
   "nrfx_pdm_buffer_set": "0x00066270",
   "nrfx_pdm_init": "0x0006615c",
   "nrfx_pdm_start": "0x00066214",

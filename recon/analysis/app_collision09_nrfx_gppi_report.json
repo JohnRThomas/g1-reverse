@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batch": "COLLISION-09",
+ "decision": "retain_namespaced_asserted_gppi_closure",
+ "immutable_baseline_sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc",
+ "pinned_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
+ "collision_delta": {
+  "before": 84,
+  "after": 82,
+  "removed": ["nrfx_gppi_task_endpoint_clear", "nrfx_gppi_task_endpoint_setup"],
+  "added": []
+ },
+ "identity_correction": {
+  "va": "0x000850dc",
+  "rejected_name": "net_buf_simple_push_mem",
+  "corrected_name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+  "baseline_excluded": true,
+  "current_excluded": false
+ },
+ "cfg_verify": {
+  "FUN_00064f48": 2,
+  "FUN_00064f78": 2,
+  "FUN_00064fa8": 2,
+  "FUN_00064fd4": 2,
+  "FUN_000850dc": 0,
+  "FUN_0004c278": 5,
+  "FUN_0004c418": 0,
+  "FUN_00062d9c": 7
+ },
+ "mutation": "A candidate with the task-endpoint null assertion removed fails 1/1 on the CFG-selected r1=0 path.",
+ "full_link": {"compiled": 3106, "total": 3106, "failed": 0, "link_rc": 0},
+ "actionable_unresolved": ["FUN_0005463e", "FUN_00054688"],
+ "sdc_changed": false
+}

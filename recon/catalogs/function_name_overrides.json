@@ -763,6 +763,26 @@
    "name": "cjson_get_object_item",
    "evidence": "Exact cJSON 1.7.14 get_object_item implementation with sensitive and inlined ASCII case-insensitive traversal. Raw identity remains FUN_0006447c at 0x0006447c."
   },
+  "0x00064f48": {
+   "name": "g1_recon_nrfx_gppi_event_endpoint_setup",
+   "evidence": "Recovered NCS 2.5.1 GPPI event-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064f48."
+  },
+  "0x00064f78": {
+   "name": "g1_recon_nrfx_gppi_task_endpoint_setup",
+   "evidence": "Recovered NCS 2.5.1 GPPI task-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064f78."
+  },
+  "0x00064fa8": {
+   "name": "g1_recon_nrfx_gppi_event_endpoint_clear",
+   "evidence": "Recovered NCS 2.5.1 GPPI event-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064fa8."
+  },
+  "0x00064fd4": {
+   "name": "g1_recon_nrfx_gppi_task_endpoint_clear",
+   "evidence": "Recovered NCS 2.5.1 GPPI task-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064fd4."
+  },
+  "0x000850dc": {
+   "name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+   "evidence": "Corrected identity: this firmware wrapper calls the event endpoint setup at 0x00064f48 and task endpoint setup at 0x00064f78, matching nrfx_gppi_channel_endpoints_setup, not net_buf_simple_push_mem. It is namespaced to retain the active asserted closure. Raw identity remains FUN_000850dc."
+  },
   "0x00065000": {
    "name": "g1_clock_stop_impl",
    "raw_name": "FUN_00065000",

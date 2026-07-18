@@ -1,6 +1,6 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00064f48 @ 0x00064f48
- * public-name: FUN_00064f48
+ * public-name: g1_recon_nrfx_gppi_event_endpoint_setup
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
@@ -10,7 +10,9 @@
  *   rodata_f6a09                             @ 0x000f6a09
  *   rodata_f6a46                             @ 0x000f6a46
  */
-/* Reconstructed FUN_00064f48 @ 0x64f48 */
+/* Reconstructed g1_recon_nrfx_gppi_event_endpoint_setup @ 0x64f48.
+ * Raw identity/back-map: FUN_00064f48.
+ */
 #include <stdint.h>
 
 extern void printk(uint32_t subsystem, uint32_t message,
@@ -18,15 +20,17 @@ extern void printk(uint32_t subsystem, uint32_t message,
 /* The real routine is noreturn.  The return type models unreachable r0 only. */
 extern uint32_t assert_post_action(uint32_t source, uint32_t line);
 
-void FUN_00064f48(uint32_t value, volatile uint8_t *object)
+void g1_recon_nrfx_gppi_event_endpoint_setup(
+    uint32_t channel, volatile uint8_t *event_endpoint)
 {
-    if (object == 0) {
+    if (event_endpoint == 0) {
         printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f6a46) /*=0xf6a46*/, ((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
-        value = assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
+        channel = assert_post_action(((unsigned long)&rodata_f6a09) /*=0xf6a09*/, 0x44);
         /* The original loaded r1 with the diagnostic line before the noreturn
          * call, so this is its continuation address if that call returns. */
-        object = (volatile uint8_t *)(uintptr_t)0x44u;
+        event_endpoint = (volatile uint8_t *)(uintptr_t)0x44u;
     }
 
-    *(volatile uint32_t *)(object + 0x80) = value | UINT32_C(0x80000000);
+    *(volatile uint32_t *)(event_endpoint + 0x80) =
+        channel | UINT32_C(0x80000000);
 }

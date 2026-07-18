@@ -73,8 +73,8 @@
   "app": {
    "summary": {
     "entries": 357,
-    "exclude_reconstruction": 273,
-    "retain_reconstruction": 84,
+    "exclude_reconstruction": 272,
+    "retain_reconstruction": 85,
     "by_kind": {
      "source": 207,
      "archive": 107,
@@ -12400,15 +12400,15 @@
      "core": "app",
      "va": "0x000850dc",
      "raw_symbol": "FUN_000850dc",
-     "current_symbol": "net_buf_simple_push_mem",
+     "current_symbol": "g1_recon_nrfx_gppi_channel_endpoints_setup",
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_simple_push_mem",
      "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
      "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "exclude_reconstruction": false,
+     "decision": "retain_reconstruction",
+     "decision_reason": "The firmware body calls the recovered asserted GPPI event and task endpoint setup owners. The previous net_buf_simple_push_mem identity and SDK adoption were false.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
@@ -12442,6 +12442,36 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:310",
         "reconstruction_input": "app/libapp.a(net_buf_simple_push_mem.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:310: multiple definition of `net_buf_simple_push_mem'; app/libapp.a(net_buf_simple_push_mem.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_push_mem.c:15: first defined here"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_retention_overrides.json",
+       "type": "explicit_fail_closed_retention_override",
+       "batch": "COLLISION-09",
+       "baseline_current_symbol": "net_buf_simple_push_mem",
+       "corrected_symbol": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+       "identity_evidence": {
+        "firmware_calls": [
+         "0x00064f48",
+         "0x00064f78"
+        ],
+        "sdk_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
+        "sdk_source_lines": [
+         78,
+         82
+        ],
+        "sole_caller": "0x00062d9c"
+       },
+       "cfg_verify": {
+        "owner": {
+         "status": "PASS",
+         "cases": 0
+        },
+        "caller": {
+         "va": "0x00062d9c",
+         "status": "PASS",
+         "cases": 7
+        }
        }
       }
      ]
@@ -28052,7 +28082,11 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "a96b387c6ca67a6c49c8fcbc8eb14bd4886358a97aede3fd649e110f58c7aae4"
+   "sha256": "3fb9365d00b753c091fb8ea97a483dccc7ff027787bc042c4257431fceb3cebe"
+  },
+  {
+   "path": "recon/ownership/app_collision_retention_overrides.json",
+   "sha256": "14fe68a9caffa5400c747352a49cc1c25485dd6729b87a79c0c45021faaeec9b"
   }
  ]
 }

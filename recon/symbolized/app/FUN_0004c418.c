@@ -23,7 +23,8 @@ extern int32_t FUN_000635d8(uint32_t channel);
 extern uint32_t FUN_00063570(uint32_t channel);
 extern void nrf53_ipc_channel_configure(uint32_t id, uint32_t channel, uint32_t priority,
                         uint32_t zero);
-extern void FUN_00064f48(uint32_t id, uint32_t state);
+extern void g1_recon_nrfx_gppi_event_endpoint_setup(uint32_t id,
+                                                    uint32_t state);
 extern void FUN_00063778(uint32_t channel, uint32_t state, uint32_t length,
                         uint32_t zero, uintptr_t callback, uint32_t descriptor);
 extern void printk(uintptr_t domain, uintptr_t message,
@@ -54,7 +55,7 @@ void FUN_0004c418(void *object, uint32_t context, uint32_t descriptor)
 
     *(volatile uint32_t *)(0x5002a080u + ((slot << 2) & 0xffu)) =
         id | 0x80000000u;
-    FUN_00064f48(id, state);
+    g1_recon_nrfx_gppi_event_endpoint_setup(id, state);
     FUN_00063778(channel, state, (uint32_t)(timing + 0x32) << 1,
                   0, ((unsigned long)&rodata_4c38d) /*=0x4c38d*/, descriptor);
 }

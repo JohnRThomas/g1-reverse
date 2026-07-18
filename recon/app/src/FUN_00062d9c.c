@@ -6,7 +6,7 @@ extern int  FUN_00062ad8(int,int);
 extern void FUN_00064f30(int);
 extern int  FUN_0006540c(int);
 extern int  FUN_00084b14(int,int);
-extern void FUN_000850dc(int,int,int);
+extern void g1_recon_nrfx_gppi_channel_endpoints_setup(int,int,int);
 extern void FUN_00086726(int,int,int,...);
 #define VI(a) (*(volatile int*)(a))
 #define VW(a) (*(volatile int*)(a))
@@ -34,7 +34,8 @@ int FUN_00062d9c(int param_1){
       FUN_0004d944(0x00088290,0x1040,&diagnostic,0);
       return -5;
     }
-    FUN_000850dc(VC(piVar5+0x1c), puVar4+0x120, puVar4+0xc);
+    g1_recon_nrfx_gppi_channel_endpoints_setup(
+        VC(piVar5+0x1c), puVar4+0x120, puVar4+0xc);
     FUN_00064f30(1 << (unsigned int)VC(piVar5+0x1c));
   }
   if (VI(piVar5+0xc) == 0) {

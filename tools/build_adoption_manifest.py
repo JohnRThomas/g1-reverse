@@ -15,6 +15,8 @@ import os
 import re
 import sys
 
+from elftools.elf.elffile import ELFFile
+
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULTS = {
@@ -26,6 +28,8 @@ DEFAULTS = {
     "app_collisions": "recon/ownership/app_build_collision_ownership.json",
     "app_collision_authorizations":
         "recon/ownership/app_collision_adoption_authorizations.json",
+    "app_collision_retention_overrides":
+        "recon/ownership/app_collision_retention_overrides.json",
     "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
@@ -69,6 +73,19 @@ def _sha256(path):
     with open(path, "rb") as stream:
         for block in iter(lambda: stream.read(1 << 16), b""):
             digest.update(block)
+    return digest.hexdigest()
+
+
+def _alloc_content_sha256(path):
+    """Hash linked content while ignoring volatile ELF debug/build metadata."""
+    digest = hashlib.sha256()
+    with open(path, "rb") as stream:
+        elf = ELFFile(stream)
+        for section in elf.iter_sections():
+            if (int(section["sh_flags"]) & 0x2 and
+                    section["sh_type"] != "SHT_NOBITS"):
+                digest.update(section.name.encode("utf-8") + b"\0")
+                digest.update(section.data())
     return digest.hexdigest()
 
 
@@ -403,6 +420,16 @@ def _build_from_baseline(paths, resolved, names):
     authorization_path = resolved["app_collision_authorizations"]
     collisions = _load_json(collision_path)
     authorizations = _load_json(authorization_path)
+    retention_path = resolved["app_collision_retention_overrides"]
+    retentions = _load_json(retention_path)
+    if (retentions.get("schema") != 1 or
+            retentions.get("core") not in (None, "app")):
+        raise ValueError("invalid app collision retention override catalog")
+    retention_rows = [row for row in retentions.get("overrides", [])
+                      if row.get("status") == "required_retain"]
+    retention_vas = [_hex(row["va"]) for row in retention_rows]
+    if len(set(retention_vas)) != len(retention_vas):
+        raise ValueError("duplicate app collision retention override VA")
     collision_rows = {_hex(row["va"]): row
                       for row in collisions.get("functions", [])}
     authorized_rows = [row for row in authorizations.get("authorizations", [])
@@ -419,6 +446,8 @@ def _build_from_baseline(paths, resolved, names):
         {"path": paths["app_collisions"], "sha256": _sha256(collision_path)},
         {"path": paths["app_collision_authorizations"],
          "sha256": _sha256(authorization_path)},
+        {"path": paths["app_collision_retention_overrides"],
+         "sha256": _sha256(retention_path)},
     ]
     app_rows = {row["va"]: row for row in result["cores"]["app"]["entries"]}
     authorized_by_va = {_hex(row["va"]): row for row in authorized_rows}
@@ -470,8 +499,14 @@ def _build_from_baseline(paths, resolved, names):
             if not expected or authorization.get(key) != expected:
                 raise ValueError("%s receipt mismatch: %s" % (key, va))
         object_path = authorization.get("upstream_object")
-        if not object_path or _sha256(object_path) != authorization[
-                "upstream_object_sha256"]:
+        if not object_path:
+            raise ValueError("upstream object missing: %s" % va)
+        object_exact = (_sha256(object_path) == authorization[
+            "upstream_object_sha256"])
+        content_digest = authorization.get("upstream_object_alloc_sha256")
+        if (not object_exact and
+                (not content_digest or
+                 _alloc_content_sha256(object_path) != content_digest)):
             raise ValueError("upstream object changed: %s" % va)
         expected_source = (identity_correction.get("corrected_upstream_source")
                            if identity_correction else source.get("path"))
@@ -481,15 +516,20 @@ def _build_from_baseline(paths, resolved, names):
                                    authorization["upstream_source"])
         if _sha256(source_path) != authorization["upstream_source_sha256"]:
             raise ValueError("upstream source changed: %s" % va)
-        config_path = authorization.get("configured_build")
-        if not config_path or _sha256(config_path) != authorization[
-                "configured_build_sha256"]:
+        config_paths = ([authorization.get("configured_build")] +
+                        authorizations.get("configured_build_receipts", []))
+        valid_config_paths = [
+            path and os.path.exists(path) and
+            path for path in config_paths
+            if path and os.path.exists(path) and
+            _sha256(path) == authorization["configured_build_sha256"]]
+        if not valid_config_paths:
             raise ValueError("configured build changed: %s" % va)
         required_config = authorization.get("required_config", {})
         if authorization.get("configuration_variant_exact") is True:
             if not required_config:
                 raise ValueError("configuration variant has no config gate: %s" % va)
-            actual_config = _kconfig_values(config_path)
+            actual_config = _kconfig_values(valid_config_paths[0])
             mismatches = {key: {"expected": value,
                                 "actual": actual_config.get(key)}
                           for key, value in required_config.items()
@@ -510,6 +550,38 @@ def _build_from_baseline(paths, resolved, names):
                 "raw_symbol"]:
             raise ValueError("baseline identity mismatch: %s" % va)
         app_rows[va] = overlay
+
+    # Retention overrides are deliberately one-way and fail closed.  They can
+    # revoke a stale baseline exclusion, but can never authorize a new one.
+    # This keeps the pinned baseline immutable while making a corrected
+    # address identity immediately safe for source selection.
+    for retention in retention_rows:
+        va = _hex(retention["va"])
+        previous = app_rows.get(va)
+        if previous is None:
+            raise ValueError("retention override absent from baseline: %s" % va)
+        if previous.get("raw_symbol") != retention.get("raw_symbol"):
+            raise ValueError("retention override raw identity mismatch: %s" % va)
+        if previous.get("current_symbol") != retention.get(
+                "baseline_current_symbol"):
+            raise ValueError("retention override baseline symbol mismatch: %s" % va)
+        if previous.get("exclude_reconstruction") is not True:
+            raise ValueError("retention override is not revoking an exclusion: %s" % va)
+        corrected = names["app"].get(int(va, 16), {}).get("name")
+        if corrected != retention.get("corrected_symbol"):
+            raise ValueError("retention override corrected symbol mismatch: %s" % va)
+        previous["current_symbol"] = corrected
+        previous["exclude_reconstruction"] = False
+        previous["decision"] = "retain_reconstruction"
+        previous["decision_reason"] = retention["reason"]
+        previous.setdefault("evidence", []).append(_evidence(
+            paths["app_collision_retention_overrides"],
+            "explicit_fail_closed_retention_override",
+            batch=retention.get("batch"),
+            baseline_current_symbol=retention.get("baseline_current_symbol"),
+            corrected_symbol=corrected,
+            identity_evidence=retention.get("identity_evidence"),
+            cfg_verify=retention.get("cfg_verify")))
 
     result["cores"]["app"]["entries"] = sorted(
         app_rows.values(), key=lambda row: int(row["va"], 16))

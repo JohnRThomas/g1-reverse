@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / "recon/ownership/adoption_manifest_baseline.json"
 MANIFEST = ROOT / "recon/ownership/adoption_manifest.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
+RETENTIONS = ROOT / "recon/ownership/app_collision_retention_overrides.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
 OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560",
                "0x0006615c", "0x000661dc", "0x00066214", "0x00066270",
@@ -25,7 +26,7 @@ OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560",
 CHANGED_BASELINE_VAS = {"0x00070ee4", "0x0006615c", "0x000661dc",
                         "0x00066214", "0x00066270", "0x00066300",
                         "0x000503d8", "0x00050558", "0x000506ac",
-                        "0x000507d4"}
+                        "0x000507d4", "0x000850dc"}
 ADDED_OVERLAY_VAS = OVERLAY_VAS - CHANGED_BASELINE_VAS
 
 
@@ -53,10 +54,14 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(273, current["cores"]["app"]["summary"][
+        self.assertEqual(272, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))
+        self.assertTrue(baseline_app["0x000850dc"]["exclude_reconstruction"])
+        self.assertFalse(current_app["0x000850dc"]["exclude_reconstruction"])
+        self.assertEqual("g1_recon_nrfx_gppi_channel_endpoints_setup",
+                         current_app["0x000850dc"]["current_symbol"])
         retained = RETAINED.read_text()
         self.assertNotIn("/bt_settings_delete.c", retained)
         self.assertNotIn("/metal_bus_unregister.c", retained)

@@ -1,11 +1,15 @@
-/* Reconstructed FUN_000850dc @ 0x850dc  (parity: 300/300 trials, PROVEN) */
+/* Reconstructed g1_recon_nrfx_gppi_channel_endpoints_setup @ 0x850dc.
+ * Raw identity/back-map: FUN_000850dc.  Parity: 300/300 trials, PROVEN.
+ * This is the asserted firmware wrapper, not net_buf_simple_push_mem.
+ */
 
-extern void FUN_00064f48(void);
-extern void FUN_00064f78(unsigned int, unsigned int);
+extern void g1_recon_nrfx_gppi_event_endpoint_setup(unsigned int, unsigned int);
+extern void g1_recon_nrfx_gppi_task_endpoint_setup(unsigned int, unsigned int);
 
-void FUN_000850dc(unsigned int param_1, unsigned int param_2, unsigned int param_3)
+void g1_recon_nrfx_gppi_channel_endpoints_setup(
+    unsigned int channel, unsigned int event_endpoint,
+    unsigned int task_endpoint)
 {
-    FUN_00064f48();
-    FUN_00064f78(param_1, param_3);
+    g1_recon_nrfx_gppi_event_endpoint_setup(channel, event_endpoint);
+    g1_recon_nrfx_gppi_task_endpoint_setup(channel, task_endpoint);
 }
-
