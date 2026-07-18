@@ -21,6 +21,9 @@ class AppCollision06NrfxNvmcAuditTest(unittest.TestCase):
                          "retain_and_namespace_both_reconstructions")
         self.assertFalse(self.data["adoption_authorized"])
         self.assertFalse(self.data["overlay_changed"])
+        self.assertEqual(self.data["namespace_status"], "implemented")
+        self.assertEqual(self.data["collision_delta"], -2)
+        self.assertEqual(self.data["new_undefined_symbols"], [])
 
     def test_abis_match_but_configured_bodies_do_not(self):
         self.assertEqual(self.rows["nrfx_nvmc_page_erase"]["abi"]["params"],

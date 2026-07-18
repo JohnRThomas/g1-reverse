@@ -17,6 +17,7 @@ SCRATCH = Path("/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/"
 COLLISIONS = ROOT / "recon/ownership/app_build_collision_ownership.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
+NAMES = ROOT / "recon/catalogs/function_names_app.json"
 IMAGE = ROOT / "app_update.bin"
 SOURCE = Path("/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/"
               "drivers/src/nrfx_nvmc.c")
@@ -119,6 +120,7 @@ def build():
 
     graph = json.loads((SCRATCH / "refgraph_app.json").read_text())["functions"]
     retained = RETAINED.read_text()
+    names = json.loads(NAMES.read_text())
     authorizations = json.loads(AUTH.read_text())["authorizations"]
     cfg = cfg_receipts()
     functions = []
@@ -159,8 +161,12 @@ def build():
                              (symbol, relocations))
         if any(item.get("va") == expected["va"] for item in authorizations):
             raise ValueError("non-exact NVMC owner was authorized")
-        if ("/symbolized/app/%s.c\"" % symbol) not in retained:
+        build_symbol = "g1_recon_" + symbol
+        if ("/symbolized/app/%s.c\"" % build_symbol) not in retained:
             raise ValueError("NVMC reconstruction is no longer retained")
+        if (names["by_address"][expected["va"]]["name"] != build_symbol or
+                names["by_name"].get(build_symbol) != expected["va"]):
+            raise ValueError("NVMC namespace back-map drift for %s" % symbol)
         caller_closure = []
         for index, caller in enumerate(expected["callers"]):
             raw = "FUN_%08x" % int(caller, 16)
@@ -186,7 +192,7 @@ def build():
         functions.append({
             "symbol": symbol, "raw_symbol": expected["raw"],
             "va": expected["va"], "decision": "retain_reconstruction",
-            "future_build_symbol": "g1_recon_" + symbol,
+            "build_symbol": build_symbol,
             "abi": row["upstream"]["abi"],
             "firmware_size": expected["size"],
             "configured_sdk_size": expected["sdk_size"],
@@ -209,12 +215,15 @@ def build():
         "configured_assert_policy": "NRFX_ASSERT(expression) expands empty",
         "decision": "retain_and_namespace_both_reconstructions",
         "adoption_authorized": False, "overlay_changed": False,
+        "namespace_status": "implemented",
+        "collision_delta": -2,
+        "new_undefined_symbols": [],
         "functions": functions,
         "implementation_closure": [
-            "caller FUN_0006125c is recovered and CFG-verified; regenerate its raw 0x000612d8 call as g1_recon_nrfx_nvmc_page_erase",
-            "caller FUN_00061310 is recovered and CFG-verified; regenerate its raw 0x000613a8 call as g1_recon_nrfx_nvmc_word_write",
-            "namespace both retained definitions while preserving raw address back-maps; do not add an adoption authorization or exclusion",
-            "regenerate readable/symbolized/retained metadata and require an exact collision delta of -2 with no new undefined symbols",
+            "caller FUN_0006125c is recovered and CFG-verified; its generated 0x000612d8 call targets g1_recon_nrfx_nvmc_page_erase",
+            "caller FUN_00061310 is recovered and CFG-verified; its generated 0x000613a8 call targets g1_recon_nrfx_nvmc_word_write",
+            "both retained definitions are namespaced with raw address back-maps; no adoption authorization or exclusion exists",
+            "retain-all proves an exact collision delta of -2 and no new undefined symbols",
             "keep the configured SDK public nrfx_nvmc.c owner intact; a future adoption would require rebuilding it with the firmware assertion glue and proving the complete source unit",
         ],
     }
@@ -235,7 +244,7 @@ def markdown(data):
                      (row["symbol"], row["firmware_size"], row["configured_sdk_size"],
                       sig["opcode"], sig["shape"], row["cfg_verify"]["retained"]["cases"],
                       neg["mismatches"], neg["checked"], caller["va"], caller["branch_site"]))
-    lines += ["", "The two direct callers are now canonically recovered and each passes four reviewed oracle/CFG cases covering invalid range, alignment, empty, and successful operation families. Their raw calls remain address-backed and will become namespaced during ordered readable-source regeneration.", "", "## Implementation closure", ""]
+    lines += ["", "The two direct callers are canonically recovered and each passes four reviewed oracle/CFG cases covering invalid range, alignment, empty, and successful operation families. Their generated calls target the namespaced retained owners while preserving the raw address back-maps.", "", "## Implementation closure", ""]
     lines += ["%d. %s" % (index, item)
               for index, item in enumerate(data["implementation_closure"], 1)]
     return "\n".join(lines) + "\n"

@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "core": "app",
+ "scope": ["COLLISION-03", "COLLISION-06"],
+ "baseline_collision_count": 105,
+ "result_collision_count": 101,
+ "collision_delta": -4,
+ "removed_symbols": [
+  "nrfx_clock_init",
+  "nrfx_clock_stop",
+  "nrfx_nvmc_page_erase",
+  "nrfx_nvmc_word_write"
+ ],
+ "new_collision_symbols": [],
+ "unresolved_before": ["FUN_0005463e", "FUN_00054688"],
+ "unresolved_after": ["FUN_0005463e", "FUN_00054688"],
+ "full_link": {
+  "compiled": 3104,
+  "failed_compile": 0,
+  "link_rc": 0
+ },
+ "policy": "namespace retained non-exact firmware owners; keep configured SDK public owners; no adoption overlay or reconstruction exclusion"
+}

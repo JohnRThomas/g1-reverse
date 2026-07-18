@@ -1,0 +1,56 @@
+/* readable reconstruction; identity: FUN_00061310 @ 0x00061310
+ * public-name: flash_nrf_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   flash_nrf_write                          <= FUN_00061310 @ 0x00061310
+ *   g1_recon_nrfx_nvmc_word_write            <= FUN_00065f80 @ 0x00065f80
+ *   k_sem_give                               <= FUN_00072880 @ 0x00072880
+ *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
+ *   is_regular_addr_valid                    <= FUN_000839dc @ 0x000839dc
+ * address symbols (name @ address):
+ *   rodata_881b0                             @ 0x000881b0
+ *   rodata_f5d81                             @ 0x000f5d81
+ *   REG_50039400                             @ 0x50039400
+ */
+/* Reconstructed FUN_00061310 @ 0x61310 */
+#include <stdint.h>
+
+extern unsigned long long is_regular_addr_valid(unsigned int address,
+                                       unsigned int length);
+extern void FUN_0004d944(unsigned int source, unsigned int level,
+                         const unsigned int *arguments, unsigned int flags);
+extern void z_impl_k_sem_take(unsigned int lock, unsigned int context,
+                         unsigned int timeout_low,
+                         unsigned int timeout_high);
+extern void k_sem_give(unsigned int lock);
+extern void g1_recon_nrfx_nvmc_word_write(unsigned int address, unsigned int value);
+
+unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
+                          const unsigned int *source, unsigned int length)
+{
+    unsigned long long range = is_regular_addr_valid(address, length);
+
+    if ((unsigned int)range == 0) {
+        unsigned int arguments[4] = {4, 0x000f5d81, address, length};
+        FUN_0004d944(0x000881b0, 0x2040, arguments, 0);
+        return (unsigned int)-22;
+    }
+    if (((address | length) & 3) != 0) {
+        unsigned int arguments[4] = {4, 0x000f5dbd, address, length};
+        FUN_0004d944(0x000881b0, 0x2040, arguments, 0);
+        return (unsigned int)-22;
+    }
+    if (length != 0) {
+        unsigned int offset = 0;
+        unsigned int rounded_length = length & ~3u;
+        z_impl_k_sem_take(0x2000b154, (unsigned int)(range >> 32),
+                     (unsigned int)-1, (unsigned int)-1);
+        while (offset != rounded_length) {
+            g1_recon_nrfx_nvmc_word_write(address + offset, source[offset / 4]);
+            offset += 4;
+        }
+        while ((*(volatile unsigned int *)0x50039400 & 1) == 0) {}
+        k_sem_give(0x2000b154);
+    }
+    return 0;
+}

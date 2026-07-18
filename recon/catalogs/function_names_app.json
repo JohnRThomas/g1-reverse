@@ -7557,6 +7557,15 @@
    "source": "recon/app/src/FUN_0004d6ec.c",
    "aliases": []
   },
+  "0x0004d7d8": {
+   "address": "0x0004d7d8",
+   "raw_name": "FUN_0004d7d8",
+   "name": "FUN_0004d7d8",
+   "display_name": "FUN_0004d7d8",
+   "human": false,
+   "source": "recon/app/src/FUN_0004d7d8.c",
+   "aliases": []
+  },
   "0x0004d8b8": {
    "address": "0x0004d8b8",
    "raw_name": "FUN_0004d8b8",
@@ -9892,6 +9901,15 @@
     "FUN_00056da8"
    ]
   },
+  "0x00056e24": {
+   "address": "0x00056e24",
+   "raw_name": "FUN_00056e24",
+   "name": "FUN_00056e24",
+   "display_name": "FUN_00056e24",
+   "human": false,
+   "source": "recon/app/src/FUN_00056e24.c",
+   "aliases": []
+  },
   "0x00056e34": {
    "address": "0x00056e34",
    "raw_name": "FUN_00056e34",
@@ -11897,6 +11915,17 @@
    "source": "recon/app/src/FUN_0006058c.c",
    "aliases": []
   },
+  "0x00060744": {
+   "address": "0x00060744",
+   "raw_name": "FUN_00060744",
+   "name": "g1_clock_release_hfclk_checked",
+   "display_name": "g1_clock_release_hfclk_checked",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered BASEPRI-guarded HFCLK release caller in the COLLISION-03 closure; it invokes the checked stop wrapper only on the final release. Raw identity remains FUN_00060744 at 0x00060744.",
+   "aliases": [
+    "FUN_00060744"
+   ]
+  },
   "0x00060778": {
    "address": "0x00060778",
    "raw_name": "FUN_00060778",
@@ -12044,20 +12073,24 @@
   "0x0006125c": {
    "address": "0x0006125c",
    "raw_name": "FUN_0006125c",
-   "name": "FUN_0006125c",
-   "display_name": "FUN_0006125c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "flash_nrf_erase",
+   "display_name": "flash_nrf_erase",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered Nordic flash erase wrapper with range/page alignment checks, synchronization, and calls to the namespaced retained NVMC page erase owner. Raw identity remains FUN_0006125c at 0x0006125c.",
+   "aliases": [
+    "FUN_0006125c"
+   ]
   },
   "0x00061310": {
    "address": "0x00061310",
    "raw_name": "FUN_00061310",
-   "name": "FUN_00061310",
-   "display_name": "FUN_00061310",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "flash_nrf_write",
+   "display_name": "flash_nrf_write",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered Nordic flash word-write wrapper with range/alignment checks, synchronization, READY polling, and calls to the namespaced retained NVMC word writer. Raw identity remains FUN_00061310 at 0x00061310.",
+   "aliases": [
+    "FUN_00061310"
+   ]
   },
   "0x000613c4": {
    "address": "0x000613c4",
@@ -12711,23 +12744,25 @@
   "0x00065000": {
    "address": "0x00065000",
    "raw_name": "FUN_00065000",
-   "name": "nrfx_clock_stop",
-   "display_name": "nrfx_clock_stop",
+   "name": "g1_clock_stop_impl",
+   "display_name": "g1_clock_stop_impl",
    "human": true,
-   "source": "function_name_overrides.json: Exact configured NCS 2.5.1 nrfx clock_stop helper for LFCLK, HFCLK, HFCLK192M, and HFCLKAUDIO domains. Raw identity remains FUN_00065000 at 0x00065000.",
+   "source": "function_name_overrides.json: Firmware-private four-domain clock stop implementation; it differs from the configured NRFX public owner and is deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065000 at 0x00065000.",
    "aliases": [
-    "FUN_00065000"
+    "FUN_00065000",
+    "nrfx_clock_stop"
    ]
   },
   "0x00065190": {
    "address": "0x00065190",
    "raw_name": "FUN_00065190",
-   "name": "nrfx_clock_init",
-   "display_name": "nrfx_clock_init",
+   "name": "g1_nrfx_clock_init_checked",
+   "display_name": "g1_nrfx_clock_init_checked",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Firmware checked clock initializer with active null-handler assertion and pinned initialization state; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065190 at 0x00065190.",
    "aliases": [
-    "FUN_00065190"
+    "FUN_00065190",
+    "nrfx_clock_init"
    ]
   },
   "0x000651d8": {
@@ -12741,14 +12776,27 @@
     "FUN_000651d8"
    ]
   },
+  "0x0006522c": {
+   "address": "0x0006522c",
+   "raw_name": "FUN_0006522c",
+   "name": "g1_nrfx_clock_start_checked",
+   "display_name": "g1_nrfx_clock_start_checked",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered firmware checked clock-domain starter in the COLLISION-03 caller closure. Raw identity remains FUN_0006522c at 0x0006522c.",
+   "aliases": [
+    "FUN_0006522c"
+   ]
+  },
   "0x00065324": {
    "address": "0x00065324",
    "raw_name": "FUN_00065324",
-   "name": "FUN_00065324",
-   "display_name": "FUN_00065324",
-   "human": false,
-   "source": "recon/app/src/FUN_00065324.c",
-   "aliases": []
+   "name": "g1_nrfx_clock_stop_checked",
+   "display_name": "g1_nrfx_clock_stop_checked",
+   "human": true,
+   "source": "function_name_overrides.json: Firmware checked public-style stop wrapper which asserts initialization before calling the private stop implementation; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065324 at 0x00065324.",
+   "aliases": [
+    "FUN_00065324"
+   ]
   },
   "0x0006540c": {
    "address": "0x0006540c",
@@ -13080,23 +13128,25 @@
   "0x00065f1c": {
    "address": "0x00065f1c",
    "raw_name": "FUN_00065f1c",
-   "name": "nrfx_nvmc_page_erase",
-   "display_name": "nrfx_nvmc_page_erase",
+   "name": "g1_recon_nrfx_nvmc_page_erase",
+   "display_name": "g1_recon_nrfx_nvmc_page_erase",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained firmware NVMC page eraser with active address assertion behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f1c at 0x00065f1c.",
    "aliases": [
-    "FUN_00065f1c"
+    "FUN_00065f1c",
+    "nrfx_nvmc_page_erase"
    ]
   },
   "0x00065f80": {
    "address": "0x00065f80",
    "raw_name": "FUN_00065f80",
-   "name": "nrfx_nvmc_word_write",
-   "display_name": "nrfx_nvmc_word_write",
+   "name": "g1_recon_nrfx_nvmc_word_write",
+   "display_name": "g1_recon_nrfx_nvmc_word_write",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained firmware NVMC word writer with active address and alignment assertions absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f80 at 0x00065f80.",
    "aliases": [
-    "FUN_00065f80"
+    "FUN_00065f80",
+    "nrfx_nvmc_word_write"
    ]
   },
   "0x00065ff4": {
@@ -15519,6 +15569,15 @@
    "display_name": "FUN_00077a10",
    "human": false,
    "source": "recon/app/src/FUN_00077a10.c",
+   "aliases": []
+  },
+  "0x00077a28": {
+   "address": "0x00077a28",
+   "raw_name": "FUN_00077a28",
+   "name": "FUN_00077a28",
+   "display_name": "FUN_00077a28",
+   "human": false,
+   "source": "recon/app/src/FUN_00077a28.c",
    "aliases": []
   },
   "0x00077b24": {
@@ -18376,8 +18435,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained firmware-specific seven-word configurable CRC-16 implementation; deliberately namespaced after COLLISION-20 proved it is not Zephyr crc16_reflect. Raw identity remains FUN_0007d9c0 at 0x0007d9c0.",
    "aliases": [
-    "FUN_0007d9c0",
-    "crc16_reflect"
+    "FUN_0007d9c0"
    ]
   },
   "0x0007da4a": {
@@ -18388,8 +18446,7 @@
    "human": true,
    "source": "function_name_overrides.json: Retained three-argument seeded ANSI CRC wrapper around g1_recon_crc16_configurable; deliberately namespaced because its ABI is not Zephyr crc16_ansi. Raw identity remains FUN_0007da4a at 0x0007da4a.",
    "aliases": [
-    "FUN_0007da4a",
-    "crc16_ansi"
+    "FUN_0007da4a"
    ]
   },
   "0x0007da70": {
@@ -19854,7 +19911,9 @@
    "display_name": "thunk_FUN_0007f7d2",
    "human": true,
    "source": "committed durable map",
-   "aliases": []
+   "aliases": [
+    "FUN_0007f7c4"
+   ]
   },
   "0x0007f7c8": {
    "address": "0x0007f7c8",
@@ -19871,7 +19930,7 @@
    "name": "FUN_0007f7d2",
    "display_name": "FUN_0007f7d2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/app/src/FUN_0007f7d2.c",
    "aliases": []
   },
   "0x0007f894": {
@@ -21123,6 +21182,15 @@
    "aliases": [
     "FUN_000812d2"
    ]
+  },
+  "0x0008131c": {
+   "address": "0x0008131c",
+   "raw_name": "FUN_0008131c",
+   "name": "FUN_0008131c",
+   "display_name": "FUN_0008131c",
+   "human": false,
+   "source": "recon/app/src/FUN_0008131c.c",
+   "aliases": []
   },
   "0x00081320": {
    "address": "0x00081320",
@@ -22857,6 +22925,39 @@
    "source": "committed durable map",
    "aliases": [
     "FUN_00083848"
+   ]
+  },
+  "0x00083874": {
+   "address": "0x00083874",
+   "raw_name": "FUN_00083874",
+   "name": "g1_nrfx_clock_stop_hfaudio",
+   "display_name": "g1_nrfx_clock_stop_hfaudio",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered HFAUDIO-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_00083874 at 0x00083874.",
+   "aliases": [
+    "FUN_00083874"
+   ]
+  },
+  "0x0008387a": {
+   "address": "0x0008387a",
+   "raw_name": "FUN_0008387a",
+   "name": "g1_nrfx_clock_stop_hfclk192m",
+   "display_name": "g1_nrfx_clock_stop_hfclk192m",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered HFCLK192M-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_0008387a at 0x0008387a.",
+   "aliases": [
+    "FUN_0008387a"
+   ]
+  },
+  "0x00083880": {
+   "address": "0x00083880",
+   "raw_name": "FUN_00083880",
+   "name": "g1_nrfx_clock_stop_lfclk",
+   "display_name": "g1_nrfx_clock_stop_lfclk",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered LFCLK-domain tail veneer into the checked firmware stop wrapper. Raw identity remains FUN_00083880 at 0x00083880.",
+   "aliases": [
+    "FUN_00083880"
    ]
   },
   "0x00083896": {
@@ -26091,6 +26192,7 @@
   "FUN_0004d468": "0x0004d468",
   "FUN_0004d55c": "0x0004d55c",
   "FUN_0004d6ec": "0x0004d6ec",
+  "FUN_0004d7d8": "0x0004d7d8",
   "FUN_0004d8b8": "0x0004d8b8",
   "FUN_0004d944": "0x0004d944",
   "FUN_0004da90": "0x0004da90",
@@ -26183,6 +26285,7 @@
   "FUN_000569a0": "0x000569a0",
   "FUN_000569ec": "0x000569ec",
   "FUN_00056a68": "0x00056a68",
+  "FUN_00056e24": "0x00056e24",
   "FUN_00056ea8": "0x00056ea8",
   "FUN_00056f4c": "0x00056f4c",
   "FUN_000571dc": "0x000571dc",
@@ -26245,8 +26348,6 @@
   "FUN_00060788": "0x00060788",
   "FUN_000609f4": "0x000609f4",
   "FUN_00060a5c": "0x00060a5c",
-  "FUN_0006125c": "0x0006125c",
-  "FUN_00061310": "0x00061310",
   "FUN_00061ba0": "0x00061ba0",
   "FUN_00061c40": "0x00061c40",
   "FUN_00061f64": "0x00061f64",
@@ -26280,7 +26381,6 @@
   "FUN_00064b64": "0x00064b64",
   "FUN_00064f48": "0x00064f48",
   "FUN_00064fa8": "0x00064fa8",
-  "FUN_00065324": "0x00065324",
   "FUN_0006540c": "0x0006540c",
   "FUN_00065418": "0x00065418",
   "FUN_00065584": "0x00065584",
@@ -26366,6 +26466,7 @@
   "FUN_0007712c": "0x0007712c",
   "FUN_00077914": "0x00077914",
   "FUN_00077a10": "0x00077a10",
+  "FUN_00077a28": "0x00077a28",
   "FUN_00078590": "0x00078590",
   "FUN_00078598": "0x00078598",
   "FUN_00078bf8": "0x00078bf8",
@@ -26527,6 +26628,7 @@
   "FUN_0008117a": "0x0008117a",
   "FUN_00081196": "0x00081196",
   "FUN_000811a4": "0x000811a4",
+  "FUN_0008131c": "0x0008131c",
   "FUN_00081320": "0x00081320",
   "FUN_000813ca": "0x000813ca",
   "FUN_0008142c": "0x0008142c",
@@ -27320,7 +27422,9 @@
   "flash_get_page_info": "0x00083a2c",
   "flash_get_page_info_by_offs": "0x00083a92",
   "flash_get_ready_status_bit": "0x000304f0",
+  "flash_nrf_erase": "0x0006125c",
   "flash_nrf_read_invalid_address": "0x00061200",
+  "flash_nrf_write": "0x00061310",
   "flash_ops_thread": "0x00023480",
   "flash_page_foreach": "0x00083ac2",
   "flash_region_is_erased": "0x00084d8c",
@@ -27357,8 +27461,20 @@
   "fuel_gauge_sample_init_timestamp": "0x0002ea28",
   "fuel_gauge_unlock": "0x000330d8",
   "fuel_gauge_update": "0x00010b18",
+  "g1_clock_release_hfclk_checked": "0x00060744",
+  "g1_clock_stop_impl": "0x00065000",
+  "g1_nrfx_clock_init_checked": "0x00065190",
+  "g1_nrfx_clock_start_checked": "0x0006522c",
+  "g1_nrfx_clock_stop_checked": "0x00065324",
+  "g1_nrfx_clock_stop_hfaudio": "0x00083874",
+  "g1_nrfx_clock_stop_hfclk192m": "0x0008387a",
+  "g1_nrfx_clock_stop_lfclk": "0x00083880",
   "g1_recon_crc16_ansi_seeded": "0x0007da4a",
   "g1_recon_crc16_configurable": "0x0007d9c0",
+  "g1_recon_nrfx_gpiote_init": "0x00065940",
+  "g1_recon_nrfx_nvmc_page_erase": "0x00065f1c",
+  "g1_recon_nrfx_nvmc_word_write": "0x00065f80",
+  "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
   "gatt_cancel_encode": "0x0008278a",
   "gatt_ccc_changed": "0x000825c0",
   "gatt_ccc_settings_set": "0x0005af8c",
@@ -27847,22 +27963,16 @@
   "nrf_qspi_cinstrdata_get": "0x000666e0",
   "nrf_qspi_cinstrdata_set": "0x00066720",
   "nrf_qspi_pins_set": "0x00066784",
-  "nrfx_clock_init": "0x00065190",
   "nrfx_clock_irq_enable": "0x000651d8",
-  "nrfx_clock_stop": "0x00065000",
-  "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
   "nrfx_dppi_channel_slot_reset": "0x00067f1c",
   "nrfx_flag32_alloc": "0x00064eb8",
   "nrfx_flag32_free": "0x00064ef8",
-  "g1_recon_nrfx_gpiote_init": "0x00065940",
   "nrfx_gpiote_is_init": "0x000659b8",
   "nrfx_gpiote_trigger_disable": "0x00065acc",
   "nrfx_gppi_channels_disable": "0x00064f3c",
   "nrfx_gppi_channels_enable": "0x00064f30",
   "nrfx_gppi_task_endpoint_clear": "0x00064fd4",
   "nrfx_gppi_task_endpoint_setup": "0x00064f78",
-  "nrfx_nvmc_page_erase": "0x00065f1c",
-  "nrfx_nvmc_word_write": "0x00065f80",
   "nrfx_pdm_buffer_set": "0x00066270",
   "nrfx_pdm_init": "0x0006615c",
   "nrfx_pdm_start": "0x00066214",

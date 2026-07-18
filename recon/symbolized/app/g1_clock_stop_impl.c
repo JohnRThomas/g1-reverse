@@ -1,8 +1,9 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00065000 @ 0x00065000
- * public-name: nrfx_clock_stop
+ * public-name: g1_clock_stop_impl
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   nrfx_clock_stop                          <= FUN_00065000 @ 0x00065000
+ *   g1_clock_stop_impl                       <= FUN_00065000 @ 0x00065000
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  *   thunk_FUN_00086384                       <= FUN_000850d8 @ 0x000850d8
@@ -13,8 +14,9 @@
  *   rodata_f6a8b                             @ 0x000f6a8b
  *   rodata_f7a30                             @ 0x000f7a30
  */
-/* Reconstructed nrfx clock_stop @ 0x00065000.
+/* Reconstructed private nrfx clock_stop implementation @ 0x00065000.
  * Raw/address back-map: FUN_00065000 / 0x00065000.
+ * Readable namespace target: g1_clock_stop_impl (not SDK nrfx_clock_stop).
  */
 #include <stdint.h>
 
@@ -40,12 +42,12 @@ enum clock_domain_raw {
 
 static void clock_domain_assert(uint32_t header, uint32_t line)
 {
-    nrfx_assert_report(0x00099cbdu, 0x000f7a30u, header, line);
+    nrfx_assert_report(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f7a30) /*=0xf7a30*/, header, line);
     nrfx_assert_abort(header, line);
 }
 
-#define clock_stop nrfx_clock_stop
-void clock_stop(enum clock_domain_raw domain)
+#define g1_clock_stop_impl g1_clock_stop_impl
+void g1_clock_stop_impl(enum clock_domain_raw domain)
 {
     switch (domain) {
     case CLOCK_DOMAIN_LFCLK:
@@ -73,7 +75,7 @@ void clock_stop(enum clock_domain_raw domain)
         CLOCK_REGISTER(0x01cu) = 1u;
         break;
     default:
-        clock_domain_assert(0x000f6a4eu, 216u);
+        clock_domain_assert(((unsigned long)&rodata_f6a4e) /*=0xf6a4e*/, 216u);
     }
 
     uint32_t remaining_attempts = 10000u;
@@ -96,10 +98,10 @@ void clock_stop(enum clock_domain_raw domain)
             state = CLOCK_REGISTER(0x454u);
             break;
         default:
-            clock_domain_assert(0x000f6a8bu, 971u);
+            clock_domain_assert(((unsigned long)&rodata_f6a8b) /*=0xf6a8b*/, 971u);
         }
 
-        if ((state & 0x10000u) == 0u ||
+        if ((state & ((unsigned long)&rodata_10000) /*=0x10000*/) == 0u ||
             (domain == CLOCK_DOMAIN_HFCLK && source != 1u)) {
             break;
         }
