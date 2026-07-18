@@ -20982,6 +20982,102 @@ REVIEWED_ORACLE_CASES[("net", 0x0102fdd0)] = [
     _net_buf_alloc_len_case(uninit_count=2, validate_result=0),
     _net_buf_alloc_len_case(uninit_count=2, release_result=0),
 ]
+def _app_nvmc_word_write_case():
+    destination = emu.SCRATCH + 0x6400
+    return ({0: destination, 1: 0x12345678},
+            [(destination, bytes(4))], {})
+
+
+# The NVMC READY register is a live peripheral status bit. Make its first
+# reviewed read ready so both bodies complete one real word transaction.
+REVIEWED_NPTR_COUNTS[("app", 0x00065f04)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x00065f04)] = [
+    _app_nvmc_word_write_case(),
+]
+ABSOLUTE_READ_TRANSITION_CASES[("app", 0x00065f04)] = [
+    [(0x50039400, 1, 1)],
+]
+
+
+def _app_process_queue_case(kind):
+    channel = emu.SCRATCH + 0x6500
+    queue = emu.SCRATCH + 0x6600
+    buffer = emu.SCRATCH + 0x6700
+    memory = [(channel, bytes(0x40)), (queue, bytes(0x40)),
+              (buffer, bytes(0x40))]
+    if kind == "empty":
+        returns = {0: {0: 0}}
+    elif kind == "sent":
+        returns = {0: {0: buffer}, 1: {0: 0}}
+    else:
+        returns = {0: {0: buffer}, 1: {0: -5}}
+    return ({0: channel, 1: queue}, memory, returns)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00082114)] = 2
+REVIEWED_ORACLE_CASES[("app", 0x00082114)] = [
+    _app_process_queue_case("empty"),
+    _app_process_queue_case("sent"),
+    _app_process_queue_case("retry"),
+]
+
+
+def _app_slist_remove_case(kind):
+    slist = emu.SCRATCH + 0x6800
+    node = emu.SCRATCH + 0x6900
+    other = emu.SCRATCH + 0x6a00
+    head = tail = node_next = other_next = 0
+    if kind == "only":
+        head = tail = node
+    elif kind == "head":
+        head, tail, node_next = node, other, other
+    elif kind == "tail":
+        head, tail, other_next = other, node, node
+    elif kind == "absent":
+        head = tail = other
+    list_image = head.to_bytes(4, "little") + tail.to_bytes(4, "little")
+    return ({0: slist, 1: node},
+            [(slist, list_image),
+             (node, node_next.to_bytes(4, "little")),
+             (other, other_next.to_bytes(4, "little"))], {})
+
+
+_APP_SLIST_REMOVE_CASES = [
+    _app_slist_remove_case(kind)
+    for kind in ("empty", "only", "head", "tail", "absent")
+]
+for _slist_remove_va in (0x0008137e, 0x00081de2):
+    REVIEWED_NPTR_COUNTS[("app", _slist_remove_va)] = 2
+    REVIEWED_ORACLE_CASES[("app", _slist_remove_va)] = \
+        _APP_SLIST_REMOVE_CASES
+
+
+def _app_remove_timeout_case(kind):
+    timeout = emu.SCRATCH + 0x6b00
+    next_timeout = emu.SCRATCH + 0x6c00
+    previous_link = emu.SCRATCH + 0x6d00
+    timeout_image = bytearray(24)
+    next_image = bytearray(24)
+    timeout_image[0:4] = next_timeout.to_bytes(4, "little")
+    timeout_image[4:8] = previous_link.to_bytes(4, "little")
+    timeout_image[16:24] = (0x00000002ffffffff).to_bytes(8, "little")
+    next_image[4:8] = timeout.to_bytes(4, "little")
+    next_image[16:24] = (0x0000000300000002).to_bytes(8, "little")
+    listed_head = timeout if kind == "head" else next_timeout
+    return ({0: timeout},
+            [(timeout, bytes(timeout_image)),
+             (next_timeout, bytes(next_image)),
+             (previous_link, timeout.to_bytes(4, "little")),
+             (0x20002d00, listed_head.to_bytes(4, "little"))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00074bbc)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x00074bbc)] = [
+    _app_remove_timeout_case("head"),
+    _app_remove_timeout_case("interior"),
+]
+
+
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
     transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]

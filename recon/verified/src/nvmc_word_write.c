@@ -1,0 +1,12 @@
+/* nvmc_word_write @ 0x00065f04; raw FUN_00065f04.
+ * nrfx_nvmc.c private helper for the nRF5340 NVMC write transaction. */
+#include <stdint.h>
+void nvmc_word_write(uint32_t address, uint32_t value)
+{
+    volatile uint32_t *const ready =
+        (volatile uint32_t *)0x50039400u; /* NRF_NVMC->READY */
+    while (*ready == 0u) {
+    }
+    *(volatile uint32_t *)(uintptr_t)address = value;
+    __atomic_thread_fence(__ATOMIC_SEQ_CST);
+}
