@@ -61,6 +61,38 @@ content check, searching at the recovered original data boundary finds a
 byte-exact `0x218`-byte prefix of the current `datas` section at original file
 offset `0x36524`; the current address-aligned score hides that convergence.
 
+## ESB and nRF-RPC configuration evidence
+
+The original log-constant iterable is independently decodable as 32 consecutive
+eight-byte `{name pointer, level}` records at file offsets
+`0x337ec..0x338ec`.  Relative to the earlier HCI-RPMsg-root build, it contains
+eight additional owners: `NRFX_TIMER`, `NRF_RPC`, `NRF_RPC_CBOR`, `NRF_RPC_OS`,
+`app_esb`, `esb`, `nrf_rpc_ipc`, and `timeslot`.
+
+Selecting `CONFIG_ESB=y` and `CONFIG_NRF_RPC=y` restores the six stock owners.
+ESB must use `CONFIG_ESB_DYNAMIC_INTERRUPTS=y` together with Zephyr's dynamic
+direct-interrupt support: the default static-interrupt choice selects
+`MPSL_FEM_ONLY`, which is incompatible with the full SDC/MPSL controller that
+is simultaneously proven present.  The stock-only configuration changes the
+measured build as follows:
+
+| Metric | HCI-RPMsg root | ESB + nRF-RPC selected |
+| --- | ---: | ---: |
+| text | `0x2f694` | `0x2f6ec` |
+| FLASH used | 206,344 B | 206,553 B |
+| RAM used | 52,808 B | 53,176 B |
+| Compared file-backed bytes | 206,342 | 206,543 |
+| Equal bytes | 4,679 | 4,698 |
+| Log-constant bytes / owners | 192 / 24 | 240 / 30 |
+
+Only 88 bytes of text become reachable from configuration alone.  The two
+remaining original log owners, `app_esb` and `timeslot`, are project-local
+roots and are still explicitly missing.  Raw disassembly also exposes missing
+catalogued caller boundaries: a function at analysis address `0x01035b20`
+calls the absent-source `FUN_0102a720`, and a function at `0x0102b718` calls
+the recovered `FUN_0102b31c`.  These roots and their stock ESB/nRF-RPC closure,
+not report-only SDC `KEEP()` directives, are the next convergence step.
+
 The current machine-readable result is
 `recon/analysis/net_binary_section_comparison.json`; executable text remains
 diagnostic, while CFG-directed side-effect verification remains authoritative
