@@ -209,3 +209,31 @@ hide this result.  Consequently the machine-readable comparator remains the
 last successful timeslot-owner measurement; it is not presented as a final
 measurement of the now-live endpoint closure.  Code-size/layout reconciliation
 is the remaining gate before a fresh comparator can be authoritative.
+
+## Proven source-size convergence
+
+Three CFG-proved source-tightening commits reduce the complete production
+closure without removing a callback/root, changing configuration, substituting
+an archive owner, or changing the report-only SDC policy:
+
+| Commit | Scope | Production object delta |
+| --- | --- | ---: |
+| `127c0f4c` | radio-owner initialization | -4 B |
+| `2ebf5e43` | four kernel reconstructions | -76 B |
+| `144e82d9` | three recovered functions | -44 B |
+
+The object-level reductions total 124 bytes.  A fresh committed-source,
+normal-GC build at `/private/tmp/g1-net-shrink-final`, with
+`G1_INTEGRATION_PROBE_RETAIN_ALL=OFF`, reduces `_flash_used` from `0x37af9`
+(228,089 bytes) to `0x37a79` (227,961 bytes).  The whole-image reduction is
+128 bytes because section placement recovers another four alignment bytes.
+The FLASH capacity remains `0x37800` (227,328 bytes), so the honest overflow
+falls from 761 to 633 bytes.  The failed final link again has zero undefined
+symbol diagnostics; capacity, not ownership resolution, is the only reported
+link failure.
+
+The machine-readable measurement is
+`recon/analysis/net_size_convergence_receipt.json`, gated by
+`tools/test_net_size_convergence_receipt.py`.  It deliberately records no SDC
+adoption authorization.  The stale binary-section comparator remains tied to
+the last successful ELF and is not regenerated from an overflowed prelink.

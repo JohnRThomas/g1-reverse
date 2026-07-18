@@ -1,0 +1,54 @@
+{
+  "schema": "g1.net.size_convergence.v1",
+  "core": "net",
+  "policy": {
+    "normal_gc": true,
+    "retain_all": false,
+    "proven_roots_removed": false,
+    "configuration_changed": false,
+    "archive_substitution_used": false,
+    "automatic_sdc_removal": false,
+    "sdc_remains_report_only": true,
+    "padding_or_region_growth_used": false
+  },
+  "baseline": {
+    "build_directory": "/private/tmp/g1-product-owners-final-v6",
+    "flash_capacity": 227328,
+    "flash_used": 228089,
+    "flash_used_hex": "0x37af9",
+    "overflow": 761,
+    "undefined_symbol_diagnostics": 0
+  },
+  "shrink_commits": [
+    {
+      "commit": "127c0f4c641ec6d76cd2956fe3b081816794538a",
+      "subject": "Tighten CPUNET radio owner initialization",
+      "receipt": "recon/analysis/net_fun_010333b4_codegen_receipt.md",
+      "production_object_bytes_delta": -4
+    },
+    {
+      "commit": "2ebf5e43419b6a98cacdcdc278076f6be8813885",
+      "subject": "tighten four CPUNET kernel reconstructions",
+      "receipt": "recon/analysis/net_size_shrink_lane_b.json",
+      "production_object_bytes_delta": -76
+    },
+    {
+      "commit": "144e82d93c0d38acd1817125bcfc36daa4a52378",
+      "subject": "Tighten three CPUNET recovered functions",
+      "receipt": "recon/analysis/net_codegen_shrink_lane_c.json",
+      "production_object_bytes_delta": -44
+    }
+  ],
+  "combined": {
+    "build_directory": "/private/tmp/g1-net-shrink-final",
+    "flash_capacity": 227328,
+    "flash_used": 227961,
+    "flash_used_hex": "0x37a79",
+    "overflow": 633,
+    "undefined_symbol_diagnostics": 0,
+    "production_object_bytes_delta": -124,
+    "whole_image_bytes_delta": -128,
+    "alignment_bytes_delta": -4,
+    "link_result": "FLASH overflow only; no final ELF"
+  }
+}
