@@ -14,7 +14,7 @@
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
- *   ADDR_FUN_000545f0_THUMB                  @ 0x000545f1
+ *   ADDR_hci_tx_thread_THUMB                 @ 0x000545f1
  *   rodata_88138                             @ 0x00088138
  *   rodata_f3376                             @ 0x000f3376
  *   rodata_f338f                             @ 0x000f338f
@@ -62,7 +62,7 @@ int bt_enable(int param_1)
         z_impl_k_sem_init(iVar1 + 0x128, 1);
         z_impl_k_queue_init((void *)(iVar1 + 0x14c));
         local_38 = 0; uStack_34 = 0; local_40 = iVar3;
-        FUN_00071eac(((unsigned long)&rx_thread_data) /*=0x20005e30*/, ((unsigned long)&rx_thread_stack) /*=0x2002bb80*/, 0x400, ADDR_FUN_000545f0_THUMB /*=0x545f1*/, 0, 0, 0, 0xfffffff7);
+        FUN_00071eac(((unsigned long)&rx_thread_data) /*=0x20005e30*/, ((unsigned long)&rx_thread_stack) /*=0x2002bb80*/, 0x400, ADDR_hci_tx_thread_THUMB /*=0x545f1*/, 0, 0, 0, 0xfffffff7);
         posix_stub_enosys(((unsigned long)&rx_thread_data) /*=0x20005e30*/, ((unsigned long)&rodata_f338f) /*=0xf338f*/);
         k_work_queue_init(((unsigned long)&bt_workqueue) /*=0x20005f08*/);
         k_work_queue_start(((unsigned long)&bt_workqueue) /*=0x20005f08*/, ((unsigned long)&bt_workqueue_stack) /*=0x2002bf80*/, 0x898, 0xfffffff8, 0);

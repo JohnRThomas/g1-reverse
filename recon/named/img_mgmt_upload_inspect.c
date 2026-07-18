@@ -11,6 +11,8 @@
  *   z_log_msg_static_create_img_mgmt         <= FUN_0008096a @ 0x0008096a
  *   img_mgmt_vercmp                          <= FUN_00080970 @ 0x00080970
  *   img_mgmt_slot_in_use                     <= FUN_000809f6 @ 0x000809f6
+ *   img_mgmt_active_slot                     <= FUN_00080a46 @ 0x00080a46
+ *   img_mgmt_my_version                      <= FUN_00080a82 @ 0x00080a82
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -34,8 +36,8 @@ extern void nullsub_3(void);
 extern void z_log_msg_static_create_img_mgmt(uint32_t, uint32_t, const void *);
 extern int img_mgmt_vercmp(void *, void *);
 extern unsigned img_mgmt_slot_in_use(unsigned);
-extern unsigned FUN_00080a46(int);
-extern int FUN_00080a82(void *);
+extern unsigned img_mgmt_active_slot(int);
+extern int img_mgmt_my_version(void *);
 extern int memcmp(void *, int);
 extern void memset_bytes(void *, int, unsigned);
 
@@ -85,7 +87,7 @@ unsigned img_mgmt_upload_inspect(int *param_1, unsigned *param_2)
     }
     iVar2 = P1(0);
     if (iVar2 == -1) iVar2 = 0;
-    uVar4 = FUN_00080a46(iVar2);
+    uVar4 = img_mgmt_active_slot(iVar2);
     if (3 < uVar4) {
         printk(0x00099cbd, 0x000f25c5, 0x000f2561, 0x71);
         printk(0x000f25e2);
@@ -120,7 +122,7 @@ unsigned img_mgmt_upload_inspect(int *param_1, unsigned *param_2)
     }
     nullsub_3();
     if ((int8_t)P1(0x1c) != 0) {
-        iVar2 = FUN_00080a82(authorization);
+        iVar2 = img_mgmt_my_version(authorization);
         if (iVar2 != 0) return 0x1a;
         iVar2 = img_mgmt_vercmp(authorization, piVar5 + 5);
         if (-1 < iVar2) return 0x1b;

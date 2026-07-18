@@ -4,6 +4,7 @@
    "atomic_group": [
     "0x00053cb0",
     "0x00053cd4",
+    "0x000545f0",
     "0x00054a44"
    ],
    "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
@@ -60,6 +61,7 @@
     "exclude_only": [
      "0x00053cb0",
      "0x00053cd4",
+     "0x000545f0",
      "0x00054a44"
     ],
     "new_undefined_symbols": [],
@@ -76,6 +78,7 @@
    "atomic_group": [
     "0x00053cb0",
     "0x00053cd4",
+    "0x000545f0",
     "0x00054a44"
    ],
    "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
@@ -139,6 +142,7 @@
     "exclude_only": [
      "0x00053cb0",
      "0x00053cd4",
+     "0x000545f0",
      "0x00054a44"
     ],
     "new_undefined_symbols": [],
@@ -155,6 +159,103 @@
    "atomic_group": [
     "0x00053cb0",
     "0x00053cd4",
+    "0x000545f0",
+    "0x00054a44"
+   ],
+   "batch": "COLLISION-BT-STOCK",
+   "cfg_verify_cases": 8,
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/.config",
+   "configured_build_sha256": "8a34969be3288fe1afd0a3fdba6fb1b54b3d92f75e8621536e857e1e41432138",
+   "firmware_code_size": 348,
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": null,
+    "corrected_readable_identity": "hci_tx_thread",
+    "corrected_upstream_source": "zephyr/subsys/bluetooth/host/hci_core.c",
+    "corrected_upstream_symbol": "hci_tx_thread",
+    "upstream_linkage": "translation_unit_local"
+   },
+   "instruction_exact": true,
+   "instruction_exact_method": "normalized Thumb instruction/CFG signature; relocations and layout-dependent targets ignored",
+   "normalized_code_sha256": "7921d7849e7a46e6914bf96f13b304e3ef1ab4fdd1e8e2586225d9c2e7076a61",
+   "raw_symbol": "FUN_000545f0",
+   "reconstruction_source": "recon/app/src/FUN_000545f0.c",
+   "reconstruction_source_sha256": "e105b8fd5220577ab0513a1ef83e49e29b63a34122de5ef07e28eb51037ee719",
+   "relocation_masked_byte_exact": true,
+   "relocation_offsets": [
+    30,
+    48,
+    64,
+    88,
+    120,
+    138,
+    168,
+    196,
+    204,
+    216,
+    226,
+    256,
+    264,
+    270,
+    288,
+    294,
+    312,
+    340
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_BT_ATT_PREPARE_COUNT": "1",
+    "CONFIG_BT_CENTRAL": "n",
+    "CONFIG_BT_CONN_TX_MAX": "10",
+    "CONFIG_BT_GATT_CLIENT": "y",
+    "CONFIG_BT_GATT_DYNAMIC_DB": "y",
+    "CONFIG_BT_ID_MAX": "1",
+    "CONFIG_BT_L2CAP_DYNAMIC_CHANNEL": "y",
+    "CONFIG_BT_L2CAP_SEG_RECV": "n",
+    "CONFIG_BT_MAX_PAIRED": "2",
+    "CONFIG_BT_PERIPHERAL": "y",
+    "CONFIG_BT_PRIVACY": "n",
+    "CONFIG_BT_SETTINGS": "y",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
+    "CONFIG_NEWLIB_LIBC": "y",
+    "CONFIG_NEWLIB_LIBC_NANO": "y",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_TRACING": "n"
+   },
+   "status": "authorized",
+   "symbol": "hci_tx_thread",
+   "upstream_code_size": 348,
+   "upstream_object": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+   "upstream_object_sha256": "7a1c9a468e53c9d4129ffd321f96121f5e87a7c8fee35311d2aaed7900a34244",
+   "upstream_source": "zephyr/subsys/bluetooth/host/hci_core.c",
+   "upstream_source_sha256": "97697fe05620b3fffaeeda9037147ce4ec785148ae3b8d2d938511feabb0352a",
+   "va": "0x000545f0",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x00053cb0",
+     "0x00053cd4",
+     "0x000545f0",
+     "0x00054a44"
+    ],
+    "new_undefined_symbols": [],
+    "private_state": "configured Zephyr Bluetooth host translation-unit state",
+    "safe": true,
+    "same_source_unit_collision_symbols": [
+     "bt_hci_cmd_state_set_init",
+     "bt_hci_cmd_create",
+     "bt_send"
+    ]
+   }
+  },
+  {
+   "atomic_group": [
+    "0x00053cb0",
+    "0x00053cd4",
+    "0x000545f0",
     "0x00054a44"
    ],
    "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
@@ -231,6 +332,7 @@
     "exclude_only": [
      "0x00053cb0",
      "0x00053cd4",
+     "0x000545f0",
      "0x00054a44"
     ],
     "new_undefined_symbols": [],
@@ -646,7 +748,7 @@
    "firmware_code_size": 18,
    "hidden_owner_closure": true,
    "identity_correction": {
-    "baseline_collision_symbol": "bt_l2cap_le_lookup_tx_cid",
+    "baseline_collision_symbol": null,
     "corrected_readable_identity": "bt_l2cap_le_lookup_tx_cid",
     "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
     "corrected_upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
@@ -725,7 +827,7 @@
    "firmware_code_size": 18,
    "hidden_owner_closure": true,
    "identity_correction": {
-    "baseline_collision_symbol": "bt_l2cap_le_lookup_rx_cid",
+    "baseline_collision_symbol": null,
     "corrected_readable_identity": "bt_l2cap_le_lookup_rx_cid",
     "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
     "corrected_upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
@@ -961,7 +1063,7 @@
    "normalized_code_sha256": "a12e4ec731d2d11ab3ebb2332495ae3250781ab1915eec113df063dbacf5b5d6",
    "raw_symbol": "FUN_0005a954",
    "reconstruction_source": "recon/app/src/FUN_0005a954.c",
-   "reconstruction_source_sha256": "a0d180aba4f6562059fdc1114febb78cf3b9a0bfaa27b76e340758c19a7fdb84",
+   "reconstruction_source_sha256": "55cead83a7eb870efa6ad9765967fad526d155873ee7766f262988fb18dd42d5",
    "relocation_masked_byte_exact": true,
    "relocation_offsets": [
     6,

@@ -249,6 +249,22 @@
    "name": "img_mgmt_set_next_boot_slot",
    "evidence": "Exact relocation-normalized NCS 2.5.1 img_mgmt_state.c owner with CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER=2. The former state_set_pending label named its caller-level operation rather than this function; raw identity remains FUN_00051d8c."
   },
+  "0x00051fc4": {
+   "name": "img_mgmt_translate_error_code",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local owner in the pinned NCS 2.5.1 img_mgmt.c configured closure; raw identity remains FUN_00051fc4."
+  },
+  "0x00051fd8": {
+   "name": "img_mgmt_register_group",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local registration helper in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00051fd8."
+  },
+  "0x00051fe4": {
+   "name": "img_mgmt_reset_upload",
+   "evidence": "Relocation-normalized byte-exact translation-unit-local reset helper in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00051fe4."
+  },
+  "0x00052000": {
+   "name": "img_mgmt_upload_good_rsp",
+   "evidence": "Relocation-normalized byte-exact GCC 12.2 img_mgmt_upload_good_rsp.isra.0 owner in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00052000."
+  },
   "0x00052038": {
    "name": "img_mgmt_read_info",
    "evidence": "Exact relocation-normalized NCS 2.5.1 img_mgmt.c owner. This is the true read-info function; raw identity remains FUN_00052038 at 0x00052038."
@@ -256,6 +272,10 @@
   "0x00052180": {
    "name": "img_mgmt_erase",
    "evidence": "Exact relocation-normalized NCS 2.5.1 static img_mgmt.c erase handler. The former img_mgmt_read_info label belongs to 0x00052038; raw identity remains FUN_00052180."
+  },
+  "0x000521fc": {
+   "name": "img_mgmt_upload",
+   "evidence": "Relocation-normalized byte-exact private upload handler from pinned NCS 2.5.1 img_mgmt.c. The earlier state-read label was false; raw identity remains FUN_000521fc."
   },
   "0x00052604": {
    "name": "storage_erase_handler",
@@ -276,6 +296,30 @@
   "0x000809f6": {
    "name": "img_mgmt_slot_in_use",
    "evidence": "Relocation-normalized byte-exact public img_mgmt_state.c owner; raw identity remains FUN_000809f6."
+  },
+  "0x00080a42": {
+   "name": "img_mgmt_take_lock",
+   "evidence": "Pinned img_mgmt.c no-mutex configured public no-op, identified by exact adjacency and call ownership; raw identity remains FUN_00080a42."
+  },
+  "0x00080a44": {
+   "name": "img_mgmt_release_lock",
+   "evidence": "Pinned img_mgmt.c no-mutex configured public no-op, identified by exact adjacency and call ownership; raw identity remains FUN_00080a44."
+  },
+  "0x00080a46": {
+   "name": "img_mgmt_active_slot",
+   "evidence": "Relocation-normalized byte-exact pinned img_mgmt.c two-image active-slot mapping; raw identity remains FUN_00080a46."
+  },
+  "0x00080a4a": {
+   "name": "img_mgmt_active_image",
+   "evidence": "Relocation-normalized byte-exact pinned img_mgmt.c ACTIVE_IMAGE_IS=0 accessor; raw identity remains FUN_00080a4a."
+  },
+  "0x00080a4e": {
+   "name": "img_mgmt_find_by_hash",
+   "evidence": "Relocation-normalized byte-exact pinned img_mgmt.c four-slot hash search; raw identity remains FUN_00080a4e."
+  },
+  "0x00080a82": {
+   "name": "img_mgmt_my_version",
+   "evidence": "Relocation-normalized byte-exact pinned img_mgmt.c current-image version wrapper; raw identity remains FUN_00080a82."
   },
   "0x0004cc50": {
    "name": "ipc_service_send",
@@ -1398,6 +1442,10 @@
   "0x0007ef56": {
    "name": "audio_hw_lock_release",
    "evidence": "Exact counterpart to audio_hw_lock_acquire, atomically clearing state bit zero when the state exists. Raw identity remains FUN_0007ef56."
+  },
+  "0x000545f0": {
+   "name": "hci_tx_thread",
+   "evidence": "Exact Zephyr Bluetooth host hci_core.c transmit-thread control flow: clear the static k_poll event, extend it with bt_conn_prepare_events, poll forever, process_events, then k_yield. The two apparent interior callees are the stock inline ARMv8-M ARCH_EXCEPT(3) SVC sites. Raw identity remains FUN_000545f0."
   }
  },
  "net": {

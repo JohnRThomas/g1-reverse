@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   z_fd_unref                               <= FUN_0004b048 @ 0x0004b048
  * address symbols (name @ address):
- *   g_posix_fd_table                         @ 0x20002548
+ *   g_fdtable_entries                        @ 0x20002548
  */
 /* Full reconstruction of FUN_0004b048 @ 0x4b048 (58-byte extent). */
 #include <stdint.h>

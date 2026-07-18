@@ -1,0 +1,48 @@
+{
+  "core": "app",
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "owner": {
+    "address": "0x000545f0",
+    "name": "hci_tx_thread",
+    "raw_name": "FUN_000545f0",
+    "upstream_identity": "zephyr/subsys/bluetooth/host/hci_core.c:hci_tx_thread"
+  },
+  "policy": {
+    "byte_blobs": false,
+    "invented_functions": false,
+    "linker_aliases_emitted": false
+  },
+  "resolution": {
+    "cfg_verify": {
+      "cases": 8,
+      "command": "tools/cfg_verify.py app FUN_000545f0",
+      "result": "PASS"
+    },
+    "fake_function_entries_removed": [
+      "FUN_0005463e",
+      "FUN_00054688"
+    ],
+    "full_link_effect": "both fake undefined function symbols removed",
+    "raw_owner_backmap_preserved": true,
+    "stock_macro": "Zephyr 3.4 ARMv8-M Mainline ARCH_EXCEPT(3)"
+  },
+  "schema": 1,
+  "sites": [
+    {
+      "bytes": "404080f311884ff0030002df",
+      "reason": 3,
+      "sequence_start": "0x00054634",
+      "svc_address": "0x0005463e",
+      "svc_immediate": 2
+    },
+    {
+      "bytes": "404080f311884ff0030002df",
+      "reason": 3,
+      "sequence_start": "0x0005467e",
+      "svc_address": "0x00054688",
+      "svc_immediate": 2
+    }
+  ],
+  "source_sha256": "e105b8fd5220577ab0513a1ef83e49e29b63a34122de5ef07e28eb51037ee719",
+  "status": "resolved_in_containing_owner"
+}

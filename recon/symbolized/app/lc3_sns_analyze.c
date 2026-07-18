@@ -5,7 +5,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   lc3_sns_unquantize                       <= FUN_0006bd74 @ 0x0006bd74
- *   lc3_sns_compute_scale_factors            <= FUN_0006bfc8 @ 0x0006bfc8
+ *   lc3_sns_spectral_shaping                 <= FUN_0006bfc8 @ 0x0006bfc8
  *   lc3_sns_analyze                          <= FUN_0006c778 @ 0x0006c778
  *   frexpf                                   <= FUN_000759b8 @ 0x000759b8
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
@@ -22,7 +22,7 @@
 extern float frexpf(float, int *);
 extern void *memcpy(void *, const void *, unsigned);
 extern void lc3_sns_unquantize(enum lc3_dt, enum lc3_srate, const float *, int, int, float *);
-extern void lc3_sns_compute_scale_factors(enum lc3_dt, enum lc3_srate, const float *, bool, const float *, float *);
+extern void lc3_sns_spectral_shaping(enum lc3_dt, enum lc3_srate, const float *, bool, const float *, float *);
 #undef LC3_HOT
 #define LC3_HOT inline __attribute__((always_inline))
 #define fmaxf __builtin_fmaxf
@@ -767,5 +767,5 @@ void lc3_sns_analyze(enum lc3_dt dt, enum lc3_srate sr,
     enumerate(data->shape, c[data->shape],
         &data->idx_a, &data->ls_a, &data->idx_b, &data->ls_b);
 
-    lc3_sns_compute_scale_factors(dt, sr, scf, false, x, y);
+    lc3_sns_spectral_shaping(dt, sr, scf, false, x, y);
 }

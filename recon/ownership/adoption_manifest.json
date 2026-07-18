@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 497,
-    "exclude_reconstruction": 482,
+    "entries": 515,
+    "exclude_reconstruction": 500,
     "retain_reconstruction": 15,
     "by_kind": {
-     "source": 347,
+     "source": 365,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -152,6 +152,176 @@
     },
     {
      "core": "app",
+     "va": "0x0000eefe",
+     "raw_symbol": "FUN_0000eefe",
+     "current_symbol": "strcmp",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "strcmp",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2970d82d1d95f3e160c8304340fba61c52eeaca1401ac05920209c6dc463267e",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "strcmp",
+        "corrected_readable_identity": "strcmp",
+        "corrected_upstream_symbol": "strcmp",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0000ef12",
+     "raw_symbol": "FUN_0000ef12",
+     "current_symbol": "strlen",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "strlen",
+     "upstream_unit": "/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/arm-zephyr-eabi/lib/thumb/v8-m.main+fp/hard/libc_nano.a",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-01",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c0c3db0df44bb4ee3d99315dedec65280495b2bbedd50455938c114e3fdd180d",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "strlen",
+        "corrected_readable_identity": "strlen",
+        "corrected_upstream_symbol": "strlen",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00076b48",
+        "0x00076b9c",
+        "0x00076ba8",
+        "0x00076bb4",
+        "0x00076bc0",
+        "0x00076bcc",
+        "0x00076c3c",
+        "0x00086b14",
+        "0x00076d6c",
+        "0x00076d7c",
+        "0x00076d8c",
+        "0x00076e20",
+        "0x000876d0",
+        "0x000876ec",
+        "0x00087996",
+        "0x00077b38",
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "__sinit",
+         "__sinit_lock_release",
+         "_malloc_r",
+         "_strtoul_r",
+         "malloc"
+        ],
+        "exclude_only": [
+         "0x00076b48",
+         "0x00076b9c",
+         "0x00076ba8",
+         "0x00076bb4",
+         "0x00076bc0",
+         "0x00076bcc",
+         "0x00076c3c",
+         "0x00086b14",
+         "0x00076d6c",
+         "0x00076d7c",
+         "0x00076d8c",
+         "0x00076e20",
+         "0x000876d0",
+         "0x000876ec",
+         "0x00087996",
+         "0x00077b38",
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x000113a8",
      "raw_symbol": "FUN_000113a8",
      "current_symbol": "z_cbvprintf_impl",
@@ -204,6 +374,246 @@
     },
     {
      "core": "app",
+     "va": "0x0004b01c",
+     "raw_symbol": "FUN_0004b01c",
+     "current_symbol": "_check_fd",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "_check_fd",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-FDTABLE",
+       "instruction_exact": true,
+       "normalized_code_sha256": "589fadc81c61c6105cdf5f43f42df82375aee8c16e90c29e36df49a8332bad27",
+       "cfg_verify_cases": 3,
+       "identity_correction": {
+        "baseline_collision_symbol": "fd_table_lookup",
+        "corrected_readable_identity": "_check_fd",
+        "corrected_upstream_symbol": "_check_fd",
+        "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+        "upstream_linkage": "translation_unit_local",
+        "raw_identity": "FUN_0004b01c"
+       },
+       "atomic_group": [
+        "0x0004b01c",
+        "0x0004b048",
+        "0x0004b088",
+        "0x0004b0dc",
+        "0x0004b17c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004b01c",
+         "0x0004b048",
+         "0x0004b088",
+         "0x0004b0dc",
+         "0x0004b17c"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": {
+         "symbol": "fdtable",
+         "firmware_address": "0x20002548",
+         "size": 640,
+         "entry_count": 16,
+         "entry_size": 40,
+         "refcount_offset": 8
+        }
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b048",
+     "raw_symbol": "FUN_0004b048",
+     "current_symbol": "z_fd_unref",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "z_fd_unref",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-FDTABLE",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6594201624af89f56f0b7f12848d04612672c3339a7ee7fb1f549a5abb7b618c",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "fdtable_entry_unref",
+        "corrected_readable_identity": "z_fd_unref",
+        "corrected_upstream_symbol": "z_fd_unref",
+        "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+        "upstream_linkage": "translation_unit_local",
+        "raw_identity": "FUN_0004b048"
+       },
+       "atomic_group": [
+        "0x0004b01c",
+        "0x0004b048",
+        "0x0004b088",
+        "0x0004b0dc",
+        "0x0004b17c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004b01c",
+         "0x0004b048",
+         "0x0004b088",
+         "0x0004b0dc",
+         "0x0004b17c"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": {
+         "symbol": "fdtable",
+         "firmware_address": "0x20002548",
+         "size": 640,
+         "entry_count": 16,
+         "entry_size": 40,
+         "refcount_offset": 8
+        }
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b088",
+     "raw_symbol": "FUN_0004b088",
+     "current_symbol": "read",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "read",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-FDTABLE",
+       "instruction_exact": true,
+       "normalized_code_sha256": "fb4d3626de576ab8524a383eff8e20ddf84905d24d63e04bc1eb7e9b88666e1a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "fd_table_dispatch_op1",
+        "corrected_readable_identity": "read",
+        "corrected_upstream_symbol": "read",
+        "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0004b088"
+       },
+       "atomic_group": [
+        "0x0004b01c",
+        "0x0004b048",
+        "0x0004b088",
+        "0x0004b0dc",
+        "0x0004b17c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004b01c",
+         "0x0004b048",
+         "0x0004b088",
+         "0x0004b0dc",
+         "0x0004b17c"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": {
+         "symbol": "fdtable",
+         "firmware_address": "0x20002548",
+         "size": 640,
+         "entry_count": 16,
+         "entry_size": 40,
+         "refcount_offset": 8
+        }
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b0dc",
+     "raw_symbol": "FUN_0004b0dc",
+     "current_symbol": "write",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "write",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "ROOT-FDTABLE",
+       "instruction_exact": true,
+       "normalized_code_sha256": "dec7f20f49d69d1908a16c8c01d5324122a8e0493bc975e7e857294dbbba8480",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "fd_table_dispatch_op2",
+        "corrected_readable_identity": "write",
+        "corrected_upstream_symbol": "write",
+        "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+        "upstream_linkage": "public",
+        "raw_identity": "FUN_0004b0dc"
+       },
+       "atomic_group": [
+        "0x0004b01c",
+        "0x0004b048",
+        "0x0004b088",
+        "0x0004b0dc",
+        "0x0004b17c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "exclude_only": [
+         "0x0004b01c",
+         "0x0004b048",
+         "0x0004b088",
+         "0x0004b0dc",
+         "0x0004b17c"
+        ],
+        "new_undefined_symbols": [],
+        "raw_aliases_preserved": true,
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": {
+         "symbol": "fdtable",
+         "firmware_address": "0x20002548",
+         "size": 640,
+         "entry_count": 16,
+         "entry_size": 40,
+         "refcount_offset": 8
+        }
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0004b17c",
      "raw_symbol": "FUN_0004b17c",
      "current_symbol": "lseek",
@@ -219,7 +629,7 @@
       {
        "source": "recon/ownership/app_collision_adoption_authorizations.json",
        "type": "explicit_hidden_owner_adoption_authority",
-       "batch": "ROOT-LSEEK",
+       "batch": "ROOT-FDTABLE",
        "instruction_exact": true,
        "normalized_code_sha256": "11ac343918431cac3a83f7168869be89a6edc1ddee3b8e3679d082a340655c29",
        "cfg_verify_cases": 1,
@@ -232,16 +642,32 @@
         "raw_identity": "FUN_0004b17c"
        },
        "atomic_group": [
+        "0x0004b01c",
+        "0x0004b048",
+        "0x0004b088",
+        "0x0004b0dc",
         "0x0004b17c"
        ],
        "whole_unit_closure": {
         "safe": true,
         "exclude_only": [
+         "0x0004b01c",
+         "0x0004b048",
+         "0x0004b088",
+         "0x0004b0dc",
          "0x0004b17c"
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": {
+         "symbol": "fdtable",
+         "firmware_address": "0x20002548",
+         "size": 640,
+         "entry_count": 16,
+         "entry_size": 40,
+         "refcount_offset": 8
+        }
        }
       }
      ]
@@ -1790,7 +2216,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -1846,7 +2273,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -1902,7 +2330,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -4072,11 +4501,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4094,16 +4534,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4196,11 +4648,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4218,16 +4681,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4278,11 +4753,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4300,16 +4786,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4360,11 +4858,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4382,16 +4891,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4442,11 +4963,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4464,16 +4996,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4524,11 +5068,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4546,16 +5101,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4606,11 +5173,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4628,16 +5206,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4688,11 +5278,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4710,16 +5311,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4770,11 +5383,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4792,16 +5416,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4852,11 +5488,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4874,16 +5521,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -4977,11 +5636,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -4999,16 +5669,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -5101,11 +5783,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -5123,16 +5816,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -5226,11 +5931,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -5248,16 +5964,598 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00051fe4",
+     "raw_symbol": "FUN_00051fe4",
+     "current_symbol": "img_mgmt_reset_upload",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_reset_upload",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "338c9bbbe49249ced423fcf6d3bd0de298dc6a8afdff2497e756d1d34b57e866",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_reset_upload",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_reset_upload",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052000",
+     "raw_symbol": "FUN_00052000",
+     "current_symbol": "img_mgmt_upload_good_rsp",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_upload_good_rsp.isra.0",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7accc5726a7881706104768311776f76c6f320f559a4868830d36ffbf4f5083a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_upload_good_rsp.isra.0",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_upload_good_rsp.isra.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052038",
+     "raw_symbol": "FUN_00052038",
+     "current_symbol": "img_mgmt_read_info",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "img_mgmt_read_info",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "length": 1.0,
+        "normalized_exact": true,
+        "opcode": 1.0,
+        "shape": 1.0
+       },
+       "abi": {
+        "decl_line": 181,
+        "params": [
+         "int",
+         "image_version*",
+         "uint8_t*",
+         "uint32_t*"
+        ],
+        "return": "int",
+        "variadic": false
+       },
+       "upstream_source": {
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+        "path": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "repository": "zephyr",
+        "sha256": "218e955270c7085bea1f2623fb547ecf94e1045deb2de3cac44500c5b472280e"
+       },
+       "link_provenance": {
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c:183: multiple definition of `img_mgmt_read_info'; app/libapp.a(img_mgmt_read_info.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/img_mgmt_read_info.c:18: first defined here"
+        ],
+        "owner_input": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/libsubsys__mgmt__mcumgr__grp__img_mgmt.a(img_mgmt.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c:183",
+        "reconstruction_input": "app/libapp.a(img_mgmt_read_info.c.obj)"
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ec670e884a457cdffc245eb5011fd804d8934e74e1ec99e72a10fe36c7aa7a2e",
+       "cfg_verify_cases": 6,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+        "CONFIG_MCUMGR_GRP_IMG": "y",
+        "CONFIG_MCUMGR_GRP_IMG_DIRECT_UPLOAD": "n",
+        "CONFIG_MCUMGR_GRP_IMG_REJECT_DIRECT_XIP_MISMATCHED_SLOT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_UPDATABLE_IMAGE_NUMBER": "2",
+        "CONFIG_MCUMGR_GRP_IMG_USE_HEAP_FOR_FLASH_IMG_CONTEXT": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR": "n",
+        "CONFIG_MCUMGR_GRP_IMG_VERSION_CMP_USE_BUILD_NUMBER": "n",
+        "CONFIG_NRF53_UPGRADE_NETWORK_CORE": "y",
+        "CONFIG_PM_EXTERNAL_FLASH_MCUBOOT_SECONDARY": "y",
+        "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00052180",
+     "raw_symbol": "FUN_00052180",
+     "current_symbol": "img_mgmt_erase",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_erase",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "94852fdbe21c394651e97209daec9284632cdb8b0f3595cb659430eaf3dbc200",
+       "cfg_verify_cases": 3,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_erase",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_erase",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000521fc",
+     "raw_symbol": "FUN_000521fc",
+     "current_symbol": "img_mgmt_upload",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_upload",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4501292d9d683f4f144cfe9077aa7ad6ef7e399600c0fd58287745ef76faff4d",
+       "cfg_verify_cases": 9,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_upload",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_upload",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -5931,6 +7229,7 @@
        "atomic_group": [
         "0x00053cb0",
         "0x00053cd4",
+        "0x000545f0",
         "0x00054a44"
        ],
        "whole_unit_closure": {
@@ -5938,6 +7237,7 @@
         "exclude_only": [
          "0x00053cb0",
          "0x00053cd4",
+         "0x000545f0",
          "0x00054a44"
         ],
         "new_undefined_symbols": [],
@@ -6037,6 +7337,7 @@
        "atomic_group": [
         "0x00053cb0",
         "0x00053cd4",
+        "0x000545f0",
         "0x00054a44"
        ],
        "whole_unit_closure": {
@@ -6044,6 +7345,7 @@
         "exclude_only": [
          "0x00053cb0",
          "0x00053cd4",
+         "0x000545f0",
          "0x00054a44"
         ],
         "new_undefined_symbols": [],
@@ -6078,6 +7380,60 @@
        "ownership": "source",
        "confidence": "high",
        "evidence": "Exact public symbol and pinned source signature int bt_hci_le_rand(void *, size_t)."
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000545f0",
+     "raw_symbol": "FUN_000545f0",
+     "current_symbol": "hci_tx_thread",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "hci_tx_thread",
+     "upstream_unit": "/private/tmp/g1-bt-custom-notls-main16k-evidence/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-BT-STOCK",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7921d7849e7a46e6914bf96f13b304e3ef1ab4fdd1e8e2586225d9c2e7076a61",
+       "cfg_verify_cases": 8,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "hci_tx_thread",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/hci_core.c",
+        "corrected_upstream_symbol": "hci_tx_thread",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00053cb0",
+        "0x00053cd4",
+        "0x000545f0",
+        "0x00054a44"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00053cb0",
+         "0x00053cd4",
+         "0x000545f0",
+         "0x00054a44"
+        ],
+        "new_undefined_symbols": [],
+        "private_state": "configured Zephyr Bluetooth host translation-unit state",
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "bt_hci_cmd_state_set_init",
+         "bt_hci_cmd_create",
+         "bt_send"
+        ]
+       }
       }
      ]
     },
@@ -6174,6 +7530,7 @@
        "atomic_group": [
         "0x00053cb0",
         "0x00053cd4",
+        "0x000545f0",
         "0x00054a44"
        ],
        "whole_unit_closure": {
@@ -6181,6 +7538,7 @@
         "exclude_only": [
          "0x00053cb0",
          "0x00053cd4",
+         "0x000545f0",
          "0x00054a44"
         ],
         "new_undefined_symbols": [],
@@ -15400,11 +16758,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_attdet_run",
-     "upstream_unit": "src/attdet.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/attdet.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15412,6 +16770,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_attdet_run",
+       "unmasked_prefix_sha256": "3a692de4159b46236340d907587bcd11f804b05e37b7a22ba44aba2d3e5d8a48",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15423,11 +16791,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_setup_bits",
-     "upstream_unit": "src/bits.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15435,6 +16803,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_setup_bits",
+       "unmasked_prefix_sha256": "309004a699d35e9c5b3dab90ef5a5d925ee43d8ae7da457abadf0110dc96dabd",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15446,11 +16824,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_get_bits_left",
-     "upstream_unit": "src/bits.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15458,6 +16836,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_get_bits_left",
+       "unmasked_prefix_sha256": "d7934adab2c71265964c6c027db25f2baeb114761b07e006382b37dae4b8c90d",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15469,11 +16857,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_flush_bits",
-     "upstream_unit": "src/bits.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15481,6 +16869,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_flush_bits",
+       "unmasked_prefix_sha256": "0f25d07acad86b6123749dcbc8dc09d6af449d88a1c8d67d04c982b0e15c34cc",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15492,11 +16890,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_put_bits_generic",
-     "upstream_unit": "src/bits.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15504,6 +16902,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_put_bits_generic",
+       "unmasked_prefix_sha256": "802c2df2861ecee4477c75b54a683202c133125b0956796be3428036c0d52b18",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15515,11 +16923,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_ac_write_renorm",
-     "upstream_unit": "src/bits.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15527,6 +16935,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_ac_write_renorm",
+       "unmasked_prefix_sha256": "9ebba27de1435c6828dcdfc7f3ceeccb1bdf876d9136212bf2576d7760312f5a",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15538,11 +16956,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_bwdet_run",
-     "upstream_unit": "src/bwdet.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15550,6 +16968,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_bwdet_run",
+       "unmasked_prefix_sha256": "dea2d19afeebbb1c5e2c4bea62dd1201e820d3d8a07b46887abb432e6b4db818",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15561,11 +16989,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_bwdet_get_nbits",
-     "upstream_unit": "src/bwdet.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15573,6 +17001,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_bwdet_get_nbits",
+       "unmasked_prefix_sha256": "29db0cf1b4d5b42701930f0ffea9e0cd5db834b54a8fa797a331d6c06e0a109d",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15584,11 +17022,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_bwdet_put_bw",
-     "upstream_unit": "src/bwdet.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15596,6 +17034,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_bwdet_put_bw",
+       "unmasked_prefix_sha256": "c8a12321f248b5745d37f2ed1e44a3c2dc7aa1c9978a41a7d13494bbaa44597b",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15607,11 +17055,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_energy_compute",
-     "upstream_unit": "src/energy.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/energy.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15619,6 +17067,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.98,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_energy_compute",
+       "unmasked_prefix_sha256": "c5c72393a4bf02e11a3a6b7c1690b4e5b4e78bd96a5edebf8f9203852f3dbe88",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15630,11 +17088,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "load_s24_3le",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15642,6 +17100,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.load_s24_3le",
+       "unmasked_prefix_sha256": "0ec70593bfde04fdaffc63331fa45f7005bc63c33c1ac72a8861eb27ca77b933",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15653,11 +17121,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "load_s24",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15665,6 +17133,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.load_s24",
+       "unmasked_prefix_sha256": "acd67cd3a2cdf16c7f9baa5cc4b7036d67f1cda65ccfce580a0bb111022586be",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15676,11 +17154,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "load_float",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15688,6 +17166,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.load_float",
+       "unmasked_prefix_sha256": "383fc092d8f9732dbef172eb20dac660cf0a27924aa034bea686259194bb1fe9",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15699,11 +17187,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_frame_samples",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15711,6 +17199,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_frame_samples",
+       "unmasked_prefix_sha256": "fe1c417863cba076538852d2e7f0732a8310382f82e698c7a11f3dcc444093af",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15722,11 +17220,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_encoder_size",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15734,6 +17232,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_encoder_size",
+       "unmasked_prefix_sha256": "ba9f888982d5e0c578e9a4a333a76f63033c93c038d854e50a546b1f0f0efcc4",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15745,11 +17253,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_setup_encoder",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15757,6 +17265,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_setup_encoder",
+       "unmasked_prefix_sha256": "4588512d8f9d42d413548477f3222284e45e3337a19c842b65fd758800f9d610",
+       "call_targets_checked": 2,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15768,11 +17286,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_encode",
-     "upstream_unit": "src/lc3.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15780,6 +17298,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_encode",
+       "unmasked_prefix_sha256": "50b27b7e427cf641f2b44adc52c2bce0415cb8ece5d0f9d9d0d84dc9cb4126de",
+       "call_targets_checked": 19,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15791,11 +17319,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "interpolate",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15803,6 +17331,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.interpolate",
+       "unmasked_prefix_sha256": "dc104b727a555709e4fb1eb197d253204dd933306fed9807430c2cc8fcce5d3a",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15814,11 +17352,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "arm_correlate",
-     "upstream_unit": "src/ltpf_arm.h",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15826,6 +17364,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.arm_correlate",
+       "unmasked_prefix_sha256": "a2faf5bdef42f3e26e8ac81d5f45497140c26a8cc102c96a2ed528e692b011ff",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15837,11 +17385,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "detect_pitch",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15849,6 +17397,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.98,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.detect_pitch",
+       "unmasked_prefix_sha256": "cb6f25bef09e907b639aea6715b9c8fa8b6d6d46e7fda7b023ff1db772b3c3c6",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15860,11 +17418,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "arm_resample_24k_12k8",
-     "upstream_unit": "src/ltpf_arm.h",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15872,6 +17430,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.95,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.arm_resample_24k_12k8",
+       "unmasked_prefix_sha256": "45534190e54ad415511f6d014cd13824cb3f21e821683b0f89fc70f9354226dd",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15879,15 +17447,15 @@
      "core": "app",
      "va": "0x0006aa98",
      "raw_symbol": "FUN_0006aa98",
-     "current_symbol": "lc3_ltpf_arm_resample_48k_12k8",
+     "current_symbol": "lc3_ltpf_arm_resample_8k_12k8",
      "kind": "static_helper",
      "component": "liblc3",
-     "upstream_symbol": "arm_resample_48k_12k8",
-     "upstream_unit": "src/ltpf_arm.h",
+     "upstream_symbol": "arm_resample_8k_12k8",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15895,6 +17463,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.95,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.arm_resample_8k_12k8",
+       "unmasked_prefix_sha256": "2c7b16a1f5c68507f1f66f33bd0ac502fcc846e95c6529815d6fcc9317f2a63f",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15906,11 +17484,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_ltpf_analyse",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15918,6 +17496,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_ltpf_analyse",
+       "unmasked_prefix_sha256": "9815bf650b9a460babd367993d279b06c99f88493e1dd87f3294caeab168680e",
+       "call_targets_checked": 7,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15929,11 +17517,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_ltpf_disable",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15941,6 +17529,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_ltpf_disable",
+       "unmasked_prefix_sha256": "74476639993dc96de862e205899504fdc618566eb9ab0969d94c3cf74582266a",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15952,11 +17550,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_ltpf_get_nbits",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15964,6 +17562,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_ltpf_get_nbits",
+       "unmasked_prefix_sha256": "3bc9c3ed4fd4ee4598dd506945f0121481284f2b29824a173813d4063f0b8392",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15975,11 +17583,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_ltpf_put_data",
-     "upstream_unit": "src/ltpf.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -15987,6 +17595,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_ltpf_put_data",
+       "unmasked_prefix_sha256": "f5f96608e74acb3c240f9d1e189043fbb4a2fcb922b14dbbfe21e80969902202",
+       "call_targets_checked": 2,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -15998,11 +17616,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "fft",
-     "upstream_unit": "src/mdct.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16010,6 +17628,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.fft",
+       "unmasked_prefix_sha256": "526fc3cddf4ef90711f7444ef656568474ef50964f0011a08f06ea98670e9326",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16021,11 +17649,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_mdct_forward",
-     "upstream_unit": "src/mdct.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16033,6 +17661,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_mdct_forward",
+       "unmasked_prefix_sha256": "e95d4bc7aa3f4aed1a20306136dfb338672c4caae308c6d748e7a234ebde4c47",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16044,11 +17682,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "unquantize",
-     "upstream_unit": "src/sns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16056,6 +17694,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.unquantize",
+       "unmasked_prefix_sha256": "0a0c044bbb9aeb3135b9cbcc122531247f1434a730596c7f2ae2aee71602980a",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16063,15 +17711,15 @@
      "core": "app",
      "va": "0x0006bfc8",
      "raw_symbol": "FUN_0006bfc8",
-     "current_symbol": "lc3_sns_compute_scale_factors",
+     "current_symbol": "lc3_sns_spectral_shaping",
      "kind": "static_helper",
      "component": "liblc3",
-     "upstream_symbol": "compute_scale_factors",
-     "upstream_unit": "src/sns.c",
+     "upstream_symbol": "spectral_shaping",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16079,6 +17727,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.95,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.spectral_shaping",
+       "unmasked_prefix_sha256": "5719d8740c167333facfe0cc3f3d498364cb8748d61b379fc2b80c185d892423",
+       "call_targets_checked": 1,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16090,11 +17748,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_sns_analyze",
-     "upstream_unit": "src/sns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16102,6 +17760,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_sns_analyze",
+       "unmasked_prefix_sha256": "46eb4381fe5b86fca8c588d5288529f9460b9bf9d3ca959a3f089eff58cc4b61",
+       "call_targets_checked": 4,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16113,11 +17781,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_sns_get_nbits",
-     "upstream_unit": "src/sns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16125,6 +17793,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_sns_get_nbits",
+       "unmasked_prefix_sha256": "abc5cc2b8a04c5f65b2083e2bb1927f7793c71387fbbd9f90eda0004942c8e19",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16136,11 +17814,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_sns_put_data",
-     "upstream_unit": "src/sns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16148,6 +17826,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_sns_put_data",
+       "unmasked_prefix_sha256": "7f4df6a925f5e2532aedfb174fd68c4fda77c87adce9bc67c74b3b6b6ec188be",
+       "call_targets_checked": 9,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16159,11 +17847,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "quantize",
-     "upstream_unit": "src/spec.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16171,6 +17859,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.quantize",
+       "unmasked_prefix_sha256": "74245c3991e123a9bcd33a8ad61269243bf532d002f2d3c4befa2929489d912b",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16182,11 +17880,11 @@
      "kind": "static_helper",
      "component": "liblc3",
      "upstream_symbol": "compute_nbits",
-     "upstream_unit": "src/spec.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16194,6 +17892,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.compute_nbits",
+       "unmasked_prefix_sha256": "b0fdd9e35c3686575af19d276faa0ff899287468b02273f17f32e2ba7cbcf803",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16205,11 +17913,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_spec_analyze",
-     "upstream_unit": "src/spec.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16217,6 +17925,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_spec_analyze",
+       "unmasked_prefix_sha256": "287be41e07e8f3ee8aa0a186c5ae2173784e185154463b12da7665084524a368",
+       "call_targets_checked": 11,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16228,11 +17946,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_spec_put_side",
-     "upstream_unit": "src/spec.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16240,6 +17958,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_spec_put_side",
+       "unmasked_prefix_sha256": "268beb9be578b690adb1c48624168a24ef941f1adf97f13902c69399a4c8356c",
+       "call_targets_checked": 3,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16251,11 +17979,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_spec_encode",
-     "upstream_unit": "src/spec.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16263,6 +17991,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "historical_cfg_timeout_recovered_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_spec_encode",
+       "unmasked_prefix_sha256": "39f6d1f9033000042789a21230f79429e0214f629463db7bfeb54004457867cd",
+       "call_targets_checked": 14,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16274,11 +18012,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_tns_analyze",
-     "upstream_unit": "src/tns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16286,6 +18024,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "historical_cfg_timeout_canonical_recovery_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_tns_analyze",
+       "unmasked_prefix_sha256": "b1835f6845c83c38a6bcd10cfb14f8a75766a3dccd6c515b6a2c8d85a82c48b3",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16297,11 +18045,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_tns_get_nbits",
-     "upstream_unit": "src/tns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16309,6 +18057,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 1.0,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_full_section_exact",
+       "upstream_section": ".text.lc3_tns_get_nbits",
+       "unmasked_prefix_sha256": "805120507b4bc0211dd5f9ff8eb7fe4cc14d584bbd655e642236ebc44eb8be76",
+       "call_targets_checked": 0,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -16320,11 +18078,11 @@
      "kind": "source",
      "component": "liblc3",
      "upstream_symbol": "lc3_tns_put_data",
-     "upstream_unit": "src/tns.c",
+     "upstream_unit": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "Pinned libLC3 source ownership has explicit high-confidence function evidence.",
+     "decision_reason": "Pinned configured libLC3 owner is relocation-masked byte-exact over the complete firmware code extent with call targets checked.",
      "evidence": [
       {
        "source": "recon/catalogs/lc3_ownership_app.json",
@@ -16332,6 +18090,16 @@
        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
        "match_score": 0.98,
        "proof_status": "existing_parity_claim_not_rerun_for_naming"
+      },
+      {
+       "source": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+       "type": "liblc3_configured_object_exact_owner",
+       "match": "relocation_masked_executable_prefix_exact",
+       "upstream_section": ".text.lc3_tns_put_data",
+       "unmasked_prefix_sha256": "694a5abc9367e17d9702e9786f56966aa8c53c759e3177e1ac5374fd58344c7e",
+       "call_targets_checked": 10,
+       "manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+       "raw_mapping_preserved": true
       }
      ]
     },
@@ -19590,7 +21358,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -19619,7 +21389,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -19674,7 +21446,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -19703,7 +21477,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -19758,7 +21534,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -19787,7 +21565,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -19842,7 +21622,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -19871,7 +21653,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -19954,7 +21738,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -19983,7 +21769,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20066,7 +21854,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20095,7 +21885,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20150,7 +21942,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20179,7 +21973,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20262,7 +22058,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20291,7 +22089,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20346,7 +22146,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20375,7 +22177,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20430,7 +22234,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20459,7 +22265,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20542,7 +22350,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20571,7 +22381,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -20654,7 +22466,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20683,7 +22497,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": []
@@ -20735,7 +22551,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -20764,7 +22582,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": []
@@ -23731,7 +25551,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -23787,7 +25608,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -23843,7 +25665,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -23899,7 +25722,8 @@
         ],
         "new_undefined_symbols": [],
         "raw_aliases_preserved": true,
-        "normal_gc_required_for_dead_sdk_helpers": true
+        "normal_gc_required_for_dead_sdk_helpers": true,
+        "stock_data_object": null
        }
       }
      ]
@@ -25857,11 +27681,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -25879,16 +27714,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -25939,11 +27786,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -25961,16 +27819,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -26021,11 +27891,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -26043,16 +27924,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -26146,11 +28039,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -26168,16 +28072,28 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -26228,11 +28144,22 @@
         "0x00051d8c",
         "0x00051e9c",
         "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
         "0x0008096a",
         "0x00080970",
         "0x0008099e",
         "0x000809b0",
-        "0x000809f6"
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
        ],
        "whole_unit_closure": {
         "archive_member_already_selected": true,
@@ -26250,16 +28177,658 @@
          "0x00051d8c",
          "0x00051e9c",
          "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
          "0x0008096a",
          "0x00080970",
          "0x0008099e",
          "0x000809b0",
-         "0x000809f6"
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
         ],
-        "img_mgmt_c_retained": true,
+        "img_mgmt_c_retained": false,
         "new_undefined_symbols": [],
         "safe": true,
         "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a42",
+     "raw_symbol": "FUN_00080a42",
+     "current_symbol": "img_mgmt_take_lock",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_take_lock",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_take_lock",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_take_lock",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a44",
+     "raw_symbol": "FUN_00080a44",
+     "current_symbol": "img_mgmt_release_lock",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_release_lock",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_release_lock",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_release_lock",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a46",
+     "raw_symbol": "FUN_00080a46",
+     "current_symbol": "img_mgmt_active_slot",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_active_slot",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1097283c87b30169e7f127dcaa61c2fac44be1a49ed1af7edb80d08a4e6d0654",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_active_slot",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_active_slot",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a4a",
+     "raw_symbol": "FUN_00080a4a",
+     "current_symbol": "img_mgmt_active_image",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_active_image",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a7ddd513d149ea16fdd4db3f82267f83087aeaddd06b5dde5468adb704205fc4",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_active_image",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_active_image",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a4e",
+     "raw_symbol": "FUN_00080a4e",
+     "current_symbol": "img_mgmt_find_by_hash",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_find_by_hash",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6a9a87444b36af79328286bc4f1d2acca9af96744a536679e11ebac763846ced",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_find_by_hash",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_find_by_hash",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
+         "img_mgmt_state.c",
+         "img_mgmt_util.c",
+         "zephyr_img_mgmt.c"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00080a82",
+     "raw_symbol": "FUN_00080a82",
+     "current_symbol": "img_mgmt_my_version",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "img_mgmt_my_version",
+     "upstream_unit": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/CMakeFiles/subsys__mgmt__mcumgr__grp__img_mgmt.dir/src/img_mgmt.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "IMG-MGMT-STOCK-EXACT5",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b0962a322a97bee591d58e96699d830030611a5097d42ede06a3010f87ae4d38",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "img_mgmt_my_version",
+        "corrected_upstream_source": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
+        "corrected_upstream_symbol": "img_mgmt_my_version",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005169c",
+        "0x000516ac",
+        "0x000517d8",
+        "0x00051870",
+        "0x000518a8",
+        "0x00051a5c",
+        "0x00051ac0",
+        "0x00051c38",
+        "0x00051c68",
+        "0x00051c98",
+        "0x00051d8c",
+        "0x00051e9c",
+        "0x00051f88",
+        "0x00051fe4",
+        "0x00052000",
+        "0x00052038",
+        "0x00052180",
+        "0x000521fc",
+        "0x0008096a",
+        "0x00080970",
+        "0x0008099e",
+        "0x000809b0",
+        "0x000809f6",
+        "0x00080a42",
+        "0x00080a44",
+        "0x00080a46",
+        "0x00080a4a",
+        "0x00080a4e",
+        "0x00080a82"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0005169c",
+         "0x000516ac",
+         "0x000517d8",
+         "0x00051870",
+         "0x000518a8",
+         "0x00051a5c",
+         "0x00051ac0",
+         "0x00051c38",
+         "0x00051c68",
+         "0x00051c98",
+         "0x00051d8c",
+         "0x00051e9c",
+         "0x00051f88",
+         "0x00051fe4",
+         "0x00052000",
+         "0x00052038",
+         "0x00052180",
+         "0x000521fc",
+         "0x0008096a",
+         "0x00080970",
+         "0x0008099e",
+         "0x000809b0",
+         "0x000809f6",
+         "0x00080a42",
+         "0x00080a44",
+         "0x00080a46",
+         "0x00080a4a",
+         "0x00080a4e",
+         "0x00080a82"
+        ],
+        "img_mgmt_c_retained": false,
+        "new_undefined_symbols": [],
+        "safe": true,
+        "selected_source_units": [
+         "img_mgmt.c",
          "img_mgmt_state.c",
          "img_mgmt_util.c",
          "zephyr_img_mgmt.c"
@@ -27590,7 +30159,7 @@
        "normalized_code_sha256": "234711241b4524a7f7face3ff2c7394532b4417ce0fb5970d355748aa5d30508",
        "cfg_verify_cases": 1,
        "identity_correction": {
-        "baseline_collision_symbol": "bt_l2cap_le_lookup_tx_cid",
+        "baseline_collision_symbol": null,
         "corrected_readable_identity": "bt_l2cap_le_lookup_tx_cid",
         "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
         "corrected_upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
@@ -27646,7 +30215,7 @@
        "normalized_code_sha256": "cd5a32573f3aaa3f45387b8bb9d640ae05c606e93e5077da275b7cd505f4ea7b",
        "cfg_verify_cases": 1,
        "identity_correction": {
-        "baseline_collision_symbol": "bt_l2cap_le_lookup_rx_cid",
+        "baseline_collision_symbol": null,
         "corrected_readable_identity": "bt_l2cap_le_lookup_rx_cid",
         "corrected_upstream_source": "zephyr/subsys/bluetooth/host/l2cap.c",
         "corrected_upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
@@ -30071,7 +32640,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -30100,7 +32671,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -30359,7 +32932,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -30388,7 +32963,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -30443,7 +33020,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -30472,7 +33051,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -30527,7 +33108,9 @@
         "0x000876ec",
         "0x00087996",
         "0x00077b38",
-        "0x00077c1c"
+        "0x00077c1c",
+        "0x0000eefe",
+        "0x0000ef12"
        ],
        "whole_unit_closure": {
         "safe": true,
@@ -30556,7 +33139,9 @@
          "0x000876ec",
          "0x00087996",
          "0x00077b38",
-         "0x00077c1c"
+         "0x00077c1c",
+         "0x0000eefe",
+         "0x0000ef12"
         ],
         "new_undefined_symbols": [],
         "private_state": [
@@ -31033,15 +33618,15 @@
   },
   "net": {
    "summary": {
-    "entries": 469,
-    "exclude_reconstruction": 89,
-    "retain_reconstruction": 380,
+    "entries": 471,
+    "exclude_reconstruction": 92,
+    "retain_reconstruction": 379,
     "by_kind": {
-     "source": 9,
-     "archive": 316,
-     "static_helper": 1,
+     "source": 15,
+     "archive": 311,
+     "static_helper": 3,
      "table": 0,
-     "glue": 143
+     "glue": 142
     }
    },
    "entries": [
@@ -43258,12 +45843,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": false,
@@ -43291,12 +45878,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": true,
@@ -43324,12 +45913,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": true,
@@ -44526,12 +47117,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "file_static",
        "reconstruction_present": true,
@@ -44559,12 +47152,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "file_static",
        "reconstruction_present": true,
@@ -44592,12 +47187,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": false,
@@ -44625,12 +47222,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": false,
@@ -44658,12 +47257,14 @@
        "repository": "open-amp",
        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
        "source_sha256": "4e47412280dd237a0781d4d1f9ed3ba3af50391defbf18657a29c527dbe4e9e5",
-       "object_sha256": "5cd4f1099211fb4cfdcb022bbed7cf8561580da76b05ffcc78d8282dd10a4b66",
+       "object_sha256": "824b9ef0b6f75c337f78040c99ac6f2cc1d3c9f4adfa8ddb3b678d7d87b85b1f",
        "config": {
         "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
         "CONFIG_OPENAMP": "y",
-        "CONFIG_OPENAMP_MASTER": "y",
-        "CONFIG_OPENAMP_SLAVE": "y"
+        "CONFIG_OPENAMP_MASTER": "n",
+        "CONFIG_OPENAMP_SLAVE": "y",
+        "CONFIG_SMP": "n",
+        "CONFIG_SPIN_VALIDATE": "y"
        },
        "upstream_linkage": "public",
        "reconstruction_present": false,
@@ -45310,7 +47911,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "4b857cad2924fdc4778e6b63821311fde9c1253ab5bd1e561780d4104c545de3"
+   "sha256": "bc2b34be7ecd6b9b3e346b680f38a53ef8a482f21273d48992cfa0da3f4ebc1a"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
@@ -45322,7 +47923,7 @@
   },
   {
    "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
-   "sha256": "bc1fd8c538fca6130677fa8ca17915c7f4b445def7e3dd3867323860feb790b1"
+   "sha256": "540f4c18f6f6ff90d6a4191daf89caba8255adf77f4b75d2ee4f21c4648222ce"
   },
   {
    "path": "recon/ownership/app_settings_stock_atomic_adoption.json",
@@ -45334,7 +47935,7 @@
   },
   {
    "path": "recon/ownership/app_lseek_stream_flash_atomic_adoption.json",
-   "sha256": "c059322f8c1ac6a4b9e2080725f628b2997096ffbc9e04235fa7121926db35cc"
+   "sha256": "ae7958b0aa20bd5b068eb2f106870a243899c896510100006ca14be394c96c57"
   },
   {
    "path": "recon/ownership/app_root_stock_atomic_adoption.json",
@@ -45342,7 +47943,15 @@
   },
   {
    "path": "recon/ownership/app_img_mgmt_stock_atomic_adoption.json",
-   "sha256": "b450a40b4dfca1ca285bbef68536445f08aaefdf581757e572c9e9c6e1d20530"
+   "sha256": "d580a79e5658b39663f4712cc315775b19b5cf1deffd06edad62765b0bf3015b"
+  },
+  {
+   "path": "recon/ownership/app_lc3_stock_atomic_adoption.json",
+   "sha256": "cba4a5ea8778280dd6336e858f027559ce5012672c091a48190fe6f2f9e09803"
+  },
+  {
+   "path": "recon/ownership/net_openamp_stock_atomic_adoption.json",
+   "sha256": "1b853c3aa9cb401715cb0931078e60a54eb3949f663eb518f64fc6850c1534af"
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",

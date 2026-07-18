@@ -6,7 +6,7 @@
  *   read                                     <= FUN_0004b088 @ 0x0004b088
  *   k_mutex_lock                             <= FUN_000723b8 @ 0x000723b8
  * address symbols (name @ address):
- *   g_posix_fd_table                         @ 0x20002548
+ *   g_fdtable_entries                        @ 0x20002548
  */
 /* Reconstructed FUN_0004b088 @ 0x4b088  (parity: 300/300 trials, PROVEN) */
 

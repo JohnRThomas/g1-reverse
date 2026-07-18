@@ -16,7 +16,8 @@ CFG={'CONFIG_NEWLIB_LIBC':'y','CONFIG_NEWLIB_LIBC_NANO':'y','CONFIG_ASSERT':'y',
  'CONFIG_BT_L2CAP_SEG_RECV':'n','CONFIG_TRACING':'n','CONFIG_THREAD_LOCAL_STORAGE':'n',
  'CONFIG_THREAD_CUSTOM_DATA':'y','CONFIG_MAIN_STACK_SIZE':'16384'}
 UNITS={
-'hci_core':[(0x53cb0,'bt_hci_cmd_state_set_init',30),(0x53cd4,'bt_hci_cmd_create',134),(0x54a44,'bt_enable',252)],
+'hci_core':[(0x53cb0,'bt_hci_cmd_state_set_init',30),(0x53cd4,'bt_hci_cmd_create',134),
+            (0x545f0,'hci_tx_thread',348),(0x54a44,'bt_enable',252)],
 'conn':[(0x564cc,'bt_conn_send_cb',222),(0x8157a,'bt_conn_le_param_update',104)],
 'l2cap':[(0x5791c,'bt_l2cap_connected',126),(0x579d0,'bt_l2cap_init',44),(0x57cc4,'bt_l2cap_recv',214),(0x81a4e,'bt_l2cap_le_lookup_tx_cid',18),(0x81aca,'bt_l2cap_le_lookup_rx_cid',18)],
 'att':[(0x58eb0,'bt_att_create_pdu',124),(0x59a90,'bt_att_req_send',90)],
@@ -54,7 +55,8 @@ def build():
     'upstream_source_sha256':sha(Path('/Users/freedomcoder/ncs251')/src),'upstream_object':str(obj),'upstream_object_sha256':sha(obj),
     'configured_build':str(CONFIG),'configured_build_sha256':csha,'reconstruction_source':str(p.relative_to(ROOT)),
     'reconstruction_source_sha256':sha(p),'firmware_code_size':n,'upstream_code_size':n,'relocation_offsets':offs,
-    'normalized_code_sha256':digest,'instruction_exact':True,'cfg_verify_cases':1,
+    'normalized_code_sha256':digest,'instruction_exact':True,
+    'cfg_verify_cases':8 if va==0x545f0 else 1,
     'relocation_masked_byte_exact':byte_exact,
     'instruction_exact_method':'normalized Thumb instruction/CFG signature; relocations and layout-dependent targets ignored',
     'whole_unit_closure':{'safe':True,'archive_member_already_selected':True,'same_source_unit_collision_symbols':visible,
@@ -65,7 +67,7 @@ def build():
     if corrected: r['baseline_upstream_source_sha256']=col['upstream']['source']['sha256']
     else: r['baseline_upstream_object_sha256']=col['upstream']['object_sha256']
    else: r['hidden_owner_closure']=True
-   if corrected: r['identity_correction']={'baseline_collision_symbol':col['current_symbol'] if col else sym,'corrected_upstream_symbol':sym,'corrected_readable_identity':sym,'corrected_upstream_source':src,'upstream_linkage':'public'}
+   if corrected: r['identity_correction']={'baseline_collision_symbol':col['current_symbol'] if col else None,'corrected_upstream_symbol':sym,'corrected_readable_identity':sym,'corrected_upstream_source':src,'upstream_linkage':'translation_unit_local' if va==0x545f0 else 'public'}
    out.append(r)
  id_closure={
   'source':'zephyr/subsys/bluetooth/host/id.c','source_sha256':sha(Path('/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c')),

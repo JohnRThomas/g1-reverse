@@ -52,7 +52,6 @@
 #define ADDR_FUN_0004c418_THUMB              0x4c419 /* FUN_0004c418 */
 #define ADDR_FUN_0004d058_THUMB              0x4d059 /* FUN_0004d058 */
 #define ADDR_FUN_0004ea78_THUMB              0x4ea79 /* FUN_0004ea78 */
-#define ADDR_FUN_000545f0_THUMB              0x545f1 /* FUN_000545f0 */
 #define ADDR_FUN_00059dec_THUMB              0x59ded /* FUN_00059dec */
 #define ADDR_FUN_000710b4_THUMB              0x710b5 /* FUN_000710b4 */
 #define ADDR_FUN_0007118c_THUMB              0x7118d /* FUN_0007118c */
@@ -113,6 +112,7 @@
 #define ADDR_gatt_write_encode_THUMB         0x8281b /* gatt_write_encode */
 #define ADDR_gen_hash_m_THUMB                0x8260d /* gen_hash_m */
 #define ADDR_global_ipc_service_send_THUMB   0x25b79 /* global_ipc_service_send */
+#define ADDR_hci_tx_thread_THUMB             0x545f1 /* hci_tx_thread */
 #define ADDR_indicate_sc_cb_THUMB            0x18a39 /* indicate_sc_cb */
 #define ADDR_init_ble_work_thread_THUMB      0x2201d /* init_ble_work_thread */
 #define ADDR_iobuf_ensure_capacity_and_append_THUMB 0x87737 /* iobuf_ensure_capacity_and_append */

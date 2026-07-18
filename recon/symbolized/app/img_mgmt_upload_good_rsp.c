@@ -1,8 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00052000 @ 0x00052000
- * public-name: FUN_00052000
+ * public-name: img_mgmt_upload_good_rsp
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
+ *   img_mgmt_upload_good_rsp                 <= FUN_00052000 @ 0x00052000
  *   cbor_encode_bstr                         <= FUN_0008633e @ 0x0008633e
  * address symbols (name @ address):
  *   rodata_a24e0                             @ 0x000a24e0
@@ -13,7 +14,7 @@
 extern int cbor_encode_bstr(int, void*);
 extern int thunk_FUN_00086320(int, unsigned int);
 
-unsigned int FUN_00052000(int param_1)
+unsigned int img_mgmt_upload_good_rsp(int param_1)
 {
     int iVar1;
     unsigned int uVar2;

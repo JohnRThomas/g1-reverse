@@ -6,11 +6,18 @@ extern uint32_t FUN_000755f8(uintptr_t events, uint32_t count,
                             uint32_t timeout_lo, uint32_t timeout_hi);
 extern uint64_t FUN_0007e2fa(uintptr_t module, uintptr_t file,
                             uintptr_t condition, uint32_t line);
-/* The image inlines the fatal SVC veneer here.  The semantic external boundary
- * is therefore the SVC instruction at 0x5463e, not the separate 0x7e2ec
- * wrapper used by ordinary callers. */
-extern void FUN_0005463e(uint32_t reason) __attribute__((noreturn));
-extern void FUN_00054688(uint32_t reason) __attribute__((noreturn));
+/* Stock Zephyr 3.4 ARMv8-M Mainline ARCH_EXCEPT().  These instructions are
+ * embedded at 0x54634..0x5463e and 0x5467e..0x54688 in the shipped function;
+ * 0x5463e/0x54688 are SVC sites, not callable function entries. */
+#define ARCH_EXCEPT(reason) do { \
+    __asm__ volatile ( \
+        "eors.n r0, r0\n\t" \
+        "msr BASEPRI, r0\n\t" \
+        "mov r0, %[why]\n\t" \
+        "svc %[id]\n\t" \
+        : : [why] "i" (reason), [id] "i" (2) : "memory"); \
+    __builtin_unreachable(); \
+} while (0)
 /* AAPCS aligns the 64-bit timeout in r2:r3, leaving r1 as unused padding. */
 extern uintptr_t FUN_000836e8(uintptr_t queue, uint64_t timeout);
 extern int FUN_00072908(uintptr_t event, uint64_t timeout);
@@ -50,7 +57,7 @@ void FUN_000545f0(void)
         if (wait_result != 0) {
             (void)FUN_0007e2fa(0x00099cbdu, 0x000a7a10u,
                                0x000f2e84u, 0xadeu);
-            FUN_0005463e(3);
+            ARCH_EXCEPT(3);
         }
 
         volatile uint8_t *event = event_table;
@@ -68,7 +75,7 @@ void FUN_000545f0(void)
                     if (buffer == 0) {
                         (void)FUN_0007e2fa(0x00099cbdu, 0x000f45beu,
                                           0x000f2e84u, 0xa70u);
-                        FUN_00054688(3);
+                        ARCH_EXCEPT(3);
                     }
 
                     FUN_00072908(0x20002128u, UINT64_MAX);

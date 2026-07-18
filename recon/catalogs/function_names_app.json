@@ -8713,23 +8713,45 @@
     "FUN_00051f88"
    ]
   },
+  "0x00051fc4": {
+   "address": "0x00051fc4",
+   "raw_name": "FUN_00051fc4",
+   "name": "img_mgmt_translate_error_code",
+   "display_name": "img_mgmt_translate_error_code",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local owner in the pinned NCS 2.5.1 img_mgmt.c configured closure; raw identity remains FUN_00051fc4.",
+   "aliases": []
+  },
+  "0x00051fd8": {
+   "address": "0x00051fd8",
+   "raw_name": "FUN_00051fd8",
+   "name": "img_mgmt_register_group",
+   "display_name": "img_mgmt_register_group",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local registration helper in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00051fd8.",
+   "aliases": []
+  },
   "0x00051fe4": {
    "address": "0x00051fe4",
    "raw_name": "FUN_00051fe4",
-   "name": "FUN_00051fe4",
-   "display_name": "FUN_00051fe4",
-   "human": false,
-   "source": "recon/app/src/FUN_00051fe4.c",
-   "aliases": []
+   "name": "img_mgmt_reset_upload",
+   "display_name": "img_mgmt_reset_upload",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact translation-unit-local reset helper in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00051fe4.",
+   "aliases": [
+    "FUN_00051fe4"
+   ]
   },
   "0x00052000": {
    "address": "0x00052000",
    "raw_name": "FUN_00052000",
-   "name": "FUN_00052000",
-   "display_name": "FUN_00052000",
-   "human": false,
-   "source": "recon/app/src/FUN_00052000.c",
-   "aliases": []
+   "name": "img_mgmt_upload_good_rsp",
+   "display_name": "img_mgmt_upload_good_rsp",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact GCC 12.2 img_mgmt_upload_good_rsp.isra.0 owner in pinned NCS 2.5.1 img_mgmt.c; raw identity remains FUN_00052000.",
+   "aliases": [
+    "FUN_00052000"
+   ]
   },
   "0x00052038": {
    "address": "0x00052038",
@@ -8758,12 +8780,13 @@
   "0x000521fc": {
    "address": "0x000521fc",
    "raw_name": "FUN_000521fc",
-   "name": "img_mgmt_state_read_521fc",
-   "display_name": "img_mgmt_state_read_521fc",
+   "name": "img_mgmt_upload",
+   "display_name": "img_mgmt_upload",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact private upload handler from pinned NCS 2.5.1 img_mgmt.c. The earlier state-read label was false; raw identity remains FUN_000521fc.",
    "aliases": [
-    "FUN_000521fc"
+    "FUN_000521fc",
+    "img_mgmt_state_read_521fc"
    ]
   },
   "0x00052604": {
@@ -9306,11 +9329,13 @@
   "0x000545f0": {
    "address": "0x000545f0",
    "raw_name": "FUN_000545f0",
-   "name": "FUN_000545f0",
-   "display_name": "FUN_000545f0",
-   "human": false,
-   "source": "recon/app/src/FUN_000545f0.c",
-   "aliases": []
+   "name": "hci_tx_thread",
+   "display_name": "hci_tx_thread",
+   "human": true,
+   "source": "function_name_overrides.json: Exact Zephyr Bluetooth host hci_core.c transmit-thread control flow: clear the static k_poll event, extend it with bt_conn_prepare_events, poll forever, process_events, then k_yield. The two apparent interior callees are the stock inline ARMv8-M ARCH_EXCEPT(3) SVC sites. Raw identity remains FUN_000545f0.",
+   "aliases": [
+    "FUN_000545f0"
+   ]
   },
   "0x00054784": {
    "address": "0x00054784",
@@ -14014,12 +14039,13 @@
   "0x0006aa98": {
    "address": "0x0006aa98",
    "raw_name": "FUN_0006aa98",
-   "name": "lc3_ltpf_arm_resample_48k_12k8",
-   "display_name": "lc3_ltpf_arm_resample_48k_12k8",
+   "name": "lc3_ltpf_arm_resample_8k_12k8",
+   "display_name": "lc3_ltpf_arm_resample_8k_12k8",
    "human": true,
-   "source": "function_name_overrides.json: Qualified form of static src/ltpf_arm.h arm_resample_48k_12k8; matching SIMD resampling/high-pass state kernel and shipped coefficient table. Raw identity remains FUN_0006aa98.",
+   "source": "function_name_overrides.json: Relocation-masked configured-object comparison identifies static src/ltpf.c arm_resample_8k_12k8: all 214 firmware code bytes match the pinned -O3/-ffast-math object prefix, with only the object's trailing NOP/literal pool outside the firmware extent. The prior 48 kHz label loses decisively and has a different 420-byte body. Raw identity remains FUN_0006aa98.",
    "aliases": [
-    "FUN_0006aa98"
+    "FUN_0006aa98",
+    "lc3_ltpf_arm_resample_48k_12k8"
    ]
   },
   "0x0006ab80": {
@@ -14102,12 +14128,13 @@
   "0x0006bfc8": {
    "address": "0x0006bfc8",
    "raw_name": "FUN_0006bfc8",
-   "name": "lc3_sns_compute_scale_factors",
-   "display_name": "lc3_sns_compute_scale_factors",
+   "name": "lc3_sns_spectral_shaping",
+   "display_name": "lc3_sns_spectral_shaping",
    "human": true,
-   "source": "function_name_overrides.json: Qualified form of static src/sns.c compute_scale_factors; identical duration/rate energy interpolation, pre-emphasis table, attack smoothing and 16-factor normalization. Raw identity remains FUN_0006bfc8.",
+   "source": "function_name_overrides.json: Relocation-masked configured-object comparison identifies static src/sns.c spectral_shaping: all 1940 firmware code bytes match the pinned -O3/-ffast-math object prefix, including the memmove and table-reference sites. lc3_sns_analyze's corresponding relocation names spectral_shaping. The prior compute_scale_factors label is incompatible with the selected object's symbol inventory. Raw identity remains FUN_0006bfc8.",
    "aliases": [
-    "FUN_0006bfc8"
+    "FUN_0006bfc8",
+    "lc3_sns_compute_scale_factors"
    ]
   },
   "0x0006c778": {
@@ -20746,60 +20773,70 @@
   "0x00080a42": {
    "address": "0x00080a42",
    "raw_name": "FUN_00080a42",
-   "name": "nullsub_4",
-   "display_name": "nullsub_4",
+   "name": "img_mgmt_take_lock",
+   "display_name": "img_mgmt_take_lock",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Pinned img_mgmt.c no-mutex configured public no-op, identified by exact adjacency and call ownership; raw identity remains FUN_00080a42.",
    "aliases": [
-    "FUN_00080a42"
+    "FUN_00080a42",
+    "nullsub_4"
    ]
   },
   "0x00080a44": {
    "address": "0x00080a44",
    "raw_name": "FUN_00080a44",
-   "name": "nullsub_5",
-   "display_name": "nullsub_5",
+   "name": "img_mgmt_release_lock",
+   "display_name": "img_mgmt_release_lock",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Pinned img_mgmt.c no-mutex configured public no-op, identified by exact adjacency and call ownership; raw identity remains FUN_00080a44.",
    "aliases": [
-    "FUN_00080a44"
+    "FUN_00080a44",
+    "nullsub_5"
    ]
   },
   "0x00080a46": {
    "address": "0x00080a46",
    "raw_name": "FUN_00080a46",
-   "name": "FUN_00080a46",
-   "display_name": "FUN_00080a46",
-   "human": false,
-   "source": "recon/app/src/FUN_00080a46.c",
-   "aliases": []
+   "name": "img_mgmt_active_slot",
+   "display_name": "img_mgmt_active_slot",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned img_mgmt.c two-image active-slot mapping; raw identity remains FUN_00080a46.",
+   "aliases": [
+    "FUN_00080a46"
+   ]
   },
   "0x00080a4a": {
    "address": "0x00080a4a",
    "raw_name": "FUN_00080a4a",
-   "name": "FUN_00080a4a",
-   "display_name": "FUN_00080a4a",
-   "human": false,
-   "source": "recon/app/src/FUN_00080a4a.c",
-   "aliases": []
+   "name": "img_mgmt_active_image",
+   "display_name": "img_mgmt_active_image",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned img_mgmt.c ACTIVE_IMAGE_IS=0 accessor; raw identity remains FUN_00080a4a.",
+   "aliases": [
+    "FUN_00080a4a"
+   ]
   },
   "0x00080a4e": {
    "address": "0x00080a4e",
    "raw_name": "FUN_00080a4e",
-   "name": "FUN_00080a4e",
-   "display_name": "FUN_00080a4e",
-   "human": false,
-   "source": "recon/app/src/FUN_00080a4e.c",
-   "aliases": []
+   "name": "img_mgmt_find_by_hash",
+   "display_name": "img_mgmt_find_by_hash",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned img_mgmt.c four-slot hash search; raw identity remains FUN_00080a4e.",
+   "aliases": [
+    "FUN_00080a4e"
+   ]
   },
   "0x00080a82": {
    "address": "0x00080a82",
    "raw_name": "FUN_00080a82",
-   "name": "FUN_00080a82",
-   "display_name": "FUN_00080a82",
-   "human": false,
-   "source": "recon/app/src/FUN_00080a82.c",
-   "aliases": []
+   "name": "img_mgmt_my_version",
+   "display_name": "img_mgmt_my_version",
+   "human": true,
+   "source": "function_name_overrides.json: Relocation-normalized byte-exact pinned img_mgmt.c current-image version wrapper; raw identity remains FUN_00080a82.",
+   "aliases": [
+    "FUN_00080a82"
+   ]
   },
   "0x00080ab4": {
    "address": "0x00080ab4",
@@ -26355,7 +26392,6 @@
   "FUN_0004906c": "0x0004906c",
   "FUN_00049acc": "0x00049acc",
   "FUN_0004abc0": "0x0004abc0",
-  "FUN_0004b130": "0x0004b130",
   "FUN_0004b1c0": "0x0004b1c0",
   "FUN_0004b214": "0x0004b214",
   "FUN_0004b2b0": "0x0004b2b0",
@@ -26407,8 +26443,6 @@
   "FUN_00051038": "0x00051038",
   "FUN_0005109c": "0x0005109c",
   "FUN_00051164": "0x00051164",
-  "FUN_00051fe4": "0x00051fe4",
-  "FUN_00052000": "0x00052000",
   "FUN_000527dc": "0x000527dc",
   "FUN_00052854": "0x00052854",
   "FUN_00052880": "0x00052880",
@@ -26438,7 +26472,6 @@
   "FUN_000543c8": "0x000543c8",
   "FUN_00054444": "0x00054444",
   "FUN_00054528": "0x00054528",
-  "FUN_000545f0": "0x000545f0",
   "FUN_000548b8": "0x000548b8",
   "FUN_000549ec": "0x000549ec",
   "FUN_00054d18": "0x00054d18",
@@ -26749,10 +26782,6 @@
   "FUN_00080406": "0x00080406",
   "FUN_00080780": "0x00080780",
   "FUN_00080872": "0x00080872",
-  "FUN_00080a46": "0x00080a46",
-  "FUN_00080a4a": "0x00080a4a",
-  "FUN_00080a4e": "0x00080a4e",
-  "FUN_00080a82": "0x00080a82",
   "FUN_00080c06": "0x00080c06",
   "FUN_00080c20": "0x00080c20",
   "FUN_00080c46": "0x00080c46",
@@ -27795,6 +27824,7 @@
   "hci_event_prio": "0x00054784",
   "hci_id_add": "0x00080fd2",
   "hci_set_ad": "0x00055534",
+  "hci_tx_thread": "0x000545f0",
   "hci_vs_init": "0x00012080",
   "hex2bin": "0x0007dd0a",
   "hex4_to_uint": "0x00084e9a",
@@ -27803,21 +27833,31 @@
   "i2c_read_reg16_be": "0x000847d8",
   "id_find": "0x00054ce8",
   "idx_inc": "0x0007e35c",
+  "img_mgmt_active_image": "0x00080a4a",
+  "img_mgmt_active_slot": "0x00080a46",
   "img_mgmt_erase": "0x00052180",
   "img_mgmt_erase_slot": "0x000516ac",
   "img_mgmt_erased_val": "0x00051a5c",
+  "img_mgmt_find_by_hash": "0x00080a4e",
   "img_mgmt_flash_area_id": "0x0005169c",
   "img_mgmt_get_next_boot_slot": "0x000809b0",
   "img_mgmt_get_opposite_slot": "0x00051c38",
+  "img_mgmt_my_version": "0x00080a82",
   "img_mgmt_read": "0x000517d8",
   "img_mgmt_read_info": "0x00052038",
+  "img_mgmt_register_group": "0x00051fd8",
+  "img_mgmt_release_lock": "0x00080a44",
+  "img_mgmt_reset_upload": "0x00051fe4",
   "img_mgmt_set_next_boot_slot": "0x00051d8c",
   "img_mgmt_slot_in_use": "0x000809f6",
   "img_mgmt_slot_to_image": "0x00051c68",
   "img_mgmt_state_encode_slot": "0x00051ac0",
   "img_mgmt_state_read": "0x00051c98",
-  "img_mgmt_state_read_521fc": "0x000521fc",
   "img_mgmt_state_write": "0x00051e9c",
+  "img_mgmt_take_lock": "0x00080a42",
+  "img_mgmt_translate_error_code": "0x00051fc4",
+  "img_mgmt_upload": "0x000521fc",
+  "img_mgmt_upload_good_rsp": "0x00052000",
   "img_mgmt_upload_inspect": "0x000518a8",
   "img_mgmt_ver_str": "0x00051f88",
   "img_mgmt_vercmp": "0x00080970",
@@ -27950,7 +27990,7 @@
   "lc3_ltpf_analyse": "0x0006ab80",
   "lc3_ltpf_arm_correlate": "0x0006954c",
   "lc3_ltpf_arm_resample_24k_12k8": "0x0006a700",
-  "lc3_ltpf_arm_resample_48k_12k8": "0x0006aa98",
+  "lc3_ltpf_arm_resample_8k_12k8": "0x0006aa98",
   "lc3_ltpf_detect_pitch": "0x000698d0",
   "lc3_ltpf_disable": "0x0006b364",
   "lc3_ltpf_get_nbits": "0x0006b36c",
@@ -27962,9 +28002,9 @@
   "lc3_setup_bits": "0x000684a8",
   "lc3_setup_encoder": "0x00068f94",
   "lc3_sns_analyze": "0x0006c778",
-  "lc3_sns_compute_scale_factors": "0x0006bfc8",
   "lc3_sns_get_nbits": "0x0006efd8",
   "lc3_sns_put_data": "0x0006efdc",
+  "lc3_sns_spectral_shaping": "0x0006bfc8",
   "lc3_sns_unquantize": "0x0006bd74",
   "lc3_spec_analyze": "0x0006f4a0",
   "lc3_spec_compute_nbits": "0x0006f28c",
@@ -28168,8 +28208,6 @@
   "nrfx_wdt_init": "0x00067dfc",
   "nullsub_2": "0x0007d2d6",
   "nullsub_3": "0x0007ef7e",
-  "nullsub_4": "0x00080a42",
-  "nullsub_5": "0x00080a44",
   "nvmc_readonly_mode_set": "0x00065ef0",
   "nvmc_word_write": "0x00065f04",
   "nvs_add_gc_done_ate": "0x0007e80c",

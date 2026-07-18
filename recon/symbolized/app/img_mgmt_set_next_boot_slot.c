@@ -10,6 +10,8 @@
  *   boot_set_next                            <= FUN_000641e4 @ 0x000641e4
  *   nullsub_3                                <= FUN_0007ef7e @ 0x0007ef7e
  *   img_mgmt_get_next_boot_slot              <= FUN_000809b0 @ 0x000809b0
+ *   img_mgmt_active_slot                     <= FUN_00080a46 @ 0x00080a46
+ *   img_mgmt_active_image                    <= FUN_00080a4a @ 0x00080a4a
  * address symbols (name @ address):
  *   rodata_88208                             @ 0x00088208
  *   rodata_f2772                             @ 0x000f2772
@@ -25,8 +27,8 @@ extern unsigned int img_mgmt_slot_to_image(void);
 extern int boot_set_next(uint32_t handle, unsigned int is_selected, int mode);
 extern void nullsub_3(uint32_t handle);
 extern unsigned int img_mgmt_get_next_boot_slot(int group, uint8_t *state);
-extern unsigned int FUN_00080a46(int group);
-extern int FUN_00080a4a(void);
+extern unsigned int img_mgmt_active_slot(int group);
+extern int img_mgmt_active_image(void);
 
 struct failure_record {
     uint32_t count;
@@ -44,7 +46,7 @@ int img_mgmt_set_next_boot_slot(unsigned int request, int mode)
         selected = img_mgmt_slot_to_image();
 
     int group = (int)selected >> 1;
-    unsigned int primary = FUN_00080a46(group);
+    unsigned int primary = img_mgmt_active_slot(group);
     uint8_t state = 0;
     unsigned int secondary = img_mgmt_get_next_boot_slot(group, &state);
 
@@ -56,7 +58,7 @@ int img_mgmt_set_next_boot_slot(unsigned int request, int mode)
         if ((state == 0 && secondary == request) || state == 2)
             return 0x1c;
     } else {
-        if (FUN_00080a4a() == group) {
+        if (img_mgmt_active_image() == group) {
             if (state == 1)
                 return 0x1c;
             if (state == 0) {

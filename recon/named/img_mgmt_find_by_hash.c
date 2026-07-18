@@ -1,8 +1,9 @@
 /* readable reconstruction; identity: FUN_00080a4e @ 0x00080a4e
- * public-name: FUN_00080a4e
+ * public-name: img_mgmt_find_by_hash
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
+ *   img_mgmt_find_by_hash                    <= FUN_00080a4e @ 0x00080a4e
  *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
  */
 /* Reconstructed FUN_00080a4e @ 0x80a4e  (parity: 300/300 trials, PROVEN) */
@@ -10,7 +11,7 @@
 extern int img_mgmt_read_info(int, unsigned int, void *, int);
 extern int memcmp(void *, unsigned int, int);
 
-int FUN_00080a4e(unsigned int param_1, unsigned int param_2)
+int img_mgmt_find_by_hash(unsigned int param_1, unsigned int param_2)
 {
   int iVar1;
   int iVar2;

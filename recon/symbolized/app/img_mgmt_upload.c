@@ -1,13 +1,15 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_000521fc @ 0x000521fc
- * public-name: img_mgmt_state_read_521fc
+ * public-name: img_mgmt_upload
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
  *   img_mgmt_write_image_data                <= FUN_00051870 @ 0x00051870
  *   img_mgmt_upload_inspect                  <= FUN_000518a8 @ 0x000518a8
+ *   img_mgmt_reset_upload                    <= FUN_00051fe4 @ 0x00051fe4
+ *   img_mgmt_upload_good_rsp                 <= FUN_00052000 @ 0x00052000
  *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
- *   img_mgmt_state_read_521fc                <= FUN_000521fc @ 0x000521fc
+ *   img_mgmt_upload                          <= FUN_000521fc @ 0x000521fc
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_85f8d                             @ 0x00085f8d
@@ -43,14 +45,14 @@ struct decode_result {
 };
 _Static_assert(sizeof(struct decode_result) == 24, "decoded result layout");
 extern uint img_mgmt_upload_inspect(void *a, struct decode_result *b);
-extern void FUN_00051fe4(void);
-extern unsigned FUN_00052000(unsigned a);
+extern void img_mgmt_reset_upload(void);
+extern unsigned img_mgmt_upload_good_rsp(unsigned a);
 extern void img_mgmt_read_info(int a, int b, void *c, void *d);
 extern int FUN_00080872(uintptr_t a, void *b, int c, void *d);
 extern void FUN_00086c1e(void *a, unsigned b, int c, int d);
 extern void memset_bytes(void *a, int b, int c);
 
-unsigned img_mgmt_state_read_521fc(int param_1)
+unsigned img_mgmt_upload(int param_1)
 {
     const uintptr_t owner_addr = (uintptr_t)(uint32_t)param_1;
     const uintptr_t state_addr = UINT32_C(0x2000ab7c);
@@ -104,7 +106,7 @@ unsigned img_mgmt_state_read_521fc(int param_1)
     uVar4 = 0;
     if (uVar2 == 0) {
         if (decoded.present == 0) {
-            uVar4 = FUN_00052000(control_handle);
+            uVar4 = img_mgmt_upload_good_rsp(control_handle);
             return uVar4;
         }
         puVar1[0] = decoded.value;
@@ -139,13 +141,13 @@ unsigned img_mgmt_state_read_521fc(int param_1)
                 puVar1[1] = next_progress;
                 if (next_progress == puVar1[2]) {
                     img_mgmt_read_info(1, 0, auStack_b8, 0);
-                    FUN_00052000(control_handle);
-                    FUN_00051fe4();
+                    img_mgmt_upload_good_rsp(control_handle);
+                    img_mgmt_reset_upload();
                     return 0;
                 }
             }
         }
-        FUN_00052000(control_handle);
+        img_mgmt_upload_good_rsp(control_handle);
     } else {
         diagnostic.descriptor = ((unsigned long)&rodata_f27eb) /*=0xf27eb*/;
         diagnostic.kind = 3;
@@ -155,7 +157,7 @@ LAB_00052300:
         iVar3 = smp_add_cmd_err((uintptr_t)control_handle + 4u, 1,
                             uVar2 & 0xffff);
         img_mgmt_read_info(1, 0, auStack_b8, (void *)0);
-        FUN_00051fe4();
+        img_mgmt_reset_upload();
         if (iVar3 == 0) {
             uVar4 = 7;
         }

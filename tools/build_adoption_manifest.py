@@ -55,6 +55,8 @@ DEFAULTS = {
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
     "net_sdk_public": "recon/catalogs/net_sdk_public_ownership.json",
+    "net_openamp_stock":
+        "recon/ownership/net_openamp_stock_atomic_adoption.json",
     "net_alias_resolutions": "recon/catalogs/net_identity_alias_resolutions.json",
     "sdc_benchmark": "recon/ownership/net_sdc_archive_benchmark.md",
     "sdc_catalog": "recon/ownership/net_sdc_archive_ownership.json",
@@ -612,6 +614,25 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         img_mgmt.get("configured_build_receipts", [])))
+    net_openamp_path = resolved["net_openamp_stock"]
+    net_openamp = _load_json(net_openamp_path)
+    if (net_openamp.get("schema") != 1 or
+            net_openamp.get("core") != "net" or
+            net_openamp.get("component") != "openamp_rpmsg" or
+            net_openamp.get("safe") is not True or
+            net_openamp.get("mutable_state_sections")):
+        raise ValueError("invalid net OpenAMP rpmsg.c atomic adoption catalog")
+    upstream_openamp = net_openamp.get("upstream", {})
+    for key in ("source", "object", "configured_build"):
+        digest = upstream_openamp.get(key + "_sha256")
+        if not digest or _sha256(upstream_openamp[key]) != digest:
+            raise ValueError("net OpenAMP %s receipt changed" % key)
+    for row in net_openamp.get("manifest_functions", []):
+        if row.get("reconstruction_present"):
+            source_path = _path(row["reconstruction_source"])
+            if _sha256(source_path) != row.get("reconstruction_source_sha256"):
+                raise ValueError("net OpenAMP reconstruction changed: %s" %
+                                 row["va"])
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -655,6 +676,10 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(root_stock_path)},
         {"path": paths["app_img_mgmt_stock"],
          "sha256": _sha256(img_mgmt_path)},
+        {"path": paths["app_lc3_stock"],
+         "sha256": _sha256(lc3_stock_path)},
+        {"path": paths["net_openamp_stock"],
+         "sha256": _sha256(net_openamp_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],
@@ -883,6 +908,14 @@ def _build_from_baseline(paths, resolved, names):
 
     result["cores"]["app"]["entries"] = sorted(
         app_rows.values(), key=lambda row: int(row["va"], 16))
+    net_rows = {row["va"]: row for row in result["cores"]["net"]["entries"]}
+    for row in _net_openamp_stock_entries(
+            net_openamp, paths["net_openamp_stock"], names):
+        if row.get("exclude_reconstruction") is not True:
+            raise ValueError("incomplete net OpenAMP exclusion: %s" % row["va"])
+        net_rows[row["va"]] = row
+    result["cores"]["net"]["entries"] = sorted(
+        net_rows.values(), key=lambda row: int(row["va"], 16))
     for core in ("app", "net"):
         rows = result["cores"][core]["entries"]
         result["cores"][core]["summary"] = {
@@ -1018,10 +1051,12 @@ def _sdc_entries(data, source, names):
 
 
 def _net_entries(data, source, benchmark_source, benchmark, names,
-                 machine_sdc_addresses=None, machine_public_addresses=None):
+                 machine_sdc_addresses=None, machine_public_addresses=None,
+                 machine_openamp_addresses=None):
     output = []
     machine_sdc_addresses = set(machine_sdc_addresses or ())
     machine_public_addresses = set(machine_public_addresses or ())
+    machine_openamp_addresses = set(machine_openamp_addresses or ())
     for va, row in sorted(data.get("entries", {}).items()):
         match = row.get("signature_match")
         provenance = (match or {}).get("provenance", "")
@@ -1041,6 +1076,10 @@ def _net_entries(data, source, benchmark_source, benchmark, names,
             # supersedes the older generic signature row for the same VA;
             # merging both would let the generic retain fallback mask the
             # narrowly proven public-source adoption.
+            continue
+        if _hex(va) in machine_openamp_addresses:
+            # Operand-level, whole-source-unit OpenAMP evidence supersedes the
+            # old mnemonic-only catalog (which confused raw and nocopy).
             continue
         is_archive = ".a(" in provenance
         explicit_match = (match is not None and ratio is not None and threshold is not None
@@ -1126,6 +1165,43 @@ def _net_sdk_public_entries(data, source, names):
     return output
 
 
+def _net_openamp_stock_entries(data, source, names):
+    """Adopt the complete selected section closure of pinned rpmsg.c."""
+    output = []
+    upstream = data["upstream"]
+    if not data.get("safe") or data.get("mutable_state_sections"):
+        raise ValueError("unsafe OpenAMP rpmsg.c source-unit receipt")
+    matched = {row["symbol"] for row in data.get("section_matches", [])
+               if row.get("match") == "relocation-masked-byte-exact"}
+    for row in data.get("manifest_functions", []):
+        eligible = bool(
+            row.get("safe_to_adopt") is True and
+            row.get("exclude_reconstruction") is True and
+            row.get("whole_source_unit_selected") is True and
+            row.get("upstream_symbol") in matched)
+        output.append(_entry(
+            "net", row["va"], names,
+            "static_helper" if row.get("upstream_linkage") == "file_static"
+            else "source",
+            "openamp_rpmsg", row.get("upstream_symbol"),
+            row.get("upstream_source"), eligible,
+            ("Pinned OpenAMP rpmsg.c owner is relocation-masked byte-exact "
+             "inside the complete selected source-unit closure." if eligible else
+             "OpenAMP source-unit evidence is incomplete; retain fail-closed."),
+            [_evidence(source, "net_openamp_source_unit_exact_owner",
+                       repository=upstream.get("repository"),
+                       commit=upstream.get("commit"),
+                       source_sha256=upstream.get("source_sha256"),
+                       object_sha256=upstream.get("object_sha256"),
+                       config=upstream.get("required_config"),
+                       upstream_linkage=row.get("upstream_linkage"),
+                       reconstruction_present=row.get(
+                           "reconstruction_present"),
+                       safe_to_adopt=eligible)],
+            "high" if eligible else "low"))
+    return output
+
+
 def _net_alias_resolution_entries(data, source, names):
     """Preserve selected public owners for exact firmware tail veneers."""
     output = []
@@ -1197,10 +1273,15 @@ def build(paths):
     benchmark = _parse_sdc_benchmark(resolved["sdc_benchmark"])
     sdc_catalog = _load_json(resolved["sdc_catalog"])
     net_sdk_public = _load_json(resolved["net_sdk_public"])
+    net_openamp_stock = (_load_json(resolved["net_openamp_stock"])
+                         if "net_openamp_stock" in resolved else None)
     machine_sdc_addresses = {row["address"]
                              for row in sdc_catalog.get("functions", [])}
     machine_public_addresses = {row["va"]
                                 for row in net_sdk_public.get("functions", [])}
+    machine_openamp_addresses = {
+        row["va"] for row in (net_openamp_stock or {}).get(
+            "manifest_functions", [])}
     entries = {}
     producers = (
         _lc3_entries(_load_json(resolved["lc3"]), paths["lc3"], names),
@@ -1216,7 +1297,8 @@ def build(paths):
                                 paths["app_sdk_public"], names),
         _net_entries(_load_json(resolved["net"]), paths["net"],
                      paths["sdc_benchmark"], benchmark, names,
-                     machine_sdc_addresses, machine_public_addresses),
+                     machine_sdc_addresses, machine_public_addresses,
+                     machine_openamp_addresses),
         _net_rtc_entries(_load_json(resolved["net_rtc"]), paths["net_rtc"], names),
         _net_sdk_public_entries(net_sdk_public,
                                 paths["net_sdk_public"], names),
@@ -1225,6 +1307,9 @@ def build(paths):
             paths["net_alias_resolutions"], names),
         _sdc_entries(sdc_catalog, paths["sdc_catalog"], names),
     )
+    if net_openamp_stock is not None:
+        producers += (_net_openamp_stock_entries(
+            net_openamp_stock, paths["net_openamp_stock"], names),)
     for rows in producers:
         for row in rows:
             _merge(entries, row)
@@ -1248,7 +1333,8 @@ def build(paths):
                   "app_collision_authorizations",
                   "app_sdk_public",
                   "net", "net_rtc",
-                  "net_sdk_public", "net_alias_resolutions",
+                  "net_sdk_public", "net_openamp_stock",
+                  "net_alias_resolutions",
                   "sdc_benchmark", "sdc_catalog")
     result = {
         "schema": 1,
@@ -1262,7 +1348,7 @@ def build(paths):
             "default_on_ambiguity": "retain_reconstruction",
         },
         "inputs": [{"path": paths[key], "sha256": _sha256(resolved[key])}
-                   for key in input_keys],
+                   for key in input_keys if key in paths],
         "sdc_benchmark": benchmark,
         "cores": cores,
     }

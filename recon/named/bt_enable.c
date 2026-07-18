@@ -13,7 +13,7 @@
  *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
- *   ADDR_FUN_000545f0_THUMB                  @ 0x000545f1
+ *   ADDR_hci_tx_thread_THUMB                 @ 0x000545f1
  *   rodata_88138                             @ 0x00088138
  *   rodata_f3376                             @ 0x000f3376
  *   rodata_f338f                             @ 0x000f338f

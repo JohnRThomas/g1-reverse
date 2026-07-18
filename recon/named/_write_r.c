@@ -7,7 +7,7 @@
 /* _write_r @ 0x00077d30; raw tail_77d30 */
 #include <stddef.h>
 
-extern int fd_table_dispatch_op2(int fd, const void *buffer,
+extern int write(int fd, const void *buffer,
                                  size_t count); /* FUN_0004b0dc */
 
 int _write_r(int *reent, int fd, const void *buffer, size_t count)
@@ -16,7 +16,7 @@ int _write_r(int *reent, int fd, const void *buffer, size_t count)
     int result;
 
     *system_errno = 0;
-    result = fd_table_dispatch_op2(fd, buffer, count);
+    result = write(fd, buffer, count);
     if (result == -1 && *system_errno != 0) {
         *reent = *system_errno;
     }

@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   _check_fd                                <= FUN_0004b01c @ 0x0004b01c
  * address symbols (name @ address):
- *   g_fd_table                               @ 0x20002550
+ *   g_fdtable_refcount_field                 @ 0x20002550
  */
 /* Reconstructed FUN_0004b01c @ 0x4b01c  (parity: 300/300 trials, PROVEN) */
 

@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   smp_add_cmd_err                          <= FUN_0005160c @ 0x0005160c
  *   img_mgmt_erase_slot                      <= FUN_000516ac @ 0x000516ac
+ *   img_mgmt_reset_upload                    <= FUN_00051fe4 @ 0x00051fe4
  *   img_mgmt_read_info                       <= FUN_00052038 @ 0x00052038
  *   img_mgmt_erase                           <= FUN_00052180 @ 0x00052180
  *   img_mgmt_slot_in_use                     <= FUN_000809f6 @ 0x000809f6
@@ -21,7 +22,7 @@ extern int img_mgmt_read_info(uint32_t handle, void *scratch,
                         uint32_t option, uint32_t context);
 extern int img_mgmt_slot_in_use(uint32_t handle);
 extern unsigned int img_mgmt_erase_slot(uint32_t handle);
-extern void FUN_00051fe4(void);
+extern void img_mgmt_reset_upload(void);
 extern void smp_add_cmd_err(int destination, unsigned int command,
                          unsigned int status);
 
@@ -58,7 +59,7 @@ uint32_t img_mgmt_erase(const uint8_t *request)
         response = 9;
     } else {
         response = img_mgmt_erase_slot(result.handle);
-        FUN_00051fe4();
+        img_mgmt_reset_upload();
         if (response == 0)
             return 0;
         response &= 0xffffu;

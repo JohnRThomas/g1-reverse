@@ -6,7 +6,7 @@
  *   lseek                                    <= FUN_0004b17c @ 0x0004b17c
  *   z_fdtable_call_ioctl                     <= FUN_0007dcb8 @ 0x0007dcb8
  * address symbols (name @ address):
- *   g_posix_fd_table                         @ 0x20002548
+ *   g_fdtable_entries                        @ 0x20002548
  */
 /* Reconstructed FUN_0004b17c @ 0x4b17c  (parity: 300/300 trials, PROVEN) */
 
