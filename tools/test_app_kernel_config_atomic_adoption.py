@@ -77,10 +77,14 @@ class AppKernelConfigAtomicAdoptionTest(unittest.TestCase):
         self.assertNotIn("g1_recon_k_aligned_alloc_asserting", retained)
         self.assertNotIn("g1_recon_z_impl_k_queue_init", retained)
 
-    def test_dmic_gap_remains_explicitly_report_only(self):
-        gap = self.audit["report_only_open"]["dmic_stream_start"]
-        self.assertIn("does not close", gap)
-        self.assertIn("mem-slab calls", gap)
+    def test_dmic_gap_is_closed_by_proven_reconstruction(self):
+        gap = self.audit["resolved_gaps"]["dmic_stream_start"]
+        self.assertEqual("repaired_and_cfg_proven", gap["status"])
+        receipt = ROOT / gap["receipt"]
+        data = json.loads(receipt.read_text())
+        self.assertEqual("PASS", data["cfg_proof"]["result"])
+        self.assertTrue(data["recovered_edge"]["refgraph_present"])
+        self.assertFalse(data["blob_or_archive_substitution"])
 
 
 if __name__ == "__main__":

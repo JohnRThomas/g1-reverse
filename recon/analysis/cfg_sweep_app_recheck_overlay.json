@@ -1359,8 +1359,8 @@
   },
   {
    "name": "FUN_0002f080",
-   "provenance": "frozen_baseline",
-   "source_sha256": "486fe51c1956698e69e81497a07a1d20b214129b3b97a68318be7124874e29a6",
+   "provenance": "post_baseline_overlay",
+   "source_sha256": "7f11a0004fb33e4e5448742af345bb5acc8b0564ea82bd343a2e49e025a80a66",
    "status": "PASS"
   },
   {
@@ -12717,7 +12717,7 @@
   }
  ],
  "current_inventory_count": 2115,
- "current_source_inventory_digest": "5b762613112ad415027a0bf0d831a09a0b0a8b7e5798d23a287b2254db1b179e",
+ "current_source_inventory_digest": "89c4bfc5bf5f9072c696b2cacebe497d9f6903e34805637dfb9d33eb1bde8537",
  "current_source_tree_fully_covered": true,
  "execution_head": "f49a3b8628a3f2cb458d9853fc7e63c6a3272735",
  "kind": "authoritative_cfg_sweep_post_baseline_overlay",
@@ -12760,6 +12760,19 @@
    "receipt_sha256": "be50c9e2996064b1a307d130b341fc6eff8d7fd4b69d97c0548d169996e7ce51",
    "source_sha256": "71c7341f1c497effac26e5714820718348638f3d583f063ef9558f77139d29ab",
    "status": "PASS"
+  },
+  {
+   "address": "0x0002f080",
+   "baseline_source_sha256": "486fe51c1956698e69e81497a07a1d20b214129b3b97a68318be7124874e29a6",
+   "directed_cases": 2,
+   "name": "FUN_0002f080",
+   "overlay_class": "changed",
+   "prefix_events": null,
+   "proof_summary": "cfg_verify PASS; two directed production capture cases; LC3-call mutation FAIL 2/2",
+   "receipt": "recon/ownership/app_dmic_lc3_direct_edge_recovery.json",
+   "receipt_sha256": "a2493f19787e33087a79fd24dfe4815513f72ed07b867fa764251bf9ed82135e",
+   "source_sha256": "7f11a0004fb33e4e5448742af345bb5acc8b0564ea82bd343a2e49e025a80a66",
+   "status": "PASS"
   }
  ],
  "post_baseline_added": [
@@ -12767,15 +12780,22 @@
   "master_display_thread"
  ],
  "post_baseline_changed": [
+  "FUN_0002f080",
   "slave_display_thread"
  ],
  "post_baseline_removed": [],
- "proof_receipt": {
-  "path": "recon/ownership/app_missing_thread_roots_recovery.json",
-  "sha256": "be50c9e2996064b1a307d130b341fc6eff8d7fd4b69d97c0548d169996e7ce51"
- },
+ "proof_receipts": [
+  {
+   "path": "recon/ownership/app_missing_thread_roots_recovery.json",
+   "sha256": "be50c9e2996064b1a307d130b341fc6eff8d7fd4b69d97c0548d169996e7ce51"
+  },
+  {
+   "path": "recon/ownership/app_dmic_lc3_direct_edge_recovery.json",
+   "sha256": "a2493f19787e33087a79fd24dfe4815513f72ed07b867fa764251bf9ed82135e"
+  }
+ ],
  "proof_tools": {
-  "tools/cfg_verify.py": "dc6b2b69bec6bbccc1d8ea7769e9d636b3f46bb1a98f498c078e6d0485439fd8",
+  "tools/cfg_verify.py": "851f73b9348931a8bb27984170fae542355ca2a0c0c8d0e3e4759af6ad2bc8f4",
   "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
   "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
  },

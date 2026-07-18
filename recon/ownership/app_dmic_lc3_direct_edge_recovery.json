@@ -1,0 +1,59 @@
+{
+ "schema": 1,
+ "core": "app",
+ "status": "complete",
+ "decision": "retain_repaired_readable_reconstruction",
+ "caller": {
+  "address": "0x0002f080",
+  "raw_name": "FUN_0002f080",
+  "name": "dmic_stream_start",
+  "catalog_extent": 858,
+  "true_cfg_extent": 958,
+  "final_instruction": "0x0002f43c",
+  "source": "recon/app/src/FUN_0002f080.c",
+  "source_sha256": "7f11a0004fb33e4e5448742af345bb5acc8b0564ea82bd343a2e49e025a80a66"
+ },
+ "recovered_edge": {
+  "call_site": "0x0002f3f2",
+  "thumb_instruction": "bl #0x0002ed68",
+  "callee_address": "0x0002ed68",
+  "callee_raw_name": "FUN_0002ed68",
+  "callee_name": "app_codec_lc3_test",
+  "refgraph_present": true,
+  "canonical_call": "app_codec_lc3_test(block, bytes)",
+  "raw_backmap_present": true
+ },
+ "cfg_proof": {
+  "verifier": "tools/cfg_verify.py",
+  "result": "PASS",
+  "directed_cases": 2,
+  "case_contract": "one successful captured block reaches LC3 and k_mem_slab_free; a second PDM read returns an error to bound the long-lived stream",
+  "mutation_negative": {
+   "change": "remove only app_codec_lc3_test(block, bytes)",
+   "result": "FAIL 2/2",
+   "mismatch": "direct-target ordinal 11: original 0x0002ed68, mutant 0x00071cf4"
+  }
+ },
+ "process_for_new_task_closure": {
+  "caller_address": "0x0002c99c",
+  "source": "recon/app/src/process_for_new_task.c",
+  "original_refgraph_direct_count": 37,
+  "compiled_semantic_direct_count": 37,
+  "sets_equal": true,
+  "addresses": [
+   "0x000167a8", "0x00019c70", "0x00023eec", "0x00026c28",
+   "0x00026f74", "0x000276ec", "0x0002bc2c", "0x0002be64",
+   "0x0002bef4", "0x0002bffc", "0x0002c0e8", "0x0002c180",
+   "0x0002c1fc", "0x0002c214", "0x0002c224", "0x0002c2b0",
+   "0x0002c498", "0x0002c714", "0x0002eb40", "0x0002efc0",
+   "0x00032ee4", "0x00033cdc", "0x00033cf8", "0x00033d58",
+   "0x0003439c", "0x00034410", "0x0003443c", "0x0003444c",
+   "0x00034808", "0x00036030", "0x0003cf34", "0x00072880",
+   "0x0007c132", "0x0007ce5c", "0x0007ce60", "0x0007dda4",
+   "0x00086c78"
+  ],
+  "conclusion": "no omitted direct call remains in the canonical process_for_new_task body"
+ },
+ "report_only": false,
+ "blob_or_archive_substitution": false
+}

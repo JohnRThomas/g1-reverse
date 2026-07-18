@@ -184,8 +184,12 @@ def main():
         "normal_link_receipts": links,
         "variant_collisions": variant_collisions,
         "authorizations": authorizations,
-        "report_only_open": {
-            "dmic_stream_start": "canonical reconstruction omits observed mem-slab calls; adoption does not close this CFG gap"
+        "resolved_gaps": {
+            "dmic_stream_start": {
+                "status": "repaired_and_cfg_proven",
+                "receipt": "recon/ownership/app_dmic_lc3_direct_edge_recovery.json",
+                "note": "canonical reconstruction now contains the observed LC3 and k_mem_slab_free closure; SDK adoption was not used to hide the gap",
+            }
         },
     }
     OUTPUT.write_text(json.dumps(output, indent=1) + "\n")

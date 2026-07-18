@@ -21,12 +21,13 @@ class AppCfgSweepOverlayTest(unittest.TestCase):
         self.assertTrue(self.data["baseline"]["preserved_immutable"])
         self.assertEqual(2113, self.data["baseline"]["inventory_count"])
 
-    def test_overlay_is_exactly_the_three_root_entries(self):
+    def test_overlay_covers_roots_and_repaired_dmic(self):
         rows = {row["name"]: row for row in self.data["overlay_proofs"]}
         self.assertEqual(set(EXPECTED_OVERLAY), set(rows))
         self.assertEqual(["aging_mode_thread", "master_display_thread"],
                          self.data["post_baseline_added"])
-        self.assertEqual(["slave_display_thread"], self.data["post_baseline_changed"])
+        self.assertEqual(["FUN_0002f080", "slave_display_thread"],
+                         self.data["post_baseline_changed"])
         self.assertEqual([], self.data["post_baseline_removed"])
         self.assertTrue(all(row["status"] == "PASS" for row in rows.values()))
 

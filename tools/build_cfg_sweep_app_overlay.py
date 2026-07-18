@@ -8,7 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / "recon/analysis/cfg_sweep_authoritative_app.json"
-RECEIPT = ROOT / "recon/ownership/app_missing_thread_roots_recovery.json"
+THREAD_RECEIPT = ROOT / "recon/ownership/app_missing_thread_roots_recovery.json"
+DMIC_RECEIPT = ROOT / "recon/ownership/app_dmic_lc3_direct_edge_recovery.json"
 OUT_JSON = ROOT / "recon/analysis/cfg_sweep_app_recheck_overlay.json"
 OUT_MD = ROOT / "recon/analysis/cfg_sweep_app_recheck_overlay.md"
 EXECUTION_HEAD = "f49a3b8628a3f2cb458d9853fc7e63c6a3272735"
@@ -31,6 +32,12 @@ EXPECTED_OVERLAY = {
         "source_sha256": "71c7341f1c497effac26e5714820718348638f3d583f063ef9558f77139d29ab",
         "directed_cases": 0, "prefix_events": 50,
         "case_phrase": None,
+    },
+    "FUN_0002f080": {
+        "address": "0x0002f080", "overlay_class": "changed",
+        "source_sha256": "7f11a0004fb33e4e5448742af345bb5acc8b0564ea82bd343a2e49e025a80a66",
+        "directed_cases": 2, "prefix_events": None,
+        "case_phrase": "two directed production capture cases",
     },
 }
 PROOF_TOOLS = (
@@ -60,12 +67,24 @@ def build():
     if len(baseline_rows) != 2113:
         raise ValueError("duplicate CPUAPP baseline identity")
 
-    receipt = json.loads(RECEIPT.read_text())
-    if (receipt.get("status") != "complete" or
-            receipt.get("summary", {}).get("named_and_proven") != 3 or
-            not receipt.get("summary", {}).get("complete_root_graph")):
+    thread_receipt = json.loads(THREAD_RECEIPT.read_text())
+    if (thread_receipt.get("status") != "complete" or
+            thread_receipt.get("summary", {}).get("named_and_proven") != 3 or
+            not thread_receipt.get("summary", {}).get("complete_root_graph")):
         raise ValueError("missing-thread root proof receipt is incomplete")
-    proof_rows = {row["name"]: row for row in receipt["entries"]}
+    proof_rows = {row["name"]: dict(row, _receipt=THREAD_RECEIPT)
+                  for row in thread_receipt["entries"]}
+    dmic_receipt = json.loads(DMIC_RECEIPT.read_text())
+    if (dmic_receipt.get("status") != "complete" or
+            dmic_receipt.get("cfg_proof", {}).get("result") != "PASS"):
+        raise ValueError("DMIC direct-edge proof receipt is incomplete")
+    proof_rows["FUN_0002f080"] = {
+        "name": "FUN_0002f080", "address": "0x0002f080",
+        "source": dmic_receipt["caller"]["source"],
+        "proof": "cfg_verify PASS; two directed production capture cases; "
+                 "LC3-call mutation FAIL 2/2",
+        "_receipt": DMIC_RECEIPT,
+    }
     if set(proof_rows) != set(EXPECTED_OVERLAY):
         raise ValueError("CPUAPP overlay proof identity drift")
 
@@ -81,7 +100,7 @@ def build():
         raise ValueError("unverified CPUAPP source addition: %r" % added)
     if removed:
         raise ValueError("CPUAPP baseline source removed: %r" % removed)
-    if changed != ["slave_display_thread"]:
+    if changed != ["FUN_0002f080", "slave_display_thread"]:
         raise ValueError("unverified CPUAPP post-baseline drift: %r" % changed)
 
     overlay = []
@@ -97,9 +116,11 @@ def build():
         if (expected["case_phrase"] and
                 expected["case_phrase"] not in proof["proof"]):
             raise ValueError("overlay directed-case count missing: %s" % name)
-        if ("%d ordered prefix events" % expected["prefix_events"]
+        if (expected["prefix_events"] is not None and
+                "%d ordered prefix events" % expected["prefix_events"]
                 not in proof["proof"]):
             raise ValueError("overlay prefix-event count missing: %s" % name)
+        receipt_path = proof["_receipt"]
         overlay.append({
             "name": name,
             "address": expected["address"],
@@ -110,8 +131,8 @@ def build():
             "directed_cases": expected["directed_cases"],
             "prefix_events": expected["prefix_events"],
             "proof_summary": proof["proof"],
-            "receipt": str(RECEIPT.relative_to(ROOT)),
-            "receipt_sha256": sha256(RECEIPT),
+            "receipt": str(receipt_path.relative_to(ROOT)),
+            "receipt_sha256": sha256(receipt_path),
         })
 
     overlay_by_name = {row["name"]: row for row in overlay}
@@ -143,10 +164,10 @@ def build():
         },
         "execution_head": EXECUTION_HEAD,
         "proof_tools": {path: sha256(ROOT / path) for path in PROOF_TOOLS},
-        "proof_receipt": {
-            "path": str(RECEIPT.relative_to(ROOT)),
-            "sha256": sha256(RECEIPT),
-        },
+        "proof_receipts": [
+            {"path": str(path.relative_to(ROOT)), "sha256": sha256(path)}
+            for path in (THREAD_RECEIPT, DMIC_RECEIPT)
+        ],
         "post_baseline_added": added,
         "post_baseline_changed": changed,
         "post_baseline_removed": removed,
@@ -168,8 +189,8 @@ def markdown(data):
     lines = [
         "# CPUAPP CFG post-baseline overlay", "",
         "This exact-hash overlay preserves the frozen 2,113-source CPUAPP "
-        "baseline and covers the two added thread entries plus the corrected "
-        "slave-thread entry with their authoritative CFG/prefix proofs.", "",
+        "baseline and covers the two added thread entries, the corrected "
+        "slave-thread entry, and the repaired DMIC capture loop.", "",
         "- Frozen baseline SHA-256: `%s`" % data["baseline"]["sha256"],
         "- Execution HEAD: `%s`" % data["execution_head"],
         "- Current source inventory digest: `%s`" % data["current_source_inventory_digest"],
@@ -178,9 +199,11 @@ def markdown(data):
         "|---|---:|---|---:|---:|---|",
     ]
     for row in data["overlay_proofs"]:
-        lines.append("| `%s` | `%s` | %s | %d | %d | `%s` |" % (
+        prefix = ("—" if row["prefix_events"] is None else
+                  str(row["prefix_events"]))
+        lines.append("| `%s` | `%s` | %s | %d | %s | `%s` |" % (
             row["name"], row["address"], row["overlay_class"],
-            row["directed_cases"], row["prefix_events"], row["source_sha256"]))
+            row["directed_cases"], prefix, row["source_sha256"]))
     lines += ["", "Every other current source is byte-identical to its PASS-bound "
               "entry in the frozen authoritative baseline.", ""]
     return "\n".join(lines)
