@@ -1,6 +1,9 @@
 /* readable reconstruction; identity: FUN_00077820 @ 0x00077820
  * public-name: _puts_r
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   g1_recon_retarget_lock_acquire_recursive <= FUN_000510fc @ 0x000510fc
+ *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
  * address symbols (name @ address):
  *   rodata_f5400                             @ 0x000f5400
  */
@@ -11,8 +14,10 @@
 #include <stdint.h>
 
 extern uint32_t strlen(const char *text); /* FUN_0000ef12@0x0000ef12 */
-extern void __retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */
-extern void __retarget_lock_release_recursive(uint32_t lock); /* FUN_00051134@0x00051134 */
+#define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
+#define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
+extern void g1_recon_retarget_lock_acquire_recursive(uint32_t lock); /* FUN_000510fc@0x000510fc */
+extern void g1_recon_retarget_lock_release_recursive(uint32_t lock); /* FUN_00051134@0x00051134 */
 extern void __sinit(void *reent); /* FUN_00076bcc@0x00076bcc */
 extern int __sfvwrite_r(void *reent, void *stream, void *uio); /* FUN_00077e70@0x00077e70 */
 
@@ -96,7 +101,7 @@ int _puts_r(void *reent, const char *text)
     uint32_t state = word_at((void *)stream, FILE_STATE_OFFSET);
     uint16_t flags = halfword_at((void *)stream, FILE_FLAGS_OFFSET);
     if ((state & 1u) == 0 && (flags & 0x0200u) == 0)
-        __retarget_lock_acquire_recursive(
+        g1_recon_retarget_lock_acquire_recursive(
             word_at((void *)stream, FILE_LOCK_OFFSET));
 
     int result = __sfvwrite_r(reent, (void *)stream, &call.uio) == 0 ? 10 : -1;
@@ -104,7 +109,7 @@ int _puts_r(void *reent, const char *text)
     state = word_at((void *)stream, FILE_STATE_OFFSET);
     flags = halfword_at((void *)stream, FILE_FLAGS_OFFSET);
     if ((state & 1u) == 0 && (flags & 0x0200u) == 0)
-        __retarget_lock_release_recursive(
+        g1_recon_retarget_lock_release_recursive(
             word_at((void *)stream, FILE_LOCK_OFFSET));
 
     return result;

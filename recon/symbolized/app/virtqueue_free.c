@@ -11,7 +11,7 @@
  */
 /* Reconstructed FUN_00070ee4 @ 0x70ee4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_000868b4(int);
+extern void g1_recon_k_free(void *allocation);
 
 void virtqueue_free(int param_1){
     if (param_1 != 0){
@@ -20,6 +20,6 @@ void virtqueue_free(int param_1){
             && *(void**)((unsigned long)&metal_log_handler) /*=0x2000b428*/ != 0){
             ((void(*)(int,unsigned,int))*(void**)((unsigned long)&metal_log_handler) /*=0x2000b428*/)(4, ((unsigned long)&rodata_f7b84) /*=0xf7b84*/, *(int*)(param_1+4));
         }
-        FUN_000868b4(param_1);
+        g1_recon_k_free((void *)(uintptr_t)(unsigned)param_1);
     }
 }

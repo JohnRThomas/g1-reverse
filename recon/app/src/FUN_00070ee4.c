@@ -1,6 +1,6 @@
 /* Reconstructed FUN_00070ee4 @ 0x70ee4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void FUN_000868b4(int);
+extern void g1_recon_k_free(void *allocation);
 
 void FUN_00070ee4(int param_1){
     if (param_1 != 0){
@@ -9,7 +9,6 @@ void FUN_00070ee4(int param_1){
             && *(void**)0x2000b428 != 0){
             ((void(*)(int,unsigned,int))*(void**)0x2000b428)(4, 0x000f7b84, *(int*)(param_1+4));
         }
-        FUN_000868b4(param_1);
+        g1_recon_k_free((void *)(uintptr_t)(unsigned)param_1);
     }
 }
-

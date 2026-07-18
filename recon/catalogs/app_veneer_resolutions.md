@@ -112,7 +112,7 @@ exact same-entry historical spellings are materialized.
 | `0x0007e12a` | `FUN_0007e12a` | `blocked` | `` | push {r4, r5, r6, lr}; uncatalogued candidate entry; proximity or a prologue is not ABI evidence |
 | `0x0007ef56` | `FUN_0007ef56` | `blocked` | `` | ldr r3, [r0, #0x14]; interior instruction or split entry has no exact alias/ABI proof |
 | `0x0007f7c4` | `thunk_FUN_0007f7d2` | `blocked` | `` | b.w #0x7f7d2; exact tail target has no retained or adopted owner |
-| `0x0007f978` | `thunk_FUN_000868b4` | `materialize_reviewed_tail_alias` | `FUN_000868b4` | b.w #0x868b4; exact four-byte unconditional Thumb tail branch |
+| `0x0007f978` | `thunk_FUN_000868b4` | `materialize_reviewed_tail_alias` | `g1_recon_k_free` | b.w #0x868b4; exact four-byte unconditional Thumb tail branch |
 | `0x00080294` | `FUN_00080294_i` | `materialize_reviewed_same_entry_alias` | `tc_cmac_final` | push {r4, r5, r6, lr}; historical spelling shares the exact catalog entry |
 | `0x0008131c` | `FUN_0008131c` | `blocked` | `` | b.w #0x812d2; exact tail target has no retained or adopted owner |
 | `0x000836e8` | `thunk_FUN_000727ac` | `already_resolved_by_strong_owner` | `FUN_000727ac` | b.w #0x727ac; exact four-byte unconditional Thumb tail branch |

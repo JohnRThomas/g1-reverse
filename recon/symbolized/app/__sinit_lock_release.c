@@ -2,15 +2,18 @@
 /* readable reconstruction; identity: FUN_00076bc0 @ 0x00076bc0
  * public-name: __sinit_lock_release
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
  * address symbols (name @ address):
  *   g_env_mutex                              @ 0x20003818
  */
 /* __sinit_lock_release @ 0x00076bc0; raw FUN_00076bc0 */
 #include <stdint.h>
 
-extern void __retarget_lock_release_recursive(void *lock); /* FUN_00051134 */
+#define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
+extern void g1_recon_retarget_lock_release_recursive(void *lock); /* FUN_00051134@0x00051134 */
 
 void __sinit_lock_release(void)
 {
-    __retarget_lock_release_recursive((void *)((unsigned long)&g_env_mutex) /*=0x20003818*/);
+    g1_recon_retarget_lock_release_recursive((void *)((unsigned long)&g_env_mutex) /*=0x20003818*/);
 }

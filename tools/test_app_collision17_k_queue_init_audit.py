@@ -144,7 +144,9 @@ class AppCollision17QueueInitAuditTest(unittest.TestCase):
         entry = next(row for row in manifest["cores"]["app"]["entries"]
                      if row["va"] == "0x000864e8")
         self.assertFalse(entry["exclude_reconstruction"])
-        self.assertIn("/z_impl_k_queue_init.c", RETAINED.read_text())
+        retained = RETAINED.read_text()
+        self.assertIn("/g1_recon_z_impl_k_queue_init.c", retained)
+        self.assertNotIn("/z_impl_k_queue_init.c", retained)
 
 
 if __name__ == "__main__":

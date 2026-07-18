@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   bt_l2cap_init                            <= FUN_000579d0 @ 0x000579d0
  *   smp_update_bond_flag                     <= FUN_0005e5b8 @ 0x0005e5b8
- *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
  *   net_pkt_skip                             <= FUN_00086502 @ 0x00086502
  * address symbols (name @ address):
  *   g_bt_conn_tx_pending_cnt                 @ 0x20003a60
@@ -12,7 +12,8 @@
  */
 /* Reconstructed FUN_00057358 @ 0x57358  (parity: 300/300 trials, PROVEN) */
 
-extern void z_impl_k_queue_init(unsigned int);
+#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
+extern void g1_recon_z_impl_k_queue_init(void *queue);
 extern void net_pkt_skip(unsigned int, unsigned int);
 extern void FUN_00059690(void);
 extern int smp_update_bond_flag(void);
@@ -20,7 +21,7 @@ extern void bt_l2cap_init(void);
 
 int FUN_00057358(void)
 {
-    z_impl_k_queue_init(0x20003a60UL);
+    g1_recon_z_impl_k_queue_init((void *)0x20003a60UL);
     unsigned int uVar1 = 0x20003a60UL;
     unsigned int iVar3 = 0x2000ac7cUL;
     int iVar2 = 0;

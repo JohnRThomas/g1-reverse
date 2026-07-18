@@ -41,11 +41,11 @@ TRUE_SIZE_OVERRIDES = {
     # entries. Keep this registry exactly mirrored in cfg_verify.py.
     0x00071560: 0x28,  # rpmsg_init_vdev (includes final pop {..,pc})
     0x000715b8: 0x76,  # zcbor value_encode_len
-    0x00071b2c: 0x8c,  # k_heap_free
+    0x00071b2c: 0x8c,  # g1_recon_k_heap_free_validated
     0x00074184: 0x1a,  # z_thread_priority_set
     0x000748b8: 0x166,  # z_thread_abort
     0x00075864: 0x58,  # z_heap_aligned_alloc
-    0x000758cc: 0x4e,  # k_aligned_alloc
+    0x000758cc: 0x4e,  # g1_recon_k_aligned_alloc_asserting
     0x00075e14: 0x170,  # __ieee754_sqrt
     0x00076bc0: 0x06,  # __sinit_lock_release; literal starts at 0x76bc8
     0x00077b24: 0x0e,  # strtol tail wrapper; literal starts at 0x77b34
@@ -315,6 +315,10 @@ TRUE_SIZE_OVERRIDES = {
     0x0005ce6c: 0x170,  # Zephyr Bluetooth smp_public_key_periph
     0x00061200: 0x2a,  # flash_nrf_read invalid-address cold path
     0x0006447c: 0x78,  # cJSON get_object_item; ctype literal follows
+    # COLLISION-21 asserting retarget hooks; literal pools start at 0x51128
+    # and 0x51158 respectively.
+    0x000510fc: 0x2c,
+    0x00051134: 0x24,
     0x00065000: 0x180,  # nrfx_clock clock_stop; literal pool follows
     0x00060744: 0x34,   # BASEPRI-guarded caller plus pinned state literal
     0x0006522c: 0xf8,   # checked nrfx_clock_start plus assertion literals
@@ -322,6 +326,9 @@ TRUE_SIZE_OVERRIDES = {
     0x00083874: 0x06,   # HFAUDIO stop tail veneer
     0x0008387a: 0x06,   # HFCLK192M stop tail veneer
     0x00083880: 0x06,   # LFCLK stop tail veneer
+    0x000864d0: 0x18,   # tagged heap-node value/release helper
+    0x000864e8: 0x1a,   # spinlock-bearing k_queue initializer; next entry 0x86502
+    0x000868b4: 0x0e,   # one-argument allocation-header k_free adapter
     0x000680f8: 0x34,  # libmetal metal_bus_unregister; literals follow
     # Independently audited catalog-missing SDK/static entries.
     0x00083a2c: 0x66,
@@ -401,6 +408,18 @@ def info(va):
     identity_name = c.get("name") or f["name"]
     readable = (function_names.readable_name("app", f["entry"])
                 if function_names.available("app") else identity_name)
+    # Canonical namespace milestones land before generated function-name maps.
+    # Prefer their durable address-keyed override immediately so reconstruction
+    # prompts never regress to a stale public SDK identity in that interval.
+    try:
+        override_path = os.path.join(
+            "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs",
+            "function_name_overrides.json")
+        override = json.load(open(override_path)).get("app", {}).get(
+            "0x%08x" % f["entry"], {})
+        readable = override.get("name") or readable
+    except (OSError, ValueError, TypeError):
+        pass
     decompiled_raw = f["decompiled"]
     decompiled = (function_names.substitute(decompiled_raw, "app")
                   if function_names.available("app") else decompiled_raw)

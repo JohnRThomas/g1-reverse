@@ -1,0 +1,32 @@
+/* readable reconstruction; identity: FUN_00051134 @ 0x00051134
+ * public-name: g1_recon_retarget_lock_release_recursive
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
+ *   k_mutex_unlock                           <= FUN_00072558 @ 0x00072558
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f22d5                             @ 0x000f22d5
+ *   rodata_f23d4                             @ 0x000f23d4
+ */
+/* Retained asserting recursive-lock release hook @ 0x00051134.
+ * Raw/address back-map: FUN_00051134 / 0x00051134.
+ * Private namespace target: g1_recon_retarget_lock_release_recursive.
+ */
+#include <stdint.h>
+
+extern __attribute__((noreturn)) void assert_post_action(uint32_t, uint32_t);
+extern void printk(uint32_t, uint32_t, uint32_t, uint32_t);
+extern int k_mutex_unlock(uintptr_t lock);
+
+#define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
+void g1_recon_retarget_lock_release_recursive(uintptr_t lock)
+{
+    if (lock == 0u) {
+        printk(0x00099cbdu, 0x000f23d4u, 0x000f22d5u, 0x1c2u);
+        assert_post_action(0x000f22d5u, 0x1c2u);
+    }
+    (void)k_mutex_unlock(lock);
+}

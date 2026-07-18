@@ -3,8 +3,8 @@
  * public-name: _vfprintf_r
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   __retarget_lock_acquire_recursive        <= FUN_000510fc @ 0x000510fc
- *   __retarget_lock_release_recursive        <= FUN_00051134 @ 0x00051134
+ *   g1_recon_retarget_lock_acquire_recursive <= FUN_000510fc @ 0x000510fc
+ *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
  *   _vfprintf_r                              <= FUN_00076ed4 @ 0x00076ed4
  *   vfprintf_format_engine                   <= FUN_00077594 @ 0x00077594
@@ -23,8 +23,10 @@
 typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char undefined1;
-extern void __retarget_lock_acquire_recursive(unsigned a);
-extern void __retarget_lock_release_recursive(unsigned a);
+#define g1_recon_retarget_lock_acquire_recursive g1_recon_retarget_lock_acquire_recursive
+#define g1_recon_retarget_lock_release_recursive g1_recon_retarget_lock_release_recursive
+extern void g1_recon_retarget_lock_acquire_recursive(unsigned lock); /* FUN_000510fc@0x000510fc */
+extern void g1_recon_retarget_lock_release_recursive(unsigned lock); /* FUN_00051134@0x00051134 */
 extern void __sinit(void);
 extern int FUN_0007712c(int a, void *b, int c, unsigned d, void *e);
 extern int vfprintf_format_engine(int a, void *b, int c, unsigned d, void *e);
@@ -56,13 +58,13 @@ int _vfprintf_r(int param_1, int param_2, unsigned char *param_3, uint *param_4)
     else if (param_2 == 0x986dc) param_2 = *(volatile int *)(param_1 + 0xc);
     if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
         (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-        __retarget_lock_acquire_recursive(*(volatile unsigned *)(param_2 + 0x58));
+        g1_recon_retarget_lock_acquire_recursive(*(volatile unsigned *)(param_2 + 0x58));
     }
     if (((-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x1c)) || (*(volatile int *)(param_2 + 0x10) == 0)) &&
         (iVar1 = stdio_fclose(param_1, param_2), iVar1 != 0)) {
         if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
             (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-            __retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
+            g1_recon_retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
         }
         return -1;
     }
@@ -86,7 +88,7 @@ LAB_00076f76:
 LAB_000770da:
             if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
                 (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-                __retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
+                g1_recon_retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
             }
             if ((int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x19) < 0) return -1;
             return local_74;

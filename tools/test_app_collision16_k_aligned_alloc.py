@@ -31,7 +31,7 @@ class KAlignedAllocAuditTest(unittest.TestCase):
     def setUpClass(cls):
         cls.audit = json.loads(AUDIT.read_text())
 
-    def test_evidence_only_policy_retains_public_collision_for_now(self):
+    def test_evidence_policy_rejects_sdk_adoption_and_namespace_is_integrated(self):
         self.assertEqual("non_exact_namespace_retain_required",
                          self.audit["status"])
         self.assertEqual({"shared_naming_mutated": False,
@@ -39,9 +39,12 @@ class KAlignedAllocAuditTest(unittest.TestCase):
                           "retained_sources_mutated": False},
                          self.audit["policy"])
         retained = (ROOT / "recon/generated/app_retained_sources.cmake").read_text()
-        self.assertIn("/k_aligned_alloc.c", retained)
+        self.assertIn("/g1_recon_k_aligned_alloc_asserting.c", retained)
+        self.assertNotIn("/k_aligned_alloc.c", retained)
         names = json.loads((ROOT / "recon/catalogs/function_names_app.json").read_text())
-        self.assertEqual("0x000758cc", names["by_name"]["k_aligned_alloc"])
+        self.assertEqual("0x000758cc",
+                         names["by_name"]["g1_recon_k_aligned_alloc_asserting"])
+        self.assertNotIn("k_aligned_alloc", names["by_name"])
 
     def test_firmware_extent_digest_and_cfg_receipt_are_pinned(self):
         row = self.audit["firmware"]

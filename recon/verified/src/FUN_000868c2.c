@@ -1,7 +1,10 @@
-/* Reconstructed FUN_000868c2 @ 0x868c2  (parity: 300/300 trials, PROVEN) */
-#include <stdint.h>
-extern int FUN_000758cc(int,int);
-int FUN_000868c2(int param_1){
-  return FUN_000758cc(4, param_1);
-}
+/* Reconstructed malloc_impl @ 0x000868c2 (parity: 300/300 trials, PROVEN).
+ * Raw backmap: FUN_000868c2@0x000868c2. */
+#include <stddef.h>
 
+extern void *g1_recon_k_aligned_alloc_asserting(size_t alignment, size_t size); /* FUN_000758cc@0x000758cc */
+
+void *malloc_impl(size_t size)
+{
+    return g1_recon_k_aligned_alloc_asserting(4u, size);
+}

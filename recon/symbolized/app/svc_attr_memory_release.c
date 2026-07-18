@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_0007f3c2 @ 0x7f3c2  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_000868b4(void *);
+extern void g1_recon_k_free(void *allocation);
 
 void svc_attr_memory_release(int param_1)
 {
@@ -20,7 +20,7 @@ void svc_attr_memory_release(int param_1)
         if (puVar1 == *(unsigned int**)(param_1 + 0x154)) {
             *(unsigned int*)(param_1 + 0x154) = uVar2;
         }
-        FUN_000868b4(puVar1);
+        g1_recon_k_free(puVar1);
     }
     *(unsigned int*)(param_1 + 0x158) = 0;
     return;

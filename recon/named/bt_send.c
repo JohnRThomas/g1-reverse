@@ -9,7 +9,7 @@
  *   atomic_or                                <= FUN_00080e6a @ 0x00080e6a
  *   atomic_and_3                             <= FUN_00080ea8 @ 0x00080ea8
  *   posix_stub_enosys                        <= FUN_00086412 @ 0x00086412
- *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
  *   z_impl_k_sem_init                        <= FUN_00086534 @ 0x00086534
  * address symbols (name @ address):
  *   ADDR_FUN_000545f0_THUMB                  @ 0x000545f1
@@ -37,7 +37,8 @@ extern int atomic_or(unsigned,int);
 extern void FUN_00080ea2(unsigned,unsigned,void*);
 extern unsigned atomic_and_3(int,unsigned);
 extern void posix_stub_enosys(unsigned,unsigned);
-extern void z_impl_k_queue_init(int);
+#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
+extern void g1_recon_z_impl_k_queue_init(void *queue);
 extern void z_impl_k_sem_init(int,int);
 typedef int (*cf)(void);
 int bt_send(int param_1)
@@ -57,7 +58,7 @@ int bt_send(int param_1)
       if (iVar3 == 0) {
         *(volatile int*)0x2000ac6c = param_1;
         z_impl_k_sem_init(iVar1 + 0x128, 1);
-        z_impl_k_queue_init(iVar1 + 0x14c);
+        g1_recon_z_impl_k_queue_init((void *)(iVar1 + 0x14c));
         local_38 = 0; uStack_34 = 0; local_40 = iVar3;
         FUN_00071eac(0x20005e30, 0x2002bb80, 0x400, 0x000545f1, 0, 0, 0, 0xfffffff7);
         posix_stub_enosys(0x20005e30, 0x000f338f);

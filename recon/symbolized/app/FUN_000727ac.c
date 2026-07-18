@@ -8,7 +8,6 @@
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
- *   z_queue_node_peek                        <= FUN_000864d0 @ 0x000864d0
  * address symbols (name @ address):
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f08c7                             @ 0x000f08c7
@@ -24,7 +23,7 @@ extern int z_spin_lock_valid(void*);
 extern int z_spin_unlock_valid(void*);
 extern void z_spin_lock_set_owner(void*);
 extern int FUN_00073f6c(void*,unsigned,void*,unsigned,unsigned,unsigned,unsigned);
-extern unsigned z_queue_node_peek(void*,int,void*,unsigned,void*,unsigned);
+extern uintptr_t g1_recon_tagged_heap_node_release(unsigned *node, int release);
 extern void assert_post_action(unsigned,unsigned);
 extern void printk(unsigned,...);
 
@@ -56,7 +55,7 @@ uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, uns
         if (puVar6 == puVar4){
             param_1[1] = uVar5;
         }
-        uVar3 = z_queue_node_peek(puVar6, 1, puVar4, uVar5, param_1, param_2);
+        uVar3 = (unsigned)g1_recon_tagged_heap_node_release(puVar6, 1);
     }
     iVar2 = z_spin_unlock_valid(puVar7);
     if (iVar2 != 0){

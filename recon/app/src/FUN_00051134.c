@@ -1,14 +1,19 @@
-/* Reconstructed FUN_00051134 @ 0x51134  (parity: 300/300 trials, PROVEN) */
+/* Retained asserting recursive-lock release hook @ 0x00051134.
+ * Raw/address back-map: FUN_00051134 / 0x00051134.
+ * Private namespace target: g1_recon_retarget_lock_release_recursive.
+ */
+#include <stdint.h>
 
-extern void FUN_0007e2fa(int a, int b, int c, int d, int e);
-extern void FUN_0007e2ec(int a, int b);
-extern void FUN_00072558(void);
-void FUN_00051134(int param_1, int param_2, int param_3, int param_4)
+extern __attribute__((noreturn)) void FUN_0007e2ec(uint32_t, uint32_t);
+extern void FUN_0007e2fa(uint32_t, uint32_t, uint32_t, uint32_t);
+extern int FUN_00072558(uintptr_t lock);
+
+#define g1_recon_retarget_lock_release_recursive FUN_00051134
+void g1_recon_retarget_lock_release_recursive(uintptr_t lock)
 {
-  if (param_1 == 0) {
-    FUN_0007e2fa(0x00099cbdUL, 0x000f23d4UL, 0x000f22d5UL, 0x1c2, param_4);
-    FUN_0007e2ec(0x000f22d5UL, 0x1c2);
-  }
-  FUN_00072558();
+    if (lock == 0u) {
+        FUN_0007e2fa(0x00099cbdu, 0x000f23d4u, 0x000f22d5u, 0x1c2u);
+        FUN_0007e2ec(0x000f22d5u, 0x1c2u);
+    }
+    (void)FUN_00072558(lock);
 }
-

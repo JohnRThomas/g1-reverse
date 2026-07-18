@@ -140,7 +140,8 @@ def build():
             raise ValueError("configured relocation drift for %s" % symbol)
         if any(item.get("va") == expected["va"] for item in authorizations):
             raise ValueError("non-exact recursive hook was authorized")
-        if ("/symbolized/app/%s.c\"" % symbol) not in retained_list:
+        retained_symbol = "g1_recon_" + symbol.lstrip("_")
+        if ("/symbolized/app/%s.c\"" % retained_symbol) not in retained_list:
             raise ValueError("recursive hook reconstruction not retained")
         caller_rows = []
         for caller in expected["callers"]:
@@ -157,7 +158,7 @@ def build():
         functions.append({
             "symbol": symbol, "raw_symbol": expected["raw"],
             "va": expected["va"], "decision": "retain_reconstruction",
-            "future_build_symbol": "g1_recon_" + symbol.lstrip("_"),
+            "future_build_symbol": retained_symbol,
             "abi": row["upstream"]["abi"],
             "true_code_extent": expected["extent"],
             "literal_pool_starts_at": "0x%08x" %

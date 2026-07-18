@@ -111,6 +111,9 @@ CALL_ARITY_OVERRIDES = {
     ("app", 0x0005e6a8): 2,  # address byte plus address record
     ("app", 0x0005e9a0): 2,  # pairing record plus bit mask
     ("app", 0x00055cf0): 0,  # global connection-mode query
+    ("app", 0x000864d0): 2,  # tagged node plus release flag
+    ("app", 0x000864e8): 1,  # queue object; firmware layout includes spinlock
+    ("app", 0x000868b4): 1,  # allocation pointer
     ("app", 0x0005ce6c): 1,  # connection object
     ("app", 0x00061200): 2,  # invalid flash address and requested length
     # State-reset continuation takes no arguments; r0-r3 are merely residual
@@ -404,11 +407,11 @@ TRUE_SIZE_OVERRIDES = {
     # following aligned words are literals or independent functions.
     ("app", 0x00071560): 0x28,  # rpmsg_init_vdev (includes final pop {..,pc})
     ("app", 0x000715b8): 0x76,  # zcbor value_encode_len
-    ("app", 0x00071b2c): 0x8c,  # k_heap_free
+    ("app", 0x00071b2c): 0x8c,  # g1_recon_k_heap_free_validated
     ("app", 0x00074184): 0x1a,  # z_thread_priority_set
     ("app", 0x000748b8): 0x166,  # z_thread_abort
     ("app", 0x00075864): 0x58,  # z_heap_aligned_alloc
-    ("app", 0x000758cc): 0x4e,  # k_aligned_alloc
+    ("app", 0x000758cc): 0x4e,  # g1_recon_k_aligned_alloc_asserting
     ("app", 0x00075e14): 0x170,  # __ieee754_sqrt
     ("app", 0x00076bc0): 0x06,
     ("app", 0x00077b24): 0x0e,
@@ -721,6 +724,10 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x0005ce6c): 0x170,  # smp_public_key_periph
     ("app", 0x00061200): 0x2a,  # flash_nrf_read invalid-address cold path
     ("app", 0x0006447c): 0x78,  # cJSON get_object_item
+    # COLLISION-21 asserting newlib retarget hooks end at their tail branches;
+    # the following words are independent assertion-string literal pools.
+    ("app", 0x000510fc): 0x2c,
+    ("app", 0x00051134): 0x24,
     ("app", 0x00065000): 0x180,  # nrfx clock_stop
     ("app", 0x00060744): 0x34,   # BASEPRI caller plus pinned state literal
     ("app", 0x0006522c): 0xf8,   # checked nrfx_clock_start plus literals
@@ -728,6 +735,9 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00083874): 0x06,   # HFAUDIO stop tail veneer
     ("app", 0x0008387a): 0x06,   # HFCLK192M stop tail veneer
     ("app", 0x00083880): 0x06,   # LFCLK stop tail veneer
+    ("app", 0x000864d0): 0x18,   # tagged heap-node value/release helper
+    ("app", 0x000864e8): 0x1a,   # spinlock-bearing k_queue initializer
+    ("app", 0x000868b4): 0x0e,   # one-argument allocation-header k_free adapter
     ("app", 0x000680f8): 0x34,  # libmetal metal_bus_unregister
     # Independently audited catalog-missing SDK/static entries. Each bound
     # ends at its return/tail and excludes the following independent entry.
@@ -13805,6 +13815,20 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x0006522c)] = {
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x00083874)] = {0x00065324: 1}
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x0008387a)] = {0x00065324: 1}
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x00083880)] = {0x00065324: 1}
+for _queue_init_caller in (
+    0x000526f4, 0x00052760, 0x00054a44, 0x00056704, 0x00057358,
+    0x000574ec, 0x00057874, 0x000579d0, 0x00058930, 0x00059690,
+):
+    REVIEWED_TARGET_CALL_ARITIES.setdefault(
+        ("app", _queue_init_caller), {})[0x000864e8] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000868b4)] = {0x00071b2c: 2}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000864d0)] = {0x000868b4: 1}
+for _k_free_caller in (0x00070ee4, 0x0007f3c2, 0x00086480):
+    REVIEWED_TARGET_CALL_ARITIES.setdefault(
+        ("app", _k_free_caller), {})[0x000868b4] = 1
+for _tagged_release_caller in (0x000727ac, 0x0008652c):
+    REVIEWED_TARGET_CALL_ARITIES.setdefault(
+        ("app", _tagged_release_caller), {})[0x000864d0] = 2
 REVIEWED_ORACLE_CASES[("app", 0x00065620)] = [
     _irq_clear_case(0x05, {0, 2}, True),
     _irq_clear_case(0xff, {1, 3, 7}, False),
@@ -22013,6 +22037,32 @@ REVIEWED_ORACLE_CASES[("app", 0x0006447c)] = [
 ]
 
 
+# COLLISION-21: both firmware hooks retain active null-lock assertion arms
+# that the configured Zephyr newlib object compiled out.  Lock acquisition's
+# k_timeout_t occupies aligned r2/r3; r1 is ABI padding, hence four observable
+# target words even though the readable source signature has two C arguments.
+REVIEWED_NPTR_COUNTS[("app", 0x000510fc)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000510fc)] = {
+    0x000723b8: 4, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+REVIEWED_NPTR_COUNTS[("app", 0x00051134)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00051134)] = {
+    0x00072558: 1, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+
+# Exact direct-site closure under the retained private identities.  These
+# gates make a future accidental reversion to the SDK public names observable
+# even before the generated naming/link trees are refreshed.
+for _caller in (0x00076ad0, 0x00076b9c, 0x00076bb4, 0x00076ed4,
+                0x00077820, 0x000785bc):
+    REVIEWED_TARGET_CALL_ARITIES.setdefault(("app", _caller), {})[
+        0x000510fc] = 1
+for _caller in (0x00076ad0, 0x00076ba8, 0x00076bc0, 0x00076ed4,
+                0x00077820, 0x000785c8):
+    REVIEWED_TARGET_CALL_ARITIES.setdefault(("app", _caller), {})[
+        0x00051134] = 1
+
+
 def _app_clock_stop_case(domain, running=False):
     clock = bytearray(0x480)
     state_offsets = {0: 0x418, 1: 0x40c, 2: 0x45c, 3: 0x454}
@@ -22679,12 +22729,29 @@ def verify(core, name, trials_random=40, source_override=None):
             os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
             "function_names_%s.json" % core)
         record = json.load(open(manifest_path))["by_address"]["0x%08x" % va]
-        readable_name = record.get("name")
-        definition = re.compile(
-            r"\b%s\s*\([^;{}]*\)\s*\{" % re.escape(readable_name or ""),
-            re.S)
-        if readable_name and definition.search(body):
-            compile_name = readable_name
+        readable_names = [record.get("name")]
+        override_path = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
+            "function_name_overrides.json")
+        override = json.load(open(override_path)).get(core, {}).get(
+            "0x%08x" % va, {})
+        readable_names.insert(0, override.get("name"))
+        for readable_name in readable_names:
+            raw_backmap = re.compile(
+                r"^\s*#define\s+%s\s+%s\b" % (
+                    re.escape(readable_name or ""), re.escape(name)), re.M)
+            if readable_name and raw_backmap.search(body):
+                # Human-readable canonical bodies preserve the emitted raw
+                # symbol through a preprocessor back-map.  The linked ELF
+                # therefore contains `name`, not the pre-expansion spelling.
+                compile_name = name
+                break
+            definition = re.compile(
+                r"\b%s\s*\([^;{}]*\)\s*\{" % re.escape(readable_name or ""),
+                re.S)
+            if readable_name and definition.search(body):
+                compile_name = readable_name
+                break
     except (OSError, ValueError, KeyError, TypeError, re.error):
         pass
     comp, err = recon.compile_func(body, compile_name, va,

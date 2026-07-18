@@ -3,8 +3,10 @@
 typedef unsigned int uint;
 typedef unsigned undefined4;
 typedef unsigned char undefined1;
-extern void FUN_000510fc(unsigned a);
-extern void FUN_00051134(unsigned a);
+#define g1_recon_retarget_lock_acquire_recursive FUN_000510fc
+#define g1_recon_retarget_lock_release_recursive FUN_00051134
+extern void g1_recon_retarget_lock_acquire_recursive(unsigned lock); /* FUN_000510fc@0x000510fc */
+extern void g1_recon_retarget_lock_release_recursive(unsigned lock); /* FUN_00051134@0x00051134 */
 extern void FUN_00076bcc(void);
 extern int FUN_0007712c(int a, void *b, int c, unsigned d, void *e);
 extern int FUN_00077594(int a, void *b, int c, unsigned d, void *e);
@@ -36,13 +38,13 @@ int FUN_00076ed4(int param_1, int param_2, unsigned char *param_3, uint *param_4
     else if (param_2 == 0x986dc) param_2 = *(volatile int *)(param_1 + 0xc);
     if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
         (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-        FUN_000510fc(*(volatile unsigned *)(param_2 + 0x58));
+        g1_recon_retarget_lock_acquire_recursive(*(volatile unsigned *)(param_2 + 0x58));
     }
     if (((-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x1c)) || (*(volatile int *)(param_2 + 0x10) == 0)) &&
         (iVar1 = FUN_00077d54(param_1, param_2), iVar1 != 0)) {
         if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
             (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-            FUN_00051134(*(volatile unsigned *)(param_2 + 0x58));
+            g1_recon_retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
         }
         return -1;
     }
@@ -66,7 +68,7 @@ LAB_00076f76:
 LAB_000770da:
             if ((-1 < *(volatile int *)(param_2 + 100) << 0x1f) &&
                 (-1 < (int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x16))) {
-                FUN_00051134(*(volatile unsigned *)(param_2 + 0x58));
+                g1_recon_retarget_lock_release_recursive(*(volatile unsigned *)(param_2 + 0x58));
             }
             if ((int)((uint)*(volatile unsigned short *)(param_2 + 0xc) << 0x19) < 0) return -1;
             return local_74;
@@ -154,4 +156,3 @@ LAB_00077088:
     pbVar7 = param_3;
     goto LAB_00076f6a;
 }
-

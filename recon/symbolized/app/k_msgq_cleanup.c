@@ -7,7 +7,7 @@
  */
 /* Reconstructed FUN_00086480 @ 0x86480  (parity: 300/300 trials, PROVEN) */
 
-extern void FUN_000868b4(int);
+extern void g1_recon_k_free(void *allocation);
 
 int k_msgq_cleanup(int *param_1)
 {
@@ -16,7 +16,7 @@ int k_msgq_cleanup(int *param_1)
         unsigned char flag = *(volatile unsigned char*)((char*)param_1 + 0x30);
         if ((int)((unsigned int)flag << 31) < 0) {
             int arg = *(volatile int*)((char*)param_1 + 0x14);
-            FUN_000868b4(arg);
+            g1_recon_k_free((void *)(unsigned)arg);
             unsigned char flag2 = *(volatile unsigned char*)((char*)param_1 + 0x30);
             *(volatile unsigned char*)((char*)param_1 + 0x30) = flag2 & 0xfe;
         }

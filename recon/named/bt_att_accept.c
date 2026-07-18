@@ -5,7 +5,7 @@
  *   bt_att_accept                            <= FUN_00058930 @ 0x00058930
  *   k_mem_slab_alloc                         <= FUN_00071c20 @ 0x00071c20
  *   k_current_get                            <= FUN_000748ac @ 0x000748ac
- *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   rodata_88100                             @ 0x00088100
@@ -19,7 +19,8 @@
 extern int k_mem_slab_alloc(int,...);
 extern int k_current_get(int,...);
 extern int FUN_00081ddc(int,...);
-extern int z_impl_k_queue_init(int,...);
+#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
+extern void g1_recon_z_impl_k_queue_init(void *queue);
 extern int memset_bytes(int,...);
 unsigned int bt_att_accept(int param_1, int *param_2)
 {
@@ -40,13 +41,13 @@ unsigned int bt_att_accept(int param_1, int *param_2)
     if (iVar3 == 0) {
       iVar3 = memset_bytes((int)local_1c, 0, 0x198);
       *(int*)(iVar3 + 0xc) = 0x200029ac;
-      z_impl_k_queue_init(iVar3 + 0x128);
+      g1_recon_z_impl_k_queue_init((void *)(iVar3 + 0x128));
       puVar1 = local_1c;
       uVar2 = local_1c[0x48];
       local_1c[0x48] = 0;
       *local_1c = (int)local_20;
       if (local_20[0xc] == 0) {
-        z_impl_k_queue_init((int)(local_20 + 3), 0, uVar2);
+        g1_recon_z_impl_k_queue_init((void *)(local_20 + 3));
         local_20[10] = 0;
         local_20[0xb] = 0;
       }

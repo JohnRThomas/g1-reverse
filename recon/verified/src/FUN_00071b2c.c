@@ -1,4 +1,4 @@
-/* Reconstructed k_heap_free @ 0x00071b2c from Zephyr kheap.c.
+/* Reconstructed g1_recon_k_heap_free_validated @ 0x00071b2c from Zephyr kheap.c.
  * Raw backmap: FUN_00071b2c@0x00071b2c. */
 
 #include <stdint.h>
@@ -16,7 +16,7 @@ extern int FUN_0007205c(void *lock);
 #define z_reschedule FUN_000739f0
 #define z_spin_unlock_valid FUN_0007205c
 
-void k_heap_free(void *heap_arg, void *memory)
+void g1_recon_k_heap_free_validated(void *heap_arg, void *memory)
 {
     uint8_t *heap = (uint8_t *)heap_arg;
     void *lock = heap + 0x14u;

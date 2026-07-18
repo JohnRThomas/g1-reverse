@@ -4,7 +4,7 @@ extern int FUN_00072040(void*);
 extern int FUN_0007205c(void*);
 extern void FUN_00072078(void*);
 extern int FUN_00073f6c(void*,unsigned,void*,unsigned,unsigned,unsigned,unsigned);
-extern unsigned FUN_000864d0(void*,int,void*,unsigned,void*,unsigned);
+extern uintptr_t g1_recon_tagged_heap_node_release(unsigned *node, int release);
 extern void FUN_0007e2ec(unsigned,unsigned);
 extern void FUN_0007e2fa(unsigned,...);
 
@@ -36,7 +36,7 @@ uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, uns
         if (puVar6 == puVar4){
             param_1[1] = uVar5;
         }
-        uVar3 = FUN_000864d0(puVar6, 1, puVar4, uVar5, param_1, param_2);
+        uVar3 = (unsigned)g1_recon_tagged_heap_node_release(puVar6, 1);
     }
     iVar2 = FUN_0007205c(puVar7);
     if (iVar2 != 0){
@@ -48,4 +48,3 @@ uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, uns
     FUN_0007e2ec(0x000f08c7, uVar8);
     return uVar3;
 }
-

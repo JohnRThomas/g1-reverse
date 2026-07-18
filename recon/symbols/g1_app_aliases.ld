@@ -48,4 +48,4 @@ PROVIDE(FUN_0007e290__impl = _get_digit);
 PROVIDE(FUN_0007e2fa_1 = printk);
 PROVIDE(FUN_00086c1e__impl = FUN_00086c1e);
 PROVIDE(FUN_00086c78__impl = memset_bytes);
-PROVIDE(THUNK868b4 = FUN_000868b4);
+PROVIDE(THUNK868b4 = g1_recon_k_free);

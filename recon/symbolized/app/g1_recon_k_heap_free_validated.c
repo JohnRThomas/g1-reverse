@@ -1,5 +1,6 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00071b2c @ 0x00071b2c
- * public-name: k_heap_free
+ * public-name: g1_recon_k_heap_free_validated
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
@@ -8,7 +9,7 @@
  *   z_reschedule                             <= FUN_000739f0 @ 0x000739f0
  *   z_unpend_all                             <= FUN_00086668 @ 0x00086668
  */
-/* Reconstructed k_heap_free @ 0x00071b2c from Zephyr kheap.c.
+/* Reconstructed g1_recon_k_heap_free_validated @ 0x00071b2c from Zephyr kheap.c.
  * Raw backmap: FUN_00071b2c@0x00071b2c. */
 
 #include <stdint.h>
@@ -26,7 +27,7 @@ extern int z_spin_unlock_valid(void *lock);
 #define z_reschedule z_reschedule
 #define z_spin_unlock_valid z_spin_unlock_valid
 
-void k_heap_free(void *heap_arg, void *memory)
+void g1_recon_k_heap_free_validated(void *heap_arg, void *memory)
 {
     uint8_t *heap = (uint8_t *)heap_arg;
     void *lock = heap + 0x14u;

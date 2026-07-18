@@ -4,9 +4,9 @@
  "batch": "COLLISION-14",
  "va": "0x00071b2c",
  "raw_symbol": "FUN_00071b2c",
- "current_symbol": "k_heap_free",
- "status": "configured_owner_rejected_config_exact_candidate",
- "recommendation": "retain_namespaced_until_global_spin_validation_configuration_and_caller_closure_are_complete",
+ "current_symbol": "g1_recon_k_heap_free_validated",
+ "status": "configured_owner_rejected_retained_namespace_cfg_proven",
+ "recommendation": "retain_namespaced_firmware_owner_and_leave_configured_sdk_owner_untouched",
  "firmware": {
   "true_code_extent": 140,
   "code_sha256": "6867be49ffa3463ba0d43f79aad7501f62dfe7f8c5c115e8711741b1a52a8c71",
@@ -51,18 +51,28 @@
   "relocation_normalized_code_sha256": "7a2371b481d24d8ec16a147741a2d7120969665df316b982eed461cdd7c20732",
   "instruction_exact": true
  },
+ "canonical_namespace": {
+  "owner": {"name": "g1_recon_k_heap_free_validated", "raw_name": "FUN_00071b2c", "source_sha256": "23d97562496e4ff83c9730b47cfd56dcf360a1e2cfc6fecaa39c4df47a39bc92"},
+  "adapter": {"name": "g1_recon_k_free", "raw_name": "FUN_000868b4"},
+  "tagged_release": {"name": "g1_recon_tagged_heap_node_release", "raw_name": "FUN_000864d0"},
+  "sdk_owner_untouched": true
+ },
  "caller_closure": {
   "adapter": {
    "va": "0x000868b4", "size": 14,
    "firmware_sha256": "f076fdcbaab1855c1ff8f5186c9e464b40238edbdaabf6e417ac331297545eb6",
-   "source_sha256": "4db3ce8e6435f79e7bbcd1748adfbef331eaa3a7056a7d001366b1f4420ad8cf",
+   "source_sha256": "117689bba26db4ffea812bedb173a2087ffc8a376cb33effff86fdf5cf82eec5",
    "cfg_verify": {"status": "PASS", "cases": 2}
   },
   "direct_callers": [
-   {"va": "0x00070ee4", "name": "virtqueue_free", "cfg_cases": 2, "source_sha256": "334f06180b64ccb3379a3e281421f0b6feecb252ab38c0198ade57b30a191a03"},
-   {"va": "0x0007f3c2", "name": "svc_attr_memory_release", "cfg_cases": 0, "source_sha256": "28582db03d04f5855727ae740b370c59f863b03d3ef936fad1584e68719287fc"},
-   {"va": "0x00086480", "name": "k_msgq_cleanup", "cfg_cases": 0, "source_sha256": "9d468a1bf314fee3afe372c1875d3d0afd992fee84281ef84803146aeffa23f5"},
-   {"va": "0x000864d0", "name": "unrecovered_direct_caller", "cfg_cases": null, "canonical_source": null, "firmware_size": 24, "firmware_sha256": "045a52d7bdef2f281ac18d78fd9ec9803959a73af0a522b4d773cd1d24e0b3ca"}
+   {"va": "0x00070ee4", "name": "virtqueue_free", "cfg_cases": 2, "source_sha256": "430e5f6bf0b69b4ee8586f364ed3482a30f0d00947c223eed3da374b649d4672"},
+   {"va": "0x0007f3c2", "name": "svc_attr_memory_release", "cfg_cases": 0, "source_sha256": "dbab0318a1b39212e484667fe5f05dbcf40fba532929b95626f6eef346c78be3"},
+   {"va": "0x00086480", "name": "k_msgq_cleanup", "cfg_cases": 0, "source_sha256": "0d73af8fc7ea38fdeddf722c6728ea9d1f33a49ce94c3d7665b911c385a35eff"},
+   {"va": "0x000864d0", "name": "g1_recon_tagged_heap_node_release", "cfg_cases": 4, "source_sha256": "9aed8ceb41e1d39ac3e0358195e746ca42d1b888459de42e00e104ea95cd0ac5", "firmware_size": 24, "firmware_sha256": "045a52d7bdef2f281ac18d78fd9ec9803959a73af0a522b4d773cd1d24e0b3ca"}
+  ],
+  "tagged_release_callers": [
+   {"va": "0x000727ac", "cfg_cases": 0, "source_sha256": "0a1211a89cd4b593ca8333adb4bdb17fd71c040f392dafd3da0df48e3aee55b5"},
+   {"va": "0x0008652c", "name": "k_fifo_peek_head_impl", "cfg_cases": 0, "source_sha256": "68ed35e8e67c170ca3636e35639c2404dc94b589859c688a8100802a1b2af7a8"}
   ],
   "veneer": {
    "va": "0x0007f978", "symbol": "thunk_FUN_000868b4", "target": "0x000868b4",
@@ -70,9 +80,5 @@
    "caller": {"va": "0x0004f5b0", "cfg_cases": 0, "source_sha256": "226edf277bfda0eb7014a277ac1f10cd2f86e31a6f02c1755a38bc2f6ed547c6"}
   }
  },
- "blockers": [
-  "configured owner omits firmware spin validation and assertion side effects",
-  "global CONFIG_ASSERT/CONFIG_SPIN_VALIDATE change affects many kernel source units",
-  "direct caller at 0x000864d0 has no canonical reconstruction"
- ]
+ "blockers": []
 }

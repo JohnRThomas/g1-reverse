@@ -6,7 +6,7 @@
  *   l2cap_chan_add                           <= FUN_00057874 @ 0x00057874
  *   k_work_init                              <= FUN_00072e50 @ 0x00072e50
  *   bt_l2cap_le_lookup_tx_cid                <= FUN_00081aca @ 0x00081aca
- *   z_impl_k_queue_init                      <= FUN_000864e8 @ 0x000864e8
+ *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   rodata_57525                             @ 0x00057525
  *   rodata_81b83                             @ 0x00081b83
@@ -19,7 +19,8 @@ extern uint64_t bt_l2cap_le_lookup_tx_cid(int,unsigned);
 extern void FUN_00081746(u32,int,void*);
 extern void FUN_000732d4(int,u32);
 extern void k_work_init(int,u32);
-extern void z_impl_k_queue_init(int);
+#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
+extern void g1_recon_z_impl_k_queue_init(void *queue);
 u32 l2cap_chan_add(int param_1, int param_2, int param_3){
     if(*(volatile short*)(param_2+0x14) == 0){
         unsigned uVar2 = 0x40;
@@ -53,7 +54,7 @@ LAB: ;
     FUN_000732d4(param_2 + 0xc0, ((unsigned long)&rodata_57525) /*=0x57525*/);
     if((u16)((u16)(*(volatile u16*)(param_2+0x14)) - 0x40) <= 0x3f){
         k_work_init(param_2 + 0x88, ((unsigned long)&rodata_81b83) /*=0x81b83*/);
-        z_impl_k_queue_init(param_2 + 0x98);
+        g1_recon_z_impl_k_queue_init((void *)(param_2 + 0x98));
         *(volatile u8*)(param_2 + 0xb4) = 1;
     }
     return 1;

@@ -5,7 +5,8 @@ extern uint64_t FUN_00081aca(int,unsigned);
 extern void FUN_00081746(u32,int,void*);
 extern void FUN_000732d4(int,u32);
 extern void FUN_00072e50(int,u32);
-extern void FUN_000864e8(int);
+#define g1_recon_z_impl_k_queue_init FUN_000864e8
+extern void g1_recon_z_impl_k_queue_init(void *queue);
 u32 FUN_00057874(int param_1, int param_2, int param_3){
     if(*(volatile short*)(param_2+0x14) == 0){
         unsigned uVar2 = 0x40;
@@ -39,9 +40,8 @@ LAB: ;
     FUN_000732d4(param_2 + 0xc0, 0x00057525);
     if((u16)((u16)(*(volatile u16*)(param_2+0x14)) - 0x40) <= 0x3f){
         FUN_00072e50(param_2 + 0x88, 0x00081b83);
-        FUN_000864e8(param_2 + 0x98);
+        g1_recon_z_impl_k_queue_init((void *)(param_2 + 0x98));
         *(volatile u8*)(param_2 + 0xb4) = 1;
     }
     return 1;
 }
-

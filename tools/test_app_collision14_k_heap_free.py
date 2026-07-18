@@ -131,20 +131,67 @@ class KHeapFreeCollisionAuditTest(unittest.TestCase):
                          sha256((root / "FUN_000868b4.c").read_bytes()))
         for caller in closure["direct_callers"]:
             path = root / ("FUN_%s.c" % caller["va"][2:])
-            if caller.get("canonical_source", "present") is None:
-                self.assertFalse(path.exists())
-            else:
-                self.assertEqual(caller["source_sha256"],
-                                 sha256(path.read_bytes()))
+            self.assertEqual(caller["source_sha256"],
+                             sha256(path.read_bytes()))
+        for caller in closure["tagged_release_callers"]:
+            path = root / ("FUN_%s.c" % caller["va"][2:])
+            self.assertEqual(caller["source_sha256"],
+                             sha256(path.read_bytes()))
         veneer = closure["veneer"]
         resolutions = json.loads((ROOT / "recon/catalogs/"
                                   "app_veneer_resolutions.json").read_text())
         row = next(item for item in resolutions["entries"]
                    if item["va"] == veneer["va"])
-        self.assertEqual("FUN_000868b4", row["target_symbol"])
+        self.assertEqual("g1_recon_k_free", row["target_symbol"])
+        veneer_ld = (ROOT / "recon/symbols/"
+                     "g1_app_veneer_aliases.ld").read_text()
+        legacy_ld = (ROOT / "recon/symbols/g1_app_aliases.ld").read_text()
+        self.assertIn("thunk_FUN_000868b4 = g1_recon_k_free", veneer_ld)
+        self.assertNotIn("thunk_FUN_000868b4 = FUN_000868b4", veneer_ld)
+        self.assertIn("THUNK868b4 = g1_recon_k_free", legacy_ld)
+        self.assertNotIn("THUNK868b4 = FUN_000868b4", legacy_ld)
         caller = veneer["caller"]
         path = root / ("FUN_%s.c" % caller["va"][2:])
         self.assertEqual(caller["source_sha256"], sha256(path.read_bytes()))
+
+    def test_namespace_raw_backmaps_and_verified_mirrors(self):
+        namespace = self.catalog["canonical_namespace"]
+        overrides = json.loads((ROOT / "recon/catalogs/"
+                                "function_name_overrides.json").read_text())["app"]
+        expected = {
+            "0x00071b2c": namespace["owner"],
+            "0x000868b4": namespace["adapter"],
+            "0x000864d0": namespace["tagged_release"],
+        }
+        for va, identity in expected.items():
+            override = overrides[va]
+            self.assertEqual(identity["name"], override["name"])
+            self.assertEqual(identity["raw_name"], override["raw_name"])
+            filename = "%s.c" % identity["raw_name"]
+            canonical = ROOT / "recon/app/src" / filename
+            verified = ROOT / "recon/verified/src" / filename
+            self.assertEqual(canonical.read_bytes(), verified.read_bytes())
+            body = canonical.read_text()
+            self.assertIn(identity["name"], body)
+            self.assertIn(identity["raw_name"] + "@" + va, body)
+        self.assertTrue(namespace["sdk_owner_untouched"])
+
+    def test_namespaced_calls_replace_raw_closure_targets(self):
+        root = ROOT / "recon/app/src"
+        adapter = (root / "FUN_000868b4.c").read_text()
+        self.assertIn("g1_recon_k_heap_free_validated(", adapter)
+        self.assertNotIn("FUN_00071b2c(", adapter)
+        tagged = (root / "FUN_000864d0.c").read_text()
+        self.assertIn("g1_recon_k_free(node)", tagged)
+        self.assertNotIn("FUN_000868b4(", tagged)
+        for raw in ("FUN_00070ee4", "FUN_0007f3c2", "FUN_00086480"):
+            body = (root / (raw + ".c")).read_text()
+            self.assertIn("g1_recon_k_free(", body)
+            self.assertNotIn("FUN_000868b4(", body)
+        for raw in ("FUN_000727ac", "FUN_0008652c"):
+            body = (root / (raw + ".c")).read_text()
+            self.assertIn("g1_recon_tagged_heap_node_release(", body)
+            self.assertNotIn("FUN_000864d0(", body)
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
  * public-name: __sinit
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   __retarget_lock_release_recursive        <= FUN_00051134 @ 0x00051134
+ *   g1_recon_retarget_lock_release_recursive <= FUN_00051134 @ 0x00051134
  *   env_lock_acquire                         <= FUN_00076bb4 @ 0x00076bb4
  *   __sinit_lock_release                     <= FUN_00076bc0 @ 0x00076bc0
  *   __sinit                                  <= FUN_00076bcc @ 0x00076bcc
@@ -13,7 +13,7 @@
  */
 /* Reconstructed FUN_00076bcc @ 0x76bcc  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
-extern void __retarget_lock_release_recursive(uint32_t);
+extern void g1_recon_retarget_lock_release_recursive(uint32_t);
 extern void FUN_00076b48(uint32_t,int,int);
 extern void env_lock_acquire(void);
 extern uint32_t FUN_00076c3c(int);

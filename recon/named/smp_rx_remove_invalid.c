@@ -1,6 +1,8 @@
 /* readable reconstruction; identity: FUN_00052760 @ 0x00052760
  * public-name: smp_rx_remove_invalid
  * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   g1_recon_z_impl_k_queue_init             <= FUN_000864e8 @ 0x000864e8
  * address symbols (name @ address):
  *   smp_work_queue                           @ 0x20005bb8
  */
@@ -38,7 +40,8 @@ typedef struct { int64_t ticks; } k_timeout_t;
 
 extern unsigned int k_work_busy_get(const struct k_work *work); /* FUN_00072e9c */
 extern int k_work_cancel(struct k_work *work); /* FUN_00072fe8 */
-extern void k_fifo_init(struct k_fifo *fifo); /* FUN_000864e8 */
+#define g1_recon_z_impl_k_queue_init g1_recon_z_impl_k_queue_init
+extern void g1_recon_z_impl_k_queue_init(struct k_fifo *fifo);
 extern struct net_buf *net_buf_get(struct k_fifo *fifo,
                                    k_timeout_t timeout); /* FUN_000836e8 */
 extern void net_buf_put(struct k_fifo *fifo, struct net_buf *buf); /* FUN_0005f200 */
@@ -66,7 +69,7 @@ void smp_rx_remove_invalid(struct smp_transport *transport, void *arg)
         k_work_cancel(&transport->work);
     }
 
-    k_fifo_init(&retained);
+    g1_recon_z_impl_k_queue_init(&retained);
 
     while ((buffer = net_buf_get(&transport->fifo, K_NO_WAIT)) != 0) {
         if (!transport->functions.query_valid_check(buffer, arg)) {
