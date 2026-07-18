@@ -1,0 +1,52 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0100b594 @ 0x0100b594
+ * public-name: controller_radio_idle_state_finish
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ * address symbols (name @ address):
+ *   g_net_radio_drv_ctx                      @ 0x21000c48
+ */
+/* net-core controller_radio_idle_state_finish @ 0x0100b594
+ * Catalog-missing executable ownership is [0x0100b594,0x0100b5f4).
+ * The 0x21000c48 base literal is [0x0100b5f4,0x0100b5f8), followed by the
+ * independent entry at 0x0100b5f8.  The caller supplies context/event in
+ * r0/r1, but this fallback deliberately reads the controller's fixed state.
+ * Raw backmap: FUN_0100b594@0x0100b594. */
+#include <stdint.h>
+
+extern void sdc_assertion_fail(uint32_t group, uint32_t line);
+extern void FUN_0100ac34(void);
+extern void FUN_010207cc(uint32_t timestamp);
+extern void FUN_01022a50(uint32_t channel, void *output, uint32_t mode);
+
+#define CONTROLLER_RADIO_STATE_ADDR ((unsigned long)&g_net_radio_drv_ctx) /*=0x21000c48*/
+
+void controller_radio_idle_state_finish(void *unused_context,
+                                        uint32_t unused_event)
+{
+    volatile uint8_t *state =
+        (volatile uint8_t *)CONTROLLER_RADIO_STATE_ADDR;
+
+    if (state[0x44u] == 0u) {
+        FUN_0100ac34();
+    } else if (state[0x24u] != 0u) {
+        if (state[0x44u] != 2u) {
+            sdc_assertion_fail(0x27u, 0x224u);
+            return;
+        }
+        volatile uint8_t *context =
+            *(volatile uint8_t * volatile *)(state + 0x28u);
+        FUN_010207cc(*(volatile uint32_t *)(context + 0x2f0u));
+    } else if (state[0x44u] != 1u) {
+        sdc_assertion_fail(0x27u, 0x220u);
+        FUN_0100ac34();
+    }
+
+    volatile uint8_t *context =
+        *(volatile uint8_t * volatile *)(state + 0x28u);
+    uint32_t busy = context[0x7bu];
+    if (busy == 0u && *(volatile uint32_t *)(context + 0x74u) != 0u) {
+        FUN_01022a50(context[0x7au], 0, busy);
+    }
+}

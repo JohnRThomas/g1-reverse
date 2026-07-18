@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_payload_copy_after_nine_byte_header <= FUN_0100e06c @ 0x0100e06c
  *   controller_phase_finalize                <= FUN_010129f4 @ 0x010129f4
  *   controller_descriptor_octet_product      <= FUN_01012b24 @ 0x01012b24
  *   controller_radio_transition_schedule     <= FUN_01020a6c @ 0x01020a6c
@@ -17,7 +18,7 @@ extern int FUN_0100e008(void*,void*);
 extern int FUN_0100e028(void*,void*);
 extern int FUN_0100e038(void*,int);
 extern int FUN_0100e054(void*,int);
-extern int FUN_0100e06c(void*,unsigned int,int);
+extern int controller_payload_copy_after_nine_byte_header(void*,unsigned int,int);
 extern int FUN_010129e8(void*);
 extern int controller_phase_finalize(void*);
 extern int FUN_01012ad4(void*);
@@ -103,7 +104,7 @@ void FUN_010119ac(unsigned char *param_1, int param_2)
     FUN_0100e008(pbVar6, param_1 + 0x61);
     FUN_0100e038((void *)*puVar9, param_1[0x60]);
     if ((*(unsigned short *)(param_1 + 2) & 0xfff7) != 0x15) {
-        FUN_0100e06c((void *)*puVar9, *(unsigned int *)(param_1 + 0x48), param_1[0x4c]);
+        controller_payload_copy_after_nine_byte_header((void *)*puVar9, *(unsigned int *)(param_1 + 0x48), param_1[0x4c]);
     }
     FUN_01020764((void *)*puVar9);
     *(volatile unsigned char *)0x21000f24 = 4;

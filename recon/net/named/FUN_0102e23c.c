@@ -2,6 +2,7 @@
  * public-name: FUN_0102e23c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   z_log_msg_init                           <= FUN_0102ddf4 @ 0x0102ddf4
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103c0ec                           @ 0x0103c0ec
@@ -13,7 +14,7 @@
 
 extern uint64_t FUN_01039bb0(uint32_t a, uint32_t b);
 extern void assert_print(uint32_t a, uint32_t b, uint32_t c);
-extern void FUN_0102ddf4(void);
+extern void z_log_msg_init(void);
 
 void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
 {
@@ -47,5 +48,5 @@ void FUN_0102e23c(int32_t param_1, uint32_t param_2, uint8_t param_3)
     r3w = *(volatile int32_t *)(param_1 + 4);
     *(volatile uint8_t *)(r3w + 5) = 1;
 
-    FUN_0102ddf4();
+    z_log_msg_init();
 }

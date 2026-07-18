@@ -6,6 +6,7 @@
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_tx_buffer_ready_get           <= FUN_0100a960 @ 0x0100a960
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_packet_payload_length_set     <= FUN_0100e8f8 @ 0x0100e8f8
  * address symbols (name @ address):
  *   g_net_radio_drv_ctx                      @ 0x21000c48
  *   g_ll_conn_empty_pdu_buf                  @ 0x21000c90
@@ -23,7 +24,7 @@ extern void FUN_010202fc(u32, i8);
 extern int controller_tx_buffer_ready_get(u32);
 extern int FUN_0100a9b0(void);
 extern void sdc_pdu_type_bits_set(u32, int);
-extern void FUN_0100e8f8(void *, u16);
+extern void controller_packet_payload_length_set(void *, u16);
 extern void FUN_0101fe98(u32, u32);
 extern void FUN_0101ff4c(void);
 extern void sdc_assertion_fail(u32, u32);
@@ -96,7 +97,7 @@ LAB_0100acca:
       sdc_pdu_type_bits_set(*(volatile u32 *)(iVar4 + 0x7c), 1);
       puVar5 = (volatile u16 *)*(volatile u32 *)(iVar4 + 0x7c);
     }
-    FUN_0100e8f8((void *)puVar5, local_12);
+    controller_packet_payload_length_set((void *)puVar5, local_12);
     pbVar7 = (volatile u8 *)*(volatile u32 *)(iVar4 + 0x7c);
     break;
   case 1:

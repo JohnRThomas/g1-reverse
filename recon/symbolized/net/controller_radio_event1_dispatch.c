@@ -13,7 +13,7 @@
  * Raw backmap: FUN_01016144@0x01016144. */
 #include <stdint.h>
 
-extern void controller_radio_idle_event_finish(void *context, uint32_t event); /* FUN_0100b594@0x0100b594 */
+extern void controller_radio_idle_state_finish(void *context, uint32_t event); /* FUN_0100b594@0x0100b594 */
 extern void sdc_conn_event_process(uint32_t argument, uint32_t flags);          /* FUN_01014b18@0x01014b18 */
 
 #define G_NET_LINK_CTX_A_ADDR ((unsigned long)&g_net_link_ctx_a) /*=0x21000f68*/ /* g_net_link_ctx_a */
@@ -26,7 +26,7 @@ void controller_radio_event1_dispatch(void *context, uint32_t event)
     uintptr_t owner = owner_slot[1];
 
     if (*(volatile uint8_t *)(owner + LINK_ACTIVE_OFFSET) == 0) {
-        controller_radio_idle_event_finish(context, event);
+        controller_radio_idle_state_finish(context, event);
         return;
     }
     sdc_conn_event_process(0, 0);

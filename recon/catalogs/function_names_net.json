@@ -923,11 +923,13 @@
   "0x0100b594": {
    "address": "0x0100b594",
    "raw_name": "FUN_0100b594",
-   "name": "controller_radio_idle_event_finish",
-   "display_name": "controller_radio_idle_event_finish",
+   "name": "controller_radio_idle_state_finish",
+   "display_name": "controller_radio_idle_state_finish",
    "human": true,
-   "source": "function_name_overrides.json: Event-one fallback when no active link is present. The body validates controller radio ownership, releases the active radio context when needed, and invokes the installed completion callback. Raw identity remains FUN_0100b594.",
-   "aliases": []
+   "source": "function_name_overrides.json: Event-one fallback when no active link is present. The catalog-missing body consumes no argument values: it validates controller state at 0x21000c48, advances or closes the active radio context, and conditionally tail-dispatches the pending radio channel. Exact executable ownership is [0x0100b594,0x0100b5f4); raw identity remains FUN_0100b594.",
+   "aliases": [
+    "controller_radio_idle_event_finish"
+   ]
   },
   "0x0100b608": {
    "address": "0x0100b608",
@@ -1421,11 +1423,13 @@
   "0x0100d808": {
    "address": "0x0100d808",
    "raw_name": "FUN_0100d808",
-   "name": "FUN_0100d808",
-   "display_name": "FUN_0100d808",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_boot_defaults_load",
+   "display_name": "controller_boot_defaults_load",
+   "human": true,
+   "source": "recon/net/src/FUN_0100d808.c",
+   "aliases": [
+    "FUN_0100d808"
+   ]
   },
   "0x0100d840": {
    "address": "0x0100d840",
@@ -1529,11 +1533,13 @@
   "0x0100e06c": {
    "address": "0x0100e06c",
    "raw_name": "FUN_0100e06c",
-   "name": "FUN_0100e06c",
-   "display_name": "FUN_0100e06c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_payload_copy_after_nine_byte_header",
+   "display_name": "controller_payload_copy_after_nine_byte_header",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e06c.c",
+   "aliases": [
+    "FUN_0100e06c"
+   ]
   },
   "0x0100e08c": {
    "address": "0x0100e08c",
@@ -1565,11 +1571,13 @@
   "0x0100e294": {
    "address": "0x0100e294",
    "raw_name": "FUN_0100e294",
-   "name": "FUN_0100e294",
-   "display_name": "FUN_0100e294",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "ble_ext_adv_header_field_get",
+   "display_name": "ble_ext_adv_header_field_get",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e294.c",
+   "aliases": [
+    "FUN_0100e294"
+   ]
   },
   "0x0100e410": {
    "address": "0x0100e410",
@@ -1639,11 +1647,13 @@
   "0x0100e610": {
    "address": "0x0100e610",
    "raw_name": "FUN_0100e610",
-   "name": "FUN_0100e610",
-   "display_name": "FUN_0100e610",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_length_matches_type",
+   "display_name": "controller_packet_length_matches_type",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e610.c",
+   "aliases": [
+    "FUN_0100e610"
+   ]
   },
   "0x0100e634": {
    "address": "0x0100e634",
@@ -1657,11 +1667,13 @@
   "0x0100e65c": {
    "address": "0x0100e65c",
    "raw_name": "FUN_0100e65c",
-   "name": "FUN_0100e65c",
-   "display_name": "FUN_0100e65c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_payload_copy",
+   "display_name": "controller_packet_payload_copy",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e65c.c",
+   "aliases": [
+    "FUN_0100e65c"
+   ]
   },
   "0x0100e67c": {
    "address": "0x0100e67c",
@@ -1891,11 +1903,13 @@
   "0x0100e7e0": {
    "address": "0x0100e7e0",
    "raw_name": "FUN_0100e7e0",
-   "name": "FUN_0100e7e0",
-   "display_name": "FUN_0100e7e0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_timing_window_is_large",
+   "display_name": "controller_timing_window_is_large",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e7e0.c",
+   "aliases": [
+    "FUN_0100e7e0"
+   ]
   },
   "0x0100e808": {
    "address": "0x0100e808",
@@ -1983,11 +1997,13 @@
   "0x0100e8c8": {
    "address": "0x0100e8c8",
    "raw_name": "FUN_0100e8c8",
-   "name": "FUN_0100e8c8",
-   "display_name": "FUN_0100e8c8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "ble_phy_masks_are_one_hot_or_zero",
+   "display_name": "ble_phy_masks_are_one_hot_or_zero",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e8c8.c",
+   "aliases": [
+    "FUN_0100e8c8"
+   ]
   },
   "0x0100e8e8": {
    "address": "0x0100e8e8",
@@ -2010,11 +2026,13 @@
   "0x0100e8f8": {
    "address": "0x0100e8f8",
    "raw_name": "FUN_0100e8f8",
-   "name": "FUN_0100e8f8",
-   "display_name": "FUN_0100e8f8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_payload_length_set",
+   "display_name": "controller_packet_payload_length_set",
+   "human": true,
+   "source": "recon/net/src/FUN_0100e8f8.c",
+   "aliases": [
+    "FUN_0100e8f8"
+   ]
   },
   "0x0100e924": {
    "address": "0x0100e924",
@@ -2122,11 +2140,13 @@
   "0x0100ef48": {
    "address": "0x0100ef48",
    "raw_name": "FUN_0100ef48",
-   "name": "FUN_0100ef48",
-   "display_name": "FUN_0100ef48",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_work_enqueue_state4",
+   "display_name": "controller_work_enqueue_state4",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private controller helper marks a work node with state 4, appends an available node to the pending-work queue under PRIMASK, and raises the queue's deferred-event channel. Raw identity remains FUN_0100ef48 at 0x0100ef48.",
+   "aliases": [
+    "FUN_0100ef48"
+   ]
   },
   "0x0100ef88": {
    "address": "0x0100ef88",
@@ -2200,11 +2220,13 @@
   "0x0100f198": {
    "address": "0x0100f198",
    "raw_name": "FUN_0100f198",
-   "name": "FUN_0100f198",
-   "display_name": "FUN_0100f198",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_timing_windows_store",
+   "display_name": "controller_timing_windows_store",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private controller helper stores four ordered uint16 timing-window values at record offsets 0x14 through 0x1a. Raw identity remains FUN_0100f198 at 0x0100f198.",
+   "aliases": [
+    "FUN_0100f198"
+   ]
   },
   "0x0100f1a8": {
    "address": "0x0100f1a8",
@@ -2229,11 +2251,13 @@
   "0x0100f2d0": {
    "address": "0x0100f2d0",
    "raw_name": "FUN_0100f2d0",
-   "name": "FUN_0100f2d0",
-   "display_name": "FUN_0100f2d0",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_packet_result_prepare",
+   "display_name": "controller_packet_result_prepare",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private controller helper copies a packet kind and four timing halfwords into the deferred work node, then enqueues its packet-result callback. Raw identity remains FUN_0100f2d0 at 0x0100f2d0.",
+   "aliases": [
+    "FUN_0100f2d0"
+   ]
   },
   "0x0100f300": {
    "address": "0x0100f300",
@@ -2338,47 +2362,57 @@
   "0x0100f6e8": {
    "address": "0x0100f6e8",
    "raw_name": "FUN_0100f6e8",
-   "name": "FUN_0100f6e8",
-   "display_name": "FUN_0100f6e8",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_byte_popcount",
+   "display_name": "controller_byte_popcount",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private arithmetic leaf returns the population count of the caller's low byte. Raw identity remains FUN_0100f6e8 at 0x0100f6e8.",
+   "aliases": [
+    "FUN_0100f6e8"
+   ]
   },
   "0x0100f70c": {
    "address": "0x0100f70c",
    "raw_name": "FUN_0100f70c",
-   "name": "FUN_0100f70c",
-   "display_name": "FUN_0100f70c",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_word_transition_count",
+   "display_name": "controller_word_transition_count",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private arithmetic leaf folds a signed 32-bit word with its arithmetic right-shifted neighbor and returns the resulting population count. Raw identity remains FUN_0100f70c at 0x0100f70c.",
+   "aliases": [
+    "FUN_0100f70c"
+   ]
   },
   "0x0100f748": {
    "address": "0x0100f748",
    "raw_name": "FUN_0100f748",
-   "name": "FUN_0100f748",
-   "display_name": "FUN_0100f748",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_halfword_transition_count",
+   "display_name": "controller_halfword_transition_count",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private arithmetic leaf folds a signed 16-bit value with its arithmetic right-shifted neighbor and returns the resulting population count. Raw identity remains FUN_0100f748 at 0x0100f748.",
+   "aliases": [
+    "FUN_0100f748"
+   ]
   },
   "0x0100f784": {
    "address": "0x0100f784",
    "raw_name": "FUN_0100f784",
-   "name": "FUN_0100f784",
-   "display_name": "FUN_0100f784",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_procedure_counters_reset",
+   "display_name": "controller_procedure_counters_reset",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private helper clears the procedure object's byte counters at 0xc5 and 0x100 and its halfword counter at 0xfc. Raw identity remains FUN_0100f784 at 0x0100f784.",
+   "aliases": [
+    "FUN_0100f784"
+   ]
   },
   "0x0100f798": {
    "address": "0x0100f798",
    "raw_name": "FUN_0100f798",
-   "name": "FUN_0100f798",
-   "display_name": "FUN_0100f798",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "controller_procedure_generation_advance",
+   "display_name": "controller_procedure_generation_advance",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered private helper clears the procedure object's halfword at 0x102 and advances its generation byte at 0x104 modulo 256. Raw identity remains FUN_0100f798 at 0x0100f798.",
+   "aliases": [
+    "FUN_0100f798"
+   ]
   },
   "0x0100f7b0": {
    "address": "0x0100f7b0",
@@ -3906,7 +3940,7 @@
    "name": "FUN_0101a184",
    "display_name": "FUN_0101a184",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0101a184.c",
    "aliases": []
   },
   "0x0101a218": {
@@ -4974,6 +5008,15 @@
    "source": "recon/net/src/FUN_010202a8.c",
    "aliases": []
   },
+  "0x010202e4": {
+   "address": "0x010202e4",
+   "raw_name": "FUN_010202e4",
+   "name": "FUN_010202e4",
+   "display_name": "FUN_010202e4",
+   "human": false,
+   "source": "recon/net/src/FUN_010202e4.c",
+   "aliases": []
+  },
   "0x010202f0": {
    "address": "0x010202f0",
    "raw_name": "FUN_010202f0",
@@ -5362,7 +5405,7 @@
    "name": "FUN_01021800",
    "display_name": "FUN_01021800",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01021800.c",
    "aliases": []
   },
   "0x01021820": {
@@ -5564,7 +5607,7 @@
    "name": "FUN_01021b04",
    "display_name": "FUN_01021b04",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01021b04.c",
    "aliases": []
   },
   "0x01021b7c": {
@@ -5573,7 +5616,7 @@
    "name": "FUN_01021b7c",
    "display_name": "FUN_01021b7c",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01021b7c.c",
    "aliases": []
   },
   "0x01021cec": {
@@ -6522,7 +6565,7 @@
    "name": "FUN_01026872",
    "display_name": "FUN_01026872",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01026872.c",
    "aliases": []
   },
   "0x0102689c": {
@@ -6540,7 +6583,7 @@
    "name": "FUN_010268ce",
    "display_name": "FUN_010268ce",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010268ce.c",
    "aliases": []
   },
   "0x01026912": {
@@ -6549,7 +6592,7 @@
    "name": "FUN_01026912",
    "display_name": "FUN_01026912",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01026912.c",
    "aliases": []
   },
   "0x0102693a": {
@@ -6750,7 +6793,7 @@
    "name": "FUN_010271f6",
    "display_name": "FUN_010271f6",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010271f6.c",
    "aliases": []
   },
   "0x0102722c": {
@@ -6877,7 +6920,7 @@
    "name": "FUN_0102759e",
    "display_name": "FUN_0102759e",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102759e.c",
    "aliases": []
   },
   "0x010275d2": {
@@ -6886,7 +6929,7 @@
    "name": "FUN_010275d2",
    "display_name": "FUN_010275d2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010275d2.c",
    "aliases": []
   },
   "0x01027606": {
@@ -6913,7 +6956,7 @@
    "name": "FUN_01027662",
    "display_name": "FUN_01027662",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027662.c",
    "aliases": []
   },
   "0x0102768a": {
@@ -6931,7 +6974,7 @@
    "name": "FUN_010276b2",
    "display_name": "FUN_010276b2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010276b2.c",
    "aliases": []
   },
   "0x010276e6": {
@@ -6967,7 +7010,7 @@
    "name": "FUN_0102776a",
    "display_name": "FUN_0102776a",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102776a.c",
    "aliases": []
   },
   "0x01027790": {
@@ -6998,7 +7041,7 @@
    "name": "FUN_010277c2",
    "display_name": "FUN_010277c2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010277c2.c",
    "aliases": []
   },
   "0x010277f2": {
@@ -7007,7 +7050,7 @@
    "name": "FUN_010277f2",
    "display_name": "FUN_010277f2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010277f2.c",
    "aliases": []
   },
   "0x01027822": {
@@ -7016,7 +7059,7 @@
    "name": "FUN_01027822",
    "display_name": "FUN_01027822",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027822.c",
    "aliases": []
   },
   "0x01027846": {
@@ -7061,7 +7104,7 @@
    "name": "FUN_01027974",
    "display_name": "FUN_01027974",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027974.c",
    "aliases": []
   },
   "0x010279e6": {
@@ -7276,7 +7319,7 @@
    "name": "FUN_010280f2",
    "display_name": "FUN_010280f2",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010280f2.c",
    "aliases": []
   },
   "0x01028112": {
@@ -7366,7 +7409,7 @@
    "name": "FUN_010283fe",
    "display_name": "FUN_010283fe",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010283fe.c",
    "aliases": []
   },
   "0x01028412": {
@@ -7429,7 +7472,7 @@
    "name": "FUN_01028656",
    "display_name": "FUN_01028656",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01028656.c",
    "aliases": []
   },
   "0x0102878a": {
@@ -8325,6 +8368,15 @@
    "source": "recon/net/src/FUN_0102cbd8.c",
    "aliases": []
   },
+  "0x0102cc34": {
+   "address": "0x0102cc34",
+   "raw_name": "FUN_0102cc34",
+   "name": "mpsc_pbuf_alloc",
+   "display_name": "mpsc_pbuf_alloc",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr 3.4.99 MPSC packet-buffer allocator, matched to the proven CPUAPP counterpart and verified across eight reviewed allocation, wrap, drop, and timeout paths. Raw identity remains FUN_0102cc34 at 0x0102cc34.",
+   "aliases": []
+  },
   "0x0102cd8c": {
    "address": "0x0102cd8c",
    "raw_name": "FUN_0102cd8c",
@@ -8332,6 +8384,15 @@
    "display_name": "FUN_0102cd8c",
    "human": false,
    "source": "recon/net/src/FUN_0102cd8c.c",
+   "aliases": []
+  },
+  "0x0102ce14": {
+   "address": "0x0102ce14",
+   "raw_name": "FUN_0102ce14",
+   "name": "mpsc_pbuf_claim",
+   "display_name": "mpsc_pbuf_claim",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr 3.4.99 MPSC packet-buffer claim implementation. Raw identity remains FUN_0102ce14 at 0x0102ce14.",
    "aliases": []
   },
   "0x0102cf00": {
@@ -8455,6 +8516,15 @@
    "source": "recon/net/src/FUN_0102d938.c",
    "aliases": []
   },
+  "0x0102da84": {
+   "address": "0x0102da84",
+   "raw_name": "FUN_0102da84",
+   "name": "ipc_rpmsg_register_ept",
+   "display_name": "ipc_rpmsg_register_ept",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr IPC RPMsg endpoint registration implementation with the exact ipc_rpmsg_instance/role/ipc_rpmsg_ept ABI. Raw identity remains FUN_0102da84 at 0x0102da84.",
+   "aliases": []
+  },
   "0x0102dac0": {
    "address": "0x0102dac0",
    "raw_name": "FUN_0102dac0",
@@ -8489,6 +8559,24 @@
    "display_name": "FUN_0102dcf4",
    "human": false,
    "source": "recon/net/src/FUN_0102dcf4.c",
+   "aliases": []
+  },
+  "0x0102ddf4": {
+   "address": "0x0102ddf4",
+   "raw_name": "FUN_0102ddf4",
+   "name": "z_log_msg_init",
+   "display_name": "z_log_msg_init",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr logging message-buffer initializer. Raw identity remains FUN_0102ddf4 at 0x0102ddf4.",
+   "aliases": []
+  },
+  "0x0102de10": {
+   "address": "0x0102de10",
+   "raw_name": "FUN_0102de10",
+   "name": "z_log_dropped",
+   "display_name": "z_log_dropped",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr logging dropped-message accounting helper, including the buffered-count atomic decrement. Raw identity remains FUN_0102de10 at 0x0102de10.",
    "aliases": []
   },
   "0x0102de38": {
@@ -8563,6 +8651,15 @@
    "source": "recon/net/src/FUN_0102e064.c",
    "aliases": []
   },
+  "0x0102e1fc": {
+   "address": "0x0102e1fc",
+   "raw_name": "FUN_0102e1fc",
+   "name": "z_log_msg_commit",
+   "display_name": "z_log_msg_commit",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr logging message commit implementation: timestamp publication, MPSC commit, and post-finalize notification. Raw identity remains FUN_0102e1fc at 0x0102e1fc.",
+   "aliases": []
+  },
   "0x0102e220": {
    "address": "0x0102e220",
    "raw_name": "FUN_0102e220",
@@ -8598,7 +8695,7 @@
    "name": "FUN_0102e3a8",
    "display_name": "FUN_0102e3a8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102e3a8.c",
    "aliases": []
   },
   "0x0102e460": {
@@ -8607,7 +8704,7 @@
    "name": "FUN_0102e460",
    "display_name": "FUN_0102e460",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102e460.c",
    "aliases": []
   },
   "0x0102e484": {
@@ -8625,7 +8722,7 @@
    "name": "FUN_0102e4f4",
    "display_name": "FUN_0102e4f4",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102e4f4.c",
    "aliases": []
   },
   "0x0102e7e0": {
@@ -8653,6 +8750,15 @@
    "display_name": "FUN_0102e9bc",
    "human": false,
    "source": "recon/net/src/FUN_0102e9bc.c",
+   "aliases": []
+  },
+  "0x0102ea00": {
+   "address": "0x0102ea00",
+   "raw_name": "FUN_0102ea00",
+   "name": "arch_cpu_atomic_idle",
+   "display_name": "arch_cpu_atomic_idle",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered configured Zephyr Cortex-M atomic-idle implementation with tracing/prepare hook, BASEPRI release, WFE policy gate, and interrupt-key restoration. Raw identity remains FUN_0102ea00 at 0x0102ea00.",
    "aliases": []
   },
   "0x0102ea40": {
@@ -8841,7 +8947,16 @@
    "name": "FUN_0102fcec",
    "display_name": "FUN_0102fcec",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102fcec.c",
+   "aliases": []
+  },
+  "0x0102fdd0": {
+   "address": "0x0102fdd0",
+   "raw_name": "FUN_0102fdd0",
+   "name": "FUN_0102fdd0",
+   "display_name": "FUN_0102fdd0",
+   "human": false,
+   "source": "recon/net/src/FUN_0102fdd0.c",
    "aliases": []
   },
   "0x0102ff54": {
@@ -8850,7 +8965,7 @@
    "name": "FUN_0102ff54",
    "display_name": "FUN_0102ff54",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102ff54.c",
    "aliases": []
   },
   "0x0102ff94": {
@@ -8859,7 +8974,7 @@
    "name": "FUN_0102ff94",
    "display_name": "FUN_0102ff94",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102ff94.c",
    "aliases": []
   },
   "0x01030014": {
@@ -9010,6 +9125,15 @@
    "source": "committed durable map",
    "aliases": []
   },
+  "0x010317c0": {
+   "address": "0x010317c0",
+   "raw_name": "FUN_010317c0",
+   "name": "FUN_010317c0",
+   "display_name": "FUN_010317c0",
+   "human": false,
+   "source": "recon/net/src/FUN_010317c0.c",
+   "aliases": []
+  },
   "0x010317d4": {
    "address": "0x010317d4",
    "raw_name": "FUN_010317d4",
@@ -9106,7 +9230,7 @@
    "name": "FUN_01032680",
    "display_name": "FUN_01032680",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01032680.c",
    "aliases": []
   },
   "0x01032764": {
@@ -9395,6 +9519,15 @@
    "display_name": "FUN_010343b8",
    "human": false,
    "source": "recon/net/src/FUN_010343b8.c",
+   "aliases": []
+  },
+  "0x010343e0": {
+   "address": "0x010343e0",
+   "raw_name": "FUN_010343e0",
+   "name": "FUN_010343e0",
+   "display_name": "FUN_010343e0",
+   "human": false,
+   "source": "recon/net/src/FUN_010343e0.c",
    "aliases": []
   },
   "0x01034458": {
@@ -9797,6 +9930,15 @@
    "source": "recon/net/src/FUN_01035d18.c",
    "aliases": []
   },
+  "0x01035e1c": {
+   "address": "0x01035e1c",
+   "raw_name": "FUN_01035e1c",
+   "name": "FUN_01035e1c",
+   "display_name": "FUN_01035e1c",
+   "human": false,
+   "source": "recon/net/src/FUN_01035e1c.c",
+   "aliases": []
+  },
   "0x01035edc": {
    "address": "0x01035edc",
    "raw_name": "FUN_01035edc",
@@ -10051,6 +10193,15 @@
    "source": "recon/net/src/FUN_0103721c.c",
    "aliases": []
   },
+  "0x010372b4": {
+   "address": "0x010372b4",
+   "raw_name": "FUN_010372b4",
+   "name": "FUN_010372b4",
+   "display_name": "FUN_010372b4",
+   "human": false,
+   "source": "recon/net/src/FUN_010372b4.c",
+   "aliases": []
+  },
   "0x0103735c": {
    "address": "0x0103735c",
    "raw_name": "FUN_0103735c",
@@ -10067,6 +10218,15 @@
    "display_name": "FUN_01037398",
    "human": false,
    "source": "recon/net/src/FUN_01037398.c",
+   "aliases": []
+  },
+  "0x01037438": {
+   "address": "0x01037438",
+   "raw_name": "FUN_01037438",
+   "name": "FUN_01037438",
+   "display_name": "FUN_01037438",
+   "human": false,
+   "source": "recon/net/src/FUN_01037438.c",
    "aliases": []
   },
   "0x010374dc": {
@@ -10093,7 +10253,7 @@
    "name": "FUN_01037588",
    "display_name": "FUN_01037588",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01037588.c",
    "aliases": []
   },
   "0x010375b8": {
@@ -10103,6 +10263,15 @@
    "display_name": "FUN_010375b8",
    "human": false,
    "source": "recon/net/src/FUN_010375b8.c",
+   "aliases": []
+  },
+  "0x01037670": {
+   "address": "0x01037670",
+   "raw_name": "FUN_01037670",
+   "name": "FUN_01037670",
+   "display_name": "FUN_01037670",
+   "human": false,
+   "source": "recon/net/src/FUN_01037670.c",
    "aliases": []
   },
   "0x01037768": {
@@ -10312,6 +10481,24 @@
    "source": "recon/net/src/FUN_010388c8.c",
    "aliases": []
   },
+  "0x01038958": {
+   "address": "0x01038958",
+   "raw_name": "FUN_01038958",
+   "name": "FUN_01038958",
+   "display_name": "FUN_01038958",
+   "human": false,
+   "source": "recon/net/src/FUN_01038958.c",
+   "aliases": []
+  },
+  "0x010389a0": {
+   "address": "0x010389a0",
+   "raw_name": "FUN_010389a0",
+   "name": "FUN_010389a0",
+   "display_name": "FUN_010389a0",
+   "human": false,
+   "source": "recon/net/src/FUN_010389a0.c",
+   "aliases": []
+  },
   "0x010389f8": {
    "address": "0x010389f8",
    "raw_name": "FUN_010389f8",
@@ -10489,7 +10676,7 @@
    "name": "FUN_010396d0",
    "display_name": "FUN_010396d0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010396d0.c",
    "aliases": []
   },
   "0x0103971e": {
@@ -10653,7 +10840,7 @@
    "name": "FUN_01039ade",
    "display_name": "FUN_01039ade",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01039ade.c",
    "aliases": []
   },
   "0x01039b16": {
@@ -10662,7 +10849,7 @@
    "name": "FUN_01039b16",
    "display_name": "FUN_01039b16",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01039b16.c",
    "aliases": []
   },
   "0x01039b36": {
@@ -10784,13 +10971,22 @@
    "source": "recon/net/src/FUN_01039db6.c",
    "aliases": []
   },
+  "0x01039dd0": {
+   "address": "0x01039dd0",
+   "raw_name": "FUN_01039dd0",
+   "name": "FUN_01039dd0",
+   "display_name": "FUN_01039dd0",
+   "human": false,
+   "source": "recon/net/src/FUN_01039dd0.c",
+   "aliases": []
+  },
   "0x01039dec": {
    "address": "0x01039dec",
    "raw_name": "FUN_01039dec",
    "name": "FUN_01039dec",
    "display_name": "FUN_01039dec",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01039dec.c",
    "aliases": []
   },
   "0x01039e4e": {
@@ -11005,7 +11201,7 @@
    "name": "FUN_0103a478",
    "display_name": "FUN_0103a478",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103a478.c",
    "aliases": []
   },
   "0x0103a490": {
@@ -11241,7 +11437,7 @@
    "name": "FUN_0103ad56",
    "display_name": "FUN_0103ad56",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103ad56.c",
    "aliases": []
   },
   "0x0103ada8": {
@@ -11452,7 +11648,7 @@
    "name": "FUN_0103b244",
    "display_name": "FUN_0103b244",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103b244.c",
    "aliases": []
   },
   "0x0103b25a": {
@@ -11489,6 +11685,15 @@
    "display_name": "FUN_0103b29c",
    "human": false,
    "source": "committed durable map",
+   "aliases": []
+  },
+  "0x0103b2b4": {
+   "address": "0x0103b2b4",
+   "raw_name": "FUN_0103b2b4",
+   "name": "FUN_0103b2b4",
+   "display_name": "FUN_0103b2b4",
+   "human": false,
+   "source": "recon/net/src/FUN_0103b2b4.c",
    "aliases": []
   },
   "0x0103b2d0": {
@@ -11569,7 +11774,7 @@
    "name": "FUN_0103b3e0",
    "display_name": "FUN_0103b3e0",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103b3e0.c",
    "aliases": []
   },
   "0x0103b442": {
@@ -11578,7 +11783,7 @@
    "name": "FUN_0103b442",
    "display_name": "FUN_0103b442",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103b442.c",
    "aliases": []
   },
   "0x0103b4f6": {
@@ -11814,7 +12019,6 @@
   "FUN_0100d738": "0x0100d738",
   "FUN_0100d7ac": "0x0100d7ac",
   "FUN_0100d7bc": "0x0100d7bc",
-  "FUN_0100d808": "0x0100d808",
   "FUN_0100d840": "0x0100d840",
   "FUN_0100d878": "0x0100d878",
   "FUN_0100dc1c": "0x0100dc1c",
@@ -11826,20 +12030,16 @@
   "FUN_0100e04c": "0x0100e04c",
   "FUN_0100e054": "0x0100e054",
   "FUN_0100e064": "0x0100e064",
-  "FUN_0100e06c": "0x0100e06c",
   "FUN_0100e08c": "0x0100e08c",
   "FUN_0100e0ac": "0x0100e0ac",
   "FUN_0100e164": "0x0100e164",
-  "FUN_0100e294": "0x0100e294",
   "FUN_0100e410": "0x0100e410",
   "FUN_0100e448": "0x0100e448",
   "FUN_0100e5d8": "0x0100e5d8",
   "FUN_0100e5ec": "0x0100e5ec",
   "FUN_0100e5f4": "0x0100e5f4",
   "FUN_0100e608": "0x0100e608",
-  "FUN_0100e610": "0x0100e610",
   "FUN_0100e634": "0x0100e634",
-  "FUN_0100e65c": "0x0100e65c",
   "FUN_0100e67c": "0x0100e67c",
   "FUN_0100e684": "0x0100e684",
   "FUN_0100e68c": "0x0100e68c",
@@ -11865,7 +12065,6 @@
   "FUN_0100e7d4": "0x0100e7d4",
   "FUN_0100e7d8": "0x0100e7d8",
   "FUN_0100e7dc": "0x0100e7dc",
-  "FUN_0100e7e0": "0x0100e7e0",
   "FUN_0100e808": "0x0100e808",
   "FUN_0100e87c": "0x0100e87c",
   "FUN_0100e8ac": "0x0100e8ac",
@@ -11874,10 +12073,8 @@
   "FUN_0100e8b8": "0x0100e8b8",
   "FUN_0100e8bc": "0x0100e8bc",
   "FUN_0100e8c4": "0x0100e8c4",
-  "FUN_0100e8c8": "0x0100e8c8",
   "FUN_0100e8e8": "0x0100e8e8",
   "FUN_0100e8f0": "0x0100e8f0",
-  "FUN_0100e8f8": "0x0100e8f8",
   "FUN_0100e924": "0x0100e924",
   "FUN_0100e934": "0x0100e934",
   "FUN_0100e948": "0x0100e948",
@@ -11886,24 +12083,16 @@
   "FUN_0100ebc4": "0x0100ebc4",
   "FUN_0100ebf4": "0x0100ebf4",
   "FUN_0100ec40": "0x0100ec40",
-  "FUN_0100ef48": "0x0100ef48",
   "FUN_0100f004": "0x0100f004",
   "FUN_0100f0a4": "0x0100f0a4",
   "FUN_0100f100": "0x0100f100",
   "FUN_0100f110": "0x0100f110",
-  "FUN_0100f198": "0x0100f198",
   "FUN_0100f1a8": "0x0100f1a8",
-  "FUN_0100f2d0": "0x0100f2d0",
   "FUN_0100f5b4": "0x0100f5b4",
   "FUN_0100f5cc": "0x0100f5cc",
   "FUN_0100f5d8": "0x0100f5d8",
   "FUN_0100f66c": "0x0100f66c",
   "FUN_0100f6b0": "0x0100f6b0",
-  "FUN_0100f6e8": "0x0100f6e8",
-  "FUN_0100f70c": "0x0100f70c",
-  "FUN_0100f748": "0x0100f748",
-  "FUN_0100f784": "0x0100f784",
-  "FUN_0100f798": "0x0100f798",
   "FUN_0100f7d0": "0x0100f7d0",
   "FUN_0100f7e0": "0x0100f7e0",
   "FUN_0100f800": "0x0100f800",
@@ -12142,6 +12331,7 @@
   "FUN_0102028c": "0x0102028c",
   "FUN_0102029c": "0x0102029c",
   "FUN_010202a8": "0x010202a8",
+  "FUN_010202e4": "0x010202e4",
   "FUN_010202f0": "0x010202f0",
   "FUN_010202fc": "0x010202fc",
   "FUN_01020368": "0x01020368",
@@ -12495,6 +12685,7 @@
   "FUN_0102fc30": "0x0102fc30",
   "FUN_0102fcc4": "0x0102fcc4",
   "FUN_0102fcec": "0x0102fcec",
+  "FUN_0102fdd0": "0x0102fdd0",
   "FUN_0102ff54": "0x0102ff54",
   "FUN_0102ff94": "0x0102ff94",
   "FUN_01030014": "0x01030014",
@@ -12511,6 +12702,7 @@
   "FUN_010312d0": "0x010312d0",
   "FUN_010313ec": "0x010313ec",
   "FUN_0103175c": "0x0103175c",
+  "FUN_010317c0": "0x010317c0",
   "FUN_010317d4": "0x010317d4",
   "FUN_01031804": "0x01031804",
   "FUN_01031814": "0x01031814",
@@ -12554,6 +12746,7 @@
   "FUN_01034368": "0x01034368",
   "FUN_010343a0": "0x010343a0",
   "FUN_010343b8": "0x010343b8",
+  "FUN_010343e0": "0x010343e0",
   "FUN_01034458": "0x01034458",
   "FUN_01034464": "0x01034464",
   "FUN_01034480": "0x01034480",
@@ -12596,6 +12789,7 @@
   "FUN_01035830": "0x01035830",
   "FUN_010359b8": "0x010359b8",
   "FUN_01035d18": "0x01035d18",
+  "FUN_01035e1c": "0x01035e1c",
   "FUN_01035edc": "0x01035edc",
   "FUN_01035fa0": "0x01035fa0",
   "FUN_0103601c": "0x0103601c",
@@ -12620,12 +12814,15 @@
   "FUN_01037130": "0x01037130",
   "FUN_0103719c": "0x0103719c",
   "FUN_0103721c": "0x0103721c",
+  "FUN_010372b4": "0x010372b4",
   "FUN_0103735c": "0x0103735c",
   "FUN_01037398": "0x01037398",
+  "FUN_01037438": "0x01037438",
   "FUN_010374dc": "0x010374dc",
   "FUN_01037514": "0x01037514",
   "FUN_01037588": "0x01037588",
   "FUN_010375b8": "0x010375b8",
+  "FUN_01037670": "0x01037670",
   "FUN_01037768": "0x01037768",
   "FUN_01037814": "0x01037814",
   "FUN_01037850": "0x01037850",
@@ -12649,6 +12846,8 @@
   "FUN_01038654": "0x01038654",
   "FUN_01038764": "0x01038764",
   "FUN_010388c8": "0x010388c8",
+  "FUN_01038958": "0x01038958",
+  "FUN_010389a0": "0x010389a0",
   "FUN_010389f8": "0x010389f8",
   "FUN_01038a90": "0x01038a90",
   "FUN_01038ac8": "0x01038ac8",
@@ -12697,6 +12896,7 @@
   "FUN_01039c92": "0x01039c92",
   "FUN_01039d80": "0x01039d80",
   "FUN_01039db6": "0x01039db6",
+  "FUN_01039dd0": "0x01039dd0",
   "FUN_01039dec": "0x01039dec",
   "FUN_01039e52": "0x01039e52",
   "FUN_01039fb2": "0x01039fb2",
@@ -12764,6 +12964,7 @@
   "FUN_0103b268": "0x0103b268",
   "FUN_0103b28a": "0x0103b28a",
   "FUN_0103b29c": "0x0103b29c",
+  "FUN_0103b2b4": "0x0103b2b4",
   "FUN_0103b2d0": "0x0103b2d0",
   "FUN_0103b2f0": "0x0103b2f0",
   "FUN_0103b2f8": "0x0103b2f8",
@@ -12784,10 +12985,15 @@
   "FUN_0103b614": "0x0103b614",
   "FUN_0103b62e": "0x0103b62e",
   "FUN_0103b650": "0x0103b650",
+  "arch_cpu_atomic_idle": "0x0102ea00",
   "assert_print": "0x01039bbe",
   "atomic_set": "0x01039fb6",
+  "ble_ext_adv_header_field_get": "0x0100e294",
+  "ble_phy_masks_are_one_hot_or_zero": "0x0100e8c8",
   "callback_list_invoke_all": "0x010294c2",
+  "controller_boot_defaults_load": "0x0100d808",
   "controller_buffer_is_zero": "0x0100d2c8",
+  "controller_byte_popcount": "0x0100f6e8",
   "controller_count_to_duration": "0x0100d624",
   "controller_deferred_event_raise": "0x0102583c",
   "controller_descriptor_array_encode": "0x0100a5c8",
@@ -12796,6 +13002,7 @@
   "controller_duration_to_units": "0x0100d538",
   "controller_entry_links_release": "0x0101df84",
   "controller_feature_bit_enabled": "0x0100938c",
+  "controller_halfword_transition_count": "0x0100f748",
   "controller_handle_slot_byte_offset": "0x010274d0",
   "controller_handle_slot_find": "0x01027470",
   "controller_handle_slot_find_from": "0x0102741e",
@@ -12818,19 +13025,26 @@
   "controller_packet_config_apply_if_active": "0x0100cb4c",
   "controller_packet_duration_calculate": "0x010122b4",
   "controller_packet_duration_lookup": "0x01012b50",
+  "controller_packet_length_matches_type": "0x0100e610",
   "controller_packet_overhead_span_get": "0x01026856",
+  "controller_packet_payload_copy": "0x0100e65c",
   "controller_packet_payload_extract": "0x01026c94",
+  "controller_packet_payload_length_set": "0x0100e8f8",
   "controller_packet_payload_reserve": "0x01026e48",
   "controller_packet_rendering_budget_remaining": "0x0100f368",
+  "controller_packet_result_prepare": "0x0100f2d0",
   "controller_packet_space_limit": "0x0101dc50",
   "controller_packet_type29_init": "0x01029bda",
   "controller_packet_type30_init": "0x01029bea",
+  "controller_payload_copy_after_nine_byte_header": "0x0100e06c",
   "controller_phase_finalize": "0x010129f4",
+  "controller_procedure_counters_reset": "0x0100f784",
+  "controller_procedure_generation_advance": "0x0100f798",
   "controller_procedure_reference_release": "0x0100f7b0",
   "controller_procedure_slot_reserve": "0x0100f834",
   "controller_radio_event1_dispatch": "0x01016144",
   "controller_radio_event_cleanup": "0x01020634",
-  "controller_radio_idle_event_finish": "0x0100b594",
+  "controller_radio_idle_state_finish": "0x0100b594",
   "controller_radio_request_configure": "0x0101fdd0",
   "controller_radio_request_state_clear": "0x0101fdc0",
   "controller_radio_state_get": "0x01019204",
@@ -12858,15 +13072,20 @@
   "controller_timing_snapshot_build": "0x0101a38c",
   "controller_timing_snapshot_enqueue": "0x0100f300",
   "controller_timing_state_reset": "0x0101e274",
+  "controller_timing_window_is_large": "0x0100e7e0",
   "controller_timing_windows_clamp": "0x0100f1f8",
+  "controller_timing_windows_store": "0x0100f198",
   "controller_transition_pending_check": "0x01025cf0",
   "controller_tx_buffer_ready_get": "0x0100a960",
   "controller_typed_handle_lookup": "0x01009d18",
+  "controller_word_transition_count": "0x0100f70c",
   "controller_work_duplicate_enqueue_assert": "0x0100ebb8",
   "controller_work_enqueue_packet_result": "0x0100eec8",
+  "controller_work_enqueue_state4": "0x0100ef48",
   "controller_work_update_or_enqueue": "0x0100efc8",
   "get_ept_slot_with_name": "0x01039f4c",
   "ipc_rpmsg_init": "0x0102dac0",
+  "ipc_rpmsg_register_ept": "0x0102da84",
   "ipc_rpmsg_static_vrings_open": "0x0102d708",
   "ipc_service_register_endpoint": "0x0102d5b4",
   "ipc_static_vrings_init": "0x0102db30",
@@ -12874,6 +13093,8 @@
   "k_work_init": "0x01036bec",
   "k_work_queue_init": "0x01036cb8",
   "k_work_queue_start": "0x01036ce4",
+  "mpsc_pbuf_alloc": "0x0102cc34",
+  "mpsc_pbuf_claim": "0x0102ce14",
   "mpsl_timeslot_distance_get": "0x010243c0",
   "mpsl_timeslot_window_get": "0x010209c8",
   "net_buf_simple_tailroom": "0x0103a468",
@@ -12958,6 +13179,9 @@
   "z_impl_k_mutex_unlock": "0x0103657c",
   "z_impl_k_sem_init": "0x0103b224",
   "z_impl_z_log_msg_static_create": "0x0102e284",
+  "z_log_dropped": "0x0102de10",
+  "z_log_msg_commit": "0x0102e1fc",
+  "z_log_msg_init": "0x0102ddf4",
   "z_nrf_rtc_timer_read": "0x010313a8"
  },
  "conflicts": {}

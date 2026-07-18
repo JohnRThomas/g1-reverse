@@ -5,9 +5,11 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_typed_handle_lookup           <= FUN_01009d18 @ 0x01009d18
+ *   controller_packet_length_matches_type    <= FUN_0100e610 @ 0x0100e610
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
  *   controller_timing_windows_clamp          <= FUN_0100f1f8 @ 0x0100f1f8
+ *   controller_procedure_counters_reset      <= FUN_0100f784 @ 0x0100f784
  * address symbols (name @ address):
  *   rodata_10100a1                           @ 0x010100a1
  *   rodata_10101cd                           @ 0x010101cd
@@ -47,9 +49,9 @@ extern uint32_t sdc_assertion_fail(uintptr_t, ...); extern uint32_t controller_t
 extern uint32_t FUN_0100a984(uintptr_t, ...); extern uint32_t FUN_0100b630(uintptr_t, ...);
 extern uint32_t FUN_0100d14c(uintptr_t, ...); extern uint32_t FUN_0100d3c0(uintptr_t, ...);
 extern uint32_t FUN_0100d5d0(uintptr_t, ...); extern uint32_t FUN_0100d7bc(uintptr_t, ...);
-extern uint32_t FUN_0100e610(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
+extern uint32_t controller_packet_length_matches_type(uintptr_t, ...); extern uint32_t sdc_work_submit(uintptr_t, ...);
 extern uint32_t controller_work_update_or_enqueue(uintptr_t, ...); extern uint32_t FUN_0100f110(uintptr_t, ...);
-extern uint32_t controller_timing_windows_clamp(uintptr_t, ...); extern uint32_t FUN_0100f784(uintptr_t, ...);
+extern uint32_t controller_timing_windows_clamp(uintptr_t, ...); extern uint32_t controller_procedure_counters_reset(uintptr_t, ...);
 extern uint32_t FUN_0100f7e0(uintptr_t, ...); extern uint32_t FUN_0100f86c(uintptr_t, ...);
 extern uint32_t FUN_0100fae4(uintptr_t, ...); extern uint32_t FUN_01016250(uintptr_t, ...);
 extern uint32_t FUN_0101bdd4(uintptr_t, ...); extern uint32_t FUN_0101c420(uintptr_t, ...);
@@ -193,7 +195,7 @@ LAB_0101c8f2:
     if (pcVar14 != (code *)0x0) {
       (*pcVar14)(*(int *)(iVar2 + 4) + 0x158,*(int *)(iVar2 + 4) + 0x1aa);
     }
-    FUN_0100f784(DAT_0101cce8);
+    controller_procedure_counters_reset(DAT_0101cce8);
     puVar15 = *(undefined2 **)(iVar2 + 4);
     cVar11 = *(char *)(puVar15 + 0xa7);
 switchD_0101c8fc_caseD_2:
@@ -244,7 +246,7 @@ LAB_0101c782:
         goto LAB_0101c78a;
       }
     }
-    iVar7 = FUN_0100e610(iVar6);
+    iVar7 = controller_packet_length_matches_type(iVar6);
     if (iVar7 == 0) {
       param_2 = FUN_0100f86c(DAT_0101cce8,iVar6);
       puVar15 = *(undefined2 **)(iVar2 + 4);

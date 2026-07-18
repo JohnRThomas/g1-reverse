@@ -3,6 +3,7 @@
  * public-name: FUN_0103038c
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
+ *   arch_cpu_atomic_idle                     <= FUN_0102ea00 @ 0x0102ea00
  *   assert_print                             <= FUN_01039bbe @ 0x01039bbe
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
@@ -17,7 +18,7 @@ extern void assert_print(uint32_t source, uint32_t message, uint32_t line);
 extern void FUN_01039bb0(uint32_t message, uint32_t line)
     __attribute__((noreturn));
 extern uint32_t FUN_0103b14a(void);
-extern void FUN_0102ea00(uint32_t saved_basepri);
+extern void arch_cpu_atomic_idle(uint32_t saved_basepri);
 extern void FUN_01037c64(uint32_t irq, uint32_t unused);
 
 #define CLOCK ((volatile uint32_t *)REG_41005000 /*=0x41005000*/)
@@ -83,7 +84,7 @@ uint32_t FUN_0103038c(uint32_t mode)
         }
 
         if (has_context != 0u)
-            FUN_0102ea00(saved_basepri);
+            arch_cpu_atomic_idle(saved_basepri);
         else
             FUN_01037c64(0x21u, 0u);
 

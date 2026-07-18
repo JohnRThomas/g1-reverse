@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   ble_ext_adv_header_field_get             <= FUN_0100e294 @ 0x0100e294
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   controller_work_update_or_enqueue        <= FUN_0100efc8 @ 0x0100efc8
  */
@@ -13,7 +14,7 @@ extern int FUN_0100ca98(int, int);
 extern void FUN_0100d5c8(unsigned int, int);
 extern unsigned short FUN_0100d5d0(unsigned int);
 extern void FUN_0100e018(unsigned int, void*);
-extern unsigned int *FUN_0100e294(unsigned char*, int);
+extern unsigned int *ble_ext_adv_header_field_get(unsigned char*, int);
 extern void sdc_work_submit(unsigned int, unsigned int, int);
 extern void controller_work_update_or_enqueue(unsigned int, unsigned int, int);
 
@@ -57,7 +58,7 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
     FUN_0100e018(*(volatile unsigned int *)(iVar3 + 0xc0), auStack_18);
     uVar10 = ((unsigned int)(**(volatile unsigned char **)(iVar3 + 0xc0)) << 0x19) >> 0x1f;
   } else {
-    puVar7 = FUN_0100e294(param_2, 1);
+    puVar7 = ble_ext_adv_header_field_get(param_2, 1);
     uVar10 = (unsigned int)(*param_2 >> 7);
   }
   iVar8 = DAT_010167e4;
@@ -91,7 +92,7 @@ void FUN_010166c0(int param_1, unsigned char *param_2)
     *(volatile unsigned char *)(iVar3 + 0xd) = *(volatile unsigned char *)(iVar3 + 0xd) | 2;
     puVar9 = (unsigned int *)DAT_010167ec;
     if (param_1 != 0) {
-      puVar9 = FUN_0100e294(param_2, 0);
+      puVar9 = ble_ext_adv_header_field_get(param_2, 0);
     }
     iVar8 = DAT_010167f0;
     *(volatile unsigned int *)(iVar3 + 0x1a) = *puVar9;

@@ -4,6 +4,7 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   sdc_pdu_type_bits_set                    <= FUN_0100e5dc @ 0x0100e5dc
+ *   controller_packet_payload_copy           <= FUN_0100e65c @ 0x0100e65c
  *   controller_descriptor_timing_copy        <= FUN_0100e83c @ 0x0100e83c
  *   controller_masked_pair_sample_store      <= FUN_010100f4 @ 0x010100f4
  *   controller_packet_type29_init            <= FUN_01029bda @ 0x01029bda
@@ -34,7 +35,7 @@ extern void FUN_0100e7b0(void *, int);
 extern void FUN_0100e7b8(void *, int);
 extern void FUN_0100e7c0(void *, int);
 extern void FUN_0100e7c8(void *, int);
-extern void FUN_0100e65c(void *, unsigned, int);
+extern void controller_packet_payload_copy(void *, unsigned, int);
 extern void FUN_0100e5f4(void *, int);
 extern void FUN_0100e608(void *, void *);
 extern void FUN_0100e808(void *, int);
@@ -96,7 +97,7 @@ L_058a:
 
 L_0598:
     if (param_1 != 0xff) goto L_05b0;
-    FUN_0100e65c(buf, *(volatile unsigned *)(G4 + 0x3b8),
+    controller_packet_payload_copy(buf, *(volatile unsigned *)(G4 + 0x3b8),
                  *(volatile byte *)(G4 + 0x3b7));
     goto L_058a;
 

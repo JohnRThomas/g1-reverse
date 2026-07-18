@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_llcp_get_active_link_index           <= FUN_0100d760 @ 0x0100d760
+ *   controller_work_enqueue_state4           <= FUN_0100ef48 @ 0x0100ef48
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  * address symbols (name @ address):
  *   g_sdc_rssi_filter_cfg                    @ 0x21000f04
@@ -18,7 +19,7 @@ typedef unsigned long long ulonglong;
 typedef unsigned short undefined2;
 
 extern int sdc_llcp_get_active_link_index(void);
-extern void FUN_0100ef48(int, undefined4);
+extern void controller_work_enqueue_state4(int, undefined4);
 extern void sdc_work_submit(int, undefined4, int, undefined4);
 extern undefined1 FUN_0102029c(void);
 extern undefined8 controller_time_now(void);
@@ -85,7 +86,7 @@ void FUN_01010578(char *param_1,undefined4 param_2,undefined4 param_3,undefined4
       uVar4 = FUN_0102029c();
       uVar3 = DAT_010106d8;
       *(undefined1 *)(iVar10 + 0x6f) = uVar4;
-      FUN_0100ef48(iVar10 + 600,uVar3);
+      controller_work_enqueue_state4(iVar10 + 600,uVar3);
     }
   }
 LAB_010105c8:

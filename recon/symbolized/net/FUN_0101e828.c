@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   controller_status_defaults_reset         <= FUN_0100bc1c @ 0x0100bc1c
+ *   controller_boot_defaults_load            <= FUN_0100d808 @ 0x0100d808
  * address symbols (name @ address):
  *   g_net_ble_conn_create_ctx                @ 0x21000eac
  *   g_net_ble_conn_role_cfg                  @ 0x21001208
@@ -17,7 +18,7 @@ extern void FUN_0101f8f4(void);
 extern void FUN_0100ebf4(void);
 extern void FUN_0100d7ac(void);
 extern void FUN_010107a0(void);
-extern void FUN_0100d808(void);
+extern void controller_boot_defaults_load(void);
 extern void FUN_0101f87c(uint32_t a);
 
 #define W32(a) (*(volatile uint32_t *)(a))
@@ -35,7 +36,7 @@ void FUN_0101e828(void)
     FUN_0100ebf4();
     FUN_0100d7ac();
     FUN_010107a0();
-    FUN_0100d808();
+    controller_boot_defaults_load();
     FUN_0101f87c(1);
 
     W32(p1)      = 0x001b0203;

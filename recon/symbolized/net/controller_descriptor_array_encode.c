@@ -25,11 +25,11 @@ int controller_descriptor_array_encode(uintptr_t destination, uint32_t count_arg
         if ((destination & 3u) != 0u) {
             sdc_assertion_fail(0x19u, 0x95u);
         }
-        *(volatile uintptr_t *)0x21000be4u = destination;
-        *(volatile uint16_t *)0x21000be8u = stride;
+        *(volatile uintptr_t *)((unsigned long)&g_21000be4) /*=0x21000be4*/ = destination;
+        *(volatile uint16_t *)((unsigned long)&g_21000be8) /*=0x21000be8*/ = stride;
         for (uint16_t index = 0; index < count; ++index) {
-            FUN_010276e6(*(volatile uintptr_t *)0x21000be4u +
-                             (uint32_t)*(volatile uint16_t *)0x21000be8u * index,
+            FUN_010276e6(*(volatile uintptr_t *)((unsigned long)&g_21000be4) /*=0x21000be4*/ +
+                             (uint32_t)*(volatile uint16_t *)((unsigned long)&g_21000be8) /*=0x21000be8*/ * index,
                          stride, 0xf7u, 5u, value);
         }
     }

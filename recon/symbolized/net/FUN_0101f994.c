@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   ble_phy_masks_are_one_hot_or_zero        <= FUN_0100e8c8 @ 0x0100e8c8
  *   sdc_work_submit                          <= FUN_0100ef88 @ 0x0100ef88
  *   controller_procedure_reference_release   <= FUN_0100f7b0 @ 0x0100f7b0
  *   controller_procedure_slot_reserve        <= FUN_0100f834 @ 0x0100f834
@@ -25,7 +26,7 @@ extern void sdc_assertion_fail(u32,u32);
 extern u32  FUN_0100e8b0(i32);
 extern u32  FUN_0100e8b8(i32);
 extern u16  FUN_0100e8c4(i32);
-extern i32  FUN_0100e8c8(i32);
+extern i32  ble_phy_masks_are_one_hot_or_zero(i32);
 extern void sdc_work_submit(i32,u32,u32);
 extern void controller_procedure_reference_release(i32);
 extern u32  controller_procedure_slot_reserve(i32,i32);
@@ -71,7 +72,7 @@ CALL_E8C8:
   iVar12 = param_1;
   local_24 = (u32)param_2;
   uStack_20 = param_3;
-  iVar4 = FUN_0100e8c8(param_2);
+  iVar4 = ble_phy_masks_are_one_hot_or_zero(param_2);
   if (iVar4 == 0) {
 LAB_0101fa52:
     iVar4 = *(volatile i32*)(param_1 + 4);
