@@ -14,11 +14,11 @@ control-flow-equivalent to Zephyr's configured four-argument
 - Address/extent: `0x0007d9c0`, 138 bytes.
 - Firmware extent SHA-256:
   `f139580dbdc1df0fd61ae6b4c3074a8096c380e4e2a988c615bc6d8bac8fbcfe`.
-- Reconstructed source SHA-256:
-  `bc199bea65d080e7304d33e7e49bb117312b1e6f25aa25d46c4dcd02a6b3ea8a`.
-- Observed ABI:
-  `uint16_t configurable_crc16(uint16_t seed, uint16_t polynomial,
-  uint16_t xor_out, bool reflect_input, bool reflect_output,
+- Namespaced reconstructed source SHA-256:
+  `6d10ec63a0024f0a1c8f3eb1797b5dd3dbff5f8080ff2d3264abec2287db0d6d`.
+- Observed machine-word ABI (the CRC state is logically 16-bit):
+  `unsigned configurable_crc16(unsigned seed, unsigned polynomial,
+  unsigned xor_out, bool reflect_input, bool reflect_output,
   const uint8_t *src, size_t len)`.
 - The first four arguments arrive in `r0` through `r3`; `reflect_output`,
   `src`, and `len` are loaded independently from the stack. The body can
@@ -33,8 +33,10 @@ caller-supplied seed, `r1`/`r2` are the source and length, and it calls the
 seven-argument function with polynomial `0x8005`, XOR-out `0xffff`, and both
 reflection flags set. The caller passes authoritative CFG verification with
 four cases covering null source and non-positive length:
-`FUN_0007da4a PASS cases=4`. Its retained source SHA-256 is
-`9a645113b220344becbcf3859c3ce4a101870bc87851b9f1b1aacad7622c27d6`.
+`FUN_0007da4a PASS cases=4`. Its namespaced retained source SHA-256 is
+`20255f8d9a7acdaa6bdb2b943cab0f19f4a2cebf9b754eed5ee0e0f3781ba1af`.
+The recovered `calc_flash_crc` caller was ABI-reconciled with the wrapper and
+also passes authoritative verification: `FUN_00022974 PASS cases=4`.
 
 ## Configured Zephyr owner is a different function
 
@@ -49,7 +51,7 @@ The section has **zero relocations**, so there are no address-bearing operands
 that could be masked to improve the comparison. Only 3 of the 42 aligned bytes
 match the firmware prefix, and the firmware continues for another 96 bytes.
 
-The SDK ABI is
+The SDK ABI is instead
 `uint16_t crc16_reflect(uint16_t polynomial, uint16_t seed,
 const uint8_t *src, size_t len)`. It always uses the reflected right-shift
 algorithm and has no XOR-out or independently selectable input/output

@@ -18371,23 +18371,25 @@
   "0x0007d9c0": {
    "address": "0x0007d9c0",
    "raw_name": "FUN_0007d9c0",
-   "name": "crc16_reflect",
-   "display_name": "crc16_reflect",
+   "name": "g1_recon_crc16_configurable",
+   "display_name": "g1_recon_crc16_configurable",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained firmware-specific seven-word configurable CRC-16 implementation; deliberately namespaced after COLLISION-20 proved it is not Zephyr crc16_reflect. Raw identity remains FUN_0007d9c0 at 0x0007d9c0.",
    "aliases": [
-    "FUN_0007d9c0"
+    "FUN_0007d9c0",
+    "crc16_reflect"
    ]
   },
   "0x0007da4a": {
    "address": "0x0007da4a",
    "raw_name": "FUN_0007da4a",
-   "name": "crc16_ansi",
-   "display_name": "crc16_ansi",
+   "name": "g1_recon_crc16_ansi_seeded",
+   "display_name": "g1_recon_crc16_ansi_seeded",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained three-argument seeded ANSI CRC wrapper around g1_recon_crc16_configurable; deliberately namespaced because its ABI is not Zephyr crc16_ansi. Raw identity remains FUN_0007da4a at 0x0007da4a.",
    "aliases": [
-    "FUN_0007da4a"
+    "FUN_0007da4a",
+    "crc16_ansi"
    ]
   },
   "0x0007da70": {
@@ -27162,8 +27164,6 @@
   "convert_to_id_on_match": "0x000831e2",
   "count_chars_in_default_font_table": "0x00043e58",
   "cpu_idle_wfi_gate_check": "0x0004c1f0",
-  "crc16_ansi": "0x0007da4a",
-  "crc16_reflect": "0x0007d9c0",
   "crc32_table_init": "0x000235dc",
   "crc32_update": "0x0002360c",
   "crc8_ccitt": "0x0004ab94",
@@ -27357,6 +27357,8 @@
   "fuel_gauge_sample_init_timestamp": "0x0002ea28",
   "fuel_gauge_unlock": "0x000330d8",
   "fuel_gauge_update": "0x00010b18",
+  "g1_recon_crc16_ansi_seeded": "0x0007da4a",
+  "g1_recon_crc16_configurable": "0x0007d9c0",
   "gatt_cancel_encode": "0x0008278a",
   "gatt_ccc_changed": "0x000825c0",
   "gatt_ccc_settings_set": "0x0005af8c",

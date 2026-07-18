@@ -1,15 +1,16 @@
 /* Reconstructed FUN_0007d9c0 @ 0x7d9c0  (parity: 157/300 trials, PROVEN) */
 
-unsigned FUN_0007d9c0(unsigned param_1, unsigned param_2, unsigned param_3, int param_4,
-                      char param_5, unsigned char *param_6, int param_7){
-    if (param_6 == 0) return 0;
-    if (param_7 <= 0) return 0;
-    unsigned char *cur = param_6;
-    unsigned char *end = param_6 + param_7;
+unsigned FUN_0007d9c0(unsigned seed, unsigned polynomial, unsigned xor_out,
+                      int reflect_input, char reflect_output,
+                      const unsigned char *src, int len){
+    if (src == 0) return 0;
+    if (len <= 0) return 0;
+    const unsigned char *cur = src;
+    const unsigned char *end = src + len;
     do {
         unsigned byte = *(volatile unsigned char*)cur; cur++;
         unsigned uVar4;
-        if (param_4 != 0){
+        if (reflect_input != 0){
             unsigned uVar7 = byte; int uVar6 = 7; unsigned uVar3 = 0;
             for(;;){
                 unsigned t = uVar3;
@@ -21,18 +22,18 @@ unsigned FUN_0007d9c0(unsigned param_1, unsigned param_2, unsigned param_3, int 
             }
             uVar4 = uVar3;
         } else { uVar4 = byte; }
-        param_1 = param_1 ^ (uVar4 << 8);
+        seed = seed ^ (uVar4 << 8);
         int iVar5 = 8;
         do {
-            unsigned hi = param_1 & 0x8000;
-            param_1 = (param_1 << 1) & 0xffff;
-            if (hi != 0) param_1 = param_1 ^ param_2;
+            unsigned hi = seed & 0x8000;
+            seed = (seed << 1) & 0xffff;
+            if (hi != 0) seed = seed ^ polynomial;
             iVar5--;
         } while (iVar5 != 0);
     } while (cur != end);
-    unsigned uVar4 = param_1;
-    if (param_5 != 0){
-        unsigned r1 = param_1; int uVar3 = 0xf; uVar4 = 0;
+    unsigned uVar4 = seed;
+    if (reflect_output != 0){
+        unsigned r1 = seed; int uVar3 = 0xf; uVar4 = 0;
         for(;;){
             if ((int)(r1 << 31) < 0){ uVar4 = ((1u << uVar3) | uVar4) & 0xffff; }
             int cont = (uVar3 != 0);
@@ -40,6 +41,5 @@ unsigned FUN_0007d9c0(unsigned param_1, unsigned param_2, unsigned param_3, int 
             if (!cont) break;
         }
     }
-    return param_3 ^ uVar4;
+    return xor_out ^ uVar4;
 }
-

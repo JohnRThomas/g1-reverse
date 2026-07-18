@@ -8,7 +8,8 @@ extern void DEBUG_PRINT(uint32_t format, ...);
 extern int FUN_000167a8(void);
 extern void FUN_00019c70(uint32_t format, ...);
 extern void FUN_0002ae84(void);
-extern uint16_t FUN_0007da4a(uint16_t crc, const void *data, int count);
+extern unsigned int FUN_0007da4a(unsigned int crc,
+        const unsigned char *data, int count);
 extern int FUN_0008638c(const void *device);
 extern void FUN_00086c78(void *destination, int value, unsigned int count);
 

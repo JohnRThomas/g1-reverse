@@ -6,7 +6,7 @@
  *   debug_print                              <= FUN_00019c70 @ 0x00019c70
  *   calc_flash_crc                           <= FUN_00022974 @ 0x00022974
  *   watchdog_feed_retry                      <= FUN_0002ae84 @ 0x0002ae84
- *   crc16_ansi                               <= FUN_0007da4a @ 0x0007da4a
+ *   g1_recon_crc16_ansi_seeded               <= FUN_0007da4a @ 0x0007da4a
  *   z_device_is_ready                        <= FUN_0008638c @ 0x0008638c
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
@@ -33,7 +33,8 @@ extern void log_message(uint32_t format, ...);
 extern int get_device_info(void);
 extern void debug_print(uint32_t format, ...);
 extern void watchdog_feed_retry(void);
-extern uint16_t crc16_ansi(uint16_t crc, const void *data, int count);
+extern unsigned int g1_recon_crc16_ansi_seeded(unsigned int crc,
+        const unsigned char *data, int count);
 extern int z_device_is_ready(const void *device);
 extern void memset_bytes(void *destination, int value, unsigned int count);
 
@@ -118,7 +119,7 @@ uint32_t calc_flash_crc(uint16_t *crc, int start_address,
             else
                 debug_print(0x0009e4f0, 0x0009e4f9);
         }
-        *crc = crc16_ansi(*crc, buffer, chunk_size);
+        *crc = g1_recon_crc16_ansi_seeded(*crc, buffer, chunk_size);
         cursor += 0x400;
     }
 

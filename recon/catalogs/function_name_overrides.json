@@ -782,6 +782,14 @@
    "name": "_write_r",
    "evidence": "Exact newlib reentrant write adapter around Zephyr fd dispatch, including errno transfer on failure. Raw residue identity was tail_77d30."
   },
+  "0x0007d9c0": {
+   "name": "g1_recon_crc16_configurable",
+   "evidence": "Retained firmware-specific seven-word configurable CRC-16 implementation; deliberately namespaced after COLLISION-20 proved it is not Zephyr crc16_reflect. Raw identity remains FUN_0007d9c0 at 0x0007d9c0."
+  },
+  "0x0007da4a": {
+   "name": "g1_recon_crc16_ansi_seeded",
+   "evidence": "Retained three-argument seeded ANSI CRC wrapper around g1_recon_crc16_configurable; deliberately namespaced because its ABI is not Zephyr crc16_ansi. Raw identity remains FUN_0007da4a at 0x0007da4a."
+  },
   "0x0007e12a": {
    "name": "sys_heap_alloc",
    "evidence": "Exact configured Zephyr 3.4.99 sys_heap_alloc implementation from lib/os/heap.c. Raw identity remains FUN_0007e12a."
