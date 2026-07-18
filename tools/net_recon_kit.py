@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing product ESB event callback.  The switch/default and
+    # link-state update islands end at 0x0102a5de; its literal pool starts
+    # there.  main stores the runtime Thumb pointer 0x0102acc9.
+    0x0102a4c8: 0x116,
     # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
     # catalog.  Each is a one-argument k_sem_give tail veneer; the following
     # halfword is alignment and its semaphore-address literal follows that.

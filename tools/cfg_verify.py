@@ -103,6 +103,10 @@ REVIEWED_PREFIX_PROOFS = {
 CALL_ARITY_OVERRIDES = {
     # MPSL timeslot close consumes only the one-byte session identifier.
     ("net", 0x0102a0e6): 1,
+    # Product ESB event timestamp path.  Both helpers consume no arguments;
+    # r0/r1 are live scratch at the original call sites.
+    ("net", 0x0103963c): 0,
+    ("net", 0x0103b300): 0,
     # Zephyr sys_reboot consumes the reboot mode in r0 even though this arch
     # implementation ignores the value before its AIRCR reset request.
     ("net", 0x0102f4ec): 1,
@@ -399,6 +403,10 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing product ESB event callback.  The switch/default and
+    # link-state update islands end at 0x0102a5de; its literal pool starts
+    # there.  main stores the runtime Thumb pointer 0x0102acc9.
+    ("net", 0x0102a4c8): 0x116,
     # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
     # catalog.  Each is a one-argument k_sem_give tail veneer; the following
     # halfword is alignment and its semaphore-address literal follows that.
@@ -1126,6 +1134,11 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # Product ESB callback has a void ABI.  Its two timestamp helpers return
+    # complete 64-bit values in r0:r1.
+    ("net", 0x0102a4c8): "void",
+    ("net", 0x0103963c): "i64",
+    ("net", 0x0103b300): "i64",
     # Newlib's hard-float sqrt returns the binary64 result in d0; its integer
     # temporaries leave misleading live values in r0/r1 at the return site.
     ("app", 0x00075e14): "f64",
@@ -19204,6 +19217,69 @@ REVIEWED_STATE_CASES[("net", 0x01034328)] = [
     _net_resource_claim_case(0x80000005),
     _net_resource_claim_case(0x80000000, output_seed=0x6c),
 ]
+
+
+def _net_esb_event_case(event_type, *, log_level=0, service_mode=0,
+                        service_role=0, rx_state=0, rx_ready=0, retry=0,
+                        opcode=0x20, length=16, sequence=7,
+                        last_sequence=0):
+    """Production-shaped product ESB event plus reachable service/payload."""
+    event = emu.SCRATCH + 0x1000
+    payload = emu.SCRATCH + 0x2000
+    service = emu.SCRATCH + 0x3000
+    event_image = bytearray(16)
+    event_image[0] = int(event_type) & 0xff
+    event_image[4:8] = payload.to_bytes(4, "little")
+    event_image[8:12] = int(length).to_bytes(4, "little")
+    event_image[12] = 0x55
+    payload_image = bytearray(0x20)
+    payload_image[0] = int(opcode) & 0xff
+    payload_image[0x11] = int(sequence) & 0xff
+    service_image = (int(service_role).to_bytes(4, "little") +
+                     int(service_mode).to_bytes(4, "little"))
+    counters = (bytes(12) + service.to_bytes(4, "little"))
+    memory = [
+        (event, bytes(event_image)),
+        (payload, bytes(payload_image)),
+        (service, service_image),
+        (0x21000580, int(log_level).to_bytes(4, "little", signed=True)),
+        (0x210045e8, counters),
+        (0x21001cf0, bytes(8)),
+        (0x21004b9c, bytes((int(last_sequence) & 0xff,
+                            int(retry) & 0xff))),
+        (0x21004c9b, bytes((int(rx_state) & 0xff,
+                            int(rx_ready) & 0xff, 0, 0,
+                            0, int(last_sequence) & 0xff))),
+    ]
+    return ({0: event}, memory)
+
+
+# The selector is event[0], beyond the generic scalar selector tracker.  Cover
+# all event types, logger gates, state transitions, opcode filters, length
+# boundary and sequence duplicate/update arms explicitly.
+REVIEWED_STATE_CASES[("net", 0x0102a4c8)] = [
+    _net_esb_event_case(0, log_level=0),
+    _net_esb_event_case(0, log_level=3),
+    _net_esb_event_case(1, log_level=0),
+    _net_esb_event_case(1, log_level=3),
+    _net_esb_event_case(3, log_level=0),
+    _net_esb_event_case(3, log_level=1),
+    _net_esb_event_case(2, service_mode=1),
+    _net_esb_event_case(2, service_role=2, rx_state=1, rx_ready=2,
+                        retry=0, opcode=0x10),
+    _net_esb_event_case(2, service_role=2, rx_state=1, rx_ready=2,
+                        retry=1, opcode=0x11),
+    _net_esb_event_case(2, service_role=1, rx_state=0, opcode=0x10),
+    _net_esb_event_case(2, service_role=1, rx_state=2, opcode=0x11),
+    _net_esb_event_case(2, service_role=1, rx_state=1, rx_ready=2,
+                        opcode=0x20, length=15),
+    _net_esb_event_case(2, service_role=2, opcode=0x20, length=16,
+                        sequence=7, last_sequence=7),
+    _net_esb_event_case(2, service_role=2, opcode=0x20, length=16,
+                        sequence=8, last_sequence=7),
+]
+
+
 ABSOLUTE_READ_TRANSITION_CASES[("net", 0x01034328)] = [
     [], [], [], [], [], [],
     [(_NET_RESOURCE_FREE_MASK, 2, 0x00000006)],
