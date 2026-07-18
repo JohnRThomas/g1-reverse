@@ -20,6 +20,9 @@ TRUE_SIZE_OVERRIDES = {
     # halfword is alignment and its semaphore-address literal follows that.
     0x0102ac00: 0x06,
     0x0102ace8: 0x06,
+    # Custom ipc0 endpoint receive dispatcher.  Its matched-record path
+    # tail-calls the registered handler; the registry-root literal follows.
+    0x0102ab14: 0x38,
     # Catalog-missing SDC event-publication bridge.  Its cleanup return is at
     # 0x0101b51a and its aligned state-base literal occupies b548..b54b;
     # 0x0101b54c is the next independent entry.

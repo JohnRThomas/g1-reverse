@@ -402,6 +402,9 @@ TRUE_SIZE_OVERRIDES = {
     # halfword is alignment and its semaphore-address literal follows that.
     ("net", 0x0102ac00): 0x06,
     ("net", 0x0102ace8): 0x06,
+    # Custom ipc0 endpoint receive dispatcher.  Its matched-record path
+    # tail-calls the registered handler; the registry-root literal follows.
+    ("net", 0x0102ab14): 0x38,
     # Catalog-missing SDC event-publication bridge.  The body owns its
     # state-base literal at 0x0101b548 and ends before the independent entry
     # at 0x0101b54c.
@@ -18513,6 +18516,39 @@ REVIEWED_ORACLE_CASES[("net", 0x0100f5d8)] = [
     _net_random_state_finalize_case((0xffffffff, 0x80000000)),
     _net_random_state_finalize_case((0, 0), (0x13579bdf, 0x2468ace0)),
 ]
+
+
+def _net_ipc0_dispatch_case(kind):
+    """Concrete ipc0 registry states for its absolute-root receive callback."""
+    data = emu.SCRATCH + 0x1000
+    registry = emu.SCRATCH + 0x2000
+    handler = emu.SCRATCH + 0x3000
+    registry_image = bytearray(0x18)
+    handler_image = bytearray(12)
+    message_id = 0x42
+    memory = [
+        (data, bytes((message_id, 0x11, 0x22, 0x33, 0x44))),
+        (0x21004604, registry.to_bytes(4, "little")),
+    ]
+    if kind != "empty":
+        registry_image[4:8] = (1).to_bytes(4, "little")
+        if kind != "null":
+            registry_image[8:12] = handler.to_bytes(4, "little")
+            handler_image[0] = message_id if kind == "match" else 0x7e
+            handler_image[8:12] = (0x00080001).to_bytes(4, "little")
+            memory.append((handler, bytes(handler_image)))
+    memory.append((registry, bytes(registry_image)))
+    return ({0: data, 1: 5, 2: 0}, memory)
+
+
+# The registry root is an unaligned absolute global, so generic pointer fuzz
+# cannot establish useful callback coverage.  These cases cover the empty,
+# null-slot, ID-mismatch and matching external-handler paths.
+REVIEWED_STATE_CASES[("net", 0x0102ab14)] = [
+    _net_ipc0_dispatch_case(kind)
+    for kind in ("empty", "null", "mismatch", "match")
+]
+REVIEWED_CALL_ARITIES[("net", 0x0102ab14)] = [3]
 
 
 def _net_ccm_result_case(active, saved_result, end_keystream=0,
