@@ -1,0 +1,82 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batch": "COLLISION-11",
+ "status": "exact_sdk_adoption_candidate_not_activated",
+ "policy": {
+  "manifest_mutated": false,
+  "retained_sources_mutated": false,
+  "shared_naming_mutated": false
+ },
+ "firmware": {
+  "va": "0x00070ee4",
+  "raw_symbol": "FUN_00070ee4",
+  "readable_symbol": "virtqueue_free",
+  "ghidra_catalog_extent": 186,
+  "true_code_extent": 46,
+  "true_unit_extent_with_literals": 56,
+  "abi": "void virtqueue_free(struct virtqueue *vq)",
+  "cfg_verify": {
+   "status": "PASS",
+   "cases": 2,
+   "selectors": {"0": [0, 1]}
+  }
+ },
+ "configured_owner": {
+  "source": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c",
+  "source_sha256": "4f11f191b02a79414730a3abc7a7f3caebe6ddea9667facc1daf49411d84b3be",
+  "object": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
+  "object_sha256": "dfd13df6fcbffdae5df7718b0a610f810915303e7ec39065d1cbc75325907276",
+  "archive_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(virtqueue.c.obj)",
+  "section": ".text.virtqueue_free",
+  "section_size": 56,
+  "binding": "STB_GLOBAL",
+  "config_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06"
+ },
+ "normalized_match": {
+  "exact": true,
+  "relocations": [
+   {"offset": 40, "size": 4, "type": "R_ARM_THM_JUMP24", "symbol": "k_free"},
+   {"offset": 48, "size": 4, "type": "R_ARM_ABS32", "symbol": "_metal"},
+   {"offset": 52, "size": 4, "type": "R_ARM_ABS32", "symbol": ".rodata.virtqueue_free.str1.1"}
+  ],
+  "sha256": "23c39b8c66df8e52ee7191e155d92ca205fea5d4ebd1e3d2b311159bcc4c950d",
+  "firmware_literals": {
+   "_metal": "0x2000b424",
+   "format": "0x000f7b84"
+  },
+  "format_bytes": "%s: freeing non-empty virtqueue\\r\\n\\0",
+  "state_accesses": [
+   "vq->vq_free_cnt at +0x24",
+   "vq->vq_nentries at +0x0a",
+   "vq->vq_name at +0x04",
+   "_metal.log_level at +0",
+   "_metal.log_handler at +4"
+  ]
+ },
+ "callers": [
+  {
+   "va": "0x0007eda4",
+   "symbol": "ipc_static_vrings_deinit",
+   "direct_calls": 2,
+   "argument": "one struct virtqueue pointer from vr->vq[]",
+   "firmware_extent": 96,
+   "configured_section_size": 96,
+   "configured_source": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/lib/ipc_static_vrings.c",
+   "configured_source_sha256": "754b7c13c76a8461c75f6d1d320caca8d7ba697f7c400675d4d5e36978161873",
+   "configured_object": "/private/tmp/g1-app-residue-current-0718/zephyr/CMakeFiles/zephyr.dir/subsys/ipc/ipc_service/lib/ipc_static_vrings.c.obj",
+   "configured_object_sha256": "453c8e91eba9efbc0944e6a8a1de797bf21bc8efaec81d06bc32ca045c2e76f8",
+   "normalized_exact": true,
+   "normalized_sha256": "fc20a970edb292a70fa87cf94c6dd33303b0834f1c9e366fa45ff7b8bbfd50f6",
+   "cfg_verify": "missing_reconstruction_source; instruction_exact configured caller used instead"
+  }
+ ],
+ "whole_unit_closure": {
+  "safe": true,
+  "archive_member_already_selected": true,
+  "same_source_unit_collision_symbols": ["virtqueue_free"],
+  "exclude_only": ["0x00070ee4"],
+  "new_undefined_symbols": []
+ },
+ "recommended_implementation": "Add an explicit COLLISION-11 adoption authorization for 0x00070ee4, regenerate the manifest and retained list, and require a retain-all collision delta of exactly minus one with the configured libopen_amp virtqueue.c owner selected."
+}
