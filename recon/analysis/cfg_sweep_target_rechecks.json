@@ -46,6 +46,31 @@
     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
    }
   },
+  "app:FUN_00050558": {
+   "core": "app",
+   "name": "FUN_00050558",
+   "result": {
+    "callback_slots": [],
+    "checked": 9,
+    "cover_cases": 9,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {
+     "0": [
+      0,
+      1
+     ]
+    },
+    "status": "PASS"
+   },
+   "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
   "app:FUN_00053580": {
    "core": "app",
    "name": "FUN_00053580",
@@ -124,6 +149,26 @@
     "status": "PASS"
    },
    "source_sha256": "e564858eb0f56f61e6e0a4c8b0b970f0a6eaf774112359b2f7a6ca367175ab10",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_00066050": {
+   "core": "app",
+   "name": "FUN_00066050",
+   "result": {
+    "callback_slots": [],
+    "checked": 40,
+    "cover_cases": 0,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
    "status": "PASS",
    "tool_hashes": {
     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",

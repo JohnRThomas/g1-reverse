@@ -2659,6 +2659,7 @@
    "FUN_000502c4",
    "FUN_00050304",
    "FUN_000503d8",
+   "FUN_00050558",
    "FUN_000506ac",
    "FUN_000507d4",
    "FUN_00050b8c",
@@ -3065,6 +3066,7 @@
    "FUN_00065f1c",
    "FUN_00065f80",
    "FUN_00065ff4",
+   "FUN_00066050",
    "FUN_00066130",
    "FUN_0006615c",
    "FUN_000661dc",
@@ -4252,10 +4254,7 @@
   ],
   "compile_error": [],
   "other": [],
-  "post_baseline_active": [
-   "FUN_00050558",
-   "FUN_00066050"
-  ],
+  "post_baseline_active": [],
   "source_changed": [],
   "timeout": []
  },
@@ -4271,10 +4270,10 @@
  "core": "app",
  "counts": {
   "FAIL": 0,
-  "PASS": 2111,
+  "PASS": 2113,
   "compile_error": 0,
   "other": 0,
-  "post_baseline_active": 2,
+  "post_baseline_active": 0,
   "source_changed": 0,
   "timeout": 0
  },
@@ -8092,13 +8091,32 @@
    "baseline_status": "PASS",
    "history": {
     "baseline_status": "PASS",
-    "current_status": "post_baseline_active",
-    "reason": "MMIO-aware post-baseline false proof under repair"
+    "post_baseline_false_proof": "ordered MMIO trace mismatch",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 9,
+     "cover_cases": 9,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
    },
    "lane": 1,
    "name": "FUN_00050558",
    "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
-   "status": "post_baseline_active"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -11034,13 +11052,27 @@
    "baseline_status": "PASS",
    "history": {
     "baseline_status": "PASS",
-    "current_status": "post_baseline_active",
-    "reason": "MMIO-aware post-baseline false proof under repair"
+    "post_baseline_false_proof": "ordered MMIO trace mismatch",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
    },
    "lane": 0,
    "name": "FUN_00066050",
    "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
-   "status": "post_baseline_active"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -19792,9 +19824,61 @@
   "sha256": "75a5db7f4fdfe5d091db4766b5782d9f888635c904a5256848c84c89d1ef53fe",
   "state": "historical_not_current"
  },
- "post_baseline_active": [
-  "FUN_00050558",
-  "FUN_00066050"
+ "post_baseline_active": [],
+ "post_baseline_rechecks": [
+  {
+   "key": "app:FUN_00050558",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_00050558",
+    "result": {
+     "callback_slots": [],
+     "checked": 9,
+     "cover_cases": 9,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    },
+    "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "123cf8c9d496c8ca3a726b1f023d397db0ce127235c408646d1ea4f304138622"
+  },
+  {
+   "key": "app:FUN_00066050",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_00066050",
+    "result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "d1fdb6c4c6fdf265c197ca1c7399486690b6bb29dd6ca911f884c252a04bfb93"
+  }
  ],
  "schema": 1,
  "source_tree_match_verified_at_generation": true,
@@ -20261,5 +20345,5 @@
   ],
   "sha256": "40d9df8d775f265bb78c943db08bb4b8a9686a208a7ea2d603d676856c84adc2"
  },
- "unresolved_count": 2
+ "unresolved_count": 0
 }

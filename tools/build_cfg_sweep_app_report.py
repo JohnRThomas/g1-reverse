@@ -157,17 +157,28 @@ def assert_current_sources(functions):
         raise ValueError("CPUAPP source tree changed: %r" % changed)
 
 
-def apply_post_baseline_active(functions):
-    source_dir = ROOT / "recon/app/src"
+def apply_post_baseline_rechecks(functions):
+    receipts = json.loads(RECHECKS.read_text())["rechecks"]
+    resolved = []
     for name in POST_BASELINE_ACTIVE:
         row = functions[name]
-        row["source_sha256"] = sha256(source_dir / (name + ".c"))
-        row["status"] = "post_baseline_active"
+        receipt = receipts.get("app:" + name)
+        if (receipt is None or receipt.get("status") != "PASS"):
+            raise ValueError("missing post-baseline PASS receipt: %s" % name)
+        if receipt.get("tool_hashes") != RECHECK_TOOL_HASHES:
+            raise ValueError("post-baseline recheck tool drift: %s" % name)
+        row["source_sha256"] = receipt["source_sha256"]
+        row["status"] = "PASS"
         row["history"] = {
             "baseline_status": row["baseline_status"],
-            "current_status": "post_baseline_active",
-            "reason": "MMIO-aware post-baseline false proof under repair",
+            "post_baseline_false_proof": "ordered MMIO trace mismatch",
+            "recheck_status": "PASS",
+            "recheck_result": receipt["result"],
+            "recheck_tool_hashes": receipt["tool_hashes"],
         }
+        resolved.append({"key": "app:" + name, "receipt": receipt,
+                         "receipt_digest": digest_json(receipt)})
+    return resolved
 
 
 def build(require_current=True):
@@ -175,7 +186,7 @@ def build(require_current=True):
     functions, lane_tools = baseline_functions(snapshot)
     rechecks = selected_rechecks(functions)
     timeout_other_triage = apply_timeout_other_triage(functions)
-    apply_post_baseline_active(functions)
+    post_baseline_rechecks = apply_post_baseline_rechecks(functions)
     if require_current:
         assert_current_sources(functions)
     ordered = [functions[name] for name in sorted(functions)]
@@ -214,7 +225,8 @@ def build(require_current=True):
         "functions": ordered,
         "unresolved_count": sum(len(by_status[status]) for status in BUCKETS
                                 if status != "PASS"),
-        "post_baseline_active": list(POST_BASELINE_ACTIVE),
+        "post_baseline_active": [],
+        "post_baseline_rechecks": post_baseline_rechecks,
         "compile_error_triage": {
             "name": "FUN_00081e2a",
             "baseline_status": "compile_error",
@@ -261,9 +273,10 @@ def markdown(data):
         "- Current overlay: %d PASS, %d FAIL, %d compile error, %d other, %d "
         "timeout" % (c["PASS"], c["FAIL"], c["compile_error"], c["other"],
                      c["timeout"]),
-        "- Unresolved baseline inventory: **%d**" % data["unresolved_count"],
-        "- Post-baseline active MMIO false proofs: `%s`" % "`, `".join(
-            data["post_baseline_active"]), "",
+        "- Unresolved current inventory: **%d**" % data["unresolved_count"],
+        "- Post-baseline MMIO repairs rechecked PASS: `%s`" % "`, `".join(
+            entry["key"].split(":", 1)[1]
+            for entry in data["post_baseline_rechecks"]), "",
         "## Confirmed FAIL", "",
     ]
     lines += ["- `%s`" % name for name in data["by_status"]["FAIL"]]
