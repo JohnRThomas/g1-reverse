@@ -48,6 +48,20 @@ class CohesiveNetUndefinedClassificationTest(unittest.TestCase):
         self.assertIn("adoption_manifest.json", names)
         self.assertIn("net_sdc_archive_ownership.json", names)
 
+    def test_firmware_selects_released_ncs_manifest(self):
+        provenance = self.report["archive_version_discrimination"][
+            "firmware_release_provenance"
+        ]
+        self.assertEqual(provenance["ncs_release"], "v2.5.1")
+        self.assertEqual(
+            provenance["embedded_banner"],
+            "*** Booting nRF Connect SDK v2.5.1 ***",
+        )
+        self.assertEqual(provenance["image_offset"], "0x363c4")
+        self.assertEqual(
+            provenance["released_component_revisions"]["nrfxlib"], "v2.5.1"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

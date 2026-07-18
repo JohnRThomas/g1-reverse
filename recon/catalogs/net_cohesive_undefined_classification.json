@@ -196,16 +196,32 @@
  "archive_version_discrimination": {
   "repository": "/Users/freedomcoder/ncs251/nrfxlib",
   "manifest_selected_tag": "v2.5.1",
+  "firmware_release_provenance": {
+   "binary": "/Users/freedomcoder/Projects/G1disasm2/netcore_image.bin",
+   "binary_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+   "embedded_banner": "*** Booting nRF Connect SDK v2.5.1 ***",
+   "image_offset": "0x363c4",
+   "ncs_release": "v2.5.1",
+   "ncs_manifest_commit": "87355af5914e498f449b7a68bb5641031a7b8885",
+   "released_component_revisions": {
+    "zephyr": "v3.4.99-ncs1-1",
+    "nrfxlib": "v2.5.1",
+    "mbedtls": "v3.3.0-ncs2-1"
+   },
+   "interpretation": "The shipped CPUNET image identifies the umbrella SDK release directly. This selects the NCS v2.5.1 west manifest even where an individual component's binary payload was unchanged from the preceding tag."
+  },
   "binary_archive_indistinguishable_tags": [
    "v2.5.0",
    "v2.5.1"
   ],
-  "conclusion": "The selected SDC and MPSL archives and every selected private body are byte-identical in nrfxlib v2.5.0 and v2.5.1. The firmware bytes therefore select that two-tag interval; west manifest provenance selects v2.5.1. v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs.",
+  "conclusion": "The selected SDC and MPSL archives and every selected private body are byte-identical in nrfxlib v2.5.0 and v2.5.1, so those archive bytes alone select only that two-tag interval. The shipped CPUNET image independently embeds the NCS v2.5.1 boot banner, selecting the released v2.5.1 west manifest. v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs.",
   "tags": [
    {
     "tag": "v2.4.2",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "30841c2ad6d3b022406b167ab0ebaf46e8901c56",
+      "archive_git_blob": "c9f170d6eedef88d380572f2ed9f0454ad250c8d",
       "archive_size": 670714,
       "archive_sha256": "9014ecbad8dd54c870b83793318ae8ad261c093caa1fea01d95e1fed0f3e54d4",
       "member_sha256": "a8eae7d423149bfff4751511309dee0800d9587776905a1b6285176e5d2b77b3",
@@ -216,6 +232,8 @@
       "whole_archive_identical_to_v2_5_1": false
      },
      "mpsl": {
+      "tag_commit": "30841c2ad6d3b022406b167ab0ebaf46e8901c56",
+      "archive_git_blob": "0e3f992de367531f3810b9457865cf87eb493547",
       "archive_size": 117020,
       "archive_sha256": "9e6bb3b60552418ea715e001bd89390a8fe8dcab9b3dc8ba354eafd687872e8e",
       "member_sha256": "4b1b7870045469e39910f04f45a78e4956f537ab08363abf2060e4d2361adf8e",
@@ -231,6 +249,8 @@
     "tag": "v2.5.0",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "78cc07ed7c9f168c3d6316db5af969ac5f7c977a",
+      "archive_git_blob": "73e4cde343265187d4348c275f833c3f7fe3443e",
       "archive_size": 707674,
       "archive_sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
       "member_sha256": "12327bce844cd5f57befeac6536b1b313fa1447213ea76af780a43f50e4e900f",
@@ -241,6 +261,8 @@
       "whole_archive_identical_to_v2_5_1": true
      },
      "mpsl": {
+      "tag_commit": "78cc07ed7c9f168c3d6316db5af969ac5f7c977a",
+      "archive_git_blob": "b4eb4abc2b5e44d44a6105464fa23a8c8775ac29",
       "archive_size": 78520,
       "archive_sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
       "member_sha256": "53cae54cfa1f6f3979369623ee853206468d1bceb7b69f4402c9c178baaba3b3",
@@ -256,6 +278,8 @@
     "tag": "v2.5.1",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
+      "archive_git_blob": "73e4cde343265187d4348c275f833c3f7fe3443e",
       "archive_size": 707674,
       "archive_sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
       "member_sha256": "12327bce844cd5f57befeac6536b1b313fa1447213ea76af780a43f50e4e900f",
@@ -266,6 +290,8 @@
       "whole_archive_identical_to_v2_5_1": true
      },
      "mpsl": {
+      "tag_commit": "ab72f33c86db7252dbf9a3ffec86c6b7fc6a9da7",
+      "archive_git_blob": "b4eb4abc2b5e44d44a6105464fa23a8c8775ac29",
       "archive_size": 78520,
       "archive_sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
       "member_sha256": "53cae54cfa1f6f3979369623ee853206468d1bceb7b69f4402c9c178baaba3b3",
@@ -281,6 +307,8 @@
     "tag": "v2.5.2",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "a7ef13f977653fc0b4cb2a336a3c1054763fb755",
+      "archive_git_blob": "5cba40917566e3a332116f40b5fae440f2529b55",
       "archive_size": 710026,
       "archive_sha256": "19961519785446307f3ccad97d8a7ecc33fb4a3c4b684b4ed56aa81a6b4ddf8f",
       "member_sha256": "d3f9ee601e4245b3cfa5824a54cf92d2b0d87d80b7ca8c748f1405fe60890ced",
@@ -291,6 +319,8 @@
       "whole_archive_identical_to_v2_5_1": false
      },
      "mpsl": {
+      "tag_commit": "a7ef13f977653fc0b4cb2a336a3c1054763fb755",
+      "archive_git_blob": "3a7ea618a51fa9a0d0569b68d06b9dc59b1611b4",
       "archive_size": 78584,
       "archive_sha256": "42992dfab1afc67d4f4e0f65c30229e66b670c8d1be1663923c89d34a7c5b329",
       "member_sha256": "c64d4346f09623e2cb83f96141d5d0ee2f53fb2e2ec201818456d06612ef69fe",
@@ -306,6 +336,8 @@
     "tag": "v2.5.3",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "a7ef13f977653fc0b4cb2a336a3c1054763fb755",
+      "archive_git_blob": "5cba40917566e3a332116f40b5fae440f2529b55",
       "archive_size": 710026,
       "archive_sha256": "19961519785446307f3ccad97d8a7ecc33fb4a3c4b684b4ed56aa81a6b4ddf8f",
       "member_sha256": "d3f9ee601e4245b3cfa5824a54cf92d2b0d87d80b7ca8c748f1405fe60890ced",
@@ -316,6 +348,8 @@
       "whole_archive_identical_to_v2_5_1": false
      },
      "mpsl": {
+      "tag_commit": "a7ef13f977653fc0b4cb2a336a3c1054763fb755",
+      "archive_git_blob": "3a7ea618a51fa9a0d0569b68d06b9dc59b1611b4",
       "archive_size": 78584,
       "archive_sha256": "42992dfab1afc67d4f4e0f65c30229e66b670c8d1be1663923c89d34a7c5b329",
       "member_sha256": "c64d4346f09623e2cb83f96141d5d0ee2f53fb2e2ec201818456d06612ef69fe",
@@ -331,6 +365,8 @@
     "tag": "v2.6.0",
     "families": {
      "softdevice_controller": {
+      "tag_commit": "13cd978b22d192447537a60f7fae5fe092930dc4",
+      "archive_git_blob": "2e8f65e0e7ae318efc406d81970864c11c2fab7b",
       "archive_size": 745016,
       "archive_sha256": "80e2f1501810fc44622523299e823d83b12c386999fd6db64615bd67032c64b2",
       "member_sha256": "af81efbbb15d3cbe2001f91c7296ffb4012fc9ec3883a89410d8d196eb889607",
@@ -341,6 +377,8 @@
       "whole_archive_identical_to_v2_5_1": false
      },
      "mpsl": {
+      "tag_commit": "13cd978b22d192447537a60f7fae5fe092930dc4",
+      "archive_git_blob": "571d9295ff8a8c126a6b71040110dcc6eb8d3fb9",
       "archive_size": 75656,
       "archive_sha256": "8011250ec9ff860e7864486629b672761126fd9de0b5b0ccf3603c2e8769642d",
       "member_sha256": "49b07d21a5ae8f8c2c8262bddd59a4f7ef6a068e1903f0e9642688c4874ba156",

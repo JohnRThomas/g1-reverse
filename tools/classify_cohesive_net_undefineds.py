@@ -35,6 +35,8 @@ NM = Path("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephy
 READELF = Path("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-readelf")
 GCC = Path("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc")
 NRFXLIB = Path("/Users/freedomcoder/ncs251/nrfxlib")
+NCS_MANIFEST = Path("/Users/freedomcoder/ncs251/nrf")
+NET_BINARY = ROOT / "netcore_image.bin"
 
 OUTPUT = ROOT / "recon/catalogs/net_cohesive_undefined_classification.json"
 MARKDOWN = ROOT / "recon/catalogs/net_cohesive_undefined_classification.md"
@@ -241,10 +243,56 @@ def _archive_version(tag: str, family: str) -> dict:
         size = int(symbol["st_size"])
         symbols[symbol.name].add(sha256_bytes(section.data()[start:start + size]))
     return {
+        "tag_commit": run(
+            ["git", "-C", NRFXLIB, "rev-parse", f"{tag}^{{commit}}"]
+        ).strip(),
+        "archive_git_blob": run(
+            ["git", "-C", NRFXLIB, "rev-parse", f"{tag}:{spec['path']}"]
+        ).strip(),
         "archive_size": len(archive),
         "archive_sha256": sha256_bytes(archive),
         "member_sha256": sha256_bytes(member),
         "symbols": symbols,
+    }
+
+
+def _manifest_revision(project: str) -> str:
+    """Read one project revision from the released NCS v2.5.1 manifest."""
+    manifest = run(["git", "-C", NCS_MANIFEST, "show", "v2.5.1:west.yml"])
+    match = re.search(
+        rf"(?ms)^\s*- name:\s*{re.escape(project)}\s*$.*?^\s+revision:\s*(\S+)\s*$",
+        manifest,
+    )
+    if not match:
+        raise ValueError(f"missing {project} revision in NCS v2.5.1 west.yml")
+    return match.group(1)
+
+
+def firmware_release_provenance() -> dict:
+    data = NET_BINARY.read_bytes()
+    banner = b"*** Booting nRF Connect SDK v2.5.1 ***"
+    offset = data.find(banner)
+    if offset < 0:
+        raise ValueError("CPUNET NCS v2.5.1 boot banner not found")
+    return {
+        "binary": str(NET_BINARY),
+        "binary_sha256": sha256_file(NET_BINARY),
+        "embedded_banner": banner.decode(),
+        "image_offset": f"0x{offset:x}",
+        "ncs_release": "v2.5.1",
+        "ncs_manifest_commit": run(
+            ["git", "-C", NCS_MANIFEST, "rev-parse", "v2.5.1^{commit}"]
+        ).strip(),
+        "released_component_revisions": {
+            "zephyr": _manifest_revision("zephyr"),
+            "nrfxlib": _manifest_revision("nrfxlib"),
+            "mbedtls": _manifest_revision("mbedtls"),
+        },
+        "interpretation": (
+            "The shipped CPUNET image identifies the umbrella SDK release directly. "
+            "This selects the NCS v2.5.1 west manifest even where an individual "
+            "component's binary payload was unchanged from the preceding tag."
+        ),
     }
 
 
@@ -268,6 +316,8 @@ def version_discrimination(selected: dict[str, set[str]]) -> dict:
                 else:
                     different += 1
             row["families"][family] = {
+                "tag_commit": candidate["tag_commit"],
+                "archive_git_blob": candidate["archive_git_blob"],
                 "archive_size": candidate["archive_size"],
                 "archive_sha256": candidate["archive_sha256"],
                 "member_sha256": candidate["member_sha256"],
@@ -283,11 +333,13 @@ def version_discrimination(selected: dict[str, set[str]]) -> dict:
     return {
         "repository": str(NRFXLIB),
         "manifest_selected_tag": "v2.5.1",
+        "firmware_release_provenance": firmware_release_provenance(),
         "binary_archive_indistinguishable_tags": ["v2.5.0", "v2.5.1"],
         "conclusion": (
             "The selected SDC and MPSL archives and every selected private body are "
-            "byte-identical in nrfxlib v2.5.0 and v2.5.1. The firmware bytes therefore "
-            "select that two-tag interval; west manifest provenance selects v2.5.1. "
+            "byte-identical in nrfxlib v2.5.0 and v2.5.1, so those archive bytes alone "
+            "select only that two-tag interval. The shipped CPUNET image independently "
+            "embeds the NCS v2.5.1 boot banner, selecting the released v2.5.1 west manifest. "
             "v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs."
         ),
         "tags": rows,
@@ -514,6 +566,7 @@ def generate(build: Path) -> dict:
 
 def render_markdown(report: dict) -> str:
     summary = report["summary"]
+    provenance = report["archive_version_discrimination"]["firmware_release_provenance"]
     lines = [
         "# Cohesive CPUNET undefined-symbol classification", "",
         "This is the unresolved surface of the actual Zephyr cohesive link, computed from its",
@@ -528,6 +581,11 @@ def render_markdown(report: dict) -> str:
         f"- MPSL rows / unique private archive identities: **{summary['private_by_family']['mpsl']} / {summary['private_unique_archive_identities']['mpsl']}**",
         "", "## Version discrimination", "",
         report["archive_version_discrimination"]["conclusion"], "",
+        f"- Firmware evidence: `{provenance['embedded_banner']}` at CPUNET image offset "
+        f"`{provenance['image_offset']}`.",
+        f"- Released nrfxlib revision: `{provenance['released_component_revisions']['nrfxlib']}`.",
+        f"- Released Zephyr revision: `{provenance['released_component_revisions']['zephyr']}`.",
+        "",
         "| Tag | SDC archive exact | SDC selected same/different/missing | MPSL archive exact | MPSL selected same/different/missing |",
         "|---|---|---:|---|---:|",
     ]

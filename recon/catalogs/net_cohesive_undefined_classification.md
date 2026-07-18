@@ -14,7 +14,11 @@ does not authorize aliases, removals, or source replacement for them.
 
 ## Version discrimination
 
-The selected SDC and MPSL archives and every selected private body are byte-identical in nrfxlib v2.5.0 and v2.5.1. The firmware bytes therefore select that two-tag interval; west manifest provenance selects v2.5.1. v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs.
+The selected SDC and MPSL archives and every selected private body are byte-identical in nrfxlib v2.5.0 and v2.5.1, so those archive bytes alone select only that two-tag interval. The shipped CPUNET image independently embeds the NCS v2.5.1 boot banner, selecting the released v2.5.1 west manifest. v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs.
+
+- Firmware evidence: `*** Booting nRF Connect SDK v2.5.1 ***` at CPUNET image offset `0x363c4`.
+- Released nrfxlib revision: `v2.5.1`.
+- Released Zephyr revision: `v3.4.99-ncs1-1`.
 
 | Tag | SDC archive exact | SDC selected same/different/missing | MPSL archive exact | MPSL selected same/different/missing |
 |---|---|---:|---|---:|
