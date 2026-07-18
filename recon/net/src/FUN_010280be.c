@@ -1,0 +1,11 @@
+/* net-core FUN_010280be @ 0x010280be
+ * Invoke the controller helper with the enabled selector.
+ */
+#include <stdint.h>
+
+extern uint32_t FUN_01028034(uint32_t context, uint32_t enabled);
+
+uint32_t FUN_010280be(uint32_t context)
+{
+    return FUN_01028034(context, 1u);
+}
