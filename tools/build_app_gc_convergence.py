@@ -6,10 +6,12 @@ import hashlib
 import json
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 from elftools.elf.elffile import ELFFile
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import check_app_root_topology
 
 
@@ -18,6 +20,7 @@ DEFAULT_BEFORE = Path("/private/tmp/g1-cohesive-app-final")
 DEFAULT_AFTER = Path("/private/tmp/g1-cohesive-app-gc")
 ROOTS = ROOT / "recon/catalogs/app_gc_roots.json"
 DATA_LIST = ROOT / "recon/generated/app_verified_data_sources.cmake"
+FIXED_DATA = ROOT / "recon/catalogs/app_fixed_verified_rodata.json"
 OUT_JSON = ROOT / "recon/catalogs/app_gc_convergence.json"
 OUT_MD = ROOT / "recon/analysis/app_gc_convergence.md"
 NM = Path("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-nm")
@@ -81,8 +84,12 @@ def build(before, after):
     if len(expected) != expected_count or len(set(expected)) != expected_count:
         raise ValueError("verified-data list cardinality drift")
     missing_data = sorted(set(expected) - set(symbols))
-    wrong_sections = sorted(name for name in expected
-                            if name in symbols and symbols[name]["section"] != "rodata")
+    fixed_catalog = json.loads(FIXED_DATA.read_text())
+    fixed_sections = {row["symbol"]: row["fixed_output_section"]
+                      for row in fixed_catalog["tables"]}
+    wrong_sections = sorted(
+        name for name in expected if name in symbols and
+        symbols[name]["section"] != fixed_sections.get(name, "rodata"))
     if missing_data or wrong_sections:
         raise ValueError("verified rodata retention drift: missing=%d wrong_section=%d" %
                          (len(missing_data), len(wrong_sections)))
@@ -107,8 +114,8 @@ def build(before, after):
         b, a = before_sections.get(name, 0), after_sections.get(name, 0)
         rows[name] = {"retain_all": b, "normal_gc": a, "delta": a - b}
     return {
-        "schema": 1, "core": "app", "status": "normal_gc_partial_roots",
-        "policy": "named evidence roots and byte-verified rodata KEEP; SDC report-only",
+        "schema": 2, "core": "app", "status": "normal_gc_complete_roots",
+        "policy": "complete named evidence roots; byte-verified rodata KEEP and safe fixed suffix; SDC report-only",
         "builds": {
             "retain_all": {"path": str(before), "elf_sha256": sha(before_elf)},
             "normal_gc": {"path": str(after), "elf_sha256": sha(after_elf)},
@@ -116,11 +123,15 @@ def build(before, after):
         "roots": {
             "named": len(named), "all_present": True,
             "unresolved_candidates": roots["unresolved_addresses"],
-            "complete": False,
+            "complete": roots["summary"]["complete_root_graph"],
         },
         "verified_rodata": {
             "symbols": expected_count, "all_present": True,
-            "all_in_rodata": True, "verified_payload_bytes": verified_payload_bytes,
+            "all_in_expected_sections": True,
+            "normal_rodata_symbols": expected_count - len(fixed_sections),
+            "fixed_address_symbols": len(fixed_sections),
+            "fixed_address_bytes": fixed_catalog["selected_bytes"],
+            "verified_payload_bytes": verified_payload_bytes,
             "emitted_symbol_bytes": emitted_data_bytes,
         },
         "topology": {"init_counts": init_counts, "device_count": device_count},
@@ -143,13 +154,17 @@ def markdown(data):
         "# CPUAPP normal-GC convergence", "",
         "The cohesive CPUAPP links with normal Zephyr section GC. Only named "
         "binary-derived roots and byte-verified standalone rodata are retained "
-        "explicitly; no numeric root, forced address, code deletion, or SDC "
-        "adoption is used.", "",
+        "explicitly; the collision-free verified suffix is fixed at original "
+        "addresses. No numeric function root, code deletion, or SDC adoption "
+        "is used.", "",
         f"- Named recovered roots present: **{data['roots']['named']}/{data['roots']['named']}**",
-        f"- Unresolved root candidates: **{len(data['roots']['unresolved_candidates'])}** "
-        f"({', '.join(data['roots']['unresolved_candidates'])})",
-        f"- Verified rodata symbols present: **{data['verified_rodata']['symbols']}/"
+        f"- Unresolved root candidates: **{len(data['roots']['unresolved_candidates'])}**" +
+        ((f" ({', '.join(data['roots']['unresolved_candidates'])})")
+         if data['roots']['unresolved_candidates'] else ""),
+        f"- Verified data symbols present: **{data['verified_rodata']['symbols']}/"
         f"{data['verified_rodata']['symbols']}**",
+        f"- Fixed-address verified suffix: **{data['verified_rodata']['fixed_address_symbols']} "
+        f"symbols / {data['verified_rodata']['fixed_address_bytes']} bytes**",
         f"- Verified payload: **{data['verified_rodata']['verified_payload_bytes']} bytes**; "
         f"ELF symbol storage: **{data['verified_rodata']['emitted_symbol_bytes']} bytes**",
         "- Undefined symbols: **0**", "",
@@ -164,8 +179,8 @@ def markdown(data):
         "relative to that span. This span includes original literal/data islands, so it is a "
         "convergence bound rather than a claim of exact `.text` size.",
         "",
-        "The root graph remains deliberately partial until the three unmapped candidates gain "
-        "named, proven definitions. They are not silently retained by address.", "",
+        "The binary-derived root graph is complete: every candidate has a named recovered "
+        "definition and no numeric firmware address is forced at link time.", "",
     ]
     return "\n".join(lines)
 

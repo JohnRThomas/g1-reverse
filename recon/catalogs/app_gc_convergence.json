@@ -1,8 +1,8 @@
 {
  "builds": {
   "normal_gc": {
-   "elf_sha256": "8038eb833610618c844c7ef761a1b8ba9b7a53e4519e8e9b42db9fd787a03e82",
-   "path": "/private/tmp/g1-cohesive-app-gc"
+   "elf_sha256": "6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b",
+   "path": "/private/tmp/g1-cohesive-app-head-f49a3b86"
   },
   "retain_all": {
    "elf_sha256": "73f8a2c4a9e1e61ac47623774302439ee0abd9352762cb4c74a4ad1c4c74d5ab",
@@ -10,8 +10,8 @@
   }
  },
  "comparison": {
-  "normal_gc_bin_bytes": 520040,
-  "normal_gc_text_delta_from_original_pre_init_span": -85032,
+  "normal_gc_bin_bytes": 603461,
+  "normal_gc_text_delta_from_original_pre_init_span": -73532,
   "original_pre_init_span_bytes": 505432,
   "original_unsigned_payload_bytes": 977293,
   "retain_all_bin_bytes": 866900,
@@ -47,8 +47,8 @@
     "retain_all": 60461
    },
    "rodata": {
-    "delta": -66560,
-    "normal_gc": 93372,
+    "delta": -82256,
+    "normal_gc": 77676,
     "retain_all": 159932
    },
    "rom_start": {
@@ -62,26 +62,22 @@
     "retain_all": 552
    },
    "text": {
-    "delta": -278948,
-    "normal_gc": 420400,
+    "delta": -267448,
+    "normal_gc": 431900,
     "retain_all": 699348
    }
   }
  },
  "core": "app",
- "policy": "named evidence roots and byte-verified rodata KEEP; SDC report-only",
+ "policy": "complete named evidence roots; byte-verified rodata KEEP and safe fixed suffix; SDC report-only",
  "roots": {
   "all_present": true,
-  "complete": false,
-  "named": 16,
-  "unresolved_candidates": [
-   "0x0002692c",
-   "0x00027cfc",
-   "0x00032420"
-  ]
+  "complete": true,
+  "named": 19,
+  "unresolved_candidates": []
  },
- "schema": 1,
- "status": "normal_gc_partial_roots",
+ "schema": 2,
+ "status": "normal_gc_complete_roots",
  "topology": {
   "device_count": 26,
   "init_counts": {
@@ -93,9 +89,12 @@
  },
  "undefined_symbols": 0,
  "verified_rodata": {
-  "all_in_rodata": true,
+  "all_in_expected_sections": true,
   "all_present": true,
   "emitted_symbol_bytes": 50598,
+  "fixed_address_bytes": 15694,
+  "fixed_address_symbols": 81,
+  "normal_rodata_symbols": 912,
   "symbols": 993,
   "verified_payload_bytes": 50583
  }

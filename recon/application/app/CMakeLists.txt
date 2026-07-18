@@ -132,6 +132,9 @@ target_sources(app PRIVATE
   # shape, but its device init entry is NULL.  This wrapper changes only that
   # instantiation detail and keeps CONFIG_LSM6DSO disabled.
   src/g1_lsm6dso_device.c
+  # Compiler-outlined Zephyr header identities still called by newly recovered
+  # roots.  Integration-only: canonical parity bodies remain unchanged.
+  src/g1_sdk_inline_bridges.c
   ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
   ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its

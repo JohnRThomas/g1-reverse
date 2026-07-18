@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "core": "app",
+  "symbol": "k_uptime_get_4",
+  "firmware_identity": "0x0007d12e",
+  "semantic_owner": "k_uptime_get",
+  "owner_kind": "compiler_outlined_header_inline",
+  "integration_action": "strong integration bridge; canonical parity caller unchanged",
+  "canonical_caller": {
+    "path": "recon/app/src/aging_mode_thread.c",
+    "sha256": "71c7341f1c497effac26e5714820718348638f3d583f063ef9558f77139d29ab",
+    "cfg_verify": "PASS cases=0"
+  },
+  "bridge": {
+    "path": "recon/application/app/src/g1_sdk_inline_bridges.c",
+    "sha256": "2cf90952bafdd6d31479f8051f3620c5781efae89f49e153cb711a855a1aefd0",
+    "abi": "uint32_t k_uptime_get_4(void)",
+    "dependency": "z_impl_k_uptime_ticks",
+    "arithmetic": "low32(floor(uint64(ticks) * 1000 / 32768))"
+  },
+  "pinned_sdk_evidence": {
+    "kernel_header": {
+      "path": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/kernel.h",
+      "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
+      "definition_line": 1736,
+      "body": "k_ticks_to_ms_floor64(k_uptime_ticks())"
+    },
+    "time_units_header": {
+      "path": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/sys/time_units.h",
+      "sha256": "7630be08a9b3470ce9aa8eff5db0c7b96ccec110d6e9d7b6ec43c751d7dff4a7",
+      "definition_line": 1116
+    },
+    "config": {
+      "sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+      "value": "CONFIG_SYS_CLOCK_TICKS_PER_SEC=32768"
+    }
+  },
+  "verification": {
+    "focused_tests": "tools/test_app_sdk_inline_bridges.py: 4/4 PASS",
+    "clean_wrapper_steps": "3114/3114",
+    "clean_elf_sha256": "6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b",
+    "clean_elf_undefined_symbols": 0,
+    "full_link": {
+      "compiled": 3108,
+      "total": 3108,
+      "link_rc": 0,
+      "unknown_symbols": 0,
+      "reviewed_report_only": 31
+    }
+  },
+  "status": "integrated_no_undefined_residue"
+}

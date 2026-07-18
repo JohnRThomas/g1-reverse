@@ -14,7 +14,7 @@ the shipped payload.
 |---|---:|---:|
 | Exact non-executable sections | 0 | 81 |
 | Exact fixed-table bytes | 0 | 15,694 |
-| Comparator equal bytes (all sections) | 11,160 | 24,983 |
+| Comparator equal bytes (all sections) | 11,160 | 25,011 |
 | File-backed section overlaps | 0 | 0 |
 | Out-of-payload sections | 0 | 0 |
 | CPUAPP FLASH | 520,040 B | 603,461 B |
@@ -44,7 +44,7 @@ The 81 accepted tables span `0x0008b264..0x0009f741`.  The catalog records each
 source, address, size, alignment, and SHA-256.  The generated CMake list removes
 only those C owners, adds one assembly owner, and gives every table a unique
 input/output section at its original VA.  Existing normal garbage collection,
-the 16 named roots, and the ordinary verified-rodata retention fragment remain
+the 19 named roots, and the ordinary verified-rodata retention fragment remain
 unchanged.
 
 ## Why the remaining tables are not fixed yet
@@ -81,4 +81,4 @@ Authoritative receipts:
 - resulting ELF comparison: `recon/analysis/app_fixed_rodata_section_comparison.json`
 
 The clean wrapper ELF SHA-256 is
-`b0f1bbd73de801d750a02509eaa920c19fde043a7ed23f9810a36fc5215f1a3e`.
+`6d22cc6d49d50e5174245bd0834759b50c6f4598000e74bbc1c914d40722456b`.
