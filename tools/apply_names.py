@@ -28,6 +28,48 @@ RECONSTRUCTED_NAME = re.compile(
     r"(0x[0-9a-fA-F]+)")
 
 
+def protect_entry_alias(original, core, entry):
+    """Hide an owner's raw back-map alias from readable-name substitution.
+
+    Some canonical parity sources already use a human-readable implementation
+    name and export the address identity as a GCC alias, for example::
+
+        extern __typeof(readable) FUN_0100d6e8
+            __attribute__((alias("readable")));
+
+    The raw declarator is provenance, not a call/reference.  Replacing it with
+    the readable name creates a self-alias and a compile-time redefinition.
+    Protect only the exact entry spelling and only inside an alias declaration;
+    ordinary raw callees continue through the normal substitution pass.
+    """
+    raw = function_names.raw_name(core, entry)
+    pattern = re.compile(
+        r"(?P<prefix>\bextern\s+__typeof\s*\([^;]*?\)\s+)" +
+        re.escape(raw) +
+        r"(?P<suffix>\s+__attribute__\s*\(\(\s*alias\s*\(\s*"
+        r"\"[A-Za-z_$][A-Za-z0-9_$]*\"\s*\)\s*\)\)\s*;)",
+        re.DOTALL)
+    placeholder = "G1_RAW_ENTRY_ALIAS_%08X" % (int(entry) & ~1)
+    protected, count = pattern.subn(
+        lambda match: match.group("prefix") + placeholder +
+        match.group("suffix"), original)
+    return protected, placeholder, raw, count
+
+
+def render_named_body(original, core, entry, public_name):
+    """Apply readable names while retaining a reversible raw entry alias."""
+    protected, placeholder, raw, alias_count = protect_entry_alias(
+        original, core, entry)
+    body = function_names.substitute(protected, core)
+    body = rename_public_owner(body, entry, public_name)
+    if alias_count:
+        if body.count(placeholder) != alias_count:
+            raise RuntimeError("entry-alias placeholder drift @ 0x%08x" % entry)
+        body = body.replace(placeholder, raw)
+    return function_names.repair_internal_control_flow_labels(
+        body, core, entry)
+
+
 def paths(core):
     if core == "app":
         return (BASE + "/recon/app/src", BASE + "/recon/named",
@@ -149,10 +191,7 @@ def main():
             entry = int(match.group(1), 16) & ~1
         record = records.get(entry)
         public_name = record["name"] if record else function_names.raw_name(core, entry)
-        body = function_names.substitute(original, core)
-        body = rename_public_owner(body, entry, public_name)
-        body = function_names.repair_internal_control_flow_labels(
-            body, core, entry)
+        body = render_named_body(original, core, entry, public_name)
         header = provenance_header(core, entry, public_name,
                                    function_backmap(original, core),
                                    global_backmap(original, address_symbols))

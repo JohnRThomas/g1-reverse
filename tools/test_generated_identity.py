@@ -5,6 +5,7 @@ import unittest
 sys.path.insert(0, os.path.dirname(__file__))
 import generated_identity
 import function_names
+import apply_names
 
 
 class GeneratedIdentityTest(unittest.TestCase):
@@ -77,6 +78,37 @@ class GeneratedIdentityTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "declarations drifted"):
             function_names.repair_internal_control_flow_labels(
                 "extern int FUN_01008fc0(void);\n", "net", 0x01008E74)
+
+    def test_raw_owner_alias_survives_readable_name_generation(self):
+        source = (
+            "/* net-core FUN_0100d6e8 @ 0x0100d6e8 */\n"
+            "bool sdc_conn_recovery_window_update(void) { return true; }\n"
+            "extern __typeof(sdc_conn_recovery_window_update) FUN_0100d6e8\n"
+            "  __attribute__((alias(\"sdc_conn_recovery_window_update\")));\n"
+        )
+        rendered = apply_names.render_named_body(
+            source, "net", 0x0100D6E8,
+            "sdc_conn_recovery_window_update")
+        self.assertIn(
+            "extern __typeof(sdc_conn_recovery_window_update) FUN_0100d6e8",
+            rendered)
+        self.assertNotIn(
+            "extern __typeof(sdc_conn_recovery_window_update) "
+            "sdc_conn_recovery_window_update", rendered)
+        self.assertIn(
+            'alias("sdc_conn_recovery_window_update")', rendered)
+
+    def test_raw_callees_still_receive_readable_names(self):
+        source = (
+            "/* net-core FUN_0100d6e8 @ 0x0100d6e8 */\n"
+            "extern void FUN_01039e4e(void);\n"
+            "void sdc_conn_recovery_window_update(void) { FUN_01039e4e(); }\n"
+        )
+        rendered = apply_names.render_named_body(
+            source, "net", 0x0100D6E8,
+            "sdc_conn_recovery_window_update")
+        self.assertIn("rtc_pretick_rtc1_isr_hook", rendered)
+        self.assertNotIn("extern void FUN_01039e4e", rendered)
 
 
 if __name__ == "__main__":
