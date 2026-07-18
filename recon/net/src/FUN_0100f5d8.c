@@ -1,19 +1,20 @@
 /* net-core FUN_0100f5d8 @ 0x0100f5d8
- * Readable role: finalize the network core's four-word random state.
+ * Readable role: seed both controller xoroshiro64** streams.
  * Address back-map:
- *   sys_rand_get @ 0x01009204 (FUN_01009204 veneer)
+ *   sdc_rand_poll @ 0x01009204 (FUN_01009204 veneer)
  *   random_state @ 0x21000ef4
  */
 #include <stdint.h>
 
-/* This veneer forwards exactly buffer and length to its installed provider. */
-extern void sys_rand_get(void *buffer, uint32_t length);
+/* FUN_01009204 is the two-argument installed random-provider veneer. */
+extern void FUN_01009204(void *buffer, uint32_t length);
 
 #define RANDOM_STATE ((volatile uint32_t *)0x21000ef4UL)
 
-static inline uint32_t rotate_right(uint32_t value, unsigned int shift)
+static __attribute__((always_inline)) inline uint32_t
+rotate_left(uint32_t value, unsigned int shift)
 {
-    return (value >> shift) | (value << (32U - shift));
+    return (value << shift) | (value >> (32U - shift));
 }
 
 void FUN_0100f5d8(void)
@@ -26,25 +27,28 @@ void FUN_0100f5d8(void)
 
     /* The provider may legally return an all-zero seed; retry that one value. */
     do {
-        sys_rand_get((void *)RANDOM_STATE, 8);
+        FUN_01009204((void *)RANDOM_STATE, 8);
         state_a = RANDOM_STATE[0];
         state_b = RANDOM_STATE[1];
     } while ((state_a | state_b) == 0);
 
-    /* Advance the two-word state and derive two non-simultaneously-zero words. */
+    /*
+     * Generate two consecutive xoroshiro64** outputs.  Those outputs seed the
+     * second stream, while the twice-advanced state seeds the first stream.
+     * Retry the vanishingly rare pair which would make stream two all zero.
+     */
     do {
-        uint32_t xor_pair = state_b ^ state_a;
-        uint32_t pre_shift_mix = xor_pair ^ rotate_right(state_a, 6);
-        uint32_t mixed_a = pre_shift_mix ^ (xor_pair << 9);
-        uint32_t mixed_b;
+        uint32_t first_xor = state_b ^ state_a;
+        uint32_t next_a = rotate_left(state_a, 26) ^ first_xor ^
+                          (first_xor << 9);
+        uint32_t next_b = rotate_left(first_xor, 13);
+        uint32_t second_xor = next_b ^ next_a;
 
-        output_a = rotate_right(output_multiplier * state_a, 27) * 5U;
-        mixed_b = mixed_a ^ rotate_right(xor_pair, 19);
-        output_b = rotate_right(output_multiplier * mixed_a, 27) * 5U;
-
-        state_b = rotate_right(mixed_b, 19);
-        state_a = mixed_b ^ (mixed_a >> 6) ^ (pre_shift_mix << 26) ^
-                  (mixed_b << 9);
+        output_a = rotate_left(output_multiplier * state_a, 5) * 5U;
+        output_b = rotate_left(output_multiplier * next_a, 5) * 5U;
+        state_a = rotate_left(next_a, 26) ^ second_xor ^
+                  (second_xor << 9);
+        state_b = rotate_left(second_xor, 13);
     } while ((output_a | output_b) == 0);
 
     RANDOM_STATE[0] = state_a;
