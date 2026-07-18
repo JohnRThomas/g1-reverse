@@ -1,0 +1,750 @@
+{
+ "schema": 1,
+ "core": "net",
+ "component": "cpunet_toolchain_selected_members",
+ "status": "authorized_exact_stock_provider",
+ "safe": true,
+ "source_exclusion_required": false,
+ "raw_reconstruction_policy": "preserve; no canonical raw source deletion",
+ "image": "netcore_image.bin",
+ "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+ "address_space": "analysis; runtime/link address is analysis + 0x800",
+ "sdk_package": "Zephyr SDK 0.16.5-1",
+ "functions": [
+  {
+   "archive_member": "_udivmoddi4.o",
+   "archive_member_sha256": "38fd012fb4f98e83375796e1bc9e4bfe84e8ba05c87e78f3abd82357304397fa",
+   "section": ".text",
+   "section_size": 668,
+   "section_sha256": "955357f957cea58f9574a1d0ba5b17262202cdd1fb8aa667f4cb62b53cd4014a",
+   "executable_relocations": [],
+   "raw_firmware_byte_exact": true,
+   "elf_function_aliases": [
+    "__udivmoddi4"
+   ],
+   "elf_attributes": [
+    "Tag_CPU_name: \"8-M.MAIN\"",
+    "Tag_CPU_arch: v8-M.mainline",
+    "Tag_CPU_arch_profile: Microcontroller",
+    "Tag_THUMB_ISA_use: Yes",
+    "Tag_ABI_optimization_goals: Aggressive Size"
+   ],
+   "va": "0x01025d38",
+   "raw_identity": "FUN_01025d38",
+   "resolved_identity": "__udivmoddi4",
+   "archive_family": "libgcc",
+   "archive_path": "arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main/nofp/libgcc.a",
+   "archive_sha256": "6b84bf826f380e4c16a95aca8a508a1ad8aa388b84762dc21ee56f1040390eb9",
+   "abi": "Cortex-M33 mainline, Thumb, no-FP multilib; soft-float CPUNET ABI",
+   "optimization_evidence": "ELF Tag_ABI_optimization_goals: Aggressive Size",
+   "compiler_or_libc_version": "GCC 12.2.0",
+   "version_claim_strength": "configured Zephyr SDK archive provenance plus exact selected member/section; the body is not asserted unique to this patch version",
+   "library_identity_note": "The 668-byte helper and exact libgcc caller relocation closure strongly identify the selected GCC helper family.",
+   "callers": [
+    {
+     "caller_va": "0x0100823c",
+     "caller_raw_identity": "FUN_0100823c",
+     "caller_readable_identity": "__aeabi_uldivmod",
+     "identity_proof": "exact selected libgcc member",
+     "direct_calls": [
+      {
+       "site": "0x0100825c",
+       "mnemonic": "bl",
+       "resolved_target": "0x01025d38"
+      }
+     ]
+    }
+   ],
+   "preserve_raw_reconstruction_evidence": true,
+   "safe_to_resolve_to_stock_provider": true
+  },
+  {
+   "archive_member": "strcmp.S.o",
+   "archive_member_sha256": "fefcfc8b4d73c07a8f62f0634c871da5a15e83e01ff17b96aa218d364d81d55c",
+   "section": ".text",
+   "section_size": 20,
+   "section_sha256": "2970d82d1d95f3e160c8304340fba61c52eeaca1401ac05920209c6dc463267e",
+   "executable_relocations": [],
+   "raw_firmware_byte_exact": true,
+   "elf_function_aliases": [
+    "strcmp"
+   ],
+   "elf_attributes": [
+    "Tag_CPU_name: \"8-M.MAIN\"",
+    "Tag_CPU_arch: v8-M.mainline",
+    "Tag_CPU_arch_profile: Microcontroller",
+    "Tag_THUMB_ISA_use: Yes"
+   ],
+   "va": "0x0102a244",
+   "raw_identity": "FUN_0102a244",
+   "resolved_identity": "strcmp",
+   "archive_family": "picolibc",
+   "archive_path": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+   "archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+   "abi": "Cortex-M33 mainline, Thumb, no-FP multilib; soft-float CPUNET ABI",
+   "optimization_evidence": "hand-written assembly member; no optimization-goal ELF tag",
+   "compiler_or_libc_version": "Picolibc 1.8.6",
+   "version_claim_strength": "configured Zephyr SDK archive provenance plus exact selected member/section; the body is not asserted unique to this patch version",
+   "library_identity_note": "The CPUNET no-FP selected-link archive establishes the provider. Generic short libc bodies may be byte-identical in other libc implementations and are not provenance alone.",
+   "callers": [
+    {
+     "caller_va": "0x0103510c",
+     "caller_raw_identity": "FUN_0103510c",
+     "caller_readable_identity": "metal_generic_dev_open",
+     "identity_proof": "libmetal source-shape and configured-object identity",
+     "direct_calls": [
+      {
+       "site": "0x01035130",
+       "mnemonic": "bl",
+       "resolved_target": "0x0102a244"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01039f4c",
+     "caller_raw_identity": "FUN_01039f4c",
+     "caller_readable_identity": "get_ept_slot_with_name",
+     "identity_proof": "exact configured object-index identity",
+     "direct_calls": [
+      {
+       "site": "0x01039f58",
+       "mnemonic": "bl",
+       "resolved_target": "0x0102a244"
+      },
+      {
+       "site": "0x01039f64",
+       "mnemonic": "bl",
+       "resolved_target": "0x0102a244"
+      }
+     ]
+    }
+   ],
+   "preserve_raw_reconstruction_evidence": true,
+   "safe_to_resolve_to_stock_provider": true
+  },
+  {
+   "archive_member": "libc_string_strnlen.c.o",
+   "archive_member_sha256": "517d84a096d2b523aff7d68bce6abf19b97647a1472dcfc9576926343c1aeb36",
+   "section": ".text.strnlen",
+   "section_size": 24,
+   "section_sha256": "def0e93efd3d43434873e627a2e2667e9f9d3ecb8a0d3f243f843a9f44522998",
+   "executable_relocations": [],
+   "raw_firmware_byte_exact": true,
+   "elf_function_aliases": [
+    "strnlen"
+   ],
+   "elf_attributes": [
+    "Tag_CPU_name: \"8-M.MAIN\"",
+    "Tag_CPU_arch: v8-M.mainline",
+    "Tag_CPU_arch_profile: Microcontroller",
+    "Tag_THUMB_ISA_use: Yes",
+    "Tag_ABI_optimization_goals: Aggressive Size"
+   ],
+   "va": "0x0103b5c4",
+   "raw_identity": "FUN_0103b5c4",
+   "resolved_identity": "strnlen",
+   "archive_family": "picolibc",
+   "archive_path": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+   "archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+   "abi": "Cortex-M33 mainline, Thumb, no-FP multilib; soft-float CPUNET ABI",
+   "optimization_evidence": "ELF Tag_ABI_optimization_goals: Aggressive Size",
+   "compiler_or_libc_version": "Picolibc 1.8.6",
+   "version_claim_strength": "configured Zephyr SDK archive provenance plus exact selected member/section; the body is not asserted unique to this patch version",
+   "library_identity_note": "The CPUNET no-FP selected-link archive establishes the provider. Generic short libc bodies may be byte-identical in other libc implementations and are not provenance alone.",
+   "callers": [
+    {
+     "caller_va": "0x01039190",
+     "caller_raw_identity": "FUN_01039190",
+     "caller_readable_identity": "z_cbvprintf_impl",
+     "identity_proof": "configuration-specific Zephyr source identity",
+     "direct_calls": [
+      {
+       "site": "0x01039384",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b5c4"
+      }
+     ]
+    }
+   ],
+   "preserve_raw_reconstruction_evidence": true,
+   "safe_to_resolve_to_stock_provider": true
+  },
+  {
+   "archive_member": "memcpy.c.o",
+   "archive_member_sha256": "f7399e3d87fc60296377a2dbedb3d9bd06d73e2bd7e34a08014a7c344680337c",
+   "section": ".text.memcpy",
+   "section_size": 26,
+   "section_sha256": "0d5c4b465e140f90dbb75f744244d741b359fc0816fd7970d6c7c850c7dd38ae",
+   "executable_relocations": [],
+   "raw_firmware_byte_exact": true,
+   "elf_function_aliases": [
+    "__aeabi_memcpy",
+    "__aeabi_memcpy4",
+    "__aeabi_memcpy8",
+    "memcpy"
+   ],
+   "elf_attributes": [
+    "Tag_CPU_name: \"8-M.MAIN\"",
+    "Tag_CPU_arch: v8-M.mainline",
+    "Tag_CPU_arch_profile: Microcontroller",
+    "Tag_THUMB_ISA_use: Yes",
+    "Tag_ABI_optimization_goals: Aggressive Size"
+   ],
+   "va": "0x0103b614",
+   "raw_identity": "FUN_0103b614",
+   "resolved_identity": "__aeabi_memcpy4",
+   "archive_family": "picolibc",
+   "archive_path": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+   "archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+   "abi": "Cortex-M33 mainline, Thumb, no-FP multilib; soft-float CPUNET ABI",
+   "optimization_evidence": "ELF Tag_ABI_optimization_goals: Aggressive Size",
+   "compiler_or_libc_version": "Picolibc 1.8.6",
+   "version_claim_strength": "configured Zephyr SDK archive provenance plus exact selected member/section; the body is not asserted unique to this patch version",
+   "library_identity_note": "The CPUNET no-FP selected-link archive establishes the provider. Generic short libc bodies may be byte-identical in other libc implementations and are not provenance alone.",
+   "callers": [
+    {
+     "caller_va": "0x0102a698",
+     "caller_raw_identity": "FUN_0102a698",
+     "caller_readable_identity": "FUN_0102a698",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102a6a8",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102a6e0",
+     "caller_raw_identity": "FUN_0102a6e0",
+     "caller_readable_identity": "FUN_0102a6e0",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102a6ec",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      },
+      {
+       "site": "0x0102a70a",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102bbec",
+     "caller_raw_identity": "FUN_0102bbec",
+     "caller_readable_identity": "FUN_0102bbec",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102bfa8",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102bfe4",
+     "caller_raw_identity": "FUN_0102bfe4",
+     "caller_readable_identity": "FUN_0102bfe4",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102c1be",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102edac",
+     "caller_raw_identity": "FUN_0102edac",
+     "caller_readable_identity": "FUN_0102edac",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102edda",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x010323cc",
+     "caller_raw_identity": "FUN_010323cc",
+     "caller_readable_identity": "FUN_010323cc",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x010323e4",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01033660",
+     "caller_raw_identity": "FUN_01033660",
+     "caller_readable_identity": "FUN_01033660",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x010336bc",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      },
+      {
+       "site": "0x01033712",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01033a60",
+     "caller_raw_identity": "FUN_01033a60",
+     "caller_readable_identity": "FUN_01033a60",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01033a7a",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01036198",
+     "caller_raw_identity": "FUN_01036198",
+     "caller_readable_identity": "z_impl_k_msgq_put",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x0103620e",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      },
+      {
+       "site": "0x0103624c",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x010362d0",
+     "caller_raw_identity": "FUN_010362d0",
+     "caller_readable_identity": "z_impl_k_msgq_get",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x01036338",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      },
+      {
+       "site": "0x01036380",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01038f34",
+     "caller_raw_identity": "FUN_01038f34",
+     "caller_readable_identity": "FUN_01038f34",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01038f52",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103a2cc",
+     "caller_raw_identity": "FUN_0103a2cc",
+     "caller_readable_identity": "FUN_0103a2cc",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0103a2e4",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103a2f8",
+     "caller_raw_identity": "FUN_0103a2f8",
+     "caller_readable_identity": "FUN_0103a2f8",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0103a318",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103a478",
+     "caller_raw_identity": "FUN_0103a478",
+     "caller_readable_identity": "net_buf_simple_add_mem",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x0103a48c",
+       "mnemonic": "b.w",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103b53a",
+     "caller_raw_identity": "FUN_0103b53a",
+     "caller_readable_identity": "FUN_0103b53a",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0103b55c",
+       "mnemonic": "b.w",
+       "resolved_target": "0x0103b614"
+      }
+     ]
+    }
+   ],
+   "preserve_raw_reconstruction_evidence": true,
+   "safe_to_resolve_to_stock_provider": true
+  },
+  {
+   "archive_member": "memset.c.o",
+   "archive_member_sha256": "b05d1ebc4811197ab41d62622220a3a826cdbd4af11e776f0e0467c84c12d739",
+   "section": ".text.memset",
+   "section_size": 16,
+   "section_sha256": "9b992ee6e518ade6aeccbcc2f9595e3383491ddd472d229742a9aba1ea9f673f",
+   "executable_relocations": [],
+   "raw_firmware_byte_exact": true,
+   "elf_function_aliases": [
+    "memset"
+   ],
+   "elf_attributes": [
+    "Tag_CPU_name: \"8-M.MAIN\"",
+    "Tag_CPU_arch: v8-M.mainline",
+    "Tag_CPU_arch_profile: Microcontroller",
+    "Tag_THUMB_ISA_use: Yes",
+    "Tag_ABI_optimization_goals: Aggressive Size"
+   ],
+   "va": "0x0103b62e",
+   "raw_identity": "FUN_0103b62e",
+   "resolved_identity": "memset",
+   "archive_family": "picolibc",
+   "archive_path": "arm-zephyr-eabi/picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a",
+   "archive_sha256": "1aab30f2d746ad97b271efdfb98a8b62996b7ad82263897edede2b0504e2832e",
+   "abi": "Cortex-M33 mainline, Thumb, no-FP multilib; soft-float CPUNET ABI",
+   "optimization_evidence": "ELF Tag_ABI_optimization_goals: Aggressive Size",
+   "compiler_or_libc_version": "Picolibc 1.8.6",
+   "version_claim_strength": "configured Zephyr SDK archive provenance plus exact selected member/section; the body is not asserted unique to this patch version",
+   "library_identity_note": "The CPUNET no-FP selected-link archive establishes the provider. Generic short libc bodies may be byte-identical in other libc implementations and are not provenance alone.",
+   "callers": [
+    {
+     "caller_va": "0x0102a394",
+     "caller_raw_identity": "FUN_0102a394",
+     "caller_readable_identity": "FUN_0102a394",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102a39e",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102a720",
+     "caller_raw_identity": "FUN_0102a720",
+     "caller_readable_identity": "FUN_0102a720",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102a752",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      },
+      {
+       "site": "0x0102a976",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102b15c",
+     "caller_raw_identity": "FUN_0102b15c",
+     "caller_readable_identity": "FUN_0102b15c",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102b16c",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102b2ac",
+     "caller_raw_identity": "FUN_0102b2ac",
+     "caller_readable_identity": "FUN_0102b2ac",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102b2c0",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102c5ec",
+     "caller_raw_identity": "FUN_0102c5ec",
+     "caller_readable_identity": "FUN_0102c5ec",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102c67a",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102cbd8",
+     "caller_raw_identity": "FUN_0102cbd8",
+     "caller_readable_identity": "mpsc_pbuf_init",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x0102cbe2",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102edac",
+     "caller_raw_identity": "FUN_0102edac",
+     "caller_readable_identity": "FUN_0102edac",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102ede6",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0102fa4c",
+     "caller_raw_identity": "FUN_0102fa4c",
+     "caller_readable_identity": "FUN_0102fa4c",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0102fa5e",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01030bac",
+     "caller_raw_identity": "FUN_01030bac",
+     "caller_readable_identity": "FUN_01030bac",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01030bd2",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01033354",
+     "caller_raw_identity": "FUN_01033354",
+     "caller_readable_identity": "FUN_01033354",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0103338a",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x010333e4",
+     "caller_raw_identity": "FUN_010333e4",
+     "caller_readable_identity": "FUN_010333e4",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x010333fe",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      },
+      {
+       "site": "0x010334c0",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103499c",
+     "caller_raw_identity": "FUN_0103499c",
+     "caller_readable_identity": "FUN_0103499c",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x010349ae",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01035830",
+     "caller_raw_identity": "FUN_01035830",
+     "caller_readable_identity": "FUN_01035830",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01035850",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01036bec",
+     "caller_raw_identity": "FUN_01036bec",
+     "caller_readable_identity": "k_work_init",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x01036c1a",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01038f34",
+     "caller_raw_identity": "FUN_01038f34",
+     "caller_readable_identity": "FUN_01038f34",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01038f44",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01039138",
+     "caller_raw_identity": "FUN_01039138",
+     "caller_readable_identity": "FUN_01039138",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x01039148",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103963c",
+     "caller_raw_identity": "FUN_0103963c",
+     "caller_readable_identity": "FUN_0103963c",
+     "identity_proof": "raw back-map",
+     "direct_calls": [
+      {
+       "site": "0x0103964e",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x01039b62",
+     "caller_raw_identity": "FUN_01039b62",
+     "caller_readable_identity": "onoff_manager_init",
+     "identity_proof": "exact Zephyr identity",
+     "direct_calls": [
+      {
+       "site": "0x01039b78",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    },
+    {
+     "caller_va": "0x0103b5a4",
+     "caller_raw_identity": "FUN_0103b5a4",
+     "caller_readable_identity": "strncpy",
+     "identity_proof": "exact Picolibc identity",
+     "direct_calls": [
+      {
+       "site": "0x0103b5bc",
+       "mnemonic": "bl",
+       "resolved_target": "0x0103b62e"
+      }
+     ]
+    }
+   ],
+   "preserve_raw_reconstruction_evidence": true,
+   "safe_to_resolve_to_stock_provider": true
+  }
+ ],
+ "supporting_closure": {
+  "libgcc_unsigned_division_entry": {
+   "va": "0x0100823c",
+   "identity": "__aeabi_uldivmod",
+   "archive_member": "_aeabi_uldivmod.o",
+   "archive_member_sha256": "3a16906c0ad5052a320c7558e66f9b5a639025fdc15195b2d2cc91552b8ce85e",
+   "section_size": 48,
+   "catalog_extent_size": 50,
+   "catalog_boundary_correction": "The selected member is 48 bytes. The following two-byte bx-lr at 0x0100826c is the separately targeted __aeabi_ldiv0 stub.",
+   "relocations": [
+    {
+     "offset": 32,
+     "type": 10,
+     "symbol": "__udivmoddi4"
+    },
+    {
+     "offset": 20,
+     "type": 30,
+     "symbol": "__aeabi_ldiv0"
+    }
+   ],
+   "resolved_targets": {
+    "__aeabi_ldiv0": "0x0100826c",
+    "__udivmoddi4": "0x01025d38"
+   },
+   "non_relocation_bytes_exact": true
+  }
+ },
+ "policy": {
+  "private_sdc_report_only": true,
+  "archive_hash_alone_is_not_ownership": true,
+  "exact_selected_section_and_call_targets_required": true,
+  "memcpy_alias_note": "memcpy, __aeabi_memcpy, __aeabi_memcpy4 and __aeabi_memcpy8 are the same selected Picolibc section. The requested readable identity is __aeabi_memcpy4; caller relocation context may use another alias."
+ }
+}
