@@ -13,6 +13,7 @@
  *   k_msgq_init            = FUN_00086420 / FUN_00086448 (== z_impl_k_msgq_alloc_init)
  *   z_impl_k_sem_init      = FUN_00086534
  *   k_timer_init           = FUN_00086726
+ *   k_work_init_delayable  = FUN_000732d4
  *   k_mutex init/lock      = FUN_000723b8 (lock) / FUN_00072558 (unlock)
  *   k_sem_give-style wake  = FUN_00072880
  *
@@ -180,13 +181,20 @@ K_TIMER_DEFINE(g_projector_timer, /*expiry=*/0x19ff0, /*stop=*/NULL);      /* 0x
  *  WORK ITEMS                                                              *
  * ======================================================================= */
 
-/* No app module's proven body contains a k_work_init/K_WORK_DEFINE for an    *
- * application work item. The FUN_00072880 "submit/wake" calls in imu_motion, *
- * display (submit_display_reflash_work 0x4904c) etc. target k_poll/sem-style *
- * objects inside device_info_t or the g_app_language_sem above, not a k_work *
- * created here. See GAPS.md: WS2 reports several standalone k_work objects    *
- * (0x20004df0, 0x20002c30, 0x20006448, 0x20009fc0, 0x2000cc24, +delayable    *
- * 0x20002144) that have NO definition in any module wiring.md.               */
+/* No recovered APPLICATION module owns a standalone K_WORK_DEFINE here.     *
+ * The six WS2 work guesses have been resolved and all are false positives:   *
+ *  0x20004df0 clock baseline; 0x20002c30 nrfx GPIOTE allocation mask;        *
+ *  0x20006448 gatt_sc atomic flags; 0x20009fc0 uptime scalar;                 *
+ *  0x2000cc24 errno; 0x20002144 bt_dev.rx_queue sys_slist.                    *
+ * See GAPS.md and ownership/app_kernel_object_gap_resolution.json.           *
+ *                                                                             *
+ * Stock Zephyr gatt.c DOES own three private delayable-work members, all      *
+ * initialized by bt_gatt_init (FUN_0005a954):                                 *
+ *  gatt_delayed_store.work 0x20006350 handler 0x00082fa7                      *
+ *  db_hash.work           0x200063a0 handler 0x00082cb3                      *
+ *  gatt_sc.work            0x20006418 handler 0x0005b4bd                      *
+ * They must come from the stock GATT translation unit; defining them again   *
+ * here would duplicate private struct storage.                               */
 
 
 /* ======================================================================= *

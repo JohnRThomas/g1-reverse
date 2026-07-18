@@ -66,3 +66,24 @@ device binding, not a K_* static object.
   highest-priority worker; threads #1/#3/#4/#5 share prio -12.
 - The only classic sync primitive defined here is the single semaphore
   `k_sem_init(0x200079e4, 0, 20)`.
+
+## Stock Bluetooth-host objects reached by this module (not module-owned)
+
+The WS2 kernel-object sweep misclassified several fields of stock Zephyr
+Bluetooth globals as standalone application objects. Raw callers and NCS 2.5.1
+layouts prove:
+
+- `bt_dev @0x20002000`; `bt_dev.rx_queue @+0x144 = 0x20002144` is a
+  `sys_slist_t`, not a slab or delayable work.
+- `db_hash.hash[16] @0x20006380`; its real `db_hash.work` is the private
+  `k_work_delayable @0x200063a0`.
+- `gatt_sc @0x200063f8`; `gatt_sc.work @0x20006418` is the private delayable
+  work and `gatt_sc.flags @0x20006448` is one atomic flag word.
+- `gatt_delayed_store.work @0x20006350` is the third private GATT delayable
+  work.
+
+`bt_gatt_init` (`FUN_0005a954`) initializes those three work fields with raw
+handlers `0x00082cb3`, `0x0005b4bd`, and `0x00082fa7`, respectively. Their
+storage belongs to stock `subsys/bluetooth/host/gatt.c`; this application module
+must not emit duplicate `K_WORK_DELAYABLE_DEFINE`s. See the durable receipt
+`recon/ownership/app_kernel_object_gap_resolution.json`.

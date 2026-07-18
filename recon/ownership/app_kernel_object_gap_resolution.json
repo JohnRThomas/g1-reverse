@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "core": "app",
+  "scope": "The eight classic-kernel-object candidates in recon/wiring/GAPS.md",
+  "verdict": "all_eight_ws2_type_guesses_rejected",
+  "firmware": {
+    "image": "app_update.bin",
+    "link_base": "0x0000c200",
+    "mcuboot_header_bytes": 512
+  },
+  "objects": [
+    {
+      "address": "0x20004df0",
+      "ws2_guess": "k_work",
+      "proven_type": "struct g1_clock_baseline { uint64_t synced_time; uint64_t uptime; }",
+      "owner": "application dashboard/clock synchronization state",
+      "init_site": "record_dashboard_startup_snapshot (FUN_0004a4b4 @0x0004a4b4)",
+      "evidence": [
+        "FUN_0004a4b4 writes caller-supplied low/high words at +0/+4 and k_uptime_get low/high at +8/+12",
+        "FUN_0004a4d0 reads both 64-bit pairs and computes synced_time + (now - uptime)"
+      ]
+    },
+    {
+      "address": "0x20002c30",
+      "ws2_guess": "k_work",
+      "proven_type": "nrfx_atomic_t available_channels_mask",
+      "owner": "stock nrfx_gpiote.c m_cb.available_channels_mask (m_cb+0x70)",
+      "init_site": "stock nrfx_gpiote control-block initialization",
+      "evidence": [
+        "FUN_000659cc tail-calls nrfx_flag32_free(&m_cb.available_channels_mask, channel)",
+        "FUN_000659d8 tail-calls nrfx_flag32_alloc(&m_cb.available_channels_mask, p_channel)",
+        "NCS 2.5.1 nrfx_gpiote.c implements the same channel_free/channel_alloc wrappers"
+      ]
+    },
+    {
+      "address": "0x20006448",
+      "ws2_guess": "k_work",
+      "proven_type": "atomic_t gatt_sc.flags[1]",
+      "owner": "stock Zephyr Bluetooth host gatt.c static struct gatt_sc",
+      "init_site": "zero-initialized .bss; bt_gatt_init sets SC_INDICATE_PENDING with atomic_set_bit",
+      "evidence": [
+        "gatt_sc base is 0x200063f8; start/end are +0x18/+0x1a, work is +0x20 (0x20006418), flags are +0x50 (0x20006448)",
+        "raw bt_gatt_init @0x0005a954 passes 0x20006418 to k_work_init_delayable but passes 0x20006448 to atomic_or",
+        "gatt_db_hash_gen and gatt_db_hash_process test/set DB_HASH_* bits at 0x20006448"
+      ]
+    },
+    {
+      "address": "0x20009fc0",
+      "ws2_guess": "k_work",
+      "proven_type": "uint32_t last_uptime_ms",
+      "owner": "application elapsed-time/countdown helper state",
+      "init_site": "lazy runtime initialization in FUN_0003629c @0x0003629c",
+      "evidence": [
+        "FUN_0003629c reads/writes one 32-bit millisecond timestamp and subtracts it from the current converted uptime",
+        "FUN_00047ab8 cited by WS2 actually references the distinct pointer at 0x20009fcc, not 0x20009fc0"
+      ]
+    },
+    {
+      "address": "0x2000cc24",
+      "ws2_guess": "k_work",
+      "proven_type": "int errno",
+      "owner": "stock C-library syscall/reentrancy glue",
+      "init_site": ".bss zero initialization; syscall wrappers clear it before dispatch",
+      "evidence": [
+        "_write_r/_sbrk_r/_isatty_r/_fstat_r and FUN_000778f4/FUN_00077e4c/FUN_00078570/FUN_00078598 clear/read the same 32-bit error value",
+        "write_r_capture_errno copies the value into the caller reentrancy object only when the syscall returns -1"
+      ]
+    },
+    {
+      "address": "0x20002144",
+      "ws2_guess": "k_work_delayable",
+      "proven_type": "sys_slist_t bt_dev.rx_queue",
+      "owner": "stock Zephyr Bluetooth host hci_core.c struct bt_dev",
+      "init_site": "static bt_dev initializer / Bluetooth host initialization",
+      "evidence": [
+        "0x20002144 == bt_dev base 0x20002000 + configured firmware offset 0x144",
+        "FUN_00053530 enqueues with net_buf_slist_put and separately submits rx_work @0x20002980",
+        "bt_hci_core_recv_event dequeues with net_buf_slist_get and tests list emptiness before separately resubmitting rx_work"
+      ]
+    },
+    {
+      "address": "0x20006380",
+      "ws2_guess": "k_mutex",
+      "proven_type": "uint8_t db_hash.hash[16] (base of static struct db_hash)",
+      "owner": "stock Zephyr Bluetooth host gatt.c static struct db_hash",
+      "init_site": "gatt_db_hash_gen (FUN_0005aba8 @0x0005aba8)",
+      "evidence": [
+        "bt_gatt_store_hash passes exactly address 0x20006380 and length 0x10 to settings storage",
+        "gatt_db_hash_gen writes a 16-byte CMAC result there and byte-swaps eight mirrored pairs",
+        "db_hash.work is the separate k_work_delayable at db_hash+0x20 == 0x200063a0"
+      ]
+    },
+    {
+      "address": "0x20002000",
+      "ws2_guess": "k_mem_slab",
+      "proven_type": "struct bt_dev",
+      "owner": "stock Zephyr Bluetooth host hci_core.c global bt_dev",
+      "init_site": "static bt_dev initializer plus bt_enable host initialization",
+      "evidence": [
+        "identity/address table operations use byte fields and nested tables throughout the object, including id_count at +7 and identity records from +0",
+        "the incoming HCI sys_slist is the nested field at +0x144 (0x20002144)",
+        "no k_mem_slab_alloc/free call receives 0x20002000"
+      ]
+    }
+  ],
+  "actual_stock_work_items_discovered": [
+    {
+      "address": "0x20006350",
+      "type": "struct k_work_delayable",
+      "owner": "gatt_delayed_store.work",
+      "handler_thumb": "0x00082fa7"
+    },
+    {
+      "address": "0x200063a0",
+      "type": "struct k_work_delayable",
+      "owner": "db_hash.work",
+      "handler_thumb": "0x00082cb3"
+    },
+    {
+      "address": "0x20006418",
+      "type": "struct k_work_delayable",
+      "owner": "gatt_sc.work",
+      "handler_thumb": "0x0005b4bd"
+    }
+  ],
+  "wiring_action": "Do not emit K_WORK_DEFINE/K_MUTEX_DEFINE/K_MEM_SLAB_DEFINE for any of the eight rejected candidates. The three discovered delayable works are private stock gatt.c members and are initialized by stock bt_gatt_init, so duplicating them in app_objects.c would be incorrect."
+}

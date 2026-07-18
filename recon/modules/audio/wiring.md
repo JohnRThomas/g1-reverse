@@ -44,6 +44,10 @@ event handler `FUN_5ffa4` @ `0x5ffa4` and reader `FUN_5fa94` @ `0x5fa94`:
 
 The mem_slab and its msgq are owned by the Zephyr DMIC/nrfx driver layer and
 pointed to from this instance; they are configured, not statically defined, here.
+The former WS2 `k_mem_slab` candidate at **`0x20002000` is unrelated**: field-
+level Bluetooth host accesses prove that address is the base of stock
+`struct bt_dev`, with `bt_dev.rx_queue` at `+0x144`. The PDM slab pointer remains
+the value stored in `g_pdm_ctrl+0x14`; it must not be pinned to `0x20002000`.
 
 ## Threads / sems / mutexes
 

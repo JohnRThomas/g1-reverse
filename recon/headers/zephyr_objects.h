@@ -68,4 +68,19 @@ typedef uintptr_t k_tid_t_placeholder; /* placeholder for k_tid_t            */
 extern k_msgq  g_dashboard_response_msgq;  /* @0x2000392c  ipc_core response queue */
 extern k_pipe  g_uid_pipe;                 /* init_msgq_uid(): k_msgq_alloc_init(...,8,10) */
 
+/* Field-level audit note (addresses are provenance, not declarations):
+ * The former WS2 candidates below are NOT standalone kernel objects:
+ *   0x20002000 struct bt_dev
+ *   0x20002144 bt_dev.rx_queue (sys_slist_t)
+ *   0x20002c30 nrfx_gpiote m_cb.available_channels_mask (nrfx_atomic_t)
+ *   0x20004df0 application clock-baseline pair
+ *   0x20006380 db_hash.hash[16]
+ *   0x20006448 gatt_sc.flags[1] (atomic_t)
+ *   0x20009fc0 application last_uptime_ms
+ *   0x2000cc24 C-library errno
+ * The real private Bluetooth delayable-work fields are 0x20006350
+ * (gatt_delayed_store.work), 0x200063a0 (db_hash.work), and 0x20006418
+ * (gatt_sc.work). Stock gatt.c owns their storage and initialization.
+ * Durable proof: recon/ownership/app_kernel_object_gap_resolution.json. */
+
 #endif /* G1_ZEPHYR_OBJECTS_H */

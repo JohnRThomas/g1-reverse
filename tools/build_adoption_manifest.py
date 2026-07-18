@@ -23,6 +23,8 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULTS = {
     "baseline": "recon/ownership/adoption_manifest_baseline.json",
     "lc3": "recon/catalogs/lc3_ownership_app.json",
+    "app_lc3_stock":
+        "recon/ownership/app_lc3_stock_atomic_adoption.json",
     "tinycrypt": "recon/analysis/tinycrypt_pinned_matches.json",
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
@@ -221,13 +223,17 @@ def _lc3_entries(data, source, names):
     for row in data.get("functions", []):
         upstream = row.get("upstream_function")
         kind = "source" if upstream and upstream.startswith("lc3_") else "static_helper"
-        eligible = row.get("confidence") == "high" and row.get("match_score", 0) >= 0.90
+        eligible = bool(
+            row.get("confidence") == "high" and
+            str(row.get("proof_status", "")).startswith(
+                "relocation_masked_configured_object"))
         output.append(_entry(
             "app", row["address"], names, kind, "liblc3", upstream,
             row.get("upstream_file"), eligible,
-            ("Pinned libLC3 source ownership has explicit high-confidence "
-             "function evidence." if eligible else
-             "LC3 candidate lacks the high-confidence score required for exclusion."),
+            ("Pinned libLC3 source ownership has explicit configured-object "
+             "exact evidence." if eligible else
+             "LC3 identity evidence lacks configured-object exact replacement "
+             "authority; retain fail-closed."),
             [_evidence(source, "lc3_function_match", commit=commit,
                        match_score=row.get("match_score"),
                        proof_status=row.get("proof_status"))],
@@ -490,6 +496,37 @@ def _build_from_baseline(paths, resolved, names):
     baseline = _load_json(baseline_path)
     validate_manifest(baseline)
 
+    lc3_stock_path = resolved["app_lc3_stock"]
+    lc3_stock = _load_json(lc3_stock_path)
+    if (lc3_stock.get("schema") != 1 or lc3_stock.get("core") != "app" or
+            lc3_stock.get("status") != "authorized_atomic" or
+            lc3_stock.get("summary", {}).get("unmatched_functions") != 0 or
+            lc3_stock.get("version_identity", {}).get("west_manifest_pin") !=
+            "448f3de31f49a838988a162ef1e23a89ddf2d2ed"):
+        raise ValueError("invalid libLC3 configured-object adoption catalog")
+    lc3_authorizations = lc3_stock.get("authorizations", [])
+    if (len(lc3_authorizations) != 41 or
+            len({_hex(row["va"]) for row in lc3_authorizations}) != 41):
+        raise ValueError("incomplete libLC3 function closure")
+    config_receipt = lc3_stock.get("configured_build", {})
+    if (_sha256(config_receipt["config"]) !=
+            config_receipt.get("config_sha256")):
+        raise ValueError("libLC3 configured build changed")
+    for row in lc3_authorizations:
+        if (row.get("status") != "authorized" or
+                row.get("match") not in {
+                    "relocation_masked_full_section_exact",
+                    "relocation_masked_executable_prefix_exact"} or
+                row.get("raw_mapping_preserved") is not True or
+                not all(check.get("exact") is True
+                        for check in row.get("call_target_checks", []))):
+            raise ValueError("incomplete libLC3 exact proof: %s" % row["va"])
+        if (_sha256(row["upstream_object"]) !=
+                row.get("upstream_object_sha256") or
+                _sha256(row["upstream_source"]) !=
+                row.get("upstream_source_sha256")):
+            raise ValueError("libLC3 source/object changed: %s" % row["va"])
+
     collision_path = resolved["app_collisions"]
     authorization_path = resolved["app_collision_authorizations"]
     collisions = _load_json(collision_path)
@@ -624,6 +661,32 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(resolved["library_provenance"])},
     ]
     app_rows = {row["va"]: row for row in result["cores"]["app"]["entries"]}
+    for authorization in lc3_authorizations:
+        va = _hex(authorization["va"])
+        previous = app_rows.get(va)
+        if (previous is None or previous.get("component") != "liblc3" or
+                previous.get("exclude_reconstruction") is not True or
+                previous.get("raw_symbol") != authorization["raw_symbol"]):
+            raise ValueError("libLC3 baseline ownership drift: %s" % va)
+        corrected = names["app"].get(int(va, 16), {}).get("name")
+        if corrected != authorization["symbol"]:
+            raise ValueError("libLC3 durable name drift: %s" % va)
+        previous["current_symbol"] = corrected
+        previous["upstream_symbol"] = authorization["upstream_symbol"]
+        previous["upstream_unit"] = authorization["upstream_source"]
+        previous["decision_reason"] = (
+            "Pinned configured libLC3 owner is relocation-masked byte-exact "
+            "over the complete firmware code extent with call targets checked.")
+        previous.setdefault("evidence", []).append(_evidence(
+            paths["app_lc3_stock"],
+            "liblc3_configured_object_exact_owner",
+            match=authorization["match"],
+            upstream_section=authorization["upstream_section"],
+            unmasked_prefix_sha256=authorization["unmasked_prefix_sha256"],
+            call_targets_checked=len(authorization.get(
+                "call_target_checks", [])),
+            manifest_pin=lc3_stock["version_identity"]["west_manifest_pin"],
+            raw_mapping_preserved=True))
     authorized_by_va = {_hex(row["va"]): row for row in authorized_rows}
     for authorization in authorized_rows:
         va = _hex(authorization["va"])

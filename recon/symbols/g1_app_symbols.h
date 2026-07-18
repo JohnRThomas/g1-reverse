@@ -66,6 +66,7 @@
 #define ADDR_FUN_00081a76_THUMB              0x81a77 /* FUN_00081a76 */
 #define ADDR_FUN_00081c8c_THUMB              0x81c8d /* FUN_00081c8c */
 #define ADDR_FUN_00082d6a_THUMB              0x82d6b /* FUN_00082d6a */
+#define ADDR_FUN_00082fa6_THUMB              0x82fa7 /* FUN_00082fa6 */
 #define ADDR_FUN_0008349c_THUMB              0x8349d /* FUN_0008349c */
 #define ADDR_FUN_000859c2_THUMB              0x859c3 /* FUN_000859c2 */
 #define ADDR_FUN_00085a04_THUMB              0x85a05 /* FUN_00085a04 */
@@ -367,7 +368,7 @@ extern volatile unsigned int g_20006390; /* @0x20006390 */
 extern volatile unsigned int g_bt_gatt_db_hash_work; /* @0x200063a0 */
 extern volatile unsigned int g_bt_gatt_db_hash_work_63d0; /* @0x200063d0 */
 extern volatile unsigned int g_service_changed_range; /* @0x200063f8 */
-extern volatile unsigned int g_20006418; /* @0x20006418 */
+extern volatile unsigned int g_bt_gatt_sc_work; /* @0x20006418 */
 extern volatile unsigned int g_bt_gatt_flags; /* @0x20006448 */
 extern volatile unsigned int g_misc_kobj_6454; /* @0x20006454 */
 extern volatile unsigned int g_20006690; /* @0x20006690 */
@@ -880,7 +881,7 @@ extern volatile unsigned char g_all_static_info_fc68; /* @0x2007fc68 */
 extern volatile unsigned char g_dashboard_default_widget0_index; /* @0x2007fc69 */
 extern volatile unsigned char g_2007fc70; /* @0x2007fc70 */
 
-/* ---- rodata table externs (2589) ---- */
+/* ---- rodata table externs (2590) ---- */
 extern const unsigned char __settings_handler_static_list_start[]; /* @0x882b0 */
 extern const unsigned char entropy_dev[]; /* @0x87b90 */
 extern const unsigned char g_default_font_glyph_table_count[]; /* @0x8ac28 */
@@ -969,6 +970,7 @@ extern const unsigned char rodata_588b5[]; /* @0x588b5 */
 extern const unsigned char rodata_5a2d5[]; /* @0x5a2d5 */
 extern const unsigned char rodata_5a2fd[]; /* @0x5a2fd */
 extern const unsigned char rodata_5a329[]; /* @0x5a329 */
+extern const unsigned char rodata_5b4bd[]; /* @0x5b4bd */
 extern const unsigned char rodata_5e41d[]; /* @0x5e41d */
 extern const unsigned char rodata_60635[]; /* @0x60635 */
 extern const unsigned char rodata_72ab1[]; /* @0x72ab1 */

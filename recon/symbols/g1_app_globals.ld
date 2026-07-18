@@ -1,6 +1,6 @@
 /* Auto-generated: pin reconstructed app-core symbols to their original
  * addresses so &name resolves to the real VA (whole-image byte-match).
- * 3336 symbols. Include via: INSERT or -T with the main linker script. */
+ * 3337 symbols. Include via: INSERT or -T with the main linker script. */
 
 PROVIDE(rodata_f000 = 0x0000f000);
 PROVIDE(rodata_fa08 = 0x0000fa08);
@@ -72,6 +72,7 @@ PROVIDE(rodata_588b5 = 0x000588b5);
 PROVIDE(rodata_5a2d5 = 0x0005a2d5);
 PROVIDE(rodata_5a2fd = 0x0005a2fd);
 PROVIDE(rodata_5a329 = 0x0005a329);
+PROVIDE(rodata_5b4bd = 0x0005b4bd);
 PROVIDE(rodata_5e41d = 0x0005e41d);
 PROVIDE(rodata_60635 = 0x00060635);
 PROVIDE(rodata_72ab1 = 0x00072ab1);
@@ -2826,7 +2827,7 @@ PROVIDE(g_20006390 = 0x20006390);
 PROVIDE(g_bt_gatt_db_hash_work = 0x200063a0);
 PROVIDE(g_bt_gatt_db_hash_work_63d0 = 0x200063d0);
 PROVIDE(g_service_changed_range = 0x200063f8);
-PROVIDE(g_20006418 = 0x20006418);
+PROVIDE(g_bt_gatt_sc_work = 0x20006418);
 PROVIDE(g_bt_gatt_flags = 0x20006448);
 PROVIDE(g_misc_kobj_6454 = 0x20006454);
 PROVIDE(g_20006690 = 0x20006690);
