@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing product MPSL signal callback.  Its complete 11-way TBH,
+    # default exception tail, and shared epilogue end at 0x0102bb76; the
+    # aligned literal pool starts at 0x0102bb78.
+    0x0102b944: 0x232,
     # Address-taken IPC service methods installed by FUN_0102acb4.  Their
     # executable tails end before aligned literal pools at ab9c and abec.
     0x0102ab50: 0x4a,

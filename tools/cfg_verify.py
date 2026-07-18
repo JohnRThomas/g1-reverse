@@ -403,6 +403,10 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Catalog-missing product MPSL signal callback.  Its complete 11-way TBH,
+    # default exception tail, and shared epilogue end at 0x0102bb76; the
+    # aligned literal pool starts at 0x0102bb78.
+    ("net", 0x0102b944): 0x232,
     # Address-taken IPC service methods installed by FUN_0102acb4.  Their
     # executable tails end before aligned literal pools at ab9c and abec.
     ("net", 0x0102ab50): 0x4a,
@@ -1142,6 +1146,10 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # Catalog-missing ESB timeslot callback leaves reached from FUN_0102b944.
+    ("net", 0x0102a4a4): "i32",
+    ("net", 0x0102b7c4): "i32",
+    ("net", 0x010327d8): "void",
     # Product ESB callback has a void ABI.  Its two timestamp helpers return
     # complete 64-bit values in r0:r1.
     ("net", 0x0102a4c8): "void",
@@ -21044,6 +21052,58 @@ REVIEWED_ORACLE_CASES[("net", 0x0102e064)] = [
     _net_controller_supervisor_case(event_results=(7, 0),
                                     drained_callback=False),
 ]
+
+
+def _net_timeslot_callback_case(signal, *, dppi_140=0, dppi_144=0,
+                                pending=0, retry=0, radio_pending=0,
+                                call_returns=()):
+    """Drive one complete product MPSL signal callback dispatch."""
+    memory = [
+        (0x4100c140, int(dppi_140).to_bytes(4, "little")),
+        (0x4100c144, int(dppi_144).to_bytes(4, "little")),
+        (0x21004fa4, bytes((int(pending) & 0xff,))),
+        (0x21004fa6, bytes((int(radio_pending) & 0xff,))),
+        (0x2100462c, int(retry).to_bytes(4, "little")),
+    ]
+    oracles = {ordinal: {0: int(value)}
+               for ordinal, value in enumerate(call_returns)}
+    return ({1: int(signal)}, memory, oracles)
+
+
+# Every public signal/default plus all nested role, timer-channel, pending-radio
+# and blocked-request decisions.  The selector is r1; r0 is the unused session
+# id.  This is the complete reachable control contract of the 11-entry TBH.
+REVIEWED_ORACLE_CASES[("net", 0x0102b944)] = [
+    _net_timeslot_callback_case(0, call_returns=(0,)),
+    _net_timeslot_callback_case(0, call_returns=(1,)),
+    _net_timeslot_callback_case(1, call_returns=(0,)),
+    *[
+        _net_timeslot_callback_case(1, dppi_140=1, retry=2,
+                                    call_returns=(signal, role))
+        for signal in (0, 1) for role in (0, 1)
+    ],
+    *[
+        _net_timeslot_callback_case(1, dppi_144=1, pending=pending,
+                                    call_returns=(0, role))
+        for pending in (0, 1) for role in (0, 1)
+    ],
+    _net_timeslot_callback_case(2, radio_pending=0),
+    _net_timeslot_callback_case(2, radio_pending=1),
+    _net_timeslot_callback_case(5, call_returns=(0, 1)),
+    _net_timeslot_callback_case(5, call_returns=(0, 0, 1)),
+    _net_timeslot_callback_case(5, call_returns=(0, 0, 0)),
+    *[_net_timeslot_callback_case(signal)
+      for signal in (3, 4, 6, 7, 8, 9, 10, 11)],
+]
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102b944)] = {
+    0x0102a4a4: 0,
+    0x0102b7c4: 0,
+    0x0102b7d0: 1,
+    0x0102b900: 1,
+    0x0102a498: 0,
+    0x010327d8: 0,
+    2: 1,  # SVC #2 consumes only r0=reason.
+}
 
 
 def _net_timeslot_api_worker_case(api_call, api_result=0,
