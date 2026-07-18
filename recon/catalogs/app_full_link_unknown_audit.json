@@ -1,0 +1,730 @@
+{
+ "core": "app",
+ "entries": [
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0004c4e4"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000545f0"
+   ],
+   "category": "blocked_interior",
+   "evidence": "app_interior_alias_audit:blocked_embedded_noreturn_svc_island",
+   "retained_callers": [
+    "FUN_000545f0"
+   ],
+   "symbol": "FUN_0005463e"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000545f0"
+   ],
+   "category": "blocked_interior",
+   "evidence": "app_interior_alias_audit:blocked_embedded_noreturn_svc_island",
+   "retained_callers": [
+    "FUN_000545f0"
+   ],
+   "symbol": "FUN_00054688"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0007a2b8"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007a3a4"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount",
+    "nvs_read_hist"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e53e"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e574"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e5da"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e624"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount",
+    "nvs_read_hist",
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e672"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_read_hist",
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e6e2"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e776"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e7ea"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "nvs_mount",
+    "nvs_write"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_0007e83a"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "local_store_write"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "local_store_write"
+   ],
+   "symbol": "__strcat_chk"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "bt_start",
+    "spec_ble_command_hook"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "bt_start",
+    "spec_ble_command_hook"
+   ],
+   "symbol": "__strcpy_chk"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "__swbuf_r"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "__swbuf_r"
+   ],
+   "symbol": "__swsetup_r"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "z_cbvprintf_impl"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "_ctype_"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "mult_row_column_0"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "_double_byte"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_00077a10"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "FUN_00077a10"
+   ],
+   "symbol": "_strtod_l"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0004db04"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "FUN_0004db04"
+   ],
+   "symbol": "cbpprintf_external"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_00079668"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "cc_mbedtls_ctr_drbg_random_with_add"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "lc3_spec_analyze"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "ceilf"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "ble_conn_lookup_masked"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:subsys/bluetooth/host",
+   "retained_callers": [
+    "ble_conn_lookup_masked"
+   ],
+   "symbol": "conn_lookup_handle"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "z_cbvprintf_impl"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "encode_uint"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000868fc",
+    "lc3_sns_analyze"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "FUN_000868fc"
+   ],
+   "symbol": "floorf"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_00075f88",
+    "curve_table_interp_201pt",
+    "lc3_mdct_fft",
+    "lc3_sns_analyze",
+    "log2f",
+    "logf_core"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
+   "retained_callers": [
+    "FUN_00075f88",
+    "curve_table_interp_201pt",
+    "log2f",
+    "logf_core"
+   ],
+   "symbol": "fmaf"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "LLF_RND_GetTrngSource"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "getTrngSource"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "ble_conn_le_prepare_and_connect"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:subsys/bluetooth/host",
+   "retained_callers": [
+    "ble_conn_le_prepare_and_connect"
+   ],
+   "symbol": "get_adv_name_type_param"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "bt_settings_decode_key"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "hex2bin"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "global_ipc_service_send"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "global_ipc_service_send"
+   ],
+   "symbol": "ipc_service_send"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0004cd4c"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "FUN_0004cd4c"
+   ],
+   "symbol": "ipc_static_vrings_init"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0004abc0"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "FUN_0004abc0"
+   ],
+   "symbol": "is_ptr"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0007abe8"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "mbedtls_zeroize_internal"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_00068170",
+    "metal_device_open"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/libmetal",
+   "retained_callers": [
+    "FUN_00068170"
+   ],
+   "symbol": "metal_bus_find"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/libmetal",
+   "retained_callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "symbol": "metal_io_block_set"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000710b4",
+    "FUN_00071294"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/libmetal",
+   "retained_callers": [
+    "FUN_000710b4",
+    "FUN_00071294"
+   ],
+   "symbol": "metal_io_block_write"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "z_log_msg_pending"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "z_log_msg_pending"
+   ],
+   "symbol": "mpsc_pbuf_is_pending"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0006058c"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "FUN_0006058c"
+   ],
+   "symbol": "onoff_manager_init"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "z_cbvprintf_impl"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "outs"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000838dc",
+    "FUN_00083cde",
+    "FUN_00084b14"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:drivers/pinctrl",
+   "retained_callers": [
+    "FUN_000838dc",
+    "FUN_00083cde",
+    "FUN_00084b14"
+   ],
+   "symbol": "pinctrl_lookup_state"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0004d0c4"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_0004d0c4"
+   ],
+   "symbol": "rpmsg_create_ept"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "ipc_rpmsg_deinit"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "rpmsg_deinit_vdev"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0007118c"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_0007118c"
+   ],
+   "symbol": "rpmsg_get_endpoint"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "symbol": "rpmsg_register_endpoint"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "rpmsg_send_ns_message"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "rpmsg_send_offchannel_raw"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0004d100"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_0004d100"
+   ],
+   "symbol": "rpmsg_virtio_init_shm_pool"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_00085b0c",
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_00085b0c",
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "symbol": "rpmsg_virtio_shm_pool_get_buffer"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "att_timeout",
+    "bt_settings_delete",
+    "bt_settings_encode_key",
+    "bt_settings_store",
+    "format_bt_addr_str",
+    "log_output_dropped_process",
+    "random"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "att_timeout",
+    "bt_settings_delete",
+    "format_bt_addr_str",
+    "log_output_dropped_process",
+    "random"
+   ],
+   "symbol": "snprintk"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "bt_encrypt_le"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "tc_aes128_set_encrypt_key"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "bt_encrypt_le"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "tc_aes_encrypt"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "gatt_db_hash_gen"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "gatt_db_hash_gen"
+   ],
+   "symbol": "tc_cmac_setup"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "ble_rng_get_random_bytes"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "ble_rng_get_random_bytes"
+   ],
+   "symbol": "tc_hmac_prng_init"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "ble_rng_seed_from_uptime"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "ble_rng_seed_from_uptime"
+   ],
+   "symbol": "tc_hmac_prng_reseed"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0007ab20"
+   ],
+   "category": "ghidra_compiler_pseudo",
+   "evidence": "excluded CC312 caller; thunk spelling targets mapped memset_bytes VA",
+   "retained_callers": [],
+   "symbol": "thunk_FUN_00086c78"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "bt_gatt_connected",
+    "bt_settings_delete",
+    "bt_settings_store"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
+   "retained_callers": [
+    "bt_gatt_connected",
+    "bt_settings_delete"
+   ],
+   "symbol": "u8_to_dec"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "symbol": "virtio_create_virtqueues"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000710b4",
+    "FUN_0007118c",
+    "FUN_00085a9c",
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_000710b4",
+    "FUN_0007118c",
+    "FUN_00085a9c",
+    "rpmsg_virtqueue_channel_init"
+   ],
+   "symbol": "virtqueue_add_buffer"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_0007118c",
+    "FUN_00085b0c"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_0007118c",
+    "FUN_00085b0c"
+   ],
+   "symbol": "virtqueue_get_buffer"
+  },
+  {
+   "action": "report_only",
+   "callers": [
+    "FUN_000710b4",
+    "FUN_00085a9c"
+   ],
+   "category": "genuine_sdk_library_external",
+   "evidence": "NCS-2.5.1:modules/open-amp",
+   "retained_callers": [
+    "FUN_000710b4",
+    "FUN_00085a9c"
+   ],
+   "symbol": "virtqueue_get_buffer_length"
+  }
+ ],
+ "schema": 1,
+ "source": {
+  "full_link_report": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/fulllink_app.json",
+  "full_link_report_sha256": "92a9d1491ec586441a4d18e2be73cbd2a8cfa19ec93f7a0a73537c41ad7f03ac",
+  "retain_all_duplicate_diagnostics": 112,
+  "retain_all_link_log": "/private/tmp/g1-app-residue-current-0718/link-final-regenerated.log"
+ },
+ "source_commit": "bc394c43",
+ "summary": {
+  "actionable_gaps": 0,
+  "by_category": {
+   "blocked_interior": 2,
+   "duplicate_owner_byproduct": 24,
+   "genuine_sdk_library_external": 32,
+   "ghidra_compiler_pseudo": 1
+  },
+  "pinned_data_globals": 0,
+  "symbols": 59
+ }
+}
