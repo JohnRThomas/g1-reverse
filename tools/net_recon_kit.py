@@ -19,6 +19,10 @@ TRUE_SIZE_OVERRIDES = {
     # link-state update islands end at 0x0102a5de; its literal pool starts
     # there.  main stores the runtime Thumb pointer 0x0102acc9.
     0x0102a4c8: 0x116,
+    # Inlined HCI-RPMsg RX dispatcher referenced by the initialized endpoint
+    # callback at runtime Thumb address 0x0102b5f1.  All CMD/ACL/ISO arms end
+    # at 0x0102af56; the literal pool starts at 0x0102af58.
+    0x0102adf0: 0x166,
     # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
     # catalog.  Each is a one-argument k_sem_give tail veneer; the following
     # halfword is alignment and its semaphore-address literal follows that.

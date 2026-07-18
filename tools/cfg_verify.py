@@ -407,6 +407,10 @@ TRUE_SIZE_OVERRIDES = {
     # link-state update islands end at 0x0102a5de; its literal pool starts
     # there.  main stores the runtime Thumb pointer 0x0102acc9.
     ("net", 0x0102a4c8): 0x116,
+    # Inlined HCI-RPMsg RX dispatcher referenced by the initialized endpoint
+    # callback at runtime Thumb address 0x0102b5f1.  All CMD/ACL/ISO arms end
+    # at 0x0102af56; the literal pool starts at 0x0102af58.
+    ("net", 0x0102adf0): 0x166,
     # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
     # catalog.  Each is a one-argument k_sem_give tail veneer; the following
     # halfword is alignment and its semaphore-address literal follows that.
@@ -1137,6 +1141,7 @@ RETURN_KIND_OVERRIDES = {
     # Product ESB callback has a void ABI.  Its two timestamp helpers return
     # complete 64-bit values in r0:r1.
     ("net", 0x0102a4c8): "void",
+    ("net", 0x0102adf0): "void",
     ("net", 0x0103963c): "i64",
     ("net", 0x0103b300): "i64",
     # Newlib's hard-float sqrt returns the binary64 result in d0; its integer
@@ -19277,6 +19282,77 @@ REVIEWED_STATE_CASES[("net", 0x0102a4c8)] = [
                         sequence=7, last_sequence=7),
     _net_esb_event_case(2, service_role=2, opcode=0x20, length=16,
                         sequence=8, last_sequence=7),
+]
+
+
+def _net_hci_rpmsg_rx_case(indicator, *, short=False, allocation="none",
+                            payload=2, declared=None, tailroom=16,
+                            log_level=0):
+    """Configured HCI-RPMsg CMD/ACL/ISO receive record and call outcomes."""
+    packet = emu.SCRATCH + 0x1000
+    buffer = emu.SCRATCH + 0x3000
+    if indicator == 1:
+        header_size = 3
+    elif indicator in (2, 5):
+        header_size = 4
+    else:
+        header_size = 0
+    if short and header_size:
+        length = header_size
+        image = bytearray(length)
+        image[0] = indicator
+    else:
+        declared = payload if declared is None else declared
+        length = 1 + header_size + payload
+        image = bytearray(max(length, 1))
+        image[0] = int(indicator) & 0xff
+        if indicator == 1:
+            image[3] = int(declared) & 0xff
+        elif indicator in (2, 5):
+            image[3:5] = int(declared).to_bytes(2, "little")
+        for n in range(payload):
+            image[1 + header_size + n] = (0x80 + n) & 0xff
+    memory = [
+        (packet, bytes(image)),
+        (buffer, bytes(0x40)),
+        (0x21000580, int(log_level).to_bytes(4, "little", signed=True)),
+    ]
+    oracles = {}
+    if header_size and not short:
+        oracles[0] = {0: 0 if allocation == "none" else buffer}
+        if allocation not in ("none", "mismatch"):
+            oracles[1] = {0: int(tailroom)}
+    return ({0: packet, 1: length}, memory, oracles)
+
+
+REVIEWED_NPTR_COUNTS[("net", 0x0102adf0)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102adf0)] = {
+    0x0102fc30: 6,  # type, aligned 64-bit timeout, header, header size
+    0x0102ff94: 1,  # net_buf_unref(buffer)
+    0x0102ff54: 2,  # net_buf_put(queue, buffer)
+    0x0103a468: 1,  # net_buf_tailroom(buffer->b)
+    0x0103a478: 3,  # net_buf_add_mem(buffer->b, data, remaining)
+    0x01039722: 2,  # diagnostic format and path-specific value
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102adf0)] = [
+    _net_hci_rpmsg_rx_case(7, log_level=0),
+    _net_hci_rpmsg_rx_case(7, log_level=1),
+    _net_hci_rpmsg_rx_case(1, short=True, log_level=1),
+    _net_hci_rpmsg_rx_case(1, allocation="none"),
+    _net_hci_rpmsg_rx_case(1, allocation="mismatch", declared=3),
+    _net_hci_rpmsg_rx_case(1, allocation="space", tailroom=1),
+    _net_hci_rpmsg_rx_case(1, allocation="success", tailroom=16),
+    _net_hci_rpmsg_rx_case(2, short=True, log_level=1),
+    _net_hci_rpmsg_rx_case(2, allocation="none"),
+    _net_hci_rpmsg_rx_case(2, allocation="mismatch", declared=3),
+    _net_hci_rpmsg_rx_case(2, allocation="success", tailroom=16),
+    _net_hci_rpmsg_rx_case(5, short=True, log_level=1),
+    _net_hci_rpmsg_rx_case(5, allocation="none"),
+    _net_hci_rpmsg_rx_case(5, allocation="mismatch", declared=3),
+    _net_hci_rpmsg_rx_case(5, allocation="success", tailroom=16),
+    _net_hci_rpmsg_rx_case(5, allocation="success", tailroom=16,
+                           declared=0x4002),
+    _net_hci_rpmsg_rx_case(5, allocation="mismatch", declared=0x2002),
 ]
 
 
