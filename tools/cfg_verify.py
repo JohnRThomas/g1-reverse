@@ -382,6 +382,17 @@ def _decompiled_arity(func):
     if "..." in params:
         return 4  # varargs: r0-r3 may all be semantically live
     return min(4, len([p for p in params.split(",") if p.strip()]))
+# Ghidra/classification under-reports these resolved jump-table bodies. Values
+# are CFG-confirmed executable extents, not trailing data-table inflation.
+TRUE_SIZE_OVERRIDES = {
+    ("app", 0x000564cc): 0xde,  # bt_conn_send_cb
+    ("app", 0x00058568): 0x1c,  # send_err_rsp allocation-failure log helper
+    ("app", 0x0005a954): 0x58,  # bt_gatt_init
+    ("app", 0x0005ad38): 0x21c, # bt_gatt_service_register
+    ("app", 0x0005c310): 0x9c,  # gatt_prepare_write_rsp
+    ("app", 0x0005c6c8): 0x8e,  # bt_gatt_connected
+    ("app", 0x0005c76c): 0x24,  # bt_gatt_att_max_mtu_changed
+    ("app", 0x0005c9a4): 0xf6,  # bt_gatt_disconnected
     # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
     # entries.  Each extent ends at its reachable return/tail boundary; the
     # following aligned words are literals or independent functions.
@@ -393,9 +404,6 @@ def _decompiled_arity(func):
     ("app", 0x00075864): 0x58,  # z_heap_aligned_alloc
     ("app", 0x000758cc): 0x4e,  # k_aligned_alloc
     ("app", 0x00075e14): 0x170,  # __ieee754_sqrt
-# Ghidra/classification under-reports these resolved jump-table bodies. Values
-# are CFG-confirmed executable extents, not trailing data-table inflation.
-TRUE_SIZE_OVERRIDES = {
     ("app", 0x00076bc0): 0x06,
     ("app", 0x00077b24): 0x0e,
     ("app", 0x00077b38): 0xe0,
@@ -422,6 +430,7 @@ TRUE_SIZE_OVERRIDES = {
     # exactly at 0x0100b5f4 and is excluded from this extent.
     ("net", 0x0100b594): 0x60,
     ("app", 0x00016834): 0x1a,
+    ("app", 0x000179f8): 0x0c,
     ("app", 0x00017a04): 0x08,
     ("app", 0x00017a10): 0x08,
     ("app", 0x00017a1c): 0x08,
@@ -429,6 +438,13 @@ TRUE_SIZE_OVERRIDES = {
     ("app", 0x00017a34): 0x08,
     ("app", 0x0002893c): 0x1e,
     ("app", 0x00032fdc): 0x06,
+    ("app", 0x00026100): 0x150,
+    ("app", 0x00033554): 0x14c,
+    ("app", 0x00033730): 0x11c,
+    ("app", 0x0003603c): 0x128,
+    ("app", 0x00036b3c): 0x1fc,
+    ("app", 0x0003f410): 0x934,
+    ("app", 0x0003fecc): 0x818,
     ("app", 0x0002538c): 0x98,  # transport state update
     ("app", 0x000258b4): 0x90,  # transport parameter reader
     ("app", 0x00025950): 0x78,  # transport parameter writer
@@ -17827,6 +17843,19 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x00023af0)] = {
 REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x000430c0)] = [
     ("raster-dimensions", -32, -32, 8, None, None, (0x00042fb0,)),
 ]
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00033730)] = [
+    ("whitelist-packet", -0x178, -0x180, 21),
+    ("whitelist-json", -0x160, -0x168, 320),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0003603c)] = {
+    0x000431c0: 0, 0x000438d0: 0, 0x000431b4: 1,
+    0x000432d0: 0, 0x00034390: 0, 0x00033cf8: 0,
+    0x000342e0: 1, 0x00035f28: 2, 0x00035afc: 2,
+    0x0007dda4: 1, 0x00019c70: 1,
+}
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0003603c)] = [
+    ("ancs-message", -0x24, -0x1c, 4, None, None, (0x000342e0,)),
+]
 REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00023014)] = [
     ("burial-flash-buffer", -208, -204, 192, None, None,
      (0x00086c78, 0x000225b4, 0x00086be4)),
@@ -22181,6 +22210,114 @@ REVIEWED_ORACLE_CASES[("app", 0x00086360)] = [
 REVIEWED_NPTR_COUNTS[("app", 0x0008664c)] = 0
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x0008664c)] = {0x00086634: 1}
 REVIEWED_ORACLE_CASES[("app", 0x0008664c)] = [({}, [], {0: {0: 0}})]
+
+
+def _app_gatt_prepare_write_rsp_case(response_length, response_offset,
+                                      params_length, memcmp_result=0,
+                                      final_result=0):
+    response = emu.SCRATCH + 0x9300
+    params = emu.SCRATCH + 0x9400
+    data = emu.SCRATCH + 0x9500
+    response_image = bytearray(32)
+    response_image[2:4] = int(response_offset).to_bytes(2, "little")
+    response_image[4:20] = bytes(range(16))
+    params_image = bytearray(16)
+    params_image[0:4] = (0x00080001).to_bytes(4, "little")
+    params_image[4:6] = (0x1234).to_bytes(2, "little")
+    params_image[6:8] = (5).to_bytes(2, "little")
+    params_image[8:12] = data.to_bytes(4, "little")
+    params_image[12:14] = int(params_length).to_bytes(2, "little")
+    payload_length = (response_length - 4) & 0xffff
+    if payload_length > params_length:
+        oracles = {1: {0: int(final_result)}}
+    elif response_offset != 5:
+        oracles = {0: {0: int(memcmp_result)}, 2: {0: int(final_result)}}
+    elif memcmp_result:
+        oracles = {0: {0: int(memcmp_result)}, 2: {0: int(final_result)}}
+    else:
+        oracles = {0: {0: 0}, 1: {0: int(final_result)}}
+    return ({0: emu.SCRATCH + 0x9200, 1: response,
+             2: response_length, 3: params},
+            [(response, bytes(response_image)), (params, bytes(params_image)),
+             (data, bytes(range(16)))], oracles)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0005c310)] = 4
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005c310)] = {
+    0x00082a42: 3, 0x00082aee: 4, 0x00086be4: 3,
+    0x0005c22c: 2,
+}
+REVIEWED_STACK_POINTER_CALLS[("app", 0x0005c310)] = {0: {2}, 1: {2}}
+REVIEWED_ORACLE_CASES[("app", 0x0005c310)] = [
+    _app_gatt_prepare_write_rsp_case(16, 5, 8, final_result=0),
+    _app_gatt_prepare_write_rsp_case(16, 5, 8, final_result=1),
+    _app_gatt_prepare_write_rsp_case(8, 6, 8, final_result=0),
+    _app_gatt_prepare_write_rsp_case(8, 5, 8, memcmp_result=1,
+                                      final_result=1),
+    _app_gatt_prepare_write_rsp_case(8, 5, 8, final_result=0),
+    _app_gatt_prepare_write_rsp_case(8, 5, 8, final_result=1),
+    _app_gatt_prepare_write_rsp_case(12, 5, 8, final_result=0),
+    _app_gatt_prepare_write_rsp_case(12, 5, 8, final_result=1),
+]
+
+
+def _app_gatt_service_register_case(kind, initialized=False):
+    service = emu.SCRATCH + 0x9600
+    attrs = emu.SCRATCH + 0x9700
+    uuid = emu.SCRATCH + 0x9800
+    service_image = bytearray(12)
+    attr_image = bytearray(0x28)
+    service_image[0:4] = attrs.to_bytes(4, "little")
+    service_image[4:6] = (1).to_bytes(2, "little")
+    attr_image[0:4] = uuid.to_bytes(4, "little")
+    if kind == "null":
+        args = {0: 0}
+    else:
+        args = {0: service}
+        if kind == "null-attrs":
+            service_image[0:4] = (0).to_bytes(4, "little")
+        elif kind == "zero-count":
+            service_image[4:6] = (0).to_bytes(2, "little")
+        elif kind == "existing-handle":
+            attr_image[0x10:0x12] = (9).to_bytes(2, "little")
+    memory = [(service, bytes(service_image)), (attrs, bytes(attr_image)),
+              (uuid, bytes(8)),
+              (0x2000af04, (0).to_bytes(4, "little")),
+              (0x20006448, (0).to_bytes(4, "little")),
+              (0x2000af08, bytes(8)),
+              (0x2000ff3c, (7).to_bytes(2, "little"))]
+    if kind in ("null", "null-attrs", "zero-count"):
+        return (args, memory, {})
+    if kind == "late-error":
+        return (args, memory, {0: {0: 1}, 1: {0: 0}})
+    if kind == "mandatory":
+        return (args, memory, {0: {0: 0}, 2: {0: 0}})
+    # Empty dynamic database, non-mandatory UUID, one allocated handle.
+    final_flag = 1 if initialized else 0
+    return (args, memory, {
+        0: {0: 0}, 2: {0: 1}, 3: {0: 1}, 5: {0: final_flag},
+    })
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0005ad38)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0005ad38)] = {
+    0x0007e2fa: 4, 0x0007e2ec: 2, 0x0008270c: 1,
+    0x00059cb4: 0, 0x00080d3e: 2, 0x00073b1c: 0,
+    0x00073bf4: 0, 0x00082c9c: 4, 0x00082a42: 3,
+    0x0005a570: 2, 0x0005a6b0: 0,
+}
+REVIEWED_STACK_POINTER_CALLS[("app", 0x0005ad38)] = {
+    2: {1, 2}, 3: {1, 2}, 4: {1, 2},
+}
+REVIEWED_ORACLE_CASES[("app", 0x0005ad38)] = [
+    _app_gatt_service_register_case("null"),
+    _app_gatt_service_register_case("null-attrs"),
+    _app_gatt_service_register_case("zero-count"),
+    _app_gatt_service_register_case("late-error"),
+    _app_gatt_service_register_case("mandatory"),
+    _app_gatt_service_register_case("ordinary"),
+    _app_gatt_service_register_case("ordinary", initialized=True),
+]
 
 
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
