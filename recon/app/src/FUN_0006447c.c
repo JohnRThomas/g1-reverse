@@ -50,7 +50,6 @@ static int cjson_case_insensitive_compare(const uint8_t *left,
            (int)cjson_ascii_tolower(*right);
 }
 
-#define cjson_get_object_item FUN_0006447c
 struct cjson_item_raw *cjson_get_object_item(
     const struct cjson_item_raw *object, const char *name,
     int32_t case_sensitive)

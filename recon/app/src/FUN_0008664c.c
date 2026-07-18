@@ -7,7 +7,6 @@
 #define z_reschedule_irqlock FUN_00086634
 extern void z_reschedule_irqlock(uint32_t key);
 
-#define z_reschedule_unlocked FUN_0008664c
 void z_reschedule_unlocked(void)
 {
     uint32_t key = __get_BASEPRI();

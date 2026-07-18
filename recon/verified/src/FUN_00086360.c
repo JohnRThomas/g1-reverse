@@ -7,7 +7,6 @@
 extern int zcbor_encode_length_header(void *state, uint32_t major_type,
                                       const void *value, uint32_t value_size);
 
-#define zcbor_simple_put FUN_00086360
 int zcbor_simple_put(void *state, uint8_t input)
 {
     return zcbor_encode_length_header(state, 7u, &input, 1u);

@@ -7,7 +7,6 @@
 extern int flash_write_padded_entry(uintptr_t peripheral, uint32_t destination,
                                     const void *source, uint32_t length);
 
-#define flash_write_close_ate_marker FUN_00084e44
 void flash_write_close_ate_marker(uintptr_t peripheral, uint32_t destination,
                                   uint8_t marker)
 {

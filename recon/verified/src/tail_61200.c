@@ -15,8 +15,6 @@ extern void FUN_0004d944(uintptr_t source, uint32_t level,
                          const void *record, uint32_t reserved);
 
 #define log_output_record               FUN_0004d944 /* 0x0004d944 */
-#define flash_nrf_read_invalid_address  tail_61200
-
 int flash_nrf_read_invalid_address(int32_t address, size_t length)
 {
     const struct flash_address_log_record_raw diagnostic = {

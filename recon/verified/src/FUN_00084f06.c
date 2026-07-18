@@ -12,7 +12,6 @@ struct linked_owner_raw {
     struct linked_node_raw *head;
 };
 
-#define linked_node_at_index FUN_00084f06
 struct linked_node_raw *linked_node_at_index(struct linked_owner_raw *owner,
                                              uint32_t index)
 {

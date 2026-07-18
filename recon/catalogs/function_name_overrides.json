@@ -707,7 +707,8 @@
   },
   "0x00061200": {
    "name": "flash_nrf_read_invalid_address",
-   "evidence": "Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; it logs the address/length tuple and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200."
+   "raw_name": "tail_61200",
+   "evidence": "Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; canonical tail_61200.c defines the genuine readable primary flash_nrf_read_invalid_address, logs the address/length tuple, and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200."
   },
   "0x0006447c": {
    "name": "cjson_get_object_item",

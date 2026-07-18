@@ -17,7 +17,6 @@ extern int zcbor_str_start_decode(void *state, struct zcbor_string_raw *result,
                                   uint32_t expected_major_type,
                                   uint32_t inherited_r3);
 
-#define zcbor_str_decode FUN_00085ef0
 int zcbor_str_decode(struct zcbor_state_prefix_raw *state,
                      struct zcbor_string_raw *result,
                      uint32_t expected_major_type, uint32_t inherited_r3)

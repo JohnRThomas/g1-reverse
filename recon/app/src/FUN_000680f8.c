@@ -29,7 +29,6 @@ struct metal_log_state_raw {
 #define METAL_LOG_DEBUG 7u
 #define METAL_BUS_UNREGISTERED_FORMAT ((const char *)0x000f7a8au)
 
-#define metal_bus_unregister FUN_000680f8
 int metal_bus_unregister(struct metal_bus_raw *bus)
 {
     struct metal_list_raw *next = bus->node.next;

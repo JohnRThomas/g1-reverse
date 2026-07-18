@@ -26,7 +26,6 @@ struct zcbor_constant_state_raw {
 extern int zcbor_check_error(struct zcbor_constant_state_raw *constant_state);
 extern void zcbor_error(struct zcbor_state_raw *state, uint32_t error);
 
-#define zcbor_process_backup FUN_00085c86
 int zcbor_process_backup(struct zcbor_state_raw *state, uint32_t flags,
                          uint32_t max_elem_count, uint32_t inherited_r3)
 {

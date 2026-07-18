@@ -26,7 +26,6 @@ struct flash_driver_api_raw {
                         const struct flash_pages_layout_raw **, uint32_t *);
 };
 
-#define flash_get_page_info FUN_00083a2c
 int flash_get_page_info(const struct device_raw *device, uint32_t offset,
                         uint32_t index, struct flash_pages_info_raw *info)
 {

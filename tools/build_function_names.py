@@ -165,7 +165,8 @@ def build(core):
     for address, rows in candidates.items():
         rows.sort(key=lambda row: (not row["human"], row["priority"], row["name"]))
         best = rows[0]
-        raw = "FUN_%08x" % address
+        override = overrides.get("0x%08x" % address, {})
+        raw = override.get("raw_name", "FUN_%08x" % address)
         aliases = sorted({row["name"] for row in rows if row["name"] != best["name"]})
         chosen[address] = {
             "address": "0x%08x" % address,

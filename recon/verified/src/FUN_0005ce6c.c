@@ -51,8 +51,6 @@ extern int FUN_0005cc68(void *smp);
 #define smp_find_raw                  FUN_0005caa4 /* 0x0005caa4 */
 #define smp_dhkey_generate_raw        FUN_0005cc68 /* 0x0005cc68 */
 
-#define smp_public_key_periph FUN_0005ce6c
-
 #define SC_PUBLIC_KEY_SLOT ((uint8_t *volatile *)UINT32_C(0x2000af48))
 
 enum pairing_method_raw {
