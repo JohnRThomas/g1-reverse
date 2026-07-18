@@ -3,7 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
  *   rodata_73729                             @ 0x00073729
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq_nonempty_flag         @ 0x2000b48c
  *   g_percpu_timeout_abort_flag              @ 0x2001d565
  */

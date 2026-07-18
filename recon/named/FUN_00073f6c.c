@@ -17,9 +17,9 @@
  *   rodata_f0935                             @ 0x000f0935
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8584                             @ 0x000f8584
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_pend_locked_thread_tmp                 @ 0x2000b484
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00073f6c @ 0x73f6c  (parity: 300/300 trials, PROVEN) */
 extern int z_spin_lock_valid(int,int,int,int);

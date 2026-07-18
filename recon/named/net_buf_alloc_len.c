@@ -1,9 +1,8 @@
-#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0005eeb4 @ 0x0005eeb4
- * public-name: k_queue_insert_with_timeout
+ * public-name: net_buf_alloc_len
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   k_queue_insert_with_timeout              <= FUN_0005eeb4 @ 0x0005eeb4
+ *   net_buf_alloc_len                        <= FUN_0005eeb4 @ 0x0005eeb4
  *   z_spin_lock_valid                        <= FUN_00072040 @ 0x00072040
  *   z_spin_unlock_valid                      <= FUN_0007205c @ 0x0007205c
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
@@ -37,7 +36,7 @@ extern void k_queue_prepend(int,int);
 extern void sys_timepoint_calc(void *);
 extern void sys_timepoint_timeout(void *,int,int,unsigned);
 
-int k_queue_insert_with_timeout(int param_1, unsigned param_2, int param_3, int param_4)
+int net_buf_alloc_len(int param_1, unsigned param_2, int param_3, int param_4)
 {
     uint32_t frame[4] = {(uint32_t)param_1,param_2,(uint32_t)param_3,param_2};
     unsigned local_24 = param_2;
@@ -47,16 +46,16 @@ int k_queue_insert_with_timeout(int param_1, unsigned param_2, int param_3, int 
 
     sys_timepoint_calc(frame);
     if (param_1 == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f53e9) /*=0xf53e9*/,((unsigned long)&rodata_f539a) /*=0xf539a*/,0xf8u);
-        assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/,0xf8u);
+        printk(0x99cbdu,0xf53e9u,0xf539au,0xf8u);
+        assert_post_action(0xf539au,0xf8u);
         goto CONTINUE_AFTER_FATAL;
     }
     {
         int iVar6b = z_spin_lock_valid(param_1 + 0x1c);
         if (iVar6b == 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72u);
-            printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,param_1 + 0x1c);
-            assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72u);
+            printk(0x99cbdu,0xf0920u,0xf08c7u,0x72u);
+            printk(0xf0935u,param_1 + 0x1c);
+            assert_post_action(0xf08c7u,0x72u);
             goto CONTINUE_AFTER_FATAL;
         }
     }
@@ -90,7 +89,7 @@ EFA0:
     {
         unsigned p20 = *(volatile uint16_t*)(param_1 + 0x20);
         unsigned mul = ((unsigned)*(volatile uint8_t*)(param_1 + 0x24) + 0x1b) & 0xfffffffc;
-        int d = ((int)(param_1 - ((unsigned long)&acl_tx_pool) /*=0x20003a7c*/)) >> 2;
+        int d = ((int)(param_1 - 0x20003a7c)) >> 2;
         r4 = (int)((p20 - uVar1) * mul) + *(volatile int*)(param_1 + 0x30);
         *(volatile int8_t*)(r4 + 10) = (int8_t)((uint32_t)0xc4ec4ec5 * (uint32_t)d);
         *(volatile uint8_t*)(r4 + 0xb) = *(volatile uint8_t*)(param_1 + 0x24);
@@ -106,19 +105,19 @@ EF60:
         sys_timepoint_timeout(frame,0,frame[0],frame[1]);
         {
             unsigned idx = *(volatile uint8_t*)(r4 + 0xa);
-            int p = *(volatile int*)(0x34 * idx + ((unsigned long)&acl_tx_pool) /*=0x20003a7c*/ + 0x2c);
+            int p = *(volatile int*)(0x34 * idx + 0x20003a7c + 0x2c);
             int p2 = *(volatile int*)p;
             int fn = *(volatile int*)p2;
             iVar6 = ((int(*)(int,int,int,int))(intptr_t)fn)(r4, (int)(intptr_t)&local_24, param_1, param_2);
             *(volatile int*)(r4 + 0x14) = iVar6;
             if (iVar6 == 0) {
-                k_queue_prepend(((unsigned long)&acl_tx_pool) /*=0x20003a7c*/ + 0x34 * *(volatile uint8_t*)(r4 + 0xa),r4);
+                k_queue_prepend(0x20003a7c + 0x34 * *(volatile uint8_t*)(r4 + 0xa),r4);
                 return 0;
             }
             if (r5v <= local_24) goto EF2E;
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f53ee) /*=0xf53ee*/,((unsigned long)&rodata_f539a) /*=0xf539a*/,0x14fu);
-            printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);
-            assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/,0x14fu);
+            printk(0x99cbdu,0xf53eeu,0xf539au,0x14fu);
+            printk(0xf53ffu);
+            assert_post_action(0xf539au,0x14fu);
             goto CONTINUE_AFTER_FATAL;
         }
     }
@@ -130,8 +129,8 @@ EF2E:
     *(volatile int*)(r4 + 0xc) = *(volatile int*)(r4 + 0x14);
     return r4;
 EF40:
-    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0u);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,param_1 + 0x1c);
-    assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0u);
+    printk(0x99cbdu,0xf08f4u,0xf08c7u,0xf0u);
+    printk(0xf090bu,param_1 + 0x1c);
+    assert_post_action(0xf08c7u,0xf0u);
     goto CONTINUE_AFTER_FATAL;
 }

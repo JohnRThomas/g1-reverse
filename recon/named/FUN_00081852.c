@@ -9,7 +9,7 @@
 
 extern unsigned long long net_buf_frags_len(int a);
 extern int FUN_0005757c(int a, int b, int c);
-extern int FUN_0005f3d8(int a, int b);
+extern int net_buf_frag_del(int a, int b); /* FUN_0005f3d8 @ 0x0005f3d8 */
 extern void net_buf_unref(int a);
 unsigned FUN_00081852(int param_1, int *param_2, unsigned param_3){
     int iVar2 = *param_2;
@@ -34,7 +34,7 @@ unsigned FUN_00081852(int param_1, int *param_2, unsigned param_3){
     }
     while ((int)param_3 < iVar3){
         if (*(volatile unsigned short*)(iVar2 + 0x10) == 0)
-            iVar2 = FUN_0005f3d8(0, iVar2);
+            iVar2 = net_buf_frag_del(0, iVar2);
         uVar1 = FUN_0005757c(param_1, iVar2, 0);
         if (uVar1 < 0){
             if ((unsigned)uVar1 == 0xfffffff5u)

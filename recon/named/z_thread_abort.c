@@ -22,10 +22,10 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8698                             @ 0x000f8698
  *   rodata_f86b7                             @ 0x000f86b7
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_current_thread_ptr                     @ 0x2000b450
  *   g_sched_ready_runq                       @ 0x2000b464
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed z_thread_abort @ 0x000748b8 from Zephyr sched.c.
  * Raw backmap: FUN_000748b8@0x000748b8, true code extent 0x166 bytes.

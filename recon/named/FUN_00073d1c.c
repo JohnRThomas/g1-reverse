@@ -9,7 +9,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq                       @ 0x2000b464
  */
 /* Reconstructed FUN_00073d1c @ 0x73d1c  (parity: 300/300 trials, PROVEN) */

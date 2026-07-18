@@ -11632,12 +11632,13 @@
   "0x0005eeb4": {
    "address": "0x0005eeb4",
    "raw_name": "FUN_0005eeb4",
-   "name": "k_queue_insert_with_timeout",
-   "display_name": "k_queue_insert_with_timeout",
+   "name": "net_buf_alloc_len",
+   "display_name": "net_buf_alloc_len",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 Zephyr subsys/net/buf.c identity. The configured asserted owner is relocation-normalized byte-exact across the 398-byte reachable code extent; the stale k_queue_insert_with_timeout name described only one internal operation. Raw identity remains FUN_0005eeb4 at 0x0005eeb4.",
    "aliases": [
-    "FUN_0005eeb4"
+    "FUN_0005eeb4",
+    "k_queue_insert_with_timeout"
    ]
   },
   "0x0005f074": {
@@ -11731,11 +11732,13 @@
   "0x0005f3d8": {
    "address": "0x0005f3d8",
    "raw_name": "FUN_0005f3d8",
-   "name": "FUN_0005f3d8",
-   "display_name": "FUN_0005f3d8",
-   "human": false,
-   "source": "recon/app/src/FUN_0005f3d8.c",
-   "aliases": []
+   "name": "net_buf_frag_del",
+   "display_name": "net_buf_frag_del",
+   "human": true,
+   "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 Zephyr subsys/net/buf.c identity. It validates the fragment relation, unlinks the selected fragment, clears its link, unreferences it and returns the successor. Raw identity remains FUN_0005f3d8 at 0x0005f3d8.",
+   "aliases": [
+    "FUN_0005f3d8"
+   ]
   },
   "0x0005f450": {
    "address": "0x0005f450",
@@ -14327,9 +14330,7 @@
    "display_name": "k_heap_free",
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr k_heap_free with CONFIG_ASSERT=y, CONFIG_ASSERT_LEVEL=2 and CONFIG_SPIN_VALIDATE=y; raw identity remains FUN_00071b2c at 0x00071b2c.",
-   "aliases": [
-    "g1_recon_k_heap_free_validated"
-   ]
+   "aliases": []
   },
   "0x00071c20": {
    "address": "0x00071c20",
@@ -15116,9 +15117,7 @@
    "display_name": "k_aligned_alloc",
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr k_aligned_alloc with the recovered assertion configuration; raw identity remains FUN_000758cc at 0x000758cc.",
-   "aliases": [
-    "g1_recon_k_aligned_alloc_asserting"
-   ]
+   "aliases": []
   },
   "0x00075944": {
    "address": "0x00075944",
@@ -25128,8 +25127,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr queue initializer under the recovered spin-validation/TLS kernel layout; raw identity remains FUN_000864e8 at 0x000864e8.",
    "aliases": [
-    "FUN_000864e8",
-    "g1_recon_z_impl_k_queue_init"
+    "FUN_000864e8"
    ]
   },
   "0x00086502": {
@@ -26344,7 +26342,6 @@
   "FUN_0005ea64": "0x0005ea64",
   "FUN_0005ec84": "0x0005ec84",
   "FUN_0005edac": "0x0005edac",
-  "FUN_0005f3d8": "0x0005f3d8",
   "FUN_0005f654": "0x0005f654",
   "FUN_0005f760": "0x0005f760",
   "FUN_0005fa94": "0x0005fa94",
@@ -27747,7 +27744,6 @@
   "k_msleep_ticks32768_c": "0x0007d194",
   "k_mutex_lock": "0x000723b8",
   "k_mutex_unlock": "0x00072558",
-  "k_queue_insert_with_timeout": "0x0005eeb4",
   "k_queue_prepend": "0x00086518",
   "k_sem_give": "0x00072880",
   "k_sem_take": "0x0007cb48",
@@ -27932,9 +27928,11 @@
   "navigation_panoramic_map_display": "0x0003e7f8",
   "net_buf_add_le16": "0x000836f8",
   "net_buf_add_u8": "0x0008370a",
+  "net_buf_alloc_len": "0x0005eeb4",
   "net_buf_append_bytes": "0x0005f450",
   "net_buf_destroy": "0x00056080",
   "net_buf_frag_add": "0x0005f390",
+  "net_buf_frag_del": "0x0005f3d8",
   "net_buf_frag_insert": "0x0005f338",
   "net_buf_frag_last": "0x0005f304",
   "net_buf_frags_len": "0x00081616",

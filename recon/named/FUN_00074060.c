@@ -18,7 +18,7 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  *   g_sched_ready_runq                       @ 0x2000b464
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00074060 @ 0x74060  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

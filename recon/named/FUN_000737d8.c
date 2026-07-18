@@ -9,7 +9,7 @@
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84af                             @ 0x000f84af
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000737d8 @ 0x737d8  (parity: 300/300 trials, PROVEN) */
 

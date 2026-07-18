@@ -4,7 +4,7 @@
  * callees (readable <= raw @ address):
  *   z_spin_lock_set_owner                    <= FUN_00072078 @ 0x00072078
  * address symbols (name @ address):
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00072078 @ 0x72078  (parity: 300/300 trials, PROVEN) */
 

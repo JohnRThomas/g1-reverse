@@ -5,7 +5,7 @@
  *   z_heap_aligned_alloc                     <= FUN_00075864 @ 0x00075864
  *   k_is_in_isr                              <= FUN_00086406 @ 0x00086406
  * address symbols (name @ address):
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00075944 @ 0x75944  (parity: 300/300 trials, PROVEN) */
 

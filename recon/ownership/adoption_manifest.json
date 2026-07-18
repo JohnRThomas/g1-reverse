@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 364,
-    "exclude_reconstruction": 284,
-    "retain_reconstruction": 80,
+    "entries": 366,
+    "exclude_reconstruction": 296,
+    "retain_reconstruction": 70,
     "by_kind": {
-     "source": 214,
+     "source": 216,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -3870,16 +3870,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_reset",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3909,7 +3909,202 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:168",
         "reconstruction_input": "app/libapp.a(net_buf_reset.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:168: multiple definition of `net_buf_reset'; app/libapp.a(net_buf_reset.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_reset.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/include/zephyr/net/buf.h:168: multiple definition of `net_buf_reset'; app/libapp.a(net_buf_reset.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_reset.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "24d11ffb48cd5188952e108905fdb89c0e2decefe270911dafc539e80b957e84",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x000585f0",
+        "0x00080830"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005eeb4",
+     "raw_symbol": "FUN_0005eeb4",
+     "current_symbol": "net_buf_alloc_len",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "net_buf_alloc_len",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "533389466130c1671f0d59e590ed7da49c9a356b4d18aadee1846555382b3813",
+       "cfg_verify_cases": 3,
+       "identity_correction": {
+        "baseline_collision_symbol": "k_queue_insert_with_timeout",
+        "corrected_readable_identity": "net_buf_alloc_len",
+        "corrected_upstream_symbol": "net_buf_alloc_len",
+        "corrected_upstream_source": "zephyr/subsys/net/buf.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -3922,16 +4117,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_slist_put",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -3962,7 +4157,102 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/arch/arm/aarch32/asm_inline_gcc.h:55",
         "reconstruction_input": "app/libapp.a(net_buf_slist_put.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/include/zephyr/arch/arm/aarch32/asm_inline_gcc.h:55: multiple definition of `net_buf_slist_put'; app/libapp.a(net_buf_slist_put.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_slist_put.c:33: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/include/zephyr/arch/arm/aarch32/asm_inline_gcc.h:55: multiple definition of `net_buf_slist_put'; app/libapp.a(net_buf_slist_put.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_slist_put.c:33: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5a6b9db120cb9503d39920283254212849cd521ce18180c3f7690d46002c4d82",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x00053530",
+        "0x000590bc"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -3975,16 +4265,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_slist_get",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4014,7 +4304,103 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:438",
         "reconstruction_input": "app/libapp.a(net_buf_slist_get.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:438: multiple definition of `net_buf_slist_get'; app/libapp.a(net_buf_slist_get.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_slist_get.c:36: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:438: multiple definition of `net_buf_slist_get'; app/libapp.a(net_buf_slist_get.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_slist_get.c:36: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c925203943357e755b47307471ee5addedf771057c0f084c2fb261fbcf34da83",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x000536b8",
+        "0x00058f80",
+        "0x00059834"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4027,16 +4413,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_put",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4067,7 +4453,108 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:458",
         "reconstruction_input": "app/libapp.a(net_buf_put.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:458: multiple definition of `net_buf_put'; app/libapp.a(net_buf_put.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_put.c:23: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:458: multiple definition of `net_buf_put'; app/libapp.a(net_buf_put.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_put.c:23: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b117de37f8889958aa1b827ce78fde7f3331343ba9ca34cbad63f3cfac9f60c8",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x00052744",
+        "0x00052760",
+        "0x00053d70",
+        "0x000543d8",
+        "0x00057cc4",
+        "0x0005b680",
+        "0x00081820",
+        "0x000821a4"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4080,16 +4567,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_unref",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -4117,7 +4604,147 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:466",
         "reconstruction_input": "app/libapp.a(net_buf_unref.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:466: multiple definition of `net_buf_unref'; app/libapp.a(net_buf_unref.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_unref.c:23: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:466: multiple definition of `net_buf_unref'; app/libapp.a(net_buf_unref.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_unref.c:23: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8184ec88895699106a763dc4baef054c974d0d712c8b33a7d344b6115a353f49",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x00012080",
+        "0x000536b8",
+        "0x000538f8",
+        "0x00053d70",
+        "0x00053e74",
+        "0x000543d8",
+        "0x000545f0",
+        "0x00054784",
+        "0x00054828",
+        "0x000552ac",
+        "0x00055350",
+        "0x00055534",
+        "0x00056300",
+        "0x00056394",
+        "0x000571e8",
+        "0x0005757c",
+        "0x0005774c",
+        "0x00057a04",
+        "0x00057cc4",
+        "0x00057db0",
+        "0x000585f0",
+        "0x00058a54",
+        "0x00058c34",
+        "0x00058cfc",
+        "0x00058f80",
+        "0x000591a0",
+        "0x0005929c",
+        "0x00059344",
+        "0x000593ec",
+        "0x00059488",
+        "0x00059550",
+        "0x00059708",
+        "0x00059834",
+        "0x0005b680",
+        "0x0005cb38",
+        "0x0005cdc4",
+        "0x0005d964",
+        "0x0005dc2c",
+        "0x0005f3d8",
+        "0x00080b0e",
+        "0x000813d6",
+        "0x00081852",
+        "0x000818dc",
+        "0x00081940",
+        "0x00081962",
+        "0x00081adc",
+        "0x000832f0"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4130,16 +4757,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_ref",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4169,7 +4796,107 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:518",
         "reconstruction_input": "app/libapp.a(net_buf_ref.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:518: multiple definition of `net_buf_ref'; app/libapp.a(net_buf_ref.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_ref.c:22: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:518: multiple definition of `net_buf_ref'; app/libapp.a(net_buf_ref.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_ref.c:22: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "f7f781070581b92128c84ecd8aed39a4320fb2989164758ecbd9547ff4c3b80b",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x00053d70",
+        "0x000545f0",
+        "0x000571e8",
+        "0x0005757c",
+        "0x000585f0",
+        "0x00058cfc",
+        "0x0005f390"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4182,16 +4909,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_frag_last",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4221,7 +4948,106 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:565",
         "reconstruction_input": "app/libapp.a(net_buf_frag_last.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:565: multiple definition of `net_buf_frag_last'; app/libapp.a(net_buf_frag_last.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_last.c:20: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:565: multiple definition of `net_buf_frag_last'; app/libapp.a(net_buf_frag_last.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_last.c:20: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a4ea68b7dcea2008160e31784b79a9f0fb8655a07e5ae02203c8d42c94ed48cc",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x000583d0",
+        "0x00058808",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f450",
+        "0x00081e2a"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4234,16 +5060,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_frag_insert",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4274,7 +5100,101 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:580",
         "reconstruction_input": "app/libapp.a(net_buf_frag_insert.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:580: multiple definition of `net_buf_frag_insert'; app/libapp.a(net_buf_frag_insert.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_insert.c:23: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:580: multiple definition of `net_buf_frag_insert'; app/libapp.a(net_buf_frag_insert.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_insert.c:23: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "a95b247901cf128afb058838692b76fd51ea7a70fb0651312db277f5becca3a8",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x0005f390"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4287,16 +5207,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_frag_add",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -4327,7 +5247,203 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:588",
         "reconstruction_input": "app/libapp.a(net_buf_frag_add.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:588: multiple definition of `net_buf_frag_add'; app/libapp.a(net_buf_frag_add.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_add.c:26: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:588: multiple definition of `net_buf_frag_add'; app/libapp.a(net_buf_frag_add.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_frag_add.c:26: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4a0cc1d10f9990ef773cd4025e39240c9c622da5c808e2106eede10aa8785827",
+       "cfg_verify_cases": 2,
+       "callers": [
+        "0x000583d0",
+        "0x0005f450",
+        "0x00081e2a"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005f3d8",
+     "raw_symbol": "FUN_0005f3d8",
+     "current_symbol": "net_buf_frag_del",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "net_buf_frag_del",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "53eeb880b5e76494798003f50c999dfe959f17b869e46ef0fc9aa95b88f8f3b7",
+       "cfg_verify_cases": 3,
+       "identity_correction": {
+        "baseline_collision_symbol": "FUN_0005f3d8",
+        "corrected_readable_identity": "net_buf_frag_del",
+        "corrected_upstream_symbol": "net_buf_frag_del",
+        "corrected_upstream_source": "zephyr/subsys/net/buf.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -4340,16 +5456,16 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "net_buf_append_bytes",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/tmp/g1-fwconfig-shadow/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold"
        ],
@@ -4382,7 +5498,103 @@
         "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:674",
         "reconstruction_input": "app/libapp.a(net_buf_append_bytes.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:674: multiple definition of `net_buf_append_bytes'; app/libapp.a(net_buf_append_bytes.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_append_bytes.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf.c:674: multiple definition of `net_buf_append_bytes'; app/libapp.a(net_buf_append_bytes.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_append_bytes.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-34",
+       "instruction_exact": true,
+       "normalized_code_sha256": "3bb32e3321c108898db73d495805ed9e974b19558fb978f3a94992eb779e9dab",
+       "cfg_verify_cases": 1,
+       "callers": [
+        "0x00057a04",
+        "0x0008281a",
+        "0x00082856"
+       ],
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_SPIN_VALIDATE": "y",
+        "CONFIG_THREAD_LOCAL_STORAGE": "y",
+        "CONFIG_ERRNO_IN_TLS": "n",
+        "CONFIG_NET_BUF": "y",
+        "CONFIG_NET_BUF_LOG": "n",
+        "CONFIG_NET_BUF_POOL_USAGE": "n"
+       },
+       "atomic_group": [
+        "0x0005ee6c",
+        "0x0005eeb4",
+        "0x0005f074",
+        "0x0005f148",
+        "0x0005f200",
+        "0x0005f24c",
+        "0x0005f2d4",
+        "0x0005f304",
+        "0x0005f338",
+        "0x0005f390",
+        "0x0005f3d8",
+        "0x0005f450"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "net_buf_append_bytes",
+         "net_buf_frag_add",
+         "net_buf_frag_insert",
+         "net_buf_frag_last",
+         "net_buf_put",
+         "net_buf_ref",
+         "net_buf_reset",
+         "net_buf_slist_get",
+         "net_buf_slist_put",
+         "net_buf_unref"
+        ],
+        "same_source_unit_hidden_exact_symbols": [
+         "net_buf_alloc_len",
+         "net_buf_frag_del"
+        ],
+        "same_source_unit_sdk_only_exact_symbols": [
+         "net_buf_pool_get",
+         "net_buf_id"
+        ],
+        "private_state": [
+         "net_buf_slist_lock",
+         "_net_buf_pool_list_start"
+        ],
+        "private_helpers": [
+         "generic_data_ref",
+         "fixed_data_alloc",
+         "fixed_data_unref",
+         "mem_pool_data_alloc",
+         "mem_pool_data_unref",
+         "heap_data_alloc",
+         "heap_data_unref",
+         "net_buf_heap_cb",
+         "net_buf_fixed_cb",
+         "net_buf_var_cb"
+        ],
+        "exclude_only": [
+         "0x0005ee6c",
+         "0x0005eeb4",
+         "0x0005f074",
+         "0x0005f148",
+         "0x0005f200",
+         "0x0005f24c",
+         "0x0005f2d4",
+         "0x0005f304",
+         "0x0005f338",
+         "0x0005f390",
+         "0x0005f3d8",
+         "0x0005f450"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -28936,7 +30148,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "2bd6dec32d7d2a887f88af590349724ee1562f1430b3ceca0a3e664603a43d28"
+   "sha256": "9a793b2c41b08849a2e3dc0b8407e326d1a063717c3fe85b96e275c75233f2b0"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",

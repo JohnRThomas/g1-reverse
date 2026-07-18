@@ -22,9 +22,9 @@
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8658                             @ 0x000f8658
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_pend_locked_thread_tmp                 @ 0x2000b484
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_000746fc @ 0x746fc.
  * CFG_VERIFY_CALL_ARITIES=3,1,1,0,4,1,1,4,1,2

@@ -20,8 +20,8 @@
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
- *   g_zephyr_kernel                          @ 0x2000b448
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   _kernel                                  @ 0x2000b448
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_000745c8 @ 0x745c8  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

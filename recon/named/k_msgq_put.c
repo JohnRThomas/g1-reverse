@@ -24,7 +24,7 @@
  *   rodata_f7df6                             @ 0x000f7df6
  *   rodata_f80cc                             @ 0x000f80cc
  *   rodata_f80ee                             @ 0x000f80ee
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000720d0 @ 0x720d0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

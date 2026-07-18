@@ -303,9 +303,25 @@ def _app_collision_entries(data, source, names, authorizations,
     if len(authorized) != len(authorization_rows):
         raise ValueError("duplicate app collision authorization VA")
     collision_vas = {_hex(row["va"]) for row in data.get("functions", [])}
-    if not set(authorized) <= collision_vas:
+    hidden = {va for va, row in authorized.items()
+              if row.get("hidden_owner_closure") is True}
+    if not set(authorized) - hidden <= collision_vas:
         raise ValueError("authorization absent from collision catalog: %s" %
-                         sorted(set(authorized) - collision_vas))
+                         sorted(set(authorized) - hidden - collision_vas))
+    for va in hidden:
+        row = authorized[va]
+        correction = row.get("identity_correction", {})
+        closure = row.get("whole_unit_closure", {})
+        if not (row.get("instruction_exact") is True and
+                row.get("configuration_variant_exact") is True and
+                row.get("normalized_code_sha256") and
+                row.get("cfg_verify_cases", 0) > 0 and
+                correction.get("corrected_upstream_symbol") and
+                correction.get("corrected_readable_identity") and
+                correction.get("upstream_linkage") == "public" and
+                closure.get("safe") is True and
+                not closure.get("new_undefined_symbols")):
+            raise ValueError("invalid hidden exact-owner closure: %s" % va)
     output = []
     for row in data.get("functions", []):
         row_va = _hex(row["va"])
@@ -405,6 +421,37 @@ def _app_collision_entries(data, source, names, authorizations,
              "identity, or instruction-signature gates; retain fail-closed."),
             evidence,
             "high" if eligible else "low"))
+    # A corrected identity can expose an exact public owner that was absent
+    # from the original same-name collision catalog.  Such rows are admitted
+    # only through the strict hidden-owner checks above and the same atomic
+    # whole-unit closure used by the visible collision owners.
+    for row_va in sorted(hidden):
+        authorization = authorized[row_va]
+        correction = authorization["identity_correction"]
+        atomic_group = sorted(_hex(value) for value in
+                              authorization.get("atomic_group", []))
+        exclude_only = sorted(_hex(value) for value in authorization[
+            "whole_unit_closure"].get("exclude_only", []))
+        if not (atomic_group and row_va in atomic_group and
+                exclude_only == atomic_group):
+            raise ValueError("hidden owner atomic closure drift: %s" % row_va)
+        output.append(_entry(
+            "app", row_va, names, "source", "cpuapp_selected_sdk",
+            correction["corrected_upstream_symbol"],
+            authorization.get("upstream_object"), True,
+            "A corrected durable identity exposed an exact configured public "
+            "owner inside an atomically adopted SDK source unit.",
+            [_evidence(
+                authorization_source, "explicit_hidden_owner_adoption_authority",
+                batch=authorization.get("batch"),
+                instruction_exact=True,
+                normalized_code_sha256=authorization.get(
+                    "normalized_code_sha256"),
+                cfg_verify_cases=authorization.get("cfg_verify_cases"),
+                identity_correction=correction,
+                atomic_group=authorization.get("atomic_group"),
+                whole_unit_closure=authorization.get("whole_unit_closure"))],
+            "high"))
     return output
 
 
@@ -484,15 +531,19 @@ def _build_from_baseline(paths, resolved, names):
                         "atomic_group", [])) != atomic_group:
                     raise ValueError("incomplete atomic authorization: %s" % va)
         collision = collision_rows.get(va)
-        if collision is None:
+        hidden_owner = authorization.get("hidden_owner_closure") is True
+        if collision is None and not hidden_owner:
             raise ValueError("authorization absent from current collision catalog: %s" % va)
-        if authorization.get("collision_receipt_sha256") != _json_sha256(collision):
+        if collision is not None and authorization.get(
+                "collision_receipt_sha256") != _json_sha256(collision):
             raise ValueError("collision receipt digest mismatch: %s" % va)
-        upstream = collision.get("upstream", {})
+        upstream = (collision or {}).get("upstream", {})
         source = upstream.get("source", {})
-        configured = collision.get("configured_inclusion", {})
+        configured = (collision or {}).get("configured_inclusion", {})
         identity_correction = authorization.get("identity_correction", {})
-        if identity_correction:
+        if hidden_owner:
+            receipts = ()
+        elif identity_correction:
             receipts = (
                 ("baseline_upstream_source_sha256", source.get("sha256")),
                 ("baseline_configured_build_sha256",

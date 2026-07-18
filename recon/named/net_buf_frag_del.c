@@ -1,9 +1,9 @@
-#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0005f3d8 @ 0x0005f3d8
- * public-name: FUN_0005f3d8
+ * public-name: net_buf_frag_del
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   net_buf_unref                            <= FUN_0005f24c @ 0x0005f24c
+ *   net_buf_frag_del                         <= FUN_0005f3d8 @ 0x0005f3d8
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -25,22 +25,22 @@ extern void net_buf_unref(list_node_t *node);
 extern void printk(uintptr_t format, ...);
 extern void assert_post_action(uintptr_t file, uint32_t line);
 
-list_node_t *FUN_0005f3d8(list_node_t *previous, list_node_t *node)
+list_node_t *net_buf_frag_del(list_node_t *previous, list_node_t *node)
 {
     if (node == 0) {
-        printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f542d) /*=0xf542d*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x262u);
-        assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x262u);
+        printk(0x00099cbdu, 0x000f542du, 0x000f539au, 0x262u);
+        assert_post_action(0x000f539au, 0x262u);
         return 0;
     }
     if (previous != 0) {
         if (previous->next == 0) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f540e) /*=0xf540e*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x265u);
-            assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x265u);
+            printk(0x00099cbdu, 0x000f540eu, 0x000f539au, 0x265u);
+            assert_post_action(0x000f539au, 0x265u);
             return 0;
         }
         if (previous->next != node) {
-            printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f541c) /*=0xf541c*/, ((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x266u);
-            assert_post_action(((unsigned long)&rodata_f539a) /*=0xf539a*/, 0x266u);
+            printk(0x00099cbdu, 0x000f541cu, 0x000f539au, 0x266u);
+            assert_post_action(0x000f539au, 0x266u);
             return 0;
         }
         previous->next = node->next;

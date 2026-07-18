@@ -325,6 +325,14 @@
    "name": "net_buf_put",
    "evidence": "Exact Zephyr net_buf FIFO wrapper: validates fifo and buffer then appends the buffer to the underlying k_queue. smp_rx_remove_invalid uses it for both the temporary and transport FIFOs. The stale net_buf_destroy_default assignment was incompatible with the two-argument FIFO ABI. Raw identity remains FUN_0005f200."
   },
+  "0x0005eeb4": {
+   "name": "net_buf_alloc_len",
+   "evidence": "Corrected exact NCS 2.5.1 Zephyr subsys/net/buf.c identity. The configured asserted owner is relocation-normalized byte-exact across the 398-byte reachable code extent; the stale k_queue_insert_with_timeout name described only one internal operation. Raw identity remains FUN_0005eeb4 at 0x0005eeb4."
+  },
+  "0x0005f3d8": {
+   "name": "net_buf_frag_del",
+   "evidence": "Corrected exact NCS 2.5.1 Zephyr subsys/net/buf.c identity. It validates the fragment relation, unlinks the selected fragment, clears its link, unreferences it and returns the successor. Raw identity remains FUN_0005f3d8 at 0x0005f3d8."
+  },
   "0x00080b0e": {
    "name": "smp_free_buf",
    "evidence": "Exact NCS 2.5.1 mcumgr transport helper: optionally invokes smpt->functions.ud_free on net_buf_user_data(buf), then calls smp_packet_free/net_buf_unref. Raw identity remains FUN_00080b0e."

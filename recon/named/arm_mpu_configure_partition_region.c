@@ -5,7 +5,7 @@
  *   arm_mpu_configure_partition_region       <= FUN_00050b8c @ 0x00050b8c
  *   z_thread_abort                           <= FUN_000748b8 @ 0x000748b8
  * address symbols (name @ address):
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00050b8c @ 0x50b8c  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>

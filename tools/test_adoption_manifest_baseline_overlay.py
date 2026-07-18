@@ -25,13 +25,19 @@ OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560",
                "0x000507d4", "0x00071b2c", "0x000758cc", "0x000864e8",
                "0x00071c20", "0x00071cf4", "0x00072040", "0x0007205c",
                "0x00072078", "0x000739f0", "0x00074184", "0x000744a4",
-               "0x000748b8"}
+               "0x000748b8", "0x0005ee6c", "0x0005eeb4", "0x0005f074",
+               "0x0005f148", "0x0005f200", "0x0005f24c", "0x0005f2d4",
+               "0x0005f304", "0x0005f338", "0x0005f390", "0x0005f3d8",
+               "0x0005f450"}
 CHANGED_BASELINE_VAS = {"0x00070ee4", "0x0006615c", "0x000661dc",
                         "0x00066214", "0x00066270", "0x00066300",
                         "0x000503d8", "0x00050558", "0x000506ac",
                         "0x000507d4", "0x000850dc", "0x000864e8",
                         "0x00071c20", "0x00071cf4", "0x000739f0",
-                        "0x000744a4"}
+                        "0x000744a4", "0x0005ee6c", "0x0005f074",
+                        "0x0005f148", "0x0005f200", "0x0005f24c",
+                        "0x0005f2d4", "0x0005f304", "0x0005f338",
+                        "0x0005f390", "0x0005f450"}
 ADDED_OVERLAY_VAS = OVERLAY_VAS - CHANGED_BASELINE_VAS
 
 
@@ -59,7 +65,7 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(284, current["cores"]["app"]["summary"][
+        self.assertEqual(296, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))

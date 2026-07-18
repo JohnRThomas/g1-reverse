@@ -20,7 +20,7 @@
  *   rodata_f813a                             @ 0x000f813a
  *   rodata_f815c                             @ 0x000f815c
  *   g_current_thread_ptr                     @ 0x2000b450
- *   sched_spinlock                           @ 0x2000b470
+ *   mutex_spinlock_b470                      @ 0x2000b470
  */
 /* Reconstructed FUN_000723b8 @ 0x723b8 */
 #include <stdint.h>
