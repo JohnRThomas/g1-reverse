@@ -37,6 +37,8 @@ DEFAULTS = {
         "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
     "app_settings_stock":
         "recon/ownership/app_settings_stock_atomic_adoption.json",
+    "app_lseek_stream_flash":
+        "recon/ownership/app_lseek_stream_flash_atomic_adoption.json",
     "app_root_stock":
         "recon/ownership/app_root_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
@@ -528,6 +530,16 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         settings.get("configured_build_receipts", [])))
+    lseek_stream_path = resolved["app_lseek_stream_flash"]
+    lseek_stream = _load_json(lseek_stream_path)
+    if (lseek_stream.get("schema") != 1 or lseek_stream.get("core") != "app" or
+            lseek_stream.get("status") != "authorized_atomic"):
+        raise ValueError("invalid lseek/stream-flash atomic adoption catalog")
+    authorizations["authorizations"].extend(
+        lseek_stream.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        lseek_stream.get("configured_build_receipts", [])))
     root_stock_path = resolved["app_root_stock"]
     root_stock = _load_json(root_stock_path)
     if (root_stock.get("schema") != 1 or root_stock.get("core") != "app" or
@@ -574,6 +586,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(bluetooth_path)},
         {"path": paths["app_settings_stock"],
          "sha256": _sha256(settings_path)},
+        {"path": paths["app_lseek_stream_flash"],
+         "sha256": _sha256(lseek_stream_path)},
         {"path": paths["app_root_stock"],
          "sha256": _sha256(root_stock_path)},
         {"path": paths["app_collision_retention_overrides"],

@@ -1,0 +1,624 @@
+{
+ "schema": 1,
+ "core": "app",
+ "status": "authorized_atomic",
+ "decision": "adopt_exact_lseek_and_progressive_stream_flash_closure",
+ "configured_build_receipts": [
+  "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config"
+ ],
+ "required_project_config": {
+  "CONFIG_IMG_ERASE_PROGRESSIVELY": "y"
+ },
+ "atomic_groups": {
+  "lseek": [
+   "0x0004b17c"
+  ],
+  "stream_flash_and_flash_img": [
+   "0x0004e124",
+   "0x0004e1ac",
+   "0x0004e2b4",
+   "0x0007f064",
+   "0x0007f088",
+   "0x0007f110",
+   "0x0007f150"
+  ]
+ },
+ "authorizations": [
+  {
+   "status": "authorized",
+   "batch": "ROOT-LSEEK",
+   "va": "0x0004b17c",
+   "raw_symbol": "FUN_0004b17c",
+   "symbol": "lseek",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 1,
+   "firmware_code_size": 52,
+   "upstream_code_size": 52,
+   "literal_pool_tail_size": 4,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/fdtable.c.obj",
+   "upstream_object_sha256": "c2f630f72d7e4648bcaed7fab3257bb97823522ff7957ece6c0e3e0733f7f153",
+   "upstream_source": "zephyr/lib/os/fdtable.c",
+   "upstream_source_sha256": "98dba32ba26cbf283eef344aa42c705b8956b378163287ec1f3016df04c83c95",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_POSIX_API": "y",
+    "CONFIG_POSIX_MAX_FDS": "16"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0004b17c.c",
+   "reconstruction_source_sha256": "2d3f25bf051c12a2a3a17acaa21e70ca56fee9b190124ee760e223bd2f34be4d",
+   "atomic_group": [
+    "0x0004b17c"
+   ],
+   "callers": [
+    "0x00078598"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "lseek",
+    "corrected_readable_identity": "lseek",
+    "corrected_upstream_symbol": "lseek",
+    "corrected_upstream_source": "zephyr/lib/os/fdtable.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0004b17c"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004b17c"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 56,
+   "relocation_offsets": [
+    8,
+    38,
+    52
+   ],
+   "normalized_code_sha256": "11ac343918431cac3a83f7168869be89a6edc1ddee3b8e3679d082a340655c29"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0004e124",
+   "raw_symbol": "FUN_0004e124",
+   "symbol": "FUN_0004e124",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 4,
+   "firmware_code_size": 136,
+   "upstream_code_size": 136,
+   "literal_pool_tail_size": 0,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_source_sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0004e124.c",
+   "reconstruction_source_sha256": "bcf6b02cb72a75c866f07d8a6690bb34f685c47a44c375d2ab5b8f4cbd903eb5",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x0004e1ac",
+    "0x0007f110"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "FUN_0004e124",
+    "corrected_readable_identity": "stream_flash_erase_page",
+    "corrected_upstream_symbol": "stream_flash_erase_page",
+    "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0004e124"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 136,
+   "relocation_offsets": [
+    12,
+    46,
+    108,
+    124,
+    128,
+    132
+   ],
+   "normalized_code_sha256": "ee488319d43ccfbe48371d7a3712e4e33039470bafc7e5ac38e10643f2fc95a7"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0004e1ac",
+   "raw_symbol": "FUN_0004e1ac",
+   "symbol": "stream_flash_flush_buffer",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 40,
+   "firmware_code_size": 244,
+   "upstream_code_size": 244,
+   "literal_pool_tail_size": 20,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_source_sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0004e1ac.c",
+   "reconstruction_source_sha256": "db50fdbd3edc10e9299c978cb8684b7b8520aae2a6969d3634e73b3d9e3fc263",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x0007f088"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "stream_flash_flush_buffer",
+    "corrected_readable_identity": "flash_sync",
+    "corrected_upstream_symbol": "flash_sync",
+    "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+    "upstream_linkage": "translation_unit_local",
+    "raw_identity": "FUN_0004e1ac"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 264,
+   "relocation_offsets": [
+    22,
+    58,
+    72,
+    108,
+    244,
+    248,
+    252,
+    256,
+    260
+   ],
+   "normalized_code_sha256": "ae8219d3bb570cc3c0527861df9957795edd78e49d640ca431dcb4109f48c915"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0004e2b4",
+   "raw_symbol": "FUN_0004e2b4",
+   "symbol": "stream_flash_init",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 9,
+   "firmware_code_size": 174,
+   "upstream_code_size": 174,
+   "literal_pool_tail_size": 18,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_source_sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0004e2b4.c",
+   "reconstruction_source_sha256": "49227c932603457eff7da52e83284338ce18ae4f96617d39b5eaa3a2667a1007",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x0007f150"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "stream_flash_init",
+    "corrected_readable_identity": "stream_flash_init",
+    "corrected_upstream_symbol": "stream_flash_init",
+    "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0004e2b4"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 192,
+   "relocation_offsets": [
+    36,
+    68,
+    88,
+    120,
+    176,
+    180,
+    184,
+    188
+   ],
+   "normalized_code_sha256": "8d7997cbb0cbef56bb64b6e469c6cafe2e4b8a46d6fbcd0bee43730d8369d408"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0007f064",
+   "raw_symbol": "FUN_0007f064",
+   "symbol": "FUN_0007f064",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 40,
+   "firmware_code_size": 12,
+   "upstream_code_size": 12,
+   "literal_pool_tail_size": 0,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_source_sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0007f064.c",
+   "reconstruction_source_sha256": "5c35768536e2c920bd3eba0b6715a58e4cfdd428ee0a1c1992c9965ac669c095",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x0004e1ac",
+    "0x0004e2b4"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "FUN_0007f064",
+    "corrected_readable_identity": "flash_get_write_block_size",
+    "corrected_upstream_symbol": "flash_get_write_block_size",
+    "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+    "upstream_linkage": "translation_unit_local",
+    "raw_identity": "FUN_0007f064"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 12,
+   "relocation_offsets": [],
+   "normalized_code_sha256": "72160dea76b3bac7a170a605ca81fc4dd8ecc30f31695ad34e95a7ff7130fba3"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0007f088",
+   "raw_symbol": "FUN_0007f088",
+   "symbol": "FUN_0007f088",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 44,
+   "firmware_code_size": 136,
+   "upstream_code_size": 136,
+   "literal_pool_tail_size": 0,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_object_sha256": "764cc771c620750348ef33bc8ec922514fc67e63d2a9ec940c891db8756038c6",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_source_sha256": "1fc92289e8c4aee886ced85deed8f5d9a76d4ed430235368164c821e25705a64",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0007f088.c",
+   "reconstruction_source_sha256": "f21613b5c5cd91dcb5c6f3f6fdf63496cf10141e1ee7da7672e7c416e6346347",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x0007f110"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "FUN_0007f088",
+    "corrected_readable_identity": "stream_flash_buffered_write",
+    "corrected_upstream_symbol": "stream_flash_buffered_write",
+    "corrected_upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0007f088"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 136,
+   "relocation_offsets": [
+    58,
+    84,
+    98,
+    108
+   ],
+   "normalized_code_sha256": "799e3c1efb987ea97a234f5f9f5c8a5c498d4afd0e77cd1b90ed26bb9c000e7f"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0007f110",
+   "raw_symbol": "FUN_0007f110",
+   "symbol": "FUN_0007f110",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 42,
+   "firmware_code_size": 64,
+   "upstream_code_size": 64,
+   "literal_pool_tail_size": 0,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/dfu/img_util/flash_img.c.obj",
+   "upstream_object_sha256": "08ae33e350c5738130059d0a4dd8025fdb2f18aaf7ab7e9dccd547e488ff46ef",
+   "upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+   "upstream_source_sha256": "3e8b14ad6f9312313525cf44e63d8f72040353eb6f00cbb77265aabbef7c0be2",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0007f110.c",
+   "reconstruction_source_sha256": "a003145ba75b980fdf9f045b67b447ff0674a5ff83222bdf783fdcab2b667cc0",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x00051870"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "FUN_0007f110",
+    "corrected_readable_identity": "flash_img_buffered_write",
+    "corrected_upstream_symbol": "flash_img_buffered_write",
+    "corrected_upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0007f110"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 64,
+   "relocation_offsets": [
+    12,
+    26,
+    40,
+    52
+   ],
+   "normalized_code_sha256": "8c89edd147d85cb4aaff4fddea7fe2456bd9d25e2885d37ef55c731096b76c65"
+  },
+  {
+   "status": "authorized",
+   "batch": "ROOT-STREAM-FLASH",
+   "va": "0x0007f150",
+   "raw_symbol": "FUN_0007f150",
+   "symbol": "FUN_0007f150",
+   "instruction_exact": true,
+   "configuration_variant_exact": true,
+   "cfg_verify_cases": 40,
+   "firmware_code_size": 66,
+   "upstream_code_size": 66,
+   "literal_pool_tail_size": 0,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/dfu/img_util/flash_img.c.obj",
+   "upstream_object_sha256": "08ae33e350c5738130059d0a4dd8025fdb2f18aaf7ab7e9dccd547e488ff46ef",
+   "upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+   "upstream_source_sha256": "3e8b14ad6f9312313525cf44e63d8f72040353eb6f00cbb77265aabbef7c0be2",
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "required_config": {
+    "CONFIG_IMG_ERASE_PROGRESSIVELY": "y",
+    "CONFIG_STREAM_FLASH": "y",
+    "CONFIG_STREAM_FLASH_ERASE": "y"
+   },
+   "reconstruction_source": "/Users/freedomcoder/Projects/G1disasm2/recon/app/src/FUN_0007f150.c",
+   "reconstruction_source_sha256": "110ea1e33d71f90ac5107584535541e07bf5efae5a3f079bf825ad14d479457a",
+   "atomic_group": [
+    "0x0004e124",
+    "0x0004e1ac",
+    "0x0004e2b4",
+    "0x0007f064",
+    "0x0007f088",
+    "0x0007f110",
+    "0x0007f150"
+   ],
+   "callers": [
+    "0x00051870"
+   ],
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "FUN_0007f150",
+    "corrected_readable_identity": "flash_img_init_id",
+    "corrected_upstream_symbol": "flash_img_init_id",
+    "corrected_upstream_source": "zephyr/subsys/dfu/img_util/flash_img.c",
+    "upstream_linkage": "public",
+    "raw_identity": "FUN_0007f150"
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "exclude_only": [
+     "0x0004e124",
+     "0x0004e1ac",
+     "0x0004e2b4",
+     "0x0007f064",
+     "0x0007f088",
+     "0x0007f110",
+     "0x0007f150"
+    ],
+    "new_undefined_symbols": [],
+    "raw_aliases_preserved": true,
+    "normal_gc_required_for_dead_sdk_helpers": true
+   },
+   "upstream_symbol_size": 66,
+   "relocation_offsets": [
+    12,
+    24,
+    54
+   ],
+   "normalized_code_sha256": "5ccc78ceb801989019727f20e5ee2eb42affacdbb4a7be40c01ce483536532bd"
+  }
+ ],
+ "hidden_exact_source_sections": [
+  {
+   "va": "0x0004e0f8",
+   "symbol": "find_flash_total_size.part.0",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_symbol_size": 44,
+   "relocation_offsets": [
+    24,
+    36,
+    40
+   ],
+   "normalized_code_sha256": "7a0df2c86451af377c5e5738b70098ecb2b87b135776328c1cff7f1227687fb9"
+  },
+  {
+   "va": "0x0007f070",
+   "symbol": "find_flash_total_size",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/CMakeFiles/zephyr.dir/subsys/storage/stream/stream_flash.c.obj",
+   "upstream_source": "zephyr/subsys/storage/stream/stream_flash.c",
+   "upstream_symbol_size": 24,
+   "relocation_offsets": [
+    10
+   ],
+   "normalized_code_sha256": "17a2ed6e52ec77ab02275e3445772d2edbeef46cf5ce61b21287d69f66a56640"
+  }
+ ],
+ "caller_retarget": {
+  "0x00051870": [
+   "flash_img_init_id",
+   "flash_img_buffered_write"
+  ],
+  "preserve_raw_backmap": [
+   "FUN_0007f150",
+   "FUN_0007f110"
+  ]
+ },
+ "dead_sdk_helpers_must_gc": [
+  "stream_flash_bytes_written",
+  "flash_img_bytes_written",
+  "flash_img_init"
+ ],
+ "pthread_attr_getstack": "retained_unchanged",
+ "sdc_policy": "report_only_unchanged"
+}
