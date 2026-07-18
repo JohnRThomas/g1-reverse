@@ -3715,6 +3715,36 @@ REVIEWED_TARGET_CALL_STACK_ARITIES = {
     ("app", 0x0004d100): {0x00071358: 2},
 }
 
+# Bluetooth controller diagnostics use compiler-owned cbprintf packages.  The
+# readable structs deliberately move those packages within the frame, so pair
+# their complete consumer-visible bytes instead of comparing raw SP-relative
+# addresses.  These declarations also close two earlier blind spots: the SMP
+# helper's fifth AAPCS word and the address-loop path in controller-info output.
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00053580)] = [
+    ("hci-command-log-record", -40, -32, 22, None, (1,),
+     (0x00080ea2,)),
+]
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00054444)] = [
+    ("allocation-failure-log", -32, -40, 8, None, (3,),
+     (0x00080ea2,)),
+]
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00054444)] = {
+    0x00083370: 4,
+}
+REVIEWED_TARGET_CALL_STACK_ARITIES[("app", 0x00054444)] = {
+    0x00083370: 1,
+}
+
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x000548b8)] = [
+    ("identity-log", -64, -96, 20, None, (2,), (0x00080ea2,)),
+    # The 18-byte package excludes the two unwritten alignment bytes that the
+    # cbprintf consumer cannot observe.
+    ("secondary-address-log", -64, -52, 18, None, (4,),
+     (0x00080ea2,)),
+    ("host-version-log", -72, -52, 26, None, (6,), (0x00080ea2,)),
+    ("radio-version-log", -64, -76, 22, None, (8,), (0x00080ea2,)),
+]
+
 # Variadic diagnostics share two logger targets but consume a format-specific
 # number of arguments.  Compare only the exact format ABI, not stale r2/r3
 # values left live by surrounding dispatch code.
@@ -4676,7 +4706,12 @@ def _tx_notify_case(entries):
     return ({0: connection}, memory)
 
 
+_controller_info_two_addresses = bytearray(0x78)
+_controller_info_two_addresses[7] = 2
 REVIEWED_STATE_CASES = {
+    ("app", 0x000548b8): [
+        ({}, [(0x20002000, bytes(_controller_info_two_addresses))]),
+    ],
     # Empty, single-entry and two-entry completion queues cover the return,
     # tail replacement, head advance, record clearing, free-list call and
     # ordered callback paths after the register-only IRQ normalization.

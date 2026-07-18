@@ -2099,6 +2099,7 @@
    "FUN_00036030",
    "ble_process_put_req"
   ],
+  "post_baseline_active": [],
   "source_changed": [],
   "timeout": [
    "FUN_000184f0",
@@ -2130,19 +2131,12 @@
   "PASS": 2081,
   "compile_error": 1,
   "other": 2,
+  "post_baseline_active": 0,
   "source_changed": 0,
   "timeout": 22
  },
  "by_status": {
-  "FAIL": [
-   "FUN_0004ea28",
-   "FUN_0004ea78",
-   "FUN_00053580",
-   "FUN_000536b8",
-   "FUN_00054444",
-   "FUN_000548b8",
-   "FUN_0008503c"
-  ],
+  "FAIL": [],
   "PASS": [
    "DashBoard_Reflash",
    "FUN_0000c358",
@@ -2215,6 +2209,7 @@
    "FUN_000182c8",
    "FUN_00018300",
    "FUN_000183ac",
+   "FUN_000184f0",
    "FUN_00018730",
    "FUN_000187e8",
    "FUN_00018894",
@@ -2248,6 +2243,7 @@
    "FUN_00022974",
    "FUN_00022b00",
    "FUN_000230bc",
+   "FUN_0002316c",
    "FUN_00023230",
    "FUN_000232b0",
    "FUN_000232b8",
@@ -2256,10 +2252,13 @@
    "FUN_000234e8",
    "FUN_000235a4",
    "FUN_000235dc",
+   "FUN_0002360c",
    "FUN_00023a54",
+   "FUN_00023acc",
    "FUN_00023ee0",
    "FUN_00023eec",
    "FUN_00023ef8",
+   "FUN_000243fc",
    "FUN_00024534",
    "FUN_00024678",
    "FUN_00024684",
@@ -2450,8 +2449,11 @@
    "FUN_000355b4",
    "FUN_00035744",
    "FUN_000357dc",
+   "FUN_00035f28",
    "FUN_00036024",
+   "FUN_00036030",
    "FUN_0003603c",
+   "FUN_000361d8",
    "FUN_0003629c",
    "FUN_000362e8",
    "FUN_00036558",
@@ -2479,6 +2481,7 @@
    "FUN_0003fecc",
    "FUN_000406e4",
    "FUN_00040708",
+   "FUN_00040794",
    "FUN_000417f8",
    "FUN_000429f8",
    "FUN_00042d44",
@@ -2491,6 +2494,7 @@
    "FUN_00043484",
    "FUN_000436f8",
    "FUN_0004372c",
+   "FUN_0004382c",
    "FUN_000438d0",
    "FUN_0004396c",
    "FUN_00043a68",
@@ -2597,6 +2601,7 @@
    "FUN_0004d588",
    "FUN_0004d594",
    "FUN_0004d678",
+   "FUN_0004d6ec",
    "FUN_0004d7d8",
    "FUN_0004d8b8",
    "FUN_0004d8f8",
@@ -2628,6 +2633,8 @@
    "FUN_0004e964",
    "FUN_0004e98c",
    "FUN_0004e9a0",
+   "FUN_0004ea28",
+   "FUN_0004ea78",
    "FUN_0004ed3c",
    "FUN_0004ed8c",
    "FUN_0004ee68",
@@ -2652,7 +2659,6 @@
    "FUN_000502c4",
    "FUN_00050304",
    "FUN_000503d8",
-   "FUN_00050558",
    "FUN_000506ac",
    "FUN_000507d4",
    "FUN_00050b8c",
@@ -2720,7 +2726,9 @@
    "FUN_000531e4",
    "FUN_000534a8",
    "FUN_00053530",
+   "FUN_00053580",
    "FUN_00053658",
+   "FUN_000536b8",
    "FUN_000538f8",
    "FUN_00053bd8",
    "FUN_00053cb0",
@@ -2732,9 +2740,11 @@
    "FUN_00054308",
    "FUN_000543c8",
    "FUN_000543d8",
+   "FUN_00054444",
    "FUN_00054528",
    "FUN_000545f0",
    "FUN_00054828",
+   "FUN_000548b8",
    "FUN_000549ec",
    "FUN_00054a44",
    "FUN_00054b70",
@@ -2963,6 +2973,7 @@
    "FUN_000609c4",
    "FUN_000609f4",
    "FUN_00060a10",
+   "FUN_00060a5c",
    "FUN_00060ab0",
    "FUN_00060b48",
    "FUN_00060c00",
@@ -3054,7 +3065,6 @@
    "FUN_00065f1c",
    "FUN_00065f80",
    "FUN_00065ff4",
-   "FUN_00066050",
    "FUN_00066130",
    "FUN_0006615c",
    "FUN_000661dc",
@@ -3743,6 +3753,7 @@
    "FUN_0008501a",
    "FUN_00085020",
    "FUN_00085030",
+   "FUN_0008503c",
    "FUN_00085046",
    "FUN_0008504c",
    "FUN_00085076",
@@ -3829,6 +3840,7 @@
    "FUN_00086596",
    "FUN_00086634",
    "FUN_0008664c",
+   "FUN_00086668",
    "FUN_00086688",
    "FUN_00086690",
    "FUN_00086726",
@@ -3852,6 +3864,7 @@
    "FUN_00086b40",
    "FUN_00086b7e",
    "FUN_00086bc8",
+   "FUN_00086c04",
    "FUN_00086c1e",
    "FUN_00086c88",
    "FUN_00086cb6",
@@ -3862,6 +3875,7 @@
    "FUN_00086f5a",
    "FUN_00086f92",
    "FUN_00086fee",
+   "FUN_0008705a",
    "FUN_00087080",
    "FUN_000870ea",
    "FUN_0008712e",
@@ -3876,6 +3890,7 @@
    "FUN_000875ae",
    "FUN_000875e4",
    "FUN_00087648",
+   "FUN_0008768e",
    "FUN_000876d0",
    "FUN_000876ec",
    "FUN_00087736",
@@ -3929,6 +3944,7 @@
    "audio_hw_lock_release",
    "auth_cancel",
    "ble_process_get_req",
+   "ble_process_put_req",
    "ble_process_req_dispatch",
    "ble_work_thread",
    "brightness_level",
@@ -3944,6 +3960,7 @@
    "cal_panel_canvas_coord",
    "cancel_sync_locked",
    "change_work_mode_to",
+   "check_battery_critical",
    "check_bind_status",
    "check_bonded_addr",
    "check_device_readiness",
@@ -4023,6 +4040,7 @@
    "gui_bitmps_merge_draw",
    "gui_bmp_bitmap_draw_ex",
    "gui_screen_clear",
+   "gui_string_draw",
    "gui_utf_Wordwrap_draw",
    "gui_utf_draw_align_right",
    "gui_utf_draw_truncate",
@@ -4080,6 +4098,7 @@
    "next_timeout",
    "not_disturb_sync_data",
    "notify_one",
+   "now_has_persist_task",
    "nrf_cc3xx_platform_abort",
    "nrf_gpio_cfg_sense_set",
    "nrf_qspi_cinstrdata_get",
@@ -4203,6 +4222,7 @@
    "uarte_nrfx_configure",
    "ui_DashBoard_task",
    "ui_QuickNote_task",
+   "ui_even_ai_task",
    "ui_raster_height_task",
    "ui_refalsh_warp",
    "ui_teleprompter_task",
@@ -4215,7 +4235,10 @@
    "update_imu_trigger_status",
    "update_not_disturb_settings",
    "update_persist_task_status",
+   "update_persist_task_status_to_idle",
+   "update_persist_task_status_to_wait_blow_head",
    "update_sec_level",
+   "update_temp_task_status",
    "upgradeAppLanguageInfoToFlash",
    "upgradeDashboardStartupModeInfoToFlash",
    "upgradeQuickNoteDataToFlash",
@@ -4228,35 +4251,13 @@
    "z_log_dropped_read_and_clear_0"
   ],
   "compile_error": [],
-  "other": [
-   "FUN_00036030",
-   "ble_process_put_req"
+  "other": [],
+  "post_baseline_active": [
+   "FUN_00050558",
+   "FUN_00066050"
   ],
   "source_changed": [],
-  "timeout": [
-   "FUN_000184f0",
-   "FUN_0002316c",
-   "FUN_0002360c",
-   "FUN_00023acc",
-   "FUN_000243fc",
-   "FUN_00035f28",
-   "FUN_000361d8",
-   "FUN_00040794",
-   "FUN_0004382c",
-   "FUN_0004d6ec",
-   "FUN_00060a5c",
-   "FUN_00086668",
-   "FUN_00086c04",
-   "FUN_0008705a",
-   "FUN_0008768e",
-   "check_battery_critical",
-   "gui_string_draw",
-   "now_has_persist_task",
-   "ui_even_ai_task",
-   "update_persist_task_status_to_idle",
-   "update_persist_task_status_to_wait_blow_head",
-   "update_temp_task_status"
-  ]
+  "timeout": []
  },
  "compile_error_triage": {
   "authoritative_cfg_recheck": "PASS",
@@ -4269,12 +4270,13 @@
  },
  "core": "app",
  "counts": {
-  "FAIL": 7,
-  "PASS": 2082,
+  "FAIL": 0,
+  "PASS": 2111,
   "compile_error": 0,
-  "other": 2,
+  "other": 0,
+  "post_baseline_active": 2,
   "source_changed": 0,
-  "timeout": 22
+  "timeout": 0
  },
  "function_name_digest": "18f88d0e9ab57f43e7620859908b2c33681b5a4bff34bc47ef83713006be4b34",
  "functions": [
@@ -4777,10 +4779,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 2,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 7,
    "name": "FUN_000184f0",
    "source_sha256": "42c61481e485e6dd1f79570f450720924d5db50fb169eacdf0caa7ec922cbba8",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -5015,10 +5028,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 1,
    "name": "FUN_0002316c",
    "source_sha256": "e17b0de5ba9e89873bcd3d6bf56fb4569dfca79c5010b9734bfecd4c864f3997",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -5078,10 +5102,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 2,
    "name": "FUN_0002360c",
    "source_sha256": "2647522a76f95fbf0c1eaf9db96ba5661fa46135baeb12853f041ea417c5d3f2",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -5092,10 +5127,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 4,
    "name": "FUN_00023acc",
    "source_sha256": "c3cb824e77a5e4626cf97b79d16f1f96106189580070874e56dbb1abf1aefd2f",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -5120,10 +5166,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 0,
    "name": "FUN_000243fc",
    "source_sha256": "ad852266021b43fa74db3b85b1e37def5137071046be8e82b7044ea94d856286",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -6457,10 +6514,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 6,
+     "method": "directed disabled-display cases cover the diagnostic return",
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "finite_workload_sweep_timeout_recheck_pass"
+   },
    "lane": 7,
    "name": "FUN_00035f28",
    "source_sha256": "3c4287b7eca7a614dacd9d776b66e8ae796624dc69fd1ee7d2936e2b7c536750",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -6471,10 +6539,20 @@
   },
   {
    "baseline_status": "other",
+   "history": {
+    "baseline_status": "other",
+    "recheck_result": {
+     "checked": 1,
+     "status": "PASS",
+     "trials_random": 1
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_other_recheck_pass"
+   },
    "lane": 1,
    "name": "FUN_00036030",
    "source_sha256": "b75e5fa0a5fc1ec04d74870dd32f83cd58c429a9514270804a930022cb2a0287",
-   "status": "other"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -6485,10 +6563,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 3,
    "name": "FUN_000361d8",
    "source_sha256": "f46ab76ce34b5656664c151f1452a092fc9801f2c615b4042a482d83887b45c7",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -6681,10 +6770,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 7,
    "name": "FUN_00040794",
    "source_sha256": "700321890c470bbe06112a03abe6f4aa9cff4698a04e476967b40c6c241af86c",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -6772,10 +6872,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "method": "reviewed one-event prefix crossing the first complete frame scan",
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "finite_workload_sweep_timeout_recheck_pass"
+   },
    "lane": 4,
    "name": "FUN_0004382c",
    "source_sha256": "58536256c27c035049c908d0a4241cdcedcbeaf1d8ad8ab9df8bcfa1203a7c4c",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -7521,10 +7632,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "method": "reviewed three-event prefix crosses setup into service loop",
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "intentional_nonreturning_worker"
+   },
    "lane": 7,
    "name": "FUN_0004d6ec",
    "source_sha256": "6b428758b9620ca582e201f2ee5697797e75a56f589078784207e15c7653d921",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -7745,17 +7867,58 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 42,
+     "cover_cases": 2,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 7,
    "name": "FUN_0004ea28",
-   "source_sha256": "6117cac0844e2d12975eb452358325c144928422a99ffe7bb776d214b9a402eb",
-   "status": "FAIL"
+   "source_sha256": "ec8dd6ac2ca1493623f1c6262de278c67d927f13be81ddeac70fa4c2c61ffcec",
+   "status": "PASS"
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 0,
    "name": "FUN_0004ea78",
-   "source_sha256": "c1475ce417b27f2ed4cb5b0c37ccf02906481d891c9b9350bd71c80e4f2d430b",
-   "status": "FAIL"
+   "source_sha256": "a44020fc9e8bc1eb713c73f1719c6fce6ba4148925bd3beb96d133b33e097847",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -7927,10 +8090,15 @@
   },
   {
    "baseline_status": "PASS",
+   "history": {
+    "baseline_status": "PASS",
+    "current_status": "post_baseline_active",
+    "reason": "MMIO-aware post-baseline false proof under repair"
+   },
    "lane": 1,
    "name": "FUN_00050558",
-   "source_sha256": "c09038c0cd31ae319664c332b9b474edc08d61f11f18748802871fb765e0e375",
-   "status": "PASS"
+   "source_sha256": "6bf760731716d693291005c00db2f875ce4fb15ce89d93b6fca9c92ac8cbf674",
+   "status": "post_baseline_active"
   },
   {
    "baseline_status": "PASS",
@@ -8403,10 +8571,28 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 5,
    "name": "FUN_00053580",
-   "source_sha256": "bce4b9f8fa41f23d858994d945565bd5ed31918c58665a61cf0e8a969a5e48fc",
-   "status": "FAIL"
+   "source_sha256": "e71e5851fd0827443cbd313715d868915e928d9fbb556930efae8de94934c1cc",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -8417,10 +8603,28 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 7,
    "name": "FUN_000536b8",
-   "source_sha256": "23a301852d539c28ab12893fd0113e44826d06e29941e4cb58653e9785216145",
-   "status": "FAIL"
+   "source_sha256": "94bd056ca493861e049353ff15cf2ee49dc4333f2cc41f5f9c90fb2294732246",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -8501,10 +8705,33 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 1,
+     "cover_cases": 1,
+     "data_pointer_slots": [
+      [
+       0,
+       12
+      ]
+     ],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 3,
    "name": "FUN_00054444",
-   "source_sha256": "029f68a80e941533a1f48e06425526fa2e8ef53d6e027b0e4dcee38bdfe16fca",
-   "status": "FAIL"
+   "source_sha256": "55eca5ceb6733984fc1c770c446c77b1d58d2ef7a07c9cb70d9927f00dfaa868",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -8529,10 +8756,28 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 1,
+     "cover_cases": 1,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 7,
    "name": "FUN_000548b8",
-   "source_sha256": "197c70d8c484af505230bbef92eca2edd6afc915756c473e99209f50709771e6",
-   "status": "FAIL"
+   "source_sha256": "e564858eb0f56f61e6e0a4c8b0b970f0a6eaf774112359b2f7a6ca367175ab10",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -10132,10 +10377,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 4,
    "name": "FUN_00060a5c",
    "source_sha256": "f5cbc97d11205af3feed8ada0fd9d2665ace7523fb685bab31ac26d432f13a2a",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -10776,10 +11032,15 @@
   },
   {
    "baseline_status": "PASS",
+   "history": {
+    "baseline_status": "PASS",
+    "current_status": "post_baseline_active",
+    "reason": "MMIO-aware post-baseline false proof under repair"
+   },
    "lane": 0,
    "name": "FUN_00066050",
-   "source_sha256": "e74ff1ee517348a411ff0b583ded028e02be9337a0628d802292b4ec801dc2e8",
-   "status": "PASS"
+   "source_sha256": "1e76e9ce0207a759e96399257fc5350944962a45d10008a5aef8c35ca3cb464c",
+   "status": "post_baseline_active"
   },
   {
    "baseline_status": "PASS",
@@ -14616,8 +14877,8 @@
     },
     "recheck_status": "PASS",
     "recheck_tool_hashes": {
-     "tools/cfg_verify.py": "ded92059545200309d0eeaf0140b49164c9fffa0c9748e2c579b17e361aa61d8",
-     "tools/parity/emu.py": "e8f650559fe3d1dd9f907b01a469072de8b6e17fb34963659c5bef255ce1d0bd",
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
      "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
     }
    },
@@ -15622,10 +15883,28 @@
   },
   {
    "baseline_status": "FAIL",
+   "history": {
+    "baseline_status": "FAIL",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 1,
    "name": "FUN_0008503c",
-   "source_sha256": "43c9f7ffc012a5344888bb7db81d195c7291be8b91f7058270e9cac549ea83c6",
-   "status": "FAIL"
+   "source_sha256": "112ac15eec8008db9323895965ce976425bdbbe5e85bc798633dcea0b0700d2d",
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -16231,10 +16510,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 0,
    "name": "FUN_00086668",
    "source_sha256": "e0a35016aa36f10a5306b70500ed5a92e0cb5c24f9926f2dfa66be4040a3ba86",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -16399,10 +16689,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 0,
    "name": "FUN_00086c04",
    "source_sha256": "f41eb615e01c0ac634a593433f8d35cd3d74bda587475cb95ab887451eeeae9b",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -16476,10 +16777,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 2,
+     "status": "PASS",
+     "trials_random": 1,
+     "wall_limit_seconds": 25
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "transient_budget_timeout_recheck_pass"
+   },
    "lane": 3,
    "name": "FUN_0008705a",
    "source_sha256": "c3cfb61ab3901b340286b128bf1c153031507d45cfe237576be0eeeeae5e0250",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -16581,10 +16893,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 2,
    "name": "FUN_0008768e",
    "source_sha256": "0263ac58902dafbe1ab64827213269adf9158e77c58b2017bd023c58a909dfd9",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -16959,10 +17282,229 @@
   },
   {
    "baseline_status": "other",
+   "history": {
+    "baseline_status": "other",
+    "recheck_result": {
+     "callback_slots": [],
+     "checked": 137,
+     "cover_cases": 137,
+     "data_pointer_slots": [
+      [
+       2,
+       0
+      ]
+     ],
+     "pointer_cases": [
+      [
+       1,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       2
+      ],
+      [
+       1,
+       0,
+       3
+      ],
+      [
+       1,
+       0,
+       4
+      ],
+      [
+       1,
+       0,
+       5
+      ],
+      [
+       1,
+       0,
+       6
+      ],
+      [
+       1,
+       0,
+       7
+      ],
+      [
+       1,
+       0,
+       8
+      ],
+      [
+       1,
+       0,
+       9
+      ],
+      [
+       1,
+       0,
+       10
+      ],
+      [
+       1,
+       0,
+       11
+      ],
+      [
+       1,
+       0,
+       12
+      ],
+      [
+       1,
+       0,
+       13
+      ],
+      [
+       1,
+       0,
+       14
+      ],
+      [
+       1,
+       0,
+       15
+      ],
+      [
+       1,
+       0,
+       16
+      ],
+      [
+       1,
+       0,
+       17
+      ],
+      [
+       1,
+       0,
+       18
+      ],
+      [
+       1,
+       0,
+       19
+      ],
+      [
+       1,
+       0,
+       20
+      ],
+      [
+       1,
+       0,
+       21
+      ],
+      [
+       1,
+       0,
+       22
+      ],
+      [
+       1,
+       0,
+       23
+      ],
+      [
+       1,
+       0,
+       24
+      ],
+      [
+       1,
+       0,
+       25
+      ],
+      [
+       1,
+       0,
+       26
+      ],
+      [
+       1,
+       0,
+       27
+      ],
+      [
+       1,
+       0,
+       28
+      ],
+      [
+       1,
+       0,
+       29
+      ],
+      [
+       1,
+       0,
+       30
+      ],
+      [
+       1,
+       0,
+       31
+      ],
+      [
+       1,
+       0,
+       32
+      ],
+      [
+       1,
+       0,
+       33
+      ],
+      [
+       1,
+       0,
+       34
+      ],
+      [
+       1,
+       0,
+       35
+      ],
+      [
+       1,
+       0,
+       36
+      ],
+      [
+       1,
+       0,
+       37
+      ],
+      [
+       1,
+       0,
+       38
+      ],
+      [
+       1,
+       0,
+       39
+      ]
+     ],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "recheck_status": "PASS",
+    "recheck_tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
    "lane": 0,
    "name": "ble_process_put_req",
    "source_sha256": "c55c6c57b09b9b7e4eca58740b526308ed13161bdf69f4418a76079961dc677b",
-   "status": "other"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -17071,10 +17613,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 0,
    "name": "check_battery_critical",
    "source_sha256": "1ecd8027fe441947eb8eeb65fdd67b2977cb30e2a64f17379214057c40f23953",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -17631,10 +18184,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 0,
    "name": "gui_string_draw",
    "source_sha256": "d95962cc4f21d6e44892871df11da7a7c7cb15b2023482650ae73cfda37177f9",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -18037,10 +18601,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 2,
    "name": "now_has_persist_task",
    "source_sha256": "88493883cd6a21c369c9fbf8437dbaff6d3684d8c69705854acfd5917b023f97",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -18905,10 +19480,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "method": "inactive invalid-phase production state returns before raster work",
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "finite_workload_sweep_timeout_recheck_pass"
+   },
    "lane": 6,
    "name": "ui_even_ai_task",
    "source_sha256": "18d00777d591ad0197875e081b2af0dd3c7eb80de449eb0444e39dcc07fa6a1e",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -18996,17 +19582,39 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 3,
    "name": "update_persist_task_status_to_idle",
    "source_sha256": "cc32fca32723fd17ccafd878e5fa1e3f1af390b097a317d8d4236bd5dcea4af7",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 4,
    "name": "update_persist_task_status_to_wait_blow_head",
    "source_sha256": "1c5f7b53f902f2610e774d96b56db2d3a9b6ab8933c7bddfe9e5cd77685041aa",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -19017,10 +19625,21 @@
   },
   {
    "baseline_status": "timeout",
+   "history": {
+    "baseline_status": "timeout",
+    "recheck_result": {
+     "checked": 1,
+     "directed_cases": 1,
+     "status": "PASS",
+     "trials_random": 0
+    },
+    "recheck_status": "PASS",
+    "triage_classification": "synthetic_input_domain_timeout_recheck_pass"
+   },
    "lane": 6,
    "name": "update_temp_task_status",
    "source_sha256": "4fa30e7b1dd24da0ba2720a27d4bc6eee179a9a4f297e2e11abe5dd9e9cc76a1",
-   "status": "timeout"
+   "status": "PASS"
   },
   {
    "baseline_status": "PASS",
@@ -19094,7 +19713,7 @@
   }
  ],
  "inventory_count": 2113,
- "inventory_digest": "e6fa134dd35017c19316cbc127686b54f3d301395697a07ed8210edc94972225",
+ "inventory_digest": "61a7586b5c385b62dc69ee8a98f2776710c4790b9fef67b92a0cfb4af17b47ba",
  "kind": "authoritative_cfg_directed_side_effect_sweep",
  "lane_snapshot": {
   "baseline_counts": {
@@ -19173,9 +19792,167 @@
   "sha256": "75a5db7f4fdfe5d091db4766b5782d9f888635c904a5256848c84c89d1ef53fe",
   "state": "historical_not_current"
  },
+ "post_baseline_active": [
+  "FUN_00050558",
+  "FUN_00066050"
+ ],
  "schema": 1,
  "source_tree_match_verified_at_generation": true,
  "target_rechecks": [
+  {
+   "key": "app:FUN_0004ea28",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_0004ea28",
+    "result": {
+     "callback_slots": [],
+     "checked": 42,
+     "cover_cases": 2,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    },
+    "source_sha256": "ec8dd6ac2ca1493623f1c6262de278c67d927f13be81ddeac70fa4c2c61ffcec",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "db9b641fae166b49d3ce45dd7c78aff749fd39a632cb8e816a33055459132efc"
+  },
+  {
+   "key": "app:FUN_0004ea78",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_0004ea78",
+    "result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "a44020fc9e8bc1eb713c73f1719c6fce6ba4148925bd3beb96d133b33e097847",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "81c65646183bb9802baf4bae700514aee58051ecccc6c6bb804e26764c07f2c0"
+  },
+  {
+   "key": "app:FUN_00053580",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_00053580",
+    "result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "e71e5851fd0827443cbd313715d868915e928d9fbb556930efae8de94934c1cc",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "dceae1180b3019fb931fafbfafeb8e7daa4c55240581efab2be0add7882add90"
+  },
+  {
+   "key": "app:FUN_000536b8",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_000536b8",
+    "result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "94bd056ca493861e049353ff15cf2ee49dc4333f2cc41f5f9c90fb2294732246",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "0b86cf9516d42cd9e8487f87e2ec5e48d491453f99b409092ba799ae02098de1"
+  },
+  {
+   "key": "app:FUN_00054444",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_00054444",
+    "result": {
+     "callback_slots": [],
+     "checked": 1,
+     "cover_cases": 1,
+     "data_pointer_slots": [
+      [
+       0,
+       12
+      ]
+     ],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "55eca5ceb6733984fc1c770c446c77b1d58d2ef7a07c9cb70d9927f00dfaa868",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "ce1acc8633608c3b9f851870b957f7d6bf712186e5187a4bf98097482937db88"
+  },
+  {
+   "key": "app:FUN_000548b8",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_000548b8",
+    "result": {
+     "callback_slots": [],
+     "checked": 1,
+     "cover_cases": 1,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "e564858eb0f56f61e6e0a4c8b0b970f0a6eaf774112359b2f7a6ca367175ab10",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "1ad6ae0b3fcbc53fa3cb8ad369b8ec9299c51f8c7f7fdcd69b932d3db0adc2a4"
+  },
   {
    "key": "app:FUN_00081e2a",
    "receipt": {
@@ -19198,13 +19975,291 @@
     "source_sha256": "e2e4ff33af2ce8b0c55237d0fe2131d10adfe610eae792c937ed715f0488cb90",
     "status": "PASS",
     "tool_hashes": {
-     "tools/cfg_verify.py": "ded92059545200309d0eeaf0140b49164c9fffa0c9748e2c579b17e361aa61d8",
-     "tools/parity/emu.py": "e8f650559fe3d1dd9f907b01a469072de8b6e17fb34963659c5bef255ce1d0bd",
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
      "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
     }
    },
-   "receipt_digest": "5b040bd84666766757fc0a9ac4e9ce3f6fb101bf9a074a0976827635c6751d75"
+   "receipt_digest": "efdd217dec99d949f75976744b555f6680072262c1588cd56ff8b285729ccbe3"
+  },
+  {
+   "key": "app:FUN_0008503c",
+   "receipt": {
+    "core": "app",
+    "name": "FUN_0008503c",
+    "result": {
+     "callback_slots": [],
+     "checked": 40,
+     "cover_cases": 0,
+     "data_pointer_slots": [],
+     "pointer_cases": [],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "112ac15eec8008db9323895965ce976425bdbbe5e85bc798633dcea0b0700d2d",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "2d3f61f50789c1a6701955439ba4ae2900ec50953eabb11b46921c2c73b20d0a"
+  },
+  {
+   "key": "app:ble_process_put_req",
+   "receipt": {
+    "core": "app",
+    "name": "ble_process_put_req",
+    "result": {
+     "callback_slots": [],
+     "checked": 137,
+     "cover_cases": 137,
+     "data_pointer_slots": [
+      [
+       2,
+       0
+      ]
+     ],
+     "pointer_cases": [
+      [
+       1,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       2
+      ],
+      [
+       1,
+       0,
+       3
+      ],
+      [
+       1,
+       0,
+       4
+      ],
+      [
+       1,
+       0,
+       5
+      ],
+      [
+       1,
+       0,
+       6
+      ],
+      [
+       1,
+       0,
+       7
+      ],
+      [
+       1,
+       0,
+       8
+      ],
+      [
+       1,
+       0,
+       9
+      ],
+      [
+       1,
+       0,
+       10
+      ],
+      [
+       1,
+       0,
+       11
+      ],
+      [
+       1,
+       0,
+       12
+      ],
+      [
+       1,
+       0,
+       13
+      ],
+      [
+       1,
+       0,
+       14
+      ],
+      [
+       1,
+       0,
+       15
+      ],
+      [
+       1,
+       0,
+       16
+      ],
+      [
+       1,
+       0,
+       17
+      ],
+      [
+       1,
+       0,
+       18
+      ],
+      [
+       1,
+       0,
+       19
+      ],
+      [
+       1,
+       0,
+       20
+      ],
+      [
+       1,
+       0,
+       21
+      ],
+      [
+       1,
+       0,
+       22
+      ],
+      [
+       1,
+       0,
+       23
+      ],
+      [
+       1,
+       0,
+       24
+      ],
+      [
+       1,
+       0,
+       25
+      ],
+      [
+       1,
+       0,
+       26
+      ],
+      [
+       1,
+       0,
+       27
+      ],
+      [
+       1,
+       0,
+       28
+      ],
+      [
+       1,
+       0,
+       29
+      ],
+      [
+       1,
+       0,
+       30
+      ],
+      [
+       1,
+       0,
+       31
+      ],
+      [
+       1,
+       0,
+       32
+      ],
+      [
+       1,
+       0,
+       33
+      ],
+      [
+       1,
+       0,
+       34
+      ],
+      [
+       1,
+       0,
+       35
+      ],
+      [
+       1,
+       0,
+       36
+      ],
+      [
+       1,
+       0,
+       37
+      ],
+      [
+       1,
+       0,
+       38
+      ],
+      [
+       1,
+       0,
+       39
+      ]
+     ],
+     "selectors": {},
+     "status": "PASS"
+    },
+    "source_sha256": "c55c6c57b09b9b7e4eca58740b526308ed13161bdf69f4418a76079961dc677b",
+    "status": "PASS",
+    "tool_hashes": {
+     "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+    }
+   },
+   "receipt_digest": "4fef2bad85cc14815b53c26b763a6ff7047ab85de899020e376e03c7e6e74d33"
   }
  ],
- "unresolved_count": 31
+ "timeout_other_triage": {
+  "path": "recon/analysis/app_cfg_timeout_other_triage.json",
+  "resolved": [
+   "FUN_000184f0",
+   "FUN_0002316c",
+   "FUN_0002360c",
+   "FUN_00023acc",
+   "FUN_000243fc",
+   "FUN_00035f28",
+   "FUN_00036030",
+   "FUN_000361d8",
+   "FUN_00040794",
+   "FUN_0004382c",
+   "FUN_0004d6ec",
+   "FUN_00060a5c",
+   "FUN_00086668",
+   "FUN_00086c04",
+   "FUN_0008705a",
+   "FUN_0008768e",
+   "check_battery_critical",
+   "gui_string_draw",
+   "now_has_persist_task",
+   "ui_even_ai_task",
+   "update_persist_task_status_to_idle",
+   "update_persist_task_status_to_wait_blow_head",
+   "update_temp_task_status"
+  ],
+  "sha256": "40d9df8d775f265bb78c943db08bb4b8a9686a208a7ea2d603d676856c84adc2"
+ },
+ "unresolved_count": 2
 }

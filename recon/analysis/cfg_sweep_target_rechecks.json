@@ -1,6 +1,136 @@
 {
  "kind": "cfg_sweep_target_rechecks",
  "rechecks": {
+  "app:FUN_0004ea28": {
+   "core": "app",
+   "name": "FUN_0004ea28",
+   "result": {
+    "callback_slots": [],
+    "checked": 42,
+    "cover_cases": 2,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {
+     "0": [
+      0,
+      1
+     ]
+    },
+    "status": "PASS"
+   },
+   "source_sha256": "ec8dd6ac2ca1493623f1c6262de278c67d927f13be81ddeac70fa4c2c61ffcec",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_0004ea78": {
+   "core": "app",
+   "name": "FUN_0004ea78",
+   "result": {
+    "callback_slots": [],
+    "checked": 40,
+    "cover_cases": 0,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "a44020fc9e8bc1eb713c73f1719c6fce6ba4148925bd3beb96d133b33e097847",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_00053580": {
+   "core": "app",
+   "name": "FUN_00053580",
+   "result": {
+    "callback_slots": [],
+    "checked": 40,
+    "cover_cases": 0,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "e71e5851fd0827443cbd313715d868915e928d9fbb556930efae8de94934c1cc",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_000536b8": {
+   "core": "app",
+   "name": "FUN_000536b8",
+   "result": {
+    "callback_slots": [],
+    "checked": 40,
+    "cover_cases": 0,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "94bd056ca493861e049353ff15cf2ee49dc4333f2cc41f5f9c90fb2294732246",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_00054444": {
+   "core": "app",
+   "name": "FUN_00054444",
+   "result": {
+    "callback_slots": [],
+    "checked": 1,
+    "cover_cases": 1,
+    "data_pointer_slots": [
+     [
+      0,
+      12
+     ]
+    ],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "55eca5ceb6733984fc1c770c446c77b1d58d2ef7a07c9cb70d9927f00dfaa868",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:FUN_000548b8": {
+   "core": "app",
+   "name": "FUN_000548b8",
+   "result": {
+    "callback_slots": [],
+    "checked": 1,
+    "cover_cases": 1,
+    "data_pointer_slots": [],
+    "pointer_cases": [],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "e564858eb0f56f61e6e0a4c8b0b970f0a6eaf774112359b2f7a6ca367175ab10",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
   "app:FUN_00081e2a": {
    "core": "app",
    "name": "FUN_00081e2a",
@@ -21,8 +151,8 @@
    "source_sha256": "e2e4ff33af2ce8b0c55237d0fe2131d10adfe610eae792c937ed715f0488cb90",
    "status": "PASS",
    "tool_hashes": {
-    "tools/cfg_verify.py": "ded92059545200309d0eeaf0140b49164c9fffa0c9748e2c579b17e361aa61d8",
-    "tools/parity/emu.py": "e8f650559fe3d1dd9f907b01a469072de8b6e17fb34963659c5bef255ce1d0bd",
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
    }
   },
@@ -41,7 +171,228 @@
    "source_sha256": "112ac15eec8008db9323895965ce976425bdbbe5e85bc798633dcea0b0700d2d",
    "status": "PASS",
    "tool_hashes": {
-    "tools/cfg_verify.py": "289ae7b028694e3bec834a30bacfbb433131865d557bf3bfc1425e176ceca942",
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
+    "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+    "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+   }
+  },
+  "app:ble_process_put_req": {
+   "core": "app",
+   "name": "ble_process_put_req",
+   "result": {
+    "callback_slots": [],
+    "checked": 137,
+    "cover_cases": 137,
+    "data_pointer_slots": [
+     [
+      2,
+      0
+     ]
+    ],
+    "pointer_cases": [
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      3
+     ],
+     [
+      1,
+      0,
+      4
+     ],
+     [
+      1,
+      0,
+      5
+     ],
+     [
+      1,
+      0,
+      6
+     ],
+     [
+      1,
+      0,
+      7
+     ],
+     [
+      1,
+      0,
+      8
+     ],
+     [
+      1,
+      0,
+      9
+     ],
+     [
+      1,
+      0,
+      10
+     ],
+     [
+      1,
+      0,
+      11
+     ],
+     [
+      1,
+      0,
+      12
+     ],
+     [
+      1,
+      0,
+      13
+     ],
+     [
+      1,
+      0,
+      14
+     ],
+     [
+      1,
+      0,
+      15
+     ],
+     [
+      1,
+      0,
+      16
+     ],
+     [
+      1,
+      0,
+      17
+     ],
+     [
+      1,
+      0,
+      18
+     ],
+     [
+      1,
+      0,
+      19
+     ],
+     [
+      1,
+      0,
+      20
+     ],
+     [
+      1,
+      0,
+      21
+     ],
+     [
+      1,
+      0,
+      22
+     ],
+     [
+      1,
+      0,
+      23
+     ],
+     [
+      1,
+      0,
+      24
+     ],
+     [
+      1,
+      0,
+      25
+     ],
+     [
+      1,
+      0,
+      26
+     ],
+     [
+      1,
+      0,
+      27
+     ],
+     [
+      1,
+      0,
+      28
+     ],
+     [
+      1,
+      0,
+      29
+     ],
+     [
+      1,
+      0,
+      30
+     ],
+     [
+      1,
+      0,
+      31
+     ],
+     [
+      1,
+      0,
+      32
+     ],
+     [
+      1,
+      0,
+      33
+     ],
+     [
+      1,
+      0,
+      34
+     ],
+     [
+      1,
+      0,
+      35
+     ],
+     [
+      1,
+      0,
+      36
+     ],
+     [
+      1,
+      0,
+      37
+     ],
+     [
+      1,
+      0,
+      38
+     ],
+     [
+      1,
+      0,
+      39
+     ]
+    ],
+    "selectors": {},
+    "status": "PASS"
+   },
+   "source_sha256": "c55c6c57b09b9b7e4eca58740b526308ed13161bdf69f4418a76079961dc677b",
+   "status": "PASS",
+   "tool_hashes": {
+    "tools/cfg_verify.py": "bf7825359f1ba17dc401da3f27bfa17fc024e05dc42d0f866bbad11d1396aa04",
     "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
     "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
    }
