@@ -666,6 +666,15 @@ TRUE_SIZE_OVERRIDES = {
     # Two-argument context wrapper ends at its tail branch at 0x778de.  The
     # catalog's remaining bytes are distinct wrappers/functions.
     ("app", 0x000778d4): 0x0a,
+    # Independently audited catalog-missing SDK/static entries. Each bound
+    # ends at its return/tail and excludes the following independent entry.
+    ("app", 0x00083a2c): 0x66,
+    ("app", 0x00084e44): 0x14,
+    ("app", 0x00084f06): 0x10,
+    ("app", 0x00085c86): 0x6c,
+    ("app", 0x00085ef0): 0x16,
+    ("app", 0x00086360): 0x18,
+    ("app", 0x0008664c): 0x14,
     ("app", 0x00085df6): 0x24,  # next decoder routine starts at 0x85e1a
     ("app", 0x0008633e): 0x06,  # unary wrapper tail ends at 0x86344
     ("app", 0x00086378): 0x08,  # following independent thunk starts 0x86380
@@ -1429,6 +1438,8 @@ REVIEWED_ORACLE_MEMORY_COPIES = {
     },
 }
 REVIEWED_STACK_POINTER_CALLS = {
+    # The marker wrapper passes a compiler-local one-byte source in r2.
+    ("app", 0x00084e44): {0: {2}},
     # The first and final transport writes consume compiler-dependent local
     # header/delimiter addresses; their bytes and call order remain compared.
     ("app", 0x00024e60): {2: {2}, 4: {2}},
@@ -21399,6 +21410,154 @@ REVIEWED_ORACLE_CASES[("app", 0x00024c14)] = [
     _app_adc_run_case(0, scale_result=-5, log_level=1, deferred=1),
     _app_adc_run_case(0, sample=20, scale_result=1),
 ]
+
+
+def _app_flash_page_info_case(offset, index):
+    device = emu.SCRATCH + 0x8000
+    api = emu.SCRATCH + 0x8100
+    info = emu.SCRATCH + 0x8200
+    layout = emu.SCRATCH + 0x8300
+    callback = 0x00080021
+    device_image = bytearray(12)
+    device_image[8:12] = api.to_bytes(4, "little")
+    api_image = bytearray(0x14)
+    api_image[0x10:0x14] = callback.to_bytes(4, "little")
+    layout_image = (
+        (4).to_bytes(4, "little") + (100).to_bytes(4, "little") +
+        (2).to_bytes(4, "little") + (200).to_bytes(4, "little"))
+    writes = {0: [
+        (1, 0, layout.to_bytes(4, "little"), callback & ~1),
+        (2, 0, (2).to_bytes(4, "little"), callback & ~1),
+    ]}
+    return ({0: device, 1: offset, 2: index, 3: info},
+            [(device, bytes(device_image)), (api, bytes(api_image)),
+             (info, bytes(12)), (layout, layout_image)], {}, writes)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00083a2c)] = 4
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00083a2c)] = {0: {1, 2}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00083a2c)] = {0x00080020: 3}
+REVIEWED_ORACLE_CASES[("app", 0x00083a2c)] = [
+    _app_flash_page_info_case(0, 0),
+    _app_flash_page_info_case(0, 3),
+    _app_flash_page_info_case(0, 4),
+    _app_flash_page_info_case(0, 5),
+    _app_flash_page_info_case(50, 0),
+    _app_flash_page_info_case(450, 0),
+    _app_flash_page_info_case(800, 0),
+]
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00084e44)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00084e44)] = {0x00084dea: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00084e44)] = [
+    ({0: 0x5002b000, 1: 0x100, 2: marker}, [], {0: {0: result}})
+    for marker, result in ((0, 0), (1, 1), (0xff, -1))
+]
+
+
+def _app_linked_node_case(index, with_owner=True, node_count=3):
+    owner = emu.SCRATCH + 0x8400
+    nodes = [emu.SCRATCH + 0x8500 + i * 0x20 for i in range(node_count)]
+    owner_image = bytearray(12)
+    owner_image[8:12] = (nodes[0] if nodes else 0).to_bytes(4, "little")
+    memory = [(owner, bytes(owner_image))]
+    for i, node in enumerate(nodes):
+        memory.append((node, (nodes[i + 1] if i + 1 < len(nodes) else 0)
+                       .to_bytes(4, "little")))
+    return ({0: owner if with_owner else 0, 1: index}, memory, {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00084f06)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x00084f06)] = [
+    _app_linked_node_case(0, with_owner=False),
+    _app_linked_node_case(0, node_count=0),
+    _app_linked_node_case(0),
+    _app_linked_node_case(1),
+    _app_linked_node_case(2),
+    _app_linked_node_case(3),
+]
+
+
+def _app_zcbor_backup_case(kind, flags=0, elem_count=2, max_count=3):
+    state = emu.SCRATCH + 0x8800
+    constant = emu.SCRATCH + 0x8900
+    backups = emu.SCRATCH + 0x8a00
+    payload = emu.SCRATCH + 0x8b00
+    backup_payload = emu.SCRATCH + 0x8c00
+    state_image = bytearray(24)
+    state_image[0:4] = payload.to_bytes(4, "little")
+    state_image[8:12] = int(elem_count).to_bytes(4, "little")
+    state_image[20:24] = constant.to_bytes(4, "little")
+    constant_image = bytearray(16)
+    constant_image[0:4] = backups.to_bytes(4, "little")
+    constant_image[4:8] = (0 if kind == "no-backup" else 1).to_bytes(4, "little")
+    constant_image[8:12] = (2).to_bytes(4, "little")
+    backup_image = bytearray(24)
+    backup_image[0:4] = backup_payload.to_bytes(4, "little")
+    backup_image[8:12] = (1).to_bytes(4, "little")
+    backup_image[17] = 1 if kind == "moved" else 0
+    initial_ok = 0 if kind == "initial-error" else 1
+    return ({0: state, 1: flags, 2: max_count, 3: 0x11223344},
+            [(state, bytes(state_image)), (constant, bytes(constant_image)),
+             (backups, bytes(backup_image)), (payload, bytes(16)),
+             (backup_payload, bytes(16))],
+            # FUN_00085c12 is a leaf that writes only r0; flags remain live
+            # in r1 across the call in the shipped body.
+            {0: {0: initial_ok, 1: int(flags)}})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00085c86)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00085c86)] = {
+    0x00085c12: 1, 0x00085c26: 2,
+}
+REVIEWED_ORACLE_CASES[("app", 0x00085c86)] = [
+    _app_zcbor_backup_case("initial-error"),
+    _app_zcbor_backup_case("no-backup"),
+    _app_zcbor_backup_case("ordinary"),
+    _app_zcbor_backup_case("ordinary", flags=1),
+    _app_zcbor_backup_case("moved", flags=1),
+    _app_zcbor_backup_case("moved", flags=5),
+    _app_zcbor_backup_case("ordinary", flags=2),
+    _app_zcbor_backup_case("ordinary", flags=4),
+    _app_zcbor_backup_case("ordinary", elem_count=5, max_count=3),
+]
+
+
+def _app_zcbor_str_decode_case(success, length=5):
+    state = emu.SCRATCH + 0x8d00
+    result = emu.SCRATCH + 0x8e00
+    payload = emu.SCRATCH + 0x8f00
+    state_image = payload.to_bytes(4, "little") + bytes(20)
+    result_image = bytearray(8)
+    writes = {0: [(1, 4, int(length).to_bytes(4, "little"), 0x00085ebc)]}
+    return ({0: state, 1: result, 2: 3, 3: 0xa5a5a5a5},
+            [(state, state_image), (result, bytes(result_image)),
+             (payload, bytes(32))], {0: {0: int(success)}}, writes)
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00085ef0)] = 2
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00085ef0)] = {0x00085ebc: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00085ef0)] = [
+    _app_zcbor_str_decode_case(0),
+    _app_zcbor_str_decode_case(1, 0),
+    _app_zcbor_str_decode_case(7, 5),
+]
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00086360)] = 1
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00086360)] = {0: {2}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00086360)] = {0x00086208: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00086360)] = [
+    ({0: emu.SCRATCH + 0x9000, 1: value},
+     [(emu.SCRATCH + 0x9000, bytes(32))], {0: {0: result}})
+    for value, result in ((0, 0), (23, 1), (24, 7), (255, -1))
+]
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0008664c)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0008664c)] = {0x00086634: 1}
+REVIEWED_ORACLE_CASES[("app", 0x0008664c)] = [({}, [], {0: {0: 0}})]
 
 
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [

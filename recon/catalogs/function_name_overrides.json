@@ -580,6 +580,34 @@
   "0x000867da": {
    "name": "signal_poll_event",
    "evidence": "Exact Zephyr 3.4.99 kernel/poll.c poll-event signaling helper. Raw identity remains FUN_000867da at 0x000867da."
+  },
+  "0x00083a2c": {
+   "name": "flash_get_page_info",
+   "evidence": "Exact static helper from Zephyr 3.4.99 flash_page_layout.c, including layout callback iteration and offset/index modes. Raw identity remains FUN_00083a2c at 0x00083a2c."
+  },
+  "0x00084e44": {
+   "name": "flash_write_close_ate_marker",
+   "evidence": "One-byte marker wrapper around the recovered padded flash writer; identity is corroborated by its independently recovered caller. Raw identity remains FUN_00084e44 at 0x00084e44."
+  },
+  "0x00084f06": {
+   "name": "linked_node_at_index",
+   "evidence": "Null-safe indexed traversal of the owner head at offset 8, corroborated by the recovered public wrapper. Raw identity remains FUN_00084f06 at 0x00084f06."
+  },
+  "0x00085c86": {
+   "name": "zcbor_process_backup",
+   "evidence": "Exact NCS 2.5.1 zcbor_process_backup implementation and state layout, including restore, consume, transfer-payload, moved-payload rejection, and element-limit error paths. Raw identity remains FUN_00085c86 at 0x00085c86."
+  },
+  "0x00085ef0": {
+   "name": "zcbor_str_decode",
+   "evidence": "Exact static zcbor str_decode helper: validates/decodes the string prefix and advances payload by the recovered length. Raw identity remains FUN_00085ef0 at 0x00085ef0."
+  },
+  "0x00086360": {
+   "name": "zcbor_simple_put",
+   "evidence": "Exact zcbor_simple_put wrapper using major type 7 and a one-byte compiler-local value. Raw identity remains FUN_00086360 at 0x00086360."
+  },
+  "0x0008664c": {
+   "name": "z_reschedule_unlocked",
+   "evidence": "Exact Zephyr inline z_reschedule_unlocked: arch_irq_lock with BASEPRI 0x20 followed by z_reschedule_irqlock. Raw identity remains FUN_0008664c at 0x0008664c."
   }
  },
  "net": {
