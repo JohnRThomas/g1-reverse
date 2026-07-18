@@ -1,0 +1,62 @@
+{
+  "schema": "g1-cfg-timeout-classification-v1",
+  "core": "net",
+  "function": "FUN_010089f8",
+  "analysis_address": "0x010089f8",
+  "source": "recon/net/src/FUN_010089f8.c",
+  "source_sha256": "f2ab92f927685068bfead047c3e357467d1060bc9737712a48b03b75acf0a7d7",
+  "classification": "finite_slow_verification_path",
+  "authoritative_status": "PASS",
+  "source_defect": false,
+  "intentional_non_return": false,
+  "fixture_or_harness_defect": false,
+  "sweep_timeout_cause": "The full 40-trial verifier replays two reviewed private arithmetic regions and the portable 512-bit reduction for every trial. The final sweep's per-function wall-clock limit expires before this finite workload completes.",
+  "bounded_random_measurements": [
+    {
+      "trials_random": 1,
+      "elapsed_seconds": 0.932,
+      "status": "PASS",
+      "checked": 1
+    },
+    {
+      "trials_random": 2,
+      "elapsed_seconds": 1.788,
+      "status": "PASS",
+      "checked": 2
+    },
+    {
+      "trials_random": 4,
+      "elapsed_seconds": 3.513,
+      "status": "PASS",
+      "checked": 4
+    }
+  ],
+  "directed_proof": {
+    "status": "PASS",
+    "checked": 7,
+    "elapsed_seconds": 6.9,
+    "cases": [
+      "zero_times_zero",
+      "one_times_one",
+      "p_minus_one_squared",
+      "p256_generator_x_times_y",
+      "bounded_field_element_times_generator_x",
+      "all_ones_boundary",
+      "output_aliases_left_input"
+    ],
+    "comparison": "Full-return differential side-effect comparison with the reviewed original internal multiply/reduce regions; no prefix-only acceptance."
+  },
+  "negative_control": {
+    "mutation": "xor every emitted result limb with 1",
+    "expected_status": "FAIL",
+    "observed_status": "FAIL",
+    "checked": 1,
+    "mismatches": 1
+  },
+  "historical_evidence": {
+    "baseline_sweep_status": "PASS",
+    "final_sweep_status": "timeout",
+    "same_source_hash": true
+  },
+  "disposition": "Retain the canonical source unchanged. Treat the generic sweep timeout as resolved by this bounded fail-closed receipt; do not classify it as FAIL, non-return, or unverified."
+}
