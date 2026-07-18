@@ -30,7 +30,17 @@ extern int FUN_00023ee0(void);
 extern int FUN_00026f74(uintptr_t, int, const void *, int);  /* sync_to_slave */
 extern int FUN_0007d376(uintptr_t, uint32_t, int, int);      /* semaphore_take */
 extern int FUN_0007d37a(uintptr_t);                          /* semaphore_give */
-extern uint64_t FUN_0007d35a(void);                          /* uptime */
+#ifdef G1_APP_SDK_INLINE_COHESION
+extern int64_t z_impl_k_uptime_ticks(void);
+/* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
+static __attribute__((always_inline)) inline uint64_t g1_sdk_uptime_get_7(void)
+{
+  return ((uint64_t)z_impl_k_uptime_ticks() * 1000u) >> 15;
+}
+#else
+extern uint64_t FUN_0007d35a(void); /* k_uptime_get_7 @ 0x0007d35a */
+#define g1_sdk_uptime_get_7() FUN_0007d35a()
+#endif
 extern uint64_t FUN_0007d3c2(uint64_t, uint64_t);            /* time_delta */
 extern int FUN_0007d224(void);
 extern int FUN_0007d3ee(void);
@@ -109,7 +119,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
             LOG_CALL(0x000aa112u, 0x000aa412u);
           FUN_0003dfe4();
           NAVIGATION_ACTIVE = 1u;
-          LAST_SYNC_TIME = FUN_0007d35a();
+          LAST_SYNC_TIME = g1_sdk_uptime_get_7();
           SYNC_RETRIES = 10u;
           FUN_000431c0();
           FUN_00043308();
@@ -126,7 +136,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         FUN_000431c0();
         NAV_BUFFER_VALID = 0u;
         SYNC_RETRIES = 10u;
-        LAST_SYNC_TIME = FUN_0007d35a();
+        LAST_SYNC_TIME = g1_sdk_uptime_get_7();
         FUN_0003e05c(nav_root, nav_view);
       }
       goto active_timeout_check;
@@ -204,7 +214,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
           int e = FUN_0007d446();
           FUN_000442bc(a, b, c + 2, d + 0x4c, e + 0x1d, 3, flip);
         }
-        AUTO_EXIT_STARTED = FUN_0007d35a();
+        AUTO_EXIT_STARTED = g1_sdk_uptime_get_7();
         AUTO_EXIT_DELAY = 5000u;
       } else if (ARRIVAL_STATUS == 1u) {
         if (LOG_LEVEL > 2)
@@ -291,7 +301,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
   case 2:
     if (LOG_LEVEL > 1)
       LOG_CALL(0x000aa370u, 0x000aa412u);
-    now = FUN_0007d35a();
+    now = g1_sdk_uptime_get_7();
     if ((int64_t)FUN_0007d3c2(now, LAST_SYNC_TIME) >= 8001) {
       if (LOG_LEVEL > 1)
         LOG_CALL(0x000aa3a8u, 0x000aa412u);
@@ -313,7 +323,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
       goto exit_and_clear;
     if (event == 1u && V8(FUN_000167a8()) == 1u)
       FUN_00047ba8();
-    now = FUN_0007d35a();
+    now = g1_sdk_uptime_get_7();
     if ((int64_t)(AUTO_EXIT_STARTED + AUTO_EXIT_DELAY) < (int64_t)now) {
       if (LOG_LEVEL > 2)
         LOG_CALL(0x000aa3edu, 0x000aa412u);
@@ -338,10 +348,10 @@ sync_timeout:
     if (SYNC_RETRIES < 20u)
       SYNC_RETRIES = 19u;
   }
-  now = FUN_0007d35a();
+  now = g1_sdk_uptime_get_7();
   if ((int64_t)FUN_0007d3c2(now, LAST_SYNC_TIME) < 1001)
     return 0;
-  LAST_SYNC_TIME = FUN_0007d35a();
+  LAST_SYNC_TIME = g1_sdk_uptime_get_7();
   SYNC_RETRIES = (uint8_t)(SYNC_RETRIES - 1u);
   if (LOG_LEVEL > 2)
     LOG_CALL(0x000a9c22u, 0x000aa412u, (unsigned)SYNC_RETRIES);
@@ -363,7 +373,7 @@ sync_timeout:
 
 exit_navigation:
   NAV_STATE = 2u;
-  LAST_SYNC_TIME = FUN_0007d35a();
+  LAST_SYNC_TIME = g1_sdk_uptime_get_7();
   FUN_000431c0();
   {
     int x = FUN_0007d3ee();

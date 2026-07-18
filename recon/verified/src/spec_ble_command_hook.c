@@ -127,7 +127,19 @@ extern uint32_t FUN_00064b1c(uintptr_t,...);
 extern uint32_t FUN_00064ca4(uintptr_t,...);
 extern uint32_t FUN_00072908(uintptr_t,...);
 extern uint32_t FUN_00074844(uintptr_t,...);
-extern uint32_t FUN_0007c18e(uintptr_t,...);
+#ifdef G1_APP_SDK_INLINE_COHESION
+extern int64_t z_impl_k_uptime_ticks(void);
+/* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
+static __attribute__((always_inline)) inline uint32_t
+g1_sdk_uptime_get_0(uintptr_t ignored)
+{
+  (void)ignored;
+  return (uint32_t)(((uint64_t)z_impl_k_uptime_ticks() * 1000u) >> 15);
+}
+#else
+extern uint32_t FUN_0007c18e(uintptr_t,...); /* k_uptime_get_0 @ 0x0007c18e */
+#define g1_sdk_uptime_get_0(ignored) FUN_0007c18e(ignored)
+#endif
 extern uint32_t FUN_0007c244(uintptr_t,...);
 extern uint32_t FUN_00085014(uintptr_t,...);
 extern uint32_t FUN_00085046(uintptr_t,...);
@@ -536,7 +548,7 @@ LAB_0000f3f4:
                 *pcVar13 = (bVar2 & 0xf) + 0x30;
                 pcVar13 = pcVar13 + 1;
               } while (iVar5 != 0x400);
-              iVar7 = FUN_0007c18e(0);
+              iVar7 = g1_sdk_uptime_get_0(0);
               uVar19 = 0;
               iVar5 = 0;
               do {
@@ -557,7 +569,7 @@ LAB_0000f3f4:
                 iVar5 = iVar5 + 1;
                 pcVar14 = pcVar14 + 0x68;
                 if (iVar5 == 9) {
-                  iVar4 = FUN_0007c18e(0);
+                  iVar4 = g1_sdk_uptime_get_0(0);
                   DEBUG_PRINT(PTR_s_t0____d_error_count____d_0000f790,iVar4 - iVar7,uVar19);
                   return 0;
                 }

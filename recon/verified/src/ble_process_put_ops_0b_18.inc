@@ -9,7 +9,17 @@ extern int FUN_00023514();
 extern int FUN_0002efc0();
 extern int thunk_FUN_00072880();
 extern int FUN_0007c176();
-extern uint64_t FUN_0007c18e(void);
+#ifdef G1_APP_SDK_INLINE_COHESION
+extern int64_t z_impl_k_uptime_ticks(void);
+/* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
+static __attribute__((always_inline)) inline uint64_t g1_sdk_uptime_get_0(void)
+{
+    return ((uint64_t)z_impl_k_uptime_ticks() * 1000u) >> 15;
+}
+#else
+extern uint64_t FUN_0007c18e(void); /* k_uptime_get_0 @ 0x0007c18e */
+#define g1_sdk_uptime_get_0() FUN_0007c18e()
+#endif
 extern int FUN_0007c1aa();
 extern int FUN_0007c1dc();
 extern int FUN_0007cbfe();
@@ -269,7 +279,7 @@ ble_put_op15(struct ble_put_context *ctx, const uint8_t *packet,
                 FUN_00019c70();
         }
     }
-    *(uint64_t *)(void *)(base + 0x8e4) = FUN_0007c18e();
+    *(uint64_t *)(void *)(base + 0x8e4) = g1_sdk_uptime_get_0();
 }
 
 BLE_PUT_ALWAYS_INLINE void
@@ -296,7 +306,7 @@ ble_put_op17(struct ble_put_context *ctx, const uint8_t *packet,
 {
     uint8_t *base = (uint8_t *)ctx;
     FUN_0001658c(1);
-    *(uint64_t *)(void *)(base + 0x8e4) = FUN_0007c18e();
+    *(uint64_t *)(void *)(base + 0x8e4) = g1_sdk_uptime_get_0();
     *(uint32_t *)(void *)(base + 0x8d0) = packet[0];
     thunk_FUN_00072880(base - 0x6fc);
     response[1] = 0xc9;

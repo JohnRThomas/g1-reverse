@@ -105,7 +105,17 @@ extern int FUN_00023ee0(void);
 extern int sync_to_slave(uintptr_t, int, const void *, int);  /* sync_to_slave */
 extern int FUN_0007d376(uintptr_t, uint32_t, int, int);      /* semaphore_take */
 extern int FUN_0007d37a(uintptr_t);                          /* semaphore_give */
-extern uint64_t k_uptime_get_7(void);                          /* uptime */
+#ifdef G1_APP_SDK_INLINE_COHESION
+extern int64_t z_impl_k_uptime_ticks(void);
+/* Exact configured kernel.h/time_units.h owner: floor(ticks * 1000 / 32768). */
+static __attribute__((always_inline)) inline uint64_t g1_sdk_uptime_get_7(void)
+{
+  return ((uint64_t)z_impl_k_uptime_ticks() * 1000u) >> 15;
+}
+#else
+extern uint64_t k_uptime_get_7(void); /* k_uptime_get_7 @ 0x0007d35a */
+#define g1_sdk_uptime_get_7() k_uptime_get_7()
+#endif
 extern uint64_t u64_sub(uint64_t, uint64_t);            /* time_delta */
 extern int get_timestamp(void);
 extern int device_info_text_width_get(void);
@@ -184,7 +194,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
             LOG_CALL(((unsigned long)&rodata_aa112) /*=0xaa112*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
           FUN_0003dfe4();
           NAVIGATION_ACTIVE = 1u;
-          LAST_SYNC_TIME = k_uptime_get_7();
+          LAST_SYNC_TIME = g1_sdk_uptime_get_7();
           SYNC_RETRIES = 10u;
           gui_screen_clear();
           gui_reset_dynamic_bitmap_frame_state();
@@ -201,7 +211,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
         gui_screen_clear();
         NAV_BUFFER_VALID = 0u;
         SYNC_RETRIES = 10u;
-        LAST_SYNC_TIME = k_uptime_get_7();
+        LAST_SYNC_TIME = g1_sdk_uptime_get_7();
         navigation_overview_map_display(nav_root, nav_view);
       }
       goto active_timeout_check;
@@ -279,7 +289,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
           int e = device_info_text_height_get_clamped();
           gui_clock_draw(a, b, c + 2, d + 0x4c, e + 0x1d, 3, flip);
         }
-        AUTO_EXIT_STARTED = k_uptime_get_7();
+        AUTO_EXIT_STARTED = g1_sdk_uptime_get_7();
         AUTO_EXIT_DELAY = 5000u;
       } else if (ARRIVAL_STATUS == 1u) {
         if (LOG_LEVEL > 2)
@@ -366,7 +376,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
   case 2:
     if (LOG_LEVEL > 1)
       LOG_CALL(((unsigned long)&rodata_aa370) /*=0xaa370*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
-    now = k_uptime_get_7();
+    now = g1_sdk_uptime_get_7();
     if ((int64_t)u64_sub(now, LAST_SYNC_TIME) >= 8001) {
       if (LOG_LEVEL > 1)
         LOG_CALL(((unsigned long)&rodata_aa3a8) /*=0xaa3a8*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
@@ -388,7 +398,7 @@ int ui_navigation_task(uintptr_t task, uintptr_t unused, uint32_t event)
       goto exit_and_clear;
     if (event == 1u && V8(get_device_info()) == 1u)
       send_response_data_to_ble();
-    now = k_uptime_get_7();
+    now = g1_sdk_uptime_get_7();
     if ((int64_t)(AUTO_EXIT_STARTED + AUTO_EXIT_DELAY) < (int64_t)now) {
       if (LOG_LEVEL > 2)
         LOG_CALL(((unsigned long)&rodata_aa3ed) /*=0xaa3ed*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/);
@@ -413,10 +423,10 @@ sync_timeout:
     if (SYNC_RETRIES < 20u)
       SYNC_RETRIES = 19u;
   }
-  now = k_uptime_get_7();
+  now = g1_sdk_uptime_get_7();
   if ((int64_t)u64_sub(now, LAST_SYNC_TIME) < 1001)
     return 0;
-  LAST_SYNC_TIME = k_uptime_get_7();
+  LAST_SYNC_TIME = g1_sdk_uptime_get_7();
   SYNC_RETRIES = (uint8_t)(SYNC_RETRIES - 1u);
   if (LOG_LEVEL > 2)
     LOG_CALL(((unsigned long)&rodata_a9c22) /*=0xa9c22*/, ((unsigned long)&rodata_aa412) /*=0xaa412*/, (unsigned)SYNC_RETRIES);
@@ -438,7 +448,7 @@ sync_timeout:
 
 exit_navigation:
   NAV_STATE = 2u;
-  LAST_SYNC_TIME = k_uptime_get_7();
+  LAST_SYNC_TIME = g1_sdk_uptime_get_7();
   gui_screen_clear();
   {
     int x = device_info_text_width_get();
