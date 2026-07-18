@@ -1,0 +1,38 @@
+/* readable reconstruction; identity: FUN_00065f80 @ 0x00065f80
+ * public-name: nrfx_nvmc_word_write
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   nvmc_readonly_mode_set                   <= FUN_00065ef0 @ 0x00065ef0
+ *   nvmc_word_write                          <= FUN_00065f04 @ 0x00065f04
+ *   nrfx_nvmc_word_write                     <= FUN_00065f80 @ 0x00065f80
+ *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
+ *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
+ * address symbols (name @ address):
+ *   rodata_99cbd                             @ 0x00099cbd
+ *   rodata_f6c32                             @ 0x000f6c32
+ *   rodata_f6ca8                             @ 0x000f6ca8
+ *   rodata_f6cc2                             @ 0x000f6cc2
+ *   NRF_NVMC_S                               @ 0x50039000
+ */
+/* Reconstructed FUN_00065f80 @ 0x65f80  (parity: 300/300 trials, PROVEN) */
+extern void printk(unsigned,unsigned,unsigned,unsigned,unsigned);
+extern long long assert_post_action(unsigned,unsigned);
+extern void nvmc_word_write(void);
+extern void nvmc_readonly_mode_set(void);
+void nrfx_nvmc_word_write(unsigned param_1, unsigned param_2, unsigned param_3, unsigned param_4){
+    unsigned r0v = param_1;
+    if (param_1 < 0x100000) goto L_fae;
+    if ((param_1 - 0xff8000) < 0x1000) goto L_fae;
+    printk(0x99cbd,0xf6ca8,0xf6c32,0x195,param_4);
+    { long long r = assert_post_action(0xf6c32,0x195); r0v=(unsigned)r; }
+L_fae:
+    if ((r0v & 3) == 0) goto L_fc6;
+    printk(0x99cbd,0xf6cc2,0xf6c32,0x196,param_4);
+    { long long r = assert_post_action(0xf6c32,0x196); r0v=(unsigned)r; }
+    goto L_fae;
+L_fc6:
+    *(volatile unsigned*)(0x50039000UL + 0x584) = 1;
+    *(volatile unsigned*)(0x50039000UL + 0x504) = 1;
+    nvmc_word_write();
+    nvmc_readonly_mode_set();
+}

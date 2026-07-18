@@ -5,7 +5,7 @@
  * callees (readable <= raw @ address):
  *   qspi_get_zephyr_ret_code                 <= FUN_00060990 @ 0x00060990
  *   qspi_nor_send_cinstr                     <= FUN_00060ab0 @ 0x00060ab0
- *   g1_recon_nrfx_qspi_cinstr_xfer           <= FUN_000669f4 @ 0x000669f4
+ *   nrfx_qspi_cinstr_xfer                    <= FUN_000669f4 @ 0x000669f4
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
  * address symbols (name @ address):
@@ -17,8 +17,8 @@
 #include <stdint.h>
 typedef uint32_t u32; typedef uint8_t u8;
 extern u32 qspi_get_zephyr_ret_code(u32);
-#define g1_recon_nrfx_qspi_cinstr_xfer g1_recon_nrfx_qspi_cinstr_xfer
-extern u32 g1_recon_nrfx_qspi_cinstr_xfer(void*,u32,u32);
+#define nrfx_qspi_cinstr_xfer nrfx_qspi_cinstr_xfer
+extern u32 nrfx_qspi_cinstr_xfer(void*,u32,u32);
 extern void FUN_000838d6(u32,u32,void*);
 extern void audio_i2s_stop_and_reset_channels(u32);
 extern void audio_i2s_start_channels(u32);
@@ -54,7 +54,7 @@ LAB: ;
     frame.b4 = 0;
     frame.b5 = param_3;
     audio_i2s_stop_and_reset_channels(param_1);
-    uVar6 = g1_recon_nrfx_qspi_cinstr_xfer(&frame, uVar4, uVar5);
+    uVar6 = nrfx_qspi_cinstr_xfer(&frame, uVar4, uVar5);
     audio_i2s_start_channels(param_1);
     uVar6 = qspi_get_zephyr_ret_code(uVar6);
     return uVar6;

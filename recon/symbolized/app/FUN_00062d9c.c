@@ -22,7 +22,7 @@ extern int  uarte_nrfx_configure(int,int);
 extern void nrfx_gppi_channels_enable(int);
 extern int  FUN_0006540c(int);
 extern int  FUN_00084b14(int,int);
-extern void g1_recon_nrfx_gppi_channel_endpoints_setup(int,int,int);
+extern void nrfx_gppi_channel_endpoints_setup(int,int,int);
 extern void k_timer_init(int,int,int,...);
 #define VI(a) (*(volatile int*)(a))
 #define VW(a) (*(volatile int*)(a))
@@ -50,7 +50,7 @@ int FUN_00062d9c(int param_1){
       FUN_0004d944(((unsigned long)&rodata_88290) /*=0x88290*/,0x1040,&diagnostic,0);
       return -5;
     }
-    g1_recon_nrfx_gppi_channel_endpoints_setup(
+    nrfx_gppi_channel_endpoints_setup(
         VC(piVar5+0x1c), puVar4+0x120, puVar4+0xc);
     nrfx_gppi_channels_enable(1 << (unsigned int)VC(piVar5+0x1c));
   }

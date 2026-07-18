@@ -30,6 +30,8 @@ DEFAULTS = {
         "recon/ownership/app_collision_adoption_authorizations.json",
     "app_kernel_config":
         "recon/ownership/app_kernel_config_atomic_adoption.json",
+    "app_nrfx_stock":
+        "recon/ownership/app_nrfx_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
     "library_provenance":
@@ -320,7 +322,8 @@ def _app_collision_entries(data, source, names, authorizations,
                 row.get("cfg_verify_cases", 0) > 0 and
                 correction.get("corrected_upstream_symbol") and
                 correction.get("corrected_readable_identity") and
-                correction.get("upstream_linkage") == "public" and
+                correction.get("upstream_linkage") in
+                ("public", "translation_unit_local") and
                 closure.get("safe") is True and
                 not closure.get("new_undefined_symbols")):
             raise ValueError("invalid hidden exact-owner closure: %s" % va)
@@ -483,6 +486,16 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         kernel.get("configured_build_receipts", [])))
+    nrfx_path = resolved["app_nrfx_stock"]
+    nrfx = _load_json(nrfx_path)
+    if (nrfx.get("schema") != 1 or nrfx.get("core") != "app" or
+            nrfx.get("status") != "authorized_atomic"):
+        raise ValueError("invalid NRFX stock atomic adoption catalog")
+    authorizations["authorizations"].extend(
+        nrfx.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        nrfx.get("configured_build_receipts", [])))
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -511,6 +524,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(authorization_path)},
         {"path": paths["app_kernel_config"],
          "sha256": _sha256(kernel_path)},
+        {"path": paths["app_nrfx_stock"],
+         "sha256": _sha256(nrfx_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],
@@ -608,8 +623,10 @@ def _build_from_baseline(paths, resolved, names):
             if mismatches:
                 raise ValueError("required config mismatch %s: %s" %
                                  (va, mismatches))
-        canonical = os.path.join(BASE, "recon", "app", "src",
-                                 authorization.get("raw_symbol", "") + ".c")
+        canonical = authorization.get("reconstruction_source")
+        canonical = (_path(canonical) if canonical else
+                     os.path.join(BASE, "recon", "app", "src",
+                                  authorization.get("raw_symbol", "") + ".c"))
         if (_sha256(canonical) !=
                 authorization.get("reconstruction_source_sha256")):
             raise ValueError("reconstruction source changed: %s" % va)

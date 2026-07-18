@@ -8,7 +8,7 @@
  *   storage_read_with_word_cache             <= FUN_00061070 @ 0x00061070
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
- *   audio_i2s_stream1_trigger_start          <= FUN_00085206 @ 0x00085206
+ *   nrfx_qspi_read                           <= FUN_00085206 @ 0x00085206
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  * address symbols (name @ address):
@@ -22,7 +22,7 @@ extern int  FUN_00060a5c(int);
 extern void audio_i2s_stop_and_reset_channels(int);
 extern void audio_i2s_start_channels(int);
 extern void FUN_000838d6(int,int,void*);
-extern int  audio_i2s_stream1_trigger_start(int,int,int);
+extern int  nrfx_qspi_read(int,int,int);
 extern int  memcpy(int,int,int);
 extern int  memmove(int,int,int);
 #define VI(a) (*(volatile int*)(a))
@@ -53,7 +53,7 @@ int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,un
   uVar8 = ((int)uVar5 < (int)uVar7) ? (uVar2 - uVar5) : (uVar2 & 3u);
   if (uVar3 == 0) goto LAB_61156;
   L34 = (int)(param_3 + uVar4); L38 = (int)uVar4;
-  iVar1 = audio_i2s_stream1_trigger_start(L34, (int)uVar3, param_2 + (int)uVar6);
+  iVar1 = nrfx_qspi_read(L34, (int)uVar3, param_2 + (int)uVar6);
   FUN_000609f4(VI(param_1+0x10), iVar1);
   if (iVar1 == 0x0bad0000) {
     if (uVar6 != (unsigned int)L38) memmove((int)(param_3+uVar6), L34, (int)uVar3);
@@ -63,14 +63,14 @@ int storage_read_with_word_cache(int param_1,int param_2,unsigned int param_3,un
 LAB_61156:
   if (uVar6 != 0) {
     L34 = 4 - (int)uVar6;
-    iVar1 = audio_i2s_stream1_trigger_start((int)st, 4, param_2 - L34);
+    iVar1 = nrfx_qspi_read((int)st, 4, param_2 - L34);
     FUN_000609f4(VI(param_1+0x10), iVar1);
     if (iVar1 != 0x0bad0000) goto LAB_611be;
     memcpy((int)param_3, (int)st + L34, (int)uVar6);
   }
   iVar1 = 0x0bad0000;
   if (uVar8 != 0) {
-    iVar1 = audio_i2s_stream1_trigger_start((int)st, 8, param_2 + (int)uVar6 + (int)uVar3);
+    iVar1 = nrfx_qspi_read((int)st, 8, param_2 + (int)uVar6 + (int)uVar3);
     FUN_000609f4(VI(param_1+0x10), iVar1);
     if (iVar1 == 0x0bad0000) memcpy((int)(uVar3+uVar6+param_3), (int)st, (int)uVar8);
   }

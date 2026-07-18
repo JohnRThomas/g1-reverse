@@ -6,25 +6,5 @@
   "immutable_baseline_must_not_change": true,
   "retention_can_only_change_true_to_false_exclusion": true
  },
- "overrides": [
-  {
-   "batch": "COLLISION-09",
-   "va": "0x000850dc",
-   "raw_symbol": "FUN_000850dc",
-   "baseline_current_symbol": "net_buf_simple_push_mem",
-   "corrected_symbol": "g1_recon_nrfx_gppi_channel_endpoints_setup",
-   "status": "required_retain",
-   "reason": "The firmware body calls the recovered asserted GPPI event and task endpoint setup owners. The previous net_buf_simple_push_mem identity and SDK adoption were false.",
-   "identity_evidence": {
-    "firmware_calls": ["0x00064f48", "0x00064f78"],
-    "sdk_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
-    "sdk_source_lines": [78, 82],
-    "sole_caller": "0x00062d9c"
-   },
-   "cfg_verify": {
-    "owner": {"status": "PASS", "cases": 0},
-    "caller": {"va": "0x00062d9c", "status": "PASS", "cases": 7}
-   }
-  }
- ]
+ "overrides": []
 }

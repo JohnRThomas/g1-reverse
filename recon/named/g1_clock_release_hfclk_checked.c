@@ -3,14 +3,14 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   g1_clock_release_hfclk_checked           <= FUN_00060744 @ 0x00060744
- *   g1_nrfx_clock_stop_checked               <= FUN_00065324 @ 0x00065324
+ *   nrfx_clock_stop                          <= FUN_00065324 @ 0x00065324
  */
 /* Reconstructed FUN_00060744 @ 0x60744.
  * BASEPRI-guarded HFCLK release caller; raw/address back-map is preserved.
  */
 #include <stdint.h>
 
-extern void g1_nrfx_clock_stop_checked(int domain);
+extern void nrfx_clock_stop(int domain);
 
 void g1_clock_release_hfclk_checked(void)
 {
@@ -22,7 +22,7 @@ void g1_clock_release_hfclk_checked(void)
     uint32_t previous = *state;
     *state = previous & ~2u;
     if ((previous & 1u) == 0u) {
-        g1_nrfx_clock_stop_checked(1);
+        nrfx_clock_stop(1);
     }
 
     __asm volatile("msr basepri, %0\n\tisb sy" :: "r"(saved_basepri) : "memory");

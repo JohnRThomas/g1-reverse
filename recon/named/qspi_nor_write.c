@@ -10,8 +10,8 @@
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
  *   qspi_nor_write_protection_set            <= FUN_00083954 @ 0x00083954
- *   audio_i2s_stream0_trigger_start          <= FUN_00085200 @ 0x00085200
- *   audio_i2s_stream1_trigger_start          <= FUN_00085206 @ 0x00085206
+ *   nrfx_qspi_write                          <= FUN_00085200 @ 0x00085200
+ *   nrfx_qspi_read                           <= FUN_00085206 @ 0x00085206
  *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
  * address symbols (name @ address):
  *   rodata_88270                             @ 0x00088270
@@ -30,8 +30,8 @@ extern int audio_stream_stop_and_wait(int,...);
 extern int audio_i2s_stop_and_reset_channels(int,...);
 extern int audio_i2s_start_channels(int,...);
 extern int qspi_nor_write_protection_set(int,...);
-extern int audio_i2s_stream0_trigger_start(int,...);
-extern int audio_i2s_stream1_trigger_start(int,...);
+extern int nrfx_qspi_write(int,...);
+extern int nrfx_qspi_read(int,...);
 extern int memcpy(int,...);
 
 int qspi_nor_write(int param_1, unsigned param_2, unsigned char *param_3, unsigned param_4)
@@ -59,14 +59,14 @@ int qspi_nor_write(int param_1, unsigned param_2, unsigned char *param_3, unsign
     iVar1 = 0x0bad0000;
     if (iVar2 == 0) {
         if (param_4 < 4) {
-            iVar2 = audio_i2s_stream1_trigger_start((int)auStack_38, 4, param_2);
+            iVar2 = nrfx_qspi_read((int)auStack_38, 4, param_2);
             FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
             if (iVar2 == 0x0bad0000) {
                 memcpy((int)auStack_38, param_3, param_4);
                 param_4 = 4;
                 param_3 = auStack_38;
 LAB_00060fd6:
-                iVar2 = audio_i2s_stream0_trigger_start((int)param_3, param_4, param_2);
+                iVar2 = nrfx_qspi_write((int)param_3, param_4, param_2);
                 FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
             }
         } else {
@@ -76,7 +76,7 @@ LAB_00060fd6:
                 uVar3 = param_4;
                 if (0xf < param_4) uVar3 = 0x10;
                 memcpy((int)auStack_38, param_3, uVar3);
-                iVar2 = audio_i2s_stream0_trigger_start((int)auStack_38, uVar3, param_2);
+                iVar2 = nrfx_qspi_write((int)auStack_38, uVar3, param_2);
                 FUN_000609f4(*(unsigned*)(param_1+0x10), iVar2);
                 if (iVar2 != iVar1) break;
                 param_4 -= uVar3;

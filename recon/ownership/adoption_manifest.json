@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 366,
-    "exclude_reconstruction": 296,
-    "retain_reconstruction": 70,
+    "entries": 388,
+    "exclude_reconstruction": 327,
+    "retain_reconstruction": 61,
     "by_kind": {
-     "source": 216,
+     "source": 238,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -5793,22 +5793,76 @@
     },
     {
      "core": "app",
+     "va": "0x00064f48",
+     "raw_symbol": "FUN_00064f48",
+     "current_symbol": "nrfx_gppi_event_endpoint_setup",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_gppi_event_endpoint_setup",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-09",
+       "instruction_exact": true,
+       "normalized_code_sha256": "3d469a59a0bba9445184349b5488a87a45129f9fd93e603bf2029041ef82b1b0",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_gppi_event_endpoint_setup",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
+        "corrected_upstream_symbol": "nrfx_gppi_event_endpoint_setup",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00064f48",
+        "0x00064f78",
+        "0x00064fa8",
+        "0x00064fd4",
+        "0x000850dc"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00064f48",
+         "0x00064f78",
+         "0x00064fa8",
+         "0x00064fd4",
+         "0x000850dc"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_gppi_task_endpoint_setup",
+         "nrfx_gppi_task_endpoint_clear"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00064f78",
      "raw_symbol": "FUN_00064f78",
      "current_symbol": "nrfx_gppi_task_endpoint_setup",
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_gppi_task_endpoint_setup",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -5839,7 +5893,104 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_gppi_dppi.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:72",
         "reconstruction_input": "app/libapp.a(nrfx_gppi_task_endpoint_setup.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:72: multiple definition of `nrfx_gppi_task_endpoint_setup'; app/libapp.a(nrfx_gppi_task_endpoint_setup.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_gppi_task_endpoint_setup.c:19: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:72: multiple definition of `nrfx_gppi_task_endpoint_setup'; app/libapp.a(nrfx_gppi_task_endpoint_setup.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_gppi_task_endpoint_setup.c:19: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-09",
+       "instruction_exact": true,
+       "normalized_code_sha256": "7b1fff0eb9dd867c18a07673c9b56a1bf106c3aa86a99812a597c0957a59b78d",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00064f48",
+        "0x00064f78",
+        "0x00064fa8",
+        "0x00064fd4",
+        "0x000850dc"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00064f48",
+         "0x00064f78",
+         "0x00064fa8",
+         "0x00064fd4",
+         "0x000850dc"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_gppi_task_endpoint_setup",
+         "nrfx_gppi_task_endpoint_clear"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00064fa8",
+     "raw_symbol": "FUN_00064fa8",
+     "current_symbol": "nrfx_gppi_event_endpoint_clear",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_gppi_event_endpoint_clear",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-09",
+       "instruction_exact": true,
+       "normalized_code_sha256": "c1b9d39a558264a34b5e1f0f4cbdfaf2277f111d92d994c4a696bb02bf1fcfc4",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_gppi_event_endpoint_clear",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
+        "corrected_upstream_symbol": "nrfx_gppi_event_endpoint_clear",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00064f48",
+        "0x00064f78",
+        "0x00064fa8",
+        "0x00064fd4",
+        "0x000850dc"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00064f48",
+         "0x00064f78",
+         "0x00064fa8",
+         "0x00064fd4",
+         "0x000850dc"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_gppi_task_endpoint_setup",
+         "nrfx_gppi_task_endpoint_clear"
+        ]
        }
       }
      ]
@@ -5852,16 +6003,16 @@
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_gppi_task_endpoint_clear",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -5892,7 +6043,152 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_gppi_dppi.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:97",
         "reconstruction_input": "app/libapp.a(nrfx_gppi_task_endpoint_clear.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:97: multiple definition of `nrfx_gppi_task_endpoint_clear'; app/libapp.a(nrfx_gppi_task_endpoint_clear.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_gppi_task_endpoint_clear.c:19: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c:97: multiple definition of `nrfx_gppi_task_endpoint_clear'; app/libapp.a(nrfx_gppi_task_endpoint_clear.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_gppi_task_endpoint_clear.c:19: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-09",
+       "instruction_exact": true,
+       "normalized_code_sha256": "385b26b081176922b3f5e0902e0a17d94a834b04bcc58489396e77a607839da9",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00064f48",
+        "0x00064f78",
+        "0x00064fa8",
+        "0x00064fd4",
+        "0x000850dc"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00064f48",
+         "0x00064f78",
+         "0x00064fa8",
+         "0x00064fd4",
+         "0x000850dc"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_gppi_task_endpoint_setup",
+         "nrfx_gppi_task_endpoint_clear"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065000",
+     "raw_symbol": "FUN_00065000",
+     "current_symbol": "clock_stop",
+     "kind": "source",
+     "component": "hal_nordic",
+     "upstream_symbol": "clock_stop",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold",
+        "operand_shape_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.014286,
+        "shape": 0.014286,
+        "length": 0.007194,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "nrf_clock_domain_t"
+        ],
+        "variadic": false,
+        "decl_line": 427
+       },
+       "upstream_source": {
+        "path": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+        "sha256": "d3829a14a5868033b222c0ef81584409ce6db20f968ae8cb9b1fa27e9c14b073",
+        "repository": "hal_nordic",
+        "commit": "9784731461018d3e983604698fbbed6af2bea801"
+       },
+       "link_provenance": {
+        "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_clock.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c:430",
+        "reconstruction_input": "app/libapp.a(nrfx_clock_stop.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c:430: multiple definition of `nrfx_clock_stop'; app/libapp.a(nrfx_clock_stop.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_clock_stop.c:50: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-03",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2ae9965cfccb5b84fcceeb4b47fbdec6d1dbab8fca0d78fe8cac35ac1c0d8526",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "nrfx_clock_stop",
+        "corrected_readable_identity": "clock_stop",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+        "corrected_upstream_symbol": "clock_stop",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00065000",
+        "0x00065190",
+        "0x000651d8",
+        "0x0006522c",
+        "0x00065324"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065000",
+         "0x00065190",
+         "0x000651d8",
+         "0x0006522c",
+         "0x00065324"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_clock_stop",
+         "nrfx_clock_init"
+        ]
        }
       }
      ]
@@ -5905,16 +6201,16 @@
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_clock_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -5943,7 +6239,212 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_clock.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c:280",
         "reconstruction_input": "app/libapp.a(nrfx_clock_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c:280: multiple definition of `nrfx_clock_init'; app/libapp.a(nrfx_clock_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_clock_init.c:21: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c:280: multiple definition of `nrfx_clock_init'; app/libapp.a(nrfx_clock_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_clock_init.c:21: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-03",
+       "instruction_exact": true,
+       "normalized_code_sha256": "d8a489405ee0b05ebce4fae82360b2041601a555a2eca267a4c834407540ad3a",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00065000",
+        "0x00065190",
+        "0x000651d8",
+        "0x0006522c",
+        "0x00065324"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065000",
+         "0x00065190",
+         "0x000651d8",
+         "0x0006522c",
+         "0x00065324"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_clock_stop",
+         "nrfx_clock_init"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000651d8",
+     "raw_symbol": "FUN_000651d8",
+     "current_symbol": "nrfx_clock_enable",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_clock_enable",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-03",
+       "instruction_exact": true,
+       "normalized_code_sha256": "38d823b876c1f6f8987b73da9e28b2903c458b7600869f495cb757a2eece050a",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_clock_enable",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+        "corrected_upstream_symbol": "nrfx_clock_enable",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00065000",
+        "0x00065190",
+        "0x000651d8",
+        "0x0006522c",
+        "0x00065324"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065000",
+         "0x00065190",
+         "0x000651d8",
+         "0x0006522c",
+         "0x00065324"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_clock_stop",
+         "nrfx_clock_init"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0006522c",
+     "raw_symbol": "FUN_0006522c",
+     "current_symbol": "nrfx_clock_start",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_clock_start",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-03",
+       "instruction_exact": true,
+       "normalized_code_sha256": "2ce77d5bb56bd516df02de7681b15aa06ad8ac1fb08cf2a14bafef3f72a540f4",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_clock_start",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+        "corrected_upstream_symbol": "nrfx_clock_start",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00065000",
+        "0x00065190",
+        "0x000651d8",
+        "0x0006522c",
+        "0x00065324"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065000",
+         "0x00065190",
+         "0x000651d8",
+         "0x0006522c",
+         "0x00065324"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_clock_stop",
+         "nrfx_clock_init"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00065324",
+     "raw_symbol": "FUN_00065324",
+     "current_symbol": "nrfx_clock_stop",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_clock_stop",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-03",
+       "instruction_exact": true,
+       "normalized_code_sha256": "187936c1d59f819f47838d71594243ef2562d0e22ea6a6a6f7143263db8e7450",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_clock_stop",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c",
+        "corrected_upstream_symbol": "nrfx_clock_stop",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00065000",
+        "0x00065190",
+        "0x000651d8",
+        "0x0006522c",
+        "0x00065324"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065000",
+         "0x00065190",
+         "0x000651d8",
+         "0x0006522c",
+         "0x00065324"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_clock_stop",
+         "nrfx_clock_init"
+        ]
        }
       }
      ]
@@ -6007,16 +6508,16 @@
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_nvmc_page_erase",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -6045,7 +6546,44 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_nvmc.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c:262",
         "reconstruction_input": "app/libapp.a(nrfx_nvmc_page_erase.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c:262: multiple definition of `nrfx_nvmc_page_erase'; app/libapp.a(nrfx_nvmc_page_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_nvmc_page_erase.c:24: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c:262: multiple definition of `nrfx_nvmc_page_erase'; app/libapp.a(nrfx_nvmc_page_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_nvmc_page_erase.c:24: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-06",
+       "instruction_exact": true,
+       "normalized_code_sha256": "175d90cefca7c8c3014e5b36cfc93392912f9f83c283f62fcb465cba4daf9538",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00065f1c",
+        "0x00065f80"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065f1c",
+         "0x00065f80"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_nvmc_page_erase",
+         "nrfx_nvmc_word_write"
+        ]
        }
       }
      ]
@@ -6058,16 +6596,16 @@
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_nvmc_word_write",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -6098,7 +6636,44 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_nvmc.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/hal/nrf_nvmc.h:354",
         "reconstruction_input": "app/libapp.a(nrfx_nvmc_word_write.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/hal/nrf_nvmc.h:354: multiple definition of `nrfx_nvmc_word_write'; app/libapp.a(nrfx_nvmc_word_write.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_nvmc_word_write.c:25: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/hal/nrf_nvmc.h:354: multiple definition of `nrfx_nvmc_word_write'; app/libapp.a(nrfx_nvmc_word_write.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_nvmc_word_write.c:25: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-06",
+       "instruction_exact": true,
+       "normalized_code_sha256": "09a157dad89106a0fb919961f92d0eeb7be741e1e0930a6cc2426ffa8602be15",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00065f1c",
+        "0x00065f80"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00065f1c",
+         "0x00065f80"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_nvmc_page_erase",
+         "nrfx_nvmc_word_write"
+        ]
        }
       }
      ]
@@ -6645,22 +7220,852 @@
     },
     {
      "core": "app",
+     "va": "0x00066478",
+     "raw_symbol": "FUN_00066478",
+     "current_symbol": "qspi_deactivate",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_deactivate",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b00fa66cc718e46af5583cfe5593f785fed110cd1d449f6de9ff687deb1b4915",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_deactivate",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_deactivate",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0006649c",
+     "raw_symbol": "FUN_0006649c",
+     "current_symbol": "qspi_ready_wait",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_ready_wait",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "e62b6686cd058053abee4f3351bc83f008dd2aedb0fe85b13014e35b118e3f97",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_ready_wait",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_ready_wait",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000664f0",
+     "raw_symbol": "FUN_000664f0",
+     "current_symbol": "qspi_activate",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_activate",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "9ace786212016e7aced9f4a78ec8dd1add75ee81b6cde3c8b93268fdce6b58fb",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_activate",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_activate",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066524",
+     "raw_symbol": "FUN_00066524",
+     "current_symbol": "qspi_xfer",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_xfer",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "1c8c5640a652716399ffff39a881e63909493a0c081531c03eedfb715cc258ba",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_xfer",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_xfer",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0006666c",
+     "raw_symbol": "FUN_0006666c",
+     "current_symbol": "gpio_configure_pin_output",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrf_gpio_cfg.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "5c51ba58c89cb1273a09e9628c1dd8457771c254f75f2cce41855d833c23e4e3",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrf_gpio_cfg.constprop.0",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrf_gpio_cfg.constprop.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000666e0",
+     "raw_symbol": "FUN_000666e0",
+     "current_symbol": "nrf_qspi_cinstrdata_get",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrf_qspi_cinstrdata_get.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "62078aa875e82d61c57a74570c37bcc402a27073aad0cab78d59fdabd3c0a68f",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrf_qspi_cinstrdata_get.constprop.0",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrf_qspi_cinstrdata_get.constprop.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066720",
+     "raw_symbol": "FUN_00066720",
+     "current_symbol": "nrf_qspi_cinstrdata_set",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrf_qspi_cinstrdata_set.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "4156c007cd7b086b14de9b6be84d7563dd67de48698714504157d3953ee3f91b",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrf_qspi_cinstrdata_set.constprop.0",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrf_qspi_cinstrdata_set.constprop.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066784",
+     "raw_symbol": "FUN_00066784",
+     "current_symbol": "nrf_qspi_pins_set",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrf_qspi_pins_set.constprop.0",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ee31ca2b91ba806e7192ad9bfa95bfb8071bc2483908c302e5625ff3518d6c31",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrf_qspi_pins_set.constprop.0",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrf_qspi_pins_set.constprop.0",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000667e0",
+     "raw_symbol": "FUN_000667e0",
+     "current_symbol": "qspi_workaround_apply",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_workaround_apply",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "6e456d224bd98118be3110244f3b358005e88c637ada11d346b04d2e33330fc6",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_workaround_apply",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_workaround_apply",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066850",
+     "raw_symbol": "FUN_00066850",
+     "current_symbol": "qspi_configure_pins_and_interface",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "qspi_configure",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "aca82ec69eef5085553be5567708a9f00e7a42e73e6148ea35706607c6114439",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "qspi_configure",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "qspi_configure",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x00066994",
      "raw_symbol": "FUN_00066994",
      "current_symbol": "nrfx_qspi_init",
      "kind": "source",
      "component": "hal_nordic",
      "upstream_symbol": "nrfx_qspi_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -6691,7 +8096,79 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_qspi.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:410",
         "reconstruction_input": "app/libapp.a(nrfx_qspi_init.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:410: multiple definition of `nrfx_qspi_init'; app/libapp.a(nrfx_qspi_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_init.c:25: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:410: multiple definition of `nrfx_qspi_init'; app/libapp.a(nrfx_qspi_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_init.c:25: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b2aa65aae5379382cc049ce768ad6d01d3beb45e92a51672cede8f94c713837c",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
        }
       }
      ]
@@ -6700,20 +8177,20 @@
      "core": "app",
      "va": "0x000669f4",
      "raw_symbol": "FUN_000669f4",
-     "current_symbol": "nrfx_qspi_erase",
+     "current_symbol": "nrfx_qspi_cinstr_xfer",
      "kind": "source",
      "component": "hal_nordic",
-     "upstream_symbol": "nrfx_qspi_erase",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "nrfx_qspi_cinstr_xfer",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "opcode_score_below_threshold",
         "operand_shape_score_below_threshold"
@@ -6743,7 +8220,252 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_qspi.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:743",
         "reconstruction_input": "app/libapp.a(nrfx_qspi_erase.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:743: multiple definition of `nrfx_qspi_erase'; app/libapp.a(nrfx_qspi_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_erase.c:35: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:743: multiple definition of `nrfx_qspi_erase'; app/libapp.a(nrfx_qspi_erase.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_erase.c:35: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "243683b4e25a26bf6fca826e26cc92b76208ac0127a3495acfa7f94552d91d3a",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "nrfx_qspi_erase",
+        "corrected_readable_identity": "nrfx_qspi_cinstr_xfer",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_cinstr_xfer",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066ae0",
+     "raw_symbol": "FUN_00066ae0",
+     "current_symbol": "nrfx_qspi_mem_busy_check",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_qspi_mem_busy_check",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "01c7361c5e124fb25f40b2aacc46ba2a8d2aea869372dd793c731f58abb272ed",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_qspi_mem_busy_check",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_mem_busy_check",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00066b24",
+     "raw_symbol": "FUN_00066b24",
+     "current_symbol": "nrfx_qspi_uninit",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_qspi_uninit",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "656d9803bd278aeab1f675d798d4ef3cea864054ca21d0ba363d70cd96f2ddb2",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_qspi_uninit",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_uninit",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
        }
       }
      ]
@@ -6752,20 +8474,20 @@
      "core": "app",
      "va": "0x00066bc4",
      "raw_symbol": "FUN_00066bc4",
-     "current_symbol": "nrfx_qspi_read",
+     "current_symbol": "nrfx_qspi_erase",
      "kind": "source",
      "component": "hal_nordic",
-     "upstream_symbol": "nrfx_qspi_read",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_symbol": "nrfx_qspi_erase",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -6797,7 +8519,86 @@
         "owner_input": "modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a(nrfx_qspi.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:738",
         "reconstruction_input": "app/libapp.a(nrfx_qspi_read.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:738: multiple definition of `nrfx_qspi_read'; app/libapp.a(nrfx_qspi_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_read.c:28: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c:738: multiple definition of `nrfx_qspi_read'; app/libapp.a(nrfx_qspi_read.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_qspi_read.c:28: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "bf3bc6ce4ba3e327ee8e853a41da60c2400b44798ed40328f57da868e36401bf",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_ASSERT_LEVEL": "2",
+        "CONFIG_ASSERT_NO_COND_INFO": "n",
+        "CONFIG_ASSERT_NO_FILE_INFO": "n",
+        "CONFIG_ASSERT_NO_MSG_INFO": "n",
+        "CONFIG_ASSERT_VERBOSE": "y"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "nrfx_qspi_read",
+        "corrected_readable_identity": "nrfx_qspi_erase",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_erase",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
        }
       }
      ]
@@ -14419,78 +16220,384 @@
      "core": "app",
      "va": "0x000850dc",
      "raw_symbol": "FUN_000850dc",
-     "current_symbol": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+     "current_symbol": "nrfx_gppi_channel_endpoints_setup",
      "kind": "source",
-     "component": "zephyr",
-     "upstream_symbol": "net_buf_simple_push_mem",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/CMakeFiles/subsys__net.dir/buf_simple.c.obj",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_gppi_channel_endpoints_setup",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj",
      "confidence": "high",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The firmware body calls the recovered asserted GPPI event and task endpoint setup owners. The previous net_buf_simple_push_mem identity and SDK adoption were false.",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
      "evidence": [
       {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 0.941176,
-        "shape": 0.941176,
-        "length": 0.888889,
-        "normalized_exact": false
-       },
-       "abi": {
-        "return": "void*",
-        "params": [
-         "net_buf_simple*",
-         "const_type*",
-         "size_t"
-        ],
-        "variadic": false,
-        "decl_line": 308
-       },
-       "upstream_source": {
-        "path": "zephyr/subsys/net/buf_simple.c",
-        "sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
-        "repository": "zephyr",
-        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
-       },
-       "link_provenance": {
-        "owner_input": "zephyr/subsys/net/libsubsys__net.a(buf_simple.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:310",
-        "reconstruction_input": "app/libapp.a(net_buf_simple_push_mem.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/zephyr/subsys/net/buf_simple.c:310: multiple definition of `net_buf_simple_push_mem'; app/libapp.a(net_buf_simple_push_mem.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/net_buf_simple_push_mem.c:15: first defined here"
-       }
-      },
-      {
-       "source": "recon/ownership/app_collision_retention_overrides.json",
-       "type": "explicit_fail_closed_retention_override",
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
        "batch": "COLLISION-09",
-       "baseline_current_symbol": "net_buf_simple_push_mem",
-       "corrected_symbol": "g1_recon_nrfx_gppi_channel_endpoints_setup",
-       "identity_evidence": {
-        "firmware_calls": [
-         "0x00064f48",
-         "0x00064f78"
-        ],
-        "sdk_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
-        "sdk_source_lines": [
-         78,
-         82
-        ],
-        "sole_caller": "0x00062d9c"
+       "instruction_exact": true,
+       "normalized_code_sha256": "93c91aa48d7c89aff3307d96fd0434325cb85dba826b06a709f103da3f70d293",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_gppi_channel_endpoints_setup",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c",
+        "corrected_upstream_symbol": "nrfx_gppi_channel_endpoints_setup",
+        "upstream_linkage": "public"
        },
-       "cfg_verify": {
-        "owner": {
-         "status": "PASS",
-         "cases": 0
-        },
-        "caller": {
-         "va": "0x00062d9c",
-         "status": "PASS",
-         "cases": 7
-        }
+       "atomic_group": [
+        "0x00064f48",
+        "0x00064f78",
+        "0x00064fa8",
+        "0x00064fd4",
+        "0x000850dc"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00064f48",
+         "0x00064f78",
+         "0x00064fa8",
+         "0x00064fd4",
+         "0x000850dc"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_gppi_task_endpoint_setup",
+         "nrfx_gppi_task_endpoint_clear"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000851fa",
+     "raw_symbol": "FUN_000851fa",
+     "current_symbol": "nrf_gpio_cfg_default",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrf_gpio_cfg_default",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ed65afadeb086ea598ac7ee346b2f547f44a0596f9ea89549ab9afdbc95e6128",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrf_gpio_cfg_default",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrf_gpio_cfg_default",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085200",
+     "raw_symbol": "FUN_00085200",
+     "current_symbol": "nrfx_qspi_write",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_qspi_write",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "97ab9e0c73700b72fa3024313d74ce980fa8abf001efeabca344f9fcc7ce7112",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_qspi_write",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_write",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00085206",
+     "raw_symbol": "FUN_00085206",
+     "current_symbol": "nrfx_qspi_read",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_qspi_read",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "ed127f2739e2a044f85790ab55a6b65753fa8c505d1770f6a3147b89d930488c",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_qspi_read",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_read",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0008520c",
+     "raw_symbol": "FUN_0008520c",
+     "current_symbol": "nrfx_qspi_chip_erase",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "nrfx_qspi_chip_erase",
+     "upstream_unit": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-08",
+       "instruction_exact": true,
+       "normalized_code_sha256": "b6e14968f508e87d25d0ef8780f46254114926a1a68b976d185c867c25195f67",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": null,
+        "corrected_readable_identity": "nrfx_qspi_chip_erase",
+        "corrected_upstream_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+        "corrected_upstream_symbol": "nrfx_qspi_chip_erase",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00066478",
+        "0x0006649c",
+        "0x000664f0",
+        "0x00066524",
+        "0x0006666c",
+        "0x000666e0",
+        "0x00066720",
+        "0x00066784",
+        "0x000667e0",
+        "0x00066850",
+        "0x00066994",
+        "0x000669f4",
+        "0x00066ae0",
+        "0x00066b24",
+        "0x00066bc4",
+        "0x000851fa",
+        "0x00085200",
+        "0x00085206",
+        "0x0008520c"
+       ],
+       "whole_unit_closure": {
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00066478",
+         "0x0006649c",
+         "0x000664f0",
+         "0x00066524",
+         "0x0006666c",
+         "0x000666e0",
+         "0x00066720",
+         "0x00066784",
+         "0x000667e0",
+         "0x00066850",
+         "0x00066994",
+         "0x000669f4",
+         "0x00066ae0",
+         "0x00066b24",
+         "0x00066bc4",
+         "0x000851fa",
+         "0x00085200",
+         "0x00085206",
+         "0x0008520c"
+        ],
+        "new_undefined_symbols": [],
+        "safe": true,
+        "same_source_unit_collision_symbols": [
+         "nrfx_qspi_init",
+         "nrfx_qspi_erase",
+         "nrfx_qspi_read"
+        ]
        }
       }
      ]
@@ -30185,8 +32292,12 @@
    "sha256": "97e6e5c1e2f3d6802b3975ebff935f9bec1e616853f0b8efb290f0809c9a9e41"
   },
   {
+   "path": "recon/ownership/app_nrfx_stock_atomic_adoption.json",
+   "sha256": "06beae17257ffefcb400b8f5dc629dc6ce056d0e03e2aa99051b643fe7a84553"
+  },
+  {
    "path": "recon/ownership/app_collision_retention_overrides.json",
-   "sha256": "14fe68a9caffa5400c747352a49cc1c25485dd6729b87a79c0c45021faaeec9b"
+   "sha256": "4caa52a7d56fce334868880136ca8b4f11a5127fc21c8f966244df5022006a79"
   },
   {
    "path": "recon/catalogs/upstream_library_provenance.json",

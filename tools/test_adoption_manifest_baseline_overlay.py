@@ -38,7 +38,24 @@ CHANGED_BASELINE_VAS = {"0x00070ee4", "0x0006615c", "0x000661dc",
                         "0x0005f148", "0x0005f200", "0x0005f24c",
                         "0x0005f2d4", "0x0005f304", "0x0005f338",
                         "0x0005f390", "0x0005f450"}
+NRFX_ADDED_VAS = {"0x00064f48", "0x00064fa8", "0x00065000",
+                   "0x000651d8", "0x0006522c", "0x00065324",
+                   "0x00066478", "0x0006649c", "0x000664f0",
+                   "0x00066524", "0x0006666c", "0x000666e0",
+                   "0x00066720", "0x00066784", "0x000667e0",
+                   "0x00066850", "0x00066ae0", "0x00066b24",
+                   "0x000851fa", "0x00085200", "0x00085206",
+                   "0x0008520c"}
+NRFX_CHANGED_VAS = {"0x00064f78", "0x00064fd4", "0x00065190",
+                     "0x00065f1c", "0x00065f80", "0x00066994",
+                     "0x000669f4", "0x00066bc4", "0x000850dc"}
+# Exact-owner overlays landed immediately before the NRFX closure and are now
+# also part of the production overlay relative to the immutable baseline.
+OTHER_CHANGED_VAS = {"0x00085898", "0x000858da", "0x000858ec"}
 ADDED_OVERLAY_VAS = OVERLAY_VAS - CHANGED_BASELINE_VAS
+ADDED_OVERLAY_VAS |= NRFX_ADDED_VAS
+CHANGED_BASELINE_VAS |= NRFX_CHANGED_VAS | OTHER_CHANGED_VAS
+OVERLAY_VAS |= NRFX_ADDED_VAS | NRFX_CHANGED_VAS | OTHER_CHANGED_VAS
 
 
 def digest(path):
@@ -65,13 +82,13 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(296, current["cores"]["app"]["summary"][
+        self.assertEqual(327, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))
         self.assertTrue(baseline_app["0x000850dc"]["exclude_reconstruction"])
-        self.assertFalse(current_app["0x000850dc"]["exclude_reconstruction"])
-        self.assertEqual("g1_recon_nrfx_gppi_channel_endpoints_setup",
+        self.assertTrue(current_app["0x000850dc"]["exclude_reconstruction"])
+        self.assertEqual("nrfx_gppi_channel_endpoints_setup",
                          current_app["0x000850dc"]["current_symbol"])
         retained = RETAINED.read_text()
         self.assertNotIn("/bt_settings_delete.c", retained)

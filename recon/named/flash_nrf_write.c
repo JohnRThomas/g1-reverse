@@ -3,7 +3,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   flash_nrf_write                          <= FUN_00061310 @ 0x00061310
- *   g1_recon_nrfx_nvmc_word_write            <= FUN_00065f80 @ 0x00065f80
+ *   nrfx_nvmc_word_write                     <= FUN_00065f80 @ 0x00065f80
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   is_regular_addr_valid                    <= FUN_000839dc @ 0x000839dc
@@ -25,7 +25,7 @@ extern void z_impl_k_sem_take(unsigned int lock, unsigned int context,
                          unsigned int timeout_low,
                          unsigned int timeout_high);
 extern void k_sem_give(unsigned int lock);
-extern void g1_recon_nrfx_nvmc_word_write(unsigned int address, unsigned int value);
+extern void nrfx_nvmc_word_write(unsigned int address, unsigned int value);
 
 unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
                           const unsigned int *source, unsigned int length)
@@ -48,7 +48,7 @@ unsigned int flash_nrf_write(unsigned int unused, unsigned int address,
         z_impl_k_sem_take(0x2000b154, (unsigned int)(range >> 32),
                      (unsigned int)-1, (unsigned int)-1);
         while (offset != rounded_length) {
-            g1_recon_nrfx_nvmc_word_write(address + offset, source[offset / 4]);
+            nrfx_nvmc_word_write(address + offset, source[offset / 4]);
             offset += 4;
         }
         while ((*(volatile unsigned int *)0x50039400 & 1) == 0) {}

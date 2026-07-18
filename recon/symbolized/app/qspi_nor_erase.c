@@ -7,13 +7,13 @@
  *   qspi_nor_log_erase_range_error           <= FUN_000609c4 @ 0x000609c4
  *   qspi_nor_acquire                         <= FUN_00060a10 @ 0x00060a10
  *   qspi_nor_erase                           <= FUN_00060dd0 @ 0x00060dd0
- *   g1_recon_nrfx_qspi_erase                 <= FUN_00066bc4 @ 0x00066bc4
+ *   nrfx_qspi_erase                          <= FUN_00066bc4 @ 0x00066bc4
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   audio_stream_stop_and_wait               <= FUN_000838fa @ 0x000838fa
  *   audio_i2s_stop_and_reset_channels        <= FUN_00083906 @ 0x00083906
  *   audio_i2s_start_channels                 <= FUN_0008392e @ 0x0008392e
  *   qspi_nor_write_protection_set            <= FUN_00083954 @ 0x00083954
- *   g1_recon_nrfx_qspi_chip_erase            <= FUN_0008520c @ 0x0008520c
+ *   nrfx_qspi_chip_erase                     <= FUN_0008520c @ 0x0008520c
  * address symbols (name @ address):
  *   rodata_10000                             @ 0x00010000
  *   rodata_88270                             @ 0x00088270
@@ -27,16 +27,16 @@ extern int qspi_nor_log_erase_range_error(int,int);
 extern int FUN_000609f4(int,int);
 extern int qspi_nor_acquire(void);
 extern int FUN_00060a5c(int);
-#define g1_recon_nrfx_qspi_erase g1_recon_nrfx_qspi_erase
-extern int g1_recon_nrfx_qspi_erase(int,int);
+#define nrfx_qspi_erase nrfx_qspi_erase
+extern int nrfx_qspi_erase(int,int);
 extern int k_sem_give(int);
 extern int FUN_000838d6(int,int,void*);
 extern int audio_stream_stop_and_wait(int);
 extern int audio_i2s_stop_and_reset_channels(int);
 extern int audio_i2s_start_channels(int);
 extern int qspi_nor_write_protection_set(int,int);
-#define g1_recon_nrfx_qspi_chip_erase g1_recon_nrfx_qspi_chip_erase
-extern int g1_recon_nrfx_qspi_chip_erase(void);
+#define nrfx_qspi_chip_erase nrfx_qspi_chip_erase
+extern int nrfx_qspi_chip_erase(void);
 
 int qspi_nor_erase(int param_1, unsigned int param_2, unsigned int param_3, int param_4)
 {
@@ -66,14 +66,14 @@ int qspi_nor_erase(int param_1, unsigned int param_2, unsigned int param_3, int 
                 if (*(unsigned int *)(iVar3 + 0x2c) != param_3) {
                     if (0xffff < param_3) {
                         if ((param_2 & 0xffff) != 0) goto LAB_00060e9a;
-                        iVar2 = g1_recon_nrfx_qspi_erase(1, param_2);
+                        iVar2 = nrfx_qspi_erase(1, param_2);
                         uVar4 = ((unsigned long)&rodata_10000) /*=0x10000*/;
                         goto LAB_00060e40;
                     }
                     if (0xfff < param_3) {
 LAB_00060e9a:
                         if ((param_2 & 0xfff) == 0) {
-                            iVar2 = g1_recon_nrfx_qspi_erase(0, param_2);
+                            iVar2 = nrfx_qspi_erase(0, param_2);
                             uVar4 = 0x1000;
                             goto LAB_00060e40;
                         }
@@ -94,7 +94,7 @@ LAB_00060eda:
                     iVar1 = qspi_get_zephyr_ret_code(iVar2);
                     break;
                 }
-                iVar2 = g1_recon_nrfx_qspi_chip_erase();
+                iVar2 = nrfx_qspi_chip_erase();
                 uVar4 = param_3;
 LAB_00060e40:
                 FUN_000609f4(*(int *)(param_1 + 0x10), iVar2);

@@ -11637,8 +11637,7 @@
    "human": true,
    "source": "function_name_overrides.json: Corrected exact NCS 2.5.1 Zephyr subsys/net/buf.c identity. The configured asserted owner is relocation-normalized byte-exact across the 398-byte reachable code extent; the stale k_queue_insert_with_timeout name described only one internal operation. Raw identity remains FUN_0005eeb4 at 0x0005eeb4.",
    "aliases": [
-    "FUN_0005eeb4",
-    "k_queue_insert_with_timeout"
+    "FUN_0005eeb4"
    ]
   },
   "0x0005f074": {
@@ -12707,100 +12706,109 @@
   "0x00064f48": {
    "address": "0x00064f48",
    "raw_name": "FUN_00064f48",
-   "name": "g1_recon_nrfx_gppi_event_endpoint_setup",
-   "display_name": "g1_recon_nrfx_gppi_event_endpoint_setup",
+   "name": "nrfx_gppi_event_endpoint_setup",
+   "display_name": "nrfx_gppi_event_endpoint_setup",
    "human": true,
-   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI event-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064f48.",
+   "source": "function_name_overrides.json: Exact stock asserted GPPI event-endpoint setup from hal_nordic 9784731. Raw identity remains FUN_00064f48.",
    "aliases": [
-    "FUN_00064f48"
+    "FUN_00064f48",
+    "g1_recon_nrfx_gppi_event_endpoint_setup"
    ]
   },
   "0x00064f78": {
    "address": "0x00064f78",
    "raw_name": "FUN_00064f78",
-   "name": "g1_recon_nrfx_gppi_task_endpoint_setup",
-   "display_name": "g1_recon_nrfx_gppi_task_endpoint_setup",
+   "name": "nrfx_gppi_task_endpoint_setup",
+   "display_name": "nrfx_gppi_task_endpoint_setup",
    "human": true,
-   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064f78.",
+   "source": "function_name_overrides.json: Exact stock asserted GPPI task-endpoint setup from hal_nordic 9784731. Raw identity remains FUN_00064f78.",
    "aliases": [
-    "FUN_00064f78"
+    "FUN_00064f78",
+    "g1_recon_nrfx_gppi_task_endpoint_setup"
    ]
   },
   "0x00064fa8": {
    "address": "0x00064fa8",
    "raw_name": "FUN_00064fa8",
-   "name": "g1_recon_nrfx_gppi_event_endpoint_clear",
-   "display_name": "g1_recon_nrfx_gppi_event_endpoint_clear",
+   "name": "nrfx_gppi_event_endpoint_clear",
+   "display_name": "nrfx_gppi_event_endpoint_clear",
    "human": true,
-   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI event-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064fa8.",
+   "source": "function_name_overrides.json: Exact stock asserted GPPI event-endpoint clear from hal_nordic 9784731. Raw identity remains FUN_00064fa8.",
    "aliases": [
-    "FUN_00064fa8"
+    "FUN_00064fa8",
+    "g1_recon_nrfx_gppi_event_endpoint_clear"
    ]
   },
   "0x00064fd4": {
    "address": "0x00064fd4",
    "raw_name": "FUN_00064fd4",
-   "name": "g1_recon_nrfx_gppi_task_endpoint_clear",
-   "display_name": "g1_recon_nrfx_gppi_task_endpoint_clear",
+   "name": "nrfx_gppi_task_endpoint_clear",
+   "display_name": "nrfx_gppi_task_endpoint_clear",
    "human": true,
-   "source": "function_name_overrides.json: Recovered NCS 2.5.1 GPPI task-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064fd4.",
+   "source": "function_name_overrides.json: Exact stock asserted GPPI task-endpoint clear from hal_nordic 9784731. Raw identity remains FUN_00064fd4.",
    "aliases": [
-    "FUN_00064fd4"
+    "FUN_00064fd4",
+    "g1_recon_nrfx_gppi_task_endpoint_clear"
    ]
   },
   "0x00065000": {
    "address": "0x00065000",
    "raw_name": "FUN_00065000",
-   "name": "g1_clock_stop_impl",
-   "display_name": "g1_clock_stop_impl",
+   "name": "clock_stop",
+   "display_name": "clock_stop",
    "human": true,
-   "source": "function_name_overrides.json: Firmware-private four-domain clock stop implementation; it differs from the configured NRFX public owner and is deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065000 at 0x00065000.",
+   "source": "function_name_overrides.json: Exact translation-unit-local four-domain clock stop implementation from stock hal_nordic 9784731 with the shipped assertion configuration. Raw identity remains FUN_00065000 at 0x00065000.",
    "aliases": [
-    "FUN_00065000"
+    "FUN_00065000",
+    "g1_clock_stop_impl"
    ]
   },
   "0x00065190": {
    "address": "0x00065190",
    "raw_name": "FUN_00065190",
-   "name": "g1_nrfx_clock_init_checked",
-   "display_name": "g1_nrfx_clock_init_checked",
+   "name": "nrfx_clock_init",
+   "display_name": "nrfx_clock_init",
    "human": true,
-   "source": "function_name_overrides.json: Firmware checked clock initializer with active null-handler assertion and pinned initialization state; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065190 at 0x00065190.",
+   "source": "function_name_overrides.json: Exact stock asserted clock initializer from hal_nordic 9784731. Raw identity remains FUN_00065190 at 0x00065190.",
    "aliases": [
-    "FUN_00065190"
+    "FUN_00065190",
+    "g1_nrfx_clock_init_checked"
    ]
   },
   "0x000651d8": {
    "address": "0x000651d8",
    "raw_name": "FUN_000651d8",
-   "name": "nrfx_clock_irq_enable",
-   "display_name": "nrfx_clock_irq_enable",
+   "name": "nrfx_clock_enable",
+   "display_name": "nrfx_clock_enable",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact stock asserted clock enable routine from hal_nordic 9784731. Raw identity remains FUN_000651d8 at 0x000651d8.",
    "aliases": [
-    "FUN_000651d8"
+    "FUN_000651d8",
+    "nrfx_clock_irq_enable"
    ]
   },
   "0x0006522c": {
    "address": "0x0006522c",
    "raw_name": "FUN_0006522c",
-   "name": "g1_nrfx_clock_start_checked",
-   "display_name": "g1_nrfx_clock_start_checked",
+   "name": "nrfx_clock_start",
+   "display_name": "nrfx_clock_start",
    "human": true,
-   "source": "function_name_overrides.json: Recovered firmware checked clock-domain starter in the COLLISION-03 caller closure. Raw identity remains FUN_0006522c at 0x0006522c.",
+   "source": "function_name_overrides.json: Exact stock asserted clock-domain starter from hal_nordic 9784731. Raw identity remains FUN_0006522c at 0x0006522c.",
    "aliases": [
-    "FUN_0006522c"
+    "FUN_0006522c",
+    "g1_nrfx_clock_start_checked"
    ]
   },
   "0x00065324": {
    "address": "0x00065324",
    "raw_name": "FUN_00065324",
-   "name": "g1_nrfx_clock_stop_checked",
-   "display_name": "g1_nrfx_clock_stop_checked",
+   "name": "nrfx_clock_stop",
+   "display_name": "nrfx_clock_stop",
    "human": true,
-   "source": "function_name_overrides.json: Firmware checked public-style stop wrapper which asserts initialization before calling the private stop implementation; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065324 at 0x00065324.",
+   "source": "function_name_overrides.json: Exact stock asserted public clock stop wrapper from hal_nordic 9784731. Raw identity remains FUN_00065324 at 0x00065324.",
    "aliases": [
-    "FUN_00065324"
+    "FUN_00065324",
+    "g1_nrfx_clock_stop_checked"
    ]
   },
   "0x0006540c": {
@@ -13133,23 +13141,25 @@
   "0x00065f1c": {
    "address": "0x00065f1c",
    "raw_name": "FUN_00065f1c",
-   "name": "g1_recon_nrfx_nvmc_page_erase",
-   "display_name": "g1_recon_nrfx_nvmc_page_erase",
+   "name": "nrfx_nvmc_page_erase",
+   "display_name": "nrfx_nvmc_page_erase",
    "human": true,
-   "source": "function_name_overrides.json: Retained firmware NVMC page eraser with active address assertion behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f1c at 0x00065f1c.",
+   "source": "function_name_overrides.json: Exact stock NVMC page eraser from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f1c at 0x00065f1c.",
    "aliases": [
-    "FUN_00065f1c"
+    "FUN_00065f1c",
+    "g1_recon_nrfx_nvmc_page_erase"
    ]
   },
   "0x00065f80": {
    "address": "0x00065f80",
    "raw_name": "FUN_00065f80",
-   "name": "g1_recon_nrfx_nvmc_word_write",
-   "display_name": "g1_recon_nrfx_nvmc_word_write",
+   "name": "nrfx_nvmc_word_write",
+   "display_name": "nrfx_nvmc_word_write",
    "human": true,
-   "source": "function_name_overrides.json: Retained firmware NVMC word writer with active address and alignment assertions absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f80 at 0x00065f80.",
+   "source": "function_name_overrides.json: Exact stock NVMC word writer from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f80 at 0x00065f80.",
    "aliases": [
-    "FUN_00065f80"
+    "FUN_00065f80",
+    "g1_recon_nrfx_nvmc_word_write"
    ]
   },
   "0x00065ff4": {
@@ -13362,55 +13372,60 @@
   "0x00066994": {
    "address": "0x00066994",
    "raw_name": "FUN_00066994",
-   "name": "g1_recon_nrfx_qspi_init",
-   "display_name": "g1_recon_nrfx_qspi_init",
+   "name": "nrfx_qspi_init",
+   "display_name": "nrfx_qspi_init",
    "human": true,
-   "source": "function_name_overrides.json: Retained firmware QSPI initializer with active diagnostic behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-08. Raw identity remains FUN_00066994 at 0x00066994.",
+   "source": "function_name_overrides.json: Exact stock nrfx_qspi_init from hal_nordic 9784731 with the shipped verbose assertion configuration. Raw identity remains FUN_00066994 at 0x00066994.",
    "aliases": [
-    "FUN_00066994"
+    "FUN_00066994",
+    "g1_recon_nrfx_qspi_init"
    ]
   },
   "0x000669f4": {
    "address": "0x000669f4",
    "raw_name": "FUN_000669f4",
-   "name": "g1_recon_nrfx_qspi_cinstr_xfer",
-   "display_name": "g1_recon_nrfx_qspi_cinstr_xfer",
+   "name": "nrfx_qspi_cinstr_xfer",
+   "display_name": "nrfx_qspi_cinstr_xfer",
    "human": true,
-   "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_erase label: the recovered body is the custom-instruction transfer path and is namespaced because the configured NRFX body is not exact. Raw identity remains FUN_000669f4 at 0x000669f4.",
+   "source": "function_name_overrides.json: Corrected exact stock custom-instruction transfer identity from hal_nordic 9784731. Raw identity remains FUN_000669f4 at 0x000669f4.",
    "aliases": [
-    "FUN_000669f4"
+    "FUN_000669f4",
+    "g1_recon_nrfx_qspi_cinstr_xfer"
    ]
   },
   "0x00066ae0": {
    "address": "0x00066ae0",
    "raw_name": "FUN_00066ae0",
-   "name": "g1_recon_nrfx_qspi_mem_busy_check",
-   "display_name": "g1_recon_nrfx_qspi_mem_busy_check",
+   "name": "nrfx_qspi_mem_busy_check",
+   "display_name": "nrfx_qspi_mem_busy_check",
    "human": true,
-   "source": "function_name_overrides.json: Recovered RDSR custom-instruction helper checks status bit zero and preserves the firmware error ABI while routing through the retained custom-instruction owner. Raw identity remains FUN_00066ae0 at 0x00066ae0.",
+   "source": "function_name_overrides.json: Exact stock RDSR status helper from hal_nordic 9784731. Raw identity remains FUN_00066ae0 at 0x00066ae0.",
    "aliases": [
     "FUN_00066ae0",
-    "nrfx_qspi_mem_busy_check"
+    "g1_recon_nrfx_qspi_mem_busy_check"
    ]
   },
   "0x00066b24": {
    "address": "0x00066b24",
    "raw_name": "FUN_00066b24",
-   "name": "FUN_00066b24",
-   "display_name": "FUN_00066b24",
-   "human": false,
-   "source": "recon/app/src/FUN_00066b24.c",
-   "aliases": []
+   "name": "nrfx_qspi_uninit",
+   "display_name": "nrfx_qspi_uninit",
+   "human": true,
+   "source": "function_name_overrides.json: Exact stock QSPI source-unit uninitializer from hal_nordic 9784731. Raw identity remains FUN_00066b24 at 0x00066b24.",
+   "aliases": [
+    "FUN_00066b24"
+   ]
   },
   "0x00066bc4": {
    "address": "0x00066bc4",
    "raw_name": "FUN_00066bc4",
-   "name": "g1_recon_nrfx_qspi_erase",
-   "display_name": "g1_recon_nrfx_qspi_erase",
+   "name": "nrfx_qspi_erase",
+   "display_name": "nrfx_qspi_erase",
    "human": true,
-   "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_read label: register programming and all callers prove this is the retained QSPI erase implementation. It is namespaced after COLLISION-08; raw identity remains FUN_00066bc4 at 0x00066bc4.",
+   "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_read label; this is the exact stock erase owner from hal_nordic 9784731. Raw identity remains FUN_00066bc4 at 0x00066bc4.",
    "aliases": [
-    "FUN_00066bc4"
+    "FUN_00066bc4",
+    "g1_recon_nrfx_qspi_erase"
    ]
   },
   "0x00066c88": {
@@ -24017,12 +24032,13 @@
   "0x000850dc": {
    "address": "0x000850dc",
    "raw_name": "FUN_000850dc",
-   "name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
-   "display_name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
+   "name": "nrfx_gppi_channel_endpoints_setup",
+   "display_name": "nrfx_gppi_channel_endpoints_setup",
    "human": true,
-   "source": "function_name_overrides.json: Corrected identity: this firmware wrapper calls the event endpoint setup at 0x00064f48 and task endpoint setup at 0x00064f78, matching nrfx_gppi_channel_endpoints_setup, not net_buf_simple_push_mem. It is namespaced to retain the active asserted closure. Raw identity remains FUN_000850dc.",
+   "source": "function_name_overrides.json: Corrected exact stock channel endpoint wrapper identity, replacing the stale net_buf_simple_push_mem label. Raw identity remains FUN_000850dc.",
    "aliases": [
-    "FUN_000850dc"
+    "FUN_000850dc",
+    "g1_recon_nrfx_gppi_channel_endpoints_setup"
    ]
   },
   "0x000850f6": {
@@ -24097,43 +24113,48 @@
   "0x000851fa": {
    "address": "0x000851fa",
    "raw_name": "FUN_000851fa",
-   "name": "FUN_000851fa",
-   "display_name": "FUN_000851fa",
-   "human": false,
-   "source": "recon/app/src/FUN_000851fa.c",
-   "aliases": []
+   "name": "nrf_gpio_cfg_default",
+   "display_name": "nrf_gpio_cfg_default",
+   "human": true,
+   "source": "function_name_overrides.json: Compiler-emitted exact default-pin helper in the stock nrfx_qspi.c source unit. Raw identity remains FUN_000851fa at 0x000851fa.",
+   "aliases": [
+    "FUN_000851fa"
+   ]
   },
   "0x00085200": {
    "address": "0x00085200",
    "raw_name": "FUN_00085200",
-   "name": "audio_i2s_stream0_trigger_start",
-   "display_name": "audio_i2s_stream0_trigger_start",
+   "name": "nrfx_qspi_write",
+   "display_name": "nrfx_qspi_write",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact stock QSPI write tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085200 at 0x00085200.",
    "aliases": [
-    "FUN_00085200"
+    "FUN_00085200",
+    "audio_i2s_stream0_trigger_start"
    ]
   },
   "0x00085206": {
    "address": "0x00085206",
    "raw_name": "FUN_00085206",
-   "name": "audio_i2s_stream1_trigger_start",
-   "display_name": "audio_i2s_stream1_trigger_start",
+   "name": "nrfx_qspi_read",
+   "display_name": "nrfx_qspi_read",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact stock QSPI read tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085206 at 0x00085206.",
    "aliases": [
-    "FUN_00085206"
+    "FUN_00085206",
+    "audio_i2s_stream1_trigger_start"
    ]
   },
   "0x0008520c": {
    "address": "0x0008520c",
    "raw_name": "FUN_0008520c",
-   "name": "g1_recon_nrfx_qspi_chip_erase",
-   "display_name": "g1_recon_nrfx_qspi_chip_erase",
+   "name": "nrfx_qspi_chip_erase",
+   "display_name": "nrfx_qspi_chip_erase",
    "human": true,
-   "source": "function_name_overrides.json: Recovered tail wrapper invokes the retained QSPI eraser with ERASE_LEN_ALL and address zero. It is namespaced to keep the configured SDK public owner intact; raw identity remains FUN_0008520c at 0x0008520c.",
+   "source": "function_name_overrides.json: Exact stock chip-erase tail wrapper from hal_nordic 9784731. Raw identity remains FUN_0008520c at 0x0008520c.",
    "aliases": [
-    "FUN_0008520c"
+    "FUN_0008520c",
+    "g1_recon_nrfx_qspi_chip_erase"
    ]
   },
   "0x00085214": {
@@ -26395,7 +26416,6 @@
   "FUN_00065d3c": "0x00065d3c",
   "FUN_00065d8c": "0x00065d8c",
   "FUN_00065ff4": "0x00065ff4",
-  "FUN_00066b24": "0x00066b24",
   "FUN_00066d1c": "0x00066d1c",
   "FUN_00066d78": "0x00066d78",
   "FUN_00066ec0": "0x00066ec0",
@@ -26720,7 +26740,6 @@
   "FUN_000851e8": "0x000851e8",
   "FUN_000851ee": "0x000851ee",
   "FUN_000851f4": "0x000851f4",
-  "FUN_000851fa": "0x000851fa",
   "FUN_000852e6": "0x000852e6",
   "FUN_000855e6": "0x000855e6",
   "FUN_000857b2": "0x000857b2",
@@ -26969,8 +26988,6 @@
   "audio_hw_lock_release": "0x0007ef56",
   "audio_i2s_start_channels": "0x0008392e",
   "audio_i2s_stop_and_reset_channels": "0x00083906",
-  "audio_i2s_stream0_trigger_start": "0x00085200",
-  "audio_i2s_stream1_trigger_start": "0x00085206",
   "audio_stream_stop_and_wait": "0x000838fa",
   "auth_cancel": "0x0001849c",
   "battery_soc_from_curve": "0x0000e340",
@@ -27257,6 +27274,7 @@
   "clear_pending_state_flags": "0x0002ebc8",
   "clear_timeout_message": "0x00033d58",
   "click_event_dispatch_loop": "0x00028a1c",
+  "clock_stop": "0x00065000",
   "clz32": "0x00087510",
   "commit_default_config_record": "0x00030710",
   "compare_int_lock": "0x0006349c",
@@ -27467,10 +27485,6 @@
   "fuel_gauge_unlock": "0x000330d8",
   "fuel_gauge_update": "0x00010b18",
   "g1_clock_release_hfclk_checked": "0x00060744",
-  "g1_clock_stop_impl": "0x00065000",
-  "g1_nrfx_clock_init_checked": "0x00065190",
-  "g1_nrfx_clock_start_checked": "0x0006522c",
-  "g1_nrfx_clock_stop_checked": "0x00065324",
   "g1_nrfx_clock_stop_hfaudio": "0x00083874",
   "g1_nrfx_clock_stop_hfclk192m": "0x0008387a",
   "g1_nrfx_clock_stop_lfclk": "0x00083880",
@@ -27478,18 +27492,6 @@
   "g1_recon_crc16_configurable": "0x0007d9c0",
   "g1_recon_k_free": "0x000868b4",
   "g1_recon_nrfx_gpiote_init": "0x00065940",
-  "g1_recon_nrfx_gppi_channel_endpoints_setup": "0x000850dc",
-  "g1_recon_nrfx_gppi_event_endpoint_clear": "0x00064fa8",
-  "g1_recon_nrfx_gppi_event_endpoint_setup": "0x00064f48",
-  "g1_recon_nrfx_gppi_task_endpoint_clear": "0x00064fd4",
-  "g1_recon_nrfx_gppi_task_endpoint_setup": "0x00064f78",
-  "g1_recon_nrfx_nvmc_page_erase": "0x00065f1c",
-  "g1_recon_nrfx_nvmc_word_write": "0x00065f80",
-  "g1_recon_nrfx_qspi_chip_erase": "0x0008520c",
-  "g1_recon_nrfx_qspi_cinstr_xfer": "0x000669f4",
-  "g1_recon_nrfx_qspi_erase": "0x00066bc4",
-  "g1_recon_nrfx_qspi_init": "0x00066994",
-  "g1_recon_nrfx_qspi_mem_busy_check": "0x00066ae0",
   "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
   "g1_recon_retarget_lock_acquire_recursive": "0x000510fc",
   "g1_recon_retarget_lock_release_recursive": "0x00051134",
@@ -27974,6 +27976,7 @@
   "nrf_cc3xx_platform_abort": "0x00050af8",
   "nrf_cc3xx_platform_ctr_drbg_init": "0x00079608",
   "nrf_cc3xx_platform_init": "0x0007954c",
+  "nrf_gpio_cfg_default": "0x000851fa",
   "nrf_gpio_cfg_sense_set": "0x000851ca",
   "nrf_gpio_pin_reconfigure": "0x00067548",
   "nrf_gpio_pin_set": "0x000852fe",
@@ -27982,20 +27985,38 @@
   "nrf_qspi_cinstrdata_get": "0x000666e0",
   "nrf_qspi_cinstrdata_set": "0x00066720",
   "nrf_qspi_pins_set": "0x00066784",
-  "nrfx_clock_irq_enable": "0x000651d8",
+  "nrfx_clock_enable": "0x000651d8",
+  "nrfx_clock_init": "0x00065190",
+  "nrfx_clock_start": "0x0006522c",
+  "nrfx_clock_stop": "0x00065324",
   "nrfx_dppi_channel_slot_reset": "0x00067f1c",
   "nrfx_flag32_alloc": "0x00064eb8",
   "nrfx_flag32_free": "0x00064ef8",
   "nrfx_gpiote_is_init": "0x000659b8",
   "nrfx_gpiote_trigger_disable": "0x00065acc",
+  "nrfx_gppi_channel_endpoints_setup": "0x000850dc",
   "nrfx_gppi_channels_disable": "0x00064f3c",
   "nrfx_gppi_channels_enable": "0x00064f30",
+  "nrfx_gppi_event_endpoint_clear": "0x00064fa8",
+  "nrfx_gppi_event_endpoint_setup": "0x00064f48",
+  "nrfx_gppi_task_endpoint_clear": "0x00064fd4",
+  "nrfx_gppi_task_endpoint_setup": "0x00064f78",
+  "nrfx_nvmc_page_erase": "0x00065f1c",
+  "nrfx_nvmc_word_write": "0x00065f80",
   "nrfx_pdm_buffer_set": "0x00066270",
   "nrfx_pdm_init": "0x0006615c",
   "nrfx_pdm_start": "0x00066214",
   "nrfx_pdm_stop": "0x00066300",
   "nrfx_pdm_uninit": "0x000661dc",
+  "nrfx_qspi_chip_erase": "0x0008520c",
+  "nrfx_qspi_cinstr_xfer": "0x000669f4",
+  "nrfx_qspi_erase": "0x00066bc4",
+  "nrfx_qspi_init": "0x00066994",
   "nrfx_qspi_irq_handler": "0x00066c88",
+  "nrfx_qspi_mem_busy_check": "0x00066ae0",
+  "nrfx_qspi_read": "0x00085206",
+  "nrfx_qspi_uninit": "0x00066b24",
+  "nrfx_qspi_write": "0x00085200",
   "nrfx_wdt_init": "0x00067dfc",
   "nullsub_2": "0x0007d2d6",
   "nullsub_3": "0x0007ef7e",

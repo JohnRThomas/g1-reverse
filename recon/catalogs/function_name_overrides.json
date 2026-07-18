@@ -642,24 +642,40 @@
    "evidence": "Recovered body is the exact static nrfx_qspi.c transfer helper: it validates the EasyDMA buffer/state, programs QSPI read/write descriptors, starts the peripheral, and preserves the firmware error ABI. Raw identity remains FUN_00066524 at 0x00066524."
   },
   "0x00066994": {
-   "name": "g1_recon_nrfx_qspi_init",
-   "evidence": "Retained firmware QSPI initializer with active diagnostic behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-08. Raw identity remains FUN_00066994 at 0x00066994."
+   "name": "nrfx_qspi_init",
+   "evidence": "Exact stock nrfx_qspi_init from hal_nordic 9784731 with the shipped verbose assertion configuration. Raw identity remains FUN_00066994 at 0x00066994."
   },
   "0x000669f4": {
-   "name": "g1_recon_nrfx_qspi_cinstr_xfer",
-   "evidence": "Corrects the stale nrfx_qspi_erase label: the recovered body is the custom-instruction transfer path and is namespaced because the configured NRFX body is not exact. Raw identity remains FUN_000669f4 at 0x000669f4."
+   "name": "nrfx_qspi_cinstr_xfer",
+   "evidence": "Corrected exact stock custom-instruction transfer identity from hal_nordic 9784731. Raw identity remains FUN_000669f4 at 0x000669f4."
   },
   "0x00066ae0": {
-   "name": "g1_recon_nrfx_qspi_mem_busy_check",
-   "evidence": "Recovered RDSR custom-instruction helper checks status bit zero and preserves the firmware error ABI while routing through the retained custom-instruction owner. Raw identity remains FUN_00066ae0 at 0x00066ae0."
+   "name": "nrfx_qspi_mem_busy_check",
+   "evidence": "Exact stock RDSR status helper from hal_nordic 9784731. Raw identity remains FUN_00066ae0 at 0x00066ae0."
+  },
+  "0x00066b24": {
+   "name": "nrfx_qspi_uninit",
+   "evidence": "Exact stock QSPI source-unit uninitializer from hal_nordic 9784731. Raw identity remains FUN_00066b24 at 0x00066b24."
   },
   "0x00066bc4": {
-   "name": "g1_recon_nrfx_qspi_erase",
-   "evidence": "Corrects the stale nrfx_qspi_read label: register programming and all callers prove this is the retained QSPI erase implementation. It is namespaced after COLLISION-08; raw identity remains FUN_00066bc4 at 0x00066bc4."
+   "name": "nrfx_qspi_erase",
+   "evidence": "Corrects the stale nrfx_qspi_read label; this is the exact stock erase owner from hal_nordic 9784731. Raw identity remains FUN_00066bc4 at 0x00066bc4."
   },
   "0x0008520c": {
-   "name": "g1_recon_nrfx_qspi_chip_erase",
-   "evidence": "Recovered tail wrapper invokes the retained QSPI eraser with ERASE_LEN_ALL and address zero. It is namespaced to keep the configured SDK public owner intact; raw identity remains FUN_0008520c at 0x0008520c."
+   "name": "nrfx_qspi_chip_erase",
+   "evidence": "Exact stock chip-erase tail wrapper from hal_nordic 9784731. Raw identity remains FUN_0008520c at 0x0008520c."
+  },
+  "0x000851fa": {
+   "name": "nrf_gpio_cfg_default",
+   "evidence": "Compiler-emitted exact default-pin helper in the stock nrfx_qspi.c source unit. Raw identity remains FUN_000851fa at 0x000851fa."
+  },
+  "0x00085200": {
+   "name": "nrfx_qspi_write",
+   "evidence": "Exact stock QSPI write tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085200 at 0x00085200."
+  },
+  "0x00085206": {
+   "name": "nrfx_qspi_read",
+   "evidence": "Exact stock QSPI read tail wrapper, correcting the stale audio-stream label. Raw identity remains FUN_00085206 at 0x00085206."
   },
   "0x0007332c": {
    "name": "k_work_schedule_for_queue",
@@ -772,52 +788,57 @@
    "evidence": "Exact cJSON 1.7.14 get_object_item implementation with sensitive and inlined ASCII case-insensitive traversal. Raw identity remains FUN_0006447c at 0x0006447c."
   },
   "0x00064f48": {
-   "name": "g1_recon_nrfx_gppi_event_endpoint_setup",
-   "evidence": "Recovered NCS 2.5.1 GPPI event-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064f48."
+   "name": "nrfx_gppi_event_endpoint_setup",
+   "evidence": "Exact stock asserted GPPI event-endpoint setup from hal_nordic 9784731. Raw identity remains FUN_00064f48."
   },
   "0x00064f78": {
-   "name": "g1_recon_nrfx_gppi_task_endpoint_setup",
-   "evidence": "Recovered NCS 2.5.1 GPPI task-endpoint setup with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064f78."
+   "name": "nrfx_gppi_task_endpoint_setup",
+   "evidence": "Exact stock asserted GPPI task-endpoint setup from hal_nordic 9784731. Raw identity remains FUN_00064f78."
   },
   "0x00064fa8": {
-   "name": "g1_recon_nrfx_gppi_event_endpoint_clear",
-   "evidence": "Recovered NCS 2.5.1 GPPI event-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced because the configured SDK owner compiles that assertion out. Raw identity remains FUN_00064fa8."
+   "name": "nrfx_gppi_event_endpoint_clear",
+   "evidence": "Exact stock asserted GPPI event-endpoint clear from hal_nordic 9784731. Raw identity remains FUN_00064fa8."
   },
   "0x00064fd4": {
-   "name": "g1_recon_nrfx_gppi_task_endpoint_clear",
-   "evidence": "Recovered NCS 2.5.1 GPPI task-endpoint clear with the firmware's active NRFX_ASSERT path; deliberately namespaced after COLLISION-09. Raw identity remains FUN_00064fd4."
+   "name": "nrfx_gppi_task_endpoint_clear",
+   "evidence": "Exact stock asserted GPPI task-endpoint clear from hal_nordic 9784731. Raw identity remains FUN_00064fd4."
   },
   "0x000850dc": {
-   "name": "g1_recon_nrfx_gppi_channel_endpoints_setup",
-   "evidence": "Corrected identity: this firmware wrapper calls the event endpoint setup at 0x00064f48 and task endpoint setup at 0x00064f78, matching nrfx_gppi_channel_endpoints_setup, not net_buf_simple_push_mem. It is namespaced to retain the active asserted closure. Raw identity remains FUN_000850dc."
+   "name": "nrfx_gppi_channel_endpoints_setup",
+   "evidence": "Corrected exact stock channel endpoint wrapper identity, replacing the stale net_buf_simple_push_mem label. Raw identity remains FUN_000850dc."
   },
   "0x00065000": {
-   "name": "g1_clock_stop_impl",
+   "name": "clock_stop",
    "raw_name": "FUN_00065000",
-   "evidence": "Firmware-private four-domain clock stop implementation; it differs from the configured NRFX public owner and is deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065000 at 0x00065000."
+   "evidence": "Exact translation-unit-local four-domain clock stop implementation from stock hal_nordic 9784731 with the shipped assertion configuration. Raw identity remains FUN_00065000 at 0x00065000."
   },
   "0x00065190": {
-   "name": "g1_nrfx_clock_init_checked",
+   "name": "nrfx_clock_init",
    "raw_name": "FUN_00065190",
-   "evidence": "Firmware checked clock initializer with active null-handler assertion and pinned initialization state; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065190 at 0x00065190."
+   "evidence": "Exact stock asserted clock initializer from hal_nordic 9784731. Raw identity remains FUN_00065190 at 0x00065190."
+  },
+  "0x000651d8": {
+   "name": "nrfx_clock_enable",
+   "raw_name": "FUN_000651d8",
+   "evidence": "Exact stock asserted clock enable routine from hal_nordic 9784731. Raw identity remains FUN_000651d8 at 0x000651d8."
   },
   "0x0006522c": {
-   "name": "g1_nrfx_clock_start_checked",
+   "name": "nrfx_clock_start",
    "raw_name": "FUN_0006522c",
-   "evidence": "Recovered firmware checked clock-domain starter in the COLLISION-03 caller closure. Raw identity remains FUN_0006522c at 0x0006522c."
+   "evidence": "Exact stock asserted clock-domain starter from hal_nordic 9784731. Raw identity remains FUN_0006522c at 0x0006522c."
   },
   "0x00065324": {
-   "name": "g1_nrfx_clock_stop_checked",
+   "name": "nrfx_clock_stop",
    "raw_name": "FUN_00065324",
-   "evidence": "Firmware checked public-style stop wrapper which asserts initialization before calling the private stop implementation; deliberately namespaced after COLLISION-03. Raw identity remains FUN_00065324 at 0x00065324."
+   "evidence": "Exact stock asserted public clock stop wrapper from hal_nordic 9784731. Raw identity remains FUN_00065324 at 0x00065324."
   },
   "0x00065f1c": {
-   "name": "g1_recon_nrfx_nvmc_page_erase",
-   "evidence": "Retained firmware NVMC page eraser with active address assertion behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f1c at 0x00065f1c."
+   "name": "nrfx_nvmc_page_erase",
+   "evidence": "Exact stock NVMC page eraser from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f1c at 0x00065f1c."
   },
   "0x00065f80": {
-   "name": "g1_recon_nrfx_nvmc_word_write",
-   "evidence": "Retained firmware NVMC word writer with active address and alignment assertions absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f80 at 0x00065f80."
+   "name": "nrfx_nvmc_word_write",
+   "evidence": "Exact stock NVMC word writer from hal_nordic 9784731 with the shipped active assertion configuration. Raw identity remains FUN_00065f80 at 0x00065f80."
   },
   "0x000680f8": {
    "name": "metal_bus_unregister",

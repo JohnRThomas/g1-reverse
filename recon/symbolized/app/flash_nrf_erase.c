@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   flash_nrf_erase                          <= FUN_0006125c @ 0x0006125c
- *   g1_recon_nrfx_nvmc_page_erase            <= FUN_00065f1c @ 0x00065f1c
+ *   nrfx_nvmc_page_erase                     <= FUN_00065f1c @ 0x00065f1c
  *   k_sem_give                               <= FUN_00072880 @ 0x00072880
  *   z_impl_k_sem_take                        <= FUN_00072908 @ 0x00072908
  *   is_regular_addr_valid                    <= FUN_000839dc @ 0x000839dc
@@ -26,7 +26,7 @@ extern void z_impl_k_sem_take(unsigned int lock, unsigned int context,
                          unsigned int timeout_low,
                          unsigned int timeout_high);
 extern void k_sem_give(unsigned int lock);
-extern unsigned int g1_recon_nrfx_nvmc_page_erase(unsigned int address);
+extern unsigned int nrfx_nvmc_page_erase(unsigned int address);
 
 unsigned int flash_nrf_erase(unsigned int unused, unsigned int address,
                           unsigned int length)
@@ -49,7 +49,7 @@ unsigned int flash_nrf_erase(unsigned int unused, unsigned int address,
                      (unsigned int)-1, (unsigned int)-1);
         page_size = FUN_000851ee();
         do {
-            g1_recon_nrfx_nvmc_page_erase(address);
+            nrfx_nvmc_page_erase(address);
             length -= page_size;
             address += page_size;
         } while (length != 0);
