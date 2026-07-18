@@ -143,6 +143,10 @@ TRUE_SIZE_OVERRIDES = {
     # status-return tail run through the branch at 0x2e2be; literals begin at
     # 0x2e2c4 (0x2e2c2 is alignment) and 0x2e300 is a new prologue.
     0x0002c99c: 0x1924,
+    # dmic_stream_start's catalog ends at 0x2f3da immediately before its
+    # non-flash LC3 arm.  The live app_codec_lc3_test/free/event/stop islands
+    # continue through 0x2f43c; the next halfword is alignment.
+    0x0002f080: 0x3be,
     # The unknown-address-type path rejoins the shared final formatter via the
     # branch at 0x18390; literals begin at 0x18394.
     0x00018334: 0x5e,

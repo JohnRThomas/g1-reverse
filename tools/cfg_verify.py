@@ -436,6 +436,9 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x0101b4f4): 0x58,
     ("app", 0x0004d7d8): 0xb0,  # z_log_msg_post_finalize
     ("app", 0x00056e24): 0x0a,  # bt_conn_cb_register
+    # Catalog truncation hid the live LC3/free/event/stop closure.  The final
+    # branch is at 0x2f43c and 0x2f43e is alignment before trailing literals.
+    ("app", 0x0002f080): 0x3be,
     ("app", 0x00077a28): 0xf8,  # _strtol_r
     ("app", 0x0007f7c4): 0x04,  # exact veneer to bt_ancs_app_attr_request
     ("app", 0x0007f7d2): 0xc2,  # bt_ancs_app_attr_request
@@ -12688,6 +12691,84 @@ REVIEWED_ORACLE_CASES[("app", 0x0002ed68)] = [
     _codec_test_case("callback-error"),
     _codec_test_case("callback-edge"),
     _codec_test_case("callback-threshold"),
+]
+
+
+def _dmic_stream_lc3_case(block_offset=0x6000, byte_count=0x80):
+    """Finite production capture loop that owns the direct LC3 edge."""
+    device_info = emu.SCRATCH + 0x1000
+    connection = emu.SCRATCH + 0x3000
+    pdm_vtable = emu.SCRATCH + 0x5000
+    qspi_vtable = emu.SCRATCH + 0x5100
+    block = emu.SCRATCH + int(block_offset)
+    configure_callback = 0x00080001
+    trigger_callback = 0x00080021
+    read_callback = 0x00080041
+    qspi_callback = 0x00080061
+
+    pdm = bytearray(12)
+    pdm[8:12] = pdm_vtable.to_bytes(4, "little")
+    qspi = bytearray(12)
+    qspi[8:12] = qspi_vtable.to_bytes(4, "little")
+    pdm_methods = bytearray(12)
+    pdm_methods[0:4] = configure_callback.to_bytes(4, "little")
+    pdm_methods[4:8] = trigger_callback.to_bytes(4, "little")
+    pdm_methods[8:12] = read_callback.to_bytes(4, "little")
+    qspi_methods = bytearray(8)
+    qspi_methods[4:8] = qspi_callback.to_bytes(4, "little")
+    info = bytearray(0x1100)
+    info[0x105c:0x105e] = (2).to_bytes(2, "little")
+
+    memory = [
+        (device_info, bytes(info)),
+        (connection, bytes(0x300)),
+        (0x00087d40, bytes(pdm)),
+        (0x00087bf0, bytes(qspi)),
+        (pdm_vtable, bytes(pdm_methods)),
+        (qspi_vtable, bytes(qspi_methods)),
+        (block, bytes(0x100)),
+        (0x2000230c, bytes(4)),
+        (0x20007554, bytes(4)),
+        (0x20002404, (0x400000).to_bytes(4, "little")),
+        (0x20018da9, bytes(1)),
+        (0x2000302f, bytes(1)),
+        (0x20007b7c, bytes(0x28)),
+        (0x00088694, (0x1234).to_bytes(2, "little")),
+    ]
+    # The first read publishes one captured block.  The second returns an
+    # error, bounding the otherwise long-lived stream after the LC3/free arm.
+    oracles = {
+        0: {0: connection}, 1: {0: device_info},
+        2: {0: 1}, 3: {0: 0}, 5: {0: 0},
+        6: {0: 0}, 7: {0: 0}, 8: {0: 0}, 9: {0: 0},
+        10: {0: 0}, 13: {0: 0}, 14: {0: 0}, 15: {0: 1},
+        16: {0: 0}, 17: {0: 0},
+    }
+    writes = {9: [
+        (2, 0, block.to_bytes(4, "little"), read_callback & ~1),
+        (3, 0, int(byte_count).to_bytes(4, "little"),
+         read_callback & ~1),
+    ]}
+    return ({}, memory, oracles, writes)
+
+
+REVIEWED_STACK_POINTER_CALLS[("app", 0x0002f080)] = {
+    4: {0},       # memset(config + 10, 0, 30)
+    6: {1},       # configure(device, &config)
+    9: {2, 3},    # read(device, 0, &block, &bytes, timeout)
+    15: {2, 3},
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0002f080)] = {
+    0x00080000: 2,
+    0x00080020: 2,
+    0x00080040: 5,
+    0x00080060: 1,
+    0x0002ed68: 2,
+    0x00071cf4: 2,
+}
+REVIEWED_ORACLE_CASES[("app", 0x0002f080)] = [
+    _dmic_stream_lc3_case(),
+    _dmic_stream_lc3_case(0x6200, 0xa0),
 ]
 
 
