@@ -710,6 +710,14 @@
    "raw_name": "tail_61200",
    "evidence": "Compiler-outlined cold invalid-address diagnostic path of Zephyr flash_nrf_read; canonical tail_61200.c defines the genuine readable primary flash_nrf_read_invalid_address, logs the address/length tuple, and returns -EINVAL. Raw identity remains tail_61200 at 0x00061200."
   },
+  "0x0006125c": {
+   "name": "flash_nrf_erase",
+   "evidence": "Recovered Nordic flash erase wrapper with range/page alignment checks, synchronization, and calls to the namespaced retained NVMC page erase owner. Raw identity remains FUN_0006125c at 0x0006125c."
+  },
+  "0x00061310": {
+   "name": "flash_nrf_write",
+   "evidence": "Recovered Nordic flash word-write wrapper with range/alignment checks, synchronization, READY polling, and calls to the namespaced retained NVMC word writer. Raw identity remains FUN_00061310 at 0x00061310."
+  },
   "0x0006447c": {
    "name": "cjson_get_object_item",
    "evidence": "Exact cJSON 1.7.14 get_object_item implementation with sensitive and inlined ASCII case-insensitive traversal. Raw identity remains FUN_0006447c at 0x0006447c."
@@ -717,6 +725,14 @@
   "0x00065000": {
    "name": "nrfx_clock_stop",
    "evidence": "Exact configured NCS 2.5.1 nrfx clock_stop helper for LFCLK, HFCLK, HFCLK192M, and HFCLKAUDIO domains. Raw identity remains FUN_00065000 at 0x00065000."
+  },
+  "0x00065f1c": {
+   "name": "g1_recon_nrfx_nvmc_page_erase",
+   "evidence": "Retained firmware NVMC page eraser with active address assertion behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f1c at 0x00065f1c."
+  },
+  "0x00065f80": {
+   "name": "g1_recon_nrfx_nvmc_word_write",
+   "evidence": "Retained firmware NVMC word writer with active address and alignment assertions absent from the configured NRFX owner; deliberately namespaced after COLLISION-06. Raw identity remains FUN_00065f80 at 0x00065f80."
   },
   "0x000680f8": {
    "name": "metal_bus_unregister",

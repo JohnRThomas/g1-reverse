@@ -64,13 +64,15 @@ class AppCollision06NrfxNvmcAuditTest(unittest.TestCase):
                          ["configured_sdk_relocations"],
                          ["nvmc_word_write", "nvmc_readonly_mode_set"])
 
-    def test_both_callers_are_explicitly_blocking_implementation(self):
+    def test_both_callers_are_recovered_and_cfg_verified(self):
         page = self.rows["nrfx_nvmc_page_erase"]["caller_closure"]
         word = self.rows["nrfx_nvmc_word_write"]["caller_closure"]
         self.assertEqual(page, [{"va": "0x6125c", "branch_site": "0x000612d8",
-                                 "reconstruction": "missing", "cfg_verify": "missing"}])
+                                 "reconstruction": "recovered", "cfg_verify": "PASS",
+                                 "cases": 4}])
         self.assertEqual(word, [{"va": "0x61310", "branch_site": "0x000613a8",
-                                 "reconstruction": "missing", "cfg_verify": "missing"}])
+                                 "reconstruction": "recovered", "cfg_verify": "PASS",
+                                 "cases": 4}])
 
     def test_catalog_is_deterministic(self):
         expected = json.dumps(self.data, indent=1, sort_keys=True) + "\n"

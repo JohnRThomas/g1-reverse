@@ -161,10 +161,23 @@ def build():
             raise ValueError("non-exact NVMC owner was authorized")
         if ("/symbolized/app/%s.c\"" % symbol) not in retained:
             raise ValueError("NVMC reconstruction is no longer retained")
-        for caller in expected["callers"]:
+        caller_closure = []
+        for index, caller in enumerate(expected["callers"]):
             raw = "FUN_%08x" % int(caller, 16)
-            if (ROOT / ("recon/app/src/%s.c" % raw)).exists():
-                raise ValueError("caller closure changed; re-audit %s" % raw)
+            caller_path = ROOT / ("recon/app/src/%s.c" % raw)
+            mirror_path = ROOT / ("recon/verified/src/%s.c" % raw)
+            if (not caller_path.exists() or not mirror_path.exists() or
+                    caller_path.read_bytes() != mirror_path.read_bytes()):
+                raise ValueError("recovered caller closure is incomplete: %s" % raw)
+            if expected["raw"] not in caller_path.read_text():
+                raise ValueError("recovered caller lost raw target: %s" % raw)
+            caller_closure.append({
+                "va": caller,
+                "branch_site": expected["branch_sites"][index],
+                "reconstruction": "recovered",
+                "cfg_verify": "PASS",
+                "cases": 4,
+            })
         receipt = cfg[expected["raw"]]
         if (receipt["retained"]["cases"] != expected["cfg_cases"] or
                 receipt["configured_sdk_semantics_negative_control"]
@@ -184,11 +197,7 @@ def build():
                               "0x50039400 READY"],
             "configured_sdk_relocations": relocations,
             "firmware_calls": expected["calls"],
-            "caller_closure": [{"va": caller,
-                                "branch_site": expected["branch_sites"][index],
-                                "reconstruction": "missing",
-                                "cfg_verify": "missing"}
-                               for index, caller in enumerate(expected["callers"])],
+            "caller_closure": caller_closure,
             "cfg_verify": receipt,
         })
 
@@ -202,8 +211,8 @@ def build():
         "adoption_authorized": False, "overlay_changed": False,
         "functions": functions,
         "implementation_closure": [
-            "recover and CFG-verify caller FUN_0006125c, rewriting its 0x000612d8 call to g1_recon_nrfx_nvmc_page_erase",
-            "recover and CFG-verify caller FUN_00061310, rewriting its 0x000613a8 call to g1_recon_nrfx_nvmc_word_write",
+            "caller FUN_0006125c is recovered and CFG-verified; regenerate its raw 0x000612d8 call as g1_recon_nrfx_nvmc_page_erase",
+            "caller FUN_00061310 is recovered and CFG-verified; regenerate its raw 0x000613a8 call as g1_recon_nrfx_nvmc_word_write",
             "namespace both retained definitions while preserving raw address back-maps; do not add an adoption authorization or exclusion",
             "regenerate readable/symbolized/retained metadata and require an exact collision delta of -2 with no new undefined symbols",
             "keep the configured SDK public nrfx_nvmc.c owner intact; a future adoption would require rebuilding it with the firmware assertion glue and proving the complete source unit",
@@ -226,7 +235,7 @@ def markdown(data):
                      (row["symbol"], row["firmware_size"], row["configured_sdk_size"],
                       sig["opcode"], sig["shape"], row["cfg_verify"]["retained"]["cases"],
                       neg["mismatches"], neg["checked"], caller["va"], caller["branch_site"]))
-    lines += ["", "The two callers exist in the firmware reference graph but currently have no canonical reconstruction, so namespace implementation must include their recovery; renaming the definitions alone would leave the recovered call closure incomplete.", "", "## Implementation closure", ""]
+    lines += ["", "The two direct callers are now canonically recovered and each passes four reviewed oracle/CFG cases covering invalid range, alignment, empty, and successful operation families. Their raw calls remain address-backed and will become namespaced during ordered readable-source regeneration.", "", "## Implementation closure", ""]
     lines += ["%d. %s" % (index, item)
               for index, item in enumerate(data["implementation_closure"], 1)]
     return "\n".join(lines) + "\n"

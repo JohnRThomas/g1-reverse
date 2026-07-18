@@ -22359,6 +22359,31 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x0002a0d8)] = {
 }
 
 
+# NRFX NVMC flash wrappers. Their range/page-size decisions depend entirely on
+# callee results, so argument-derived CFG inputs alone cannot cover the invalid,
+# alignment, empty, and successful loop families. Keep scalar flash addresses
+# explicit and give the write wrapper a real source image plus READY register.
+REVIEWED_ORACLE_CASES[("app", 0x0006125c)] = [
+    ({1: 0, 2: 0x1000}, [], {0: {0: 0x1000}, 1: {0: 0}}),
+    ({1: 1, 2: 0x1000}, [], {0: {0: 0x1000}, 1: {0: 1}}),
+    ({1: 0, 2: 0}, [], {0: {0: 0x1000}, 1: {0: 1}}),
+    ({1: 0, 2: 0x2000}, [],
+     {0: {0: 0x1000}, 1: {0: 1}, 3: {0: 0x1000}}),
+]
+REVIEWED_NPTR_COUNTS[("app", 0x0006125c)] = 0
+
+REVIEWED_ORACLE_CASES[("app", 0x00061310)] = [
+    ({1: 0, 2: emu.SCRATCH + 0x1000, 3: 4}, [], {0: {0: 0}}),
+    ({1: 1, 2: emu.SCRATCH + 0x1000, 3: 4}, [], {0: {0: 1}}),
+    ({1: 0, 2: emu.SCRATCH + 0x1000, 3: 0}, [], {0: {0: 1}}),
+    ({1: 0, 2: emu.SCRATCH + 0x1000, 3: 8},
+     [(emu.SCRATCH + 0x1000, bytes.fromhex("4433221188776655")),
+      (0x50039400, (1).to_bytes(4, "little"))],
+     {0: {0: 1}}),
+]
+REVIEWED_NPTR_COUNTS[("app", 0x00061310)] = 0
+
+
 def _resolve_source_path(core, name, srcdir):
     """Resolve readable/raw/legacy identities to one canonical source file."""
     direct = os.path.join(srcdir, name + ".c")
