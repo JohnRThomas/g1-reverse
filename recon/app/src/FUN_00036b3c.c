@@ -2,8 +2,6 @@
  * Raw/back-map identity: FUN_00036b3c, exact reachable extent 0x1fc bytes. */
 #include <stdint.h>
 
-#define ui_new_message_task FUN_00036b3c
-
 extern uintptr_t FUN_000167a8(void);
 extern uint32_t FUN_00034410(void);
 extern uint32_t FUN_0003483c(uint32_t index);

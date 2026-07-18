@@ -6,7 +6,7 @@
 extern uint32_t FUN_0007c084(uint32_t descriptor, uint32_t value,
                              uint32_t arg2, uint32_t arg3);
 
-uint32_t FUN_000179f8(uint32_t unused0, uint32_t unused1,
+uint32_t subsystem_enable_gpio_pin_set_adapter(uint32_t unused0, uint32_t unused1,
                       uint32_t arg2, uint32_t arg3)
 {
     (void)unused0;

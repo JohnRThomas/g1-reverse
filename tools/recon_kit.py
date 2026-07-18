@@ -87,7 +87,15 @@ TRUE_SIZE_OVERRIDES = {
     0x00055aac: 0xe2,  # legacy advertising restart helper; alignment at 0x55b8e
     0x00016574: 0x06,  # fixed-word setter
     0x00016834: 0x1a,  # state-normalizing tail adapter
+    0x000179f8: 0x0c,  # P0.21 GPIO descriptor tail adapter
     0x00017a04: 0x08,  # GPIO descriptor tail adapters
+    0x00026100: 0x150, # update_imu_mode, including its literal pool
+    0x00033554: 0x14c, # framed serial receive/parser
+    0x00033730: 0x11c, # notification whitelist sender
+    0x0003603c: 0x128, # ui_ancs_notification_task
+    0x00036b3c: 0x1fc, # ui_new_message_task
+    0x0003f410: 0x934, # ui_navigation_task
+    0x0003fecc: 0x818, # ui_translate_task
     0x00017a10: 0x08,
     0x00017a1c: 0x08,
     0x00017a28: 0x08,

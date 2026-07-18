@@ -2,8 +2,6 @@
  * Raw/back-map identity: FUN_00033730, exact extent 0x11c bytes. */
 #include <stdint.h>
 
-#define send_notification_app_whitelist FUN_00033730
-
 extern void FUN_00086c78(void *destination, uint32_t value, uint32_t size);
 extern void FUN_00086c1e(void *destination, const void *source,
                          uint32_t size, uint32_t destination_size);

@@ -44,9 +44,12 @@ class AppInteriorAliasAuditTests(unittest.TestCase):
         missing = [row for row in self.data["entries"]
                    if row["classification"] == "true_missing_catalog_entry"]
         self.assertEqual(61, len(missing))
-        self.assertEqual(60, self.data["summary"]["requires_reconstruction"])
+        self.assertEqual(52, self.data["summary"]["requires_reconstruction"])
         self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
                          self.rows["FUN_00086228"]["resolution"])
+        for symbol in audit.CFG_VERIFIED_STRONG_OWNERS:
+            self.assertEqual("already_resolved_by_cfg_verified_strong_owner",
+                             self.rows[symbol]["resolution"])
         self.assertTrue(all(row["evidence"]["decode"] for row in missing))
 
     def test_refgraph_and_catalog_boundaries_are_recorded(self):

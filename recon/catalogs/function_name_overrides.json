@@ -9,6 +9,38 @@
    "name": "__fixdfdi",
    "evidence": "Pinned GCC 12.2.0 Cortex-M33 hard-float libgcc public export; firmware signature is exact. Raw identity remains FUN_0000ec34."
   },
+  "0x000179f8": {
+   "name": "subsystem_enable_gpio_pin_set_adapter",
+   "evidence": "Exact P0.21 GPIO descriptor tail adapter; raw identity remains FUN_000179f8 at 0x000179f8."
+  },
+  "0x00026100": {
+   "name": "update_imu_mode",
+   "evidence": "Recovered IMU accelerometer/gyroscope mode transition routine; raw identity remains FUN_00026100 at 0x00026100."
+  },
+  "0x00033554": {
+   "name": "framed_serial_receive_parser",
+   "evidence": "Recovered 5a a5 7f framed serial receive/checksum parser; raw identity remains FUN_00033554 at 0x00033554."
+  },
+  "0x00033730": {
+   "name": "send_notification_app_whitelist",
+   "evidence": "Recovered notification application whitelist JSON chunk sender; raw identity remains FUN_00033730 at 0x00033730."
+  },
+  "0x0003603c": {
+   "name": "ui_ancs_notification_task",
+   "evidence": "Recovered ANCS notification UI task state machine; raw identity remains FUN_0003603c at 0x0003603c."
+  },
+  "0x00036b3c": {
+   "name": "ui_new_message_task",
+   "evidence": "Recovered new-message reveal animation UI task; raw identity remains FUN_00036b3c at 0x00036b3c."
+  },
+  "0x0003f410": {
+   "name": "ui_navigation_task",
+   "evidence": "Recovered navigation UI state machine; raw identity remains FUN_0003f410 at 0x0003f410."
+  },
+  "0x0003fecc": {
+   "name": "ui_translate_task",
+   "evidence": "Recovered translation UI task state machine; raw identity remains FUN_0003fecc at 0x0003fecc."
+  },
   "0x0004b3c8": {
    "name": "sys_heap_init",
    "evidence": "Recovered configured Zephyr 3.4.99 system-heap initializer, CFG-verified across footer-width and size boundaries. Raw identity remains FUN_0004b3c8 at 0x0004b3c8."

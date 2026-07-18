@@ -2,8 +2,6 @@
  * Raw/back-map identity: FUN_00026100, exact extent 0x150 bytes. */
 #include <stdint.h>
 
-#define update_imu_mode FUN_00026100
-
 extern int32_t FUN_00016568(void);
 extern int32_t FUN_0007ca54(uintptr_t device, uint32_t attribute,
                             void *configuration);

@@ -65,6 +65,11 @@ TRUE_MISSING_CATALOG_ENTRY = {
     "ext5c6c8", "ext77c8c", "tail_54d88", "tail_61200", "tail_77d30",
 }
 
+CFG_VERIFIED_STRONG_OWNERS = {
+    "FUN_000179f8", "FUN_00026100", "FUN_00033554", "FUN_00033730",
+    "FUN_0003603c", "FUN_00036b3c", "FUN_0003f410", "FUN_0003fecc",
+}
+
 CLASS_TABLE = {
     "same_entry_alias": SAME_ENTRY_ALIAS,
     "legitimate_interior_tail_or_island": LEGITIMATE_INTERIOR_TAIL_OR_ISLAND,
@@ -144,7 +149,14 @@ def build():
             if hex(va) in record.get("calls", []))
         resolution = "requires_independent_reconstruction"
         reason = "independent callable entry shape/reference, absent from catalog"
-        if symbol == "FUN_00086228":
+        if symbol in CFG_VERIFIED_STRONG_OWNERS:
+            source_path = os.path.join(ROOT, "recon/app/src", symbol + ".c")
+            mirror_path = os.path.join(ROOT, "recon/verified/src", symbol + ".c")
+            if not os.path.isfile(source_path) or digest(source_path) != digest(mirror_path):
+                raise RuntimeError("CFG-verified owner/mirror drift: " + symbol)
+            resolution = "already_resolved_by_cfg_verified_strong_owner"
+            reason = "standalone exact-entry reconstruction accepted by cfg_verify"
+        elif symbol == "FUN_00086228":
             resolution = "already_resolved_by_cfg_verified_strong_owner"
             reason = "standalone zcbor string encoder recovered at its exact entry"
         elif symbol == "FUN_0006446c":

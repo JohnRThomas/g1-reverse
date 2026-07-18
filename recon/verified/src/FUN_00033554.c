@@ -5,7 +5,7 @@
 extern void FUN_00086c04(void *destination, const void *source, uint32_t size);
 extern void DEBUG_PRINT(uintptr_t format, ...);
 
-uint32_t FUN_00033554(uint32_t transport, uint8_t **output,
+uint32_t framed_serial_receive_parser(uint32_t transport, uint8_t **output,
                       uint32_t *output_size)
 {
     volatile uint8_t *const received_size = (volatile uint8_t *)0x2001a128u;

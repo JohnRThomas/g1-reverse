@@ -2,8 +2,6 @@
  * Raw/back-map identity: FUN_0003603c, exact extent 0x128 bytes. */
 #include <stdint.h>
 
-#define ui_ancs_notification_task FUN_0003603c
-
 extern void FUN_000431c0(void);
 extern void FUN_000438d0(void);
 extern void FUN_000431b4(void *framebuffer);

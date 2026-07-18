@@ -17856,6 +17856,13 @@ REVIEWED_TARGET_CALL_ARITIES[("app", 0x0003603c)] = {
 REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0003603c)] = [
     ("ancs-message", -0x24, -0x1c, 4, None, None, (0x000342e0,)),
 ]
+REVIEWED_STATE_CASES[("app", 0x0003f410)] = [
+    ({2: event}, [(0x20004bb8, state.to_bytes(4, "little"))])
+    for state in range(4) for event in (0, 1, 2, 5)
+]
+REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x0003f410)] = [
+    ("navigation-sensor-sample", -52, -44, 12, None, None, (0x0004a1b8,)),
+]
 REVIEWED_PAIRED_STACK_OBJECTS[("app", 0x00023014)] = [
     ("burial-flash-buffer", -208, -204, 192, None, None,
      (0x00086c78, 0x000225b4, 0x00086be4)),

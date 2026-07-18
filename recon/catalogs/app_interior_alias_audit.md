@@ -12,14 +12,14 @@ aliases, weak owners, blobs, or derivative trees are generated.
 
 | VA | Symbol | Classification | Resolution | Evidence |
 |---|---|---|---|---|
-| `0x000179f8` | `FUN_000179f8` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | movs r1, #1; ldr r0, [pc, #4]; independent callable entry shape/reference, absent from catalog |
-| `0x00026100` | `FUN_00026100` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}; mov r4, r0; independent callable entry shape/reference, absent from catalog |
-| `0x00033554` | `FUN_00033554` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; mov r8, r2; independent callable entry shape/reference, absent from catalog |
-| `0x00033730` | `FUN_00033730` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; movs r4, #0; independent callable entry shape/reference, absent from catalog |
-| `0x0003603c` | `FUN_0003603c` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | movs r3, #0; push.w {r0, r1, r2, r4, r5, r6, r7, r8, sb, lr}; independent callable entry shape/reference, absent from catalog |
-| `0x00036b3c` | `FUN_00036b3c` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; sub sp, #0x24; independent callable entry shape/reference, absent from catalog |
-| `0x0003f410` | `FUN_0003f410` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; sub sp, #0x34; independent callable entry shape/reference, absent from catalog |
-| `0x0003fecc` | `FUN_0003fecc` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; mov sb, r0; independent callable entry shape/reference, absent from catalog |
+| `0x000179f8` | `FUN_000179f8` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | movs r1, #1; ldr r0, [pc, #4]; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x00026100` | `FUN_00026100` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}; mov r4, r0; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x00033554` | `FUN_00033554` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; mov r8, r2; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x00033730` | `FUN_00033730` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r4, r5, r6, r7, r8, sb, sl, lr}; movs r4, #0; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x0003603c` | `FUN_0003603c` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | movs r3, #0; push.w {r0, r1, r2, r4, r5, r6, r7, r8, sb, lr}; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x00036b3c` | `FUN_00036b3c` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; sub sp, #0x24; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x0003f410` | `FUN_0003f410` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; sub sp, #0x34; standalone exact-entry reconstruction accepted by cfg_verify |
+| `0x0003fecc` | `FUN_0003fecc` | `true_missing_catalog_entry` | `already_resolved_by_cfg_verified_strong_owner` | push.w {r4, r5, r6, r7, r8, sb, sl, fp, lr}; mov sb, r0; standalone exact-entry reconstruction accepted by cfg_verify |
 | `0x0004b3c8` | `FUN_0004b3c8` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | cmp.w r2, #0x40000; push.w {r4, r5, r6, r7, r8, lr}; independent callable entry shape/reference, absent from catalog |
 | `0x0004c254` | `FUN_0004c254` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | cbz r0, #0x4c26a; ldr r3, [pc, #0x14]; independent callable entry shape/reference, absent from catalog |
 | `0x0004d44c` | `FUN_0004d44c` | `true_missing_catalog_entry` | `requires_independent_reconstruction` | push {r4, lr}; ldr r4, [pc, #0x10]; independent callable entry shape/reference, absent from catalog |
