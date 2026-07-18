@@ -1,0 +1,165 @@
+{
+ "adoption_authorized": false,
+ "batch": "COLLISION-06",
+ "configured_assert_policy": "NRFX_ASSERT(expression) expands empty",
+ "configured_object_sha256": "30791e12c10b86bf74aaadb43c9ea956ae9ca737f8f2b6013b957127575def8c",
+ "configured_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_nvmc.c",
+ "configured_source_sha256": "a5005cc0df11da560fd31cc71cb44a431352a469b01458de87c147eb8a405490",
+ "core": "app",
+ "decision": "retain_and_namespace_both_reconstructions",
+ "functions": [
+  {
+   "abi": {
+    "decl_line": 261,
+    "params": [
+     "uint32_t"
+    ],
+    "return": "nrfx_err_t",
+    "variadic": false
+   },
+   "caller_closure": [
+    {
+     "branch_site": "0x000612d8",
+     "cfg_verify": "missing",
+     "reconstruction": "missing",
+     "va": "0x6125c"
+    }
+   ],
+   "cfg_verify": {
+    "configured_sdk_semantics_negative_control": {
+     "cases": 3,
+     "checked": 3,
+     "mismatch_kinds": [
+      "terminal-prefix"
+     ],
+     "mismatches": 2,
+     "status": "FAIL"
+    },
+    "retained": {
+     "cases": 3,
+     "selectors": {
+      "0": [
+       1048575,
+       1048576,
+       1048577
+      ]
+     },
+     "status": "PASS"
+    }
+   },
+   "configured_sdk_assertions": [],
+   "configured_sdk_relocations": [
+    "nvmc_readonly_mode_set"
+   ],
+   "configured_sdk_size": 60,
+   "decision": "retain_reconstruction",
+   "firmware_assertions": [
+    "is_valid_address(addr, 0)"
+   ],
+   "firmware_calls": [
+    "0x65ef0",
+    "0x7e2ec",
+    "0x7e2fa"
+   ],
+   "firmware_size": 76,
+   "future_build_symbol": "g1_recon_nrfx_nvmc_page_erase",
+   "mmio_accesses": [
+    "0x50039584 CONFIGNS",
+    "0x50039504 CONFIG",
+    "0x50039400 READY"
+   ],
+   "raw_symbol": "FUN_00065f1c",
+   "signature_match": {
+    "length": 0.888889,
+    "normalized_exact": false,
+    "opcode": 0.666667,
+    "shape": 0.588235
+   },
+   "symbol": "nrfx_nvmc_page_erase",
+   "va": "0x00065f1c"
+  },
+  {
+   "abi": {
+    "decl_line": 403,
+    "params": [
+     "uint32_t",
+     "uint32_t"
+    ],
+    "return": "void",
+    "variadic": false
+   },
+   "caller_closure": [
+    {
+     "branch_site": "0x000613a8",
+     "cfg_verify": "missing",
+     "reconstruction": "missing",
+     "va": "0x61310"
+    }
+   ],
+   "cfg_verify": {
+    "configured_sdk_semantics_negative_control": {
+     "cases": 3,
+     "checked": 3,
+     "mismatch_kinds": [
+      "direct-target"
+     ],
+     "mismatches": 3,
+     "status": "FAIL"
+    },
+    "retained": {
+     "cases": 3,
+     "selectors": {
+      "0": [
+       1048575,
+       1048576,
+       1048577
+      ]
+     },
+     "status": "PASS"
+    }
+   },
+   "configured_sdk_assertions": [],
+   "configured_sdk_relocations": [
+    "nvmc_word_write",
+    "nvmc_readonly_mode_set"
+   ],
+   "configured_sdk_size": 32,
+   "decision": "retain_reconstruction",
+   "firmware_assertions": [
+    "is_valid_address(addr, 1)",
+    "nrfx_is_word_aligned((void const *)addr)"
+   ],
+   "firmware_calls": [
+    "0x65ef0",
+    "0x65f04",
+    "0x7e2ec",
+    "0x7e2fa"
+   ],
+   "firmware_size": 94,
+   "future_build_symbol": "g1_recon_nrfx_nvmc_word_write",
+   "mmio_accesses": [
+    "0x50039584 CONFIGNS",
+    "0x50039504 CONFIG",
+    "0x50039400 READY"
+   ],
+   "raw_symbol": "FUN_00065f80",
+   "signature_match": {
+    "length": 0.354839,
+    "normalized_exact": false,
+    "opcode": 0.333333,
+    "shape": 0.333333
+   },
+   "symbol": "nrfx_nvmc_word_write",
+   "va": "0x00065f80"
+  }
+ ],
+ "implementation_closure": [
+  "recover and CFG-verify caller FUN_0006125c, rewriting its 0x000612d8 call to g1_recon_nrfx_nvmc_page_erase",
+  "recover and CFG-verify caller FUN_00061310, rewriting its 0x000613a8 call to g1_recon_nrfx_nvmc_word_write",
+  "namespace both retained definitions while preserving raw address back-maps; do not add an adoption authorization or exclusion",
+  "regenerate readable/symbolized/retained metadata and require an exact collision delta of -2 with no new undefined symbols",
+  "keep the configured SDK public nrfx_nvmc.c owner intact; a future adoption would require rebuilding it with the firmware assertion glue and proving the complete source unit"
+ ],
+ "overlay_changed": false,
+ "schema": 1
+}
