@@ -4,6 +4,8 @@
 import hashlib
 import json
 import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -11,6 +13,9 @@ from elftools.elf.elffile import ELFFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import build_adoption_manifest as adoption
+
 BUILD = Path("/private/tmp/g1-app-residue-current-0718")
 AUDIT = ROOT / "recon/catalogs/app_collision_11_virtqueue_free.json"
 IMAGE = ROOT / "app_update.bin"
@@ -45,15 +50,37 @@ class VirtqueueFreeAuditTest(unittest.TestCase):
     def setUpClass(cls):
         cls.audit = json.loads(AUDIT.read_text())
 
-    def test_audit_is_evidence_only_and_reconstruction_remains_retained(self):
-        self.assertEqual("exact_sdk_adoption_candidate_not_activated",
+    def test_audit_is_activated_without_shared_naming_mutation(self):
+        self.assertEqual("exact_sdk_adoption_activated",
                          self.audit["status"])
-        self.assertEqual({"manifest_mutated": False,
-                          "retained_sources_mutated": False,
+        self.assertEqual({"manifest_mutated": True,
+                          "retained_sources_mutated": True,
                           "shared_naming_mutated": False},
                          self.audit["policy"])
         retained = (ROOT / "recon/generated/app_retained_sources.cmake").read_text()
-        self.assertIn("/virtqueue_free.c", retained)
+        self.assertNotIn("/virtqueue_free.c", retained)
+        manifest = json.loads((ROOT / "recon/ownership/adoption_manifest.json").read_text())
+        row = next(item for item in manifest["cores"]["app"]["entries"]
+                   if item["va"] == "0x00070ee4")
+        self.assertTrue(row["exclude_reconstruction"])
+
+    def test_inflated_extent_override_fails_closed_on_size_drift(self):
+        auth_path = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
+        catalog = json.loads(auth_path.read_text())
+        row = next(item for item in catalog["authorizations"]
+                   if item["va"] == "0x00070ee4")
+        self.assertTrue(row["catalog_extent_inflated"])
+        self.assertEqual(46, row["firmware_code_size"])
+        self.assertEqual(46, row["upstream_code_size"])
+        row["upstream_code_size"] = 47
+        with tempfile.TemporaryDirectory() as temp:
+            changed = Path(temp) / "authorizations.json"
+            changed.write_text(json.dumps(catalog))
+            paths = dict(adoption.DEFAULTS)
+            paths["app_collision_authorizations"] = str(changed)
+            with self.assertRaisesRegex(ValueError,
+                                        "did not pass exclusion gates"):
+                adoption.build(paths)
 
     def test_owner_is_relocation_normalized_instruction_exact(self):
         match = self.audit["normalized_match"]
@@ -79,6 +106,14 @@ class VirtqueueFreeAuditTest(unittest.TestCase):
                                 capture_output=True, text=True).stdout
         self.assertEqual(1, sum(line.endswith(" T virtqueue_free")
                                 for line in output.splitlines()))
+        app_output = subprocess.run(
+            [str(NM), "-A", "-g", str(BUILD / "app/libapp.a")], check=True,
+            capture_output=True, text=True).stdout
+        self.assertFalse(any(line.endswith(" T virtqueue_free")
+                             for line in app_output.splitlines()))
+        link_map = (BUILD / "zephyr/zephyr_pre0.map").read_text()
+        self.assertIn("libopen_amp.a(virtqueue.c.obj)", link_map)
+        self.assertNotIn("app/libapp.a(virtqueue_free.c.obj)", link_map)
 
     def test_abi_state_and_literal_semantics_match_source(self):
         source = Path(self.audit["configured_owner"]["source"]).read_text()

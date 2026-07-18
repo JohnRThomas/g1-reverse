@@ -288,10 +288,17 @@ def _app_collision_entries(data, source, names, authorizations,
             [row_va] and
             not authorization.get("whole_unit_closure", {}).get(
                 "new_undefined_symbols"))
+        reviewed_inflation_override = bool(
+            authorization_valid and
+            authorization.get("catalog_extent_inflated") is True and
+            authorization.get("firmware_code_size", 0) > 0 and
+            authorization.get("firmware_code_size") ==
+            authorization.get("upstream_code_size"))
         eligible = (row.get("safe_to_exclude") is True or
-                    (row.get("identity_threshold_candidate") is True and
-                     not row.get("exclusion_blockers") and
-                     authorization_valid))
+                    (authorization_valid and
+                     ((row.get("identity_threshold_candidate") is True and
+                       not row.get("exclusion_blockers")) or
+                      reviewed_inflation_override)))
         source_identity = upstream.get("source", {})
         component = source_identity.get("repository") or "cpuapp_selected_sdk"
         evidence = [_evidence(
@@ -310,6 +317,10 @@ def _app_collision_entries(data, source, names, authorizations,
                 normalized_code_sha256=authorization.get(
                     "normalized_code_sha256"),
                 cfg_verify_cases=authorization.get("cfg_verify_cases"),
+                catalog_extent_inflated=authorization.get(
+                    "catalog_extent_inflated"),
+                ghidra_catalog_extent=authorization.get(
+                    "ghidra_catalog_extent"),
                 callers=authorization.get("callers"),
                 whole_unit_closure=authorization.get("whole_unit_closure")))
         output.append(_entry(

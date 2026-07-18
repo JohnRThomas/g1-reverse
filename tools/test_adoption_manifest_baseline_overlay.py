@@ -18,7 +18,8 @@ BASELINE = ROOT / "recon/ownership/adoption_manifest_baseline.json"
 MANIFEST = ROOT / "recon/ownership/adoption_manifest.json"
 AUTH = ROOT / "recon/ownership/app_collision_adoption_authorizations.json"
 RETAINED = ROOT / "recon/generated/app_retained_sources.cmake"
-OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00071560"}
+OVERLAY_VAS = {"0x00052fbc", "0x000680f8", "0x00070ee4", "0x00071560"}
+ADDED_OVERLAY_VAS = OVERLAY_VAS - {"0x00070ee4"}
 
 
 def digest(path):
@@ -37,13 +38,15 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
                         baseline["cores"]["app"]["entries"]}
         current_app = {row["va"]: row for row in
                        current["cores"]["app"]["entries"]}
-        self.assertEqual(OVERLAY_VAS, set(current_app) - set(baseline_app))
-        self.assertEqual({}, {va: current_app[va] for va in baseline_app
-                              if current_app[va] != baseline_app[va]})
+        self.assertEqual(ADDED_OVERLAY_VAS,
+                         set(current_app) - set(baseline_app))
+        self.assertEqual({"0x00070ee4"},
+                         {va for va in baseline_app
+                          if current_app[va] != baseline_app[va]})
         self.assertEqual(baseline["cores"]["net"], current["cores"]["net"])
         self.assertEqual(260, baseline["cores"]["app"]["summary"][
             "exclude_reconstruction"])
-        self.assertEqual(263, current["cores"]["app"]["summary"][
+        self.assertEqual(264, current["cores"]["app"]["summary"][
             "exclude_reconstruction"])
         self.assertTrue(all(current_app[va]["exclude_reconstruction"]
                             for va in OVERLAY_VAS))
@@ -51,6 +54,7 @@ class AdoptionBaselineOverlayTest(unittest.TestCase):
         self.assertNotIn("/bt_settings_delete.c", retained)
         self.assertNotIn("/metal_bus_unregister.c", retained)
         self.assertNotIn("/rpmsg_init_vdev.c", retained)
+        self.assertNotIn("/virtqueue_free.c", retained)
 
     def test_production_build_is_deterministic(self):
         paths = dict(adoption.DEFAULTS)

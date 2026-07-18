@@ -1,6 +1,6 @@
 # COLLISION-11: `virtqueue_free`
 
-Verdict: **exact configured OpenAMP adoption candidate**, not yet activated.
+Verdict: **exact configured OpenAMP adoption activated**.
 
 The old collision audit compared a 186-byte Ghidra extent against the configured
 56-byte ELF section and therefore reported low opcode/shape/length scores. The
@@ -26,7 +26,7 @@ This proves the caller ABI and call ordering directly.
 Implementation closure is one VA only: the configured `virtqueue.c.obj` is
 already selected, `virtqueue_free` is its only retained collision, and removing
 the reconstruction introduces no new undefined symbols. The implementation
-step should add one explicit authorization for `0x00070ee4`, regenerate the
-manifest/retained list, and require a retain-all collision delta of exactly
-minus one with map/`nm` proof of the configured OpenAMP owner. No namespace
-retention is needed.
+step adds one explicit authorization for `0x00070ee4` and excludes only the
+reconstructed owner. Retain-all proves a collision delta of exactly minus one
+with map/`nm` proof of the configured OpenAMP owner. No namespace retention is
+used.

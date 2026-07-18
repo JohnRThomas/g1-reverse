@@ -73,8 +73,8 @@
   "app": {
    "summary": {
     "entries": 357,
-    "exclude_reconstruction": 263,
-    "retain_reconstruction": 94,
+    "exclude_reconstruction": 264,
+    "retain_reconstruction": 93,
     "by_kind": {
      "source": 207,
      "archive": 107,
@@ -6160,18 +6160,18 @@
      "raw_symbol": "FUN_00070ee4",
      "current_symbol": "virtqueue_free",
      "kind": "source",
-     "component": "external_toolchain",
+     "component": "open_amp",
      "upstream_symbol": "virtqueue_free",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
-     "confidence": "low",
-     "exclude_reconstruction": false,
-     "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
        "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": false,
+       "safe_to_exclude": true,
        "blockers": [
         "instruction_length_score_below_threshold",
         "opcode_score_below_threshold",
@@ -6192,16 +6192,49 @@
         "decl_line": 198
        },
        "upstream_source": {
-        "path": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c",
+        "path": "modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c",
         "sha256": "4f11f191b02a79414730a3abc7a7f3caebe6ddea9667facc1daf49411d84b3be",
-        "repository": "external_toolchain",
-        "commit": null
+        "repository": "open_amp",
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
        },
        "link_provenance": {
         "owner_input": "modules/open-amp/open-amp/lib/libopen_amp.a(virtqueue.c.obj)",
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c:199",
         "reconstruction_input": "app/libapp.a(virtqueue_free.c.obj)",
-        "diagnostic": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c:199: multiple definition of `virtqueue_free'; app/libapp.a(virtqueue_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/virtqueue_free.c:16: first defined here"
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c:199: multiple definition of `virtqueue_free'; app/libapp.a(virtqueue_free.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/virtqueue_free.c:16: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-11",
+       "instruction_exact": true,
+       "normalized_code_sha256": "23c39b8c66df8e52ee7191e155d92ca205fea5d4ebd1e3d2b311159bcc4c950d",
+       "cfg_verify_cases": 2,
+       "catalog_extent_inflated": true,
+       "ghidra_catalog_extent": 186,
+       "callers": [
+        {
+         "va": "0x0007eda4",
+         "symbol": "ipc_static_vrings_deinit",
+         "direct_calls": 2,
+         "normalized_exact": true,
+         "normalized_sha256": "fc20a970edb292a70fa87cf94c6dd33303b0834f1c9e366fa45ff7b8bbfd50f6"
+        }
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "virtqueue_free"
+        ],
+        "exclude_only": [
+         "0x00070ee4"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -27511,7 +27544,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "01f4499e06b6660c50addad4024472d6d8b5db8b2ec456c7a76a87c260764788"
+   "sha256": "626ee55576650fbdf0f98f5009c15ff666ef2d70d808f12aedd688eadd4509b3"
   }
  ]
 }
