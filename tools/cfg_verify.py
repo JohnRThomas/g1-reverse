@@ -4603,13 +4603,54 @@ def _app_67248_case(index, record_present, release_enabled, active=True):
 
 def _net_controller_assert_case(module_id, line, callback=True):
     """One bounded internal-controller fault dispatch and reset request."""
-    callback_address = 0x01040001 if callback else 0
+    # Keep the installed callback inside the reviewed CPUNET executable map.
+    # 0x01040000 is the first byte *after* that map: the old permissive
+    # unmapped-memory hook silently fabricated executable zero pages there,
+    # so callback cases faulted before the oracle boundary once MMIO/RAM
+    # mapping became fail closed.  This address remains outside every owned
+    # firmware function while still reaching Runner's indirect-call oracle.
+    callback_address = 0x0103ff01 if callback else 0
     return (
         {0: module_id, 1: line, 2: 0x22222222, 3: 0x33333333},
         [(0x21000a58, callback_address.to_bytes(4, "little")),
          # Nonzero PRIGROUP proves the AIRCR read/mask/or reset write rather
          # than accepting a candidate that merely stores SYSRESETREQ.
          (0xe000ed0c, (0x00000300).to_bytes(4, "little"))],
+    )
+
+
+def _net_radio_event_dispatch_case(event):
+    """Production-shaped packet/controller state for FUN_0101ab20.
+
+    Its first operation obtains a controller-owned packet from a zero-argument
+    accessor.  A random scalar oracle result used to be accepted because the
+    permissive memory hook mapped that arbitrary result as zero-filled RAM.
+    Pin the returned packet to reviewed RAM instead, and make events zero,
+    two, and three reach the two compiler-local request objects consumed at
+    their exact semantic call boundaries.
+    """
+    packet = emu.SCRATCH + 0x6000
+    packet_image = bytes(8)
+    controller_state = bytearray(0x60)
+    controller_state[4:8] = (100).to_bytes(4, "little")
+    controller_state[0x50:0x54] = (50).to_bytes(4, "little")
+    oracles = {0: {0: packet}}
+    if event == 0:
+        # FUN_01022f0c returns the 64-bit radio time in r1:r0.
+        # 151 - 50 leaves a non-exact 101-tick remainder against period 100,
+        # making the sparse exact-period byte independently observable.
+        oracles[1] = {0: 151, 1: 0}
+    elif event in (2, 3):
+        # The second state accessor returns the same owned packet.  A zero
+        # snapshot status selects the local-output publication path after the
+        # complete 32-byte object has crossed the call boundary.
+        oracles[1] = {0: packet}
+        oracles[2] = {0: 0}
+    return (
+        {1: event},
+        [(packet, packet_image),
+         (0x210010a0, bytes(controller_state))],
+        oracles,
     )
 
 
@@ -8932,6 +8973,13 @@ def _zcbor_str_encode_case(payload_offset, payload_end_offset, value_offset,
 
 
 REVIEWED_ORACLE_CASES = {
+    # The event selector owns values 0..8; 9..17 are explicit out-of-range
+    # fatal cases derived from the CMP/TBB CFG.  Every case receives the same
+    # real packet object, rather than relying on the former generic unmapped
+    # memory fallback for the accessor's return value.
+    ("net", 0x0101ab20): [
+        _net_radio_event_dispatch_case(event) for event in range(18)
+    ],
     # Pinned zcbor_encode.c:str_encode.  These production-shaped state/string
     # pairs cover the initial empty-buffer guard, body-length capacity guard,
     # encoded-header capacity guard, header failure, copying success, and
@@ -23720,6 +23768,12 @@ def self_test():
     assert serializer_verdict["status"] == "FAIL", serializer_verdict
 
     net_directed_negative_sources = (
+        # The assertion endpoint must read AIRCR to preserve PRIGROUP before
+        # publishing SYSRESETREQ.  Ordered MMIO tracing makes omission of that
+        # volatile read independently observable even when reset state is zero.
+        ("FUN_01008d00",
+         "*aircr = UINT32_C(0x05fa0004) | (*aircr & UINT32_C(0x00000700));",
+         "*aircr = UINT32_C(0x05fa0004);"),
         # The state-eight handle packet publishes a fixed ready flag after
         # its zero byte; all four volatile header stores are order/value live.
         ("FUN_0100ec88",
