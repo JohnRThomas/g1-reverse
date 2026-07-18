@@ -4,7 +4,7 @@
 #include <stdint.h>
 extern uint64_t net_buf_frags_len(void *); /* FUN_00081bc0 */
 extern void *net_buf_frag_last(void *); /* FUN_0005f304 */
-extern uint32_t net_buf_tailroom(void *); /* FUN_00083730 */
+extern uint32_t net_buf_simple_tailroom(void *); /* FUN_00083730 */
 extern uint64_t net_buf_pool_get(uint8_t); /* FUN_0005ee08 */
 extern void *net_buf_alloc(uint32_t, uint32_t, uint32_t, uint32_t); /* FUN_000836de */
 extern void net_buf_frag_add(void *, void *); /* FUN_0005f390 */
@@ -12,8 +12,6 @@ extern void net_buf_add(void *, uint32_t); /* FUN_0005f5d0 */
 
 typedef int32_t (*attribute_read_fn)(void *, void *, void *, uint16_t, uint16_t);
 typedef int (*read_filter_fn)(void *, uint32_t, void *);
-#define att_chan_read FUN_00081e2a
-
 uint32_t att_chan_read(uint8_t *chan, void *attribute, uint8_t *buffer,
                       uint32_t offset, read_filter_fn filter, void *user_data)
 {
@@ -29,7 +27,7 @@ uint32_t att_chan_read(uint8_t *chan, void *attribute, uint8_t *buffer,
     for (;;) {
         uint32_t current = (uint32_t)net_buf_frags_len(buffer);
         uint32_t room_needed = mtu - current;
-        uint32_t tailroom = net_buf_tailroom(fragment + 0x0c);
+        uint32_t tailroom = net_buf_simple_tailroom(fragment + 0x0c);
         uint32_t length = room_needed < tailroom ? room_needed : tailroom;
         if (length == 0) {
             uint64_t pool = net_buf_pool_get(buffer[10]);
@@ -40,7 +38,7 @@ uint32_t att_chan_read(uint8_t *chan, void *attribute, uint8_t *buffer,
             net_buf_frag_add(buffer, fragment);
             current = (uint32_t)net_buf_frags_len(buffer);
             room_needed = mtu - current;
-            tailroom = net_buf_tailroom(fragment + 0x0c);
+            tailroom = net_buf_simple_tailroom(fragment + 0x0c);
             length = room_needed < tailroom ? room_needed : tailroom;
         }
         void *destination = *(void **)(fragment + 0x0c) +

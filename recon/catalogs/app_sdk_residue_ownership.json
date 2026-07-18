@@ -4,8 +4,11 @@
  "policy": {
   "report_only": true,
   "no_build_or_reconstruction_edits": true,
-  "local_symbols_require_whole_source_unit": true
+  "local_symbols_require_whole_source_unit": true,
+  "weak_aliases_forbidden": true,
+  "duplicate_bodies_forbidden": true
  },
+ "scope_origin": "git:5acb8d8f:recon/analysis/app_link_residue.json",
  "pinned_environment": {
   "ncs": "v2.5.1 / Zephyr 3.4.99",
   "compiler": "arm-zephyr-eabi GCC 12.2.0",
@@ -22,12 +25,14 @@
  "summary": {
   "symbols": 13,
   "by_action": {
-   "adopt_complete_source_unit": 9,
-   "manual_owner_review": 1,
-   "reconcile_inline_at_callsite": 3
+   "adopt_complete_source_unit": 8,
+   "link_public_owner": 1,
+   "reconcile_inline_at_callsite": 4
   },
-  "public_safe_candidates": 0,
-  "source_unit_or_inline": 12
+  "public_safe_candidates": 1,
+  "source_unit_or_inline": 12,
+  "resolved": 13,
+  "manual": 0
  },
  "entries": [
   {
@@ -51,7 +56,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "exact_signature",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/lib/os/heap.c",
+    "sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+    "definition_line": 60
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "FUN_00080fd2",
@@ -74,7 +90,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "exact_signature",
-   "reference_count": 1
+   "reference_count": 1,
+   "source_receipt": {
+    "path": "zephyr/subsys/bluetooth/host/id.c",
+    "sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
+    "definition_line": 797
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "__nrfy_internal_spim_event_handle",
@@ -83,8 +110,8 @@
    "firmware_identities": [
     "0x00085214"
    ],
-   "owner_kind": "archive_local",
-   "source_or_archive": "modules/hal/nordic/nrfx/drivers/src/nrfx_spim.c",
+   "owner_kind": "header_inline",
+   "source_or_archive": "modules/hal/nordic/nrfx/haly/nrfy_spim.h",
    "archive_evidence": {
     "archive": "/private/tmp/g1_cpuapp_shell_build_0717j/modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a",
     "member": "nrfx_spim.c.obj",
@@ -94,10 +121,21 @@
    "owning_config": [
     "CONFIG_NRFX_SPIM=y"
    ],
-   "action": "adopt_complete_source_unit",
+   "action": "reconcile_inline_at_callsite",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 5
+   "reference_count": 5,
+   "source_receipt": {
+    "path": "modules/hal/nordic/nrfx/haly/nrfy_spim.h",
+    "sha256": "199f90bcd9d38967738ea6da972f235ae0d6cd2e8c8e77f545d65b49e35c09a7",
+    "definition_line": 46
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "header_inline_at_owning_callsite",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "buffer_write",
@@ -120,7 +158,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 3
+   "reference_count": 3,
+   "source_receipt": {
+    "path": "zephyr/subsys/logging/log_output.c",
+    "sha256": "c6f068f2d48923c8def7fb1d7b1dbea1012e84ced2549155fb486ea8396d7683",
+    "definition_line": 150
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "compare_int_lock",
@@ -143,7 +192,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 1
+   "reference_count": 1,
+   "source_receipt": {
+    "path": "zephyr/drivers/timer/nrf_rtc_timer.c",
+    "sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
+    "definition_line": 155
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "event_clear",
@@ -166,7 +226,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/drivers/timer/nrf_rtc_timer.c",
+    "sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
+    "definition_line": 83
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "flag_test_and_clear",
@@ -189,7 +260,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/kernel/work.c",
+    "sha256": "025f7d868bfde6c263675fdd339755edb829a24e5b51b822517e49eed909e90b",
+    "definition_line": 39
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "free_list_remove_bidx",
@@ -212,7 +294,18 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 1
+   "reference_count": 1,
+   "source_receipt": {
+    "path": "zephyr/lib/os/heap.c",
+    "sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+    "definition_line": 34
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "k_uptime_get_0",
@@ -231,7 +324,18 @@
    "action": "reconcile_inline_at_callsite",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/include/zephyr/kernel.h",
+    "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
+    "definition_line": 1038
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "header_inline_at_owning_callsite",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "k_uptime_get_4",
@@ -250,7 +354,18 @@
    "action": "reconcile_inline_at_callsite",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/include/zephyr/kernel.h",
+    "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
+    "definition_line": 1038
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "header_inline_at_owning_callsite",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "k_uptime_get_7",
@@ -269,7 +384,18 @@
    "action": "reconcile_inline_at_callsite",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 5
+   "reference_count": 5,
+   "source_receipt": {
+    "path": "zephyr/include/zephyr/kernel.h",
+    "sha256": "f49b5b98fa64dc38fb625a477ddb2381665c5273616490910a8d077c5e39d76f",
+    "definition_line": 1038
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "header_inline_at_owning_callsite",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "merge_chunks",
@@ -292,25 +418,52 @@
    "action": "adopt_complete_source_unit",
    "safe_automatic_link_owner": false,
    "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/lib/os/heap.c",
+    "sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+    "definition_line": 125
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "complete_source_unit_static_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   },
   {
    "symbol": "net_buf_tailroom",
-   "semantic_owner": "net_buf_tailroom",
+   "semantic_owner": "net_buf_simple_tailroom",
    "signature_ratio": null,
    "firmware_identities": [
     "0x00083730"
    ],
-   "owner_kind": "unresolved",
-   "source_or_archive": null,
-   "archive_evidence": null,
+   "owner_kind": "archive_public",
+   "source_or_archive": "zephyr/subsys/net/buf_simple.c",
+   "archive_evidence": {
+    "archive": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/subsys/net/libsubsys__net.a",
+    "member": "buf_simple.c.obj",
+    "nm_type": "T",
+    "linkage": "public"
+   },
    "owning_config": [
-    "compiled in actual CPUAPP shell; no independent Kconfig gate identified"
+    "compiled Zephyr net_buf core source unit"
    ],
-   "action": "manual_owner_review",
-   "safe_automatic_link_owner": false,
-   "adoption_evidence_gate": "not_a_public_link_candidate",
-   "reference_count": 2
+   "action": "link_public_owner",
+   "safe_automatic_link_owner": true,
+   "adoption_evidence_gate": "direct_symbol_and_archive_export",
+   "reference_count": 2,
+   "source_receipt": {
+    "path": "zephyr/subsys/net/buf_simple.c",
+    "sha256": "c93cf1fda0d2f6208b87b00a1f1bf0658f8ce7628bbb90d471951c2f385210d8",
+    "definition_line": 62
+   },
+   "resolution": {
+    "status": "resolved",
+    "strategy": "exact_public_owner",
+    "weak_alias_allowed": false,
+    "duplicate_body_allowed": false
+   }
   }
  ]
 }

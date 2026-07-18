@@ -2,7 +2,7 @@
 """Build the durable CPUAPP SDK/config residue ownership catalog.
 
 The input classification is intentionally not trusted as an ownership verdict.
-This tool resolves its 173 ``sdk_or_config_symbol`` rows against the exact
+This tool resolves the pinned 13-row ``sdk_or_config_symbol`` tail against the exact
 CPUAPP shell archives, GCC/newlib-nano multilibs, and pinned NCS source units.
 It is report-only and never edits reconstruction or build inputs.
 """
@@ -28,6 +28,13 @@ LIBC = os.path.join(
 CC312 = os.path.join(
     NCS, "nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/hard-float/"
          "libnrf_cc312_platform_0.9.18.a")
+ORIGIN_RESIDUE = "git:5acb8d8f:recon/analysis/app_link_residue.json"
+EXPECTED_TAIL = {
+    "FUN_0007def6", "FUN_00080fd2", "__nrfy_internal_spim_event_handle",
+    "buffer_write", "compare_int_lock", "event_clear",
+    "flag_test_and_clear", "free_list_remove_bidx", "k_uptime_get_0",
+    "k_uptime_get_4", "k_uptime_get_7", "merge_chunks", "net_buf_tailroom",
+}
 
 CUSTOM_APPLICATION = {
     "adc_nfc_init", "adc_nfc_run", "bt_start", "flash_settings_read",
@@ -36,6 +43,16 @@ CUSTOM_APPLICATION = {
 }
 
 EXPLICIT_OWNERS = {
+    "__nrfy_internal_spim_event_handle": {
+        "source": "modules/hal/nordic/nrfx/haly/nrfy_spim.h",
+        "kind": "header_inline", "action": "reconcile_inline_at_callsite",
+        "config": ["CONFIG_NRFX_SPIM=y"]},
+    "net_buf_tailroom": {
+        "owner": "net_buf_simple_tailroom",
+        "source": "zephyr/subsys/net/buf_simple.c",
+        "kind": "archive_public", "action": "link_public_owner",
+        "safe": True,
+        "config": ["compiled Zephyr net_buf core source unit"]},
     "z_log_dropped_read_and_clear_0": {
         "owner": "z_log_dropped_read_and_clear",
         "source": "zephyr/subsys/logging/log_core.c",
@@ -101,6 +118,12 @@ INLINE_HEADERS = {
 
 
 def load(path):
+    if path.startswith("git:"):
+        revision, repo_path = path[4:].split(":", 1)
+        result = subprocess.run(
+            ["git", "-C", ROOT, "show", revision + ":" + repo_path],
+            check=True, capture_output=True, text=True)
+        return json.loads(result.stdout)
     with open(path, encoding="utf-8") as stream:
         return json.load(stream)
 
@@ -298,6 +321,29 @@ def sha256(path):
     return digest.hexdigest()
 
 
+def source_receipt(source, owner):
+    """Return immutable pinned-source evidence for one reviewed owner."""
+    if not source or source.endswith(".a") or source.startswith("firmware "):
+        return None
+    path = source if os.path.isabs(source) else os.path.join(NCS, source)
+    if not os.path.isfile(path):
+        raise ValueError("missing pinned owner source: %s" % source)
+    definition_line = None
+    pattern = re.compile(r"\b%s\s*\(" % re.escape(owner))
+    with open(path, encoding="utf-8", errors="replace") as stream:
+        for number, line in enumerate(stream, 1):
+            if pattern.search(line):
+                definition_line = number
+                break
+    if definition_line is None:
+        raise ValueError("owner %s not found in %s" % (owner, source))
+    return {
+        "path": source,
+        "sha256": sha256(path),
+        "definition_line": definition_line,
+    }
+
+
 def action_for(row, owner, hit, header):
     symbol = row["symbol"]
     if symbol in CUSTOM_APPLICATION:
@@ -339,7 +385,7 @@ def build(args):
         action, safe = action_for(row, owner, hit, header)
         action = override.get("action", action)
         if override:
-            safe = False
+            safe = override.get("safe", False)
         owner_kind = (
             override.get("kind") or
             ("application_misclassified" if row["symbol"] in CUSTOM_APPLICATION else
@@ -367,6 +413,16 @@ def build(args):
                 "not_a_public_link_candidate"),
             "reference_count": row["reference_count"],
         }
+        entry["source_receipt"] = source_receipt(source, owner)
+        entry["resolution"] = {
+            "status": "resolved",
+            "strategy": (
+                "exact_public_owner" if safe else
+                "header_inline_at_owning_callsite" if owner_kind == "header_inline" else
+                "complete_source_unit_static_owner"),
+            "weak_alias_allowed": False,
+            "duplicate_body_allowed": False,
+        }
         if row["symbol"] == "nrf_cc3xx_platform_abort":
             entry["collision"] = {
                 "requested_firmware_identity": "0x00050af8",
@@ -375,6 +431,10 @@ def build(args):
                            "different firmware address; name equality is unsafe"),
             }
         entries.append(entry)
+    actual = {item["symbol"] for item in entries}
+    if actual != EXPECTED_TAIL or len(entries) != len(EXPECTED_TAIL):
+        raise ValueError("SDK tail scope drift: expected %s got %s" %
+                         (sorted(EXPECTED_TAIL), sorted(actual)))
     counts = collections.Counter(item["action"] for item in entries)
     return {
         "schema": 1,
@@ -383,7 +443,10 @@ def build(args):
             "report_only": True,
             "no_build_or_reconstruction_edits": True,
             "local_symbols_require_whole_source_unit": True,
+            "weak_aliases_forbidden": True,
+            "duplicate_bodies_forbidden": True,
         },
+        "scope_origin": ORIGIN_RESIDUE,
         "pinned_environment": {
             "ncs": "v2.5.1 / Zephyr 3.4.99",
             "compiler": "arm-zephyr-eabi GCC 12.2.0",
@@ -406,6 +469,10 @@ def build(args):
             "source_unit_or_inline": sum(item["action"] in {
                 "adopt_complete_source_unit", "reconcile_inline_at_callsite"}
                 for item in entries),
+            "resolved": sum(item["resolution"]["status"] == "resolved"
+                            for item in entries),
+            "manual": sum(item["resolution"]["status"] == "manual"
+                          for item in entries),
         },
         "entries": entries,
     }
@@ -414,7 +481,9 @@ def build(args):
 def markdown(catalog):
     lines = [
         "# CPUAPP SDK/config residue ownership", "",
-        "Report-only resolution of the 173 SDK/config rows from the retain-all link.",
+        "Fail-closed ownership resolution of the pinned 13 SDK/config rows from",
+        "the retain-all link. Ownership is resolved for all 13; this does not",
+        "authorize weak aliases or duplicate standalone bodies.",
         "A local (`t`) symbol is evidence for its translation unit, not a public",
         "link target; these rows explicitly require whole-source-unit ownership.", "",
         "## Summary", "",
@@ -425,6 +494,8 @@ def markdown(catalog):
     lines += ["", "Public safe candidates: **%d**. Source-unit/inline cases: **%d**."
               % (catalog["summary"]["public_safe_candidates"],
                  catalog["summary"]["source_unit_or_inline"]), "",
+              "Resolved: **%d**. Manual: **%d**." %
+              (catalog["summary"]["resolved"], catalog["summary"]["manual"]), "",
               "## Public link/adoption candidates (%d)" %
               catalog["summary"]["public_safe_candidates"], "",
               "These have public archive exports. Exact signature hits can be adopted",
@@ -450,8 +521,7 @@ def markdown(catalog):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default=os.path.join(
-        ROOT, "recon/analysis/app_link_residue.json"))
+    parser.add_argument("--input", default=ORIGIN_RESIDUE)
     parser.add_argument("--build", default=BUILD)
     parser.add_argument("--json", default=os.path.join(
         ROOT, "recon/catalogs/app_sdk_residue_ownership.json"))

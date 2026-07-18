@@ -10,7 +10,7 @@
  "inputs": [
   {
    "path": "/private/tmp/g1-app-residue-current-0718/link.log",
-   "sha256": "ff1d30a7ed34871a87637cf684889ca6ae814d881cec7d1794cdd12c0b3008ee"
+   "sha256": "8778d1abb8e7885072a42b501ce3eebf93e892287996fdbcd50d39739a0bf41c"
   },
   {
    "path": "recon/catalogs/function_names_app.json",
@@ -30,10 +30,10 @@
   }
  ],
  "summary": {
-  "unique_symbols": 22,
+  "unique_symbols": 21,
   "by_category": {
    "interior_or_tail_alias": 9,
-   "sdk_or_config_symbol": 13
+   "sdk_or_config_symbol": 12
   },
   "true_missing_reconstructed_entries": 0
  },
@@ -461,30 +461,6 @@
     }
    ],
    "sdk_source_hit": "zephyr/lib/os/heap.c:125"
-  },
-  {
-   "symbol": "net_buf_tailroom",
-   "category": "sdk_or_config_symbol",
-   "reason": "pinned SDK, adoption, catalog, or library-signature evidence",
-   "reference_count": 2,
-   "reference_sites": [
-    "att_chan_read.c:39",
-    "att_chan_read.c:50"
-   ],
-   "identities": [
-    {
-     "va": "0x00083730",
-     "catalog_entry": true,
-     "catalog_class": "LIBRARY",
-     "catalog_name": "net_buf_simple_tailroom",
-     "is_thunk": false,
-     "display_name": "net_buf_simple_tailroom",
-     "retained_source": null,
-     "adopted_component": null,
-     "library_signature": null
-    }
-   ],
-   "sdk_source_hit": "nrf/drivers/net/eth_rtt.c:348"
   },
   {
    "symbol": "strtol_reentrant",
