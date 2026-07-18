@@ -1,0 +1,4605 @@
+{
+ "schema": "g1.net.cohesive_undefined.v1",
+ "core": "net",
+ "build_directory": "/private/tmp/g1-cohesive-net-after-99cff8e1",
+ "method": "undefined app archive symbols minus all final-link definitions and linker PROVIDEs",
+ "policy": {
+  "private_sdc_mpsl_report_only": true,
+  "automatic_private_archive_alias_or_removal": false,
+  "canonical_sources_modified": false
+ },
+ "inputs": [
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/net_link_function_residue.json",
+   "sha256": "61ef998fc6954a9722ee45c604051d0dd346952a0bdc63775a6e1480e7cee564"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/net_readable_alias_resolutions.json",
+   "sha256": "16ef3805cb5f28d680803f92feab9db7f93cbb72ecd714d3ef2e6b36612697a1"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/ownership/adoption_manifest.json",
+   "sha256": "2ccaa5e190eea2a0cb74e511044fbf5d3386d555e70dd2844085edfcda1501bf"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/ownership/net_sdc_archive_ownership.json",
+   "sha256": "de2e7454669930abc88d15bd5fb3b804ad9d570eb1c6aa018d9855135741f410"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/net_address_spaces.json",
+   "sha256": "3e246a90bdfa4d4afc976ed20b067236326124d11524babcdf9340a8b0aef257"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/refgraph_net.json.gz",
+   "sha256": "c61016850b16e31061c2964533ae55d49b5714457c4634d7d9e7f857ec4e0206"
+  },
+  {
+   "path": "/Users/freedomcoder/Projects/G1disasm2/recon/catalogs/net_fun_0102d25c_identity_audit.json",
+   "sha256": "69f01034d4998e1e6bbf091b4532f5dfa83c9a6a5e8d1795896da1a6de8554b2"
+  },
+  {
+   "path": "/private/tmp/g1-cohesive-net-after-99cff8e1/app/libapp.a",
+   "sha256": "3e6cb581bb551579904fd9627909be686cc8f174ae66766ca34a1d7ed96de393"
+  },
+  {
+   "path": "/private/tmp/g1-cohesive-net-after-99cff8e1/zephyr/linker_zephyr_pre0.cmd",
+   "sha256": "9db1fdf44ba876faa20a912e2af6fde6ef0858e524446880905c67639c6adbf6"
+  }
+ ],
+ "link_command_sha256": "0f9f8c848739417c306c7052491c638f1588a3e6351fff501c53eb55f00cf1eb",
+ "summary": {
+  "undefined_symbols": 150,
+  "link_reference_relocations": 374,
+  "by_category": {
+   "private_sdc_mpsl_report_only": 93,
+   "stock_sdk_or_glue": 55,
+   "interior_or_anomalous_identity": 2
+  },
+  "by_resolution_kind": {
+   "anomalous_non_executable_target": 1,
+   "blocked_c_unexpressible": 1,
+   "existing_readable_alias_not_linked": 33,
+   "private_obfuscated_archive_identity": 29,
+   "private_sdc_report_only": 64,
+   "stock_provider_requires_call_identity_integration": 22
+  },
+  "private_by_family": {
+   "mpsl": 29,
+   "softdevice_controller": 64
+  },
+  "private_unique_archive_identities": {
+   "softdevice_controller": 53,
+   "mpsl": 28
+  },
+  "private_manifest_policy_conflicts": 29,
+  "non_private_actionable_symbols": 55
+ },
+ "action_queue": [
+  {
+   "priority": 0,
+   "action": "restore private MPSL entries to report-only policy",
+   "symbol_count": 29,
+   "symbols": [
+    "FUN_01021940",
+    "FUN_01021ac0",
+    "FUN_01022a30",
+    "FUN_01022a50",
+    "FUN_01022e34",
+    "FUN_01022ea8",
+    "FUN_01022f0c",
+    "FUN_01023ac4",
+    "FUN_01023d38",
+    "FUN_01023e88",
+    "FUN_01024440",
+    "FUN_0102445c",
+    "FUN_010245d8",
+    "FUN_01024c6c",
+    "FUN_0102524c",
+    "FUN_010256dc",
+    "FUN_010257e4",
+    "FUN_0102590c",
+    "FUN_01025998",
+    "FUN_01025a84",
+    "FUN_01025c44",
+    "FUN_01025c9c",
+    "FUN_01025cc8",
+    "FUN_01025d0c",
+    "controller_deferred_event_raise",
+    "controller_transition_pending_check",
+    "sdc_byte_lock_release",
+    "sdc_byte_lock_try_acquire",
+    "sdc_conn_window_admit"
+   ],
+   "automatic_action_authorized": false
+  },
+  {
+   "priority": 1,
+   "action": "include the already-reviewed readable alias fragment in the cohesive CPUNET link",
+   "symbol_count": 33,
+   "symbols": [
+    "alloc_chunk",
+    "assert_panic",
+    "assert_report",
+    "atomic_inc",
+    "bytes_to_chunksz",
+    "chunk_size",
+    "controller_connection_config_get",
+    "controller_handle_lookup",
+    "controller_object_get",
+    "free_list_add",
+    "k_sem_give",
+    "k_timer_start",
+    "log_process",
+    "net_buf_free_get",
+    "prepare_thread_swap",
+    "queue_insert",
+    "ready_remove",
+    "set_chunk_used",
+    "spin_lock",
+    "spin_lock_acquire",
+    "spin_lock_valid",
+    "spin_unlock",
+    "spin_unlock_valid",
+    "spin_validate",
+    "spinlock_acquire",
+    "spinlock_release",
+    "spinlock_validate",
+    "split_chunks",
+    "swap_current",
+    "thread_can_swap",
+    "trace_sched_unlock",
+    "update_cache",
+    "z_heap_aligned_alloc"
+   ],
+   "provider": "recon/symbols/g1_net_readable_aliases.ld"
+  },
+  {
+   "priority": 2,
+   "action": "replace raw caller identities with selected public/stock SDK provider symbols",
+   "symbol_count": 22,
+   "symbols": [
+    "FUN_01025d38",
+    "FUN_0102a244",
+    "FUN_0102eb2c",
+    "FUN_0102fbac",
+    "FUN_0103175c",
+    "FUN_010353ec",
+    "FUN_01038fa4",
+    "FUN_0103ab0e",
+    "FUN_0103ac50",
+    "FUN_0103b1e2",
+    "FUN_0103b210",
+    "FUN_0103b304",
+    "FUN_0103b34c",
+    "FUN_0103b5c4",
+    "FUN_0103b614",
+    "FUN_0103b62e",
+    "ipc_static_vrings_shm_size",
+    "k_timer_stop",
+    "net_buf_destroy_from_pool",
+    "rtc_compare_event_clear",
+    "scheduler_reschedule_restore",
+    "z_except_reason"
+   ]
+  },
+  {
+   "priority": 3,
+   "action": "resolve anomalous control-flow identities with assembly/relocation evidence",
+   "symbol_count": 2,
+   "symbols": [
+    "FUN_0102d25c",
+    "FUN_0102fa84"
+   ],
+   "automatic_action_authorized": false
+  }
+ ],
+ "archive_version_discrimination": {
+  "repository": "/Users/freedomcoder/ncs251/nrfxlib",
+  "manifest_selected_tag": "v2.5.1",
+  "binary_archive_indistinguishable_tags": [
+   "v2.5.0",
+   "v2.5.1"
+  ],
+  "conclusion": "The selected SDC and MPSL archives and every selected private body are byte-identical in nrfxlib v2.5.0 and v2.5.1. The firmware bytes therefore select that two-tag interval; west manifest provenance selects v2.5.1. v2.4.2, v2.5.2/v2.5.3, and v2.6.0 are rejected as exact archive pairs.",
+  "tags": [
+   {
+    "tag": "v2.4.2",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 670714,
+      "archive_sha256": "9014ecbad8dd54c870b83793318ae8ad261c093caa1fea01d95e1fed0f3e54d4",
+      "member_sha256": "a8eae7d423149bfff4751511309dee0800d9587776905a1b6285176e5d2b77b3",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 31,
+      "selected_body_different": 15,
+      "selected_identity_missing": 7,
+      "whole_archive_identical_to_v2_5_1": false
+     },
+     "mpsl": {
+      "archive_size": 117020,
+      "archive_sha256": "9e6bb3b60552418ea715e001bd89390a8fe8dcab9b3dc8ba354eafd687872e8e",
+      "member_sha256": "4b1b7870045469e39910f04f45a78e4956f537ab08363abf2060e4d2361adf8e",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 13,
+      "selected_body_different": 15,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     }
+    }
+   },
+   {
+    "tag": "v2.5.0",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 707674,
+      "archive_sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+      "member_sha256": "12327bce844cd5f57befeac6536b1b313fa1447213ea76af780a43f50e4e900f",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 53,
+      "selected_body_different": 0,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": true
+     },
+     "mpsl": {
+      "archive_size": 78520,
+      "archive_sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+      "member_sha256": "53cae54cfa1f6f3979369623ee853206468d1bceb7b69f4402c9c178baaba3b3",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 28,
+      "selected_body_different": 0,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": true
+     }
+    }
+   },
+   {
+    "tag": "v2.5.1",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 707674,
+      "archive_sha256": "f218b3dc4badd8f534f4aa00db678f54a1d4795d7d39721f28401fb49e880e81",
+      "member_sha256": "12327bce844cd5f57befeac6536b1b313fa1447213ea76af780a43f50e4e900f",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 53,
+      "selected_body_different": 0,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": true
+     },
+     "mpsl": {
+      "archive_size": 78520,
+      "archive_sha256": "127d76d156af342f8cb0e0bea7f6cc2712368f8219e6c9d3d24fe972a327e8af",
+      "member_sha256": "53cae54cfa1f6f3979369623ee853206468d1bceb7b69f4402c9c178baaba3b3",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 28,
+      "selected_body_different": 0,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": true
+     }
+    }
+   },
+   {
+    "tag": "v2.5.2",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 710026,
+      "archive_sha256": "19961519785446307f3ccad97d8a7ecc33fb4a3c4b684b4ed56aa81a6b4ddf8f",
+      "member_sha256": "d3f9ee601e4245b3cfa5824a54cf92d2b0d87d80b7ca8c748f1405fe60890ced",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 46,
+      "selected_body_different": 7,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     },
+     "mpsl": {
+      "archive_size": 78584,
+      "archive_sha256": "42992dfab1afc67d4f4e0f65c30229e66b670c8d1be1663923c89d34a7c5b329",
+      "member_sha256": "c64d4346f09623e2cb83f96141d5d0ee2f53fb2e2ec201818456d06612ef69fe",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 26,
+      "selected_body_different": 2,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     }
+    }
+   },
+   {
+    "tag": "v2.5.3",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 710026,
+      "archive_sha256": "19961519785446307f3ccad97d8a7ecc33fb4a3c4b684b4ed56aa81a6b4ddf8f",
+      "member_sha256": "d3f9ee601e4245b3cfa5824a54cf92d2b0d87d80b7ca8c748f1405fe60890ced",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 46,
+      "selected_body_different": 7,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     },
+     "mpsl": {
+      "archive_size": 78584,
+      "archive_sha256": "42992dfab1afc67d4f4e0f65c30229e66b670c8d1be1663923c89d34a7c5b329",
+      "member_sha256": "c64d4346f09623e2cb83f96141d5d0ee2f53fb2e2ec201818456d06612ef69fe",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 26,
+      "selected_body_different": 2,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     }
+    }
+   },
+   {
+    "tag": "v2.6.0",
+    "families": {
+     "softdevice_controller": {
+      "archive_size": 745016,
+      "archive_sha256": "80e2f1501810fc44622523299e823d83b12c386999fd6db64615bd67032c64b2",
+      "member_sha256": "af81efbbb15d3cbe2001f91c7296ffb4012fc9ec3883a89410d8d196eb889607",
+      "selected_identity_count": 53,
+      "selected_body_byte_identical": 15,
+      "selected_body_different": 38,
+      "selected_identity_missing": 0,
+      "whole_archive_identical_to_v2_5_1": false
+     },
+     "mpsl": {
+      "archive_size": 75656,
+      "archive_sha256": "8011250ec9ff860e7864486629b672761126fd9de0b5b0ccf3603c2e8769642d",
+      "member_sha256": "49b07d21a5ae8f8c2c8262bddd59a4f7ef6a068e1903f0e9642688c4874ba156",
+      "selected_identity_count": 28,
+      "selected_body_byte_identical": 12,
+      "selected_body_different": 15,
+      "selected_identity_missing": 1,
+      "whole_archive_identical_to_v2_5_1": false
+     }
+    }
+   }
+  ]
+ },
+ "entries": [
+  {
+   "symbol": "FUN_0100ef08",
+   "analysis_address": "0x0100ef08",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_timing_snapshot_enqueue.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "internal controller entry at 0x0100ef08 remains a private SDC report-only body"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0100f86c",
+   "analysis_address": "0x0100f86c",
+   "runtime_address": "0x0101006c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101c6d0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100fbbc",
+    "0x101c6d0",
+    "0x10298f0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_LHLPURQHSJUG4HIEP67V53OFTD4W5APB2YBT5HY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01010890",
+   "analysis_address": "0x01010890",
+   "runtime_address": "0x01011090",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_llcp_apply_rx_transition.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1011540",
+    "0x101746c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_FZRZ4CL3JR4VYYKFPYJ3VMCNBL7BVDZZP4POIWA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01011664",
+   "analysis_address": "0x01011664",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010119ac.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x01011664 remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01012150",
+   "analysis_address": "0x01012150",
+   "runtime_address": "0x01012950",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_OAGVEJLAHKQB2YTTUDIS6TDHXZIVWZXKUMPIBHQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101233c",
+   "analysis_address": "0x0101233c",
+   "runtime_address": "0x01012b3c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_JIJASGQH4XEEPZL7D35VQHVPKKLANGDBS2M46NQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01012694",
+   "analysis_address": "0x01012694",
+   "runtime_address": "0x01012e94",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_DG6VHZEFRVR44ESTRZM42ZEBJG4KXT7IVJESA4Y",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010126c8",
+   "analysis_address": "0x010126c8",
+   "runtime_address": "0x01012ec8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_WE45Z7LOSJEAVMD3HUIMZMMRDD5BLMKOFVBGE4Y",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01012714",
+   "analysis_address": "0x01012714",
+   "runtime_address": "0x01012f14",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_4FKJZF4AXR7RHM7IPPZMVUWU7W6MFHLX726TPNY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010129b8",
+   "analysis_address": "0x010129b8",
+   "runtime_address": "0x010131b8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01012438.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012438"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_XD3FX5TVO57NBJG4QV33FUOBCL7SNGB4OOT7C3Y",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01012ad4",
+   "analysis_address": "0x01012ad4",
+   "runtime_address": "0x010132d4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 3,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010119ac.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10119ac"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_4U2RA2RXIRU5BEMWZTHT3PETZK6K62P2SAJVWHA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01013da8",
+   "analysis_address": "0x01013da8",
+   "runtime_address": "0x010145a8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100e95c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100e95c",
+    "0x10293b2"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_EPRPLWOAI3YMJ24HN6AZUGT5NWULVXEG6CTCI2Y",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01016170",
+   "analysis_address": "0x01016170",
+   "runtime_address": "0x01016970",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01013650.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013650"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_IYZQNCOB4T4XO27DREWRIWJFVHVS355NEDBEGEQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01018df8",
+   "analysis_address": "0x01018df8",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101ab20.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x01018df8 remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010199f4",
+   "analysis_address": "0x010199f4",
+   "runtime_address": "0x0101a1f4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 3,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01019aa0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1019aa0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_N4ILSLKDZS6JBJI35QECDSPTA4MOGH57OAV3Z5Y",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01019eb4",
+   "analysis_address": "0x01019eb4",
+   "runtime_address": "0x0101a6b4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010187e0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10187e0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_LAYK5IGLYEFQ5CM2XGZHPMQBISU3CLYKB6Y3VWY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01019ef8",
+   "analysis_address": "0x01019ef8",
+   "runtime_address": "0x0101a6f8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010187e0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10187e0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_OMJ3SW7NEDZYIEECEHTEY7EFLFDPDBULVOYOR3I",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101d890",
+   "analysis_address": "0x0101d890",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101ba58.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x0101d890 remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101ded0",
+   "analysis_address": "0x0101ded0",
+   "runtime_address": "0x0101e6d0",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101e6ac.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101e6ac"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_CRB5YCB3Z3AAZH7A5G7WM2JFASUE6SGAJROBYAA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.985075,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101e090",
+   "analysis_address": "0x0101e090",
+   "runtime_address": "0x0101e890",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102946c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10294a2"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_6DIMBYT25BJNPLTICY2FPQL5WJ7ZQACODXUAREQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101e1e4",
+   "analysis_address": "0x0101e1e4",
+   "runtime_address": "0x0101e9e4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100d5c8.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100d5c8",
+    "0x101e274"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_FHGZFWEAJHQUMCWG4E5CUD67QD7B6JGXN3SSXDY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101e2fc",
+   "analysis_address": "0x0101e2fc",
+   "runtime_address": "0x0101eafc",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01010470.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1010470"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_LDNWAOTSHYHHXS6GC3A5HYPBDRDBY4JBJAMZW7I",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0101f624",
+   "analysis_address": "0x0101f624",
+   "runtime_address": "0x0101fe24",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01008d7c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1008d7c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_XQWU4MX22DPQIRRYTXBNWTH2DBYK7MH33FME7FI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.952381,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010207cc",
+   "analysis_address": "0x010207cc",
+   "runtime_address": "0x01020fcc",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_radio_idle_state_finish.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013650"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_7CIQBS4FNO23MS6BAN7Q3LK45R62DBPT5FNCWOA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.965517,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01020820",
+   "analysis_address": "0x01020820",
+   "runtime_address": "0x01021020",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100af3c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100af3c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_Y6HXZQJARJ7FDWKGPREPQGRRGDOQMXHDALUK6KY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.958333,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01021940",
+   "analysis_address": "0x01021940",
+   "runtime_address": "0x01022140",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010216d4.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10216d4"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_QLJBNB55XHXGY3EZ4W3ZZ3U6AVPE2YGDOXRUZSQ",
+    "archive_member_or_map_unit": ".text          0x00000000010197d8       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_QLJBNB55XHXGY3EZ4W3ZZ3U6AVPE2YGDOXRUZSQ",
+      "ratio": 0.957,
+      "threshold": 0.9,
+      "provenance": ".text          0x00000000010197d8       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01021ac0",
+   "analysis_address": "0x01021ac0",
+   "runtime_address": "0x010222c0",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 3,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_01021a38.c.obj",
+    "FUN_0102a122.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021a38",
+    "0x102a122"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_4RNEPYYQOFM4LAOGLN2TB27X7L3XBISTGAWYOHQ",
+    "archive_member_or_map_unit": ".text          0x0000000001019868       0x18 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_4RNEPYYQOFM4LAOGLN2TB27X7L3XBISTGAWYOHQ",
+      "ratio": 0.9,
+      "threshold": 0.9,
+      "provenance": ".text          0x0000000001019868       0x18 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01022a30",
+   "analysis_address": "0x01022a30",
+   "runtime_address": "0x01023230",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_01013650.c.obj",
+    "FUN_0101ba58.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013650",
+    "0x101ba58"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_RWBLK2534FJMTER76IYUPZQ3YF74JEALZ2OBIDI",
+    "archive_member_or_map_unit": ".text          0x000000000101a7ac       0x20 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_RWBLK2534FJMTER76IYUPZQ3YF74JEALZ2OBIDI",
+      "ratio": 0.909,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101a7ac       0x20 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01022a50",
+   "analysis_address": "0x01022a50",
+   "runtime_address": "0x01023250",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_0100b180.c.obj",
+    "FUN_010171c8.c.obj",
+    "FUN_010190d0.c.obj",
+    "controller_radio_idle_state_finish.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100b180",
+    "0x1013650",
+    "0x10171c8",
+    "0x10190d0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_4FXF7BZT2IZ3YRYSE3Z2XCICKWZPGDZTXL2ECZQ",
+    "archive_member_or_map_unit": ".text          0x000000000101a7cc       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_4FXF7BZT2IZ3YRYSE3Z2XCICKWZPGDZTXL2ECZQ",
+      "ratio": 0.974,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101a7cc       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01022e34",
+   "analysis_address": "0x01022e34",
+   "runtime_address": "0x01023634",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01013b4c.c.obj",
+    "FUN_0101aee0.c.obj",
+    "FUN_0101b088.c.obj",
+    "FUN_01021a38.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013b4c",
+    "0x101aee0",
+    "0x101b088",
+    "0x1021a38"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_RPHL2J7CVNKM6GKLDIFI4NVAPZE2FHTYW4VJSJI",
+    "archive_member_or_map_unit": ".text          0x000000000101abb0       0x54 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_RPHL2J7CVNKM6GKLDIFI4NVAPZE2FHTYW4VJSJI",
+      "ratio": 0.966,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101abb0       0x54 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01022ea8",
+   "analysis_address": "0x01022ea8",
+   "runtime_address": "0x010236a8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 3,
+   "caller_count": 3,
+   "caller_objects": [
+    "FUN_01012c84.c.obj",
+    "FUN_01013650.c.obj",
+    "FUN_01013b4c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012c84",
+    "0x1013650",
+    "0x1013b4c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_MGCUANL7Q2CUPWKYBFLWSWSNXIEEYBPZTHT2VZI",
+    "archive_member_or_map_unit": ".text          0x000000000101ac24       0x14 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_MGCUANL7Q2CUPWKYBFLWSWSNXIEEYBPZTHT2VZI",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101ac24       0x14 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01022f0c",
+   "analysis_address": "0x01022f0c",
+   "runtime_address": "0x0102370c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_0101ab20.c.obj",
+    "FUN_01029e64.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101ab20",
+    "0x1029e64"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_W447CEMR6K6QRW3N63PRPIR7NK6ENOSBFXLCPRQ",
+    "archive_member_or_map_unit": ".text          0x000000000101ac88       0x30 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_W447CEMR6K6QRW3N63PRPIR7NK6ENOSBFXLCPRQ",
+      "ratio": 0.933,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101ac88       0x30 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01023ac4",
+   "analysis_address": "0x01023ac4",
+   "runtime_address": "0x010242c4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 5,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01020108.c.obj",
+    "FUN_01020764.c.obj",
+    "FUN_010212ec.c.obj",
+    "FUN_01029e64.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1020108",
+    "0x1020764",
+    "0x10212ec",
+    "0x1029e64"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_F77FUTRRLLWPYDS7BBANG2WE3C4EDMYMAPNI54A",
+    "archive_member_or_map_unit": ".text          0x000000000101b840       0x14 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_F77FUTRRLLWPYDS7BBANG2WE3C4EDMYMAPNI54A",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101b840       0x14 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01023d38",
+   "analysis_address": "0x01023d38",
+   "runtime_address": "0x01024538",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 8,
+   "caller_count": 7,
+   "caller_objects": [
+    "FUN_01012c84.c.obj",
+    "FUN_01013650.c.obj",
+    "FUN_0101a218.c.obj",
+    "FUN_0101ab20.c.obj",
+    "FUN_0101b230.c.obj",
+    "FUN_0101ba58.c.obj",
+    "FUN_01029d68.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012c84",
+    "0x1013650",
+    "0x101a218",
+    "0x101ab20",
+    "0x101b230",
+    "0x101ba58",
+    "0x1029d68"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_URFU24FFGR2HYB6CCPIPKPNZNMTWHKDYOATUJNY",
+    "archive_member_or_map_unit": ".text          0x000000000101bab4       0xb0 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_URFU24FFGR2HYB6CCPIPKPNZNMTWHKDYOATUJNY",
+      "ratio": 0.983,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101bab4       0xb0 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01023e88",
+   "analysis_address": "0x01023e88",
+   "runtime_address": "0x01024688",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 8,
+   "caller_count": 6,
+   "caller_objects": [
+    "FUN_01014748.c.obj",
+    "FUN_0101b230.c.obj",
+    "FUN_0101bf30.c.obj",
+    "FUN_01021108.c.obj",
+    "FUN_010212ec.c.obj",
+    "controller_radio_transition_schedule.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1014748",
+    "0x101b230",
+    "0x101bf30",
+    "0x1020a6c",
+    "0x1021108",
+    "0x10212ec"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_HVFGTYCGAECGUJHOFSPMGUV2G4PTWWUYTJVAPNA",
+    "archive_member_or_map_unit": ".text          0x000000000101bc04       0x20 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_HVFGTYCGAECGUJHOFSPMGUV2G4PTWWUYTJVAPNA",
+      "ratio": 0.909,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101bc04       0x20 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01024440",
+   "analysis_address": "0x01024440",
+   "runtime_address": "0x01024c40",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 7,
+   "caller_count": 6,
+   "caller_objects": [
+    "FUN_01021ee0.c.obj",
+    "FUN_01022a84.c.obj",
+    "FUN_010237b0.c.obj",
+    "FUN_01023dec.c.obj",
+    "FUN_01025034.c.obj",
+    "mpsl_timeslot_distance_get.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021ee0",
+    "0x1022a84",
+    "0x1022ea8",
+    "0x10231c8",
+    "0x10237b0",
+    "0x1023dec",
+    "0x10243c0",
+    "0x1025034"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_XYQTP7YX2XFVREW5KFDH2NNPGRIPEHKIO2RURYI",
+    "archive_member_or_map_unit": ".text          0x000000000101c1bc       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_XYQTP7YX2XFVREW5KFDH2NNPGRIPEHKIO2RURYI",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101c1bc       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_0102445c",
+   "analysis_address": "0x0102445c",
+   "runtime_address": "0x01024c5c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_010225ac.c.obj",
+    "controller_timing_request_submit.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10225ac",
+    "0x1022f0c",
+    "0x1022f3c",
+    "0x1023d38"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_V6OT7EKSQC3XEJK5ZWNACQF7LLICCSE7X3C3ECY",
+    "archive_member_or_map_unit": ".text          0x000000000101c1d8       0x70 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_V6OT7EKSQC3XEJK5ZWNACQF7LLICCSE7X3C3ECY",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101c1d8       0x70 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_010245d8",
+   "analysis_address": "0x010245d8",
+   "runtime_address": "0x01024dd8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 6,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01021df0.c.obj",
+    "FUN_010225ac.c.obj",
+    "FUN_01022a84.c.obj",
+    "controller_timing_request_submit.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021df0",
+    "0x10225ac",
+    "0x1022a84",
+    "0x1022ea8",
+    "0x1022f3c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_PITJNQC6YSCEFAH23N5QRORZDKCSKOAUGBUS6GA",
+    "archive_member_or_map_unit": ".text          0x000000000101c354       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_PITJNQC6YSCEFAH23N5QRORZDKCSKOAUGBUS6GA",
+      "ratio": 0.944,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101c354       0x34 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01024c6c",
+   "analysis_address": "0x01024c6c",
+   "runtime_address": "0x0102546c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 4,
+   "caller_count": 3,
+   "caller_objects": [
+    "FUN_01021ee0.c.obj",
+    "FUN_01022a84.c.obj",
+    "FUN_01024ef0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021ee0",
+    "0x1022a84",
+    "0x1024ef0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_2ZDZA75WOMRNSQ6XL7IZWAQKYFFSRJOGBGKPTIQ",
+    "archive_member_or_map_unit": ".text          0x000000000101c9e8      0x1b0 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_2ZDZA75WOMRNSQ6XL7IZWAQKYFFSRJOGBGKPTIQ",
+      "ratio": 0.992,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101c9e8      0x1b0 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_0102524c",
+   "analysis_address": "0x0102524c",
+   "runtime_address": "0x01025a4c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 12,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01021ee0.c.obj",
+    "FUN_0102286c.c.obj",
+    "FUN_01022a84.c.obj",
+    "FUN_01023ea8.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021ee0",
+    "0x102286c",
+    "0x1022a84",
+    "0x1023ea8"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_TSYEIN5CZPQE3YK6VECZD5C2M4LMXKKH6O7LNAY",
+    "archive_member_or_map_unit": ".text          0x000000000101cfc8       0xf8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_TSYEIN5CZPQE3YK6VECZD5C2M4LMXKKH6O7LNAY",
+      "ratio": 0.994,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101cfc8       0xf8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_010256dc",
+   "analysis_address": "0x010256dc",
+   "runtime_address": "0x01025edc",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 35,
+   "caller_count": 23,
+   "caller_objects": [
+    "FUN_01021b04.c.obj",
+    "FUN_01021cec.c.obj",
+    "FUN_01021ee0.c.obj",
+    "FUN_01022a84.c.obj",
+    "FUN_010237b0.c.obj",
+    "FUN_01023ad8.c.obj",
+    "FUN_01023dec.c.obj",
+    "FUN_01023ea8.c.obj",
+    "FUN_0102411c.c.obj",
+    "FUN_01024524.c.obj",
+    "FUN_01024778.c.obj",
+    "FUN_01024e1c.c.obj",
+    "FUN_01024ef0.c.obj",
+    "FUN_010250d0.c.obj",
+    "FUN_010251ec.c.obj",
+    "FUN_0102521c.c.obj",
+    "FUN_0102581c.c.obj",
+    "FUN_01029d34.c.obj",
+    "FUN_01029d76.c.obj",
+    "FUN_01029e64.c.obj",
+    "FUN_0102a122.c.obj",
+    "mpsl_timeslot_distance_get.c.obj",
+    "sdc_timing_scale.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021b04",
+    "0x1021cec",
+    "0x1021ee0",
+    "0x1022a30",
+    "0x1022a84",
+    "0x10231c8",
+    "0x10237b0",
+    "0x1023ad8",
+    "0x1023d38",
+    "0x1023dec",
+    "0x1023e88",
+    "0x1023ea8",
+    "0x102411c",
+    "0x10243c0",
+    "0x1024524",
+    "0x1024678",
+    "0x1024778",
+    "0x1024c6c",
+    "0x1024e1c",
+    "0x1024ef0",
+    "0x10250d0",
+    "0x10251ec",
+    "0x102521c",
+    "0x102524c",
+    "0x10257e4",
+    "0x102581c",
+    "0x102583c",
+    "0x1025c44",
+    "0x1025c9c",
+    "0x1029d34",
+    "0x1029d76",
+    "0x1029e64",
+    "0x102a122"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_S2UAPMFVIQXDUOA6CV7GJMB33TYHEUH5D6LHO5Q",
+    "archive_member_or_map_unit": ".text          0x000000000101d458       0x58 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_S2UAPMFVIQXDUOA6CV7GJMB33TYHEUH5D6LHO5Q",
+      "ratio": 0.971,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d458       0x58 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_010257e4",
+   "analysis_address": "0x010257e4",
+   "runtime_address": "0x01025fe4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01008fd4.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1008fd4"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_W7ROFHNOSDKPIRUKDGIZZ5YR3MC3DAM2YLJOUIA",
+    "archive_member_or_map_unit": ".text          0x000000000101d560       0x38 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_W7ROFHNOSDKPIRUKDGIZZ5YR3MC3DAM2YLJOUIA",
+      "ratio": 0.957,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d560       0x38 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_0102590c",
+   "analysis_address": "0x0102590c",
+   "runtime_address": "0x0102610c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01010834.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1010834"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_525JLJ5JEQ6FEZGTSIW74UTOCUZ2F4YECMQ6KVQ",
+    "archive_member_or_map_unit": ".text          0x000000000101d688       0x8c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_525JLJ5JEQ6FEZGTSIW74UTOCUZ2F4YECMQ6KVQ",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d688       0x8c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025998",
+   "analysis_address": "0x01025998",
+   "runtime_address": "0x01026198",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 14,
+   "caller_count": 8,
+   "caller_objects": [
+    "FUN_0100b630.c.obj",
+    "FUN_0100e95c.c.obj",
+    "FUN_0100eaf0.c.obj",
+    "FUN_01026122.c.obj",
+    "controller_packet_payload_copy.c.obj",
+    "controller_packet_payload_extract.c.obj",
+    "controller_payload_copy_after_nine_byte_header.c.obj",
+    "sdc_buffer_accumulate.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100b630",
+    "0x100e06c",
+    "0x100e08c",
+    "0x100e164",
+    "0x100e410",
+    "0x100e65c",
+    "0x100e95c",
+    "0x100eaf0",
+    "0x102602e",
+    "0x102609e",
+    "0x1026122",
+    "0x1026c94",
+    "0x1026f32",
+    "0x1027c98"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_DQONLUECJTIEYFOFJXXAPJO4POIAJKJNKBGVN5A",
+    "archive_member_or_map_unit": ".text          0x000000000101d714       0xec /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_DQONLUECJTIEYFOFJXXAPJO4POIAJKJNKBGVN5A",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d714       0xec /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025a84",
+   "analysis_address": "0x01025a84",
+   "runtime_address": "0x01026284",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 12,
+   "caller_count": 12,
+   "caller_objects": [
+    "FUN_01008ddc.c.obj",
+    "FUN_01009668.c.obj",
+    "FUN_01009ea4.c.obj",
+    "FUN_0100cc20.c.obj",
+    "FUN_0100cff4.c.obj",
+    "FUN_0100d14c.c.obj",
+    "FUN_01013b4c.c.obj",
+    "FUN_010144e4.c.obj",
+    "FUN_0101d404.c.obj",
+    "FUN_0102023c.c.obj",
+    "controller_status_defaults_reset.c.obj",
+    "sdc_packet_header_decode.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1008ddc",
+    "0x1009668",
+    "0x1009ea4",
+    "0x100bc1c",
+    "0x100cc20",
+    "0x100cff4",
+    "0x100d14c",
+    "0x1012178",
+    "0x10121e4",
+    "0x1013b4c",
+    "0x10144e4",
+    "0x1019f9c",
+    "0x101ae9c",
+    "0x101d404",
+    "0x102023c",
+    "0x102693a"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_VSILKYHVQ5DVF6LG5MG267DQVA3A2XZQ6FSCLXA",
+    "archive_member_or_map_unit": ".text          0x000000000101d800       0xd8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_VSILKYHVQ5DVF6LG5MG267DQVA3A2XZQ6FSCLXA",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d800       0xd8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025c44",
+   "analysis_address": "0x01025c44",
+   "runtime_address": "0x01026444",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 4,
+   "caller_count": 3,
+   "caller_objects": [
+    "FUN_0100b180.c.obj",
+    "FUN_0101132c.c.obj",
+    "FUN_010171c8.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100b180",
+    "0x101132c",
+    "0x10171c8"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_GNQQQFEWM5SWEGVB5JHP7HYAZGI4CDQXSGHR4SQ",
+    "archive_member_or_map_unit": ".text          0x000000000101d9c0       0x58 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_GNQQQFEWM5SWEGVB5JHP7HYAZGI4CDQXSGHR4SQ",
+      "ratio": 0.973,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d9c0       0x58 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025c9c",
+   "analysis_address": "0x01025c9c",
+   "runtime_address": "0x0102649c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 6,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_010208f0.c.obj",
+    "FUN_01021108.c.obj",
+    "FUN_010212ec.c.obj",
+    "controller_radio_transition_schedule.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10208f0",
+    "0x1020a6c",
+    "0x1021108",
+    "0x10212ec"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_H2AKPOL4Q6GKGQJVBUBWLPO3RBNKXXQE2HSOELQ",
+    "archive_member_or_map_unit": ".text          0x000000000101da18       0x2c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_H2AKPOL4Q6GKGQJVBUBWLPO3RBNKXXQE2HSOELQ",
+      "ratio": 0.944,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101da18       0x2c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025cc8",
+   "analysis_address": "0x01025cc8",
+   "runtime_address": "0x010264c8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_llcp_note_unsupported_pdu.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1020500"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_24DWUIEE2POS3GYSEVA4IAL4G7TGCCCJXT6D5AA",
+    "archive_member_or_map_unit": ".text          0x000000000101da44       0x28 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_24DWUIEE2POS3GYSEVA4IAL4G7TGCCCJXT6D5AA",
+      "ratio": 0.941,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101da44       0x28 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025d0c",
+   "analysis_address": "0x01025d0c",
+   "runtime_address": "0x0102650c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_llcp_note_unsupported_pdu.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1020500"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ",
+    "archive_member_or_map_unit": ".text          0x000000000101da88       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ",
+      "ratio": 0.923,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101da88       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "FUN_01025d38",
+   "analysis_address": "0x01025d38",
+   "runtime_address": "0x01026538",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100823c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100823c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "__udivmoddi4",
+    "unit": ".text          0x000000000101dab4      0x29c /Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main/nofp/libgcc.a(_udivmoddi4.o)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102665c",
+   "analysis_address": "0x0102665c",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010323cc.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x0102665c remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102693a",
+   "analysis_address": "0x0102693a",
+   "runtime_address": "0x0102713a",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_0102759e.c.obj",
+    "FUN_010275d2.c.obj",
+    "FUN_010276b2.c.obj",
+    "FUN_010276e6.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102759e",
+    "0x10275d2",
+    "0x1027606",
+    "0x10276b2",
+    "0x10276e6"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_A7PVZLRTORLFMETW3GOBE4DG32WTH46LP2SW5QQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010269ce",
+   "analysis_address": "0x010269ce",
+   "runtime_address": "0x010271ce",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100e95c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100e95c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_XCF2HHS4DO2JW2ILCF4RJW66HXXYOROBK7NUPMY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026a7e",
+   "analysis_address": "0x01026a7e",
+   "runtime_address": "0x0102727e",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_0102763a.c.obj",
+    "FUN_01027662.c.obj",
+    "FUN_0102771a.c.obj",
+    "FUN_01027742.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102693a",
+    "0x102763a",
+    "0x1027662",
+    "0x102768a",
+    "0x102771a",
+    "0x1027742"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_E56LW5YVGUG6HP2OML5URHI7K2KCWX5ULQKQOKY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026acc",
+   "analysis_address": "0x01026acc",
+   "runtime_address": "0x010272cc",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100e95c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100e95c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_TDLIKQLE652KPCFAMYL33G6BKGPHRLYLWNEOTHQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026b58",
+   "analysis_address": "0x01026b58",
+   "runtime_address": "0x01027358",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100ac98.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100ac98"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_47GVMLF7NXDJBYC2TPU2ES3ZL6CP4GIPWKYYWBI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026bfe",
+   "analysis_address": "0x01026bfe",
+   "runtime_address": "0x010273fe",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100b6b4.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100b6b4"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_UOYZDE3MDLGPDL5S5WKUFLPYH4DJIMF3BJSBDYA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026d16",
+   "analysis_address": "0x01026d16",
+   "runtime_address": "0x01027516",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01015ecc.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013650",
+    "0x1015ecc"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_B62EJKCCJ4JFC5I4BFTUJG7GNOKGWQ4KKFBS6RI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01026dae",
+   "analysis_address": "0x01026dae",
+   "runtime_address": "0x010275ae",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100ac98.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100ac98"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_4WKKRRMMNLQOCTRGC2MVIREG5QOCFUEL67TBUQY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027044",
+   "analysis_address": "0x01027044",
+   "runtime_address": "0x01027844",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100eaf0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100eaf0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_RZ3AO5KZJYCPFG5YW4CBZQF5SRGN3BPTEGBY47I",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010270e8",
+   "analysis_address": "0x010270e8",
+   "runtime_address": "0x010278e8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100eaf0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100eaf0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_Q4EW623JZHY67RB7U4Z2L2SMI5ENWIDFL23JZHQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027302",
+   "analysis_address": "0x01027302",
+   "runtime_address": "0x01027b02",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01009f58.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1009f58"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_JTNP7UFMKYWSFCHJEA5IASO3QVW3HK4YV6YOJYQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010273c6",
+   "analysis_address": "0x010273c6",
+   "runtime_address": "0x01027bc6",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0100a6f0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100a048",
+    "0x100a6f0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_B627VJPECYREV5OY4VJ652ISBA4XGPKVOUJ747A",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027846",
+   "analysis_address": "0x01027846",
+   "runtime_address": "0x01028046",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01008a58.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1008a58"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_WDNTHBFS7DQM3AR7WDCR7ZEICFH5ZM5PJ35BRPY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027a4a",
+   "analysis_address": "0x01027a4a",
+   "runtime_address": "0x0102824a",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102185c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102185c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_EOUZIDBP3HL2GT63FUCLAQVGISX2MLIV4MK5FZY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027a94",
+   "analysis_address": "0x01027a94",
+   "runtime_address": "0x01028294",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01021800.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1021790",
+    "0x1021800",
+    "0x1029c3a"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_5RQ4FZRNKDUYW7D36K54TV4FI3NLNURNJPSLJOY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027ed4",
+   "analysis_address": "0x01027ed4",
+   "runtime_address": "0x010286d4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101132c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101132c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_VPXIA5P4C72CY3ME4ZVXBADOKEG5S4C7Z7QZZFA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": false,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01027ef2",
+   "analysis_address": "0x01027ef2",
+   "runtime_address": "0x010286f2",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101132c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101132c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_VPXIA5P4C72CY3ME4ZVXBADOKEG5S4C7Z7QZZFA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": false,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010280be",
+   "analysis_address": "0x010280be",
+   "runtime_address": "0x010288be",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01012438.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012438"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_RIJIFYF46ZRKFDPA3GKV7WCH2VGEUEP6MVN4JFI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": false,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010280d8",
+   "analysis_address": "0x010280d8",
+   "runtime_address": "0x010288d8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01012438.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012438"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_RIJIFYF46ZRKFDPA3GKV7WCH2VGEUEP6MVN4JFI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": false,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01028256",
+   "analysis_address": "0x01028256",
+   "runtime_address": "0x01028a56",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101e6ac.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101e6ac"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_DP474BSWQ6W7M27XE2M7XMGWSDEQ3KL66B2SR5Q",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102894a",
+   "analysis_address": "0x0102894a",
+   "runtime_address": "0x0102914a",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "thunk_FUN_0102894a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_FQNF6KMIBMQDKYS2BJP6ZB7BLEET53WUIWQK6FA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010292ec",
+   "analysis_address": "0x010292ec",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010267fe.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x010292ec remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102941c",
+   "analysis_address": "0x0102941c",
+   "runtime_address": "0x01029c1c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01008d7c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1008d7c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_J2SUO2NMPPNDQZAGB2FE5TAXJFMJ5FZXKAPNVFQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102961a",
+   "analysis_address": "0x0102961a",
+   "runtime_address": "0x01029e1a",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010187e0.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10187e0"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_JU742LCDLL7PZRKE4HZMDATVAWDO5RTNLQEGJHI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102971e",
+   "analysis_address": "0x0102971e",
+   "runtime_address": "0x01029f1e",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f994.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f994",
+    "0x10297b4"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_3AWAQCNCZH4MEGKKMZLZXM2OFWJS4TFUCWUEKRI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010297b4",
+   "analysis_address": "0x010297b4",
+   "runtime_address": "0x01029fb4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f994.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f994"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_RRC5YHH6YM3SHNGPFUCE3YX5LDRJC7YUGPWWYHQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01029882",
+   "analysis_address": "0x01029882",
+   "runtime_address": "0x0102a082",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f994.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1013650",
+    "0x101c6d0",
+    "0x101f994"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_6NVBTUP3F2K4CR6EQ2CJTT2FVJIBKKWMISPRCSI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010298a8",
+   "analysis_address": "0x010298a8",
+   "runtime_address": "0x0102a0a8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101d404.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101d404"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_5J2UTKCNVYPTFCXPLA7CPFQ4IMONW6EIFWRNNZI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01029b38",
+   "analysis_address": "0x01029b38",
+   "runtime_address": "0x0102a338",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0101f440.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101f440",
+    "0x1029b4e",
+    "0x1029b88"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_2RDISJXERNPMBLAROCL4JWHLKVABCMPSEI3SYLQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102a1e0",
+   "analysis_address": "0x0102a1e0",
+   "runtime_address": null,
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01013e98.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private controller entry at 0x0102a1e0 remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102a244",
+   "analysis_address": "0x0102a244",
+   "runtime_address": "0x0102aa44",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "get_ept_slot_with_name.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x103510c",
+    "0x1039f4c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "strcmp",
+    "unit": ".text          0x0000000001021b42       0x14 /Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/../../picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a(strcmp.S.o)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102d25c",
+   "analysis_address": "0x0102d25c",
+   "runtime_address": null,
+   "category": "interior_or_anomalous_identity",
+   "resolution_kind": "anomalous_non_executable_target",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0103b0e8.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "no_valid_provider",
+    "evidence": "conditional path branches through literal 0x0103c8a1 into confirmed IPC log-string data; no executable owner or relocation is known"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102eb2c",
+   "analysis_address": "0x0102eb2c",
+   "runtime_address": "0x0102f32c",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 8,
+   "caller_count": 6,
+   "caller_objects": [
+    "FUN_01032c28.c.obj",
+    "FUN_010333b4.c.obj",
+    "FUN_01033888.c.obj",
+    "FUN_0103499c.c.obj",
+    "FUN_01034d8c.c.obj",
+    "FUN_01034f24.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1031078",
+    "0x1032c28",
+    "0x10333e4",
+    "0x1033888",
+    "0x103499c",
+    "0x1034d8c",
+    "0x1034f24"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "arch_irq_enable",
+    "unit": "0x000000000102286c       0x1c zephyr/arch/arch/arm/core/aarch32/libarch__arm__core__aarch32.a(irq_manage.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102fa84",
+   "analysis_address": "0x0102fa84",
+   "runtime_address": "0x01030284",
+   "category": "interior_or_anomalous_identity",
+   "resolution_kind": "blocked_c_unexpressible",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0103b53a.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x103b53a"
+   ],
+   "provider": {
+    "status": "no_valid_provider",
+    "evidence": "entry performs a BASEPRI reset followed by SVC 2; its exception-mediated continuation cannot be represented as an ordinary C call/return body"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0102fbac",
+   "analysis_address": "0x0102fbac",
+   "runtime_address": "0x010303ac",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01031928.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1031928"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "bt_hci_driver_register",
+    "unit": "0x00000000010231e4       0x24 zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(hci_raw.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103175c",
+   "analysis_address": "0x0103175c",
+   "runtime_address": "0x01031f5c",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_01037f8c.c.obj",
+    "FUN_0103814c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1037f8c",
+    "0x103814c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "sys_clock_set_timeout",
+    "unit": "0x0000000001024524       0x64 zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "component": "zephyr_nrf_rtc_timer"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_010353ec",
+   "analysis_address": "0x010353ec",
+   "runtime_address": "0x01035bec",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 3,
+   "caller_count": 3,
+   "caller_objects": [
+    "FUN_010355bc.c.obj",
+    "FUN_0103566c.c.obj",
+    "FUN_0103afac.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10355bc",
+    "0x103566c",
+    "0x103afac"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "virtqueue_add_consumed_buffer",
+    "unit": "0x000000000102607c       0x38 modules/open-amp/open-amp/lib/libopen_amp.a(virtqueue.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_01038fa4",
+   "analysis_address": "0x01038fa4",
+   "runtime_address": "0x010397a4",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "thunk_FUN_01038fa4.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1038da0"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "ocrypto_mod_p256_from_bytes",
+    "unit": "0x0000000001027e8c       0x34 /Users/freedomcoder/ncs251/nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/liboberon_3.0.13.a(ocrypto_mod_p256.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103ab0e",
+   "analysis_address": "0x0103ab0e",
+   "runtime_address": "0x0103b30e",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_010355bc.c.obj",
+    "FUN_0103576c.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10355bc",
+    "0x103576c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "metal_io_block_write",
+    "unit": "0x00000000010297ec       0x74 modules/libmetal/libmetal/lib/libmetal.a(io.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103ac50",
+   "analysis_address": "0x0103ac50",
+   "runtime_address": "0x0103b450",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 3,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_0103566c.c.obj",
+    "FUN_0103aff2.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x103566c",
+    "0x103aff2"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "virtqueue_get_available_buffer",
+    "unit": "0x0000000001029ae0       0x48 modules/open-amp/open-amp/lib/libopen_amp.a(virtqueue.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b1e2",
+   "analysis_address": "0x0103b1e2",
+   "runtime_address": "0x0103b9e2",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01036774.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1036774"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "z_queue_node_peek",
+    "unit": "0x000000000102a3e0       0x18 zephyr/kernel/libkernel.a(queue.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b210",
+   "analysis_address": "0x0103b210",
+   "runtime_address": "0x0103ba10",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102ff94.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102ff94",
+    "0x103a44c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "k_queue_prepend",
+    "unit": "0x000000000102a40e       0x14 zephyr/kernel/libkernel.a(queue.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b304",
+   "analysis_address": "0x0103b304",
+   "runtime_address": "0x0103bb04",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01035d18.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1035d18",
+    "0x103a44c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "sys_timepoint_calc",
+    "unit": "0x000000000102a6ee       0x48 zephyr/kernel/libkernel.a(timeout.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b34c",
+   "analysis_address": "0x0103b34c",
+   "runtime_address": "0x0103bb4c",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01035d18.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1035d18",
+    "0x103a44c"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "sys_timepoint_timeout",
+    "unit": "0x000000000102a736       0x42 zephyr/kernel/libkernel.a(timeout.c.obj)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b5c4",
+   "analysis_address": "0x0103b5c4",
+   "runtime_address": "0x0103bdc4",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039190.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1039190"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "strnlen",
+    "unit": ".text.strnlen  0x000000000102aad0       0x18 /Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/../../picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a(libc_string_strnlen.c.o)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b614",
+   "analysis_address": "0x0103b614",
+   "runtime_address": "0x0103be14",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 13,
+   "caller_count": 11,
+   "caller_objects": [
+    "FUN_0102a698.c.obj",
+    "FUN_0102a6e0.c.obj",
+    "FUN_0102bbec.c.obj",
+    "FUN_0102bfe4.c.obj",
+    "FUN_0102edac.c.obj",
+    "FUN_010323cc.c.obj",
+    "FUN_01033660.c.obj",
+    "FUN_01033a60.c.obj",
+    "FUN_0103a2cc.c.obj",
+    "FUN_0103a2f8.c.obj",
+    "FUN_0103b53a.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102a698",
+    "0x102a6e0",
+    "0x102bbec",
+    "0x102bfe4",
+    "0x102edac",
+    "0x10323cc",
+    "0x1033660",
+    "0x1033a60",
+    "0x1036198",
+    "0x10362d0",
+    "0x1038f34",
+    "0x103a2cc",
+    "0x103a2f8",
+    "0x103a478",
+    "0x103b53a"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "__aeabi_memcpy4",
+    "unit": ".text.memcpy   0x000000000102aa42       0x1a /Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/../../picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a(memcpy.c.o)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "FUN_0103b62e",
+   "analysis_address": "0x0103b62e",
+   "runtime_address": "0x0103be2e",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 17,
+   "caller_count": 15,
+   "caller_objects": [
+    "FUN_0102a394.c.obj",
+    "FUN_0102b15c.c.obj",
+    "FUN_0102b2ac.c.obj",
+    "FUN_0102c5ec.c.obj",
+    "FUN_0102cbd8.c.obj",
+    "FUN_0102edac.c.obj",
+    "FUN_0102fa4c.c.obj",
+    "FUN_01030bac.c.obj",
+    "FUN_01033354.c.obj",
+    "FUN_010333b4.c.obj",
+    "FUN_0103499c.c.obj",
+    "FUN_01035830.c.obj",
+    "FUN_01039138.c.obj",
+    "FUN_0103963c.c.obj",
+    "FUN_0103a076.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x102a394",
+    "0x102a720",
+    "0x102b15c",
+    "0x102b2ac",
+    "0x102c5ec",
+    "0x102cbd8",
+    "0x102edac",
+    "0x102fa4c",
+    "0x1030bac",
+    "0x1033354",
+    "0x10333e4",
+    "0x103499c",
+    "0x1035830",
+    "0x1036bec",
+    "0x1038f34",
+    "0x1039138",
+    "0x103963c",
+    "0x1039b62",
+    "0x103b5a4"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "memset",
+    "unit": ".text.memset   0x000000000102aa5c       0x10 /Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/../lib/gcc/../../picolibc/arm-zephyr-eabi/lib/thumb/v8-m.main/nofp/libc.a(memset.c.o)",
+    "component": "net_sdk_or_glue"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "alloc_chunk",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01039874",
+    "analysis_address": "0x01039874",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "assert_panic",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01039bb0",
+    "analysis_address": "0x01039bb0",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "assert_report",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 6,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "assert_print",
+    "analysis_address": "0x01039bbe",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "atomic_inc",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103a294",
+    "analysis_address": "0x0103a294",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "bytes_to_chunksz",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_010397c0",
+    "analysis_address": "0x010397c0",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "chunk_size",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01039768",
+    "analysis_address": "0x01039768",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_connection_config_get",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01028656.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_010282a6",
+    "analysis_address": "0x010282a6",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_default_bounds_build",
+   "analysis_address": "0x010282fc",
+   "runtime_address": "0x01028afc",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01028656.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1028656",
+    "0x1028b7c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_SJQK3XCDMHZEHLRZ5PBTRM4CNS5P2IXVJLCP4OA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_deferred_event_raise",
+   "analysis_address": "0x0102583c",
+   "runtime_address": "0x0102603c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 7,
+   "caller_count": 7,
+   "caller_objects": [
+    "FUN_0100ec40.c.obj",
+    "FUN_01022a84.c.obj",
+    "FUN_01023ea8.c.obj",
+    "controller_work_enqueue_packet_result.c.obj",
+    "controller_work_enqueue_state4.c.obj",
+    "controller_work_update_or_enqueue.c.obj",
+    "sdc_work_submit.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100ec40",
+    "0x100ef48",
+    "0x100ef88",
+    "0x100efc8",
+    "0x100f2d0",
+    "0x1022a84",
+    "0x10231c8",
+    "0x1023ea8"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_GURZ3AH6X65RGSKYMYNWZVP6HM56LA5MRAQWT6Q",
+    "archive_member_or_map_unit": ".text          0x000000000101d5b8       0x38 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_GURZ3AH6X65RGSKYMYNWZVP6HM56LA5MRAQWT6Q",
+      "ratio": 0.957,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101d5b8       0x38 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "controller_entry_links_release",
+   "analysis_address": "0x0101df84",
+   "runtime_address": "0x0101e784",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_handle_update_state_apply.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10294a2"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_Y63OUE6TAGQSGRCWADOMH3US5WOUILUZMPZTGBI",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_handle_lookup",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01028656.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0100cfc0",
+    "analysis_address": "0x0100cfc0",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_object_get",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01028656.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_010282a2",
+    "analysis_address": "0x010282a2",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_radio_time_mode2_to_mode2",
+   "analysis_address": "0x01021634",
+   "runtime_address": "0x01021e34",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_radio_transition_apply.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101ba58"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_2EA2WBXQOKCTPMK7YNDR6QM6MTGHJCDTPZEXNNA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.909091,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_timing_defaults_apply",
+   "analysis_address": "0x0101e1e4",
+   "runtime_address": "0x0101e9e4",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_timing_state_reset.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100d5c8",
+    "0x101e274"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_FHGZFWEAJHQUMCWG4E5CUD67QD7B6JGXN3SSXDY",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "controller_transition_pending_check",
+   "analysis_address": "0x01025cf0",
+   "runtime_address": "0x010264f0",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_radio_transition_apply.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101ba58"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ",
+    "archive_member_or_map_unit": ".text          0x000000000101da88       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.97,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ",
+      "ratio": 0.923,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101da88       0x1c /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "free_list_add",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01039972",
+    "analysis_address": "0x01039972",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "ipc_static_vrings_shm_size",
+   "analysis_address": "0x0103a056",
+   "runtime_address": "0x0103a856",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "ipc_rpmsg_static_vrings_open.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "selected_public_sdk_api",
+    "symbol": "ipc_static_vrings_shm_size",
+    "unit": "zephyr/subsys/ipc/ipc_service/backends/ipc_static_vrings.c"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "k_sem_give",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036824",
+    "analysis_address": "0x01036824",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "k_timer_start",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01038448",
+    "analysis_address": "0x01038448",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "k_timer_stop",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "selected_public_sdk_api",
+    "symbol": "z_impl_k_timer_stop",
+    "unit": "zephyr/kernel/timer.c"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "log_process",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0102df2c",
+    "analysis_address": "0x0102df2c",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "net_buf_destroy_from_pool",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "k_queue_prepend",
+    "analysis_address": "0x0103b210"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "net_buf_free_get",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 2,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036774",
+    "analysis_address": "0x01036774",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "prepare_thread_swap",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01037438.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01037398",
+    "analysis_address": "0x01037398",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "queue_insert",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0103b1fa.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036660",
+    "analysis_address": "0x01036660",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "ready_remove",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01037670.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103735c",
+    "analysis_address": "0x0103735c",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "rtc_compare_event_clear",
+   "analysis_address": "0x0103a6ae",
+   "runtime_address": "0x0103aeae",
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010313ec.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x10313ec"
+   ],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "event_clear",
+    "unit": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)",
+    "component": "zephyr_nrf_rtc_timer"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "schedule_node_tail_get",
+   "analysis_address": "0x0101dda8",
+   "runtime_address": "0x0101e5a8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "controller_timing_snapshot_build.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x101a38c"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_WVUR7FIOL24MFCJHZIBLTPA7O44X57VSRLSLAPQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.909091,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "scheduler_reschedule_restore",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0103b2b4.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "manifest_approved_upstream_owner",
+    "symbol": "z_reschedule_irqlock",
+    "analysis_address": "0x0103b29c"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "sdc_byte_lock_release",
+   "analysis_address": "0x0102a208",
+   "runtime_address": "0x0102aa08",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_ecb_run_blocking.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100a7e8"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_OWJYSTADR5I36MIHWNPICVB7CMCWNSFIZPFXQ2Q",
+    "archive_member_or_map_unit": ".text          0x0000000001021b06       0x12 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_OWJYSTADR5I36MIHWNPICVB7CMCWNSFIZPFXQ2Q",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x0000000001021b06       0x12 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "sdc_byte_lock_try_acquire",
+   "analysis_address": "0x0102a1ea",
+   "runtime_address": "0x0102a9ea",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_ecb_run_blocking.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x100a7e8"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_AR22FPVUFSZMVYMQBBXG7EEZNA2HPS2RLAKRPBA",
+    "archive_member_or_map_unit": ".text          0x0000000001021ae8       0x1e /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_AR22FPVUFSZMVYMQBBXG7EEZNA2HPS2RLAKRPBA",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x0000000001021ae8       0x1e /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "sdc_conn_event_process",
+   "analysis_address": "0x01014b18",
+   "runtime_address": "0x01015318",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_01015ecc.c.obj",
+    "controller_radio_event1_dispatch.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "uncatalogued_private_controller_entry",
+    "family": "softdevice_controller",
+    "archive_symbol": null,
+    "safe_to_auto_resolve": false,
+    "evidence": "private SDC connection-event entry at 0x01014b18 remains report-only"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "sdc_conn_recovery_state_restore",
+   "analysis_address": "0x0101618c",
+   "runtime_address": "0x0101698c",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_conn_event_timing_prepare.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012f18"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_HT64RIVISXSWFJE3LL26YHKQRTRRXKVEDBUUUOQ",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "approximate",
+    "score": 0.967742,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "sdc_conn_recovery_window_update",
+   "analysis_address": "0x0100d6e8",
+   "runtime_address": "0x0100dee8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_sdc_report_only",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "sdc_conn_event_timing_prepare.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012f18"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "softdevice_controller",
+    "archive_symbol": "sym_OTIPANP3Q7VLW2BQGLZZUUDNR5HBSAYXJSFAKKA",
+    "archive_member": "libsoftdevice_controller_s140_debug_soft__obfuscated.elf",
+    "match_kind": "exact",
+    "score": 1.0,
+    "unique_identity": true,
+    "safe_to_auto_resolve": false
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "sdc_conn_window_admit",
+   "analysis_address": "0x010231c8",
+   "runtime_address": "0x010239c8",
+   "category": "private_sdc_mpsl_report_only",
+   "resolution_kind": "private_obfuscated_archive_identity",
+   "link_reference_count": 16,
+   "caller_count": 14,
+   "caller_objects": [
+    "FUN_01012c84.c.obj",
+    "FUN_01013b4c.c.obj",
+    "FUN_0101ab20.c.obj",
+    "FUN_0101aee0.c.obj",
+    "FUN_0101b088.c.obj",
+    "FUN_0101b230.c.obj",
+    "FUN_0101ba58.c.obj",
+    "FUN_0101bc3c.c.obj",
+    "FUN_0101bdd4.c.obj",
+    "FUN_01029d76.c.obj",
+    "FUN_01029e64.c.obj",
+    "FUN_0102a122.c.obj",
+    "sdc_conn_event_timing_prepare.c.obj",
+    "sdc_ext_adv_reschedule.c.obj"
+   ],
+   "refgraph_callers": [
+    "0x1012c84",
+    "0x1012f18",
+    "0x1013b4c",
+    "0x10140ec",
+    "0x101ab20",
+    "0x101aee0",
+    "0x101b088",
+    "0x101b230",
+    "0x101ba58",
+    "0x101bc3c",
+    "0x101bdd4",
+    "0x1029d76",
+    "0x1029e64",
+    "0x102a122"
+   ],
+   "provider": {
+    "status": "archive_identity_report_only",
+    "family": "mpsl",
+    "archive_symbol": "sym_NFDFVOR5BUFND4TNTGYIYR4ARXJRXWSQ4PVFUKY",
+    "archive_member_or_map_unit": ".text          0x000000000101af44      0x5e8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)",
+    "signature_confidence": 0.99,
+    "signature_evidence": [
+     {
+      "source": "recon/ownership/net_function_ownership.json",
+      "type": "net_signature_match",
+      "symbol": "sym_NFDFVOR5BUFND4TNTGYIYR4ARXJRXWSQ4PVFUKY",
+      "ratio": 1.0,
+      "threshold": 0.9,
+      "provenance": ".text          0x000000000101af44      0x5e8 /Users/freedomcoder/ncs251/nrfxlib/mpsl/lib/cortex-m33+nodsp/soft-float/libmpsl.a(libmpsl_debug_soft__obfuscated.elf)"
+     }
+    ],
+    "per_va_unique_archive_identity_proven": false,
+    "member_selection_state_closure_proven": false,
+    "safe_to_auto_resolve": false,
+    "manifest_exclusion_conflict": true,
+    "recommended_disposition": "retain_or_restore_report_only"
+   },
+   "manifest_policy_conflict": true
+  },
+  {
+   "symbol": "set_chunk_used",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01039774",
+    "analysis_address": "0x01039774",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_lock",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01035e1c.c.obj",
+    "FUN_010372b4.c.obj",
+    "FUN_01037438.c.obj",
+    "FUN_01037670.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036144",
+    "analysis_address": "0x01036144",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_lock_acquire",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036144",
+    "analysis_address": "0x01036144",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_lock_valid",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103610c",
+    "analysis_address": "0x0103610c",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_unlock",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01035e1c.c.obj",
+    "FUN_010372b4.c.obj",
+    "FUN_01037438.c.obj",
+    "FUN_01037670.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036128",
+    "analysis_address": "0x01036128",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_unlock_valid",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102e140.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036128",
+    "analysis_address": "0x01036128",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spin_validate",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 4,
+   "caller_count": 4,
+   "caller_objects": [
+    "FUN_01035e1c.c.obj",
+    "FUN_010372b4.c.obj",
+    "FUN_01037438.c.obj",
+    "FUN_01037670.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103610c",
+    "analysis_address": "0x0103610c",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spinlock_acquire",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036144",
+    "analysis_address": "0x01036144",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spinlock_release",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 3,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036128",
+    "analysis_address": "0x01036128",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "spinlock_validate",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_0102fdd0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103610c",
+    "analysis_address": "0x0103610c",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "split_chunks",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039a7a.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_010398e8",
+    "analysis_address": "0x010398e8",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "swap_current",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01037438.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036f24",
+    "analysis_address": "0x01036f24",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "thread_can_swap",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01037438.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036e90",
+    "analysis_address": "0x01036e90",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "trace_sched_unlock",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010372b4.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_0103b2b4",
+    "analysis_address": "0x0103b2b4",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "update_cache",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 2,
+   "caller_count": 2,
+   "caller_objects": [
+    "FUN_010372b4.c.obj",
+    "FUN_01037670.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01036f74",
+    "analysis_address": "0x01036f74",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "z_except_reason",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "stock_provider_requires_call_identity_integration",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_01039bb0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "selected_public_sdk_api",
+    "symbol": "z_except_reason",
+    "unit": "zephyr/arch/arm/core/aarch32/fatal.c"
+   },
+   "manifest_policy_conflict": false
+  },
+  {
+   "symbol": "z_heap_aligned_alloc",
+   "analysis_address": null,
+   "runtime_address": null,
+   "category": "stock_sdk_or_glue",
+   "resolution_kind": "existing_readable_alias_not_linked",
+   "link_reference_count": 1,
+   "caller_count": 1,
+   "caller_objects": [
+    "FUN_010389a0.c.obj"
+   ],
+   "refgraph_callers": [],
+   "provider": {
+    "status": "existing_reviewed_alias",
+    "symbol": "FUN_01038958",
+    "analysis_address": "0x01038958",
+    "linker_fragment": "recon/symbols/g1_net_readable_aliases.ld"
+   },
+   "manifest_policy_conflict": false
+  }
+ ]
+}
