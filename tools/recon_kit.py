@@ -23,6 +23,14 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    0x00076bc0: 0x06,  # __sinit_lock_release; literal starts at 0x76bc8
+    0x00077b24: 0x0e,  # strtol tail wrapper; literal starts at 0x77b34
+    0x00077b38: 0xe0,  # _strtoul_r; ctype literal starts at 0x77c18
+    0x00077c4c: 0x26,  # _vsprintf_r; FILE flags literal starts at 0x77c74
+    0x00077c8c: 0x98,  # __swbuf_r; std-stream literals start at 0x77d24
+    0x00077d30: 0x20,  # _write_r; errno pointer literal starts at 0x77d50
+    0x0007e12a: 0x64,  # sys_heap_alloc; shared return ends at 0x7e18e
+    0x0007ef56: 0x18,  # audio_hw_lock_release; next entry at 0x7ef6e
     # Catalog stops at the shared success island; include MOVS/BX LR.
     0x00085316: 0x62,
     # Independently callable SDK/application entries missed by the Ghidra

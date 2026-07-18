@@ -382,6 +382,14 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    ("app", 0x00076bc0): 0x06,
+    ("app", 0x00077b24): 0x0e,
+    ("app", 0x00077b38): 0xe0,
+    ("app", 0x00077c4c): 0x26,
+    ("app", 0x00077c8c): 0x98,
+    ("app", 0x00077d30): 0x20,
+    ("app", 0x0007e12a): 0x64,
+    ("app", 0x0007ef56): 0x18,
     # nrfx_twim xfer_completeness_check includes its shared success return.
     ("app", 0x00085316): 0x62,
     # CINSTRDAT get switch owns fall-through stores through POP at 0x6671a;
@@ -18314,6 +18322,209 @@ REVIEWED_ORACLE_CASES[("app", 0x000667e0)] = [
 ]
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x000667e0)] = [
     [(0x5002b100, 1, 1)],
+]
+
+
+def _app_strtoul_case(text, base, with_end=True):
+    reent = emu.SCRATCH + 0x8400
+    source = emu.SCRATCH + 0x8500
+    end = emu.SCRATCH + 0x8600
+    return (
+        {0: reent, 1: source, 2: end if with_end else 0, 3: base},
+        [(reent, bytes(8)), (source, text + b"\0"), (end, bytes(4)),
+         (0x000f8a6b + ord(" "), b"\x08")],
+        {},
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00077b38)] = 3
+REVIEWED_ORACLE_CASES[("app", 0x00077b38)] = [
+    _app_strtoul_case(b"", 10),
+    _app_strtoul_case(b"123z", 10),
+    _app_strtoul_case(b"  -42", 10),
+    _app_strtoul_case(b"0x1f!", 0),
+    _app_strtoul_case(b"777", 8, with_end=False),
+    _app_strtoul_case(b"42949672960", 10),
+]
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00076bc0)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00076bc0)] = {0x00051134: 1}
+REVIEWED_ORACLE_CASES[("app", 0x00076bc0)] = [({}, [], {})]
+
+
+def _app_strtol_wrapper_case(base):
+    text = emu.SCRATCH + 0x8680
+    end = emu.SCRATCH + 0x86c0
+    return ({0: text, 1: end, 2: base},
+            [(text, b"123\0"), (end, bytes(4))], {0: {0: 123}})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00077b24)] = 2
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00077b24)] = {0x00077a28: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00077b24)] = [
+    _app_strtol_wrapper_case(0),
+    _app_strtol_wrapper_case(10),
+]
+
+
+def _app_vsprintf_case():
+    reent = emu.SCRATCH + 0x8700
+    output = emu.SCRATCH + 0x8800
+    fmt = emu.SCRATCH + 0x8900
+    arguments = emu.SCRATCH + 0x8a00
+    return (
+        {0: reent, 1: output, 2: fmt, 3: arguments},
+        [(reent, bytes(0x20)), (output, bytes(0x40)),
+         (fmt, b"%u\0"), (arguments, bytes(0x20))],
+        {0: {0: 7}},
+        {0: [(1, 0, (output + 3).to_bytes(4, "little"), 0x00078d90)]},
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00077c4c)] = 4
+REVIEWED_STACK_POINTER_CALLS[("app", 0x00077c4c)] = {0: {1}}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00077c4c)] = {0x00078d90: 4}
+REVIEWED_ORACLE_CASES[("app", 0x00077c4c)] = [_app_vsprintf_case()]
+
+
+def _app_swbuf_case(kind):
+    reent = emu.SCRATCH + 0x9100
+    file = emu.SCRATCH + 0x9200
+    buffer = emu.SCRATCH + 0x9300
+    reent_image = bytearray(0x20)
+    file_image = bytearray(0x20)
+    flags = 8
+    used = 0
+    size = 4
+    character = ord("A")
+    oracles = {}
+    file_arg = file
+
+    reent_image[0x18:0x1c] = (0 if kind == "init" else 1).to_bytes(4, "little")
+    reent_image[4:8] = file.to_bytes(4, "little")
+    if kind == "standard":
+        file_arg = 0x0009871c
+    if kind in ("setup-ok", "setup-fail"):
+        flags = 0
+        oracles[0] = {0: 1 if kind == "setup-fail" else 0}
+    elif kind in ("full-ok", "full-fail"):
+        used = size
+        oracles[0] = {0: 1 if kind == "full-fail" else 0}
+    elif kind == "line":
+        flags = 9
+        character = ord("\n")
+        oracles[0] = {0: 0}
+
+    file_image[0:4] = (buffer + used).to_bytes(4, "little")
+    file_image[8:12] = (0x11223344).to_bytes(4, "little")
+    file_image[12:14] = int(flags).to_bytes(2, "little")
+    file_image[0x10:0x14] = buffer.to_bytes(4, "little")
+    file_image[0x14:0x18] = size.to_bytes(4, "little")
+    file_image[0x18:0x1c] = (0xfffffffc).to_bytes(4, "little")
+    return (
+        {0: reent, 1: character, 2: file_arg},
+        [(reent, bytes(reent_image)), (file, bytes(file_image)),
+         (buffer, bytes(0x20))],
+        oracles,
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00077c8c)] = 3
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00077c8c)] = {
+    0x00076bcc: 1, 0x00077d54: 2, 0x00076ad0: 2,
+}
+REVIEWED_ORACLE_CASES[("app", 0x00077c8c)] = [
+    _app_swbuf_case("space"),
+    _app_swbuf_case("init"),
+    _app_swbuf_case("standard"),
+    _app_swbuf_case("setup-ok"),
+    _app_swbuf_case("setup-fail"),
+    _app_swbuf_case("full-ok"),
+    _app_swbuf_case("full-fail"),
+    _app_swbuf_case("line"),
+]
+
+
+def _app_write_case(result, system_errno):
+    reent = emu.SCRATCH + 0x8b00
+    buffer = emu.SCRATCH + 0x8c00
+    writes = {}
+    if system_errno:
+        writes[0] = [
+            (None, 0x2000cc24, int(system_errno).to_bytes(4, "little"),
+             0x0004b0dc),
+        ]
+    return (
+        {0: reent, 1: 3, 2: buffer, 3: 5},
+        [(reent, bytes(8)), (buffer, b"hello"),
+         (0x2000cc24, bytes(4))],
+        {0: {0: int(result) & 0xffffffff}},
+        writes,
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x00077d30)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00077d30)] = {0x0004b0dc: 3}
+REVIEWED_ORACLE_CASES[("app", 0x00077d30)] = [
+    _app_write_case(5, 0),
+    _app_write_case(-1, 0),
+    _app_write_case(-1, 9),
+]
+
+
+def _app_heap_alloc_case(bytes_requested, heap_bytes=0x100,
+                         alloc_result=None, chunk_size_result=None):
+    handle = emu.SCRATCH + 0x8d00
+    heap = emu.SCRATCH + 0x8e00
+    heap_image = bytearray(0x100)
+    heap_image[8:12] = int(heap_bytes).to_bytes(4, "little")
+    oracles = {}
+    if alloc_result is not None:
+        oracles[0] = {0: 3}
+        oracles[1] = {0: int(alloc_result)}
+        if alloc_result:
+            oracles[2] = {0: int(chunk_size_result)}
+            # set_chunk_used is a void helper whose exact body leaves its r0
+            # heap argument live; the caller uses that residual to form mem.
+            final_ordinal = 5 if int(chunk_size_result) > 3 else 3
+            oracles[final_ordinal] = {0: heap}
+    return (
+        {0: handle, 1: int(bytes_requested)},
+        [(handle, heap.to_bytes(4, "little")), (heap, bytes(heap_image))],
+        oracles,
+    )
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0007e12a)] = 1
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x0007e12a)] = {
+    0x0007de70: 2, 0x0007df24: 2, 0x0007de18: 2,
+    0x0007df98: 3, 0x0007e022: 2, 0x0007de24: 3,
+}
+REVIEWED_ORACLE_CASES[("app", 0x0007e12a)] = [
+    _app_heap_alloc_case(0),
+    _app_heap_alloc_case(0x800),
+    _app_heap_alloc_case(16, alloc_result=0),
+    _app_heap_alloc_case(16, alloc_result=4, chunk_size_result=3),
+    _app_heap_alloc_case(16, alloc_result=4, chunk_size_result=5),
+]
+
+
+def _app_audio_lock_case(present, value=0x12345679):
+    device = emu.SCRATCH + 0x8f00
+    state = emu.SCRATCH + 0x9000
+    device_image = bytearray(0x20)
+    device_image[0x14:0x18] = (state if present else 0).to_bytes(4, "little")
+    state_image = bytearray(12)
+    state_image[4:8] = int(value).to_bytes(4, "little")
+    return ({0: device}, [(device, bytes(device_image)),
+                          (state, bytes(state_image))], {})
+
+
+REVIEWED_NPTR_COUNTS[("app", 0x0007ef56)] = 1
+REVIEWED_ORACLE_CASES[("app", 0x0007ef56)] = [
+    _app_audio_lock_case(False),
+    _app_audio_lock_case(True),
 ]
 
 

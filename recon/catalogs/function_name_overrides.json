@@ -608,6 +608,38 @@
   "0x0008664c": {
    "name": "z_reschedule_unlocked",
    "evidence": "Exact Zephyr inline z_reschedule_unlocked: arch_irq_lock with BASEPRI 0x20 followed by z_reschedule_irqlock. Raw identity remains FUN_0008664c at 0x0008664c."
+  },
+  "0x00076bc0": {
+   "name": "__sinit_lock_release",
+   "evidence": "Exact newlib initialization-lock release veneer; it releases recursive lock 0x20003818 through __retarget_lock_release_recursive. Raw identity remains FUN_00076bc0."
+  },
+  "0x00077b24": {
+   "name": "strtol",
+   "evidence": "Exact newlib strtol wrapper around the reentrant parser entry at 0x00077a28. Raw identity remains FUN_00077b24."
+  },
+  "0x00077b38": {
+   "name": "_strtoul_r",
+   "evidence": "Exact newlib reentrant unsigned-long parser, including base detection, overflow/errno, sign, and end-pointer behavior. Raw identity remains FUN_00077b38."
+  },
+  "0x00077c4c": {
+   "name": "_vsprintf_r",
+   "evidence": "Exact newlib reentrant string-format wrapper using a stack FILE and the svfprintf engine at 0x00078d90. Raw identity remains FUN_00077c4c."
+  },
+  "0x00077c8c": {
+   "name": "__swbuf_r",
+   "evidence": "Exact newlib buffered-character slow path, including std-stream remapping, setup, fullness, line buffering, and flush behavior. Raw residue identity was ext77c8c."
+  },
+  "0x00077d30": {
+   "name": "_write_r",
+   "evidence": "Exact newlib reentrant write adapter around Zephyr fd dispatch, including errno transfer on failure. Raw residue identity was tail_77d30."
+  },
+  "0x0007e12a": {
+   "name": "sys_heap_alloc",
+   "evidence": "Exact configured Zephyr 3.4.99 sys_heap_alloc implementation from lib/os/heap.c. Raw identity remains FUN_0007e12a."
+  },
+  "0x0007ef56": {
+   "name": "audio_hw_lock_release",
+   "evidence": "Exact counterpart to audio_hw_lock_acquire, atomically clearing state bit zero when the state exists. Raw identity remains FUN_0007ef56."
   }
  },
  "net": {
