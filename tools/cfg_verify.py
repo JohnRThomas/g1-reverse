@@ -403,6 +403,10 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Address-taken HCI worker threads created by FUN_0102afbc.  Each bound
+    # stops before its aligned literal pool.
+    ("net", 0x0102acf4): 0x9a,
+    ("net", 0x0102adac): 0x38,
     # Catalog-missing product MPSL signal callback.  Its complete 11-way TBH,
     # default exception tail, and shared epilogue end at 0x0102bb76; the
     # aligned literal pool starts at 0x0102bb78.
@@ -1149,6 +1153,8 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    ("net", 0x0102acf4): "void",
+    ("net", 0x0102adac): "void",
     # Catalog-missing ESB timeslot callback leaves reached from FUN_0102b944.
     ("net", 0x0102a4a4): "i32",
     ("net", 0x0102b7c4): "i32",
@@ -19501,6 +19507,107 @@ REVIEWED_ORACLE_CASES[("net", 0x0102abac)] = [
     _net_ipc_endpoint_send_case(1, 0, 0),
     _net_ipc_endpoint_send_case(1, 1, -5),
     _net_ipc_endpoint_send_case(1, 0, -5),
+]
+
+
+def _net_hci_esb_tx_worker_case(buffer_type, level=0, retry_count=0):
+    """One complete HCI-to-IPC worker transaction and reachable buffer."""
+    buffer = emu.SCRATCH + 0x3000
+    payload = emu.SCRATCH + 0x4000
+    image = bytearray(0x20)
+    image[0x0c:0x10] = payload.to_bytes(4, "little")
+    image[0x10:0x12] = (6).to_bytes(2, "little")
+    image[0x18] = int(buffer_type) & 0xff
+    memory = [
+        (buffer, bytes(image)),
+        (payload, b"\x10\x20\x30\x40\x50\x60"),
+        (0x21000580, int(level).to_bytes(4, "little", signed=True)),
+        (0x418c0500, bytes(16)),
+    ]
+    if not retry_count:
+        # All result values are harmless for non-result calls; FIFO receives
+        # the real buffer and IPC send sees a nonnegative success result.
+        oracles = {ordinal: {0: buffer} for ordinal in range(64)}
+    else:
+        oracles = {0: {0: 0}, 1: {0: buffer}, 2: {0: 0}}
+        for attempt in range(retry_count):
+            oracles[3 + attempt * 2] = {0: -1}
+            oracles[4 + attempt * 2] = {0: 0}
+        if retry_count == 11 and level > 1:
+            # The eleventh failure inserts the diagnostic before yield.
+            oracles[24] = {0: 0}
+            oracles[25] = {0: 0}
+            oracles[26] = {0: 0}
+            oracles[27] = {0: 0}
+        else:
+            next_send = 3 + retry_count * 2
+            oracles[next_send] = {0: 0}
+            oracles[next_send + 1] = {0: 0}
+            oracles[next_send + 2] = {0: buffer}
+    return ({}, memory, oracles)
+
+
+REVIEWED_PREFIX_PROOFS[("net", 0x0102acf4)] = 30
+REVIEWED_NPTR_COUNTS[("net", 0x0102acf4)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102acf4)] = {
+    0x0103689c: 4,
+    0x0103a456: 4,
+    0x0103a45a: 2,
+    0x0102d618: 3,
+    0x0102ff94: 1,
+    0x01037a60: 0,
+    0x01039722: 2,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x0102acf4)] = {
+    # K_FOREVER is a 64-bit value in r2:r3; r1 is an AAPCS alignment hole.
+    0x0103689c: (0, 2, 3),
+    0x0103a456: (0, 2, 3),
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102acf4)] = [
+    _net_hci_esb_tx_worker_case(1),
+    _net_hci_esb_tx_worker_case(3),
+    _net_hci_esb_tx_worker_case(5),
+    _net_hci_esb_tx_worker_case(7, level=0),
+    _net_hci_esb_tx_worker_case(7, level=1),
+    _net_hci_esb_tx_worker_case(3, level=1, retry_count=11),
+    _net_hci_esb_tx_worker_case(3, level=2, retry_count=11),
+]
+
+
+def _net_hci_controller_tx_worker_case(status, level):
+    buffer = emu.SCRATCH + 0x3000
+    memory = [
+        (buffer, bytes(0x20)),
+        (0x21000580, int(level).to_bytes(4, "little", signed=True)),
+    ]
+    if status == 0:
+        oracles = {0: {0: buffer}, 1: {0: 0}, 2: {0: 0},
+                   3: {0: buffer}, 4: {0: 0}}
+    elif level > 0:
+        oracles = {0: {0: buffer}, 1: {0: int(status)},
+                   2: {0: 0}, 3: {0: 0}, 4: {0: 0}}
+    else:
+        oracles = {0: {0: buffer}, 1: {0: int(status)},
+                   2: {0: 0}, 3: {0: 0}, 4: {0: buffer}}
+    return ({}, memory, oracles)
+
+
+REVIEWED_PREFIX_PROOFS[("net", 0x0102adac)] = 5
+REVIEWED_NPTR_COUNTS[("net", 0x0102adac)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102adac)] = {
+    0x0103a456: 4,
+    0x0102fcd8: 1,
+    0x0102ff94: 1,
+    0x01037a60: 0,
+    0x01039722: 2,
+}
+REVIEWED_CALL_ARGUMENT_INDICES_BY_TARGET[("net", 0x0102adac)] = {
+    0x0103a456: (0, 2, 3),
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102adac)] = [
+    _net_hci_controller_tx_worker_case(0, 0),
+    _net_hci_controller_tx_worker_case(-5, 0),
+    _net_hci_controller_tx_worker_case(-5, 1),
 ]
 
 

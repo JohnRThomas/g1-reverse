@@ -15,6 +15,10 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Address-taken HCI worker threads created by FUN_0102afbc.  Each bound
+    # stops before its aligned literal pool.
+    0x0102acf4: 0x9a,
+    0x0102adac: 0x38,
     # Catalog-missing product MPSL signal callback.  Its complete 11-way TBH,
     # default exception tail, and shared epilogue end at 0x0102bb76; the
     # aligned literal pool starts at 0x0102bb78.
