@@ -633,6 +633,26 @@
    "name": "qspi_xfer",
    "evidence": "Recovered body is the exact static nrfx_qspi.c transfer helper: it validates the EasyDMA buffer/state, programs QSPI read/write descriptors, starts the peripheral, and preserves the firmware error ABI. Raw identity remains FUN_00066524 at 0x00066524."
   },
+  "0x00066994": {
+   "name": "g1_recon_nrfx_qspi_init",
+   "evidence": "Retained firmware QSPI initializer with active diagnostic behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-08. Raw identity remains FUN_00066994 at 0x00066994."
+  },
+  "0x000669f4": {
+   "name": "g1_recon_nrfx_qspi_cinstr_xfer",
+   "evidence": "Corrects the stale nrfx_qspi_erase label: the recovered body is the custom-instruction transfer path and is namespaced because the configured NRFX body is not exact. Raw identity remains FUN_000669f4 at 0x000669f4."
+  },
+  "0x00066ae0": {
+   "name": "g1_recon_nrfx_qspi_mem_busy_check",
+   "evidence": "Recovered RDSR custom-instruction helper checks status bit zero and preserves the firmware error ABI while routing through the retained custom-instruction owner. Raw identity remains FUN_00066ae0 at 0x00066ae0."
+  },
+  "0x00066bc4": {
+   "name": "g1_recon_nrfx_qspi_erase",
+   "evidence": "Corrects the stale nrfx_qspi_read label: register programming and all callers prove this is the retained QSPI erase implementation. It is namespaced after COLLISION-08; raw identity remains FUN_00066bc4 at 0x00066bc4."
+  },
+  "0x0008520c": {
+   "name": "g1_recon_nrfx_qspi_chip_erase",
+   "evidence": "Recovered tail wrapper invokes the retained QSPI eraser with ERASE_LEN_ALL and address zero. It is namespaced to keep the configured SDK public owner intact; raw identity remains FUN_0008520c at 0x0008520c."
+  },
   "0x0007332c": {
    "name": "k_work_schedule_for_queue",
    "evidence": "Recovered body implements Zephyr's queue-specific delayable-work scheduling path, including validation, work lock, submission and timeout programming. Raw identity remains FUN_0007332c at 0x0007332c."

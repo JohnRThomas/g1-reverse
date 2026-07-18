@@ -1,10 +1,10 @@
 /* readable reconstruction; identity: FUN_00066bc4 @ 0x00066bc4
- * public-name: nrfx_qspi_read
+ * public-name: g1_recon_nrfx_qspi_erase
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   qspi_ready_wait                          <= FUN_0006649c @ 0x0006649c
  *   qspi_activate                            <= FUN_000664f0 @ 0x000664f0
- *   nrfx_qspi_read                           <= FUN_00066bc4 @ 0x00066bc4
+ *   g1_recon_nrfx_qspi_erase                 <= FUN_00066bc4 @ 0x00066bc4
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -24,7 +24,9 @@ extern int qspi_activate(int);
 extern void assert_post_action(uint32_t,int);
 extern void printk(uint32_t,uint32_t,uint32_t,int,uint32_t);
 
-int nrfx_qspi_read(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
+#define g1_recon_nrfx_qspi_erase g1_recon_nrfx_qspi_erase
+int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,
+                             uint32_t param_3, uint32_t param_4){
   uint8_t r4 = *(volatile uint8_t*)0x2000b378UL;
   if (r4 == 0){
     printk(0x99cbd, 0xf6d9a, 0xf6d5e, 0x2e8, param_4);

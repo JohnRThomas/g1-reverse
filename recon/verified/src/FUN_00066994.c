@@ -4,7 +4,9 @@ extern int FUN_00066850(void);
 extern void FUN_0007e2ec(void*, int);
 extern void FUN_0007e2fa(void*, void*, void*, int, unsigned int);
 
-int FUN_00066994(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+#define g1_recon_nrfx_qspi_init FUN_00066994
+int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
+                            unsigned int param_3, unsigned int param_4)
 {
   volatile int *puVar1 = (volatile int*)0x2000b348UL;
   int iVar2;

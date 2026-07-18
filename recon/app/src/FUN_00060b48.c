@@ -4,8 +4,10 @@ typedef unsigned int uint;
 extern int FUN_00060a10(int);
 extern void FUN_00060a5c(int);
 extern int FUN_00060ab0(int,void*,int,int,int);
-extern int FUN_00066994(int,int,int);
-extern int FUN_00066ae0(void);
+#define g1_recon_nrfx_qspi_init FUN_00066994
+extern int g1_recon_nrfx_qspi_init(int,int,int);
+#define g1_recon_nrfx_qspi_mem_busy_check FUN_00066ae0
+extern int g1_recon_nrfx_qspi_mem_busy_check(void);
 extern void FUN_00066b24(void);
 extern int FUN_0007ef2e(void);
 extern int FUN_000838dc(int,int);
@@ -24,7 +26,7 @@ uint FUN_00060b48(int param_1, int param_2, unsigned param_3, unsigned param_4){
             if (param_2 != 1) return 0xffffff7a;
             uVar2 = FUN_000838dc(*(int*)(iVar4+0x34), 0);
             if ((int)uVar2 < 0) return uVar2;
-            iVar3 = FUN_00066994(iVar4, 0x000838cb, iVar5);
+            iVar3 = g1_recon_nrfx_qspi_init(iVar4, 0x000838cb, iVar5);
             if (iVar3 != 0x0bad0000) return 0xfffffffb;
             uVar2 = FUN_0008397e(param_1);
             if ((int)uVar2 < 0) return uVar2;
@@ -35,7 +37,7 @@ uint FUN_00060b48(int param_1, int param_2, unsigned param_3, unsigned param_4){
         if ((int)uVar2 < 0) return uVar2;
         uVar2 = *(uint8_t*)(iVar5+0x60);
         if (uVar2==0){
-            iVar1 = FUN_00066ae0();
+            iVar1 = g1_recon_nrfx_qspi_mem_busy_check();
             if (iVar1 == 0x0bad0000){
                 local[0]=0xb9; local[1]=uVar2; local[2]=uVar2;
                 uVar2 = FUN_00060ab0(param_1, (void*)local, 0, 0xb9, iVar3);
@@ -49,4 +51,3 @@ uint FUN_00060b48(int param_1, int param_2, unsigned param_3, unsigned param_4){
     }
     return 0xfffffff0;
 }
-

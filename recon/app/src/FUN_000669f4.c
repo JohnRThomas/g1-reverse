@@ -9,7 +9,9 @@ extern void FUN_000667e0(void);
 extern void FUN_00066720(uint32_t,uint32_t);
 extern void FUN_000666e0(uint32_t,uint32_t);
 
-int FUN_000669f4(uint8_t *param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
+#define g1_recon_nrfx_qspi_cinstr_xfer FUN_000669f4
+int g1_recon_nrfx_qspi_cinstr_xfer(uint8_t *param_1, uint32_t param_2,
+                                   uint32_t param_3, uint32_t param_4){
     volatile uint8_t *sb = (volatile uint8_t*)0x2000b348UL;
     uint32_t r0v;
     r0v = *(volatile uint8_t*)(sb+0x30);
@@ -43,4 +45,3 @@ int FUN_000669f4(uint8_t *param_1, uint32_t param_2, uint32_t param_3, uint32_t 
         return 0x0bad0000;
     }
 }
-

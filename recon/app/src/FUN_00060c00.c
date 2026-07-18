@@ -6,7 +6,9 @@ extern int FUN_00060990(int registration_result);
 extern int FUN_00060a10(void *context);
 extern void FUN_00060a5c(void *context);
 extern int FUN_00060ab0(void *context, uint8_t *command, uint8_t mode);
-extern int FUN_00066994(void *device, uintptr_t callback, void *callback_context);
+#define g1_recon_nrfx_qspi_init FUN_00066994
+extern int g1_recon_nrfx_qspi_init(void *device, uintptr_t callback,
+                                   void *callback_context);
 extern void FUN_000838d6(uintptr_t source, uint32_t level, const void *record);
 extern int FUN_000838dc(uintptr_t transport, void *result,
                         uintptr_t unused, void *owner);
@@ -80,8 +82,8 @@ int FUN_00060c00(struct driver_context *context)
 
     FUN_0005010c(0x2bu, 1, 0);
     *(volatile uint32_t *)0x500055b8u = 0;
-    int registration = FUN_00066994(configuration, 0x000838cbu,
-                                     context->callback_context);
+    int registration = g1_recon_nrfx_qspi_init(configuration, 0x000838cbu,
+                                               context->callback_context);
     *(volatile uint32_t *)0x500055b8u = 2;
 
     result = FUN_00060990(registration);

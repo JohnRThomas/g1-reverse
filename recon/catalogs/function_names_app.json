@@ -8297,8 +8297,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local mem_manage_fault.constprop.0 body; this is not the public fault_s.S z_arm_mpu_fault exception alias. Raw identity remains FUN_000503d8 at 0x000503d8.",
    "aliases": [
-    "FUN_000503d8",
-    "z_arm_mpu_fault"
+    "FUN_000503d8"
    ]
   },
   "0x00050558": {
@@ -8309,8 +8308,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local bus_fault.constprop.0 body; this is not the public fault_s.S z_arm_bus_fault exception alias. Raw identity remains FUN_00050558 at 0x00050558.",
    "aliases": [
-    "FUN_00050558",
-    "z_arm_bus_fault"
+    "FUN_00050558"
    ]
   },
   "0x000506ac": {
@@ -8321,8 +8319,7 @@
    "human": true,
    "source": "function_name_overrides.json: Exact pinned Zephyr fault.c translation-unit-local usage_fault.constprop.0 body; this is not the public fault_s.S z_arm_usage_fault exception alias. Raw identity remains FUN_000506ac at 0x000506ac.",
    "aliases": [
-    "FUN_000506ac",
-    "z_arm_usage_fault"
+    "FUN_000506ac"
    ]
   },
   "0x000507d4": {
@@ -13358,34 +13355,37 @@
   "0x00066994": {
    "address": "0x00066994",
    "raw_name": "FUN_00066994",
-   "name": "nrfx_qspi_init",
-   "display_name": "nrfx_qspi_init",
+   "name": "g1_recon_nrfx_qspi_init",
+   "display_name": "g1_recon_nrfx_qspi_init",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Retained firmware QSPI initializer with active diagnostic behavior absent from the configured NRFX owner; deliberately namespaced after COLLISION-08. Raw identity remains FUN_00066994 at 0x00066994.",
    "aliases": [
-    "FUN_00066994"
+    "FUN_00066994",
+    "nrfx_qspi_init"
    ]
   },
   "0x000669f4": {
    "address": "0x000669f4",
    "raw_name": "FUN_000669f4",
-   "name": "nrfx_qspi_erase",
-   "display_name": "nrfx_qspi_erase",
+   "name": "g1_recon_nrfx_qspi_cinstr_xfer",
+   "display_name": "g1_recon_nrfx_qspi_cinstr_xfer",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_erase label: the recovered body is the custom-instruction transfer path and is namespaced because the configured NRFX body is not exact. Raw identity remains FUN_000669f4 at 0x000669f4.",
    "aliases": [
-    "FUN_000669f4"
+    "FUN_000669f4",
+    "nrfx_qspi_erase"
    ]
   },
   "0x00066ae0": {
    "address": "0x00066ae0",
    "raw_name": "FUN_00066ae0",
-   "name": "nrfx_qspi_mem_busy_check",
-   "display_name": "nrfx_qspi_mem_busy_check",
+   "name": "g1_recon_nrfx_qspi_mem_busy_check",
+   "display_name": "g1_recon_nrfx_qspi_mem_busy_check",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Recovered RDSR custom-instruction helper checks status bit zero and preserves the firmware error ABI while routing through the retained custom-instruction owner. Raw identity remains FUN_00066ae0 at 0x00066ae0.",
    "aliases": [
-    "FUN_00066ae0"
+    "FUN_00066ae0",
+    "nrfx_qspi_mem_busy_check"
    ]
   },
   "0x00066b24": {
@@ -13400,12 +13400,13 @@
   "0x00066bc4": {
    "address": "0x00066bc4",
    "raw_name": "FUN_00066bc4",
-   "name": "nrfx_qspi_read",
-   "display_name": "nrfx_qspi_read",
+   "name": "g1_recon_nrfx_qspi_erase",
+   "display_name": "g1_recon_nrfx_qspi_erase",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Corrects the stale nrfx_qspi_read label: register programming and all callers prove this is the retained QSPI erase implementation. It is namespaced after COLLISION-08; raw identity remains FUN_00066bc4 at 0x00066bc4.",
    "aliases": [
-    "FUN_00066bc4"
+    "FUN_00066bc4",
+    "nrfx_qspi_read"
    ]
   },
   "0x00066c88": {
@@ -24123,11 +24124,13 @@
   "0x0008520c": {
    "address": "0x0008520c",
    "raw_name": "FUN_0008520c",
-   "name": "FUN_0008520c",
-   "display_name": "FUN_0008520c",
-   "human": false,
-   "source": "recon/app/src/FUN_0008520c.c",
-   "aliases": []
+   "name": "g1_recon_nrfx_qspi_chip_erase",
+   "display_name": "g1_recon_nrfx_qspi_chip_erase",
+   "human": true,
+   "source": "function_name_overrides.json: Recovered tail wrapper invokes the retained QSPI eraser with ERASE_LEN_ALL and address zero. It is namespaced to keep the configured SDK public owner intact; raw identity remains FUN_0008520c at 0x0008520c.",
+   "aliases": [
+    "FUN_0008520c"
+   ]
   },
   "0x00085214": {
    "address": "0x00085214",
@@ -26717,7 +26720,6 @@
   "FUN_000851ee": "0x000851ee",
   "FUN_000851f4": "0x000851f4",
   "FUN_000851fa": "0x000851fa",
-  "FUN_0008520c": "0x0008520c",
   "FUN_000852e6": "0x000852e6",
   "FUN_000855e6": "0x000855e6",
   "FUN_000857b2": "0x000857b2",
@@ -27479,6 +27481,11 @@
   "g1_recon_nrfx_gpiote_init": "0x00065940",
   "g1_recon_nrfx_nvmc_page_erase": "0x00065f1c",
   "g1_recon_nrfx_nvmc_word_write": "0x00065f80",
+  "g1_recon_nrfx_qspi_chip_erase": "0x0008520c",
+  "g1_recon_nrfx_qspi_cinstr_xfer": "0x000669f4",
+  "g1_recon_nrfx_qspi_erase": "0x00066bc4",
+  "g1_recon_nrfx_qspi_init": "0x00066994",
+  "g1_recon_nrfx_qspi_mem_busy_check": "0x00066ae0",
   "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
   "g1_recon_retarget_lock_acquire_recursive": "0x000510fc",
   "g1_recon_retarget_lock_release_recursive": "0x00051134",
@@ -27985,11 +27992,7 @@
   "nrfx_pdm_start": "0x00066214",
   "nrfx_pdm_stop": "0x00066300",
   "nrfx_pdm_uninit": "0x000661dc",
-  "nrfx_qspi_erase": "0x000669f4",
-  "nrfx_qspi_init": "0x00066994",
   "nrfx_qspi_irq_handler": "0x00066c88",
-  "nrfx_qspi_mem_busy_check": "0x00066ae0",
-  "nrfx_qspi_read": "0x00066bc4",
   "nrfx_wdt_init": "0x00067dfc",
   "nullsub_2": "0x0007d2d6",
   "nullsub_3": "0x0007ef7e",

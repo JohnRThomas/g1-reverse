@@ -6,7 +6,9 @@ extern int FUN_000664f0(int);
 extern void FUN_0007e2ec(uint32_t,int);
 extern void FUN_0007e2fa(uint32_t,uint32_t,uint32_t,int,uint32_t);
 
-int FUN_00066bc4(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t param_4){
+#define g1_recon_nrfx_qspi_erase FUN_00066bc4
+int g1_recon_nrfx_qspi_erase(uint32_t param_1, uint32_t param_2,
+                             uint32_t param_3, uint32_t param_4){
   uint8_t r4 = *(volatile uint8_t*)0x2000b378UL;
   if (r4 == 0){
     FUN_0007e2fa(0x99cbd, 0xf6d9a, 0xf6d5e, 0x2e8, param_4);
@@ -45,4 +47,3 @@ int FUN_00066bc4(uint32_t param_1, uint32_t param_2, uint32_t param_3, uint32_t 
   }
   return iVar3;
 }
-

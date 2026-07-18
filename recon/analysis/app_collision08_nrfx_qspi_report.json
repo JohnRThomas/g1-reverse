@@ -1,0 +1,216 @@
+{
+ "adoption_authorized": false,
+ "baseline": {
+  "immutable": true,
+  "path": "recon/ownership/adoption_manifest_baseline.json",
+  "sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc"
+ },
+ "batch": "COLLISION-08",
+ "collision_symbols": [
+  "nrfx_qspi_init",
+  "nrfx_qspi_erase",
+  "nrfx_qspi_read"
+ ],
+ "configured_object_sha256": "32725e948b16bda48f7a72af87fc280fa8425709c11176829a1bbe4b08e6d951",
+ "configured_source": "modules/hal/nordic/nrfx/drivers/src/nrfx_qspi.c",
+ "configured_source_sha256": "27cb08f6af1573650e3faf82100a1c3da9e40115fede5a7c30563848c2274aca",
+ "core": "app",
+ "decision": "retain_namespace_corrected_qspi_closure",
+ "expected_collision_delta": -3,
+ "functions": [
+  {
+   "baseline_collision_symbol": "nrfx_qspi_init",
+   "configured_sdk_instructions": 26,
+   "configured_sdk_size": 64,
+   "corrected_identity": "nrfx_qspi_init",
+   "corrected_signature_match": {
+    "length": 0.961538,
+    "normalized_exact": false,
+    "opcode": 0.431373,
+    "shape": 0.431373
+   },
+   "decision": "retain_and_namespace_reconstruction",
+   "direct_caller_sites": [
+    [
+     "0x00060a10",
+     "0x00060a34"
+    ],
+    [
+     "0x00060b48",
+     "0x00060bd4"
+    ],
+    [
+     "0x00060c00",
+     "0x00060c34"
+    ]
+   ],
+   "firmware_instructions": 25,
+   "firmware_size": 70,
+   "identity_correction_required": false,
+   "normalized_exact": false,
+   "raw_symbol": "FUN_00066994",
+   "va": "0x00066994"
+  },
+  {
+   "baseline_collision_symbol": "nrfx_qspi_erase",
+   "configured_sdk_instructions": 65,
+   "configured_sdk_size": 172,
+   "corrected_identity": "nrfx_qspi_cinstr_xfer",
+   "corrected_signature_match": {
+    "length": 0.902778,
+    "normalized_exact": false,
+    "opcode": 0.70073,
+    "shape": 0.671533
+   },
+   "decision": "retain_and_namespace_reconstruction",
+   "direct_caller_sites": [
+    [
+     "0x00060ab0",
+     "0x00060b2c"
+    ],
+    [
+     "0x00066ae0",
+     "0x00066af8"
+    ]
+   ],
+   "firmware_instructions": 72,
+   "firmware_size": 200,
+   "identity_correction_required": true,
+   "normalized_exact": false,
+   "raw_symbol": "FUN_000669f4",
+   "va": "0x000669f4"
+  },
+  {
+   "baseline_collision_symbol": "nrfx_qspi_read",
+   "configured_sdk_instructions": 59,
+   "configured_sdk_size": 156,
+   "corrected_identity": "nrfx_qspi_erase",
+   "corrected_signature_match": {
+    "length": 0.949153,
+    "normalized_exact": false,
+    "opcode": 0.782609,
+    "shape": 0.765217
+   },
+   "decision": "retain_and_namespace_reconstruction",
+   "direct_caller_sites": [
+    [
+     "0x00060dd0",
+     "0x00060e88"
+    ],
+    [
+     "0x00060dd0",
+     "0x00060ea2"
+    ],
+    [
+     "0x0008520c",
+     "0x00085210",
+     "tail"
+    ]
+   ],
+   "firmware_instructions": 56,
+   "firmware_size": 158,
+   "identity_correction_required": true,
+   "normalized_exact": false,
+   "raw_symbol": "FUN_00066bc4",
+   "va": "0x00066bc4"
+  }
+ ],
+ "implementation_requirements": [
+  "recover and CFG-verify FUN_00066ae0 as nrfx_qspi_mem_busy_check before namespace integration",
+  "namespace all three retained collision owners using corrected identities and preserve VA/raw back-maps",
+  "retarget the complete direct and transitive caller closure, including the FUN_0008520c tail call",
+  "retain the configured SDK public nrfx_qspi.c owner; do not create adoption authorization",
+  "prove an exact normal-link collision delta of -3 with no new collision or undefined symbol"
+ ],
+ "integration": {
+  "actionable_unresolved_after": [
+   "FUN_0005463e",
+   "FUN_00054688"
+  ],
+  "actionable_unresolved_before": [
+   "FUN_0005463e",
+   "FUN_00054688"
+  ],
+  "baseline_collision_count": 87,
+  "collision_delta": -3,
+  "full_link": {
+   "compiled": 3106,
+   "failed_compile": 0,
+   "link_rc": 0
+  },
+  "new_collision_symbols": [],
+  "preexisting_pinned_linker_symbols": [
+   "g_2000b154",
+   "rodata_f5d9e",
+   "rodata_f5dbd"
+  ],
+  "removed_collision_symbols": [
+   "nrfx_qspi_erase",
+   "nrfx_qspi_init",
+   "nrfx_qspi_read"
+  ],
+  "result_collision_count": 84
+ },
+ "required_caller_closure": [
+  {
+   "calls": [
+    [
+     "0x000669f4",
+     "0x00066af8"
+    ]
+   ],
+   "current_status": "reconstructed",
+   "direct_sites": [
+    [
+     "0x00060a5c",
+     "0x00060a7e"
+    ],
+    [
+     "0x00060b48",
+     "0x00060b86"
+    ]
+   ],
+   "firmware_size": 68,
+   "raw": "FUN_00066ae0",
+   "status": "missing_reconstruction",
+   "symbol": "nrfx_qspi_mem_busy_check",
+   "true_code_extent": 54,
+   "va": "0x00066ae0"
+  },
+  {
+   "current_status": "reconstructed",
+   "direct_sites": [
+    [
+     "0x00060dd0",
+     "0x00060e38"
+    ]
+   ],
+   "raw": "FUN_0008520c",
+   "status": "reconstructed",
+   "symbol": "nrfx_qspi_chip_erase",
+   "tail_calls": [
+    [
+     "0x00066bc4",
+     "0x00085210"
+    ]
+   ],
+   "va": "0x0008520c"
+  }
+ ],
+ "schema": 1,
+ "verification": {
+  "busy_loop_caller_FUN_00060a5c": "bounded direct-target plus mutation gate; unrestricted oracle execution does not terminate",
+  "cfg_verify_pass": [
+   "FUN_00066994",
+   "FUN_000669f4",
+   "FUN_00066ae0",
+   "FUN_00066bc4",
+   "FUN_00060a10",
+   "FUN_00060b48",
+   "FUN_00060c00",
+   "FUN_00060ab0",
+   "FUN_00060dd0",
+   "FUN_0008520c"
+  ]
+ }
+}

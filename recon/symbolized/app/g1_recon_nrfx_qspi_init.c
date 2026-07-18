@@ -1,10 +1,10 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00066994 @ 0x00066994
- * public-name: nrfx_qspi_init
+ * public-name: g1_recon_nrfx_qspi_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   qspi_configure_pins_and_interface        <= FUN_00066850 @ 0x00066850
- *   nrfx_qspi_init                           <= FUN_00066994 @ 0x00066994
+ *   g1_recon_nrfx_qspi_init                  <= FUN_00066994 @ 0x00066994
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -21,7 +21,9 @@ extern int qspi_configure_pins_and_interface(void);
 extern void assert_post_action(void*, int);
 extern void printk(void*, void*, void*, int, unsigned int);
 
-int nrfx_qspi_init(int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+#define g1_recon_nrfx_qspi_init g1_recon_nrfx_qspi_init
+int g1_recon_nrfx_qspi_init(int param_1, unsigned int param_2,
+                            unsigned int param_3, unsigned int param_4)
 {
   volatile int *puVar1 = (volatile int*)((unsigned long)&g_qspi_cb) /*=0x2000b348*/;
   int iVar2;
