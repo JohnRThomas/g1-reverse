@@ -2357,6 +2357,26 @@
   "0x01038fa4": {
    "name": "ocrypto_mod_p256_to_bytes",
    "evidence": "Complete 52-byte no-relocation match to pinned nrfxlib Oberon 3.0.13 .text.ocrypto_mod_p256_to_bytes. Load/store direction rejects the prior from_bytes identity (that owner is 0x01038f70). Raw identity remains FUN_01038fa4 at analysis 0x01038fa4 / runtime 0x010397a4."
+  },
+  "0x0102eb2c": {
+   "name": "arch_irq_enable",
+   "evidence": "Relocation-masked byte-exact configured Zephyr arch/arm/core/aarch32/irq_manage.c owner. Raw identity remains FUN_0102eb2c. See recon/ownership/net_public_zephyr_identities.json."
+  },
+  "0x0102fbac": {
+   "name": "bt_hci_driver_register",
+   "evidence": "Relocation-masked byte-exact configured Zephyr subsys/bluetooth/host/hci_raw.c owner with bt_dev resolved to 0x210047f8. Raw identity remains FUN_0102fbac. See recon/ownership/net_public_zephyr_identities.json."
+  },
+  "0x0103b304": {
+   "name": "sys_timepoint_calc",
+   "evidence": "Relocation-masked byte-exact configured Zephyr kernel/timeout.c owner with sys_clock_tick_get resolved to 0x01038284. Raw identity remains FUN_0103b304. See recon/ownership/net_public_zephyr_identities.json."
+  },
+  "0x0103b34c": {
+   "name": "sys_timepoint_timeout",
+   "evidence": "Relocation-masked byte-exact configured Zephyr kernel/timeout.c owner with sys_clock_tick_get resolved to 0x01038284. Raw identity remains FUN_0103b34c. See recon/ownership/net_public_zephyr_identities.json."
+  },
+  "0x01039bb0": {
+   "name": "assert_post_action",
+   "evidence": "Exact configured Zephyr lib/os/assert.c owner containing the ARM Mainline z_except_reason/ARCH_EXCEPT expansion; z_except_reason is not a linkable function. Raw identity remains FUN_01039bb0. See recon/ownership/net_public_zephyr_identities.json."
   }
  }
 }
