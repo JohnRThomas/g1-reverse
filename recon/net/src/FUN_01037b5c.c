@@ -10,7 +10,7 @@ extern void FUN_0102ec10(u32);
 extern i32  FUN_0103610c(u32);
 extern i32  FUN_01036128(u32);
 extern void FUN_01036144(u32);
-extern void FUN_010374dc(void);
+extern void FUN_010374dc(u32);
 extern void FUN_01037a60(void);
 extern void FUN_01037f8c(i32,u32,u32,u32);
 extern u32  FUN_01039bb0(u32,u32);
@@ -78,8 +78,14 @@ FINAL_CALL:
     i32 iVar2addr = DAT_01037c58;
     i32 iVar3;
     FUN_01036144(DAT_01037c50);
-    *(volatile u32*)DAT_01037c5c = *(volatile u32*)((u32)iVar2addr + 8);
-    FUN_010374dc();
+    {
+      u32 current = *(volatile u32*)((u32)iVar2addr + 8);
+      *(volatile u32*)DAT_01037c5c = current;
+      /* The callee has no semantic argument, but the firmware enters it with
+       * the just-published current pointer still live in r0.  Preserve that
+       * call-boundary value for instruction-faithful oracle comparison. */
+      FUN_010374dc(current);
+    }
     FUN_01037f8c(*(volatile i32*)((u32)iVar2addr + 8) + 0x18, DAT_01037c60, param_1, (u32)param_2);
     {
       u32 uVar5 = DAT_01037c50;
