@@ -1,0 +1,318 @@
+{
+  "configured_sdk": {
+    "config": [
+      "CONFIG_LIBMETAL=y",
+      "CONFIG_OPENAMP=y",
+      "CONFIG_OPENAMP_SLAVE=y",
+      "CONFIG_IPC_SERVICE=y",
+      "CONFIG_IPC_SERVICE_BACKEND_RPMSG=y",
+      "CONFIG_IPC_SERVICE_STATIC_VRINGS=y",
+      "CONFIG_IPC_SERVICE_STATIC_VRINGS_MEM_ALIGNMENT=4"
+    ],
+    "gcc": "Zephyr SDK 0.16.5-1 GCC 12.2.0",
+    "ncs": "v2.5.1",
+    "zephyr": "v3.4.99-ncs1-1",
+    "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+  },
+  "firmware_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "functions": [
+    {
+      "callers": [
+        {
+          "caller_raw_identity": "FUN_010355bc",
+          "caller_va": "0x010355bc",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x010353ec",
+              "site": "0x01035638"
+            }
+          ]
+        },
+        {
+          "caller_raw_identity": "FUN_0103566c",
+          "caller_va": "0x0103566c",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x010353ec",
+              "site": "0x0103573c"
+            }
+          ]
+        },
+        {
+          "caller_raw_identity": "FUN_0103afac",
+          "caller_va": "0x0103afac",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x010353ec",
+              "site": "0x0103afdc"
+            }
+          ]
+        }
+      ],
+      "executable_relocations": [],
+      "mutable_state_relocations": [],
+      "preserve_raw_backmap": true,
+      "raw_firmware_byte_exact": true,
+      "raw_identity": "FUN_010353ec",
+      "relocation_masked_firmware_exact": true,
+      "resolved_identity": "virtqueue_add_consumed_buffer",
+      "section": ".text.virtqueue_add_consumed_buffer",
+      "section_sha256": "c7aae51a695a17babb0241241b843204d8a2b21fe82185b00590a9f5b2223f4b",
+      "section_size": 56,
+      "unit": "openamp",
+      "va": "0x010353ec"
+    },
+    {
+      "callers": [
+        {
+          "caller_raw_identity": "FUN_010355bc",
+          "caller_va": "0x010355bc",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103ab0e",
+              "site": "0x010355f2"
+            }
+          ]
+        },
+        {
+          "caller_raw_identity": "FUN_0103576c",
+          "caller_va": "0x0103576c",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103ab0e",
+              "site": "0x010357a8"
+            }
+          ]
+        }
+      ],
+      "executable_relocations": [],
+      "mutable_state_relocations": [],
+      "preserve_raw_backmap": true,
+      "raw_firmware_byte_exact": true,
+      "raw_identity": "FUN_0103ab0e",
+      "relocation_masked_firmware_exact": true,
+      "resolved_identity": "metal_io_block_write",
+      "section": ".text.metal_io_block_write",
+      "section_sha256": "f2b287f32b2764752c82bb224719c4d1ac3187b8e8e7d66fcd9f96335726e6fa",
+      "section_size": 116,
+      "unit": "libmetal",
+      "va": "0x0103ab0e"
+    },
+    {
+      "callers": [
+        {
+          "caller_raw_identity": "FUN_0103566c",
+          "caller_va": "0x0103566c",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103ac50",
+              "site": "0x0103569e"
+            },
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103ac50",
+              "site": "0x01035750"
+            }
+          ]
+        },
+        {
+          "caller_raw_identity": "FUN_0103aff2",
+          "caller_va": "0x0103aff2",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103ac50",
+              "site": "0x0103b09a"
+            }
+          ]
+        }
+      ],
+      "executable_relocations": [
+        {
+          "mnemonic": "bl",
+          "offset": 50,
+          "resolved_target": "0x0103abbe",
+          "site": "0x0103ac82",
+          "symbol": "metal_io_phys_to_virt",
+          "type": 10
+        }
+      ],
+      "mutable_state_relocations": [],
+      "preserve_raw_backmap": true,
+      "raw_firmware_byte_exact": false,
+      "raw_identity": "FUN_0103ac50",
+      "relocation_masked_firmware_exact": true,
+      "resolved_identity": "virtqueue_get_available_buffer",
+      "section": ".text.virtqueue_get_available_buffer",
+      "section_sha256": "4736949f6a194c256d9b5d5e64e77c63eb615770738fac34d70fa0746b23ff24",
+      "section_size": 72,
+      "unit": "openamp",
+      "va": "0x0103ac50"
+    },
+    {
+      "callers": [
+        {
+          "caller_raw_identity": "FUN_0102d708",
+          "caller_va": "0x0102d708",
+          "direct_calls": [
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103a056",
+              "site": "0x0102d740"
+            },
+            {
+              "mnemonic": "bl",
+              "resolved_target": "0x0103a056",
+              "site": "0x0102d768"
+            }
+          ]
+        }
+      ],
+      "executable_relocations": [],
+      "mutable_state_relocations": [],
+      "preserve_raw_backmap": true,
+      "raw_firmware_byte_exact": true,
+      "raw_identity": "FUN_0103a056",
+      "relocation_masked_firmware_exact": true,
+      "resolved_identity": "ipc_static_vrings_shm_size",
+      "section": ".text.shm_size",
+      "section_sha256": "1ac88045ff21f8d82880dd2f289e357061f19ca3e7414826adfcb0952e93d665",
+      "section_size": 32,
+      "unit": "zephyr",
+      "va": "0x0103a056"
+    }
+  ],
+  "manifest_functions": [
+    {
+      "action": "adopt_stock_source",
+      "owner": "openamp",
+      "raw_name": "FUN_010353ec",
+      "resolved_name": "virtqueue_add_consumed_buffer",
+      "va": "0x010353ec"
+    },
+    {
+      "action": "adopt_stock_source",
+      "owner": "libmetal",
+      "raw_name": "FUN_0103ab0e",
+      "resolved_name": "metal_io_block_write",
+      "va": "0x0103ab0e"
+    },
+    {
+      "action": "adopt_stock_source",
+      "owner": "openamp",
+      "raw_name": "FUN_0103ac50",
+      "resolved_name": "virtqueue_get_available_buffer",
+      "va": "0x0103ac50"
+    },
+    {
+      "action": "adopt_stock_source",
+      "owner": "zephyr",
+      "raw_name": "FUN_0103a056",
+      "resolved_name": "ipc_static_vrings_shm_size",
+      "va": "0x0103a056"
+    }
+  ],
+  "policy": {
+    "no_private_or_sdc_removal": true,
+    "selected_sections_only": true,
+    "shared_generated_trees_not_regenerated": true
+  },
+  "schema_version": 1,
+  "scope": "CPUNET selected public IPC/OpenAMP/libmetal source closure",
+  "supporting_helper_closure": [
+    {
+      "executable_relocations": [],
+      "identity": "metal_io_phys",
+      "mutable_state_relocations": [],
+      "raw_firmware_byte_exact": true,
+      "relocation_masked_firmware_exact": true,
+      "section": ".text.metal_io_phys",
+      "section_sha256": "74c50e8c9b27cef715c0a387ef48907b70da53a5f2ad47cf05ce806bab484b61",
+      "section_size": 56,
+      "unit": "openamp",
+      "va": "0x0103ab86"
+    },
+    {
+      "executable_relocations": [
+        {
+          "mnemonic": "bl",
+          "offset": 28,
+          "resolved_target": "0x0103ab86",
+          "site": "0x0103abda",
+          "symbol": "metal_io_phys",
+          "type": 10
+        }
+      ],
+      "identity": "metal_io_phys_to_virt",
+      "mutable_state_relocations": [],
+      "raw_firmware_byte_exact": false,
+      "relocation_masked_firmware_exact": true,
+      "section": ".text.metal_io_phys_to_virt",
+      "section_sha256": "a9d41ca8dfb15ac9fbb49d3d0a9956f34c6c748903e9bbeaf11ecf9d1f3a9f70",
+      "section_size": 78,
+      "unit": "openamp",
+      "va": "0x0103abbe"
+    }
+  ],
+  "units": {
+    "libmetal": {
+      "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+      "compile_command_sha256": "fc357d19914364734b85f33d7924446e78861186114b4719c926a9e5fe706be0",
+      "compile_contract": {
+        "abi": "AAPCS Thumb soft-float CPUNET",
+        "cpu": "cortex-m33+nodsp",
+        "function_sections": true,
+        "optimization": "-Os",
+        "virtio_device_only": false
+      },
+      "configured_object": "/private/tmp/g1-net-spin-ref-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/io.c.obj",
+      "configured_object_sha256": "b28d254d838ad6ed4188c65cc80669f93ad71f4b2f5d8e4e2f4d10e16de41b35",
+      "repository": "/Users/freedomcoder/ncs251/modules/hal/libmetal",
+      "source": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/io.c",
+      "source_sha256": "2432c1e79fb28f034c3e7f3615f8739642288ea90211838e6d1f2eec615e0327"
+    },
+    "openamp": {
+      "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+      "compile_command_sha256": "2298b1e4e62ff94762d668256930bc39a86dc5dc03784791b5db62cdca944f3e",
+      "compile_contract": {
+        "abi": "AAPCS Thumb soft-float CPUNET",
+        "cpu": "cortex-m33+nodsp",
+        "function_sections": true,
+        "optimization": "-Os",
+        "virtio_device_only": true
+      },
+      "configured_object": "/private/tmp/g1-net-spin-ref-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
+      "configured_object_sha256": "8349997edd93f28258a422ad7871d8574fafef48ccb20a3284a5721779f217f9",
+      "repository": "/Users/freedomcoder/ncs251/modules/lib/open-amp",
+      "source": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/virtio/virtqueue.c",
+      "source_sha256": "4f11f191b02a79414730a3abc7a7f3caebe6ddea9667facc1daf49411d84b3be"
+    },
+    "zephyr": {
+      "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+      "compile_command_sha256": "ee962e1ef1b16c27652de72bf49a7ba86e816b4de55dddbc79b7be6ccb901f0e",
+      "compile_contract": {
+        "abi": "AAPCS Thumb soft-float CPUNET",
+        "cpu": "cortex-m33+nodsp",
+        "function_sections": true,
+        "optimization": "-Os",
+        "virtio_device_only": false
+      },
+      "configured_object": "/private/tmp/g1-net-spin-ref-0718/zephyr/CMakeFiles/zephyr.dir/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c.obj",
+      "configured_object_sha256": "736ad3e24ee199dbac8af634c7d78f498c5cb8e779c45adb39cb74f7704145d6",
+      "repository": "/Users/freedomcoder/ncs251/zephyr",
+      "source": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/backends/ipc_rpmsg_static_vrings.c",
+      "source_sha256": "bb74cccfe12ef9c7a1cb9e521f436b28aff6f7ccc21835ab05a6a7fd2df803c6"
+    }
+  },
+  "version_claim": {
+    "exact_build_inputs": true,
+    "interpretation": "The exact configured NCS 2.5.1 objects prove source and configuration ownership. The module commits are unchanged in NCS 2.4.0 through 2.6.1, so these bodies alone do not uniquely fingerprint the top-level NCS patch release.",
+    "module_revisions_are_shared_across_ncs_2_4_through_2_6": true
+  }
+}

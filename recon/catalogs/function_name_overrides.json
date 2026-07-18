@@ -2169,6 +2169,18 @@
    "name": "ipc_static_vrings_shm_size",
    "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."
   },
+  "0x010353ec": {
+   "name": "virtqueue_add_consumed_buffer",
+   "evidence": "Complete raw-byte match to the configured OpenAMP virtqueue.c section at manifest commit 42b7c577714b8f22ce82a901e19c1814af4609a8, including the trailing errno literal; all three firmware callers resolve here. Raw identity remains FUN_010353ec."
+  },
+  "0x0103ab0e": {
+   "name": "metal_io_block_write",
+   "evidence": "Complete 116-byte no-relocation match to the configured libmetal io.c section at manifest commit b91611a6f47dd29fb24c46e5621e797557f80ec6; both firmware callers resolve here. Raw identity remains FUN_0103ab0e."
+  },
+  "0x0103ac50": {
+   "name": "virtqueue_get_available_buffer",
+   "evidence": "Relocation-masked exact match to the configured VIRTIO_DEVICE_ONLY OpenAMP virtqueue.c section; its sole relocation resolves to the separately proven metal_io_phys_to_virt helper at 0x0103abbe and all three firmware callsites resolve here. Raw identity remains FUN_0103ac50."
+  },
   "0x0102cc34": {
    "name": "mpsc_pbuf_alloc",
    "evidence": "Recovered configured Zephyr 3.4.99 MPSC packet-buffer allocator, matched to the proven CPUAPP counterpart and verified across eight reviewed allocation, wrap, drop, and timeout paths. Raw identity remains FUN_0102cc34 at 0x0102cc34."
