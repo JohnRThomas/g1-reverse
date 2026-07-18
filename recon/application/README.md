@@ -14,6 +14,16 @@ recon/application/build_cohesive.sh app /private/tmp/g1-cohesive-app
 recon/application/build_cohesive.sh net /private/tmp/g1-cohesive-net
 ```
 
+The default retain-all mode is the ownership audit: it is expected to exceed
+CPUNET flash once both the recovered corpus and its selected SDK owners are
+present, but it must have no undefined or duplicate symbols.  Use normal
+section garbage collection for the physical-image link:
+
+```sh
+recon/application/build_cohesive.sh net /private/tmp/g1-cohesive-net-link \
+  -- -DG1_INTEGRATION_PROBE_RETAIN_ALL=OFF
+```
+
 Override the default `~/ncs251` checkout with `NCS_ROOT`.  Additional arguments
 are passed to `west build`; for example, append `-- -Dname=value` for a CMake
 cache setting.

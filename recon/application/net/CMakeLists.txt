@@ -43,6 +43,49 @@ if(NOT DEFINED G1_RETAINED_SOURCES)
     "${G1_RETAINED_SOURCE_MANIFEST} must define G1_RETAINED_SOURCES")
 endif()
 
+# The durable adoption manifest still records 29 private MPSL/SDC functions as
+# archive-owned, and three readable private dependencies are absent from the
+# generated list.  Those decisions are report-only: the obfuscated archive
+# spellings are provenance, not safe link aliases.  Keep the corresponding
+# CFG-proven reconstructions in the cohesive link until the manifest generator
+# consumes the private-recovery receipts.  This explicit list is intentionally
+# separate from G1_RETAINED_SOURCES so a clean probe cannot silently regress to
+# archive substitution.
+set(G1_PRIVATE_REPORT_ONLY_SOURCES
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/controller_radio_state_get.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/controller_timing_snapshot_build.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/controller_radio_event_cleanup.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01021940.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01021ac0.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01022a30.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01022a50.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01022e34.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01022ea8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01022f0c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/sdc_conn_window_admit.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01023ac4.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01023d38.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01023e88.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01024440.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_0102445c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_010245d8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01024c6c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_0102524c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_010256dc.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_010257e4.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/controller_deferred_event_raise.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_0102590c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025998.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025a84.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025c44.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025c9c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025cc8.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/controller_transition_pending_check.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/FUN_01025d0c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/sdc_byte_lock_try_acquire.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbolized/net/sdc_byte_lock_release.c"
+)
+
 # This is only the Zephyr application entry. Firmware/controller functions are
 # selected explicitly by the generated manifest above; upstream controller and
 # crypto objects remain under their normal NCS module CMake integration.
@@ -50,6 +93,7 @@ target_sources(app PRIVATE
   src/main.c
   src/cfg_boundary_lowerings.c
   ${G1_RETAINED_SOURCES}
+  ${G1_PRIVATE_REPORT_ONLY_SOURCES}
   # Byte-exact literal/data pools split from CFG-inflated net functions.
   # These are reviewed reconstruction artifacts, not synthesized link stubs.
   "${CMAKE_CURRENT_LIST_DIR}/../../net/data/rodata_0x100ef04.c"
@@ -64,6 +108,7 @@ target_sources(app PRIVATE
 # declarations from this directory.
 target_include_directories(app PRIVATE
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols"
+  "${ZEPHYR_BASE}/subsys/ipc/ipc_service/backends"
 )
 
 # Symbolized sources name original-image RAM and read-only objects rather than
@@ -75,4 +120,5 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_globals.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_net_function_aliases.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/src/stock_call_aliases.ld"
 )

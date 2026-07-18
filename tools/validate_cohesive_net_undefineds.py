@@ -38,17 +38,13 @@ def validate(report: dict, *, check_inputs: bool = False) -> None:
     entries = report["entries"]
     symbols = [row["symbol"] for row in entries]
     assert symbols == sorted(symbols)
-    assert len(symbols) == len(set(symbols)) == 150
+    assert len(symbols) == len(set(symbols)) == 0
+    assert report["summary"]["undefined_symbols"] == 0
     assert all(row["caller_count"] == len(row["caller_objects"]) > 0 for row in entries)
     assert all(row["link_reference_count"] >= row["caller_count"] for row in entries)
     assert all(row["category"] in CATEGORIES for row in entries)
 
     counts = Counter(row["category"] for row in entries)
-    assert counts == Counter({
-        "private_sdc_mpsl_report_only": 93,
-        "stock_sdk_or_glue": 55,
-        "interior_or_anomalous_identity": 2,
-    })
     assert report["summary"]["by_category"] == {
         category: counts[category]
         for category in (
@@ -57,13 +53,23 @@ def validate(report: dict, *, check_inputs: bool = False) -> None:
             "interior_or_anomalous_identity",
         )
     }
-    assert report["summary"]["private_by_family"] == {
-        "mpsl": 29, "softdevice_controller": 64,
-    }
+    assert counts == Counter()
+    private_families = Counter(
+        row["provider"]["family"] for row in entries
+        if row["category"] == "private_sdc_mpsl_report_only"
+    )
+    assert report["summary"]["private_by_family"] == dict(
+        sorted(private_families.items())
+    )
     assert report["summary"]["private_unique_archive_identities"] == {
-        "softdevice_controller": 53, "mpsl": 28,
+        "softdevice_controller": 0,
+        "mpsl": 0,
     }
-    assert report["summary"]["private_manifest_policy_conflicts"] == 29
+    assert report["summary"]["private_manifest_policy_conflicts"] == sum(
+        row["manifest_policy_conflict"] for row in entries
+    )
+    assert report["summary"]["link_reference_relocations"] == 0
+    assert report["summary"]["non_private_actionable_symbols"] == 0
 
     for row in entries:
         if row["category"] == "private_sdc_mpsl_report_only":
@@ -80,10 +86,7 @@ def validate(report: dict, *, check_inputs: bool = False) -> None:
              if row["resolution_kind"] == "stock_provider_requires_call_identity_integration"}
     anomalies = {row["symbol"] for row in entries
                  if row["category"] == "interior_or_anomalous_identity"}
-    assert len(aliases) == 33
-    assert len(stock) == 22
     assert not aliases & stock
-    assert anomalies == {"FUN_0102d25c", "FUN_0102fa84"}
     assert aliases | stock == {
         row["symbol"] for row in entries if row["category"] == "stock_sdk_or_glue"
     }

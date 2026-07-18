@@ -578,7 +578,7 @@ def render_markdown(report: dict) -> str:
         f"- Stock SDK/glue: **{summary['by_category']['stock_sdk_or_glue']}**",
         f"- Interior/anomalous: **{summary['by_category']['interior_or_anomalous_identity']}**",
         f"- Private MPSL manifest-policy conflicts: **{summary['private_manifest_policy_conflicts']}**",
-        f"- MPSL rows / unique private archive identities: **{summary['private_by_family']['mpsl']} / {summary['private_unique_archive_identities']['mpsl']}**",
+        f"- MPSL rows / unique private archive identities: **{summary['private_by_family'].get('mpsl', 0)} / {summary['private_unique_archive_identities'].get('mpsl', 0)}**",
         "", "## Version discrimination", "",
         report["archive_version_discrimination"]["conclusion"], "",
         f"- Firmware evidence: `{provenance['embedded_banner']}` at CPUNET image offset "

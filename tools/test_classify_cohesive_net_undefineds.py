@@ -15,30 +15,15 @@ class CohesiveNetUndefinedClassificationTest(unittest.TestCase):
     def test_full_report_invariants(self):
         validate(self.report)
 
-    def test_private_archive_policy_is_non_mutating(self):
-        mpsl = self.by_symbol["FUN_01021940"]
-        self.assertEqual(mpsl["category"], "private_sdc_mpsl_report_only")
-        self.assertTrue(mpsl["manifest_policy_conflict"])
-        self.assertFalse(mpsl["provider"]["safe_to_auto_resolve"])
-        sdc = self.by_symbol["FUN_0100f86c"]
-        self.assertEqual(sdc["provider"]["family"], "softdevice_controller")
-        self.assertFalse(sdc["provider"]["safe_to_auto_resolve"])
+    def test_link_surface_is_closed(self):
+        self.assertEqual(self.report["summary"]["undefined_symbols"], 0)
+        self.assertEqual(self.report["summary"]["link_reference_relocations"], 0)
+        self.assertEqual(self.report["entries"], [])
 
-    def test_known_stock_and_anomalous_providers(self):
-        self.assertEqual(
-            self.by_symbol["FUN_01025d38"]["provider"]["symbol"],
-            "__udivmoddi4",
-        )
-        self.assertEqual(
-            self.by_symbol["FUN_0102a244"]["provider"]["symbol"], "strcmp"
-        )
-        self.assertEqual(
-            self.by_symbol["spin_lock"]["resolution_kind"],
-            "existing_readable_alias_not_linked",
-        )
-        self.assertEqual(
-            self.by_symbol["FUN_0102d25c"]["provider"]["status"],
-            "no_valid_provider",
+    def test_private_archive_policy_remains_non_mutating(self):
+        self.assertTrue(self.report["policy"]["private_sdc_mpsl_report_only"])
+        self.assertFalse(
+            self.report["policy"]["automatic_private_archive_alias_or_removal"]
         )
 
     def test_input_catalogs_are_declared(self):
