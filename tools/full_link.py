@@ -128,9 +128,46 @@ def link_and_report():
     real = [s for s in undef if s not in provided]
     lib = [s for s in real if LIBPAT.match(s)]
     unknown = [s for s in real if not LIBPAT.match(s)]
+    reviewed = []
+    reviewed_by_category = {}
+    # Pattern classification deliberately stays conservative.  CPUAPP's
+    # non-pattern residue has a generated fail-closed audit: only symbols in
+    # the exact current full-link set, with retained-caller/owner evidence,
+    # may leave UNKNOWN.  Genuine SDK externals join the library bucket;
+    # excluded-owner byproducts and compiler pseudo spellings remain visible
+    # as reviewed report-only residue.
+    if CORE == "app":
+        audit_path = BASE + "/recon/catalogs/app_full_link_unknown_audit.json"
+        if os.path.exists(audit_path):
+            audit = json.load(open(audit_path))
+            rows = {row["symbol"]: row for row in audit.get("entries", [])}
+            if set(rows) != set(unknown):
+                missing = sorted(set(unknown) - set(rows))
+                stale = sorted(set(rows) - set(unknown))
+                raise RuntimeError(
+                    "CPUAPP UNKNOWN audit drift (missing=%s stale=%s)" %
+                    (missing, stale))
+            for symbol in unknown:
+                row = rows[symbol]
+                category = row.get("category")
+                if row.get("action") != "report_only":
+                    raise RuntimeError("non-report-only UNKNOWN audit row: " + symbol)
+                if category == "genuine_sdk_library_external":
+                    lib.append(symbol)
+                elif category in ("duplicate_owner_byproduct",
+                                  "ghidra_compiler_pseudo"):
+                    reviewed.append(symbol)
+                    reviewed_by_category[category] = (
+                        reviewed_by_category.get(category, 0) + 1)
+                else:
+                    raise RuntimeError("unsupported UNKNOWN audit category for %s: %r" %
+                                       (symbol, category))
+            unknown = []
     return {"link_rc": r.returncode, "link_err": r.stderr.strip()[:150],
             "undef_total": len(undef), "provided": len(undef) - len(real),
-            "library": len(lib), "unknown": sorted(unknown)}
+            "library": len(lib), "reviewed": sorted(reviewed),
+            "reviewed_by_category": reviewed_by_category,
+            "unknown": sorted(unknown)}
 
 if __name__ == "__main__":
     ok, fail, tot, failures = compile_all()
@@ -140,8 +177,12 @@ if __name__ == "__main__":
         print(error[:1200])
     rep = link_and_report()
     print("link rc=%d %s" % (rep["link_rc"], rep["link_err"]))
-    print("undefined: %d total | %d pinned/aliased | %d library-external | %d UNKNOWN"
-          % (rep["undef_total"], rep["provided"], rep["library"], len(rep["unknown"])))
+    print("undefined: %d total | %d pinned/aliased | %d library-external | "
+          "%d reviewed-report-only | %d UNKNOWN"
+          % (rep["undef_total"], rep["provided"], rep["library"],
+             len(rep["reviewed"]), len(rep["unknown"])))
+    if rep["reviewed"]:
+        print("reviewed residue:", json.dumps(rep["reviewed_by_category"], sort_keys=True))
     if rep["unknown"]:
         print("UNKNOWN (must be resolved/inspected):")
         for s in rep["unknown"][:50]:

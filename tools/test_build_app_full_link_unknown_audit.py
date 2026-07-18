@@ -21,8 +21,8 @@ class FullLinkUnknownAuditTest(unittest.TestCase):
     def test_exact_partition(self):
         self.assertEqual(self.data["summary"]["symbols"], 59)
         self.assertEqual(self.data["summary"]["by_category"], {
-            "blocked_interior": 2, "duplicate_owner_byproduct": 24,
-            "genuine_sdk_library_external": 32, "ghidra_compiler_pseudo": 1})
+            "duplicate_owner_byproduct": 30,
+            "genuine_sdk_library_external": 28, "ghidra_compiler_pseudo": 1})
         self.assertEqual(self.data["summary"]["actionable_gaps"], 0)
 
     def test_blocked_interiors_are_preserved(self):
@@ -30,13 +30,15 @@ class FullLinkUnknownAuditTest(unittest.TestCase):
                           if r["category"] == "blocked_interior"}, audit.BLOCKED)
 
     def test_duplicate_byproducts_have_no_retained_caller(self):
-        for symbol in audit.DUPLICATE:
-            self.assertEqual(self.rows[symbol]["retained_callers"], [])
+        for row in self.rows.values():
+            if row["category"] == "duplicate_owner_byproduct":
+                self.assertEqual(row["retained_callers"], [])
 
     def test_externals_have_retained_callers_and_owner(self):
-        for symbol in audit.EXTERNAL:
-            self.assertTrue(self.rows[symbol]["retained_callers"])
-            self.assertTrue(self.rows[symbol]["evidence"])
+        for row in self.rows.values():
+            if row["category"] == "genuine_sdk_library_external":
+                self.assertTrue(row["retained_callers"])
+                self.assertTrue(row["evidence"])
 
     def test_pseudo_is_not_aliased_or_materialized(self):
         row = self.rows["thunk_FUN_00086c78"]

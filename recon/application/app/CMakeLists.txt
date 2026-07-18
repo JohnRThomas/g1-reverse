@@ -142,4 +142,5 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_function_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
+  "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_readable_aliases.ld"
 )

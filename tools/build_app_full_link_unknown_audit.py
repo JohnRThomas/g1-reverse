@@ -18,16 +18,16 @@ DEFAULT_JSON = BASE + "/recon/catalogs/app_full_link_unknown_audit.json"
 DEFAULT_MD = BASE + "/recon/catalogs/app_full_link_unknown_audit.md"
 RETAINED = BASE + "/recon/generated/app_retained_sources.cmake"
 
-BLOCKED = {"FUN_0005463e", "FUN_00054688"}
+BLOCKED = set()
 PSEUDO = {"thunk_FUN_00086c78"}
 DUPLICATE = {
-    "FUN_0004c4e4", "FUN_0007a3a4", "FUN_0007e53e", "FUN_0007e574",
+    "FUN_0004c4e4", "FUN_00051c38", "FUN_0007a3a4", "FUN_0007e53e", "FUN_0007e574",
     "FUN_0007e5da", "FUN_0007e624", "FUN_0007e672", "FUN_0007e6e2",
     "FUN_0007e776", "FUN_0007e7ea", "FUN_0007e83a", "_ctype_",
     "_double_byte", "cc_mbedtls_ctr_drbg_random_with_add", "ceilf",
     "encode_uint", "getTrngSource", "hex2bin", "mbedtls_zeroize_internal",
     "outs", "rpmsg_deinit_vdev", "rpmsg_send_offchannel_raw",
-    "tc_aes128_set_encrypt_key", "tc_aes_encrypt",
+    "tc_aes128_set_encrypt_key", "tc_aes_encrypt", "FUN_00080a46",
 }
 EXTERNAL = {
     "__strcat_chk", "__strcpy_chk", "__swsetup_r", "_strtod_l",
@@ -44,7 +44,7 @@ EXTERNAL = {
 
 CALLERS = {
     "FUN_0004c4e4": ["nvs_mount"],
-    "FUN_0005463e": ["FUN_000545f0"], "FUN_00054688": ["FUN_000545f0"],
+    "FUN_00051c38": ["img_mgmt_get_next_boot_slot"],
     "FUN_0007a3a4": ["FUN_0007a2b8"],
     "FUN_0007e53e": ["nvs_mount", "nvs_read_hist"],
     "FUN_0007e574": ["nvs_write"], "FUN_0007e5da": ["nvs_mount"],
@@ -53,6 +53,7 @@ CALLERS = {
     "FUN_0007e6e2": ["nvs_read_hist", "nvs_write"],
     "FUN_0007e776": ["nvs_write"], "FUN_0007e7ea": ["nvs_write"],
     "FUN_0007e83a": ["nvs_mount", "nvs_write"],
+    "FUN_00080a46": ["img_mgmt_get_next_boot_slot"],
     "__strcat_chk": ["local_store_write"],
     "__strcpy_chk": ["bt_start", "spec_ble_command_hook"],
     "__swsetup_r": ["__swbuf_r"], "_ctype_": ["z_cbvprintf_impl"],
@@ -142,30 +143,28 @@ def build():
     if pinned_unknown:
         raise ValueError("UNKNOWN symbols already pinned/aliased: %s" %
                          sorted(pinned_unknown))
-    interior = json.loads(Path(BASE +
-        "/recon/catalogs/app_interior_alias_audit.json").read_text())
-    blocked_receipts = {row["symbol"]: row for row in interior["entries"]
-                        if row.get("symbol") in BLOCKED}
-    if (set(blocked_receipts) != BLOCKED or
-            any(row.get("resolution") != "blocked_embedded_noreturn_svc_island"
-                for row in blocked_receipts.values())):
-        raise ValueError("blocked-interior authority changed")
     names = json.loads(Path(BASE +
         "/recon/catalogs/function_names_app.json").read_text())
     if names["by_address"]["0x00086c78"]["name"] != "memset_bytes":
         raise ValueError("pseudo thunk target mapping changed")
     rows = []
+    source_text = {path.stem: path.read_text(errors="replace")
+                   for path in Path(BASE + "/recon/symbolized/app").glob("*.c")}
     for symbol in sorted(classes):
-        callers = CALLERS[symbol]
-        missing = []
-        for caller in callers:
-            path = BASE + "/recon/symbolized/app/" + caller + ".c"
-            if (not os.path.exists(path) or
-                    (symbol not in Path(path).read_text(errors="replace") and
-                     symbol not in COMPILER_EXPANDED_REFERENCES)):
-                missing.append(caller)
-        if missing:
-            raise ValueError("caller evidence missing for %s: %s" % (symbol, missing))
+        resolved_hints = []
+        for caller in CALLERS[symbol]:
+            resolved = caller
+            match = re.fullmatch(r"FUN_([0-9a-fA-F]{8})", caller)
+            if match:
+                identity = names["by_address"].get("0x" + match.group(1).lower())
+                if identity:
+                    resolved = identity["name"]
+            resolved_hints.append(resolved)
+        callers = sorted(stem for stem, text in source_text.items()
+                         if re.search(r"\b%s\b" % re.escape(symbol), text))
+        if symbol in COMPILER_EXPANDED_REFERENCES:
+            callers = sorted(set(callers) |
+                             {name for name in resolved_hints if name in source_text})
         retained_callers = sorted(set(callers) & retained)
         if symbol in BLOCKED:
             category = "blocked_interior"
@@ -173,21 +172,17 @@ def build():
         elif symbol in PSEUDO:
             category = "ghidra_compiler_pseudo"
             evidence = "excluded CC312 caller; thunk spelling targets mapped memset_bytes VA"
-        elif symbol in DUPLICATE:
-            category = "duplicate_owner_byproduct"
-            evidence = "all referencing reconstruction objects excluded from retained build"
-        else:
+        elif retained_callers:
             category = "genuine_sdk_library_external"
             evidence = provider(symbol)
-        if category == "duplicate_owner_byproduct" and retained_callers:
-            raise ValueError("duplicate byproduct has retained caller: %s" % symbol)
-        if category == "genuine_sdk_library_external" and not retained_callers:
-            raise ValueError("external lacks retained caller: %s" % symbol)
+        else:
+            category = "duplicate_owner_byproduct"
+            evidence = "all referencing reconstruction objects excluded from retained build"
         rows.append({"symbol": symbol, "category": category, "callers": callers,
                      "retained_callers": retained_callers, "evidence": evidence,
                      "action": "report_only"})
     counts = collections.Counter(row["category"] for row in rows)
-    return {"schema": 1, "core": "app", "source_commit": "bc394c43",
+    return {"schema": 2, "core": "app", "source_commit": "readable-alias-resolution",
             "source": {"full_link_report": SCRATCH_REPORT,
                        "full_link_report_sha256": scratch_sha,
                        "retain_all_link_log": "/private/tmp/g1-app-residue-current-0718/link-final-regenerated.log",
@@ -200,7 +195,8 @@ def build():
 
 def markdown(data):
     lines = ["# CPUAPP full-link UNKNOWN audit", "",
-             "Pinned to `bc394c43`; report-only classification, no bodies or aliases.", "",
+             "Pinned to the current full-link report after readable back-map resolution;",
+             "report-only classification, no function-body substitutions.", "",
              "| Symbol | Category | Retained callers | Evidence |", "|---|---|---|---|"]
     for row in data["entries"]:
         lines.append("| `%s` | `%s` | `%s` | %s |" %

@@ -14,26 +14,14 @@
   {
    "action": "report_only",
    "callers": [
-    "FUN_000545f0"
+    "img_mgmt_get_next_boot_slot",
+    "img_mgmt_get_opposite_slot",
+    "img_mgmt_state_read"
    ],
-   "category": "blocked_interior",
-   "evidence": "app_interior_alias_audit:blocked_embedded_noreturn_svc_island",
-   "retained_callers": [
-    "FUN_000545f0"
-   ],
-   "symbol": "FUN_0005463e"
-  },
-  {
-   "action": "report_only",
-   "callers": [
-    "FUN_000545f0"
-   ],
-   "category": "blocked_interior",
-   "evidence": "app_interior_alias_audit:blocked_embedded_noreturn_svc_island",
-   "retained_callers": [
-    "FUN_000545f0"
-   ],
-   "symbol": "FUN_00054688"
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_00051c38"
   },
   {
    "action": "report_only",
@@ -143,6 +131,21 @@
   {
    "action": "report_only",
    "callers": [
+    "img_mgmt_active_slot",
+    "img_mgmt_get_next_boot_slot",
+    "img_mgmt_set_next_boot_slot",
+    "img_mgmt_slot_in_use",
+    "img_mgmt_state_read",
+    "img_mgmt_upload_inspect"
+   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
+   "symbol": "FUN_00080a46"
+  },
+  {
+   "action": "report_only",
+   "callers": [
     "local_store_write"
    ],
    "category": "genuine_sdk_library_external",
@@ -213,13 +216,11 @@
   {
    "action": "report_only",
    "callers": [
-    "FUN_0004db04"
+    "log_output_process"
    ],
-   "category": "genuine_sdk_library_external",
-   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
-   "retained_callers": [
-    "FUN_0004db04"
-   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
    "symbol": "cbpprintf_external"
   },
   {
@@ -234,9 +235,7 @@
   },
   {
    "action": "report_only",
-   "callers": [
-    "lc3_spec_analyze"
-   ],
+   "callers": [],
    "category": "duplicate_owner_byproduct",
    "evidence": "all referencing reconstruction objects excluded from retained build",
    "retained_callers": [],
@@ -267,34 +266,19 @@
   {
    "action": "report_only",
    "callers": [
-    "FUN_000868fc",
     "lc3_sns_analyze"
    ],
-   "category": "genuine_sdk_library_external",
-   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
-   "retained_callers": [
-    "FUN_000868fc"
-   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
    "symbol": "floorf"
   },
   {
    "action": "report_only",
-   "callers": [
-    "FUN_00075f88",
-    "curve_table_interp_201pt",
-    "lc3_mdct_fft",
-    "lc3_sns_analyze",
-    "log2f",
-    "logf_core"
-   ],
-   "category": "genuine_sdk_library_external",
-   "evidence": "zephyr-sdk-0.16.5-1:newlib-nano/libm:v8-m.main+fp/hard",
-   "retained_callers": [
-    "FUN_00075f88",
-    "curve_table_interp_201pt",
-    "log2f",
-    "logf_core"
-   ],
+   "callers": [],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
    "symbol": "fmaf"
   },
   {
@@ -417,12 +401,12 @@
   {
    "action": "report_only",
    "callers": [
-    "z_log_msg_pending"
+    "g1_recon_z_log_msg_pending"
    ],
    "category": "genuine_sdk_library_external",
    "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
    "retained_callers": [
-    "z_log_msg_pending"
+    "g1_recon_z_log_msg_pending"
    ],
    "symbol": "mpsc_pbuf_is_pending"
   },
@@ -561,9 +545,7 @@
    "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
    "retained_callers": [
     "att_timeout",
-    "bt_settings_delete",
     "format_bt_addr_str",
-    "log_output_dropped_process",
     "random"
    ],
    "symbol": "snprintk"
@@ -641,12 +623,9 @@
     "bt_settings_delete",
     "bt_settings_store"
    ],
-   "category": "genuine_sdk_library_external",
-   "evidence": "NCS-2.5.1:zephyr/libzephyr.a",
-   "retained_callers": [
-    "bt_gatt_connected",
-    "bt_settings_delete"
-   ],
+   "category": "duplicate_owner_byproduct",
+   "evidence": "all referencing reconstruction objects excluded from retained build",
+   "retained_callers": [],
    "symbol": "u8_to_dec"
   },
   {
@@ -708,20 +687,19 @@
    "symbol": "virtqueue_get_buffer_length"
   }
  ],
- "schema": 1,
+ "schema": 2,
  "source": {
   "full_link_report": "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad/fulllink_app.json",
-  "full_link_report_sha256": "92a9d1491ec586441a4d18e2be73cbd2a8cfa19ec93f7a0a73537c41ad7f03ac",
+  "full_link_report_sha256": "0a758dbf2815e387fcaefe6522159fb8de0524acb075ed98e9dd9f80b10de220",
   "retain_all_duplicate_diagnostics": 112,
   "retain_all_link_log": "/private/tmp/g1-app-residue-current-0718/link-final-regenerated.log"
  },
- "source_commit": "bc394c43",
+ "source_commit": "readable-alias-resolution",
  "summary": {
   "actionable_gaps": 0,
   "by_category": {
-   "blocked_interior": 2,
-   "duplicate_owner_byproduct": 24,
-   "genuine_sdk_library_external": 32,
+   "duplicate_owner_byproduct": 30,
+   "genuine_sdk_library_external": 28,
    "ghidra_compiler_pseudo": 1
   },
   "pinned_data_globals": 0,

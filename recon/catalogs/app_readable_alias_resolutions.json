@@ -1,0 +1,24 @@
+{
+ "schema": 1,
+ "core": "app",
+ "aliases": [
+  {
+   "symbol": "dispatch_hci_event",
+   "target": "FUN_00053658",
+   "va": "0x00053658",
+   "evidence": "Readable caller declaration retains the raw FUN_00053658 back-map; the target is the CFG-proven 88-byte event-table dispatcher."
+  },
+  {
+   "symbol": "process_number_completed_packets",
+   "target": "FUN_00056394",
+   "va": "0x00056394",
+   "evidence": "Readable caller declaration retains the raw FUN_00056394 back-map; the target is present in the authoritative 2113/2113 CPUAPP PASS corpus."
+  },
+  {
+   "symbol": "version_string",
+   "target": "ver_str",
+   "va": "0x00053344",
+   "evidence": "Readable caller declaration retains the raw FUN_00053344 back-map and the durable function catalog names that identity ver_str."
+  }
+ ]
+}
