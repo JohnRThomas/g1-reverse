@@ -1032,6 +1032,9 @@ if recon_kit.TRUE_SIZE_OVERRIDES != _APP_TRUE_SIZE_OVERRIDES:
 # Reviewed ABI returns where the generic "last s0/d0 writer" heuristic sees
 # an internal floating-point temporary rather than the actual function result.
 RETURN_KIND_OVERRIDES = {
+    # Newlib's hard-float sqrt returns the binary64 result in d0; its integer
+    # temporaries leave misleading live values in r0/r1 at the return site.
+    ("app", 0x00075e14): "f64",
     # Ghidra inferred undefined8 from live r1 scratch, but every caller uses
     # only the controller packet-duration value returned in r0.
     ("net", 0x010109ec): "i32",
@@ -15769,6 +15772,138 @@ REVIEWED_FP_CASES = {
 # sole double argument in d0; the core-register arity is therefore zero.
 REVIEWED_TARGET_CALL_ARITIES[("app", 0x000133f8)] = {0x00075e14: 0}
 
+# Catalog-recovered OpenAMP/zcbor/kernel/libc leaves.  These target-scoped
+# arities keep the oracle boundary semantic while allowing compiler-local
+# stack layout to differ.
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00071560)] = {0x00071358: 4}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000715b8)] = {
+    0x000861d4: 3, 0x000861c2: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00071b2c)] = {
+    0x00072040: 1, 0x00072078: 1, 0x0004b214: 2,
+    0x00086668: 1, 0x000739f0: 1, 0x0007205c: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00074184)] = {
+    0x00074060: 2, 0x0008664c: 0,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000748b8)] = {
+    0x00072040: 1, 0x00072078: 1, 0x0007205c: 1,
+    0x00074274: 1, 0x00074d74: 1, 0x00073cdc: 2,
+    0x00073840: 1, 0x000737d8: 1, 0x00050304: 1,
+    0x000501d4: 1, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x00075864)] = {
+    0x000719f4: 3, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+REVIEWED_TARGET_CALL_ARITIES[("app", 0x000758cc)] = {
+    0x00075864: 3, 0x0007e2fa: 4, 0x0007e2ec: 2,
+}
+
+# Binary64 sqrt domain and normalization boundaries: signed zero, ordinary
+# exact/inexact roots, smallest subnormal, infinities, NaN, and negatives.
+REVIEWED_FP_CASES[("app", 0x00075e14)] = [
+    {0: 0x00000000, 1: 0x00000000},
+    {0: 0x00000000, 1: 0x80000000},
+    {0: 0x00000000, 1: 0x3ff00000},
+    {0: 0x00000000, 1: 0x40000000},
+    {0: 0x00000000, 1: 0x40100000},
+    {0: 0x00000001, 1: 0x00000000},
+    {0: 0x00000000, 1: 0x7ff00000},
+    {0: 0x00000001, 1: 0x7ff80000},
+    {0: 0x00000000, 1: 0xbff00000},
+    {0: 0x00000000, 1: 0xfff00000},
+]
+REVIEWED_STATE_CASES[("app", 0x00075e14)] = [
+    ({}, []) for _ in REVIEWED_FP_CASES[("app", 0x00075e14)]
+]
+
+
+def _app_zcbor_value_len_case(result, capacity, header_result=1):
+    state = emu.SCRATCH + 0x9000
+    payload = emu.SCRATCH + 0x9100
+    value = emu.SCRATCH + 0x9200
+    state_image = bytearray(16)
+    state_image[0:4] = payload.to_bytes(4, "little")
+    state_image[8:12] = (2).to_bytes(4, "little")
+    state_image[12:16] = (payload + capacity).to_bytes(4, "little")
+    return (
+        {0: state, 1: 0, 2: value, 3: len(result)},
+        [(state, bytes(state_image)), (payload, bytes(16)),
+         (value, bytes(result)),
+         # zcbor v0.7.0 additional-info lookup for lengths 2..8.
+         (0x000f7c37, b"\x01\x02\x02\x03\x03\x03\x03")],
+        {0: {0: int(header_result)}},
+    )
+
+
+REVIEWED_ORACLE_CASES[("app", 0x000715b8)] = [
+    _app_zcbor_value_len_case(b"\x17", 8),
+    _app_zcbor_value_len_case(b"\x18", 8),
+    _app_zcbor_value_len_case(b"\x12\x34", 8),
+    _app_zcbor_value_len_case(bytes(range(8)), 12),
+    _app_zcbor_value_len_case(bytes(range(9)), 12),
+    _app_zcbor_value_len_case(b"\x12\x34", 2),
+    _app_zcbor_value_len_case(b"\x12\x34", 8, header_result=0),
+]
+
+
+def _app_k_heap_free_case(unpend_result):
+    heap = emu.SCRATCH + 0x9400
+    allocation = emu.SCRATCH + 0x9500
+    return (
+        {0: heap, 1: allocation},
+        [(heap, bytes(0x40)), (allocation, bytes(16))],
+        {0: {0: 1}, 3: {0: int(unpend_result)}, 4: {0: 1}},
+    )
+
+
+REVIEWED_ORACLE_CASES[("app", 0x00071b2c)] = [
+    _app_k_heap_free_case(0),
+    _app_k_heap_free_case(1),
+]
+
+
+def _app_thread_abort_case(kind):
+    thread = emu.SCRATCH + 0x9600
+    other = emu.SCRATCH + 0x9800
+    image = bytearray(0xa0)
+    image[0x58:0x5c] = (thread + 0x58).to_bytes(4, "little")
+    current = other
+    if kind == "essential":
+        image[0x0c] = 1
+        oracles = {0: {0: 1}, 2: {0: 1}}
+    elif kind == "dead":
+        image[0x0d] = 8
+        oracles = {0: {0: 1}, 2: {0: 1}}
+    elif kind == "queued-pended":
+        image[0x0d] = 0x80
+        image[0x08:0x0c] = other.to_bytes(4, "little")
+        oracles = {0: {0: 1}, 7: {0: 1}}
+    elif kind in ("current-thread", "current-irq"):
+        current = thread
+        oracles = {0: {0: 1}, 5: {0: 1}}
+    else:
+        oracles = {0: {0: 1}, 5: {0: 1}}
+    return (
+        {0: thread},
+        [(thread, bytes(image)), (other, bytes(0xa0)),
+         (0x2000b450, current.to_bytes(4, "little")),
+         (0x2000b490, bytes(8))],
+        oracles,
+    )
+
+
+# The first two cases align with the verifier's automatic IPSR sequence
+# (thread mode, then external IRQ); the rest prove terminal and queue states.
+REVIEWED_ORACLE_CASES[("app", 0x000748b8)] = [
+    _app_thread_abort_case("current-thread"),
+    _app_thread_abort_case("current-irq"),
+    _app_thread_abort_case("essential"),
+    _app_thread_abort_case("dead"),
+    _app_thread_abort_case("live"),
+    _app_thread_abort_case("queued-pended"),
+]
+
 POINTER_READ_TRANSITION_CASES = {
     ("app", 0x00084a54): [
         [(0, 0, 0x110, 1, 1)],
@@ -17008,6 +17143,9 @@ REVIEWED_INTERNAL_CODE_REGIONS = {
 # modes first can manufacture matching fault parity before their private
 # multi-register workers execute, so require the production pointer count.
 REVIEWED_NPTR_COUNTS = {
+    ("app", 0x000715b8): 3,
+    ("app", 0x00071b2c): 2,
+    ("app", 0x000748b8): 1,
     # The only production caller forwards its context/event ABI unchanged,
     # although the catalog-missing fallback intentionally consumes neither.
     ("net", 0x0100b594): 2,
