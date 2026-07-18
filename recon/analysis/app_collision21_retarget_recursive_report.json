@@ -1,0 +1,241 @@
+{
+ "adoption_authorized": false,
+ "batch": "COLLISION-21",
+ "configured_object_sha256": "9adde824e0533471cba1994ec4a102607971384c74b5001bd0034ee0b5289881",
+ "configured_source": "zephyr/lib/libc/newlib/libc-hooks.c",
+ "configured_source_sha256": "b97ebcf445988908df37bdcb304cf1b9781a1ca7fbd8d4b3c017f348ee8a314b",
+ "core": "app",
+ "decision": "retain_and_namespace_both_reconstructions",
+ "functions": [
+  {
+   "abi": {
+    "decl_line": 51,
+    "params": [
+     "_LOCK_T"
+    ],
+    "return": "void",
+    "variadic": false
+   },
+   "assertion": {
+    "configured_object_present": false,
+    "expression": "lock != ((void *)0)",
+    "firmware_active": true,
+    "firmware_line": 422
+   },
+   "callers": [
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076ad0",
+     "va": "0x76ad0"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076b9c",
+     "va": "0x76b9c"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076bb4",
+     "va": "0x76bb4"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076ed4",
+     "va": "0x76ed4"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_000778d4",
+     "va": "0x778d4"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_000785bc",
+     "va": "0x785bc"
+    }
+   ],
+   "cfg_verify": {
+    "configured_sdk_semantics_negative_control": {
+     "cases": 2,
+     "checked": 2,
+     "mismatch_kinds": [
+      "direct-target"
+     ],
+     "mismatches": 1,
+     "status": "FAIL"
+    },
+    "retained": {
+     "cases": 2,
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    }
+   },
+   "configured_sdk_relocations": [
+    "z_impl_k_mutex_lock"
+   ],
+   "configured_sdk_size": 12,
+   "decision": "retain_reconstruction",
+   "direct_branch_sites": [
+    "0x00076b06",
+    "0x00076b9e",
+    "0x00076bb6",
+    "0x00076f02",
+    "0x00077872",
+    "0x000785be"
+   ],
+   "firmware_calls": [
+    "0x723b8",
+    "0x7e2ec",
+    "0x7e2fa"
+   ],
+   "firmware_instruction_count": 14,
+   "future_build_symbol": "g1_recon_retarget_lock_acquire_recursive",
+   "literal_pool_starts_at": "0x00051128",
+   "raw_symbol": "FUN_000510fc",
+   "signature_match": {
+    "length": 0.214286,
+    "normalized_exact": false,
+    "opcode": 0.352941,
+    "shape": 0.352941
+   },
+   "state_model": {
+    "argument": "_LOCK_T points directly to struct k_mutex",
+    "known_static_lock_addresses": [
+     "0x200037f0",
+     "0x20003804",
+     "0x20003818"
+    ],
+    "owned_globals": [],
+    "valid_path": "same passed mutex; K_FOREVER acquire or direct unlock"
+   },
+   "symbol": "__retarget_lock_acquire_recursive",
+   "true_code_extent": 44,
+   "va": "0x000510fc"
+  },
+  {
+   "abi": {
+    "decl_line": 60,
+    "params": [
+     "_LOCK_T"
+    ],
+    "return": "void",
+    "variadic": false
+   },
+   "assertion": {
+    "configured_object_present": false,
+    "expression": "lock != ((void *)0)",
+    "firmware_active": true,
+    "firmware_line": 450
+   },
+   "callers": [
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076ad0",
+     "va": "0x76ad0"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076ba8",
+     "va": "0x76ba8"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076bcc",
+     "va": "0x76bcc"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_00076ed4",
+     "va": "0x76ed4"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_000778d4",
+     "va": "0x778d4"
+    },
+    {
+     "cfg_verify": "PASS",
+     "raw_symbol": "FUN_000785c8",
+     "va": "0x785c8"
+    }
+   ],
+   "cfg_verify": {
+    "configured_sdk_semantics_negative_control": {
+     "cases": 2,
+     "checked": 2,
+     "mismatch_kinds": [
+      "direct-target"
+     ],
+     "mismatches": 1,
+     "status": "FAIL"
+    },
+    "retained": {
+     "cases": 2,
+     "selectors": {
+      "0": [
+       0,
+       1
+      ]
+     },
+     "status": "PASS"
+    }
+   },
+   "configured_sdk_relocations": [
+    "z_impl_k_mutex_unlock"
+   ],
+   "configured_sdk_size": 4,
+   "decision": "retain_reconstruction",
+   "direct_branch_sites": [
+    "0x00076b22",
+    "0x00076baa",
+    "0x00076bc2",
+    "0x00076f46",
+    "0x000770e8",
+    "0x00077898",
+    "0x000785ca"
+   ],
+   "firmware_calls": [
+    "0x72558",
+    "0x7e2ec",
+    "0x7e2fa"
+   ],
+   "firmware_instruction_count": 12,
+   "future_build_symbol": "g1_recon_retarget_lock_release_recursive",
+   "literal_pool_starts_at": "0x00051158",
+   "raw_symbol": "FUN_00051134",
+   "signature_match": {
+    "length": 0.083333,
+    "normalized_exact": false,
+    "opcode": 0.153846,
+    "shape": 0.153846
+   },
+   "state_model": {
+    "argument": "_LOCK_T points directly to struct k_mutex",
+    "known_static_lock_addresses": [
+     "0x200037f0",
+     "0x20003804",
+     "0x20003818"
+    ],
+    "owned_globals": [],
+    "valid_path": "same passed mutex; K_FOREVER acquire or direct unlock"
+   },
+   "symbol": "__retarget_lock_release_recursive",
+   "true_code_extent": 36,
+   "va": "0x00051134"
+  }
+ ],
+ "implementation_closure": [
+  "namespace both retained hooks and preserve FUN_000510fc/FUN_00051134 address back-maps",
+  "regenerate all six acquire and seven release direct call sites; FUN_00076ed4 owns two release sites",
+  "keep the configured libc-hooks.c public hooks intact and create no adoption overlay or exclusion",
+  "require retain-all collision delta -2 with no new unresolved symbols and distinct SDK/namespaced map owners",
+  "future SDK adoption is permitted only after rebuilding libc-hooks.c with the firmware assertion policy and proving the complete source unit"
+ ],
+ "overlay_changed": false,
+ "schema": 1
+}
