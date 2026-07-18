@@ -8538,11 +8538,14 @@
   "0x0102da84": {
    "address": "0x0102da84",
    "raw_name": "FUN_0102da84",
-   "name": "ipc_rpmsg_register_ept",
-   "display_name": "ipc_rpmsg_register_ept",
+   "name": "g1_ipc_rpmsg_register_ept",
+   "display_name": "g1_ipc_rpmsg_register_ept",
    "human": true,
-   "source": "function_name_overrides.json: Recovered configured Zephyr IPC RPMsg endpoint registration implementation with the exact ipc_rpmsg_instance/role/ipc_rpmsg_ept ABI. Raw identity remains FUN_0102da84 at 0x0102da84.",
-   "aliases": []
+   "source": "function_name_overrides.json: Firmware-specific Zephyr IPC RPMsg registration variant: its non-relocation bytes match ipc_rpmsg_register_ept, but both live owner paths use the shipped 0x0103a98f unbind callback literal rather than the pinned stock rpmsg_service_unbind relocation. Raw identity remains FUN_0102da84 at 0x0102da84.",
+   "aliases": [
+    "FUN_0102da84",
+    "ipc_rpmsg_register_ept"
+   ]
   },
   "0x0102dac0": {
    "address": "0x0102dac0",
@@ -13210,9 +13213,9 @@
   "controller_work_enqueue_state4": "0x0100ef48",
   "controller_work_update_or_enqueue": "0x0100efc8",
   "flag_test_and_clear": "0x0103b244",
+  "g1_ipc_rpmsg_register_ept": "0x0102da84",
   "get_ept_slot_with_name": "0x01039f4c",
   "ipc_rpmsg_init": "0x0102dac0",
-  "ipc_rpmsg_register_ept": "0x0102da84",
   "ipc_rpmsg_static_vrings_open": "0x0102d708",
   "ipc_service_register_endpoint": "0x0102d5b4",
   "ipc_static_vrings_init": "0x0102db30",

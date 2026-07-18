@@ -57,6 +57,8 @@ DEFAULTS = {
     "net_sdk_public": "recon/catalogs/net_sdk_public_ownership.json",
     "net_openamp_stock":
         "recon/ownership/net_openamp_stock_atomic_adoption.json",
+    "net_ipc_rpmsg_variant":
+        "recon/ownership/net_ipc_rpmsg_variant_ownership.json",
     "net_zephyr_stock":
         "recon/ownership/net_zephyr_stock_atomic_adoption.json",
     "net_alias_resolutions": "recon/catalogs/net_identity_alias_resolutions.json",
@@ -635,6 +637,34 @@ def _build_from_baseline(paths, resolved, names):
             if _sha256(source_path) != row.get("reconstruction_source_sha256"):
                 raise ValueError("net OpenAMP reconstruction changed: %s" %
                                  row["va"])
+    net_ipc_path = resolved["net_ipc_rpmsg_variant"]
+    net_ipc = _load_json(net_ipc_path)
+    if (net_ipc.get("schema") != 1 or net_ipc.get("core") != "net" or
+            net_ipc.get("component") != "zephyr_ipc_rpmsg_variant" or
+            net_ipc.get("status") != "required_retain" or
+            net_ipc.get("safe") is not True or
+            net_ipc.get("mutable_state_sections") or
+            net_ipc.get("state_closure", {}).get("complete") is not True or
+            len(net_ipc.get("source_unit_sections", [])) != 5 or
+            len(net_ipc.get("call_target_mismatches", [])) != 2):
+        raise ValueError("invalid net IPC RPMsg variant retention catalog")
+    upstream_ipc = net_ipc["upstream"]
+    for path_key, digest_key in (
+            ("source_path", "source_sha256"),
+            ("object_path", "object_sha256"),
+            ("linker_map", "linker_map_sha256")):
+        if _sha256(upstream_ipc[path_key]) != upstream_ipc.get(digest_key):
+            raise ValueError("net IPC RPMsg %s receipt changed" % path_key)
+    config_path = os.path.join(upstream_ipc["configured_build"],
+                               "zephyr/.config")
+    if _sha256(config_path) != upstream_ipc.get("configured_build_sha256"):
+        raise ValueError("net IPC RPMsg configured build changed")
+    for row in net_ipc.get("retained_functions", []):
+        source_path = _path(row["reconstruction_source"])
+        if (_sha256(source_path) != row.get("reconstruction_source_sha256") or
+                row.get("exclude_reconstruction") is not False):
+            raise ValueError("net IPC RPMsg retained variant changed: %s" %
+                             row["va"])
     net_zephyr_path = resolved["net_zephyr_stock"]
     net_zephyr = _load_json(net_zephyr_path)
     if (net_zephyr.get("schema") != 1 or
@@ -709,6 +739,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(lc3_stock_path)},
         {"path": paths["net_openamp_stock"],
          "sha256": _sha256(net_openamp_path)},
+        {"path": paths["net_ipc_rpmsg_variant"],
+         "sha256": _sha256(net_ipc_path)},
         {"path": paths["net_zephyr_stock"],
          "sha256": _sha256(net_zephyr_path)},
         {"path": paths["app_collision_retention_overrides"],
@@ -944,6 +976,12 @@ def _build_from_baseline(paths, resolved, names):
             net_openamp, paths["net_openamp_stock"], names):
         if row.get("exclude_reconstruction") is not True:
             raise ValueError("incomplete net OpenAMP exclusion: %s" % row["va"])
+        net_rows[row["va"]] = row
+    for row in _net_ipc_rpmsg_variant_entries(
+            net_ipc, paths["net_ipc_rpmsg_variant"], names):
+        if row.get("exclude_reconstruction") is not False:
+            raise ValueError("unsafe net IPC RPMsg variant exclusion: %s" %
+                             row["va"])
         net_rows[row["va"]] = row
     for row in _net_zephyr_stock_entries(
             net_zephyr, paths["net_zephyr_stock"], names):
@@ -1241,6 +1279,42 @@ def _net_openamp_stock_entries(data, source, names):
                            "reconstruction_present"),
                        safe_to_adopt=eligible)],
             "high" if eligible else "low"))
+    return output
+
+
+def _net_ipc_rpmsg_variant_entries(data, source, names):
+    """Retain the shipped IPC wrapper when a live relocation differs."""
+    output = []
+    upstream = data["upstream"]
+    mismatches = data.get("call_target_mismatches", [])
+    closure = data.get("state_closure", {})
+    safe_retain = bool(
+        data.get("safe") is True and data.get("status") == "required_retain" and
+        len(mismatches) == 2 and
+        all(row.get("equivalent") is False for row in mismatches) and
+        closure.get("complete") is True and
+        not closure.get("mutable_state_sections"))
+    if not safe_retain:
+        raise ValueError("incomplete net IPC RPMsg variant closure")
+    for row in data.get("retained_functions", []):
+        output.append(_entry(
+            "net", row["va"], names, "source",
+            "zephyr_ipc_rpmsg_variant", row.get("stock_symbol"),
+            upstream.get("source"), False,
+            ("Retain the recovered firmware variant: the pinned stock owner "
+             "matches all non-relocation bytes, but two live unbind callback "
+             "relocations resolve to a different target."),
+            [_evidence(source, "net_ipc_rpmsg_variant_required_retain",
+                       repository=upstream.get("repository"),
+                       commit=upstream.get("commit"),
+                       source_sha256=upstream.get("source_sha256"),
+                       object_sha256=upstream.get("object_sha256"),
+                       variant_symbol=row.get("variant_symbol"),
+                       raw_mapping_preserved=True,
+                       call_target_mismatches=len(mismatches),
+                       state_closure_complete=True,
+                       sdc_policy=data.get("policy", {}).get("sdc_policy"))],
+            "high"))
     return output
 
 

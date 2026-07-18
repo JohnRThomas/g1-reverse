@@ -1,0 +1,210 @@
+{
+ "call_target_mismatches": [
+  {
+   "equivalent": false,
+   "firmware_target": "0x0103a98f",
+   "firmware_target_containing_extent": [
+    "0x0103a924",
+    "0x0103a9be"
+   ],
+   "firmware_target_containing_function": "FUN_0103a924",
+   "firmware_target_even": "0x0103a98e",
+   "firmware_target_first_bytes": "3678b600",
+   "firmware_target_first_instructions": [
+    "ldrb r6, [r6, #0]",
+    "lsls r6, r6, #2"
+   ],
+   "firmware_target_is_function_entry": false,
+   "owner_symbol": "ns_bind_cb",
+   "owner_va": "0x0102da18",
+   "relocation_offset": 104,
+   "stock_target_behavior": "tail-branch rpmsg_destroy_ept",
+   "stock_target_symbol": "rpmsg_service_unbind"
+  },
+  {
+   "equivalent": false,
+   "firmware_target": "0x0103a98f",
+   "firmware_target_containing_extent": [
+    "0x0103a924",
+    "0x0103a9be"
+   ],
+   "firmware_target_containing_function": "FUN_0103a924",
+   "firmware_target_even": "0x0103a98e",
+   "firmware_target_first_bytes": "3678b600",
+   "firmware_target_first_instructions": [
+    "ldrb r6, [r6, #0]",
+    "lsls r6, r6, #2"
+   ],
+   "firmware_target_is_function_entry": false,
+   "owner_symbol": "ipc_rpmsg_register_ept",
+   "owner_va": "0x0102da84",
+   "relocation_offset": 56,
+   "stock_target_behavior": "tail-branch rpmsg_destroy_ept",
+   "stock_target_symbol": "rpmsg_service_unbind"
+  }
+ ],
+ "cfg_verify": {
+  "0x0102da84": "PASS cases=7 selectors=args0,args1,args2"
+ },
+ "component": "zephyr_ipc_rpmsg_variant",
+ "core": "net",
+ "mutable_state_sections": [],
+ "policy": {
+  "duplicate_resolution": "rename_recovered_firmware_variant",
+  "sdc_policy": "report_only_unchanged",
+  "source_unit_adoption": "rejected_on_call_target_mismatch"
+ },
+ "retained_functions": [
+  {
+   "exclude_reconstruction": false,
+   "raw_symbol": "FUN_0102da84",
+   "reason": "stock non-relocation bytes match, but the live unbind callback relocation target does not",
+   "reconstruction_source": "recon/net/src/FUN_0102da84.c",
+   "reconstruction_source_sha256": "c82709c5d3aac8561276beb547ab1d1bfc3d5deb7c26b9c43d2ade590b6415eb",
+   "stock_symbol": "ipc_rpmsg_register_ept",
+   "va": "0x0102da84",
+   "variant_symbol": "g1_ipc_rpmsg_register_ept"
+  }
+ ],
+ "safe": true,
+ "schema": 1,
+ "source_unit_sections": [
+  {
+   "firmware_va": null,
+   "match": "fully-relocated-no-independent-identity",
+   "relocations": [
+    {
+     "offset": 0,
+     "target_symbol": "rpmsg_destroy_ept",
+     "type": 30
+    }
+   ],
+   "section": ".text.rpmsg_service_unbind",
+   "size": 4,
+   "symbol": "rpmsg_service_unbind"
+  },
+  {
+   "firmware_va": "0x0102da18",
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "6df2ede81fa91adb67d48d79474df4f2d711568881987e51e46d22ba9bc2217c",
+   "relocations": [
+    {
+     "offset": 26,
+     "target_symbol": "strcmp",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target_symbol": "rpmsg_create_ept",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target_symbol": "rpmsg_service_unbind",
+     "type": 2
+    }
+   ],
+   "section": ".text.ns_bind_cb",
+   "size": 108,
+   "symbol": "ns_bind_cb"
+  },
+  {
+   "firmware_va": "0x0102da84",
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b849e224d00af7c30a990d50a91dd3899d79fbaa0fc6125f35e6e085c9ab2c97",
+   "relocations": [
+    {
+     "offset": 36,
+     "target_symbol": "rpmsg_create_ept",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target_symbol": "rpmsg_service_unbind",
+     "type": 2
+    }
+   ],
+   "section": ".text.ipc_rpmsg_register_ept",
+   "size": 60,
+   "symbol": "ipc_rpmsg_register_ept"
+  },
+  {
+   "firmware_va": "0x0102dac0",
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "3c62fd1bc18efa8c5fdbf26d7a946d6b8918f47371e720d86384463a43d3dbc9",
+   "relocations": [
+    {
+     "offset": 52,
+     "target_symbol": "rpmsg_virtio_init_shm_pool",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target_symbol": "rpmsg_init_vdev_with_config",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target_symbol": "ns_bind_cb",
+     "type": 2
+    },
+    {
+     "offset": 96,
+     "target_symbol": "rpmsg_init_vdev",
+     "type": 30
+    }
+   ],
+   "section": ".text.ipc_rpmsg_init",
+   "size": 112,
+   "symbol": "ipc_rpmsg_init"
+  },
+  {
+   "firmware_va": "0x0103a192",
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "f75cde72b4a08c638c0d8d8036e8ad119f61c005a483e2428edfa154b9f0b644",
+   "relocations": [
+    {
+     "offset": 10,
+     "target_symbol": "rpmsg_deinit_vdev",
+     "type": 10
+    }
+   ],
+   "section": ".text.ipc_rpmsg_deinit",
+   "size": 40,
+   "symbol": "ipc_rpmsg_deinit"
+  }
+ ],
+ "state_closure": {
+  "complete": true,
+  "mutable_state_sections": [],
+  "source_unit_live_sections": [
+   "rpmsg_service_unbind",
+   "ns_bind_cb",
+   "ipc_rpmsg_register_ept",
+   "ipc_rpmsg_init",
+   "ipc_rpmsg_deinit"
+  ]
+ },
+ "status": "required_retain",
+ "upstream": {
+  "abi": "Cortex-M33, Thumb-2, soft-float, -Os",
+  "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "configured_build": "/private/tmp/g1-net-spin-ref-0718",
+  "configured_build_sha256": "5ef3cd51147eb19eca0aa948feb92790b243ecfe9f4623dd5eea8d27f6852c15",
+  "linker_map": "/private/tmp/g1-net-spin-ref-0718/zephyr/zephyr.map",
+  "linker_map_sha256": "c4d77ef6631f1afed89a8a4d6f23f169f77d51e8a042d998b8f1894cf8e4af24",
+  "object": "zephyr/CMakeFiles/zephyr.dir/subsys/ipc/ipc_service/lib/ipc_rpmsg.c.obj",
+  "object_path": "/private/tmp/g1-net-spin-ref-0718/zephyr/CMakeFiles/zephyr.dir/subsys/ipc/ipc_service/lib/ipc_rpmsg.c.obj",
+  "object_sha256": "1acd99f1bb411fa44b5cd6ccfc6adeca324847245057a44296aa825a1bc7033c",
+  "repository": "zephyr",
+  "required_config": {
+   "CONFIG_IPC_SERVICE": "y",
+   "CONFIG_IPC_SERVICE_BACKEND_RPMSG": "y",
+   "CONFIG_OPENAMP": "y",
+   "CONFIG_SMP": "n"
+  },
+  "source": "zephyr/subsys/ipc/ipc_service/lib/ipc_rpmsg.c",
+  "source_path": "/Users/freedomcoder/ncs251/zephyr/subsys/ipc/ipc_service/lib/ipc_rpmsg.c",
+  "source_sha256": "e2374dde94f16f9b64008ce44f0681f16bb115f5f344911ca51554928a9961d6"
+ }
+}

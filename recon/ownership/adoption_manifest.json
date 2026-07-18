@@ -33618,11 +33618,11 @@
   },
   "net": {
    "summary": {
-    "entries": 495,
+    "entries": 496,
     "exclude_reconstruction": 127,
-    "retain_reconstruction": 368,
+    "retain_reconstruction": 369,
     "by_kind": {
-     "source": 41,
+     "source": 42,
      "archive": 307,
      "static_helper": 16,
      "table": 0,
@@ -45458,6 +45458,35 @@
     },
     {
      "core": "net",
+     "va": "0x0102da84",
+     "raw_symbol": "FUN_0102da84",
+     "current_symbol": "g1_ipc_rpmsg_register_ept",
+     "kind": "source",
+     "component": "zephyr_ipc_rpmsg_variant",
+     "upstream_symbol": "ipc_rpmsg_register_ept",
+     "upstream_unit": "zephyr/subsys/ipc/ipc_service/lib/ipc_rpmsg.c",
+     "confidence": "high",
+     "exclude_reconstruction": false,
+     "decision": "retain_reconstruction",
+     "decision_reason": "Retain the recovered firmware variant: the pinned stock owner matches all non-relocation bytes, but two live unbind callback relocations resolve to a different target.",
+     "evidence": [
+      {
+       "source": "recon/ownership/net_ipc_rpmsg_variant_ownership.json",
+       "type": "net_ipc_rpmsg_variant_required_retain",
+       "repository": "zephyr",
+       "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+       "source_sha256": "e2374dde94f16f9b64008ce44f0681f16bb115f5f344911ca51554928a9961d6",
+       "object_sha256": "1acd99f1bb411fa44b5cd6ccfc6adeca324847245057a44296aa825a1bc7033c",
+       "variant_symbol": "g1_ipc_rpmsg_register_ept",
+       "raw_mapping_preserved": true,
+       "call_target_mismatches": 2,
+       "state_closure_complete": true,
+       "sdc_policy": "report_only_unchanged"
+      }
+     ]
+    },
+    {
+     "core": "net",
      "va": "0x0102e284",
      "raw_symbol": "FUN_0102e284",
      "current_symbol": "z_impl_z_log_msg_static_create",
@@ -48735,6 +48764,10 @@
   {
    "path": "recon/ownership/net_openamp_stock_atomic_adoption.json",
    "sha256": "1b853c3aa9cb401715cb0931078e60a54eb3949f663eb518f64fc6850c1534af"
+  },
+  {
+   "path": "recon/ownership/net_ipc_rpmsg_variant_ownership.json",
+   "sha256": "13c11f312226482da6c1615141264c1f2f0588a9179d258c4057111bf7ab48e0"
   },
   {
    "path": "recon/ownership/net_zephyr_stock_atomic_adoption.json",

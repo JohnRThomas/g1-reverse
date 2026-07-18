@@ -685,7 +685,7 @@ set(G1_RETAINED_SOURCES
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/FUN_0102d6e0.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/ipc_rpmsg_static_vrings_open.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/FUN_0102d938.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/ipc_rpmsg_register_ept.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/g1_ipc_rpmsg_register_ept.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/FUN_0102dc90.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/FUN_0102dcf4.c"
   "${CMAKE_CURRENT_LIST_DIR}/../symbolized/net/z_log_msg_init.c"

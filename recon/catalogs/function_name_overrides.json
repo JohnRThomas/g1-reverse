@@ -2150,8 +2150,8 @@
    "evidence": "Recovered configured Zephyr 3.4.99 MPSC packet-buffer claim implementation. Raw identity remains FUN_0102ce14 at 0x0102ce14."
   },
   "0x0102da84": {
-   "name": "ipc_rpmsg_register_ept",
-   "evidence": "Recovered configured Zephyr IPC RPMsg endpoint registration implementation with the exact ipc_rpmsg_instance/role/ipc_rpmsg_ept ABI. Raw identity remains FUN_0102da84 at 0x0102da84."
+   "name": "g1_ipc_rpmsg_register_ept",
+   "evidence": "Firmware-specific Zephyr IPC RPMsg registration variant: its non-relocation bytes match ipc_rpmsg_register_ept, but both live owner paths use the shipped 0x0103a98f unbind callback literal rather than the pinned stock rpmsg_service_unbind relocation. Raw identity remains FUN_0102da84 at 0x0102da84."
   },
   "0x0102ddf4": {
    "name": "z_log_msg_init",

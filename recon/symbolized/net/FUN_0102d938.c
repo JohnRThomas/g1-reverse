@@ -3,7 +3,7 @@
  * public-name: FUN_0102d938
  * durable-map: recon/catalogs/function_names_net.json
  * callees (readable <= raw @ address):
- *   ipc_rpmsg_register_ept                   <= FUN_0102da84 @ 0x0102da84
+ *   g1_ipc_rpmsg_register_ept                <= FUN_0102da84 @ 0x0102da84
  *   get_ept_slot_with_name                   <= FUN_01039f4c @ 0x01039f4c
  *   strncpy                                  <= FUN_0103b5a4 @ 0x0103b5a4
  * address symbols (name @ address):
@@ -17,7 +17,7 @@ extern int FUN_0102d6e0(void *, void **, const void *);
 extern void *get_ept_slot_with_name(void *, uint32_t);
 extern void strncpy(void *, const void *, uint32_t);
 extern void FUN_0102d69c(void *, void *, const void *, uint32_t);
-extern int ipc_rpmsg_register_ept(void *, uint32_t, void *);
+extern int g1_ipc_rpmsg_register_ept(void *, uint32_t, void *);
 
 struct request_2d938 {
     const void *data;
@@ -61,7 +61,7 @@ int FUN_0102d938(uint8_t *owner, void **output, struct request_2d938 *request)
         *(void **)((uint8_t *)record + 0x3c) = record;
         *((uint8_t *)record + 0x64) = 0;
         strncpy((uint8_t *)record + 0x40, request->data, 0x20);
-        if (ipc_rpmsg_register_ept(state, 1, record) != 0) return -22;
+        if (g1_ipc_rpmsg_register_ept(state, 1, record) != 0) return -22;
     }
     *output = record;
     return 0;
