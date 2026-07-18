@@ -45,6 +45,19 @@ STACK_TOP = 0x2007F000          # inside RAM
 RETURN_MAGIC = 0x001F0000       # LR sentinel inside mapped CODE region
 ORACLE_TRAMPOLINE = RETURN_MAGIC + 0x100
 
+# nRF5340 memory-mapped device aliases used by the shipped APP and NET images.
+# Pages are materialized lazily, but only inside these reviewed windows.  The
+# old generic handler mapped every missing address as zero-filled RAM, which
+# made an omitted volatile peripheral read indistinguishable from the original
+# read returning reset-state zero.
+NRF53_MMIO_WINDOWS = (
+    (0x40000000, 0x41000000),  # CPUAPP non-secure peripheral aliases
+    (0x41000000, 0x42000000),  # CPUNET peripheral aliases
+    (0x50000000, 0x51000000),  # CPUAPP secure peripheral aliases
+    (0xE0000000, 0xE0100000),  # Cortex-M PPB/NVIC/CoreDebug window
+)
+NRF53_NET_RAM_WINDOW = (0x21000000, 0x21080000)
+
 REG = [UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3,
        UC_ARM_REG_R4, UC_ARM_REG_R5, UC_ARM_REG_R6, UC_ARM_REG_R7,
        UC_ARM_REG_R8, UC_ARM_REG_R9, UC_ARM_REG_R10, UC_ARM_REG_R11,
@@ -56,6 +69,17 @@ REG = [UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3,
 SREG = [getattr(__import__("unicorn.arm_const", fromlist=["x"]),
                 "UC_ARM_REG_S%d" % i) for i in range(16)]
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
+
+
+def _range_contains(window, address, size=1):
+    start, end = window
+    return (type(address) is int and type(size) is int and size > 0 and
+            start <= address and address + size <= end)
+
+
+def _is_nrf53_mmio(address, size=1):
+    return any(_range_contains(window, address, size)
+               for window in NRF53_MMIO_WINDOWS)
 
 def _gpr_index(name):
     """Map Capstone's ARM aliases to the r0-r12 indices used by REG."""
@@ -293,7 +317,10 @@ class Runner:
             """Abort Unicorn before it executes an oracle-boundary opcode."""
             pass
 
-        # ordered event trace: every non-stack memory write + every call marker.
+        # Ordered event trace: every peripheral read, every non-stack memory
+        # write, and every call marker.  Peripheral reads are observable even
+        # when their reset-state value is zero: removing, duplicating, or
+        # reordering a volatile MMIO access must fail parity.
         # Stack writes (register save/restore/spill) are an implementation
         # detail, not observable behavior, so they are excluded.
         stack_lo = STACK_TOP - 0x9000
@@ -510,8 +537,29 @@ class Runner:
             return True
         uc.hook_add(UC_HOOK_MEM_WRITE, _mw)
 
-        # lazily map unmapped accesses with deterministic zero pages
+        def _mr(uc, access, address, size, value, ud):
+            if _is_nrf53_mmio(address, size):
+                observed = int.from_bytes(uc.mem_read(address, size), "little")
+                state["events"].append(("R", address & 0xffffffff, size,
+                                        observed))
+                if stop_events and len(state["events"]) >= stop_events:
+                    state["capped_events"] = True
+                    uc.emu_stop()
+            return True
+        # Registered after reviewed read-transition hooks so the trace records
+        # the hardware value actually consumed on that ordinal.
+        uc.hook_add(UC_HOOK_MEM_READ, _mr)
+
+        # Lazily materialize only reviewed device/RAM windows.  Unknown missing
+        # addresses now retain Unicorn's architectural fault instead of being
+        # silently converted into zero-filled memory.  MMIO reset state is
+        # deterministic zero; non-reset hardware states remain explicit via
+        # absolute_memory_overrides / absolute_read_transitions.
         def _map_miss(uc, access, address, size, value, ud):
+            allowed = (_is_nrf53_mmio(address, size) or
+                       _range_contains(NRF53_NET_RAM_WINDOW, address, size))
+            if not allowed or access == UC_MEM_FETCH_UNMAPPED:
+                return False
             page = address & ~0xFFF
             try:
                 uc.mem_map(page, 0x1000)

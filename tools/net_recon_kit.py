@@ -140,6 +140,9 @@ TRUE_SIZE_OVERRIDES = {
     0x01021cec: 0xf8,
     0x01031248: 0x38,
     0x010312d0: 0x3c,
+    # nrf_rtc_timer.c:compare_set owns the success/store tail through +0x124;
+    # the catalog's historical 0x100-byte bound truncated live code.
+    0x010313ec: 0x124,
     0x010122fc: 0x30,
     0x0102d1c0: 0x7a,
     # ipc_rpmsg_static_vrings.c:open; Ghidra stopped after its prologue.

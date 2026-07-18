@@ -564,6 +564,9 @@ TRUE_SIZE_OVERRIDES = {
     ("net", 0x0100ec88): 0x22c,
     # Complete RTC1 overflow/compare ISR; catalog 0x5c ends in its exclusive
     # loop, while executable ownership continues to the final loop backedge.
+    # compare_set likewise owns the 0x24-byte success/store tail that Ghidra
+    # truncated at 0x100 bytes; the configured Zephyr section ends at +0x124.
+    ("net", 0x010313ec): 0x124,
     ("net", 0x010315f0): 0xf4,
     # Complete scheduling snapshot builder, including every TBH-selected PHY
     # arm and the branch-owned assertion tails through 0x0101ab1e.
@@ -16323,6 +16326,32 @@ _RTC1_CALLBACK = 0x00080001
 _RTC_INVALID_TIME = (1 << 64) - 1
 
 
+# The old harness silently supplied zero for RTC1 COUNTER at 0x41016504,
+# while the retained false-proof source hard-coded that same zero and removed
+# the volatile read.  This production-shaped compare_set transaction reaches
+# the live COUNTER read and otherwise takes the bounded success path.  Ordered
+# MMIO-read tracing must reject the retained source without modifying it.
+REVIEWED_ORACLE_CASES[("net", 0x010313ec)] = [
+    (
+        {0: 0, 2: 200, 3: 0},
+        [(0x41016000, bytes(0x550)),
+         (0x21002b60, bytes(0x20)),
+         (0x21004964, bytes(4))],
+        {
+            0: {0: 0x1234},       # rtc_compare_int_lock
+            1: {0: 100, 1: 0},    # z_nrf_rtc_timer_read
+            # The shipped outlined event-clear leaf preserves the RTC base in
+            # r1, which compare_set deliberately keeps live across the call.
+            2: {1: 0x41016000},    # rtc_compare_event_clear
+            3: {},                 # rtc_compare_int_unlock
+        },
+    ),
+]
+REVIEWED_PAIRED_STACK_INITIAL_WORDS[("net", 0x010313ec)] = [
+    (12, 12, 0),  # seventh AAPCS argument: exact_alarm == false
+]
+
+
 def _rtc_nrf_isr_case(intenset=0, overflow_event=0, overflow_count=7,
                       force_mask=0, compare_events=(0, 0),
                       current_times=(0, 0),
@@ -17363,6 +17392,9 @@ REVIEWED_NPTR_COUNTS = {
     ("net", 0x01008a28): 2,  # result[8], value[8]
     ("net", 0x010089f8): 3,  # result[8], left[8], right[8]
     ("net", 0x0101a38c): 1,  # complete 24-byte scheduling snapshot output
+    # compare_set consumes scalar channel/deadline arguments; its seventh
+    # exact-alarm flag is pinned separately as an incoming stack word.
+    ("net", 0x010313ec): 0,
 }
 
 def core_ctx(core):
