@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "core": "net",
+ "component": "nrf_oberon_constant_time",
+ "safe": true,
+ "policy": {
+  "ownership": "exact pinned archive member",
+  "length_contract": "length > 0",
+  "sdc_policy": "report_only_unchanged"
+ },
+ "upstream": {
+  "version": "3.0.13",
+  "archive": "/Users/freedomcoder/ncs251/nrfxlib/crypto/nrf_oberon/lib/cortex-m33+nodsp/soft-float/liboberon_3.0.13.a",
+  "archive_sha256": "466f575748e64a8a170ed796a4edcd8a489517b5dd108b0f4295eea8ebb082f6",
+  "member": "ocrypto_constant_time.s.obj",
+  "member_sha256": "3004f356b36775ddfa616f6b917170c854731eeaf670c1cebe0bde00124b030b",
+  "abi": "cortex-m33+nodsp soft-float"
+ },
+ "exact_text": {
+  "firmware_start": "0x01008810",
+  "size": 92,
+  "match": "byte-exact-complete-.text",
+  "functions": [
+   {
+    "va": "0x01008810",
+    "raw_symbol": "FUN_01008810",
+    "upstream_symbol": "ocrypto_constant_time_equal",
+    "object_offset": 0,
+    "catalog_size": 38,
+    "cfg_verify": "PASS cases=6"
+   },
+   {
+    "va": "0x01008838",
+    "raw_symbol": "FUN_01008838",
+    "upstream_symbol": "ocrypto_constant_time_is_zero",
+    "object_offset": 40,
+    "catalog_size": 26,
+    "cfg_verify": "PASS cases=7"
+   },
+   {
+    "va": "0x01008854",
+    "raw_symbol": null,
+    "upstream_symbol": "ocrypto_constant_time_xor",
+    "object_offset": 68,
+    "catalog_size": null,
+    "cfg_verify": "not separately catalogued; covered by complete-member byte equality"
+   }
+  ]
+ },
+ "timeout_diagnosis": "The generic verifier supplied zero/full-width size_t values to documented nonzero-length do/while APIs. Zero wraps through 2^32 iterations; it is not a firmware execution path. Reviewed lengths 1, 2, 3, and the sole caller's production length 32 preserve every loop/return semantic without weakening comparison."
+}
