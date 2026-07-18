@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build the exact NCS 2.5.1 img_mgmt source-closure receipt.
 
-Only the three source units whose complete *live* closure is byte exact are
-authorized here.  ``img_mgmt.c`` is intentionally outside this receipt: its
-upload handler differs from the shipped firmware and remains reconstructed.
+All four selected source units have a relocation-normalized byte-exact *live*
+closure.  In particular, the private ``img_mgmt_upload`` body is exact once
+ELF relocations are masked; comparing the unresolved relocatable object bytes
+directly had produced the earlier false variant classification.
 """
 
 import argparse
@@ -47,6 +48,19 @@ REQUIRED_CONFIG = {
 # cfg_verify case count).  These are all and only the live text sections from
 # the three adopted source units in the shipped link.
 UNITS = {
+    "img_mgmt.c": {
+        "img_mgmt_reset_upload": (0x00051FE4, "translation_unit_local", "FUN_00051fe4.c", 0),
+        "img_mgmt_upload_good_rsp.isra.0": (0x00052000, "translation_unit_local", "FUN_00052000.c", 0),
+        "img_mgmt_take_lock": (0x00080A42, "public", "FUN_00080a42.c", 0),
+        "img_mgmt_release_lock": (0x00080A44, "public", "FUN_00080a44.c", 0),
+        "img_mgmt_active_slot": (0x00080A46, "public", "FUN_00080a46.c", 0),
+        "img_mgmt_active_image": (0x00080A4A, "public", "FUN_00080a4a.c", 0),
+        "img_mgmt_read_info": (0x00052038, "public", "FUN_00052038.c", 6),
+        "img_mgmt_erase": (0x00052180, "translation_unit_local", "FUN_00052180.c", 3),
+        "img_mgmt_upload": (0x000521FC, "translation_unit_local", "FUN_000521fc.c", 9),
+        "img_mgmt_find_by_hash": (0x00080A4E, "public", "FUN_00080a4e.c", 0),
+        "img_mgmt_my_version": (0x00080A82, "public", "FUN_00080a82.c", 0),
+    },
     "img_mgmt_state.c": {
         "zcbor_tstr_encode_ptr": (0x0008099E, "translation_unit_local", "FUN_0008099e.c", 0),
         "img_mgmt_state_encode_slot": (0x00051AC0, "translation_unit_local", "FUN_00051ac0.c", 2),
@@ -74,11 +88,34 @@ UNITS = {
 }
 
 NONLIVE = {
+    "img_mgmt.c": ["img_mgmt_find_by_ver"],
     "img_mgmt_state.c": ["img_mgmt_state_flags", "img_mgmt_state_any_pending",
                          "img_mgmt_state_set_pending", "img_mgmt_state_confirm"],
     "zephyr_img_mgmt.c": ["img_mgmt_slot_to_image.part.0", "img_mgmt_write_pending",
                           "img_mgmt_write_confirmed", "img_mgmt_erase_image_data",
                           "img_mgmt_swap_type"],
+}
+
+# Live sections that have no standalone reconstruction target.  They are part
+# of the exact stock source-unit closure and are recorded separately so the
+# receipt proves that selecting img_mgmt.c cannot add uninspected code.
+HIDDEN_LIVE = {
+    "img_mgmt.c": {
+        "img_mgmt_translate_error_code": 0x00051FC4,
+        "img_mgmt_register_group": 0x00051FD8,
+    },
+}
+
+UPSTREAM_REVISIONS = {
+    "ncs_release": "v2.5.1",
+    "zephyr_describe": "v3.4.99-ncs1-1",
+    "zephyr_commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+    "img_mgmt_source_blob": "305cad41c4459b1e5fea46b9ce06383a535a20dc",
+    "source_identity_plateau": [
+        "v3.4.99-ncs1-1", "v3.4.99-ncs1-2", "v3.4.99-ncs1-3"],
+    "precision": ("configured body proves the NCS 2.5 img_mgmt source/config; "
+                  "the manifest proves -ncs1-1 because the source blob is "
+                  "unchanged through -ncs1-3"),
 }
 
 PM_REQUIRED = {
@@ -226,7 +263,7 @@ def build():
                     "safe": True, "archive_member_already_selected": True,
                     "selected_source_units": sorted(UNITS),
                     "exclude_only": group, "new_undefined_symbols": [],
-                    "img_mgmt_c_retained": True,
+                    "img_mgmt_c_retained": False,
                 },
             }
             row.update(section_receipt(obj, symbol, va))
@@ -246,20 +283,39 @@ def build():
                     "upstream_linkage": linkage,
                 }
             rows.append(row)
+    hidden_live = []
+    for unit, sections in HIDDEN_LIVE.items():
+        obj = OBJROOT / (unit + ".obj")
+        source_rel = "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/" + unit
+        for symbol, va in sections.items():
+            proof = section_receipt(obj, symbol, va)
+            hidden_live.append({
+                "symbol": symbol, "firmware_va": "0x%08x" % va,
+                "upstream_source": source_rel,
+                "upstream_source_sha256": sha(NCS / source_rel),
+                "upstream_object": str(obj),
+                "upstream_object_sha256": sha(obj),
+                **proof,
+            })
     variant = [collision_rows[va] for va in sorted(collision_rows)
                if int(va, 0) in {spec[0] for sections in UNITS.values()
                                 for spec in sections.values()}]
     return {
         "schema": 1, "core": "app", "status": "authorized_atomic",
-        "decision": "adopt_exact_configured_img_mgmt_state_util_and_zephyr_live_closure",
+        "decision": "adopt_exact_configured_four_unit_img_mgmt_live_closure",
+        "upstream_revisions": UPSTREAM_REVISIONS,
         "configured_build_receipts": [str(CONFIG)],
         "atomic_group": group, "authorizations": rows,
         "variant_collisions": variant,
         "selected_source_units": sorted(UNITS),
         "nonlive_sections_not_claimed": NONLIVE,
-        "explicit_retain": {
+        "hidden_live_sections": hidden_live,
+        "resolved_false_variant": {
             "source_unit": "zephyr/subsys/mgmt/mcumgr/grp/img_mgmt/src/img_mgmt.c",
-            "reason": "img_mgmt_upload differs from firmware; recovered handler and collision remain",
+            "symbol": "img_mgmt_upload",
+            "firmware_va": "0x000521fc",
+            "cause": "unresolved ELF relocation bytes were compared without normalization",
+            "resolution": "relocation-masked configured object is byte exact",
         },
         "private_state": {
             "zephyr_img_mgmt.c::ctx.0": {"firmware_va": "0x2000a954", "size": 552},
@@ -280,7 +336,7 @@ def main():
             raise ValueError("stale img_mgmt stock adoption receipt")
     else:
         OUTPUT.write_text(rendered)
-    print("img_mgmt stock adoption: 18 exact live owners; img_mgmt.c retained")
+    print("img_mgmt stock adoption: 29 exact reconstructed owners; four source units exact")
 
 
 if __name__ == "__main__":
