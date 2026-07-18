@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Fail-closed gates for four retained private CPUNET targets."""
+
+import hashlib
+import json
+import unittest
+from pathlib import Path
+
+import build_net_link_gap8_recovery as builder
+import cfg_verify
+
+
+ROOT = Path(__file__).resolve().parents[1]
+RECEIPT = ROOT / "recon/ownership/net_link_gap8_recovery.json"
+
+
+class NetLinkGap8RecoveryTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.receipt = json.loads(RECEIPT.read_text())
+
+    def test_receipt_replays_authoritative_proofs(self):
+        rebuilt = builder.build()
+        self.assertEqual(self.receipt, rebuilt)
+        self.assertEqual(4, rebuilt["summary"]["function_count"])
+        self.assertEqual(4, rebuilt["summary"]["cfg_pass_count"])
+        self.assertEqual(0x9c, rebuilt["summary"]["total_true_executable_extent"])
+        self.assertGreaterEqual(rebuilt["summary"]["cfg_directed_cover_cases"], 19)
+
+    def test_sources_and_firmware_extents_are_hash_locked(self):
+        firmware = (ROOT / "netcore_image.bin").read_bytes()
+        for row in self.receipt["functions"]:
+            source = ROOT / row["source"]
+            data = source.read_bytes()
+            self.assertEqual(row["source_sha256"], hashlib.sha256(data).hexdigest())
+            text = data.decode()
+            self.assertIn(row["raw_symbol"], text)
+            self.assertIn(row["readable_identity"], text)
+            self.assertIn(row["analysis_address"], text)
+            self.assertNotIn(".incbin", text)
+            va = int(row["analysis_address"], 16)
+            extent = row["true_executable_extent"]
+            image = firmware[va - 0x01008000:va - 0x01008000 + extent]
+            self.assertEqual(row["firmware_extent_sha256"],
+                             hashlib.sha256(image).hexdigest())
+
+    def test_behavior_mutations_are_rejected(self):
+        saved_state = dict(cfg_verify.REVIEWED_STATE_CASES)
+        saved_oracle = dict(cfg_verify.REVIEWED_ORACLE_CASES)
+        saved_nptr = dict(cfg_verify.REVIEWED_NPTR_COUNTS)
+        saved_arities = dict(cfg_verify.REVIEWED_TARGET_CALL_ARITIES)
+        mutations = {
+            "FUN_01027ad2": ("? 2u : 0u", "? 1u : 0u"),
+            "FUN_01027fa6": ("0x0du + bank", "0x0cu + bank"),
+            "FUN_01028112": ("< 2u ? 1u : 0u", "< 1u ? 1u : 0u"),
+            "FUN_010283a4": ("< 2u ? 1u : 0u", "< 1u ? 1u : 0u"),
+        }
+        try:
+            builder.install_reviewed_cases()
+            for symbol, (old, new) in mutations.items():
+                source = (ROOT / "recon/net/src" / f"{symbol}.c").read_text()
+                self.assertIn(old, source)
+                verdict = cfg_verify.verify(
+                    "net", symbol, trials_random=0,
+                    source_override=source.replace(old, new))
+                self.assertEqual("FAIL", verdict["status"], symbol)
+        finally:
+            cfg_verify.REVIEWED_STATE_CASES.clear()
+            cfg_verify.REVIEWED_STATE_CASES.update(saved_state)
+            cfg_verify.REVIEWED_ORACLE_CASES.clear()
+            cfg_verify.REVIEWED_ORACLE_CASES.update(saved_oracle)
+            cfg_verify.REVIEWED_NPTR_COUNTS.clear()
+            cfg_verify.REVIEWED_NPTR_COUNTS.update(saved_nptr)
+            cfg_verify.REVIEWED_TARGET_CALL_ARITIES.clear()
+            cfg_verify.REVIEWED_TARGET_CALL_ARITIES.update(saved_arities)
+
+    def test_sdc_policy_remains_report_only(self):
+        self.assertEqual({
+            "canonical_readable_c_only": True,
+            "blobs_used": False,
+            "archive_substitution_used": False,
+            "private_sdc_retained_report_only": True,
+            "shared_cfg_tool_modified": False,
+        }, self.receipt["policy"])
+
+
+if __name__ == "__main__":
+    unittest.main()
