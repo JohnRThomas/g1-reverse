@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 356,
-    "exclude_reconstruction": 262,
+    "entries": 354,
+    "exclude_reconstruction": 260,
     "retain_reconstruction": 94,
     "by_kind": {
-     "source": 206,
+     "source": 204,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -5032,83 +5032,6 @@
     },
     {
      "core": "app",
-     "va": "0x000680f8",
-     "raw_symbol": "FUN_000680f8",
-     "current_symbol": "metal_bus_unregister",
-     "kind": "source",
-     "component": "libmetal",
-     "upstream_symbol": "metal_bus_unregister",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
-     "evidence": [
-      {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 0.92,
-        "shape": 0.92,
-        "length": 0.851852,
-        "normalized_exact": false
-       },
-       "abi": {
-        "return": "int",
-        "params": [
-         "metal_bus*"
-        ],
-        "variadic": false,
-        "decl_line": 30
-       },
-       "upstream_source": {
-        "path": "modules/hal/libmetal/libmetal/lib/device.c",
-        "sha256": "2c206dcc3985cf53725ad5405ec46738acf36cebe4a53d41e8170d950f3df1cf",
-        "repository": "libmetal",
-        "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6"
-       },
-       "link_provenance": {
-        "owner_input": "modules/libmetal/libmetal/lib/libmetal.a(device.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:31",
-        "reconstruction_input": "app/libapp.a(metal_bus_unregister.c.obj)",
-        "diagnostic_occurrences": 1,
-        "diagnostics": [
-         "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:31: multiple definition of `metal_bus_unregister'; app/libapp.a(metal_bus_unregister.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_bus_unregister.c:41: first defined here"
-        ]
-       }
-      },
-      {
-       "source": "recon/ownership/app_collision_adoption_authorizations.json",
-       "type": "explicit_collision_adoption_authority",
-       "batch": "COLLISION-02",
-       "instruction_exact": true,
-       "normalized_code_sha256": "8bde3e79d4db3d412751b13566ddc89af48d7e79a97ef5973016a1841f3d0aa0",
-       "cfg_verify_cases": 5,
-       "callers": [
-        {
-         "va": "0x000682a8",
-         "raw_symbol": "FUN_000682a8",
-         "cfg_verify": "PASS"
-        }
-       ],
-       "whole_unit_closure": {
-        "safe": true,
-        "archive_member_already_selected": true,
-        "same_source_unit_collision_symbols": [
-         "metal_bus_unregister"
-        ],
-        "exclude_only": [
-         "0x000680f8"
-        ],
-        "new_undefined_symbols": []
-       }
-      }
-     ]
-    },
-    {
-     "core": "app",
      "va": "0x000682f0",
      "raw_symbol": "FUN_000682f0",
      "current_symbol": "lc3_attdet_run",
@@ -6132,89 +6055,6 @@
        ],
        "safe_to_adopt": true,
        "blockers": []
-      }
-     ]
-    },
-    {
-     "core": "app",
-     "va": "0x00071560",
-     "raw_symbol": "FUN_00071560",
-     "current_symbol": "rpmsg_init_vdev",
-     "kind": "source",
-     "component": "open_amp",
-     "upstream_symbol": "rpmsg_init_vdev",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg_virtio.c.obj",
-     "confidence": "high",
-     "exclude_reconstruction": true,
-     "decision": "adopt_upstream_exclude_reconstruction",
-     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
-     "evidence": [
-      {
-       "source": "recon/ownership/app_build_collision_ownership.json",
-       "type": "cpuapp_selected_owner_collision",
-       "safe_to_exclude": true,
-       "blockers": [],
-       "signature_match": {
-        "opcode": 0.947368,
-        "shape": 0.947368,
-        "length": 0.9,
-        "normalized_exact": false
-       },
-       "abi": {
-        "return": "int",
-        "params": [
-         "rpmsg_virtio_device*",
-         "virtio_device*",
-         "rpmsg_ns_bind_cb",
-         "metal_io_region*",
-         "rpmsg_virtio_shm_pool*"
-        ],
-        "variadic": false,
-        "decl_line": 685
-       },
-       "upstream_source": {
-        "path": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
-        "sha256": "a35ee4d23ba8a7071bd613a9d4b5b4e0230ea9017b8bc22871f01cc4d6cfa99b",
-        "repository": "open_amp",
-        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8"
-       },
-       "link_provenance": {
-        "owner_input": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
-        "owner_source_line": "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c:690",
-        "reconstruction_input": "app/libapp.a(rpmsg_init_vdev.c.obj)",
-        "diagnostic_occurrences": 1,
-        "diagnostics": [
-         "/Users/freedomcoder/ncs251/modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c:690: multiple definition of `rpmsg_init_vdev'; app/libapp.a(rpmsg_init_vdev.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/rpmsg_init_vdev.c:25: first defined here"
-        ]
-       }
-      },
-      {
-       "source": "recon/ownership/app_collision_adoption_authorizations.json",
-       "type": "explicit_collision_adoption_authority",
-       "batch": "COLLISION-10",
-       "instruction_exact": true,
-       "normalized_code_sha256": "975981d52dd66e2f6f55e4f8af59f3416ee1af7afba00e6651f2df49cc441e73",
-       "cfg_verify_cases": 6,
-       "callers": [
-        {
-         "va": "0x0004d100",
-         "raw_symbol": "FUN_0004d100",
-         "cfg_verify": "PASS",
-         "cases": 6,
-         "source_sha256": "c3430777fd0ed7f072a26347b4a2188c280078e4e27be5e0c5c34b9b0f01e1fa"
-        }
-       ],
-       "whole_unit_closure": {
-        "safe": true,
-        "archive_member_already_selected": true,
-        "same_source_unit_collision_symbols": [
-         "rpmsg_init_vdev"
-        ],
-        "exclude_only": [
-         "0x00071560"
-        ],
-        "new_undefined_symbols": []
-       }
       }
      ]
     },
@@ -27394,20 +27234,5 @@
     }
    ]
   }
- },
- "baseline_provenance": {
-  "commit": "7bdee73e",
-  "path": "recon/ownership/adoption_manifest.json",
-  "sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc"
- },
- "overlay_inputs": [
-  {
-   "path": "recon/ownership/app_build_collision_ownership.json",
-   "sha256": "4bea34c2f43cd5830b5b4a91460bb55bd0251d1285149aff933c030e0c33eae0"
-  },
-  {
-   "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "d6fb9a6e47d0a94ef1e397fac28560c587319b485f5b563d39144c153632ade4"
-  }
- ]
+ }
 }

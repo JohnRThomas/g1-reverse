@@ -18,7 +18,10 @@
    "upstream_source_sha256": "2c206dcc3985cf53725ad5405ec46738acf36cebe4a53d41e8170d950f3df1cf",
    "upstream_object": "/private/tmp/g1-app-residue-current-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
    "upstream_object_sha256": "2c69adf934644bb5bb9bd5359a63b20ce3f8b9df6eef4a572604f6e4e5adbad6",
+   "collision_receipt_sha256": "a4e83d806403539386dd6502f91bac240b4bc34bab8ac74ceeb1c91aab0125f2",
+   "reconstruction_source_sha256": "583af7d8ecb37b6beb0b6cffda04627cfcefaf3f7dc3b3ab77fbc1024ccf3c1b",
    "configured_link_owner": "modules/libmetal/libmetal/lib/libmetal.a(device.c.obj)",
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
    "configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
    "abi": "int metal_bus_unregister(struct metal_bus *bus)",
    "firmware_code_size": 52,
@@ -39,6 +42,50 @@
     "archive_member_already_selected": true,
     "same_source_unit_collision_symbols": ["metal_bus_unregister"],
     "exclude_only": ["0x000680f8"],
+    "new_undefined_symbols": []
+   }
+  },
+  {
+   "batch": "COLLISION-10",
+   "va": "0x00071560",
+   "raw_symbol": "FUN_00071560",
+   "symbol": "rpmsg_init_vdev",
+   "status": "authorized",
+   "upstream_source": "modules/lib/open-amp/open-amp/lib/rpmsg/rpmsg_virtio.c",
+   "upstream_source_sha256": "a35ee4d23ba8a7071bd613a9d4b5b4e0230ea9017b8bc22871f01cc4d6cfa99b",
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg_virtio.c.obj",
+   "upstream_object_sha256": "5172294758222b62bcf251060e5035aaeefc7999aeb74157a4cb52cd403e8125",
+   "collision_receipt_sha256": "ab3e21a605662f2f9bee84b8859c52e39446d8378e769091e0ae920732acc24d",
+   "reconstruction_source_sha256": "4120c21a53a5bcfd41b59f75ee81e1ea06dce51d1f781166ad87d031fb95a5ad",
+   "configured_link_owner": "modules/open-amp/open-amp/lib/libopen_amp.a(rpmsg_virtio.c.obj)",
+   "configured_build": "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+   "configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "abi": "int rpmsg_init_vdev(struct rpmsg_virtio_device *, struct virtio_device *, rpmsg_ns_bind_cb, struct metal_io_region *, struct rpmsg_virtio_shm_pool *)",
+   "firmware_code_size": 40,
+   "upstream_code_size": 40,
+   "literal_relocation_offsets": [40],
+   "call_relocation_offsets": [32],
+   "normalized_code_sha256": "975981d52dd66e2f6f55e4f8af59f3416ee1af7afba00e6651f2df49cc441e73",
+   "instruction_exact": true,
+   "cfg_verify_cases": 6,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 0
+   },
+   "callers": [
+    {
+     "va": "0x0004d100",
+     "raw_symbol": "FUN_0004d100",
+     "cfg_verify": "PASS",
+     "cases": 6,
+     "source_sha256": "c3430777fd0ed7f072a26347b4a2188c280078e4e27be5e0c5c34b9b0f01e1fa"
+    }
+   ],
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": ["rpmsg_init_vdev"],
+    "exclude_only": ["0x00071560"],
     "new_undefined_symbols": []
    }
   }

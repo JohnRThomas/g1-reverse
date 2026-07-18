@@ -34,10 +34,13 @@ class MetalBusUnregisterAdoptionTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.catalog = json.loads(AUTH.read_text())
-        cls.authorization = cls.catalog["authorizations"][0]
+        cls.authorization = next(
+            row for row in cls.catalog["authorizations"]
+            if row["va"] == "0x000680f8")
 
     def test_single_exact_authorization_and_pinned_digests(self):
-        self.assertEqual(1, len(self.catalog["authorizations"]))
+        self.assertEqual(1, sum(row["va"] == "0x000680f8"
+                                for row in self.catalog["authorizations"]))
         row = self.authorization
         self.assertEqual("COLLISION-02", row["batch"])
         self.assertEqual("0x000680f8", row["va"])

@@ -8,6 +8,7 @@ reconstruction are deliberately separate fields.
 """
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -17,6 +18,7 @@ import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULTS = {
+    "baseline": "recon/ownership/adoption_manifest_baseline.json",
     "lc3": "recon/catalogs/lc3_ownership_app.json",
     "tinycrypt": "recon/analysis/tinycrypt_pinned_matches.json",
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
@@ -34,6 +36,11 @@ DEFAULTS = {
     "app_names": "recon/catalogs/function_names_app.json",
     "net_names": "recon/catalogs/function_names_net.json",
     "output": "recon/ownership/adoption_manifest.json",
+}
+BASELINE_PROVENANCE = {
+    "commit": "7bdee73e",
+    "path": "recon/ownership/adoption_manifest.json",
+    "sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc",
 }
 KINDS = ("source", "archive", "static_helper", "table", "glue")
 KIND_RANK = {"source": 1, "archive": 2, "table": 3,
@@ -63,6 +70,12 @@ def _sha256(path):
         for block in iter(lambda: stream.read(1 << 16), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def _json_sha256(value):
+    encoded = json.dumps(value, sort_keys=True,
+                         separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def _address(value):
@@ -310,6 +323,101 @@ def _app_collision_entries(data, source, names, authorizations,
             evidence,
             "high" if eligible else "low"))
     return output
+
+
+def _build_from_baseline(paths, resolved, names):
+    """Apply explicit collision receipts to the pinned pre-overlay manifest."""
+    baseline_path = resolved["baseline"]
+    baseline_digest = _sha256(baseline_path)
+    if baseline_digest != BASELINE_PROVENANCE["sha256"]:
+        raise ValueError("adoption baseline digest mismatch: %s" %
+                         baseline_digest)
+    baseline = _load_json(baseline_path)
+    validate_manifest(baseline)
+
+    collision_path = resolved["app_collisions"]
+    authorization_path = resolved["app_collision_authorizations"]
+    collisions = _load_json(collision_path)
+    authorizations = _load_json(authorization_path)
+    collision_rows = {_hex(row["va"]): row
+                      for row in collisions.get("functions", [])}
+    authorized_rows = [row for row in authorizations.get("authorizations", [])
+                       if row.get("status") == "authorized"]
+    generated = {_hex(row["va"]): row for row in _app_collision_entries(
+        collisions, paths["app_collisions"], names, authorizations,
+        paths["app_collision_authorizations"])
+        if row.get("exclude_reconstruction")}
+
+    result = copy.deepcopy(baseline)
+    result["generated_by"] = "tools/build_adoption_manifest.py"
+    result["baseline_provenance"] = dict(BASELINE_PROVENANCE)
+    result["overlay_inputs"] = [
+        {"path": paths["app_collisions"], "sha256": _sha256(collision_path)},
+        {"path": paths["app_collision_authorizations"],
+         "sha256": _sha256(authorization_path)},
+    ]
+    app_rows = {row["va"]: row for row in result["cores"]["app"]["entries"]}
+    for authorization in authorized_rows:
+        va = _hex(authorization["va"])
+        collision = collision_rows.get(va)
+        if collision is None:
+            raise ValueError("authorization absent from current collision catalog: %s" % va)
+        if authorization.get("collision_receipt_sha256") != _json_sha256(collision):
+            raise ValueError("collision receipt digest mismatch: %s" % va)
+        upstream = collision.get("upstream", {})
+        source = upstream.get("source", {})
+        configured = collision.get("configured_inclusion", {})
+        receipts = (
+            ("upstream_object_sha256", upstream.get("object_sha256")),
+            ("upstream_source_sha256", source.get("sha256")),
+            ("configured_build_sha256", configured.get("zephyr_config_sha256")),
+        )
+        for key, expected in receipts:
+            if not expected or authorization.get(key) != expected:
+                raise ValueError("%s receipt mismatch: %s" % (key, va))
+        object_path = authorization.get("upstream_object")
+        if not object_path or _sha256(object_path) != authorization[
+                "upstream_object_sha256"]:
+            raise ValueError("upstream object changed: %s" % va)
+        if authorization.get("upstream_source") != source.get("path"):
+            raise ValueError("upstream source identity changed: %s" % va)
+        source_path = os.path.join("/Users/freedomcoder/ncs251",
+                                   authorization["upstream_source"])
+        if _sha256(source_path) != authorization["upstream_source_sha256"]:
+            raise ValueError("upstream source changed: %s" % va)
+        config_path = authorization.get("configured_build")
+        if not config_path or _sha256(config_path) != authorization[
+                "configured_build_sha256"]:
+            raise ValueError("configured build changed: %s" % va)
+        canonical = os.path.join(BASE, "recon", "app", "src",
+                                 authorization.get("raw_symbol", "") + ".c")
+        if (_sha256(canonical) !=
+                authorization.get("reconstruction_source_sha256")):
+            raise ValueError("reconstruction source changed: %s" % va)
+        overlay = generated.get(va)
+        if overlay is None:
+            raise ValueError("authorization did not pass exclusion gates: %s" % va)
+        previous = app_rows.get(va)
+        if previous is not None and previous.get("raw_symbol") != overlay[
+                "raw_symbol"]:
+            raise ValueError("baseline identity mismatch: %s" % va)
+        app_rows[va] = overlay
+
+    result["cores"]["app"]["entries"] = sorted(
+        app_rows.values(), key=lambda row: int(row["va"], 16))
+    for core in ("app", "net"):
+        rows = result["cores"][core]["entries"]
+        result["cores"][core]["summary"] = {
+            "entries": len(rows),
+            "exclude_reconstruction": sum(
+                row["exclude_reconstruction"] for row in rows),
+            "retain_reconstruction": sum(
+                not row["exclude_reconstruction"] for row in rows),
+            "by_kind": {kind: sum(row["kind"] == kind for row in rows)
+                        for kind in KINDS},
+        }
+    validate_manifest(result)
+    return result
 
 
 def _app_sdk_public_entries(data, source, names):
@@ -563,6 +671,8 @@ def build(paths):
     resolved = {key: _path(value) for key, value in paths.items()}
     names = {"app": _name_records(resolved["app_names"]),
              "net": _name_records(resolved["net_names"])}
+    if "baseline" in paths:
+        return _build_from_baseline(paths, resolved, names)
     benchmark = _parse_sdc_benchmark(resolved["sdc_benchmark"])
     sdc_catalog = _load_json(resolved["sdc_catalog"])
     net_sdk_public = _load_json(resolved["net_sdk_public"])
