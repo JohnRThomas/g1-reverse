@@ -12,6 +12,12 @@ set(CONF_FILE
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(g1_cpuapp_reconstruction)
 
+# Rejoin compiler-outlined SDK/header helpers with their retained owning
+# callers.  The canonical parity path leaves this undefined so each historical
+# BL remains an oracle boundary; the cohesive build inlines the exact pinned
+# NCS 2.5.1 semantics without exporting duplicate helper bodies.
+target_compile_definitions(app PRIVATE G1_APP_SDK_INLINE_COHESION=1)
+
 # The shipped configured z_impl_k_sem_take body is retained because the pinned
 # Zephyr sem.c body fails the instruction/shape ownership gates.  sem.c also
 # owns unrelated semaphore APIs, so the unit cannot be removed.  Rename only

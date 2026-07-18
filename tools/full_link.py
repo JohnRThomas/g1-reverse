@@ -17,6 +17,10 @@ CF = ["-c", "-Os", "-mcpu=cortex-m33", "-mthumb", "-ffreestanding", "-w",
       "-I", "/Users/freedomcoder/ncs251/modules/lib/liblc3/include",
       "-I", "/Users/freedomcoder/ncs251/modules/lib/liblc3/src",
       "-I", "/Users/freedomcoder/ncs251/modules/hal/cmsis/CMSIS/Core/Include"]
+if CORE == "app":
+    # Match the cohesive CPUAPP CMake build: reviewed local SDK helpers are
+    # inlined only into their retained owning callers.
+    CF.append("-DG1_APP_SDK_INLINE_COHESION=1")
 OBJD = BASE + "/build/%s_full_obj" % CORE
 
 LIBPAT = re.compile(r'^(k_|z_|sys_|bt_|net_buf|nrf|nrfx|hci|log_|logging|settings|nvs|'

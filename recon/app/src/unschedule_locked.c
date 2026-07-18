@@ -2,7 +2,18 @@
  * Raw backmap: FUN_0008656a@0x0008656a. */
 
 #include <stdint.h>
+#ifdef G1_APP_SDK_INLINE_COHESION
+/* Exact Zephyr 3.4.99 work.c local owner; raw FUN_00086554 @ 0x00086554. */
+static __attribute__((always_inline)) inline uint32_t
+flag_test_and_clear(volatile uint32_t *flags, uint32_t bit)
+{
+ uint32_t old = *flags;
+ *flags = old & ~(1u << (bit & 0xffu));
+ return (old >> (bit & 0xffu)) & 1u;
+}
+#else
 extern uint32_t flag_test_and_clear(volatile uint32_t *flags,uint32_t bit);
+#endif
 extern int FUN_00074d74(void *timeout); /* z_abort_timeout */
 uint32_t unschedule_locked(void *dwork_arg)
 {

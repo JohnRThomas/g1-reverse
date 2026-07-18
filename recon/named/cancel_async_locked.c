@@ -1,15 +1,23 @@
 /* readable reconstruction; identity: FUN_00086596 @ 0x00086596
  * public-name: cancel_async_locked
  * durable-map: recon/catalogs/function_names_app.json
- * callees (readable <= raw @ address):
- *   cancel_async_locked                      <= FUN_00086596 @ 0x00086596
  */
 /* Reconstructed cancel_async_locked @ 0x00086596 from Zephyr work.c.
  * Raw backmap: FUN_00086596@0x00086596. */
 
 #include <stdint.h>
-#define cancel_async_locked cancel_async_locked
+#ifdef G1_APP_SDK_INLINE_COHESION
+/* Exact Zephyr 3.4.99 work.c local owner; raw FUN_00086554 @ 0x00086554. */
+static __attribute__((always_inline)) inline uint32_t
+flag_test_and_clear(volatile uint32_t *flags, uint32_t bit)
+{
+ uint32_t old = *flags;
+ *flags = old & ~(1u << (bit & 0xffu));
+ return (old >> (bit & 0xffu)) & 1u;
+}
+#else
 extern uint32_t flag_test_and_clear(volatile uint32_t *flags,uint32_t bit);
+#endif
 int cancel_async_locked(void *work_arg)
 {
  uint8_t *work=(uint8_t*)work_arg;
