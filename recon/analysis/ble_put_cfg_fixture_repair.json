@@ -1,0 +1,39 @@
+{
+  "schema": "g1.app.ble_put_cfg_fixture_repair.v1",
+  "function": {
+    "address": "0x0001a75c",
+    "name": "ble_process_put_req",
+    "source_path": "recon/app/src/ble_process_put_req.c",
+    "source_sha256": "c55c6c57b09b9b7e4eca58740b526308ed13161bdf69f4418a76079961dc677b"
+  },
+  "policy": {
+    "source_modified": false,
+    "repair_scope": "verifier_fixture_only",
+    "fail_closed": true
+  },
+  "initial_other": {
+    "status": "EXCEPTION",
+    "exception": "AttributeError: 'list' object has no attribute 'values'",
+    "cause": "98 reviewed oracle dictionaries were shorter than the 137 directed cases after 39 CFG-derived outer opcodes were appended"
+  },
+  "repair": {
+    "case_schema": "pad only the missing suffix with independent empty dictionaries; reject non-dictionary entries and overlong lists",
+    "oracle_side_effect": "replay FUN_00086c78(response + 4, 0, 16) at call ordinal zero and exact target 0x00086c78",
+    "source_assessment": "the intermediate 11 response-tail mismatches were caused by intercepting memset without replaying its caller-owned write; the C already expresses the complete clear"
+  },
+  "authoritative_result": {
+    "verifier": "tools/cfg_verify.py",
+    "core": "app",
+    "trials_random": 0,
+    "status": "PASS",
+    "cover_cases": 137,
+    "checked": 137,
+    "outer_opcode_cases": 39,
+    "outer_opcodes": [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+      17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+      31, 32, 33, 34, 35, 36, 37, 38, 39
+    ]
+  },
+  "regression_test": "tools/test_ble_put_cfg_fixture.py"
+}

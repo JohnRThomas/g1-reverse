@@ -1291,6 +1291,13 @@ FIXED_EXTERNAL_CALLBACK_ARGS = {
 # Narrow reviewed contracts for external callees that initialize caller-owned
 # stack objects.  Entries are ordinal -> (argument register, offset, bytes).
 REVIEWED_ORACLE_MEMORY_WRITES = {
+    # ble_process_put_req clears response[4:20] before any opcode handler.
+    # The differential oracle intercepts memset, so replay its caller-owned
+    # side effect; otherwise candidate stack residue is mistaken for a source
+    # mismatch when the final 20-byte response is compared.
+    ("app", 0x0001a75c): {
+        0: [(0, 0, bytes(16), 0x00086c78)],
+    },
     # Both reset spans are complete global objects.  Bind all possible call
     # ordinals because an optional diagnostic precedes the two memset calls.
     ("app", 0x00016738): {
@@ -22679,6 +22686,25 @@ def _resolve_source_path(core, name, srcdir):
     return direct
 
 
+def _complete_case_oracle_overrides(overrides, case_count, label):
+    """Return exactly one oracle dictionary per directed verification case.
+
+    A shorter list previously leaked through as the override for every later
+    case, where Runner expected a dictionary and failed before executing the
+    candidate.  Missing suffix entries intentionally mean "no overrides";
+    malformed entries and overlong lists remain fail-closed errors.
+    """
+    if not isinstance(overrides, (list, tuple)):
+        raise TypeError(f"{label}: case oracle overrides must be a list")
+    if len(overrides) > case_count:
+        raise ValueError(
+            f"{label}: {len(overrides)} oracle overrides for {case_count} cases"
+        )
+    if any(not isinstance(item, dict) for item in overrides):
+        raise TypeError(f"{label}: every case oracle override must be a dict")
+    return list(overrides) + [{} for _ in range(case_count - len(overrides))]
+
+
 def verify(core, name, trials_random=40, source_override=None):
     ctx = core_ctx(core)
     p = _resolve_source_path(core, name, ctx["srcdir"])
@@ -22888,6 +22914,8 @@ def verify(core, name, trials_random=40, source_override=None):
             oracle_overrides[95][5] = {0: 0}
             oracle_overrides[96][4] = {0: 1}
             oracle_overrides[97][4] = {0: 0}
+        oracle_overrides = _complete_case_oracle_overrides(
+            oracle_overrides, len(ovs), "ble_process_put_req")
     combined_cases = REVIEWED_ORACLE_CASES.get((core, va))
     fp_arg_overrides = REVIEWED_FP_CASES.get((core, va))
     initial_exclusive_monitors = REVIEWED_INITIAL_EXCLUSIVE_MONITORS.get(
@@ -24766,6 +24794,22 @@ def self_test():
         assert len(packet_images) == 1, (command, packet_images)
         generated_commands.append(packet_images[0][0])
     assert generated_commands == list(range(1, 0x28)), generated_commands
+    # The reviewed state fixtures predate the 39 CFG-derived outer-opcode
+    # cases.  Every appended case must receive its own empty dictionary; a
+    # short list must never become a later Runner's list-shaped override.
+    completed_oracles = _complete_case_oracle_overrides(
+        [{}, {1: {0: 1}}], 4, "self-test")
+    assert completed_oracles == [{}, {1: {0: 1}}, {}, {}], completed_oracles
+    try:
+        _complete_case_oracle_overrides([{}, []], 2, "self-test")
+        raise AssertionError("non-dictionary oracle case accepted")
+    except TypeError:
+        pass
+    try:
+        _complete_case_oracle_overrides([{}, {}], 1, "self-test")
+        raise AssertionError("overlong oracle case list accepted")
+    except ValueError:
+        pass
     # A function's executable extent does not include its trailing literal
     # pool.  Mapping only that extent must not be mistaken for a valid
     # differential environment: it turns original PC-relative loads into
