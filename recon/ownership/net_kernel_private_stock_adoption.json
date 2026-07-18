@@ -1,0 +1,7468 @@
+{
+ "atomic_group": [
+  "0x01036e90",
+  "0x01036ecc",
+  "0x0103b28a",
+  "0x01036f24",
+  "0x01036f74",
+  "0x01036fcc",
+  "0x0103705c",
+  "0x010370c4",
+  "0x01037130",
+  "0x0103719c",
+  "0x0103b29c",
+  "0x0103b2b4",
+  "0x0103721c",
+  "0x010372b4",
+  "0x0103735c",
+  "0x01037398",
+  "0x01037438",
+  "0x010374dc",
+  "0x01037514",
+  "0x01037588",
+  "0x010375b8",
+  "0x01037670",
+  "0x01037768",
+  "0x01037814",
+  "0x01037850",
+  "0x0103b2c8",
+  "0x01037960",
+  "0x010379d4",
+  "0x0103b2d0",
+  "0x01037a50",
+  "0x01037a60",
+  "0x01037b5c",
+  "0x01037c64",
+  "0x01037cbc",
+  "0x01037cc8",
+  "0x01037e10",
+  "0x01037ea8",
+  "0x01036660",
+  "0x01036774",
+  "0x0103b1e2",
+  "0x0103b1fa",
+  "0x0103b210",
+  "0x01035cd8",
+  "0x01035d18",
+  "0x01035e1c",
+  "0x0103b10e",
+  "0x01038958",
+  "0x010389a0",
+  "0x010389ec",
+  "0x010389f8",
+  "0x0103b522",
+  "0x0103b530",
+  "0x0103973c",
+  "0x01039752",
+  "0x01039768",
+  "0x01039774",
+  "0x010397a4",
+  "0x010397ac",
+  "0x010397c0",
+  "0x010397d2",
+  "0x010397ea",
+  "0x01039846",
+  "0x01039874",
+  "0x010398e8",
+  "0x01039936",
+  "0x01039972",
+  "0x010399f6",
+  "0x0102c470",
+  "0x0102c4e4",
+  "0x0102c5ec",
+  "0x01039a7a"
+ ],
+ "call_target_checks": [
+  {
+   "caller": "slice_timeout",
+   "caller_va": "0x01036ecc",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "slice_timeout",
+   "caller_va": "0x01036ecc",
+   "offset": 50,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reset_time_slice",
+   "caller_va": "0x01036f24",
+   "offset": 18,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reset_time_slice",
+   "caller_va": "0x01036f24",
+   "offset": 30,
+   "target_symbol": "sliceable",
+   "target_va": "0x01036e90",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reset_time_slice",
+   "caller_va": "0x01036f24",
+   "offset": 52,
+   "target_symbol": "z_add_timeout",
+   "target_va": "0x01037f8c",
+   "unit": "sched"
+  },
+  {
+   "caller": "update_cache",
+   "caller_va": "0x01036f74",
+   "offset": 30,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "update_cache",
+   "caller_va": "0x01036f74",
+   "offset": 38,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "update_cache",
+   "caller_va": "0x01036f74",
+   "offset": 64,
+   "target_symbol": "z_reset_time_slice",
+   "target_va": "0x01036f24",
+   "unit": "sched"
+  },
+  {
+   "caller": "ready_thread",
+   "caller_va": "0x01036fcc",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "ready_thread",
+   "caller_va": "0x01036fcc",
+   "offset": 48,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "ready_thread",
+   "caller_va": "0x01036fcc",
+   "offset": 112,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 54,
+   "target_symbol": "ready_thread",
+   "target_va": "0x01036fcc",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 60,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_ready_thread",
+   "caller_va": "0x0103705c",
+   "offset": 72,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 58,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 64,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread_no_timeout",
+   "caller_va": "0x010370c4",
+   "offset": 76,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 24,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 38,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 48,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 64,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 76,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule",
+   "caller_va": "0x01037130",
+   "offset": 58,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 60,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 72,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 98,
+   "target_symbol": "ready_thread",
+   "target_va": "0x01036fcc",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_start",
+   "caller_va": "0x0103719c",
+   "offset": 110,
+   "target_symbol": "z_reschedule",
+   "target_va": "0x01037130",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule_irqlock",
+   "caller_va": "0x0103b29c",
+   "offset": 10,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_reschedule_unlocked",
+   "caller_va": "0x0103b2b4",
+   "offset": 16,
+   "target_symbol": "z_reschedule_irqlock",
+   "target_va": "0x0103b29c",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 20,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 32,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 44,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 60,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 68,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 88,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 102,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_lock",
+   "caller_va": "0x0103721c",
+   "offset": 114,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 20,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 32,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 44,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 64,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 74,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 92,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 106,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 112,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 124,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "k_sched_unlock",
+   "caller_va": "0x010372b4",
+   "offset": 144,
+   "target_symbol": "z_reschedule_unlocked",
+   "target_va": "0x0103b2b4",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_priq_dumb_remove",
+   "caller_va": "0x0103735c",
+   "offset": 16,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_priq_dumb_remove",
+   "caller_va": "0x0103735c",
+   "offset": 26,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "move_thread_to_end_of_prio_q",
+   "caller_va": "0x01037398",
+   "offset": 24,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "move_thread_to_end_of_prio_q",
+   "caller_va": "0x01037398",
+   "offset": 48,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "move_thread_to_end_of_prio_q",
+   "caller_va": "0x01037398",
+   "offset": 56,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "move_thread_to_end_of_prio_q",
+   "caller_va": "0x01037398",
+   "offset": 126,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 20,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 32,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 40,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 46,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 62,
+   "target_symbol": "z_reset_time_slice",
+   "target_va": "0x01036f24",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 68,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 80,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 104,
+   "target_symbol": "sliceable",
+   "target_va": "0x01036e90",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_time_slice",
+   "caller_va": "0x01037438",
+   "offset": 120,
+   "target_symbol": "move_thread_to_end_of_prio_q",
+   "target_va": "0x01037398",
+   "unit": "sched"
+  },
+  {
+   "caller": "unready_thread",
+   "caller_va": "0x010374dc",
+   "offset": 24,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "unready_thread",
+   "caller_va": "0x010374dc",
+   "offset": 42,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "add_to_waitq_locked",
+   "caller_va": "0x01037514",
+   "offset": 6,
+   "target_symbol": "unready_thread",
+   "target_va": "0x010374dc",
+   "unit": "sched"
+  },
+  {
+   "caller": "add_to_waitq_locked",
+   "caller_va": "0x01037514",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "add_to_waitq_locked",
+   "caller_va": "0x01037514",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "pend_locked",
+   "caller_va": "0x01037588",
+   "offset": 8,
+   "target_symbol": "add_to_waitq_locked",
+   "target_va": "0x01037514",
+   "unit": "sched"
+  },
+  {
+   "caller": "pend_locked",
+   "caller_va": "0x01037588",
+   "offset": 38,
+   "target_symbol": "z_add_timeout",
+   "target_va": "0x01037f8c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 50,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 72,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 84,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 96,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 110,
+   "target_symbol": "pend_locked",
+   "target_va": "0x01037588",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 116,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 130,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 142,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_pend_curr",
+   "caller_va": "0x010375b8",
+   "offset": 156,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 26,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 52,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 82,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 108,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 116,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 126,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 138,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_set_prio",
+   "caller_va": "0x01037670",
+   "offset": 196,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 6,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 28,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 48,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 54,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 78,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 100,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 106,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 118,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_thread_suspend",
+   "caller_va": "0x01037768",
+   "offset": 144,
+   "target_symbol": "z_reschedule_unlocked",
+   "target_va": "0x0103b2b4",
+   "unit": "sched"
+  },
+  {
+   "caller": "unpend_thread_no_timeout",
+   "caller_va": "0x01037814",
+   "offset": 16,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "unpend_thread_no_timeout",
+   "caller_va": "0x01037814",
+   "offset": 26,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "unpend_thread_no_timeout",
+   "caller_va": "0x01037814",
+   "offset": 32,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 58,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 64,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 76,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_thread",
+   "caller_va": "0x01037850",
+   "offset": 100,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_timeout",
+   "caller_va": "0x0103b2c8",
+   "offset": 4,
+   "target_symbol": "z_sched_wake_thread",
+   "target_va": "0x010378c4",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 62,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 68,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend1_no_timeout",
+   "caller_va": "0x01037960",
+   "offset": 80,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 22,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 48,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 62,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 70,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 76,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_first_thread",
+   "caller_va": "0x010379d4",
+   "offset": 88,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_all",
+   "caller_va": "0x0103b2d0",
+   "offset": 18,
+   "target_symbol": "z_unpend_thread",
+   "target_va": "0x01037850",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_unpend_all",
+   "caller_va": "0x0103b2d0",
+   "offset": 24,
+   "target_symbol": "z_ready_thread",
+   "target_va": "0x0103705c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 16,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 46,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 58,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 66,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 74,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 94,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 120,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 178,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 184,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 198,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_yield",
+   "caller_va": "0x01037a60",
+   "offset": 222,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 22,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 40,
+   "target_symbol": "z_impl_k_yield",
+   "target_va": "0x01037a60",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 56,
+   "target_symbol": "sys_clock_tick_get_32",
+   "target_va": "0x0103b2f8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 80,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 92,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 100,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 116,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 126,
+   "target_symbol": "unready_thread",
+   "target_va": "0x010374dc",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 140,
+   "target_symbol": "z_add_timeout",
+   "target_va": "0x01037f8c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 156,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 170,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 182,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 202,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_tick_sleep",
+   "caller_va": "0x01037b5c",
+   "offset": 212,
+   "target_symbol": "sys_clock_tick_get_32",
+   "target_va": "0x0103b2f8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_sleep",
+   "caller_va": "0x01037c64",
+   "offset": 16,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_sleep",
+   "caller_va": "0x01037c64",
+   "offset": 26,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_sleep",
+   "caller_va": "0x01037c64",
+   "offset": 46,
+   "target_symbol": "z_impl_k_thread_suspend",
+   "target_va": "0x01037768",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_impl_k_sleep",
+   "caller_va": "0x01037c64",
+   "offset": 56,
+   "target_symbol": "z_tick_sleep",
+   "target_va": "0x01037b5c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 24,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 36,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 44,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 50,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 62,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 74,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 98,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 118,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 158,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 166,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 188,
+   "target_symbol": "update_cache",
+   "target_va": "0x01036f74",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 210,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 224,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 248,
+   "target_symbol": "z_priq_dumb_remove",
+   "target_va": "0x0103735c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 256,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 264,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 274,
+   "target_symbol": "ready_thread",
+   "target_va": "0x01036fcc",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 282,
+   "target_symbol": "arch_swap",
+   "target_va": "0x0102ec10",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_thread_abort",
+   "caller_va": "0x01037cc8",
+   "offset": 294,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 28,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 42,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 50,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 56,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 76,
+   "target_symbol": "unpend_thread_no_timeout",
+   "target_va": "0x01037814",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 84,
+   "target_symbol": "z_abort_timeout",
+   "target_va": "0x010380d8",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 90,
+   "target_symbol": "ready_thread",
+   "target_va": "0x01036fcc",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 96,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wake",
+   "caller_va": "0x01037e10",
+   "offset": 108,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "sched"
+  },
+  {
+   "caller": "z_sched_wait",
+   "caller_va": "0x01037ea8",
+   "offset": 12,
+   "target_symbol": "z_pend_curr",
+   "target_va": "0x010375b8",
+   "unit": "sched"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 38,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 50,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 58,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 64,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 80,
+   "target_symbol": "z_unpend_first_thread",
+   "target_va": "0x010379d4",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 96,
+   "target_symbol": "z_ready_thread",
+   "target_va": "0x0103705c",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 104,
+   "target_symbol": "z_reschedule",
+   "target_va": "0x01037130",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 120,
+   "target_symbol": "z_thread_aligned_alloc",
+   "target_va": "0x010389f8",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 128,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 140,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "queue"
+  },
+  {
+   "caller": "queue_insert",
+   "caller_va": "0x01036660",
+   "offset": 226,
+   "target_symbol": "z_handle_obj_poll_events",
+   "target_va": "0x0103b4f6",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 32,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 44,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 52,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 58,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 88,
+   "target_symbol": "z_queue_node_peek",
+   "target_va": "0x0103b1e2",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 96,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 108,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_impl_k_queue_get",
+   "caller_va": "0x01036774",
+   "offset": 134,
+   "target_symbol": "z_pend_curr",
+   "target_va": "0x010375b8",
+   "unit": "queue"
+  },
+  {
+   "caller": "z_queue_node_peek",
+   "caller_va": "0x0103b1e2",
+   "offset": 16,
+   "target_symbol": "k_free",
+   "target_va": "0x0103b522",
+   "unit": "queue"
+  },
+  {
+   "caller": "k_queue_append",
+   "caller_va": "0x0103b1fa",
+   "offset": 12,
+   "target_symbol": "queue_insert",
+   "target_va": "0x01036660",
+   "unit": "queue"
+  },
+  {
+   "caller": "k_queue_prepend",
+   "caller_va": "0x0103b210",
+   "offset": 10,
+   "target_symbol": "queue_insert",
+   "target_va": "0x01036660",
+   "unit": "queue"
+  },
+  {
+   "caller": "statics_init",
+   "caller_va": "0x01035cd8",
+   "offset": 16,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "statics_init",
+   "caller_va": "0x01035cd8",
+   "offset": 24,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "kheap"
+  },
+  {
+   "caller": "statics_init",
+   "caller_va": "0x01035cd8",
+   "offset": 34,
+   "target_symbol": "k_heap_init",
+   "target_va": "0x0103b10e",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 26,
+   "target_symbol": "sys_timepoint_calc",
+   "target_va": "0x0103b304",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 56,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 68,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 80,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 100,
+   "target_symbol": "sys_heap_aligned_alloc",
+   "target_va": "0x0102c4e4",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 112,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 128,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 148,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 156,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 172,
+   "target_symbol": "sys_timepoint_timeout",
+   "target_va": "0x0103b34c",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 194,
+   "target_symbol": "z_pend_curr",
+   "target_va": "0x010375b8",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 216,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_aligned_alloc",
+   "caller_va": "0x01035d18",
+   "offset": 226,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 28,
+   "target_symbol": "z_spin_lock_valid",
+   "target_va": "0x0103610c",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 40,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 48,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 54,
+   "target_symbol": "z_spin_lock_set_owner",
+   "target_va": "0x01036144",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 62,
+   "target_symbol": "sys_heap_free",
+   "target_va": "0x0102c470",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 70,
+   "target_symbol": "z_unpend_all",
+   "target_va": "0x0103b2d0",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 90,
+   "target_symbol": "z_spin_unlock_valid",
+   "target_va": "0x01036128",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 102,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_free",
+   "caller_va": "0x01035e1c",
+   "offset": 84,
+   "target_symbol": "z_reschedule",
+   "target_va": "0x01037130",
+   "unit": "kheap"
+  },
+  {
+   "caller": "k_heap_init",
+   "caller_va": "0x0103b10e",
+   "offset": 12,
+   "target_symbol": "sys_heap_init",
+   "target_va": "0x0102c5ec",
+   "unit": "kheap"
+  },
+  {
+   "caller": "z_heap_aligned_alloc",
+   "caller_va": "0x01038958",
+   "offset": 22,
+   "target_symbol": "k_heap_aligned_alloc",
+   "target_va": "0x01035d18",
+   "unit": "mempool"
+  },
+  {
+   "caller": "z_heap_aligned_alloc",
+   "caller_va": "0x01038958",
+   "offset": 46,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "mempool"
+  },
+  {
+   "caller": "z_heap_aligned_alloc",
+   "caller_va": "0x01038958",
+   "offset": 54,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_aligned_alloc",
+   "caller_va": "0x010389a0",
+   "offset": 18,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_aligned_alloc",
+   "caller_va": "0x010389a0",
+   "offset": 26,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_aligned_alloc",
+   "caller_va": "0x010389a0",
+   "offset": 42,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_aligned_alloc",
+   "caller_va": "0x010389a0",
+   "offset": 58,
+   "target_symbol": "z_heap_aligned_alloc",
+   "target_va": "0x01038958",
+   "unit": "mempool"
+  },
+  {
+   "caller": "z_thread_aligned_alloc",
+   "caller_va": "0x010389f8",
+   "offset": 6,
+   "target_symbol": "k_is_in_isr",
+   "target_va": "0x0103b14a",
+   "unit": "mempool"
+  },
+  {
+   "caller": "z_thread_aligned_alloc",
+   "caller_va": "0x010389f8",
+   "offset": 36,
+   "target_symbol": "z_heap_aligned_alloc",
+   "target_va": "0x01038958",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_free",
+   "caller_va": "0x0103b522",
+   "offset": 8,
+   "target_symbol": "k_heap_free",
+   "target_va": "0x01035e1c",
+   "unit": "mempool"
+  },
+  {
+   "caller": "k_malloc",
+   "caller_va": "0x0103b530",
+   "offset": 4,
+   "target_symbol": "k_aligned_alloc",
+   "target_va": "0x010389a0",
+   "unit": "mempool"
+  },
+  {
+   "caller": "chunk_size",
+   "caller_va": "0x01039768",
+   "offset": 4,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "set_chunk_size",
+   "caller_va": "0x010397a4",
+   "offset": 4,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "bucket_idx.isra.0",
+   "caller_va": "0x010397d2",
+   "offset": 6,
+   "target_symbol": "bytes_to_chunksz.isra.0",
+   "target_va": "0x010397c0",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove_bidx",
+   "caller_va": "0x010397ea",
+   "offset": 12,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove_bidx",
+   "caller_va": "0x010397ea",
+   "offset": 54,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove_bidx",
+   "caller_va": "0x010397ea",
+   "offset": 72,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove_bidx",
+   "caller_va": "0x010397ea",
+   "offset": 88,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove",
+   "caller_va": "0x01039846",
+   "offset": 8,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove",
+   "caller_va": "0x01039846",
+   "offset": 26,
+   "target_symbol": "bucket_idx.isra.0",
+   "target_va": "0x010397d2",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_remove",
+   "caller_va": "0x01039846",
+   "offset": 40,
+   "target_symbol": "free_list_remove_bidx",
+   "target_va": "0x010397ea",
+   "unit": "heap"
+  },
+  {
+   "caller": "alloc_chunk",
+   "caller_va": "0x01039874",
+   "offset": 10,
+   "target_symbol": "bucket_idx.isra.0",
+   "target_va": "0x010397d2",
+   "unit": "heap"
+  },
+  {
+   "caller": "alloc_chunk",
+   "caller_va": "0x01039874",
+   "offset": 40,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "alloc_chunk",
+   "caller_va": "0x01039874",
+   "offset": 54,
+   "target_symbol": "free_list_remove_bidx",
+   "target_va": "0x010397ea",
+   "unit": "heap"
+  },
+  {
+   "caller": "alloc_chunk",
+   "caller_va": "0x01039874",
+   "offset": 70,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 10,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 28,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 38,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 50,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 58,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "split_chunks",
+   "caller_va": "0x010398e8",
+   "offset": 74,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "merge_chunks",
+   "caller_va": "0x01039936",
+   "offset": 10,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "merge_chunks",
+   "caller_va": "0x01039936",
+   "offset": 20,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "merge_chunks",
+   "caller_va": "0x01039936",
+   "offset": 32,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "merge_chunks",
+   "caller_va": "0x01039936",
+   "offset": 40,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "merge_chunks",
+   "caller_va": "0x01039936",
+   "offset": 56,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 10,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 28,
+   "target_symbol": "bucket_idx.isra.0",
+   "target_va": "0x010397d2",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 60,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 84,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 96,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 108,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 118,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_list_add",
+   "caller_va": "0x01039972",
+   "offset": 74,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 6,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 18,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 30,
+   "target_symbol": "free_list_remove",
+   "target_va": "0x01039846",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 38,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 48,
+   "target_symbol": "merge_chunks",
+   "target_va": "0x01039936",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 58,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 70,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 84,
+   "target_symbol": "free_list_remove",
+   "target_va": "0x01039846",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 94,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 104,
+   "target_symbol": "merge_chunks",
+   "target_va": "0x01039936",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 114,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "free_chunk",
+   "caller_va": "0x010399f6",
+   "offset": 128,
+   "target_symbol": "free_list_add",
+   "target_va": "0x01039972",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 10,
+   "target_symbol": "mem_to_chunkid",
+   "target_va": "0x010397ac",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 20,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 34,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 42,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 50,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 62,
+   "target_symbol": "chunk_field",
+   "target_va": "0x0103973c",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 78,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 90,
+   "target_symbol": "set_chunk_used",
+   "target_va": "0x01039774",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_free",
+   "caller_va": "0x0102c470",
+   "offset": 100,
+   "target_symbol": "free_chunk",
+   "target_va": "0x010399f6",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 84,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 94,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 114,
+   "target_symbol": "bytes_to_chunksz.isra.0",
+   "target_va": "0x010397c0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 122,
+   "target_symbol": "alloc_chunk",
+   "target_va": "0x01039874",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 170,
+   "target_symbol": "mem_to_chunkid",
+   "target_va": "0x010397ac",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 200,
+   "target_symbol": "split_chunks",
+   "target_va": "0x010398e8",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 208,
+   "target_symbol": "free_list_add",
+   "target_va": "0x01039972",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 216,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 232,
+   "target_symbol": "split_chunks",
+   "target_va": "0x010398e8",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 240,
+   "target_symbol": "free_list_add",
+   "target_va": "0x01039972",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 250,
+   "target_symbol": "set_chunk_used",
+   "target_va": "0x01039774",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_aligned_alloc",
+   "caller_va": "0x0102c4e4",
+   "offset": 72,
+   "target_symbol": "sys_heap_alloc",
+   "target_va": "0x01039a7a",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 22,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 32,
+   "target_symbol": "assert_post_action",
+   "target_va": "0x01039bb0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 70,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 96,
+   "target_symbol": "bucket_idx.isra.0",
+   "target_va": "0x010397d2",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 108,
+   "target_symbol": "bytes_to_chunksz.isra.0",
+   "target_va": "0x010397c0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 142,
+   "target_symbol": "memset",
+   "target_va": "0x0103b62e",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 152,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 164,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 178,
+   "target_symbol": "set_chunk_used",
+   "target_va": "0x01039774",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 186,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 198,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 206,
+   "target_symbol": "set_chunk_size",
+   "target_va": "0x010397a4",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 218,
+   "target_symbol": "chunk_set",
+   "target_va": "0x01039752",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 228,
+   "target_symbol": "set_chunk_used",
+   "target_va": "0x01039774",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 250,
+   "target_symbol": "assert_print",
+   "target_va": "0x01039bbe",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_init",
+   "caller_va": "0x0102c5ec",
+   "offset": 238,
+   "target_symbol": "free_list_add",
+   "target_va": "0x01039972",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 18,
+   "target_symbol": "bytes_to_chunksz.isra.0",
+   "target_va": "0x010397c0",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 28,
+   "target_symbol": "alloc_chunk",
+   "target_va": "0x01039874",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 42,
+   "target_symbol": "chunk_size",
+   "target_va": "0x01039768",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 58,
+   "target_symbol": "split_chunks",
+   "target_va": "0x010398e8",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 66,
+   "target_symbol": "free_list_add",
+   "target_va": "0x01039972",
+   "unit": "heap"
+  },
+  {
+   "caller": "sys_heap_alloc",
+   "caller_va": "0x01039a7a",
+   "offset": 76,
+   "target_symbol": "set_chunk_used",
+   "target_va": "0x01039774",
+   "unit": "heap"
+  }
+ ],
+ "component": "zephyr_kernel_private_stock",
+ "core": "net",
+ "manifest_functions": [
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "sliceable",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036e90",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036e90.c",
+   "reconstruction_source_sha256": "a856d24e57433d838db25d97e7c4931e7b6722de45401903ce1430c8966effdf",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "sliceable",
+   "va": "0x01036e90",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "slice_timeout",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036ecc",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "slice_timeout",
+   "va": "0x01036ecc",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_sched_prio_cmp",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b28a",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_sched_prio_cmp",
+   "va": "0x0103b28a",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_reset_time_slice",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036f24",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036f24.c",
+   "reconstruction_source_sha256": "e61a2e3021d30cc7cb45d59bdcf00df2fba9842cd2eaa2e0ded1e77be87badb6",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_reset_time_slice",
+   "va": "0x01036f24",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "update_cache",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036f74",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036f74.c",
+   "reconstruction_source_sha256": "bcfdbed3ac7411b5da564d5eec0fac720c35f71c7e435e78819a21a078811f9e",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "update_cache",
+   "va": "0x01036f74",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "ready_thread",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036fcc",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036fcc.c",
+   "reconstruction_source_sha256": "f640d276c3df4a8da1337f64702a8a613e43779d8505a27d7bdc28798d745b33",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "ready_thread",
+   "va": "0x01036fcc",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_ready_thread",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103705c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103705c.c",
+   "reconstruction_source_sha256": "b0501e5900f88d03ddc9d3fc88dfc46d342c85f521e96027d6d17fa624f5f084",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_ready_thread",
+   "va": "0x0103705c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_unpend_thread_no_timeout",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010370c4",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_unpend_thread_no_timeout",
+   "va": "0x010370c4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_reschedule",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037130",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037130.c",
+   "reconstruction_source_sha256": "e583678aa7ed218b16a2f5cd28fc599490ce7bd6b289f0648165b7a2155b3f20",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_reschedule",
+   "va": "0x01037130",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_sched_start",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103719c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103719c.c",
+   "reconstruction_source_sha256": "95344931c196f2f94c3a70cd3588ca5417cd095a1a4f7e489d6efea1d2a3cbb1",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_sched_start",
+   "va": "0x0103719c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_reschedule_irqlock",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b29c",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_reschedule_irqlock",
+   "va": "0x0103b29c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_reschedule_unlocked",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b2b4",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b2b4.c",
+   "reconstruction_source_sha256": "f6eb0524a445d418bb8ffd45811e038b5b538622a62348608c9e74c7518cfe60",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_reschedule_unlocked",
+   "va": "0x0103b2b4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_sched_lock",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103721c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103721c.c",
+   "reconstruction_source_sha256": "e3ce1514e0163c48b9a782dc6390596302f93b87ac7ece5b5a856731741c7e7b",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "k_sched_lock",
+   "va": "0x0103721c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_sched_unlock",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010372b4",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010372b4.c",
+   "reconstruction_source_sha256": "fa8c99cdadb6dcf3071e3402bad43bed57354b09b3f2392c85b02ad01ac17152",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "k_sched_unlock",
+   "va": "0x010372b4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_priq_dumb_remove",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103735c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103735c.c",
+   "reconstruction_source_sha256": "6dd6de638492a1e4be10657009868bc70c7456d769cd33dd743e7a402458faab",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_priq_dumb_remove",
+   "va": "0x0103735c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "move_thread_to_end_of_prio_q",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037398",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037398.c",
+   "reconstruction_source_sha256": "b0539ea546e8d03ff11c98b59fd406a286c1f74a412e5394cba18015ff353d56",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "move_thread_to_end_of_prio_q",
+   "va": "0x01037398",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_time_slice",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037438",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037438.c",
+   "reconstruction_source_sha256": "f408cc80fafd6147e4b894f85497c932691eabeae41e36ea1aa20933617570a3",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_time_slice",
+   "va": "0x01037438",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "unready_thread",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010374dc",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010374dc.c",
+   "reconstruction_source_sha256": "20e32d7e48e73dc5bb9c200deda461408a6e36596e13544e4bf94900d973f65e",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "unready_thread",
+   "va": "0x010374dc",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "add_to_waitq_locked",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037514",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037514.c",
+   "reconstruction_source_sha256": "e4be89f98db85d350327f8633b26d944045e6ae0290bc1d9f761895fe0bee872",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "add_to_waitq_locked",
+   "va": "0x01037514",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "pend_locked",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037588",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037588.c",
+   "reconstruction_source_sha256": "325db677e9bc749284f04d96d0a1d2bb31ccaf1a73fdd6ba6abdd8d3416914f4",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "pend_locked",
+   "va": "0x01037588",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_pend_curr",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010375b8",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010375b8.c",
+   "reconstruction_source_sha256": "a1cee858047dec78d7f3a58527b8f2ef35092d12350d03f18bc4bc6fdc9763d1",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_pend_curr",
+   "va": "0x010375b8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_set_prio",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037670",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037670.c",
+   "reconstruction_source_sha256": "055a75e11065d0973a379bbf72db32aa23693b786b3d04338f3fef60573b57d5",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_set_prio",
+   "va": "0x01037670",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_impl_k_thread_suspend",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037768",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037768.c",
+   "reconstruction_source_sha256": "0fb4d89e59d21d6df9e0b8374c93d80d661a0ebed83c78010264e417bebd795b",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_impl_k_thread_suspend",
+   "va": "0x01037768",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "unpend_thread_no_timeout",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037814",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037814.c",
+   "reconstruction_source_sha256": "29f12f02f33616cee35d2167799bdbbd4c153a288d8e155da0f027d5721cf5fa",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "unpend_thread_no_timeout",
+   "va": "0x01037814",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_unpend_thread",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037850",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037850.c",
+   "reconstruction_source_sha256": "16ffff59fa1eaeb16204896dfe0a6148c8bc67a1e8fcd11cf2ffaf3fe4439af6",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_unpend_thread",
+   "va": "0x01037850",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_thread_timeout",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b2c8",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_thread_timeout",
+   "va": "0x0103b2c8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_unpend1_no_timeout",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037960",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037960.c",
+   "reconstruction_source_sha256": "146c534a93b052c3ae0a30493311e5853d2d3d680b4fc5d5af9d43d3ea04381e",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_unpend1_no_timeout",
+   "va": "0x01037960",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_unpend_first_thread",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010379d4",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010379d4.c",
+   "reconstruction_source_sha256": "58d45d0c9bf5fc2c5cf0f178eb7bc984575904ba4089508249928cc987a472a0",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_unpend_first_thread",
+   "va": "0x010379d4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_unpend_all",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b2d0",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_unpend_all",
+   "va": "0x0103b2d0",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_sched_init",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037a50",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_sched_init",
+   "va": "0x01037a50",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_impl_k_yield",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037a60",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037a60.c",
+   "reconstruction_source_sha256": "f597f66581a029cd9b4abd6d7402c5b78587f8e0292daf1f1b96dfde03aa54b4",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_impl_k_yield",
+   "va": "0x01037a60",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_tick_sleep",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037b5c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037b5c.c",
+   "reconstruction_source_sha256": "0630235f00a7eba27ac59f0c1a72c731eec77efd821ca944c78492a995f35eff",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_tick_sleep",
+   "va": "0x01037b5c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_impl_k_sleep",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037c64",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037c64.c",
+   "reconstruction_source_sha256": "dfadb124f37b4217b2306487f422da616b31b4f6b424ed4f0fc9f8faafafd00d",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_impl_k_sleep",
+   "va": "0x01037c64",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_impl_z_current_get",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037cbc",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_impl_z_current_get",
+   "va": "0x01037cbc",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_thread_abort",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037cc8",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_thread_abort",
+   "va": "0x01037cc8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_sched_wake",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037e10",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037e10.c",
+   "reconstruction_source_sha256": "c097b086c35b39238172e46fe6c4fd67451e41e10969165b0d383c25abab18a4",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_sched_wake",
+   "va": "0x01037e10",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_sched_wait",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01037ea8",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01037ea8.c",
+   "reconstruction_source_sha256": "08af009235e3d81b9d546e34b1dc1cf1362fa2275a0235e1be9eb5388bfcbdae",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/sched.c",
+   "upstream_symbol": "z_sched_wait",
+   "va": "0x01037ea8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "queue_insert",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036660",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036660.c",
+   "reconstruction_source_sha256": "57a6e4e797f3aac57d85e1485827ffff4c08a5ec515218e6cf91ada761ecf8d7",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/queue.c",
+   "upstream_symbol": "queue_insert",
+   "va": "0x01036660",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_impl_k_queue_get",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01036774",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01036774.c",
+   "reconstruction_source_sha256": "6e4829dd7132a1716b4dafe8ce5650094f5864ecb8ee09fd68e0ad3188f898bf",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/queue.c",
+   "upstream_symbol": "z_impl_k_queue_get",
+   "va": "0x01036774",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_queue_node_peek",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b1e2",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/queue.c",
+   "upstream_symbol": "z_queue_node_peek",
+   "va": "0x0103b1e2",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_queue_append",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b1fa",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b1fa.c",
+   "reconstruction_source_sha256": "683cfbe7d5bbbc50033b99ccd8310e5723843db54eccf40550bd5b4fed21be70",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/queue.c",
+   "upstream_symbol": "k_queue_append",
+   "va": "0x0103b1fa",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_queue_prepend",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b210",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/queue.c",
+   "upstream_symbol": "k_queue_prepend",
+   "va": "0x0103b210",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "statics_init",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01035cd8",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/kheap.c",
+   "upstream_symbol": "statics_init",
+   "va": "0x01035cd8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_heap_aligned_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01035d18",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01035d18.c",
+   "reconstruction_source_sha256": "bce035e2fd9778752fda624cbea06254f51a1158e2005ab6f1e7471d3ff80b42",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/kheap.c",
+   "upstream_symbol": "k_heap_aligned_alloc",
+   "va": "0x01035d18",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_heap_free",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01035e1c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01035e1c.c",
+   "reconstruction_source_sha256": "d00b3f719b7d02f58bed630542cfdb35e0606bff6347374849c0741ccd3eb4d6",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/kheap.c",
+   "upstream_symbol": "k_heap_free",
+   "va": "0x01035e1c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_heap_init",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b10e",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/kheap.c",
+   "upstream_symbol": "k_heap_init",
+   "va": "0x0103b10e",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_heap_aligned_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01038958",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01038958.c",
+   "reconstruction_source_sha256": "070825d56e546f1a0df37e221b67c2630040b5ff36c6843deae47c8edb68f462",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "z_heap_aligned_alloc",
+   "va": "0x01038958",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_aligned_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010389a0",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010389a0.c",
+   "reconstruction_source_sha256": "5eafc604001a9faa94c4b18ead4b8e04315387e19391f7151981e0e448597fae",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "k_aligned_alloc",
+   "va": "0x010389a0",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_thread_system_pool_assign",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010389ec",
+   "reconstruction_present": false,
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "k_thread_system_pool_assign",
+   "va": "0x010389ec",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "z_thread_aligned_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010389f8",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010389f8.c",
+   "reconstruction_source_sha256": "edd3e204a1d98a6e52b3eb1fa6c160ae937dbea94821058de9244ec2ca0facf1",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "z_thread_aligned_alloc",
+   "va": "0x010389f8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_free",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b522",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b522.c",
+   "reconstruction_source_sha256": "653f46f6acade083f6694411e811efaaa84c9d431825cca0ee16ef2d67f684b4",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "k_free",
+   "va": "0x0103b522",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "k_malloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103b530",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103b530.c",
+   "reconstruction_source_sha256": "87b82a97d62609d891319b8472adcf201d121844d636dde029f766fe3e6c4a94",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/kernel/mempool.c",
+   "upstream_symbol": "k_malloc",
+   "va": "0x0103b530",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "chunk_field",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0103973c",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0103973c.c",
+   "reconstruction_source_sha256": "4c409753a6e0db9be73e2f3b235616de0120f3d185fde629a68d2a84d3056985",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "chunk_field",
+   "va": "0x0103973c",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "chunk_set",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039752",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039752.c",
+   "reconstruction_source_sha256": "b829a3053d9b0aa71beb0c483d0f80dab3902e56b33b804e01b7c3526a3f6239",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "chunk_set",
+   "va": "0x01039752",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "chunk_size",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039768",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039768.c",
+   "reconstruction_source_sha256": "871e8f0299e2cf69da3d4e28b78f8ff2f02fc196c1af9ee94716005f50f856c1",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "chunk_size",
+   "va": "0x01039768",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "set_chunk_used",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039774",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039774.c",
+   "reconstruction_source_sha256": "6fc85d3b4dcc70b4b3934eb3c6944c9bdbbc8bb3aa4311612c42b86d7ea1c2cf",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "set_chunk_used",
+   "va": "0x01039774",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "set_chunk_size",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010397a4",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010397a4.c",
+   "reconstruction_source_sha256": "c915b47b1156d8a94288bee172bb86462ef85459563668e5afd060ee69d98633",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "set_chunk_size",
+   "va": "0x010397a4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "mem_to_chunkid",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010397ac",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010397ac.c",
+   "reconstruction_source_sha256": "e65e20d327d1a94007fadf9afb9e53d509478616fd54892c39c47c6a593d9ff2",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "mem_to_chunkid",
+   "va": "0x010397ac",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "bytes_to_chunksz_isra_0",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010397c0",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010397c0.c",
+   "reconstruction_source_sha256": "04ea439fb6bb4abfa042f449b74a6eada19237440d50d7d2a8c5d93fd271489a",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "bytes_to_chunksz.isra.0",
+   "va": "0x010397c0",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "bucket_idx_isra_0",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010397d2",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010397d2.c",
+   "reconstruction_source_sha256": "147e18bd6026289ba0399f1042e8b6345beadb950a9ec3e6eadc88d992cc3d5e",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "bucket_idx.isra.0",
+   "va": "0x010397d2",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "free_list_remove_bidx",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010397ea",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010397ea.c",
+   "reconstruction_source_sha256": "be8d4714e8747cf0a651aea5daedfcce6baec6a6f0a2b3af61420f84c0524647",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "free_list_remove_bidx",
+   "va": "0x010397ea",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "free_list_remove",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039846",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039846.c",
+   "reconstruction_source_sha256": "0ff521c2e3e4d3559704afea7e3773bc980ca9555af0f007af07547faa0bd8ff",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "free_list_remove",
+   "va": "0x01039846",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "alloc_chunk",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039874",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039874.c",
+   "reconstruction_source_sha256": "5c830027475dca48cb514ae69c80dfb8c6f6e21dfe9d71f2856bc03c617cdf71",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "alloc_chunk",
+   "va": "0x01039874",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "split_chunks",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010398e8",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010398e8.c",
+   "reconstruction_source_sha256": "bc42d32e048fd7ce2b741e2f6097e66bbb16d1cbb251af63eaf07d60e35f6fd0",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "split_chunks",
+   "va": "0x010398e8",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "merge_chunks",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039936",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039936.c",
+   "reconstruction_source_sha256": "4bd3db362147636a79e32967121440de67edd7028e216c7f043311583bc2e666",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "merge_chunks",
+   "va": "0x01039936",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "free_list_add",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039972",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039972.c",
+   "reconstruction_source_sha256": "2a8804dd2c7c1576c1b8a3870b2d0e616dba811d03cc4445acbcf0a40b87af96",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "free_list_add",
+   "va": "0x01039972",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "free_chunk",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_010399f6",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_010399f6.c",
+   "reconstruction_source_sha256": "b771185bc1f5f25892bc7d32b3daaf7b5cace628d8941f48a420d1221ca5766e",
+   "safe_to_adopt": true,
+   "upstream_linkage": "file_static",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "free_chunk",
+   "va": "0x010399f6",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "sys_heap_free",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0102c470",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0102c470.c",
+   "reconstruction_source_sha256": "4abee4d3540bfb409b3f5e9cfbd9c9d189f5a7b2aaa2a5570cb2e18105764769",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "sys_heap_free",
+   "va": "0x0102c470",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "sys_heap_aligned_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0102c4e4",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0102c4e4.c",
+   "reconstruction_source_sha256": "ed38a2deadc56278d6215ff70568792d5352e51addc38edb426f75c0b81583d5",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "sys_heap_aligned_alloc",
+   "va": "0x0102c4e4",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "sys_heap_init",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_0102c5ec",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_0102c5ec.c",
+   "reconstruction_source_sha256": "619ce637881724fdc51388e5c3d4191851f42edd8df13827ff779c2a2b729bb4",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "sys_heap_init",
+   "va": "0x0102c5ec",
+   "whole_source_unit_selected": true
+  },
+  {
+   "call_targets_checked": true,
+   "durable_symbol": "sys_heap_alloc",
+   "exclude_reconstruction": true,
+   "raw_symbol": "FUN_01039a7a",
+   "reconstruction_present": true,
+   "reconstruction_source": "recon/net/src/FUN_01039a7a.c",
+   "reconstruction_source_sha256": "1674c39884415b426b335a4d6910e9e6518d8b5f561ee8dd45e4876da533d973",
+   "safe_to_adopt": true,
+   "upstream_linkage": "public",
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_symbol": "sys_heap_alloc",
+   "va": "0x01039a7a",
+   "whole_source_unit_selected": true
+  }
+ ],
+ "policy": {
+  "adoption_unit": "five_complete_configured_source_units",
+  "private_state_is_atomic": true,
+  "proof": "relocation-masked bytes plus every Thumb call target",
+  "raw_address_backmaps_required": true,
+  "sdc_policy": "report_only_unchanged"
+ },
+ "private_state_sections": [
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 168,
+     "symbol": "z_pend_curr"
+    },
+    {
+     "offset": 256,
+     "symbol": "z_tick_sleep"
+    },
+    {
+     "offset": 156,
+     "symbol": "z_time_slice"
+    }
+   ],
+   "runtime_address": "0x21004b5c",
+   "size": 4,
+   "target": ".bss.pending_current",
+   "unit": "sched"
+  },
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 84,
+     "symbol": "slice_timeout"
+    },
+    {
+     "offset": 68,
+     "symbol": "z_reset_time_slice"
+    },
+    {
+     "offset": 160,
+     "symbol": "z_time_slice"
+    }
+   ],
+   "runtime_address": "0x21006462",
+   "size": 1,
+   "target": ".bss.slice_expired",
+   "unit": "sched"
+  },
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 68,
+     "symbol": "slice_timeout"
+    },
+    {
+     "offset": 64,
+     "symbol": "z_reset_time_slice"
+    }
+   ],
+   "runtime_address": "0x210044d8",
+   "size": 24,
+   "target": ".bss.slice_timeouts",
+   "unit": "sched"
+  },
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 52,
+     "symbol": "sliceable"
+    }
+   ],
+   "runtime_address": "0x21004b60",
+   "size": 4,
+   "target": ".bss.slice_max_prio",
+   "unit": "sched"
+  },
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 48,
+     "symbol": "sliceable"
+    },
+    {
+     "offset": 72,
+     "symbol": "z_reset_time_slice"
+    }
+   ],
+   "runtime_address": "0x21004b64",
+   "size": 4,
+   "target": ".bss.slice_ticks",
+   "unit": "sched"
+  },
+  {
+   "initialization": "zero_initialized",
+   "relocation_references": [
+    {
+     "offset": 132,
+     "symbol": "k_sched_lock"
+    },
+    {
+     "offset": 148,
+     "symbol": "k_sched_unlock"
+    },
+    {
+     "offset": 152,
+     "symbol": "z_impl_k_thread_suspend"
+    },
+    {
+     "offset": 236,
+     "symbol": "z_impl_k_yield"
+    },
+    {
+     "offset": 164,
+     "symbol": "z_pend_curr"
+    },
+    {
+     "offset": 92,
+     "symbol": "z_ready_thread"
+    },
+    {
+     "offset": 116,
+     "symbol": "z_sched_start"
+    },
+    {
+     "offset": 140,
+     "symbol": "z_sched_wake"
+    },
+    {
+     "offset": 224,
+     "symbol": "z_set_prio"
+    },
+    {
+     "offset": 304,
+     "symbol": "z_thread_abort"
+    },
+    {
+     "offset": 244,
+     "symbol": "z_tick_sleep"
+    },
+    {
+     "offset": 140,
+     "symbol": "z_time_slice"
+    },
+    {
+     "offset": 104,
+     "symbol": "z_unpend1_no_timeout"
+    },
+    {
+     "offset": 112,
+     "symbol": "z_unpend_first_thread"
+    },
+    {
+     "offset": 104,
+     "symbol": "z_unpend_thread"
+    },
+    {
+     "offset": 96,
+     "symbol": "z_unpend_thread_no_timeout"
+    }
+   ],
+   "runtime_address": "0x21004b68",
+   "size": 4,
+   "target": "sched_spinlock",
+   "unit": "sched"
+  }
+ ],
+ "recovered_atomic_group": [
+  "0x0102c470",
+  "0x0102c4e4",
+  "0x0102c5ec",
+  "0x01035d18",
+  "0x01035e1c",
+  "0x01036660",
+  "0x01036774",
+  "0x01036e90",
+  "0x01036f24",
+  "0x01036f74",
+  "0x01036fcc",
+  "0x0103705c",
+  "0x01037130",
+  "0x0103719c",
+  "0x0103721c",
+  "0x010372b4",
+  "0x0103735c",
+  "0x01037398",
+  "0x01037438",
+  "0x010374dc",
+  "0x01037514",
+  "0x01037588",
+  "0x010375b8",
+  "0x01037670",
+  "0x01037768",
+  "0x01037814",
+  "0x01037850",
+  "0x01037960",
+  "0x010379d4",
+  "0x01037a60",
+  "0x01037b5c",
+  "0x01037c64",
+  "0x01037e10",
+  "0x01037ea8",
+  "0x01038958",
+  "0x010389a0",
+  "0x010389f8",
+  "0x0103973c",
+  "0x01039752",
+  "0x01039768",
+  "0x01039774",
+  "0x010397a4",
+  "0x010397ac",
+  "0x010397c0",
+  "0x010397d2",
+  "0x010397ea",
+  "0x01039846",
+  "0x01039874",
+  "0x010398e8",
+  "0x01039936",
+  "0x01039972",
+  "0x010399f6",
+  "0x01039a7a",
+  "0x0103b1fa",
+  "0x0103b2b4",
+  "0x0103b522",
+  "0x0103b530"
+ ],
+ "safe": true,
+ "schema": 1,
+ "section_matches": [
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ef039bd5467ab37bf3272cfd1381fb4864daea63b9a7f3ddd71e609794167825",
+   "relocations": [
+    {
+     "offset": 48,
+     "target": ".bss.slice_ticks",
+     "type": 2
+    },
+    {
+     "offset": 52,
+     "target": ".bss.slice_max_prio",
+     "type": 2
+    },
+    {
+     "offset": 56,
+     "target": "z_idle_threads",
+     "type": 2
+    }
+   ],
+   "section": ".text.sliceable",
+   "size": 60,
+   "symbol": "sliceable",
+   "unit": "sched",
+   "va": "0x01036e90"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "8c687bcb60d86fc3a24af9b1051c786ad035d201ec68ce9e31e864cea8b9c404",
+   "relocations": [
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 68,
+     "target": ".bss.slice_timeouts",
+     "type": 2
+    },
+    {
+     "offset": 72,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 76,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 84,
+     "target": ".bss.slice_expired",
+     "type": 2
+    }
+   ],
+   "section": ".text.slice_timeout",
+   "size": 88,
+   "symbol": "slice_timeout",
+   "unit": "sched",
+   "va": "0x01036ecc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b9e43387e49a333c1f533104a2e70a9600d1a607409603fb17b0f028851b1aed",
+   "relocations": [],
+   "section": ".text.z_sched_prio_cmp",
+   "size": 18,
+   "symbol": "z_sched_prio_cmp",
+   "unit": "sched",
+   "va": "0x0103b28a"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ba10e54303c447784dd6a8f79fdd843c77461da7fa97da2b8e9ecd147bbab125",
+   "relocations": [
+    {
+     "offset": 18,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 30,
+     "target": "sliceable",
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 64,
+     "target": ".bss.slice_timeouts",
+     "type": 2
+    },
+    {
+     "offset": 68,
+     "target": ".bss.slice_expired",
+     "type": 2
+    },
+    {
+     "offset": 72,
+     "target": ".bss.slice_ticks",
+     "type": 2
+    },
+    {
+     "offset": 76,
+     "target": "slice_timeout",
+     "type": 2
+    },
+    {
+     "offset": 52,
+     "target": "z_add_timeout",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_reset_time_slice",
+   "size": 80,
+   "symbol": "z_reset_time_slice",
+   "unit": "sched",
+   "va": "0x01036f24"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "d3673384e46e9429dd1468eeca9673a67204785626b06704080f83e58ab57250",
+   "relocations": [
+    {
+     "offset": 30,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 38,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "z_reset_time_slice",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 80,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 84,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.update_cache",
+   "size": 88,
+   "symbol": "update_cache",
+   "unit": "sched",
+   "va": "0x01036f74"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "c6df8808585d8fccbcdc469e3e51985214d55fd3dafa625b152d1c1a051021de",
+   "relocations": [
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 128,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 132,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 136,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 140,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 112,
+     "target": "update_cache",
+     "type": 30
+    }
+   ],
+   "section": ".text.ready_thread",
+   "size": 144,
+   "symbol": "ready_thread",
+   "unit": "sched",
+   "va": "0x01036fcc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "bd0dffd2d47d49f46a12f1093a8d32668df03464d296c7e0a14c1a38aa633dfe",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "ready_thread",
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 72,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 92,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 96,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 100,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_ready_thread",
+   "size": 104,
+   "symbol": "z_ready_thread",
+   "unit": "sched",
+   "va": "0x0103705c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b447eeb8cc02d848913797a4d887aa9d1554a8209227a4d38216fef8e5b16834",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 100,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 104,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_unpend_thread_no_timeout",
+   "size": 108,
+   "symbol": "z_unpend_thread_no_timeout",
+   "unit": "sched",
+   "va": "0x010370c4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "f8e1091f910296cf2f17031bf61a1aca20b7fc62b39ec80a98a5d23e72812a95",
+   "relocations": [
+    {
+     "offset": 24,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 38,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 100,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 104,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 58,
+     "target": "arch_swap",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_reschedule",
+   "size": 108,
+   "symbol": "z_reschedule",
+   "unit": "sched",
+   "va": "0x01037130"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ecf4adce08dcc8812421cac0796fe535c68e8403e705935924501c14bac6a651",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 72,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 98,
+     "target": "ready_thread",
+     "type": 10
+    },
+    {
+     "offset": 116,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 120,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 124,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 110,
+     "target": "z_reschedule",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_sched_start",
+   "size": 128,
+   "symbol": "z_sched_start",
+   "unit": "sched",
+   "va": "0x0103719c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "64964b5632f02fdd40c5df2d256d4487b0283e85e19b902842a74c57c255ccbd",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "arch_swap",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_reschedule_irqlock",
+   "size": 24,
+   "symbol": "z_reschedule_irqlock",
+   "unit": "sched",
+   "va": "0x0103b29c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "a0237b565f44156c8f96ac393d0bc61ea1c6b4a8e560403e53cd5303013635d7",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "z_reschedule_irqlock",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_reschedule_unlocked",
+   "size": 20,
+   "symbol": "z_reschedule_unlocked",
+   "unit": "sched",
+   "va": "0x0103b2b4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "0bc86125733184ef6f6f607402aae057dde9996c9f6339a1921c9ae081b95f4e",
+   "relocations": [
+    {
+     "offset": 20,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 44,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 68,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 88,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 102,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 114,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 132,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 136,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 140,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": ".rodata.k_sched_lock.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 148,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.k_sched_lock",
+   "size": 152,
+   "symbol": "k_sched_lock",
+   "unit": "sched",
+   "va": "0x0103721c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "2c3569ac2471b716681759838cb51aa69a6824aee0a39745f60da34ca3acbfc8",
+   "relocations": [
+    {
+     "offset": 20,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 44,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 74,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 92,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 106,
+     "target": "update_cache",
+     "type": 10
+    },
+    {
+     "offset": 112,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 124,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 148,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 152,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 156,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 160,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 164,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": "z_reschedule_unlocked",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_sched_unlock",
+   "size": 168,
+   "symbol": "k_sched_unlock",
+   "unit": "sched",
+   "va": "0x010372b4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "e59e41649300fbfa755c87fb333a5bf25b33254729064cdb7aa22db9d59151fb",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 26,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 52,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 56,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_priq_dumb_remove",
+   "size": 60,
+   "symbol": "z_priq_dumb_remove",
+   "unit": "sched",
+   "va": "0x0103735c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "291d50b23f14300ef192981eda0ca3b685cfbb7288a16040d8061b097a30f01f",
+   "relocations": [
+    {
+     "offset": 24,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 140,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 148,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 152,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 156,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 126,
+     "target": "update_cache",
+     "type": 30
+    }
+   ],
+   "section": ".text.move_thread_to_end_of_prio_q",
+   "size": 160,
+   "symbol": "move_thread_to_end_of_prio_q",
+   "unit": "sched",
+   "va": "0x01037398"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "6e0706cd33832b0b232bb2c0567c4532ea2f50c0644d7b3132320348df88f929",
+   "relocations": [
+    {
+     "offset": 20,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 46,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "z_reset_time_slice",
+     "type": 10
+    },
+    {
+     "offset": 68,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 80,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "sliceable",
+     "type": 10
+    },
+    {
+     "offset": 120,
+     "target": "move_thread_to_end_of_prio_q",
+     "type": 10
+    },
+    {
+     "offset": 140,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 148,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 152,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 156,
+     "target": ".bss.pending_current",
+     "type": 2
+    },
+    {
+     "offset": 160,
+     "target": ".bss.slice_expired",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_time_slice",
+   "size": 164,
+   "symbol": "z_time_slice",
+   "unit": "sched",
+   "va": "0x01037438"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "51bfce1f8fb82592455a64c84cdfd23b0b2bfffdfbec7657fb811e50230cc12d",
+   "relocations": [
+    {
+     "offset": 24,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 52,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 42,
+     "target": "update_cache",
+     "type": 30
+    }
+   ],
+   "section": ".text.unready_thread",
+   "size": 56,
+   "symbol": "unready_thread",
+   "unit": "sched",
+   "va": "0x010374dc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "cf5824a8c82a686c53428f166713c34eb10aa0628755df6f9965a65fd7b46242",
+   "relocations": [
+    {
+     "offset": 6,
+     "target": "unready_thread",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 108,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 112,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.add_to_waitq_locked",
+   "size": 116,
+   "symbol": "add_to_waitq_locked",
+   "unit": "sched",
+   "va": "0x01037514"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "e7bb4610f89edbbcd3bac07c5b53634f5a064423192cf8edfad7fa7365ec82b5",
+   "relocations": [
+    {
+     "offset": 8,
+     "target": "add_to_waitq_locked",
+     "type": 10
+    },
+    {
+     "offset": 44,
+     "target": "z_thread_timeout",
+     "type": 2
+    },
+    {
+     "offset": 38,
+     "target": "z_add_timeout",
+     "type": 30
+    }
+   ],
+   "section": ".text.pend_locked",
+   "size": 48,
+   "symbol": "pend_locked",
+   "unit": "sched",
+   "va": "0x01037588"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "8705cc90b73bcc8a43f3c8e400e06e8a654e99342220c816392353bce46a866d",
+   "relocations": [
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 72,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 84,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 110,
+     "target": "pend_locked",
+     "type": 10
+    },
+    {
+     "offset": 116,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 130,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 142,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 160,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 164,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 168,
+     "target": ".bss.pending_current",
+     "type": 2
+    },
+    {
+     "offset": 172,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 176,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 180,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 156,
+     "target": "arch_swap",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_pend_curr",
+   "size": 184,
+   "symbol": "z_pend_curr",
+   "unit": "sched",
+   "va": "0x010375b8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "1856122d792d936bcf25f3bc374c5228ae1338fe82ea8a2a1275e10208bf2d4e",
+   "relocations": [
+    {
+     "offset": 26,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 52,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 82,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 116,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 126,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 138,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 196,
+     "target": "update_cache",
+     "type": 10
+    },
+    {
+     "offset": 224,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 228,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 232,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 236,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 240,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 244,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_set_prio",
+   "size": 248,
+   "symbol": "z_set_prio",
+   "unit": "sched",
+   "va": "0x01037670"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "dd95540d437091213bede591ef671fa13e51c2e01de286fcb9b0aacdc320a06b",
+   "relocations": [
+    {
+     "offset": 6,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 28,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 78,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 100,
+     "target": "update_cache",
+     "type": 10
+    },
+    {
+     "offset": 106,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 118,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 152,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 156,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 160,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 164,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 168,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": "z_reschedule_unlocked",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_impl_k_thread_suspend",
+   "size": 172,
+   "symbol": "z_impl_k_thread_suspend",
+   "unit": "sched",
+   "va": "0x01037768"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "6eb11dc05481d7727d35cbfbd186cd8bf34bb4094a70487d66cd00517d8e124f",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 26,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 52,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 56,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.unpend_thread_no_timeout",
+   "size": 60,
+   "symbol": "unpend_thread_no_timeout",
+   "unit": "sched",
+   "va": "0x01037814"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "37e2c884b6ea4cb6a77f70f94d585ba5a3ea6947d44c200d90772c7b08c7bb74",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 108,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 112,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 100,
+     "target": "z_abort_timeout",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_unpend_thread",
+   "size": 116,
+   "symbol": "z_unpend_thread",
+   "unit": "sched",
+   "va": "0x01037850"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "630e7acf471f266f3f88bcdbe4dd22ab716ab3183abd427b8b6418d53929145a",
+   "relocations": [
+    {
+     "offset": 4,
+     "target": "z_sched_wake_thread",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_thread_timeout",
+   "size": 8,
+   "symbol": "z_thread_timeout",
+   "unit": "sched",
+   "va": "0x0103b2c8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "becc7078c26facd52b3df955fd7ebb07f67cf67ba4c960e1b1cd9a7c762bc7c3",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 68,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 80,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 108,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 112,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_unpend1_no_timeout",
+   "size": 116,
+   "symbol": "z_unpend1_no_timeout",
+   "unit": "sched",
+   "va": "0x01037960"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "e0c75a3c0bac5f45c15b67a1c9871eb68fa6eae1889334751e29db4df338e5db",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 88,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 112,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 116,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 120,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_unpend_first_thread",
+   "size": 124,
+   "symbol": "z_unpend_first_thread",
+   "unit": "sched",
+   "va": "0x010379d4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "15fa68eb6391111c9532faea72d2cb4c9047ee3c96264a8074f471a1c285ae4e",
+   "relocations": [
+    {
+     "offset": 18,
+     "target": "z_unpend_thread",
+     "type": 10
+    },
+    {
+     "offset": 24,
+     "target": "z_ready_thread",
+     "type": 10
+    }
+   ],
+   "section": ".text.z_unpend_all",
+   "size": 32,
+   "symbol": "z_unpend_all",
+   "unit": "sched",
+   "va": "0x0103b2d0"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "f0ed1589210d2dd5643bc2001dbfdf710c08773a63a447d25ccc533f78f66e36",
+   "relocations": [
+    {
+     "offset": 12,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_sched_init",
+   "size": 16,
+   "symbol": "z_sched_init",
+   "unit": "sched",
+   "va": "0x01037a50"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "86b96e1d3db83b01cedd4963d3f35f2b227f91f58a67eeac35781e5cc2e58351",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 46,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 66,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 74,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 94,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 120,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 178,
+     "target": "update_cache",
+     "type": 10
+    },
+    {
+     "offset": 184,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 198,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 228,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 232,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 236,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 240,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 244,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 248,
+     "target": "z_idle_threads",
+     "type": 2
+    },
+    {
+     "offset": 222,
+     "target": "arch_swap",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_impl_k_yield",
+   "size": 252,
+   "symbol": "z_impl_k_yield",
+   "unit": "sched",
+   "va": "0x01037a60"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "72a819584112bf965e0288598b8c2d363eefd162c38a2bc3d25f4c85ef890cf2",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "z_impl_k_yield",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "sys_clock_tick_get_32",
+     "type": 10
+    },
+    {
+     "offset": 80,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 92,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 100,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 116,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 126,
+     "target": "unready_thread",
+     "type": 10
+    },
+    {
+     "offset": 140,
+     "target": "z_add_timeout",
+     "type": 10
+    },
+    {
+     "offset": 156,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 170,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 182,
+     "target": "arch_swap",
+     "type": 10
+    },
+    {
+     "offset": 202,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 212,
+     "target": "sys_clock_tick_get_32",
+     "type": 10
+    },
+    {
+     "offset": 236,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 240,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 244,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 248,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 252,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 256,
+     "target": ".bss.pending_current",
+     "type": 2
+    },
+    {
+     "offset": 260,
+     "target": "z_thread_timeout",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_tick_sleep",
+   "size": 264,
+   "symbol": "z_tick_sleep",
+   "unit": "sched",
+   "va": "0x01037b5c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "6aa7ebec15b2aba419c501d809278a5025a69d3c8632ff8b8e34782add383ac3",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 26,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 46,
+     "target": "z_impl_k_thread_suspend",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "z_tick_sleep",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 80,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 84,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_impl_k_sleep",
+   "size": 88,
+   "symbol": "z_impl_k_sleep",
+   "unit": "sched",
+   "va": "0x01037c64"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ab8ead1ff8de2ea68744f9de15be08043a7d87377bfb8fb71e8a842baaaa0113",
+   "relocations": [
+    {
+     "offset": 8,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_impl_z_current_get",
+   "size": 12,
+   "symbol": "z_impl_z_current_get",
+   "unit": "sched",
+   "va": "0x01037cbc"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "5ef51e17eab4ddbe6ed78a71d5e165f596d03876c1339a57f02a08447c864ef2",
+   "relocations": [
+    {
+     "offset": 24,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 36,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 44,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 74,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 98,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 118,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 158,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 166,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 188,
+     "target": "update_cache",
+     "type": 10
+    },
+    {
+     "offset": 210,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 224,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 248,
+     "target": "z_priq_dumb_remove",
+     "type": 10
+    },
+    {
+     "offset": 256,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 264,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 274,
+     "target": "ready_thread",
+     "type": 10
+    },
+    {
+     "offset": 282,
+     "target": "arch_swap",
+     "type": 10
+    },
+    {
+     "offset": 294,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 304,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 308,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 312,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 316,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 320,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 324,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_thread_abort",
+   "size": 328,
+   "symbol": "z_thread_abort",
+   "unit": "sched",
+   "va": "0x01037cc8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b4c090c3a0af4277023d5d37117c3bf2682d5fdc43110b5fff01ea274e756f2e",
+   "relocations": [
+    {
+     "offset": 28,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "unpend_thread_no_timeout",
+     "type": 10
+    },
+    {
+     "offset": 84,
+     "target": "z_abort_timeout",
+     "type": 10
+    },
+    {
+     "offset": 90,
+     "target": "ready_thread",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 140,
+     "target": "sched_spinlock",
+     "type": 2
+    },
+    {
+     "offset": 144,
+     "target": ".rodata.k_sched_time_slice_set.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 148,
+     "target": ".rodata.slice_timeout.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_sched_wake",
+   "size": 152,
+   "symbol": "z_sched_wake",
+   "unit": "sched",
+   "va": "0x01037e10"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "0a49d2052b5d155d294696f95461a1f49a401fbd5788d69e8d48518eee26937a",
+   "relocations": [
+    {
+     "offset": 12,
+     "target": "z_pend_curr",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_sched_wait",
+   "size": 36,
+   "symbol": "z_sched_wait",
+   "unit": "sched",
+   "va": "0x01037ea8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "795bbe461d128cfd09285087db7312152152acddc0d4fa88bf903c1010ebefaa",
+   "relocations": [
+    {
+     "offset": 38,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 80,
+     "target": "z_unpend_first_thread",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "z_ready_thread",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "z_reschedule",
+     "type": 10
+    },
+    {
+     "offset": 120,
+     "target": "z_thread_aligned_alloc",
+     "type": 10
+    },
+    {
+     "offset": 128,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 140,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 226,
+     "target": "z_handle_obj_poll_events",
+     "type": 10
+    },
+    {
+     "offset": 268,
+     "target": ".rodata.queue_insert.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 272,
+     "target": ".rodata.queue_insert.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.queue_insert",
+   "size": 276,
+   "symbol": "queue_insert",
+   "unit": "queue",
+   "va": "0x01036660"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "0a23e68f9850526ac9fdb8b68d76e0b75328f591962c357678ecb70b3c47d386",
+   "relocations": [
+    {
+     "offset": 32,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 44,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 52,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 88,
+     "target": "z_queue_node_peek",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 134,
+     "target": "z_pend_curr",
+     "type": 10
+    },
+    {
+     "offset": 164,
+     "target": ".rodata.queue_insert.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 168,
+     "target": ".rodata.queue_insert.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 172,
+     "target": "_kernel",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_impl_k_queue_get",
+   "size": 176,
+   "symbol": "z_impl_k_queue_get",
+   "unit": "queue",
+   "va": "0x01036774"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "cc578131e92a99a60ccac2e98c082c05a90967ec2029b2b62ab47f70ff63e275",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "k_free",
+     "type": 10
+    }
+   ],
+   "section": ".text.z_queue_node_peek",
+   "size": 24,
+   "symbol": "z_queue_node_peek",
+   "unit": "queue",
+   "va": "0x0103b1e2"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "6a7418a1136d66cbdffa74ac0b5740dc3769104041cec72bddfda3a3ef218a5e",
+   "relocations": [
+    {
+     "offset": 12,
+     "target": "queue_insert",
+     "type": 10
+    }
+   ],
+   "section": ".text.k_queue_append",
+   "size": 22,
+   "symbol": "k_queue_append",
+   "unit": "queue",
+   "va": "0x0103b1fa"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "bdf0dc47297f28d9046823916228bedbe5aba57948f154d97bcf558cd916a1d2",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "queue_insert",
+     "type": 10
+    }
+   ],
+   "section": ".text.k_queue_prepend",
+   "size": 20,
+   "symbol": "k_queue_prepend",
+   "unit": "queue",
+   "va": "0x0103b210"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "be992a31b59d2bf29c34dee11d1a87a67c3f0c890632b8ba1f860ced8854d22e",
+   "relocations": [
+    {
+     "offset": 16,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 24,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "k_heap_init",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "_k_heap_list_start",
+     "type": 2
+    },
+    {
+     "offset": 52,
+     "target": "_k_heap_list_end",
+     "type": 2
+    },
+    {
+     "offset": 56,
+     "target": ".rodata.statics_init.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 60,
+     "target": ".rodata.statics_init.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.statics_init",
+   "size": 64,
+   "symbol": "statics_init",
+   "unit": "kheap",
+   "va": "0x01035cd8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "235b6d9b0d928696e297b006890101dd389029ab23db902f8b308addd4a7a4ad",
+   "relocations": [
+    {
+     "offset": 26,
+     "target": "sys_timepoint_calc",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 68,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 80,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 100,
+     "target": "sys_heap_aligned_alloc",
+     "type": 10
+    },
+    {
+     "offset": 112,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 128,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 148,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 156,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 172,
+     "target": "sys_timepoint_timeout",
+     "type": 10
+    },
+    {
+     "offset": 194,
+     "target": "z_pend_curr",
+     "type": 10
+    },
+    {
+     "offset": 216,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 226,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 248,
+     "target": ".rodata.k_heap_aligned_alloc.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 252,
+     "target": ".rodata.statics_init.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 256,
+     "target": ".rodata.statics_init.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.k_heap_aligned_alloc",
+   "size": 260,
+   "symbol": "k_heap_aligned_alloc",
+   "unit": "kheap",
+   "va": "0x01035d18"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "119fea72c7c43c0b9ef90d71da203e60961252ec7063929da0e2c42289d9a63f",
+   "relocations": [
+    {
+     "offset": 28,
+     "target": "z_spin_lock_valid",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "z_spin_lock_set_owner",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "sys_heap_free",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target": "z_unpend_all",
+     "type": 10
+    },
+    {
+     "offset": 90,
+     "target": "z_spin_unlock_valid",
+     "type": 10
+    },
+    {
+     "offset": 102,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 120,
+     "target": ".rodata.k_heap_aligned_alloc.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 124,
+     "target": ".rodata.statics_init.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 84,
+     "target": "z_reschedule",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_heap_free",
+   "size": 128,
+   "symbol": "k_heap_free",
+   "unit": "kheap",
+   "va": "0x01035e1c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "4fb3f7947f072814bfc0225fd7ab828ea105d68bdbdddd0314e09546877bec9e",
+   "relocations": [
+    {
+     "offset": 12,
+     "target": "sys_heap_init",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_heap_init",
+   "size": 16,
+   "symbol": "k_heap_init",
+   "unit": "kheap",
+   "va": "0x0103b10e"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "762b359e55f8d1df68616f1919e77f68819f6120e9eae5447f3f9dc25956fe61",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "k_heap_aligned_alloc",
+     "type": 10
+    },
+    {
+     "offset": 46,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": ".rodata.z_heap_aligned_alloc.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 68,
+     "target": ".rodata.z_heap_aligned_alloc.str1.1",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_heap_aligned_alloc",
+   "size": 72,
+   "symbol": "z_heap_aligned_alloc",
+   "unit": "mempool",
+   "va": "0x01038958"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "8b03e8d0cff949fe2b99ba6804ab1285c55b9c1cc4f42b07806d3819174b1329",
+   "relocations": [
+    {
+     "offset": 18,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 26,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 64,
+     "target": ".rodata.z_heap_aligned_alloc.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 68,
+     "target": ".rodata.z_heap_aligned_alloc.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 72,
+     "target": "_system_heap",
+     "type": 2
+    },
+    {
+     "offset": 58,
+     "target": "z_heap_aligned_alloc",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_aligned_alloc",
+   "size": 76,
+   "symbol": "k_aligned_alloc",
+   "unit": "mempool",
+   "va": "0x010389a0"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "12061d46a891c1b352c5c9fb8d1b6b84fc50572e0a70c464cc1ab9260498a9b8",
+   "relocations": [
+    {
+     "offset": 8,
+     "target": "_system_heap",
+     "type": 2
+    }
+   ],
+   "section": ".text.k_thread_system_pool_assign",
+   "size": 12,
+   "symbol": "k_thread_system_pool_assign",
+   "unit": "mempool",
+   "va": "0x010389ec"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "99b25ce128aa0696d6ff06fbee235d5604484e70c014b98e2eb029cbb45a2360",
+   "relocations": [
+    {
+     "offset": 6,
+     "target": "k_is_in_isr",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "_kernel",
+     "type": 2
+    },
+    {
+     "offset": 44,
+     "target": "_system_heap",
+     "type": 2
+    },
+    {
+     "offset": 36,
+     "target": "z_heap_aligned_alloc",
+     "type": 30
+    }
+   ],
+   "section": ".text.z_thread_aligned_alloc",
+   "size": 48,
+   "symbol": "z_thread_aligned_alloc",
+   "unit": "mempool",
+   "va": "0x010389f8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "7ac888b63eac875c338d7fb99950128501e7e567be9bc2d64a70636ccb9e9156",
+   "relocations": [
+    {
+     "offset": 8,
+     "target": "k_heap_free",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_free",
+   "size": 14,
+   "symbol": "k_free",
+   "unit": "mempool",
+   "va": "0x0103b522"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "54da22805bff6740e04bb8c1a8f1388cc6be145b295d194809cc8720893d33bd",
+   "relocations": [
+    {
+     "offset": 4,
+     "target": "k_aligned_alloc",
+     "type": 30
+    }
+   ],
+   "section": ".text.k_malloc",
+   "size": 8,
+   "symbol": "k_malloc",
+   "unit": "mempool",
+   "va": "0x0103b530"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "e1eef1a8ca154a0e6772d0c7211de6680bfa4cc3039392441ac9e35ec1f55a65",
+   "relocations": [],
+   "section": ".text.chunk_field",
+   "size": 22,
+   "symbol": "chunk_field",
+   "unit": "heap",
+   "va": "0x0103973c"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "3af7d22edde57bc78592cfdb490056f2d1544a6da759aed1e7185d0484432333",
+   "relocations": [],
+   "section": ".text.chunk_set",
+   "size": 22,
+   "symbol": "chunk_set",
+   "unit": "heap",
+   "va": "0x01039752"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "724736048a883419716d7481b6bbbd1b55d0ee97e2831bcfeaa4a5050d1443f3",
+   "relocations": [
+    {
+     "offset": 4,
+     "target": "chunk_field",
+     "type": 10
+    }
+   ],
+   "section": ".text.chunk_size",
+   "size": 12,
+   "symbol": "chunk_size",
+   "unit": "heap",
+   "va": "0x01039768"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "04e5fc624dd729f0526067120e83a98686f9a1c892a1378f1282c2180f09485f",
+   "relocations": [],
+   "section": ".text.set_chunk_used",
+   "size": 48,
+   "symbol": "set_chunk_used",
+   "unit": "heap",
+   "va": "0x01039774"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "bf6efbb6637b0ad8c1e446fd38f1e1b67cc9237504d3c28920836c914e176072",
+   "relocations": [
+    {
+     "offset": 4,
+     "target": "chunk_set",
+     "type": 30
+    }
+   ],
+   "section": ".text.set_chunk_size",
+   "size": 8,
+   "symbol": "set_chunk_size",
+   "unit": "heap",
+   "va": "0x010397a4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "1b001496d52c51b0894c0a03adf51aae77701f296fe291a46c2bf081d9d4b940",
+   "relocations": [],
+   "section": ".text.mem_to_chunkid",
+   "size": 20,
+   "symbol": "mem_to_chunkid",
+   "unit": "heap",
+   "va": "0x010397ac"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "c49d8acaf9c9fc2526ad864f2bf4de94895f1858a60480e48309ea7bced15877",
+   "relocations": [],
+   "section": ".text.bytes_to_chunksz.isra.0",
+   "size": 18,
+   "symbol": "bytes_to_chunksz.isra.0",
+   "unit": "heap",
+   "va": "0x010397c0"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "737c42a99eda5751323b06a1245933d5486f20aa00865c05d06a8a819aa9b7ae",
+   "relocations": [
+    {
+     "offset": 6,
+     "target": "bytes_to_chunksz.isra.0",
+     "type": 10
+    }
+   ],
+   "section": ".text.bucket_idx.isra.0",
+   "size": 24,
+   "symbol": "bucket_idx.isra.0",
+   "unit": "heap",
+   "va": "0x010397d2"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "d7d6ef4ec228fea53fde4cf7508395f9f6a3125390b1fc2182b69475b0a151c8",
+   "relocations": [
+    {
+     "offset": 12,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 72,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 88,
+     "target": "chunk_set",
+     "type": 30
+    }
+   ],
+   "section": ".text.free_list_remove_bidx",
+   "size": 92,
+   "symbol": "free_list_remove_bidx",
+   "unit": "heap",
+   "va": "0x010397ea"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "8045bc1ebe7cf7f3f2caa4a14f9c233c09ce57ce8350f35444b4348264e7ab81",
+   "relocations": [
+    {
+     "offset": 8,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 26,
+     "target": "bucket_idx.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "free_list_remove_bidx",
+     "type": 30
+    }
+   ],
+   "section": ".text.free_list_remove",
+   "size": 46,
+   "symbol": "free_list_remove",
+   "unit": "heap",
+   "va": "0x01039846"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "00a7f32a491a0ba6dd653f8db3a89d9e2918907b1f4baf066e11ffd9c2214e96",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "bucket_idx.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 54,
+     "target": "free_list_remove_bidx",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target": "chunk_field",
+     "type": 10
+    }
+   ],
+   "section": ".text.alloc_chunk",
+   "size": 116,
+   "symbol": "alloc_chunk",
+   "unit": "heap",
+   "va": "0x01039874"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "d27884fc50c09cbea75ee36a886fb86b444259f575e26eff79ed2ed309ce74a1",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 28,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 38,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 74,
+     "target": "chunk_set",
+     "type": 30
+    }
+   ],
+   "section": ".text.split_chunks",
+   "size": 78,
+   "symbol": "split_chunks",
+   "unit": "heap",
+   "va": "0x010398e8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "66bdcbdaa50e2aa3776353c5b85a34cb23a7e45ad265712047b69392d67d00e0",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 20,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 40,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 56,
+     "target": "chunk_set",
+     "type": 30
+    }
+   ],
+   "section": ".text.merge_chunks",
+   "size": 60,
+   "symbol": "merge_chunks",
+   "unit": "heap",
+   "va": "0x01039936"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "11d4109a55e43f6c74d3b143244807205f06c419e014be3c23b7c8df86f91380",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 28,
+     "target": "bucket_idx.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 60,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 84,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 118,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 74,
+     "target": "chunk_set",
+     "type": 30
+    }
+   ],
+   "section": ".text.free_list_add",
+   "size": 132,
+   "symbol": "free_list_add",
+   "unit": "heap",
+   "va": "0x01039972"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "b36bdbe9da7fdee344af4f03aa9a77a04b75fc6f8e0e10aa2b847ae457253011",
+   "relocations": [
+    {
+     "offset": 6,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 18,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 30,
+     "target": "free_list_remove",
+     "type": 10
+    },
+    {
+     "offset": 38,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 48,
+     "target": "merge_chunks",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 84,
+     "target": "free_list_remove",
+     "type": 10
+    },
+    {
+     "offset": 94,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 104,
+     "target": "merge_chunks",
+     "type": 10
+    },
+    {
+     "offset": 114,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 128,
+     "target": "free_list_add",
+     "type": 30
+    }
+   ],
+   "section": ".text.free_chunk",
+   "size": 132,
+   "symbol": "free_chunk",
+   "unit": "heap",
+   "va": "0x010399f6"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "bd2d6c7303b942954c1a75751a1def56ae0f89cfb3d54a38471747a37b1cf908",
+   "relocations": [
+    {
+     "offset": 10,
+     "target": "mem_to_chunkid",
+     "type": 10
+    },
+    {
+     "offset": 20,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 34,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 50,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 62,
+     "target": "chunk_field",
+     "type": 10
+    },
+    {
+     "offset": 78,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 90,
+     "target": "set_chunk_used",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 112,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 100,
+     "target": "free_chunk",
+     "type": 30
+    }
+   ],
+   "section": ".text.sys_heap_free",
+   "size": 116,
+   "symbol": "sys_heap_free",
+   "unit": "heap",
+   "va": "0x0102c470"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "67a08aa431af30c95fbc7b32f5dc45ae4feec593b960140c36e677da4090d4ab",
+   "relocations": [
+    {
+     "offset": 84,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 94,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 114,
+     "target": "bytes_to_chunksz.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 122,
+     "target": "alloc_chunk",
+     "type": 10
+    },
+    {
+     "offset": 170,
+     "target": "mem_to_chunkid",
+     "type": 10
+    },
+    {
+     "offset": 200,
+     "target": "split_chunks",
+     "type": 10
+    },
+    {
+     "offset": 208,
+     "target": "free_list_add",
+     "type": 10
+    },
+    {
+     "offset": 216,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 232,
+     "target": "split_chunks",
+     "type": 10
+    },
+    {
+     "offset": 240,
+     "target": "free_list_add",
+     "type": 10
+    },
+    {
+     "offset": 250,
+     "target": "set_chunk_used",
+     "type": 10
+    },
+    {
+     "offset": 256,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 260,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 72,
+     "target": "sys_heap_alloc",
+     "type": 30
+    }
+   ],
+   "section": ".text.sys_heap_aligned_alloc",
+   "size": 264,
+   "symbol": "sys_heap_aligned_alloc",
+   "unit": "heap",
+   "va": "0x0102c4e4"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "15d2e7bba512c341dd822acd6e34c9a999329bec08872550d51e2fff01430e18",
+   "relocations": [
+    {
+     "offset": 22,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 32,
+     "target": "assert_post_action",
+     "type": 10
+    },
+    {
+     "offset": 70,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 96,
+     "target": "bucket_idx.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 108,
+     "target": "bytes_to_chunksz.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 142,
+     "target": "memset",
+     "type": 10
+    },
+    {
+     "offset": 152,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 164,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 178,
+     "target": "set_chunk_used",
+     "type": 10
+    },
+    {
+     "offset": 186,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 198,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 206,
+     "target": "set_chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 218,
+     "target": "chunk_set",
+     "type": 10
+    },
+    {
+     "offset": 228,
+     "target": "set_chunk_used",
+     "type": 10
+    },
+    {
+     "offset": 250,
+     "target": "assert_print",
+     "type": 10
+    },
+    {
+     "offset": 260,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 264,
+     "target": ".rodata.sys_heap_free.str1.1",
+     "type": 2
+    },
+    {
+     "offset": 238,
+     "target": "free_list_add",
+     "type": 30
+    }
+   ],
+   "section": ".text.sys_heap_init",
+   "size": 268,
+   "symbol": "sys_heap_init",
+   "unit": "heap",
+   "va": "0x0102c5ec"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "3ff46b2bb0c78c762668fa6ea4e6070bc1df223f70b431668a76774cb1bac926",
+   "relocations": [
+    {
+     "offset": 18,
+     "target": "bytes_to_chunksz.isra.0",
+     "type": 10
+    },
+    {
+     "offset": 28,
+     "target": "alloc_chunk",
+     "type": 10
+    },
+    {
+     "offset": 42,
+     "target": "chunk_size",
+     "type": 10
+    },
+    {
+     "offset": 58,
+     "target": "split_chunks",
+     "type": 10
+    },
+    {
+     "offset": 66,
+     "target": "free_list_add",
+     "type": 10
+    },
+    {
+     "offset": 76,
+     "target": "set_chunk_used",
+     "type": 10
+    }
+   ],
+   "section": ".text.sys_heap_alloc",
+   "size": 100,
+   "symbol": "sys_heap_alloc",
+   "unit": "heap",
+   "va": "0x01039a7a"
+  }
+ ],
+ "source_units": [
+  {
+   "live_section_count": 37,
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj",
+   "object_sha256": "80e7638870dbb939e83c2705d11320618b3f2c8276573f3f0cb9824c93780c3d",
+   "source": "zephyr/kernel/sched.c",
+   "source_sha256": "62707e2c901c3aa84ab68e4e7fa159b2be9aa6e84fb4146fe8779656f595d580",
+   "unit": "sched"
+  },
+  {
+   "live_section_count": 5,
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj",
+   "object_sha256": "0cc3f3b1ea463ce08da9dcf9aadca629fa2a7d728270ee78c50e31e8efaa24c8",
+   "source": "zephyr/kernel/queue.c",
+   "source_sha256": "1aa785e4891ec8243576e467a6d39542355780ff7f0ad5afead0cb7696ea7706",
+   "unit": "queue"
+  },
+  {
+   "live_section_count": 4,
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj",
+   "object_sha256": "2073ea9020b29ebcbc2d7f7f1c5e714dda4058448c85ff1b9338fe14bfd5dd23",
+   "source": "zephyr/kernel/kheap.c",
+   "source_sha256": "8437e89784bcb0c8aa2dee29385b9b47d0bb9359fd2b20ce1bc96feebbffc86d",
+   "unit": "kheap"
+  },
+  {
+   "live_section_count": 6,
+   "object": "zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj",
+   "object_sha256": "2979c88ad88450c7ea74a544da38b1f0fe459ef02ee76d18fc7cce97e7ac0e0e",
+   "source": "zephyr/kernel/mempool.c",
+   "source_sha256": "710f3cc2674afd83272bf20a88298c878c04a084bfc34f6964dc9e2eb455fa13",
+   "unit": "mempool"
+  },
+  {
+   "live_section_count": 19,
+   "object": "zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+   "object_sha256": "7701d0c1192a83abc3f7447f1513ee7623e425c0a2af154feeca5bdbcef719e3",
+   "source": "zephyr/lib/os/heap.c",
+   "source_sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+   "unit": "heap"
+  }
+ ],
+ "status": "authorized_atomic",
+ "structural_absolute_targets": [
+  {
+   "runtime_addresses": [
+    "0x210008b4"
+   ],
+   "target": "_k_heap_list_start",
+   "unit": "kheap"
+  },
+  {
+   "runtime_addresses": [
+    "0x210008cc"
+   ],
+   "target": "_k_heap_list_end",
+   "unit": "kheap"
+  },
+  {
+   "runtime_addresses": [
+    "0x210008b4"
+   ],
+   "target": "_system_heap",
+   "unit": "mempool"
+  }
+ ],
+ "upstream": {
+  "abi": "Cortex-M33+nodsp, Thumb-2, soft-float, GCC 12.2, -Os",
+  "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "configured_build": "/private/tmp/g1-net-heap-auto-0718",
+  "configured_build_sha256": "1707a2bf97ad5d5093bcdc6fa78e95c50afedec1bd366e0fd71c62fdb2202fa5",
+  "manifest_tag": "v3.4.99-ncs1-1",
+  "repository": "zephyr",
+  "required_config": {
+   "CONFIG_ASSERT": "y",
+   "CONFIG_ASSERT_NO_COND_INFO": "y",
+   "CONFIG_ASSERT_NO_MSG_INFO": "y",
+   "CONFIG_SCHED_DUMB": "y",
+   "CONFIG_SMP": "n",
+   "CONFIG_SPIN_VALIDATE": "y",
+   "CONFIG_SYS_HEAP_ALLOC_LOOPS": "3",
+   "CONFIG_SYS_HEAP_AUTO": "y",
+   "CONFIG_SYS_HEAP_BIG_ONLY": "n",
+   "CONFIG_SYS_HEAP_SMALL_ONLY": "n"
+  }
+ },
+ "version_precision": {
+  "conclusion": "the five-source closure excludes adjacent 3.3/3.5 families; the identical 3.4.99-ncs1 patch-tag sources cannot distinguish -1 from -2/-3, so the manifest pin supplies exact patch provenance",
+  "source_blob_ids_by_tag": {
+   "v3.3.99-ncs1-3": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "196b395ff857d8a9e6d3ca8c84c8c9b06a3ab1ec",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "342ee89566e7ccdef1e433b066edd89429985013",
+    "sched": "5cda295f73115606ba3b5391762a09aa588904c6"
+   },
+   "v3.4.99-ncs1-1": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "fc2d3300e783a4328e29a505e042e977d757a924",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "342ee89566e7ccdef1e433b066edd89429985013",
+    "sched": "fcd77c69eb79d941946a1e9740689b0f1d851d03"
+   },
+   "v3.4.99-ncs1-1-rc1": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "fc2d3300e783a4328e29a505e042e977d757a924",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "342ee89566e7ccdef1e433b066edd89429985013",
+    "sched": "fcd77c69eb79d941946a1e9740689b0f1d851d03"
+   },
+   "v3.4.99-ncs1-2": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "fc2d3300e783a4328e29a505e042e977d757a924",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "342ee89566e7ccdef1e433b066edd89429985013",
+    "sched": "fcd77c69eb79d941946a1e9740689b0f1d851d03"
+   },
+   "v3.4.99-ncs1-3": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "fc2d3300e783a4328e29a505e042e977d757a924",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "342ee89566e7ccdef1e433b066edd89429985013",
+    "sched": "fcd77c69eb79d941946a1e9740689b0f1d851d03"
+   },
+   "v3.5.99-ncs1-1": {
+    "heap": "b23d160b726fe4c2b2f3771812df57aeb6463ad8",
+    "kheap": "71a3da596ad2acbad89f765faefa5b1ca3293b55",
+    "mempool": "3cbfa201222f65912783cd377df69ad397bd21db",
+    "queue": "04aaa149d97ed765e3db9f7528693d4b93a87d30",
+    "sched": "7dd782c94903c9a4c698162f44637e4f96683f2d"
+   }
+  }
+ },
+ "wrong_config_rejection": {
+  "exact_sections": [],
+  "reason": "constant-folded small-only headers remove firmware branches",
+  "rejected_config": {
+   "CONFIG_SYS_HEAP_AUTO": "n",
+   "CONFIG_SYS_HEAP_SMALL_ONLY": "y"
+  },
+  "selected_heap_sections": 19,
+  "tested_object": "/private/tmp/g1-net-spin-ref-0718/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+  "tested_object_sha256": "b5b122e4b3e11915ccd298e8aeb565fb5e887fb4f6f6e72889ef44cf51c86839"
+ }
+}
