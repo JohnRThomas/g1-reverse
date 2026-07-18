@@ -1,0 +1,71 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batch": "COLLISION-16",
+ "status": "non_exact_namespace_retain_required",
+ "policy": {"shared_naming_mutated": false, "manifest_mutated": false, "retained_sources_mutated": false},
+ "firmware": {
+  "va": "0x000758cc",
+  "raw_symbol": "FUN_000758cc",
+  "current_symbol": "k_aligned_alloc",
+  "recommended_symbol": "g1_recon_k_aligned_alloc_asserting",
+  "abi": "void *k_aligned_alloc(size_t alignment, size_t size)",
+  "true_code_extent": 78,
+  "code_sha256": "d53afc8e6af558103abee812516c38abb49e79fbae5c6dff1348800ff6c94c34",
+  "system_heap": "0x200037d8",
+  "cfg_verify": {"status": "PASS", "cases": 3, "selectors": {"0": [2, 3, 4]}}
+ },
+ "configured_owner": {
+  "source": "zephyr/kernel/mempool.c",
+  "source_sha256": "710f3cc2674afd83272bf20a88298c878c04a084bfc34f6964dc9e2eb455fa13",
+  "object": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj",
+  "object_sha256": "af623299980dd7859cb644edea7dc39c97fb060071c5930ba9c70744f3e44324",
+  "archive_owner": "zephyr/kernel/libkernel.a(mempool.c.obj)",
+  "section": ".text.k_aligned_alloc",
+  "section_size": 16,
+  "section_sha256": "df8c089226531e91c0f5b5a143f73d343e6e624cf917f53aa4573e84e129430c",
+  "abi": "void *k_aligned_alloc(size_t align, size_t size)",
+  "relocations": [
+   {"offset": 6, "size": 4, "type": "R_ARM_THM_JUMP24", "symbol": "z_heap_aligned_alloc"},
+   {"offset": 12, "size": 4, "type": "R_ARM_ABS32", "symbol": "_system_heap"}
+  ]
+ },
+ "non_exact_reasons": [
+  "firmware rejects alignment below sizeof(void*) or not divisible by sizeof(void*) with assertion logging",
+  "firmware independently rejects non-power-of-two alignment with assertion logging",
+  "configured owner has no conditional branches or assertion side effects",
+  "firmware true code is 78 bytes while configured section is 16 bytes",
+  "catalog signature scores fail: opcode 0.205128, operand shape 0.153846, length 0.21875"
+ ],
+ "assertion_evidence": {
+  "source_path": "WEST_TOPDIR/zephyr/kernel/mempool.c",
+  "conditions": [
+   "align / sizeof(void *) >= 1 && (align % sizeof(void *)) == 0",
+   "(align & (align - 1)) == 0"
+  ],
+  "messages": [
+   "align must be a multiple of sizeof(void *)",
+   "align must be a power of 2"
+  ]
+ },
+ "caller_closure": [
+  {
+   "va": "0x000868c2",
+   "raw_symbol": "FUN_000868c2",
+   "current_symbol": "malloc_impl",
+   "calls": "FUN_000758cc(4, size)",
+   "true_extent": 8,
+   "configured_equivalent": "k_malloc",
+   "configured_section_size": 8,
+   "normalized_exact": true,
+   "normalized_sha256": "54da22805bff6740e04bb8c1a8f1388cc6be145b295d194809cc8720893d33bd",
+   "cfg_verify": {"status": "PASS", "cases": 0}
+  }
+ ],
+ "implementation_plan": [
+  "rename only firmware VA 0x000758cc to g1_recon_k_aligned_alloc_asserting while preserving FUN_000758cc and VA provenance",
+  "update only malloc_impl/FUN_000868c2 to call the namespaced recovered owner",
+  "leave configured SDK k_aligned_alloc and k_malloc owners untouched",
+  "regenerate readable/symbolized/retained metadata and require exactly one collision removal with no new k_aligned_alloc or namespace collision/unresolved"
+ ]
+}
