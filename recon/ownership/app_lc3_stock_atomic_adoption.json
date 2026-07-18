@@ -1,0 +1,2448 @@
+{
+ "schema": 1,
+ "core": "app",
+ "status": "authorized_atomic",
+ "decision": "adopt_exact_pinned_liblc3_encoder_closure",
+ "version_identity": {
+  "west_manifest_pin": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+  "checkout_commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+  "checkout_tree": "b20aafa7b324d08041ca9d64b6fff5e69af24760",
+  "evidence_limit": "The configured bytes prove this source-tree state. The same libLC3 revision is pinned by NCS 2.5.0, 2.5.1 and 2.6.0, so LC3 does not distinguish the enclosing NCS patch release."
+ },
+ "configured_build": {
+  "config": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+  "config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+  "compiler": "Zephyr SDK 0.16.5-1 arm-zephyr-eabi GCC 12.2.0",
+  "required_flags": [
+   "-mcpu=cortex-m33",
+   "-mthumb",
+   "-mfpu=fpv5-sp-d16",
+   "-mfloat-abi=hard",
+   "-O3",
+   "-ffast-math",
+   "-ffunction-sections",
+   "-fdata-sections"
+  ]
+ },
+ "summary": {
+  "catalog_functions": 41,
+  "relocation_masked_full_section_exact": 28,
+  "relocation_masked_executable_prefix_exact": 13,
+  "call_relocations_checked": 90,
+  "unmatched_functions": 0,
+  "identity_corrections": {
+   "0x0006aa98": "arm_resample_8k_12k8",
+   "0x0006bfc8": "spectral_shaping"
+  }
+ },
+ "authorizations": [
+  {
+   "status": "authorized",
+   "va": "0x000682f0",
+   "raw_symbol": "FUN_000682f0",
+   "symbol": "lc3_attdet_run",
+   "upstream_symbol": "lc3_attdet_run",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/attdet.c",
+   "upstream_source_sha256": "3142c2d03e175a344c40fc730fa321a4f335ef3298d72c18b7c34620395568a0",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/attdet.c.obj",
+   "upstream_object_sha256": "f565f45e7f71b073eab253d20727319f0df5ade8f691924c0d34167f7b4a7bd2",
+   "upstream_section": ".text.lc3_attdet_run",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 440,
+   "upstream_symbol_size": 440,
+   "upstream_section_size": 440,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "3a692de4159b46236340d907587bcd11f804b05e37b7a22ba44aba2d3e5d8a48",
+   "masked_relocations": [
+    {
+     "offset": 436,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x000684a8",
+   "raw_symbol": "FUN_000684a8",
+   "symbol": "lc3_setup_bits",
+   "upstream_symbol": "lc3_setup_bits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
+   "upstream_source_sha256": "14d862fc95302de65420fc2622d09128012663ca9face7c1b7ef1ccb292006d1",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c.obj",
+   "upstream_object_sha256": "59d48ce0242efe7e97a28ceec0e15a6c5292726165b5e58391266fec9260a0da",
+   "upstream_section": ".text.lc3_setup_bits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 232,
+   "upstream_symbol_size": 232,
+   "upstream_section_size": 232,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "309004a699d35e9c5b3dab90ef5a5d925ee43d8ae7da457abadf0110dc96dabd",
+   "masked_relocations": [
+    {
+     "offset": 28,
+     "type": 10,
+     "symbol": "memset"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 28,
+     "upstream_symbol": "memset",
+     "firmware_target": "0x00086c78",
+     "firmware_name": "memset_bytes",
+     "normalized_firmware_name": "memset",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068590",
+   "raw_symbol": "FUN_00068590",
+   "symbol": "lc3_get_bits_left",
+   "upstream_symbol": "lc3_get_bits_left",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
+   "upstream_source_sha256": "14d862fc95302de65420fc2622d09128012663ca9face7c1b7ef1ccb292006d1",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c.obj",
+   "upstream_object_sha256": "59d48ce0242efe7e97a28ceec0e15a6c5292726165b5e58391266fec9260a0da",
+   "upstream_section": ".text.lc3_get_bits_left",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 100,
+   "upstream_symbol_size": 100,
+   "upstream_section_size": 100,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "d7934adab2c71265964c6c027db25f2baeb114761b07e006382b37dae4b8c90d",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x000685f4",
+   "raw_symbol": "FUN_000685f4",
+   "symbol": "lc3_flush_bits",
+   "upstream_symbol": "lc3_flush_bits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
+   "upstream_source_sha256": "14d862fc95302de65420fc2622d09128012663ca9face7c1b7ef1ccb292006d1",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c.obj",
+   "upstream_object_sha256": "59d48ce0242efe7e97a28ceec0e15a6c5292726165b5e58391266fec9260a0da",
+   "upstream_section": ".text.lc3_flush_bits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 788,
+   "upstream_symbol_size": 788,
+   "upstream_section_size": 788,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "0f25d07acad86b6123749dcbc8dc09d6af449d88a1c8d67d04c982b0e15c34cc",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068908",
+   "raw_symbol": "FUN_00068908",
+   "symbol": "lc3_put_bits_generic",
+   "upstream_symbol": "lc3_put_bits_generic",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
+   "upstream_source_sha256": "14d862fc95302de65420fc2622d09128012663ca9face7c1b7ef1ccb292006d1",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c.obj",
+   "upstream_object_sha256": "59d48ce0242efe7e97a28ceec0e15a6c5292726165b5e58391266fec9260a0da",
+   "upstream_section": ".text.lc3_put_bits_generic",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 114,
+   "upstream_symbol_size": 114,
+   "upstream_section_size": 116,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "802c2df2861ecee4477c75b54a683202c133125b0956796be3428036c0d52b18",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006897c",
+   "raw_symbol": "FUN_0006897c",
+   "symbol": "lc3_ac_write_renorm",
+   "upstream_symbol": "lc3_ac_write_renorm",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c",
+   "upstream_source_sha256": "14d862fc95302de65420fc2622d09128012663ca9face7c1b7ef1ccb292006d1",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bits.c.obj",
+   "upstream_object_sha256": "59d48ce0242efe7e97a28ceec0e15a6c5292726165b5e58391266fec9260a0da",
+   "upstream_section": ".text.lc3_ac_write_renorm",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 148,
+   "upstream_symbol_size": 148,
+   "upstream_section_size": 148,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "9ebba27de1435c6828dcdfc7f3ceeccb1bdf876d9136212bf2576d7760312f5a",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068a10",
+   "raw_symbol": "FUN_00068a10",
+   "symbol": "lc3_bwdet_run",
+   "upstream_symbol": "lc3_bwdet_run",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
+   "upstream_source_sha256": "b465fc2f118c8e62bb977603171eb171ed2775ec27740dc177567bd1ff61a6fd",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c.obj",
+   "upstream_object_sha256": "b07a68ccde9d2af1aa92d873e642435b2fe2705a73f75caa962c6e421e3fd364",
+   "upstream_section": ".text.lc3_bwdet_run",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 260,
+   "upstream_symbol_size": 260,
+   "upstream_section_size": 260,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "dea2d19afeebbb1c5e2c4bea62dd1201e820d3d8a07b46887abb432e6b4db818",
+   "masked_relocations": [
+    {
+     "offset": 248,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 252,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 256,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068b14",
+   "raw_symbol": "FUN_00068b14",
+   "symbol": "lc3_bwdet_get_nbits",
+   "upstream_symbol": "lc3_bwdet_get_nbits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
+   "upstream_source_sha256": "b465fc2f118c8e62bb977603171eb171ed2775ec27740dc177567bd1ff61a6fd",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c.obj",
+   "upstream_object_sha256": "b07a68ccde9d2af1aa92d873e642435b2fe2705a73f75caa962c6e421e3fd364",
+   "upstream_section": ".text.lc3_bwdet_get_nbits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 24,
+   "upstream_symbol_size": 24,
+   "upstream_section_size": 24,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "29db0cf1b4d5b42701930f0ffea9e0cd5db834b54a8fa797a331d6c06e0a109d",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068b2c",
+   "raw_symbol": "FUN_00068b2c",
+   "symbol": "lc3_bwdet_put_bw",
+   "upstream_symbol": "lc3_bwdet_put_bw",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c",
+   "upstream_source_sha256": "b465fc2f118c8e62bb977603171eb171ed2775ec27740dc177567bd1ff61a6fd",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/bwdet.c.obj",
+   "upstream_object_sha256": "b07a68ccde9d2af1aa92d873e642435b2fe2705a73f75caa962c6e421e3fd364",
+   "upstream_section": ".text.lc3_bwdet_put_bw",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 60,
+   "upstream_symbol_size": 60,
+   "upstream_section_size": 60,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "c8a12321f248b5745d37f2ed1e44a3c2dc7aa1c9978a41a7d13494bbaa44597b",
+   "masked_relocations": [
+    {
+     "offset": 56,
+     "type": 30,
+     "symbol": "lc3_put_bits_generic"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 56,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068b68",
+   "raw_symbol": "FUN_00068b68",
+   "symbol": "lc3_energy_compute",
+   "upstream_symbol": "lc3_energy_compute",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/energy.c",
+   "upstream_source_sha256": "22f2ec3e743c79bb27e847fb5bdddcb89fb508dbefa674797f445e179ab7e3d5",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/energy.c.obj",
+   "upstream_object_sha256": "bfc9622b2c4f3fa300f41d53f68eabfb831140efdc71998ea639478b8662d911",
+   "upstream_section": ".text.lc3_energy_compute",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 322,
+   "upstream_symbol_size": 336,
+   "upstream_section_size": 336,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "c5c72393a4bf02e11a3a6b7c1690b4e5b4e78bd96a5edebf8f9203852f3dbe88",
+   "masked_relocations": [
+    {
+     "offset": 268,
+     "type": 10,
+     "symbol": "memset"
+    },
+    {
+     "offset": 328,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 332,
+     "type": 2,
+     "symbol": "lc3_band_lim"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 268,
+     "upstream_symbol": "memset",
+     "firmware_target": "0x00086c78",
+     "firmware_name": "memset_bytes",
+     "normalized_firmware_name": "memset",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 14,
+   "trailing_object_sha256": "0947129ad131ccd316f587385e424edb052a7adc16b2290585bdc38be7007bd3",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068d2c",
+   "raw_symbol": "FUN_00068d2c",
+   "symbol": "lc3_load_s24_3le",
+   "upstream_symbol": "load_s24_3le",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.load_s24_3le",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 98,
+   "upstream_symbol_size": 98,
+   "upstream_section_size": 100,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "0ec70593bfde04fdaffc63331fa45f7005bc63c33c1ac72a8861eb27ca77b933",
+   "masked_relocations": [
+    {
+     "offset": 80,
+     "type": 10,
+     "symbol": "ldexpf"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 80,
+     "upstream_symbol": "ldexpf",
+     "firmware_target": "0x00086976",
+     "firmware_name": "ldexpf",
+     "normalized_firmware_name": "ldexpf",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068d90",
+   "raw_symbol": "FUN_00068d90",
+   "symbol": "lc3_load_s24",
+   "upstream_symbol": "load_s24",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.load_s24",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 88,
+   "upstream_symbol_size": 88,
+   "upstream_section_size": 88,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "acd67cd3a2cdf16c7f9baa5cc4b7036d67f1cda65ccfce580a0bb111022586be",
+   "masked_relocations": [
+    {
+     "offset": 70,
+     "type": 10,
+     "symbol": "ldexpf"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 70,
+     "upstream_symbol": "ldexpf",
+     "firmware_target": "0x00086976",
+     "firmware_name": "ldexpf",
+     "normalized_firmware_name": "ldexpf",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068de8",
+   "raw_symbol": "FUN_00068de8",
+   "symbol": "lc3_load_float",
+   "upstream_symbol": "load_float",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.load_float",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 86,
+   "upstream_symbol_size": 86,
+   "upstream_section_size": 88,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "383fc092d8f9732dbef172eb20dac660cf0a27924aa034bea686259194bb1fe9",
+   "masked_relocations": [
+    {
+     "offset": 52,
+     "type": 10,
+     "symbol": "ldexpf"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 52,
+     "upstream_symbol": "ldexpf",
+     "firmware_target": "0x00086976",
+     "firmware_name": "ldexpf",
+     "normalized_firmware_name": "ldexpf",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068e40",
+   "raw_symbol": "FUN_00068e40",
+   "symbol": "lc3_frame_samples",
+   "upstream_symbol": "lc3_frame_samples",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.lc3_frame_samples",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 140,
+   "upstream_symbol_size": 140,
+   "upstream_section_size": 140,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "fe1c417863cba076538852d2e7f0732a8310382f82e698c7a11f3dcc444093af",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068ecc",
+   "raw_symbol": "FUN_00068ecc",
+   "symbol": "lc3_encoder_size",
+   "upstream_symbol": "lc3_encoder_size",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.lc3_encoder_size",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 200,
+   "upstream_symbol_size": 200,
+   "upstream_section_size": 200,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "ba9f888982d5e0c578e9a4a333a76f63033c93c038d854e50a546b1f0f0efcc4",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00068f94",
+   "raw_symbol": "FUN_00068f94",
+   "symbol": "lc3_setup_encoder",
+   "upstream_symbol": "lc3_setup_encoder",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.lc3_setup_encoder",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 676,
+   "upstream_symbol_size": 676,
+   "upstream_section_size": 676,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "4588512d8f9d42d413548477f3222284e45e3337a19c842b65fd758800f9d610",
+   "masked_relocations": [
+    {
+     "offset": 200,
+     "type": 10,
+     "symbol": "memset"
+    },
+    {
+     "offset": 318,
+     "type": 10,
+     "symbol": "memset"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 200,
+     "upstream_symbol": "memset",
+     "firmware_target": "0x00086c78",
+     "firmware_name": "memset_bytes",
+     "normalized_firmware_name": "memset",
+     "exact": true
+    },
+    {
+     "offset": 318,
+     "upstream_symbol": "memset",
+     "firmware_target": "0x00086c78",
+     "firmware_name": "memset_bytes",
+     "normalized_firmware_name": "memset",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00069238",
+   "raw_symbol": "FUN_00069238",
+   "symbol": "lc3_encode",
+   "upstream_symbol": "lc3_encode",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c",
+   "upstream_source_sha256": "5b014fc224454b804f4bf87000667aa6509d2cc826f3151b6f3ca8fe43910091",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/lc3.c.obj",
+   "upstream_object_sha256": "a225b37843576efc0838d897887fdb4e937af901d38cc8d2713394e6b0dffefd",
+   "upstream_section": ".text.lc3_encode",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 560,
+   "upstream_symbol_size": 560,
+   "upstream_section_size": 560,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "50b27b7e427cf641f2b44adc52c2bce0415cb8ece5d0f9d9d0d84dc9cb4126de",
+   "masked_relocations": [
+    {
+     "offset": 124,
+     "type": 10,
+     "symbol": "lc3_attdet_run"
+    },
+    {
+     "offset": 160,
+     "type": 10,
+     "symbol": "lc3_ltpf_analyse"
+    },
+    {
+     "offset": 204,
+     "type": 10,
+     "symbol": "memmove"
+    },
+    {
+     "offset": 224,
+     "type": 10,
+     "symbol": "lc3_mdct_forward"
+    },
+    {
+     "offset": 238,
+     "type": 10,
+     "symbol": "lc3_energy_compute"
+    },
+    {
+     "offset": 258,
+     "type": 10,
+     "symbol": "lc3_bwdet_run"
+    },
+    {
+     "offset": 290,
+     "type": 10,
+     "symbol": "lc3_sns_analyze"
+    },
+    {
+     "offset": 308,
+     "type": 10,
+     "symbol": "lc3_tns_analyze"
+    },
+    {
+     "offset": 344,
+     "type": 10,
+     "symbol": "lc3_spec_analyze"
+    },
+    {
+     "offset": 378,
+     "type": 10,
+     "symbol": "lc3_setup_bits"
+    },
+    {
+     "offset": 390,
+     "type": 10,
+     "symbol": "lc3_bwdet_put_bw"
+    },
+    {
+     "offset": 404,
+     "type": 10,
+     "symbol": "lc3_spec_put_side"
+    },
+    {
+     "offset": 414,
+     "type": 10,
+     "symbol": "lc3_tns_put_data"
+    },
+    {
+     "offset": 452,
+     "type": 10,
+     "symbol": "lc3_sns_put_data"
+    },
+    {
+     "offset": 484,
+     "type": 10,
+     "symbol": "lc3_spec_encode"
+    },
+    {
+     "offset": 492,
+     "type": 10,
+     "symbol": "lc3_flush_bits"
+    },
+    {
+     "offset": 512,
+     "type": 10,
+     "symbol": "lc3_ltpf_disable"
+    },
+    {
+     "offset": 526,
+     "type": 10,
+     "symbol": "lc3_ltpf_put_data"
+    },
+    {
+     "offset": 538,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 556,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 124,
+     "upstream_symbol": "lc3_attdet_run",
+     "firmware_target": "0x000682f0",
+     "firmware_name": "lc3_attdet_run",
+     "normalized_firmware_name": "lc3_attdet_run",
+     "exact": true
+    },
+    {
+     "offset": 160,
+     "upstream_symbol": "lc3_ltpf_analyse",
+     "firmware_target": "0x0006ab80",
+     "firmware_name": "lc3_ltpf_analyse",
+     "normalized_firmware_name": "lc3_ltpf_analyse",
+     "exact": true
+    },
+    {
+     "offset": 204,
+     "upstream_symbol": "memmove",
+     "firmware_target": "0x00086c44",
+     "firmware_name": "memmove",
+     "normalized_firmware_name": "memmove",
+     "exact": true
+    },
+    {
+     "offset": 224,
+     "upstream_symbol": "lc3_mdct_forward",
+     "firmware_target": "0x0006b9b8",
+     "firmware_name": "lc3_mdct_forward",
+     "normalized_firmware_name": "lc3_mdct_forward",
+     "exact": true
+    },
+    {
+     "offset": 238,
+     "upstream_symbol": "lc3_energy_compute",
+     "firmware_target": "0x00068b68",
+     "firmware_name": "lc3_energy_compute",
+     "normalized_firmware_name": "lc3_energy_compute",
+     "exact": true
+    },
+    {
+     "offset": 258,
+     "upstream_symbol": "lc3_bwdet_run",
+     "firmware_target": "0x00068a10",
+     "firmware_name": "lc3_bwdet_run",
+     "normalized_firmware_name": "lc3_bwdet_run",
+     "exact": true
+    },
+    {
+     "offset": 290,
+     "upstream_symbol": "lc3_sns_analyze",
+     "firmware_target": "0x0006c778",
+     "firmware_name": "lc3_sns_analyze",
+     "normalized_firmware_name": "lc3_sns_analyze",
+     "exact": true
+    },
+    {
+     "offset": 308,
+     "upstream_symbol": "lc3_tns_analyze",
+     "firmware_target": "0x0006ffd8",
+     "firmware_name": "lc3_tns_analyze",
+     "normalized_firmware_name": "lc3_tns_analyze",
+     "exact": true
+    },
+    {
+     "offset": 344,
+     "upstream_symbol": "lc3_spec_analyze",
+     "firmware_target": "0x0006f4a0",
+     "firmware_name": "lc3_spec_analyze",
+     "normalized_firmware_name": "lc3_spec_analyze",
+     "exact": true
+    },
+    {
+     "offset": 378,
+     "upstream_symbol": "lc3_setup_bits",
+     "firmware_target": "0x000684a8",
+     "firmware_name": "lc3_setup_bits",
+     "normalized_firmware_name": "lc3_setup_bits",
+     "exact": true
+    },
+    {
+     "offset": 390,
+     "upstream_symbol": "lc3_bwdet_put_bw",
+     "firmware_target": "0x00068b2c",
+     "firmware_name": "lc3_bwdet_put_bw",
+     "normalized_firmware_name": "lc3_bwdet_put_bw",
+     "exact": true
+    },
+    {
+     "offset": 404,
+     "upstream_symbol": "lc3_spec_put_side",
+     "firmware_target": "0x0006f91c",
+     "firmware_name": "lc3_spec_put_side",
+     "normalized_firmware_name": "lc3_spec_put_side",
+     "exact": true
+    },
+    {
+     "offset": 414,
+     "upstream_symbol": "lc3_tns_put_data",
+     "firmware_target": "0x00070b38",
+     "firmware_name": "lc3_tns_put_data",
+     "normalized_firmware_name": "lc3_tns_put_data",
+     "exact": true
+    },
+    {
+     "offset": 452,
+     "upstream_symbol": "lc3_sns_put_data",
+     "firmware_target": "0x0006efdc",
+     "firmware_name": "lc3_sns_put_data",
+     "normalized_firmware_name": "lc3_sns_put_data",
+     "exact": true
+    },
+    {
+     "offset": 484,
+     "upstream_symbol": "lc3_spec_encode",
+     "firmware_target": "0x0006f9c0",
+     "firmware_name": "lc3_spec_encode",
+     "normalized_firmware_name": "lc3_spec_encode",
+     "exact": true
+    },
+    {
+     "offset": 492,
+     "upstream_symbol": "lc3_flush_bits",
+     "firmware_target": "0x000685f4",
+     "firmware_name": "lc3_flush_bits",
+     "normalized_firmware_name": "lc3_flush_bits",
+     "exact": true
+    },
+    {
+     "offset": 512,
+     "upstream_symbol": "lc3_ltpf_disable",
+     "firmware_target": "0x0006b364",
+     "firmware_name": "lc3_ltpf_disable",
+     "normalized_firmware_name": "lc3_ltpf_disable",
+     "exact": true
+    },
+    {
+     "offset": 526,
+     "upstream_symbol": "lc3_ltpf_put_data",
+     "firmware_target": "0x0006b378",
+     "firmware_name": "lc3_ltpf_put_data",
+     "normalized_firmware_name": "lc3_ltpf_put_data",
+     "exact": true
+    },
+    {
+     "offset": 538,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00069468",
+   "raw_symbol": "FUN_00069468",
+   "symbol": "lc3_ltpf_interpolate",
+   "upstream_symbol": "interpolate",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.interpolate",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 228,
+   "upstream_symbol_size": 228,
+   "upstream_section_size": 228,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "dc104b727a555709e4fb1eb197d253204dd933306fed9807430c2cc8fcce5d3a",
+   "masked_relocations": [
+    {
+     "offset": 224,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006954c",
+   "raw_symbol": "FUN_0006954c",
+   "symbol": "lc3_ltpf_arm_correlate",
+   "upstream_symbol": "arm_correlate",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.arm_correlate",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 898,
+   "upstream_symbol_size": 898,
+   "upstream_section_size": 900,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "a2faf5bdef42f3e26e8ac81d5f45497140c26a8cc102c96a2ed528e692b011ff",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x000698d0",
+   "raw_symbol": "FUN_000698d0",
+   "symbol": "lc3_ltpf_detect_pitch",
+   "upstream_symbol": "detect_pitch",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.detect_pitch",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 3190,
+   "upstream_symbol_size": 3212,
+   "upstream_section_size": 3212,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "cb6f25bef09e907b639aea6715b9c8fa8b6d6d46e7fda7b023ff1db772b3c3c6",
+   "masked_relocations": [
+    {
+     "offset": 46,
+     "type": 10,
+     "symbol": "arm_correlate"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 46,
+     "upstream_symbol": "arm_correlate",
+     "firmware_target": "0x0006954c",
+     "firmware_name": "lc3_ltpf_arm_correlate",
+     "normalized_firmware_name": "arm_correlate",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 22,
+   "trailing_object_sha256": "cac57a4c5b3b10bfb6b5a9faa28f13f0f97fa699bc40bced0014c36a36ab3f22",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006a700",
+   "raw_symbol": "FUN_0006a700",
+   "symbol": "lc3_ltpf_arm_resample_24k_12k8",
+   "upstream_symbol": "arm_resample_24k_12k8",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.arm_resample_24k_12k8",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 282,
+   "upstream_symbol_size": 308,
+   "upstream_section_size": 308,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "45534190e54ad415511f6d014cd13824cb3f21e821683b0f89fc70f9354226dd",
+   "masked_relocations": [
+    {
+     "offset": 284,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 26,
+   "trailing_object_sha256": "123ff08b55a0a952ead5c16ca4c4ed72f93db72d7bbbe5babbadabe3d45f7b7d",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006aa98",
+   "raw_symbol": "FUN_0006aa98",
+   "symbol": "lc3_ltpf_arm_resample_8k_12k8",
+   "upstream_symbol": "arm_resample_8k_12k8",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.arm_resample_8k_12k8",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 214,
+   "upstream_symbol_size": 232,
+   "upstream_section_size": 232,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "2c7b16a1f5c68507f1f66f33bd0ac502fcc846e95c6529815d6fcc9317f2a63f",
+   "masked_relocations": [
+    {
+     "offset": 216,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 18,
+   "trailing_object_sha256": "759f7a1f0613b2076911fef7c429a3d2c49ec4170620bb5819f59341160ab329",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006ab80",
+   "raw_symbol": "FUN_0006ab80",
+   "symbol": "lc3_ltpf_analyse",
+   "upstream_symbol": "lc3_ltpf_analyse",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.lc3_ltpf_analyse",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 2020,
+   "upstream_symbol_size": 2020,
+   "upstream_section_size": 2020,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "9815bf650b9a460babd367993d279b06c99f88493e1dd87f3294caeab168680e",
+   "masked_relocations": [
+    {
+     "offset": 42,
+     "type": 10,
+     "symbol": "memmove"
+    },
+    {
+     "offset": 102,
+     "type": 10,
+     "symbol": "memmove"
+    },
+    {
+     "offset": 186,
+     "type": 10,
+     "symbol": "detect_pitch"
+    },
+    {
+     "offset": 248,
+     "type": 10,
+     "symbol": "memmove"
+    },
+    {
+     "offset": 308,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 426,
+     "type": 10,
+     "symbol": "arm_correlate"
+    },
+    {
+     "offset": 612,
+     "type": 10,
+     "symbol": "interpolate"
+    },
+    {
+     "offset": 634,
+     "type": 10,
+     "symbol": "interpolate"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 42,
+     "upstream_symbol": "memmove",
+     "firmware_target": "0x00086c44",
+     "firmware_name": "memmove",
+     "normalized_firmware_name": "memmove",
+     "exact": true
+    },
+    {
+     "offset": 102,
+     "upstream_symbol": "memmove",
+     "firmware_target": "0x00086c44",
+     "firmware_name": "memmove",
+     "normalized_firmware_name": "memmove",
+     "exact": true
+    },
+    {
+     "offset": 186,
+     "upstream_symbol": "detect_pitch",
+     "firmware_target": "0x000698d0",
+     "firmware_name": "lc3_ltpf_detect_pitch",
+     "normalized_firmware_name": "detect_pitch",
+     "exact": true
+    },
+    {
+     "offset": 248,
+     "upstream_symbol": "memmove",
+     "firmware_target": "0x00086c44",
+     "firmware_name": "memmove",
+     "normalized_firmware_name": "memmove",
+     "exact": true
+    },
+    {
+     "offset": 426,
+     "upstream_symbol": "arm_correlate",
+     "firmware_target": "0x0006954c",
+     "firmware_name": "lc3_ltpf_arm_correlate",
+     "normalized_firmware_name": "arm_correlate",
+     "exact": true
+    },
+    {
+     "offset": 612,
+     "upstream_symbol": "interpolate",
+     "firmware_target": "0x00069468",
+     "firmware_name": "lc3_ltpf_interpolate",
+     "normalized_firmware_name": "interpolate",
+     "exact": true
+    },
+    {
+     "offset": 634,
+     "upstream_symbol": "interpolate",
+     "firmware_target": "0x00069468",
+     "firmware_name": "lc3_ltpf_interpolate",
+     "normalized_firmware_name": "interpolate",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006b364",
+   "raw_symbol": "FUN_0006b364",
+   "symbol": "lc3_ltpf_disable",
+   "upstream_symbol": "lc3_ltpf_disable",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.lc3_ltpf_disable",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 6,
+   "upstream_symbol_size": 6,
+   "upstream_section_size": 8,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "74476639993dc96de862e205899504fdc618566eb9ab0969d94c3cf74582266a",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006b36c",
+   "raw_symbol": "FUN_0006b36c",
+   "symbol": "lc3_ltpf_get_nbits",
+   "upstream_symbol": "lc3_ltpf_get_nbits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.lc3_ltpf_get_nbits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 10,
+   "upstream_symbol_size": 10,
+   "upstream_section_size": 12,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "3bc9c3ed4fd4ee4598dd506945f0121481284f2b29824a173813d4063f0b8392",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006b378",
+   "raw_symbol": "FUN_0006b378",
+   "symbol": "lc3_ltpf_put_data",
+   "upstream_symbol": "lc3_ltpf_put_data",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c",
+   "upstream_source_sha256": "66bdd2e07a60079701421fe8d1d2aa7dbcb6eaec6d79f4bb9470036e550b8e5b",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/ltpf.c.obj",
+   "upstream_object_sha256": "1952a2c6882fd1daac024c57affa1821a54da6b9a06e77f1157e91b1983197a4",
+   "upstream_section": ".text.lc3_ltpf_put_data",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 78,
+   "upstream_symbol_size": 78,
+   "upstream_section_size": 80,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "f5f96608e74acb3c240f9d1e189043fbb4a2fcb922b14dbbfe21e80969902202",
+   "masked_relocations": [
+    {
+     "offset": 50,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 74,
+     "type": 30,
+     "symbol": "lc3_put_bits_generic"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 50,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 74,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 2,
+   "trailing_object_sha256": "b35429818002e6e8ced180b98b8273bd2fc11f8ed0b0ff54eade7a5920a15ed4",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006b3c8",
+   "raw_symbol": "FUN_0006b3c8",
+   "symbol": "lc3_mdct_fft",
+   "upstream_symbol": "fft",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c",
+   "upstream_source_sha256": "4a2c676928bc86496808187d4204ad7ccea9e47b5f3efcad8e24ff59147f9f82",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c.obj",
+   "upstream_object_sha256": "98f59d709ecf315ead3f39519439f5af09ef0172a6e43c9ba2bed3adb496dbcd",
+   "upstream_section": ".text.fft",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 1520,
+   "upstream_symbol_size": 1520,
+   "upstream_section_size": 1520,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "526fc3cddf4ef90711f7444ef656568474ef50964f0011a08f06ea98670e9326",
+   "masked_relocations": [
+    {
+     "offset": 664,
+     "type": 2,
+     "symbol": "lc3_fft_twiddles_bf3"
+    },
+    {
+     "offset": 1516,
+     "type": 2,
+     "symbol": "lc3_fft_twiddles_bf2"
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006b9b8",
+   "raw_symbol": "FUN_0006b9b8",
+   "symbol": "lc3_mdct_forward",
+   "upstream_symbol": "lc3_mdct_forward",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c",
+   "upstream_source_sha256": "4a2c676928bc86496808187d4204ad7ccea9e47b5f3efcad8e24ff59147f9f82",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/mdct.c.obj",
+   "upstream_object_sha256": "98f59d709ecf315ead3f39519439f5af09ef0172a6e43c9ba2bed3adb496dbcd",
+   "upstream_section": ".text.lc3_mdct_forward",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 956,
+   "upstream_symbol_size": 956,
+   "upstream_section_size": 956,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "e95d4bc7aa3f4aed1a20306136dfb338672c4caae308c6d748e7a234ebde4c47",
+   "masked_relocations": [
+    {
+     "offset": 716,
+     "type": 10,
+     "symbol": "fft"
+    },
+    {
+     "offset": 948,
+     "type": 2,
+     "symbol": "lc3_mdct_win"
+    },
+    {
+     "offset": 952,
+     "type": 2,
+     "symbol": "lc3_mdct_rot"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 716,
+     "upstream_symbol": "fft",
+     "firmware_target": "0x0006b3c8",
+     "firmware_name": "lc3_mdct_fft",
+     "normalized_firmware_name": "fft",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006bd74",
+   "raw_symbol": "FUN_0006bd74",
+   "symbol": "lc3_sns_unquantize",
+   "upstream_symbol": "unquantize",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
+   "upstream_source_sha256": "f278b44dafca8dcf225506eef554086c312b7a64ebbe0caf1373a781cd3021af",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c.obj",
+   "upstream_object_sha256": "15bfc2195d8ab03325d657e705252e60c96b2855a0a63b064f62499d5fe757f4",
+   "upstream_section": ".text.unquantize",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 596,
+   "upstream_symbol_size": 596,
+   "upstream_section_size": 596,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "0a0c044bbb9aeb3135b9cbcc122531247f1434a730596c7f2ae2aee71602980a",
+   "masked_relocations": [
+    {
+     "offset": 580,
+     "type": 2,
+     "symbol": "lc3_sns_vq_gains"
+    },
+    {
+     "offset": 584,
+     "type": 2,
+     "symbol": "lc3_sns_lfcb"
+    },
+    {
+     "offset": 588,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 592,
+     "type": 2,
+     "symbol": "lc3_sns_hfcb"
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006bfc8",
+   "raw_symbol": "FUN_0006bfc8",
+   "symbol": "lc3_sns_spectral_shaping",
+   "upstream_symbol": "spectral_shaping",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
+   "upstream_source_sha256": "f278b44dafca8dcf225506eef554086c312b7a64ebbe0caf1373a781cd3021af",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c.obj",
+   "upstream_object_sha256": "15bfc2195d8ab03325d657e705252e60c96b2855a0a63b064f62499d5fe757f4",
+   "upstream_section": ".text.spectral_shaping",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 1940,
+   "upstream_symbol_size": 1966,
+   "upstream_section_size": 1968,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "5719d8740c167333facfe0cc3f3d498364cb8748d61b379fc2b80c185d892423",
+   "masked_relocations": [
+    {
+     "offset": 958,
+     "type": 10,
+     "symbol": "memmove"
+    },
+    {
+     "offset": 1132,
+     "type": 2,
+     "symbol": "lc3_band_lim"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 958,
+     "upstream_symbol": "memmove",
+     "firmware_target": "0x00086c44",
+     "firmware_name": "memmove",
+     "normalized_firmware_name": "memmove",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 28,
+   "trailing_object_sha256": "814b559bc13402e17501b25fc8b3151c6e8b7ca29dc872797d3bdccd6a4d14bc",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006c778",
+   "raw_symbol": "FUN_0006c778",
+   "symbol": "lc3_sns_analyze",
+   "upstream_symbol": "lc3_sns_analyze",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
+   "upstream_source_sha256": "f278b44dafca8dcf225506eef554086c312b7a64ebbe0caf1373a781cd3021af",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c.obj",
+   "upstream_object_sha256": "15bfc2195d8ab03325d657e705252e60c96b2855a0a63b064f62499d5fe757f4",
+   "upstream_section": ".text.lc3_sns_analyze",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 10336,
+   "upstream_symbol_size": 10336,
+   "upstream_section_size": 10336,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "46eb4381fe5b86fca8c588d5288529f9460b9bf9d3ca959a3f089eff58cc4b61",
+   "masked_relocations": [
+    {
+     "offset": 106,
+     "type": 10,
+     "symbol": "memcpy"
+    },
+    {
+     "offset": 336,
+     "type": 10,
+     "symbol": "frexpf"
+    },
+    {
+     "offset": 1004,
+     "type": 2,
+     "symbol": "lc3_band_lim"
+    },
+    {
+     "offset": 1008,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 2896,
+     "type": 2,
+     "symbol": "lc3_sns_hfcb"
+    },
+    {
+     "offset": 2900,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 2908,
+     "type": 2,
+     "symbol": "lc3_sns_lfcb"
+    },
+    {
+     "offset": 8258,
+     "type": 10,
+     "symbol": "unquantize"
+    },
+    {
+     "offset": 8420,
+     "type": 2,
+     "symbol": "lc3_sns_vq_gains"
+    },
+    {
+     "offset": 8424,
+     "type": 2,
+     "symbol": "lc3_sns_mpvq_offsets"
+    },
+    {
+     "offset": 9204,
+     "type": 10,
+     "symbol": "spectral_shaping"
+    },
+    {
+     "offset": 10332,
+     "type": 2,
+     "symbol": "lc3_sns_mpvq_offsets"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 106,
+     "upstream_symbol": "memcpy",
+     "firmware_target": "0x00086c04",
+     "firmware_name": "memcpy",
+     "normalized_firmware_name": "memcpy",
+     "exact": true
+    },
+    {
+     "offset": 336,
+     "upstream_symbol": "frexpf",
+     "firmware_target": "0x000759b8",
+     "firmware_name": "frexpf",
+     "normalized_firmware_name": "frexpf",
+     "exact": true
+    },
+    {
+     "offset": 8258,
+     "upstream_symbol": "unquantize",
+     "firmware_target": "0x0006bd74",
+     "firmware_name": "lc3_sns_unquantize",
+     "normalized_firmware_name": "unquantize",
+     "exact": true
+    },
+    {
+     "offset": 9204,
+     "upstream_symbol": "spectral_shaping",
+     "firmware_target": "0x0006bfc8",
+     "firmware_name": "lc3_sns_spectral_shaping",
+     "normalized_firmware_name": "spectral_shaping",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006efd8",
+   "raw_symbol": "FUN_0006efd8",
+   "symbol": "lc3_sns_get_nbits",
+   "upstream_symbol": "lc3_sns_get_nbits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
+   "upstream_source_sha256": "f278b44dafca8dcf225506eef554086c312b7a64ebbe0caf1373a781cd3021af",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c.obj",
+   "upstream_object_sha256": "15bfc2195d8ab03325d657e705252e60c96b2855a0a63b064f62499d5fe757f4",
+   "upstream_section": ".text.lc3_sns_get_nbits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 4,
+   "upstream_symbol_size": 4,
+   "upstream_section_size": 4,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "abc5cc2b8a04c5f65b2083e2bb1927f7793c71387fbbd9f90eda0004942c8e19",
+   "masked_relocations": [],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006efdc",
+   "raw_symbol": "FUN_0006efdc",
+   "symbol": "lc3_sns_put_data",
+   "upstream_symbol": "lc3_sns_put_data",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c",
+   "upstream_source_sha256": "f278b44dafca8dcf225506eef554086c312b7a64ebbe0caf1373a781cd3021af",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/sns.c.obj",
+   "upstream_object_sha256": "15bfc2195d8ab03325d657e705252e60c96b2855a0a63b064f62499d5fe757f4",
+   "upstream_section": ".text.lc3_sns_put_data",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 392,
+   "upstream_symbol_size": 392,
+   "upstream_section_size": 392,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "7f4df6a925f5e2532aedfb174fd68c4fda77c87adce9bc67c74b3b6b6ec188be",
+   "masked_relocations": [
+    {
+     "offset": 264,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 282,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 306,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 318,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 336,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 368,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 380,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 154,
+     "type": 30,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 360,
+     "type": 30,
+     "symbol": "lc3_put_bits_generic"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 264,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 282,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 306,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 318,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 336,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 368,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 380,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 154,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 360,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006f164",
+   "raw_symbol": "FUN_0006f164",
+   "symbol": "lc3_spec_quantize",
+   "upstream_symbol": "quantize",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
+   "upstream_source_sha256": "f27c50281a440b1908e43fb2826226831c0b314704bfa7de2a0c79e9fb9e347d",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c.obj",
+   "upstream_object_sha256": "caf6a34a8ef70e916d439cc780693fd75a1abf38e8112c1674ad47dc16b02dc7",
+   "upstream_section": ".text.quantize",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 296,
+   "upstream_symbol_size": 296,
+   "upstream_section_size": 296,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "74245c3991e123a9bcd33a8ad61269243bf532d002f2d3c4befa2929489d912b",
+   "masked_relocations": [
+    {
+     "offset": 284,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006f28c",
+   "raw_symbol": "FUN_0006f28c",
+   "symbol": "lc3_spec_compute_nbits",
+   "upstream_symbol": "compute_nbits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
+   "upstream_source_sha256": "f27c50281a440b1908e43fb2826226831c0b314704bfa7de2a0c79e9fb9e347d",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c.obj",
+   "upstream_object_sha256": "caf6a34a8ef70e916d439cc780693fd75a1abf38e8112c1674ad47dc16b02dc7",
+   "upstream_section": ".text.compute_nbits",
+   "upstream_binding": "STB_LOCAL",
+   "firmware_code_extent": 532,
+   "upstream_symbol_size": 532,
+   "upstream_section_size": 532,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "b0fdd9e35c3686575af19d276faa0ff899287468b02273f17f32e2ba7cbcf803",
+   "masked_relocations": [
+    {
+     "offset": 524,
+     "type": 2,
+     "symbol": "lc3_spectrum_lookup"
+    },
+    {
+     "offset": 528,
+     "type": 2,
+     "symbol": "lc3_spectrum_bits"
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006f4a0",
+   "raw_symbol": "FUN_0006f4a0",
+   "symbol": "lc3_spec_analyze",
+   "upstream_symbol": "lc3_spec_analyze",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
+   "upstream_source_sha256": "f27c50281a440b1908e43fb2826226831c0b314704bfa7de2a0c79e9fb9e347d",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c.obj",
+   "upstream_object_sha256": "caf6a34a8ef70e916d439cc780693fd75a1abf38e8112c1674ad47dc16b02dc7",
+   "upstream_section": ".text.lc3_spec_analyze",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 1148,
+   "upstream_symbol_size": 1148,
+   "upstream_section_size": 1148,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "287be41e07e8f3ee8aa0a186c5ae2173784e185154463b12da7665084524a368",
+   "masked_relocations": [
+    {
+     "offset": 110,
+     "type": 10,
+     "symbol": "lc3_bwdet_get_nbits"
+    },
+    {
+     "offset": 120,
+     "type": 10,
+     "symbol": "lc3_ltpf_get_nbits"
+    },
+    {
+     "offset": 126,
+     "type": 10,
+     "symbol": "lc3_sns_get_nbits"
+    },
+    {
+     "offset": 136,
+     "type": 10,
+     "symbol": "lc3_tns_get_nbits"
+    },
+    {
+     "offset": 660,
+     "type": 10,
+     "symbol": "quantize"
+    },
+    {
+     "offset": 682,
+     "type": 10,
+     "symbol": "compute_nbits"
+    },
+    {
+     "offset": 810,
+     "type": 10,
+     "symbol": "compute_nbits"
+    },
+    {
+     "offset": 898,
+     "type": 10,
+     "symbol": "log10f"
+    },
+    {
+     "offset": 960,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 968,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 1012,
+     "type": 10,
+     "symbol": "quantize"
+    },
+    {
+     "offset": 1034,
+     "type": 10,
+     "symbol": "compute_nbits"
+    },
+    {
+     "offset": 1126,
+     "type": 10,
+     "symbol": "quantize"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 110,
+     "upstream_symbol": "lc3_bwdet_get_nbits",
+     "firmware_target": "0x00068b14",
+     "firmware_name": "lc3_bwdet_get_nbits",
+     "normalized_firmware_name": "lc3_bwdet_get_nbits",
+     "exact": true
+    },
+    {
+     "offset": 120,
+     "upstream_symbol": "lc3_ltpf_get_nbits",
+     "firmware_target": "0x0006b36c",
+     "firmware_name": "lc3_ltpf_get_nbits",
+     "normalized_firmware_name": "lc3_ltpf_get_nbits",
+     "exact": true
+    },
+    {
+     "offset": 126,
+     "upstream_symbol": "lc3_sns_get_nbits",
+     "firmware_target": "0x0006efd8",
+     "firmware_name": "lc3_sns_get_nbits",
+     "normalized_firmware_name": "lc3_sns_get_nbits",
+     "exact": true
+    },
+    {
+     "offset": 136,
+     "upstream_symbol": "lc3_tns_get_nbits",
+     "firmware_target": "0x000709d8",
+     "firmware_name": "lc3_tns_get_nbits",
+     "normalized_firmware_name": "lc3_tns_get_nbits",
+     "exact": true
+    },
+    {
+     "offset": 660,
+     "upstream_symbol": "quantize",
+     "firmware_target": "0x0006f164",
+     "firmware_name": "lc3_spec_quantize",
+     "normalized_firmware_name": "quantize",
+     "exact": true
+    },
+    {
+     "offset": 682,
+     "upstream_symbol": "compute_nbits",
+     "firmware_target": "0x0006f28c",
+     "firmware_name": "lc3_spec_compute_nbits",
+     "normalized_firmware_name": "compute_nbits",
+     "exact": true
+    },
+    {
+     "offset": 810,
+     "upstream_symbol": "compute_nbits",
+     "firmware_target": "0x0006f28c",
+     "firmware_name": "lc3_spec_compute_nbits",
+     "normalized_firmware_name": "compute_nbits",
+     "exact": true
+    },
+    {
+     "offset": 898,
+     "upstream_symbol": "log10f",
+     "firmware_target": "0x00075d5c",
+     "firmware_name": "log10f",
+     "normalized_firmware_name": "log10f",
+     "exact": true
+    },
+    {
+     "offset": 1012,
+     "upstream_symbol": "quantize",
+     "firmware_target": "0x0006f164",
+     "firmware_name": "lc3_spec_quantize",
+     "normalized_firmware_name": "quantize",
+     "exact": true
+    },
+    {
+     "offset": 1034,
+     "upstream_symbol": "compute_nbits",
+     "firmware_target": "0x0006f28c",
+     "firmware_name": "lc3_spec_compute_nbits",
+     "normalized_firmware_name": "compute_nbits",
+     "exact": true
+    },
+    {
+     "offset": 1126,
+     "upstream_symbol": "quantize",
+     "firmware_target": "0x0006f164",
+     "firmware_name": "lc3_spec_quantize",
+     "normalized_firmware_name": "quantize",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006f91c",
+   "raw_symbol": "FUN_0006f91c",
+   "symbol": "lc3_spec_put_side",
+   "upstream_symbol": "lc3_spec_put_side",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
+   "upstream_source_sha256": "f27c50281a440b1908e43fb2826226831c0b314704bfa7de2a0c79e9fb9e347d",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c.obj",
+   "upstream_object_sha256": "caf6a34a8ef70e916d439cc780693fd75a1abf38e8112c1674ad47dc16b02dc7",
+   "upstream_section": ".text.lc3_spec_put_side",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 164,
+   "upstream_symbol_size": 164,
+   "upstream_section_size": 164,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "268beb9be578b690adb1c48624168a24ef941f1adf97f13902c69399a4c8356c",
+   "masked_relocations": [
+    {
+     "offset": 118,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 136,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 160,
+     "type": 30,
+     "symbol": "lc3_put_bits_generic"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 118,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 136,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 160,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006f9c0",
+   "raw_symbol": "FUN_0006f9c0",
+   "symbol": "lc3_spec_encode",
+   "upstream_symbol": "lc3_spec_encode",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c",
+   "upstream_source_sha256": "f27c50281a440b1908e43fb2826226831c0b314704bfa7de2a0c79e9fb9e347d",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/spec.c.obj",
+   "upstream_object_sha256": "caf6a34a8ef70e916d439cc780693fd75a1abf38e8112c1674ad47dc16b02dc7",
+   "upstream_section": ".text.lc3_spec_encode",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 1560,
+   "upstream_symbol_size": 1560,
+   "upstream_section_size": 1560,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "39f6d1f9033000042789a21230f79429e0214f629463db7bfeb54004457867cd",
+   "masked_relocations": [
+    {
+     "offset": 590,
+     "type": 10,
+     "symbol": "lc3_get_bits_left"
+    },
+    {
+     "offset": 792,
+     "type": 2,
+     "symbol": "lc3_spectrum_lookup"
+    },
+    {
+     "offset": 796,
+     "type": 2,
+     "symbol": "lc3_spectrum_models"
+    },
+    {
+     "offset": 940,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 950,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 1004,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1042,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 1056,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1070,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1318,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1398,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1426,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1446,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 1482,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1496,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 1508,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 590,
+     "upstream_symbol": "lc3_get_bits_left",
+     "firmware_target": "0x00068590",
+     "firmware_name": "lc3_get_bits_left",
+     "normalized_firmware_name": "lc3_get_bits_left",
+     "exact": true
+    },
+    {
+     "offset": 940,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 950,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 1004,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1042,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 1056,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1070,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1318,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1398,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1426,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1446,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 1482,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1496,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 1508,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x0006ffd8",
+   "raw_symbol": "FUN_0006ffd8",
+   "symbol": "lc3_tns_analyze",
+   "upstream_symbol": "lc3_tns_analyze",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
+   "upstream_source_sha256": "9cd8e5b6591ce383b80b9b45183d936795789cd69e743be6cc7b67aad6e2ebde",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c.obj",
+   "upstream_object_sha256": "01f0da5a1aad834a24739d89b2b1a49d95ef2a52e0420bc84f7a5b945fb688da",
+   "upstream_section": ".text.lc3_tns_analyze",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 2560,
+   "upstream_symbol_size": 2560,
+   "upstream_section_size": 2560,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "b1835f6845c83c38a6bcd10cfb14f8a75766a3dccd6c515b6a2c8d85a82c48b3",
+   "masked_relocations": [
+    {
+     "offset": 960,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 2548,
+     "type": 2,
+     "symbol": ""
+    },
+    {
+     "offset": 2556,
+     "type": 2,
+     "symbol": ""
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x000709d8",
+   "raw_symbol": "FUN_000709d8",
+   "symbol": "lc3_tns_get_nbits",
+   "upstream_symbol": "lc3_tns_get_nbits",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
+   "upstream_source_sha256": "9cd8e5b6591ce383b80b9b45183d936795789cd69e743be6cc7b67aad6e2ebde",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c.obj",
+   "upstream_object_sha256": "01f0da5a1aad834a24739d89b2b1a49d95ef2a52e0420bc84f7a5b945fb688da",
+   "upstream_section": ".text.lc3_tns_get_nbits",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 352,
+   "upstream_symbol_size": 352,
+   "upstream_section_size": 352,
+   "match": "relocation_masked_full_section_exact",
+   "unmasked_prefix_sha256": "805120507b4bc0211dd5f9ff8eb7fe4cc14d584bbd655e642236ebc44eb8be76",
+   "masked_relocations": [
+    {
+     "offset": 344,
+     "type": 2,
+     "symbol": "lc3_tns_order_bits"
+    },
+    {
+     "offset": 348,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_bits"
+    }
+   ],
+   "call_target_checks": [],
+   "trailing_object_bytes": 0,
+   "trailing_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "raw_mapping_preserved": true
+  },
+  {
+   "status": "authorized",
+   "va": "0x00070b38",
+   "raw_symbol": "FUN_00070b38",
+   "symbol": "lc3_tns_put_data",
+   "upstream_symbol": "lc3_tns_put_data",
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c",
+   "upstream_source_sha256": "9cd8e5b6591ce383b80b9b45183d936795789cd69e743be6cc7b67aad6e2ebde",
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/liblc3/CMakeFiles/liblc3.dir/Users/freedomcoder/ncs251/modules/lib/liblc3/src/tns.c.obj",
+   "upstream_object_sha256": "01f0da5a1aad834a24739d89b2b1a49d95ef2a52e0420bc84f7a5b945fb688da",
+   "upstream_section": ".text.lc3_tns_put_data",
+   "upstream_binding": "STB_GLOBAL",
+   "firmware_code_extent": 714,
+   "upstream_symbol_size": 752,
+   "upstream_section_size": 752,
+   "match": "relocation_masked_executable_prefix_exact",
+   "unmasked_prefix_sha256": "694a5abc9367e17d9702e9786f56966aa8c53c759e3177e1ac5374fd58344c7e",
+   "masked_relocations": [
+    {
+     "offset": 622,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 632,
+     "type": 10,
+     "symbol": "lc3_put_bits_generic"
+    },
+    {
+     "offset": 640,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 648,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 662,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 670,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 684,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 692,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 700,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 708,
+     "type": 10,
+     "symbol": "lc3_ac_write_renorm"
+    },
+    {
+     "offset": 716,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 720,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 724,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 728,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 732,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 736,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 740,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    },
+    {
+     "offset": 744,
+     "type": 2,
+     "symbol": "lc3_tns_order_models"
+    },
+    {
+     "offset": 748,
+     "type": 2,
+     "symbol": "lc3_tns_coeffs_models"
+    }
+   ],
+   "call_target_checks": [
+    {
+     "offset": 622,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 632,
+     "upstream_symbol": "lc3_put_bits_generic",
+     "firmware_target": "0x00068908",
+     "firmware_name": "lc3_put_bits_generic",
+     "normalized_firmware_name": "lc3_put_bits_generic",
+     "exact": true
+    },
+    {
+     "offset": 640,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 648,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 662,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 670,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 684,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 692,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 700,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    },
+    {
+     "offset": 708,
+     "upstream_symbol": "lc3_ac_write_renorm",
+     "firmware_target": "0x0006897c",
+     "firmware_name": "lc3_ac_write_renorm",
+     "normalized_firmware_name": "lc3_ac_write_renorm",
+     "exact": true
+    }
+   ],
+   "trailing_object_bytes": 38,
+   "trailing_object_sha256": "0189603f7a3ac1f031e8d2601e1c7ca1fc74e08f0b5e468e62be3026f56edc7a",
+   "raw_mapping_preserved": true
+  }
+ ],
+ "sdc_policy": "report_only_unchanged"
+}

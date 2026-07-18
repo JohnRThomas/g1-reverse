@@ -823,8 +823,8 @@
    "evidence": "Qualified form of static src/ltpf_arm.h arm_resample_24k_12k8; matching 15-phase SIMD resampling kernel and shipped coefficient table. Raw identity remains FUN_0006a700."
   },
   "0x0006aa98": {
-   "name": "lc3_ltpf_arm_resample_48k_12k8",
-   "evidence": "Qualified form of static src/ltpf_arm.h arm_resample_48k_12k8; matching SIMD resampling/high-pass state kernel and shipped coefficient table. Raw identity remains FUN_0006aa98."
+   "name": "lc3_ltpf_arm_resample_8k_12k8",
+   "evidence": "Relocation-masked configured-object comparison identifies static src/ltpf.c arm_resample_8k_12k8: all 214 firmware code bytes match the pinned -O3/-ffast-math object prefix, with only the object's trailing NOP/literal pool outside the firmware extent. The prior 48 kHz label loses decisively and has a different 420-byte body. Raw identity remains FUN_0006aa98."
   },
   "0x0006ab80": {
    "name": "lc3_ltpf_analyse",
@@ -855,8 +855,8 @@
    "evidence": "Qualified form of static src/sns.c unquantize; identical lfcb/hfcb/code-vector/shape/gain ABI, DCT matrix use, and 16-factor reconstruction. Raw identity remains FUN_0006bd74."
   },
   "0x0006bfc8": {
-   "name": "lc3_sns_compute_scale_factors",
-   "evidence": "Qualified form of static src/sns.c compute_scale_factors; identical duration/rate energy interpolation, pre-emphasis table, attack smoothing and 16-factor normalization. Raw identity remains FUN_0006bfc8."
+   "name": "lc3_sns_spectral_shaping",
+   "evidence": "Relocation-masked configured-object comparison identifies static src/sns.c spectral_shaping: all 1940 firmware code bytes match the pinned -O3/-ffast-math object prefix, including the memmove and table-reference sites. lc3_sns_analyze's corresponding relocation names spectral_shaping. The prior compute_scale_factors label is incompatible with the selected object's symbol inventory. Raw identity remains FUN_0006bfc8."
   },
   "0x0006c778": {
    "name": "lc3_sns_analyze",

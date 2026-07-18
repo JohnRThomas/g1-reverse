@@ -71,9 +71,14 @@ Crypto/codec precision:
 - TinyCrypt has 27 exact executable matches across six translation units (25
   unique identities; two duplicated bodies require caller context).
 - LC3's earlier `match_score=1.0` was semantic/size scoring, not byte proof.
-  The strict rerun gives 20/41 exact normalized instruction streams, 33/41 at
-  least 0.98 opcode similarity, and 39/41 at least 0.90.  The pinned LC3 commit
-  is correct, but bulk deletion of all 41 reconstructed bodies is premature.
+  A subsequent relocation-aware configured-object audit now proves all 41/41
+  encoder functions: 28 are full-section exact and 13 have an exact firmware
+  executable prefix followed only by object-local alignment/literal/table
+  bytes.  Ninety call relocations were checked independently against firmware
+  targets.  This stronger audit also corrected two identities:
+  `0x0006aa98` is `arm_resample_8k_12k8` (not the 48 kHz variant), and
+  `0x0006bfc8` is `spectral_shaping` (not `compute_scale_factors`).  The receipt
+  is `recon/ownership/app_lc3_stock_atomic_adoption.json`.
 - CC312 is uniquely fingerprinted as 0.9.18: all 89 selected sections match;
   five firmware-required sections are absent from 0.9.19.
 - The nine tested Oberon P-256 bodies do not distinguish 3.0.13 from 3.0.14;
@@ -127,6 +132,21 @@ artifact: ten configured 2.5-generation bodies are exact after proper true
 extent and relocation masking.  The distinct `z_log_msg_finalize` difference
 belongs to `log_msg.c` and stays retained; it must not be used to reject the
 stock `log_core.c` unit.
+
+The same normalization resolved the last `img_mgmt.c` question.  Under the
+firmware-selected two-image, progressive-erase configuration, the private
+`img_mgmt_upload` section is 0x240 bytes and matches the firmware entry at
+`0x000521fc` on every non-relocation byte.  Its 31 relocation sites account
+for the apparent raw-object difference.  The complete live closure of
+`img_mgmt.c` is exact, including read-info, erase, upload, reset/response
+helpers, active-slot/image accessors, hash search, version wrapper, error
+translation, and registration.  The configured object comes from manifest
+commit `83980fe1679441be9b0e1db556a353f6118fe14f`
+(`v3.4.99-ncs1-1`, NCS 2.5.1); there is no firmware-specific img-mgmt fork.
+The source blob `305cad41c4459b1e5fea46b9ce06383a535a20dc` is unchanged in
+`-ncs1-1`, `-ncs1-2`, and `-ncs1-3`, so this body proves the NCS 2.5 source
+and configuration but does not independently distinguish those patch tags;
+the exact `-ncs1-1` choice remains manifest provenance.
 
 ## CPUNET private-library boundary
 

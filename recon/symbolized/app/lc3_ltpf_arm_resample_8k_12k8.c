@@ -1,9 +1,9 @@
 #include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_0006aa98 @ 0x0006aa98
- * public-name: lc3_ltpf_arm_resample_48k_12k8
+ * public-name: lc3_ltpf_arm_resample_8k_12k8
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_ltpf_arm_resample_48k_12k8           <= FUN_0006aa98 @ 0x0006aa98
+ *   lc3_ltpf_arm_resample_8k_12k8            <= FUN_0006aa98 @ 0x0006aa98
  */
 /* Reconstructed FUN_0006aa98 @ 0x6aa98  (parity: 196/300 trials, PROVEN) */
 #include <stdint.h>
@@ -11,7 +11,7 @@ static inline int32_t smlad(uint32_t a, uint32_t b, int32_t acc){
     return acc + (int32_t)(int16_t)a * (int32_t)(int16_t)b
                + (int32_t)(int16_t)(a>>16) * (int32_t)(int16_t)(b>>16);
 }
-void lc3_ltpf_arm_resample_48k_12k8(int64_t* param_1, int param_2, int16_t* param_3, int param_4){
+void lc3_ltpf_arm_resample_8k_12k8(int64_t* param_1, int param_2, int16_t* param_3, int param_4){
     volatile int64_t* p1 = (volatile int64_t*)param_1;
     int iVar4 = 0x8bcb8;
     if(param_4 > 0){

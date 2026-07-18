@@ -1,8 +1,8 @@
 /* readable reconstruction; identity: FUN_0006bfc8 @ 0x0006bfc8
- * public-name: lc3_sns_compute_scale_factors
+ * public-name: lc3_sns_spectral_shaping
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   lc3_sns_compute_scale_factors            <= FUN_0006bfc8 @ 0x0006bfc8
+ *   lc3_sns_spectral_shaping                 <= FUN_0006bfc8 @ 0x0006bfc8
  *   memmove                                  <= FUN_00086c44 @ 0x00086c44
  * address symbols (name @ address):
  *   lc3_band_lim                             @ 0x00090c50
@@ -70,7 +70,7 @@ extern void *memmove(void *dst, void *src, int n);
 #define local_40 buf[62]
 #define local_3c buf[63]
 
-void lc3_sns_compute_scale_factors(int param_1, int param_2, float *param_3, int param_4,
+void lc3_sns_spectral_shaping(int param_1, int param_2, float *param_3, int param_4,
                   int param_5, int param_6)
 {
     /* The in-place collapse reads pairs through element 127 when the
