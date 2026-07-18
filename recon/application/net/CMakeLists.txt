@@ -90,7 +90,11 @@ set(G1_PRIVATE_REPORT_ONLY_SOURCES
 # selected explicitly by the generated manifest above; upstream controller and
 # crypto objects remain under their normal NCS module CMake integration.
 target_sources(app PRIVATE
-  src/main.c
+  # The shipped CPUNET image is the NCS 2.5.1 HCI-RPMsg child image.  Use its
+  # pinned entrypoint so section GC follows the real endpoint/TX-thread roots;
+  # the local empty main is retained only as documentation of the earlier
+  # structural-link probe.
+  "${ZEPHYR_BASE}/samples/bluetooth/hci_rpmsg/src/main.c"
   src/cfg_boundary_lowerings.c
   ${G1_RETAINED_SOURCES}
   ${G1_PRIVATE_REPORT_ONLY_SOURCES}
