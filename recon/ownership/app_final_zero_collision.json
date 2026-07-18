@@ -163,8 +163,8 @@
    "cfg_verify_cases": 1,
    "collision_receipt_sha256": "075ca4378da1fbbd57492fc6b9a5dead688dfd62f081be7577caa9b894f6600d",
    "configuration_variant_exact": true,
-   "configured_build": "/private/tmp/g1-bt-stock-build/zephyr/.config",
-   "configured_build_sha256": "3b157db726155f31ba09c0bac1f7c4cc48d26e00d578ee39d00f8fcf552959df",
+   "configured_build": "/private/tmp/g1-bt-no-trace-layout/zephyr/.config",
+   "configured_build_sha256": "c0d7ca757a7f944f7c8ed37c98b1c3147d19d16f4f3e7832fcddaf85af49772b",
    "firmware_code_size": 360,
    "identity_correction": {
     "baseline_collision_symbol": "bt_id_add",
@@ -192,8 +192,8 @@
    "status": "authorized",
    "symbol": "bt_id_add",
    "upstream_code_size": 360,
-   "upstream_object": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
-   "upstream_object_sha256": "912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+   "upstream_object": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+   "upstream_object_sha256": "64ac028ed9238ed6afc5fe027b6f0f9e2f6a2279d6ef6c86807c83a853df8311",
    "upstream_source": "zephyr/subsys/bluetooth/host/id.c",
    "upstream_source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
    "upstream_symbol_size": 360,
@@ -216,8 +216,8 @@
    "batch": "COLLISION-FINAL-BT-ID",
    "cfg_verify_cases": 1,
    "configuration_variant_exact": true,
-   "configured_build": "/private/tmp/g1-bt-stock-build/zephyr/.config",
-   "configured_build_sha256": "3b157db726155f31ba09c0bac1f7c4cc48d26e00d578ee39d00f8fcf552959df",
+   "configured_build": "/private/tmp/g1-bt-no-trace-layout/zephyr/.config",
+   "configured_build_sha256": "c0d7ca757a7f944f7c8ed37c98b1c3147d19d16f4f3e7832fcddaf85af49772b",
    "firmware_code_size": 56,
    "hidden_owner_closure": true,
    "identity_correction": {
@@ -246,8 +246,8 @@
    "status": "authorized",
    "symbol": "bt_id_add",
    "upstream_code_size": 56,
-   "upstream_object": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
-   "upstream_object_sha256": "912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+   "upstream_object": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+   "upstream_object_sha256": "64ac028ed9238ed6afc5fe027b6f0f9e2f6a2279d6ef6c86807c83a853df8311",
    "upstream_source": "zephyr/subsys/bluetooth/host/id.c",
    "upstream_source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
    "upstream_symbol_size": 56,
@@ -668,11 +668,11 @@
   }
  },
  "normal_non_retain_all_final_link": {
-  "build": "/private/tmp/g1-app-final-normal-0718",
+  "build": "/private/tmp/g1-app-notrace-final-normal-0718",
   "collisions": [],
   "link_succeeded": true,
-  "merged_domains_hex": "/private/tmp/g1-app-final-normal-0718/zephyr/merged_domains.hex",
-  "merged_domains_hex_sha256": "57daaa418c0b36b54a87b2954ab5e843e15743ef5046712880596798c2563932",
+  "merged_domains_hex": "/private/tmp/g1-app-notrace-final-normal-0718/zephyr/merged_domains.hex",
+  "merged_domains_hex_sha256": "8c23de6908a9f50965d8051af49067a765913fe02ef4f50da6db3e43aca1b8b5",
   "remaining_non_collision_blockers": [
    {
     "detail": "The integration shell has no recovered production CPUAPP main/thread/init root graph; --gc-sections therefore does not prove complete firmware reachability.",
@@ -697,10 +697,10 @@
   ],
   "retain_all": false,
   "undefined": [],
-  "zephyr_bin": "/private/tmp/g1-app-final-normal-0718/zephyr/zephyr.bin",
-  "zephyr_bin_sha256": "b0603e3a3b2e927d16f9f8eb170a232ed62f2ec144c9af46128f33ac1fef1dd1",
-  "zephyr_elf": "/private/tmp/g1-app-final-normal-0718/zephyr/zephyr.elf",
-  "zephyr_elf_sha256": "8c8b994d7ddb8b29aa5ad0073320b4a9424318ff59fddaed6eef3a78c1eff780"
+  "zephyr_bin": "/private/tmp/g1-app-notrace-final-normal-0718/zephyr/zephyr.bin",
+  "zephyr_bin_sha256": "40700b2104004115cc1b17989e963fa5f0b61a85ab67ca41261681af3b517af2",
+  "zephyr_elf": "/private/tmp/g1-app-notrace-final-normal-0718/zephyr/zephyr.elf",
+  "zephyr_elf_sha256": "c8b4d852477b515a34a0a41ab15fc55611640fa4401b99fd232fec49b26390dc"
  },
  "retained_identity_correction": {
   "corrected_symbol": "g1_recon_k_heap_init",

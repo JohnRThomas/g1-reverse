@@ -21,11 +21,11 @@ HEAP_SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c")
 HEAP_OBJECT = Path("/private/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj")
 HEAP_CONFIG = Path("/private/tmp/g1-fwconfig-shadow/zephyr/.config")
 ID_SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c")
-ID_OBJECT = Path("/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj")
-ID_CONFIG = Path("/private/tmp/g1-bt-stock-build/zephyr/.config")
+ID_OBJECT = Path("/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj")
+ID_CONFIG = Path("/private/tmp/g1-bt-no-trace-layout/zephyr/.config")
 PRE_BUILD = Path("/private/tmp/g1-app-work-post-0718")
 POST_BUILD = Path("/private/tmp/g1-app-final-zero-0718")
-NORMAL_BUILD = Path("/private/tmp/g1-app-final-normal-0718")
+NORMAL_BUILD = Path("/private/tmp/g1-app-notrace-final-normal-0718")
 
 HEAP_GROUP = ["0x0004b3c8", "0x0007e12a"]
 ID_GROUP = ["0x00054ea8", "0x0005505c"]

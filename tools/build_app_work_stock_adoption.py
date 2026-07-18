@@ -20,9 +20,11 @@ IMAGE = ROOT / "app_update.bin"
 SOURCE = Path("/Users/freedomcoder/ncs251/zephyr/kernel/work.c")
 PRE_BUILD = Path("/private/tmp/g1-app-residue-current-0718")
 POST_BUILD = Path("/private/tmp/g1-app-work-post-0718")
-OBJECT = PRE_BUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
-POST_OBJECT = POST_BUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
-CONFIG = PRE_BUILD / "zephyr/.config"
+EXACT_BUILD = Path("/private/tmp/g1-bt-no-trace-layout")
+REBUILD = Path("/private/tmp/g1-bt-no-trace-layout-2")
+OBJECT = EXACT_BUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
+POST_OBJECT = REBUILD / "zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj"
+CONFIG = EXACT_BUILD / "zephyr/.config"
 
 # Firmware VA: (configured ELF section symbol, corrected readable identity,
 # canonical reconstruction file, upstream linkage, visible collision symbol).
@@ -63,7 +65,7 @@ REQUIRED_CONFIG = {
     "CONFIG_SPIN_VALIDATE": "y",
     "CONFIG_THREAD_LOCAL_STORAGE": "y",
     "CONFIG_ERRNO_IN_TLS": "n",
-    "CONFIG_TRACING": "y",
+    "CONFIG_TRACING": "n",
     "CONFIG_THREAD_MONITOR": "n",
     "CONFIG_THREAD_NAME": "n",
 }
@@ -233,7 +235,7 @@ def main():
                for va, symbol in sorted(SUPPORT.items())]
     pre_text = text_unit_digest(OBJECT)
     post_text = text_unit_digest(POST_OBJECT)
-    if pre_text != post_text or sha(CONFIG) != sha(POST_BUILD / "zephyr/.config"):
+    if pre_text != post_text or sha(CONFIG) != sha(REBUILD / "zephyr/.config"):
         raise ValueError("configured work.c rebuild drift")
     receipt = {
         "schema": 1, "core": "app", "batch": "COLLISION-WORK",

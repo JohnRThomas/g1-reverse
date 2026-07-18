@@ -48,9 +48,14 @@ class AppFinalZeroCollisionTest(unittest.TestCase):
                          self.audit["caller_retarget"])
         stock = json.loads((ROOT / "recon/ownership/app_bluetooth_stock_atomic_adoption.json").read_text())
         closure = stock["id_source_closure"]
+        self.assertTrue(all(row["required_config"]["CONFIG_TRACING"] == "n"
+                            for row in stock["authorizations"]))
+        app_config = (ROOT / "recon/application/app/prj.conf").read_text()
+        self.assertIn("# CONFIG_TRACING is not set", app_config)
+        self.assertNotIn("CONFIG_TRACING=y", app_config)
         self.assertEqual("781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
                          closure["source_sha256"])
-        self.assertEqual("912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+        self.assertEqual("64ac028ed9238ed6afc5fe027b6f0f9e2f6a2279d6ef6c86807c83a853df8311",
                          closure["configured_object_sha256"])
         self.assertEqual(0, closure["final_normal_link_collisions"])
 

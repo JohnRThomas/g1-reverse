@@ -3566,7 +3566,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_settings_delete",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/settings.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/settings.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3670,7 +3670,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_state_set_init",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3743,8 +3743,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x00053cb0",
@@ -3778,7 +3777,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_hci_cmd_create",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3847,8 +3846,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x00053cb0",
@@ -3905,7 +3903,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_enable",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/hci_core.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -3975,8 +3973,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "identity_correction": {
         "baseline_collision_symbol": "bt_send",
@@ -4017,7 +4014,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_id_add.part.0",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4106,7 +4103,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_id_add",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4173,7 +4170,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_conn_send_cb",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4242,8 +4239,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x000564cc",
@@ -4322,7 +4318,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_connected",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4391,8 +4387,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005791c",
@@ -4430,7 +4425,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_init",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4498,8 +4493,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005791c",
@@ -4537,7 +4531,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_l2cap_recv",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4609,8 +4603,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005791c",
@@ -4648,7 +4641,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_create_pdu",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -4718,8 +4711,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x00058eb0",
@@ -4946,7 +4938,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_att_req_send",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/att.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5017,8 +5009,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x00058eb0",
@@ -5049,7 +5040,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_init",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5116,8 +5107,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5226,7 +5216,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_attr_get_handle",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5294,8 +5284,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5356,7 +5345,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_foreach_attr_type",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5430,8 +5419,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5492,7 +5480,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_service_register",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5560,8 +5548,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5622,7 +5609,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_indicate",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5691,8 +5678,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5753,7 +5739,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_notify_cb",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5822,8 +5808,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -5884,7 +5869,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_discover",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -5953,8 +5938,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -6015,7 +5999,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_write",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6085,8 +6069,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "identity_correction": {
         "baseline_collision_symbol": "bt_gatt_read",
@@ -6154,7 +6137,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_unsubscribe",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6225,8 +6208,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "identity_correction": {
         "baseline_collision_symbol": "bt_gatt_subscribe",
@@ -6294,7 +6276,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_connected",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6360,8 +6342,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -6422,7 +6403,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_att_max_mtu_changed",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6490,8 +6471,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -6601,7 +6581,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_gatt_disconnected",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/gatt.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6667,8 +6647,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005a954",
@@ -6729,7 +6708,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_addr",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6800,8 +6779,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -6856,7 +6834,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_foreach_bond",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -6928,8 +6906,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -6984,7 +6961,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_foreach_type",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7056,8 +7033,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7112,7 +7088,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7184,8 +7160,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7240,7 +7215,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_irk",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7311,8 +7286,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7367,7 +7341,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_find_addr",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7438,8 +7412,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7494,7 +7467,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_add_type",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7565,8 +7538,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7621,7 +7593,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_get_type",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7693,8 +7665,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7749,7 +7720,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_clear",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7818,8 +7789,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -7874,7 +7844,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_keys_store",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/keys.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -7943,8 +7913,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x0005e6a8",
@@ -12995,7 +12964,7 @@
      "kind": "source",
      "component": "libmetal",
      "upstream_symbol": "metal_bus_unregister",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -14015,7 +13984,7 @@
      "kind": "source",
      "component": "open_amp",
      "upstream_symbol": "virtqueue_free",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/virtio/virtqueue.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -14133,7 +14102,7 @@
      "kind": "source",
      "component": "open_amp",
      "upstream_symbol": "rpmsg_init_vdev",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg_virtio.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/modules/open-amp/open-amp/lib/CMakeFiles/open_amp.dir/rpmsg/rpmsg_virtio.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -14795,7 +14764,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "cancel_sync_locked",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -14886,7 +14855,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "submit_to_queue_locked",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -14977,7 +14946,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_init",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15037,7 +15006,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -15112,7 +15081,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_busy_get",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15171,7 +15140,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -15246,7 +15215,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "z_work_submit_to_queue",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15337,7 +15306,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_submit",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15428,7 +15397,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_cancel",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15487,7 +15456,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -15562,7 +15531,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_queue_init",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15621,7 +15590,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -15696,7 +15665,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_queue_start",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15759,7 +15728,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -15834,7 +15803,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_queue_drain",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -15925,7 +15894,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_init_delayable",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16016,7 +15985,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_schedule_for_queue",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16077,7 +16046,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -16152,7 +16121,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_schedule",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16243,7 +16212,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "k_work_reschedule_for_queue",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16304,7 +16273,7 @@
         "CONFIG_SPIN_VALIDATE": "y",
         "CONFIG_THREAD_LOCAL_STORAGE": "y",
         "CONFIG_ERRNO_IN_TLS": "n",
-        "CONFIG_TRACING": "y",
+        "CONFIG_TRACING": "n",
         "CONFIG_THREAD_MONITOR": "n",
         "CONFIG_THREAD_NAME": "n"
        },
@@ -16379,7 +16348,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_reschedule",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16470,7 +16439,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_cancel_delayable",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -16561,7 +16530,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_cancel_delayable_sync",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23388,7 +23357,7 @@
      "kind": "source",
      "component": "zephyr",
      "upstream_symbol": "bt_conn_le_param_update",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/conn.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23457,8 +23426,7 @@
         "CONFIG_BT_SETTINGS": "y",
         "CONFIG_NEWLIB_LIBC": "y",
         "CONFIG_NEWLIB_LIBC_NANO": "y",
-        "CONFIG_TRACING": "y",
-        "CONFIG_TRACING_QUEUE": "y"
+        "CONFIG_TRACING": "n"
        },
        "atomic_group": [
         "0x000564cc",
@@ -23522,7 +23490,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_l2cap_le_lookup_tx_cid",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -23578,7 +23546,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "bt_l2cap_le_lookup_rx_cid",
-     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/l2cap.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -25212,7 +25180,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "unschedule_locked",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -25303,7 +25271,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "notify_queue_locked",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -25394,7 +25362,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "cancel_async_locked",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -25485,7 +25453,7 @@
      "kind": "source",
      "component": "cpuapp_selected_sdk",
      "upstream_symbol": "k_work_delayable_busy_get",
-     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
+     "upstream_unit": "/private/tmp/g1-bt-no-trace-layout/zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj",
      "confidence": "high",
      "exclude_reconstruction": true,
      "decision": "adopt_upstream_exclude_reconstruction",
@@ -40956,11 +40924,11 @@
  "overlay_inputs": [
   {
    "path": "recon/ownership/app_build_collision_ownership.json",
-   "sha256": "4bea34c2f43cd5830b5b4a91460bb55bd0251d1285149aff933c030e0c33eae0"
+   "sha256": "4574114467c4cfdf806e906ba24f1e430a76958248892f981e7fe47cd318ee46"
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "cbf6410a58cb217b7682e926a9f2be77aa5fb807a55501fc93e7635c7764991f"
+   "sha256": "25ed2449c81284f152b65a6e79941c54f7be2b65e78612bf29cdf4f4dec504a4"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
@@ -40972,7 +40940,7 @@
   },
   {
    "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
-   "sha256": "bbf5da0afecc897fa05c859c9ae6e612f124ee833e12670a303dd2158e0223ae"
+   "sha256": "903bbb84f055473ebfe07d995e630e7f642811b71a43ca6c9ab65b9ae9597488"
   },
   {
    "path": "recon/ownership/app_settings_stock_atomic_adoption.json",
