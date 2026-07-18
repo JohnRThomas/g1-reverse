@@ -1,0 +1,486 @@
+{
+ "core": "net",
+ "current_additions": [
+  {
+   "analysis_address": "0x0101b4f4",
+   "checked": 5,
+   "cover_cases": 5,
+   "name": "FUN_0101b4f4",
+   "readable_name": "sdc_event_publish",
+   "receipt": "recon/ownership/net_sdc_event_publish_recovery.json",
+   "receipt_sha256": "6153a508f8e75686af4249d349152a62a6644c6ef3aa0bb85017e31c826b024e",
+   "source": "recon/net/src/FUN_0101b4f4.c",
+   "source_sha256": "9aef41538769aca5e3715fd52eee3e80669110008bcf6febeb9a869b69113778",
+   "status": "PASS",
+   "true_executable_extent": 88
+  },
+  {
+   "analysis_address": "0x0102a720",
+   "checked": 5,
+   "cover_cases": 5,
+   "name": "FUN_0102a720",
+   "prefix_events": 512,
+   "readable_name": "g1_cpunet_main",
+   "receipt": "recon/ownership/net_esb_boot_root.json",
+   "receipt_sha256": "a569b54e5f32a6bd9fa6bf53c89d94e8a80adcf4f9789527a23c1cb9dabb67d4",
+   "source": "recon/net/src/FUN_0102a720.c",
+   "source_sha256": "98639e8e9ebf1f48c0b8dae11463f3ef758e0261d236e419a15f82247e9b1c6f",
+   "status": "PASS",
+   "true_executable_extent": 1000
+  },
+  {
+   "analysis_address": "0x0102b3f0",
+   "checked": 7,
+   "cover_cases": 7,
+   "name": "FUN_0102b3f0",
+   "readable_name": "g1_esb_start_announcement",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_0102b3f0.c",
+   "source_sha256": "79b81e304b436aef5e717f5fd2c0d6a28bb6deac981ed7b39ff56561dd3e5bb6",
+   "status": "PASS",
+   "true_executable_extent": 152
+  },
+  {
+   "analysis_address": "0x0102b664",
+   "checked": 3,
+   "cover_cases": 3,
+   "name": "FUN_0102b664",
+   "readable_name": "g1_esb_radio_release",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_0102b664.c",
+   "source_sha256": "036d7cac3f339410c594aa38e32d6bdf98fd37943ed656887170354db477e36f",
+   "status": "PASS",
+   "true_executable_extent": 150
+  },
+  {
+   "analysis_address": "0x0102b718",
+   "checked": 40,
+   "cover_cases": 0,
+   "name": "FUN_0102b718",
+   "readable_name": "g1_esb_transport_start",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_0102b718.c",
+   "source_sha256": "7e2312c7f052bf17bd8d37d36ee34f71d93ce329bff23519a0da10671d522067",
+   "status": "PASS",
+   "true_executable_extent": 48
+  },
+  {
+   "analysis_address": "0x0102b758",
+   "checked": 43,
+   "cover_cases": 3,
+   "name": "FUN_0102b758",
+   "readable_name": "g1_esb_clock_transition",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_0102b758.c",
+   "source_sha256": "439941b690329bcb1a0bf5d84352811733d8bd00b7845aa3a63d7b7618f04f7e",
+   "status": "PASS",
+   "true_executable_extent": 48
+  },
+  {
+   "analysis_address": "0x01033858",
+   "checked": 3,
+   "cover_cases": 3,
+   "name": "FUN_01033858",
+   "readable_name": "esb_start_tx",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_01033858.c",
+   "source_sha256": "64ba030551457fa6c5ade93bb346671ca20b9dd4e9ba71131d7c5000ecb46edd",
+   "status": "PASS",
+   "true_executable_extent": 38
+  },
+  {
+   "analysis_address": "0x010339d0",
+   "checked": 4,
+   "cover_cases": 4,
+   "name": "FUN_010339d0",
+   "readable_name": "esb_tx_full",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_010339d0.c",
+   "source_sha256": "2c42de14b970937b2a34e91c51bb5b19b7a29005f41ea3a5d2e104ac45e75534",
+   "status": "PASS",
+   "true_executable_extent": 14
+  }
+ ],
+ "current_inventory_count": 1131,
+ "current_source_inventory_digest": "22c3671fd7994b424c3692e3b2aad250fe956b5480afebe819dbce337b8775e7",
+ "current_source_tree_fully_covered": true,
+ "frozen_parent": {
+  "inventory_count": 1090,
+  "path": "recon/analysis/cfg_sweep_net_recheck_overlay.json",
+  "sha256": "bb0936acde02f12ea6f0d3eb163bb210853c6c8e4fa109f6cb371345f25b8f55",
+  "unresolved_count": 0
+ },
+ "kind": "authoritative_cfg_sweep_current_corpus_overlay",
+ "overlay_counts": {
+  "FAIL": 0,
+  "PASS": 1131,
+  "compile_error": 0,
+  "other": 0,
+  "source_changed": 0,
+  "timeout": 0
+ },
+ "previous_current_inventory_count": 1123,
+ "prior_added_proofs": [
+  {
+   "analysis_address": "0x01009224",
+   "checked": 46,
+   "name": "FUN_01009224",
+   "receipt": "recon/ownership/net_link_gap_recovery.json",
+   "receipt_sha256": "5bf1304c8429532d9a819d16d7429c5eac1d70cadd1301bdb9d5b69dacb94e24",
+   "source": "recon/net/src/FUN_01009224.c",
+   "source_sha256": "ef7699c393d693a728e7637bfe3d5626fae634c97bd8d10e4b645a3c25765880",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100d3a0",
+   "checked": 6,
+   "name": "FUN_0100d3a0",
+   "receipt": "recon/ownership/net_link_gap6_recovery.json",
+   "receipt_sha256": "4aaf35bc07f3bfc8f66ed65f5824dfc0a1957f5c9a698fe6765c12e91729743b",
+   "source": "recon/net/src/FUN_0100d3a0.c",
+   "source_sha256": "92c178e3a4e3dc41021fd3419be098c8424b7498455bada397c24e7b2fa6e9de",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100f110",
+   "checked": 46,
+   "name": "FUN_0100f110",
+   "receipt": "recon/ownership/net_link_gap_recovery.json",
+   "receipt_sha256": "5bf1304c8429532d9a819d16d7429c5eac1d70cadd1301bdb9d5b69dacb94e24",
+   "source": "recon/net/src/FUN_0100f110.c",
+   "source_sha256": "116944ac4505149110d128074ec824c0c94a3ad375d609519e13ea59447d90f2",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100f5b4",
+   "checked": 6,
+   "name": "FUN_0100f5b4",
+   "receipt": "recon/ownership/net_link_gap6_recovery.json",
+   "receipt_sha256": "4aaf35bc07f3bfc8f66ed65f5824dfc0a1957f5c9a698fe6765c12e91729743b",
+   "source": "recon/net/src/FUN_0100f5b4.c",
+   "source_sha256": "d388a6f243623035007a0bcc5cb267bf5fc5c806becbe56f6d6774be44704f80",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100f6b0",
+   "checked": 11,
+   "name": "FUN_0100f6b0",
+   "receipt": "recon/ownership/net_link_gap9_recovery.json",
+   "receipt_sha256": "049f5d8dd33ea22b4d3532c0b22fdf07ad40e0ce05916a795db433c9d99bbc63",
+   "source": "recon/net/src/FUN_0100f6b0.c",
+   "source_sha256": "049470fe82f07764c42df62d0c5ea33d3bb5c9d29c8a21862ae337790fc6bcba",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100f7e0",
+   "checked": 56,
+   "name": "FUN_0100f7e0",
+   "receipt": "recon/ownership/net_link_gap_recovery.json",
+   "receipt_sha256": "5bf1304c8429532d9a819d16d7429c5eac1d70cadd1301bdb9d5b69dacb94e24",
+   "source": "recon/net/src/FUN_0100f7e0.c",
+   "source_sha256": "ea2334eeb6e33535e63219f5b245c177d44a0d8154927dc95c479cea7fdfdd69",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0100fae4",
+   "checked": 43,
+   "name": "FUN_0100fae4",
+   "receipt": "recon/ownership/net_link_gap_recovery.json",
+   "receipt_sha256": "5bf1304c8429532d9a819d16d7429c5eac1d70cadd1301bdb9d5b69dacb94e24",
+   "source": "recon/net/src/FUN_0100fae4.c",
+   "source_sha256": "d6b61ec5ef90df76f13346926d3070280ae94ff17e7516f06f1b43fe5ec64e05",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010108b8",
+   "checked": 42,
+   "name": "FUN_010108b8",
+   "receipt": "recon/analysis/net_link_gap2_recovery_receipt.json",
+   "receipt_sha256": "11c6b8c32d85d4475ba58c4514cbff5faf31eecb4179649881afdcd4e81b0476",
+   "source": "recon/net/src/FUN_010108b8.c",
+   "source_sha256": "d89caafb198b17b31d2e119d48a6b4018c132b20db829b4c03a2250ff34d5169",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01013d90",
+   "checked": 4,
+   "name": "FUN_01013d90",
+   "receipt": "recon/analysis/net_link_gap2_recovery_receipt.json",
+   "receipt_sha256": "11c6b8c32d85d4475ba58c4514cbff5faf31eecb4179649881afdcd4e81b0476",
+   "source": "recon/net/src/FUN_01013d90.c",
+   "source_sha256": "ec3be2e0edb17b94d7de2b849765dbeaf4e6e68b3e8ec910db6327668a6401e1",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01016250",
+   "checked": 45,
+   "name": "FUN_01016250",
+   "receipt": "recon/analysis/net_link_gap2_recovery_receipt.json",
+   "receipt_sha256": "11c6b8c32d85d4475ba58c4514cbff5faf31eecb4179649881afdcd4e81b0476",
+   "source": "recon/net/src/FUN_01016250.c",
+   "source_sha256": "b5cb27695cf68aa1b86cb26c9915ae677c8750261b808bb8dfe780fe16b9b806",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01019088",
+   "checked": 8,
+   "name": "FUN_01019088",
+   "receipt": "recon/ownership/net_link_gap6_recovery.json",
+   "receipt_sha256": "4aaf35bc07f3bfc8f66ed65f5824dfc0a1957f5c9a698fe6765c12e91729743b",
+   "source": "recon/net/src/FUN_01019088.c",
+   "source_sha256": "3f436438a15436571c6f335bbcd680dbf09f9a54aa79229f60dfbca89e859fad",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0101bbc8",
+   "checked": 4,
+   "name": "FUN_0101bbc8",
+   "receipt": "recon/analysis/net_link_gap2_recovery_receipt.json",
+   "receipt_sha256": "11c6b8c32d85d4475ba58c4514cbff5faf31eecb4179649881afdcd4e81b0476",
+   "source": "recon/net/src/FUN_0101bbc8.c",
+   "source_sha256": "41dd4b5189c7f41b29452cf9e99907b153a54dbcf1f53d75498bc22ad5a8446b",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0101e404",
+   "checked": 13,
+   "name": "FUN_0101e404",
+   "receipt": "recon/ownership/net_link_gap3_recovery.json",
+   "receipt_sha256": "72bb0db3108049b3323c9b634fd2272a9318497d0565c65d22cb6a605e3651d7",
+   "source": "recon/net/src/FUN_0101e404.c",
+   "source_sha256": "02c1eaab5b8af99b493d0bf80183d1f152dfa7795550ef0998a360e7fbf9d466",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01025734",
+   "checked": 7,
+   "name": "FUN_01025734",
+   "receipt": "recon/ownership/net_link_gap3_recovery.json",
+   "receipt_sha256": "72bb0db3108049b3323c9b634fd2272a9318497d0565c65d22cb6a605e3651d7",
+   "source": "recon/net/src/FUN_01025734.c",
+   "source_sha256": "0b43838de026539ad8eeb22d8238fac5b583e3cf9daed6374ff96dfd3a02e779",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01025bf8",
+   "checked": 40,
+   "name": "FUN_01025bf8",
+   "receipt": "recon/ownership/net_link_gap3_recovery.json",
+   "receipt_sha256": "72bb0db3108049b3323c9b634fd2272a9318497d0565c65d22cb6a605e3651d7",
+   "source": "recon/net/src/FUN_01025bf8.c",
+   "source_sha256": "a68ef034cb968166b33824ecc2c5036802adbc8e43c9653288869d4779c636e8",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01025fd4",
+   "checked": 4,
+   "name": "FUN_01025fd4",
+   "receipt": "recon/ownership/net_link_gap6_recovery.json",
+   "receipt_sha256": "4aaf35bc07f3bfc8f66ed65f5824dfc0a1957f5c9a698fe6765c12e91729743b",
+   "source": "recon/net/src/FUN_01025fd4.c",
+   "source_sha256": "7501caa39d18f47bffcd71a1545f5a0e2818a088cd6bc41e0d4e7a757b9f8cbf",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102602e",
+   "checked": 5,
+   "name": "FUN_0102602e",
+   "receipt": "recon/ownership/net_link_gap7_recovery.json",
+   "receipt_sha256": "4e366d56e54a9db172914b663e3e2bfb94a8857c37be8873f639ea707f57bd5a",
+   "source": "recon/net/src/FUN_0102602e.c",
+   "source_sha256": "15e999ea2edbaa1dc96760f92186741f638bd834f918a4937a4c288d9320be4e",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102609e",
+   "checked": 5,
+   "name": "FUN_0102609e",
+   "receipt": "recon/ownership/net_link_gap7_recovery.json",
+   "receipt_sha256": "4e366d56e54a9db172914b663e3e2bfb94a8857c37be8873f639ea707f57bd5a",
+   "source": "recon/net/src/FUN_0102609e.c",
+   "source_sha256": "ebb0d2eda7627dd4fa57114735af468d6add4a5322a416015b89c5109a93e23b",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102689c",
+   "checked": 6,
+   "name": "FUN_0102689c",
+   "receipt": "recon/ownership/net_link_gap3_recovery.json",
+   "receipt_sha256": "72bb0db3108049b3323c9b634fd2272a9318497d0565c65d22cb6a605e3651d7",
+   "source": "recon/net/src/FUN_0102689c.c",
+   "source_sha256": "a2bf9100d28ee8f93e7137129c37773641dfbdd3df73657ea09e023dfad9b4e5",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010271da",
+   "checked": 1,
+   "name": "FUN_010271da",
+   "receipt": "recon/ownership/net_link_gap4_recovery.json",
+   "receipt_sha256": "c626b16cc78a1a1aefe43288d0ea05cc649ee3bae3410ea1e855c4dddaa9a9e1",
+   "source": "recon/net/src/FUN_010271da.c",
+   "source_sha256": "9d16b0c70aea3581c563b2fee9b6bcd04705f2a2faa01e7cde7cd01079d66cbf",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x0102722c",
+   "checked": 6,
+   "name": "FUN_0102722c",
+   "receipt": "recon/ownership/net_link_gap4_recovery.json",
+   "receipt_sha256": "c626b16cc78a1a1aefe43288d0ea05cc649ee3bae3410ea1e855c4dddaa9a9e1",
+   "source": "recon/net/src/FUN_0102722c.c",
+   "source_sha256": "cf2173078f62ad7cf2c268a17038d3526426b3230449961476abcb18621e2146",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01027894",
+   "checked": 2,
+   "name": "FUN_01027894",
+   "receipt": "recon/ownership/net_link_gap7_recovery.json",
+   "receipt_sha256": "4e366d56e54a9db172914b663e3e2bfb94a8857c37be8873f639ea707f57bd5a",
+   "source": "recon/net/src/FUN_01027894.c",
+   "source_sha256": "50d9ebeb1c1707ec94ea1afb335e05e720b2f8e187c676b29463ab255f62043c",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010278bc",
+   "checked": 2,
+   "name": "FUN_010278bc",
+   "receipt": "recon/ownership/net_link_gap7_recovery.json",
+   "receipt_sha256": "4e366d56e54a9db172914b663e3e2bfb94a8857c37be8873f639ea707f57bd5a",
+   "source": "recon/net/src/FUN_010278bc.c",
+   "source_sha256": "d8d17a2ed2b1ad8559b01c8f77b0419a5f0103349c95e0d5bbd34f2611ba4ce0",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010278e4",
+   "checked": 5,
+   "name": "FUN_010278e4",
+   "receipt": "recon/ownership/net_link_gap4_recovery.json",
+   "receipt_sha256": "c626b16cc78a1a1aefe43288d0ea05cc649ee3bae3410ea1e855c4dddaa9a9e1",
+   "source": "recon/net/src/FUN_010278e4.c",
+   "source_sha256": "18e192002002aa5851cccb5d9d837ed89226d3950b305279b587d9ae41022ca7",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01027ad2",
+   "checked": 3,
+   "name": "FUN_01027ad2",
+   "receipt": "recon/ownership/net_link_gap8_recovery.json",
+   "receipt_sha256": "b8a601d522f3abca0c3045cc14a77eef22b9a2f51f1d7b2f2b2d5307bfa00cb4",
+   "source": "recon/net/src/FUN_01027ad2.c",
+   "source_sha256": "ed9c9a6ebabe83fc2ba5b5bc7752b60e1732fc68e461f3234e2aac8a4c6f68cb",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01027e1c",
+   "checked": 7,
+   "name": "FUN_01027e1c",
+   "receipt": "recon/ownership/net_link_gap4_recovery.json",
+   "receipt_sha256": "c626b16cc78a1a1aefe43288d0ea05cc649ee3bae3410ea1e855c4dddaa9a9e1",
+   "source": "recon/net/src/FUN_01027e1c.c",
+   "source_sha256": "c5701621c5f6340f9c2e8732bd9123484013013ff2ee4ff7ca97d5fa7a97a2b9",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01027fa6",
+   "checked": 7,
+   "name": "FUN_01027fa6",
+   "receipt": "recon/ownership/net_link_gap8_recovery.json",
+   "receipt_sha256": "b8a601d522f3abca0c3045cc14a77eef22b9a2f51f1d7b2f2b2d5307bfa00cb4",
+   "source": "recon/net/src/FUN_01027fa6.c",
+   "source_sha256": "a6019ee3d2acec2a6fffce2e5e9d94c0dbdc80e85fea113807f2aef061d204a8",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01028010",
+   "checked": 2,
+   "name": "FUN_01028010",
+   "receipt": "recon/ownership/net_link_gap5_recovery.json",
+   "receipt_sha256": "7c40f6b453743ac2350ff94da705238f3158e8459bd6cc40a8ade4f2daf9d4a2",
+   "source": "recon/net/src/FUN_01028010.c",
+   "source_sha256": "edaa4c01372e21ba5e23a695484183b707fb922af3c048d6c11ecf2bd52cac98",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01028034",
+   "checked": 5,
+   "name": "FUN_01028034",
+   "receipt": "recon/ownership/net_link_gap5_recovery.json",
+   "receipt_sha256": "7c40f6b453743ac2350ff94da705238f3158e8459bd6cc40a8ade4f2daf9d4a2",
+   "source": "recon/net/src/FUN_01028034.c",
+   "source_sha256": "2aac00000a5a707e83211ab895b4e520ffb3db96fdb81912dbc3dcf33b034578",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01028112",
+   "checked": 5,
+   "name": "FUN_01028112",
+   "receipt": "recon/ownership/net_link_gap8_recovery.json",
+   "receipt_sha256": "b8a601d522f3abca0c3045cc14a77eef22b9a2f51f1d7b2f2b2d5307bfa00cb4",
+   "source": "recon/net/src/FUN_01028112.c",
+   "source_sha256": "af4de329cf6c127f16622e22b971dacbe908b368d80cb7fab3a94c87097c31e4",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x01028134",
+   "checked": 3,
+   "name": "FUN_01028134",
+   "receipt": "recon/ownership/net_link_gap5_recovery.json",
+   "receipt_sha256": "7c40f6b453743ac2350ff94da705238f3158e8459bd6cc40a8ade4f2daf9d4a2",
+   "source": "recon/net/src/FUN_01028134.c",
+   "source_sha256": "880ee591d42458b377bf8869c8436ae0a9c7efe9610e879da8bbe3a41256cd15",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010283a4",
+   "checked": 5,
+   "name": "FUN_010283a4",
+   "receipt": "recon/ownership/net_link_gap8_recovery.json",
+   "receipt_sha256": "b8a601d522f3abca0c3045cc14a77eef22b9a2f51f1d7b2f2b2d5307bfa00cb4",
+   "source": "recon/net/src/FUN_010283a4.c",
+   "source_sha256": "66b0cc3042b744b25f6fd582101cfc3da1a251f079c714586130de44b3ceec43",
+   "status": "PASS"
+  },
+  {
+   "analysis_address": "0x010283b8",
+   "checked": 6,
+   "name": "FUN_010283b8",
+   "receipt": "recon/ownership/net_link_gap5_recovery.json",
+   "receipt_sha256": "7c40f6b453743ac2350ff94da705238f3158e8459bd6cc40a8ade4f2daf9d4a2",
+   "source": "recon/net/src/FUN_010283b8.c",
+   "source_sha256": "42d3152a845576be2471da78cab51220042a09dec81025e4c86e83a224225931",
+   "status": "PASS"
+  }
+ ],
+ "reverified_existing": [
+  {
+   "analysis_address": "0x0102b31c",
+   "checked": 43,
+   "cover_cases": 3,
+   "name": "FUN_0102b31c",
+   "readable_name": "g1_esb_radio_configure",
+   "receipt": "recon/ownership/net_esb_clock_start_closure.json",
+   "receipt_sha256": "7ef95ccf3ca2839ecc35d7073ea71d65dea76d215c06d31c90d5fa0c51b06766",
+   "source": "recon/net/src/FUN_0102b31c.c",
+   "source_sha256": "ea49b90b1c537039956fec5647eaf7ce489302450af96bfc67993f246f9b5c72",
+   "status": "PASS",
+   "true_executable_extent": 162
+  }
+ ],
+ "schema": 1,
+ "source_drift": [],
+ "tool_hashes": {
+  "tools/cfg_verify.py": "56a51d52bdb25fce73454ff47d836220464518defc66b42c56f965f1eda9b2a7",
+  "tools/net_extract.py": "ec80c6ed622adce759db81b78a874dc70d9338215800e1d25c023ca08403a6d9",
+  "tools/net_recon_kit.py": "9fde04632cdc6ba306352b83a75f3d8fe0ab453da8524fff060d17832aedfef0",
+  "tools/parity/emu.py": "0e2503bbe2c517ee4c397a41ceec4e5e7e6d9e8ff26f5f5ff3257537f8e6ace0",
+  "tools/parity/recon.py": "22c5cc8d8113ac203fb96091fcffa392902dccd22792148958fcba40a4d5bbc2"
+ },
+ "unresolved_count": 0
+}
