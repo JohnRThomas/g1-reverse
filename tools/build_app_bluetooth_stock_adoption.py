@@ -8,6 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]; BUILD=Path('/private/tmp/g1-bt-stock-b
 CONFIG=BUILD/'zephyr/.config'; OBJROOT=BUILD/'zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir'
 IMAGE=ROOT/'app_update.bin'; CATALOG=ROOT/'recon/ownership/app_build_collision_ownership.json'
 OUTPUT=ROOT/'recon/ownership/app_bluetooth_stock_atomic_adoption.json'
+FINAL=ROOT/'recon/ownership/app_final_zero_collision.json'
 CFG={'CONFIG_NEWLIB_LIBC':'y','CONFIG_NEWLIB_LIBC_NANO':'y','CONFIG_ASSERT':'y','CONFIG_ASSERT_LEVEL':'2',
  'CONFIG_BT_PERIPHERAL':'y','CONFIG_BT_CENTRAL':'n','CONFIG_BT_GATT_CLIENT':'y','CONFIG_BT_GATT_DYNAMIC_DB':'y',
  'CONFIG_BT_SETTINGS':'y','CONFIG_BT_MAX_PAIRED':'2','CONFIG_BT_ID_MAX':'1','CONFIG_BT_PRIVACY':'n',
@@ -65,10 +66,22 @@ def build():
    else: r['hidden_owner_closure']=True
    if corrected: r['identity_correction']={'baseline_collision_symbol':col['current_symbol'] if col else sym,'corrected_upstream_symbol':sym,'corrected_readable_identity':sym,'corrected_upstream_source':src,'upstream_linkage':'public'}
    out.append(r)
+ id_closure={
+  'source':'zephyr/subsys/bluetooth/host/id.c','source_sha256':sha(Path('/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c')),
+  'configured_object':str(OBJROOT/'id.c.obj'),'configured_object_sha256':sha(OBJROOT/'id.c.obj'),
+  'configured_build':str(CONFIG),'configured_build_sha256':sha(CONFIG),
+  'resolved_atomic_group':['0x00054ea8','0x0005505c'],
+  'functions':[
+   {'va':'0x00054ea8','symbol':'bt_id_add.part.0','normalized_instruction_sha256':'84816469d032a1ea337194e09701e62ac61c8817a94d28917dde933b745ceaa9'},
+   {'va':'0x0005505c','symbol':'bt_id_add','normalized_instruction_sha256':'3a41be90ac8e2ebf2b36adefa4718d9cc99433bb41c6262a348c98b76316674d'},
+   {'va':'0x00080fd2','symbol':'hci_id_add','normalized_instruction_sha256':'81ac0e0a4029f8041eea2d1af692acecee1e87ec66cac41afa62ad5dc0a37231'}],
+  'final_receipt':'recon/ownership/app_final_zero_collision.json','final_receipt_sha256':sha(FINAL),
+  'final_normal_link_collisions':0,'recovered_c_preserved':True}
  return {'schema':1,'core':'app','status':'authorized_atomic','zephyr_commit':'83980fe1679441be9b0e1db556a353f6118fe14f',
-  'configured_build_receipts':[str(CONFIG)],'policy':{'retain_recovered_c_as_evidence':True,'retain_namespaced_variant':['0x0008149a g1_recon_bt_conn_set_security'],'defer_partial_owner':['0x00054ea8 bt_id_add'],'sdc_remains_report_only':True},
-  'measured_normal_link_delta':{'before':61,'after':28,'removed_count':33,'added':[],
-    'remaining_bluetooth_collisions':['bt_id_add'],'unresolved':['FUN_0005463e','FUN_00054688']},'authorizations':out}
+  'configured_build_receipts':[str(CONFIG)],'policy':{'retain_recovered_c_as_evidence':True,'retain_namespaced_variant':['0x0008149a g1_recon_bt_conn_set_security'],'resolved_former_partial_owner':['0x00054ea8 bt_id_add.part.0','0x0005505c bt_id_add'],'sdc_remains_report_only':True},
+  'measured_normal_link_delta':{'historical':True,'before':61,'after':28,'removed_count':33,'added':[],
+    'remaining_bluetooth_collisions_at_that_milestone':['bt_id_add'],'unresolved':['FUN_0005463e','FUN_00054688']},
+  'id_source_closure':id_closure,'authorizations':out}
 def main():
  a=argparse.ArgumentParser(); a.add_argument('--check',action='store_true'); x=a.parse_args(); text=json.dumps(build(),indent=1,sort_keys=True)+'\n'
  if x.check:

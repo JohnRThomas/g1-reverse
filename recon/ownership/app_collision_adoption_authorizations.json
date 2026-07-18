@@ -9,6 +9,8 @@
  },
  "configured_build_receipts": [
   "/private/tmp/g1-app-residue-current-0718/zephyr/.config",
+  "/private/tmp/g1-bt-stock-build/zephyr/.config",
+  "/private/tmp/g1-fwconfig-shadow/zephyr/.config",
   "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/.config",
   "/tmp/g1-fwconfig-shadow/zephyr/.config"
  ],
@@ -8705,6 +8707,268 @@
     "corrected_upstream_symbol": "k_work_delayable_busy_get",
     "corrected_readable_identity": "k_work_delayable_busy_get",
     "corrected_upstream_source": "zephyr/kernel/work.c",
+    "upstream_linkage": "public"
+   }
+  },
+  {
+   "batch": "COLLISION-FINAL-HEAP",
+   "va": "0x0004b3c8",
+   "raw_symbol": "FUN_0004b3c8",
+   "symbol": "sys_heap_init",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_SYS_HEAP_ALLOC_LOOPS": "3",
+    "CONFIG_SYS_HEAP_AUTO": "y"
+   },
+   "atomic_group": [
+    "0x0004b3c8",
+    "0x0007e12a"
+   ],
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_source_sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+   "upstream_object": "/private/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+   "upstream_object_sha256": "6864b60a30cf1d79d772eb76369bd9e10fa5b8bc5185d7c20383d7c96fc2408d",
+   "configured_build": "/private/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "reconstruction_source": "recon/app/src/FUN_0004b3c8.c",
+   "reconstruction_source_sha256": "43fcf8c0c56d08e664b514d8957b1d0741c53283dbc1ad41003068ec818cd46d",
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 1
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004b3c8",
+     "0x0007e12a"
+    ],
+    "new_undefined_symbols": [],
+    "same_source_unit_collision_symbols": [
+     "sys_heap_alloc",
+     "sys_heap_init"
+    ],
+    "exact_firmware_sections": 19,
+    "absent_configured_sections": [
+     "sys_heap_usable_size",
+     "sys_heap_aligned_realloc"
+    ]
+   },
+   "collision_receipt_sha256": "a4ab707b5431793696e8c297e6acc2a597254a737ce5f77fe2a8b3a5be53e11f",
+   "baseline_upstream_object_sha256": "d9ff35bd3289bd2e73fef48412d24ac02a4b724798779ed7b8b31244801272dc",
+   "baseline_upstream_source_sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "firmware_code_size": 308,
+   "upstream_code_size": 308,
+   "upstream_symbol_size": 308,
+   "relocation_offsets": [
+    24,
+    30,
+    40,
+    80,
+    86,
+    112,
+    124,
+    158,
+    168,
+    180,
+    194,
+    202,
+    214,
+    222,
+    234,
+    244,
+    268,
+    274,
+    284,
+    288,
+    292,
+    296,
+    300,
+    304,
+    254
+   ],
+   "normalized_code_sha256": "78363ad6c5beeaf0a72c72bb04865d568e0ea6bc687aa3ab39c2398696877d26",
+   "instruction_exact": true,
+   "relocation_masked_byte_exact": true
+  },
+  {
+   "batch": "COLLISION-FINAL-HEAP",
+   "va": "0x0007e12a",
+   "raw_symbol": "FUN_0007e12a",
+   "symbol": "sys_heap_alloc",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_SYS_HEAP_ALLOC_LOOPS": "3",
+    "CONFIG_SYS_HEAP_AUTO": "y"
+   },
+   "atomic_group": [
+    "0x0004b3c8",
+    "0x0007e12a"
+   ],
+   "upstream_source": "zephyr/lib/os/heap.c",
+   "upstream_source_sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+   "upstream_object": "/private/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+   "upstream_object_sha256": "6864b60a30cf1d79d772eb76369bd9e10fa5b8bc5185d7c20383d7c96fc2408d",
+   "configured_build": "/private/tmp/g1-fwconfig-shadow/zephyr/.config",
+   "configured_build_sha256": "2068822481d4548d8bed810b4a95217dfee280557088eff1fbad387646a5270e",
+   "reconstruction_source": "recon/app/src/sys_heap_alloc.c",
+   "reconstruction_source_sha256": "d86c4bb50783adc5e249c02758c1b1724f051af4985ed676a9b6734fd39772ec",
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 1
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x0004b3c8",
+     "0x0007e12a"
+    ],
+    "new_undefined_symbols": [],
+    "same_source_unit_collision_symbols": [
+     "sys_heap_alloc",
+     "sys_heap_init"
+    ],
+    "exact_firmware_sections": 19,
+    "absent_configured_sections": [
+     "sys_heap_usable_size",
+     "sys_heap_aligned_realloc"
+    ]
+   },
+   "collision_receipt_sha256": "aab449a61998519f3743528c65c7772b4468125189e73bdf0890d78afbac200a",
+   "baseline_upstream_object_sha256": "d9ff35bd3289bd2e73fef48412d24ac02a4b724798779ed7b8b31244801272dc",
+   "baseline_upstream_source_sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "firmware_code_size": 100,
+   "upstream_code_size": 100,
+   "upstream_symbol_size": 100,
+   "relocation_offsets": [
+    18,
+    28,
+    42,
+    58,
+    66,
+    76
+   ],
+   "normalized_code_sha256": "3ff46b2bb0c78c762668fa6ea4e6070bc1df223f70b431668a76774cb1bac926",
+   "instruction_exact": true,
+   "relocation_masked_byte_exact": true
+  },
+  {
+   "batch": "COLLISION-FINAL-BT-ID",
+   "va": "0x00054ea8",
+   "raw_symbol": "FUN_00054ea8",
+   "symbol": "bt_id_add",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_BT_ID_MAX": "1",
+    "CONFIG_BT_PRIVACY": "n"
+   },
+   "atomic_group": [
+    "0x00054ea8",
+    "0x0005505c"
+   ],
+   "upstream_source": "zephyr/subsys/bluetooth/host/id.c",
+   "upstream_source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
+   "upstream_object": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+   "upstream_object_sha256": "912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+   "configured_build": "/private/tmp/g1-bt-stock-build/zephyr/.config",
+   "configured_build_sha256": "3b157db726155f31ba09c0bac1f7c4cc48d26e00d578ee39d00f8fcf552959df",
+   "reconstruction_source": "recon/app/src/FUN_00054ea8.c",
+   "reconstruction_source_sha256": "f30957aa357219fe4608d55fbe56a1b0e23e3c5a8ad9a405e21360369633f0c6",
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 1
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x00054ea8",
+     "0x0005505c"
+    ],
+    "new_undefined_symbols": []
+   },
+   "collision_receipt_sha256": "075ca4378da1fbbd57492fc6b9a5dead688dfd62f081be7577caa9b894f6600d",
+   "baseline_upstream_object_sha256": "4168b3021e0ce5879bee7df14a7f7e7a3cf021e66a643c58feb9512808fd67fd",
+   "baseline_upstream_source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
+   "baseline_configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "firmware_code_size": 360,
+   "upstream_code_size": 360,
+   "upstream_symbol_size": 360,
+   "normalized_code_sha256": "84816469d032a1ea337194e09701e62ac61c8817a94d28917dde933b745ceaa9",
+   "instruction_exact": true,
+   "relocation_masked_byte_exact": false,
+   "instruction_normalization": "branch/literal/relocation-normalized configured instruction stream",
+   "identity_correction": {
+    "baseline_collision_symbol": "bt_id_add",
+    "corrected_upstream_symbol": "bt_id_add.part.0",
+    "corrected_readable_identity": "bt_id_add_part_0",
+    "corrected_upstream_source": "zephyr/subsys/bluetooth/host/id.c",
+    "upstream_linkage": "translation_unit_local"
+   }
+  },
+  {
+   "batch": "COLLISION-FINAL-BT-ID",
+   "va": "0x0005505c",
+   "raw_symbol": "FUN_0005505c",
+   "symbol": "bt_id_add",
+   "status": "authorized",
+   "configuration_variant_exact": true,
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_BT_ID_MAX": "1",
+    "CONFIG_BT_PRIVACY": "n"
+   },
+   "atomic_group": [
+    "0x00054ea8",
+    "0x0005505c"
+   ],
+   "upstream_source": "zephyr/subsys/bluetooth/host/id.c",
+   "upstream_source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
+   "upstream_object": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+   "upstream_object_sha256": "912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+   "configured_build": "/private/tmp/g1-bt-stock-build/zephyr/.config",
+   "configured_build_sha256": "3b157db726155f31ba09c0bac1f7c4cc48d26e00d578ee39d00f8fcf552959df",
+   "reconstruction_source": "recon/app/src/FUN_0005505c.c",
+   "reconstruction_source_sha256": "71e5ae49ed84705331f473acf95ec7cc9a78597f5d30e2ecb560477e3b3b2c29",
+   "cfg_verify_cases": 1,
+   "owner_cfg_verify": {
+    "status": "PASS",
+    "cases": 1
+   },
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "exclude_only": [
+     "0x00054ea8",
+     "0x0005505c"
+    ],
+    "new_undefined_symbols": []
+   },
+   "firmware_code_size": 56,
+   "upstream_code_size": 56,
+   "upstream_symbol_size": 56,
+   "normalized_code_sha256": "3a41be90ac8e2ebf2b36adefa4718d9cc99433bb41c6262a348c98b76316674d",
+   "instruction_exact": true,
+   "relocation_masked_byte_exact": false,
+   "instruction_normalization": "branch/literal/relocation-normalized configured instruction stream",
+   "hidden_owner_closure": true,
+   "identity_correction": {
+    "baseline_collision_symbol": "ble_privacy_id_add",
+    "corrected_upstream_symbol": "bt_id_add",
+    "corrected_readable_identity": "bt_id_add",
+    "corrected_upstream_source": "zephyr/subsys/bluetooth/host/id.c",
     "upstream_linkage": "public"
    }
   }

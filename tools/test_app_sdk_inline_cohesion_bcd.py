@@ -13,7 +13,9 @@ GCC = ("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
 NM = ("/Users/freedomcoder/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/"
       "arm-zephyr-eabi-nm")
 SOURCES = {
-    "bt_id_add.c": {"FUN_00080fd2"},
+    # 0x54ea8 is the source-local implementation part.  The corrected public
+    # bt_id_add wrapper lives at 0x5505c and intentionally has no hci helper.
+    "bt_id_add_part_0.c": {"hci_id_add"},
     "log_output_dropped_process.c": {"buffer_write"},
     "compare_set.c": {"compare_int_lock", "event_clear"},
 }

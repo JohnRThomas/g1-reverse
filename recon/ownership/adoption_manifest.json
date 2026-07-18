@@ -72,11 +72,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 445,
-    "exclude_reconstruction": 430,
+    "entries": 449,
+    "exclude_reconstruction": 434,
     "retain_reconstruction": 15,
     "by_kind": {
-     "source": 295,
+     "source": 299,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -198,6 +198,99 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_complete.c:1340",
         "reconstruction_input": "app/libapp.a(z_cbvprintf_impl.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/cbprintf_complete.c:1340: multiple definition of `z_cbvprintf_impl'; app/libapp.a(z_cbvprintf_impl.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/z_cbvprintf_impl.c:1195: first defined here"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0004b3c8",
+     "raw_symbol": "FUN_0004b3c8",
+     "current_symbol": "sys_heap_init",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "sys_heap_init",
+     "upstream_unit": "/private/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold",
+        "operand_shape_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.701149,
+        "shape": 0.666667,
+        "length": 0.626168,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "sys_heap*",
+         "void*",
+         "size_t"
+        ],
+        "variadic": false,
+        "decl_line": 485
+       },
+       "upstream_source": {
+        "path": "zephyr/lib/os/heap.c",
+        "sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/libzephyr.a(heap.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.h:227",
+        "reconstruction_input": "app/libapp.a(sys_heap_init.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.h:227: multiple definition of `sys_heap_init'; app/libapp.a(sys_heap_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_init.c:39: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-FINAL-HEAP",
+       "instruction_exact": true,
+       "normalized_code_sha256": "78363ad6c5beeaf0a72c72bb04865d568e0ea6bc687aa3ab39c2398696877d26",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_SYS_HEAP_ALLOC_LOOPS": "3",
+        "CONFIG_SYS_HEAP_AUTO": "y"
+       },
+       "atomic_group": [
+        "0x0004b3c8",
+        "0x0007e12a"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004b3c8",
+         "0x0007e12a"
+        ],
+        "new_undefined_symbols": [],
+        "same_source_unit_collision_symbols": [
+         "sys_heap_alloc",
+         "sys_heap_init"
+        ],
+        "exact_firmware_sections": 19,
+        "absent_configured_sections": [
+         "sys_heap_usable_size",
+         "sys_heap_aligned_realloc"
+        ]
        }
       }
      ]
@@ -3912,6 +4005,139 @@
          "bt_hci_cmd_create",
          "bt_send"
         ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x00054ea8",
+     "raw_symbol": "FUN_00054ea8",
+     "current_symbol": "bt_id_add_part_0",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "bt_id_add.part.0",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "instruction_length_score_below_threshold",
+        "opcode_score_below_threshold",
+        "operand_shape_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.242857,
+        "shape": 0.157143,
+        "length": 0.176471,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void",
+        "params": [
+         "bt_keys*"
+        ],
+        "variadic": false,
+        "decl_line": 913
+       },
+       "upstream_source": {
+        "path": "zephyr/subsys/bluetooth/host/id.c",
+        "sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/subsys/bluetooth/host/libsubsys__bluetooth__host.a(id.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:915",
+        "reconstruction_input": "app/libapp.a(bt_id_add.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/subsys/bluetooth/host/id.c:915: multiple definition of `bt_id_add'; app/libapp.a(bt_id_add.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/bt_id_add.c:74: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-FINAL-BT-ID",
+       "instruction_exact": true,
+       "normalized_code_sha256": "84816469d032a1ea337194e09701e62ac61c8817a94d28917dde933b745ceaa9",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_BT_ID_MAX": "1",
+        "CONFIG_BT_PRIVACY": "n"
+       },
+       "identity_correction": {
+        "baseline_collision_symbol": "bt_id_add",
+        "corrected_upstream_symbol": "bt_id_add.part.0",
+        "corrected_readable_identity": "bt_id_add_part_0",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/id.c",
+        "upstream_linkage": "translation_unit_local"
+       },
+       "atomic_group": [
+        "0x00054ea8",
+        "0x0005505c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00054ea8",
+         "0x0005505c"
+        ],
+        "new_undefined_symbols": []
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x0005505c",
+     "raw_symbol": "FUN_0005505c",
+     "current_symbol": "bt_id_add",
+     "kind": "source",
+     "component": "cpuapp_selected_sdk",
+     "upstream_symbol": "bt_id_add",
+     "upstream_unit": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "A corrected durable identity exposed an exact configured public owner inside an atomically adopted SDK source unit.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_hidden_owner_adoption_authority",
+       "batch": "COLLISION-FINAL-BT-ID",
+       "instruction_exact": true,
+       "normalized_code_sha256": "3a41be90ac8e2ebf2b36adefa4718d9cc99433bb41c6262a348c98b76316674d",
+       "cfg_verify_cases": 1,
+       "identity_correction": {
+        "baseline_collision_symbol": "ble_privacy_id_add",
+        "corrected_upstream_symbol": "bt_id_add",
+        "corrected_readable_identity": "bt_id_add",
+        "corrected_upstream_source": "zephyr/subsys/bluetooth/host/id.c",
+        "upstream_linkage": "public"
+       },
+       "atomic_group": [
+        "0x00054ea8",
+        "0x0005505c"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x00054ea8",
+         "0x0005505c"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]
@@ -20323,6 +20549,96 @@
     },
     {
      "core": "app",
+     "va": "0x0007e12a",
+     "raw_symbol": "FUN_0007e12a",
+     "current_symbol": "sys_heap_alloc",
+     "kind": "source",
+     "component": "zephyr",
+     "upstream_symbol": "sys_heap_alloc",
+     "upstream_unit": "/private/tmp/g1-fwconfig-shadow/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [
+        "opcode_score_below_threshold"
+       ],
+       "signature_match": {
+        "opcode": 0.896552,
+        "shape": 0.896552,
+        "length": 0.891304,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "void*",
+        "params": [
+         "sys_heap*",
+         "size_t"
+        ],
+        "variadic": false,
+        "decl_line": 263
+       },
+       "upstream_source": {
+        "path": "zephyr/lib/os/heap.c",
+        "sha256": "56662aa35c280aae3539f0f2f56e741917dd65a04ffa3c0190d7ea9ca9847278",
+        "repository": "zephyr",
+        "commit": "83980fe1679441be9b0e1db556a353f6118fe14f"
+       },
+       "link_provenance": {
+        "owner_input": "zephyr/libzephyr.a(heap.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:264",
+        "reconstruction_input": "app/libapp.a(sys_heap_alloc.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.c:264: multiple definition of `sys_heap_alloc'; app/libapp.a(sys_heap_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_alloc.c:18: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-FINAL-HEAP",
+       "instruction_exact": true,
+       "normalized_code_sha256": "3ff46b2bb0c78c762668fa6ea4e6070bc1df223f70b431668a76774cb1bac926",
+       "cfg_verify_cases": 1,
+       "configuration_variant_exact": true,
+       "required_config": {
+        "CONFIG_ASSERT": "y",
+        "CONFIG_SYS_HEAP_ALLOC_LOOPS": "3",
+        "CONFIG_SYS_HEAP_AUTO": "y"
+       },
+       "atomic_group": [
+        "0x0004b3c8",
+        "0x0007e12a"
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "exclude_only": [
+         "0x0004b3c8",
+         "0x0007e12a"
+        ],
+        "new_undefined_symbols": [],
+        "same_source_unit_collision_symbols": [
+         "sys_heap_alloc",
+         "sys_heap_init"
+        ],
+        "exact_firmware_sections": 19,
+        "absent_configured_sections": [
+         "sys_heap_usable_size",
+         "sys_heap_aligned_realloc"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
      "va": "0x0007e212",
      "raw_symbol": "FUN_0007e212",
      "current_symbol": "onoff_manager_init",
@@ -24585,15 +24901,15 @@
      "core": "app",
      "va": "0x000863aa",
      "raw_symbol": "FUN_000863aa",
-     "current_symbol": "sys_heap_init",
+     "current_symbol": "g1_recon_k_heap_init",
      "kind": "source",
      "component": "zephyr",
-     "upstream_symbol": "sys_heap_init",
-     "upstream_unit": "/private/tmp/g1_cpuapp_shell_build_0717j/zephyr/CMakeFiles/zephyr.dir/lib/os/heap.c.obj",
+     "upstream_symbol": "k_heap_init",
+     "upstream_unit": "zephyr/kernel/kheap.c",
      "confidence": "low",
      "exclude_reconstruction": false,
      "decision": "retain_reconstruction",
-     "decision_reason": "The selected same-name CPUAPP owner failed one or more ABI, identity, or instruction-signature gates; retain fail-closed.",
+     "decision_reason": "The retained 18-byte body initializes k_heap.wait_q and tail-calls sys_heap_init; it is k_heap_init, not a second sys_heap_init owner.",
      "evidence": [
       {
        "source": "recon/ownership/app_build_collision_ownership.json",
@@ -24632,6 +24948,13 @@
         "reconstruction_input": "app/libapp.a(sys_heap_init.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/zephyr/lib/os/heap.h:227: multiple definition of `sys_heap_init'; app/libapp.a(sys_heap_init.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/sys_heap_init.c:13: first defined here"
        }
+      },
+      {
+       "source": "recon/ownership/app_collision_retention_overrides.json",
+       "type": "retained_identity_metadata_correction",
+       "semantic_owner": "k_heap_init",
+       "upstream_source": "zephyr/kernel/kheap.c",
+       "exclusion_unchanged": true
       }
      ]
     },
@@ -40637,7 +40960,7 @@
   },
   {
    "path": "recon/ownership/app_collision_adoption_authorizations.json",
-   "sha256": "4c2a57faf04bc23bd6c8b86c7bb0455174f617e2fadeca1c6aefc022fd29e10b"
+   "sha256": "cbf6410a58cb217b7682e926a9f2be77aa5fb807a55501fc93e7635c7764991f"
   },
   {
    "path": "recon/ownership/app_kernel_config_atomic_adoption.json",
@@ -40649,7 +40972,7 @@
   },
   {
    "path": "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
-   "sha256": "bff29ea31de4c5cb5898e6313c2480f25067c0fd09d06f8c40f207d1afe5a6b4"
+   "sha256": "bbf5da0afecc897fa05c859c9ae6e612f124ee833e12670a303dd2158e0223ae"
   },
   {
    "path": "recon/ownership/app_settings_stock_atomic_adoption.json",
@@ -40657,7 +40980,7 @@
   },
   {
    "path": "recon/ownership/app_collision_retention_overrides.json",
-   "sha256": "4caa52a7d56fce334868880136ca8b4f11a5127fc21c8f966244df5022006a79"
+   "sha256": "c790e896cf530164f99f6cca1a4656a07019663633aa9abc325a9932a5e270d1"
   },
   {
    "path": "recon/catalogs/upstream_library_provenance.json",

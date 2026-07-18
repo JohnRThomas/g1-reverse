@@ -106,8 +106,12 @@
    "evidence": "Relocation-normalized instruction-exact configured Zephyr Bluetooth host initializer; the former bt_send label was an identity mismatch. Raw identity remains FUN_00054a44 at 0x00054a44."
   },
   "0x00054ea8": {
+   "name": "bt_id_add_part_0",
+   "evidence": "Exact configured Zephyr Bluetooth id.c translation-unit-local bt_id_add.part.0 body. This is the implementation part reached by the public wrapper at 0x0005505c; raw identity remains FUN_00054ea8 at 0x00054ea8."
+  },
+  "0x0005505c": {
    "name": "bt_id_add",
-   "evidence": "Recovered configured Zephyr Bluetooth identity-add implementation. Raw identity remains FUN_00054ea8 at 0x00054ea8."
+   "evidence": "Exact configured Zephyr Bluetooth id.c public bt_id_add wrapper. The former ble_privacy_id_add identity was stale; raw identity remains FUN_0005505c at 0x0005505c."
   },
   "0x00055aac": {
    "name": "legacy_advertising_connection_restart",
@@ -1126,6 +1130,14 @@
   "0x0007e12a": {
    "name": "sys_heap_alloc",
    "evidence": "Exact configured Zephyr 3.4.99 sys_heap_alloc implementation from lib/os/heap.c. Raw identity remains FUN_0007e12a."
+  },
+  "0x00080fd2": {
+   "name": "hci_id_add",
+   "evidence": "Exact configured Zephyr Bluetooth id.c translation-unit-local HCI resolving-list add helper. The former anonymous SDK-residue identity is corrected; raw identity remains FUN_00080fd2 at 0x00080fd2."
+  },
+  "0x000863aa": {
+   "name": "g1_recon_k_heap_init",
+   "evidence": "Corrected retained k_heap_init body: initializes the kernel wait queue and tail-calls sys_heap_init. It is namespaced so the retained address owner cannot claim the SDK public symbol; raw identity remains FUN_000863aa at 0x000863aa."
   },
   "0x0007ef56": {
    "name": "audio_hw_lock_release",

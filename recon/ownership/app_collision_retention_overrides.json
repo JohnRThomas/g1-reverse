@@ -4,7 +4,20 @@
  "policy": {
   "purpose": "fail_closed_rejection_of_stale_exclusion",
   "immutable_baseline_must_not_change": true,
-  "retention_can_only_change_true_to_false_exclusion": true
+  "retention_can_only_change_true_to_false_exclusion": true,
+  "metadata_corrections_never_change_exclusion": true
  },
- "overrides": []
+ "overrides": [],
+ "metadata_corrections": [
+  {
+   "va": "0x000863aa",
+   "raw_symbol": "FUN_000863aa",
+   "baseline_current_symbol": "sys_heap_init",
+   "corrected_symbol": "g1_recon_k_heap_init",
+   "semantic_owner": "k_heap_init",
+   "upstream_symbol": "k_heap_init",
+   "upstream_source": "zephyr/kernel/kheap.c",
+   "reason": "The retained 18-byte body initializes k_heap.wait_q and tail-calls sys_heap_init; it is k_heap_init, not a second sys_heap_init owner."
+  }
+ ]
 }

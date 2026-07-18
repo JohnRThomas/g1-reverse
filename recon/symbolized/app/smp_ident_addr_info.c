@@ -5,7 +5,6 @@
  * callees (readable <= raw @ address):
  *   bt_addr_le_str                           <= FUN_00052cdc @ 0x00052cdc
  *   bt_id_find_conflict                      <= FUN_0005503c @ 0x0005503c
- *   ble_privacy_id_add                       <= FUN_0005505c @ 0x0005505c
  *   ble_conn_visit_by_fixed_index            <= FUN_00056960 @ 0x00056960
  *   ble_notify_identity_resolved             <= FUN_00056d1c @ 0x00056d1c
  *   smp_pairing_complete                     <= FUN_0005daf0 @ 0x0005daf0
@@ -34,7 +33,7 @@ typedef unsigned int undefined4;
 
 extern int bt_addr_le_str(int a);
 extern int bt_id_find_conflict(int a);
-extern void ble_privacy_id_add(int a);
+extern void bt_id_add(int a); /* SDK public wrapper; FUN_0005505c @ 0x0005505c */
 extern void ble_conn_visit_by_fixed_index(int a, u32 b, void *c);
 extern void ble_notify_identity_resolved(int a);
 extern void smp_pairing_complete(int a, int event);
@@ -111,7 +110,7 @@ LAB_df2c:
         uVar3 = 0xee5;
         assert_post_action(((unsigned long)&rodata_f50a7) /*=0xf50a7*/, uVar3);
       }
-      ble_privacy_id_add(iVar1);
+      bt_id_add(iVar1);
     }
     if ((int)((u32)(*(volatile u8*)(long)(param_1+0xe9)) << 0x1d) < 0) {
       atomic_set_bit(param_1, 10);

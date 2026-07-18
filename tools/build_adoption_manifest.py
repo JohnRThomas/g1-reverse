@@ -533,6 +533,7 @@ def _build_from_baseline(paths, resolved, names):
         raise ValueError("invalid app collision retention override catalog")
     retention_rows = [row for row in retentions.get("overrides", [])
                       if row.get("status") == "required_retain"]
+    metadata_corrections = retentions.get("metadata_corrections", [])
     retention_vas = [_hex(row["va"]) for row in retention_rows]
     if len(set(retention_vas)) != len(retention_vas):
         raise ValueError("duplicate app collision retention override VA")
@@ -723,6 +724,31 @@ def _build_from_baseline(paths, resolved, names):
             corrected_symbol=corrected,
             identity_evidence=retention.get("identity_evidence"),
             cfg_verify=retention.get("cfg_verify")))
+
+    # Metadata corrections describe an already-retained body and are forbidden
+    # from changing its source-selection decision in either direction.
+    for correction in metadata_corrections:
+        va = _hex(correction["va"])
+        previous = app_rows.get(va)
+        if previous is None or previous.get("raw_symbol") != correction.get("raw_symbol"):
+            raise ValueError("metadata correction identity mismatch: %s" % va)
+        if previous.get("exclude_reconstruction") is not False:
+            raise ValueError("metadata correction may only describe retained source: %s" % va)
+        if previous.get("current_symbol") != correction.get("baseline_current_symbol"):
+            raise ValueError("metadata correction baseline symbol mismatch: %s" % va)
+        corrected = names["app"].get(int(va, 16), {}).get("name")
+        if corrected != correction.get("corrected_symbol"):
+            raise ValueError("metadata correction durable name mismatch: %s" % va)
+        previous["current_symbol"] = corrected
+        previous["upstream_symbol"] = correction.get("upstream_symbol")
+        previous["upstream_unit"] = correction.get("upstream_source")
+        previous["decision_reason"] = correction["reason"]
+        previous.setdefault("evidence", []).append(_evidence(
+            paths["app_collision_retention_overrides"],
+            "retained_identity_metadata_correction",
+            semantic_owner=correction.get("semantic_owner"),
+            upstream_source=correction.get("upstream_source"),
+            exclusion_unchanged=True))
 
     # Provenance corrections are metadata-only.  They may repair a repository
     # classification inherited from the pinned baseline, but can never change

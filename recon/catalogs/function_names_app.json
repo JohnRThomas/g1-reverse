@@ -9395,12 +9395,13 @@
   "0x00054ea8": {
    "address": "0x00054ea8",
    "raw_name": "FUN_00054ea8",
-   "name": "bt_id_add",
-   "display_name": "bt_id_add",
+   "name": "bt_id_add_part_0",
+   "display_name": "bt_id_add_part_0",
    "human": true,
-   "source": "function_name_overrides.json: Recovered configured Zephyr Bluetooth identity-add implementation. Raw identity remains FUN_00054ea8 at 0x00054ea8.",
+   "source": "function_name_overrides.json: Exact configured Zephyr Bluetooth id.c translation-unit-local bt_id_add.part.0 body. This is the implementation part reached by the public wrapper at 0x0005505c; raw identity remains FUN_00054ea8 at 0x00054ea8.",
    "aliases": [
-    "FUN_00054ea8"
+    "FUN_00054ea8",
+    "bt_id_add"
    ]
   },
   "0x0005503c": {
@@ -9417,12 +9418,13 @@
   "0x0005505c": {
    "address": "0x0005505c",
    "raw_name": "FUN_0005505c",
-   "name": "ble_privacy_id_add",
-   "display_name": "ble_privacy_id_add",
+   "name": "bt_id_add",
+   "display_name": "bt_id_add",
    "human": true,
-   "source": "committed durable map",
+   "source": "function_name_overrides.json: Exact configured Zephyr Bluetooth id.c public bt_id_add wrapper. The former ble_privacy_id_add identity was stale; raw identity remains FUN_0005505c at 0x0005505c.",
    "aliases": [
-    "FUN_0005505c"
+    "FUN_0005505c",
+    "ble_privacy_id_add"
    ]
   },
   "0x00055094": {
@@ -21061,11 +21063,13 @@
   "0x00080fd2": {
    "address": "0x00080fd2",
    "raw_name": "FUN_00080fd2",
-   "name": "FUN_00080fd2",
-   "display_name": "FUN_00080fd2",
-   "human": false,
-   "source": "committed durable map",
-   "aliases": []
+   "name": "hci_id_add",
+   "display_name": "hci_id_add",
+   "human": true,
+   "source": "function_name_overrides.json: Exact configured Zephyr Bluetooth id.c translation-unit-local HCI resolving-list add helper. The former anonymous SDK-residue identity is corrected; raw identity remains FUN_00080fd2 at 0x00080fd2.",
+   "aliases": [
+    "FUN_00080fd2"
+   ]
   },
   "0x0008104a": {
    "address": "0x0008104a",
@@ -25062,11 +25066,13 @@
   "0x000863aa": {
    "address": "0x000863aa",
    "raw_name": "FUN_000863aa",
-   "name": "FUN_000863aa",
-   "display_name": "FUN_000863aa",
-   "human": false,
-   "source": "recon/app/src/FUN_000863aa.c",
-   "aliases": []
+   "name": "g1_recon_k_heap_init",
+   "display_name": "g1_recon_k_heap_init",
+   "human": true,
+   "source": "function_name_overrides.json: Corrected retained k_heap_init body: initializes the kernel wait queue and tail-calls sys_heap_init. It is namespaced so the retained address owner cannot claim the SDK public symbol; raw identity remains FUN_000863aa at 0x000863aa.",
+   "aliases": [
+    "FUN_000863aa"
+   ]
   },
   "0x00086406": {
    "address": "0x00086406",
@@ -26659,7 +26665,6 @@
   "FUN_00080fb4": "0x00080fb4",
   "FUN_00080fba": "0x00080fba",
   "FUN_00080fc4": "0x00080fc4",
-  "FUN_00080fd2": "0x00080fd2",
   "FUN_0008104a": "0x0008104a",
   "FUN_000810f2": "0x000810f2",
   "FUN_00081130": "0x00081130",
@@ -26775,7 +26780,6 @@
   "FUN_000861aa": "0x000861aa",
   "FUN_00086338": "0x00086338",
   "FUN_00086380": "0x00086380",
-  "FUN_000863aa": "0x000863aa",
   "FUN_000864b2": "0x000864b2",
   "FUN_000868ee": "0x000868ee",
   "FUN_000868fc": "0x000868fc",
@@ -27036,7 +27040,6 @@
   "ble_notify_le_param_updated": "0x00056ae0",
   "ble_notify_remote_info_available": "0x00056da8",
   "ble_packet_receive_dispatch": "0x00021d78",
-  "ble_privacy_id_add": "0x0005505c",
   "ble_privacy_id_remove": "0x00055094",
   "ble_privacy_request_random_address": "0x000552ac",
   "ble_process_get_req": "0x0001a064",
@@ -27150,7 +27153,8 @@
   "bt_hci_evt_get_flags": "0x00080e14",
   "bt_hci_le_rand": "0x00053e74",
   "bt_hex": "0x00052c98",
-  "bt_id_add": "0x00054ea8",
+  "bt_id_add": "0x0005505c",
+  "bt_id_add_part_0": "0x00054ea8",
   "bt_id_find_conflict": "0x0005503c",
   "bt_id_set_adv_private_addr": "0x00081102",
   "bt_is_ready": "0x00054c64",
@@ -27511,6 +27515,7 @@
   "g1_recon_crc16_ansi_seeded": "0x0007da4a",
   "g1_recon_crc16_configurable": "0x0007d9c0",
   "g1_recon_k_free": "0x000868b4",
+  "g1_recon_k_heap_init": "0x000863aa",
   "g1_recon_log_backend_uart_panic": "0x0004def8",
   "g1_recon_nrfx_gpiote_init": "0x00065940",
   "g1_recon_nrfx_wdt_channel_alloc": "0x00067e8c",
@@ -27680,6 +27685,7 @@
   "handle_touch_single_click": "0x0003707c",
   "hci_cmd_alloc_failure_log": "0x000534a8",
   "hci_event_prio": "0x00054784",
+  "hci_id_add": "0x00080fd2",
   "hci_set_ad": "0x00055534",
   "hci_vs_init": "0x00012080",
   "hex2bin": "0x0007dd0a",

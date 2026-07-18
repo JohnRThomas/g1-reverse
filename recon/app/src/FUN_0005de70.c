@@ -6,7 +6,7 @@ typedef unsigned int undefined4;
 
 extern int FUN_00052cdc(int a);
 extern int FUN_0005503c(int a);
-extern void FUN_0005505c(int a);
+extern void bt_id_add(int a); /* SDK public wrapper; FUN_0005505c @ 0x0005505c */
 extern void FUN_00056960(int a, u32 b, void *c);
 extern void FUN_00056d1c(int a);
 extern void FUN_0005daf0(int a, int event);
@@ -83,7 +83,7 @@ LAB_df2c:
         uVar3 = 0xee5;
         FUN_0007e2ec(0x000f50a7u, uVar3);
       }
-      FUN_0005505c(iVar1);
+      bt_id_add(iVar1);
     }
     if ((int)((u32)(*(volatile u8*)(long)(param_1+0xe9)) << 0x1d) < 0) {
       FUN_00083090(param_1, 10);

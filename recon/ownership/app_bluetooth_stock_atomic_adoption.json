@@ -3142,11 +3142,45 @@
   "/private/tmp/g1-bt-stock-build/zephyr/.config"
  ],
  "core": "app",
+ "id_source_closure": {
+  "configured_build": "/private/tmp/g1-bt-stock-build/zephyr/.config",
+  "configured_build_sha256": "3b157db726155f31ba09c0bac1f7c4cc48d26e00d578ee39d00f8fcf552959df",
+  "configured_object": "/private/tmp/g1-bt-stock-build/zephyr/subsys/bluetooth/host/CMakeFiles/subsys__bluetooth__host.dir/id.c.obj",
+  "configured_object_sha256": "912fd0e8cdbcd857d6a8292d9575bd48025da90039d1dc2d5384496b99ef820f",
+  "final_normal_link_collisions": 0,
+  "final_receipt": "recon/ownership/app_final_zero_collision.json",
+  "final_receipt_sha256": "027e7c7127a85ee33b57708c33d1124ccf43d66b67e7cf6e192ddf2e838874e5",
+  "functions": [
+   {
+    "normalized_instruction_sha256": "84816469d032a1ea337194e09701e62ac61c8817a94d28917dde933b745ceaa9",
+    "symbol": "bt_id_add.part.0",
+    "va": "0x00054ea8"
+   },
+   {
+    "normalized_instruction_sha256": "3a41be90ac8e2ebf2b36adefa4718d9cc99433bb41c6262a348c98b76316674d",
+    "symbol": "bt_id_add",
+    "va": "0x0005505c"
+   },
+   {
+    "normalized_instruction_sha256": "81ac0e0a4029f8041eea2d1af692acecee1e87ec66cac41afa62ad5dc0a37231",
+    "symbol": "hci_id_add",
+    "va": "0x00080fd2"
+   }
+  ],
+  "recovered_c_preserved": true,
+  "resolved_atomic_group": [
+   "0x00054ea8",
+   "0x0005505c"
+  ],
+  "source": "zephyr/subsys/bluetooth/host/id.c",
+  "source_sha256": "781199a9c752f84e8ce938bff81e1824114badc1b7f5e301c330f1870710163b"
+ },
  "measured_normal_link_delta": {
   "added": [],
   "after": 28,
   "before": 61,
-  "remaining_bluetooth_collisions": [
+  "historical": true,
+  "remaining_bluetooth_collisions_at_that_milestone": [
    "bt_id_add"
   ],
   "removed_count": 33,
@@ -3156,8 +3190,9 @@
   ]
  },
  "policy": {
-  "defer_partial_owner": [
-   "0x00054ea8 bt_id_add"
+  "resolved_former_partial_owner": [
+   "0x00054ea8 bt_id_add.part.0",
+   "0x0005505c bt_id_add"
   ],
   "retain_namespaced_variant": [
    "0x0008149a g1_recon_bt_conn_set_security"
