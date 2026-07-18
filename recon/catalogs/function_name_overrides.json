@@ -1457,6 +1457,14 @@
   }
  },
  "net": {
+  "0x0101e1e4": {
+   "name": "controller_timing_defaults_apply",
+   "evidence": "Authoritative CFG-PASS private recovery in recon/net/src/controller_timing_defaults_apply.c; net_private_shard8_recovery.json binds the readable owner and raw FUN_0101e1e4 spelling to this exact 144-byte entry. SDC archive ownership remains report-only and is not used to remove the reconstruction."
+  },
+  "0x010282fc": {
+   "name": "controller_default_bounds_build",
+   "evidence": "Authoritative 42-check CFG-PASS private recovery in recon/net/src/FUN_010282fc.c; net_private_shard6_recovery.json binds the readable owner and raw FUN_010282fc spelling to this exact 126-byte entry. SDC archive ownership remains report-only and is not used to remove the reconstruction."
+  },
   "0x0102d25c": {
    "name": "arch_busy_wait",
    "evidence": "Relocation-masked byte-exact configured Zephyr nRF53 soc.c owner. The literal 0x0103c8a0 is a runtime-space address mapping to analysis 0x0103c0a0, where the six-byte nrfx delay_machine_code executes SUBS/BHI/BX; it is not IPC string data. Raw identity remains FUN_0102d25c."
