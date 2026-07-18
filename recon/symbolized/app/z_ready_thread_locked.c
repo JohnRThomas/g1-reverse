@@ -17,7 +17,7 @@
  *   rodata_f090b                             @ 0x000f090b
  *   rodata_f0920                             @ 0x000f0920
  *   rodata_f0935                             @ 0x000f0935
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_000738d4 @ 0x738d4  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -28,18 +28,18 @@ extern void sched_ready_queue_insert(int);
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);
 void z_ready_thread_locked(int param_1,uint32_t p2,uint32_t p3,uint32_t p4){
-  int iVar3=z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  int iVar3=z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(iVar3==0){
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72,p4);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/,0,0,0);
+    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/,0,0,0);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
     return;
   }
-  z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   sched_ready_queue_insert(param_1);
-  iVar3=z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  iVar3=z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(iVar3!=0){ return; }
   printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0,p4);
-  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/,0,0,0);
+  printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/,0,0,0);
   assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
 }

@@ -16,7 +16,7 @@
  *   rodata_f090b                             @ 0x000f090b
  *   rodata_f0920                             @ 0x000f0920
  *   rodata_f0935                             @ 0x000f0935
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_0007440c @ 0x7440c  (parity: 300/300 trials, PROVEN) */
 
@@ -27,14 +27,14 @@ extern void z_abort_thread_timeout(int);
 extern void assert_post_action(int,int);
 extern int printk(int,...);
 int FUN_0007440c(int *param_1){
-  int r=z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
-  if(r==0){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }
-  z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  int r=z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+  if(r==0){ printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72); }
+  z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   int *piVar4=(int*)*param_1;
   if(param_1==piVar4) piVar4=0;
   else if(piVar4!=0) z_abort_thread_timeout((int)piVar4);
-  r=z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  r=z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if(r!=0) return (int)piVar4;
-  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
+  printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0); printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b490*/); assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
   return 0;
 }

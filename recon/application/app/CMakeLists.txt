@@ -77,6 +77,16 @@ target_sources(app PRIVATE
   # emitted bytes to app_update.bin.  Unknown/skipped tables are never added.
   ${G1_VERIFIED_DATA_SOURCES}
 )
+
+# Audit-only pre-adoption probes may re-add an explicitly enumerated source
+# set without changing the generated retention ledger.  Production builds
+# leave this empty.  Collision receipts use it to prove exact before/after
+# symbol sets from otherwise-identical configurations.
+set(G1_AUDIT_EXTRA_SOURCES "" CACHE STRING
+  "Semicolon-separated recovered sources restored only for ownership audits")
+if(G1_AUDIT_EXTRA_SOURCES)
+  target_sources(app PRIVATE ${G1_AUDIT_EXTRA_SOURCES})
+endif()
 target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src
   # The symbolized tree intentionally reuses reviewed helper headers and

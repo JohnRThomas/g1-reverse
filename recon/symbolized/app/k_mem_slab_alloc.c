@@ -16,7 +16,7 @@
  *   rodata_f090b                             @ 0x000f090b
  *   rodata_f0920                             @ 0x000f0920
  *   rodata_f0935                             @ 0x000f0935
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00071c20 @ 0x71c20  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -45,7 +45,7 @@ int k_mem_slab_alloc(int param_1, int *param_2, int param_3, int param_4){
         if (param_3 != 0 || param_4 != 0){
             int r = FUN_00073f6c(iVar6, uVar7, param_1, 0, param_3, param_4, param_3);
             if (r != 0) return r;
-            *param_2 = *(int*)(*(int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8)+0x14);
+            *param_2 = *(int*)(*(int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8)+0x14);
             return 0;
         }
         ret = -0xc;

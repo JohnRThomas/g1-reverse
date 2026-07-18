@@ -15,7 +15,7 @@
  *   rodata_f090b                             @ 0x000f090b
  *   rodata_f0920                             @ 0x000f0920
  *   rodata_f0935                             @ 0x000f0935
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000727ac @ 0x727ac  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -46,7 +46,7 @@ uint32_t FUN_000727ac(unsigned *param_1, unsigned param_2, unsigned param_3, uns
         if ((param_3 | param_4) != 0){
             int r = FUN_00073f6c(puVar7, uVar8, param_1+3, param_3|param_4, param_3, param_4, param_3);
             if (r != 0) return 0;
-            return *(uint32_t*)(*(int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8)+0x14);
+            return *(uint32_t*)(*(int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8)+0x14);
         }
     } else {
         unsigned *puVar4 = (unsigned*)param_1[1];

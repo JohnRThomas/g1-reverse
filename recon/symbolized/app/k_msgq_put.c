@@ -25,7 +25,7 @@
  *   rodata_f7df6                             @ 0x000f7df6
  *   rodata_f80cc                             @ 0x000f80cc
  *   rodata_f80ee                             @ 0x000f80ee
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000720d0 @ 0x720d0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -104,7 +104,7 @@ unsigned k_msgq_put(int param_1, unsigned param_2, int param_3, int param_4)
                 uVar5 = 0;
             } else {
                 if(param_3 != 0 || param_4 != 0){
-                    iVar4 = *(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
+                    iVar4 = *(volatile int*)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
                     *(unsigned*)(iVar4+0x14) = param_2;
                     uVar7 = FUN_00073f6c(iVar6, uVar7, param_1, iVar4, param_3, param_4);
                     return uVar7;

@@ -93,6 +93,23 @@ ADDRRE = re.compile(
 # (substituting inside a /*...*/ block would inject a nested */ and break it;
 # inside a string it would corrupt data).
 _SKIP = re.compile(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'', re.DOTALL)
+_COMMENT_SYMBOL = re.compile(
+    r'(?m)^(?P<prefix>\s*\*\s+)(?P<name>[A-Za-z_$][\w$]*)'
+    r'(?P<spacing>\s+@\s+)(?P<address>0x[0-9a-fA-F]{4,8})(?P<tail>\s*)$')
+
+
+def refresh_comment_symbol_names(txt):
+    """Keep generated provenance tables aligned with the address catalog."""
+    def rep(match):
+        rec = smap.get(hex(int(match.group("address"), 16)))
+        name = None if rec is None else rec.get("name")
+        if not name:
+            return match.group(0)
+        at_column = len(match.group("name")) + match.group("spacing").index("@")
+        padding = " " * max(1, at_column - len(name))
+        return (match.group("prefix") + name + padding + "@ " +
+                match.group("address") + match.group("tail"))
+    return _COMMENT_SYMBOL.sub(rep, txt)
 
 def substitute(txt):
     used = collections.Counter()
@@ -187,7 +204,12 @@ def gen_headers():
             continue
         if k in ("ram_global",):
             ct = san_ctype(rec.get("ctype", "uint32_t"))
-            if rec.get("is_buffer"): globs.append("extern unsigned char %s[]; /* @%s */" % (n, a))
+            if n == "_kernel":
+                # The selected Zephyr scheduler owns this object.  Keep the
+                # declaration compatible with kernel_structs.h while the
+                # reconstructed use sites continue to take only its address.
+                globs.append("struct z_kernel; extern struct z_kernel _kernel; /* @%s */" % a)
+            elif rec.get("is_buffer"): globs.append("extern unsigned char %s[]; /* @%s */" % (n, a))
             else: globs.append("extern volatile %s %s; /* @%s */" % (ct.replace("[]",""), n, a))
         elif k == "kobject":
             globs.append("extern struct k_%s_placeholder %s; /* %s @%s conf=%s */"
@@ -228,6 +250,7 @@ def main():
     for f in files:
         txt = open(f).read()
         new, used = substitute(txt)
+        new = refresh_comment_symbol_names(new)
         new = re.sub(r'(\bextern\s+[^;\n()]+\b[A-Za-z_$][\w$]*)\s*\(\s*\.\.\.\s*\)\s*;',
                      r'\1();', new)
         total.update(used)

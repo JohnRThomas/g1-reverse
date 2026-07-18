@@ -17,7 +17,7 @@
  *   rodata_f090b                             @ 0x000f090b
  *   rodata_f0920                             @ 0x000f0920
  *   rodata_f0935                             @ 0x000f0935
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00074a54 @ 0x74a54  (parity: 300/300 trials, PROVEN) */
 
@@ -38,13 +38,13 @@ int FUN_00074a54(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t para
   __asm volatile("mrs %0, basepri" : "=r"(sb));
   __asm volatile("msr basepri_max, %0" :: "r"((uint32_t)0x20));
   __asm volatile("isb sy");
-  iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if (iVar3 == 0){
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72, param_4);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
   } else {
-    z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     piVar5 = (int*)*param_1;
     if (param_1 == piVar5) iVar3 = 0;
     else if (piVar5 == 0) iVar3 = 0;
@@ -55,14 +55,14 @@ int FUN_00074a54(int *param_1, uint32_t param_2, uint32_t param_3, uint32_t para
       FUN_00074d74(piVar5 + 6);
       sched_ready_queue_insert(piVar5);
     }
-    iVar4 = z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    iVar4 = z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     if (iVar4 != 0){
       __asm volatile("msr basepri, %0" :: "r"(sb));
       __asm volatile("isb sy");
       return iVar3;
     }
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0, param_4);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
   }
   return iVar3;

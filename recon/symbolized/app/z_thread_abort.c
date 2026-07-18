@@ -23,10 +23,10 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8698                             @ 0x000f8698
  *   rodata_f86b7                             @ 0x000f86b7
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_current_thread_ptr                     @ 0x2000b450
  *   g_sched_ready_runq                       @ 0x2000b464
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed z_thread_abort @ 0x000748b8 from Zephyr sched.c.
  * Raw backmap: FUN_000748b8@0x000748b8, true code extent 0x166 bytes.
@@ -66,28 +66,28 @@ extern void assert_post_action(uint32_t, uint32_t);
 
 static inline __attribute__((always_inline)) int unlock_scheduler(void)
 {
-    return z_spin_unlock_valid((void *)((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    return z_spin_unlock_valid((void *)((unsigned long)&sched_spinlock) /*=0x2000b490*/);
 }
 
 static inline __attribute__((always_inline)) void assert_unlock_succeeded(void)
 {
     assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000111u);
-    assert_log(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    assert_log(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     assert_panic(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000111u);
 }
 
 void z_thread_abort(void *thread_arg)
 {
     uint8_t *thread = (uint8_t *)thread_arg;
-    void *const sched_spinlock = (void *)((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/;
+    void *const scheduler_lock = (void *)((unsigned long)&sched_spinlock) /*=0x2000b490*/;
     uint32_t key = 0u; /* irq-lock key; original saves BASEPRI in r6 */
 
-    if (z_spin_lock_valid(sched_spinlock) == 0) {
+    if (z_spin_lock_valid(scheduler_lock) == 0) {
         assert_log(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000072u);
-        assert_log(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+        assert_log(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
         assert_panic(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x00000072u);
     }
-    z_spin_lock_set_owner(sched_spinlock);
+    z_spin_lock_set_owner(scheduler_lock);
 
     if ((thread[0x0cu] & 0x01u) != 0u) { /* K_ESSENTIAL */
         if (unlock_scheduler() == 0) {

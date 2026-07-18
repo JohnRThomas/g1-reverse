@@ -638,18 +638,18 @@ extern volatile unsigned int g_nrfx_twim_cb; /* @0x2000b3cc */
 extern volatile unsigned int m_dppi_channels; /* @0x2000b41c */
 extern volatile unsigned int g_metal_generic_bus; /* @0x2000b424 */
 extern volatile unsigned int metal_log_handler; /* @0x2000b428 */
-extern volatile unsigned int g_zephyr_kernel; /* @0x2000b448 */
+struct z_kernel; extern struct z_kernel _kernel; /* @0x2000b448 */
 extern volatile unsigned int g_current_thread_ptr; /* @0x2000b450 */
 extern volatile unsigned char g_spinlock_validate_owner; /* @0x2000b458 */
 extern volatile unsigned int g_sched_ready_runq; /* @0x2000b464 */
-extern volatile unsigned int sched_spinlock; /* @0x2000b470 */
+extern volatile unsigned int mutex_spinlock_b470; /* @0x2000b470 */
 extern volatile unsigned int g_mutex_lock_spinlock; /* @0x2000b474 */
 extern volatile unsigned int g_2000b478; /* @0x2000b478 */
 extern volatile unsigned int timer_spinlock; /* @0x2000b480 */
 extern volatile int g_pend_locked_thread_tmp; /* @0x2000b484 */
 extern volatile int g_sched_ready_runq_prio_cache; /* @0x2000b488 */
 extern volatile unsigned int g_sched_ready_runq_nonempty_flag; /* @0x2000b48c */
-extern volatile unsigned int sched_spinlock_b490; /* @0x2000b490 */
+extern volatile unsigned int sched_spinlock; /* @0x2000b490 */
 extern volatile unsigned int g_rtc_elapsed_calc_disabled_flag; /* @0x2000b494 */
 extern volatile unsigned int g_timeout_list_spinlock; /* @0x2000b498 */
 extern volatile unsigned int poll_spinlock; /* @0x2000b4a0 */

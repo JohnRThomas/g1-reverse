@@ -10,7 +10,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq                       @ 0x2000b464
  */
 /* Reconstructed FUN_00073d1c @ 0x73d1c  (parity: 300/300 trials, PROVEN) */
@@ -26,7 +26,7 @@ void FUN_00073d1c(int *param_1){
         dlist_unlink_node(((unsigned long)&g_sched_ready_runq) /*=0x2000b464*/, param_1);
     }
     p[0xd] = p[0xd] | 0x80;
-    int iVar1 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+    int iVar1 = ((unsigned long)&_kernel) /*=0x2000b448*/;
     if ((unsigned)param_1 == 0x20006720u){
         printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
         assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);

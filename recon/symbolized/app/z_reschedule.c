@@ -12,7 +12,7 @@
  *   rodata_f08c7                             @ 0x000f08c7
  *   rodata_f08f4                             @ 0x000f08f4
  *   rodata_f090b                             @ 0x000f090b
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000739f0 @ 0x739f0  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -26,7 +26,7 @@ void z_reschedule(int param_1, int param_2){
   if(param_2 == 0){
     __asm volatile("mrs %0, ipsr" : "=r"(r6));
     if(r6 == 0){
-      volatile int *g = (volatile int*)((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+      volatile int *g = (volatile int*)((unsigned long)&_kernel) /*=0x2000b448*/;
       if(g[6] != g[2]){
         r0v = z_spin_unlock_valid(param_1);
         if(r0v != 0){ FUN_000501d4(r6); return; }

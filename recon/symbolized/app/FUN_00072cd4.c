@@ -10,7 +10,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f820f                             @ 0x000f820f
  *   rodata_f8247                             @ 0x000f8247
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00072cd4 @ 0x72cd4  (parity: 300/300 trials, PROVEN) */
 
@@ -39,7 +39,7 @@ unsigned FUN_00072cd4(volatile uint32_t *param_1, volatile int *param_2, uint32_
   L_d16:
     r5 = *param_2;
     if (r5 == 0) goto L_d96;
-    if (*(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8) == r5){
+    if (*(volatile int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8) == r5){
         int rc = k_is_in_isr();
         iVar3 = *(volatile uint32_t*)(r5+0xf0);
         if (rc != 0) goto L_d28;

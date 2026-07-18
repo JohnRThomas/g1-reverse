@@ -24,7 +24,7 @@
  *   rodata_f7df6                             @ 0x000f7df6
  *   rodata_f80cc                             @ 0x000f80cc
  *   rodata_f80ee                             @ 0x000f80ee
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00072240 @ 0x72240  (parity: 48/300 trials, PROVEN) */
 #include <stdint.h>
@@ -68,7 +68,7 @@ int k_msgq_get(int param_1, unsigned param_2, int param_3, int param_4)
             z_spin_lock_set_owner(iVar6);
             if(*(int*)(param_1+0x24) == 0){
                 if(param_3 != 0 || param_4 != 0){
-                    iVar5 = *(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8);
+                    iVar5 = *(volatile int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8);
                     *(unsigned*)(iVar5+0x14) = param_2;
                     iVar6 = FUN_00073f6c(iVar6,uVar7,param_1,iVar5,param_3,param_4);
                     return iVar6;

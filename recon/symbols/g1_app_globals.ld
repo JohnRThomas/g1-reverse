@@ -1,6 +1,6 @@
 /* Auto-generated: pin reconstructed app-core symbols to their original
  * addresses so &name resolves to the real VA (whole-image byte-match).
- * 3333 symbols. Include via: INSERT or -T with the main linker script. */
+ * 3336 symbols. Include via: INSERT or -T with the main linker script. */
 
 PROVIDE(rodata_f000 = 0x0000f000);
 PROVIDE(rodata_fa08 = 0x0000fa08);
@@ -2380,6 +2380,8 @@ PROVIDE(rodata_f5c9c = 0x000f5c9c);
 PROVIDE(rodata_f5cba = 0x000f5cba);
 PROVIDE(rodata_f5cd8 = 0x000f5cd8);
 PROVIDE(rodata_f5d81 = 0x000f5d81);
+PROVIDE(rodata_f5d9e = 0x000f5d9e);
+PROVIDE(rodata_f5dbd = 0x000f5dbd);
 PROVIDE(rodata_f5dfc = 0x000f5dfc);
 PROVIDE(rodata_f5e38 = 0x000f5e38);
 PROVIDE(rodata_f5e41 = 0x000f5e41);
@@ -3071,6 +3073,7 @@ PROVIDE(g_pdm_mic_rx_msgq = 0x2000b024);
 PROVIDE(g_2000b084 = 0x2000b084);
 PROVIDE(g_2000b094 = 0x2000b094);
 PROVIDE(g_2000b0b8 = 0x2000b0b8);
+PROVIDE(g_2000b154 = 0x2000b154);
 PROVIDE(g_gpio_pin_latch_mask = 0x2000b2d0);
 PROVIDE(nrf_rtc_timer_free_channels = 0x2000b2d4);
 PROVIDE(g_gpio_pin_enabled_mask = 0x2000b2d8);
@@ -3094,18 +3097,18 @@ PROVIDE(g_nrfx_twim_cb = 0x2000b3cc);
 PROVIDE(m_dppi_channels = 0x2000b41c);
 PROVIDE(g_metal_generic_bus = 0x2000b424);
 PROVIDE(metal_log_handler = 0x2000b428);
-PROVIDE(g_zephyr_kernel = 0x2000b448);
+PROVIDE(_kernel = 0x2000b448);
 PROVIDE(g_current_thread_ptr = 0x2000b450);
 PROVIDE(g_spinlock_validate_owner = 0x2000b458);
 PROVIDE(g_sched_ready_runq = 0x2000b464);
-PROVIDE(sched_spinlock = 0x2000b470);
+PROVIDE(mutex_spinlock_b470 = 0x2000b470);
 PROVIDE(g_mutex_lock_spinlock = 0x2000b474);
 PROVIDE(g_2000b478 = 0x2000b478);
 PROVIDE(timer_spinlock = 0x2000b480);
 PROVIDE(g_pend_locked_thread_tmp = 0x2000b484);
 PROVIDE(g_sched_ready_runq_prio_cache = 0x2000b488);
 PROVIDE(g_sched_ready_runq_nonempty_flag = 0x2000b48c);
-PROVIDE(sched_spinlock_b490 = 0x2000b490);
+PROVIDE(sched_spinlock = 0x2000b490);
 PROVIDE(g_rtc_elapsed_calc_disabled_flag = 0x2000b494);
 PROVIDE(g_timeout_list_spinlock = 0x2000b498);
 PROVIDE(poll_spinlock = 0x2000b4a0);

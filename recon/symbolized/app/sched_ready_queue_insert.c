@@ -10,7 +10,7 @@
  *   rodata_99cbd                             @ 0x00099cbd
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00073840 @ 0x73840  (parity: 300/300 trials, PROVEN) */
 
@@ -23,15 +23,15 @@ void sched_ready_queue_insert(int *param_1){
       || (*(uint8_t*)((int)param_1+0xd) & 0x1f)!=0
       || param_1[6]!=0 ) return;
   *(uint8_t*)((int)param_1+0xd) = *(uint8_t*)((int)param_1+0xd) | 0x80;
-  int iVar1 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+  int iVar1 = ((unsigned long)&_kernel) /*=0x2000b448*/;
   if(param_1 == (int*)0x20006720){
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f84d6) /*=0xf84d6*/,((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/,0xc1);
   }
-  unsigned *puVar2 = (unsigned*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+0x1c);
+  unsigned *puVar2 = (unsigned*)(((unsigned long)&_kernel) /*=0x2000b448*/+0x1c);
   unsigned *puVar3 = 0;
   if((unsigned*)*puVar2 != puVar2) puVar3 = (unsigned*)*puVar2;
-  unsigned *puVar4 = *(unsigned**)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+0x20);
+  unsigned *puVar4 = *(unsigned**)(((unsigned long)&_kernel) /*=0x2000b448*/+0x20);
   for(; puVar3!=0; puVar3=(unsigned*)*puVar3){
     if( *(int8_t*)((int)param_1+0xe) != *(int8_t*)((int)puVar3+0xe)
         && *(int8_t*)((int)param_1+0xe) < *(int8_t*)((int)puVar3+0xe) ){

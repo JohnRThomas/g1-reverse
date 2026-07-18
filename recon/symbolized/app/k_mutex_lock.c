@@ -21,7 +21,7 @@
  *   rodata_f813a                             @ 0x000f813a
  *   rodata_f815c                             @ 0x000f815c
  *   g_current_thread_ptr                     @ 0x2000b450
- *   sched_spinlock                           @ 0x2000b470
+ *   mutex_spinlock_b470                      @ 0x2000b470
  */
 /* Reconstructed FUN_000723b8 @ 0x723b8 */
 #include <stdint.h>
@@ -67,7 +67,7 @@ static __attribute__((always_inline)) inline void unlock_failure(uint32_t lock)
 int k_mutex_lock(struct queue_entry *entry, uint32_t reserved,
                  void *successor, uint32_t successor_value)
 {
-  const uint32_t lock = ((unsigned long)&sched_spinlock) /*=0x2000b470*/;
+  const uint32_t lock = ((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/;
   (void)reserved;
 
   if (__get_IPSR() != 0) {

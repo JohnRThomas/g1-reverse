@@ -31813,7 +31813,7 @@
   },
   "0x2000b448": {
    "address": "0x2000b448",
-   "name": "g_zephyr_kernel",
+   "name": "_kernel",
    "base_address": "0x2000b448",
    "offset": 0,
    "evidence": [
@@ -31853,7 +31853,7 @@
   },
   "0x2000b470": {
    "address": "0x2000b470",
-   "name": "sched_spinlock",
+   "name": "mutex_spinlock_b470",
    "base_address": "0x2000b470",
    "offset": 0,
    "evidence": [
@@ -31923,7 +31923,7 @@
   },
   "0x2000b490": {
    "address": "0x2000b490",
-   "name": "sched_spinlock_b490",
+   "name": "sched_spinlock",
    "base_address": "0x2000b490",
    "offset": 0,
    "evidence": [
@@ -35308,7 +35308,7 @@
   "g_wear_state_debounce_cnt": "0x20018d87",
   "g_whitelist_app_parse_buf": "0x20009fbc",
   "g_widget0_index_raw": "0x2001b816",
-  "g_zephyr_kernel": "0x2000b448",
+  "_kernel": "0x2000b448",
   "gatt_service_init_guard": "0x2000af04",
   "hci_cmd_pool": "0x2000214c",
   "img_mgmt_state": "0x2000ab80",
@@ -37930,8 +37930,8 @@
   "rx_thread_stack": "0x2002bb80",
   "sc_cfg": "0x2000ff18",
   "sc_range": "0x2000ff14",
-  "sched_spinlock": "0x2000b470",
-  "sched_spinlock_b490": "0x2000b490",
+  "mutex_spinlock_b470": "0x2000b470",
+  "sched_spinlock": "0x2000b490",
   "smp_work_queue": "0x20005bb8",
   "timer_spinlock": "0x2000b480",
   "z_log_process_guard": "0x2000a0dc"

@@ -78,15 +78,15 @@ static inline __attribute__((always_inline)) void assert_unlock_succeeded(void)
 void z_thread_abort(void *thread_arg)
 {
     uint8_t *thread = (uint8_t *)thread_arg;
-    void *const sched_spinlock = (void *)0x2000b490u;
+    void *const scheduler_lock = (void *)0x2000b490u;
     uint32_t key = 0u; /* irq-lock key; original saves BASEPRI in r6 */
 
-    if (z_spin_lock_valid(sched_spinlock) == 0) {
+    if (z_spin_lock_valid(scheduler_lock) == 0) {
         assert_log(0x00099cbdu, 0x000f0920u, 0x000f08c7u, 0x00000072u);
         assert_log(0x000f0935u, 0x2000b490u);
         assert_panic(0x000f08c7u, 0x00000072u);
     }
-    z_spin_lock_set_owner(sched_spinlock);
+    z_spin_lock_set_owner(scheduler_lock);
 
     if ((thread[0x0cu] & 0x01u) != 0u) { /* K_ESSENTIAL */
         if (unlock_scheduler() == 0) {

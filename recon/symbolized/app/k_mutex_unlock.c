@@ -23,8 +23,8 @@
  *   rodata_f813a                             @ 0x000f813a
  *   rodata_f815c                             @ 0x000f815c
  *   rodata_f8181                             @ 0x000f8181
- *   g_zephyr_kernel                          @ 0x2000b448
- *   sched_spinlock                           @ 0x2000b470
+ *   _kernel                                  @ 0x2000b448
+ *   mutex_spinlock_b470                      @ 0x2000b470
  */
 /* Reconstructed FUN_00072558 @ 0x72558  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -49,7 +49,7 @@ unsigned k_mutex_unlock(int param_1)
   }
   r3 = *(int*)(param_1+8);
   if (r3 == 0) return 0xffffffea;
-  if (r3 != *(int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8)) return 0xffffffff;
+  if (r3 != *(int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8)) return 0xffffffff;
   iVar4 = *(int*)(param_1+0xc);
   if (iVar4 == 0) {
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f8181) /*=0xf8181*/,((unsigned long)&rodata_f813a) /*=0xf813a*/,0xe5);
@@ -62,22 +62,22 @@ unsigned k_mutex_unlock(int param_1)
   basepri = __get_BASEPRI();
   __set_BASEPRI_MAX(0x20u);
   __ISB();
-  iVar4 = z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b470*/);
+  iVar4 = z_spin_lock_valid(((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/);
   if (iVar4 == 0) {
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f0920) /*=0xf0920*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&sched_spinlock) /*=0x2000b470*/,0,0);
+    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/,((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/,0,0);
     assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0x72);
   }
-  z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b470*/);
+  z_spin_lock_set_owner(((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/);
   FUN_000864b2(*(unsigned*)(param_1+8), *(unsigned*)(param_1+0x10));
   iVar4 = z_unpend_first_thread(param_1);
   *(volatile int*)(param_1+8) = iVar4;
   if (iVar4 == 0) {
     *(volatile int*)(param_1+0xc) = 0;
-    iVar4 = z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b470*/);
+    iVar4 = z_spin_unlock_valid(((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/);
     if (iVar4 == 0) {
       printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f08f4) /*=0xf08f4*/,((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
-      printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&sched_spinlock) /*=0x2000b470*/,0,0);
+      printk(((unsigned long)&rodata_f090b) /*=0xf090b*/,((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/,0,0);
       assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/,0xf0);
     }
     __set_BASEPRI(basepri);
@@ -86,7 +86,7 @@ unsigned k_mutex_unlock(int param_1)
     *(volatile int*)(param_1+0x10) = (int)*(signed char*)(iVar4+0xe);
     *(volatile unsigned*)(iVar4+0x90) = ipsr;
     z_ready_thread_locked();
-    z_reschedule(((unsigned long)&sched_spinlock) /*=0x2000b470*/, basepri);
+    z_reschedule(((unsigned long)&mutex_spinlock_b470) /*=0x2000b470*/, basepri);
   }
   return 0;
 }

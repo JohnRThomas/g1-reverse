@@ -10,7 +10,7 @@
  *   rodata_f53ff                             @ 0x000f53ff
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_00074844 @ 0x74844  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -27,7 +27,7 @@ uint32_t FUN_00074844(int param_1,int param_2,int param_3,int param_4){
     assert_post_action(((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x5c1);
   }
   if(param_2==-1 && param_1==-1){
-    FUN_000741a4(*(volatile int*)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/+8));
+    FUN_000741a4(*(volatile int*)(((unsigned long)&_kernel) /*=0x2000b448*/+8));
     return 0xffffffff;
   }
   int iVar2 = FUN_000746fc();

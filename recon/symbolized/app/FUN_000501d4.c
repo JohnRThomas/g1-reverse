@@ -3,13 +3,13 @@
  * public-name: FUN_000501d4
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  */
 /* Reconstructed FUN_000501d4 @ 0x501d4  (parity: 300/300 trials, PROVEN) */
 
 int FUN_000501d4(int param_1)
 {
-    volatile int *base = (volatile int*)((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
+    volatile int *base = (volatile int*)((unsigned long)&_kernel) /*=0x2000b448*/;
     int iVar4 = base[2];
     int uVar3 = *(volatile int*)0x00098654UL;
     *(volatile int*)(iVar4 + 0x8c) = param_1;

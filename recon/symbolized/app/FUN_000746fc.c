@@ -23,9 +23,9 @@
  *   rodata_f801f                             @ 0x000f801f
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8658                             @ 0x000f8658
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_pend_locked_thread_tmp                 @ 0x2000b484
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_000746fc @ 0x746fc.
  * CFG_VERIFY_CALL_ARITIES=3,1,1,0,4,1,1,4,1,2
@@ -67,25 +67,25 @@ int32_t FUN_000746fc(uint32_t lo, int32_t hi)
     uint32_t key = __get_BASEPRI();
     __set_BASEPRI_MAX(0x20);
     __ISB();
-    if (z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/) == 0) {
+    if (z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/) == 0) {
         printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+        printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
     }
-    z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
-    volatile uint8_t *thread = *(volatile uint8_t **)(uintptr_t)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
+    z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
+    volatile uint8_t *thread = *(volatile uint8_t **)(uintptr_t)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
     *(uint32_t *)(uintptr_t)((unsigned long)&g_pend_locked_thread_tmp) /*=0x2000b484*/ = (uint32_t)(uintptr_t)thread;
     unready_thread();
-    thread = *(volatile uint8_t * volatile *)(uintptr_t)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
+    thread = *(volatile uint8_t * volatile *)(uintptr_t)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
     FUN_00074bf4((void *)(thread + 0x18), ((unsigned long)&rodata_86661) /*=0x86661*/, lo, hi);
     thread[0xd] |= 0x10;
-    if (z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/) == 0) {
+    if (z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/) == 0) {
         printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x111);
-        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+        printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/);
         assert_post_action(((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x111);
     }
     FUN_000501d4(key);
-    thread = *(volatile uint8_t * volatile *)(uintptr_t)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 8);
+    thread = *(volatile uint8_t * volatile *)(uintptr_t)(((unsigned long)&_kernel) /*=0x2000b448*/ + 8);
     if ((thread[0xd] & 0x10) != 0) {
         printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f8658) /*=0xf8658*/, ((unsigned long)&rodata_f82f4) /*=0xf82f4*/, 0x5b2);
         printk(((unsigned long)&rodata_f53ff) /*=0xf53ff*/);

@@ -4,7 +4,7 @@
  * durable-map: recon/catalogs/function_names_app.json
  * address symbols (name @ address):
  *   rodata_73729                             @ 0x00073729
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_sched_ready_runq_nonempty_flag         @ 0x2000b48c
  *   g_percpu_timeout_abort_flag              @ 0x2001d565
  */
@@ -19,7 +19,7 @@ void FUN_00073788(int param_1)
   int iVar2;
   int iVar3;
 
-  bVar1 = *(volatile unsigned char *)(((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/ + 0x10);
+  bVar1 = *(volatile unsigned char *)(((unsigned long)&_kernel) /*=0x2000b448*/ + 0x10);
   iVar3 = 0x200069c8 + (unsigned int)bVar1 * 0x18;
   FUN_00074d74(iVar3);
   *(volatile unsigned char *)(((unsigned long)&g_percpu_timeout_abort_flag) /*=0x2001d565*/ + bVar1) = 0;

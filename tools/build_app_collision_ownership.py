@@ -23,6 +23,8 @@ import re
 import subprocess
 import sys
 
+from elftools.elf.elffile import ELFFile
+
 sys.path.insert(0, os.path.dirname(__file__))
 from build_upstream_index import extract_features
 import extract
@@ -158,6 +160,31 @@ def sequence_score(left, right):
     return difflib.SequenceMatcher(None, left, right, autojunk=False).ratio()
 
 
+def candidate_code_features(candidate, firmware_extent):
+    """Compare code, not an ELF function section's trailing literal pool.
+
+    Zephyr emits each function into its own ``.text.<symbol>`` section.  GCC
+    accounts embedded literal pools and their alignment in the ELF symbol
+    size, even though Ghidra's firmware extent ends at the final reachable
+    Thumb instruction.  Treating those words as Thumb instructions produces
+    false-negative ownership scores.  The firmware extent remains the
+    authoritative cap; a shorter/missing selected section fails closed.
+    """
+    path = (candidate or {}).get("object")
+    section_name = (candidate or {}).get("section")
+    if not path or not section_name or not os.path.exists(path):
+        return None, None
+    with open(path, "rb") as stream:
+        section = ELFFile(stream).get_section_by_name(section_name)
+        if section is None:
+            return None, None
+        data = section.data()
+    extent = int(firmware_extent)
+    if extent <= 0 or len(data) < extent:
+        return None, len(data)
+    return extract_features(data[:extent], 0), len(data)
+
+
 def safe_to_exclude(candidate, scores):
     blockers = []
     if candidate is None:
@@ -290,19 +317,24 @@ def build(args):
         firmware = None
         scores = {"opcode": 0.0, "shape": 0.0, "length": 0.0,
                   "normalized_exact": False}
+        candidate_body = None
+        candidate_section_size = None
         if extent and candidate:
             firmware = extract_features(extract.read(va, int(extent)), va)
+            candidate_body, candidate_section_size = candidate_code_features(
+                candidate, extent)
+            compared = candidate_body or candidate
             scores = {
                 "opcode": round(sequence_score(firmware["mnemonics"],
-                                                candidate["mnemonics"]), 6),
+                                                compared["mnemonics"]), 6),
                 "shape": round(sequence_score(firmware["operand_shapes"],
-                                               candidate["operand_shapes"]), 6),
+                                               compared["operand_shapes"]), 6),
                 "length": round(min(firmware["instruction_count"],
-                                    candidate["instruction_count"]) /
+                                    compared["instruction_count"]) /
                                 max(1, firmware["instruction_count"],
-                                    candidate["instruction_count"]), 6),
+                                    compared["instruction_count"]), 6),
                 "normalized_exact": (firmware["normalized_sha256"] ==
-                                     candidate["normalized_sha256"]),
+                                     compared["normalized_sha256"]),
             }
         safe, blockers = safe_to_exclude(candidate, scores)
         if not extent:
@@ -348,6 +380,12 @@ def build(args):
                 "archive_member": owner["archive_member"],
                 "section": (candidate or {}).get("section"),
                 "symbol_size": (candidate or {}).get("symbol_size"),
+                "code_extent_compared": (int(extent)
+                                           if candidate_body is not None else None),
+                "trailing_section_bytes": (
+                    candidate_section_size - int(extent)
+                    if candidate_section_size is not None and extent and
+                    candidate_section_size >= int(extent) else None),
                 "binding": (candidate or {}).get("binding"),
                 "abi": (candidate or {}).get("signature"),
                 "source": source,

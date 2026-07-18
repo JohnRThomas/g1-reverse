@@ -19,7 +19,7 @@
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f84d6                             @ 0x000f84d6
  *   g_sched_ready_runq                       @ 0x2000b464
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00074060 @ 0x74060  (parity: 300/300 trials, PROVEN) */
 #include <stdint.h>
@@ -40,13 +40,13 @@ int FUN_00074060(int *param_1, char param_2, unsigned param_3, unsigned param_4)
   __set_BASEPRI_MAX(0x20u);
   __ISB();
   uVar10 = basepri;
-  iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+  iVar3 = z_spin_lock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
   if (iVar3 == 0) {
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f0920) /*=0xf0920*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0x72);
-    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/, 0, 0);
+    printk(((unsigned long)&rodata_f0935) /*=0xf0935*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/, 0, 0);
     uVar5 = 0x72; uVar10 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
   } else {
-    z_spin_lock_set_owner(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    z_spin_lock_set_owner(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     puVar8 = (unsigned*)((unsigned long)&g_sched_ready_runq) /*=0x2000b464*/;
     if (((*(unsigned char*)((int)param_1 + 0xd) & 0x1f) == 0) && (param_1[6] == 0)) {
       bVar7 = *(unsigned char*)((int)param_1 + 0xd) & 0x7f;
@@ -83,14 +83,14 @@ LAB138:
       iVar3 = 0;
       *(volatile char*)((int)param_1 + 0xe) = param_2;
     }
-    iVar4 = z_spin_unlock_valid(((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/);
+    iVar4 = z_spin_unlock_valid(((unsigned long)&sched_spinlock) /*=0x2000b490*/);
     if (iVar4 != 0) {
       __set_BASEPRI(uVar10);
       __ISB();
       return iVar3;
     }
     printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/, ((unsigned long)&rodata_f08f4) /*=0xf08f4*/, ((unsigned long)&rodata_f08c7) /*=0xf08c7*/, 0xf0);
-    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/, 0, 0);
+    printk(((unsigned long)&rodata_f090b) /*=0xf090b*/, ((unsigned long)&sched_spinlock) /*=0x2000b490*/, 0, 0);
     uVar5 = 0xf0; uVar10 = ((unsigned long)&rodata_f08c7) /*=0xf08c7*/;
   }
 LABe0:

@@ -18,9 +18,9 @@
  *   rodata_f0935                             @ 0x000f0935
  *   rodata_f82f4                             @ 0x000f82f4
  *   rodata_f8584                             @ 0x000f8584
- *   g_zephyr_kernel                          @ 0x2000b448
+ *   _kernel                                  @ 0x2000b448
  *   g_pend_locked_thread_tmp                 @ 0x2000b484
- *   sched_spinlock_b490                      @ 0x2000b490
+ *   sched_spinlock                           @ 0x2000b490
  */
 /* Reconstructed FUN_00073f6c @ 0x73f6c  (parity: 300/300 trials, PROVEN) */
 extern int z_spin_lock_valid(int,int,int,int);
@@ -31,8 +31,8 @@ extern void FUN_000501d4(int);
 extern void printk(int,...);
 extern void assert_post_action(int,...);
 void FUN_00073f6c(int param_1,int param_2,int param_3,int param_4,int param_5,int param_6){
-  int iVar3 = ((unsigned long)&g_zephyr_kernel) /*=0x2000b448*/;
-  int iVar5 = ((unsigned long)&sched_spinlock_b490) /*=0x2000b490*/;
+  int iVar3 = ((unsigned long)&_kernel) /*=0x2000b448*/;
+  int iVar5 = ((unsigned long)&sched_spinlock) /*=0x2000b490*/;
   (void)param_4;
   *(volatile int*)((unsigned long)&g_pend_locked_thread_tmp) /*=0x2000b484*/ = *(volatile int*)(iVar3+8);
   if (param_1 == iVar5){
