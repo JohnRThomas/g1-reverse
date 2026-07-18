@@ -397,6 +397,11 @@ def _decompiled_arity(func):
 # Ghidra/classification under-reports these resolved jump-table bodies. Values
 # are CFG-confirmed executable extents, not trailing data-table inflation.
 TRUE_SIZE_OVERRIDES = {
+    # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
+    # catalog.  Each is a one-argument k_sem_give tail veneer; the following
+    # halfword is alignment and its semaphore-address literal follows that.
+    ("net", 0x0102ac00): 0x06,
+    ("net", 0x0102ace8): 0x06,
     # Catalog-missing SDC event-publication bridge.  The body owns its
     # state-base literal at 0x0101b548 and ends before the independent entry
     # at 0x0101b54c.

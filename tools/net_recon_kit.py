@@ -15,6 +15,11 @@ LEDGER = os.environ.get("RECON_LEDGER", SCR + "/net_recon_ledger.json")
 _md = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
 _fw = None
 TRUE_SIZE_OVERRIDES = {
+    # Initialized ipc_ept_cfg.bound callbacks omitted by Ghidra's function
+    # catalog.  Each is a one-argument k_sem_give tail veneer; the following
+    # halfword is alignment and its semaphore-address literal follows that.
+    0x0102ac00: 0x06,
+    0x0102ace8: 0x06,
     # Catalog-missing SDC event-publication bridge.  Its cleanup return is at
     # 0x0101b51a and its aligned state-base literal occupies b548..b54b;
     # 0x0101b54c is the next independent entry.
