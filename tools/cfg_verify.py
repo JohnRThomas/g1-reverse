@@ -1095,6 +1095,9 @@ RETURN_KIND_OVERRIDES = {
     # Ghidra inferred undefined8 from live r1 scratch, but every caller uses
     # only the controller packet-duration value returned in r0.
     ("net", 0x010109ec): "i32",
+    # Exact Zephyr arch_cpu_idle assembly has a void ABI.  The value left in
+    # r0 by z_arm_on_enter_cpu_idle is caller scratch, not a function result.
+    ("net", 0x0102e9bc): "void",
     # The idle state finisher mutates fixed controller records and dispatches
     # void helpers; residual r0 from the selected path is caller scratch.
     ("net", 0x0100b594): "void",
@@ -1183,11 +1186,40 @@ def _normalize_tx_notify_irq_masking(body, require_reviewed_pattern=False):
         normalized = normalized.replace(pattern, bytes.fromhex("00bf00bf"))
     return normalized
 
+
+def _normalize_arch_cpu_idle_wfi(body, require_reviewed_pattern=False):
+    """Advance past arch_cpu_idle's WFI in the single-thread emulator.
+
+    Unicorn suspends emulation at WFI instead of modeling the interrupt that
+    wakes a production CPU.  Normalize the one reviewed WFI to a same-width
+    NOP on both sides so the post-wake interrupt restore and return are still
+    compared.  The focused regression separately requires the exact WFI
+    opcode in both the firmware and generated candidate.
+    """
+    pattern = bytes.fromhex("30bf")
+    count = bytes(body).count(pattern)
+    if require_reviewed_pattern and count != 1:
+        raise AssertionError("arch_cpu_idle WFI count %d != 1" % count)
+    return bytes(body).replace(pattern, bytes.fromhex("00bf"))
+
 # Full-width fuzz values are not useful for caller-supplied iteration counts:
 # they only spend the instruction budget repeating an already-covered body.
 # Keep these reviewed loop counts small while the remaining arguments and RAM
 # state retain their normal randomized coverage.
 BOUNDED_RANDOM_ARGS = {
+    # Pinned Oberon 3.0.13 constant-time primitives have a deliberate
+    # nonzero-length precondition and implement their scan as a do/while.
+    # Supplying zero does not cover another semantic arm: it violates that
+    # contract and wraps the unsigned count through 2^32 iterations.  These
+    # exact public-contract sizes prove one element, repeated backedges, and
+    # the production P-256 width used by the only firmware callers.
+    ("net", 0x01008838): {1: (1, 2, 3, 32)},
+    # Pinned Oberon 3.0.13 ocrypto_constant_time_equal.  The assembly API
+    # explicitly requires length > 0 and decrements its size_t in a do/while;
+    # a random zero or full-width value therefore asks for 2^32 iterations.
+    # The only firmware caller passes 32.  One/two/three retain the first
+    # iteration and two distinct backedges while 32 proves the live call size.
+    ("net", 0x01008810): {2: (1, 2, 3, 32)},
     # Packetization consumes a caller-owned byte stream in 17-byte records.
     # The signed quotient directly controls the loop, so full-width fuzz only
     # manufactures millions of records.  These production lengths cover the
@@ -11768,6 +11800,52 @@ REVIEWED_ORACLE_CASES = {
          {0: {0: 1}, 1: {0: 1}, 2: {0: 1}, 3: {0: 0}, 4: {0: 1}}),
     ],
 }
+
+
+def _ocrypto_constant_time_equal_case(left, right):
+    """One valid nonzero Oberon comparison with fully controlled bytes."""
+    assert len(left) == len(right) and len(left) > 0
+    lhs = emu.SCRATCH + 0x1800
+    rhs = emu.SCRATCH + 0x1900
+    return ({0: lhs, 1: rhs, 2: len(left)},
+            [(lhs, bytes(left)), (rhs, bytes(right))], {})
+
+
+# Stock Oberon documents length > 0.  Include equality, first/last-byte
+# inequality, an OR-vs-XOR discriminator, two loop backedges, and the sole
+# firmware caller's exact 32-byte size.  These fixtures make both return arms
+# authoritative; BOUNDED_RANDOM_ARGS remains a fail-safe for generic use.
+REVIEWED_ORACLE_CASES[("net", 0x01008810)] = [
+    _ocrypto_constant_time_equal_case(b"\x5a", b"\x5a"),
+    _ocrypto_constant_time_equal_case(b"\x5a", b"\xa5"),
+    _ocrypto_constant_time_equal_case(b"\x00\x00", b"\x01\x01"),
+    _ocrypto_constant_time_equal_case(b"\x10\x20\x30", b"\x10\x20\x31"),
+    _ocrypto_constant_time_equal_case(bytes(range(32)), bytes(range(32))),
+    _ocrypto_constant_time_equal_case(
+        bytes(range(32)), bytes(range(31)) + b"\xff"),
+]
+
+
+def _ocrypto_constant_time_is_zero_case(value):
+    """One valid nonzero Oberon zero-test with fully controlled bytes."""
+    assert len(value) > 0
+    operand = emu.SCRATCH + 0x1a00
+    return ({0: operand, 1: len(value)},
+            [(operand, bytes(value))], {})
+
+
+# The adjacent stock primitive has the same nonzero-size contract.  Exercise
+# both return arms, first/last nonzero bytes, repeated backedges, and its only
+# caller's exact 32-byte P-256 field-element width.
+REVIEWED_ORACLE_CASES[("net", 0x01008838)] = [
+    _ocrypto_constant_time_is_zero_case(b"\x00"),
+    _ocrypto_constant_time_is_zero_case(b"\x80"),
+    _ocrypto_constant_time_is_zero_case(b"\x00\x00"),
+    _ocrypto_constant_time_is_zero_case(b"\x01\x01"),
+    _ocrypto_constant_time_is_zero_case(b"\x00\x00\x01"),
+    _ocrypto_constant_time_is_zero_case(bytes(32)),
+    _ocrypto_constant_time_is_zero_case(bytes(31) + b"\xff"),
+]
 
 
 def _gatt_sc_store_failure_case(error):
@@ -22402,6 +22480,89 @@ REVIEWED_ORACLE_CASES[("app", 0x0005ad38)] = [
 ]
 
 
+def _net_idle_prepare_case(*, rtc1_scheduled=False, rtc0_scheduled=False,
+                           rtc1_ticks=0, rtc0_ticks=0, rtc_counter=100,
+                           rtc0_counter=200, pretick_cc=0,
+                           pretick_on_time=False, pretick_event=0):
+    """Production-shaped nRF53 RTC pre-tick state for the CPUNET idle hook."""
+    globals_image = bytearray(16)
+    globals_image[9] = int(bool(pretick_on_time))
+    rtc0_image = bytearray(0x600)
+    rtc1_image = bytearray(0x600)
+    ipc_image = bytearray(0x200)
+    wdt_image = bytearray(8)
+    rtc0_image[0x504:0x508] = int(rtc0_counter).to_bytes(4, "little")
+    rtc1_image[0x504:0x508] = int(rtc_counter).to_bytes(4, "little")
+    rtc1_image[0x54c:0x550] = int(pretick_cc).to_bytes(4, "little")
+    rtc1_image[0x14c:0x150] = int(pretick_event).to_bytes(4, "little")
+    memory = [
+        (0x21004fa0, bytes(globals_image)),
+        (0x4100b000, bytes(wdt_image)),
+        (0x41011000, bytes(rtc0_image)),
+        (0x41012000, bytes(ipc_image)),
+        (0x41016000, bytes(rtc1_image)),
+    ]
+    oracles = {
+        0: {0: int(bool(rtc1_scheduled))},
+        1: {0: int(bool(rtc0_scheduled))},
+        # rtc_pretick_finish_previous is a void leaf which, in the shipped
+        # object, preserves the caller's live RTC1/flag values in r0/r1.  The
+        # following MMIO accesses deliberately consume those residuals.
+        2: {0: 0x41016000, 1: 0x21004fa9},
+    }
+    writes = {}
+    if rtc1_scheduled:
+        writes[0] = [(3, 0, int(rtc1_ticks).to_bytes(4, "little"),
+                      0x01039dec)]
+    if rtc0_scheduled:
+        writes[1] = [(3, 0, int(rtc0_ticks).to_bytes(4, "little"),
+                      0x01039dec)]
+    return ({}, memory, oracles, writes)
+
+
+REVIEWED_NPTR_COUNTS[("net", 0x0102d0c4)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102d0c4)] = {
+    0x01039dec: 4,
+    0x0102cfec: 0,
+}
+REVIEWED_STACK_POINTER_CALLS[("net", 0x0102d0c4)] = {0: {3}, 1: {3}}
+REVIEWED_ORACLE_CASES[("net", 0x0102d0c4)] = [
+    # No scheduled RTC event: publish sleep permission and stop the watchdog.
+    _net_idle_prepare_case(),
+    # Far RTC1 event: update CC and accept it without the near-deadline check.
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc1_ticks=0x00800000),
+    # Near RTC1 event: both too-close and valid lead-time arms.
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc1_ticks=2),
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc1_ticks=20),
+    # Unchanged CC reuses the persistent on-time decision in both states.
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc1_ticks=2,
+                           pretick_cc=101, pretick_on_time=False),
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc1_ticks=2,
+                           pretick_cc=101, pretick_on_time=True),
+    # RTC0 wins the earliest-event selection, and an already-pending RTC1
+    # event bypasses watchdog stop/restart.
+    _net_idle_prepare_case(rtc1_scheduled=True, rtc0_scheduled=True,
+                           rtc1_ticks=50, rtc0_ticks=20),
+    _net_idle_prepare_case(pretick_event=1),
+    # Hardware asserts the event between the two reads, requiring WDT restart.
+    _net_idle_prepare_case(),
+]
+ABSOLUTE_READ_TRANSITION_CASES[("net", 0x0102d0c4)] = [
+    [], [], [], [], [], [], [], [],
+    [(0x4101614c, 2, 1)],
+]
+
+REVIEWED_NPTR_COUNTS[("net", 0x0102e9bc)] = 0
+REVIEWED_TARGET_CALL_ARITIES[("net", 0x0102e9bc)] = {
+    0x0102d0c4: 0,
+    0x0102d1c0: 0,
+}
+REVIEWED_ORACLE_CASES[("net", 0x0102e9bc)] = [
+    ({}, [], {1: {0: 0}}),  # policy vetoes sleep
+    ({}, [], {1: {0: 1}}),  # DSB/WFI sleep and post-wake restore
+]
+
+
 ABSOLUTE_READ_TRANSITION_CASES[("app", 0x0002a0d8)] = [
     transitions for _case, transitions in _TOUCH_KEY_THREAD_WITH_TRANSITIONS
 ]
@@ -22786,6 +22947,8 @@ def verify(core, name, trials_random=40, source_override=None):
         # this still makes the transform symmetric and future-proof if codegen
         # changes while remaining strictly scoped to tx_notify's VA.
         cb = _normalize_tx_notify_irq_masking(cb)
+    if (core, va) == ("net", 0x0102e9bc):
+        cb = _normalize_arch_cpu_idle_wfi(cb, require_reviewed_pattern=True)
     # PC-relative Thumb literal loads can reach 1020 bytes beyond the current
     # instruction (LDR.W/VLDR immediate).  The executable extent deliberately
     # excludes trailing literal pools, but the emulator must still map those
@@ -22799,6 +22962,9 @@ def verify(core, name, trials_random=40, source_override=None):
     orig = bytes(orig)
     if (core, va) == ("app", 0x00056020):
         orig = (_normalize_tx_notify_irq_masking(
+                    orig[:size], require_reviewed_pattern=True) + orig[size:])
+    if (core, va) == ("net", 0x0102e9bc):
+        orig = (_normalize_arch_cpu_idle_wfi(
                     orig[:size], require_reviewed_pattern=True) + orig[size:])
     rk = RETURN_KIND_OVERRIDES.get((core, va), ctx["ret"](va))
     trials = len(ovs) if (reviewed_state_cases or reviewed_oracles or combined_cases) else len(ovs) + trials_random
