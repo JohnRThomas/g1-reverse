@@ -1,0 +1,4489 @@
+{
+ "schema": "g1.net.private_recovery_worklist.v1",
+ "policy": {
+  "no_blobs": true,
+  "private_sdc_mpsl_report_only": true,
+  "archive_replacement_forbidden": true,
+  "fail_closed": true
+ },
+ "inputs": [
+  {
+   "path": "recon/catalogs/net_cohesive_undefined_classification.json",
+   "sha256": "bdd91eb00bc684cf4898eeb69840e2f191358a15951b6aa4a3de1ff81f8af2fd"
+  },
+  {
+   "path": "recon/catalogs/net_funcs.json.gz",
+   "sha256": "a8da3fb4f9e647f900893f68c8e37652d47a7e82bda872e74d6cb555483fe78a"
+  },
+  {
+   "path": "recon/catalogs/refgraph_net.json.gz",
+   "sha256": "c61016850b16e31061c2964533ae55d49b5714457c4634d7d9e7f857ec4e0206"
+  },
+  {
+   "path": "recon/catalogs/function_names_net.json",
+   "sha256": "86f881d26267e381f27465992e091a3a980d3084701548067eb3632d48ae9116"
+  },
+  {
+   "path": "recon/ownership/adoption_manifest.json",
+   "sha256": "2ccaa5e190eea2a0cb74e511044fbf5d3386d555e70dd2844085edfcda1501bf"
+  }
+ ],
+ "summary": {
+  "symbol_rows": 93,
+  "unique_functions": 92,
+  "catalogued": 84,
+  "catalog_missed": 8,
+  "provider_absent": 92,
+  "total_true_extent": 13404,
+  "dependency_components": 74,
+  "suggested_shards": 8
+ },
+ "shards": [
+  {
+   "id": "net-private-1",
+   "addresses": [
+    "0x01014b18"
+   ],
+   "total_true_extent": 4488,
+   "function_count": 1
+  },
+  {
+   "id": "net-private-2",
+   "addresses": [
+    "0x01022a30",
+    "0x01022ea8",
+    "0x01022f0c",
+    "0x010231c8",
+    "0x01023d38",
+    "0x01023e88",
+    "0x01024440",
+    "0x0102445c",
+    "0x010245d8",
+    "0x01024c6c",
+    "0x0102524c",
+    "0x010256dc",
+    "0x010257e4",
+    "0x0102583c",
+    "0x01025c44",
+    "0x01025c9c"
+   ],
+   "total_true_extent": 2894,
+   "function_count": 16
+  },
+  {
+   "id": "net-private-3",
+   "addresses": [
+    "0x01012ad4",
+    "0x01016170",
+    "0x0101d890",
+    "0x0101f624",
+    "0x01023ac4",
+    "0x01025a84",
+    "0x01025cc8",
+    "0x01025cf0",
+    "0x0102693a",
+    "0x01026a7e",
+    "0x01026acc",
+    "0x010273c6",
+    "0x01028256"
+   ],
+   "total_true_extent": 1000,
+   "function_count": 13
+  },
+  {
+   "id": "net-private-4",
+   "addresses": [
+    "0x0100d6e8",
+    "0x010126c8",
+    "0x01012714",
+    "0x010129b8",
+    "0x0101618c",
+    "0x010199f4",
+    "0x0101df84",
+    "0x01020820",
+    "0x01021ac0",
+    "0x01026b58",
+    "0x01027846",
+    "0x01027ef2"
+   ],
+   "total_true_extent": 1000,
+   "function_count": 12
+  },
+  {
+   "id": "net-private-5",
+   "addresses": [
+    "0x01012150",
+    "0x01013da8",
+    "0x01019eb4",
+    "0x01019ef8",
+    "0x0101e090",
+    "0x01022a50",
+    "0x0102590c",
+    "0x010269ce",
+    "0x01026dae",
+    "0x01027ed4",
+    "0x010280d8",
+    "0x0102a208"
+   ],
+   "total_true_extent": 1012,
+   "function_count": 12
+  },
+  {
+   "id": "net-private-6",
+   "addresses": [
+    "0x0101dda8",
+    "0x0101ded0",
+    "0x0101e2fc",
+    "0x010207cc",
+    "0x01021940",
+    "0x01025998",
+    "0x01026d16",
+    "0x010280be",
+    "0x010282fc",
+    "0x0102894a",
+    "0x0102941c",
+    "0x010298a8"
+   ],
+   "total_true_extent": 1010,
+   "function_count": 12
+  },
+  {
+   "id": "net-private-7",
+   "addresses": [
+    "0x01010890",
+    "0x01011664",
+    "0x01018df8",
+    "0x01021634",
+    "0x01025d0c",
+    "0x01026bfe",
+    "0x010270e8",
+    "0x01027a4a",
+    "0x01027a94",
+    "0x0102961a",
+    "0x0102971e",
+    "0x010297b4",
+    "0x01029882"
+   ],
+   "total_true_extent": 1000,
+   "function_count": 13
+  },
+  {
+   "id": "net-private-8",
+   "addresses": [
+    "0x0100ef08",
+    "0x0100f86c",
+    "0x0101233c",
+    "0x01012694",
+    "0x0101e1e4",
+    "0x01022e34",
+    "0x0102665c",
+    "0x01027044",
+    "0x01027302",
+    "0x010292ec",
+    "0x01029b38",
+    "0x0102a1e0",
+    "0x0102a1ea"
+   ],
+   "total_true_extent": 1000,
+   "function_count": 13
+  }
+ ],
+ "entries": [
+  {
+   "analysis_address": "0x0100d6e8",
+   "runtime_address": "0x0100dee8",
+   "primary_symbol": "sdc_conn_recovery_window_update",
+   "required_spellings": [
+    "FUN_0100d6e8",
+    "sdc_conn_recovery_window_update"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_OTIPANP3Q7VLW2BQGLZZUUDNR5HBSAYXJSFAKKA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 42,
+   "true_executable_extent": 42,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1012f18"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_conn_recovery_window_update')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x0100ef08",
+   "runtime_address": "0x0100f708",
+   "primary_symbol": "FUN_0100ef08",
+   "required_spellings": [
+    "FUN_0100ef08"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 60,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "tail branch ends 0x0100ef44; literal follows",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0100ef08')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0100f86c",
+   "runtime_address": "0x0101006c",
+   "primary_symbol": "FUN_0100f86c",
+   "required_spellings": [
+    "FUN_0100f86c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_LHLPURQHSJUG4HIEP67V53OFTD4W5APB2YBT5HY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 50,
+   "true_executable_extent": 50,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100d3c0"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100fbbc",
+    "0x101c6d0",
+    "0x10298f0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0100f86c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x01010890",
+   "runtime_address": "0x01011090",
+   "primary_symbol": "FUN_01010890",
+   "required_spellings": [
+    "FUN_01010890"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_FZRZ4CL3JR4VYYKFPYJ3VMCNBL7BVDZZP4POIWA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 40,
+   "true_executable_extent": 40,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010106dc"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1011540",
+    "0x101746c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01010890')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01011664",
+   "runtime_address": "0x01011e64",
+   "primary_symbol": "FUN_01011664",
+   "required_spellings": [
+    "FUN_01011664"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 186,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "tail branch ends 0x0101171e; literals follow",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01011664')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01012150",
+   "runtime_address": "0x01012950",
+   "primary_symbol": "FUN_01012150",
+   "required_spellings": [
+    "FUN_01012150"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_OAGVEJLAHKQB2YTTUDIS6TDHXZIVWZXKUMPIBHQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 38,
+   "true_executable_extent": 38,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0101f888"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01012150')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x0101233c",
+   "runtime_address": "0x01012b3c",
+   "primary_symbol": "FUN_0101233c",
+   "required_spellings": [
+    "FUN_0101233c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_JIJASGQH4XEEPZL7D35VQHVPKKLANGDBS2M46NQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 230,
+   "true_executable_extent": 230,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100aa04",
+    "0x0100bc04",
+    "0x0100c738",
+    "0x0100c744",
+    "0x0101124c",
+    "0x01022f08",
+    "0x01025034"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101233c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x01012694",
+   "runtime_address": "0x01012e94",
+   "primary_symbol": "FUN_01012694",
+   "required_spellings": [
+    "FUN_01012694"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_DG6VHZEFRVR44ESTRZM42ZEBJG4KXT7IVJESA4Y"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01012694')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x010126c8",
+   "runtime_address": "0x01012ec8",
+   "primary_symbol": "FUN_010126c8",
+   "required_spellings": [
+    "FUN_010126c8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_WE45Z7LOSJEAVMD3HUIMZMMRDD5BLMKOFVBGE4Y"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 32,
+   "true_executable_extent": 32,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01028010"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010126c8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01012714",
+   "runtime_address": "0x01012f14",
+   "primary_symbol": "FUN_01012714",
+   "required_spellings": [
+    "FUN_01012714"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_4FKJZF4AXR7RHM7IPPZMVUWU7W6MFHLX726TPNY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 24,
+   "true_executable_extent": 24,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01012714')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x010129b8",
+   "runtime_address": "0x010131b8",
+   "primary_symbol": "FUN_010129b8",
+   "required_spellings": [
+    "FUN_010129b8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_XD3FX5TVO57NBJG4QV33FUOBCL7SNGB4OOT7C3Y"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 48,
+   "true_executable_extent": 48,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1012438"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010129b8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01012ad4",
+   "runtime_address": "0x010132d4",
+   "primary_symbol": "FUN_01012ad4",
+   "required_spellings": [
+    "FUN_01012ad4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_4U2RA2RXIRU5BEMWZTHT3PETZK6K62P2SAJVWHA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 78,
+   "true_executable_extent": 78,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x10119ac"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01012ad4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01013da8",
+   "runtime_address": "0x010145a8",
+   "primary_symbol": "FUN_01013da8",
+   "required_spellings": [
+    "FUN_01013da8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_EPRPLWOAI3YMJ24HN6AZUGT5NWULVXEG6CTCI2Y"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 238,
+   "true_executable_extent": 238,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x01012f18",
+    "0x01022f08",
+    "0x010237b0",
+    "0x01025034"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100e95c",
+    "0x10293b2"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01013da8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01014b18",
+   "runtime_address": "0x01015318",
+   "primary_symbol": "sdc_conn_event_process",
+   "required_spellings": [
+    "FUN_01014b18",
+    "sdc_conn_event_process"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 4488,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "final owned back-tail ends 0x01015ca0; literals follow",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_conn_event_process')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-1"
+  },
+  {
+   "analysis_address": "0x01016170",
+   "runtime_address": "0x01016970",
+   "primary_symbol": "FUN_01016170",
+   "required_spellings": [
+    "FUN_01016170"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_IYZQNCOB4T4XO27DREWRIWJFVHVS355NEDBEGEQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 28,
+   "true_executable_extent": 28,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01013e98"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1013650"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01016170')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x0101618c",
+   "runtime_address": "0x0101698c",
+   "primary_symbol": "sdc_conn_recovery_state_restore",
+   "required_spellings": [
+    "FUN_0101618c",
+    "sdc_conn_recovery_state_restore"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_HT64RIVISXSWFJE3LL26YHKQRTRRXKVEDBUUUOQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 88,
+   "true_executable_extent": 88,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100cff4",
+    "0x0100d5d0",
+    "0x0100efc8"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1012f18"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_conn_recovery_state_restore')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01018df8",
+   "runtime_address": "0x010195f8",
+   "primary_symbol": "FUN_01018df8",
+   "required_spellings": [
+    "FUN_01018df8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 50,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "tail branch ends 0x01018e2a; literals follow",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01018df8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x010199f4",
+   "runtime_address": "0x0101a1f4",
+   "primary_symbol": "FUN_010199f4",
+   "required_spellings": [
+    "FUN_010199f4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_N4ILSLKDZS6JBJI35QECDSPTA4MOGH57OAV3Z5Y"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 170,
+   "true_executable_extent": 170,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100a5a0",
+    "0x010270d2",
+    "0x0102714a"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1019aa0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010199f4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 6
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01019eb4",
+   "runtime_address": "0x0101a6b4",
+   "primary_symbol": "FUN_01019eb4",
+   "required_spellings": [
+    "FUN_01019eb4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_LAYK5IGLYEFQ5CM2XGZHPMQBISU3CLYKB6Y3VWY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 68,
+   "true_executable_extent": 68,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100a5a0",
+    "0x010270d2",
+    "0x0102714a"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x10187e0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01019eb4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01019ef8",
+   "runtime_address": "0x0101a6f8",
+   "primary_symbol": "FUN_01019ef8",
+   "required_spellings": [
+    "FUN_01019ef8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_OMJ3SW7NEDZYIEECEHTEY7EFLFDPDBULVOYOR3I"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 58,
+   "true_executable_extent": 58,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100a5a0",
+    "0x010270d2",
+    "0x0102714a"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x10187e0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01019ef8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x0101d890",
+   "runtime_address": "0x0101e090",
+   "primary_symbol": "FUN_0101d890",
+   "required_spellings": [
+    "FUN_0101d890"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 82,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "tail branch ends 0x0101d8e2; alignment/literal follows",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101d890')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x0101dda8",
+   "runtime_address": "0x0101e5a8",
+   "primary_symbol": "schedule_node_tail_get",
+   "required_spellings": [
+    "FUN_0101dda8",
+    "schedule_node_tail_get"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_WVUR7FIOL24MFCJHZIBLTPA7O44X57VSRLSLAPQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 20,
+   "true_executable_extent": 20,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101a38c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'schedule_node_tail_get')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x0101ded0",
+   "runtime_address": "0x0101e6d0",
+   "primary_symbol": "FUN_0101ded0",
+   "required_spellings": [
+    "FUN_0101ded0"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_CRB5YCB3Z3AAZH7A5G7WM2JFASUE6SGAJROBYAA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 176,
+   "true_executable_extent": 176,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101e6ac"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101ded0')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x0101df84",
+   "runtime_address": "0x0101e784",
+   "primary_symbol": "controller_entry_links_release",
+   "required_spellings": [
+    "FUN_0101df84",
+    "controller_entry_links_release"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_Y63OUE6TAGQSGRCWADOMH3US5WOUILUZMPZTGBI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 242,
+   "true_executable_extent": 242,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x01009d18",
+    "0x01009d64",
+    "0x010278e4"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x10294a2"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_entry_links_release')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x0101e090",
+   "runtime_address": "0x0101e890",
+   "primary_symbol": "FUN_0101e090",
+   "required_spellings": [
+    "FUN_0101e090"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_6DIMBYT25BJNPLTICY2FPQL5WJ7ZQACODXUAREQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 20,
+   "true_executable_extent": 20,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01009d18"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x10294a2"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101e090')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x0101e1e4",
+   "runtime_address": "0x0101e9e4",
+   "primary_symbol": "controller_timing_defaults_apply",
+   "required_spellings": [
+    "FUN_0101e1e4",
+    "controller_timing_defaults_apply"
+   ],
+   "same_va_alias_required": true,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_FHGZFWEAJHQUMCWG4E5CUD67QD7B6JGXN3SSXDY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 144,
+   "true_executable_extent": 144,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0101f8cc",
+    "0x01021920"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100d5c8",
+    "0x101e274"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_timing_defaults_apply')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0101e2fc",
+   "runtime_address": "0x0101eafc",
+   "primary_symbol": "FUN_0101e2fc",
+   "required_spellings": [
+    "FUN_0101e2fc"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_LDNWAOTSHYHHXS6GC3A5HYPBDRDBY4JBJAMZW7I"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 156,
+   "true_executable_extent": 156,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0101f8cc"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1010470"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101e2fc')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x0101f624",
+   "runtime_address": "0x0101fe24",
+   "primary_symbol": "FUN_0101f624",
+   "required_spellings": [
+    "FUN_0101f624"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_XQWU4MX22DPQIRRYTXBNWTH2DBYK7MH33FME7FI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 40,
+   "true_executable_extent": 40,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1008d7c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0101f624')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x010207cc",
+   "runtime_address": "0x01020fcc",
+   "primary_symbol": "FUN_010207cc",
+   "required_spellings": [
+    "FUN_010207cc"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_7CIQBS4FNO23MS6BAN7Q3LK45R62DBPT5FNCWOA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 72,
+   "true_executable_extent": 72,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1013650"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010207cc')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x01020820",
+   "runtime_address": "0x01021020",
+   "primary_symbol": "FUN_01020820",
+   "required_spellings": [
+    "FUN_01020820"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_Y6HXZQJARJ7FDWKGPREPQGRRGDOQMXHDALUK6KY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 60,
+   "true_executable_extent": 60,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01021654",
+    "0x01021694"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100af3c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01020820')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01021634",
+   "runtime_address": "0x01021e34",
+   "primary_symbol": "controller_radio_time_mode2_to_mode2",
+   "required_spellings": [
+    "FUN_01021634",
+    "controller_radio_time_mode2_to_mode2"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_2EA2WBXQOKCTPMK7YNDR6QM6MTGHJCDTPZEXNNA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 28,
+   "true_executable_extent": 28,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010209f0"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101ba58"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_radio_time_mode2_to_mode2')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01021940",
+   "runtime_address": "0x01022140",
+   "primary_symbol": "FUN_01021940",
+   "required_spellings": [
+    "FUN_01021940"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_QLJBNB55XHXGY3EZ4W3ZZ3U6AVPE2YGDOXRUZSQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 48,
+   "true_executable_extent": 48,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x10216d4"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01021940')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x01021ac0",
+   "runtime_address": "0x010222c0",
+   "primary_symbol": "FUN_01021ac0",
+   "required_spellings": [
+    "FUN_01021ac0"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_4RNEPYYQOFM4LAOGLN2TB27X7L3XBISTGAWYOHQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 20,
+   "true_executable_extent": 20,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1021a38",
+    "0x102a122"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01021ac0')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01022a30",
+   "runtime_address": "0x01023230",
+   "primary_symbol": "FUN_01022a30",
+   "required_spellings": [
+    "FUN_01022a30"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_RWBLK2534FJMTER76IYUPZQ3YF74JEALZ2OBIDI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 28,
+   "true_executable_extent": 28,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1013650",
+    "0x101ba58"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01022a30')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01022a50",
+   "runtime_address": "0x01023250",
+   "primary_symbol": "FUN_01022a50",
+   "required_spellings": [
+    "FUN_01022a50"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_4FXF7BZT2IZ3YRYSE3Z2XCICKWZPGDZTXL2ECZQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 48,
+   "true_executable_extent": 48,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0102521c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100b180",
+    "0x1013650",
+    "0x10171c8",
+    "0x10190d0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01022a50')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01022e34",
+   "runtime_address": "0x01023634",
+   "primary_symbol": "FUN_01022e34",
+   "required_spellings": [
+    "FUN_01022e34"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_RPHL2J7CVNKM6GKLDIFI4NVAPZE2FHTYW4VJSJI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 80,
+   "true_executable_extent": 80,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010248d0"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1013b4c",
+    "0x101aee0",
+    "0x101b088",
+    "0x1021a38"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01022e34')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x01022ea8",
+   "runtime_address": "0x010236a8",
+   "primary_symbol": "FUN_01022ea8",
+   "required_spellings": [
+    "FUN_01022ea8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_MGCUANL7Q2CUPWKYBFLWSWSNXIEEYBPZTHT2VZI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01024440",
+    "0x010245d8",
+    "0x01024644"
+   ],
+   "private_dependencies": [
+    "0x01024440",
+    "0x010245d8"
+   ],
+   "callers": [
+    "0x1012c84",
+    "0x1013650",
+    "0x1013b4c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01022ea8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01022f0c",
+   "runtime_address": "0x0102370c",
+   "primary_symbol": "FUN_01022f0c",
+   "required_spellings": [
+    "FUN_01022f0c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_W447CEMR6K6QRW3N63PRPIR7NK6ENOSBFXLCPRQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 44,
+   "true_executable_extent": 44,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0102445c"
+   ],
+   "private_dependencies": [
+    "0x0102445c"
+   ],
+   "callers": [
+    "0x101ab20",
+    "0x1029e64"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01022f0c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x010231c8",
+   "runtime_address": "0x010239c8",
+   "primary_symbol": "sdc_conn_window_admit",
+   "required_spellings": [
+    "FUN_010231c8",
+    "sdc_conn_window_admit"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_NFDFVOR5BUFND4TNTGYIYR4ARXJRXWSQ4PVFUKY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 1474,
+   "true_executable_extent": 1474,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01021b7c",
+    "0x010225ac",
+    "0x0102286c",
+    "0x01024440",
+    "0x01025084",
+    "0x010256dc",
+    "0x0102583c"
+   ],
+   "private_dependencies": [
+    "0x01024440",
+    "0x010256dc",
+    "0x0102583c"
+   ],
+   "callers": [
+    "0x1012c84",
+    "0x1012f18",
+    "0x1013b4c",
+    "0x10140ec",
+    "0x101ab20",
+    "0x101aee0",
+    "0x101b088",
+    "0x101b230",
+    "0x101ba58",
+    "0x101bc3c",
+    "0x101bdd4",
+    "0x1029d76",
+    "0x1029e64",
+    "0x102a122"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_conn_window_admit')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01023ac4",
+   "runtime_address": "0x010242c4",
+   "primary_symbol": "FUN_01023ac4",
+   "required_spellings": [
+    "FUN_01023ac4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_F77FUTRRLLWPYDS7BBANG2WE3C4EDMYMAPNI54A"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010251ec"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1020108",
+    "0x1020764",
+    "0x10212ec",
+    "0x1029e64"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01023ac4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01023d38",
+   "runtime_address": "0x01024538",
+   "primary_symbol": "FUN_01023d38",
+   "required_spellings": [
+    "FUN_01023d38"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_URFU24FFGR2HYB6CCPIPKPNZNMTWHKDYOATUJNY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 172,
+   "true_executable_extent": 172,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0102445c",
+    "0x01024524",
+    "0x010250d0",
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x0102445c",
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1012c84",
+    "0x1013650",
+    "0x101a218",
+    "0x101ab20",
+    "0x101b230",
+    "0x101ba58",
+    "0x1029d68"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01023d38')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01023e88",
+   "runtime_address": "0x01024688",
+   "primary_symbol": "FUN_01023e88",
+   "required_spellings": [
+    "FUN_01023e88"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_HVFGTYCGAECGUJHOFSPMGUV2G4PTWWUYTJVAPNA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 28,
+   "true_executable_extent": 28,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1014748",
+    "0x101b230",
+    "0x101bf30",
+    "0x1020a6c",
+    "0x1021108",
+    "0x10212ec"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01023e88')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01024440",
+   "runtime_address": "0x01024c40",
+   "primary_symbol": "FUN_01024440",
+   "required_spellings": [
+    "FUN_01024440"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_XYQTP7YX2XFVREW5KFDH2NNPGRIPEHKIO2RURYI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 28,
+   "true_executable_extent": 28,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1021ee0",
+    "0x1022a84",
+    "0x1022ea8",
+    "0x10231c8",
+    "0x10237b0",
+    "0x1023dec",
+    "0x10243c0",
+    "0x1025034"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01024440')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x0102445c",
+   "runtime_address": "0x01024c5c",
+   "primary_symbol": "FUN_0102445c",
+   "required_spellings": [
+    "FUN_0102445c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_V6OT7EKSQC3XEJK5ZWNACQF7LLICCSE7X3C3ECY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 112,
+   "true_executable_extent": 112,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x10225ac",
+    "0x1022f0c",
+    "0x1022f3c",
+    "0x1023d38"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102445c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x010245d8",
+   "runtime_address": "0x01024dd8",
+   "primary_symbol": "FUN_010245d8",
+   "required_spellings": [
+    "FUN_010245d8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_PITJNQC6YSCEFAH23N5QRORZDKCSKOAUGBUS6GA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 48,
+   "true_executable_extent": 48,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1021df0",
+    "0x10225ac",
+    "0x1022a84",
+    "0x1022ea8",
+    "0x1022f3c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010245d8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01024c6c",
+   "runtime_address": "0x0102546c",
+   "primary_symbol": "FUN_01024c6c",
+   "required_spellings": [
+    "FUN_01024c6c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_2ZDZA75WOMRNSQ6XL7IZWAQKYFFSRJOGBGKPTIQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 408,
+   "true_executable_extent": 408,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256c8",
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1021ee0",
+    "0x1022a84",
+    "0x1024ef0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01024c6c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x0102524c",
+   "runtime_address": "0x01025a4c",
+   "primary_symbol": "FUN_0102524c",
+   "required_spellings": [
+    "FUN_0102524c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_TSYEIN5CZPQE3YK6VECZD5C2M4LMXKKH6O7LNAY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 222,
+   "true_executable_extent": 222,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1021ee0",
+    "0x102286c",
+    "0x1022a84",
+    "0x1023ea8"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102524c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x010256dc",
+   "runtime_address": "0x01025edc",
+   "primary_symbol": "FUN_010256dc",
+   "required_spellings": [
+    "FUN_010256dc"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_S2UAPMFVIQXDUOA6CV7GJMB33TYHEUH5D6LHO5Q"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 84,
+   "true_executable_extent": 84,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010255a4"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1021b04",
+    "0x1021cec",
+    "0x1021ee0",
+    "0x1022a30",
+    "0x1022a84",
+    "0x10231c8",
+    "0x10237b0",
+    "0x1023ad8",
+    "0x1023d38",
+    "0x1023dec",
+    "0x1023e88",
+    "0x1023ea8",
+    "0x102411c",
+    "0x10243c0",
+    "0x1024524",
+    "0x1024678",
+    "0x1024778",
+    "0x1024c6c",
+    "0x1024e1c",
+    "0x1024ef0",
+    "0x10250d0",
+    "0x10251ec",
+    "0x102521c",
+    "0x102524c",
+    "0x10257e4",
+    "0x102581c",
+    "0x102583c",
+    "0x1025c44",
+    "0x1025c9c",
+    "0x1029d34",
+    "0x1029d76",
+    "0x1029e64",
+    "0x102a122"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010256dc')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x010257e4",
+   "runtime_address": "0x01025fe4",
+   "primary_symbol": "FUN_010257e4",
+   "required_spellings": [
+    "FUN_010257e4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_W7ROFHNOSDKPIRUKDGIZZ5YR3MC3DAM2YLJOUIA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 52,
+   "true_executable_extent": 52,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x1008fd4"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010257e4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x0102583c",
+   "runtime_address": "0x0102603c",
+   "primary_symbol": "controller_deferred_event_raise",
+   "required_spellings": [
+    "FUN_0102583c",
+    "controller_deferred_event_raise"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_GURZ3AH6X65RGSKYMYNWZVP6HM56LA5MRAQWT6Q"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 52,
+   "true_executable_extent": 52,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x100ec40",
+    "0x100ef48",
+    "0x100ef88",
+    "0x100efc8",
+    "0x100f2d0",
+    "0x1022a84",
+    "0x10231c8",
+    "0x1023ea8"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_deferred_event_raise')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x0102590c",
+   "runtime_address": "0x0102610c",
+   "primary_symbol": "FUN_0102590c",
+   "required_spellings": [
+    "FUN_0102590c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_525JLJ5JEQ6FEZGTSIW74UTOCUZ2F4YECMQ6KVQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 138,
+   "true_executable_extent": 138,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1010834"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102590c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01025998",
+   "runtime_address": "0x01026198",
+   "primary_symbol": "FUN_01025998",
+   "required_spellings": [
+    "FUN_01025998"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_DQONLUECJTIEYFOFJXXAPJO4POIAJKJNKBGVN5A"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 236,
+   "true_executable_extent": 236,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x100b630",
+    "0x100e06c",
+    "0x100e08c",
+    "0x100e164",
+    "0x100e410",
+    "0x100e65c",
+    "0x100e95c",
+    "0x100eaf0",
+    "0x102602e",
+    "0x102609e",
+    "0x1026122",
+    "0x1026c94",
+    "0x1026f32",
+    "0x1027c98"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025998')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x01025a84",
+   "runtime_address": "0x01026284",
+   "primary_symbol": "FUN_01025a84",
+   "required_spellings": [
+    "FUN_01025a84"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_VSILKYHVQ5DVF6LG5MG267DQVA3A2XZQ6FSCLXA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 214,
+   "true_executable_extent": 214,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1008ddc",
+    "0x1009668",
+    "0x1009ea4",
+    "0x100bc1c",
+    "0x100cc20",
+    "0x100cff4",
+    "0x100d14c",
+    "0x1012178",
+    "0x10121e4",
+    "0x1013b4c",
+    "0x10144e4",
+    "0x1019f9c",
+    "0x101ae9c",
+    "0x101d404",
+    "0x102023c",
+    "0x102693a"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025a84')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01025c44",
+   "runtime_address": "0x01026444",
+   "primary_symbol": "FUN_01025c44",
+   "required_spellings": [
+    "FUN_01025c44"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_GNQQQFEWM5SWEGVB5JHP7HYAZGI4CDQXSGHR4SQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 84,
+   "true_executable_extent": 84,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc",
+    "0x01025bf8"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x100b180",
+    "0x101132c",
+    "0x10171c8"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025c44')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01025c9c",
+   "runtime_address": "0x0102649c",
+   "primary_symbol": "FUN_01025c9c",
+   "required_spellings": [
+    "FUN_01025c9c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_H2AKPOL4Q6GKGQJVBUBWLPO3RBNKXXQE2HSOELQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 40,
+   "true_executable_extent": 40,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010256dc"
+   ],
+   "private_dependencies": [
+    "0x010256dc"
+   ],
+   "callers": [
+    "0x10208f0",
+    "0x1020a6c",
+    "0x1021108",
+    "0x10212ec"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025c9c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-2"
+  },
+  {
+   "analysis_address": "0x01025cc8",
+   "runtime_address": "0x010264c8",
+   "primary_symbol": "FUN_01025cc8",
+   "required_spellings": [
+    "FUN_01025cc8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_24DWUIEE2POS3GYSEVA4IAL4G7TGCCCJXT6D5AA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 36,
+   "true_executable_extent": 36,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01025bf8"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1020500"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025cc8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01025cf0",
+   "runtime_address": "0x010264f0",
+   "primary_symbol": "controller_transition_pending_check",
+   "required_spellings": [
+    "FUN_01025cf0",
+    "controller_transition_pending_check"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 24,
+   "true_executable_extent": 24,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101ba58"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_transition_pending_check')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x01025d0c"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01025d0c",
+   "runtime_address": "0x0102650c",
+   "primary_symbol": "FUN_01025d0c",
+   "required_spellings": [
+    "FUN_01025d0c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_UCUZCD3IIQBIFBTQEAMBH3ROVF42G3OC6HCQXWQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 24,
+   "true_executable_extent": 24,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1020500"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01025d0c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x01025cf0"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x0102665c",
+   "runtime_address": "0x01026e5c",
+   "primary_symbol": "FUN_0102665c",
+   "required_spellings": [
+    "FUN_0102665c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 32,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "ordinary return join ends 0x0102667c; next entry follows",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102665c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0102693a",
+   "runtime_address": "0x0102713a",
+   "primary_symbol": "FUN_0102693a",
+   "required_spellings": [
+    "FUN_0102693a"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_A7PVZLRTORLFMETW3GOBE4DG32WTH46LP2SW5QQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 148,
+   "true_executable_extent": 148,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x01025a84",
+    "0x0102689c",
+    "0x01026a7e"
+   ],
+   "private_dependencies": [
+    "0x01025a84",
+    "0x01026a7e"
+   ],
+   "callers": [
+    "0x102759e",
+    "0x10275d2",
+    "0x1027606",
+    "0x10276b2",
+    "0x10276e6"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102693a')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 5
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x010269ce",
+   "runtime_address": "0x010271ce",
+   "primary_symbol": "FUN_010269ce",
+   "required_spellings": [
+    "FUN_010269ce"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_XCF2HHS4DO2JW2ILCF4RJW66HXXYOROBK7NUPMY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 176,
+   "true_executable_extent": 176,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x01026856",
+    "0x010268ce"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100e95c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010269ce')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01026a7e",
+   "runtime_address": "0x0102727e",
+   "primary_symbol": "FUN_01026a7e",
+   "required_spellings": [
+    "FUN_01026a7e"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_E56LW5YVGUG6HP2OML5URHI7K2KCWX5ULQKQOKY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 78,
+   "true_executable_extent": 78,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0102689c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x102693a",
+    "0x102763a",
+    "0x1027662",
+    "0x102768a",
+    "0x102771a",
+    "0x1027742"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026a7e')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01026acc",
+   "runtime_address": "0x010272cc",
+   "primary_symbol": "FUN_01026acc",
+   "required_spellings": [
+    "FUN_01026acc"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_TDLIKQLE652KPCFAMYL33G6BKGPHRLYLWNEOTHQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 140,
+   "true_executable_extent": 140,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x0100951c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100e95c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026acc')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01026b58",
+   "runtime_address": "0x01027358",
+   "primary_symbol": "FUN_01026b58",
+   "required_spellings": [
+    "FUN_01026b58"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_47GVMLF7NXDJBYC2TPU2ES3ZL6CP4GIPWKYYWBI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 166,
+   "true_executable_extent": 166,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01026912"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100ac98"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026b58')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01026bfe",
+   "runtime_address": "0x010273fe",
+   "primary_symbol": "FUN_01026bfe",
+   "required_spellings": [
+    "FUN_01026bfe"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_UOYZDE3MDLGPDL5S5WKUFLPYH4DJIMF3BJSBDYA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 150,
+   "true_executable_extent": 150,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x0100951c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100b6b4"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026bfe')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01026d16",
+   "runtime_address": "0x01027516",
+   "primary_symbol": "FUN_01026d16",
+   "required_spellings": [
+    "FUN_01026d16"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_B62EJKCCJ4JFC5I4BFTUJG7GNOKGWQ4KKFBS6RI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 40,
+   "true_executable_extent": 40,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01026912"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1013650",
+    "0x1015ecc"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026d16')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x01026dae",
+   "runtime_address": "0x010275ae",
+   "primary_symbol": "FUN_01026dae",
+   "required_spellings": [
+    "FUN_01026dae"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_4WKKRRMMNLQOCTRGC2MVIREG5QOCFUEL67TBUQY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 154,
+   "true_executable_extent": 154,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100951c",
+    "0x01026912"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100ac98"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01026dae')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01027044",
+   "runtime_address": "0x01027844",
+   "primary_symbol": "FUN_01027044",
+   "required_spellings": [
+    "FUN_01027044"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_RZ3AO5KZJYCPFG5YW4CBZQF5SRGN3BPTEGBY47I"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 90,
+   "true_executable_extent": 90,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01026912"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100eaf0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027044')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x010270e8",
+   "runtime_address": "0x010278e8",
+   "primary_symbol": "FUN_010270e8",
+   "required_spellings": [
+    "FUN_010270e8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_Q4EW623JZHY67RB7U4Z2L2SMI5ENWIDFL23JZHQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 98,
+   "true_executable_extent": 98,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100951c",
+    "0x01026912"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100eaf0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010270e8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01027302",
+   "runtime_address": "0x01027b02",
+   "primary_symbol": "FUN_01027302",
+   "required_spellings": [
+    "FUN_01027302"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_JTNP7UFMKYWSFCHJEA5IASO3QVW3HK4YV6YOJYQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 196,
+   "true_executable_extent": 196,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x01027196",
+    "0x010271b8",
+    "0x010271da",
+    "0x0102722c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1009f58"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027302')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x010273c6",
+   "runtime_address": "0x01027bc6",
+   "primary_symbol": "FUN_010273c6",
+   "required_spellings": [
+    "FUN_010273c6"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_B627VJPECYREV5OY4VJ652ISBA4XGPKVOUJ747A"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 50,
+   "true_executable_extent": 50,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01027196",
+    "0x010271b8"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x100a048",
+    "0x100a6f0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010273c6')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x01027846",
+   "runtime_address": "0x01028046",
+   "primary_symbol": "FUN_01027846",
+   "required_spellings": [
+    "FUN_01027846"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_WDNTHBFS7DQM3AR7WDCR7ZEICFH5ZM5PJ35BRPY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 78,
+   "true_executable_extent": 78,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x010277c2",
+    "0x010277f2",
+    "0x01027822"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1008a58"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027846')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x01027a4a",
+   "runtime_address": "0x0102824a",
+   "primary_symbol": "FUN_01027a4a",
+   "required_spellings": [
+    "FUN_01027a4a"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_EOUZIDBP3HL2GT63FUCLAQVGISX2MLIV4MK5FZY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 74,
+   "true_executable_extent": 74,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x102185c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027a4a')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01027a94",
+   "runtime_address": "0x01028294",
+   "primary_symbol": "FUN_01027a94",
+   "required_spellings": [
+    "FUN_01027a94"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_5RQ4FZRNKDUYW7D36K54TV4FI3NLNURNJPSLJOY"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 62,
+   "true_executable_extent": 62,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1021790",
+    "0x1021800",
+    "0x1029c3a"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027a94')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01027ed4",
+   "runtime_address": "0x010286d4",
+   "primary_symbol": "FUN_01027ed4",
+   "required_spellings": [
+    "FUN_01027ed4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_VPXIA5P4C72CY3ME4ZVXBADOKEG5S4C7Z7QZZFA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 30,
+   "true_executable_extent": 30,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01027e1c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101132c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027ed4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x01027ef2"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01027ef2",
+   "runtime_address": "0x010286f2",
+   "primary_symbol": "FUN_01027ef2",
+   "required_spellings": [
+    "FUN_01027ef2"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_VPXIA5P4C72CY3ME4ZVXBADOKEG5S4C7Z7QZZFA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 30,
+   "true_executable_extent": 30,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01027e1c"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101132c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01027ef2')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 2
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x01027ed4"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-4"
+  },
+  {
+   "analysis_address": "0x010280be",
+   "runtime_address": "0x010288be",
+   "primary_symbol": "FUN_010280be",
+   "required_spellings": [
+    "FUN_010280be"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_RIJIFYF46ZRKFDPA3GKV7WCH2VGEUEP6MVN4JFI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 26,
+   "true_executable_extent": 26,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01028034"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1012438"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010280be')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x010280d8"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x010280d8",
+   "runtime_address": "0x010288d8",
+   "primary_symbol": "FUN_010280d8",
+   "required_spellings": [
+    "FUN_010280d8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_RIJIFYF46ZRKFDPA3GKV7WCH2VGEUEP6MVN4JFI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 26,
+   "true_executable_extent": 26,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01028034"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1012438"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010280d8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [
+    "0x010280be"
+   ],
+   "same_archive_identity_distinct_va": true,
+   "archive_identity_alias_safe": false,
+   "suggested_shard": "net-private-5"
+  },
+  {
+   "analysis_address": "0x01028256",
+   "runtime_address": "0x01028a56",
+   "primary_symbol": "FUN_01028256",
+   "required_spellings": [
+    "FUN_01028256"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_DP474BSWQ6W7M27XE2M7XMGWSDEQ3KL66B2SR5Q"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 64,
+   "true_executable_extent": 64,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01008d00",
+    "0x0100f66c",
+    "0x0101e398",
+    "0x0101e404",
+    "0x01028134"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101e6ac"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01028256')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 0
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-3"
+  },
+  {
+   "analysis_address": "0x010282fc",
+   "runtime_address": "0x01028afc",
+   "primary_symbol": "controller_default_bounds_build",
+   "required_spellings": [
+    "FUN_010282fc",
+    "controller_default_bounds_build"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_SJQK3XCDMHZEHLRZ5PBTRM4CNS5P2IXVJLCP4OA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 126,
+   "true_executable_extent": 126,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100d538",
+    "0x01013d90",
+    "0x0101bbc8"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1028656",
+    "0x1028b7c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'controller_default_bounds_build')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x0102894a",
+   "runtime_address": "0x0102914a",
+   "primary_symbol": "FUN_0102894a",
+   "required_spellings": [
+    "FUN_0102894a"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_FQNF6KMIBMQDKYS2BJP6ZB7BLEET53WUIWQK6FA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 60,
+   "true_executable_extent": 60,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100bc44",
+    "0x01010834",
+    "0x01028296",
+    "0x010283b8"
+   ],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102894a')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x010292ec",
+   "runtime_address": "0x01029aec",
+   "primary_symbol": "FUN_010292ec",
+   "required_spellings": [
+    "FUN_010292ec"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 46,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "ordinary return join ends 0x0102931a; next entry follows",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010292ec')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0102941c",
+   "runtime_address": "0x01029c1c",
+   "primary_symbol": "FUN_0102941c",
+   "required_spellings": [
+    "FUN_0102941c"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_J2SUO2NMPPNDQZAGB2FE5TAXJFMJ5FZXKAPNVFQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 32,
+   "true_executable_extent": 32,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01013d28",
+    "0x0101bbb4"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x1008d7c"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102941c')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x0102961a",
+   "runtime_address": "0x01029e1a",
+   "primary_symbol": "FUN_0102961a",
+   "required_spellings": [
+    "FUN_0102961a"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_JU742LCDLL7PZRKE4HZMDATVAWDO5RTNLQEGJHI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x10187e0"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102961a')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x0102971e",
+   "runtime_address": "0x01029f1e",
+   "primary_symbol": "FUN_0102971e",
+   "required_spellings": [
+    "FUN_0102971e"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_3AWAQCNCZH4MEGKKMZLZXM2OFWJS4TFUCWUEKRI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 26,
+   "true_executable_extent": 26,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f994",
+    "0x10297b4"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102971e')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x010297b4",
+   "runtime_address": "0x01029fb4",
+   "primary_symbol": "FUN_010297b4",
+   "required_spellings": [
+    "FUN_010297b4"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_RRC5YHH6YM3SHNGPFUCE3YX5LDRJC7YUGPWWYHQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 206,
+   "true_executable_extent": 206,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x0100e8b0",
+    "0x0100e8b8",
+    "0x0100e8c4",
+    "0x0101f8d8",
+    "0x01028486",
+    "0x0102971e"
+   ],
+   "private_dependencies": [
+    "0x0102971e"
+   ],
+   "callers": [
+    "0x101f994"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010297b4')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 3
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x01029882",
+   "runtime_address": "0x0102a082",
+   "primary_symbol": "FUN_01029882",
+   "required_spellings": [
+    "FUN_01029882"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_6NVBTUP3F2K4CR6EQ2CJTT2FVJIBKKWMISPRCSI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 38,
+   "true_executable_extent": 38,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x1013650",
+    "0x101c6d0",
+    "0x101f994"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01029882')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 4
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-7"
+  },
+  {
+   "analysis_address": "0x010298a8",
+   "runtime_address": "0x0102a0a8",
+   "primary_symbol": "FUN_010298a8",
+   "required_spellings": [
+    "FUN_010298a8"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_5J2UTKCNVYPTFCXPLA7CPFQ4IMONW6EIFWRNNZI"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x101d404"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_010298a8')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-6"
+  },
+  {
+   "analysis_address": "0x01029b38",
+   "runtime_address": "0x0102a338",
+   "primary_symbol": "FUN_01029b38",
+   "required_spellings": [
+    "FUN_01029b38"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [
+    "sym_2RDISJXERNPMBLAROCL4JWHLKVABCMPSEI3SYLQ"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 22,
+   "true_executable_extent": 22,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [
+    "0x01029b24"
+   ],
+   "private_dependencies": [],
+   "callers": [
+    "0x101f440",
+    "0x1029b4e",
+    "0x1029b88"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "retain_reconstruction",
+    "exclude_reconstruction": false
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_01029b38')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0102a1e0",
+   "runtime_address": "0x0102a9e0",
+   "primary_symbol": "FUN_0102a1e0",
+   "required_spellings": [
+    "FUN_0102a1e0"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "softdevice_controller",
+   "archive_identities": [],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": false,
+   "declared_extent": null,
+   "true_executable_extent": 2,
+   "extent_basis": "reviewed_catalog_missed_boundary",
+   "boundary_evidence": "single bx lr; next entry starts 0x0102a1e2",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": null,
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'FUN_0102a1e0')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": null
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0102a1ea",
+   "runtime_address": "0x0102a9ea",
+   "primary_symbol": "sdc_byte_lock_try_acquire",
+   "required_spellings": [
+    "FUN_0102a1ea",
+    "sdc_byte_lock_try_acquire"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_AR22FPVUFSZMVYMQBBXG7EEZNA2HPS2RLAKRPBA"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 30,
+   "true_executable_extent": 30,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x100a7e8"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_byte_lock_try_acquire')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-8"
+  },
+  {
+   "analysis_address": "0x0102a208",
+   "runtime_address": "0x0102aa08",
+   "primary_symbol": "sdc_byte_lock_release",
+   "required_spellings": [
+    "FUN_0102a208",
+    "sdc_byte_lock_release"
+   ],
+   "same_va_alias_required": false,
+   "archive_family": "mpsl",
+   "archive_identities": [
+    "sym_OWJYSTADR5I36MIHWNPICVB7CMCWNSFIZPFXQ2Q"
+   ],
+   "archive_identity_is_provenance_only": true,
+   "catalogued_start": true,
+   "declared_extent": 18,
+   "true_executable_extent": 18,
+   "extent_basis": "net_funcs_declared_and_current_verifier_extent",
+   "boundary_evidence": "catalog allocation; no private-backlog true-size override",
+   "callees": [],
+   "private_dependencies": [],
+   "callers": [
+    "0x100a7e8"
+   ],
+   "current_provider": {
+    "status": "absent",
+    "paths": []
+   },
+   "manifest": {
+    "decision": "adopt_upstream_exclude_reconstruction",
+    "exclude_reconstruction": true
+   },
+   "cfg": {
+    "status": "not_run_source_absent",
+    "entrypoint": "cfg_verify.verify('net', 'sdc_byte_lock_release')",
+    "input_strategy": "derive branch/switch cases from original CFG plus random trials",
+    "decompiler_argument_count": 1
+   },
+   "completion_gate": "canonical C exists and authoritative cfg_verify passes",
+   "archive_identity_peers": [],
+   "same_archive_identity_distinct_va": false,
+   "archive_identity_alias_safe": true,
+   "suggested_shard": "net-private-5"
+  }
+ ]
+}
