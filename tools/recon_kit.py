@@ -23,6 +23,14 @@ from capstone import *
 SCRATCH = "/private/tmp/claude-501/-Users-freedomcoder-Projects-G1disasm2/bf259b2e-0c97-4e04-ae79-84a08ccae34e/scratchpad"
 RECON_SRC = "/Users/freedomcoder/Projects/G1disasm2/recon/app/src"
 TRUE_SIZE_OVERRIDES = {
+    0x000564cc: 0xde,  # bt_conn_send_cb; literals follow at 0x565ac
+    0x00058568: 0x1c,  # send_err_rsp allocation-failure log helper
+    0x0005a954: 0x58,  # bt_gatt_init; literals follow at 0x5a9ac
+    0x0005ad38: 0x21c, # bt_gatt_service_register; literals follow at 0x5af54
+    0x0005c310: 0x9c,  # gatt_prepare_write_rsp; literals follow at 0x5c3ac
+    0x0005c6c8: 0x8e,  # bt_gatt_connected; literals follow at 0x5c758
+    0x0005c76c: 0x24,  # bt_gatt_att_max_mtu_changed
+    0x0005c9a4: 0xf6,  # bt_gatt_disconnected; literals follow at 0x5ca9c
     # Catalog-missing configured OpenAMP, zcbor, kernel, allocator and libm
     # entries. Keep this registry exactly mirrored in cfg_verify.py.
     0x00071560: 0x26,  # rpmsg_init_vdev

@@ -45,6 +45,38 @@
    "name": "legacy_advertising_connection_restart",
    "evidence": "Recovered legacy advertising connection-restart helper. Raw identity remains FUN_00055aac at 0x00055aac."
   },
+  "0x000564cc": {
+   "name": "bt_conn_send_cb",
+   "evidence": "Exact configured Zephyr Bluetooth connection TX callback/context enqueue path. Raw identity remains FUN_000564cc at 0x000564cc."
+  },
+  "0x00058568": {
+   "name": "send_err_rsp_alloc_failure_log",
+   "evidence": "Compiler-split allocation-failure logger from ATT send_err_rsp. Raw identity remains FUN_00058568 at 0x00058568."
+  },
+  "0x0005a954": {
+   "name": "bt_gatt_init",
+   "evidence": "Exact configured Zephyr Bluetooth GATT host initializer. Raw identity remains FUN_0005a954 at 0x0005a954."
+  },
+  "0x0005ad38": {
+   "name": "bt_gatt_service_register",
+   "evidence": "Exact configured Zephyr dynamic GATT service registration path, including inlined handle allocation and ordered database insertion. Raw identity remains FUN_0005ad38 at 0x0005ad38."
+  },
+  "0x0005c310": {
+   "name": "gatt_prepare_write_rsp",
+   "evidence": "Exact configured Zephyr GATT prepare-write response validator and continuation. Raw identity remains FUN_0005c310 at 0x0005c310."
+  },
+  "0x0005c6c8": {
+   "name": "bt_gatt_connected",
+   "evidence": "Exact configured Zephyr GATT connection hook with lazy CCC load and security escalation. Raw residue identity remains ext5c6c8 at 0x0005c6c8."
+  },
+  "0x0005c76c": {
+   "name": "bt_gatt_att_max_mtu_changed",
+   "evidence": "Exact configured Zephyr GATT MTU callback-list dispatcher. Raw identity remains FUN_0005c76c at 0x0005c76c."
+  },
+  "0x0005c9a4": {
+   "name": "bt_gatt_disconnected",
+   "evidence": "Exact configured Zephyr GATT disconnect cleanup for CCC state, subscriptions, and robust-caching state. Raw identity remains FUN_0005c9a4 at 0x0005c9a4."
+  },
   "0x000638dc": {
    "name": "sys_clock_set_timeout",
    "evidence": "Instruction-exact public owner in the configured Zephyr nrf_rtc_timer.c object. Raw identity remains FUN_000638dc."
