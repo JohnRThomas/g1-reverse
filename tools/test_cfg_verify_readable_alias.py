@@ -15,6 +15,15 @@ class CfgVerifyReadableAliasTest(unittest.TestCase):
             "app", "mgmt_find_handler", trials_random=1)
         self.assertEqual("PASS", result["status"])
 
+    def test_raw_request_compiles_collision_isolated_alias_owner(self):
+        # The public presentation name is the stock nrfx spelling, while the
+        # retained firmware body is deliberately namespaced to coexist with
+        # that stock owner.  Its durable alias must still resolve when a CFG
+        # sweep starts from the raw address identity.
+        result = cfg_verify.verify(
+            "app", "FUN_00064f48", trials_random=1)
+        self.assertEqual("PASS", result["status"])
+
 
 if __name__ == "__main__":
     unittest.main()

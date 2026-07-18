@@ -22730,7 +22730,13 @@ def verify(core, name, trials_random=40, source_override=None):
             "function_names_%s.json" % core)
         record = json.load(open(manifest_path))["by_address"]["0x%08x" % va]
         raw_name = record.get("raw_name")
-        readable_names = [record.get("name")]
+        # Collision-isolated canonical bodies may intentionally define one of
+        # the durable aliases (for example ``g1_recon_nrfx_*``) while the
+        # presentation name remains the exact stock public spelling.  Alias
+        # resolution is part of the reversible address/name map, so include
+        # every recorded spelling when selecting the symbol compiled from the
+        # canonical translation unit.
+        readable_names = [record.get("name")] + list(record.get("aliases") or [])
         override_path = os.path.join(
             os.path.dirname(os.path.dirname(__file__)), "recon", "catalogs",
             "function_name_overrides.json")
