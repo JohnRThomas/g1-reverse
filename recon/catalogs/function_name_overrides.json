@@ -2137,6 +2137,18 @@
    "name": "controller_random_window_step",
    "evidence": "Recovered helper updates the controller window using the random source, shrink flag, and bounded 16-bit state. Raw identity remains FUN_010295d6 at 0x010295d6."
   },
+  "0x01031248": {
+   "name": "rtc_compare_int_lock",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr nrf_rtc_timer.c compare_int_lock static owner. Its int_mask relocation resolves to firmware RAM 0x2100496c. Raw identity remains FUN_01031248 at 0x01031248."
+  },
+  "0x010312d0": {
+   "name": "rtc_compare_int_unlock",
+   "evidence": "Relocation-masked byte-exact pinned Zephyr nrf_rtc_timer.c compare_int_unlock static owner. Its int_mask and force_isr_mask relocations resolve to 0x2100496c and 0x21004964. Raw identity remains FUN_010312d0 at 0x010312d0."
+  },
+  "0x010313ec": {
+   "name": "rtc_compare_set",
+   "evidence": "Complete 0x124-byte pinned Zephyr nrf_rtc_timer.c compare_set static owner, including every call and state relocation. Ghidra's old 0x100-byte extent truncated live stores and literals. Raw identity remains FUN_010313ec at 0x010313ec."
+  },
   "0x0103a056": {
    "name": "ipc_static_vrings_shm_size",
    "evidence": "Exact arithmetic of the NCS 2.5.1 static inline shm_size helper: twice the aligned payload-plus-vring footprint. The qualified name avoids a generic static-symbol collision; raw identity remains FUN_0103a056."

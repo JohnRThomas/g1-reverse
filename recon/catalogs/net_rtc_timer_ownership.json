@@ -1,61 +1,567 @@
 {
- "schema": 1,
- "core": "net",
- "component": "zephyr_nrf_rtc_timer",
- "upstream": {
-  "repository": "/Users/freedomcoder/ncs251/zephyr",
-  "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
-  "tag": "v3.4.99-ncs1-1",
-  "source": "drivers/timer/nrf_rtc_timer.c",
-  "source_sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
-  "object": "zephyr/drivers/timer/libdrivers__timer.a(nrf_rtc_timer.c.obj)"
+ "binary_discriminators": {
+  "cc_data_layout": {
+   "callback_offset": 0,
+   "stride": 16,
+   "target_time_high_offset": 12,
+   "target_time_low_offset": 8,
+   "user_context_offset": 4
+  },
+  "compare_set_constants": {
+   "COUNTER_HALF_SPAN_minus_MIN_CYCLES": "0x007ffffd",
+   "COUNTER_HALF_SPAN_plus_one": "0x00800001",
+   "RTC1_register_base": "0x41016000"
+  },
+  "resolved_call_targets": {
+   "compare_int_lock": 16978504,
+   "compare_int_unlock": 16978640,
+   "event_clear": 17016494,
+   "rtc_pretick_rtc1_isr_hook": 17014350,
+   "z_nrf_rtc_timer_read": 16978856
+  },
+  "resolved_state_targets": {
+   ".bss.anchor": 553659272,
+   ".bss.cc_data": 553659232,
+   ".bss.force_isr_mask": 553666916,
+   ".bss.int_mask": 553666924,
+   ".bss.overflow_cnt": 553666928
+  }
  },
- "required_config": {
-  "CONFIG_SOC_NRF53_RTC_PRETICK": true,
-  "CONFIG_NRF_RTC_TIMER_LOCK_ZERO_LATENCY_IRQS": true,
-  "CONFIG_NRF_RTC_TIMER_USER_CHAN_COUNT": 1,
-  "derived_CHAN_COUNT": 2
+ "call_target_checks": [
+  {
+   "caller": "compare_set",
+   "offset": 16,
+   "runtime_target": "0x01031248",
+   "target": "compare_int_lock",
+   "type": 10
+  },
+  {
+   "caller": "compare_set",
+   "offset": 22,
+   "runtime_target": "0x010313a8",
+   "target": "z_nrf_rtc_timer_read",
+   "type": 10
+  },
+  {
+   "caller": "compare_set",
+   "offset": 88,
+   "runtime_target": "0x0103a6ae",
+   "target": "event_clear",
+   "type": 10
+  },
+  {
+   "caller": "compare_set",
+   "offset": 178,
+   "runtime_target": "0x0103a6ae",
+   "target": "event_clear",
+   "type": 10
+  },
+  {
+   "caller": "compare_set",
+   "offset": 214,
+   "runtime_target": "0x010312d0",
+   "target": "compare_int_unlock",
+   "type": 10
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 6,
+   "runtime_target": "0x01039e4e",
+   "target": "rtc_pretick_rtc1_isr_hook",
+   "type": 10
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 114,
+   "runtime_target": "0x0103a6ae",
+   "target": "event_clear",
+   "type": 10
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 118,
+   "runtime_target": "0x010313a8",
+   "target": "z_nrf_rtc_timer_read",
+   "type": 10
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 196,
+   "runtime_target": "0x0103a6ae",
+   "target": "event_clear",
+   "type": 10
+  }
+ ],
+ "component": "zephyr_nrf_rtc_timer",
+ "core": "net",
+ "derived_config": {
+  "CHAN_COUNT": 2,
+  "RTC_PRETICK": true,
+  "cc_data_stride": 16
+ },
+ "extent_correction": {
+  "ghidra_declared_size": 256,
+  "old_harness_blind_spot": "The retained C treated the RTC 0x41016504 event register as unmapped/zero and deleted the live event-check and retry branch. Random parity could not observe that MMIO arm; full configured-section comparison is authoritative here.",
+  "omitted_live_operations": [
+   "cc_data slot address calculation at compare_set+0x100",
+   "zero success result at compare_set+0x104",
+   "target_time store at compare_set+0x106",
+   "user_context store at compare_set+0x10a",
+   "branch to compare_int_unlock at compare_set+0x10c"
+  ],
+  "omitted_tail_hex": "01eb04120025c2e902675360e1e700bf01008000602b002100600141fdff7f0064490021",
+  "omitted_tail_relocations": [
+   {
+    "offset": 276,
+    "runtime_target": "0x21002b60",
+    "target": ".bss.cc_data",
+    "type": 2
+   },
+   {
+    "offset": 288,
+    "runtime_target": "0x21004964",
+    "target": ".bss.force_isr_mask",
+    "type": 2
+   }
+  ],
+  "omitted_tail_sha256": "41cdf2e622656b36d3f5ac702850ec1eb0c4771a0310e6816e75d75dfbce8677",
+  "omitted_tail_size": 36,
+  "symbol": "compare_set",
+  "true_elf_section_size": 292,
+  "va": "0x010313ec"
  },
  "functions": [
   {
-   "va": "0x010313a8",
-   "raw_symbol": "FUN_010313a8",
-   "upstream_symbol": "z_nrf_rtc_timer_read",
-   "linkage": "global",
-   "abi": "uint64_t z_nrf_rtc_timer_read(void)",
-   "firmware_size": 54,
-   "reference_size": 54,
-   "match": "relocation-normalized instruction-exact",
-   "match_score": 1.0,
+   "abi": "static bool compare_int_lock(int32_t chan)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
    "exclude_reconstruction": true,
-   "evidence": "The complete 54-byte executable body is instruction-exact to the pinned nrf_rtc_timer.c object. Its three literal-pool words are outside the CFG body; the RTC peripheral literal is identical and the overflow_cnt/anchor words are normal final-link relocations. The normal timer archive exports z_nrf_rtc_timer_read."
-  },
-  {
-   "va": "0x010315f0",
-   "raw_symbol": "FUN_010315f0",
-   "upstream_symbol": "rtc_nrf_isr",
-   "linkage": "global",
-   "abi": "void rtc_nrf_isr(const void *arg)",
-   "firmware_size": 244,
-   "reference_size": 244,
-   "match": "relocation-normalized instruction-exact",
-   "match_score": 1.0,
-   "exclude_reconstruction": true,
-   "evidence": "The pinned source compiled for nrf5340dk_nrf5340_cpunet with the recorded config produces the same 0xf4-byte instruction sequence; only calls and BSS/literal relocations differ before final link. The normal Zephyr timer archive exports rtc_nrf_isr."
-  },
-  {
-   "va": "0x0103a6ae",
-   "raw_symbol": "FUN_0103a6ae",
-   "upstream_symbol": "event_clear",
+   "firmware_size": 64,
    "linkage": "file_static",
-   "abi": "static void event_clear(int32_t chan)",
-   "firmware_size": 24,
-   "reference_size": 24,
-   "match": "byte-exact",
+   "match": "relocation-masked-byte-exact",
    "match_score": 1.0,
-   "firmware_bytes": "002200f150039b009bb203f1824303f5b0331a601b687047",
+   "raw_symbol": "FUN_01031248",
+   "reference_size": 64,
+   "upstream_symbol": "compare_int_lock",
+   "va": "0x01031248"
+  },
+  {
+   "abi": "static void compare_int_unlock(int32_t chan, bool key)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
    "exclude_reconstruction": true,
-   "evidence": "The complete 24-byte firmware body is identical to .text.event_clear in the pinned nrf_rtc_timer.c object. It is pulled with rtc_nrf_isr from the same archive member and is not an independently selectable symbol."
+   "firmware_size": 76,
+   "linkage": "file_static",
+   "match": "relocation-masked-byte-exact",
+   "match_score": 1.0,
+   "raw_symbol": "FUN_010312d0",
+   "reference_size": 76,
+   "upstream_symbol": "compare_int_unlock",
+   "va": "0x010312d0"
+  },
+  {
+   "abi": "uint64_t z_nrf_rtc_timer_read(void)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
+   "exclude_reconstruction": true,
+   "firmware_size": 68,
+   "linkage": "global",
+   "match": "relocation-masked-byte-exact",
+   "match_score": 1.0,
+   "raw_symbol": "FUN_010313a8",
+   "reference_size": 68,
+   "upstream_symbol": "z_nrf_rtc_timer_read",
+   "va": "0x010313a8"
+  },
+  {
+   "abi": "static int compare_set(int32_t, uint64_t, handler, void *, bool)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
+   "exclude_reconstruction": true,
+   "firmware_size": 292,
+   "linkage": "file_static",
+   "match": "relocation-masked-byte-exact",
+   "match_score": 1.0,
+   "raw_symbol": "FUN_010313ec",
+   "reference_size": 292,
+   "upstream_symbol": "compare_set",
+   "va": "0x010313ec"
+  },
+  {
+   "abi": "void rtc_nrf_isr(const void *arg)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
+   "exclude_reconstruction": true,
+   "firmware_size": 244,
+   "linkage": "global",
+   "match": "relocation-masked-byte-exact",
+   "match_score": 1.0,
+   "raw_symbol": "FUN_010315f0",
+   "reference_size": 244,
+   "upstream_symbol": "rtc_nrf_isr",
+   "va": "0x010315f0"
+  },
+  {
+   "abi": "static void event_clear(int32_t chan)",
+   "evidence": "Complete configured ELF section is exact after masking only verified call/state relocations.",
+   "exclude_reconstruction": true,
+   "firmware_size": 24,
+   "linkage": "file_static",
+   "match": "relocation-masked-byte-exact",
+   "match_score": 1.0,
+   "raw_symbol": "FUN_0103a6ae",
+   "reference_size": 24,
+   "upstream_symbol": "event_clear",
+   "va": "0x0103a6ae"
   }
- ]
+ ],
+ "policy": {
+  "adoption_unit": "complete_compare_set_call_and_state_closure",
+  "ghidra_declared_size_authoritative": false,
+  "sdc_policy": "report_only_unchanged"
+ },
+ "required_config": {
+  "CONFIG_NRF_RTC_TIMER": "y",
+  "CONFIG_NRF_RTC_TIMER_LOCK_ZERO_LATENCY_IRQS": "y",
+  "CONFIG_NRF_RTC_TIMER_USER_CHAN_COUNT": "1",
+  "CONFIG_SOC_NRF5340_CPUNET": "y",
+  "CONFIG_SOC_NRF53_RTC_PRETICK": "y",
+  "CONFIG_TICKLESS_KERNEL": "y"
+ },
+ "safe": true,
+ "schema": 2,
+ "section_matches": [
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "ae499a1850fdc9a0d5025f6d9142dbd5d5bb730fd0f34a74ba10423cb8e7e50c",
+   "relocations": [
+    {
+     "offset": 56,
+     "runtime_target": "0x2100496c",
+     "target": ".bss.int_mask",
+     "type": 2
+    }
+   ],
+   "section": ".text.compare_int_lock",
+   "size": 64,
+   "symbol": "compare_int_lock",
+   "va": "0x01031248"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "8bd88231683bc1a348aefca5486ff8c70a6d5e9255c5d645e96c9a15d77bb0b0",
+   "relocations": [
+    {
+     "offset": 60,
+     "runtime_target": "0x2100496c",
+     "target": ".bss.int_mask",
+     "type": 2
+    },
+    {
+     "offset": 68,
+     "runtime_target": "0x21004964",
+     "target": ".bss.force_isr_mask",
+     "type": 2
+    }
+   ],
+   "section": ".text.compare_int_unlock",
+   "size": 76,
+   "symbol": "compare_int_unlock",
+   "va": "0x010312d0"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "baf21a9103085bf96619a24aae459737debbc52079e8c121fc44a0fb090e5b0e",
+   "relocations": [
+    {
+     "offset": 56,
+     "runtime_target": "0x21004970",
+     "target": ".bss.overflow_cnt",
+     "type": 2
+    },
+    {
+     "offset": 64,
+     "runtime_target": "0x21002b88",
+     "target": ".bss.anchor",
+     "type": 2
+    }
+   ],
+   "section": ".text.z_nrf_rtc_timer_read",
+   "size": 68,
+   "symbol": "z_nrf_rtc_timer_read",
+   "va": "0x010313a8"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "2f2cf925601f31c4dd4bdf7cbe2e60c696e72bbdf22ce4bf68df66c9c04ff758",
+   "relocations": [
+    {
+     "offset": 16,
+     "runtime_target": "0x01031248",
+     "target": "compare_int_lock",
+     "type": 10
+    },
+    {
+     "offset": 22,
+     "runtime_target": "0x010313a8",
+     "target": "z_nrf_rtc_timer_read",
+     "type": 10
+    },
+    {
+     "offset": 88,
+     "runtime_target": "0x0103a6ae",
+     "target": "event_clear",
+     "type": 10
+    },
+    {
+     "offset": 178,
+     "runtime_target": "0x0103a6ae",
+     "target": "event_clear",
+     "type": 10
+    },
+    {
+     "offset": 214,
+     "runtime_target": "0x010312d0",
+     "target": "compare_int_unlock",
+     "type": 10
+    },
+    {
+     "offset": 276,
+     "runtime_target": "0x21002b60",
+     "target": ".bss.cc_data",
+     "type": 2
+    },
+    {
+     "offset": 288,
+     "runtime_target": "0x21004964",
+     "target": ".bss.force_isr_mask",
+     "type": 2
+    }
+   ],
+   "section": ".text.compare_set",
+   "size": 292,
+   "symbol": "compare_set",
+   "va": "0x010313ec"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "0afffd930ff03d306ac205b4a3070582d193706c5acad4c7e3f55bf2e169631c",
+   "relocations": [
+    {
+     "offset": 6,
+     "runtime_target": "0x01039e4e",
+     "target": "rtc_pretick_rtc1_isr_hook",
+     "type": 10
+    },
+    {
+     "offset": 114,
+     "runtime_target": "0x0103a6ae",
+     "target": "event_clear",
+     "type": 10
+    },
+    {
+     "offset": 118,
+     "runtime_target": "0x010313a8",
+     "target": "z_nrf_rtc_timer_read",
+     "type": 10
+    },
+    {
+     "offset": 196,
+     "runtime_target": "0x0103a6ae",
+     "target": "event_clear",
+     "type": 10
+    },
+    {
+     "offset": 228,
+     "runtime_target": "0x21004970",
+     "target": ".bss.overflow_cnt",
+     "type": 2
+    },
+    {
+     "offset": 232,
+     "runtime_target": "0x21002b60",
+     "target": ".bss.cc_data",
+     "type": 2
+    },
+    {
+     "offset": 236,
+     "runtime_target": "0x21004964",
+     "target": ".bss.force_isr_mask",
+     "type": 2
+    }
+   ],
+   "section": ".text.rtc_nrf_isr",
+   "size": 244,
+   "symbol": "rtc_nrf_isr",
+   "va": "0x010315f0"
+  },
+  {
+   "match": "relocation-masked-byte-exact",
+   "normalized_sha256": "5fcef95794b6443c04dd39a98d443d6401ce3c27929ef8ec76e79dac371ffeb3",
+   "relocations": [],
+   "section": ".text.event_clear",
+   "size": 24,
+   "symbol": "event_clear",
+   "va": "0x0103a6ae"
+  }
+ ],
+ "state_target_checks": [
+  {
+   "caller": "compare_int_lock",
+   "offset": 56,
+   "runtime_target": "0x2100496c",
+   "target": ".bss.int_mask",
+   "type": 2
+  },
+  {
+   "caller": "compare_int_unlock",
+   "offset": 60,
+   "runtime_target": "0x2100496c",
+   "target": ".bss.int_mask",
+   "type": 2
+  },
+  {
+   "caller": "compare_int_unlock",
+   "offset": 68,
+   "runtime_target": "0x21004964",
+   "target": ".bss.force_isr_mask",
+   "type": 2
+  },
+  {
+   "caller": "z_nrf_rtc_timer_read",
+   "offset": 56,
+   "runtime_target": "0x21004970",
+   "target": ".bss.overflow_cnt",
+   "type": 2
+  },
+  {
+   "caller": "z_nrf_rtc_timer_read",
+   "offset": 64,
+   "runtime_target": "0x21002b88",
+   "target": ".bss.anchor",
+   "type": 2
+  },
+  {
+   "caller": "compare_set",
+   "offset": 276,
+   "runtime_target": "0x21002b60",
+   "target": ".bss.cc_data",
+   "type": 2
+  },
+  {
+   "caller": "compare_set",
+   "offset": 288,
+   "runtime_target": "0x21004964",
+   "target": ".bss.force_isr_mask",
+   "type": 2
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 228,
+   "runtime_target": "0x21004970",
+   "target": ".bss.overflow_cnt",
+   "type": 2
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 232,
+   "runtime_target": "0x21002b60",
+   "target": ".bss.cc_data",
+   "type": 2
+  },
+  {
+   "caller": "rtc_nrf_isr",
+   "offset": 236,
+   "runtime_target": "0x21004964",
+   "target": ".bss.force_isr_mask",
+   "type": 2
+  }
+ ],
+ "status": "authorized_atomic_compare_closure",
+ "upstream": {
+  "abi": "Cortex-M33, Thumb-2, soft-float, -Os",
+  "commit": "83980fe1679441be9b0e1db556a353f6118fe14f",
+  "configured_build": "/private/tmp/g1-net-spin-ref-0718",
+  "configured_build_sha256": "5ef3cd51147eb19eca0aa948feb92790b243ecfe9f4623dd5eea8d27f6852c15",
+  "object": "/private/tmp/g1-net-spin-ref-0718/zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/nrf_rtc_timer.c.obj",
+  "object_sha256": "a483f8f90a34febe7f1f001e6816c9dd1797161c6d2b09105e7af836785ca6ee",
+  "repository": "/Users/freedomcoder/ncs251/zephyr",
+  "source": "drivers/timer/nrf_rtc_timer.c",
+  "source_sha256": "baa0245337e2cb4c23ef438a2f46565b0452e89c6b93d95bb758faef6d8ee6d0",
+  "tag": "v3.4.99-ncs1-1"
+ },
+ "version_precision": {
+  "candidate_matrix": [
+   {
+    "ncs_tag": "v2.4.0",
+    "same_source_as_pinned": false,
+    "source_blob": "ef7b2aab574b229f4e821b7a71a4e41720ec5cd0",
+    "source_discriminators": [
+     "lacks nRF53 RTC_PRETICK hook",
+     "lacks exact-alarm argument and -EINVAL paths",
+     "lacks z_nrf_rtc_timer_exact_set"
+    ],
+    "verdict": "source_incompatible",
+    "zephyr_ref": "v3.3.99-ncs1"
+   },
+   {
+    "ncs_tag": "v2.4.1",
+    "same_source_as_pinned": false,
+    "source_blob": "ef7b2aab574b229f4e821b7a71a4e41720ec5cd0",
+    "source_discriminators": [
+     "lacks nRF53 RTC_PRETICK hook",
+     "lacks exact-alarm argument and -EINVAL paths",
+     "lacks z_nrf_rtc_timer_exact_set"
+    ],
+    "verdict": "source_incompatible",
+    "zephyr_ref": "v3.3.99-ncs1-1"
+   },
+   {
+    "ncs_tag": "v2.5.0",
+    "same_source_as_pinned": true,
+    "source_blob": "9241c5b7a10044e6fd70b680ca1bba13c7886e62",
+    "source_discriminators": [
+     "no source delta from pinned nrf_rtc_timer.c"
+    ],
+    "verdict": "body_compatible_not_patch_discriminating",
+    "zephyr_ref": "v3.4.99-ncs1"
+   },
+   {
+    "ncs_tag": "v2.5.1",
+    "same_source_as_pinned": true,
+    "source_blob": "9241c5b7a10044e6fd70b680ca1bba13c7886e62",
+    "source_discriminators": [
+     "no source delta from pinned nrf_rtc_timer.c"
+    ],
+    "verdict": "body_compatible_not_patch_discriminating",
+    "zephyr_ref": "v3.4.99-ncs1-1"
+   },
+   {
+    "ncs_tag": "v2.5.2",
+    "same_source_as_pinned": true,
+    "source_blob": "9241c5b7a10044e6fd70b680ca1bba13c7886e62",
+    "source_discriminators": [
+     "no source delta from pinned nrf_rtc_timer.c"
+    ],
+    "verdict": "body_compatible_not_patch_discriminating",
+    "zephyr_ref": "v3.4.99-ncs1-2"
+   },
+   {
+    "ncs_tag": "v2.6.0",
+    "same_source_as_pinned": true,
+    "source_blob": "9241c5b7a10044e6fd70b680ca1bba13c7886e62",
+    "source_discriminators": [
+     "no source delta from pinned nrf_rtc_timer.c"
+    ],
+    "verdict": "body_compatible_not_patch_discriminating",
+    "zephyr_ref": "v3.5.99-ncs1"
+   },
+   {
+    "ncs_tag": "v2.6.1",
+    "same_source_as_pinned": true,
+    "source_blob": "9241c5b7a10044e6fd70b680ca1bba13c7886e62",
+    "source_discriminators": [
+     "no source delta from pinned nrf_rtc_timer.c"
+    ],
+    "verdict": "body_compatible_not_patch_discriminating",
+    "zephyr_ref": "v3.5.99-ncs1-1"
+   }
+  ],
+  "strongest_local_boundary": "NCS 2.4 is excluded by the pre-tick/exact-alarm source and control-flow changes. This source unit is unchanged across NCS 2.5.x and 2.6.x, so it does not independently distinguish those tags; the exact v2.5.1 commit remains manifest-pinned."
+ }
 }
