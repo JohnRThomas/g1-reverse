@@ -9,7 +9,7 @@ Modes:
 READ-ONLY. Fast path: nptr=2 first (false proofs are arg-VALUE bugs, nptr-agnostic),
 escalate nptr only on fail; trials default 40.
 """
-import sys, os, re, json, glob, time, subprocess
+import sys, os, re, json, glob, time, subprocess, hashlib
 sys.path.insert(0, "/Users/freedomcoder/Projects/G1disasm2/tools")
 import extract as ax, net_extract as nx
 from parity import recon, emu
@@ -111,32 +111,55 @@ def run_sweeplist():
     import cfg_verify
     core = sys.argv[2]; si = int(sys.argv[3]); ns = int(sys.argv[4])
     todo_path = SCR + "/sweep_todo.json"
-    if not os.path.exists(todo_path):
-        # The scratchpad is volatile.  Rebuild a complete, deterministic list
-        # from the source trees instead of silently losing sweep coverage.
-        todo = {}
-        for todo_core in ("app", "net"):
-            srcdir = (BASE + "/recon/app/src" if todo_core == "app"
-                      else BASE + "/recon/net/src")
-            todo[todo_core] = sorted(
-                os.path.basename(path)[:-2]
-                for path in glob.glob(srcdir + "/*.c")
-            )
+    # The scratchpad can be both volatile *and stale*.  Rebuild the inventory
+    # from canonical sources on every invocation, and replace the cached todo
+    # whenever functions were added, removed, or renamed.  Merely checking for
+    # file existence previously left 239 app and 193 net sources outside the
+    # saved July-16 inventory.
+    todo = {}
+    for todo_core in ("app", "net"):
+        srcdir = (BASE + "/recon/app/src" if todo_core == "app"
+                  else BASE + "/recon/net/src")
+        todo[todo_core] = sorted(
+            os.path.basename(path)[:-2]
+            for path in glob.glob(srcdir + "/*.c")
+        )
+    cached_todo = None
+    if os.path.exists(todo_path):
+        try:
+            cached_todo = json.load(open(todo_path))
+        except (OSError, ValueError):
+            cached_todo = None
+    if cached_todo != todo:
         os.makedirs(SCR, exist_ok=True)
         tmp = todo_path + ".tmp.%d" % os.getpid()
         with open(tmp, "w") as fp:
             json.dump(todo, fp, indent=2)
             fp.write("\n")
         os.replace(tmp, todo_path)
-    names = json.load(open(todo_path))[core][si::ns]
+    todo_digest = hashlib.sha256(
+        json.dumps(todo, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    names = todo[core][si::ns]
     outp = SCR + "/reverify_%s_L%d.json" % (core, si)
     recheck = os.environ.get("CFG_VERIFY_RECHECK") == "1"
     if os.path.exists(outp) and not recheck:
         old = json.load(open(outp))
-        res = {k: list(old.get(k, [])) for k in ("PASS", "FAIL", "other", "timeout")}
+        if (old.get("_todo_digest") == todo_digest and
+                old.get("_shard_count") == ns and
+                old.get("_shard_index") == si):
+            res = {k: list(old.get(k, []))
+                   for k in ("PASS", "FAIL", "other", "timeout")}
+        else:
+            # Lane membership changes when the sorted inventory changes.  A
+            # receipt without the exact inventory/shard identity cannot prove
+            # this lane and must be discarded fail-closed.
+            res = {"PASS": [], "FAIL": [], "other": [], "timeout": []}
     else:
         res = {"PASS": [], "FAIL": [], "other": [], "timeout": []}
-    done = set(sum((res[k] for k in res), []))
+    res.update({"_todo_digest": todo_digest,
+                "_shard_count": ns, "_shard_index": si})
+    done = set(sum((res[k] for k in ("PASS", "FAIL", "other", "timeout")), []))
     timeout_s = int(os.environ.get("CFG_VERIFY_TIMEOUT", "120"))
     t0 = time.time()
     processed = 0
