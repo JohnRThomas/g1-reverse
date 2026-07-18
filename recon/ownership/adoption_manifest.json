@@ -31,6 +31,10 @@
    "sha256": "88cda889af7633d4091e17a94d5eb14e7e1bd9f381bd3064b6a7389e69170d09"
   },
   {
+   "path": "recon/ownership/app_collision_adoption_authorizations.json",
+   "sha256": "b5f31b4d3a3bb53a24dabb862f4301efc7c44cf60ef48601434d62f5da8c939e"
+  },
+  {
    "path": "recon/catalogs/app_sdk_public_ownership.json",
    "sha256": "ee2d3652370a111d3f87f3b03e3359041dbfa0033d706bae2456be835e205384"
   },
@@ -72,11 +76,11 @@
  "cores": {
   "app": {
    "summary": {
-    "entries": 354,
-    "exclude_reconstruction": 260,
+    "entries": 355,
+    "exclude_reconstruction": 261,
     "retain_reconstruction": 94,
     "by_kind": {
-     "source": 204,
+     "source": 205,
      "archive": 107,
      "static_helper": 21,
      "table": 22,
@@ -5026,6 +5030,83 @@
         "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_dppi.c:102",
         "reconstruction_input": "app/libapp.a(nrfx_dppi_channel_alloc.c.obj)",
         "diagnostic": "/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_dppi.c:102: multiple definition of `nrfx_dppi_channel_alloc'; app/libapp.a(nrfx_dppi_channel_alloc.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/nrfx_dppi_channel_alloc.c:21: first defined here"
+       }
+      }
+     ]
+    },
+    {
+     "core": "app",
+     "va": "0x000680f8",
+     "raw_symbol": "FUN_000680f8",
+     "current_symbol": "metal_bus_unregister",
+     "kind": "source",
+     "component": "libmetal",
+     "upstream_symbol": "metal_bus_unregister",
+     "upstream_unit": "/private/tmp/g1-app-residue-current-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
+     "confidence": "high",
+     "exclude_reconstruction": true,
+     "decision": "adopt_upstream_exclude_reconstruction",
+     "decision_reason": "The configured CPUAPP link selected this strong owner and its DWARF ABI plus firmware instruction signature passed every fail-closed threshold.",
+     "evidence": [
+      {
+       "source": "recon/ownership/app_build_collision_ownership.json",
+       "type": "cpuapp_selected_owner_collision",
+       "safe_to_exclude": true,
+       "blockers": [],
+       "signature_match": {
+        "opcode": 0.92,
+        "shape": 0.92,
+        "length": 0.851852,
+        "normalized_exact": false
+       },
+       "abi": {
+        "return": "int",
+        "params": [
+         "metal_bus*"
+        ],
+        "variadic": false,
+        "decl_line": 30
+       },
+       "upstream_source": {
+        "path": "modules/hal/libmetal/libmetal/lib/device.c",
+        "sha256": "2c206dcc3985cf53725ad5405ec46738acf36cebe4a53d41e8170d950f3df1cf",
+        "repository": "libmetal",
+        "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6"
+       },
+       "link_provenance": {
+        "owner_input": "modules/libmetal/libmetal/lib/libmetal.a(device.c.obj)",
+        "owner_source_line": "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:31",
+        "reconstruction_input": "app/libapp.a(metal_bus_unregister.c.obj)",
+        "diagnostic_occurrences": 1,
+        "diagnostics": [
+         "/Users/freedomcoder/ncs251/modules/hal/libmetal/libmetal/lib/device.c:31: multiple definition of `metal_bus_unregister'; app/libapp.a(metal_bus_unregister.c.obj):/Users/freedomcoder/Projects/G1disasm2/recon/symbolized/app/metal_bus_unregister.c:41: first defined here"
+        ]
+       }
+      },
+      {
+       "source": "recon/ownership/app_collision_adoption_authorizations.json",
+       "type": "explicit_collision_adoption_authority",
+       "batch": "COLLISION-02",
+       "instruction_exact": true,
+       "normalized_code_sha256": "8bde3e79d4db3d412751b13566ddc89af48d7e79a97ef5973016a1841f3d0aa0",
+       "cfg_verify_cases": 5,
+       "callers": [
+        {
+         "va": "0x000682a8",
+         "raw_symbol": "FUN_000682a8",
+         "cfg_verify": "PASS"
+        }
+       ],
+       "whole_unit_closure": {
+        "safe": true,
+        "archive_member_already_selected": true,
+        "same_source_unit_collision_symbols": [
+         "metal_bus_unregister"
+        ],
+        "exclude_only": [
+         "0x000680f8"
+        ],
+        "new_undefined_symbols": []
        }
       }
      ]

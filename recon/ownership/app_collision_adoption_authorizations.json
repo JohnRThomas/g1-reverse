@@ -1,0 +1,46 @@
+{
+ "schema": 1,
+ "core": "app",
+ "policy": {
+  "default": "retain_reconstruction",
+  "one_explicit_va_per_authorization": true,
+  "weak_or_alias_owners_forbidden": true,
+  "whole_source_unit_closure_required": true
+ },
+ "authorizations": [
+  {
+   "batch": "COLLISION-02",
+   "va": "0x000680f8",
+   "raw_symbol": "FUN_000680f8",
+   "symbol": "metal_bus_unregister",
+   "status": "authorized",
+   "upstream_source": "modules/hal/libmetal/libmetal/lib/device.c",
+   "upstream_source_sha256": "2c206dcc3985cf53725ad5405ec46738acf36cebe4a53d41e8170d950f3df1cf",
+   "upstream_object": "/private/tmp/g1-app-residue-current-0718/modules/libmetal/libmetal/lib/CMakeFiles/metal.dir/device.c.obj",
+   "upstream_object_sha256": "2c69adf934644bb5bb9bd5359a63b20ce3f8b9df6eef4a572604f6e4e5adbad6",
+   "configured_link_owner": "modules/libmetal/libmetal/lib/libmetal.a(device.c.obj)",
+   "configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+   "abi": "int metal_bus_unregister(struct metal_bus *bus)",
+   "firmware_code_size": 52,
+   "upstream_code_size": 52,
+   "literal_relocation_offsets": [52, 56],
+   "normalized_code_sha256": "8bde3e79d4db3d412751b13566ddc89af48d7e79a97ef5973016a1841f3d0aa0",
+   "instruction_exact": true,
+   "cfg_verify_cases": 5,
+   "callers": [
+    {
+     "va": "0x000682a8",
+     "raw_symbol": "FUN_000682a8",
+     "cfg_verify": "PASS"
+    }
+   ],
+   "whole_unit_closure": {
+    "safe": true,
+    "archive_member_already_selected": true,
+    "same_source_unit_collision_symbols": ["metal_bus_unregister"],
+    "exclude_only": ["0x000680f8"],
+    "new_undefined_symbols": []
+   }
+  }
+ ]
+}

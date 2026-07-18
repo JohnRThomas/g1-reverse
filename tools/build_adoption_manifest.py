@@ -22,6 +22,8 @@ DEFAULTS = {
     "cc312": "recon/catalogs/cc312_archive_ownership.json",
     "crypto": "recon/catalogs/upstream_crypto_ownership.json",
     "app_collisions": "recon/ownership/app_build_collision_ownership.json",
+    "app_collision_authorizations":
+        "recon/ownership/app_collision_adoption_authorizations.json",
     "app_sdk_public": "recon/catalogs/app_sdk_public_ownership.json",
     "net": "recon/ownership/net_function_ownership.json",
     "net_rtc": "recon/catalogs/net_rtc_timer_ownership.json",
@@ -240,14 +242,63 @@ def _crypto_entries(data, source, names):
     return output
 
 
-def _app_collision_entries(data, source, names):
+def _app_collision_entries(data, source, names, authorizations,
+                           authorization_source):
     """Adopt only SDK owners proven by the retain-all CPUAPP link catalog."""
+    if (authorizations.get("schema") != 1 or
+            authorizations.get("core") not in (None, "app")):
+        raise ValueError("invalid app collision authorization catalog")
+    authorization_rows = [row for row in
+                          authorizations.get("authorizations", [])
+                          if row.get("status") == "authorized"]
+    authorized = {_hex(row["va"]): row for row in authorization_rows}
+    if len(authorized) != len(authorization_rows):
+        raise ValueError("duplicate app collision authorization VA")
+    collision_vas = {_hex(row["va"]) for row in data.get("functions", [])}
+    if not set(authorized) <= collision_vas:
+        raise ValueError("authorization absent from collision catalog: %s" %
+                         sorted(set(authorized) - collision_vas))
     output = []
     for row in data.get("functions", []):
+        row_va = _hex(row["va"])
         upstream = row.get("upstream", {})
-        eligible = row.get("safe_to_exclude") is True
+        authorization = authorized.get(row_va)
+        authorization_valid = bool(
+            authorization and
+            authorization.get("symbol") ==
+            (row.get("current_symbol") or upstream.get("symbol")) and
+            authorization.get("instruction_exact") is True and
+            authorization.get("normalized_code_sha256") and
+            authorization.get("cfg_verify_cases", 0) > 0 and
+            authorization.get("whole_unit_closure", {}).get("safe") is True and
+            authorization.get("whole_unit_closure", {}).get("exclude_only") ==
+            [row_va] and
+            not authorization.get("whole_unit_closure", {}).get(
+                "new_undefined_symbols"))
+        eligible = (row.get("safe_to_exclude") is True or
+                    (row.get("identity_threshold_candidate") is True and
+                     not row.get("exclusion_blockers") and
+                     authorization_valid))
         source_identity = upstream.get("source", {})
         component = source_identity.get("repository") or "cpuapp_selected_sdk"
+        evidence = [_evidence(
+            source, "cpuapp_selected_owner_collision",
+            safe_to_exclude=eligible,
+            blockers=row.get("exclusion_blockers"),
+            signature_match=row.get("signature_match"),
+            abi=upstream.get("abi"),
+            upstream_source=source_identity,
+            link_provenance=row.get("link_provenance"))]
+        if authorization:
+            evidence.append(_evidence(
+                authorization_source, "explicit_collision_adoption_authority",
+                batch=authorization.get("batch"),
+                instruction_exact=authorization.get("instruction_exact"),
+                normalized_code_sha256=authorization.get(
+                    "normalized_code_sha256"),
+                cfg_verify_cases=authorization.get("cfg_verify_cases"),
+                callers=authorization.get("callers"),
+                whole_unit_closure=authorization.get("whole_unit_closure")))
         output.append(_entry(
             "app", row["va"], names, "source", component,
             upstream.get("symbol"), upstream.get("object"), eligible,
@@ -256,14 +307,7 @@ def _app_collision_entries(data, source, names):
              "fail-closed threshold." if eligible else
              "The selected same-name CPUAPP owner failed one or more ABI, "
              "identity, or instruction-signature gates; retain fail-closed."),
-            [_evidence(
-                source, "cpuapp_selected_owner_collision",
-                safe_to_exclude=eligible,
-                blockers=row.get("exclusion_blockers"),
-                signature_match=row.get("signature_match"),
-                abi=upstream.get("abi"),
-                upstream_source=source_identity,
-                link_provenance=row.get("link_provenance"))],
+            evidence,
             "high" if eligible else "low"))
     return output
 
@@ -533,7 +577,10 @@ def build(paths):
         _cc312_entries(_load_json(resolved["cc312"]), paths["cc312"], names),
         _crypto_entries(_load_json(resolved["crypto"]), paths["crypto"], names),
         _app_collision_entries(_load_json(resolved["app_collisions"]),
-                               paths["app_collisions"], names),
+                               paths["app_collisions"], names,
+                               _load_json(resolved[
+                                   "app_collision_authorizations"]),
+                               paths["app_collision_authorizations"]),
         _app_sdk_public_entries(_load_json(resolved["app_sdk_public"]),
                                 paths["app_sdk_public"], names),
         _net_entries(_load_json(resolved["net"]), paths["net"],
@@ -567,6 +614,7 @@ def build(paths):
             "entries": rows,
         }
     input_keys = ("lc3", "tinycrypt", "cc312", "crypto", "app_collisions",
+                  "app_collision_authorizations",
                   "app_sdk_public",
                   "net", "net_rtc",
                   "net_sdk_public", "net_alias_resolutions",

@@ -86,6 +86,9 @@ class AdoptionManifestTest(unittest.TestCase):
                                   "object": "bt.c.obj",
                                   "abi": {"return": "int", "params": []},
                                   "source": {"repository": "zephyr"}}}]}),
+            "app_collision_authorizations": write_json(
+                root, "app_collision_authorizations.json",
+                {"schema": 1, "core": "app", "authorizations": []}),
             "app_sdk_public": write_json(root, "app_sdk_public.json", {
                 "functions": [
                     {"va": "0x00002010", "raw_symbol": "FUN_00002010",
@@ -194,6 +197,41 @@ class AdoptionManifestTest(unittest.TestCase):
         self.assertEqual(rows[("net", "0x01005000")]["upstream_symbol"],
                          "k_work_init")
         self.assertFalse(first["sdc_benchmark"]["machine_exclusion_authority"])
+
+    def test_collision_authorization_is_fail_closed(self):
+        with open(self.paths["app_collisions"]) as stream:
+            collision = json.load(stream)
+        row = collision["functions"][0]
+        row["safe_to_exclude"] = False
+        row["identity_threshold_candidate"] = True
+        write_json(self.temp.name, "app_collisions.json", collision)
+        authorization = {
+            "schema": 1, "core": "app", "authorizations": [{
+                "va": "0x00004000", "symbol": "bt_source",
+                "status": "authorized", "instruction_exact": True,
+                "normalized_code_sha256": "a" * 64,
+                "cfg_verify_cases": 1,
+                "whole_unit_closure": {"safe": True,
+                    "exclude_only": ["0x00004000"],
+                    "new_undefined_symbols": []}}]}
+        write_json(self.temp.name, "app_collision_authorizations.json",
+                   authorization)
+        data = adoption.build(self.paths)
+        adopted = next(item for item in data["cores"]["app"]["entries"]
+                       if item["va"] == "0x00004000")
+        self.assertTrue(adopted["exclude_reconstruction"])
+        self.assertTrue(any(item["type"] ==
+                            "explicit_collision_adoption_authority"
+                            for item in adopted["evidence"]))
+
+        authorization["authorizations"][0]["whole_unit_closure"][
+            "new_undefined_symbols"] = ["bad"]
+        write_json(self.temp.name, "app_collision_authorizations.json",
+                   authorization)
+        blocked = adoption.build(self.paths)
+        blocked_row = next(item for item in blocked["cores"]["app"]["entries"]
+                           if item["va"] == "0x00004000")
+        self.assertFalse(blocked_row["exclude_reconstruction"])
 
     def test_validator_rejects_private_sdc_exclusion(self):
         data = adoption.build(self.paths)
