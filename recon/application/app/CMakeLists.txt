@@ -106,6 +106,14 @@ endif()
 # functions, while the canonical reconstruction files remain on disk.
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_retained_sources.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_fixed_verified_rodata.cmake)
+
+# Only complete, byte-exact tables above the recorded normal-GC ROM end are
+# emitted by the fixed-address assembly.  Remove those C owners before adding
+# the generated owner so every symbol remains unique.  Tables that collide with
+# the current executable/SDK layout stay in ordinary garbage-collected rodata.
+list(REMOVE_ITEM G1_VERIFIED_DATA_SOURCES
+  ${G1_FIXED_VERIFIED_DATA_C_SOURCES})
 
 # One retained, parity-proven translation unit records the original r9-bound
 # local with GCC's ``register ... asm("r9")`` spelling.  Zephyr's application
@@ -129,6 +137,7 @@ target_sources(app PRIVATE
   # Generated only after compiling every recovered table and comparing its
   # emitted bytes to app_update.bin.  Unknown/skipped tables are never added.
   ${G1_VERIFIED_DATA_SOURCES}
+  ${G1_FIXED_VERIFIED_DATA_ASM}
 )
 
 # Audit-only pre-adoption probes may re-add an explicitly enumerated source
@@ -169,6 +178,7 @@ zephyr_linker_sources(SECTIONS
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_veneer_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_public_sdk_aliases.ld"
   "${CMAKE_CURRENT_LIST_DIR}/../../symbols/g1_app_readable_aliases.ld"
+  "${G1_FIXED_VERIFIED_DATA_LINKER}"
 )
 
 # Every source selected by app_verified_data_sources.cmake has been compiled
