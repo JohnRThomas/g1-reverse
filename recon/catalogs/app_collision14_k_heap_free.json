@@ -1,0 +1,78 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batch": "COLLISION-14",
+ "va": "0x00071b2c",
+ "raw_symbol": "FUN_00071b2c",
+ "current_symbol": "k_heap_free",
+ "status": "configured_owner_rejected_config_exact_candidate",
+ "recommendation": "retain_namespaced_until_global_spin_validation_configuration_and_caller_closure_are_complete",
+ "firmware": {
+  "true_code_extent": 140,
+  "code_sha256": "6867be49ffa3463ba0d43f79aad7501f62dfe7f8c5c115e8711741b1a52a8c71",
+  "abi": "void k_heap_free(struct k_heap *, void *)",
+  "state_accesses": ["heap+0x14 spinlock", "heap+0x00 sys_heap", "heap+0x0c wait_q"],
+  "cfg_verify": {"status": "PASS", "cases": 2},
+  "literal_pool": {
+   "start": "0x00071bb8",
+   "end_exclusive": "0x00071bd0",
+   "strings": [
+    "WEST_TOPDIR/zephyr/include/zephyr/spinlock.h",
+    "z_spin_lock_valid(l)",
+    "ASSERTION FAIL [%s] @ %s:%d\\n",
+    "\\tInvalid spinlock %p\\n",
+    "z_spin_unlock_valid(l)",
+    "\\tNot my spinlock %p\\n"
+   ]
+  }
+ },
+ "configured_owner": {
+  "source": "zephyr/kernel/kheap.c",
+  "source_sha256": "8437e89784bcb0c8aa2dee29385b9b47d0bb9359fd2b20ce1bc96feebbffc86d",
+  "object": "/private/tmp/g1-app-residue-current-0718/zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj",
+  "object_sha256": "e9653b80186a9e44b9df52e123ec2d6afe85225cb661a75ee68fbbd36cf8ab86",
+  "section_size": 58,
+  "section_sha256": "7c563f3e2e2414dcd8684c6c5478827df3225c826955a45bbc7791d9b8c1036a",
+  "configured_build_sha256": "cc3e05cd66d6ec07e5faafc8c1a9f0aacbb47929213ef14b8026574cf7a75c06",
+  "config": {"CONFIG_ASSERT": false, "CONFIG_SPIN_VALIDATE": false},
+  "relocations": [
+   [20, "R_ARM_THM_CALL", "sys_heap_free"],
+   [28, "R_ARM_THM_CALL", "z_unpend_all"],
+   [44, "R_ARM_THM_JUMP24", "z_reschedule"]
+  ],
+  "collision_receipt_sha256": "91ce5a920c82ad7f94108617d61dbfba2ed4258fb7118eb35ec2bfb35bc67b11",
+  "audit_scores": {"opcode": 0.477612, "shape": 0.38806, "length": 0.34}
+ },
+ "configuration_exact_candidate": {
+  "defines": ["CONFIG_ASSERT=1", "CONFIG_ASSERT_LEVEL=2", "CONFIG_SPIN_VALIDATE=1"],
+  "section_size_with_literals": 164,
+  "code_extent": 140,
+  "call_relocation_offsets": [28, 42, 50, 58, 64, 72, 80, 94, 100, 114, 122],
+  "relocation_normalized_code_sha256": "7a2371b481d24d8ec16a147741a2d7120969665df316b982eed461cdd7c20732",
+  "instruction_exact": true
+ },
+ "caller_closure": {
+  "adapter": {
+   "va": "0x000868b4", "size": 14,
+   "firmware_sha256": "f076fdcbaab1855c1ff8f5186c9e464b40238edbdaabf6e417ac331297545eb6",
+   "source_sha256": "4db3ce8e6435f79e7bbcd1748adfbef331eaa3a7056a7d001366b1f4420ad8cf",
+   "cfg_verify": {"status": "PASS", "cases": 2}
+  },
+  "direct_callers": [
+   {"va": "0x00070ee4", "name": "virtqueue_free", "cfg_cases": 2, "source_sha256": "334f06180b64ccb3379a3e281421f0b6feecb252ab38c0198ade57b30a191a03"},
+   {"va": "0x0007f3c2", "name": "svc_attr_memory_release", "cfg_cases": 0, "source_sha256": "28582db03d04f5855727ae740b370c59f863b03d3ef936fad1584e68719287fc"},
+   {"va": "0x00086480", "name": "k_msgq_cleanup", "cfg_cases": 0, "source_sha256": "9d468a1bf314fee3afe372c1875d3d0afd992fee84281ef84803146aeffa23f5"},
+   {"va": "0x000864d0", "name": "unrecovered_direct_caller", "cfg_cases": null, "canonical_source": null, "firmware_size": 24, "firmware_sha256": "045a52d7bdef2f281ac18d78fd9ec9803959a73af0a522b4d773cd1d24e0b3ca"}
+  ],
+  "veneer": {
+   "va": "0x0007f978", "symbol": "thunk_FUN_000868b4", "target": "0x000868b4",
+   "firmware_size": 4, "firmware_sha256": "48fbf76e38ff41edf2e8ad83ab9e825b47d9d22e342c2ed10a47847af0866a26",
+   "caller": {"va": "0x0004f5b0", "cfg_cases": 0, "source_sha256": "226edf277bfda0eb7014a277ac1f10cd2f86e31a6f02c1755a38bc2f6ed547c6"}
+  }
+ },
+ "blockers": [
+  "configured owner omits firmware spin validation and assertion side effects",
+  "global CONFIG_ASSERT/CONFIG_SPIN_VALIDATE change affects many kernel source units",
+  "direct caller at 0x000864d0 has no canonical reconstruction"
+ ]
+}
