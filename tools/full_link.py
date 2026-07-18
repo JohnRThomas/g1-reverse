@@ -130,6 +130,7 @@ def link_and_report():
     unknown = [s for s in real if not LIBPAT.match(s)]
     reviewed = []
     reviewed_by_category = {}
+    unknown_by_disposition = {}
     # Pattern classification deliberately stays conservative.  CPUAPP's
     # non-pattern residue has a generated fail-closed audit: only symbols in
     # the exact current full-link set, with retained-caller/owner evidence,
@@ -163,10 +164,49 @@ def link_and_report():
                     raise RuntimeError("unsupported UNKNOWN audit category for %s: %r" %
                                        (symbol, category))
             unknown = []
+    elif CORE == "net":
+        audit_path = BASE + "/recon/catalogs/net_link_function_residue.json"
+        if not os.path.exists(audit_path):
+            raise RuntimeError("missing fail-closed CPUNET link-residue audit")
+        audit = json.load(open(audit_path))
+        rows = {row["symbol"]: row for row in audit.get("entries", [])}
+        audited_nonpattern = {
+            symbol for symbol in rows if not LIBPAT.match(symbol)
+        }
+        if audited_nonpattern != set(unknown):
+            missing = sorted(set(unknown) - audited_nonpattern)
+            stale = sorted(audited_nonpattern - set(unknown))
+            raise RuntimeError(
+                "CPUNET UNKNOWN audit drift (missing=%s stale=%s)" %
+                (missing, stale))
+        unresolved = []
+        for symbol in unknown:
+            row = rows[symbol]
+            category = row.get("category")
+            if category == "sdk_or_config_symbol":
+                lib.append(symbol)
+            elif category == "compiler_or_ghidra_pseudo":
+                reviewed.append(symbol)
+                reviewed_by_category[category] = (
+                    reviewed_by_category.get(category, 0) + 1)
+            elif category == "true_missing_reconstructed_entry":
+                disposition = row.get("closeout_disposition")
+                if not disposition or row.get("closeout_actionable") is None:
+                    raise RuntimeError(
+                        "CPUNET missing entry lacks explicit closeout: " + symbol)
+                unresolved.append(symbol)
+                unknown_by_disposition[disposition] = (
+                    unknown_by_disposition.get(disposition, 0) + 1)
+            else:
+                raise RuntimeError(
+                    "unsupported CPUNET UNKNOWN audit category for %s: %r" %
+                    (symbol, category))
+        unknown = unresolved
     return {"link_rc": r.returncode, "link_err": r.stderr.strip()[:150],
             "undef_total": len(undef), "provided": len(undef) - len(real),
             "library": len(lib), "reviewed": sorted(reviewed),
             "reviewed_by_category": reviewed_by_category,
+            "unknown_by_disposition": unknown_by_disposition,
             "unknown": sorted(unknown)}
 
 if __name__ == "__main__":
@@ -183,6 +223,9 @@ if __name__ == "__main__":
              len(rep["reviewed"]), len(rep["unknown"])))
     if rep["reviewed"]:
         print("reviewed residue:", json.dumps(rep["reviewed_by_category"], sort_keys=True))
+    if rep["unknown_by_disposition"]:
+        print("UNKNOWN dispositions:",
+              json.dumps(rep["unknown_by_disposition"], sort_keys=True))
     if rep["unknown"]:
         print("UNKNOWN (must be resolved/inspected):")
         for s in rep["unknown"][:50]:

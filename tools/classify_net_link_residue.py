@@ -45,6 +45,7 @@ DATA_SYMBOL = re.compile(
 # They have no per-VA adoption record because Ghidra did not create a function
 # at every referenced entry.  Their source ownership is nevertheless explicit.
 SDK_SYMBOLS = {
+    "__aeabi_uldivmod": "ARM EABI compiler runtime division helper",
     "ipc_rpmsg_init": "NCS IPC-service RPMsg backend",
     "ipc_static_vrings_init": "NCS IPC-service static-vrings backend",
     "ipc_static_vrings_shm_size": "NCS IPC-service static-vrings backend",
@@ -52,6 +53,7 @@ SDK_SYMBOLS = {
     "k_work_queue_start": "Zephyr kernel work queue API",
     "k_timer_stop": "Zephyr public timer API; exact z_impl_k_timer_stop signature owner",
     "sys_rand_get": "Zephyr random API",
+    "sdc_event_publish": "Nordic SoftDevice Controller public event API",
     "z_except_reason": "Zephyr architecture exception API",
     "z_impl_k_thread_abort": "Zephyr kernel thread API",
 }
@@ -258,17 +260,36 @@ def classify(symbol: str, va: str | None, adoption: dict, sdk_readable: dict):
 
 
 def closeout_disposition(symbol: str, category: str,
-                         adoption_component: str | None):
+                         adoption_record: dict | None):
     if category != "true_missing_reconstructed_entry":
         return None, None, None
     if symbol in NON_COMPONENT_CLOSEOUT:
         disposition, evidence = NON_COMPONENT_CLOSEOUT[symbol]
         return disposition, False, evidence
-    if adoption_component == "softdevice_controller":
+    component = adoption_record.get("component") if adoption_record else None
+    evidence = adoption_record.get("evidence", []) if adoption_record else []
+    private_sdc_evidence = any(
+        row.get("type") == "sdc_machine_ownership" and
+        row.get("safe_to_exclude") is False
+        for row in evidence
+    )
+    if component == "softdevice_controller" or private_sdc_evidence:
         return (
             "private_sdc_report_only",
             False,
             "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized",
+        )
+    if symbol == "FUN_01025734":
+        return (
+            "hidden_entry_reconstruction_required",
+            True,
+            "direct call target is a real compact Thumb entry omitted from the Ghidra function catalog; no retained C owner exists",
+        )
+    if symbol == "FUN_01025bf8":
+        return (
+            "retained_reconstruction_required",
+            True,
+            "catalogued 60-byte controller helper has only an approximate 0.967 stock signature and no retained C owner",
         )
     raise ValueError("true-missing CPUNET symbol lacks closeout disposition: %s" % symbol)
 
@@ -290,7 +311,7 @@ def generate(elf: Path) -> dict:
         disposition, actionable, disposition_evidence = closeout_disposition(
             symbol,
             category,
-            adoption_record.get("component") if adoption_record else None,
+            adoption_record,
         )
         expected_source = None
         source_exists = False

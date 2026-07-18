@@ -10,15 +10,15 @@
  "inputs": [
   {
    "path": "build/net_full.elf",
-   "sha256": "80bb7e11f7119f8cde7f7ac9d3135c0ccc63e0a290609ff319ac83c3a23f4824"
+   "sha256": "fbbbe0bf2933d422f4a45d38cb96b78ce94101aeb58fb5ab013f9270973da127"
   },
   {
    "path": "recon/catalogs/function_names_net.json",
-   "sha256": "7c345f4d6ebf4f0c740e06b5790e798dc8d8605830889d6678eebd8d5ab8733d"
+   "sha256": "20c96a77bad36f905e82c921629530785ee05d5e136272c8439028d6f2d105ec"
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
-   "sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc"
+   "sha256": "5122cb4d4dbf12cc48f974e8f77e7513269400bb17dba7f5c80e21986147128c"
   },
   {
    "path": "recon/catalogs/net_readable_alias_resolutions.json",
@@ -26,995 +26,228 @@
   }
  ],
  "summary": {
-  "undefined_total": 571,
-  "already_pinned_or_aliased": 437,
-  "classified_residue": 134,
+  "undefined_total": 500,
+  "already_pinned_or_aliased": 440,
+  "classified_residue": 60,
   "by_category": {
-   "true_missing_reconstructed_entry": 66,
+   "true_missing_reconstructed_entry": 20,
    "interior_or_tail_alias": 0,
-   "sdk_or_config_symbol": 67,
+   "sdk_or_config_symbol": 39,
    "compiler_or_ghidra_pseudo": 1,
    "naming_or_symbolization_defect": 0,
    "data_or_global_alias_gap": 0
   },
   "missing_by_adoption_component": {
-   "net_sdk_or_glue": 3,
-   "softdevice_controller": 54,
-   "unmapped": 9
+   "net_sdk_or_glue": 8,
+   "softdevice_controller": 11,
+   "unmapped": 1
   },
   "missing_by_closeout_disposition": {
-   "anomalous_non_executable_target": 1,
-   "blocked_c_unexpressible": 1,
-   "private_sdc_report_only": 64
+   "hidden_entry_reconstruction_required": 1,
+   "private_sdc_report_only": 18,
+   "retained_reconstruction_required": 1
   },
-  "actionable_net_reconstruction_count": 0
+  "actionable_net_reconstruction_count": 2
  },
  "entries": [
   {
-   "symbol": "FUN_0100ef08",
-   "va": "0x0100ef08",
+   "symbol": "FUN_01009224",
+   "va": "0x01009224",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
-    "controller_timing_snapshot_enqueue.o"
+    "FUN_0102665c.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01009224.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01009224",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_0100f110",
+   "va": "0x0100f110",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_process.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f110.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f110",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_0100f7e0",
+   "va": "0x0100f7e0",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_process.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100f7e0.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100f7e0",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_0100fae4",
+   "va": "0x0100fae4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_process.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0100fae4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0100fae4",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_010108b8",
+   "va": "0x010108b8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_process.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010108b8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010108b8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_01013d90",
+   "va": "0x01013d90",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_default_bounds_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01013d90.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01013d90",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_01016250",
+   "va": "0x01016250",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "sdc_conn_event_process.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01016250.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01016250",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_0101bbc8",
+   "va": "0x0101bbc8",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_default_bounds_build.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101bbc8.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101bbc8",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_0101e404",
+   "va": "0x0101e404",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01028256.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0101e404.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0101e404",
+   "adoption_component": "softdevice_controller",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_01025734",
+   "va": "0x01025734",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_deferred_event_raise.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
    "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "internal controller entry at 0x0100ef08 remains a private SDC report-only body"
+   "closeout_disposition": "hidden_entry_reconstruction_required",
+   "closeout_actionable": true,
+   "closeout_evidence": "direct call target is a real compact Thumb entry omitted from the Ghidra function catalog; no retained C owner exists"
   },
   {
-   "symbol": "FUN_0100f86c",
-   "va": "0x0100f86c",
+   "symbol": "FUN_01025bf8",
+   "va": "0x01025bf8",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101c6d0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0100f86c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0100f86c",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01010890",
-   "va": "0x01010890",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_llcp_apply_rx_transition.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01010890.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01010890",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01011664",
-   "va": "0x01011664",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010119ac.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x01011664 remains report-only"
-  },
-  {
-   "symbol": "FUN_01012150",
-   "va": "0x01012150",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01012150.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01012150",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101233c",
-   "va": "0x0101233c",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101233c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101233c",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01012694",
-   "va": "0x01012694",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01012694.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01012694",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010126c8",
-   "va": "0x010126c8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010126c8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010126c8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01012714",
-   "va": "0x01012714",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01012714.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01012714",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010129b8",
-   "va": "0x010129b8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01012438.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010129b8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010129b8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01012ad4",
-   "va": "0x01012ad4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010119ac.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01012ad4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01012ad4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01013da8",
-   "va": "0x01013da8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100e95c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01013da8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01013da8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01016170",
-   "va": "0x01016170",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01013650.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01016170.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01016170",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01018df8",
-   "va": "0x01018df8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101ab20.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x01018df8 remains report-only"
-  },
-  {
-   "symbol": "FUN_010199f4",
-   "va": "0x010199f4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01019aa0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010199f4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010199f4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01019eb4",
-   "va": "0x01019eb4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010187e0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01019eb4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01019eb4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01019ef8",
-   "va": "0x01019ef8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010187e0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01019ef8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01019ef8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101d890",
-   "va": "0x0101d890",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101ba58.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x0101d890 remains report-only"
-  },
-  {
-   "symbol": "FUN_0101ded0",
-   "va": "0x0101ded0",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101e6ac.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101ded0.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101ded0",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101e090",
-   "va": "0x0101e090",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102946c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101e090.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101e090",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101e1e4",
-   "va": "0x0101e1e4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100d5c8.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101e1e4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101e1e4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101e2fc",
-   "va": "0x0101e2fc",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01010470.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101e2fc.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101e2fc",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0101f624",
-   "va": "0x0101f624",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01008d7c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101f624.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101f624",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010207cc",
-   "va": "0x010207cc",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_radio_idle_state_finish.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010207cc.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010207cc",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01020820",
-   "va": "0x01020820",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100af3c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01020820.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01020820",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01021940",
-   "va": "0x01021940",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010216d4.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01021940.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01021940",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01021ac0",
-   "va": "0x01021ac0",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
    "reference_count": 2,
    "reference_objects": [
-    "FUN_01021a38.o",
-    "FUN_0102a122.o"
+    "FUN_01025c44.o",
+    "FUN_01025cc8.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_01021ac0.c",
+   "expected_source": "recon/symbolized/net/FUN_01025bf8.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_01021ac0",
+   "identity_name": "FUN_01025bf8",
    "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01022a30",
-   "va": "0x01022a30",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_01013650.o",
-    "FUN_0101ba58.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01022a30.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01022a30",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01022a50",
-   "va": "0x01022a50",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_0100b180.o",
-    "FUN_010171c8.o",
-    "FUN_010190d0.o",
-    "controller_radio_idle_state_finish.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01022a50.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01022a50",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01022e34",
-   "va": "0x01022e34",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01013b4c.o",
-    "FUN_0101aee0.o",
-    "FUN_0101b088.o",
-    "FUN_01021a38.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01022e34.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01022e34",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01022ea8",
-   "va": "0x01022ea8",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 3,
-   "reference_objects": [
-    "FUN_01012c84.o",
-    "FUN_01013650.o",
-    "FUN_01013b4c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01022ea8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01022ea8",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01022f0c",
-   "va": "0x01022f0c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_0101ab20.o",
-    "FUN_01029e64.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01022f0c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01022f0c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01023ac4",
-   "va": "0x01023ac4",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01020108.o",
-    "FUN_01020764.o",
-    "FUN_010212ec.o",
-    "FUN_01029e64.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01023ac4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01023ac4",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01023d38",
-   "va": "0x01023d38",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 7,
-   "reference_objects": [
-    "FUN_01012c84.o",
-    "FUN_01013650.o",
-    "FUN_0101a218.o",
-    "FUN_0101ab20.o",
-    "FUN_0101b230.o",
-    "FUN_0101ba58.o",
-    "FUN_01029d68.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01023d38.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01023d38",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01023e88",
-   "va": "0x01023e88",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 6,
-   "reference_objects": [
-    "FUN_01014748.o",
-    "FUN_0101b230.o",
-    "FUN_0101bf30.o",
-    "FUN_01021108.o",
-    "FUN_010212ec.o",
-    "controller_radio_transition_schedule.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01023e88.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01023e88",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01024440",
-   "va": "0x01024440",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 6,
-   "reference_objects": [
-    "FUN_01021ee0.o",
-    "FUN_01022a84.o",
-    "FUN_010237b0.o",
-    "FUN_01023dec.o",
-    "FUN_01025034.o",
-    "mpsl_timeslot_distance_get.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01024440.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01024440",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0102445c",
-   "va": "0x0102445c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_010225ac.o",
-    "controller_timing_request_submit.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102445c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102445c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_010245d8",
-   "va": "0x010245d8",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01021df0.o",
-    "FUN_010225ac.o",
-    "FUN_01022a84.o",
-    "controller_timing_request_submit.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010245d8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010245d8",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01024c6c",
-   "va": "0x01024c6c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 3,
-   "reference_objects": [
-    "FUN_01021ee0.o",
-    "FUN_01022a84.o",
-    "FUN_01024ef0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01024c6c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01024c6c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0102524c",
-   "va": "0x0102524c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01021ee0.o",
-    "FUN_0102286c.o",
-    "FUN_01022a84.o",
-    "FUN_01023ea8.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102524c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102524c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_010256dc",
-   "va": "0x010256dc",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 23,
-   "reference_objects": [
-    "FUN_01021b04.o",
-    "FUN_01021cec.o",
-    "FUN_01021ee0.o",
-    "FUN_01022a84.o",
-    "FUN_010237b0.o",
-    "FUN_01023ad8.o",
-    "FUN_01023dec.o",
-    "FUN_01023ea8.o",
-    "FUN_0102411c.o",
-    "FUN_01024524.o",
-    "FUN_01024778.o",
-    "FUN_01024e1c.o",
-    "FUN_01024ef0.o",
-    "FUN_010250d0.o",
-    "FUN_010251ec.o",
-    "FUN_0102521c.o",
-    "FUN_0102581c.o",
-    "FUN_01029d34.o",
-    "FUN_01029d76.o",
-    "FUN_01029e64.o",
-    "FUN_0102a122.o",
-    "mpsl_timeslot_distance_get.o",
-    "sdc_timing_scale.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010256dc.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010256dc",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_010257e4",
-   "va": "0x010257e4",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01008fd4.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010257e4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010257e4",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0102590c",
-   "va": "0x0102590c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01010834.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102590c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102590c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025998",
-   "va": "0x01025998",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 8,
-   "reference_objects": [
-    "FUN_0100b630.o",
-    "FUN_0100e95c.o",
-    "FUN_0100eaf0.o",
-    "FUN_01026122.o",
-    "controller_packet_payload_copy.o",
-    "controller_packet_payload_extract.o",
-    "controller_payload_copy_after_nine_byte_header.o",
-    "sdc_buffer_accumulate.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025998.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025998",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025a84",
-   "va": "0x01025a84",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 12,
-   "reference_objects": [
-    "FUN_01008ddc.o",
-    "FUN_01009668.o",
-    "FUN_01009ea4.o",
-    "FUN_0100cc20.o",
-    "FUN_0100cff4.o",
-    "FUN_0100d14c.o",
-    "FUN_01013b4c.o",
-    "FUN_010144e4.o",
-    "FUN_0101d404.o",
-    "FUN_0102023c.o",
-    "controller_status_defaults_reset.o",
-    "sdc_packet_header_decode.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025a84.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025a84",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025c44",
-   "va": "0x01025c44",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 3,
-   "reference_objects": [
-    "FUN_0100b180.o",
-    "FUN_0101132c.o",
-    "FUN_010171c8.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025c44.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025c44",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025c9c",
-   "va": "0x01025c9c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_010208f0.o",
-    "FUN_01021108.o",
-    "FUN_010212ec.o",
-    "controller_radio_transition_schedule.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025c9c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025c9c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025cc8",
-   "va": "0x01025cc8",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_llcp_note_unsupported_pdu.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025cc8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025cc8",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01025d0c",
-   "va": "0x01025d0c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_llcp_note_unsupported_pdu.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01025d0c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01025d0c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "retained_reconstruction_required",
+   "closeout_actionable": true,
+   "closeout_evidence": "catalogued 60-byte controller helper has only an approximate 0.967 stock signature and no retained C owner"
   },
   {
    "symbol": "FUN_01025d38",
@@ -1028,45 +261,79 @@
    "expected_source": "recon/symbolized/net/FUN_01025d38.c",
    "expected_source_exists": false,
    "identity_name": "FUN_01025d38",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "cpunet_toolchain_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
   },
   {
-   "symbol": "FUN_0102665c",
-   "va": "0x0102665c",
+   "symbol": "FUN_0102689c",
+   "va": "0x0102689c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0102693a.o",
+    "FUN_01026a7e.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_0102689c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_0102689c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_010271da",
+   "va": "0x010271da",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_010323cc.o"
+    "FUN_01027302.o"
    ],
-   "expected_source": null,
+   "expected_source": "recon/symbolized/net/FUN_010271da.c",
    "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
+   "identity_name": "FUN_010271da",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
    "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x0102665c remains report-only"
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
-   "symbol": "FUN_0102693a",
-   "va": "0x0102693a",
+   "symbol": "FUN_0102722c",
+   "va": "0x0102722c",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 4,
+   "reference_count": 1,
    "reference_objects": [
-    "FUN_0102759e.o",
-    "FUN_010275d2.o",
-    "FUN_010276b2.o",
-    "FUN_010276e6.o"
+    "FUN_01027302.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_0102693a.c",
+   "expected_source": "recon/symbolized/net/FUN_0102722c.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_0102693a",
+   "identity_name": "FUN_0102722c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_010278e4",
+   "va": "0x010278e4",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "controller_entry_links_release.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_010278e4.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_010278e4",
    "adoption_component": "softdevice_controller",
    "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
@@ -1074,17 +341,36 @@
    "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
-   "symbol": "FUN_010269ce",
-   "va": "0x010269ce",
+   "symbol": "FUN_01027e1c",
+   "va": "0x01027e1c",
+   "category": "true_missing_reconstructed_entry",
+   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_01027ed4.o",
+    "FUN_01027ef2.o"
+   ],
+   "expected_source": "recon/symbolized/net/FUN_01027e1c.c",
+   "expected_source_exists": false,
+   "identity_name": "FUN_01027e1c",
+   "adoption_component": "net_sdk_or_glue",
+   "adoption_decision": "retain_reconstruction",
+   "closeout_disposition": "private_sdc_report_only",
+   "closeout_actionable": false,
+   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
+  },
+  {
+   "symbol": "FUN_01028010",
+   "va": "0x01028010",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_0100e95c.o"
+    "FUN_010126c8.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_010269ce.c",
+   "expected_source": "recon/symbolized/net/FUN_01028010.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_010269ce",
+   "identity_name": "FUN_01028010",
    "adoption_component": "softdevice_controller",
    "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
@@ -1092,511 +378,59 @@
    "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
-   "symbol": "FUN_01026a7e",
-   "va": "0x01026a7e",
+   "symbol": "FUN_01028034",
+   "va": "0x01028034",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 4,
+   "reference_count": 2,
    "reference_objects": [
-    "FUN_0102763a.o",
-    "FUN_01027662.o",
-    "FUN_0102771a.o",
-    "FUN_01027742.o"
+    "FUN_010280be.o",
+    "FUN_010280d8.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_01026a7e.c",
+   "expected_source": "recon/symbolized/net/FUN_01028034.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_01026a7e",
-   "adoption_component": "softdevice_controller",
+   "identity_name": "FUN_01028034",
+   "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
    "closeout_actionable": false,
    "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
-   "symbol": "FUN_01026acc",
-   "va": "0x01026acc",
+   "symbol": "FUN_01028134",
+   "va": "0x01028134",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_0100e95c.o"
+    "FUN_01028256.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_01026acc.c",
+   "expected_source": "recon/symbolized/net/FUN_01028134.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_01026acc",
-   "adoption_component": "softdevice_controller",
+   "identity_name": "FUN_01028134",
+   "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
    "closeout_actionable": false,
    "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
   },
   {
-   "symbol": "FUN_01026b58",
-   "va": "0x01026b58",
+   "symbol": "FUN_010283b8",
+   "va": "0x010283b8",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_0100ac98.o"
+    "FUN_0102894a.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_01026b58.c",
+   "expected_source": "recon/symbolized/net/FUN_010283b8.c",
    "expected_source_exists": false,
-   "identity_name": "FUN_01026b58",
-   "adoption_component": "softdevice_controller",
+   "identity_name": "FUN_010283b8",
+   "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "retain_reconstruction",
    "closeout_disposition": "private_sdc_report_only",
    "closeout_actionable": false,
    "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01026bfe",
-   "va": "0x01026bfe",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100b6b4.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01026bfe.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01026bfe",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01026d16",
-   "va": "0x01026d16",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01015ecc.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01026d16.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01026d16",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01026dae",
-   "va": "0x01026dae",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100ac98.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01026dae.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01026dae",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027044",
-   "va": "0x01027044",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100eaf0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027044.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027044",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010270e8",
-   "va": "0x010270e8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100eaf0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010270e8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010270e8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027302",
-   "va": "0x01027302",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01009f58.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027302.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027302",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010273c6",
-   "va": "0x010273c6",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0100a6f0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010273c6.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010273c6",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027846",
-   "va": "0x01027846",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01008a58.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027846.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027846",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027a4a",
-   "va": "0x01027a4a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102185c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027a4a.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027a4a",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027a94",
-   "va": "0x01027a94",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01021800.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027a94.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027a94",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027ed4",
-   "va": "0x01027ed4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101132c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027ed4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027ed4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01027ef2",
-   "va": "0x01027ef2",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101132c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027ef2.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027ef2",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010280be",
-   "va": "0x010280be",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01012438.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010280be.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010280be",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010280d8",
-   "va": "0x010280d8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01012438.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010280d8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010280d8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01028256",
-   "va": "0x01028256",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101e6ac.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01028256.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01028256",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0102894a",
-   "va": "0x0102894a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "thunk_FUN_0102894a.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102894a.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102894a",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010292ec",
-   "va": "0x010292ec",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010267fe.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x010292ec remains report-only"
-  },
-  {
-   "symbol": "FUN_0102941c",
-   "va": "0x0102941c",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01008d7c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102941c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102941c",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0102961a",
-   "va": "0x0102961a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010187e0.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102961a.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102961a",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0102971e",
-   "va": "0x0102971e",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f994.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102971e.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102971e",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010297b4",
-   "va": "0x010297b4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f994.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010297b4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010297b4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01029882",
-   "va": "0x01029882",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f994.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01029882.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01029882",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_010298a8",
-   "va": "0x010298a8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101d404.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010298a8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010298a8",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_01029b38",
-   "va": "0x01029b38",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0101f440.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01029b38.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01029b38",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "FUN_0102a1e0",
-   "va": "0x0102a1e0",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01013e98.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private controller entry at 0x0102a1e0 remains report-only"
   },
   {
    "symbol": "FUN_0102a244",
@@ -1610,84 +444,7 @@
    "expected_source": "recon/symbolized/net/FUN_0102a244.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0102a244",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0102d25c",
-   "va": "0x0102d25c",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b0e8.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "anomalous_non_executable_target",
-   "closeout_actionable": false,
-   "closeout_evidence": "conditional path branches through literal 0x0103c8a1 into confirmed IPC log-string data; no executable owner or relocation is known"
-  },
-  {
-   "symbol": "FUN_0102eb2c",
-   "va": "0x0102eb2c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 6,
-   "reference_objects": [
-    "FUN_01032c28.o",
-    "FUN_010333b4.o",
-    "FUN_01033888.o",
-    "FUN_0103499c.o",
-    "FUN_01034d8c.o",
-    "FUN_01034f24.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102eb2c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102eb2c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0102fa84",
-   "va": "0x0102fa84",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b53a.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102fa84.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102fa84",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "blocked_c_unexpressible",
-   "closeout_actionable": false,
-   "closeout_evidence": "entry performs a BASEPRI reset followed by SVC 2; its exception-mediated continuation cannot be represented as an ordinary C call/return body"
-  },
-  {
-   "symbol": "FUN_0102fbac",
-   "va": "0x0102fbac",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01031928.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102fbac.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102fbac",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "cpunet_toolchain_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -1713,93 +470,17 @@
    "closeout_evidence": null
   },
   {
-   "symbol": "FUN_010353ec",
-   "va": "0x010353ec",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 3,
-   "reference_objects": [
-    "FUN_010355bc.o",
-    "FUN_0103566c.o",
-    "FUN_0103afac.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010353ec.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010353ec",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_01038fa4",
-   "va": "0x01038fa4",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "thunk_FUN_01038fa4.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01038fa4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01038fa4",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
    "symbol": "FUN_01039b88",
    "va": "0x01039b88",
    "category": "sdk_or_config_symbol",
    "reason": "reviewed adoption manifest selects the upstream owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_01039b16.o"
+    "validate_args.o"
    ],
    "expected_source": "recon/symbolized/net/FUN_01039b88.c",
    "expected_source_exists": false,
    "identity_name": "FUN_01039b88",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103ab0e",
-   "va": "0x0103ab0e",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_010355bc.o",
-    "FUN_0103576c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103ab0e.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103ab0e",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103ac50",
-   "va": "0x0103ac50",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_0103566c.o",
-    "FUN_0103aff2.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103ac50.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103ac50",
    "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
@@ -1825,42 +506,6 @@
    "closeout_evidence": null
   },
   {
-   "symbol": "FUN_0103ada8",
-   "va": "0x0103ada8",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010354bc.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103ada8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103ada8",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103ae10",
-   "va": "0x0103ae10",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103566c.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103ae10.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103ae10",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
    "symbol": "FUN_0103b1e2",
    "va": "0x0103b1e2",
    "category": "sdk_or_config_symbol",
@@ -1872,7 +517,7 @@
    "expected_source": "recon/symbolized/net/FUN_0103b1e2.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0103b1e2",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "zephyr_kernel_private_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -1890,81 +535,7 @@
    "expected_source": "recon/symbolized/net/FUN_0103b210.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0103b210",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103b268",
-   "va": "0x0103b268",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010318d8.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103b268.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103b268",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103b304",
-   "va": "0x0103b304",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01035d18.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103b304.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103b304",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103b34c",
-   "va": "0x0103b34c",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01035d18.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103b34c.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103b34c",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "FUN_0103b4f6",
-   "va": "0x0103b4f6",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 3,
-   "reference_objects": [
-    "FUN_01036198.o",
-    "FUN_01036660.o",
-    "FUN_01036824.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103b4f6.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103b4f6",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "zephyr_kernel_private_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -1982,7 +553,7 @@
    "expected_source": "recon/symbolized/net/FUN_0103b5c4.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0103b5c4",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "cpunet_toolchain_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -2003,17 +574,17 @@
     "FUN_010323cc.o",
     "FUN_01033660.o",
     "FUN_01033a60.o",
-    "FUN_01036198.o",
-    "FUN_010362d0.o",
     "FUN_0103a2cc.o",
     "FUN_0103a2f8.o",
-    "FUN_0103a478.o",
-    "FUN_0103b53a.o"
+    "__memcpy_chk.o",
+    "net_buf_simple_add_mem.o",
+    "z_impl_k_msgq_get.o",
+    "z_impl_k_msgq_put.o"
    ],
    "expected_source": "recon/symbolized/net/FUN_0103b614.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0103b614",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "cpunet_toolchain_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -2047,7 +618,7 @@
    "expected_source": "recon/symbolized/net/FUN_0103b62e.c",
    "expected_source_exists": false,
    "identity_name": "FUN_0103b62e",
-   "adoption_component": "net_sdk_or_glue",
+   "adoption_component": "cpunet_toolchain_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -2072,114 +643,95 @@
    "closeout_evidence": null
   },
   {
-   "symbol": "controller_default_bounds_build",
-   "va": "0x010282fc",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "symbol": "__aeabi_uldivmod",
+   "va": null,
+   "category": "sdk_or_config_symbol",
+   "reason": "ARM EABI compiler runtime division helper",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_01028656.o"
+    "FUN_01013da8.o"
    ],
-   "expected_source": "recon/symbolized/net/FUN_010282fc.c",
+   "expected_source": null,
    "expected_source_exists": false,
-   "identity_name": "FUN_010282fc",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "0x010282fc is the 126-byte FUN_010282fc body and an exact unique private SDC archive match with unpublished ABI"
+   "identity_name": null,
+   "adoption_component": null,
+   "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
   },
   {
-   "symbol": "controller_deferred_event_raise",
-   "va": "0x0102583c",
+   "symbol": "__chk_fail",
+   "va": "0x0102fa84",
    "category": "sdk_or_config_symbol",
    "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 7,
+   "reference_count": 1,
    "reference_objects": [
-    "FUN_0100ec40.o",
-    "FUN_01022a84.o",
-    "FUN_01023ea8.o",
-    "controller_work_enqueue_packet_result.o",
-    "controller_work_enqueue_state4.o",
-    "controller_work_update_or_enqueue.o",
-    "sdc_work_submit.o"
+    "__memcpy_chk.o"
    ],
-   "expected_source": "recon/symbolized/net/controller_deferred_event_raise.c",
+   "expected_source": "recon/symbolized/net/__chk_fail.c",
    "expected_source_exists": false,
-   "identity_name": "controller_deferred_event_raise",
-   "adoption_component": "net_sdk_or_glue",
+   "identity_name": "__chk_fail",
+   "adoption_component": "picolibc_runtime_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
   },
   {
-   "symbol": "controller_entry_links_release",
-   "va": "0x0101df84",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_handle_update_state_apply.o"
-   ],
-   "expected_source": "recon/symbolized/net/controller_entry_links_release.c",
-   "expected_source_exists": false,
-   "identity_name": "controller_entry_links_release",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "0x0101df84 is an exact unique private SDC archive match with unpublished ABI"
-  },
-  {
-   "symbol": "controller_radio_time_mode2_to_mode2",
-   "va": "0x01021634",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_radio_transition_apply.o"
-   ],
-   "expected_source": "recon/symbolized/net/controller_radio_time_mode2_to_mode2.c",
-   "expected_source_exists": false,
-   "identity_name": "controller_radio_time_mode2_to_mode2",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "controller_timing_defaults_apply",
-   "va": "0x0101e1e4",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_timing_state_reset.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0101e1e4.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0101e1e4",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "0x0101e1e4 is an exact unique private SDC archive match with unpublished ABI"
-  },
-  {
-   "symbol": "controller_transition_pending_check",
-   "va": "0x01025cf0",
+   "symbol": "arch_busy_wait",
+   "va": "0x0102d25c",
    "category": "sdk_or_config_symbol",
    "reason": "reviewed adoption manifest selects the upstream owner",
    "reference_count": 1,
    "reference_objects": [
-    "controller_radio_transition_apply.o"
+    "z_impl_k_busy_wait.o"
    ],
-   "expected_source": "recon/symbolized/net/controller_transition_pending_check.c",
+   "expected_source": "recon/symbolized/net/arch_busy_wait.c",
    "expected_source_exists": false,
-   "identity_name": "controller_transition_pending_check",
-   "adoption_component": "net_sdk_or_glue",
+   "identity_name": "arch_busy_wait",
+   "adoption_component": "zephyr_runtime_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "arch_irq_enable",
+   "va": "0x0102eb2c",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 6,
+   "reference_objects": [
+    "FUN_01032c28.o",
+    "FUN_010333b4.o",
+    "FUN_01033888.o",
+    "FUN_0103499c.o",
+    "FUN_01034d8c.o",
+    "FUN_01034f24.o"
+   ],
+   "expected_source": "recon/symbolized/net/arch_irq_enable.c",
+   "expected_source_exists": false,
+   "identity_name": "arch_irq_enable",
+   "adoption_component": "zephyr_public_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "bt_hci_driver_register",
+   "va": "0x0102fbac",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_01031928.o"
+   ],
+   "expected_source": "recon/symbolized/net/bt_hci_driver_register.c",
+   "expected_source_exists": false,
+   "identity_name": "bt_hci_driver_register",
+   "adoption_component": "zephyr_public_stock",
    "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
@@ -2233,8 +785,8 @@
    "expected_source": "recon/symbolized/net/ipc_static_vrings_shm_size.c",
    "expected_source_exists": false,
    "identity_name": "ipc_static_vrings_shm_size",
-   "adoption_component": null,
-   "adoption_decision": null,
+   "adoption_component": "net_zephyr_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
@@ -2269,8 +821,8 @@
    "expected_source": "recon/symbolized/net/k_work_queue_init.c",
    "expected_source_exists": false,
    "identity_name": "k_work_queue_init",
-   "adoption_component": null,
-   "adoption_decision": null,
+   "adoption_component": "zephyr_os_kernel_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
@@ -2287,8 +839,45 @@
    "expected_source": "recon/symbolized/net/k_work_queue_start.c",
    "expected_source_exists": false,
    "identity_name": "k_work_queue_start",
-   "adoption_component": null,
-   "adoption_decision": null,
+   "adoption_component": "zephyr_os_kernel_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "k_work_submit_to_queue",
+   "va": "0x0103b268",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_010318d8.o"
+   ],
+   "expected_source": "recon/symbolized/net/k_work_submit_to_queue.c",
+   "expected_source_exists": false,
+   "identity_name": "k_work_submit_to_queue",
+   "adoption_component": "zephyr_os_kernel_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "metal_io_block_write",
+   "va": "0x0103ab0e",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_010355bc.o",
+    "FUN_0103576c.o"
+   ],
+   "expected_source": "recon/symbolized/net/metal_io_block_write.c",
+   "expected_source_exists": false,
+   "identity_name": "metal_io_block_write",
+   "adoption_component": "net_libmetal_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
@@ -2312,13 +901,67 @@
    "closeout_evidence": null
   },
   {
+   "symbol": "ocrypto_mod_p256_to_bytes",
+   "va": "0x01038fa4",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "thunk_FUN_01038fa4.o"
+   ],
+   "expected_source": "recon/symbolized/net/ocrypto_mod_p256_to_bytes.c",
+   "expected_source_exists": false,
+   "identity_name": "ocrypto_mod_p256_to_bytes",
+   "adoption_component": "nrfxlib_oberon",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "rpmsg_get_endpoint",
+   "va": "0x0103ae10",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "FUN_0103566c.o"
+   ],
+   "expected_source": "recon/symbolized/net/rpmsg_get_endpoint.c",
+   "expected_source_exists": false,
+   "identity_name": "rpmsg_get_endpoint",
+   "adoption_component": "openamp_rpmsg",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "rpmsg_send_ns_message",
+   "va": "0x0103ada8",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 1,
+   "reference_objects": [
+    "rpmsg_create_ept.o"
+   ],
+   "expected_source": "recon/symbolized/net/rpmsg_send_ns_message.c",
+   "expected_source_exists": false,
+   "identity_name": "rpmsg_send_ns_message",
+   "adoption_component": "openamp_rpmsg",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
    "symbol": "rtc_compare_event_clear",
    "va": "0x0103a6ae",
    "category": "sdk_or_config_symbol",
    "reason": "reviewed adoption manifest selects the upstream owner",
    "reference_count": 2,
    "reference_objects": [
-    "FUN_010313ec.o",
+    "rtc_compare_set.o",
     "rtc_nrf_isr.o"
    ],
    "expected_source": "recon/symbolized/net/rtc_compare_event_clear.c",
@@ -2331,31 +974,13 @@
    "closeout_evidence": null
   },
   {
-   "symbol": "schedule_node_tail_get",
-   "va": "0x0101dda8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_timing_snapshot_build.o"
-   ],
-   "expected_source": "recon/symbolized/net/schedule_node_tail_get.c",
-   "expected_source_exists": false,
-   "identity_name": "schedule_node_tail_get",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
    "symbol": "scheduler_priority_compare",
    "va": null,
    "category": "sdk_or_config_symbol",
    "reason": "canonical readable spelling maps to manifest-approved z_sched_prio_cmp @ 0x0103b28a",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_0103b3e0.o"
+    "add_event.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -2385,135 +1010,13 @@
    "closeout_evidence": null
   },
   {
-   "symbol": "sdc_byte_lock_release",
-   "va": "0x0102a208",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_ecb_run_blocking.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_byte_lock_release.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_byte_lock_release",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "sdc_byte_lock_try_acquire",
-   "va": "0x0102a1ea",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_ecb_run_blocking.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_byte_lock_try_acquire.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_byte_lock_try_acquire",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "sdc_conn_event_process",
-   "va": "0x01014b18",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_01015ecc.o",
-    "controller_radio_event1_dispatch.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_conn_event_process.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_conn_event_process",
-   "adoption_component": null,
-   "adoption_decision": null,
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "private SDC connection-event entry at 0x01014b18 remains report-only"
-  },
-  {
-   "symbol": "sdc_conn_recovery_state_restore",
-   "va": "0x0101618c",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_conn_event_timing_prepare.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_conn_recovery_state_restore.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_conn_recovery_state_restore",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "sdc_conn_recovery_window_update",
-   "va": "0x0100d6e8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "sdc_conn_event_timing_prepare.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_conn_recovery_window_update.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_conn_recovery_window_update",
-   "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction",
-   "closeout_disposition": "private_sdc_report_only",
-   "closeout_actionable": false,
-   "closeout_evidence": "reviewed SDC ownership remains report-only; no automatic SDC removal is authorized"
-  },
-  {
-   "symbol": "sdc_conn_window_admit",
-   "va": "0x010231c8",
-   "category": "sdk_or_config_symbol",
-   "reason": "reviewed adoption manifest selects the upstream owner",
-   "reference_count": 14,
-   "reference_objects": [
-    "FUN_01012c84.o",
-    "FUN_01013b4c.o",
-    "FUN_0101ab20.o",
-    "FUN_0101aee0.o",
-    "FUN_0101b088.o",
-    "FUN_0101b230.o",
-    "FUN_0101ba58.o",
-    "FUN_0101bc3c.o",
-    "FUN_0101bdd4.o",
-    "FUN_01029d76.o",
-    "FUN_01029e64.o",
-    "FUN_0102a122.o",
-    "sdc_conn_event_timing_prepare.o",
-    "sdc_ext_adv_reschedule.o"
-   ],
-   "expected_source": "recon/symbolized/net/sdc_conn_window_admit.c",
-   "expected_source_exists": false,
-   "identity_name": "sdc_conn_window_admit",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "adopt_upstream_exclude_reconstruction",
-   "closeout_disposition": null,
-   "closeout_actionable": null,
-   "closeout_evidence": null
-  },
-  {
-   "symbol": "sys_rand_get",
+   "symbol": "sdc_event_publish",
    "va": null,
    "category": "sdk_or_config_symbol",
-   "reason": "Zephyr random API",
+   "reason": "Nordic SoftDevice Controller public event API",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_0100f5d8.o"
+    "FUN_01018df8.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -2526,36 +1029,77 @@
   },
   {
    "symbol": "sys_timepoint_calc",
-   "va": null,
+   "va": "0x0103b304",
    "category": "sdk_or_config_symbol",
    "reason": "canonical readable spelling maps to manifest-approved sys_timepoint_calc @ 0x0103b304",
-   "reference_count": 1,
+   "reference_count": 2,
    "reference_objects": [
-    "FUN_0102fdd0.o"
+    "FUN_0102fdd0.o",
+    "FUN_01035d18.o"
    ],
-   "expected_source": null,
+   "expected_source": "recon/symbolized/net/sys_timepoint_calc.c",
    "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
+   "identity_name": "sys_timepoint_calc",
+   "adoption_component": "zephyr_public_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
   },
   {
    "symbol": "sys_timepoint_timeout",
-   "va": null,
+   "va": "0x0103b34c",
    "category": "sdk_or_config_symbol",
    "reason": "canonical readable spelling maps to manifest-approved sys_timepoint_timeout @ 0x0103b34c",
-   "reference_count": 1,
+   "reference_count": 2,
    "reference_objects": [
-    "FUN_0102fdd0.o"
+    "FUN_0102fdd0.o",
+    "FUN_01035d18.o"
    ],
-   "expected_source": null,
+   "expected_source": "recon/symbolized/net/sys_timepoint_timeout.c",
    "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null,
+   "identity_name": "sys_timepoint_timeout",
+   "adoption_component": "zephyr_public_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "virtqueue_add_consumed_buffer",
+   "va": "0x010353ec",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_010355bc.o",
+    "FUN_0103566c.o",
+    "FUN_0103afac.o"
+   ],
+   "expected_source": "recon/symbolized/net/virtqueue_add_consumed_buffer.c",
+   "expected_source_exists": false,
+   "identity_name": "virtqueue_add_consumed_buffer",
+   "adoption_component": "net_openamp_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "virtqueue_get_available_buffer",
+   "va": "0x0103ac50",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 2,
+   "reference_objects": [
+    "FUN_0103566c.o",
+    "FUN_0103aff2.o"
+   ],
+   "expected_source": "recon/symbolized/net/virtqueue_get_available_buffer.c",
+   "expected_source_exists": false,
+   "identity_name": "virtqueue_get_available_buffer",
+   "adoption_component": "net_openamp_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
@@ -2567,13 +1111,33 @@
    "reason": "Zephyr architecture exception API",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_01039bb0.o"
+    "assert_post_action.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
    "identity_name": null,
    "adoption_component": null,
    "adoption_decision": null,
+   "closeout_disposition": null,
+   "closeout_actionable": null,
+   "closeout_evidence": null
+  },
+  {
+   "symbol": "z_handle_obj_poll_events",
+   "va": "0x0103b4f6",
+   "category": "sdk_or_config_symbol",
+   "reason": "reviewed adoption manifest selects the upstream owner",
+   "reference_count": 3,
+   "reference_objects": [
+    "FUN_01036660.o",
+    "FUN_01036824.o",
+    "z_impl_k_msgq_put.o"
+   ],
+   "expected_source": "recon/symbolized/net/z_handle_obj_poll_events.c",
+   "expected_source_exists": false,
+   "identity_name": "z_handle_obj_poll_events",
+   "adoption_component": "zephyr_os_kernel_stock",
+   "adoption_decision": "adopt_upstream_exclude_reconstruction",
    "closeout_disposition": null,
    "closeout_actionable": null,
    "closeout_evidence": null
