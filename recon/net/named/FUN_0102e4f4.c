@@ -2,8 +2,28 @@
  * public-name: FUN_0102e4f4
  * durable-map: recon/catalogs/function_names_net.json
  * address symbols (name @ address):
+ *   rodata_102eca1                           @ 0x0102eca1
+ *   rodata_103024d                           @ 0x0103024d
+ *   rodata_103c924                           @ 0x0103c924
+ *   rodata_103c938                           @ 0x0103c938
  *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103d6e1                           @ 0x0103d6e1
+ *   rodata_103d710                           @ 0x0103d710
+ *   rodata_103d715                           @ 0x0103d715
+ *   rodata_103d719                           @ 0x0103d719
+ *   rodata_103d722                           @ 0x0103d722
  *   rodata_103d73e                           @ 0x0103d73e
+ *   rodata_103d741                           @ 0x0103d741
+ *   rodata_103d747                           @ 0x0103d747
+ *   rodata_103d74b                           @ 0x0103d74b
+ *   rodata_103d750                           @ 0x0103d750
+ *   rodata_103d756                           @ 0x0103d756
+ *   rodata_103d758                           @ 0x0103d758
+ *   rodata_103e850                           @ 0x0103e850
+ *   rodata_103e852                           @ 0x0103e852
+ *   rodata_103ec11                           @ 0x0103ec11
+ *   g_21004670                               @ 0x21004670
+ *   g_21004674                               @ 0x21004674
  */
 /* net-core log-output formatter and hex-dump renderer @ 0x0102e4f4.
  * Raw/address back-map: FUN_0102e4f4 / 0x0102e4f4.

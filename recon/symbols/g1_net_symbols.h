@@ -256,7 +256,7 @@ extern volatile unsigned int g_net_rtc_timer_sync_valid; /* @0x21004fa9 */
 extern volatile unsigned int g_sdc_clock_calc_valid; /* @0x21004faa */
 extern volatile unsigned int g_sdc_clock_calc_lock; /* @0x21004fab */
 extern volatile unsigned char g_net_tick_handler_enable_flag; /* @0x21004fac */
-extern volatile unsigned int g_net_dev_init_done_flag; /* @0x21004fad */
+extern volatile unsigned char g_net_dev_init_done_flag; /* @0x21004fad */
 extern volatile unsigned int g_net_pending_tx_pkt; /* @0x210051ae */
 extern volatile unsigned int g_esb_pipe_pid_cnt; /* @0x21006256 */
 extern volatile unsigned int g_2100625a; /* @0x2100625a */

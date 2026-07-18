@@ -4,6 +4,9 @@
  * callees (readable <= raw @ address):
  *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
  *   controller_descriptor_array_encode       <= FUN_0100a5c8 @ 0x0100a5c8
+ * address symbols (name @ address):
+ *   g_21000be4                               @ 0x21000be4
+ *   g_21000be8                               @ 0x21000be8
  */
 /* net-core FUN_0100a5c8 @ 0x100a5c8 */
 

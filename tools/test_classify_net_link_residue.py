@@ -42,7 +42,11 @@ class NetLinkResidueTest(unittest.TestCase):
         )
         by_symbol = {entry["symbol"]: entry for entry in report["entries"]}
         self.assertEqual(
-            by_symbol["FUN_0100938c"]["category"],
+            by_symbol["controller_default_bounds_build"]["category"],
+            "true_missing_reconstructed_entry",
+        )
+        self.assertEqual(
+            by_symbol["controller_timing_defaults_apply"]["category"],
             "true_missing_reconstructed_entry",
         )
         self.assertEqual(

@@ -6,6 +6,10 @@
  *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
  * address symbols (name @ address):
  *   rodata_103c024                           @ 0x0103c024
+ *   rodata_103dde1                           @ 0x0103dde1
+ *   rodata_103ddfa                           @ 0x0103ddfa
+ *   rodata_103de16                           @ 0x0103de16
+ *   g_210047f8                               @ 0x210047f8
  *   g_net_047fc                              @ 0x210047fc
  */
 /* net-core entropy-device initialization adapter @ 0x0102fcec.

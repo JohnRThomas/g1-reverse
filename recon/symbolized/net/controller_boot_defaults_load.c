@@ -5,6 +5,7 @@
  * callees (readable <= raw @ address):
  *   controller_boot_defaults_load            <= FUN_0100d808 @ 0x0100d808
  * address symbols (name @ address):
+ *   rodata_103cc60                           @ 0x0103cc60
  *   g_net_esb_own_addr                       @ 0x21000010
  *   g_net_esb_own_addr_valid                 @ 0x21000ea8
  */

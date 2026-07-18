@@ -5,6 +5,7 @@
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
+ *   rodata_103de3f                           @ 0x0103de3f
  */
 /* net-core FUN_0102fdd0 @ 0x0102fdd0
  * upstream identity: net_buf_alloc_len (Zephyr subsys/net/buf.c)

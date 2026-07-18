@@ -50,6 +50,7 @@ SDK_SYMBOLS = {
     "ipc_static_vrings_shm_size": "NCS IPC-service static-vrings backend",
     "k_work_queue_init": "Zephyr kernel work queue API",
     "k_work_queue_start": "Zephyr kernel work queue API",
+    "k_timer_stop": "Zephyr public timer API; exact z_impl_k_timer_stop signature owner",
     "sys_rand_get": "Zephyr random API",
     "z_except_reason": "Zephyr architecture exception API",
     "z_impl_k_thread_abort": "Zephyr kernel thread API",
@@ -113,6 +114,7 @@ def provided_symbols() -> set[str]:
         "g1_net_globals.ld",
         "g1_net_aliases.ld",
         "g1_net_function_aliases.ld",
+        "g1_net_readable_aliases.ld",
     ):
         for line in (ROOT / "recon/symbols" / filename).read_text().splitlines():
             match = re.search(r"PROVIDE\((\w+)", line)
@@ -133,6 +135,7 @@ def reference_owners(symbols: set[str]) -> dict[str, list[str]]:
 def load_identity_maps():
     names_path = ROOT / "recon/catalogs/function_names_net.json"
     manifest_path = ROOT / "recon/ownership/adoption_manifest.json"
+    readable_path = ROOT / "recon/catalogs/net_readable_alias_resolutions.json"
     names = json.loads(names_path.read_text())
     manifest = json.loads(manifest_path.read_text())
     by_va = names["by_address"]
@@ -141,7 +144,10 @@ def load_identity_maps():
         entry["va"].lower(): entry
         for entry in manifest["cores"]["net"]["entries"]
     }
-    return names_path, manifest_path, by_va, by_name, adoption
+    readable = json.loads(readable_path.read_text())
+    sdk_readable = {row["symbol"]: row for row in readable["sdk_owners"]}
+    return (names_path, manifest_path, readable_path, by_va, by_name,
+            adoption, sdk_readable)
 
 
 def symbol_va(symbol: str, by_name: dict[str, str]) -> str | None:
@@ -153,7 +159,7 @@ def symbol_va(symbol: str, by_name: dict[str, str]) -> str | None:
     return None
 
 
-def classify(symbol: str, va: str | None, adoption: dict):
+def classify(symbol: str, va: str | None, adoption: dict, sdk_readable: dict):
     if DATA_SYMBOL.fullmatch(symbol):
         return (
             "data_or_global_alias_gap",
@@ -167,6 +173,13 @@ def classify(symbol: str, va: str | None, adoption: dict):
         return "interior_or_tail_alias", TAIL_ALIASES[symbol]
     if symbol in SDK_SYMBOLS:
         return "sdk_or_config_symbol", SDK_SYMBOLS[symbol]
+    if symbol in sdk_readable:
+        row = sdk_readable[symbol]
+        return (
+            "sdk_or_config_symbol",
+            "canonical readable spelling maps to manifest-approved %s @ %s" %
+            (row["upstream_symbol"], row["va"]),
+        )
     record = adoption.get(va) if va else None
     if record and record.get("exclude_reconstruction"):
         return (
@@ -180,7 +193,8 @@ def classify(symbol: str, va: str | None, adoption: dict):
 
 
 def generate(elf: Path) -> dict:
-    names_path, manifest_path, by_va, by_name, adoption = load_identity_maps()
+    (names_path, manifest_path, readable_path, by_va, by_name, adoption,
+     sdk_readable) = load_identity_maps()
     all_undefined = nm_undefined(elf)
     pins = provided_symbols()
     residue = sorted(symbol for symbol in all_undefined if symbol not in pins)
@@ -191,7 +205,7 @@ def generate(elf: Path) -> dict:
         va = symbol_va(symbol, by_name)
         identity = by_va.get(va) if va else None
         adoption_record = adoption.get(va) if va else None
-        category, reason = classify(symbol, va, adoption)
+        category, reason = classify(symbol, va, adoption, sdk_readable)
         expected_source = None
         source_exists = False
         if identity:
@@ -239,6 +253,10 @@ def generate(elf: Path) -> dict:
             {
                 "path": str(manifest_path.relative_to(ROOT)),
                 "sha256": sha256(manifest_path),
+            },
+            {
+                "path": str(readable_path.relative_to(ROOT)),
+                "sha256": sha256(readable_path),
             },
         ],
         "summary": {

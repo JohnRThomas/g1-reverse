@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103de3f                           @ 0x0103de3f
  */
 /* net-core pool-buffer add/ref initializer @ 0x0102ff54.
  * Raw/address back-map: FUN_0102ff54 / 0x0102ff54.

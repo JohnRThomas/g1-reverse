@@ -5,6 +5,8 @@
  * callees (readable <= raw @ address):
  *   controller_work_enqueue_packet_result    <= FUN_0100eec8 @ 0x0100eec8
  *   controller_packet_result_prepare         <= FUN_0100f2d0 @ 0x0100f2d0
+ * address symbols (name @ address):
+ *   rodata_100f805                           @ 0x0100f805
  */
 /* net-core FUN_0100f2d0 @ 0x100f2d0  (CFG-directed candidate) */
 /* Role: controller_packet_result_prepare. Back-map: FUN_0100f2d0. */

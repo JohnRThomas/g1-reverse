@@ -4,6 +4,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103eba0                           @ 0x0103eba0
  */
 /* Zephyr k_aligned_alloc @ 0x010389a0, exact executable extent 0x3e.
  * Raw/address backmaps:

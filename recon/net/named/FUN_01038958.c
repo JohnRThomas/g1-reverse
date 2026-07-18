@@ -3,6 +3,7 @@
  * durable-map: recon/catalogs/function_names_net.json
  * address symbols (name @ address):
  *   rodata_103d2a7                           @ 0x0103d2a7
+ *   rodata_103eba0                           @ 0x0103eba0
  */
 /* Zephyr z_heap_aligned_alloc @ 0x01038958, exact extent 0x40.
  * CFG_VERIFY_CALL_ARITIES=3,3,2

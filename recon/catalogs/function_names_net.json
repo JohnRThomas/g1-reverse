@@ -927,9 +927,7 @@
    "display_name": "controller_radio_idle_state_finish",
    "human": true,
    "source": "function_name_overrides.json: Event-one fallback when no active link is present. The catalog-missing body consumes no argument values: it validates controller state at 0x21000c48, advances or closes the active radio context, and conditionally tail-dispatches the pending radio channel. Exact executable ownership is [0x0100b594,0x0100b5f4); raw identity remains FUN_0100b594.",
-   "aliases": [
-    "controller_radio_idle_event_finish"
-   ]
+   "aliases": []
   },
   "0x0100b608": {
    "address": "0x0100b608",
@@ -6766,7 +6764,7 @@
    "name": "FUN_01027196",
    "display_name": "FUN_01027196",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027196.c",
    "aliases": []
   },
   "0x010271b8": {
@@ -6775,7 +6773,7 @@
    "name": "FUN_010271b8",
    "display_name": "FUN_010271b8",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010271b8.c",
    "aliases": []
   },
   "0x010271da": {
@@ -6947,7 +6945,7 @@
    "name": "FUN_0102763a",
    "display_name": "FUN_0102763a",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102763a.c",
    "aliases": []
   },
   "0x01027662": {
@@ -6983,7 +6981,7 @@
    "name": "FUN_010276e6",
    "display_name": "FUN_010276e6",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_010276e6.c",
    "aliases": []
   },
   "0x0102771a": {
@@ -6992,7 +6990,7 @@
    "name": "FUN_0102771a",
    "display_name": "FUN_0102771a",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0102771a.c",
    "aliases": []
   },
   "0x01027742": {
@@ -7001,7 +6999,7 @@
    "name": "FUN_01027742",
    "display_name": "FUN_01027742",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01027742.c",
    "aliases": []
   },
   "0x0102776a": {
@@ -7945,7 +7943,7 @@
    "name": "FUN_01029c22",
    "display_name": "FUN_01029c22",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_01029c22.c",
    "aliases": []
   },
   "0x01029c3a": {
@@ -8649,6 +8647,15 @@
    "display_name": "FUN_0102e064",
    "human": false,
    "source": "recon/net/src/FUN_0102e064.c",
+   "aliases": []
+  },
+  "0x0102e140": {
+   "address": "0x0102e140",
+   "raw_name": "FUN_0102e140",
+   "name": "FUN_0102e140",
+   "display_name": "FUN_0102e140",
+   "human": false,
+   "source": "recon/net/src/FUN_0102e140.c",
    "aliases": []
   },
   "0x0102e1fc": {
@@ -10667,7 +10674,7 @@
    "name": "FUN_0103966e",
    "display_name": "FUN_0103966e",
    "human": false,
-   "source": "committed durable map",
+   "source": "recon/net/src/FUN_0103966e.c",
    "aliases": []
   },
   "0x010396d0": {
@@ -10832,6 +10839,15 @@
    "display_name": "FUN_010399f6",
    "human": false,
    "source": "recon/net/src/FUN_010399f6.c",
+   "aliases": []
+  },
+  "0x01039a7a": {
+   "address": "0x01039a7a",
+   "raw_name": "FUN_01039a7a",
+   "name": "FUN_01039a7a",
+   "display_name": "FUN_01039a7a",
+   "human": false,
+   "source": "recon/net/src/FUN_01039a7a.c",
    "aliases": []
   },
   "0x01039ade": {
@@ -11620,6 +11636,15 @@
    "display_name": "FUN_0103b1e2",
    "human": false,
    "source": "committed durable map",
+   "aliases": []
+  },
+  "0x0103b1fa": {
+   "address": "0x0103b1fa",
+   "raw_name": "FUN_0103b1fa",
+   "name": "FUN_0103b1fa",
+   "display_name": "FUN_0103b1fa",
+   "human": false,
+   "source": "recon/net/src/FUN_0103b1fa.c",
    "aliases": []
   },
   "0x0103b210": {
@@ -12655,6 +12680,7 @@
   "FUN_0102df2c": "0x0102df2c",
   "FUN_0102e000": "0x0102e000",
   "FUN_0102e064": "0x0102e064",
+  "FUN_0102e140": "0x0102e140",
   "FUN_0102e220": "0x0102e220",
   "FUN_0102e23c": "0x0102e23c",
   "FUN_0102e3a8": "0x0102e3a8",
@@ -12882,6 +12908,7 @@
   "FUN_01039936": "0x01039936",
   "FUN_01039972": "0x01039972",
   "FUN_010399f6": "0x010399f6",
+  "FUN_01039a7a": "0x01039a7a",
   "FUN_01039ade": "0x01039ade",
   "FUN_01039b16": "0x01039b16",
   "FUN_01039b36": "0x01039b36",
@@ -12958,6 +12985,7 @@
   "FUN_0103b1c4": "0x0103b1c4",
   "FUN_0103b1d4": "0x0103b1d4",
   "FUN_0103b1e2": "0x0103b1e2",
+  "FUN_0103b1fa": "0x0103b1fa",
   "FUN_0103b210": "0x0103b210",
   "FUN_0103b244": "0x0103b244",
   "FUN_0103b25a": "0x0103b25a",

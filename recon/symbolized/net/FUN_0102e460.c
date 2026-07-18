@@ -2,6 +2,8 @@
 /* readable reconstruction; identity: FUN_0102e460 @ 0x0102e460
  * public-name: FUN_0102e460
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_102eca1                           @ 0x0102eca1
  */
 /* net-core formatted log output adapter @ 0x0102e460.
  * Raw/address back-map: FUN_0102e460 / 0x0102e460.

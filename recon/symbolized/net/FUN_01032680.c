@@ -2,6 +2,9 @@
 /* readable reconstruction; identity: FUN_01032680 @ 0x01032680
  * public-name: FUN_01032680
  * durable-map: recon/catalogs/function_names_net.json
+ * address symbols (name @ address):
+ *   rodata_1032e41                           @ 0x01032e41
+ *   rodata_103e386                           @ 0x0103e386
  */
 /* net-core system workqueue initialization @ 0x01032680.
  * Raw/address back-map: FUN_01032680 / 0x01032680.

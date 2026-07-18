@@ -1,0 +1,31 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01029c22 @ 0x01029c22
+ * public-name: FUN_01029c22
+ * durable-map: recon/catalogs/function_names_net.json
+ */
+/* sdc_slist_pop_and_clear @ 0x01029c22; raw FUN_01029c22
+ * Private unpublished SDC-local identity; readable name describes behavior.
+ */
+#include <stdint.h>
+
+#define sdc_slist_pop_and_clear FUN_01029c22
+
+struct sdc_slist_node {
+    struct sdc_slist_node *next;
+};
+
+struct sdc_slist_node *sdc_slist_pop_and_clear(struct sdc_slist_node **head)
+{
+    struct sdc_slist_node *node = *head;
+
+    if (node) {
+        volatile uint8_t *bytes = (volatile uint8_t *)node;
+
+        *head = node->next;
+        bytes[0] = 0;
+        bytes[1] = 0;
+        bytes[2] = 0;
+        bytes[3] = 0;
+    }
+    return node;
+}

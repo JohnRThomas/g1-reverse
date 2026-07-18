@@ -6,6 +6,7 @@
  *   rodata_103d2a7                           @ 0x0103d2a7
  *   rodata_103d3b6                           @ 0x0103d3b6
  *   g_net_ipc_shm_pool_desc_ptr              @ 0x21004b30
+ *   g_21004b38                               @ 0x21004b38
  *   g_zephyr_sched_swap_tmp                  @ 0x21004b5c
  */
 /* Zephyr z_reschedule_unlocked @ 0x01037438, exact extent 0x8a.

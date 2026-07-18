@@ -84,7 +84,9 @@ def link_and_report():
     # aliases, reversing one would change ownership and is never valid.
     reviewed_veneers = BASE + "/recon/symbols/g1_%s_veneer_aliases.ld" % CORE
     public_sdk_aliases = BASE + "/recon/symbols/g1_%s_public_sdk_aliases.ld" % CORE
-    for directional_fragment in (reviewed_veneers, public_sdk_aliases):
+    readable_aliases = BASE + "/recon/symbols/g1_%s_readable_aliases.ld" % CORE
+    for directional_fragment in (reviewed_veneers, public_sdk_aliases,
+                                 readable_aliases):
         if not os.path.exists(directional_fragment):
             continue
         for line in open(directional_fragment):
@@ -101,7 +103,8 @@ def link_and_report():
     for frag in ("g1_%s_globals.ld" % CORE, "g1_%s_aliases.ld" % CORE,
                  "g1_%s_function_aliases.ld" % CORE,
                  "g1_%s_veneer_aliases.ld" % CORE,
-                 "g1_%s_public_sdk_aliases.ld" % CORE):
+                 "g1_%s_public_sdk_aliases.ld" % CORE,
+                 "g1_%s_readable_aliases.ld" % CORE):
         p = BASE + "/recon/symbols/" + frag
         if os.path.exists(p):
             for l in open(p):

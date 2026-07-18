@@ -10,33 +10,37 @@
  "inputs": [
   {
    "path": "build/net_full.elf",
-   "sha256": "9a5185ea23538dde8dc5f433d89d2c2c893f7162c46fa8774a3bd0d8565b4b12"
+   "sha256": "80bb7e11f7119f8cde7f7ac9d3135c0ccc63e0a290609ff319ac83c3a23f4824"
   },
   {
    "path": "recon/catalogs/function_names_net.json",
-   "sha256": "46badb00b7ede719e13430fe352b77df3b40926d130115e859461192660d8e6d"
+   "sha256": "7c345f4d6ebf4f0c740e06b5790e798dc8d8605830889d6678eebd8d5ab8733d"
   },
   {
    "path": "recon/ownership/adoption_manifest.json",
    "sha256": "8012a14b16b6ddd0671cebe93b875629a861c19586e6cb842212c41ed2fcbbbc"
+  },
+  {
+   "path": "recon/catalogs/net_readable_alias_resolutions.json",
+   "sha256": "f9e795fd86d827b1918bb5e0530e564e96c01fc631afee537918a481dab8478a"
   }
  ],
  "summary": {
-  "undefined_total": 605,
-  "already_pinned_or_aliased": 435,
-  "classified_residue": 170,
+  "undefined_total": 571,
+  "already_pinned_or_aliased": 437,
+  "classified_residue": 134,
   "by_category": {
-   "true_missing_reconstructed_entry": 109,
+   "true_missing_reconstructed_entry": 66,
    "interior_or_tail_alias": 0,
-   "sdk_or_config_symbol": 60,
+   "sdk_or_config_symbol": 67,
    "compiler_or_ghidra_pseudo": 1,
    "naming_or_symbolization_defect": 0,
    "data_or_global_alias_gap": 0
   },
   "missing_by_adoption_component": {
-   "net_sdk_or_glue": 10,
+   "net_sdk_or_glue": 2,
    "softdevice_controller": 53,
-   "unmapped": 46
+   "unmapped": 11
   }
  },
  "entries": [
@@ -894,11 +898,12 @@
    "va": "0x0102693a",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 3,
+   "reference_count": 4,
    "reference_objects": [
     "FUN_0102759e.o",
     "FUN_010275d2.o",
-    "FUN_010276b2.o"
+    "FUN_010276b2.o",
+    "FUN_010276e6.o"
    ],
    "expected_source": "recon/symbolized/net/FUN_0102693a.c",
    "expected_source_exists": false,
@@ -926,9 +931,12 @@
    "va": "0x01026a7e",
    "category": "true_missing_reconstructed_entry",
    "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
+   "reference_count": 4,
    "reference_objects": [
-    "FUN_01027662.o"
+    "FUN_0102763a.o",
+    "FUN_01027662.o",
+    "FUN_0102771a.o",
+    "FUN_01027742.o"
    ],
    "expected_source": "recon/symbolized/net/FUN_01026a7e.c",
    "expected_source_exists": false,
@@ -1042,36 +1050,6 @@
    "adoption_decision": "retain_reconstruction"
   },
   {
-   "symbol": "FUN_01027196",
-   "va": "0x01027196",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010271f6.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027196.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027196",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_010271b8",
-   "va": "0x010271b8",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010271f6.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010271b8.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010271b8",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
    "symbol": "FUN_01027302",
    "va": "0x01027302",
    "category": "true_missing_reconstructed_entry",
@@ -1099,66 +1077,6 @@
    "expected_source_exists": false,
    "identity_name": "FUN_010273c6",
    "adoption_component": "softdevice_controller",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_0102763a",
-   "va": "0x0102763a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010277f2.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102763a.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102763a",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_010276e6",
-   "va": "0x010276e6",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_descriptor_array_encode.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_010276e6.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_010276e6",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_0102771a",
-   "va": "0x0102771a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010277c2.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0102771a.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0102771a",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_01027742",
-   "va": "0x01027742",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "controller_descriptor_array_encode.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01027742.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01027742",
-   "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "retain_reconstruction"
   },
   {
@@ -1417,21 +1335,6 @@
    "adoption_decision": "retain_reconstruction"
   },
   {
-   "symbol": "FUN_01029c22",
-   "va": "0x01029c22",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01021800.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_01029c22.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_01029c22",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
    "symbol": "FUN_0102a1e0",
    "va": "0x0102a1e0",
    "category": "true_missing_reconstructed_entry",
@@ -1469,21 +1372,6 @@
    "reference_count": 1,
    "reference_objects": [
     "FUN_0103b0e8.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "FUN_0102e140",
-   "va": "0x0102e140",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "z_log_msg_commit.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -1588,36 +1476,6 @@
    "identity_name": "FUN_01038fa4",
    "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "adopt_upstream_exclude_reconstruction"
-  },
-  {
-   "symbol": "FUN_0103966e",
-   "va": "0x0103966e",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102e4f4.o"
-   ],
-   "expected_source": "recon/symbolized/net/FUN_0103966e.c",
-   "expected_source_exists": false,
-   "identity_name": "FUN_0103966e",
-   "adoption_component": "net_sdk_or_glue",
-   "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "FUN_01039a7a",
-   "va": "0x01039a7a",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102c4e4.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
   },
   {
    "symbol": "FUN_01039b88",
@@ -1725,21 +1583,6 @@
    "identity_name": "FUN_0103b1e2",
    "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "adopt_upstream_exclude_reconstruction"
-  },
-  {
-   "symbol": "FUN_0103b1fa",
-   "va": "0x0103b1fa",
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102ff54.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
   },
   {
    "symbol": "FUN_0103b210",
@@ -1908,58 +1751,6 @@
    "adoption_decision": null
   },
   {
-   "symbol": "assert_post_action",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 8,
-   "reference_objects": [
-    "FUN_0102fdd0.o",
-    "FUN_010343e0.o",
-    "FUN_01035e1c.o",
-    "FUN_010372b4.o",
-    "FUN_01037438.o",
-    "FUN_01037670.o",
-    "FUN_01038958.o",
-    "FUN_010389a0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "assert_report",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "controller_connection_config_get",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01028656.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
    "symbol": "controller_default_bounds_build",
    "va": null,
    "category": "true_missing_reconstructed_entry",
@@ -2009,36 +1800,6 @@
    "identity_name": "controller_entry_links_release",
    "adoption_component": "net_sdk_or_glue",
    "adoption_decision": "retain_reconstruction"
-  },
-  {
-   "symbol": "controller_handle_lookup",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01028656.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "controller_object_get",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01028656.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
   },
   {
    "symbol": "controller_radio_time_mode2_to_mode2",
@@ -2131,13 +1892,13 @@
    "adoption_decision": null
   },
   {
-   "symbol": "k_heap_aligned_alloc",
+   "symbol": "k_timer_stop",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "Zephyr public timer API; exact z_impl_k_timer_stop signature owner",
    "reference_count": 1,
    "reference_objects": [
-    "FUN_01038958.o"
+    "FUN_0102e140.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -2178,56 +1939,11 @@
   {
    "symbol": "net_buf_destroy_from_pool",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved k_queue_prepend @ 0x0103b210",
    "reference_count": 1,
    "reference_objects": [
     "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "net_buf_free_get",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "prepare_thread_swap",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01037438.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "ready_remove",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01037670.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -2269,8 +1985,8 @@
   {
    "symbol": "scheduler_priority_compare",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved z_sched_prio_cmp @ 0x0103b28a",
    "reference_count": 1,
    "reference_objects": [
     "FUN_0103b3e0.o"
@@ -2284,8 +2000,8 @@
   {
    "symbol": "scheduler_reschedule_restore",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved z_reschedule_irqlock @ 0x0103b29c",
    "reference_count": 1,
    "reference_objects": [
     "FUN_0103b2b4.o"
@@ -2401,135 +2117,6 @@
    "adoption_decision": "adopt_upstream_exclude_reconstruction"
   },
   {
-   "symbol": "spin_lock",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01035e1c.o",
-    "FUN_010372b4.o",
-    "FUN_01037438.o",
-    "FUN_01037670.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "spin_unlock",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01035e1c.o",
-    "FUN_010372b4.o",
-    "FUN_01037438.o",
-    "FUN_01037670.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "spin_validate",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 4,
-   "reference_objects": [
-    "FUN_01035e1c.o",
-    "FUN_010372b4.o",
-    "FUN_01037438.o",
-    "FUN_01037670.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "spinlock_acquire",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "spinlock_release",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "spinlock_validate",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "swap_current",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01037438.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "sys_heap_free",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01035e1c.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
    "symbol": "sys_rand_get",
    "va": null,
    "category": "sdk_or_config_symbol",
@@ -2547,8 +2134,8 @@
   {
    "symbol": "sys_timepoint_calc",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved sys_timepoint_calc @ 0x0103b304",
    "reference_count": 1,
    "reference_objects": [
     "FUN_0102fdd0.o"
@@ -2562,117 +2149,11 @@
   {
    "symbol": "sys_timepoint_timeout",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved sys_timepoint_timeout @ 0x0103b34c",
    "reference_count": 1,
    "reference_objects": [
     "FUN_0102fdd0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "thread_can_swap",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01037438.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "thread_ready",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b442.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "thread_unpend",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b442.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "timeout_abort",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b442.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "trace_sched_unlock",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010372b4.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "update_cache",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 2,
-   "reference_objects": [
-    "FUN_010372b4.o",
-    "FUN_01037670.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
-   "symbol": "work_submit_to_queue",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_0103b442.o"
    ],
    "expected_source": null,
    "expected_source_exists": false,
@@ -2696,21 +2177,6 @@
    "adoption_decision": null
   },
   {
-   "symbol": "z_heap_aligned_alloc",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_010389a0.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
    "symbol": "z_impl_k_thread_abort",
    "va": null,
    "category": "sdk_or_config_symbol",
@@ -2726,25 +2192,10 @@
    "adoption_decision": null
   },
   {
-   "symbol": "z_reschedule",
-   "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
-   "reference_count": 1,
-   "reference_objects": [
-    "FUN_01035e1c.o"
-   ],
-   "expected_source": null,
-   "expected_source_exists": false,
-   "identity_name": null,
-   "adoption_component": null,
-   "adoption_decision": null
-  },
-  {
    "symbol": "z_unpend_all",
    "va": null,
-   "category": "true_missing_reconstructed_entry",
-   "reason": "referenced entry has neither a retained symbolized body nor an adopted owner",
+   "category": "sdk_or_config_symbol",
+   "reason": "canonical readable spelling maps to manifest-approved z_unpend_all @ 0x0103b2d0",
    "reference_count": 1,
    "reference_objects": [
     "FUN_01035e1c.o"
