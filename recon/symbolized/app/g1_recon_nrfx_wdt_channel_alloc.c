@@ -1,8 +1,9 @@
+#include "g1_app_symbols.h"
 /* readable reconstruction; identity: FUN_00067e8c @ 0x00067e8c
- * public-name: nrfx_dppi_channel_alloc
+ * public-name: g1_recon_nrfx_wdt_channel_alloc
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
- *   nrfx_dppi_channel_alloc                  <= FUN_00067e8c @ 0x00067e8c
+ *   g1_recon_nrfx_wdt_channel_alloc          <= FUN_00067e8c @ 0x00067e8c
  *   assert_post_action                       <= FUN_0007e2ec @ 0x0007e2ec
  *   printk                                   <= FUN_0007e2fa @ 0x0007e2fa
  * address symbols (name @ address):
@@ -17,16 +18,16 @@
 typedef unsigned int uint;
 extern void assert_post_action(uint32_t,uint32_t);
 extern void printk(uint32_t,uint32_t,uint32_t,uint32_t);
-uint32_t nrfx_dppi_channel_alloc(int* param_1, uint8_t* param_2){
+uint32_t g1_recon_nrfx_wdt_channel_alloc(int* param_1, uint8_t* param_2){
   uint8_t r4byte=*(volatile uint8_t*)((char*)param_1+4);
   if(param_2==0){
-    printk(0x99cbd,0xf7a32,0xf79c8,0xa2);
-    assert_post_action(0xf79c8,0xa2);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7a32) /*=0xf7a32*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xa2);
+    assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xa2);
   }
-  int iVar6=(int)(0x2000b41cUL + (uint)r4byte*8);
+  int iVar6=(int)(((unsigned long)&m_dppi_channels) /*=0x2000b41c*/ + (uint)r4byte*8);
   while(*(volatile uint8_t*)iVar6 != 1){
-    printk(0x99cbd,0xf7052,0xf79c8,0xa3);
-    assert_post_action(0xf79c8,0xa3);
+    printk(((unsigned long)&rodata_99cbd) /*=0x99cbd*/,((unsigned long)&rodata_f7052) /*=0xf7052*/,((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xa3);
+    assert_post_action(((unsigned long)&rodata_f79c8) /*=0xf79c8*/,0xa3);
   }
   uint8_t bVar1=*(volatile uint8_t*)(iVar6+1);
   uint32_t uVar4=0x0bad0002;

@@ -21,7 +21,7 @@ jump-table targets, or entry points invoked only through function pointers.
 - **nrfx / nRF peripheral + sensor drivers** — a family that logs via `printk`
   and touches hardware: `FUN_00062930` (`i2c_read_reg16_be` sensor probe),
   `FUN_00062c54` (`pinctrl_apply_state`), `FUN_00067794` (`nrf_gpio_pin_reconfigure`),
-  `nrfx_dppi_channel_alloc` (0x67e8c), `FUN_00083778` (`adc_context_start_sampling`),
+  `g1_recon_nrfx_wdt_channel_alloc` (0x67e8c), `FUN_00083778` (`adc_context_start_sampling`),
   plus `FUN_000620cc/639d4/63898/64fa8/65324/65d3c/65d8c/67600`.
 - **Display page state** — `set_display_page_index` (0x369dc),
   `advance_display_page_index` (0x369f8).

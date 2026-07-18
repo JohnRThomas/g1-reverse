@@ -47,7 +47,7 @@ unsigned int FUN_00065d3c(unsigned a, int b, int c);                         /* 
 void     FUN_00065d8c(int a, uint32_t b, uint32_t c, uint32_t d);            /* 0x65d8c */
 void     FUN_00067600(int a, int *b);                                        /* 0x67600 */
 uint32_t FUN_00067794(int a, int *b, uint32_t c, uint32_t d);                /* 0x67794 nrf_gpio reconfigure */
-uint32_t nrfx_dppi_channel_alloc(int *inst, uint8_t *chan);                  /* 0x67e8c */
+uint32_t g1_recon_nrfx_wdt_channel_alloc(int *inst, uint8_t *chan);          /* FUN_00067e8c @ 0x67e8c */
 void     FUN_00083778(int a);                                                /* 0x83778 adc_context_start_sampling */
 
 /* ---- Display page state ------------------------------------------------- */

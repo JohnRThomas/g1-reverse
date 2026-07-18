@@ -1,0 +1,96 @@
+{
+ "authorization": "denied_not_semantics_exact",
+ "batch": "COLLISION-05",
+ "core": "app",
+ "decision": "retain_reconstruction",
+ "evidence": {
+  "abi": {
+   "configured_sdk": "nrfx_err_t nrfx_gpiote_init(uint8_t interrupt_priority)",
+   "firmware_reconstruction": "uint32_t nrfx_gpiote_init(void)",
+   "machine_note": "r0 input is ignored in both observed bodies; prototype drift is not the decisive mismatch"
+  },
+  "configured_sdk": {
+   "call_relocations": [
+    "memset",
+    "arch_irq_enable"
+   ],
+   "event_processing": "PORT event only; no indexed IN-event loop",
+   "global_control_block": "0x2000050c",
+   "object_sha256": "33234f0428fa84a0523ee8f423c169988802818612ed9e9f18a1eac5a4c299b2",
+   "size": 80,
+   "source_sha256": "c4f441c582bb59f15c79eb98238d32940aca6692247052e1cb0cea556c34e3ee"
+  },
+  "firmware": {
+   "callers": [],
+   "calls": [
+    "0x500ac",
+    "0x655ec",
+    "0x86c78"
+   ],
+   "cfg_verify": {
+    "cases": 0,
+    "status": "PASS"
+   },
+   "event_processing": "eight indexed IN events plus PORT event, with readbacks",
+   "global_control_block": "0x20002bc0",
+   "instruction_count": 38,
+   "size": 104
+  },
+  "forced_uninitialized_state_probe": {
+   "checked": 1,
+   "first_divergence": {
+    "call_ordinal": 1,
+    "firmware_target": "0x000655ec",
+    "sdk_behavior_target": "0x000500ac"
+   },
+   "mismatch": "direct-target",
+   "note": "ordinary CFG verification misses this global-state selector; forced state enters initialization",
+   "result": "FAIL",
+   "state_override": {
+    "address": "0x20002c38",
+    "value": 0
+   }
+  },
+  "global_access_mismatch": {
+   "firmware_m_cb": "0x20002bc0",
+   "sdk_local_m_cb": "0x2000050c",
+   "split_state_risk": true
+  },
+  "signature_match": {
+   "length": 0.815789,
+   "normalized_exact": false,
+   "opcode": 0.608696,
+   "shape": 0.57971
+  }
+ },
+ "exclude_reconstruction": false,
+ "future_sdk_adoption_closure_plan": [
+  "reconcile the pinned NRFX/HAL configuration until the SDK owner performs the firmware eight-event clear/readback sequence",
+  "pin or otherwise reconcile nrfx_gpiote.c's local .data.m_cb with firmware g_gpiote_cb at 0x20002bc0",
+  "enumerate and verify every nrfx_gpiote.c public/private function and every raw external access to the shared control block",
+  "authoritatively verify state-zero and already-initialized paths before any whole-unit adoption",
+  "only then authorize exclusion and require an isolated retain-all collision delta of exactly -1 with sole SDK map/nm ownership"
+ ],
+ "namespace_isolation": {
+  "collision_delta": -1,
+  "firmware_owner": "g1_recon_nrfx_gpiote_init",
+  "map_contains_both_distinct_owners": true,
+  "new_collision_symbols": [],
+  "new_undefined_symbols": [],
+  "nm": {
+   "app_namespaced_owner_count": 1,
+   "app_public_owner_count": 0,
+   "sdk_public_owner_count": 1
+  },
+  "overlay_changed": false,
+  "raw_back_mapping": "FUN_00065940 @ 0x00065940",
+  "recovered_direct_callers": [],
+  "sdk_owner": "nrfx_gpiote_init",
+  "status": "implemented"
+ },
+ "reconstruction_symbol": "g1_recon_nrfx_gpiote_init",
+ "schema": 1,
+ "source_commit": "082b7dba",
+ "symbol": "nrfx_gpiote_init",
+ "va": "0x00065940"
+}

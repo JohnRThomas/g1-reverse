@@ -1,10 +1,10 @@
 /* readable reconstruction; identity: FUN_00065940 @ 0x00065940
- * public-name: nrfx_gpiote_init
+ * public-name: g1_recon_nrfx_gpiote_init
  * durable-map: recon/catalogs/function_names_app.json
  * callees (readable <= raw @ address):
  *   arch_irq_enable                          <= FUN_000500ac @ 0x000500ac
  *   gpiote_in_event_reg_offset               <= FUN_000655ec @ 0x000655ec
- *   nrfx_gpiote_init                         <= FUN_00065940 @ 0x00065940
+ *   g1_recon_nrfx_gpiote_init                <= FUN_00065940 @ 0x00065940
  *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
  * address symbols (name @ address):
  *   g_gpiote_cb                              @ 0x20002bc0
@@ -15,7 +15,7 @@ typedef unsigned int uint;
 extern void arch_irq_enable(int);
 extern int gpiote_in_event_reg_offset(uint32_t);
 extern void memset_bytes(uint32_t,int,int);
-uint32_t nrfx_gpiote_init(void){
+uint32_t g1_recon_nrfx_gpiote_init(void){
   int iVar1=0x20002bc0;
   uint32_t uVar3=0x0bad0005;
   int iVar2=0;
