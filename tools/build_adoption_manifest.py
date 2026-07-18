@@ -37,6 +37,8 @@ DEFAULTS = {
         "recon/ownership/app_bluetooth_stock_atomic_adoption.json",
     "app_settings_stock":
         "recon/ownership/app_settings_stock_atomic_adoption.json",
+    "app_root_stock":
+        "recon/ownership/app_root_stock_atomic_adoption.json",
     "app_collision_retention_overrides":
         "recon/ownership/app_collision_retention_overrides.json",
     "library_provenance":
@@ -526,6 +528,17 @@ def _build_from_baseline(paths, resolved, names):
     authorizations["configured_build_receipts"] = sorted(set(
         authorizations.get("configured_build_receipts", []) +
         settings.get("configured_build_receipts", [])))
+    root_stock_path = resolved["app_root_stock"]
+    root_stock = _load_json(root_stock_path)
+    if (root_stock.get("schema") != 1 or root_stock.get("core") != "app" or
+            root_stock.get("status") != "authorized_atomic"):
+        raise ValueError("invalid root-stock exact5 atomic adoption catalog")
+    collisions["functions"].extend(root_stock.get("variant_collisions", []))
+    authorizations["authorizations"].extend(
+        root_stock.get("authorizations", []))
+    authorizations["configured_build_receipts"] = sorted(set(
+        authorizations.get("configured_build_receipts", []) +
+        root_stock.get("configured_build_receipts", [])))
     retention_path = resolved["app_collision_retention_overrides"]
     retentions = _load_json(retention_path)
     if (retentions.get("schema") != 1 or
@@ -561,6 +574,8 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(bluetooth_path)},
         {"path": paths["app_settings_stock"],
          "sha256": _sha256(settings_path)},
+        {"path": paths["app_root_stock"],
+         "sha256": _sha256(root_stock_path)},
         {"path": paths["app_collision_retention_overrides"],
          "sha256": _sha256(retention_path)},
         {"path": paths["library_provenance"],

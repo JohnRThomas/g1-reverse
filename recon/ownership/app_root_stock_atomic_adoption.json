@@ -1,0 +1,365 @@
+{
+ "authorizations": [
+  {
+   "atomic_group": [
+    "0x00085c86"
+   ],
+   "baseline_configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "baseline_upstream_object_sha256": "d5f2596945ae8490a49fe658c265f061fa72fd1e6f1cd0b29ae92880b88b111b",
+   "batch": "ROOT-STOCK-EXACT5",
+   "callers": [
+    "0x00085df6 cbor_decode_leave_container (tail B.W at 0x00085e14)"
+   ],
+   "cfg_verify_cases": 9,
+   "collision_receipt_sha256": "f25ee14fc28ace9ddd45339f0477baff22f2c1e8cab974c991537bbd9d84154b",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "firmware_code_size": 108,
+   "instruction_exact": true,
+   "normalized_code_sha256": "9de641243cd1bbb8c0b023ee1ad905c3124de64af19ac761fb92e91a4da0e529",
+   "raw_symbol": "FUN_00085c86",
+   "reconstruction_source": "recon/app/src/FUN_00085c86.c",
+   "reconstruction_source_sha256": "e9ff4fe53d06bd2bfbfadf552d28ebc4e4950b9cfcd4c191557cf2a9ab8234cd",
+   "relocation_offsets": [
+    8,
+    28
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_ZCBOR": "y",
+    "CONFIG_ZCBOR_ASSERT": "y",
+    "CONFIG_ZCBOR_STOP_ON_ERROR": "y"
+   },
+   "source_version_identity": {
+    "function_first_commit": "e01ea4efa176398ab180230567dadba9df30c011",
+    "function_next_change_exclusive": "c9d2c8d29dff31d52be8157b7156766b968612b2",
+    "manifest_pin": "67fd8bb88d3136738661fa8bb5f9989103f4599e"
+   },
+   "status": "authorized",
+   "symbol": "zcbor_process_backup",
+   "upstream_code_size": 108,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj",
+   "upstream_object_sha256": "d5f2596945ae8490a49fe658c265f061fa72fd1e6f1cd0b29ae92880b88b111b",
+   "upstream_section_size": 108,
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+   "upstream_source_sha256": "1f5d76ebfa9745c89fa8eb68496edc6cf585803ba48a425a1e7edb00018c3de3",
+   "va": "0x00085c86",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exact_companion_sections": [
+     ".text.zcbor_check_error.isra.0",
+     ".text.zcbor_error",
+     ".text.zcbor_new_backup",
+     ".text.zcbor_new_state",
+     ".text.zcbor_array_at_end"
+    ],
+    "exclude_only": [
+     "0x00085c86"
+    ],
+    "firmware_absent_sections_require_normal_gc": [
+     ".text.zcbor_union_elem_code",
+     ".text.zcbor_union_end_code",
+     ".text.zcbor_update_state",
+     ".text.zcbor_validate_string_fragments",
+     ".text.zcbor_splice_string_fragments",
+     ".text.zcbor_compare_strings",
+     ".text.zcbor_header_len"
+    ],
+    "new_undefined_symbols": [],
+    "raw_alias_preserved": "FUN_00085c86",
+    "retain_all_probe_may_keep_absent_sections": true,
+    "safe": true,
+    "selected_exact_section": ".text.zcbor_process_backup",
+    "source_unit": "modules/lib/zcbor/src/zcbor_common.c"
+   }
+  },
+  {
+   "atomic_group": [
+    "0x00086360"
+   ],
+   "baseline_configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "baseline_upstream_object_sha256": "1f1795b67af85166a797998108e706962a390ba6e7cfbe68837a2073a03d0d2a",
+   "batch": "ROOT-STOCK-EXACT5",
+   "callers": [
+    "0x00086378 cbor_encode_simple (tail B.W at 0x0008637c)"
+   ],
+   "cfg_verify_cases": 4,
+   "collision_receipt_sha256": "34b55d7a0bfcd95d1760a8696021b33df726e05476ba77aae8c9f3924c41c5c1",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "firmware_code_size": 24,
+   "instruction_exact": true,
+   "normalized_code_sha256": "b790d8a46263492e59564312d082a4ddbf35a4799b998abef9b52393d3989f43",
+   "raw_symbol": "FUN_00086360",
+   "reconstruction_source": "recon/app/src/FUN_00086360.c",
+   "reconstruction_source_sha256": "1414887e81ab0cc62e523f8c935ddbac24d7e00f94fe2996fc4492f8b67775ee",
+   "relocation_offsets": [
+    14
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_ZCBOR": "y",
+    "CONFIG_ZCBOR_ASSERT": "y",
+    "CONFIG_ZCBOR_STOP_ON_ERROR": "y"
+   },
+   "source_version_identity": {
+    "function_first_commit": "4d82f00fc531eeaf08b7be53408a55057e4a7e5d",
+    "function_next_change_exclusive": "a54e92a4c564255dc8be746e2afd500295db7997",
+    "manifest_pin": "67fd8bb88d3136738661fa8bb5f9989103f4599e"
+   },
+   "status": "authorized",
+   "symbol": "zcbor_simple_put",
+   "upstream_code_size": 24,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c.obj",
+   "upstream_object_sha256": "1f1795b67af85166a797998108e706962a390ba6e7cfbe68837a2073a03d0d2a",
+   "upstream_section_size": 24,
+   "upstream_source": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+   "upstream_source_sha256": "37d43a080bd3780e93ce0350f5476453e0f49226ed1b183bc4875f0693af2ae3",
+   "va": "0x00086360",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exact_companion_sections": [
+     ".text.zcbor_int_encode",
+     ".text.zcbor_uint_encode",
+     ".text.zcbor_list_start_encode",
+     ".text.zcbor_map_start_encode",
+     ".text.zcbor_list_end_encode",
+     ".text.zcbor_bool_put"
+    ],
+    "exclude_only": [
+     "0x00086360"
+    ],
+    "firmware_absent_sections_require_normal_gc": [
+     ".text.zcbor_float64_put",
+     ".text.zcbor_float32_put",
+     ".text.zcbor_float16_put",
+     ".text.zcbor_multi_encode",
+     ".text.zcbor_multi_encode_minmax",
+     ".text.zcbor_present_encode"
+    ],
+    "new_undefined_symbols": [],
+    "raw_alias_preserved": "FUN_00086360",
+    "retain_all_probe_may_keep_absent_sections": true,
+    "safe": true,
+    "selected_exact_section": ".text.zcbor_simple_put",
+    "source_unit": "modules/lib/zcbor/src/zcbor_encode.c"
+   }
+  },
+  {
+   "atomic_group": [
+    "0x000641e4"
+   ],
+   "baseline_configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "baseline_upstream_object_sha256": "992b0e53e80d96aa1e99954da1979071656d83dd594e87324cca80e7bbfe5d4b",
+   "batch": "ROOT-STOCK-EXACT5",
+   "callers": [
+    "0x00051d8c img_mgmt_state_set_pending (BL at 0x00051e36)"
+   ],
+   "cfg_verify_cases": 1,
+   "collision_receipt_sha256": "c1cebba00ca216c382d1306cdc9984b511c40fc3034ac5334a3ec890f3cfa155",
+   "configuration_variant_exact": true,
+   "configured_build": "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config",
+   "configured_build_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe",
+   "firmware_code_size": 158,
+   "instruction_exact": true,
+   "normalized_code_sha256": "37091445279bb0d68e8916052f19f5f9b266f2b3f12bb172a3c2e520367eb497",
+   "raw_symbol": "FUN_000641e4",
+   "reconstruction_source": "recon/app/src/FUN_000641e4.c",
+   "reconstruction_source_sha256": "2e2cd145402211c56635f40bd676e8da11cf1ee780c9812927e759a9f09c84fc",
+   "relocation_offsets": [
+    14,
+    48,
+    62,
+    76,
+    110,
+    132,
+    150
+   ],
+   "required_config": {
+    "CONFIG_ASSERT": "y",
+    "CONFIG_ASSERT_LEVEL": "2",
+    "CONFIG_BOOTLOADER_MCUBOOT": "y",
+    "CONFIG_MAIN_STACK_SIZE": "16384",
+    "CONFIG_THREAD_CUSTOM_DATA": "y",
+    "CONFIG_THREAD_LOCAL_STORAGE": "n",
+    "CONFIG_UPDATEABLE_IMAGE_NUMBER": "2"
+   },
+   "source_version_identity": {
+    "function_first_commit": "4ff95da6f631409e1b3340bb972e91deec0ec924",
+    "indistinguishable_tags": "v1.10.99-ncs1 through local v2.1.0-ncs5-2",
+    "manifest_pin": "edfe1e1465dbc698bf9a195816247913490ab391"
+   },
+   "status": "authorized",
+   "symbol": "boot_set_next",
+   "upstream_code_size": 158,
+   "upstream_object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/mcuboot/boot/bootutil/zephyr/CMakeFiles/mcuboot_util.dir/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c.obj",
+   "upstream_object_sha256": "992b0e53e80d96aa1e99954da1979071656d83dd594e87324cca80e7bbfe5d4b",
+   "upstream_section_size": 172,
+   "upstream_source": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+   "upstream_source_sha256": "1bf0812387f8e980027d7437f6d02319a923a81e0e72f733ed26619802db9822",
+   "va": "0x000641e4",
+   "whole_unit_closure": {
+    "archive_member_already_selected": true,
+    "exact_companion_sections": [
+     ".text.boot_write_magic",
+     ".text.boot_read_swap_state",
+     ".text.boot_write_swap_info",
+     ".text.boot_write_image_ok",
+     ".text.boot_read_image_ok",
+     ".text.boot_read_swap_state_by_id"
+    ],
+    "exclude_only": [
+     "0x000641e4"
+    ],
+    "firmware_absent_sections_require_normal_gc": [
+     ".text.boot_swap_type_multi",
+     ".text.boot_write_copy_done",
+     ".text.boot_set_pending_multi",
+     ".text.boot_set_confirmed_multi",
+     ".text.boot_image_load_header"
+    ],
+    "new_undefined_symbols": [],
+    "raw_alias_preserved": "FUN_000641e4",
+    "retain_all_probe_may_keep_absent_sections": true,
+    "safe": true,
+    "selected_exact_section": ".text.boot_set_next",
+    "source_unit": "bootloader/mcuboot/boot/bootutil/src/bootutil_public.c"
+   }
+  }
+ ],
+ "configured_build_receipts": [
+  "/private/tmp/g1-app-root-topology-exact5-0718/zephyr/.config"
+ ],
+ "core": "app",
+ "policy": {
+  "exclude_only_selected_public_owners": true,
+  "normal_section_gc_required_for_firmware_absent_sections": true,
+  "retain_recovered_c_as_evidence": true,
+  "sdc_remains_report_only": true
+ },
+ "schema": 1,
+ "status": "authorized_atomic",
+ "variant_collisions": [
+  {
+   "configured_inclusion": {
+    "indexed_object_present": true,
+    "proof": "exact5 retain-all link selected this stock source unit",
+    "selected_by_real_link": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe"
+   },
+   "core": "app",
+   "current_symbol": "zcbor_process_backup",
+   "exclusion_blockers": [],
+   "firmware_extent": 108,
+   "identity_threshold_candidate": true,
+   "raw_symbol": "FUN_00085c86",
+   "safe_to_exclude": false,
+   "signature_match": {
+    "length": 1.0,
+    "normalized_code_sha256": "9de641243cd1bbb8c0b023ee1ad905c3124de64af19ac761fb92e91a4da0e529",
+    "normalized_exact": true,
+    "opcode": 1.0,
+    "shape": 1.0
+   },
+   "upstream": {
+    "code_extent_compared": 108,
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c.obj",
+    "object_sha256": "d5f2596945ae8490a49fe658c265f061fa72fd1e6f1cd0b29ae92880b88b111b",
+    "section": ".text.zcbor_process_backup",
+    "source": {
+     "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+     "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_common.c",
+     "repository": "zcbor",
+     "sha256": "1f5d76ebfa9745c89fa8eb68496edc6cf585803ba48a425a1e7edb00018c3de3"
+    },
+    "symbol": "zcbor_process_backup",
+    "symbol_size": 108
+   },
+   "va": "0x00085c86"
+  },
+  {
+   "configured_inclusion": {
+    "indexed_object_present": true,
+    "proof": "exact5 retain-all link selected this stock source unit",
+    "selected_by_real_link": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe"
+   },
+   "core": "app",
+   "current_symbol": "zcbor_simple_put",
+   "exclusion_blockers": [],
+   "firmware_extent": 24,
+   "identity_threshold_candidate": true,
+   "raw_symbol": "FUN_00086360",
+   "safe_to_exclude": false,
+   "signature_match": {
+    "length": 1.0,
+    "normalized_code_sha256": "b790d8a46263492e59564312d082a4ddbf35a4799b998abef9b52393d3989f43",
+    "normalized_exact": true,
+    "opcode": 1.0,
+    "shape": 1.0
+   },
+   "upstream": {
+    "code_extent_compared": 24,
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/zcbor/CMakeFiles/modules__zcbor.dir/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c.obj",
+    "object_sha256": "1f1795b67af85166a797998108e706962a390ba6e7cfbe68837a2073a03d0d2a",
+    "section": ".text.zcbor_simple_put",
+    "source": {
+     "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+     "path": "/Users/freedomcoder/ncs251/modules/lib/zcbor/src/zcbor_encode.c",
+     "repository": "zcbor",
+     "sha256": "37d43a080bd3780e93ce0350f5476453e0f49226ed1b183bc4875f0693af2ae3"
+    },
+    "symbol": "zcbor_simple_put",
+    "symbol_size": 24
+   },
+   "va": "0x00086360"
+  },
+  {
+   "configured_inclusion": {
+    "indexed_object_present": true,
+    "proof": "exact5 retain-all link selected this stock source unit",
+    "selected_by_real_link": true,
+    "zephyr_config_sha256": "a33a336176935d1d2e31ba2c79f558a0952f4c8cdffb93fccc654bd02f126efe"
+   },
+   "core": "app",
+   "current_symbol": "boot_set_next",
+   "exclusion_blockers": [],
+   "firmware_extent": 158,
+   "identity_threshold_candidate": true,
+   "raw_symbol": "FUN_000641e4",
+   "safe_to_exclude": false,
+   "signature_match": {
+    "length": 1.0,
+    "normalized_code_sha256": "37091445279bb0d68e8916052f19f5f9b266f2b3f12bb172a3c2e520367eb497",
+    "normalized_exact": true,
+    "opcode": 1.0,
+    "shape": 1.0
+   },
+   "upstream": {
+    "code_extent_compared": 158,
+    "object": "/private/tmp/g1-app-root-topology-exact5-0718/modules/mcuboot/boot/bootutil/zephyr/CMakeFiles/mcuboot_util.dir/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c.obj",
+    "object_sha256": "992b0e53e80d96aa1e99954da1979071656d83dd594e87324cca80e7bbfe5d4b",
+    "section": ".text.boot_set_next",
+    "source": {
+     "commit": "edfe1e1465dbc698bf9a195816247913490ab391",
+     "path": "/Users/freedomcoder/ncs251/bootloader/mcuboot/boot/bootutil/src/bootutil_public.c",
+     "repository": "mcuboot",
+     "sha256": "1bf0812387f8e980027d7437f6d02319a923a81e0e72f733ed26619802db9822"
+    },
+    "symbol": "boot_set_next",
+    "symbol_size": 172
+   },
+   "va": "0x000641e4"
+  }
+ ]
+}
