@@ -200,10 +200,14 @@
 	lsm6dso: lsm6dso@6b {
 		compatible = "st,lsm6dso";
 		reg = <0x6b>;
-		/* Original descriptor 0x87d58 has a NULL init entry.  Keep the
-		 * topology documented but do not instantiate Zephyr's non-NULL
-		 * lsm6dso_init owner; its descriptor is recovered separately. */
-		status = "disabled";
+		/* Exact packed config bytes at original 0x0008b9f0: both sensors
+		 * use the driver's low/normal-power mode; ODR/range stay at their
+		 * zero-valued power-up defaults. */
+		accel-pm = <1>;
+		gyro-pm = <1>;
+		/* The custom owner emits the original NULL init entry; the stock
+		 * CONFIG_LSM6DSO owner remains disabled in Kconfig. */
+		status = "okay";
 	};
 };
 

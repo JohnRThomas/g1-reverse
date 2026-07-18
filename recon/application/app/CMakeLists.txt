@@ -81,6 +81,12 @@ include(${CMAKE_CURRENT_LIST_DIR}/../../generated/app_verified_data_sources.cmak
 
 target_sources(app PRIVATE
   ${G1_RETAINED_SOURCES}
+  # The firmware uses the pinned stock LSM6DSO implementation and data/API
+  # shape, but its device init entry is NULL.  This wrapper changes only that
+  # instantiation detail and keeps CONFIG_LSM6DSO disabled.
+  src/g1_lsm6dso_device.c
+  ${ZEPHYR_BASE}/drivers/sensor/stmemsc/stmemsc_i2c.c
+  ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver/lsm6dso_reg.c
   # Generated only after compiling every recovered table and comparing its
   # emitted bytes to app_update.bin.  Unknown/skipped tables are never added.
   ${G1_VERIFIED_DATA_SOURCES}
@@ -104,6 +110,9 @@ target_include_directories(app PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/../../headers
   ${CMAKE_CURRENT_LIST_DIR}/../../symbols
   ${CMAKE_CURRENT_LIST_DIR}/../../wiring
+  ${ZEPHYR_BASE}/drivers/sensor/lsm6dso
+  ${ZEPHYR_BASE}/drivers/sensor/stmemsc
+  ${ZEPHYR_ST_MODULE_DIR}/sensor/stmemsc/lsm6dso_STdC/driver
 )
 
 # Symbolized reconstruction inputs refer to original-image RAM objects and
