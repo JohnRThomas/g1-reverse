@@ -1,0 +1,49 @@
+{
+ "schema": 1,
+ "core": "app",
+ "batch": "COLLISION-07",
+ "decision": "adopt_pinned_sdk_source_unit_atomically",
+ "source_unit": "modules/hal/nordic/nrfx/drivers/src/nrfx_pdm.c",
+ "source_sha256": "536619a4d27007214c840f512c33a43a26a2528ac4d66c0792bd16891d5beb9c",
+ "required_config": {
+  "CONFIG_ASSERT": "y",
+  "CONFIG_ASSERT_LEVEL": "2",
+  "CONFIG_SPIN_VALIDATE": "n"
+ },
+ "functions": [
+  {"va": "0x0006615c", "raw_symbol": "FUN_0006615c", "symbol": "nrfx_pdm_init", "live_size": 94, "normalized_sha256": "6d00c9a56e1fe2294ca1bd6ba86c520d40f50378e36593412d33723cb21aa6ce"},
+  {"va": "0x000661dc", "raw_symbol": "FUN_000661dc", "symbol": "nrfx_pdm_uninit", "live_size": 46, "normalized_sha256": "83b92aae823aac10a74b7d3b0273f1523c27a3a2c50660bedaafb017744dcb34"},
+  {"va": "0x00066214", "raw_symbol": "FUN_00066214", "symbol": "nrfx_pdm_start", "live_size": 62, "normalized_sha256": "3adfa6ea2b5a8a103120609877c9bb08ab46ff4d16622f18eef48ac66107941e"},
+  {"va": "0x00066270", "raw_symbol": "FUN_00066270", "symbol": "nrfx_pdm_buffer_set", "live_size": 118, "normalized_sha256": "4af09b3f71e28cddced7f4c5e4af5a8dc2c123568b01f572645d3b0ef0a31dce"},
+  {"va": "0x00066300", "raw_symbol": "FUN_00066300", "symbol": "nrfx_pdm_stop", "live_size": 80, "normalized_sha256": "b82ac6bc3eda1411be735c2e0ce875d3fb517db3285d407aed3cf7c5acf1b89f"}
+ ],
+ "whole_unit_closure": {
+  "shared_private_state": "m_cb",
+  "shared_private_state_size": 24,
+  "upstream_irq_handler": "nrfx_pdm_irq_handler",
+  "upstream_irq_handler_size": 268,
+  "firmware_irq_span": ["0x0006636c", "0x00066478"],
+  "partial_adoption_forbidden": true
+ },
+ "cfg_verify": {
+  "owners": {"PASS": 5, "cases": 4},
+  "direct_callers": {"PASS": 4, "cases": 14},
+  "total_cases": 18
+ },
+ "link_delta": {
+  "before_unique_collisions": 96,
+  "after_unique_collisions": 91,
+  "removed": ["nrfx_pdm_buffer_set", "nrfx_pdm_init", "nrfx_pdm_start", "nrfx_pdm_stop", "nrfx_pdm_uninit"],
+  "added": [],
+  "unresolved_before": ["FUN_0005463e", "FUN_00054688"],
+  "unresolved_after": ["FUN_0005463e", "FUN_00054688"]
+ },
+ "evidence": {
+  "pre_build_log": "/private/tmp/g1-app-pdm-assert-0718g.log",
+  "post_build_log": "/private/tmp/g1-app-pdm-post-0718h.log",
+  "configured_object": "/private/tmp/g1-app-pdm-assert-0718g/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/Users/freedomcoder/ncs251/modules/hal/nordic/nrfx/drivers/src/nrfx_pdm.c.obj",
+  "configured_object_sha256": "393327a07436ac1bbabde22f569be56c9ace210385e727e446eb50498fff60a6",
+  "configured_build": "/private/tmp/g1-app-pdm-assert-0718g/zephyr/.config",
+  "configured_build_sha256": "a61727317580f6fa371b5cef19fd10569b4f7133a95070d4988efcd5351706c1"
+ }
+}

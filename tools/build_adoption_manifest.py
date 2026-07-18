@@ -78,6 +78,22 @@ def _json_sha256(value):
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _kconfig_values(path):
+    """Return exact assignments from a generated Zephyr ``.config``."""
+    values = {}
+    with open(path, encoding="utf-8") as stream:
+        for line in stream:
+            line = line.strip()
+            match = re.match(r"^(CONFIG_[A-Za-z0-9_]+)=(.*)$", line)
+            if match:
+                values[match.group(1)] = match.group(2)
+                continue
+            match = re.match(r"^# (CONFIG_[A-Za-z0-9_]+) is not set$", line)
+            if match:
+                values[match.group(1)] = "n"
+    return values
+
+
 def _address(value):
     return (int(value, 0) if isinstance(value, str) else int(value)) & ~1
 
@@ -276,6 +292,14 @@ def _app_collision_entries(data, source, names, authorizations,
         row_va = _hex(row["va"])
         upstream = row.get("upstream", {})
         authorization = authorized.get(row_va)
+        closure = (authorization or {}).get("whole_unit_closure", {})
+        atomic_group = sorted(_hex(value) for value in
+                              (authorization or {}).get("atomic_group", []))
+        exclude_only = sorted(_hex(value) for value in
+                              closure.get("exclude_only", []))
+        closure_matches = (exclude_only == [row_va] or
+                           (atomic_group and exclude_only == atomic_group and
+                            row_va in atomic_group))
         authorization_valid = bool(
             authorization and
             authorization.get("symbol") ==
@@ -283,22 +307,27 @@ def _app_collision_entries(data, source, names, authorizations,
             authorization.get("instruction_exact") is True and
             authorization.get("normalized_code_sha256") and
             authorization.get("cfg_verify_cases", 0) > 0 and
-            authorization.get("whole_unit_closure", {}).get("safe") is True and
-            authorization.get("whole_unit_closure", {}).get("exclude_only") ==
-            [row_va] and
-            not authorization.get("whole_unit_closure", {}).get(
-                "new_undefined_symbols"))
+            closure.get("safe") is True and closure_matches and
+            not closure.get("new_undefined_symbols"))
         reviewed_inflation_override = bool(
             authorization_valid and
             authorization.get("catalog_extent_inflated") is True and
             authorization.get("firmware_code_size", 0) > 0 and
             authorization.get("firmware_code_size") ==
             authorization.get("upstream_code_size"))
+        configuration_variant_override = bool(
+            authorization_valid and
+            authorization.get("configuration_variant_exact") is True and
+            authorization.get("firmware_code_size", 0) > 0 and
+            authorization.get("firmware_code_size") ==
+            authorization.get("upstream_code_size") and
+            authorization.get("required_config"))
         eligible = (row.get("safe_to_exclude") is True or
                     (authorization_valid and
                      ((row.get("identity_threshold_candidate") is True and
                        not row.get("exclusion_blockers")) or
-                      reviewed_inflation_override)))
+                      reviewed_inflation_override or
+                      configuration_variant_override)))
         source_identity = upstream.get("source", {})
         component = source_identity.get("repository") or "cpuapp_selected_sdk"
         evidence = [_evidence(
@@ -322,10 +351,17 @@ def _app_collision_entries(data, source, names, authorizations,
                 ghidra_catalog_extent=authorization.get(
                     "ghidra_catalog_extent"),
                 callers=authorization.get("callers"),
+                configuration_variant_exact=authorization.get(
+                    "configuration_variant_exact"),
+                required_config=authorization.get("required_config"),
+                atomic_group=authorization.get("atomic_group"),
                 whole_unit_closure=authorization.get("whole_unit_closure")))
         output.append(_entry(
             "app", row["va"], names, "source", component,
-            upstream.get("symbol"), upstream.get("object"), eligible,
+            upstream.get("symbol"),
+            ((authorization or {}).get("upstream_object")
+             if (authorization or {}).get("configuration_variant_exact")
+             else upstream.get("object")), eligible,
             ("The configured CPUAPP link selected this strong owner and its "
              "DWARF ABI plus firmware instruction signature passed every "
              "fail-closed threshold." if eligible else
@@ -368,8 +404,23 @@ def _build_from_baseline(paths, resolved, names):
          "sha256": _sha256(authorization_path)},
     ]
     app_rows = {row["va"]: row for row in result["cores"]["app"]["entries"]}
+    authorized_by_va = {_hex(row["va"]): row for row in authorized_rows}
     for authorization in authorized_rows:
         va = _hex(authorization["va"])
+        atomic_group = sorted(_hex(value) for value in
+                              authorization.get("atomic_group", []))
+        if atomic_group:
+            if va not in atomic_group:
+                raise ValueError("authorization absent from atomic group: %s" % va)
+            closure_group = sorted(_hex(value) for value in authorization.get(
+                "whole_unit_closure", {}).get("exclude_only", []))
+            if closure_group != atomic_group:
+                raise ValueError("atomic closure mismatch: %s" % va)
+            for member in atomic_group:
+                peer = authorized_by_va.get(member)
+                if peer is None or sorted(_hex(value) for value in peer.get(
+                        "atomic_group", [])) != atomic_group:
+                    raise ValueError("incomplete atomic authorization: %s" % va)
         collision = collision_rows.get(va)
         if collision is None:
             raise ValueError("authorization absent from current collision catalog: %s" % va)
@@ -378,11 +429,19 @@ def _build_from_baseline(paths, resolved, names):
         upstream = collision.get("upstream", {})
         source = upstream.get("source", {})
         configured = collision.get("configured_inclusion", {})
-        receipts = (
-            ("upstream_object_sha256", upstream.get("object_sha256")),
-            ("upstream_source_sha256", source.get("sha256")),
-            ("configured_build_sha256", configured.get("zephyr_config_sha256")),
-        )
+        if authorization.get("configuration_variant_exact") is True:
+            receipts = (
+                ("baseline_upstream_object_sha256", upstream.get("object_sha256")),
+                ("upstream_source_sha256", source.get("sha256")),
+                ("baseline_configured_build_sha256",
+                 configured.get("zephyr_config_sha256")),
+            )
+        else:
+            receipts = (
+                ("upstream_object_sha256", upstream.get("object_sha256")),
+                ("upstream_source_sha256", source.get("sha256")),
+                ("configured_build_sha256", configured.get("zephyr_config_sha256")),
+            )
         for key, expected in receipts:
             if not expected or authorization.get(key) != expected:
                 raise ValueError("%s receipt mismatch: %s" % (key, va))
@@ -400,6 +459,18 @@ def _build_from_baseline(paths, resolved, names):
         if not config_path or _sha256(config_path) != authorization[
                 "configured_build_sha256"]:
             raise ValueError("configured build changed: %s" % va)
+        required_config = authorization.get("required_config", {})
+        if authorization.get("configuration_variant_exact") is True:
+            if not required_config:
+                raise ValueError("configuration variant has no config gate: %s" % va)
+            actual_config = _kconfig_values(config_path)
+            mismatches = {key: {"expected": value,
+                                "actual": actual_config.get(key)}
+                          for key, value in required_config.items()
+                          if actual_config.get(key) != value}
+            if mismatches:
+                raise ValueError("required config mismatch %s: %s" %
+                                 (va, mismatches))
         canonical = os.path.join(BASE, "recon", "app", "src",
                                  authorization.get("raw_symbol", "") + ".c")
         if (_sha256(canonical) !=
